@@ -1,0 +1,10 @@
+[
+    {
+        "modid": "jurassicraft",
+        "name": "JurassiCraft",
+        "version": "${version}",
+        "authorList": ["TeamJC"],
+        "url": "https://ilexiconn.net/",
+        "description": "WIP"
+    }
+]
