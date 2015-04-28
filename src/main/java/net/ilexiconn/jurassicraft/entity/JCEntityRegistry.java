@@ -29,7 +29,7 @@ public class JCEntityRegistry implements IContentHandler
 
     public void gameRegistry() throws Exception
     {
-        for (String json : jsonFiles) registerEntity(JsonFactory.getGson().fromJson(new InputStreamReader(JurassiCraft.class.getResourceAsStream("/jurassicraft/json/" + json)), JsonCreature.class));
+        for (String json : jsonFiles) registerEntity(JsonFactory.getGson().fromJson(new InputStreamReader(JurassiCraft.class.getResourceAsStream("/assets/jurassicraft/json/" + json)), JsonCreature.class));
     }
 
     public void registerJson(String name)

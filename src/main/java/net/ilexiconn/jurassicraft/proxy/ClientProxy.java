@@ -5,9 +5,9 @@ import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.client.render.entity.RenderDinosaur;
 import net.ilexiconn.jurassicraft.entity.json.JsonCreature;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Timer;
 
@@ -25,7 +25,7 @@ public class ClientProxy extends ServerProxy
     {
         try
         {
-            RenderingRegistry.registerEntityRenderingHandler(clazz, (RenderLiving) Class.forName("net.ilexiconn.jurassicraft.client.render.entity.Render" + creature.getName()).getDeclaredConstructor(JsonCreature.class).newInstance(creature));
+            RenderingRegistry.registerEntityRenderingHandler(clazz, new RenderDinosaur(creature));
         }
         catch (Exception e)
         {

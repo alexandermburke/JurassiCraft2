@@ -40,12 +40,10 @@ processResources {
 
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-        include 'jurassicraft/json/*.json'
         expand 'version':project.version, 'mcversion':project.minecraft.version
     }
 
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
-        exclude 'jurassicraft/json/*.json'
     }
 }
