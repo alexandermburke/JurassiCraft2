@@ -9,6 +9,8 @@ public class JsonCreature
     private String name;
     private List<JsonHitbox> hitboxList;
 
+    private boolean shouldRegister = true; //Register by defualt if not specified
+    
     private double minHealth;
     private double minStrength;
     private double minSpeed;
@@ -182,4 +184,9 @@ public class JsonCreature
     {
         return JsonFactory.getGson().toJson(this);
     }
+
+	public boolean shouldRegister()
+	{
+		return shouldRegister;
+	}
 }

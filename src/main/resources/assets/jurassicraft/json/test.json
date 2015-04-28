@@ -1,4 +1,5 @@
 {
+	"shouldRegister":true,
     "name": "Test",
     "hitboxList": [
         {
@@ -97,5 +98,7 @@
     "xzBoxMin": 0.5,
     "xzBoxDelta": 2.0,
     "yBoxMin": 0.4,
-    "yBoxDelta": 2.0
+    "yBoxDelta": 2.0,
+	"eggPrimaryColor":0,
+	"eggSecondaryColor":0
 }
