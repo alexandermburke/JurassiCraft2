@@ -29,7 +29,7 @@ group = "net.ilexiconn.jurassicraft"
 archivesBaseName = "JurassiCraft"
 
 minecraft {
-    version = "1.7.10-10.13.3.1374-1.7.10"
+    version = "1.7.10-10.13.3.1395-1710ls"
     runDir = "minecraft"
     replace '${version}', project.version
 }

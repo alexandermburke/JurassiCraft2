@@ -16,7 +16,7 @@ import net.ilexiconn.llibrary.ContentHandlerList;
 
 import java.io.IOException;
 
-@Mod(modid = "jurassicraft", name = "JurassiCraft", version = "${version}")
+@Mod(modid = "jurassicraft", name = "JurassiCraft", version = "${version}", dependencies = "required-after:llibrary@[0.1.0,)")
 public class JurassiCraft
 {
     @SidedProxy(serverSide = "net.ilexiconn.jurassicraft.proxy.ServerProxy", clientSide = "net.ilexiconn.jurassicraft.proxy.ClientProxy")

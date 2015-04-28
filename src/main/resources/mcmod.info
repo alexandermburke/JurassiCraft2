@@ -5,6 +5,7 @@
         "version": "${version}",
         "authorList": ["TeamJC"],
         "url": "https://ilexiconn.net/",
+        "dependencies": ["llibrary"],
         "description": "WIP"
     }
 ]
