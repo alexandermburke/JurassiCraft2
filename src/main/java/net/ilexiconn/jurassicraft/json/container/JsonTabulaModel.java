@@ -7,19 +7,43 @@ import java.util.ArrayList;
 
 public class JsonTabulaModel
 {
-    public String modelName;
-    public String authorName;
-    public int projVersion;
+    private int textureWidth = 64;
+    private int textureHeight = 32;
 
-    public ArrayList<String> metadata;
+    private double[] scale = new double[] {1d, 1d, 1d};
 
-    public int textureWidth = 64;
-    public int textureHeight = 32;
+    private ArrayList<CubeGroup> cubeGroups;
+    private ArrayList<CubeInfo> cubes;
 
-    public double[] scale = new double[] { 1.0D, 1.0D, 1.0D };
+    private int cubeCount;
 
-    public ArrayList<CubeGroup> cubeGroups;
-    public ArrayList<CubeInfo> cubes;
+    public int getTextureWidth()
+    {
+        return textureWidth;
+    }
 
-    public int cubeCount;
+    public int getTextureHeight()
+    {
+        return textureHeight;
+    }
+
+    public double[] getScale()
+    {
+        return scale;
+    }
+
+    public ArrayList<CubeGroup> getCubeGroups()
+    {
+        return cubeGroups;
+    }
+
+    public ArrayList<CubeInfo> getCubes()
+    {
+        return cubes;
+    }
+
+    public int getCubeCount()
+    {
+        return cubeCount;
+    }
 }
