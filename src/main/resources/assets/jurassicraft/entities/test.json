@@ -1,6 +1,6 @@
 {
     "shouldRegister": true,
-	"animatorClass":"net.ilexiconn.jurassicraft.client.model.animation.TestAnimator",
+	"animatorClass":"net.ilexiconn.jurassicraft.client.model.animation.AnimationTest",
     "tabulaModel": "/assets/jurassicraft/models/entities/test_model",
     "maleTextures": [
         "jurassicraft:test.png"
