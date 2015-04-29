@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class JCEntityRegistry implements IContentHandler
 {
-    public static final String jsonLocation = "/assets/jurassicraft/json/";
+    public static final String jsonLocation = "/assets/jurassicraft/entities/";
     private static Map<Class, JsonCreature> creatures = Maps.newHashMap();
     public List<String> jsonFiles = Lists.newArrayList();
 

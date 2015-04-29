@@ -1,13 +1,21 @@
 package net.ilexiconn.jurassicraft.json;
 
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
 import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.ilexiconn.llibrary.json.JsonFactory;
 import net.ilexiconn.llibrary.json.JsonHelper;
 import net.ilexiconn.llibrary.json.container.JsonHitbox;
 import net.minecraft.client.model.ModelBase;
+import org.apache.commons.io.IOUtils;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.util.Enumeration;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 public class JsonCreature
 {
@@ -223,13 +231,32 @@ public class JsonCreature
             }
             else if (tabulaModel != null)
             {
-                if (animatorClass != null)
+                File tempFile = File.createTempFile(tabulaModel, ".tbl");
+                tempFile.deleteOnExit();
+                try (FileOutputStream out = new FileOutputStream(tempFile))
                 {
-                    model = new ModelJson(JsonHelper.parseTabulaModel("/assets/jurassicraft/json/models/entities/" + tabulaModel), (IModelAnimator) Class.forName(animatorClass).newInstance());
+                    IOUtils.copy(JurassiCraft.class.getResourceAsStream("/assets/jurassicraft/models/entities/" + tabulaModel + ".tbl"), out);
                 }
-                else
+
+                ZipFile zipFile = new ZipFile(tempFile);
+                Enumeration<? extends ZipEntry> entries = zipFile.entries();
+
+                while (entries.hasMoreElements())
                 {
-                    model = new ModelJson(JsonHelper.parseTabulaModel("/assets/jurassicraft/json/models/entities/" + tabulaModel));
+                    ZipEntry entry = entries.nextElement();
+
+                    if (entry.getName().equals("model.json"))
+                    {
+                        InputStream stream = zipFile.getInputStream(entry);
+                        if (animatorClass != null)
+                        {
+                            model = new ModelJson(JsonHelper.parseTabulaModel(stream), (IModelAnimator) Class.forName(animatorClass).newInstance());
+                        }
+                        else
+                        {
+                            model = new ModelJson(JsonHelper.parseTabulaModel(stream));
+                        }
+                    }
                 }
             }
             else
