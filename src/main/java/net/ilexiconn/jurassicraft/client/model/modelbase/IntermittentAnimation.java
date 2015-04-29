@@ -15,7 +15,7 @@ public class IntermittentAnimation
     private int goChance;
     private int returnChance;
     private Random random = new Random();
-    
+
     public IntermittentAnimation(int d, int i, int c, int r)
     {
         timer = 0;
@@ -26,31 +26,31 @@ public class IntermittentAnimation
         returnChance = r;
         inverter = -1;
     }
-    
+
     public void setDuration(int d)
     {
         timer = 0;
         duration = (double) d;
     }
-    
+
     public double getTimer()
     {
         return timer;
     }
-    
+
     public void setTimer(int time)
     {
         timer = (double) time;
-        
+
         if (timer > duration) timer = duration;
         else if (timer < 0) timer = 0;
     }
-    
+
     public void resetTimer()
     {
         timer = 0;
     }
-    
+
     public void runAnimation()
     {
         if (!runInterval)
@@ -88,7 +88,7 @@ public class IntermittentAnimation
             inverter = 1;
         }
     }
-    
+
     public void stopAnimation(int time)
     {
         if (timer - time > 0d) timer -= time;
@@ -115,17 +115,17 @@ public class IntermittentAnimation
         }
         return 0f;
     }
-    
+
     public float getAnimationProgressSteep()
     {
         return (float) (1d / (1d + Math.exp(6d - 12d * (timer / duration))));
     }
-    
+
     public float getAnimationProgressSin()
     {
         return MathHelper.sin(1.57079632679f * (float) (timer / duration));
     }
-    
+
     public float getAnimationProgressSinSqrt()
     {
         float result = MathHelper.sin(1.57079632679f * (float) (timer / duration));

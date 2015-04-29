@@ -59,7 +59,8 @@ public class ModelObjRenderer extends ModelRenderer
                         GL11.glCallList(displayList);
                         GL11.glPopMatrix();
 
-                        if (childModels != null) for (i = 0; i < childModels.size(); ++i) ((ModelRenderer) childModels.get(i)).render(scale);
+                        if (childModels != null)
+                            for (i = 0; i < childModels.size(); ++i) ((ModelRenderer) childModels.get(i)).render(scale);
                     }
                     else
                     {
@@ -69,7 +70,8 @@ public class ModelObjRenderer extends ModelRenderer
                         GL11.glCallList(displayList);
                         GL11.glPopMatrix();
 
-                        if (childModels != null) for (i = 0; i < childModels.size(); ++i) ((ModelRenderer) childModels.get(i)).render(scale);
+                        if (childModels != null)
+                            for (i = 0; i < childModels.size(); ++i) ((ModelRenderer) childModels.get(i)).render(scale);
 
                         GL11.glTranslatef(-rotationPointX * scale, -rotationPointY * scale, -rotationPointZ * scale);
                     }
@@ -88,7 +90,8 @@ public class ModelObjRenderer extends ModelRenderer
                     GL11.glCallList(displayList);
                     GL11.glPopMatrix();
 
-                    if (childModels != null) for (i = 0; i < childModels.size(); ++i) ((ModelRenderer) childModels.get(i)).render(scale);
+                    if (childModels != null)
+                        for (i = 0; i < childModels.size(); ++i) ((ModelRenderer) childModels.get(i)).render(scale);
 
                     GL11.glPopMatrix();
                 }

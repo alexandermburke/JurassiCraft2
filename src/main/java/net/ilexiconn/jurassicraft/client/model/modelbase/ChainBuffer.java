@@ -11,7 +11,7 @@ public class ChainBuffer
     private float pitchVariation;
     private float[] yawArray;
     private float[] pitchArray;
-    
+
     public ChainBuffer(int numberOfParentedBoxes)
     {
         yawTimer = 0;
@@ -21,18 +21,18 @@ public class ChainBuffer
         yawArray = new float[numberOfParentedBoxes];
         pitchArray = new float[numberOfParentedBoxes];
     }
-    
+
     public void resetRotations()
     {
         yawVariation = 0f;
         pitchVariation = 0f;
     }
-    
+
     public void calculateChainSwingBuffer(float maxAngle, int bufferTime, float angleDecrement, float divider, EntityLivingBase entity)
     {
         if (entity.renderYawOffset != entity.prevRenderYawOffset && MathHelper.abs(yawVariation) < maxAngle)
             yawVariation += (entity.prevRenderYawOffset - entity.renderYawOffset) / divider;
-        
+
         if (yawVariation > 0.7f * angleDecrement)
         {
             if (yawTimer > bufferTime)
@@ -59,16 +59,16 @@ public class ChainBuffer
             }
             else yawTimer++;
         }
-        
+
         for (int i = 0; i < yawArray.length; i++)
             yawArray[i] = 0.01745329251f * yawVariation / pitchArray.length;
     }
-    
+
     public void calculateChainWaveBuffer(float maxAngle, int bufferTime, float angleDecrement, float divider, EntityLivingBase entity)
     {
         if (entity.rotationPitch != entity.prevRotationPitch && MathHelper.abs(pitchVariation) < maxAngle)
             pitchVariation += (entity.prevRotationPitch - entity.rotationPitch) / divider;
-        
+
         if (pitchVariation > 0.7f * angleDecrement)
         {
             if (pitchTimer > bufferTime)
@@ -95,16 +95,16 @@ public class ChainBuffer
             }
             else pitchTimer++;
         }
-        
+
         for (int i = 0; i < pitchArray.length; i++)
             pitchArray[i] = 0.01745329251F * pitchVariation / pitchArray.length;
     }
-    
+
     public void calculateChainSwingBuffer(float maxAngle, int bufferTime, float angleDecrement, EntityLivingBase entity)
     {
         if (entity.renderYawOffset != entity.prevRenderYawOffset && MathHelper.abs(yawVariation) < maxAngle)
             yawVariation += (entity.prevRenderYawOffset - entity.renderYawOffset);
-        
+
         if (yawVariation > 0.7f * angleDecrement)
         {
             if (yawTimer > bufferTime)
@@ -131,16 +131,16 @@ public class ChainBuffer
             }
             else yawTimer++;
         }
-        
+
         for (int i = 0; i < yawArray.length; i++)
             yawArray[i] = 0.01745329251F * yawVariation / pitchArray.length;
     }
-    
+
     public void calculateChainWaveBuffer(float maxAngle, int bufferTime, float angleDecrement, EntityLivingBase entity)
     {
         if (entity.rotationPitch != entity.prevRotationPitch && MathHelper.abs(pitchVariation) < maxAngle)
             pitchVariation += (entity.prevRotationPitch - entity.rotationPitch);
-        
+
         if (pitchVariation > 0.7f * angleDecrement)
         {
             if (pitchTimer > bufferTime)
@@ -167,20 +167,22 @@ public class ChainBuffer
             }
             else pitchTimer++;
         }
-        
+
         for (int i = 0; i < pitchArray.length; i++)
             pitchArray[i] = 0.01745329251F * pitchVariation / pitchArray.length;
     }
-    
+
     public void applyChainSwingBuffer(MowzieModelRenderer[] boxes)
     {
-        if (boxes.length == yawArray.length) for (int i = 0; i < boxes.length; i++) boxes[i].rotateAngleY += yawArray[i];
+        if (boxes.length == yawArray.length)
+            for (int i = 0; i < boxes.length; i++) boxes[i].rotateAngleY += yawArray[i];
         else System.err.println("[JurassiCraft] Wrong array length being used in the buffer! (Y axis)");
     }
-    
+
     public void applyChainWaveBuffer(MowzieModelRenderer[] boxes)
     {
-        if (boxes.length == pitchArray.length) for (int i = 0; i < boxes.length; i++) boxes[i].rotateAngleX += pitchArray[i];
+        if (boxes.length == pitchArray.length)
+            for (int i = 0; i < boxes.length; i++) boxes[i].rotateAngleX += pitchArray[i];
         else System.out.println("[JurassiCraft] Wrong array length being used in the buffer! (X axis)");
     }
 }

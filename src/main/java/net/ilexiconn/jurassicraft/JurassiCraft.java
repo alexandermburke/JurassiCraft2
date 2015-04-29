@@ -19,10 +19,10 @@ import java.io.IOException;
 @Mod(modid = "jurassicraft", name = "JurassiCraft", version = "${version}", dependencies = "required-after:llibrary@[0.1.0,)")
 public class JurassiCraft
 {
+    public static final String[] timer = new String[]{"field_71428_T", "S", "timer"};
     @SidedProxy(serverSide = "net.ilexiconn.jurassicraft.proxy.ServerProxy", clientSide = "net.ilexiconn.jurassicraft.proxy.ClientProxy")
     public static ServerProxy proxy;
     public static SimpleNetworkWrapper wrapper;
-    public static final String[] timer = new String[]{"field_71428_T", "S", "timer"};
 
     @Mod.EventHandler
     public void init(FMLPreInitializationEvent event) throws IOException

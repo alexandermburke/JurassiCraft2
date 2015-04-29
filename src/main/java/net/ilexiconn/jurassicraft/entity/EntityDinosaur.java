@@ -1,7 +1,7 @@
 package net.ilexiconn.jurassicraft.entity;
 
-import net.ilexiconn.jurassicraft.json.container.JsonCreature;
 import net.ilexiconn.jurassicraft.json.JsonHelper;
+import net.ilexiconn.jurassicraft.json.container.JsonCreature;
 import net.ilexiconn.llibrary.entity.multipart.EntityPart;
 import net.ilexiconn.llibrary.entity.multipart.IEntityMultiPart;
 import net.minecraft.entity.EntityLiving;
@@ -11,7 +11,7 @@ public class EntityDinosaur extends EntityLiving implements IEntityMultiPart
 {
     private EntityPart[] parts;
     private JsonCreature creature;
-    
+
     public EntityDinosaur(World world)
     {
         super(world);
@@ -23,7 +23,7 @@ public class EntityDinosaur extends EntityLiving implements IEntityMultiPart
     {
         return creature;
     }
-    
+
     public EntityPart[] getParts()
     {
         return parts;

@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.json;
 
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.json.container.JsonTabulaModel;
 import net.ilexiconn.jurassicraft.json.container.JsonHitbox;
+import net.ilexiconn.jurassicraft.json.container.JsonTabulaModel;
 import net.ilexiconn.llibrary.entity.multipart.EntityPart;
 import net.minecraft.entity.EntityLivingBase;
 

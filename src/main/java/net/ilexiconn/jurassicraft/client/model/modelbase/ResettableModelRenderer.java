@@ -8,20 +8,20 @@ public class ResettableModelRenderer extends ModelRenderer
     public float firstRotateAngleX;
     public float firstRotateAngleY;
     public float firstRotateAngleZ;
-    
+
     public float firstRotationPointX;
     public float firstRotationPointY;
     public float firstRotationPointZ;
-    
+
     public float firstOffsetX;
     public float firstOffsetY;
     public float firstOffsetZ;
-    
+
     public ResettableModelRenderer(ModelBase modelBase, int textureOffsetX, int textureOffsetY)
     {
         super(modelBase, textureOffsetX, textureOffsetY);
     }
-    
+
     public void savefirstParameters()
     {
         firstRotationPointX = rotationPointX;
@@ -34,7 +34,7 @@ public class ResettableModelRenderer extends ModelRenderer
         firstOffsetY = offsetY;
         firstOffsetZ = offsetZ;
     }
-    
+
     public void resetAllParameters()
     {
         rotationPointX = firstRotationPointX;

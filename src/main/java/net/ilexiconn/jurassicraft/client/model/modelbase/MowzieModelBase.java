@@ -7,7 +7,7 @@ import net.minecraft.util.MathHelper;
 public class MowzieModelBase extends ModelBase
 {
     protected MowzieModelRenderer[] parts;
-    
+
     protected void setInitPose()
     {
         for (MowzieModelRenderer part : parts) part.setInitValuesToCurrentPose();
@@ -90,13 +90,15 @@ public class MowzieModelBase extends ModelBase
     {
         int numberOfSegments = boxes.length;
         float offset = (float) ((rootOffset * Math.PI) / (2 * numberOfSegments));
-        for (int i = 0; i < numberOfSegments; i++) boxes[i].rotateAngleY += MathHelper.cos(f * speed + offset * i) * f1 * degree;
+        for (int i = 0; i < numberOfSegments; i++)
+            boxes[i].rotateAngleY += MathHelper.cos(f * speed + offset * i) * f1 * degree;
     }
 
     public void chainWave(MowzieModelRenderer[] boxes, float speed, float degree, double rootOffset, float f, float f1)
     {
         int numberOfSegments = boxes.length;
         float offset = (float) ((rootOffset * Math.PI) / (2 * numberOfSegments));
-        for (int i = 0; i < numberOfSegments; i++) boxes[i].rotateAngleX += MathHelper.cos(f * speed + offset * i) * f1 * degree;
+        for (int i = 0; i < numberOfSegments; i++)
+            boxes[i].rotateAngleX += MathHelper.cos(f * speed + offset * i) * f1 * degree;
     }
 }

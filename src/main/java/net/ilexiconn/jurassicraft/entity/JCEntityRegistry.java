@@ -2,10 +2,9 @@ package net.ilexiconn.jurassicraft.entity;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.json.container.JsonCreature;
 import net.ilexiconn.jurassicraft.json.JsonFactory;
+import net.ilexiconn.jurassicraft.json.container.JsonCreature;
 import net.ilexiconn.llibrary.IContentHandler;
 import net.ilexiconn.llibrary.entity.EntityHelper;
 import net.minecraft.entity.Entity;
@@ -18,20 +17,24 @@ import java.util.Map;
 
 public class JCEntityRegistry implements IContentHandler
 {
-    public List<String> jsonFiles = Lists.newArrayList();
-    private static Map<Class, JsonCreature> creatures = Maps.newHashMap();
-    
     public static final String jsonLocation = "/assets/jurassicraft/json/";
-    
+    private static Map<Class, JsonCreature> creatures = Maps.newHashMap();
+    public List<String> jsonFiles = Lists.newArrayList();
+
+    public static JsonCreature getCreatureFromClass(Class clazz)
+    {
+        return creatures.get(clazz);
+    }
+
     public void init()
     {
-        try 
+        try
         {
             File jsons = new File(JurassiCraft.class.getResource(jsonLocation).toURI());
-            
+
             for (File file : jsons.listFiles())
             {
-                if(!file.isDirectory())
+                if (!file.isDirectory())
                 {
                     registerJson(file.getName());
                 }
@@ -42,7 +45,7 @@ public class JCEntityRegistry implements IContentHandler
             e.printStackTrace();
         }
     }
-    
+
     public void gameRegistry() throws Exception
     {
         for (String json : jsonFiles)
@@ -50,12 +53,12 @@ public class JCEntityRegistry implements IContentHandler
             registerEntity(JsonFactory.getGson().fromJson(new InputStreamReader(JurassiCraft.class.getResourceAsStream(json)), JsonCreature.class));
         }
     }
-    
+
     public void registerJson(String name)
     {
         jsonFiles.add(jsonLocation + name);
     }
-    
+
     public void registerEntity(JsonCreature creature)
     {
         if (creature.shouldRegister())
@@ -72,10 +75,5 @@ public class JCEntityRegistry implements IContentHandler
                 throw new RuntimeException(e);
             }
         }
-    }
-    
-    public static JsonCreature getCreatureFromClass(Class clazz)
-    {
-        return creatures.get(clazz);
     }
 }
