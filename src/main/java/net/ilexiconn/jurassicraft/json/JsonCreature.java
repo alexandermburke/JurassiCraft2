@@ -233,9 +233,10 @@ public class JsonCreature
             {
                 File tempFile = File.createTempFile(tabulaModel, ".tbl");
                 tempFile.deleteOnExit();
+                
                 try (FileOutputStream out = new FileOutputStream(tempFile))
                 {
-                    IOUtils.copy(JurassiCraft.class.getResourceAsStream("/assets/jurassicraft/models/entities/" + tabulaModel + ".tbl"), out);
+                    IOUtils.copy(JurassiCraft.class.getResourceAsStream(tabulaModel + ".tbl"), out);
                 }
 
                 ZipFile zipFile = new ZipFile(tempFile);

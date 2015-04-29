@@ -1,27 +1,29 @@
 package net.ilexiconn.jurassicraft.entity;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.json.JsonCreature;
-import net.ilexiconn.llibrary.IContentHandler;
-import net.ilexiconn.llibrary.entity.EntityHelper;
-import net.ilexiconn.llibrary.json.JsonFactory;
-import net.minecraft.entity.Entity;
-
 import java.io.File;
 import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
 
+import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.json.JsonCreature;
+import net.ilexiconn.llibrary.IContentHandler;
+import net.ilexiconn.llibrary.entity.EntityHelper;
+import net.ilexiconn.llibrary.json.JsonFactory;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+
 public class JCEntityRegistry implements IContentHandler
 {
     public static final String jsonLocation = "/assets/jurassicraft/entities/";
-    private static Map<Class, JsonCreature> creatures = Maps.newHashMap();
+    private static Map<Class<? extends EntityLiving>, JsonCreature> creatures = Maps.newHashMap();
     public List<String> jsonFiles = Lists.newArrayList();
 
-    public static JsonCreature getCreatureFromClass(Class clazz)
+    public static JsonCreature getCreatureFromClass(Class<? extends EntityLiving> clazz)
     {
         return creatures.get(clazz);
     }
@@ -66,7 +68,7 @@ public class JCEntityRegistry implements IContentHandler
             try
             {
                 Class<? extends Entity> clazz = (Class<? extends Entity>) Class.forName("net.ilexiconn.jurassicraft.entity.Entity" + creature.getName());
-                creatures.put(clazz, creature);
+                creatures.put((Class<? extends EntityLiving>) clazz, creature);
                 EntityHelper.registerEntity(creature.getName(), clazz, creature.getEggPrimaryColor(), creature.getEggSecondaryColor());
                 JurassiCraft.proxy.registerEntityRenderer(clazz, creature);
             }
