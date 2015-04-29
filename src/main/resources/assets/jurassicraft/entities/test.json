@@ -3,10 +3,10 @@
 	"animatorClass":"net.ilexiconn.jurassicraft.client.model.animation.TestAnimator",
     "tabulaModel": "/assets/jurassicraft/models/entities/test_model",
     "maleTextures": [
-        "minecraft:textures/entity/creeper/creeper.png"
+        "jurassicraft:test.png"
     ],
     "femaleTextures": [
-        "minecraft:textures/entity/creeper/creeper.png"
+        "jurassicraft:test.png"
     ],
     "name": "Test",
     "hitboxList": [

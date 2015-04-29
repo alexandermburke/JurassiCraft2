@@ -1,4 +1,4 @@
-package net.ilexiconn.jurassicraft.client.model.animation;
+package net.ilexiconn.jurassicraft.client.model.base;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
