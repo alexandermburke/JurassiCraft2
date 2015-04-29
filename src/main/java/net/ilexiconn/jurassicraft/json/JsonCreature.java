@@ -258,6 +258,8 @@ public class JsonCreature
                         }
                     }
                 }
+                
+                zipFile.close();
             }
             else
             {
