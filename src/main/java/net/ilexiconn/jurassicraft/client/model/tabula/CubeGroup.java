@@ -1,8 +1,6 @@
-package net.ilexiconn.jurassicraft.client.model.tbl;
+package net.ilexiconn.jurassicraft.client.model.tabula;
 
 import java.util.ArrayList;
-
-import org.apache.commons.lang3.RandomStringUtils;
 
 /**
  * @author iChun

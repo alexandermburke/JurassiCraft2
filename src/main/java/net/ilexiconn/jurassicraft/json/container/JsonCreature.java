@@ -1,21 +1,23 @@
-package net.ilexiconn.jurassicraft.entity.json;
-
-import java.util.List;
+package net.ilexiconn.jurassicraft.json.container;
 
 import net.ilexiconn.jurassicraft.client.model.entity.ModelJson;
-import net.ilexiconn.jurassicraft.client.model.tbl.TabulaModel;
 import net.ilexiconn.jurassicraft.json.JsonFactory;
+import net.ilexiconn.jurassicraft.json.JsonHelper;
 import net.minecraft.client.model.ModelBase;
+
+import java.util.List;
 
 public class JsonCreature
 {
     private String name;
     private List<JsonHitbox> hitboxList;
+    private List<String> maleTextures;
+    private List<String> femaleTextures;
 
-    private boolean shouldRegister = true; //Register by defualt if not specified
+    private boolean shouldRegister = true;
     private String modelClass;
     private String tabulaModel;
-    
+
     private double minHealth;
     private double minStrength;
     private double minSpeed;
@@ -44,7 +46,6 @@ public class JsonCreature
 
     private int eggPrimaryColor;
     private int eggSecondaryColor;
-    private String texture;
 
     public String getName()
     {
@@ -54,6 +55,16 @@ public class JsonCreature
     public List<JsonHitbox> getHitboxList()
     {
         return hitboxList;
+    }
+
+    public List<String> getMaleTextures()
+    {
+        return maleTextures;
+    }
+
+    public List<String> getFemaleTextures()
+    {
+        return femaleTextures;
     }
 
     public double getMinHealth()
@@ -191,41 +202,35 @@ public class JsonCreature
         return JsonFactory.getGson().toJson(this);
     }
 
-	public boolean shouldRegister()
-	{
-		return shouldRegister;
-	}
-	
-	public String getTexture()
-	{
-	    String name = getName().toLowerCase();
-        return texture != null ? texture : "jurassicraft:textures/entity/" + name + "/" + name + ".png"; //TODO: Genders and random textures
-	}
-	
-	public ModelBase getModel()
-	{
-	    ModelBase model = null;
-	    
-	    try
-	    {
-	        if(modelClass != null)
-	        {
-	            model = (ModelBase) Class.forName(modelClass).newInstance();
-	        }
-	        else if(tabulaModel != null)
-	        {
-	            model = new ModelJson(TabulaModel.fromJson(tabulaModel));
-	        }
-	        else
-	        {
-	            model = (ModelBase) Class.forName("net.ilexiconn.jurassicraft.client.model.entity.Model" + getName()).newInstance();
-	        }
-	    }
-	    catch (Exception e)
-	    {
-	        e.printStackTrace();
-	    }
-	    
-	    return model;
-	}
+    public boolean shouldRegister()
+    {
+        return shouldRegister;
+    }
+
+    public ModelBase getModel()
+    {
+        ModelBase model = null;
+
+        try
+        {
+            if (modelClass != null)
+            {
+                model = (ModelBase) Class.forName(modelClass).newInstance();
+            }
+            else if (tabulaModel != null)
+            {
+                model = new ModelJson(JsonHelper.parseTablaModel(tabulaModel));
+            }
+            else
+            {
+                model = (ModelBase) Class.forName("net.ilexiconn.jurassicraft.client.model.entity.Model" + getName()).newInstance();
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return model;
+    }
 }

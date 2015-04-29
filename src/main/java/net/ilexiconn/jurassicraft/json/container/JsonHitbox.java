@@ -1,4 +1,4 @@
-package net.ilexiconn.jurassicraft.entity.json;
+package net.ilexiconn.jurassicraft.json.container;
 
 import net.ilexiconn.jurassicraft.json.JsonFactory;
 

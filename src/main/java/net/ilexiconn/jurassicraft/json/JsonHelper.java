@@ -1,9 +1,12 @@
 package net.ilexiconn.jurassicraft.json;
 
-import net.ilexiconn.jurassicraft.entity.json.JsonHitbox;
+import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.json.container.JsonTabulaModel;
+import net.ilexiconn.jurassicraft.json.container.JsonHitbox;
 import net.ilexiconn.llibrary.entity.multipart.EntityPart;
 import net.minecraft.entity.EntityLivingBase;
 
+import java.io.InputStreamReader;
 import java.util.List;
 
 public class JsonHelper
@@ -23,5 +26,10 @@ public class JsonHelper
     public static EntityPart parseHitbox(EntityLivingBase parent, JsonHitbox hitbox)
     {
         return new EntityPart(parent, hitbox.getRadius(), hitbox.getAngleYaw(), hitbox.getOffsetY(), hitbox.getSizeX(), hitbox.getSizeY(), hitbox.getDamageMultiplier());
+    }
+
+    public static JsonTabulaModel parseTablaModel(String file)
+    {
+        return JsonFactory.getGson().fromJson(new InputStreamReader(JurassiCraft.class.getResourceAsStream(file)), JsonTabulaModel.class);
     }
 }

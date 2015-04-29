@@ -1,6 +1,12 @@
 {
-	"shouldRegister":true,
-	"tabulaModel":"/assets/jurassicraft/json/models/test_model.json",
+    "shouldRegister": true,
+    "tabulaModel": "/assets/jurassicraft/json/models/test_model.json",
+    "maleTextures": [
+        "minecraft:textures/entity/creeper/creeper.png"
+    ],
+    "femaleTextures": [
+        "minecraft:textures/entity/creeper/creeper.png"
+    ],
     "name": "Test",
     "hitboxList": [
         {
@@ -100,6 +106,6 @@
     "xzBoxDelta": 2.0,
     "yBoxMin": 0.4,
     "yBoxDelta": 2.0,
-	"eggPrimaryColor":0,
-	"eggSecondaryColor":0
+    "eggPrimaryColor": 0,
+    "eggSecondaryColor": 0
 }

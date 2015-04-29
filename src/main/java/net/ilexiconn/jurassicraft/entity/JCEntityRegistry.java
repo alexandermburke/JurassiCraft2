@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.entity.json.JsonCreature;
+import net.ilexiconn.jurassicraft.json.container.JsonCreature;
 import net.ilexiconn.jurassicraft.json.JsonFactory;
 import net.ilexiconn.llibrary.IContentHandler;
 import net.ilexiconn.llibrary.entity.EntityHelper;
@@ -58,7 +58,7 @@ public class JCEntityRegistry implements IContentHandler
     
     public void registerEntity(JsonCreature creature)
     {
-        if(creature.shouldRegister())
+        if (creature.shouldRegister())
         {
             try
             {
