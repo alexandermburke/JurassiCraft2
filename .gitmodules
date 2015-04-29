@@ -1,0 +1,3 @@
+[submodule "LLibrary"]
+	path = LLibrary
+	url = https://github.com/iLexiconn/LLibrary

@@ -16,7 +16,7 @@ import net.ilexiconn.llibrary.ContentHandlerList;
 
 import java.io.IOException;
 
-@Mod(modid = "jurassicraft", name = "JurassiCraft", version = "${version}", dependencies = "required-after:llibrary@[0.1.0,)")
+@Mod(modid = "jurassicraft", name = "JurassiCraft", version = "${version}")
 public class JurassiCraft
 {
     public static final String[] timer = new String[]{"field_71428_T", "S", "timer"};

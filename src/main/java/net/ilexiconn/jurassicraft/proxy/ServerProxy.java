@@ -1,6 +1,6 @@
 package net.ilexiconn.jurassicraft.proxy;
 
-import net.ilexiconn.jurassicraft.json.container.JsonCreature;
+import net.ilexiconn.jurassicraft.json.JsonCreature;
 import net.minecraft.entity.Entity;
 
 public class ServerProxy

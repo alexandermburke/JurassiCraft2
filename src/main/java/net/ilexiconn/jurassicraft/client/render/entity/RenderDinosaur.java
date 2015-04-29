@@ -2,7 +2,7 @@ package net.ilexiconn.jurassicraft.client.render.entity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.ilexiconn.jurassicraft.json.container.JsonCreature;
+import net.ilexiconn.jurassicraft.json.JsonCreature;
 import net.ilexiconn.llibrary.client.render.entity.RenderMultiPart;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

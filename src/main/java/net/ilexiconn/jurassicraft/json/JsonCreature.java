@@ -1,8 +1,9 @@
-package net.ilexiconn.jurassicraft.json.container;
+package net.ilexiconn.jurassicraft.json;
 
-import net.ilexiconn.jurassicraft.client.model.entity.ModelJson;
-import net.ilexiconn.jurassicraft.json.JsonFactory;
-import net.ilexiconn.jurassicraft.json.JsonHelper;
+import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
+import net.ilexiconn.llibrary.json.JsonFactory;
+import net.ilexiconn.llibrary.json.JsonHelper;
+import net.ilexiconn.llibrary.json.container.JsonHitbox;
 import net.minecraft.client.model.ModelBase;
 
 import java.util.List;

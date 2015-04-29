@@ -3,10 +3,10 @@ package net.ilexiconn.jurassicraft.entity;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.json.JsonFactory;
-import net.ilexiconn.jurassicraft.json.container.JsonCreature;
+import net.ilexiconn.jurassicraft.json.JsonCreature;
 import net.ilexiconn.llibrary.IContentHandler;
 import net.ilexiconn.llibrary.entity.EntityHelper;
+import net.ilexiconn.llibrary.json.JsonFactory;
 import net.minecraft.entity.Entity;
 
 import java.io.File;

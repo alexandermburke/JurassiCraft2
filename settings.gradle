@@ -1,0 +1,3 @@
+rootProject.name = 'JurassiCraft2'
+
+include 'LLibrary'

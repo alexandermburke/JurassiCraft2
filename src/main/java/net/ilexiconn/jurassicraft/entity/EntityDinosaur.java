@@ -1,9 +1,9 @@
 package net.ilexiconn.jurassicraft.entity;
 
-import net.ilexiconn.jurassicraft.json.JsonHelper;
-import net.ilexiconn.jurassicraft.json.container.JsonCreature;
+import net.ilexiconn.jurassicraft.json.JsonCreature;
 import net.ilexiconn.llibrary.entity.multipart.EntityPart;
 import net.ilexiconn.llibrary.entity.multipart.IEntityMultiPart;
+import net.ilexiconn.llibrary.json.JsonHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.world.World;
 
