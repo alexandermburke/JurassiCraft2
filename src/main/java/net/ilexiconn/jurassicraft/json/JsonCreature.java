@@ -21,7 +21,7 @@ public class JsonCreature
     private String tabulaModel;
 
     private String animatorClass;
-    
+
     private double minHealth;
     private double minStrength;
     private double minSpeed;
@@ -223,13 +223,13 @@ public class JsonCreature
             }
             else if (tabulaModel != null)
             {
-                if(animatorClass != null)
+                if (animatorClass != null)
                 {
-                    model = new ModelJson(JsonHelper.parseTabulaModel(tabulaModel), (IModelAnimator) Class.forName(animatorClass).newInstance());
+                    model = new ModelJson(JsonHelper.parseTabulaModel("/assets/jurassicraft/json/models/entities/" + tabulaModel), (IModelAnimator) Class.forName(animatorClass).newInstance());
                 }
                 else
                 {
-                    model = new ModelJson(JsonHelper.parseTabulaModel(tabulaModel));
+                    model = new ModelJson(JsonHelper.parseTabulaModel("/assets/jurassicraft/json/models/entities/" + tabulaModel));
                 }
             }
             else

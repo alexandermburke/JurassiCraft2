@@ -1,7 +1,7 @@
 {
     "shouldRegister": true,
 	"animatorClass":"net.ilexiconn.jurassicraft.client.model.animation.TestAnimator",
-    "tabulaModel": "/assets/jurassicraft/json/models/test_model.json",
+    "tabulaModel": "test_model.json",
     "maleTextures": [
         "minecraft:textures/entity/creeper/creeper.png"
     ],
