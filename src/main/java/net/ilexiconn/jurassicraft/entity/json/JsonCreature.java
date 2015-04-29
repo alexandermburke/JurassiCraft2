@@ -1,6 +1,7 @@
 package net.ilexiconn.jurassicraft.entity.json;
 
 import net.ilexiconn.jurassicraft.json.JsonFactory;
+import net.minecraft.util.ResourceLocation;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ public class JsonCreature
     private List<JsonHitbox> hitboxList;
 
     private boolean shouldRegister = true; //Register by defualt if not specified
+    private String modelClass;
     
     private double minHealth;
     private double minStrength;
@@ -39,6 +41,7 @@ public class JsonCreature
 
     private int eggPrimaryColor;
     private int eggSecondaryColor;
+    private String texture;
 
     public String getName()
     {
@@ -188,5 +191,16 @@ public class JsonCreature
 	public boolean shouldRegister()
 	{
 		return shouldRegister;
+	}
+	
+	public String getTexture()
+	{
+	    String name = getName().toLowerCase();
+        return texture != null ? texture : "jurassicraft:textures/entity/" + name + "/" + name + ".png"; //TODO: Genders and random textures
+	}
+	
+	public String getModelClass()
+	{
+	    return modelClass != null ? modelClass : "net.ilexiconn.jurassicraft.client.model.entity.Model" + getName();
 	}
 }

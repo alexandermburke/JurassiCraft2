@@ -68,8 +68,8 @@ public class JCEntityRegistry implements IContentHandler
         }
     }
     
-    public static JsonCreature getCreatureFromClass(Class c)
+    public static JsonCreature getCreatureFromClass(Class clazz)
     {
-        return creatures.get(c);
+        return creatures.get(clazz);
     }
 }

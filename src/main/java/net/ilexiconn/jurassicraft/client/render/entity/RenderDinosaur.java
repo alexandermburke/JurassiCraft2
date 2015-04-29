@@ -18,9 +18,9 @@ public class RenderDinosaur extends RenderMultiPart
 
     public RenderDinosaur(JsonCreature creature) throws Exception
     {
-        super((ModelBase) Class.forName("net.ilexiconn.jurassicraft.client.model.entity.Model" + creature.getName()).newInstance(), creature.getShadowSize());
+        super((ModelBase) Class.forName(creature.getModelClass()).newInstance(), creature.getShadowSize());
         jsonCreature = creature;
-        texture = new ResourceLocation("jurassicraft", "textures/entity/" + creature.getName().toLowerCase() + "/" + creature.getName().toLowerCase() + ".png"); //TODO: Genders and random textures
+        texture = new ResourceLocation(creature.getTexture()); //TODO: Genders and random textures
     }
 
     public void preRenderCallback(EntityLivingBase entity, float side)
