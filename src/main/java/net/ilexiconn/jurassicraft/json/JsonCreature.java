@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.json;
 
+import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
 import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.ilexiconn.llibrary.json.JsonFactory;
 import net.ilexiconn.llibrary.json.JsonHelper;
@@ -19,6 +20,8 @@ public class JsonCreature
     private String modelClass;
     private String tabulaModel;
 
+    private String animatorClass;
+    
     private double minHealth;
     private double minStrength;
     private double minSpeed;
@@ -220,7 +223,14 @@ public class JsonCreature
             }
             else if (tabulaModel != null)
             {
-                model = new ModelJson(JsonHelper.parseTablaModel(tabulaModel));
+                if(animatorClass != null)
+                {
+                    model = new ModelJson(JsonHelper.parseTabulaModel(tabulaModel), (IModelAnimator) Class.forName(animatorClass).newInstance());
+                }
+                else
+                {
+                    model = new ModelJson(JsonHelper.parseTabulaModel(tabulaModel));
+                }
             }
             else
             {
