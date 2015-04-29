@@ -1,9 +1,11 @@
 package net.ilexiconn.jurassicraft.entity.json;
 
-import net.ilexiconn.jurassicraft.json.JsonFactory;
-import net.minecraft.util.ResourceLocation;
-
 import java.util.List;
+
+import net.ilexiconn.jurassicraft.client.model.entity.ModelJson;
+import net.ilexiconn.jurassicraft.client.model.tbl.TabulaModel;
+import net.ilexiconn.jurassicraft.json.JsonFactory;
+import net.minecraft.client.model.ModelBase;
 
 public class JsonCreature
 {
@@ -12,6 +14,7 @@ public class JsonCreature
 
     private boolean shouldRegister = true; //Register by defualt if not specified
     private String modelClass;
+    private String tabulaModel;
     
     private double minHealth;
     private double minStrength;
@@ -199,8 +202,30 @@ public class JsonCreature
         return texture != null ? texture : "jurassicraft:textures/entity/" + name + "/" + name + ".png"; //TODO: Genders and random textures
 	}
 	
-	public String getModelClass()
+	public ModelBase getModel()
 	{
-	    return modelClass != null ? modelClass : "net.ilexiconn.jurassicraft.client.model.entity.Model" + getName();
+	    ModelBase model = null;
+	    
+	    try
+	    {
+	        if(modelClass != null)
+	        {
+	            model = (ModelBase) Class.forName(modelClass).newInstance();
+	        }
+	        else if(tabulaModel != null)
+	        {
+	            model = new ModelJson(TabulaModel.fromJson(tabulaModel));
+	        }
+	        else
+	        {
+	            model = (ModelBase) Class.forName("net.ilexiconn.jurassicraft.client.model.entity.Model" + getName()).newInstance();
+	        }
+	    }
+	    catch (Exception e)
+	    {
+	        e.printStackTrace();
+	    }
+	    
+	    return model;
 	}
 }

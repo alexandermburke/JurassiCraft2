@@ -18,7 +18,7 @@ public class RenderDinosaur extends RenderMultiPart
 
     public RenderDinosaur(JsonCreature creature) throws Exception
     {
-        super((ModelBase) Class.forName(creature.getModelClass()).newInstance(), creature.getShadowSize());
+        super(creature.getModel(), creature.getShadowSize());
         jsonCreature = creature;
         texture = new ResourceLocation(creature.getTexture()); //TODO: Genders and random textures
     }

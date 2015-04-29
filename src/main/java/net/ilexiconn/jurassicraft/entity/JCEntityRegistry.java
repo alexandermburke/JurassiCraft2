@@ -31,7 +31,10 @@ public class JCEntityRegistry implements IContentHandler
             
             for (File file : jsons.listFiles())
             {
-                registerJson(file.getName());
+                if(!file.isDirectory())
+                {
+                    registerJson(file.getName());
+                }
             }
         }
         catch (URISyntaxException e)
@@ -42,7 +45,10 @@ public class JCEntityRegistry implements IContentHandler
     
     public void gameRegistry() throws Exception
     {
-        for (String json : jsonFiles) registerEntity(JsonFactory.getGson().fromJson(new InputStreamReader(JurassiCraft.class.getResourceAsStream(json)), JsonCreature.class));
+        for (String json : jsonFiles)
+        {
+            registerEntity(JsonFactory.getGson().fromJson(new InputStreamReader(JurassiCraft.class.getResourceAsStream(json)), JsonCreature.class));
+        }
     }
     
     public void registerJson(String name)

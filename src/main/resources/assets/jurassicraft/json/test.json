@@ -1,7 +1,6 @@
 {
 	"shouldRegister":true,
-	"modelClass":"net.minecraft.client.model.ModelCreeper",
-	"texture":"minecraft:textures/entity/creeper/creeper.png",
+	"tabulaModel":"/assets/jurassicraft/json/models/test_model.json",
     "name": "Test",
     "hitboxList": [
         {
