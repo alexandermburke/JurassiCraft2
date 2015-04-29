@@ -25,7 +25,7 @@ public class CubeInfo
 
     public boolean hidden = false;
 
-    private ArrayList<CubeInfo> children = new ArrayList<CubeInfo>();
+    public ArrayList<CubeInfo> children = new ArrayList<CubeInfo>();
     public String parentIdentifier;
 
     public String identifier;
