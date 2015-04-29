@@ -1,5 +1,7 @@
 {
 	"shouldRegister":true,
+	"modelClass":"net.minecraft.client.model.ModelCreeper",
+	"texture":"minecraft:textures/entity/creeper/creeper.png",
     "name": "Test",
     "hitboxList": [
         {
