@@ -11,7 +11,6 @@ import net.ilexiconn.jurassicraft.json.JsonCreature;
 import net.ilexiconn.llibrary.IContentHandler;
 import net.ilexiconn.llibrary.entity.EntityHelper;
 import net.ilexiconn.llibrary.json.JsonFactory;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 
 import com.google.common.collect.Lists;
