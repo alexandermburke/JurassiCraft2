@@ -12,11 +12,14 @@ public class EntityDinosaur extends EntityLiving implements IEntityMultiPart
     private EntityPart[] parts;
     private JsonCreature creature;
 
+    private boolean gender;
+    
     public EntityDinosaur(World world)
     {
         super(world);
         creature = JCEntityRegistry.getCreatureFromClass(getClass());
         parts = JsonHelper.parseHitboxList(this, creature.getHitboxList());
+        gender = rand.nextBoolean();
     }
 
     public JsonCreature getCreature()
@@ -27,5 +30,10 @@ public class EntityDinosaur extends EntityLiving implements IEntityMultiPart
     public EntityPart[] getParts()
     {
         return parts;
+    }
+
+    public boolean isMale()
+    {
+        return gender;
     }
 }

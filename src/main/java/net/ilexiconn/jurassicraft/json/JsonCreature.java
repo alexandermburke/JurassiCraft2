@@ -28,6 +28,7 @@ public class JsonCreature
     private String modelClass;
     private String tabulaModel;
 
+    private String entityClass;
     private String animatorClass;
 
     private double minHealth;
@@ -273,5 +274,10 @@ public class JsonCreature
         }
 
         return model;
+    }
+    
+    public String getEntityClass()
+    {
+    	return entityClass;
     }
 }

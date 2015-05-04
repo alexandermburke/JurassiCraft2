@@ -2,11 +2,13 @@ package net.ilexiconn.jurassicraft.client.render.entity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.jurassicraft.entity.EntityDinosaur;
 import net.ilexiconn.jurassicraft.json.JsonCreature;
 import net.ilexiconn.llibrary.client.render.entity.RenderMultiPart;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 
 import java.util.Random;
@@ -15,7 +17,8 @@ import java.util.Random;
 public class RenderDinosaur extends RenderMultiPart
 {
     public JsonCreature jsonCreature;
-    public ResourceLocation texture;
+    public ResourceLocation maleTexture;
+    public ResourceLocation femaleTexture;
     public Random random;
 
     public RenderDinosaur(JsonCreature creature) throws Exception
@@ -23,7 +26,8 @@ public class RenderDinosaur extends RenderMultiPart
         super(creature.getModel(), creature.getShadowSize());
         jsonCreature = creature;
         random = new Random();
-        texture = new ResourceLocation(creature.getMaleTextures().get(0)); //TODO: Genders and random textures
+        maleTexture = new ResourceLocation(creature.getMaleTextures().get(0)); //TODO: Genders and random textures
+        femaleTexture = new ResourceLocation(creature.getFemaleTextures().get(0));
     }
 
     public void preRenderCallback(EntityLivingBase entity, float side)
@@ -33,8 +37,13 @@ public class RenderDinosaur extends RenderMultiPart
         GL11.glScalef(scale, scale, scale);
     }
 
+    public ResourceLocation getEntityTexture(EntityDinosaur entity)
+    {
+        return entity.isMale() ? maleTexture : femaleTexture;
+    }
+    
     public ResourceLocation getEntityTexture(Entity entity)
     {
-        return texture;
+        return getEntityTexture((EntityDinosaur) entity);
     }
 }
