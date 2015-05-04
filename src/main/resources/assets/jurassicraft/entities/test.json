@@ -1,5 +1,5 @@
 {
-    "shouldRegister": false,
+    "shouldRegister": true,
 	"animatorClass":"net.ilexiconn.jurassicraft.client.model.animation.AnimationTest",
     "tabulaModel": "/assets/jurassicraft/models/entities/test_model",
     "maleTextures": [

@@ -6,6 +6,10 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
 
+import javassist.CannotCompileException;
+import javassist.ClassPool;
+import javassist.CtClass;
+import javassist.CtNewMethod;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.json.JsonCreature;
 import net.ilexiconn.llibrary.IContentHandler;
@@ -68,15 +72,29 @@ public class JCEntityRegistry implements IContentHandler
 		{
 			try
 			{
-				Class<? extends EntityLiving> clazz;
+				Class<? extends EntityLiving> clazz = EntityDinosaur.class;
 
-				clazz = EntityDinosaur.class;
-				
 				String entityClass = creature.getEntityClass();
 				
 				if(entityClass != null)
 				{
 					clazz = (Class<? extends EntityLiving>) Class.forName(entityClass);
+				}
+				else
+				{
+				    ClassPool pool = ClassPool.getDefault();
+
+	                CtClass dinoCreature = pool.makeClass("Entity" + creature.getName());
+
+	                try
+                    {
+	                    dinoCreature.setSuperclass(pool.get("net.ilexiconn.jurassicraft.entity.EntityDinosaur"));
+                        clazz = dinoCreature.toClass();
+                    }
+                    catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
 				}
 				
 				creatures.put(clazz, creature);
