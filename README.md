@@ -10,18 +10,11 @@ TheLieutenantGhost
 
 ## Programmers
 iLexiconn  
-Ry_dog101  
 Gegy1000  
-Click_me  
-TheLarsinator  
-Jokank  
 BobMowzie  
-RafaMv  
-JTGhawk137  
-LittleBreadLoaf  
 Gobbob  
 Neuroticcheeze  
-Wasaianiah  
+Reuxertz
 
 ## Artists
 Kashmoney  
