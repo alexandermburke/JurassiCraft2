@@ -6,6 +6,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.CtClass;
@@ -84,7 +86,7 @@ public class JCEntityRegistry implements IContentHandler
 				{
 				    ClassPool pool = ClassPool.getDefault();
 
-	                CtClass dinoCreature = pool.makeClass("Entity" + creature.getName());
+	                CtClass dinoCreature = pool.makeClass("net.ilexiconn.jurassicraft.entity.EntityJurassicraft" + creature.getName() + RandomStringUtils.randomAscii(16));
 
 	                try
                     {
