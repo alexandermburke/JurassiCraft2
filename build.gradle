@@ -29,9 +29,10 @@ group = "net.ilexiconn.jurassicraft"
 archivesBaseName = "JurassiCraft"
 
 minecraft {
-    version = "1.7.10-10.13.3.1395-1710ls"
+    version = "1.8-11.14.1.1398"
     runDir = "minecraft"
     replace '${version}', project.version
+    mappings = "snapshot_20141130"
 }
 
 processResources {
@@ -46,8 +47,4 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
-}
-
-jar {
-    from zipTree("libs/javassist.jar")
 }
