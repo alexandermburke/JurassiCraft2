@@ -86,7 +86,7 @@ public class JCEntityRegistry implements IContentHandler
 				{
 				    ClassPool pool = ClassPool.getDefault();
 
-	                CtClass dinoCreature = pool.makeClass("net.ilexiconn.jurassicraft.entity.EntityJurassicraft" + creature.getName() + RandomStringUtils.randomAscii(16));
+	                CtClass dinoCreature = pool.makeClass("net.ilexiconn.jurassicraft.entity.EntityJurassicraft" + creature.getName());
 
 	                try
                     {
