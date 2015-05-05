@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javassist.ClassPool;
 import javassist.CtClass;
@@ -105,4 +106,17 @@ public class JCEntityRegistry implements IContentHandler
             }
         }
     }
+
+	public static Class<? extends EntityLiving> getCreatureClassByName(String creatureName) 
+	{
+		for (Entry<Class<? extends EntityLiving>, JsonCreature> creature : creatures.entrySet()) 
+		{
+			if(creature.getValue().getName().equalsIgnoreCase(creatureName))
+			{
+				return creature.getKey();
+			}
+		}
+		
+		return null;
+	}
 }

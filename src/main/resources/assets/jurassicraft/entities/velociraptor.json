@@ -9,6 +9,11 @@
         "jurassicraft:textures/entities/velociraptor/velociraptor_female.png"
     ],
     "name": "Velociraptor",
+	"attackTargets": [
+			"Horse",
+			"Villager"
+	],
+	"canSwim": true,
     "hitboxList": [
         {
             "radius": "1.3",
