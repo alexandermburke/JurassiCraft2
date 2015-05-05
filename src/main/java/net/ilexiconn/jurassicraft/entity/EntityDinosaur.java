@@ -3,12 +3,10 @@ package net.ilexiconn.jurassicraft.entity;
 import io.netty.buffer.ByteBuf;
 import net.ilexiconn.jurassicraft.json.JsonCreature;
 import net.ilexiconn.llibrary.entity.multipart.EntityPart;
+import net.ilexiconn.llibrary.entity.multipart.IEntityMultiPart;
 import net.ilexiconn.llibrary.json.JsonHelper;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.IEntityMultiPart;
-import net.minecraft.entity.boss.EntityDragonPart;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
@@ -66,17 +64,5 @@ public class EntityDinosaur extends EntityLiving implements IEntityMultiPart, IE
     public void readSpawnData(ByteBuf additionalData)
     {
         gender = additionalData.readBoolean();
-    }
-
-    @Override
-    public World getWorld()
-    {
-        return worldObj;
-    }
-
-    @Override
-    public boolean attackEntityFromPart(EntityDragonPart p_70965_1_, DamageSource p_70965_2_, float p_70965_3_)
-    {
-        return true;
     }
 }
