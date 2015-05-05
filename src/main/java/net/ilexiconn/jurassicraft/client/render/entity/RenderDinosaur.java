@@ -1,17 +1,17 @@
 package net.ilexiconn.jurassicraft.client.render.entity;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.Random;
+
 import net.ilexiconn.jurassicraft.entity.EntityDinosaur;
 import net.ilexiconn.jurassicraft.json.JsonCreature;
 import net.ilexiconn.llibrary.client.render.entity.RenderMultiPart;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.lwjgl.opengl.GL11;
-
-import java.util.Random;
 
 @SideOnly(Side.CLIENT)
 public class RenderDinosaur extends RenderMultiPart

@@ -6,12 +6,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.RandomStringUtils;
-
-import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.CtClass;
-import javassist.CtNewMethod;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.json.JsonCreature;
 import net.ilexiconn.llibrary.IContentHandler;

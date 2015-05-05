@@ -1,10 +1,10 @@
 package net.ilexiconn.jurassicraft.item;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import java.lang.reflect.Field;
+
 import net.ilexiconn.llibrary.IContentHandler;
 import net.minecraft.item.Item;
-
-import java.lang.reflect.Field;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class JCItemRegistry implements IContentHandler
 {

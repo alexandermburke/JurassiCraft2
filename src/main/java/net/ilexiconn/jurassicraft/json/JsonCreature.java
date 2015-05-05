@@ -1,14 +1,5 @@
 package net.ilexiconn.jurassicraft.json;
 
-import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
-import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
-import net.ilexiconn.llibrary.json.JsonFactory;
-import net.ilexiconn.llibrary.json.JsonHelper;
-import net.ilexiconn.llibrary.json.container.JsonHitbox;
-import net.minecraft.client.model.ModelBase;
-import org.apache.commons.io.IOUtils;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -16,6 +7,16 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+
+import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
+import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
+import net.ilexiconn.llibrary.json.JsonFactory;
+import net.ilexiconn.llibrary.json.JsonHelper;
+import net.ilexiconn.llibrary.json.container.JsonHitbox;
+import net.minecraft.client.model.ModelBase;
+
+import org.apache.commons.io.IOUtils;
 
 public class JsonCreature
 {
