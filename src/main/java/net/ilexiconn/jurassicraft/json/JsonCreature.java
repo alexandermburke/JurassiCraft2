@@ -235,7 +235,7 @@ public class JsonCreature
             {
                 File tempFile = File.createTempFile(tabulaModel, ".tbl");
                 tempFile.deleteOnExit();
-                
+
                 try (FileOutputStream out = new FileOutputStream(tempFile))
                 {
                     IOUtils.copy(JurassiCraft.class.getResourceAsStream(tabulaModel + ".tbl"), out);
@@ -261,7 +261,7 @@ public class JsonCreature
                         }
                     }
                 }
-                
+
                 zipFile.close();
             }
             else
@@ -276,9 +276,9 @@ public class JsonCreature
 
         return model;
     }
-    
+
     public String getEntityClass()
     {
-    	return entityClass;
+        return entityClass;
     }
 }

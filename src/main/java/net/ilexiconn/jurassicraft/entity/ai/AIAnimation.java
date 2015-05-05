@@ -36,7 +36,8 @@ public abstract class AIAnimation extends EntityAIBase
 
     public boolean shouldExecute()
     {
-        if (isAutomatic()) return animatedEntity.getAnimationId() == getAnimationId();
+        if (isAutomatic())
+            return animatedEntity.getAnimationId() == getAnimationId();
         return shouldAnimate();
     }
 
@@ -46,7 +47,8 @@ public abstract class AIAnimation extends EntityAIBase
         {
             if (!isAutomatic())
             {
-                if (FMLCommonHandler.instance().getEffectiveSide().isClient()) break MESSAGE;
+                if (FMLCommonHandler.instance().getEffectiveSide().isClient())
+                    break MESSAGE;
                 animatedEntity.setAnimationId(getAnimationId());
                 JurassiCraft.wrapper.sendToAll(new MessageAnimation((byte) getAnimationId(), ((Entity) animatedEntity).getEntityId()));
             }
@@ -65,7 +67,8 @@ public abstract class AIAnimation extends EntityAIBase
         {
             if (!isAutomatic())
             {
-                if (FMLCommonHandler.instance().getEffectiveSide().isClient()) break MESSAGE;
+                if (FMLCommonHandler.instance().getEffectiveSide().isClient())
+                    break MESSAGE;
                 animatedEntity.setAnimationId(0);
                 JurassiCraft.wrapper.sendToAll(new MessageAnimation((byte) 0, ((Entity) animatedEntity).getEntityId()));
             }

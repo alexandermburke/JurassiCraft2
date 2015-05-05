@@ -68,15 +68,15 @@ public class EntityDinosaur extends EntityLiving implements IEntityMultiPart, IE
         gender = additionalData.readBoolean();
     }
 
-	@Override
-	public World getWorld()
-	{
-		return worldObj;
-	}
+    @Override
+    public World getWorld()
+    {
+        return worldObj;
+    }
 
-	@Override
-	public boolean attackEntityFromPart(EntityDragonPart p_70965_1_, DamageSource p_70965_2_, float p_70965_3_)
-	{
-		return true;
-	}
+    @Override
+    public boolean attackEntityFromPart(EntityDragonPart p_70965_1_, DamageSource p_70965_2_, float p_70965_3_)
+    {
+        return true;
+    }
 }

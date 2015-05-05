@@ -26,8 +26,11 @@ public class JCItemRegistry implements IContentHandler
             for (Field f : JCItemRegistry.class.getDeclaredFields())
             {
                 Object obj = f.get(null);
-                if (obj instanceof Item) registerItem((Item) obj);
-                else if (obj instanceof Item[]) for (Item item : (Item[]) obj) registerItem(item);
+                if (obj instanceof Item)
+                    registerItem((Item) obj);
+                else if (obj instanceof Item[])
+                    for (Item item : (Item[]) obj)
+                        registerItem(item);
             }
         }
         catch (IllegalAccessException e)
