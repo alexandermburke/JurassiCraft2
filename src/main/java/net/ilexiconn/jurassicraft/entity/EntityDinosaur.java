@@ -36,7 +36,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
         if(creature.canSwim())
             tasks.addTask(0, new EntityAISwimming(this));
 
-        tasks.addTask(1, new EntityAIWander(this, creature.getMinSpeed()));
+        tasks.addTask(1, new EntityAIWander(this, creature.getAdultSpeed()));
         tasks.addTask(1, new EntityAILookIdle(this));
         
         for (String attackTarget : creature.getAttackTargets())
@@ -90,7 +90,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
 
                 if(targetClass != null)
                 {
-                    tasks.addTask(2, new EntityAIAttackOnCollide(this, targetClass, creature.getMaxSpeed(), false));
+                    tasks.addTask(2, new EntityAIAttackOnCollide(this, targetClass, creature.getAdultSpeed(), false));
                     targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, targetClass, false));
                 }
                 else
@@ -126,7 +126,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
     public boolean attackEntityAsMob(Entity entity)
     {
         float attackDamage = (float)this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
-        double knockback = creature.getMaxKnockback();
+        double knockback = creature.getAdultKnockback();
 
         boolean canAttack = entity.attackEntityFrom(DamageSource.causeMobDamage(this), attackDamage);
 
@@ -152,8 +152,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
         creature = JCEntityRegistry.getCreatureFromClass(getClass());
 
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(creature.getMaxSpeed());
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(creature.getMaxStrength()); //TODO min
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(creature.getAdultSpeed());
+        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(creature.getAdultStrength()); //TODO Change depending on age
     }
 
     /**

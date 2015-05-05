@@ -38,25 +38,25 @@ public class JsonCreature
 
     private List<String> attackTargets;
     
-    private double minHealth;
-    private double minStrength;
-    private double minSpeed;
-    private double minKnockback;
+    private double babyHealth;
+    private double babyStrength;
+    private double babySpeed;
+    private double babyKnockback;
     private double minProximate;
     private double minMinerals;
     private double minVitamins;
     private double minLipids;
-    private double maxHealth;
-    private double maxStrength;
-    private double maxSpeed;
-    private double maxKnockback;
+    private double adultHealth;
+    private double adultStrength;
+    private double adultSpeed;
+    private double adulKnockback;
     private double ridingSpeed;
 
     private float adultAge;
-    private float minLength;
-    private float minHeight;
-    private float maxLength;
-    private float maxHeight;
+    private float babyLength;
+    private float babyHeight;
+    private float adultLength;
+    private float adultHeight;
     private float xzBoxMin;
     private float yBoxMin;
     private float xzBoxDelta;
@@ -87,24 +87,24 @@ public class JsonCreature
         return femaleTextures;
     }
 
-    public double getMinHealth()
+    public double getBabyHealth()
     {
-        return minHealth;
+        return babyHealth;
     }
 
-    public double getMinStrength()
+    public double getBabyStrength()
     {
-        return minStrength;
+        return babyStrength;
     }
 
-    public double getMinSpeed()
+    public double getBabySpeed()
     {
-        return minSpeed;
+        return babySpeed;
     }
 
-    public double getMinKnockback()
+    public double getBabyKnockback()
     {
-        return minKnockback;
+        return babyKnockback;
     }
 
     public double getMinProximate()
@@ -127,24 +127,24 @@ public class JsonCreature
         return minLipids;
     }
 
-    public double getMaxHealth()
+    public double getAdultHealth()
     {
-        return maxHealth;
+        return adultHealth;
     }
 
-    public double getMaxStrength()
+    public double getAdultStrength()
     {
-        return maxStrength;
+        return adultStrength;
     }
 
-    public double getMaxSpeed()
+    public double getAdultSpeed()
     {
-        return maxSpeed;
+        return adultSpeed;
     }
 
-    public double getMaxKnockback()
+    public double getAdultKnockback()
     {
-        return maxKnockback;
+        return adulKnockback;
     }
 
     public double getRidingSpeed()
@@ -157,24 +157,24 @@ public class JsonCreature
         return adultAge;
     }
 
-    public float getMinLength()
+    public float getBabyLength()
     {
-        return minLength;
+        return babyLength;
     }
 
-    public float getMinHeight()
+    public float getBabyHeight()
     {
-        return minHeight;
+        return babyHeight;
     }
 
-    public float getMaxLength()
+    public float getAdultLength()
     {
-        return maxLength;
+        return adultLength;
     }
 
-    public float getMaxHeight()
+    public float getAdultHeight()
     {
-        return maxHeight;
+        return adultHeight;
     }
 
     public float getXzBoxMin()
@@ -182,7 +182,7 @@ public class JsonCreature
         return xzBoxMin;
     }
 
-    public float getyBoxMin()
+    public float getYBoxMin()
     {
         return yBoxMin;
     }
