@@ -27,7 +27,8 @@ public class MessageAnimation extends AbstractMessage<MessageAnimation>
         if (entity != null && packetAnimation.animationId != -1)
         {
             entity.setAnimationId(packetAnimation.animationId);
-            if (packetAnimation.animationId == 0) entity.setAnimationTick(0);
+            if (packetAnimation.animationId == 0)
+                entity.setAnimationTick(0);
         }
     }
 

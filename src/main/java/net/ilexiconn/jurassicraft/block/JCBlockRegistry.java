@@ -1,11 +1,11 @@
 package net.ilexiconn.jurassicraft.block;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import java.lang.reflect.Field;
+
 import net.ilexiconn.jurassicraft.api.ISubBlocksBlock;
 import net.ilexiconn.llibrary.IContentHandler;
 import net.minecraft.block.Block;
-
-import java.lang.reflect.Field;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class JCBlockRegistry implements IContentHandler
 {
@@ -27,8 +27,11 @@ public class JCBlockRegistry implements IContentHandler
             for (Field f : JCBlockRegistry.class.getDeclaredFields())
             {
                 Object obj = f.get(null);
-                if (obj instanceof Block) registerBlock((Block) obj);
-                else if (obj instanceof Block[]) for (Block block : (Block[]) obj) registerBlock(block);
+                if (obj instanceof Block)
+                    registerBlock((Block) obj);
+                else if (obj instanceof Block[])
+                    for (Block block : (Block[]) obj)
+                        registerBlock(block);
             }
         }
         catch (IllegalAccessException e)
@@ -44,6 +47,7 @@ public class JCBlockRegistry implements IContentHandler
 
         if (block instanceof ISubBlocksBlock)
             GameRegistry.registerBlock(block, ((ISubBlocksBlock) block).getItemBlockClass(), strings[strings.length - 1]);
-        else GameRegistry.registerBlock(block, strings[strings.length - 1]);
+        else
+            GameRegistry.registerBlock(block, strings[strings.length - 1]);
     }
 }

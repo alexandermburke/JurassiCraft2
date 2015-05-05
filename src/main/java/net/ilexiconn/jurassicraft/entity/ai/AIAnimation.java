@@ -1,12 +1,12 @@
 package net.ilexiconn.jurassicraft.entity.ai;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.api.IAnimatedEntity;
 import net.ilexiconn.jurassicraft.message.MessageAnimation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 
 public abstract class AIAnimation extends EntityAIBase
 {
@@ -36,7 +36,8 @@ public abstract class AIAnimation extends EntityAIBase
 
     public boolean shouldExecute()
     {
-        if (isAutomatic()) return animatedEntity.getAnimationId() == getAnimationId();
+        if (isAutomatic())
+            return animatedEntity.getAnimationId() == getAnimationId();
         return shouldAnimate();
     }
 
@@ -46,7 +47,8 @@ public abstract class AIAnimation extends EntityAIBase
         {
             if (!isAutomatic())
             {
-                if (FMLCommonHandler.instance().getEffectiveSide().isClient()) break MESSAGE;
+                if (FMLCommonHandler.instance().getEffectiveSide().isClient())
+                    break MESSAGE;
                 animatedEntity.setAnimationId(getAnimationId());
                 JurassiCraft.wrapper.sendToAll(new MessageAnimation((byte) getAnimationId(), ((Entity) animatedEntity).getEntityId()));
             }
@@ -65,7 +67,8 @@ public abstract class AIAnimation extends EntityAIBase
         {
             if (!isAutomatic())
             {
-                if (FMLCommonHandler.instance().getEffectiveSide().isClient()) break MESSAGE;
+                if (FMLCommonHandler.instance().getEffectiveSide().isClient())
+                    break MESSAGE;
                 animatedEntity.setAnimationId(0);
                 JurassiCraft.wrapper.sendToAll(new MessageAnimation((byte) 0, ((Entity) animatedEntity).getEntityId()));
             }

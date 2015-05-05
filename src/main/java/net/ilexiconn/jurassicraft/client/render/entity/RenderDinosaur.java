@@ -1,17 +1,18 @@
 package net.ilexiconn.jurassicraft.client.render.entity;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.Random;
+
 import net.ilexiconn.jurassicraft.entity.EntityDinosaur;
 import net.ilexiconn.jurassicraft.json.JsonCreature;
 import net.ilexiconn.llibrary.client.render.entity.RenderMultiPart;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.lwjgl.opengl.GL11;
-
-import java.util.Random;
 
 @SideOnly(Side.CLIENT)
 public class RenderDinosaur extends RenderMultiPart
@@ -23,10 +24,10 @@ public class RenderDinosaur extends RenderMultiPart
 
     public RenderDinosaur(JsonCreature creature) throws Exception
     {
-        super(creature.getModel(), creature.getShadowSize());
+        super(Minecraft.getMinecraft().getRenderManager(), creature.getModel(), creature.getShadowSize());
         jsonCreature = creature;
         random = new Random();
-        maleTexture = new ResourceLocation(creature.getMaleTextures().get(0)); //TODO: Genders and random textures
+        maleTexture = new ResourceLocation(creature.getMaleTextures().get(0)); // TODO: Genders and random textures
         femaleTexture = new ResourceLocation(creature.getFemaleTextures().get(0));
     }
 
@@ -41,7 +42,7 @@ public class RenderDinosaur extends RenderMultiPart
     {
         return entity.isMale() ? maleTexture : femaleTexture;
     }
-    
+
     public ResourceLocation getEntityTexture(Entity entity)
     {
         return getEntityTexture((EntityDinosaur) entity);

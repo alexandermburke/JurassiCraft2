@@ -6,12 +6,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.RandomStringUtils;
-
-import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.CtClass;
-import javassist.CtNewMethod;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.json.JsonCreature;
 import net.ilexiconn.llibrary.IContentHandler;
@@ -24,89 +20,89 @@ import com.google.common.collect.Maps;
 
 public class JCEntityRegistry implements IContentHandler
 {
-	public static final String jsonLocation = "/assets/jurassicraft/entities/";
-	private static Map<Class<? extends EntityLiving>, JsonCreature> creatures = Maps.newHashMap();
-	public List<String> jsonFiles = Lists.newArrayList();
+    public static final String jsonLocation = "/assets/jurassicraft/entities/";
+    private static Map<Class<? extends EntityLiving>, JsonCreature> creatures = Maps.newHashMap();
+    public List<String> jsonFiles = Lists.newArrayList();
 
-	public static JsonCreature getCreatureFromClass(Class<? extends EntityLiving> clazz)
-	{
-		return creatures.get(clazz);
-	}
+    public static JsonCreature getCreatureFromClass(Class<? extends EntityLiving> clazz)
+    {
+        return creatures.get(clazz);
+    }
 
-	public void init()
-	{
-		try
-		{
-			File jsons = new File(JurassiCraft.class.getResource(jsonLocation).toURI());
+    public void init()
+    {
+        try
+        {
+            File jsons = new File(JurassiCraft.class.getResource(jsonLocation).toURI());
 
-			for (File file : jsons.listFiles())
-			{
-				if (!file.isDirectory())
-				{
-					registerJson(file.getName());
-				}
-			}
-		}
-		catch (URISyntaxException e)
-		{
-			e.printStackTrace();
-		}
-	}
+            for (File file : jsons.listFiles())
+            {
+                if (!file.isDirectory())
+                {
+                    registerJson(file.getName());
+                }
+            }
+        }
+        catch (URISyntaxException e)
+        {
+            e.printStackTrace();
+        }
+    }
 
-	public void gameRegistry() throws Exception
-	{
-		for (String json : jsonFiles)
-		{
-			JsonCreature jsonCreature = JsonFactory.getGson().fromJson(new InputStreamReader(JurassiCraft.class.getResourceAsStream(json)), JsonCreature.class);
+    public void gameRegistry() throws Exception
+    {
+        for (String json : jsonFiles)
+        {
+            JsonCreature jsonCreature = JsonFactory.getGson().fromJson(new InputStreamReader(JurassiCraft.class.getResourceAsStream(json)), JsonCreature.class);
 
-			registerEntity(jsonCreature);
-		}
-	}
+            registerEntity(jsonCreature);
+        }
+    }
 
-	public void registerJson(String name)
-	{
-		jsonFiles.add(jsonLocation + name);
-	}
+    public void registerJson(String name)
+    {
+        jsonFiles.add(jsonLocation + name);
+    }
 
-	public void registerEntity(JsonCreature creature)
-	{
-		if (creature.shouldRegister())
-		{
-			try
-			{
-				Class<? extends EntityLiving> clazz = EntityDinosaur.class;
+    public void registerEntity(JsonCreature creature)
+    {
+        if (creature.shouldRegister())
+        {
+            try
+            {
+                Class<? extends EntityLiving> clazz = EntityDinosaur.class;
 
-				String entityClass = creature.getEntityClass();
-				
-				if(entityClass != null)
-				{
-					clazz = (Class<? extends EntityLiving>) Class.forName(entityClass);
-				}
-				else
-				{
-				    ClassPool pool = ClassPool.getDefault();
+                String entityClass = creature.getEntityClass();
 
-	                CtClass dinoCreature = pool.makeClass("net.ilexiconn.jurassicraft.entity.EntityJurassicraft" + creature.getName());
+                if (entityClass != null)
+                {
+                    clazz = (Class<? extends EntityLiving>) Class.forName(entityClass);
+                }
+                else
+                {
+                    ClassPool pool = ClassPool.getDefault();
 
-	                try
+                    CtClass dinoCreature = pool.makeClass("net.ilexiconn.jurassicraft.entity.EntityJurassicraft" + creature.getName());
+
+                    try
                     {
-	                    dinoCreature.setSuperclass(pool.get("net.ilexiconn.jurassicraft.entity.EntityDinosaur"));
+                        dinoCreature.setSuperclass(pool.get("net.ilexiconn.jurassicraft.entity.EntityDinosaur"));
                         clazz = dinoCreature.toClass();
                     }
                     catch (Exception e)
                     {
                         e.printStackTrace();
                     }
-				}
-				
-				creatures.put(clazz, creature);
-				EntityHelper.registerEntity(creature.getName(), clazz, creature.getEggPrimaryColor(), creature.getEggSecondaryColor());
-				JurassiCraft.proxy.registerEntityRenderer(clazz, creature);
-			}
-			catch (ClassNotFoundException e)
-			{
-				throw new RuntimeException(e);
-			}
-		}
-	}
+                }
+
+                creatures.put(clazz, creature);
+                EntityHelper.registerEntity(creature.getName(), clazz, creature.getEggPrimaryColor(), creature.getEggSecondaryColor());
+                JurassiCraft.proxy.registerEntityRenderer(clazz, creature);
+            }
+            catch (ClassNotFoundException e)
+            {
+                throw new RuntimeException(e);
+            }
+        }
+    }
 }

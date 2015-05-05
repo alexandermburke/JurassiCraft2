@@ -1,14 +1,14 @@
 package net.ilexiconn.jurassicraft.client.model.base;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.HashMap;
+
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.api.IAnimatedEntity;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.util.MathHelper;
-
-import java.util.HashMap;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class Animator
@@ -59,7 +59,8 @@ public class Animator
 
     public void startPhase(int duration)
     {
-        if (!correctAnimation) return;
+        if (!correctAnimation)
+            return;
 
         prevTempTick = tempTick;
         tempTick += duration;
@@ -79,18 +80,24 @@ public class Animator
 
     public void rotate(ModelRenderer box, float x, float y, float z)
     {
-        if (!correctAnimation) return;
+        if (!correctAnimation)
+            return;
 
-        if (!transformMap.containsKey(box)) transformMap.put(box, new Transform(x, y, z));
-        else transformMap.get(box).addRot(x, y, z);
+        if (!transformMap.containsKey(box))
+            transformMap.put(box, new Transform(x, y, z));
+        else
+            transformMap.get(box).addRot(x, y, z);
     }
 
     public void move(ModelRenderer box, float x, float y, float z)
     {
-        if (!correctAnimation) return;
+        if (!correctAnimation)
+            return;
 
-        if (!transformMap.containsKey(box)) transformMap.put(box, new Transform(x, y, z, 0F, 0F, 0F));
-        else transformMap.get(box).addOffset(x, y, z);
+        if (!transformMap.containsKey(box))
+            transformMap.put(box, new Transform(x, y, z, 0F, 0F, 0F));
+        else
+            transformMap.get(box).addOffset(x, y, z);
     }
 
     public void endPhase()
@@ -100,7 +107,8 @@ public class Animator
 
     private void endPhase(boolean stationary)
     {
-        if (!correctAnimation) return;
+        if (!correctAnimation)
+            return;
         int animationTick = animatedEntity.getAnimationTick();
 
         if (animationTick >= prevTempTick && animationTick < tempTick)

@@ -1,10 +1,10 @@
 package net.ilexiconn.jurassicraft.item;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import java.lang.reflect.Field;
+
 import net.ilexiconn.llibrary.IContentHandler;
 import net.minecraft.item.Item;
-
-import java.lang.reflect.Field;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class JCItemRegistry implements IContentHandler
 {
@@ -26,8 +26,11 @@ public class JCItemRegistry implements IContentHandler
             for (Field f : JCItemRegistry.class.getDeclaredFields())
             {
                 Object obj = f.get(null);
-                if (obj instanceof Item) registerItem((Item) obj);
-                else if (obj instanceof Item[]) for (Item item : (Item[]) obj) registerItem(item);
+                if (obj instanceof Item)
+                    registerItem((Item) obj);
+                else if (obj instanceof Item[])
+                    for (Item item : (Item[]) obj)
+                        registerItem(item);
             }
         }
         catch (IllegalAccessException e)

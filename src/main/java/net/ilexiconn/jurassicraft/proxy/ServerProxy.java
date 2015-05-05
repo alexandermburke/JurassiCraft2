@@ -10,6 +10,11 @@ public class ServerProxy
 
     }
 
+    public void postInit()
+    {
+
+    }
+
     public void registerEntityRenderer(Class<? extends Entity> clazz, JsonCreature creature)
     {
 
