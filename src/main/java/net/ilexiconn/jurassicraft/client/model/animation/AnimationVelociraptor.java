@@ -14,6 +14,9 @@ public class AnimationVelociraptor implements IModelAnimator
     @Override
     public void setRotationAngles(ModelJson model, float limbSwing, float limbSwingAmount, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
     {
+        limbSwingAmount *= 1.5F;
+        limbSwing *= 1.5F;
+        
         /*
          * f = entity.ticksExisted; limbSwingAmount = 1F;
          */
