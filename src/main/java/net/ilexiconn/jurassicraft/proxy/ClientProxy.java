@@ -26,14 +26,14 @@ public class ClientProxy extends ServerProxy
     public void init()
     {
         super.init();
-        
+
         mcTimer = ReflectionHelper.getPrivateValue(Minecraft.class, Minecraft.getMinecraft(), JurassiCraft.timer);
     }
 
     public void postInit()
     {
         super.postInit();
-        
+
         for (Entry<Class<? extends Entity>, JsonCreature> entry : renderersToRegister.entrySet())
         {
             try
@@ -50,7 +50,7 @@ public class ClientProxy extends ServerProxy
     public void registerEntityRenderer(Class<? extends Entity> clazz, JsonCreature creature)
     {
         super.registerEntityRenderer(clazz, creature);
-        
+
         renderersToRegister.put(clazz, creature);
     }
 

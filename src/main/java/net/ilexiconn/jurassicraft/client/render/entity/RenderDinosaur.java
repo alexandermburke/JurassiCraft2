@@ -27,11 +27,7 @@ public class RenderDinosaur extends RenderMultiPart
         super(Minecraft.getMinecraft().getRenderManager(), creature.getModel(), creature.getShadowSize());
         jsonCreature = creature;
         random = new Random();
-        maleTexture = new ResourceLocation(creature.getMaleTextures().get(0)); // TODO:
-                                                                               // Genders
-                                                                               // and
-                                                                               // random
-                                                                               // textures
+        maleTexture = new ResourceLocation(creature.getMaleTextures().get(0)); // TODO: Genders and random textures
         femaleTexture = new ResourceLocation(creature.getFemaleTextures().get(0));
     }
 

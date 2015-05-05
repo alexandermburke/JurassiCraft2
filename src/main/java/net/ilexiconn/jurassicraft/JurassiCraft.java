@@ -34,7 +34,7 @@ public class JurassiCraft
         wrapper = NetworkRegistry.INSTANCE.newSimpleChannel("jurassicraft");
         wrapper.registerMessage(MessageAnimation.class, MessageAnimation.class, 0, Side.CLIENT);
     }
-    
+
     @Mod.EventHandler
     public void init(FMLPostInitializationEvent event)
     {
