@@ -19,9 +19,4 @@ public class ServerProxy
     {
 
     }
-
-    public float getPartialTick()
-    {
-        return 1f;
-    }
 }

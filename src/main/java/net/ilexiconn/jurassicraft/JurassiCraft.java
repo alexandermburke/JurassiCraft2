@@ -1,12 +1,9 @@
 package net.ilexiconn.jurassicraft;
 
-import java.io.IOException;
-
 import net.ilexiconn.jurassicraft.block.JCBlockRegistry;
 import net.ilexiconn.jurassicraft.creativetab.JCCreativeTabs;
 import net.ilexiconn.jurassicraft.entity.JCEntityRegistry;
 import net.ilexiconn.jurassicraft.item.JCItemRegistry;
-import net.ilexiconn.jurassicraft.message.MessageAnimation;
 import net.ilexiconn.jurassicraft.proxy.ServerProxy;
 import net.ilexiconn.llibrary.ContentHandlerList;
 import net.minecraftforge.fml.common.Mod;
@@ -15,12 +12,12 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import net.minecraftforge.fml.relauncher.Side;
+
+import java.io.IOException;
 
 @Mod(modid = "jurassicraft", name = "JurassiCraft", version = "${version}")
 public class JurassiCraft
 {
-    public static final String[] timer = new String[] { "field_71428_T", "S", "timer" };
     @SidedProxy(serverSide = "net.ilexiconn.jurassicraft.proxy.ServerProxy", clientSide = "net.ilexiconn.jurassicraft.proxy.ClientProxy")
     public static ServerProxy proxy;
     public static SimpleNetworkWrapper wrapper;
@@ -32,7 +29,6 @@ public class JurassiCraft
         proxy.init();
 
         wrapper = NetworkRegistry.INSTANCE.newSimpleChannel("jurassicraft");
-        wrapper.registerMessage(MessageAnimation.class, MessageAnimation.class, 0, Side.CLIENT);
     }
 
     @Mod.EventHandler
