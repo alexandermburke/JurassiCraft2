@@ -1,8 +1,6 @@
 package net.ilexiconn.jurassicraft.client.model.animation;
 
-import net.ilexiconn.jurassicraft.entity.EntityDinosaur;
 import net.ilexiconn.jurassicraft.entity.EntityVelociraptor;
-import net.ilexiconn.jurassicraft.entity.animation.IEntityAnimation;
 import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
 import net.ilexiconn.llibrary.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.llibrary.client.model.modelbase.MowzieModelRenderer;
@@ -18,10 +16,10 @@ public class AnimationVelociraptor implements IModelAnimator
     public void setRotationAngles(ModelJson model, float limbSwing, float limbSwingAmount, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
     {
         EntityVelociraptor velociraptor = (EntityVelociraptor) entity;
-        
+
         limbSwingAmount *= 1.5F;
         limbSwing *= 1.5F;
-        
+
         /*
          * f = entity.ticksExisted; limbSwingAmount = 1F;
          */
@@ -89,13 +87,13 @@ public class AnimationVelociraptor implements IModelAnimator
         model.chainWave(rightArmParts, 1F * scaleFactor, -0.3F, 4, limbSwing, limbSwingAmount);
         model.chainWave(leftArmParts, 1F * scaleFactor, -0.3F, 4, limbSwing, limbSwingAmount);
 
-        if(velociraptor.getAnimationPlaying() == EntityVelociraptor.LEAPING_ANIMATION_ID)
+        if (velociraptor.getAnimationPlaying() == EntityVelociraptor.LEAPING_ANIMATION_ID)
         {
             float timer = velociraptor.getAnimationProgress();
-            
+
             leftThigh.rotateAngleX += timer;
         }
-        
+
         // float sittingProgress =
         // raptor.sittingProgress.getAnimationProgressSin();
         //

@@ -1,6 +1,7 @@
 package net.ilexiconn.jurassicraft.proxy;
 
-import com.google.common.collect.Maps;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import net.ilexiconn.jurassicraft.client.render.entity.RenderDinosaur;
 import net.ilexiconn.jurassicraft.entity.Creature;
@@ -13,12 +14,10 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.Map;
-import java.util.Map.Entry;
+import com.google.common.collect.Maps;
 
 @SideOnly(Side.CLIENT)
 public class ClientProxy extends ServerProxy
@@ -48,7 +47,7 @@ public class ClientProxy extends ServerProxy
 
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
         ItemModelMesher itemModelMesher = renderItem.getItemModelMesher();
-        
+
         itemModelMesher.register(JCItemRegistry.spawn_egg, new ItemMeshDefinition()
         {
             public ModelResourceLocation getModelLocation(ItemStack stack)

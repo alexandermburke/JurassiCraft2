@@ -5,11 +5,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
-import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 
 public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
@@ -20,8 +18,7 @@ public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
     }
 
     /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
-     * use this to react to sunlight and start to burn.
+     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
      */
     public void onLivingUpdate()
     {
@@ -71,12 +68,12 @@ public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
 
     public boolean attackEntityAsMob(Entity entity)
     {
-        float damage = (float)this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
+        float damage = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
         int knockback = 0;
 
         if (entity instanceof EntityLivingBase)
         {
-            damage += EnchantmentHelper.func_152377_a(this.getHeldItem(), ((EntityLivingBase)entity).getCreatureAttribute());
+            damage += EnchantmentHelper.func_152377_a(this.getHeldItem(), ((EntityLivingBase) entity).getCreatureAttribute());
             knockback += EnchantmentHelper.getKnockbackModifier(this);
         }
 
@@ -86,7 +83,7 @@ public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
         {
             if (knockback > 0)
             {
-                entity.addVelocity((double)(-MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F) * (float)knockback * 0.5F), 0.1D, (double)(MathHelper.cos(this.rotationYaw * (float)Math.PI / 180.0F) * (float)knockback * 0.5F));
+                entity.addVelocity((double) (-MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F) * (float) knockback * 0.5F), 0.1D, (double) (MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F) * (float) knockback * 0.5F));
                 this.motionX *= 0.6D;
                 this.motionZ *= 0.6D;
             }
@@ -108,7 +105,7 @@ public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        
+
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
     }
 

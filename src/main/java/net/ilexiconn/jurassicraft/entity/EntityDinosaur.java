@@ -4,7 +4,6 @@ import io.netty.buffer.ByteBuf;
 
 import java.util.List;
 
-import net.ilexiconn.jurassicraft.entity.animation.AnimationVelociraptorLeap;
 import net.ilexiconn.jurassicraft.entity.animation.IEntityAnimation;
 import net.ilexiconn.llibrary.entity.multipart.EntityPart;
 import net.ilexiconn.llibrary.entity.multipart.IEntityMultiPart;
@@ -69,18 +68,18 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
     {
         super.onUpdate();
 
-        if(worldObj.isRemote)
+        if (worldObj.isRemote)
         {
             this.playingAnimation = this.getDataWatcher().getWatchableObjectInt(25);
             this.animationInProgress = this.getDataWatcher().getWatchableObjectInt(26) == 1;
         }
-        
+
         this.updateAnimation();
     }
 
     public void startAnimation(int id)
     {
-        if(!animationInProgress)
+        if (!animationInProgress)
         {
             playingAnimation = id;
             animationTimer = 0;
@@ -92,7 +91,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
 
     private void updateAnimationWatcher()
     {
-        if(!worldObj.isRemote)
+        if (!worldObj.isRemote)
         {
             this.getDataWatcher().updateObject(25, playingAnimation);
             this.getDataWatcher().updateObject(26, animationInProgress ? 1 : 0);
@@ -101,13 +100,13 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
 
     public void updateAnimation()
     {
-        if(animationInProgress && playingAnimation != -1)
+        if (animationInProgress && playingAnimation != -1)
         {
             IEntityAnimation animation = animations.get(playingAnimation);
 
             animationTimer += animation.getSpeed();
 
-            if(animationTimer >= animation.getLength())
+            if (animationTimer >= animation.getLength())
             {
                 stopAllAnimations();
             }
@@ -116,7 +115,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
 
     public void stopAllAnimations()
     {
-        if(!worldObj.isRemote)
+        if (!worldObj.isRemote)
         {
             playingAnimation = -1;
             animationInProgress = false;

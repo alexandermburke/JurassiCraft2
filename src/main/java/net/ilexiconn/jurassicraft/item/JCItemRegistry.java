@@ -1,9 +1,6 @@
 package net.ilexiconn.jurassicraft.item;
 
 import java.lang.reflect.Field;
-import java.util.List;
-
-import com.google.common.collect.Lists;
 
 import net.ilexiconn.jurassicraft.creativetab.JCCreativeTabs;
 import net.ilexiconn.llibrary.IContentHandler;

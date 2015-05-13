@@ -31,7 +31,7 @@ public class Creature
 
     private String entityClass;
     private String animatorClass;
-    
+
     private double babyHealth;
     private double babyStrength;
     private double babySpeed;
@@ -276,7 +276,7 @@ public class Creature
 
         return model;
     }
-    
+
     public String getEntityClass()
     {
         return entityClass;

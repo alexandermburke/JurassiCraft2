@@ -107,24 +107,24 @@ public class JCEntityRegistry implements IContentHandler
             }
         }
     }
-    
+
     public void registerEgg(Creature creature, int primaryColor, int secondaryColor)
     {
 
     }
 
-	public static Class<? extends EntityLiving> getCreatureClassByName(String creatureName) 
-	{
-		for (Entry<Class<? extends EntityLiving>, Creature> creature : creatures.entrySet()) 
-		{
-			if(creature.getValue().getName().equalsIgnoreCase(creatureName))
-			{
-				return creature.getKey();
-			}
-		}
-		
-		return null;
-	}
+    public static Class<? extends EntityLiving> getCreatureClassByName(String creatureName)
+    {
+        for (Entry<Class<? extends EntityLiving>, Creature> creature : creatures.entrySet())
+        {
+            if (creature.getValue().getName().equalsIgnoreCase(creatureName))
+            {
+                return creature.getKey();
+            }
+        }
+
+        return null;
+    }
 
     public static Map<Class<? extends EntityLiving>, Creature> getCreatures()
     {
