@@ -70,7 +70,7 @@ public class ItemDinosaurSpawnEgg extends Item
 
     public String getItemStackDisplayName(ItemStack stack)
     {
-        return StatCollector.translateToLocal("item." + getCreature(stack).getName().toLowerCase() + "_spawn_egg.name").trim();
+        return StatCollector.translateToLocal("item.dino_spawn_egg.name").trim() + " " + getCreature(stack).getName();
     }
 
     public Creature getCreature(ItemStack stack)

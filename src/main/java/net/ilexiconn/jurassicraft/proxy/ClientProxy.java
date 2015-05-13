@@ -4,8 +4,16 @@ import com.google.common.collect.Maps;
 
 import net.ilexiconn.jurassicraft.client.render.entity.RenderDinosaur;
 import net.ilexiconn.jurassicraft.entity.Creature;
+import net.ilexiconn.jurassicraft.item.JCItemRegistry;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.ItemModelMesher;
+import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -37,6 +45,17 @@ public class ClientProxy extends ServerProxy
                 e.printStackTrace();
             }
         }
+
+        RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
+        ItemModelMesher itemModelMesher = renderItem.getItemModelMesher();
+        
+        itemModelMesher.register(JCItemRegistry.spawn_egg, new ItemMeshDefinition()
+        {
+            public ModelResourceLocation getModelLocation(ItemStack stack)
+            {
+                return new ModelResourceLocation("jurassicraft:dino_spawn_egg", "inventory");
+            }
+        });
     }
 
     public void registerEntityRenderer(Class<? extends Entity> clazz, Creature creature)

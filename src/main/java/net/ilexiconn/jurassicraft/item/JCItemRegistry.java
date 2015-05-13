@@ -1,6 +1,9 @@
 package net.ilexiconn.jurassicraft.item;
 
 import java.lang.reflect.Field;
+import java.util.List;
+
+import com.google.common.collect.Lists;
 
 import net.ilexiconn.jurassicraft.creativetab.JCCreativeTabs;
 import net.ilexiconn.llibrary.IContentHandler;
@@ -9,16 +12,16 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class JCItemRegistry implements IContentHandler
 {
-    public static ItemDinosaurSpawnEgg spawnEgg;
+    public static ItemDinosaurSpawnEgg spawn_egg;
 
     public void init()
     {
-        spawnEgg = new ItemDinosaurSpawnEgg();
+        spawn_egg = new ItemDinosaurSpawnEgg();
     }
 
     public void initCreativeTabs()
     {
-        spawnEgg.setCreativeTab(JCCreativeTabs.items);
+        spawn_egg.setCreativeTab(JCCreativeTabs.items);
     }
 
     public void gameRegistry() throws Exception
@@ -46,6 +49,7 @@ public class JCItemRegistry implements IContentHandler
     {
         String name = item.getUnlocalizedName();
         String[] strings = name.split("\\.");
-        GameRegistry.registerItem(item, strings[strings.length - 1]);
+        name = strings[strings.length - 1];
+        GameRegistry.registerItem(item, name);
     }
 }
