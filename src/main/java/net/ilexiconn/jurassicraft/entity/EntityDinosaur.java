@@ -64,15 +64,18 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
     {
         animations.add(animation);
     }
-    
+
     public void onUpdate()
     {
         super.onUpdate();
 
-        this.updateAnimation();
+        if(worldObj.isRemote)
+        {
+            this.playingAnimation = this.getDataWatcher().getWatchableObjectInt(25);
+            this.animationInProgress = this.getDataWatcher().getWatchableObjectInt(26) == 1;
+        }
         
-        this.playingAnimation = this.getDataWatcher().getWatchableObjectInt(25);
-        this.animationInProgress = this.getDataWatcher().getWatchableObjectInt(26) == 1;
+        this.updateAnimation();
     }
 
     public void startAnimation(int id)
@@ -82,15 +85,18 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
             playingAnimation = id;
             animationTimer = 0;
             animationInProgress = true;
-            
+
             updateAnimationWatcher();
         }
     }
 
     private void updateAnimationWatcher()
     {
-        this.getDataWatcher().updateObject(25, playingAnimation);
-        this.getDataWatcher().updateObject(26, animationInProgress ? 1 : 0);
+        if(!worldObj.isRemote)
+        {
+            this.getDataWatcher().updateObject(25, playingAnimation);
+            this.getDataWatcher().updateObject(26, animationInProgress ? 1 : 0);
+        }
     }
 
     public void updateAnimation()
@@ -100,7 +106,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
             IEntityAnimation animation = animations.get(playingAnimation);
 
             animationTimer += animation.getSpeed();
-            
+
             if(animationTimer >= animation.getLength())
             {
                 stopAllAnimations();
@@ -110,9 +116,13 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
 
     public void stopAllAnimations()
     {
-        playingAnimation = -1;
-        animationInProgress = false;
-        updateAnimationWatcher();
+        if(!worldObj.isRemote)
+        {
+            playingAnimation = -1;
+            animationInProgress = false;
+
+            updateAnimationWatcher();
+        }
     }
 
     public boolean isMale()

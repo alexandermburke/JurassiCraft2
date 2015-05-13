@@ -17,14 +17,17 @@ public class EntityVelociraptor extends EntityDinosaurAggressive
         this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
         this.registerAnimation(new AnimationVelociraptorLeap());
     }
-    
+
     public void onUpdate()
     {
         super.onUpdate();
-        
-        if(!animationInProgress)
+
+        if(!worldObj.isRemote)
         {
-            this.startAnimation(LEAPING_ANIMATION_ID);
+            if(!animationInProgress)
+            {
+                this.startAnimation(LEAPING_ANIMATION_ID);
+            }
         }
     }
 }
