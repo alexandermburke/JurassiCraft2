@@ -18,12 +18,8 @@ import net.minecraft.client.model.ModelBase;
 
 import org.apache.commons.io.IOUtils;
 
-import com.google.common.collect.Lists;
-
 public class JsonCreature
 {
-	private boolean canSwim;
-	
     private String name;
     private List<JsonHitbox> hitboxList;
     private List<String> maleTextures;
@@ -35,8 +31,6 @@ public class JsonCreature
 
     private String entityClass;
     private String animatorClass;
-
-    private List<String> attackTargets;
     
     private double babyHealth;
     private double babyStrength;
@@ -282,22 +276,9 @@ public class JsonCreature
 
         return model;
     }
-
-    public List<String> getAttackTargets()
-    {
-    	if(attackTargets == null)
-    		attackTargets = Lists.newArrayList();
-    	
-    	return attackTargets;
-    }
     
     public String getEntityClass()
     {
         return entityClass;
     }
-
-	public boolean canSwim()
-	{
-		return canSwim;
-	}
 }
