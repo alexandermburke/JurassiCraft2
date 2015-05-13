@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class JCItemRegistry implements IContentHandler
 {
-    public ItemDinosaurSpawnEgg spawnEgg;
+    public static ItemDinosaurSpawnEgg spawnEgg;
 
     public void init()
     {
