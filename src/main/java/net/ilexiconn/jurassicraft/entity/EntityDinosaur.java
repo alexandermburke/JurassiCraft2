@@ -23,7 +23,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
 
     protected boolean gender;
 
-    protected int playingAnimation;
+    protected int playingAnimation = -1;
     protected boolean animationInProgress;
     protected float animationTimer;
 
