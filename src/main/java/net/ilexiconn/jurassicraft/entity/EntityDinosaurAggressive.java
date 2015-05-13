@@ -17,7 +17,7 @@ public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
     public EntityDinosaurAggressive(World world)
     {
         super(world);
-    }//EntityMob
+    }
 
     /**
      * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
