@@ -5,3 +5,13 @@ minecraft/
 build/
 out/
 .gradle/
+bin/
+.project
+.classpath
+.settings/
+config/
+logs/
+saves/
+usernamecache.json
+options.txt
+crash-reports/
