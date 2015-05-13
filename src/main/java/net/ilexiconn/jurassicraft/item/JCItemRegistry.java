@@ -2,20 +2,23 @@ package net.ilexiconn.jurassicraft.item;
 
 import java.lang.reflect.Field;
 
+import net.ilexiconn.jurassicraft.creativetab.JCCreativeTabs;
 import net.ilexiconn.llibrary.IContentHandler;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class JCItemRegistry implements IContentHandler
 {
+    public ItemDinosaurSpawnEgg spawnEgg;
+
     public void init()
     {
-
+        spawnEgg = new ItemDinosaurSpawnEgg();
     }
 
     public void initCreativeTabs()
     {
-
+        spawnEgg.setCreativeTab(JCCreativeTabs.items);
     }
 
     public void gameRegistry() throws Exception

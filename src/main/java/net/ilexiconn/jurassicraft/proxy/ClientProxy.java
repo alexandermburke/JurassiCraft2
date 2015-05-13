@@ -1,8 +1,9 @@
 package net.ilexiconn.jurassicraft.proxy;
 
 import com.google.common.collect.Maps;
+
 import net.ilexiconn.jurassicraft.client.render.entity.RenderDinosaur;
-import net.ilexiconn.jurassicraft.json.JsonCreature;
+import net.ilexiconn.jurassicraft.entity.Creature;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -14,7 +15,7 @@ import java.util.Map.Entry;
 @SideOnly(Side.CLIENT)
 public class ClientProxy extends ServerProxy
 {
-    private Map<Class<? extends Entity>, JsonCreature> renderersToRegister = Maps.newHashMap();
+    private Map<Class<? extends Entity>, Creature> renderersToRegister = Maps.newHashMap();
 
     public void init()
     {
@@ -25,7 +26,7 @@ public class ClientProxy extends ServerProxy
     {
         super.postInit();
 
-        for (Entry<Class<? extends Entity>, JsonCreature> entry : renderersToRegister.entrySet())
+        for (Entry<Class<? extends Entity>, Creature> entry : renderersToRegister.entrySet())
         {
             try
             {
@@ -38,7 +39,7 @@ public class ClientProxy extends ServerProxy
         }
     }
 
-    public void registerEntityRenderer(Class<? extends Entity> clazz, JsonCreature creature)
+    public void registerEntityRenderer(Class<? extends Entity> clazz, Creature creature)
     {
         super.registerEntityRenderer(clazz, creature);
 

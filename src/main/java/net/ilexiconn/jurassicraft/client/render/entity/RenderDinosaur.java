@@ -2,8 +2,8 @@ package net.ilexiconn.jurassicraft.client.render.entity;
 
 import java.util.Random;
 
+import net.ilexiconn.jurassicraft.entity.Creature;
 import net.ilexiconn.jurassicraft.entity.EntityDinosaur;
-import net.ilexiconn.jurassicraft.json.JsonCreature;
 import net.ilexiconn.llibrary.client.render.entity.RenderMultiPart;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -17,12 +17,12 @@ import org.lwjgl.opengl.GL11;
 @SideOnly(Side.CLIENT)
 public class RenderDinosaur extends RenderMultiPart
 {
-    public JsonCreature jsonCreature;
+    public Creature jsonCreature;
     public ResourceLocation maleTexture;
     public ResourceLocation femaleTexture;
     public Random random;
 
-    public RenderDinosaur(JsonCreature creature) throws Exception
+    public RenderDinosaur(Creature creature) throws Exception
     {
         super(Minecraft.getMinecraft().getRenderManager(), creature.getModel(), creature.getShadowSize());
         jsonCreature = creature;

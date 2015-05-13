@@ -1,7 +1,6 @@
 package net.ilexiconn.jurassicraft.entity;
 
 import io.netty.buffer.ByteBuf;
-import net.ilexiconn.jurassicraft.json.JsonCreature;
 import net.ilexiconn.llibrary.entity.multipart.EntityPart;
 import net.ilexiconn.llibrary.entity.multipart.IEntityMultiPart;
 import net.ilexiconn.llibrary.json.JsonHelper;
@@ -13,7 +12,7 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, IEntityAdditionalSpawnData
 {
     private EntityPart[] parts;
-    private JsonCreature creature;
+    protected Creature creature;
 
     private boolean gender;
 
@@ -31,7 +30,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
         creature = JCEntityRegistry.getCreatureFromClass(getClass());
     }
 
-    public JsonCreature getCreature()
+    public Creature getCreature()
     {
         return creature;
     }

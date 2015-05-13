@@ -1,4 +1,4 @@
-package net.ilexiconn.jurassicraft.json;
+package net.ilexiconn.jurassicraft.entity;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -18,7 +18,7 @@ import net.minecraft.client.model.ModelBase;
 
 import org.apache.commons.io.IOUtils;
 
-public class JsonCreature
+public class Creature
 {
     private String name;
     private List<JsonHitbox> hitboxList;

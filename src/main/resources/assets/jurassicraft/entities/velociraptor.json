@@ -9,11 +9,7 @@
         "jurassicraft:textures/entities/velociraptor/velociraptor_female.png"
     ],
     "name": "Velociraptor",
-	"attackTargets": [
-			"Horse",
-			"Villager"
-	],
-	"canSwim": true,
+	"entityClass":"net.ilexiconn.jurassicraft.entity.EntityVelociraptor",
     "hitboxList": [
         {
             "radius": "1.3",

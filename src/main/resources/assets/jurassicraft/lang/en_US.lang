@@ -1,2 +1,5 @@
 entity.Velociraptor.name=Velociraptor
 entity.Test.name=Test TBL Animations
+itemGroup.jurassicraft.items=JurassiCraft Items
+itemGroup.jurassicraft.blocks=JurassiCraft Blocks
+item.dino_spawn_egg.name=Spawn 

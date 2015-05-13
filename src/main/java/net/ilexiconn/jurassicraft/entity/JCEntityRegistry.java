@@ -10,7 +10,7 @@ import java.util.Map.Entry;
 import javassist.ClassPool;
 import javassist.CtClass;
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.json.JsonCreature;
+import net.ilexiconn.jurassicraft.item.ItemDinosaurSpawnEgg;
 import net.ilexiconn.llibrary.IContentHandler;
 import net.ilexiconn.llibrary.entity.EntityHelper;
 import net.ilexiconn.llibrary.json.JsonFactory;
@@ -22,10 +22,10 @@ import com.google.common.collect.Maps;
 public class JCEntityRegistry implements IContentHandler
 {
     public static final String jsonLocation = "/assets/jurassicraft/entities/";
-    private static Map<Class<? extends EntityLiving>, JsonCreature> creatures = Maps.newHashMap();
+    private static Map<Class<? extends EntityLiving>, Creature> creatures = Maps.newHashMap();
     public List<String> jsonFiles = Lists.newArrayList();
 
-    public static JsonCreature getCreatureFromClass(Class<? extends EntityLiving> clazz)
+    public static Creature getCreatureFromClass(Class<? extends EntityLiving> clazz)
     {
         return creatures.get(clazz);
     }
@@ -54,7 +54,7 @@ public class JCEntityRegistry implements IContentHandler
     {
         for (String json : jsonFiles)
         {
-            JsonCreature jsonCreature = JsonFactory.getGson().fromJson(new InputStreamReader(JurassiCraft.class.getResourceAsStream(json)), JsonCreature.class);
+            Creature jsonCreature = JsonFactory.getGson().fromJson(new InputStreamReader(JurassiCraft.class.getResourceAsStream(json)), Creature.class);
 
             registerEntity(jsonCreature);
         }
@@ -65,7 +65,7 @@ public class JCEntityRegistry implements IContentHandler
         jsonFiles.add(jsonLocation + name);
     }
 
-    public void registerEntity(JsonCreature creature)
+    public void registerEntity(Creature creature)
     {
         if (creature.shouldRegister())
         {
@@ -97,7 +97,8 @@ public class JCEntityRegistry implements IContentHandler
                 }
 
                 creatures.put(clazz, creature);
-                EntityHelper.registerEntity(creature.getName(), clazz, creature.getEggPrimaryColor(), creature.getEggSecondaryColor());
+                EntityHelper.registerEntity(creature.getName(), clazz);
+                ItemDinosaurSpawnEgg.creatures.add(clazz);
                 JurassiCraft.proxy.registerEntityRenderer(clazz, creature);
             }
             catch (ClassNotFoundException e)
@@ -106,10 +107,15 @@ public class JCEntityRegistry implements IContentHandler
             }
         }
     }
+    
+    public void registerEgg(Creature creature, int primaryColor, int secondaryColor)
+    {
+
+    }
 
 	public static Class<? extends EntityLiving> getCreatureClassByName(String creatureName) 
 	{
-		for (Entry<Class<? extends EntityLiving>, JsonCreature> creature : creatures.entrySet()) 
+		for (Entry<Class<? extends EntityLiving>, Creature> creature : creatures.entrySet()) 
 		{
 			if(creature.getValue().getName().equalsIgnoreCase(creatureName))
 			{
@@ -119,4 +125,9 @@ public class JCEntityRegistry implements IContentHandler
 		
 		return null;
 	}
+
+    public static Map<Class<? extends EntityLiving>, Creature> getCreatures()
+    {
+        return creatures;
+    }
 }
