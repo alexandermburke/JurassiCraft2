@@ -87,13 +87,6 @@ public class AnimationVelociraptor implements IModelAnimator
         model.chainWave(rightArmParts, 1F * scaleFactor, -0.3F, 4, limbSwing, limbSwingAmount);
         model.chainWave(leftArmParts, 1F * scaleFactor, -0.3F, 4, limbSwing, limbSwingAmount);
 
-        if (velociraptor.getAnimationPlaying() == EntityVelociraptor.LEAPING_ANIMATION_ID)
-        {
-            float timer = velociraptor.getAnimationProgress();
-
-            leftThigh.rotateAngleX += timer;
-        }
-
         // float sittingProgress =
         // raptor.sittingProgress.getAnimationProgressSin();
         //

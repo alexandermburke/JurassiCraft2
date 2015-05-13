@@ -1,5 +1,7 @@
 package net.ilexiconn.jurassicraft;
 
+import java.io.IOException;
+
 import net.ilexiconn.jurassicraft.block.JCBlockRegistry;
 import net.ilexiconn.jurassicraft.creativetab.JCCreativeTabs;
 import net.ilexiconn.jurassicraft.entity.JCEntityRegistry;
@@ -12,8 +14,6 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-
-import java.io.IOException;
 
 @Mod(modid = "jurassicraft", name = "JurassiCraft", version = "${version}")
 public class JurassiCraft
