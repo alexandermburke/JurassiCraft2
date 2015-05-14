@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.entity;
 
+import net.ilexiconn.jurassicraft.entity.base.EntityDinosaurAggressive;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.player.EntityPlayer;

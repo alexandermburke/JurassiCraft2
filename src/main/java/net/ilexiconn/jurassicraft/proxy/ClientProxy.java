@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import net.ilexiconn.jurassicraft.client.render.entity.RenderDinosaur;
-import net.ilexiconn.jurassicraft.entity.Creature;
+import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
 import net.ilexiconn.jurassicraft.item.JCItemRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
@@ -22,7 +22,7 @@ import com.google.common.collect.Maps;
 @SideOnly(Side.CLIENT)
 public class ClientProxy extends ServerProxy
 {
-    private Map<Class<? extends Entity>, Creature> renderersToRegister = Maps.newHashMap();
+    private Map<Class<? extends Entity>, Dinosaur> renderersToRegister = Maps.newHashMap();
 
     public void init()
     {
@@ -33,7 +33,7 @@ public class ClientProxy extends ServerProxy
     {
         super.postInit();
 
-        for (Entry<Class<? extends Entity>, Creature> entry : renderersToRegister.entrySet())
+        for (Entry<Class<? extends Entity>, Dinosaur> entry : renderersToRegister.entrySet())
         {
             try
             {
@@ -57,7 +57,7 @@ public class ClientProxy extends ServerProxy
         });
     }
 
-    public void registerEntityRenderer(Class<? extends Entity> clazz, Creature creature)
+    public void registerEntityRenderer(Class<? extends Entity> clazz, Dinosaur creature)
     {
         super.registerEntityRenderer(clazz, creature);
 

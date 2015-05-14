@@ -1,4 +1,4 @@
-package net.ilexiconn.jurassicraft.entity;
+package net.ilexiconn.jurassicraft.entity.base;
 
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;

@@ -1,6 +1,7 @@
-package net.ilexiconn.jurassicraft.entity;
+package net.ilexiconn.jurassicraft.entity.base;
 
 import io.netty.buffer.ByteBuf;
+import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
 import net.ilexiconn.llibrary.entity.multipart.EntityPart;
 import net.ilexiconn.llibrary.entity.multipart.IEntityMultiPart;
 import net.ilexiconn.llibrary.json.JsonHelper;
@@ -12,14 +13,14 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, IEntityAdditionalSpawnData
 {
     protected EntityPart[] parts;
-    protected Creature creature;
+    protected Dinosaur dinosaur;
 
     protected boolean gender;
 
     public EntityDinosaur(World world)
     {
         super(world);
-        parts = JsonHelper.parseHitboxList(this, creature.getHitboxList());
+        parts = JsonHelper.parseHitboxList(this, dinosaur.getHitBoxList());
         gender = rand.nextBoolean();
     }
 
@@ -32,12 +33,12 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
     {
         super.applyEntityAttributes();
 
-        creature = JCEntityRegistry.getCreatureFromClass(getClass());
+        dinosaur = JCEntityRegistry.getDinosaurByClass(getClass());
     }
 
-    public Creature getCreature()
+    public Dinosaur getDinosaur()
     {
-        return creature;
+        return dinosaur;
     }
 
     public EntityPart[] getParts()

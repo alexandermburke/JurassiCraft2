@@ -1,6 +1,6 @@
 package net.ilexiconn.jurassicraft.proxy;
 
-import net.ilexiconn.jurassicraft.entity.Creature;
+import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
 import net.minecraft.entity.Entity;
 
 public class ServerProxy
@@ -15,7 +15,7 @@ public class ServerProxy
 
     }
 
-    public void registerEntityRenderer(Class<? extends Entity> clazz, Creature creature)
+    public void registerEntityRenderer(Class<? extends Entity> clazz, Dinosaur dino)
     {
 
     }

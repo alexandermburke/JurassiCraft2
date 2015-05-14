@@ -2,8 +2,8 @@ package net.ilexiconn.jurassicraft.client.render.entity;
 
 import java.util.Random;
 
-import net.ilexiconn.jurassicraft.entity.Creature;
-import net.ilexiconn.jurassicraft.entity.EntityDinosaur;
+import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
+import net.ilexiconn.jurassicraft.entity.base.EntityDinosaur;
 import net.ilexiconn.llibrary.client.render.entity.RenderMultiPart;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -17,24 +17,24 @@ import org.lwjgl.opengl.GL11;
 @SideOnly(Side.CLIENT)
 public class RenderDinosaur extends RenderMultiPart
 {
-    public Creature jsonCreature;
+    public Dinosaur dino;
     public ResourceLocation maleTexture;
     public ResourceLocation femaleTexture;
     public Random random;
 
-    public RenderDinosaur(Creature creature) throws Exception
+    public RenderDinosaur(Dinosaur creature) throws Exception
     {
         super(Minecraft.getMinecraft().getRenderManager(), creature.getModel(), creature.getShadowSize());
-        jsonCreature = creature;
+        dino = creature;
         random = new Random();
-        maleTexture = new ResourceLocation(creature.getMaleTextures().get(0)); // TODO: Genders and random textures
-        femaleTexture = new ResourceLocation(creature.getFemaleTextures().get(0));
+        maleTexture = new ResourceLocation(creature.getMaleTextures()[0]); // TODO: Random textures
+        femaleTexture = new ResourceLocation(creature.getFemaleTextures()[0]);
     }
 
     public void preRenderCallback(EntityLivingBase entity, float side)
     {
-        float scale = jsonCreature.getScaleAdjustment();
-        shadowSize = scale * jsonCreature.getShadowSize();
+        float scale = dino.getScaleAdjustment();
+        shadowSize = scale * dino.getShadowSize();
         GL11.glScalef(scale, scale, scale);
     }
 

@@ -1,17 +1,15 @@
 package net.ilexiconn.jurassicraft.item;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import net.ilexiconn.jurassicraft.entity.Creature;
-import net.ilexiconn.jurassicraft.entity.EntityDinosaur;
-import net.ilexiconn.jurassicraft.entity.JCEntityRegistry;
+import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
+import net.ilexiconn.jurassicraft.entity.base.EntityDinosaur;
+import net.ilexiconn.jurassicraft.entity.base.JCEntityRegistry;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -30,31 +28,29 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemDinosaurSpawnEgg extends Item
 {
-    public static List<Class<? extends EntityLiving>> creatures = new ArrayList<Class<? extends EntityLiving>>();
-
     public ItemDinosaurSpawnEgg()
     {
         this.setUnlocalizedName("dino_spawn_egg");
         this.setHasSubtypes(true);
     }
 
-    public EntityDinosaur spawnCreature(World world, EntityPlayer player, ItemStack egg, double x, double y, double z)
+    public EntityDinosaur spawnCreature(World world, EntityPlayer player, ItemStack stack, double x, double y, double z)
     {
-        Class creatureClass = creatures.get(egg.getItemDamage());
+        Class dinoClass = getDinosaur(stack).getDinosaurClass();
 
         try
         {
-            Entity creatureToSpawn = (Entity) creatureClass.getConstructor(World.class).newInstance(player.worldObj);
+            Entity dinoToSpawn = (Entity) dinoClass.getConstructor(World.class).newInstance(player.worldObj);
 
-            if (creatureToSpawn instanceof EntityDinosaur)
+            if (dinoToSpawn instanceof EntityDinosaur)
             {
-                EntityDinosaur creature = (EntityDinosaur) creatureToSpawn;
-                creature.setPosition(x, y, z);
-                creature.setLocationAndAngles(x, y, z, MathHelper.wrapAngleTo180_float(world.rand.nextFloat() * 360.0F), 0.0F);
-                creature.rotationYawHead = creature.rotationYaw;
-                creature.renderYawOffset = creature.rotationYaw;
+                EntityDinosaur dino = (EntityDinosaur) dinoToSpawn;
+                dino.setPosition(x, y, z);
+                dino.setLocationAndAngles(x, y, z, MathHelper.wrapAngleTo180_float(world.rand.nextFloat() * 360.0F), 0.0F);
+                dino.rotationYawHead = dino.rotationYaw;
+                dino.renderYawOffset = dino.rotationYaw;
 
-                return creature;
+                return dino;
             }
         }
         catch (Exception e)
@@ -67,28 +63,34 @@ public class ItemDinosaurSpawnEgg extends Item
 
     public String getItemStackDisplayName(ItemStack stack)
     {
-        return StatCollector.translateToLocal("item.dino_spawn_egg.name").trim() + " " + getCreature(stack).getName();
+        return StatCollector.translateToLocal("item.dino_spawn_egg.name").trim() + " " + getDinosaur(stack).getName();
     }
 
-    public Creature getCreature(ItemStack stack)
+    public Dinosaur getDinosaur(ItemStack stack)
     {
-        return JCEntityRegistry.getCreatureFromClass(creatures.get(stack.getItemDamage()));
+        return JCEntityRegistry.getDinosaurById(stack.getItemDamage());
     }
 
     @SideOnly(Side.CLIENT)
     public int getColorFromItemStack(ItemStack stack, int renderPass)
     {
-        Creature creature = getCreature(stack);
+        Dinosaur dino = getDinosaur(stack);
 
-        return creature != null ? (renderPass == 0 ? creature.getEggPrimaryColor() : creature.getEggSecondaryColor()) : 16777215;
+        return dino != null ? (renderPass == 0 ? dino.getEggPrimaryColor() : dino.getEggSecondaryColor()) : 16777215;
     }
 
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List subtypes)
     {
-        for (int i = 0; i < creatures.size(); i++)
+        int i = 0;
+        
+        for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
         {
-            subtypes.add(new ItemStack(item, 1, i));
+            if(dino.shouldRegister())
+            {
+                subtypes.add(new ItemStack(item, 1, i));
+                i++;
+            }
         }
     }
 
