@@ -1,22 +1,28 @@
 package net.ilexiconn.jurassicraft.block;
 
-import java.lang.reflect.Field;
-
 import net.ilexiconn.jurassicraft.api.ISubBlocksBlock;
+import net.ilexiconn.jurassicraft.creativetab.JCCreativeTabs;
 import net.ilexiconn.llibrary.IContentHandler;
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
+import java.lang.reflect.Field;
+
 public class JCBlockRegistry implements IContentHandler
 {
+    public static BlockFossil fossil;
+    public static BlockEncasedFossil encased_fossil;
+
     public void init()
     {
-
+        fossil = new BlockFossil();
+        encased_fossil = new BlockEncasedFossil();
     }
 
     public void initCreativeTabs()
     {
-
+        fossil.setCreativeTab(JCCreativeTabs.blocks);
+        encased_fossil.setCreativeTab(JCCreativeTabs.blocks);
     }
 
     public void gameRegistry() throws Exception

@@ -1,5 +1,45 @@
-entity.Velociraptor.name=Velociraptor
-entity.Test.name=Test TBL Animations
+//Tabs ==================================================
 itemGroup.jurassicraft.items=JurassiCraft Items
 itemGroup.jurassicraft.blocks=JurassiCraft Blocks
-item.dino_spawn_egg.name=Spawn 
+
+
+
+//Entities ==================================================
+entity.Velociraptor.name=Velociraptor
+
+
+
+
+//Items ==================================================
+item.dino_spawn_egg.name=Spawn
+item.item_fossil.name=Fossil
+item.item_rock_pick.name=Rock Pick
+item.item_plaster_bandage.name=Paster and Bandage
+
+
+
+//Blocks ==================================================
+tile.block_fossil.name=Fossil Block
+tile.block_encased_fossil.cretaceous.name=Encased Fossil Block Cretaceous
+tile.block_encased_fossil.jurassic.name=Encased Fossil Block Jurassic
+
+
+
+//Containers ==================================================
+
+
+
+
+//Others ==================================================
+period.quaternary.name=Quarternary
+period.neogene.name=Neogene
+period.paleogene.name=Paleogene
+period.cretaceous.name=Cretaceous
+period.jurassic.name=Jurassic
+period.triassic.name=Triassic
+period.permian.name=Permian
+period.carboniferous.name=Carboniferous
+period.denovian.name=Denovian
+period.selurian.name=Selurian
+period.ordovician.name=Ordovician
+period.cambrian.name=Cambrian

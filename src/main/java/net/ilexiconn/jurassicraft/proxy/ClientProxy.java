@@ -1,8 +1,7 @@
 package net.ilexiconn.jurassicraft.proxy;
 
-import java.util.Map;
-import java.util.Map.Entry;
-
+import com.google.common.collect.Maps;
+import net.ilexiconn.jurassicraft.block.JCBlockRegistry;
 import net.ilexiconn.jurassicraft.client.render.entity.RenderDinosaur;
 import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
 import net.ilexiconn.jurassicraft.item.JCItemRegistry;
@@ -12,12 +11,14 @@ import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.google.common.collect.Maps;
+import java.util.Map;
+import java.util.Map.Entry;
 
 @SideOnly(Side.CLIENT)
 public class ClientProxy extends ServerProxy
@@ -53,6 +54,42 @@ public class ClientProxy extends ServerProxy
             public ModelResourceLocation getModelLocation(ItemStack stack)
             {
                 return new ModelResourceLocation("jurassicraft:dino_spawn_egg", "inventory");
+            }
+        });
+
+        itemModelMesher.register(JCItemRegistry.plaster_and_bandage, new ItemMeshDefinition()
+        {
+            public ModelResourceLocation getModelLocation(ItemStack stack)
+            {
+                return new ModelResourceLocation("jurassicraft:plaster_and_bandage", "inventory");
+            }
+        });
+
+        itemModelMesher.register(Item.getItemFromBlock(JCBlockRegistry.fossil), new ItemMeshDefinition()
+        {
+            public ModelResourceLocation getModelLocation(ItemStack stack)
+            {
+                return new ModelResourceLocation("jurassicraft:block_fossil", "inventory");
+            }
+        });
+
+        itemModelMesher.register(Item.getItemFromBlock(JCBlockRegistry.encased_fossil), new ItemMeshDefinition()
+        {
+            public ModelResourceLocation getModelLocation(ItemStack stack)
+            {
+                return new ModelResourceLocation("jurassicraft:block_encased_fossil", "inventory");
+            }
+        });
+    }
+
+    /** Should we use it? */
+    public void registerItemRenderer(ItemModelMesher itemModelMesher, Item item, final String path, final String type)
+    {
+        itemModelMesher.register(item, new ItemMeshDefinition()
+        {
+            public ModelResourceLocation getModelLocation(ItemStack stack)
+            {
+                return new ModelResourceLocation(path, type);
             }
         });
     }

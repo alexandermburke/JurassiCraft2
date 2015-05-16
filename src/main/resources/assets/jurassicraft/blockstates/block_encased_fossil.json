@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "period=quaternary": { "model": "jurassicraft:block_encased_fossil" },
+        "period=neogene": { "model": "jurassicraft:block_encased_fossil" },
+        "period=paleogene": { "model": "jurassicraft:block_encased_fossil" },
+        "period=cretaceous": { "model": "jurassicraft:block_encased_fossil" },
+        "period=jurassic": { "model": "jurassicraft:block_encased_fossil" },
+        "period=triassic": { "model": "jurassicraft:block_encased_fossil" },
+        "period=permian": { "model": "jurassicraft:block_encased_fossil" },
+        "period=carboniferous": { "model": "jurassicraft:block_encased_fossil" },
+        "period=denovian": { "model": "jurassicraft:block_encased_fossil" },
+        "period=selurian": { "model": "jurassicraft:block_encased_fossil" },
+        "period=ordovician": { "model": "jurassicraft:block_encased_fossil" },
+        "period=cambrian": { "model": "jurassicraft:block_encased_fossil" }
+    }
+}
