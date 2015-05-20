@@ -6,7 +6,8 @@ package net.reuxertz.civnow.utils;
 public class Counter {
 
     //Timing Fields
-    protected int _counter;
+    protected int _timeCounter, _clickCounter;
+    protected double _lastOccurredCycles, _lastOccurredClicksPerCycle;
     protected int _MSWaitInterval,_startMSValue, _MSRandomVariationRange;
 
     //Constructors
@@ -21,17 +22,24 @@ public class Counter {
     public boolean addMS(int ms)
     {
         //Add Time
-        this._counter += ms;
+        this._timeCounter += ms;
 
         //If not enough time, return
-        if (this._counter < this._MSWaitInterval)
+        if (this._timeCounter < this._MSWaitInterval)
             return false;
 
         //Subtract time and random variation
-        this._counter -= (this._MSWaitInterval +
+        this._lastOccurredCycles = this._timeCounter / (this._MSWaitInterval * 1.0);
+        this._lastOccurredClicksPerCycle = this._clickCounter / this._lastOccurredCycles;
+        this._timeCounter -= (this._MSWaitInterval +
                 (Helper.RND.nextInt((this._MSRandomVariationRange * 2) - this._MSRandomVariationRange)));
 
         return true;
+    }
+    public void addClicks(int clicks)
+    {
+        //Add Time
+        this._clickCounter += clicks;
     }
 
 }
