@@ -21,6 +21,8 @@ import org.apache.commons.io.IOUtils;
 
 public abstract class Dinosaur
 {
+    public abstract String getName();
+
     public abstract Class<? extends EntityDinosaur> getDinosaurClass();
     
     public abstract int getEggPrimaryColor();
