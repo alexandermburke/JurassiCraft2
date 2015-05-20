@@ -1,6 +1,6 @@
 package net.reuxertz.ainow.entity.ai;
 
-import net.minecraft.entity.EntityCreature;
+        import net.minecraft.entity.EntityCreature;
 
 public class AICore extends AIBase
 {

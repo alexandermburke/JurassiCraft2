@@ -11,7 +11,7 @@ import net.reuxertz.ainow.entity.ai.AINavigate;
 public class EntityAICreature extends EntityCreature
 {
     //Static Functions
-    public static void InitializeAI(EntityCreature entity)
+    public static void ConstructAI(EntityCreature entity)
     {
         //Clear
         entity.tasks.taskEntries.clear();
@@ -20,9 +20,9 @@ public class EntityAICreature extends EntityCreature
         ((PathNavigateGround)entity.getNavigator()).func_179690_a(true);
         entity.tasks.addTask(1, new EntityAISwimming(entity));
         entity.tasks.addTask(2, new EntityAIAttackOnCollide(entity, 1.0F * 1, false));
-        entity.tasks.addTask(3, new EntityAIMoveTowardsRestriction(entity, 1));
-        entity.tasks.addTask(4, new EntityAIWatchClosest(entity, EntityPlayer.class, 6.0F));
-        entity.tasks.addTask(5, new EntityAILookIdle(entity));
+        //entity.tasks.addTask(3, new EntityAIMoveTowardsRestriction(entity, 1));
+        //entity.tasks.addTask(4, new EntityAIWatchClosest(entity, EntityPlayer.class, 6.0F));
+        //entity.tasks.addTask(5, new EntityAILookIdle(entity));
 
         //AI
         AICore ai = new AICore(entity);
@@ -43,6 +43,6 @@ public class EntityAICreature extends EntityCreature
         super(w);
 
         if (initialize)
-            EntityAICreature.InitializeAI(this);
+            EntityAICreature.ConstructAI(this);
     }
 }

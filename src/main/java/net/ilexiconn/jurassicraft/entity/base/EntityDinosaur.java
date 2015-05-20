@@ -5,6 +5,7 @@ import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
 import net.ilexiconn.llibrary.entity.multipart.EntityPart;
 import net.ilexiconn.llibrary.entity.multipart.IEntityMultiPart;
 import net.ilexiconn.llibrary.json.JsonHelper;
+import net.minecraft.entity.EntityCreature;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
