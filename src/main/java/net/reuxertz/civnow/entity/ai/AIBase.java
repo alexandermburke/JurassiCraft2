@@ -1,19 +1,17 @@
-package net.reuxertz.civnow.ai;
+package net.reuxertz.civnow.entity.ai;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.util.BlockPos;
 
 import javax.vecmath.Point3i;
 
-/**
- * Created by Ryan on 5/20/2015.
- */
 public abstract class AIBase extends EntityAIBase {
 
     //Fields
     private EntityLiving _entity;
     private boolean _isFinished = false, _isEnabled = false;
-    private Point3i _workingPosition = null;
+    private BlockPos _workingPosition = null;
 
     //Properties
     public EntityLiving entity()
@@ -36,13 +34,13 @@ public abstract class AIBase extends EntityAIBase {
     {
         this._isFinished = b;
     }
-    public Point3i WorkingPosition()
+    public BlockPos WorkingPosition()
     {
         return this._workingPosition;
     }
-    public void SetWorkingPosition(Point3i p)
+    public void SetWorkingPosition(BlockPos p)
     {
-        this._workingPosition = new Point3i(p);
+        this._workingPosition = new BlockPos(p);
     }
 
     //Overridden Functions
@@ -76,7 +74,7 @@ public abstract class AIBase extends EntityAIBase {
     }
 
     //Function
-    public void ActivateTask(Point3i workingPosition)
+    public void ActivateTask(BlockPos workingPosition)
     {
         this.resetTask();
         this.SetEnabled(true);

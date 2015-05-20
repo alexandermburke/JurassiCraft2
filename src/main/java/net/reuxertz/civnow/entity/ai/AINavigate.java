@@ -1,16 +1,9 @@
-package net.reuxertz.civnow.ai;
+package net.reuxertz.civnow.entity.ai;
 
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.pathfinding.PathNavigate;
-import net.minecraft.util.MathHelper;
 
-import javax.vecmath.Point3i;
-
-/**
- * Created by Ryan on 5/20/2015.
- */
 public class AINavigate extends AIBase {
 
     //Fields
@@ -20,12 +13,12 @@ public class AINavigate extends AIBase {
     public boolean PositionReached(boolean includeY, double dist) {
 
         double r1 = dist * dist;
-        double r2x = this.entity().posX - this.WorkingPosition().x, r2z = this.entity().posZ - this.WorkingPosition().z;
+        double r2x = this.entity().posX - this.WorkingPosition().getX(), r2z = this.entity().posZ - this.WorkingPosition().getZ();
         //double r2x = entity.posX - this.WorkingPosition.x, r2z = entity.posZ - this.WorkingPosition.z;
         double r2 = r2x * r2x + r2z * r2z;
 
         if (includeY) {
-            double r2y = this.entity().posY -this.WorkingPosition().y;
+            double r2y = this.entity().posY -this.WorkingPosition().getY();
             r2 += r2y * r2y;
         }
 
@@ -49,7 +42,7 @@ public class AINavigate extends AIBase {
     public void startExecuting()
     {
         PathNavigate n = this.entity().getNavigator();
-        PathEntity pe = n.getPathToXYZ(this.WorkingPosition().x, this.WorkingPosition().y, this.WorkingPosition().z);
+        PathEntity pe = n.getPathToXYZ(this.WorkingPosition().getX(), this.WorkingPosition().getY(), this.WorkingPosition().getZ());
     }
 
     //Constructor
