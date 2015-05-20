@@ -1,11 +1,8 @@
-package net.reuxertz.civnow.entity.ai;
+package net.reuxertz.ainow.entity.ai;
 
 import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.BlockPos;
-
-import javax.vecmath.Point3i;
 
 public abstract class AIBase extends EntityAIBase {
 

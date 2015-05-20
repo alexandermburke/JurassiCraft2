@@ -1,4 +1,4 @@
-package net.reuxertz.civnow.utils;
+package net.reuxertz.ainow.utils;
 
 /**
  * Created by reuxertz on 5/20/2015.

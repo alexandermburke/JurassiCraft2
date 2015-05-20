@@ -1,4 +1,4 @@
-package net.reuxertz.civnow.utils;
+package net.reuxertz.ainow.utils;
 
 import java.util.Random;
 

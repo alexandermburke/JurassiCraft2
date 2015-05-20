@@ -1,4 +1,4 @@
-package net.reuxertz.civnow.entity.ai;
+package net.reuxertz.ainow.entity.ai;
 
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.RandomPositionGenerator;

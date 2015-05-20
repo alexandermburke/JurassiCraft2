@@ -1,12 +1,12 @@
-package net.reuxertz.civnow.entity;
+package net.reuxertz.ainow.entity;
 
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.world.World;
-import net.reuxertz.civnow.entity.ai.AICore;
-import net.reuxertz.civnow.entity.ai.AINavigate;
+import net.reuxertz.ainow.entity.ai.AICore;
+import net.reuxertz.ainow.entity.ai.AINavigate;
 
 public class EntityAICreature extends EntityCreature
 {
