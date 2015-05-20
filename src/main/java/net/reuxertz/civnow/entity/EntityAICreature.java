@@ -5,6 +5,7 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.world.World;
+import net.reuxertz.civnow.entity.ai.AICore;
 import net.reuxertz.civnow.entity.ai.AINavigate;
 
 public class EntityAICreature extends EntityCreature
@@ -24,7 +25,12 @@ public class EntityAICreature extends EntityCreature
         entity.tasks.addTask(5, new EntityAILookIdle(entity));
 
         //AI
-        entity.tasks.addTask(10, new AINavigate(entity, 1.0F));
+        AICore ai = new AICore(entity);
+        entity.tasks.addTask(10, ai);
+        entity.tasks.addTask(11, new AINavigate(entity, 1.0F));
+
+        //Init
+        ai.SetEnabled(true);
     }
 
     //Constructor

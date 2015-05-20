@@ -56,7 +56,7 @@ public abstract class AIBase extends EntityAIBase {
     @Override
     public boolean shouldExecute()
     {
-        return this.Enabled() && !this.Finished();
+        return !(!this.Enabled() || this.Finished());
     }
     @Override
     public boolean continueExecuting() {
@@ -74,8 +74,8 @@ public abstract class AIBase extends EntityAIBase {
         this._entity = entity;
     }
 
-    //Function
-    public void ActivateTask(BlockPos workingPosition)
+    //Functions
+    protected void ActivateTask(BlockPos workingPosition)
     {
         this.resetTask();
         this.SetEnabled(true);

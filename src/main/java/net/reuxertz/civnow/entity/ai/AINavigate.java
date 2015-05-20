@@ -58,9 +58,16 @@ public class AINavigate extends AIBase {
     }
 
     //Function
-    public void ActivateWander(int dXZ, int dY)
+    public void ActivateTravelTo(BlockPos dest)
+    {
+        this.ActivateTask(dest);
+    }
+    public void ActivateIdleWander(int dXZ, int dY)
     {
         Vec3 vec3 = RandomPositionGenerator.findRandomTarget(this.entity(), dXZ, dY);
+
+        if (vec3 == null)
+            return;
 
         this.ActivateTask(new BlockPos(vec3));
     }

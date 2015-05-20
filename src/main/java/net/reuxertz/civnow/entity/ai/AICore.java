@@ -9,4 +9,10 @@ public class AICore extends AIBase
         super(entity);
     }
 
+    @Override
+    public void updateTask()
+    {
+        return;
+    }
+
 }
