@@ -1,5 +1,6 @@
 package net.reuxertz.civnow.ai;
 
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
 
 import javax.vecmath.Point3i;
@@ -9,50 +10,76 @@ import javax.vecmath.Point3i;
  */
 public abstract class AIBase extends EntityAIBase {
 
-    protected boolean IsFinished = false, Enabled = false;
-    protected Point3i WorkingPosition = null;
+    //Fields
+    private EntityLiving _entity;
+    private boolean _isFinished = false, _isEnabled = false;
+    private Point3i _workingPosition = null;
 
+    //Properties
+    public EntityLiving entity()
+    {
+        return this._entity;
+    }
     public boolean Enabled()
     {
-        return this.Enabled;
+        return this._isEnabled;
     }
     public void SetEnabled(boolean enabled)
     {
-        this.Enabled = enabled;
+        this._isEnabled = enabled;
     }
-    public boolean IsFinished()
+    public boolean Finished()
     {
-        return this.IsFinished;
+        return this._isFinished;
     }
     public void SetFinished(boolean b)
     {
-        this.IsFinished = b;
+        this._isFinished = b;
     }
-    public Point3i GetWorkingPosition()
+    public Point3i WorkingPosition()
     {
-        return this.WorkingPosition;
+        return this._workingPosition;
     }
     public void SetWorkingPosition(Point3i p)
     {
-        this.WorkingPosition = new Point3i(p);
+        this._workingPosition = new Point3i(p);
     }
 
-    public AIBase()
-    {
-        super();
-    }
-
+    //Overridden Functions
     @Override
     public void resetTask()
     {
         super.resetTask();
 
-        this.IsFinished = false;
-        this.WorkingPosition = null;
+        this.SetFinished(false);
+        this.SetWorkingPosition(null);
     }
     @Override
     public boolean shouldExecute()
     {
-        return this.Enabled;
+        return this.Enabled() && !this.Finished();
+    }
+    @Override
+    public boolean continueExecuting() {
+
+        if (!super.continueExecuting() || !this.Enabled())
+            return false;
+
+        return true;
+    }
+
+    //Constructor
+    public AIBase(EntityLiving entity)
+    {
+        super();
+        this._entity = entity;
+    }
+
+    //Function
+    public void ActivateTask(Point3i workingPosition)
+    {
+        this.resetTask();
+        this.SetEnabled(true);
+        this.SetWorkingPosition(workingPosition);
     }
 }
