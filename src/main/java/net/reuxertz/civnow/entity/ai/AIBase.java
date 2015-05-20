@@ -1,5 +1,6 @@
 package net.reuxertz.civnow.entity.ai;
 
+import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.BlockPos;
@@ -9,12 +10,12 @@ import javax.vecmath.Point3i;
 public abstract class AIBase extends EntityAIBase {
 
     //Fields
-    private EntityLiving _entity;
+    private EntityCreature _entity;
     private boolean _isFinished = false, _isEnabled = false;
     private BlockPos _workingPosition = null;
 
     //Properties
-    public EntityLiving entity()
+    public EntityCreature entity()
     {
         return this._entity;
     }
@@ -67,7 +68,7 @@ public abstract class AIBase extends EntityAIBase {
     }
 
     //Constructor
-    public AIBase(EntityLiving entity)
+    public AIBase(EntityCreature entity)
     {
         super();
         this._entity = entity;

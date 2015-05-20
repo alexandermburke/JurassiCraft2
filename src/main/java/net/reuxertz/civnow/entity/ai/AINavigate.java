@@ -1,8 +1,11 @@
 package net.reuxertz.civnow.entity.ai;
 
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.pathfinding.PathNavigate;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Vec3;
 
 public class AINavigate extends AIBase {
 
@@ -46,12 +49,20 @@ public class AINavigate extends AIBase {
     }
 
     //Constructor
-    public AINavigate(EntityLiving entity, double speed)
+    public AINavigate(EntityCreature entity, double speed)
     {
         super(entity);
 
         this._speed = speed;
         this.setMutexBits(1);
+    }
+
+    //Function
+    public void ActivateWander(int dXZ, int dY)
+    {
+        Vec3 vec3 = RandomPositionGenerator.findRandomTarget(this.entity(), dXZ, dY);
+
+        this.ActivateTask(new BlockPos(vec3));
     }
 
 }
