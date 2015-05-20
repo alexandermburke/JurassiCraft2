@@ -63,7 +63,6 @@ public abstract class Dinosaur
     public abstract float getShadowSize();
     
     public abstract ModelBase getModel();
-    public abstract Object Obj();
     
     public abstract String[] getMaleTextures();
     public abstract String[] getFemaleTextures();
