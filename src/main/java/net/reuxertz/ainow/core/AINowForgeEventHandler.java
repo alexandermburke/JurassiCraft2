@@ -1,4 +1,4 @@
-package net.reuxertz.ainow.entity.main;
+package net.reuxertz.ainow.core;
 
 
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;

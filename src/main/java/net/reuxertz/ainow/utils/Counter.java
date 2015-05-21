@@ -1,5 +1,7 @@
 package net.reuxertz.ainow.utils;
 
+import net.reuxertz.ainow.core.AINow;
+
 /**
  * Created by reuxertz on 5/20/2015.
  */
@@ -46,7 +48,7 @@ public class Counter {
         this._lastOccurredCycles = this._timeCounter / (this._MSWaitInterval * 1.0);
         this._lastOccurredClicksPerCycle = this._clickCounter / this._lastOccurredCycles;
         this._timeCounter -= (this._MSWaitInterval +
-                (Helper.RND.nextInt((this._MSRandomVariationRange * 2) - this._MSRandomVariationRange)));
+                (AINow.RND.nextInt((this._MSRandomVariationRange * 2) - this._MSRandomVariationRange)));
 
         return true;
     }
