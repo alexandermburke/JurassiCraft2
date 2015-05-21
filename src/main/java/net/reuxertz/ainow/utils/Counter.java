@@ -25,6 +25,7 @@ public class Counter {
         long dif = time - this._lastMSTime;
         this._lastMSTime = time;
 
+        int d;
         if (dif > Integer.MAX_VALUE)
             d = Integer.MAX_VALUE;
         else
