@@ -9,16 +9,16 @@ public class Counter {
 
     //Timing Fields
     protected long _lastMSTime = 0;
-    protected int _timeCounter, _clickCounter;
-    protected double _lastOccurredCycles, _lastOccurredClicksPerCycle;
-    protected int _MSWaitInterval,_startMSValue, _MSRandomVariationRange;
+    protected int _timeCounter, _clickCounter, _totalClickCounter;
+    protected double _lastOccurredCycles, _lastOccurredClicksPerCycle, _lastOccurredClicks;
+    protected int _MSWaitInterval, _MSRandomVariationRange;
 
     //Constructors
-    public Counter(int MSWaitInterval, int startMSValue, int MSRandomVariationRange)
+    public Counter(long curTime, int MSWaitInterval, int MSRandomVariationRange)
     {
         this._MSWaitInterval = MSWaitInterval;
-        this._startMSValue = startMSValue;
         this._MSRandomVariationRange = MSRandomVariationRange;
+        this._lastMSTime = curTime;
     }
 
     //Functions
@@ -47,8 +47,12 @@ public class Counter {
         //Subtract time and random variation
         this._lastOccurredCycles = this._timeCounter / (this._MSWaitInterval * 1.0);
         this._lastOccurredClicksPerCycle = this._clickCounter / this._lastOccurredCycles;
-        this._timeCounter -= (this._MSWaitInterval +
-                (AINow.RND.nextInt((this._MSRandomVariationRange * 2) - this._MSRandomVariationRange)));
+        this._lastOccurredClicks = this._clickCounter;
+        this._totalClickCounter += this._clickCounter;
+
+        //Reset
+        this._clickCounter  = 0;
+        this._timeCounter = AINow.RND.nextInt((this._MSRandomVariationRange * 2)) - this._MSRandomVariationRange;
 
         return true;
     }
