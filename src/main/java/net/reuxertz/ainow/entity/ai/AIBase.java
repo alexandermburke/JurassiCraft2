@@ -38,7 +38,10 @@ public abstract class AIBase extends EntityAIBase {
     }
     public void SetWorkingPosition(BlockPos p)
     {
-        this._workingPosition = new BlockPos(p);
+        if (p == null)
+            this._workingPosition = null;
+        else
+            this._workingPosition = new BlockPos(p);
     }
 
     //Overridden Functions

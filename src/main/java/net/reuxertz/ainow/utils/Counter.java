@@ -6,6 +6,7 @@ package net.reuxertz.ainow.utils;
 public class Counter {
 
     //Timing Fields
+    protected long _lastMSTime = 0;
     protected int _timeCounter, _clickCounter;
     protected double _lastOccurredCycles, _lastOccurredClicksPerCycle;
     protected int _MSWaitInterval,_startMSValue, _MSRandomVariationRange;
@@ -19,6 +20,18 @@ public class Counter {
     }
 
     //Functions
+    public boolean updateMSTime(long time)
+    {
+        long dif = time - this._lastMSTime;
+        this._lastMSTime = time;
+
+        if (dif > Integer.MAX_VALUE)
+            d = Integer.MAX_VALUE;
+        else
+            d = (int)dif;
+
+        return this.addMS(d);
+    }
     public boolean addMS(int ms)
     {
         //Add Time

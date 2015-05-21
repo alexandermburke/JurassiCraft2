@@ -2,11 +2,10 @@ package net.reuxertz.ainow.entity;
 
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.world.World;
 import net.reuxertz.ainow.entity.ai.AICore;
-import net.reuxertz.ainow.entity.ai.AINavigate;
+import net.reuxertz.ainow.entity.ai.AINavigate2;
 
 public class EntityAICreature extends EntityCreature
 {
@@ -26,11 +25,16 @@ public class EntityAICreature extends EntityCreature
 
         //AI
         AICore ai = new AICore(entity);
+        AINavigate2 aiNav = new AINavigate2(entity, 1.0F);
+
+        //Add AI
         entity.tasks.addTask(10, ai);
-        entity.tasks.addTask(11, new AINavigate(entity, 1.0F));
+        entity.tasks.addTask(11, aiNav);
 
         //Init
-        ai.SetEnabled(true);
+        //ai.SetEnabled(true);
+        //aiNav.SetEnabled(true);
+        //aiNav.ActivateIdleWander();
     }
 
     //Constructor

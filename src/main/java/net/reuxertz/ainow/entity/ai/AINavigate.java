@@ -1,75 +1,62 @@
 package net.reuxertz.ainow.entity.ai;
 
 import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.RandomPositionGenerator;
-import net.minecraft.pathfinding.PathEntity;
-import net.minecraft.pathfinding.PathNavigate;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.Vec3;
 
-public class AINavigate extends AIBase {
+public class AINavigate extends AIBase
+{
+    private EntityCreature entity;
+    private double xPosition;
+    private double yPosition;
+    private double zPosition;
+    private double speed;
+    private static final String __OBFID = "CL_00001608";
 
-    //Fields
-    private double _speed;
-
-    //Properties
-    public boolean PositionReached(boolean includeY, double dist) {
-
-        double r1 = dist * dist;
-        double r2x = this.entity().posX - this.WorkingPosition().getX(), r2z = this.entity().posZ - this.WorkingPosition().getZ();
-        //double r2x = entity.posX - this.WorkingPosition.x, r2z = entity.posZ - this.WorkingPosition.z;
-        double r2 = r2x * r2x + r2z * r2z;
-
-        if (includeY) {
-            double r2y = this.entity().posY -this.WorkingPosition().getY();
-            r2 += r2y * r2y;
-        }
-
-        return r2 <= r1;
-    }
-
-    //Overridden Functions
-    @Override
-    public boolean continueExecuting() {
-
-        if (super.continueExecuting())
-            return false;
-
-        if (this.entity().getNavigator().noPath() || this.WorkingPosition() == null) {
-            this.SetFinished(true);
-            return false;
-        }
-        return true;
-    }
-    @Override
-    public void startExecuting()
+    public AINavigate(EntityCreature e, double speed)
     {
-        PathNavigate n = this.entity().getNavigator();
-        PathEntity pe = n.getPathToXYZ(this.WorkingPosition().getX(), this.WorkingPosition().getY(), this.WorkingPosition().getZ());
-    }
+        super(e);
 
-    //Constructor
-    public AINavigate(EntityCreature entity, double speed)
-    {
-        super(entity);
-
-        this._speed = speed;
+        this.entity = e;
+        this.speed = speed;
         this.setMutexBits(1);
     }
 
-    //Function
-    public void ActivateTravelTo(BlockPos dest)
+    public boolean shouldExecute()
     {
-        this.ActivateTask(dest);
-    }
-    public void ActivateIdleWander(int dXZ, int dY)
-    {
-        Vec3 vec3 = RandomPositionGenerator.findRandomTarget(this.entity(), dXZ, dY);
+        if (!this.Enabled())
+            return false;
+
+        Vec3 vec3 = RandomPositionGenerator.findRandomTarget(this.entity, 10, 7);
 
         if (vec3 == null)
-            return;
-
-        this.ActivateTask(new BlockPos(vec3));
+        {
+            return false;
+        }
+        else
+        {
+            this.xPosition = vec3.xCoord;
+            this.yPosition = vec3.yCoord;
+            this.zPosition = vec3.zCoord;
+            return true;
+        }
     }
 
+    /**
+     * Returns whether an in-progress EntityAIBase should continue executing
+     */
+    public boolean continueExecuting()
+    {
+        return !this.entity.getNavigator().noPath();
+    }
+
+    /**
+     * Execute a one shot task or start executing a continuous task
+     */
+    public void startExecuting()
+    {
+        this.entity.getNavigator().tryMoveToXYZ(this.xPosition, this.yPosition, this.zPosition, this.speed);
+    }
 }
