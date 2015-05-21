@@ -18,7 +18,7 @@ public class AICore extends AIBase
         if (!this._timer.updateMSTime(this.entity().worldObj.getWorldTime()))
             return;
 
-        return;
+        System.out.println("aiTick - ");
     }
 
 }
