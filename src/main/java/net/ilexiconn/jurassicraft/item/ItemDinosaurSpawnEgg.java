@@ -83,10 +83,10 @@ public class ItemDinosaurSpawnEgg extends Item
     public void getSubItems(Item item, CreativeTabs tab, List subtypes)
     {
         int i = 0;
-        
+
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
         {
-            if(dino.shouldRegister())
+            if (dino.shouldRegister())
             {
                 subtypes.add(new ItemStack(item, 1, i));
                 i++;
@@ -96,11 +96,9 @@ public class ItemDinosaurSpawnEgg extends Item
 
     /**
      * Called when a Block is right-clicked with this Item
-     * 
-     * @param pos
-     *            The block being right-clicked
-     * @param side
-     *            The side being right-clicked
+     *
+     * @param pos  The block being right-clicked
+     * @param side The side being right-clicked
      */
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {

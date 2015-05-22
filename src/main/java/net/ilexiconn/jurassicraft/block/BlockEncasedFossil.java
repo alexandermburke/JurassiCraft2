@@ -22,10 +22,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class BlockEncasedFossil extends Block implements ISubBlocksBlock {
+public class BlockEncasedFossil extends Block implements ISubBlocksBlock
+{
     public static final PropertyEnum PROPERTYPERIOD = PropertyEnum.create("period", BlockEncasedFossil.EnumTimePeriod.class);
 
-    public BlockEncasedFossil() {
+    public BlockEncasedFossil()
+    {
         super(Material.rock);
         this.setUnlocalizedName("block_encased_fossil");
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockEncasedFossil.PROPERTYPERIOD, BlockEncasedFossil.EnumTimePeriod.CRETACEOUS));
@@ -35,12 +37,14 @@ public class BlockEncasedFossil extends Block implements ISubBlocksBlock {
     }
 
     @Override
-    public Class<? extends ItemBlock> getItemBlockClass() {
+    public Class<? extends ItemBlock> getItemBlockClass()
+    {
         return ItemEncasedFossil.class;
     }
 
     @Override
-    public int damageDropped(IBlockState state) {
+    public int damageDropped(IBlockState state)
+    {
         BlockEncasedFossil.EnumTimePeriod timePeriod = (BlockEncasedFossil.EnumTimePeriod) state.getValue(BlockEncasedFossil.PROPERTYPERIOD);
         return timePeriod.getMetadata();
     }
@@ -48,36 +52,43 @@ public class BlockEncasedFossil extends Block implements ISubBlocksBlock {
     @Override
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("unchecked")
-    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List list)
+    {
         BlockEncasedFossil.EnumTimePeriod[] timePeriods = BlockEncasedFossil.EnumTimePeriod.values();
         for (BlockEncasedFossil.EnumTimePeriod timePeriod : timePeriods)
-            if (timePeriod.shouldBeImplement()) {
+            if (timePeriod.shouldBeImplement())
+            {
                 list.add(new ItemStack(item, 1, timePeriod.getMetadata()));
             }
     }
 
     @Override
-    public IBlockState getStateFromMeta(int meta) {
+    public IBlockState getStateFromMeta(int meta)
+    {
         return this.getDefaultState().withProperty(BlockEncasedFossil.PROPERTYPERIOD, BlockEncasedFossil.EnumTimePeriod.byMetadata(meta));
     }
 
     @Override
-    public int getMetaFromState(IBlockState state) {
+    public int getMetaFromState(IBlockState state)
+    {
         return ((BlockEncasedFossil.EnumTimePeriod) state.getValue(BlockEncasedFossil.PROPERTYPERIOD)).getMetadata();
     }
 
     @Override
-    protected BlockState createBlockState() {
+    protected BlockState createBlockState()
+    {
         return new BlockState(this, BlockEncasedFossil.PROPERTYPERIOD);
     }
 
     @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    {
         return state;
     }
 
     @Override
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing blockFaceClickedOn, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing blockFaceClickedOn, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    {
         BlockEncasedFossil.EnumTimePeriod timePeriod = BlockEncasedFossil.EnumTimePeriod.byMetadata(meta);
         return this.getDefaultState().withProperty(BlockEncasedFossil.PROPERTYPERIOD, timePeriod);
     }
@@ -85,7 +96,8 @@ public class BlockEncasedFossil extends Block implements ISubBlocksBlock {
     /**
      * PropertyEnum used create fossil blocks from different periods in time.
      */
-    public enum EnumTimePeriod implements IStringSerializable {
+    public enum EnumTimePeriod implements IStringSerializable
+    {
         QUATERNARY(0, "quaternary", 2.588F, 0.0F, false),
         NEOGENE(1, "neogene", 23.03F, 2.589F, false),
         PALEOGENE(2, "paleogene", 66.0F, 23.04F, false),
@@ -102,19 +114,22 @@ public class BlockEncasedFossil extends Block implements ISubBlocksBlock {
         /**
          * Returns the metadata of this time period.
          */
-        public int getMetadata() {
+        public int getMetadata()
+        {
             return this.meta;
         }
 
         @Override
-        public String toString() {
+        public String toString()
+        {
             return this.name;
         }
 
         /**
          * Returns the time period from its metadata.
          */
-        public static EnumTimePeriod byMetadata(int meta) {
+        public static EnumTimePeriod byMetadata(int meta)
+        {
             if (meta < 0 || meta >= BlockEncasedFossil.EnumTimePeriod.META_LOOKUP.length)
                 meta = 0;
             return BlockEncasedFossil.EnumTimePeriod.META_LOOKUP[meta];
@@ -123,35 +138,40 @@ public class BlockEncasedFossil extends Block implements ISubBlocksBlock {
         /**
          * Returns the name of this time period.
          */
-        public String getName() {
+        public String getName()
+        {
             return this.name;
         }
 
         /**
          * Returns if this time period should be implemented.
          */
-        public float getStartTime() {
+        public float getStartTime()
+        {
             return this.startTime;
         }
 
         /**
          * Returns if this time period should be implemented.
          */
-        public float getEndTime() {
+        public float getEndTime()
+        {
             return this.endTime;
         }
 
         /**
          * Returns the tooltip of this itemBlock.
          */
-        public String getNameForDisplay() {
+        public String getNameForDisplay()
+        {
             return this.name;
         }
 
         /**
          * Returns if this time period should be implemented.
          */
-        public boolean shouldBeImplement() {
+        public boolean shouldBeImplement()
+        {
             return this.shouldImplement;
         }
 
@@ -180,7 +200,8 @@ public class BlockEncasedFossil extends Block implements ISubBlocksBlock {
          */
         private static final EnumTimePeriod[] META_LOOKUP = new EnumTimePeriod[values().length];
 
-        EnumTimePeriod(int meta, String name, float startTime, float endTime, boolean shouldImplement) {
+        EnumTimePeriod(int meta, String name, float startTime, float endTime, boolean shouldImplement)
+        {
             this.name = name;
             this.meta = meta;
             this.startTime = startTime;
@@ -188,8 +209,10 @@ public class BlockEncasedFossil extends Block implements ISubBlocksBlock {
             this.shouldImplement = shouldImplement;
         }
 
-        static {
-            for (EnumTimePeriod timePeriod : values()) {
+        static
+        {
+            for (EnumTimePeriod timePeriod : values())
+            {
                 BlockEncasedFossil.EnumTimePeriod.META_LOOKUP[timePeriod.getMetadata()] = timePeriod;
             }
         }

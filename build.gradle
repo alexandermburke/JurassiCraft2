@@ -21,12 +21,21 @@ buildscript {
 
 apply plugin: 'forge'
 
-project.ext.buildnumber = "undefined"
-if (System.getenv().BUILD_NUMBER) project.buildnumber = System.getenv().BUILD_NUMBER
-
-version = "0.2.0-" + project.buildnumber
+version = "0.2.0-beta"
 group = "net.ilexiconn.jurassicraft"
 archivesBaseName = "JurassiCraft"
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "ilexiconn"
+        url = "http://ilexiconn.net/maven"
+    }
+}
+
+dependencies {
+    compile 'net.ilexiconn.llibrary:LLibrary:0.1.0-1.8:dev'
+}
 
 minecraft {
     version = "1.8-11.14.1.1398"

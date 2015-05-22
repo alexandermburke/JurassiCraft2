@@ -1,10 +1,11 @@
-package net.reuxertz.ainow.entity.ai;
+package net.ilexiconn.jurassicraft.entity.ai;
 
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.BlockPos;
 
-public abstract class AIBase extends EntityAIBase {
+public abstract class AIBase extends EntityAIBase
+{
 
     //Fields
     protected EntityCreature _entity;
@@ -17,26 +18,32 @@ public abstract class AIBase extends EntityAIBase {
     {
         return this._entity;
     }
+
     public boolean Enabled()
     {
         return this._isEnabled;
     }
+
     public void SetEnabled(boolean enabled)
     {
         this._isEnabled = enabled;
     }
+
     public boolean Finished()
     {
         return this._isFinished;
     }
+
     public void SetFinished(boolean b)
     {
         this._isFinished = b;
     }
+
     public BlockPos WorkingPosition()
     {
         return this._workingPosition;
     }
+
     public void SetWorkingPosition(BlockPos p)
     {
         if (p == null)
@@ -54,13 +61,16 @@ public abstract class AIBase extends EntityAIBase {
         this.SetFinished(false);
         this.SetWorkingPosition(null);
     }
+
     @Override
     public boolean shouldExecute()
     {
         return !(!this.Enabled() || this.Finished());
     }
+
     @Override
-    public boolean continueExecuting() {
+    public boolean continueExecuting()
+    {
 
         if (!super.continueExecuting() || !this.Enabled())
             return false;
@@ -80,12 +90,14 @@ public abstract class AIBase extends EntityAIBase {
     {
         this.ActivateTask(workingPosition, false);
     }
+
     protected void ActivateTask(BlockPos workingPosition, boolean setRecursive)
     {
         this.resetTask();
         this.SetEnabled(true);
         this.SetWorkingPosition(workingPosition);
     }
+
     protected void DeactivateTask(boolean removeRecursive)
     {
         this.resetTask();

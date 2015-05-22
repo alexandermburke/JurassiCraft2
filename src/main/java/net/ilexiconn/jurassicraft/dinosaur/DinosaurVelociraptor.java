@@ -13,13 +13,13 @@ public class DinosaurVelociraptor extends Dinosaur
     private String[] maleTextures;
     private String[] femaleTextures;
     private ModelJson model;
-    
+
     public DinosaurVelociraptor()
     {
         this.animator = new AnimationVelociraptor();
         this.maleTextures = new String[]{"jurassicraft:textures/entities/velociraptor/velociraptor_male.png"};
         this.femaleTextures = new String[]{"jurassicraft:textures/entities/velociraptor/velociraptor_female.png"};
-     
+
         try
         {
             this.model = getTabulaModel("/assets/jurassicraft/models/entities/velociraptor");
@@ -29,7 +29,7 @@ public class DinosaurVelociraptor extends Dinosaur
             e.printStackTrace();
         }
     }
-    
+
     @Override
     public String getName()
     {

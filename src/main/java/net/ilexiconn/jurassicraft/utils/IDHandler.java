@@ -1,11 +1,13 @@
-package net.reuxertz.ainow.utils;
+package net.ilexiconn.jurassicraft.utils;
 
 
 import net.minecraft.nbt.NBTTagCompound;
-import net.reuxertz.ainow.core.AINow;
 
-public class IDHandler {
+import java.util.Random;
 
+public class IDHandler
+{
+    private static Random random = new Random();
     //Fields
     public static final int MinLength = 6, MaxLength = 20;
     public static final String IDAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$&?";
@@ -16,7 +18,7 @@ public class IDHandler {
     {
         String s = "";
         for (int i = 0; i < length; i++)
-            s += IDHandler.IDAlphabet.substring(AINow.RND.nextInt(IDHandler.IDAlphabet.length()), 1);
+            s += IDHandler.IDAlphabet.substring(random.nextInt(IDHandler.IDAlphabet.length()), 1);
 
         return s;
     }
@@ -26,6 +28,7 @@ public class IDHandler {
     {
         nbt.setString(IdField, inst.GetID());
     }
+
     public Instance ReadIDFromTag(NBTTagCompound nbt)
     {
         return new Instance(nbt);
@@ -45,6 +48,7 @@ public class IDHandler {
         {
             this._id = nbt.getString(IdField);
         }
+
         public Instance(String id)
         {
             this._id = id;

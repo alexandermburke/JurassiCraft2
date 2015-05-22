@@ -1,6 +1,6 @@
 package net.ilexiconn.jurassicraft.creativetab;
 
-import net.ilexiconn.llibrary.IContentHandler;
+import net.ilexiconn.llibrary.common.content.IContentHandler;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;

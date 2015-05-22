@@ -65,11 +65,13 @@ public class ClientProxy extends ServerProxy
             }
         });
 
-                itemModelMesher.register(Item.getItemFromBlock(JCBlockRegistry.fossil), new ItemMeshDefinition() {
-                    public ModelResourceLocation getModelLocation(ItemStack stack) {
-                        return new ModelResourceLocation("jurassicraft:block_fossil", "inventory");
-                    }
-                });
+        itemModelMesher.register(Item.getItemFromBlock(JCBlockRegistry.fossil), new ItemMeshDefinition()
+        {
+            public ModelResourceLocation getModelLocation(ItemStack stack)
+            {
+                return new ModelResourceLocation("jurassicraft:block_fossil", "inventory");
+            }
+        });
 
         itemModelMesher.register(Item.getItemFromBlock(JCBlockRegistry.encased_fossil), new ItemMeshDefinition()
         {
@@ -80,7 +82,9 @@ public class ClientProxy extends ServerProxy
         });
     }
 
-    /** Should we use it? */
+    /**
+     * Should we use it?
+     */
     public void registerItemRenderer(ItemModelMesher itemModelMesher, Item item, final String path, final String type)
     {
         itemModelMesher.register(item, new ItemMeshDefinition()

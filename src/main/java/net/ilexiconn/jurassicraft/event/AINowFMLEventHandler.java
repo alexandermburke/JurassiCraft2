@@ -1,14 +1,15 @@
-package net.reuxertz.ainow.core;
+package net.ilexiconn.jurassicraft.event;
 
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AINowFMLEventHandler {
+public class AINowFMLEventHandler
+{
 
 
     @Mod.EventHandler
@@ -24,7 +25,7 @@ public class AINowFMLEventHandler {
             if (msg.charAt(i) == ' ')
             {
                 String ssi = msg.substring(h, i);
-                if (ssi != "" && ssi != " ")
+                if (!ssi.equals("") && !ssi.equals(" "))
                     ss.add(ssi);
             }
         }
@@ -33,19 +34,23 @@ public class AINowFMLEventHandler {
             return;
 
         //AI Commands
-        while(true) {
-            if (ss.get(0) == "/" + AINow.ModID) {
+        while (true)
+        {
+            if (ss.get(0).equals("/jurassicraft"))
+            {
                 e.setCanceled(true);
 
-                //Handle Debug Commands
-                if  (ss.size() >= 3 && ss.get(1) == "debug") {
-                    if (ss.get(2) == "true") {
+                if (ss.size() >= 3 && ss.get(1).equals("debug"))
+                {
+                    if (ss.get(2).equals("true"))
+                    {
                         e.player.addChatMessage(new ChatComponentTranslation("AINow debug-mode enabled"));
-                        AINow.Instance.DebugMode = true;
+                        JurassiCraft.debug = true;
                     }
-                    if (ss.get(2) == "false") {
+                    if (ss.get(2).equals("false"))
+                    {
                         e.player.addChatMessage(new ChatComponentTranslation("AINow debug-mode disabled"));
-                        AINow.Instance.DebugMode = false;
+                        JurassiCraft.debug = false;
                     }
                     break;
                 }

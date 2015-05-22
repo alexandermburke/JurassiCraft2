@@ -1,10 +1,10 @@
-package net.reuxertz.ainow.entity.ai;
+package net.ilexiconn.jurassicraft.entity.ai;
 
-        import net.minecraft.entity.EntityCreature;
-        import net.reuxertz.ainow.utils.Counter;
+import net.minecraft.entity.EntityCreature;
+import net.ilexiconn.jurassicraft.utils.Counter;
 
-        import java.util.ArrayList;
-        import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AICore extends AIBase
 {
@@ -14,8 +14,9 @@ public class AICore extends AIBase
     //AI Module Getters
     public AINavigate GetAINavigate()
     {
-        return (AINavigate)this.GetAI(AINavigate.class);
+        return (AINavigate) this.GetAI(AINavigate.class);
     }
+
     public Object GetAI(Class AIClass)
     {
         /*for (int i = 0; i < e.tasks.taskEntries.size(); i++)

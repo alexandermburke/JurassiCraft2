@@ -8,13 +8,17 @@ import net.minecraft.world.World;
 public class FossilHandler
 {
 
-    /** Returns the period of time (or metadata) as cretaceous. */
+    /**
+     * Returns the period of time (or metadata) as cretaceous.
+     */
     public static int getDefaultTimePeriod()
     {
         return BlockEncasedFossil.EnumTimePeriod.CRETACEOUS.getMetadata();
     }
 
-    /** Returns the period of time (or metadata) based on a position. */
+    /**
+     * Returns the period of time (or metadata) based on a position.
+     */
     public static int getTimePeriod(World world, BlockPos pos)
     {
         world.getBiomeGenForCoords(pos);

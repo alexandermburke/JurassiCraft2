@@ -1,17 +1,20 @@
-package net.reuxertz.ainow.entity.ai;
+package net.ilexiconn.jurassicraft.entity.ai;
 
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.util.BlockPos;
-import net.reuxertz.ainow.core.AINow;
+
+import java.util.Random;
 
 public class AINavigate extends AIBase
 {
+    private Random random = new Random();
     //private BlockPos navPos;
     protected double _speed, _wanderDist = 15, _wanderPower = 1.71, _destinationBuffer = 2.0;
     private static final String __OBFID = "CL_00001608";
 
-    public boolean PositionReached(boolean includeY, double dist) {
+    public boolean PositionReached(boolean includeY, double dist)
+    {
         //if (this.WorkingPosition == null)
         //	return false;
 
@@ -20,7 +23,8 @@ public class AINavigate extends AIBase
         //double r2x = entity.posX - this.WorkingPosition.x, r2z = entity.posZ - this.WorkingPosition.z;
         double r2 = r2x * r2x + r2z * r2z;
 
-        if (includeY) {
+        if (includeY)
+        {
             double r2y = _entity.posY - this.WorkingPosition().getY();
             //double r2y = entity.posY - this.WorkingPosition.y;
             r2 += r2y * r2y;
@@ -28,6 +32,7 @@ public class AINavigate extends AIBase
 
         return r2 <= r1;
     }
+
     public double Distance(BlockPos b1, BlockPos b2)
     {
         double x = b1.getX() - b2.getX();
@@ -55,13 +60,14 @@ public class AINavigate extends AIBase
         if (!super.shouldExecute())
             return false;
 
-        if (this.WorkingPosition() == null) {
+        if (this.WorkingPosition() == null)
+        {
 
-            if (this._isRecursive && AINow.RND.nextDouble() > this._probRecursion)
+            if (this._isRecursive && random.nextDouble() > this._probRecursion)
                 return false;
 
             BlockPos bp;
-            bp = new BlockPos(RandomPositionGenerator.findRandomTarget(this.entity(), (int)this._wanderDist, 7));
+            bp = new BlockPos(RandomPositionGenerator.findRandomTarget(this.entity(), (int) this._wanderDist, 7));
 
             if (bp == null)
                 return false;
@@ -72,6 +78,7 @@ public class AINavigate extends AIBase
 
         return this.WorkingPosition() != null;
     }
+
     @Override
     public boolean continueExecuting()
     {
@@ -89,12 +96,13 @@ public class AINavigate extends AIBase
         }
         return cont;
     }
+
     @Override
     public void startExecuting()
     {
         if (this.WorkingPosition() != null)
             this._entity.getNavigator().tryMoveToXYZ(this.WorkingPosition().getX(), this.WorkingPosition().getY(), this.WorkingPosition().getZ(), this._speed);
-            //this.entity.getNavigator().tryMoveToXYZ(navPos.getX(), navPos.getY(), navPos.getZ(), this._speed);
+        //this.entity.getNavigator().tryMoveToXYZ(navPos.getX(), navPos.getY(), navPos.getZ(), this._speed);
     }
 
     @Override
@@ -103,11 +111,13 @@ public class AINavigate extends AIBase
         super.ActivateTask(workingPosition);
         //this.navPos = workingPosition;
     }
+
     protected void ActivateWander()
     {
         this.ActivateTask(null);
         //this.navPos = null;
     }
+
     protected void ActivateIdleWander(double probNewWander)
     {
         this.ActivateTask(null);
@@ -115,11 +125,12 @@ public class AINavigate extends AIBase
         this._isRecursive = true;
         //this.navPos = null;
     }
+
     protected void ActivateSearch(double probNewWander)
-{
-    this.ActivateTask(null);
-    this._probRecursion = probNewWander;
-    this._isRecursive = true;
-    //this.navPos = null;
-}
+    {
+        this.ActivateTask(null);
+        this._probRecursion = probNewWander;
+        this._isRecursive = true;
+        //this.navPos = null;
+    }
 }

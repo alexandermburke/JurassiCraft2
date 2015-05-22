@@ -1,18 +1,16 @@
 package net.ilexiconn.jurassicraft.client.render.entity;
 
-import java.util.Random;
-
 import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
 import net.ilexiconn.jurassicraft.entity.base.EntityDinosaur;
 import net.ilexiconn.llibrary.client.render.entity.RenderMultiPart;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
 import org.lwjgl.opengl.GL11;
+
+import java.util.Random;
 
 @SideOnly(Side.CLIENT)
 public class RenderDinosaur extends RenderMultiPart
@@ -24,7 +22,7 @@ public class RenderDinosaur extends RenderMultiPart
 
     public RenderDinosaur(Dinosaur creature) throws Exception
     {
-        super(Minecraft.getMinecraft().getRenderManager(), creature.getModel(), creature.getShadowSize());
+        super(creature.getModel(), creature.getShadowSize());
         dino = creature;
         random = new Random();
         maleTexture = new ResourceLocation(creature.getMaleTextures()[0]); // TODO: Random textures

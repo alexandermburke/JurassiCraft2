@@ -60,9 +60,9 @@ public class AnimationVelociraptor implements IModelAnimator
         MowzieModelRenderer Hand_Right = model.getCube("Right hand");
         MowzieModelRenderer Hand_Left = model.getCube("Left hand");
 
-        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[] { Hand_Right, Lower_Arm_Right, upperArmRight };
-        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[] { Hand_Left, Lower_Arm_Left, upperArmLeft };
-        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[] { tail5, tail4, tail3, tail2, tail1 };
+        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[]{Hand_Right, Lower_Arm_Right, upperArmRight};
+        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[]{Hand_Left, Lower_Arm_Left, upperArmLeft};
+        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{tail5, tail4, tail3, tail2, tail1};
 
         model.bob(body, 1F * scaleFactor, height, false, limbSwing, limbSwingAmount);
         model.bob(leftThigh, 1F * scaleFactor, height, false, limbSwing, limbSwingAmount);

@@ -2,7 +2,7 @@ package net.ilexiconn.jurassicraft.block;
 
 import net.ilexiconn.jurassicraft.api.ISubBlocksBlock;
 import net.ilexiconn.jurassicraft.creativetab.JCCreativeTabs;
-import net.ilexiconn.llibrary.IContentHandler;
+import net.ilexiconn.llibrary.common.content.IContentHandler;
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 

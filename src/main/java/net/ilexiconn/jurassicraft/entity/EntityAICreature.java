@@ -1,11 +1,11 @@
-package net.reuxertz.ainow.entity;
+package net.ilexiconn.jurassicraft.entity;
 
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.*;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.world.World;
-import net.reuxertz.ainow.entity.ai.AICore;
-import net.reuxertz.ainow.entity.ai.AINavigate;
+import net.ilexiconn.jurassicraft.entity.ai.AICore;
+import net.ilexiconn.jurassicraft.entity.ai.AINavigate;
 
 public class EntityAICreature extends EntityCreature
 {
@@ -16,7 +16,7 @@ public class EntityAICreature extends EntityCreature
         entity.tasks.taskEntries.clear();
 
         //Base
-        ((PathNavigateGround)entity.getNavigator()).func_179690_a(true);
+        ((PathNavigateGround) entity.getNavigator()).func_179690_a(true);
         entity.tasks.addTask(1, new EntityAISwimming(entity));
         entity.tasks.addTask(2, new EntityAIAttackOnCollide(entity, 1.0F * 1, false));
         //entity.tasks.addTask(3, new EntityAIMoveTowardsRestriction(entity, 1));
@@ -40,6 +40,7 @@ public class EntityAICreature extends EntityCreature
     {
         this(w, true);
     }
+
     public EntityAICreature(World w, boolean initialize)
     {
         super(w);
