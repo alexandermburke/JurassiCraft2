@@ -1,7 +1,9 @@
 package net.ilexiconn.jurassicraft.proxy;
 
 import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
+import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.Item;
 
 public class ServerProxy
 {

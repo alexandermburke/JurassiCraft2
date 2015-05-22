@@ -78,15 +78,16 @@ public class AINavigate extends AIBase
         if (!super.continueExecuting())
             return false;
 
-        boolean returnVal = !this._entity.getNavigator().noPath();
+        boolean noPath = this._entity.getNavigator().noPath();
+        boolean cont = true;
+        boolean posReached = this.PositionReached(true, this._destinationBuffer);
 
-        returnVal = returnVal || this.PositionReached(true, this._destinationBuffer);
-
-        if (!returnVal)
+        if (noPath || posReached)
         {
             this.DeactivateTask(false);
+            cont = false;
         }
-        return returnVal;
+        return cont;
     }
     @Override
     public void startExecuting()
@@ -107,9 +108,18 @@ public class AINavigate extends AIBase
         this.ActivateTask(null);
         //this.navPos = null;
     }
-    protected void ActivateWander(double probNewWander, double distancePower)
+    protected void ActivateIdleWander(double probNewWander)
     {
         this.ActivateTask(null);
+        this._probRecursion = probNewWander;
+        this._isRecursive = true;
         //this.navPos = null;
     }
+    protected void ActivateSearch(double probNewWander)
+{
+    this.ActivateTask(null);
+    this._probRecursion = probNewWander;
+    this._isRecursive = true;
+    //this.navPos = null;
+}
 }

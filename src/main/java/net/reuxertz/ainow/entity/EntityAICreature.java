@@ -24,7 +24,7 @@ public class EntityAICreature extends EntityCreature
         //entity.tasks.addTask(5, new EntityAILookIdle(entity));
 
         //AI
-        AINavigate aiNav = new AINavigate(entity, 0.6F);
+        AINavigate aiNav = new AINavigate(entity, 0.3F);
         AICore ai = new AICore(entity);
 
         //Add AI

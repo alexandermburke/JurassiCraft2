@@ -61,7 +61,7 @@ public class AICore extends AIBase
         AINavigate aiNav = this.GetAINavigate();
 
         if (aiNav != null && !aiNav.Enabled())
-            aiNav.ActivateWander();
+            aiNav.ActivateIdleWander(.01);
 
         System.out.println("aiTick");
     }

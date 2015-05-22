@@ -52,4 +52,5 @@ public class JCItemRegistry implements IContentHandler
         name = strings[strings.length - 1];
         GameRegistry.registerItem(item, name);
     }
+
 }

@@ -3,19 +3,20 @@ package net.reuxertz.ainow.core;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-
-import java.util.ArrayList;
-import java.util.List;
+import net.reuxertz.ainow.item.ItemRegistry;
 import java.util.Random;
 
-@Mod(modid = AINow.ModID, name = AINow.ModID, version = "beta")
+@Mod(modid = "ainow", name = "AINow", version = "beta")
 public class AINow {
 
-    public static AINow Instance;
     public static final String ModID = "ainow";
     public static Random RND = new Random(0);
     public boolean DebugMode;
+
+    @Mod.Instance(AINow.ModID)
+    public static AINow Instance;
 
     //Mod Events
     @Mod.EventHandler
@@ -29,6 +30,10 @@ public class AINow {
         AINow.Instance = this;
         AINow.RND = new Random(0);
     }
+    @Mod.EventHandler
+    public void postInit(FMLPostInitializationEvent e) {
 
-    //DebugEvents
+        //Register Items
+        ItemRegistry.RegisterCreativeItems();
+    }
 }

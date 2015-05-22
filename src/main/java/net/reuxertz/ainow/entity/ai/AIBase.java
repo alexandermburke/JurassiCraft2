@@ -89,10 +89,11 @@ public abstract class AIBase extends EntityAIBase {
     protected void DeactivateTask(boolean removeRecursive)
     {
         this.resetTask();
-        this.SetEnabled(false);
-        this.SetWorkingPosition(null);
 
         if (removeRecursive)
             this._isRecursive = false;
+
+        if (!this._isRecursive)
+            this.SetEnabled(false);
     }
 }

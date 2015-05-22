@@ -8,9 +8,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Ryan on 5/21/2015.
- */
 public class AINowFMLEventHandler {
 
 
