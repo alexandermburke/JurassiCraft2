@@ -1,19 +1,16 @@
 package net.reuxertz.ainow.item.document;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.event.entity.player.EntityInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.reuxertz.ainow.api.IItem;
 import net.reuxertz.ainow.utils.NBTHelper;
 import net.reuxertz.ainow.utils.StringHelper;
 
-public abstract class DocBase extends Item
+public abstract class DocBase extends Item implements IItem
 {
     protected boolean _displayNameLoc = true;
     protected String _displayName = "Document";
@@ -27,16 +24,31 @@ public abstract class DocBase extends Item
     @Override
     public String getItemStackDisplayName(ItemStack par1ItemStack)
     {
-        String r = this._displayName + " Document - empty";
+        String r = this._displayName;
 
         NBTTagCompound nbt = par1ItemStack.getTagCompound();
-        if (this._displayNameLoc && nbt != null && nbt.hasKey("blockpos"))
-        {
-            r = this._displayName + " Document - " + StringHelper.BlockPosToString(NBTHelper.GetBlockPos(nbt, "blockpos"));
+        if (this._displayNameLoc) {
+            if (nbt != null && nbt.hasKey("blockpos_x")) {
+                r += " - " + StringHelper.BlockPosToString(NBTHelper.ReadBlockPosFromNBT(nbt, "blockpos"));
+            }
+            if (nbt != null && nbt.hasKey("entityid")) {
+                r += " - " + nbt.getString("entityid");
+            }
         }
 
         return r;
     }
 
+    @Override
+    public void InteractEntity(ItemStack stack, EntityInteractEvent e) {
+
+        stack.getTagCompound().setString("entityid", "a");
+    }
+
+    @Override
+    public void InteractBlock(ItemStack stack, PlayerInteractEvent e) {
+
+       NBTHelper.WriteBlockPosToNBT(stack.getTagCompound(), "blockpos", e.pos);
+    }
 
 }

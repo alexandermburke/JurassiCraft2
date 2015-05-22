@@ -1,24 +1,9 @@
-package net.reuxertz.ainow.item;
+package net.reuxertz.ainow.api.registry;
 
 
-import net.ilexiconn.jurassicraft.creativetab.JCCreativeTabs;
-import net.ilexiconn.jurassicraft.item.ItemDinosaurSpawnEgg;
-import net.ilexiconn.jurassicraft.item.ItemPlasterAndBandage;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ItemMeshDefinition;
-import net.minecraft.client.renderer.ItemModelMesher;
-import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.client.resources.model.ModelResourceLocation;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.LanguageRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.reuxertz.ainow.core.AINow;
 import net.reuxertz.ainow.item.creative.ItemDocSetEntityHome;
-
-import java.lang.reflect.Field;
 
 public class ItemRegistry {
 

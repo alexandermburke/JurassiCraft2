@@ -7,7 +7,11 @@ import net.minecraft.util.BlockPos;
  * Created by Ryan on 5/22/2015.
  */
 public class NBTHelper {
-    public static BlockPos GetBlockPos(NBTTagCompound nbt, String name)
+    public static boolean HasBlockPosInNBT(NBTTagCompound nbt, String name)
+    {
+       return nbt.hasKey(name + "_x");
+    }
+    public static BlockPos ReadBlockPosFromNBT(NBTTagCompound nbt, String name)
     {
         int x = nbt.getInteger(name + "_x");
         int y = nbt.getInteger(name + "_y");
@@ -15,7 +19,7 @@ public class NBTHelper {
 
         return new BlockPos(x, y, z);
     }
-    public static void SetBlockPos(NBTTagCompound nbt, String name, BlockPos bp)
+    public static void WriteBlockPosToNBT(NBTTagCompound nbt, String name, BlockPos bp)
     {
         nbt.setInteger(name + "_x", bp.getX());
         nbt.setInteger(name + "_y", bp.getY());

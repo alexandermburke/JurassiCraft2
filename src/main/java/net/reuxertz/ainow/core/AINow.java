@@ -5,7 +5,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.reuxertz.ainow.item.ItemRegistry;
+import net.reuxertz.ainow.api.registry.ItemRegistry;
 import java.util.Random;
 
 @Mod(modid = "ainow", name = "AINow", version = "beta")

@@ -5,14 +5,14 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.reuxertz.ainow.entity.EntityAICreature;
-
-import java.util.ArrayList;
-import java.util.List;
+import net.reuxertz.ainow.api.IItem;
 
 public class AINowForgeEventHandler {
 
+    //Entity Events
     @SubscribeEvent
     public void onEntityJoinWorld(EntityJoinWorldEvent e) {
 
@@ -26,7 +26,23 @@ public class AINowForgeEventHandler {
         return;
     }
 
+    //Player InteractionsEvents
     @SubscribeEvent
-    public void onEntityInteractEvent(EntityInteractEvent event) {
+    public void onEntityInteractEvent(EntityInteractEvent e) {
+
+        if (e.entityPlayer.getHeldItem() != null && IItem.class.isInstance(e.entityPlayer.getHeldItem()))
+            IItem.class.cast(e.entityPlayer.getHeldItem()).InteractEntity(e.entityPlayer.inventory.getCurrentItem(), e);
+
+        return;
+    }
+    @SubscribeEvent
+    public void onPlayerInteractEvent(PlayerInteractEvent e) {
+
+        if (e.entityPlayer.getHeldItem() != null && IItem.class.isInstance(e.entityPlayer.getHeldItem()))
+            IItem.class.cast(e.entityPlayer.getHeldItem()).InteractBlock(e.entityPlayer.inventory.getCurrentItem(), e);
+
+
+        return;
+
     }
 }
