@@ -1,4 +1,4 @@
-package net.ilexiconn.jurassicraft.api;
+package net.reuxertz.ainow.api;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;

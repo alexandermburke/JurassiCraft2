@@ -1,4 +1,4 @@
-package net.ilexiconn.jurassicraft.utils;
+package net.reuxertz.ainow.utils;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;

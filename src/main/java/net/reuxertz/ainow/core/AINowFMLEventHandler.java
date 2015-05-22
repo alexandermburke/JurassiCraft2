@@ -1,4 +1,4 @@
-package net.ilexiconn.jurassicraft.event;
+package net.reuxertz.ainow.core;
 
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.minecraft.util.ChatComponentTranslation;

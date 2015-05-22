@@ -1,4 +1,4 @@
-package net.ilexiconn.jurassicraft.item;
+package net.reuxertz.ainow.item;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;

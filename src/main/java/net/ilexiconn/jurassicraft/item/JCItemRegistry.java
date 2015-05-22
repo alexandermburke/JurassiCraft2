@@ -11,20 +11,17 @@ public class JCItemRegistry implements IContentHandler
 {
     public static ItemDinosaurSpawnEgg spawn_egg;
     public static ItemPlasterAndBandage plaster_and_bandage;
-    public static ItemDocSetEntityHome document_set_entity_home;
 
     public void init()
     {
         spawn_egg = new ItemDinosaurSpawnEgg();
         plaster_and_bandage = new ItemPlasterAndBandage();
-        document_set_entity_home = new ItemDocSetEntityHome();
     }
 
     public void initCreativeTabs()
     {
         spawn_egg.setCreativeTab(JCCreativeTabs.items);
         plaster_and_bandage.setCreativeTab(JCCreativeTabs.items);
-        document_set_entity_home.setCreativeTab(JCCreativeTabs.items);
     }
 
     public void gameRegistry() throws Exception

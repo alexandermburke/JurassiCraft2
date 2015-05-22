@@ -1,5 +1,4 @@
-package net.ilexiconn.jurassicraft.Handlers;
-
+package net.ilexiconn.jurassicraft.handler;
 
 import net.ilexiconn.jurassicraft.block.BlockEncasedFossil;
 import net.minecraft.util.BlockPos;
@@ -7,7 +6,6 @@ import net.minecraft.world.World;
 
 public class FossilHandler
 {
-
     /**
      * Returns the period of time (or metadata) as cretaceous.
      */

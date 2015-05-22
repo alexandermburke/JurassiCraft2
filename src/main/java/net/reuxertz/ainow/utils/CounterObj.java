@@ -1,22 +1,20 @@
-package net.ilexiconn.jurassicraft.utils;
+package net.reuxertz.ainow.utils;
 
-import java.util.Random;
+import net.reuxertz.ainow.core.AINow;
 
 /**
  * Created by reuxertz on 5/20/2015.
  */
-public class Counter
-{
+public class CounterObj {
+
     //Timing Fields
     protected long _lastMSTime = 0, _lastDifTime = 0;
     protected int _timeCounter, _clickCounter, _totalClickCounter;
     protected double _lastOccurredCycles, _lastOccurredClicksPerCycle, _lastOccurredClicks;
     protected int _MSWaitInterval, _MSRandomVariationRange;
 
-    private Random random = new Random();
-
     //Constructors
-    public Counter(long curTime, int MSWaitInterval, int MSRandomVariationRange)
+    public CounterObj(long curTime, int MSWaitInterval, int MSRandomVariationRange)
     {
         this._MSWaitInterval = MSWaitInterval;
         this._MSRandomVariationRange = MSRandomVariationRange;
@@ -33,11 +31,10 @@ public class Counter
         if (dif > Integer.MAX_VALUE)
             d = Integer.MAX_VALUE;
         else
-            d = (int) dif;
+            d = (int)dif;
 
         return this.addMS(d);
     }
-
     public boolean addMS(int ms)
     {
         //Add Time
@@ -55,12 +52,11 @@ public class Counter
         this._totalClickCounter += this._clickCounter;
 
         //Reset
-        this._clickCounter = 0;
-        this._timeCounter = random.nextInt((this._MSRandomVariationRange * 2)) - this._MSRandomVariationRange;
+        this._clickCounter  = 0;
+        this._timeCounter = AINow.RND.nextInt((this._MSRandomVariationRange * 2)) - this._MSRandomVariationRange;
 
         return true;
     }
-
     public void addClicks(int clicks)
     {
         //Add Time

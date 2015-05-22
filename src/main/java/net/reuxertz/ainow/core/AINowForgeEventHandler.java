@@ -1,14 +1,15 @@
-package net.ilexiconn.jurassicraft.event;
+package net.reuxertz.ainow.core;
 
 
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.ilexiconn.jurassicraft.entity.EntityAICreature;
-import net.ilexiconn.jurassicraft.api.IItem;
+import net.reuxertz.ainow.entity.EntityAICreature;
+import net.reuxertz.ainow.api.IItem;
 
 public class AINowForgeEventHandler
 {
@@ -23,7 +24,7 @@ public class AINowForgeEventHandler
         boolean isVillager = EntityVillager.class.isInstance(e.entity);
 
         //if (isVillager || isAnimal)
-        //    EntityAICreature.ConstructAI((EntityCreature)e.entity);
+        //    EntityAICreature.ConstructAIEntity((EntityCreature)e.entity);
 
         return;
     }
@@ -33,8 +34,12 @@ public class AINowForgeEventHandler
     public void onEntityInteractEvent(EntityInteractEvent e)
     {
 
-        if (e.entityPlayer.getHeldItem() != null && IItem.class.isInstance(e.entityPlayer.getHeldItem()))
-            IItem.class.cast(e.entityPlayer.getHeldItem()).InteractEntity(e.entityPlayer.inventory.getCurrentItem(), e);
+        if (e.entityPlayer.worldObj.isRemote)
+            return;
+
+        ItemStack heldItem = e.entityPlayer.getHeldItem();
+        if (heldItem != null && IItem.class.isInstance(heldItem.getItem()))
+            IItem.class.cast(heldItem.getItem()).InteractEntity(heldItem, e);
 
         return;
     }
@@ -43,8 +48,15 @@ public class AINowForgeEventHandler
     public void onPlayerInteractEvent(PlayerInteractEvent e)
     {
 
-        if (e.entityPlayer.getHeldItem() != null && IItem.class.isInstance(e.entityPlayer.getHeldItem()))
-            IItem.class.cast(e.entityPlayer.getHeldItem()).InteractBlock(e.entityPlayer.inventory.getCurrentItem(), e);
+        if (e.entityPlayer.worldObj.isRemote)
+            return;
+
+        if (e.entityPlayer.worldObj.isRemote || e.action == PlayerInteractEvent.Action.RIGHT_CLICK_AIR)
+            return;
+
+        ItemStack heldItem = e.entityPlayer.getHeldItem();
+        if (heldItem != null && IItem.class.isInstance(heldItem.getItem()))
+            IItem.class.cast(heldItem.getItem()).InteractBlock(heldItem, e);
 
 
         return;
