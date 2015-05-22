@@ -1,62 +1,115 @@
 package net.reuxertz.ainow.entity.ai;
 
 import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.RandomPositionGenerator;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.BlockPos;
+import net.reuxertz.ainow.core.AINow;
 
 public class AINavigate extends AIBase
 {
-    private EntityCreature entity;
-    private double xPosition;
-    private double yPosition;
-    private double zPosition;
-    private double speed;
+    //private BlockPos navPos;
+    protected double _speed, _wanderDist = 15, _wanderPower = 1.71;
     private static final String __OBFID = "CL_00001608";
 
+    public boolean PositionReached(boolean includeY, double dist) {
+        //if (this.WorkingPosition == null)
+        //	return false;
+
+        double r1 = dist * dist;
+        double r2x = _entity.posX - this.WorkingPosition().getX(), r2z = _entity.posZ - this.WorkingPosition().getZ();
+        //double r2x = entity.posX - this.WorkingPosition.x, r2z = entity.posZ - this.WorkingPosition.z;
+        double r2 = r2x * r2x + r2z * r2z;
+
+        if (includeY) {
+            double r2y = _entity.posY - this.WorkingPosition().getY();
+            //double r2y = entity.posY - this.WorkingPosition.y;
+            r2 += r2y * r2y;
+        }
+
+        return r2 <= r1;
+    }
+    public double Distance(BlockPos b1, BlockPos b2)
+    {
+        double x = b1.getX() - b2.getX();
+        double y = b1.getX() - b2.getX();
+        double z = b1.getX() - b2.getX();
+        x = x * x;
+        y = y * y;
+        z = z * z;
+
+        return Math.sqrt(x + y + z);
+    }
+
+    //Constructor
     public AINavigate(EntityCreature e, double speed)
     {
         super(e);
 
-        this.entity = e;
-        this.speed = speed;
+        this._speed = speed;
         this.setMutexBits(1);
     }
 
+    @Override
     public boolean shouldExecute()
     {
-        if (!this.Enabled())
+        if (!super.shouldExecute())
             return false;
 
-        Vec3 vec3 = RandomPositionGenerator.findRandomTarget(this.entity, 10, 7);
+        if (this.WorkingPosition() == null) {
 
-        if (vec3 == null)
-        {
-            return false;
-        }
-        else
-        {
-            this.xPosition = vec3.xCoord;
-            this.yPosition = vec3.yCoord;
-            this.zPosition = vec3.zCoord;
+            if (this._isRecursive && AINow.RND.nextDouble() > this._probRecursion)
+                return false;
+
+            BlockPos bp;
+            bp = new BlockPos(RandomPositionGenerator.findRandomTarget(this.entity(), (int)this._wanderDist, 7));
+
+            if (bp == null)
+                return false;
+
+            this.SetWorkingPosition(new BlockPos(bp));
             return true;
         }
-    }
 
-    /**
-     * Returns whether an in-progress EntityAIBase should continue executing
-     */
+        return this.WorkingPosition() != null;
+    }
+    @Override
     public boolean continueExecuting()
     {
-        return !this.entity.getNavigator().noPath();
-    }
+        if (!super.continueExecuting())
+            return false;
 
-    /**
-     * Execute a one shot task or start executing a continuous task
-     */
+        boolean returnVal = !this._entity.getNavigator().noPath();
+
+        returnVal = returnVal || this.PositionReached(true, 1.5);
+
+        if (!returnVal)
+        {
+            this.DeactivateTask(false);
+        }
+        return returnVal;
+    }
+    @Override
     public void startExecuting()
     {
-        this.entity.getNavigator().tryMoveToXYZ(this.xPosition, this.yPosition, this.zPosition, this.speed);
+        if (this.WorkingPosition() != null)
+            this._entity.getNavigator().tryMoveToXYZ(this.WorkingPosition().getX(), this.WorkingPosition().getY(), this.WorkingPosition().getZ(), this._speed);
+            //this.entity.getNavigator().tryMoveToXYZ(navPos.getX(), navPos.getY(), navPos.getZ(), this._speed);
+    }
+
+    @Override
+    protected void ActivateTask(BlockPos workingPosition)
+    {
+        super.ActivateTask(workingPosition);
+        //this.navPos = workingPosition;
+    }
+    protected void ActivateWander()
+    {
+        this.ActivateTask(null);
+        //this.navPos = null;
+    }
+    protected void ActivateWander(double probNewWander, double distancePower)
+    {
+        this.ActivateTask(null);
+        //this.navPos = null;
     }
 }

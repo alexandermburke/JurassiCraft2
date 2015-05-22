@@ -25,17 +25,15 @@ public class EntityAICreature extends EntityCreature
         //entity.tasks.addTask(5, new EntityAILookIdle(entity));
 
         //AI
+        AINavigate aiNav = new AINavigate(entity, 0.6F);
         AICore ai = new AICore(entity);
-        AINavigate aiNav = new AINavigate(entity, 1.0F);
 
         //Add AI
         entity.tasks.addTask(10, ai);
-        entity.tasks.addTask(11, aiNav);
+        ai.AddTask(11, aiNav);
 
         //Init
         ai.SetEnabled(true);
-        //aiNav.SetEnabled(true);
-        //aiNav.ActivateIdleWander();
     }
 
     //Constructor

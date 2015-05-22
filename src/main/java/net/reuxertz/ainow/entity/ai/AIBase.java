@@ -7,9 +7,10 @@ import net.minecraft.util.BlockPos;
 public abstract class AIBase extends EntityAIBase {
 
     //Fields
-    private EntityCreature _entity;
-    private boolean _isFinished = false, _isEnabled = false;
-    private BlockPos _workingPosition = null;
+    protected EntityCreature _entity;
+    protected boolean _isFinished = false, _isEnabled = false, _isRecursive;
+    protected BlockPos _workingPosition = null;
+    protected double _probRecursion = .01;
 
     //Properties
     public EntityCreature entity()
@@ -77,8 +78,25 @@ public abstract class AIBase extends EntityAIBase {
     //Functions
     protected void ActivateTask(BlockPos workingPosition)
     {
+        this.ActivateTask(workingPosition, false);
+    }
+    protected void ActivateTask(BlockPos workingPosition, boolean setRecursive)
+    {
         this.resetTask();
         this.SetEnabled(true);
         this.SetWorkingPosition(workingPosition);
+    }
+    protected void DeactivateTask()
+    {
+        this.DeactivateTask(true);
+    }
+    protected void DeactivateTask(boolean removeRecursive)
+    {
+        this.resetTask();
+        this.SetEnabled(false);
+        this.SetWorkingPosition(null);
+
+        if (removeRecursive)
+            this._isRecursive = false;
     }
 }

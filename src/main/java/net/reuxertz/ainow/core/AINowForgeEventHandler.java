@@ -1,12 +1,15 @@
 package net.reuxertz.ainow.core;
 
 
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.reuxertz.ainow.entity.EntityAICreature;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AINowForgeEventHandler {
 
@@ -21,5 +24,9 @@ public class AINowForgeEventHandler {
         //    EntityAICreature.ConstructAI((EntityCreature)e.entity);
 
         return;
+    }
+
+    @SubscribeEvent
+    public void onEntityInteractEvent(EntityInteractEvent event) {
     }
 }
