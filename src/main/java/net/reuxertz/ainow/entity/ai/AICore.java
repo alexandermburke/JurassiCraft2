@@ -12,10 +12,6 @@ public class AICore extends AIBase
     public static final int MaxAINavigateDistance = 250;
 
     //AI Module Getters
-    public AICore GetAICore()
-    {
-        return (AICore)this.GetAI(AICore.class);
-    }
     public AINavigate GetAINavigate()
     {
         return (AINavigate)this.GetAI(AINavigate.class);
@@ -62,13 +58,12 @@ public class AICore extends AIBase
         if (!this._timer.updateMSTime(this.entity().worldObj.getWorldTime()))
             return;
 
-        AICore aiCore = this.GetAICore();
         AINavigate aiNav = this.GetAINavigate();
 
-        if (aiNav != null)
+        if (aiNav != null && !aiNav.Enabled())
             aiNav.ActivateWander();
 
-        System.out.println("aiTick - ");
+        System.out.println("aiTick");
     }
 
 }

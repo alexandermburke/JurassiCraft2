@@ -8,7 +8,7 @@ import net.reuxertz.ainow.core.AINow;
 public class AINavigate extends AIBase
 {
     //private BlockPos navPos;
-    protected double _speed, _wanderDist = 15, _wanderPower = 1.71;
+    protected double _speed, _wanderDist = 15, _wanderPower = 1.71, _destinationBuffer = 2.0;
     private static final String __OBFID = "CL_00001608";
 
     public boolean PositionReached(boolean includeY, double dist) {
@@ -80,7 +80,7 @@ public class AINavigate extends AIBase
 
         boolean returnVal = !this._entity.getNavigator().noPath();
 
-        returnVal = returnVal || this.PositionReached(true, 1.5);
+        returnVal = returnVal || this.PositionReached(true, this._destinationBuffer);
 
         if (!returnVal)
         {

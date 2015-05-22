@@ -6,7 +6,6 @@ import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.world.World;
 import net.reuxertz.ainow.entity.ai.AICore;
 import net.reuxertz.ainow.entity.ai.AINavigate;
-import net.reuxertz.ainow.entity.ai.AINavigate2;
 
 public class EntityAICreature extends EntityCreature
 {
