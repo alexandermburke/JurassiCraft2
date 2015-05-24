@@ -13,30 +13,35 @@ public class AnimationVelociraptor implements IModelAnimator
     public ChainBuffer tailBuffer = new ChainBuffer(5);
 
     @Override
-    public void setRotationAngles(ModelJson model, float limbSwing, float limbSwingAmount, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
+    public void setRotationAngles(ModelJson model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
     {
         EntityVelociraptor velociraptor = (EntityVelociraptor) entity;
 
-        limbSwingAmount *= 1.5F;
-        limbSwing *= 1.5F;
+        int frame = velociraptor.ticksExisted;
 
-        /*
-         * f = entity.ticksExisted; limbSwingAmount = 1F;
-         */
-        // if (raptor.leaping)
-        // limbSwingAmount = 0;
-        // if (raptor.getAnimationId() == JurassiCraftAnimationIDs.LEAP.animID()
-        // && raptor.getAnimationTick() >= 6)
-        // limbSwingAmount = 0;
-        float scaleFactor = 0.75F;
-        float height = 2F * limbSwingAmount;
+//        f = entity.ticksExisted;
+//        f1 = 1F;
+//        f1 = (float) (Math.sin(velociraptor.ticksExisted * 0.01) * Math.sin(velociraptor.ticksExisted * 0.01));
+
+//        if (raptor.leaping)
+//        limbSwingAmount = 0;
+//        if (raptor.getAnimationId() == JurassiCraftAnimationIDs.LEAP.animID()
+//        && raptor.getAnimationTick() >= 6)
+//        limbSwingAmount = 0;
+        float speed = 0.75F;
+        float height = 2F * f1;
 
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, (EntityLivingBase) entity);
 
-        MowzieModelRenderer body = model.getCube("body1");
+        MowzieModelRenderer waist = model.getCube("body3");
+        MowzieModelRenderer chest = model.getCube("body2");
+        MowzieModelRenderer shoulders = model.getCube("body1");
         MowzieModelRenderer leftThigh = model.getCube("Left thigh");
         MowzieModelRenderer rightThigh = model.getCube("Right thigh");
-        MowzieModelRenderer neck = model.getCube("neck1");
+        MowzieModelRenderer neck1 = model.getCube("neck1");
+        MowzieModelRenderer neck2 = model.getCube("neck2");
+        MowzieModelRenderer neck3 = model.getCube("neck3");
+        MowzieModelRenderer neck4 = model.getCube("neck4");
         MowzieModelRenderer head = model.getCube("head");
         MowzieModelRenderer leftShin = model.getCube("Left shin");
         MowzieModelRenderer rightShin = model.getCube("Right shin");
@@ -63,29 +68,42 @@ public class AnimationVelociraptor implements IModelAnimator
         MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[]{Hand_Right, Lower_Arm_Right, upperArmRight};
         MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[]{Hand_Left, Lower_Arm_Left, upperArmLeft};
         MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{tail5, tail4, tail3, tail2, tail1};
+        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[]{waist, chest, shoulders, neck4, neck3, neck2, neck1, head};
 
-        model.bob(body, 1F * scaleFactor, height, false, limbSwing, limbSwingAmount);
-        model.bob(leftThigh, 1F * scaleFactor, height, false, limbSwing, limbSwingAmount);
-        model.bob(rightThigh, 1F * scaleFactor, height, false, limbSwing, limbSwingAmount);
-        model.bob(neck, 1F * scaleFactor, height / 2, false, limbSwing, limbSwingAmount);
+        model.bob(waist, 1F * speed, height, false, f, f1);
+        model.bob(leftThigh, 1F * speed, height, false, f, f1);
+        model.bob(rightThigh, 1F * speed, height, false, f, f1);
 
-        model.walk(neck, 1F * scaleFactor, 0.25F, false, 1F, 0.4F, limbSwing, limbSwingAmount);
-        model.walk(head, 1F * scaleFactor, 0.25F, true, 1F, -0.4F, limbSwing, limbSwingAmount);
+        model.walk(leftThigh, 0.5F * speed, 0.7F, false, 3.14F, 0.2F, f, f1);
+        model.walk(leftShin, 0.5F * speed, 0.6F, false, 1.5F, 0.3F, f, f1);
+        model.walk(leftUpperFoot, 0.5F * speed, 0.8F, false, -1F, -0.1F, f, f1);
+        model.walk(leftFoot, 0.5F * speed, 1.5F, true, -1F, 1F, f, f1);
 
-        model.walk(leftThigh, 0.5F * scaleFactor, 0.8F, false, 0F, 0.4F, limbSwing, limbSwingAmount);
-        model.walk(leftShin, 0.5F * scaleFactor, 0.5F, true, 1F, 0F, limbSwing, limbSwingAmount);
-        model.walk(leftUpperFoot, 0.5F * scaleFactor, 0.5F, false, 0F, 0F, limbSwing, limbSwingAmount);
-        model.walk(leftFoot, 0.5F * scaleFactor, 1.5F, true, 0.5F, 1F, limbSwing, limbSwingAmount);
+        model.walk(rightThigh, 0.5F * speed, 0.7F, true, 3.14F, 0.2F, f, f1);
+        model.walk(rightShin, 0.5F * speed, 0.6F, true, 1.5F, 0.3F, f, f1);
+        model.walk(rightUpperFoot, 0.5F * speed, 0.8F, true, -1F, -0.1F, f, f1);
+        model.walk(rightFoot, 0.5F * speed, 1.5F, false, -1F, 1F, f, f1);
 
-        model.walk(rightThigh, 0.5F * scaleFactor, 0.8F, true, 0F, 0.4F, limbSwing, limbSwingAmount);
-        model.walk(rightShin, 0.5F * scaleFactor, 0.5F, false, 1F, 0F, limbSwing, limbSwingAmount);
-        model.walk(rightUpperFoot, 0.5F * scaleFactor, 0.5F, true, 0F, 0F, limbSwing, limbSwingAmount);
-        model.walk(rightFoot, 0.5F * scaleFactor, 1.5F, false, 0.5F, 1F, limbSwing, limbSwingAmount);
+        model.chainSwing(tailParts, 0.5F * speed, -0.1F, 2, f, f1);
+        model.chainWave(tailParts, 1F * speed, -0.1F, 3, f, f1);
+        model.chainWave(bodyParts, 1F * speed, -0.1F, 4, f, f1);
+        shoulders.rotationPointY -= 0.5 * f1;
+        shoulders.rotationPointZ -= 0.5 * f1;
+        shoulders.rotateAngleX += 0.6 * f1;
+        chest.rotateAngleX += 0.1 * f1;
+        neck1.rotateAngleX += 0.1 * f1;
+        neck2.rotateAngleX += 0.1 * f1;
+        neck3.rotateAngleX -= 0.2 * f1;
+        neck4.rotateAngleX -= 0.2 * f1;
+        head.rotateAngleX -= 0.3 * f1;
+        model.chainWave(rightArmParts, 1F * speed, -0.3F, 4, f, f1);
+        model.chainWave(leftArmParts, 1F * speed, -0.3F, 4, f, f1);
 
-        model.chainSwing(tailParts, 0.5F * scaleFactor, -0.1F, 2, limbSwing, limbSwingAmount);
-        model.chainWave(tailParts, 1F * scaleFactor, -0.05F, 2, limbSwing, limbSwingAmount);
-        model.chainWave(rightArmParts, 1F * scaleFactor, -0.3F, 4, limbSwing, limbSwingAmount);
-        model.chainWave(leftArmParts, 1F * scaleFactor, -0.3F, 4, limbSwing, limbSwingAmount);
+        // Idling
+        model.chainWave(tailParts, 0.1F, -0.05F, 2, entity.ticksExisted, 1F);
+        model.chainWave(bodyParts, 0.1F, -0.03F, 5, entity.ticksExisted, 1F);
+        model.chainWave(rightArmParts, 0.1F, -0.1F, 4, entity.ticksExisted, 1F);
+        model.chainWave(leftArmParts, 0.1F, -0.1F, 4, entity.ticksExisted, 1F);
 
         // float sittingProgress =
         // raptor.sittingProgress.getAnimationProgressSin();
@@ -177,53 +195,8 @@ public class AnimationVelociraptor implements IModelAnimator
         // {
 
         model.faceTarget(head, 2, rotationYaw, rotationPitch);
-        model.faceTarget(neck, 2, rotationYaw, rotationPitch);
-
-        // Idling
-        model.chainWave(tailParts, 0.1F, -0.05F, 2, entity.ticksExisted, 1F);
-        model.walk(neck, 0.1F, 0.07F, false, -1F, 0F, entity.ticksExisted, 1F);
-        model.walk(head, 0.1F, 0.07F, true, 0F, 0F, entity.ticksExisted, 1F);
-        model.walk(body, 0.1F, 0.05F, false, 0F, 0F, entity.ticksExisted, 1F);
-        model.chainWave(rightArmParts, 0.1F, -0.1F, 4, entity.ticksExisted, 1F);
-        model.chainWave(leftArmParts, 0.1F, -0.1F, 4, entity.ticksExisted, 1F);
-        // }
+        model.faceTarget(neck1, 2, rotationYaw, rotationPitch);
 
         tailBuffer.applyChainSwingBuffer(tailParts);
-
-        // if (raptor.getAnimationTick() == 20 && raptor.getAnimationId() ==
-        // JurassiCraftAnimationIDs.LEAP.animID())
-        // raptor.setLeaping(true);
-
-        // if (raptor.leaping == true)
-        // {
-        // Body_1.rotateAngleX -= 0.8;
-        // Neck.rotateAngleX += 0.8;
-        // Neck.rotationPointY -= 2;
-        // Neck.rotationPointZ -= 3;
-        // Head.rotateAngleX += 0.5;
-        // Lower_Jaw.rotateAngleX += 0.7;
-        // Tail_1.rotationPointZ -= 2;
-        // Tail_1.rotateAngleX += 0.7F;
-        //
-        // Right_Thigh.rotateAngleX -= 1.2;
-        // Left_Thigh.rotateAngleX -= 1.2;
-        // Right_Calf_1.rotateAngleX -= 0.3;
-        // Left_Calf_1.rotateAngleX -= 0.3;
-        // Right_Upper_Foot.rotateAngleX += 0.3;
-        // Left_Upper_Foot.rotateAngleX += 0.3;
-        // Foot_Right.rotateAngleX -= 0.3;
-        // Foot_Left.rotateAngleX -= 0.3;
-        //
-        // Upper_Arm_Right.rotateAngleX -= 0.5F;
-        // Upper_Arm_Right.rotateAngleZ += 1F;
-        // Upper_Arm_Left.rotateAngleX -= 0.5F;
-        // Upper_Arm_Left.rotateAngleZ -= 1F;
-        // Lower_Arm_Right.rotateAngleX += 0.5F;
-        // Lower_Arm_Right.rotateAngleY += 1.5F;
-        // Lower_Arm_Left.rotateAngleX += 0.5F;
-        // Lower_Arm_Left.rotateAngleY -= 1.5F;
-        // Hand_Right.rotateAngleX -= 1;
-        // Hand_Left.rotateAngleX -= 1;
-        // }
     }
 }
