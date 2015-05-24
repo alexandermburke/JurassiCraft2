@@ -80,6 +80,14 @@ public class ClientProxy extends ServerProxy
                 return new ModelResourceLocation("jurassicraft:block_encased_fossil", "inventory");
             }
         });
+
+        itemModelMesher.register(Item.getItemFromBlock(JCBlockRegistry.cleaning_station), new ItemMeshDefinition()
+        {
+            public ModelResourceLocation getModelLocation(ItemStack stack)
+            {
+                return new ModelResourceLocation("jurassicraft:block_cleaning_station", "inventory");
+            }
+        });
     }
 
     /**

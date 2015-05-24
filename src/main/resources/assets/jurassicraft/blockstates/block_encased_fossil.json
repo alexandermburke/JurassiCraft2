@@ -8,8 +8,8 @@
         "period=triassic": { "model": "jurassicraft:block_encased_fossil" },
         "period=permian": { "model": "jurassicraft:block_encased_fossil" },
         "period=carboniferous": { "model": "jurassicraft:block_encased_fossil" },
-        "period=denovian": { "model": "jurassicraft:block_encased_fossil" },
-        "period=selurian": { "model": "jurassicraft:block_encased_fossil" },
+        "period=devonian": { "model": "jurassicraft:block_encased_fossil" },
+        "period=silurian": { "model": "jurassicraft:block_encased_fossil" },
         "period=ordovician": { "model": "jurassicraft:block_encased_fossil" },
         "period=cambrian": { "model": "jurassicraft:block_encased_fossil" }
     }

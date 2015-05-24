@@ -106,8 +106,8 @@ public class BlockEncasedFossil extends Block implements ISubBlocksBlock
         TRIASSIC(5, "triassic", 252.17F, 201.4F, false),
         PERMIAN(6, "permian", 298.9F, 252.18F, false),
         CARBONIFEROUS(7, "carboniferous", 358.9F, 299.0F, false),
-        DEVONIAN(8, "denovian", 419.2F, 359.0F, false),
-        SELURIAN(9, "selurian", 443.4F, 419.3F, false),
+        DEVONIAN(8, "devonian", 419.2F, 359.0F, false),
+        SILURIAN(9, "silurian", 443.4F, 419.3F, false),
         ORDOVICIAN(10, "ordovician", 485.4F, 443.5F, false),
         CAMBRIAN(11, "cambrian", 541.0F, 485.5F, false);
 
