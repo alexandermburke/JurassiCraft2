@@ -19,8 +19,8 @@ public class AnimationVelociraptor implements IModelAnimator
 
         int frame = velociraptor.ticksExisted;
 
-//        f = entity.ticksExisted;
-//        f1 = 1F;
+        f = entity.ticksExisted;
+        f1 = 1F;
 //        f1 = (float) (Math.sin(velociraptor.ticksExisted * 0.01) * Math.sin(velociraptor.ticksExisted * 0.01));
 
 //        if (raptor.leaping)
@@ -73,6 +73,8 @@ public class AnimationVelociraptor implements IModelAnimator
         model.bob(waist, 1F * speed, height, false, f, f1);
         model.bob(leftThigh, 1F * speed, height, false, f, f1);
         model.bob(rightThigh, 1F * speed, height, false, f, f1);
+        model.walk(shoulders, 1F * speed, 0.2F, true, 1, 0, f, f1);
+        model.walk(chest, 1F * speed, 0.2F, false, 0.5F, 0, f, f1);
 
         model.walk(leftThigh, 0.5F * speed, 0.7F, false, 3.14F, 0.2F, f, f1);
         model.walk(leftShin, 0.5F * speed, 0.6F, false, 1.5F, 0.3F, f, f1);
@@ -85,7 +87,7 @@ public class AnimationVelociraptor implements IModelAnimator
         model.walk(rightFoot, 0.5F * speed, 1.5F, false, -1F, 1F, f, f1);
 
         model.chainSwing(tailParts, 0.5F * speed, -0.1F, 2, f, f1);
-        model.chainWave(tailParts, 1F * speed, -0.1F, 3, f, f1);
+        model.chainWave(tailParts, 1F * speed, -0.1F, 2.5F, f, f1);
         model.chainWave(bodyParts, 1F * speed, -0.1F, 4, f, f1);
         shoulders.rotationPointY -= 0.5 * f1;
         shoulders.rotationPointZ -= 0.5 * f1;
