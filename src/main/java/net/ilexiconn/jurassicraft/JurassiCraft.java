@@ -6,6 +6,10 @@ import net.ilexiconn.jurassicraft.entity.base.JCEntityRegistry;
 import net.ilexiconn.jurassicraft.item.JCItemRegistry;
 import net.ilexiconn.jurassicraft.proxy.ServerProxy;
 import net.ilexiconn.llibrary.common.content.ContentHandlerList;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemModelMesher;
+import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -41,5 +45,10 @@ public class JurassiCraft
     public void init(FMLPostInitializationEvent event)
     {
         proxy.postInit();
+        //
+        // public void registerItemRenderer(ItemModelMesher itemModelMesher, Item item, final String path, final String type)
+        RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
+        ItemModelMesher itemModelMesher = renderItem.getItemModelMesher();
+        proxy.registerItemRenderer(itemModelMesher, JCItemRegistry.plaster_and_bandage, "jurassicraft:plaster_and_bandage", "inventory");
     }
 }

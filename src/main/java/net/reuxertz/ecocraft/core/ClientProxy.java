@@ -1,4 +1,4 @@
-package net.ilexiconn.jurassicraft.proxy;
+package net.reuxertz.ecocraft.core;
 
 import com.google.common.collect.Maps;
 import net.ilexiconn.jurassicraft.block.JCBlockRegistry;
@@ -34,18 +34,6 @@ public class ClientProxy extends ServerProxy
     {
         super.postInit();
 
-        for (Entry<Class<? extends Entity>, Dinosaur> entry : renderersToRegister.entrySet())
-        {
-            try
-            {
-                RenderingRegistry.registerEntityRenderingHandler(entry.getKey(), new RenderDinosaur(entry.getValue()));
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-        }
-
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
         ItemModelMesher itemModelMesher = renderItem.getItemModelMesher();
 
@@ -57,14 +45,13 @@ public class ClientProxy extends ServerProxy
             }
         });
 
-        /*itemModelMesher.register(JCItemRegistry.plaster_and_bandage, new ItemMeshDefinition()
+        itemModelMesher.register(JCItemRegistry.plaster_and_bandage, new ItemMeshDefinition()
         {
             public ModelResourceLocation getModelLocation(ItemStack stack)
             {
                 return new ModelResourceLocation("jurassicraft:plaster_and_bandage", "inventory");
             }
-        });*/
-        //this.registerItemRenderer(itemModelMesher, JCItemRegistry.plaster_and_bandage,"jurassicraft:plaster_and_bandage", "inventory");
+        });
 
         itemModelMesher.register(Item.getItemFromBlock(JCBlockRegistry.fossil), new ItemMeshDefinition()
         {
@@ -81,14 +68,6 @@ public class ClientProxy extends ServerProxy
                 return new ModelResourceLocation("jurassicraft:block_encased_fossil", "inventory");
             }
         });
-
-        itemModelMesher.register(Item.getItemFromBlock(JCBlockRegistry.cleaning_station), new ItemMeshDefinition()
-        {
-            public ModelResourceLocation getModelLocation(ItemStack stack)
-            {
-                return new ModelResourceLocation("jurassicraft:block_cleaning_station", "inventory");
-            }
-        });
     }
 
     /**
@@ -103,12 +82,5 @@ public class ClientProxy extends ServerProxy
                 return new ModelResourceLocation(path, type);
             }
         });
-    }
-
-    public void registerEntityRenderer(Class<? extends Entity> clazz, Dinosaur creature)
-    {
-        super.registerEntityRenderer(clazz, creature);
-
-        renderersToRegister.put(clazz, creature);
     }
 }
