@@ -56,6 +56,12 @@ public class EntityDinosaur extends EntityAICreature implements IEntityMultiPart
         return gender;
     }
 
+    @Override
+    public boolean canDespawn()
+    {
+        return false;
+    }
+
     public void writeToNBT(NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
