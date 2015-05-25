@@ -22,16 +22,27 @@ item.item_plaster_bandage.name=Paster and Bandage
 tile.block_fossil.name=Fossil Block
 tile.block_encased_fossil.cretaceous.name=Encased Fossil Block Cretaceous
 tile.block_encased_fossil.jurassic.name=Encased Fossil Block Jurassic
+tile.block_cleaning_station.jurassic.name=Cleaning Station
+tile.block_fossil_grinder.jurassic.name=Fossil Grinder
+tile.block_dna_sequencer.jurassic.name=DNA Sequencer
+tile.block_dna_synthesizer.jurassic.name=DNA Synthesizer
+tile.block_embryonic_machine.jurassic.name=Embryonic Machine
+tile.block_embryo_insemination_machine.jurassic.name=Embryo Insemination Machine
 
 
 
 //Containers ==================================================
-
+container.cleaning_station=Cleaning Station
+container.fossil_grinder=Fossil Grinder
+container.dna_sequencer=DNA Sequencer
+container.dna_synthesizer=DNA Synthesizer
+container.embryonic_machine=Embryonic Machine
+container.embryo_insemination_machine=Embryo Insemination Machine
 
 
 
 //Others ==================================================
-period.quaternary.name=Quarternary
+period.quaternary.name=Quaternary
 period.neogene.name=Neogene
 period.paleogene.name=Paleogene
 period.cretaceous.name=Cretaceous
@@ -39,7 +50,7 @@ period.jurassic.name=Jurassic
 period.triassic.name=Triassic
 period.permian.name=Permian
 period.carboniferous.name=Carboniferous
-period.denovian.name=Denovian
-period.selurian.name=Selurian
+period.devonian.name=Devonian
+period.silurian.name=Silurian
 period.ordovician.name=Ordovician
 period.cambrian.name=Cambrian

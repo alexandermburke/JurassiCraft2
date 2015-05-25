@@ -49,6 +49,7 @@ public class ClientProxy extends ServerProxy
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
         ItemModelMesher itemModelMesher = renderItem.getItemModelMesher();
 
+
         itemModelMesher.register(JCItemRegistry.spawn_egg, new ItemMeshDefinition()
         {
             public ModelResourceLocation getModelLocation(ItemStack stack)
@@ -78,6 +79,14 @@ public class ClientProxy extends ServerProxy
             public ModelResourceLocation getModelLocation(ItemStack stack)
             {
                 return new ModelResourceLocation("jurassicraft:block_encased_fossil", "inventory");
+            }
+        });
+
+        itemModelMesher.register(Item.getItemFromBlock(JCBlockRegistry.cleaning_station), new ItemMeshDefinition()
+        {
+            public ModelResourceLocation getModelLocation(ItemStack stack)
+            {
+                return new ModelResourceLocation("jurassicraft:block_cleaning_station", "inventory");
             }
         });
     }

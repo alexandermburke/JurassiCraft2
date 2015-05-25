@@ -1,11 +1,18 @@
 package net.ilexiconn.jurassicraft.item;
 
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.creativetab.JCCreativeTabs;
 import net.ilexiconn.llibrary.common.content.IContentHandler;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemModelMesher;
+import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class JCItemRegistry implements IContentHandler
 {
@@ -52,4 +59,5 @@ public class JCItemRegistry implements IContentHandler
         name = strings[strings.length - 1];
         GameRegistry.registerItem(item, name);
     }
+
 }

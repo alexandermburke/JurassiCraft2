@@ -29,7 +29,7 @@ public class AICore
         return null;
     }
 
-    protected List<AIBase> _modules = new ArrayList();
+    protected List<AIBase> _modules = new ArrayList<AIBase>();
     protected int _sleepTimeCounter = 0;
     protected int _workTimeCounter;
 

@@ -12,17 +12,20 @@ public class JCBlockRegistry implements IContentHandler
 {
     public static BlockFossil fossil;
     public static BlockEncasedFossil encased_fossil;
+    public static BlockCleaningStation cleaning_station;
 
     public void init()
     {
         fossil = new BlockFossil();
         encased_fossil = new BlockEncasedFossil();
+        cleaning_station = new BlockCleaningStation();
     }
 
     public void initCreativeTabs()
     {
         fossil.setCreativeTab(JCCreativeTabs.blocks);
         encased_fossil.setCreativeTab(JCCreativeTabs.blocks);
+        cleaning_station.setCreativeTab(JCCreativeTabs.blocks);
     }
 
     public void gameRegistry() throws Exception
