@@ -45,10 +45,5 @@ public class JurassiCraft
     public void init(FMLPostInitializationEvent event)
     {
         proxy.postInit();
-        //
-        // public void registerItemRenderer(ItemModelMesher itemModelMesher, Item item, final String path, final String type)
-        RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
-        ItemModelMesher itemModelMesher = renderItem.getItemModelMesher();
-        proxy.registerItemRenderer(itemModelMesher, JCItemRegistry.plaster_and_bandage, "jurassicraft:plaster_and_bandage", "inventory");
     }
 }

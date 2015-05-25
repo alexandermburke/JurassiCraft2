@@ -49,6 +49,7 @@ public class ClientProxy extends ServerProxy
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
         ItemModelMesher itemModelMesher = renderItem.getItemModelMesher();
 
+
         itemModelMesher.register(JCItemRegistry.spawn_egg, new ItemMeshDefinition()
         {
             public ModelResourceLocation getModelLocation(ItemStack stack)
@@ -57,14 +58,13 @@ public class ClientProxy extends ServerProxy
             }
         });
 
-        /*itemModelMesher.register(JCItemRegistry.plaster_and_bandage, new ItemMeshDefinition()
+        itemModelMesher.register(JCItemRegistry.plaster_and_bandage, new ItemMeshDefinition()
         {
             public ModelResourceLocation getModelLocation(ItemStack stack)
             {
                 return new ModelResourceLocation("jurassicraft:plaster_and_bandage", "inventory");
             }
-        });*/
-        //this.registerItemRenderer(itemModelMesher, JCItemRegistry.plaster_and_bandage,"jurassicraft:plaster_and_bandage", "inventory");
+        });
 
         itemModelMesher.register(Item.getItemFromBlock(JCBlockRegistry.fossil), new ItemMeshDefinition()
         {
