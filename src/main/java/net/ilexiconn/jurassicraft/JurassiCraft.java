@@ -4,6 +4,7 @@ import net.ilexiconn.jurassicraft.block.JCBlockRegistry;
 import net.ilexiconn.jurassicraft.creativetab.JCCreativeTabs;
 import net.ilexiconn.jurassicraft.entity.base.JCEntityRegistry;
 import net.ilexiconn.jurassicraft.item.JCItemRegistry;
+import net.ilexiconn.jurassicraft.proxy.ClientProxy;
 import net.ilexiconn.jurassicraft.proxy.ServerProxy;
 import net.ilexiconn.llibrary.common.content.ContentHandlerList;
 import net.minecraft.client.Minecraft;
@@ -32,11 +33,19 @@ public class JurassiCraft
 
     public static boolean debug;
 
+    //This is to remember to JCItemRegistry for the post init function
+    //Later this should be called by IConentHandler in a postinit() to automate
+    public static JCItemRegistry jcItemRegistry;
+
+
     @Mod.EventHandler
     public void init(FMLPreInitializationEvent event) throws IOException
     {
+        this.jcItemRegistry = new JCItemRegistry();
         ContentHandlerList.createList(new JCCreativeTabs(), new JCItemRegistry(), new JCBlockRegistry(), new JCEntityRegistry()).init();
         proxy.init();
+
+
 
         wrapper = NetworkRegistry.INSTANCE.newSimpleChannel("jurassicraft");
     }
@@ -45,5 +54,12 @@ public class JurassiCraft
     public void init(FMLPostInitializationEvent event)
     {
         proxy.postInit();
+
+        //This is where IContentHandler postinit function should run
+        if (ClientProxy.class.isInstance(proxy)) {
+            RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
+            ItemModelMesher itemModelMesher = renderItem.getItemModelMesher();
+            this.jcItemRegistry.postinit(itemModelMesher);
+        }
     }
 }

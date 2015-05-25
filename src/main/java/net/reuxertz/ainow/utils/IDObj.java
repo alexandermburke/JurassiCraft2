@@ -1,7 +1,10 @@
 package net.reuxertz.ainow.utils;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCreature;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import net.reuxertz.ainow.core.AINow;
 
@@ -9,6 +12,19 @@ import net.reuxertz.ainow.core.AINow;
 public class IDObj
 {
     //Static Functions
+    public static EntityCreature GetEntity(World w, String id)
+    {
+        for (Object e: w.getLoadedEntityList()) {
+
+            if (!EntityCreature.class.isInstance(e))
+                continue;
+
+            if (IDObj.GetID((EntityCreature)e, true).equalsIgnoreCase(id))
+                return (EntityCreature)e;
+        }
+
+        return null;
+    }
     public static String GetID(Entity e, boolean validate)
     {
         IDObj idobj = IDObj.ValidateIDObj(e, validate);

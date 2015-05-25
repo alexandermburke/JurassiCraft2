@@ -4,6 +4,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.reuxertz.ainow.api.IItem;
@@ -18,12 +19,13 @@ public abstract class ItemDocBase
     protected boolean _displayNameLoc = true;
     protected String _displayName = "Document";
 
-    public ItemDocBase()
+    public static String GetID(ItemStack stack)
     {
-        setMaxStackSize(1);
-        setCreativeTab(CreativeTabs.tabMisc);
-    }
+        if (stack.hasTagCompound() && stack.getTagCompound().hasKey("entityid"))
+            return stack.getTagCompound().getString("entityid");
 
+        return null;
+    }
     public String getItemStackDisplayName(ItemStack par1ItemStack)
     {
         String r = this._displayName;
@@ -48,6 +50,14 @@ public abstract class ItemDocBase
         }
         return r;
     }
+    public ItemDocBase()
+    {
+        super();
+
+        setMaxStackSize(1);
+        setCreativeTab(CreativeTabs.tabMisc);
+    }
+
 
     public void InteractEntity(ItemStack stack, EntityInteractEvent e)
     {

@@ -14,7 +14,8 @@ entity.Velociraptor.name=Velociraptor
 item.dino_spawn_egg.name=Spawn
 item.item_fossil.name=Fossil
 item.item_rock_pick.name=Rock Pick
-item.item_plaster_bandage.name=Paster and Bandage
+item.item_plaster_bandage.name=Plaster and Bandage
+
 
 
 

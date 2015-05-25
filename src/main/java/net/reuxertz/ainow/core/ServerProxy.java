@@ -7,12 +7,13 @@ import net.minecraft.item.Item;
 
 public class ServerProxy
 {
-    public void RegisterEntityRenderer(Class<? extends Entity> clazz, Dinosaur dino)
+
+    public void postInit()
     {
 
     }
 
-    public void RegisterItemRenderer(ItemModelMesher itemModelMesher, Item item, final String path, final String type)
+    public void registerItemRenderer(ItemModelMesher itemModelMesher, Item item, final String path, final String type)
     {
 
     }

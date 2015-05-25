@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.EventBus;
@@ -35,12 +36,17 @@ public class AINow
         Instance = this;
         RND = new Random(0L);
 
-        ItemRegistry.RegisterItems();
+    }
+
+    @Mod.EventHandler
+    public void onInit(FMLInitializationEvent e)
+    {
+        ItemRegistry.init();
+
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent e) {
-
-        //ItemRegistry.registerItemRenderers();
+        proxy.postInit();
     }
 }

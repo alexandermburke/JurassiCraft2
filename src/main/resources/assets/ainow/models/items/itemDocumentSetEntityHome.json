@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-		"layer0": "ainow:items/document_written"
+        "layer0": "ainow:items/itemDocumentSetEntityHome"
     },
     "display": {
         "thirdperson": {

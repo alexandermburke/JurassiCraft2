@@ -65,6 +65,14 @@ public class ClientProxy extends ServerProxy
                 return new ModelResourceLocation("jurassicraft:plaster_and_bandage", "inventory");
             }
         });
+        /*itemModelMesher.register(JCItemRegistry.plaster_and_bandage, new ItemMeshDefinition()
+        {
+            public ModelResourceLocation getModelLocation(ItemStack stack)
+            {
+                return new ModelResourceLocation("jurassicraft:plaster_and_bandage", "inventory");
+            }
+        });*/
+        //registerItemRenderer(itemModelMesher, JCItemRegistry.plaster_and_bandage, "jurassicraft:plaster_and_bandage", "inventory");
 
         itemModelMesher.register(Item.getItemFromBlock(JCBlockRegistry.fossil), new ItemMeshDefinition()
         {

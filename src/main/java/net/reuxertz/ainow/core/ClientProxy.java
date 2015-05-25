@@ -16,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.reuxertz.ainow.api.ItemRegistry;
 
 import java.util.Map;
 import java.util.Map.Entry;
@@ -23,26 +24,5 @@ import java.util.Map.Entry;
 @SideOnly(Side.CLIENT)
 public class ClientProxy extends ServerProxy
 {
-    private Map<Class<? extends Entity>, Dinosaur> renderersToRegister = Maps.newHashMap();
 
-    /**
-     * Should we use it?
-     */
-    public void RegisterItemRenderer(ItemModelMesher itemModelMesher, Item item, final String path, final String type)
-    {
-        itemModelMesher.register(item, new ItemMeshDefinition()
-        {
-            public ModelResourceLocation getModelLocation(ItemStack stack)
-            {
-                return new ModelResourceLocation(path, type);
-            }
-        });
-    }
-
-    public void RegisterEntityRenderer(Class<? extends Entity> clazz, Dinosaur creature)
-    {
-        super.RegisterEntityRenderer(clazz, creature);
-
-        renderersToRegister.put(clazz, creature);
-    }
 }

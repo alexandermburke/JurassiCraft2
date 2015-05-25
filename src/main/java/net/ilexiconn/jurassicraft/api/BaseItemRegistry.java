@@ -1,41 +1,32 @@
-package net.reuxertz.ainow.api;
+package net.ilexiconn.jurassicraft.api;
 
-import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.creativetab.JCCreativeTabs;
 import net.ilexiconn.jurassicraft.item.ItemDinosaurSpawnEgg;
 import net.ilexiconn.jurassicraft.item.ItemPlasterAndBandage;
-import net.minecraft.client.Minecraft;
+import net.ilexiconn.llibrary.common.content.IContentHandler;
+import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.ItemModelMesher;
-import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.common.registry.LanguageRegistry;
-import net.reuxertz.ainow.core.AINow;
-import net.reuxertz.ainow.item.ItemDocSetEntityHome;
 
 import java.lang.reflect.Field;
-import java.util.HashMap;
 
-public class ItemRegistry
+public abstract class BaseItemRegistry implements IContentHandler
 {
-    public static ItemDocSetEntityHome DocumentSetEntityHome = new ItemDocSetEntityHome();
-    public static void init()
-    {
-        DocumentSetEntityHome.setUnlocalizedName("itemDocSetEntityHome");
+    public abstract void init();
 
-        ItemRegistry.gameRegistry();
-    }
+    public abstract void postinit(ItemModelMesher itemModelMesher);
 
-    public static void initCreativeTabs()
-    {
-    }
+    public abstract void initCreativeTabs();
 
-    public static void gameRegistry()
+    public void gameRegistry() throws Exception
     {
         initCreativeTabs();
         try
         {
-            for (Field f : ItemRegistry.class.getDeclaredFields())
+            for (Field f : this.getClass().getDeclaredFields())
             {
                 Object obj = f.get(null);
                 if (obj instanceof Item)
@@ -51,11 +42,23 @@ public class ItemRegistry
         }
     }
 
-    public static void registerItem(Item item)
+    public void registerItem(Item item)
     {
         String name = item.getUnlocalizedName();
         String[] strings = name.split("\\.");
         name = strings[strings.length - 1];
         GameRegistry.registerItem(item, name);
     }
+
+    public void registerItemRenderer(ItemModelMesher itemModelMesher, Item item, final String path, final String type)
+    {
+        itemModelMesher.register(item, new ItemMeshDefinition()
+        {
+            public ModelResourceLocation getModelLocation(ItemStack stack)
+            {
+                return new ModelResourceLocation(path, type);
+            }
+        });
+    }
+
 }
