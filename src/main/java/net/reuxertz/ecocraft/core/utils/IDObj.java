@@ -1,4 +1,4 @@
-package net.reuxertz.ecocraft.utils;
+package net.reuxertz.ecocraft.core.utils;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;

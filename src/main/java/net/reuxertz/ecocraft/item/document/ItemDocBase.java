@@ -7,9 +7,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.reuxertz.ecocraft.api.IItem;
-import net.reuxertz.ecocraft.utils.IDObj;
-import net.reuxertz.ecocraft.utils.NBTHelper;
-import net.reuxertz.ecocraft.utils.StringHelper;
+import net.reuxertz.ecocraft.core.utils.IDObj;
+import net.reuxertz.ecocraft.core.utils.NBTHelper;
+import net.reuxertz.ecocraft.core.utils.StringHelper;
 
 public abstract class ItemDocBase
         extends Item

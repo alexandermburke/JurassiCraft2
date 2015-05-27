@@ -3,7 +3,7 @@ package net.reuxertz.ecocraft.entity.ai;
 import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.entity.EntityCreature;
-import net.reuxertz.ecocraft.utils.CounterObj;
+import net.reuxertz.ecocraft.core.utils.CounterObj;
 
 public class AICore
         extends AIBase

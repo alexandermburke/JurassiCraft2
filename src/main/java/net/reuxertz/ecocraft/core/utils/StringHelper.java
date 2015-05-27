@@ -1,10 +1,7 @@
-package net.reuxertz.ecocraft.utils;
+package net.reuxertz.ecocraft.core.utils;
 
 import net.minecraft.util.BlockPos;
 
-/**
- * Created by Ryan on 5/22/2015.
- */
 public class StringHelper
 {
 

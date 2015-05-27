@@ -6,7 +6,7 @@ import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.world.World;
 import net.reuxertz.ecocraft.entity.ai.AICore;
 import net.reuxertz.ecocraft.entity.ai.AINavigate;
-import net.reuxertz.ecocraft.utils.IDObj;
+import net.reuxertz.ecocraft.core.utils.IDObj;
 
 public abstract class EntityAICreature
         extends EntityCreature

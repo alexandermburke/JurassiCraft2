@@ -28,9 +28,21 @@ public abstract class BaseItemRegistry implements IContentHandler
 
     public abstract void initCreativeTabs();
 
+    public abstract void initLanguage();
+
+    public void register()
+    {
+        try {
+            this.init();
+            this.gameRegistry();
+        }
+        catch (Exception ex) { return; }
+    }
+
     public void gameRegistry() throws Exception
     {
         initCreativeTabs();
+        initLanguage();
         try
         {
             for (Field f : this.getClass().getDeclaredFields())

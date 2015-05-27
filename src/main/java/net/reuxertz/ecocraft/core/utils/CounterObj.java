@@ -1,10 +1,7 @@
-package net.reuxertz.ecocraft.utils;
+package net.reuxertz.ecocraft.core.utils;
 
 import net.reuxertz.ecocraft.core.EcoCraft;
 
-/**
- * Created by reuxertz on 5/20/2015.
- */
 public class CounterObj {
 
     //Timing Fields

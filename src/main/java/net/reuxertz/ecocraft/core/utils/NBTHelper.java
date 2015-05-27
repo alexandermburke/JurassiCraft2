@@ -1,11 +1,8 @@
-package net.reuxertz.ecocraft.utils;
+package net.reuxertz.ecocraft.core.utils;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 
-/**
- * Created by Ryan on 5/22/2015.
- */
 public class NBTHelper
 {
     public static boolean HasBlockPosInNBT(NBTTagCompound nbt, String name)

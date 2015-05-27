@@ -1,11 +1,11 @@
-package net.reuxertz.ecocraft.ore;
+package net.reuxertz.ecocraft.item.ore;
 
 import net.minecraft.item.Item;
 import net.minecraft.creativetab.CreativeTabs;
 
-public class EmeraldShard extends Item
+public class IronNugget extends Item
 {
-	public EmeraldShard()
+	public IronNugget()
 	{
 		super();
 

@@ -6,7 +6,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -14,7 +13,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.reuxertz.ecocraft.core.proxy.ClientProxy;
 import net.reuxertz.ecocraft.core.proxy.ServerProxy;
-import net.reuxertz.ecocraft.registry.ECItemRegistry;
+import net.reuxertz.ecocraft.core.registry.ECItemRegistry;
 
 @Mod(modid="ecocraft", name="EcoCraft", version="beta")
 public class EcoCraft
@@ -31,18 +30,18 @@ public class EcoCraft
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent e)
     {
-        MinecraftForge.EVENT_BUS.register(new ECForgeEventHandler());
-        FMLCommonHandler.instance().bus().register(new ECFMLEventHandler());
+        //Events
+        MinecraftForge.EVENT_BUS.register(new EcoForgeHandler());
 
+        //Mod Fields
         Instance = this;
         RND = new Random(0L);
 
-        try {
-            EcoCraft.ItemRegistry.init();
-            EcoCraft.ItemRegistry.gameRegistry();
-        }
-        catch (Exception ex) { }
+        //Item Registry
+        ItemRegistry.register();
 
+        //Crafting Recipes
+        EcoCrafting.InitCraftingRecipes();
     }
 
     @Mod.EventHandler
@@ -62,4 +61,5 @@ public class EcoCraft
             EcoCraft.ItemRegistry.postinit(itemModelMesher);
         }
     }
+
 }

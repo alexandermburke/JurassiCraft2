@@ -7,8 +7,8 @@ import net.minecraft.util.ChatComponentTranslation;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.reuxertz.ecocraft.utils.IDObj;
-import net.reuxertz.ecocraft.utils.StringHelper;
+import net.reuxertz.ecocraft.core.utils.IDObj;
+import net.reuxertz.ecocraft.core.utils.StringHelper;
 
 public class ItemDocSetEntityHome extends ItemDocBase
 {
