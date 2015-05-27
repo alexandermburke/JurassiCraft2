@@ -1,6 +1,8 @@
 package net.reuxertz.ainow.core;
 
 
+import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.item.ItemStack;
@@ -13,6 +15,7 @@ import net.reuxertz.ainow.api.IItem;
 
 public class AINowForgeEventHandler
 {
+    public static boolean AllowMonstersInUpperOverworld = false;
 
     //Entity Events
     @SubscribeEvent
@@ -21,10 +24,14 @@ public class AINowForgeEventHandler
 
         boolean isAICreature = EntityAICreature.class.isInstance(e.entity);
         boolean isAnimal = EntityAnimal.class.isInstance(e.entity);
+        boolean isMonster = EntityMob.class.isInstance(e.entity);
         boolean isVillager = EntityVillager.class.isInstance(e.entity);
 
-        //if (isVillager || isAnimal)
-        //    EntityAICreature.ConstructAIEntity((EntityCreature)e.entity);
+        if (isAnimal)
+            EntityAICreature.ConstructAIEntity((EntityCreature)e.entity);
+
+        if (!AllowMonstersInUpperOverworld && isMonster)
+            e.setCanceled(true);
 
         return;
     }

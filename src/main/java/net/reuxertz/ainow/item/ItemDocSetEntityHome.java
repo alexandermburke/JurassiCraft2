@@ -19,6 +19,9 @@ public class ItemDocSetEntityHome extends ItemDocBase
     public ItemDocSetEntityHome()
     {
         super();
+
+        this._displayName = "Set Entity Home Document";
+        this.setMaxStackSize(1);
     }
 
     @SideOnly(Side.CLIENT)

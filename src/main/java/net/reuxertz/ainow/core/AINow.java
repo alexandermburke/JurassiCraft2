@@ -2,31 +2,30 @@ package net.reuxertz.ainow.core;
 
 import java.util.Random;
 
-import net.ilexiconn.jurassicraft.item.JCItemRegistry;
-import net.ilexiconn.jurassicraft.proxy.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemModelMesher;
+import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.EventBus;
-import net.reuxertz.ainow.api.ItemRegistry;
+import net.reuxertz.ainow.registry.ItemRegistry;
 
 @Mod(modid="ainow", name="AINow", version="beta")
 public class AINow
 {
     public static final String ModID = "ainow";
     public static Random RND = new Random(0L);
-    public boolean DebugMode;
+
     @Mod.Instance("ainow")
     public static AINow Instance;
     @SidedProxy(serverSide = "net.reuxertz.ainow.core.ServerProxy", clientSide = "net.reuxertz.ainow.core.ClientProxy")
     public static ServerProxy proxy;
 
+    public static net.reuxertz.ainow.registry.ItemRegistry ItemRegistry = new ItemRegistry();
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent e)
     {
@@ -36,17 +35,29 @@ public class AINow
         Instance = this;
         RND = new Random(0L);
 
+        try {
+            AINow.ItemRegistry.init();
+            AINow.ItemRegistry.gameRegistry();
+        }
+        catch (Exception ex) { }
+
     }
 
     @Mod.EventHandler
     public void onInit(FMLInitializationEvent e)
     {
-        ItemRegistry.init();
+
 
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent e) {
-        proxy.postInit();
+
+        //This is where IContentHandler postinit function should run
+        if (net.reuxertz.ainow.core.ClientProxy.class.isInstance(proxy)) {
+            RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
+            ItemModelMesher itemModelMesher = renderItem.getItemModelMesher();
+            AINow.ItemRegistry.postinit(itemModelMesher);
+        }
     }
 }

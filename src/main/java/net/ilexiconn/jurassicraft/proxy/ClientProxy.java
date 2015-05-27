@@ -1,6 +1,7 @@
 package net.ilexiconn.jurassicraft.proxy;
 
 import com.google.common.collect.Maps;
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.block.JCBlockRegistry;
 import net.ilexiconn.jurassicraft.client.render.entity.RenderDinosaur;
 import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
@@ -48,6 +49,9 @@ public class ClientProxy extends ServerProxy
 
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
         ItemModelMesher itemModelMesher = renderItem.getItemModelMesher();
+
+        this.registerItemRenderer(itemModelMesher, JCItemRegistry.plaster_and_bandage, "jurassicraft:plaster_and_bandage", "inventory");
+        this.registerItemRenderer(itemModelMesher, JCItemRegistry.spawn_egg, "jurassicraft:dino_spawn_egg", "inventory");
 
         itemModelMesher.register(Item.getItemFromBlock(JCBlockRegistry.fossil), new ItemMeshDefinition()
         {

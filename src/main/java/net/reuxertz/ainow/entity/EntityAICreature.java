@@ -11,13 +11,12 @@ import net.reuxertz.ainow.entity.ai.AICore;
 import net.reuxertz.ainow.entity.ai.AINavigate;
 import net.reuxertz.ainow.utils.IDObj;
 
-public class EntityAICreature
+public abstract class EntityAICreature
         extends EntityCreature
 {
     public static void ConstructAIEntity(EntityCreature entity)
     {
         IDObj.ValidateIDObj(entity, true);
-
 
         entity.tasks.taskEntries.clear();
 

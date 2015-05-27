@@ -1,8 +1,5 @@
-package net.ilexiconn.jurassicraft.api;
+package net.reuxertz.ainow.api;
 
-import net.ilexiconn.jurassicraft.creativetab.JCCreativeTabs;
-import net.ilexiconn.jurassicraft.item.ItemDinosaurSpawnEgg;
-import net.ilexiconn.jurassicraft.item.ItemPlasterAndBandage;
 import net.ilexiconn.llibrary.common.content.IContentHandler;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.ItemModelMesher;
@@ -15,6 +12,16 @@ import java.lang.reflect.Field;
 
 public abstract class BaseItemRegistry implements IContentHandler
 {
+    protected String _modID = null;
+
+    public BaseItemRegistry()    {
+    }
+
+    public BaseItemRegistry(String modID)
+    {
+        this._modID = modID;
+    }
+
     public abstract void init();
 
     public abstract void postinit(ItemModelMesher itemModelMesher);
@@ -47,7 +54,7 @@ public abstract class BaseItemRegistry implements IContentHandler
         String name = item.getUnlocalizedName();
         String[] strings = name.split("\\.");
         name = strings[strings.length - 1];
-        GameRegistry.registerItem(item, name);
+        GameRegistry.registerItem(item, name , this._modID);
     }
 
     public void registerItemRenderer(ItemModelMesher itemModelMesher, Item item, final String path, final String type)

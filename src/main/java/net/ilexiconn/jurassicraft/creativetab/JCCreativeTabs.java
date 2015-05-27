@@ -12,7 +12,7 @@ public class JCCreativeTabs implements IContentHandler
 
     public void init()
     {
-        items = new CreativeTabJurassiCraft("jurassicraft.items")
+        items = new CreativeTabJurassiCraft("jurassicraft.item")
         {
             public Item getTabIconItem()
             {
