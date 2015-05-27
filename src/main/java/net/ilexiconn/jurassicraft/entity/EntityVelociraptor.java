@@ -27,19 +27,19 @@ public class EntityVelociraptor extends EntityDinosaurAggressive
         //Placeholder AI
         DinosaurVelociraptor dino = new DinosaurVelociraptor();
 
-            if(!this.isChild())
-            {
-                this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, dino.getAttackSpeed(), false));
-                this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
-                this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPig.class, dino.getAttackSpeed(), false));
-                this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPig.class, false));
-          
-                this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[] {EntityPlayer.class}));
-          
-                this.tasks.addTask(6, new EntityAIWander(this, 1.0D));
-                this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
-                this.tasks.addTask(8, new EntityAILookIdle(this));
-            }
+        if(!this.isChild())
+        {
+            this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, dino.getAttackSpeed(), false));
+            this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
+            this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPig.class, dino.getAttackSpeed(), false));
+            this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPig.class, false));
+
+            this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[] {EntityPlayer.class}));
+
+            //this.tasks.addTask(6, new EntityAIWander(this, 1.0D));
+            this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
+            this.tasks.addTask(8, new EntityAILookIdle(this));
+        }
     }
     
     protected void applyEntityAttributes()

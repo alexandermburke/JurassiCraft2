@@ -1,6 +1,5 @@
-package net.ilexiconn.jurassicraft.item;
+package net.reuxertz.ecocraft.api;
 
-import net.ilexiconn.jurassicraft.creativetab.JCCreativeTabs;
 import net.ilexiconn.llibrary.common.content.IContentHandler;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.ItemModelMesher;
@@ -11,22 +10,23 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.lang.reflect.Field;
 
-public class JCItemRegistry implements IContentHandler
+public abstract class BaseItemRegistry implements IContentHandler
 {
-    public static ItemDinosaurSpawnEgg spawn_egg;
-    public static ItemPlasterAndBandage plaster_and_bandage;
+    protected String _modID = null;
 
-    public void init()
-    {
-        spawn_egg = new ItemDinosaurSpawnEgg();
-        plaster_and_bandage = new ItemPlasterAndBandage();
+    public BaseItemRegistry()    {
     }
 
-    public void initCreativeTabs()
+    public BaseItemRegistry(String modID)
     {
-        spawn_egg.setCreativeTab(JCCreativeTabs.items);
-        plaster_and_bandage.setCreativeTab(JCCreativeTabs.items);
+        this._modID = modID;
     }
+
+    public abstract void init();
+
+    public abstract void postinit(ItemModelMesher itemModelMesher);
+
+    public abstract void initCreativeTabs();
 
     public void gameRegistry() throws Exception
     {
@@ -54,7 +54,7 @@ public class JCItemRegistry implements IContentHandler
         String name = item.getUnlocalizedName();
         String[] strings = name.split("\\.");
         name = strings[strings.length - 1];
-        GameRegistry.registerItem(item, name);
+        GameRegistry.registerItem(item, name , this._modID);
     }
 
     public void registerItemRenderer(ItemModelMesher itemModelMesher, Item item, final String path, final String type)
@@ -67,4 +67,5 @@ public class JCItemRegistry implements IContentHandler
             }
         });
     }
+
 }

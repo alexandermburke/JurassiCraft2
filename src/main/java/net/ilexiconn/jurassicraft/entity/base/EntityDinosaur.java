@@ -8,7 +8,7 @@ import net.ilexiconn.llibrary.common.entity.multipart.IEntityMultiPart;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
-import net.reuxertz.ainow.entity.EntityAICreature;
+import net.reuxertz.ecocraft.entity.EntityAICreature;
 
 public class EntityDinosaur extends EntityAICreature implements IEntityMultiPart, IEntityAdditionalSpawnData
 {
