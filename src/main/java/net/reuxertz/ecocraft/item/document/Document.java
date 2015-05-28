@@ -11,9 +11,7 @@ import net.reuxertz.ecocraft.core.utils.IDObj;
 import net.reuxertz.ecocraft.core.utils.NBTHelper;
 import net.reuxertz.ecocraft.core.utils.StringHelper;
 
-public abstract class ItemDocBase
-        extends Item
-        implements IItem
+public class Document extends Item implements IItem
 {
     protected boolean _displayNameLoc = true;
     protected String _displayName = "Document";
@@ -49,14 +47,13 @@ public abstract class ItemDocBase
         }
         return r;
     }
-    public ItemDocBase()
+    public Document()
     {
         super();
 
         setMaxStackSize(1);
         setCreativeTab(CreativeTabs.tabMisc);
     }
-
 
     public void InteractEntity(ItemStack stack, EntityInteractEvent e)
     {
@@ -66,6 +63,7 @@ public abstract class ItemDocBase
         String id = IDObj.GetID(e.target, false);
         if (id != null) {
             nbt.setString("entityid", id);
+            stack.setItemDamage(1);
         }
         stack.setTagCompound(nbt);
     }
@@ -79,5 +77,7 @@ public abstract class ItemDocBase
         NBTHelper.WriteBlockPosToNBT(nbt, "blockpos", e.pos);
 
         stack.setTagCompound(nbt);
+
+        stack.setItemDamage(1);
     }
 }

@@ -8,7 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.world.BlockEvent;
-import net.reuxertz.ecocraft.core.registry.ECItemRegistry;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,8 +21,8 @@ public class EcoResources {
     private static List<Block> _earthDropBlocks = Arrays.asList(Blocks.dirt, Blocks.grass, Blocks.sand, Blocks.gravel,
             Blocks.sandstone, Blocks.stone );
     private static List<ItemStack> _earthDrops = Arrays.asList(
-            new ItemStack(Items.flint), new ItemStack(ECItemRegistry.ironNugget), new ItemStack(Items.gold_nugget),
-            new ItemStack(ECItemRegistry.diamondShard),  new ItemStack(ECItemRegistry.emeraldShard) );
+            new ItemStack(Items.flint), new ItemStack(EcoRegistry.ironNugget), new ItemStack(Items.gold_nugget),
+            new ItemStack(EcoRegistry.diamondShard),  new ItemStack(EcoRegistry.emeraldShard) );
     private static double _earthDropConstant = .055;
     private static List<Double> _earthDropProbs = Arrays.asList(1.0, 0.1, 0.01, 0.005, 0.001);
 

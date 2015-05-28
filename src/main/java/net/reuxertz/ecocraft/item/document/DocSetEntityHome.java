@@ -10,9 +10,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.reuxertz.ecocraft.core.utils.IDObj;
 import net.reuxertz.ecocraft.core.utils.StringHelper;
 
-public class ItemDocSetEntityHome extends ItemDocBase
+public class DocSetEntityHome extends Document
 {
-    public ItemDocSetEntityHome()
+    public DocSetEntityHome()
     {
         super();
 
@@ -29,7 +29,7 @@ public class ItemDocSetEntityHome extends ItemDocBase
     public void InteractBlock(ItemStack stack, PlayerInteractEvent e)
     {
         BlockPos p = e.pos;
-        String id = ItemDocSetEntityHome.GetID(stack);
+        String id = DocSetEntityHome.GetID(stack);
         EntityCreature ec = IDObj.GetEntity(e.world, id);
         String className = ec.getClass().toString();
 

@@ -1,4 +1,4 @@
-package net.reuxertz.ecocraft.core;
+package net.reuxertz.ecocraft.core.handlers;
 
 
 import net.minecraft.entity.EntityCreature;
@@ -6,15 +6,21 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.reuxertz.ecocraft.core.EcoRegistry;
+import net.reuxertz.ecocraft.core.EcoResources;
+import net.reuxertz.ecocraft.core.handlers.ChatHandler;
 import net.reuxertz.ecocraft.entity.EntityAICreature;
 import net.reuxertz.ecocraft.api.IItem;
+import net.reuxertz.ecocraft.tileentity.TileEntityDroppedItem;
 
-public class EcoForgeHandler
+public class ForgeHandler
 {
     public static boolean AllowMonstersInUpperOverworld = false;
 
@@ -73,6 +79,13 @@ public class EcoForgeHandler
         if (heldItem != null && IItem.class.isInstance(heldItem.getItem()))
             IItem.class.cast(heldItem.getItem()).InteractBlock(heldItem, e);
 
+        /*if (e.action == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK)
+        {
+            e.world.setBlockState(e.pos, EcoRegistry.blockDroppedItem.getDefaultState());
+            ((TileEntityDroppedItem)e.world.getTileEntity(e.pos)).SetStack(new ItemStack(heldItem.getItem(), 1));
+            e.entityPlayer.inventory.mainInventory[e.entityPlayer.inventory.currentItem].stackSize--;
+        }*/
+
         return;
 
     }
@@ -88,4 +101,6 @@ public class EcoForgeHandler
         if (!dropEvent.isSilkTouching)
             EcoResources.HandleRandomEarthDrops(dropEvent);
     }
+
+
 }
