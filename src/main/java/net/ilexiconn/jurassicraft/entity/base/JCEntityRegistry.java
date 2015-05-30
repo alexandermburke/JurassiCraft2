@@ -3,6 +3,7 @@ package net.ilexiconn.jurassicraft.entity.base;
 import com.google.common.collect.Lists;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
+import net.ilexiconn.jurassicraft.dinosaur.DinosaurSpinosaurus;
 import net.ilexiconn.jurassicraft.dinosaur.DinosaurVelociraptor;
 import net.ilexiconn.llibrary.common.content.IContentHandler;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
@@ -14,6 +15,7 @@ public class JCEntityRegistry implements IContentHandler
     private static List<Dinosaur> dinosaurs = Lists.newArrayList();
 
     public void init() {
+        registerDinosaur(new DinosaurSpinosaurus());
         registerDinosaur(new DinosaurVelociraptor());
     }
 

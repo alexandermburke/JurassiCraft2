@@ -45,4 +45,5 @@ public class RenderDinosaur extends RenderMultiPart
     {
         return getEntityTexture((EntityDinosaur) entity);
     }
+
 }
