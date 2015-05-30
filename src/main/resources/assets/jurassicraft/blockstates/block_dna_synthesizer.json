@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "jurassicraft:block_dna_synthesizer" },
+        "facing=south": { "model": "jurassicraft:block_dna_synthesizer", "y": 180 },
+        "facing=west": { "model": "jurassicraft:block_dna_synthesizer", "y": 270 },
+        "facing=east": { "model": "jurassicraft:block_dna_synthesizer", "y": 90 }
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "jurassicraft:block_embryo_insemination_machine" },
+        "facing=south": { "model": "jurassicraft:block_embryo_insemination_machine", "y": 180 },
+        "facing=west": { "model": "jurassicraft:block_embryo_insemination_machine", "y": 270 },
+        "facing=east": { "model": "jurassicraft:block_embryo_insemination_machine", "y": 90 }
+    }
+}

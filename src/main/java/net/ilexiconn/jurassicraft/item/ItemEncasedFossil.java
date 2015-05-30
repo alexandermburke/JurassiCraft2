@@ -20,15 +20,6 @@ public class ItemEncasedFossil extends ItemBlock
         this.setUnlocalizedName("item_encased_fossil");
     }
 
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced)
-    {
-        BlockEncasedFossil.EnumTimePeriod timePeriod = BlockEncasedFossil.EnumTimePeriod.byMetadata(stack.getMetadata());
-        tooltip.add("Test");
-        if (timePeriod != null)
-            tooltip.add("period." + timePeriod.getNameForDisplay() + ".name");
-    }
-
     @Override
     public int getMetadata(int metadata)
     {

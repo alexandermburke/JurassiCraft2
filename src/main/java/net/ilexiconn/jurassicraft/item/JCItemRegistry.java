@@ -13,21 +13,26 @@ import java.lang.reflect.Field;
 
 public class JCItemRegistry implements IContentHandler
 {
-    public static ItemDinosaurSpawnEgg spawn_egg;
     public static ItemPlasterAndBandage plaster_and_bandage;
+    public static ItemDinosaurSpawnEgg spawn_egg;
+    public static ItemFossil fossil;
 
+    @Override
     public void init()
     {
-        spawn_egg = new ItemDinosaurSpawnEgg();
         plaster_and_bandage = new ItemPlasterAndBandage();
+        spawn_egg = new ItemDinosaurSpawnEgg();
+        fossil = new ItemFossil();
     }
 
     public void initCreativeTabs()
     {
-        spawn_egg.setCreativeTab(JCCreativeTabs.items);
         plaster_and_bandage.setCreativeTab(JCCreativeTabs.items);
+        spawn_egg.setCreativeTab(JCCreativeTabs.items);
+        fossil.setCreativeTab(JCCreativeTabs.items);
     }
 
+    @Override
     public void gameRegistry() throws Exception
     {
         initCreativeTabs();

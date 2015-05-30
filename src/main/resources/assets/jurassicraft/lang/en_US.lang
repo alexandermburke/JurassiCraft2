@@ -12,24 +12,38 @@ entity.spinosaurus.name=Spinosaurus
 
 
 //Items ==================================================
-item.dino_spawn_egg.name=Spawn
-item.item_fossil.name=Fossil
 item.item_rock_pick.name=Rock Pick
-item.item_plaster_bandage.name=Plaster and Bandage
+item.item_plaster_and_bandage.name=Plaster and Bandage
 
+item.item_dino_spawn_egg.velociraptor.name=Spawn Velociraptor
+item.item_dino_spawn_egg.spinosaurus.name=Spawn Spinosaurus
+
+item.item_fossil.velociraptor.name=Velociraptor Fossil
+item.item_fossil.spinosaurus.name=Spinosaurus Fossil
 
 
 
 //Blocks ==================================================
 tile.block_fossil.name=Fossil Block
-tile.block_encased_fossil.cretaceous.name=Encased Fossil Block Cretaceous
-tile.block_encased_fossil.jurassic.name=Encased Fossil Block Jurassic
-tile.block_cleaning_station.jurassic.name=Cleaning Station
-tile.block_fossil_grinder.jurassic.name=Fossil Grinder
-tile.block_dna_sequencer.jurassic.name=DNA Sequencer
-tile.block_dna_synthesizer.jurassic.name=DNA Synthesizer
-tile.block_embryonic_machine.jurassic.name=Embryonic Machine
-tile.block_embryo_insemination_machine.jurassic.name=Embryo Insemination Machine
+tile.block_encased_fossil.quaternary.name=Quaternary Fossil Block
+tile.block_encased_fossil.neogene.name=Neogene Fossil Block
+tile.block_encased_fossil.paleogene.name=Paleogene Fossil Block
+tile.block_encased_fossil.cretaceous.name=Cretaceous Fossil Block
+tile.block_encased_fossil.jurassic.name=Jurassic Fossil Block
+tile.block_encased_fossil.triassic.name=Triassic Fossil Block
+tile.block_encased_fossil.permian.name=Permian Fossil Block
+tile.block_encased_fossil.carboniferous.name=Carboniferous Fossil Block
+tile.block_encased_fossil.devonian.name=Encased Devonian Block
+tile.block_encased_fossil.silurian.name=Encased Silurian Block
+tile.block_encased_fossil.ordovician.name=Encased Ordovician Block
+tile.block_encased_fossil.cambrian.name=Encased Cambrian Block
+
+tile.block_cleaning_station.name=Cleaning Station
+tile.block_fossil_grinder.name=Fossil Grinder
+tile.block_dna_sequencer.name=DNA Sequencer
+tile.block_dna_synthesizer.name=DNA Synthesizer
+tile.block_embryonic_machine.name=Embryonic Machine
+tile.block_embryo_insemination_machine.name=Embryo Insemination Machine
 
 
 

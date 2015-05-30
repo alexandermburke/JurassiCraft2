@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-		"layer0": "jurassicraft:items/plaster_and_bandage"
+		"layer0": "jurassicraft:items/item_fossil_velociraptor"
     },
     "display": {
         "thirdperson": {

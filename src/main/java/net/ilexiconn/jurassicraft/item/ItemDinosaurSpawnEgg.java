@@ -29,11 +29,10 @@ public class ItemDinosaurSpawnEgg extends Item
 {
     public ItemDinosaurSpawnEgg()
     {
-        this.setUnlocalizedName("dino_spawn_egg");
+        this.setUnlocalizedName("item_dino_spawn_egg");
         this.setHasSubtypes(true);
     }
 
-    @SuppressWarnings("unchecked")
     public EntityDinosaur spawnCreature(World world, EntityPlayer player, ItemStack stack, double x, double y, double z)
     {
         Class dinoClass = getDinosaur(stack).getDinosaurClass();
@@ -49,7 +48,6 @@ public class ItemDinosaurSpawnEgg extends Item
                 dino.setLocationAndAngles(x, y, z, MathHelper.wrapAngleTo180_float(world.rand.nextFloat() * 360.0F), 0.0F);
                 dino.rotationYawHead = dino.rotationYaw;
                 dino.renderYawOffset = dino.rotationYaw;
-
                 return dino;
             }
         }
@@ -61,9 +59,13 @@ public class ItemDinosaurSpawnEgg extends Item
         return null;
     }
 
+    @Override
     public String getItemStackDisplayName(ItemStack stack)
     {
-        return StatCollector.translateToLocal("item.dino_spawn_egg.name").trim() + " " + getDinosaur(stack).getName();
+        Dinosaur dinosaur = this.getDinosaur(stack);
+        if (dinosaur != null)
+            return ("" + StatCollector.translateToLocal("item.dino_spawn_egg." + dinosaur.getName().replace(" ", "_").toLowerCase() + ".name")).trim();
+        return super.getItemStackDisplayName(stack);
     }
 
     public Dinosaur getDinosaur(ItemStack stack)
@@ -71,6 +73,7 @@ public class ItemDinosaurSpawnEgg extends Item
         return JCEntityRegistry.getDinosaurById(stack.getItemDamage());
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public int getColorFromItemStack(ItemStack stack, int renderPass)
     {
@@ -79,7 +82,7 @@ public class ItemDinosaurSpawnEgg extends Item
         return dino != null ? (renderPass == 0 ? dino.getEggPrimaryColor() : dino.getEggSecondaryColor()) : 16777215;
     }
 
-    @SuppressWarnings("unchecked")
+    @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List subtypes)
     {
@@ -95,12 +98,7 @@ public class ItemDinosaurSpawnEgg extends Item
         }
     }
 
-    /**
-     * Called when a Block is right-clicked with this Item
-     *
-     * @param pos  The block being right-clicked
-     * @param side The side being right-clicked
-     */
+    @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (world.isRemote)
