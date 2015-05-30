@@ -1,6 +1,7 @@
 package net.ilexiconn.jurassicraft.client.render.entity;
 
 import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
+import net.ilexiconn.jurassicraft.entity.EntityVelociraptor;
 import net.ilexiconn.jurassicraft.entity.base.EntityDinosaur;
 import net.ilexiconn.llibrary.client.render.entity.RenderMultiPart;
 import net.minecraft.entity.Entity;
@@ -33,7 +34,15 @@ public class RenderDinosaur extends RenderMultiPart
     {
         float scale = dino.getScaleAdjustment();
         shadowSize = scale * dino.getShadowSize();
-        GL11.glScalef(scale, scale, scale);
+        if (entity instanceof EntityVelociraptor && (entity.getCustomNameTag().equals("iLexiconn")
+                || entity.getCustomNameTag().equals("JTGhawk137")))
+        {
+            GL11.glScalef(scale - 0.86F, scale, scale);
+        }
+        else
+        {
+            GL11.glScalef(scale, scale, scale);
+        }
     }
 
     public ResourceLocation getEntityTexture(EntityDinosaur entity)

@@ -25,20 +25,25 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class ItemDinosaurSpawnEgg extends Item {
-    public ItemDinosaurSpawnEgg() {
+public class ItemDinosaurSpawnEgg extends Item
+{
+    public ItemDinosaurSpawnEgg()
+    {
         this.setUnlocalizedName("dino_spawn_egg");
         this.setHasSubtypes(true);
     }
 
     @SuppressWarnings("unchecked")
-    public EntityDinosaur spawnCreature(World world, EntityPlayer player, ItemStack stack, double x, double y, double z) {
+    public EntityDinosaur spawnCreature(World world, EntityPlayer player, ItemStack stack, double x, double y, double z)
+    {
         Class dinoClass = getDinosaur(stack).getDinosaurClass();
 
-        try {
+        try
+        {
             Entity dinoToSpawn = (Entity) dinoClass.getConstructor(World.class).newInstance(player.worldObj);
 
-            if (dinoToSpawn instanceof EntityDinosaur) {
+            if (dinoToSpawn instanceof EntityDinosaur)
+            {
                 EntityDinosaur dino = (EntityDinosaur) dinoToSpawn;
                 dino.setPosition(x, y, z);
                 dino.setLocationAndAngles(x, y, z, MathHelper.wrapAngleTo180_float(world.rand.nextFloat() * 360.0F), 0.0F);
@@ -47,23 +52,28 @@ public class ItemDinosaurSpawnEgg extends Item {
 
                 return dino;
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
 
         return null;
     }
 
-    public String getItemStackDisplayName(ItemStack stack) {
+    public String getItemStackDisplayName(ItemStack stack)
+    {
         return StatCollector.translateToLocal("item.dino_spawn_egg.name").trim() + " " + getDinosaur(stack).getName();
     }
 
-    public Dinosaur getDinosaur(ItemStack stack) {
+    public Dinosaur getDinosaur(ItemStack stack)
+    {
         return JCEntityRegistry.getDinosaurById(stack.getItemDamage());
     }
 
     @SideOnly(Side.CLIENT)
-    public int getColorFromItemStack(ItemStack stack, int renderPass) {
+    public int getColorFromItemStack(ItemStack stack, int renderPass)
+    {
         Dinosaur dino = getDinosaur(stack);
 
         return dino != null ? (renderPass == 0 ? dino.getEggPrimaryColor() : dino.getEggSecondaryColor()) : 16777215;
@@ -71,11 +81,14 @@ public class ItemDinosaurSpawnEgg extends Item {
 
     @SuppressWarnings("unchecked")
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List subtypes) {
+    public void getSubItems(Item item, CreativeTabs tab, List subtypes)
+    {
         int i = 0;
 
-        for (Dinosaur dino : JCEntityRegistry.getDinosaurs()) {
-            if (dino.shouldRegister()) {
+        for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
+        {
+            if (dino.shouldRegister())
+            {
                 subtypes.add(new ItemStack(item, 1, i));
                 i++;
             }
@@ -88,24 +101,33 @@ public class ItemDinosaurSpawnEgg extends Item {
      * @param pos  The block being right-clicked
      * @param side The side being right-clicked
      */
-    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ) {
-        if (world.isRemote) {
+    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+    {
+        if (world.isRemote)
+        {
             return true;
-        } else if (!player.canPlayerEdit(pos.offset(side), side, stack)) {
+        }
+        else if (!player.canPlayerEdit(pos.offset(side), side, stack))
+        {
             return false;
-        } else {
+        }
+        else
+        {
             IBlockState iblockstate = world.getBlockState(pos);
 
-            if (iblockstate.getBlock() == Blocks.mob_spawner) {
+            if (iblockstate.getBlock() == Blocks.mob_spawner)
+            {
                 TileEntity tileentity = world.getTileEntity(pos);
 
-                if (tileentity instanceof TileEntityMobSpawner) {
+                if (tileentity instanceof TileEntityMobSpawner)
+                {
                     MobSpawnerBaseLogic mobspawnerbaselogic = ((TileEntityMobSpawner) tileentity).getSpawnerBaseLogic();
                     mobspawnerbaselogic.setEntityName(EntityList.getStringFromID(stack.getMetadata()));
                     tileentity.markDirty();
                     world.markBlockForUpdate(pos);
 
-                    if (!player.capabilities.isCreativeMode) {
+                    if (!player.capabilities.isCreativeMode)
+                    {
                         --stack.stackSize;
                     }
 
@@ -116,18 +138,22 @@ public class ItemDinosaurSpawnEgg extends Item {
             pos = pos.offset(side);
             double yOffset = 0.0D;
 
-            if (side == EnumFacing.UP && iblockstate instanceof BlockFence) {
+            if (side == EnumFacing.UP && iblockstate instanceof BlockFence)
+            {
                 yOffset = 0.5D;
             }
 
             EntityDinosaur dinosaur = spawnCreature(world, player, stack, (double) pos.getX() + 0.5D, (double) pos.getY() + yOffset, (double) pos.getZ() + 0.5D);
 
-            if (dinosaur != null) {
-                if (stack.hasDisplayName()) {
+            if (dinosaur != null)
+            {
+                if (stack.hasDisplayName())
+                {
                     dinosaur.setCustomNameTag(stack.getDisplayName());
                 }
 
-                if (!player.capabilities.isCreativeMode) {
+                if (!player.capabilities.isCreativeMode)
+                {
                     --stack.stackSize;
                 }
 

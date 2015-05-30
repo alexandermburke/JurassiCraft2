@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.client.model.animation;
 
+import net.ilexiconn.jurassicraft.entity.EntitySpinosaurus;
 import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
 import net.ilexiconn.llibrary.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.llibrary.client.model.modelbase.MowzieModelRenderer;
@@ -9,16 +10,12 @@ import net.minecraft.entity.EntityLiving;
 
 public class AnimationSpinosaurus implements IModelAnimator
 {
-    private ChainBuffer tailBuffer = new ChainBuffer(6);
 
     public void setRotationAngles(ModelJson model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
     {
-
         float globalSpeed = 0.45F;
         float globalDegree = 0.4F;
         float height = 1.0F;
-
-        this.tailBuffer.calculateChainSwingBuffer(68.0F, 10, 4.0F, (EntityLiving) entity);
 
         // middle
         MowzieModelRenderer shoulders = model.getCube("Body 3");
@@ -90,7 +87,7 @@ public class AnimationSpinosaurus implements IModelAnimator
         model.bob(leftThigh, 1F * globalSpeed, height, false, f, f1);
         model.bob(rightThigh, 1F * globalSpeed, height, false, f, f1);
         leftThigh.rotationPointY -= -2 * f1 * Math.cos(f * 0.5 * globalSpeed);
-        rightThigh.rotationPointY -= 2 *  f1 * Math.cos(f * 0.5 * globalSpeed);
+        rightThigh.rotationPointY -= 2 * f1 * Math.cos(f * 0.5 * globalSpeed);
         model.chainWave(bodyParts, 1F * globalSpeed, height * 0.05F, 3, f, f1);
         model.chainWave(tailParts, 1F * globalSpeed, height * 0.05F, 3, f, f1);
 
@@ -103,6 +100,6 @@ public class AnimationSpinosaurus implements IModelAnimator
         model.faceTarget(head, 6, rotationYaw, rotationPitch);
         model.faceTarget(neck1, 6, rotationYaw, rotationPitch);
 
-        tailBuffer.applyChainSwingBuffer(tailParts);
+        ((EntitySpinosaurus) entity).tailBuffer.applyChainSwingBuffer(tailParts);
     }
 }

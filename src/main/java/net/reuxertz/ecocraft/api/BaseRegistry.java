@@ -18,7 +18,8 @@ public abstract class BaseRegistry implements IContentHandler
 {
     protected String _modID = null;
 
-    public BaseRegistry()    {
+    public BaseRegistry()
+    {
     }
 
     public BaseRegistry(String modID)
@@ -41,11 +42,15 @@ public abstract class BaseRegistry implements IContentHandler
 
     public void register()
     {
-        try {
+        try
+        {
             this.init();
             this.gameRegistry();
         }
-        catch (Exception ex) { return; }
+        catch (Exception ex)
+        {
+            return;
+        }
     }
 
     public void gameRegistry() throws Exception
@@ -68,7 +73,7 @@ public abstract class BaseRegistry implements IContentHandler
                     for (Block block : (Block[]) obj)
                         registerBlock(block);
                 else if (obj instanceof Entity)
-                    registerEntity((Entity)obj);
+                    registerEntity((Entity) obj);
             }
         }
         catch (IllegalAccessException e)
@@ -77,7 +82,8 @@ public abstract class BaseRegistry implements IContentHandler
         }
     }
 
-    public void registerEntity(Entity ent) {
+    public void registerEntity(Entity ent)
+    {
         Class entityClass = ent.getClass();
 
         int entityId = EntityRegistry.findGlobalUniqueEntityId();
@@ -91,7 +97,7 @@ public abstract class BaseRegistry implements IContentHandler
         String name = item.getUnlocalizedName();
         String[] strings = name.split("\\.");
         name = strings[strings.length - 1];
-        GameRegistry.registerItem(item, name , this._modID);
+        GameRegistry.registerItem(item, name, this._modID);
     }
 
     protected void registerItemRenderer(ItemModelMesher itemModelMesher, Item item, final String path, final String type)

@@ -4,7 +4,7 @@
         "name": "JurassiCraft",
         "version": "${version}",
         "authorList": ["TeamJC"],
-        "url": "https://ilexiconn.net/",
+        "url": "https://jurassicraft.net/",
         "dependencies": ["llibrary"],
         "description": "WIP"
     }

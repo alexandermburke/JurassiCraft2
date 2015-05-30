@@ -129,6 +129,7 @@ public class EcoRegistry
         ironHammer.setCreativeTab(CreativeTabs.tabTools);
         ironKnife.setCreativeTab(CreativeTabs.tabTools);
     }
+
     public void initLanguage()
     {
     }

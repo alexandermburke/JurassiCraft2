@@ -18,7 +18,7 @@ public abstract class EntityAICreature
         entity.tasks.taskEntries.clear();
 
 
-        ((PathNavigateGround)entity.getNavigator()).func_179690_a(true);
+        ((PathNavigateGround) entity.getNavigator()).func_179690_a(true);
         entity.tasks.addTask(1, new EntityAISwimming(entity));
 
         AINavigate aiNav = new AINavigate(entity, 0.3);
@@ -40,7 +40,8 @@ public abstract class EntityAICreature
     public EntityAICreature(World w, boolean initialize)
     {
         super(w);
-        if (initialize) {
+        if (initialize)
+        {
             ConstructAIEntity(this);
         }
     }

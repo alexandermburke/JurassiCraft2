@@ -14,19 +14,24 @@ public class JCEntityRegistry implements IContentHandler
 {
     private static List<Dinosaur> dinosaurs = Lists.newArrayList();
 
-    public void init() {
+    public void init()
+    {
         registerDinosaur(new DinosaurSpinosaurus());
         registerDinosaur(new DinosaurVelociraptor());
     }
 
-    public void gameRegistry() throws Exception {
-        for (Dinosaur dino : dinosaurs) {
+    public void gameRegistry() throws Exception
+    {
+        for (Dinosaur dino : dinosaurs)
+        {
             registerEntity(dino);
         }
     }
 
-    public void registerEntity(Dinosaur dino) {
-        if (dino.shouldRegister()) {
+    public void registerEntity(Dinosaur dino)
+    {
+        if (dino.shouldRegister())
+        {
             Class<? extends EntityDinosaur> entityClass = dino.getDinosaurClass();
 
             int entityId = EntityRegistry.findGlobalUniqueEntityId();
@@ -39,25 +44,32 @@ public class JCEntityRegistry implements IContentHandler
         }
     }
 
-    public static void registerDinosaur(Dinosaur dino) {
+    public static void registerDinosaur(Dinosaur dino)
+    {
         dinosaurs.add(dino);
     }
 
-    public static Dinosaur getDinosaurById(int id) {
-        if (id > dinosaurs.size() - 1) {
+    public static Dinosaur getDinosaurById(int id)
+    {
+        if (id > dinosaurs.size() - 1)
+        {
             id = 0;
         }
 
         return dinosaurs.get(id);
     }
 
-    public static List<Dinosaur> getDinosaurs() {
+    public static List<Dinosaur> getDinosaurs()
+    {
         return dinosaurs;
     }
 
-    public static Dinosaur getDinosaurByClass(Class<? extends EntityDinosaur> clazz) {
-        for (Dinosaur dino : dinosaurs) {
-            if (dino.getDinosaurClass().equals(clazz)) {
+    public static Dinosaur getDinosaurByClass(Class<? extends EntityDinosaur> clazz)
+    {
+        for (Dinosaur dino : dinosaurs)
+        {
+            if (dino.getDinosaurClass().equals(clazz))
+            {
                 return dino;
             }
         }

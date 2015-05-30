@@ -5,8 +5,8 @@ import net.reuxertz.ecocraft.core.EcoResources;
 
 public class FlintPickaxe extends ItemPickaxe
 {
-	public FlintPickaxe()
-	{
-		super(EcoResources.ToolMaterialFlint);
-	}
+    public FlintPickaxe()
+    {
+        super(EcoResources.ToolMaterialFlint);
+    }
 }

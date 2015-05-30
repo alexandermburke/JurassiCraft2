@@ -23,6 +23,7 @@ public class Document extends Item implements IItem
 
         return null;
     }
+
     public String getItemStackDisplayName(ItemStack par1ItemStack)
     {
         String r = this._displayName;
@@ -42,11 +43,13 @@ public class Document extends Item implements IItem
                 changed = true;
             }
         }
-        if (!changed) {
+        if (!changed)
+        {
             r = r + " - empty";
         }
         return r;
     }
+
     public Document()
     {
         super();
@@ -61,7 +64,8 @@ public class Document extends Item implements IItem
 
         NBTTagCompound nbt = stack.getTagCompound();
         String id = IDObj.GetID(e.target, false);
-        if (id != null) {
+        if (id != null)
+        {
             nbt.setString("entityid", id);
             stack.setItemDamage(1);
         }

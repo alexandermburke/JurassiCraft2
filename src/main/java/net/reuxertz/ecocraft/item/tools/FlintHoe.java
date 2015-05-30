@@ -6,8 +6,8 @@ import net.reuxertz.ecocraft.core.EcoResources;
 
 public class FlintHoe extends ItemHoe
 {
-	public FlintHoe()
-	{
-		super(EcoResources.ToolMaterialFlint);
-	}
+    public FlintHoe()
+    {
+        super(EcoResources.ToolMaterialFlint);
+    }
 }

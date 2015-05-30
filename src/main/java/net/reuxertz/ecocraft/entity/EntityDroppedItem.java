@@ -18,7 +18,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityDroppedItem extends EntityAttached
 {
-    /** Chance for this item frame's item to drop from the frame. */
+    /**
+     * Chance for this item frame's item to drop from the frame.
+     */
     private float itemDropChance = 1.0F;
     private static final String __OBFID = "CL_00001547";
 
@@ -36,7 +38,7 @@ public class EntityDroppedItem extends EntityAttached
     protected void entityInit()
     {
         this.getDataWatcher().addObjectByDataType(8, 5);
-        this.getDataWatcher().addObject(9, Byte.valueOf((byte)0));
+        this.getDataWatcher().addObject(9, Byte.valueOf((byte) 0));
     }
 
     public float getCollisionBorderSize()
@@ -58,7 +60,7 @@ public class EntityDroppedItem extends EntityAttached
             if (!this.worldObj.isRemote)
             {
                 this.dropItemOrSelf(source.getEntity(), false);
-                this.setDisplayedItem((ItemStack)null);
+                this.setDisplayedItem((ItemStack) null);
             }
 
             return true;
@@ -107,7 +109,7 @@ public class EntityDroppedItem extends EntityAttached
 
             if (p_146065_1_ instanceof EntityPlayer)
             {
-                EntityPlayer entityplayer = (EntityPlayer)p_146065_1_;
+                EntityPlayer entityplayer = (EntityPlayer) p_146065_1_;
 
                 if (entityplayer.capabilities.isCreativeMode)
                 {
@@ -139,11 +141,11 @@ public class EntityDroppedItem extends EntityAttached
         {
             if (p_110131_1_.getItem() == Items.filled_map)
             {
-                MapData mapdata = ((ItemMap)p_110131_1_.getItem()).getMapData(p_110131_1_, this.worldObj);
+                MapData mapdata = ((ItemMap) p_110131_1_.getItem()).getMapData(p_110131_1_, this.worldObj);
                 mapdata.playersVisibleOnMap.remove("frame-" + this.getEntityId());
             }
 
-            p_110131_1_.setItemFrame((EntityItemFrame)null);
+            p_110131_1_.setItemFrame((EntityItemFrame) null);
         }
     }
 
@@ -190,7 +192,7 @@ public class EntityDroppedItem extends EntityAttached
 
     private void func_174865_a(int p_174865_1_, boolean p_174865_2_)
     {
-        this.getDataWatcher().updateObject(9, Byte.valueOf((byte)(p_174865_1_ % 8)));
+        this.getDataWatcher().updateObject(9, Byte.valueOf((byte) (p_174865_1_ % 8)));
 
         if (p_174865_2_ && this.hangingPosition != null)
         {
@@ -206,7 +208,7 @@ public class EntityDroppedItem extends EntityAttached
         if (this.getDisplayedItem() != null)
         {
             tagCompound.setTag("Item", this.getDisplayedItem().writeToNBT(new NBTTagCompound()));
-            tagCompound.setByte("ItemRotation", (byte)this.getRotation());
+            tagCompound.setByte("ItemRotation", (byte) this.getRotation());
             tagCompound.setFloat("ItemDropChance", this.itemDropChance);
         }
 
@@ -254,7 +256,7 @@ public class EntityDroppedItem extends EntityAttached
 
                 if (!playerIn.capabilities.isCreativeMode && --itemstack.stackSize <= 0)
                 {
-                    playerIn.inventory.setInventorySlotContents(playerIn.inventory.currentItem, (ItemStack)null);
+                    playerIn.inventory.setInventorySlotContents(playerIn.inventory.currentItem, (ItemStack) null);
                 }
             }
         }

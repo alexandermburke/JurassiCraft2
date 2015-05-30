@@ -2,6 +2,7 @@ package net.reuxertz.ecocraft.entity.ai;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import net.minecraft.entity.EntityCreature;
 import net.reuxertz.ecocraft.core.utils.CounterObj;
 
@@ -13,13 +14,15 @@ public class AICore
 
     public AINavigate GetAINavigate()
     {
-        return (AINavigate)GetAI(AINavigate.class);
+        return (AINavigate) GetAI(AINavigate.class);
     }
 
     public Object GetAI(Class AIClass)
     {
-        for (int i = 0; i < this._modules.size(); i++) {
-            if (AIClass.isInstance(this._modules.get(i))) {
+        for (int i = 0; i < this._modules.size(); i++)
+        {
+            if (AIClass.isInstance(this._modules.get(i)))
+            {
                 return this._modules.get(i);
             }
         }
@@ -32,8 +35,10 @@ public class AICore
 
     public void AddTask(int priority, AIBase AI)
     {
-        for (int i = 0; i < this._modules.size(); i++) {
-            if (AI.getClass().isInstance(this._modules.get(i))) {
+        for (int i = 0; i < this._modules.size(); i++)
+        {
+            if (AI.getClass().isInstance(this._modules.get(i)))
+            {
                 return;
             }
         }
@@ -50,11 +55,13 @@ public class AICore
 
     public void updateTask()
     {
-        if (!this._timer.updateMSTime(entity().worldObj.getWorldTime())) {
+        if (!this._timer.updateMSTime(entity().worldObj.getWorldTime()))
+        {
             return;
         }
         AINavigate aiNav = GetAINavigate();
-        if ((aiNav != null) && (!aiNav.Enabled())) {
+        if ((aiNav != null) && (!aiNav.Enabled()))
+        {
             aiNav.ActivateIdleWander(0.05D);
         }
         System.out.println("aiTick");

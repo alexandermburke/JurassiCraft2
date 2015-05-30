@@ -10,7 +10,6 @@ import net.minecraft.entity.EntityLivingBase;
 
 public class AnimationVelociraptor implements IModelAnimator
 {
-    public ChainBuffer tailBuffer = new ChainBuffer(5);
 
     @Override
     public void setRotationAngles(ModelJson model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
@@ -30,8 +29,6 @@ public class AnimationVelociraptor implements IModelAnimator
 //        limbSwingAmount = 0;
         float speed = 0.75F;
         float height = 2F * f1;
-
-        this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, (EntityLivingBase) entity);
 
         MowzieModelRenderer waist = model.getCube("body3");
         MowzieModelRenderer chest = model.getCube("body2");
@@ -199,6 +196,6 @@ public class AnimationVelociraptor implements IModelAnimator
         model.faceTarget(head, 2, rotationYaw, rotationPitch);
         model.faceTarget(neck1, 2, rotationYaw, rotationPitch);
 
-        tailBuffer.applyChainSwingBuffer(tailParts);
+        ((EntityVelociraptor) entity).tailBuffer.applyChainSwingBuffer(tailParts);
     }
 }

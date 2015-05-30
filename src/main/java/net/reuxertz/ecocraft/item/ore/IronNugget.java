@@ -5,12 +5,12 @@ import net.minecraft.creativetab.CreativeTabs;
 
 public class IronNugget extends Item
 {
-	public IronNugget()
-	{
-		super();
+    public IronNugget()
+    {
+        super();
 
-		this.setMaxStackSize(64);
-		this.setCreativeTab(CreativeTabs.tabMisc);
-	}
+        this.setMaxStackSize(64);
+        this.setCreativeTab(CreativeTabs.tabMisc);
+    }
 
 }

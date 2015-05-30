@@ -12,17 +12,19 @@ public class IDObj
     //Static Functions
     public static EntityCreature GetEntity(World w, String id)
     {
-        for (Object e: w.getLoadedEntityList()) {
+        for (Object e : w.getLoadedEntityList())
+        {
 
             if (!EntityCreature.class.isInstance(e))
                 continue;
 
-            if (IDObj.GetID((EntityCreature)e, true).equalsIgnoreCase(id))
-                return (EntityCreature)e;
+            if (IDObj.GetID((EntityCreature) e, true).equalsIgnoreCase(id))
+                return (EntityCreature) e;
         }
 
         return null;
     }
+
     public static String GetID(Entity e, boolean validate)
     {
         IDObj idobj = IDObj.ValidateIDObj(e, validate);
@@ -32,10 +34,12 @@ public class IDObj
 
         return idobj.GetID();
     }
+
     public static IDObj GenerateNewID(int length)
     {
         String s = "";
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < length; i++)
+        {
             int si = EcoCraft.RND.nextInt(IDObj.IDAlphabet.length());
             String ss = IDObj.IDAlphabet.substring(si, si + 1);
             s += ss;
@@ -43,6 +47,7 @@ public class IDObj
 
         return new IDObj(s);
     }
+
     public static IDObj InitializeNewID(Entity e)
     {
         NBTTagCompound nbt = e.getEntityData();
@@ -51,9 +56,11 @@ public class IDObj
 
         return idobj;
     }
+
     public static IDObj ValidateIDObj(Entity e, boolean createNew)
     {
-        if (!e.getEntityData().hasKey((IdField))) {
+        if (!e.getEntityData().hasKey((IdField)))
+        {
             if (createNew)
                 return IDObj.InitializeNewID(e);
             else
@@ -73,10 +80,12 @@ public class IDObj
     {
         nbt.setString(IdField, inst.GetID());
     }
+
     public void WriteToNBT(NBTTagCompound nbt)
     {
         IDObj.WriteToNBT(nbt, this);
     }
+
     public static IDObj ReadIDFromNBT(NBTTagCompound nbt)
     {
         if (!nbt.hasKey(IdField))
@@ -91,10 +100,12 @@ public class IDObj
     {
         return this._id;
     }
+
     protected IDObj(NBTTagCompound nbt)
     {
         this._id = nbt.getString(IdField);
     }
+
     protected IDObj(String id)
     {
         this._id = id;

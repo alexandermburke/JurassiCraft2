@@ -6,8 +6,8 @@ import net.reuxertz.ecocraft.core.EcoResources;
 
 public class FlintShovel extends ItemSpade
 {
-	public FlintShovel()
-	{
-		super(EcoResources.ToolMaterialFlint);
-	}
+    public FlintShovel()
+    {
+        super(EcoResources.ToolMaterialFlint);
+    }
 }

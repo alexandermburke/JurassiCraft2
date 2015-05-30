@@ -12,17 +12,18 @@ import net.minecraftforge.event.world.BlockEvent;
 import java.util.Arrays;
 import java.util.List;
 
-public class EcoResources {
+public class EcoResources
+{
 
     //Tool Materials
     public static final Item.ToolMaterial ToolMaterialFlint = EnumHelper.addToolMaterial("FLINT", 1, 131, 4.0F, 1, 26);
 
     //Earth Drop Fields
     private static List<Block> _earthDropBlocks = Arrays.asList(Blocks.dirt, Blocks.grass, Blocks.sand, Blocks.gravel,
-            Blocks.sandstone, Blocks.stone );
+            Blocks.sandstone, Blocks.stone);
     private static List<ItemStack> _earthDrops = Arrays.asList(
             new ItemStack(Items.flint), new ItemStack(EcoRegistry.ironNugget), new ItemStack(Items.gold_nugget),
-            new ItemStack(EcoRegistry.diamondShard),  new ItemStack(EcoRegistry.emeraldShard) );
+            new ItemStack(EcoRegistry.diamondShard), new ItemStack(EcoRegistry.emeraldShard));
     private static double _earthDropConstant = .055;
     private static List<Double> _earthDropProbs = Arrays.asList(1.0, 0.1, 0.01, 0.005, 0.001);
 
@@ -32,10 +33,12 @@ public class EcoResources {
         if (!EcoResources._earthDropBlocks.contains(b))
             EcoResources._earthDropBlocks.add(b);
     }
+
     public static void RegisterItemAsEarthDrop(ItemStack is)
     {
-        EcoResources.RegisterItemAsEarthDrop(is , false);
+        EcoResources.RegisterItemAsEarthDrop(is, false);
     }
+
     public static void RegisterItemAsEarthDrop(ItemStack is, boolean override)
     {
         if (!override)
@@ -45,6 +48,7 @@ public class EcoResources {
 
         EcoResources._earthDrops.add(is);
     }
+
     public static void HandleRandomEarthDrops(BlockEvent.HarvestDropsEvent e)
     {
         Block broken = e.state.getBlock();
@@ -52,7 +56,7 @@ public class EcoResources {
         for (int i = 0; i < EcoResources._earthDropBlocks.size(); i++)
             if (broken == EcoResources._earthDropBlocks.get(i))
             {
-               cont = true;
+                cont = true;
                 break;
             }
 

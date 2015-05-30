@@ -41,14 +41,14 @@ public class BlockStack extends Block
 
     public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
     {
-        return ((Integer)worldIn.getBlockState(pos).getValue(LAYERS)).intValue() < 5;
+        return ((Integer) worldIn.getBlockState(pos).getValue(LAYERS)).intValue() < 5;
     }
 
     public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
     {
-        int i = ((Integer)state.getValue(LAYERS)).intValue() - 1;
+        int i = ((Integer) state.getValue(LAYERS)).intValue() - 1;
         float f = 0.125F;
-        return new AxisAlignedBB((double)pos.getX() + this.minX, (double)pos.getY() + this.minY, (double)pos.getZ() + this.minZ, (double)pos.getX() + this.maxX, (double)((float)pos.getY() + (float)i * f), (double)pos.getZ() + this.maxZ);
+        return new AxisAlignedBB((double) pos.getX() + this.minX, (double) pos.getY() + this.minY, (double) pos.getZ() + this.minZ, (double) pos.getX() + this.maxX, (double) ((float) pos.getY() + (float) i * f), (double) pos.getZ() + this.maxZ);
     }
 
     public boolean isOpaqueCube()
@@ -72,19 +72,19 @@ public class BlockStack extends Block
     public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
     {
         IBlockState iblockstate = worldIn.getBlockState(pos);
-        this.getBoundsForLayers(((Integer)iblockstate.getValue(LAYERS)).intValue());
+        this.getBoundsForLayers(((Integer) iblockstate.getValue(LAYERS)).intValue());
     }
 
     protected void getBoundsForLayers(int p_150154_1_)
     {
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, (float)p_150154_1_ / 8.0F, 1.0F);
+        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, (float) p_150154_1_ / 8.0F, 1.0F);
     }
 
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
     {
         IBlockState iblockstate = worldIn.getBlockState(pos.down());
         Block block = iblockstate.getBlock();
-        return block != Blocks.ice && block != Blocks.packed_ice ? (block.isLeaves(worldIn, pos.down()) ? true : (block == this && ((Integer)iblockstate.getValue(LAYERS)).intValue() == 7 ? true : block.isOpaqueCube() && block.getMaterial().blocksMovement())) : false;
+        return block != Blocks.ice && block != Blocks.packed_ice ? (block.isLeaves(worldIn, pos.down()) ? true : (block == this && ((Integer) iblockstate.getValue(LAYERS)).intValue() == 7 ? true : block.isOpaqueCube() && block.getMaterial().blocksMovement())) : false;
     }
 
     /**
@@ -159,7 +159,7 @@ public class BlockStack extends Block
      */
     public boolean isReplaceable(World worldIn, BlockPos pos)
     {
-        return ((Integer)worldIn.getBlockState(pos).getValue(LAYERS)).intValue() == 1;
+        return ((Integer) worldIn.getBlockState(pos).getValue(LAYERS)).intValue() == 1;
     }
 
     /**
@@ -167,13 +167,17 @@ public class BlockStack extends Block
      */
     public int getMetaFromState(IBlockState state)
     {
-        return ((Integer)state.getValue(LAYERS)).intValue() - 1;
+        return ((Integer) state.getValue(LAYERS)).intValue() - 1;
     }
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {LAYERS});
+        return new BlockState(this, new IProperty[]{LAYERS});
     }
 
-    @Override public int quantityDropped(IBlockState state, int fortune, Random random){ return ((Integer)state.getValue(LAYERS)) + 1; }
+    @Override
+    public int quantityDropped(IBlockState state, int fortune, Random random)
+    {
+        return ((Integer) state.getValue(LAYERS)) + 1;
+    }
 }

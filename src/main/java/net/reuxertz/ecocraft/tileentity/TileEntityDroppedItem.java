@@ -23,6 +23,7 @@ public class TileEntityDroppedItem extends TileEntity
 
         nbt.setTag("droppedItem", this._myDroppedItem.writeToNBT(new NBTTagCompound()));
     }
+
     @Override
     public void readFromNBT(NBTTagCompound nbt)
     {
@@ -30,7 +31,8 @@ public class TileEntityDroppedItem extends TileEntity
 
         if (nbt.hasKey("droppedItem"))
             this._myDroppedItem.loadItemStackFromNBT(nbt.getCompoundTag("droppedItem"));
-        else {
+        else
+        {
             this.worldObj.removeTileEntity(this.pos);
             this.worldObj.destroyBlock(this.pos, false);
             this.markDirty();

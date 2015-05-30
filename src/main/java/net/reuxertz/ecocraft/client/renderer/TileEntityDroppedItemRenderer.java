@@ -17,14 +17,16 @@ public class TileEntityDroppedItemRenderer extends TileEntitySpecialRenderer
     RenderManager renderManager;
     RenderItem renderItem;
 
-    public TileEntityDroppedItemRenderer() {
+    public TileEntityDroppedItemRenderer()
+    {
     }
+
     @Override
     public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale, int n)
     {
         if (stack == null)
         {
-            stack = ((TileEntityDroppedItem)te).getDroppedItem();
+            stack = ((TileEntityDroppedItem) te).getDroppedItem();
             entItem = new EntityItem(Minecraft.getMinecraft().theWorld, 0D, 0D, 0D, stack);
         }
 

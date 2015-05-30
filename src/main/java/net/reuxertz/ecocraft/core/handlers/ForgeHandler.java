@@ -40,7 +40,7 @@ public class ForgeHandler
         boolean isVillager = EntityVillager.class.isInstance(e.entity);
 
         if (isAnimal)
-            EntityAICreature.ConstructAIEntity((EntityCreature)e.entity);
+            EntityAICreature.ConstructAIEntity((EntityCreature) e.entity);
 
         if (!AllowMonstersInUpperOverworld && isMonster && e.entity.posY > MonstersUpperOverworldThreshold)
             e.setCanceled(true);
@@ -63,6 +63,7 @@ public class ForgeHandler
 
         return;
     }
+
     @SubscribeEvent
     public void onPlayerInteractEvent(PlayerInteractEvent e)
     {
@@ -92,7 +93,8 @@ public class ForgeHandler
 
     //Block Drop Events
     @SubscribeEvent
-    public void onHarvestDropsEvent(BlockEvent.HarvestDropsEvent dropEvent) {
+    public void onHarvestDropsEvent(BlockEvent.HarvestDropsEvent dropEvent)
+    {
 
         boolean remote = dropEvent.world.isRemote;
         if (remote)

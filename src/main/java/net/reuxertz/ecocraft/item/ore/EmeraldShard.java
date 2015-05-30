@@ -5,12 +5,12 @@ import net.minecraft.creativetab.CreativeTabs;
 
 public class EmeraldShard extends Item
 {
-	public EmeraldShard()
-	{
-		super();
+    public EmeraldShard()
+    {
+        super();
 
-		this.setMaxStackSize(64);
-		this.setCreativeTab(CreativeTabs.tabMisc);
-	}
+        this.setMaxStackSize(64);
+        this.setCreativeTab(CreativeTabs.tabMisc);
+    }
 
 }

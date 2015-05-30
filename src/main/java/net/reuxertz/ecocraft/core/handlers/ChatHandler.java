@@ -49,12 +49,14 @@ public class ChatHandler
     {
         if (ss.size() >= 3 && ss.get(1).equals("debug"))
         {
-            if (ss.get(2).equals("true")) {
+            if (ss.get(2).equals("true"))
+            {
                 ep.addChatMessage(new ChatComponentTranslation("AINow debug-mode enabled"));
                 JurassiCraft.debug = true;
                 return true;
             }
-            if (ss.get(2).equals("false")) {
+            if (ss.get(2).equals("false"))
+            {
                 ep.addChatMessage(new ChatComponentTranslation("AINow debug-mode disabled"));
                 JurassiCraft.debug = false;
                 return true;

@@ -77,7 +77,7 @@ public class DinosaurVelociraptor extends Dinosaur
     {
         return 0.60;
     }
-    
+
     public double getAttackSpeed()
     {
         return 1.20;

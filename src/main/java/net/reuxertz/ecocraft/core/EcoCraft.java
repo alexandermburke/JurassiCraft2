@@ -19,7 +19,7 @@ import net.reuxertz.ecocraft.core.proxy.ClientProxy;
 import net.reuxertz.ecocraft.core.proxy.ServerProxy;
 import net.reuxertz.ecocraft.generator.EcoOreGenerator;
 
-@Mod(modid="ecocraft", name="EcoCraft", version="beta")
+@Mod(modid = "ecocraft", name = "EcoCraft", version = "beta")
 public class EcoCraft
 {
     public static final String ModID = "ecocraft";
@@ -31,6 +31,7 @@ public class EcoCraft
     public static ServerProxy proxy;
 
     public static EcoRegistry ItemRegistry = new EcoRegistry();
+
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent e)
     {
@@ -54,7 +55,6 @@ public class EcoCraft
         GameRegistry.registerWorldGenerator(new EcoOreGenerator(), 1);
 
 
-
     }
 
     @Mod.EventHandler
@@ -65,10 +65,12 @@ public class EcoCraft
     }
 
     @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent e) {
+    public void postInit(FMLPostInitializationEvent e)
+    {
 
         //This is where IContentHandler postinit function should run
-        if (ClientProxy.class.isInstance(proxy)) {
+        if (ClientProxy.class.isInstance(proxy))
+        {
             RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
             ItemModelMesher itemModelMesher = renderItem.getItemModelMesher();
 
