@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.block.BlockEncasedFossil;
 import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
+import net.ilexiconn.jurassicraft.dinosaur.DinosaurRugops;
 import net.ilexiconn.jurassicraft.dinosaur.DinosaurSpinosaurus;
 import net.ilexiconn.jurassicraft.dinosaur.DinosaurVelociraptor;
 import net.ilexiconn.llibrary.common.content.IContentHandler;
@@ -21,6 +22,7 @@ public class JCEntityRegistry implements IContentHandler
     {
         registerDinosaur(new DinosaurSpinosaurus());
         registerDinosaur(new DinosaurVelociraptor());
+        registerDinosaur(new DinosaurRugops());
     }
 
     public void gameRegistry() throws Exception

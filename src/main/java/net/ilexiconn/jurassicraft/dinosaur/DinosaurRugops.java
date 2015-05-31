@@ -1,29 +1,28 @@
 package net.ilexiconn.jurassicraft.dinosaur;
 
-import net.ilexiconn.jurassicraft.block.BlockEncasedFossil;
-import net.ilexiconn.jurassicraft.client.model.animation.AnimationSpinosaurus;
-import net.ilexiconn.jurassicraft.entity.EntitySpinosaurus;
+import net.ilexiconn.jurassicraft.client.model.animation.AnimationRugops;
+import net.ilexiconn.jurassicraft.entity.EntityRugops;
 import net.ilexiconn.jurassicraft.entity.base.EntityDinosaur;
 import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
 import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.minecraft.client.model.ModelBase;
 
-public class DinosaurSpinosaurus extends Dinosaur
+public class DinosaurRugops extends Dinosaur
 {
     private IModelAnimator animator;
     private String[] maleTextures;
     private String[] femaleTextures;
     private ModelJson model;
 
-    public DinosaurSpinosaurus()
+    public DinosaurRugops()
     {
-        this.animator = new AnimationSpinosaurus();
-        this.maleTextures = new String[]{"jurassicraft:textures/entities/spinosaurus/spinosaurus_male.png"};
-        this.femaleTextures = new String[]{"jurassicraft:textures/entities/spinosaurus/spinosaurus_female.png"};
+        this.animator = new AnimationRugops();
+        this.maleTextures = new String[]{"jurassicraft:textures/entities/rugops/rugops_male.png"};
+        this.femaleTextures = new String[]{"jurassicraft:textures/entities/rugops/rugops_female.png"};
 
         try
         {
-            this.model = getTabulaModel("/assets/jurassicraft/models/entities/spinosaurus");
+            this.model = getTabulaModel("/assets/jurassicraft/models/entities/rugops");
         }
         catch (Exception e)
         {
@@ -36,19 +35,13 @@ public class DinosaurSpinosaurus extends Dinosaur
     @Override
     public String getName()
     {
-        return "Spinosaurus";
+        return "Rugops";
     }
 
     @Override
     public Class<? extends EntityDinosaur> getDinosaurClass()
     {
-        return EntitySpinosaurus.class;
-    }
-
-    @Override
-    public int getPeriod()
-    {
-        return BlockEncasedFossil.EnumTimePeriod.CRETACEOUS.getMetadata();
+        return EntityRugops.class;
     }
 
     @Override
@@ -87,10 +80,7 @@ public class DinosaurSpinosaurus extends Dinosaur
     }
 
     @Override
-    public double getAdultSpeed()
-    {
-        return 0.80;
-    }
+    public double getAdultSpeed() { return 0.80; }
 
     @Override
     public double getBabyStrength()
