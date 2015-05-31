@@ -1,5 +1,8 @@
 package net.ilexiconn.jurassicraft.tileentity;
 
+import net.ilexiconn.jurassicraft.entity.base.JCEntityRegistry;
+import net.ilexiconn.jurassicraft.item.ItemEncasedFossil;
+import net.ilexiconn.jurassicraft.item.JCItemRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -8,14 +11,14 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IChatComponent;
 
-public class TileCleaningStation extends TileEntity implements IUpdatePlayerListBox, ISidedInventory
+public class TileCleaningStation extends TileEntity implements ISidedInventory
 {
 
     private ItemStack[] slots = new ItemStack[7];
@@ -28,10 +31,44 @@ public class TileCleaningStation extends TileEntity implements IUpdatePlayerList
 
     }
 
-    @Override
-    public void update()
+    /**
+     * Returns if the player can clean an encased fossil before removing the ones on the table
+     */
+    public boolean canCleanFossil()
     {
+        for (int slot : slotFossil)
+            if (slots[slot] == null)
+                return true;
+        return false;
+    }
 
+    /**
+     * Returns if the player can clean a fossil before removing the ones on the table
+     */
+    public void cleanFossil()
+    {
+        ItemStack encasedFossil = slots[0];
+        if (encasedFossil != null && encasedFossil.getItem() instanceof ItemEncasedFossil)
+        {
+            ItemStack fossil = new ItemStack(JCItemRegistry.fossil);
+            int periodID = encasedFossil.getMetadata();
+            int dinosaurID = this.worldObj.rand.nextInt(JCEntityRegistry.getDinosaursFromPeriod(periodID).size());
+            fossil.setItemDamage(dinosaurID);
+
+            for (int slot : slotFossil)
+                if (slots[slot] == fossil)
+                {
+                    slots[slot].stackSize++;
+                    return;
+                }
+
+            for (int slot : slotFossil)
+                if (slots[slot] == null)
+                {
+                    slots[slot] = fossil;
+                    return;
+                }
+        }
     }
 
     @Override
@@ -214,7 +251,6 @@ public class TileCleaningStation extends TileEntity implements IUpdatePlayerList
     @Override
     public void readFromNBT(NBTTagCompound compound)
     {
-
         super.readFromNBT(compound);
 
         NBTTagList nbttaglist = compound.getTagList("Items", 10);

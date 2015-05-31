@@ -4,12 +4,14 @@ import com.google.common.collect.Maps;
 import net.ilexiconn.jurassicraft.block.JCBlockRegistry;
 import net.ilexiconn.jurassicraft.client.render.entity.RenderDinosaur;
 import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
+import net.ilexiconn.jurassicraft.entity.base.JCEntityRegistry;
 import net.ilexiconn.jurassicraft.item.JCItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
@@ -56,6 +58,7 @@ public class ClientProxy extends ServerProxy
         this.registerItemRenderer(itemModelMesher, JCItemRegistry.plaster_and_bandage, "jurassicraft:item_plaster_and_bandage", "inventory");
         this.registerItemRenderer(itemModelMesher, JCItemRegistry.spawn_egg, "jurassicraft:item_dino_spawn_egg", "inventory");
         this.registerItemRenderer(itemModelMesher, JCItemRegistry.fossil, "jurassicraft:item_fossil", "inventory");
+        //this.registerFossilRenderer(itemModelMesher);
 
         //Blocks
         this.registerBlockRenderer(itemModelMesher, JCBlockRegistry.fossil, "jurassicraft:block_fossil", "inventory");
@@ -81,6 +84,19 @@ public class ClientProxy extends ServerProxy
                 return new ModelResourceLocation(path, type);
             }
         });
+    }
+
+    /**
+     * Registers all fossils
+     */
+    public void registerFossilRenderer(ItemModelMesher itemModelMesher)
+    {
+        int metadata = 0;
+        for (final Dinosaur dinosaur : JCEntityRegistry.getDinosaurs())
+        {
+            Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(JCItemRegistry.fossil, metadata, new ModelResourceLocation("jurassicraft:item_fossil_" + dinosaur.getName().replace(" ", "_").toLowerCase(), "inventory"));
+            metadata++;
+        }
     }
 
     /**

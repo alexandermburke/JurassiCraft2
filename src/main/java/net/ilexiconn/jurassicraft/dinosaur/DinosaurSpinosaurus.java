@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.dinosaur;
 
+import net.ilexiconn.jurassicraft.block.BlockEncasedFossil;
 import net.ilexiconn.jurassicraft.client.model.animation.AnimationSpinosaurus;
 import net.ilexiconn.jurassicraft.entity.EntitySpinosaurus;
 import net.ilexiconn.jurassicraft.entity.base.EntityDinosaur;
@@ -42,6 +43,12 @@ public class DinosaurSpinosaurus extends Dinosaur
     public Class<? extends EntityDinosaur> getDinosaurClass()
     {
         return EntitySpinosaurus.class;
+    }
+
+    @Override
+    public int getPeriod()
+    {
+        return BlockEncasedFossil.EnumTimePeriod.CRETACEOUS.getMetadata();
     }
 
     @Override

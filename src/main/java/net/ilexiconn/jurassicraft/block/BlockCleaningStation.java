@@ -1,15 +1,18 @@
 package net.ilexiconn.jurassicraft.block;
 
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.tileentity.TileCleaningStation;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -64,8 +67,42 @@ public class BlockCleaningStation extends BlockOriented
     }
 
     @Override
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
+    {
+        if (world.isRemote)
+        {
+            System.out.println("Hello0");
+            return true;
+        }
+        else if (!player.isSneaking())
+        {
+            System.out.println("Hello1");
+            TileEntity tileEntity = world.getTileEntity(pos);
+            if (tileEntity instanceof TileCleaningStation)
+            {
+                System.out.println("Hello2");
+                TileCleaningStation cleaningStation = (TileCleaningStation) tileEntity;
+                if (cleaningStation.isUseableByPlayer(player))
+                {
+                    System.out.println("Hello3");
+                    player.openGui(JurassiCraft.instance, 0, world, pos.getX(), pos.getY(), pos.getZ());
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
     public TileEntity createNewTileEntity(World worldIn, int meta)
     {
-        return new TileCleaningStation();
+        try
+        {
+            return new TileCleaningStation();
+        }
+        catch (Exception e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 }

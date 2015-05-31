@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.dinosaur;
 
+import net.ilexiconn.jurassicraft.block.BlockEncasedFossil;
 import net.ilexiconn.jurassicraft.client.model.animation.AnimationVelociraptor;
 import net.ilexiconn.jurassicraft.entity.EntityVelociraptor;
 import net.ilexiconn.jurassicraft.entity.base.EntityDinosaur;
@@ -40,6 +41,12 @@ public class DinosaurVelociraptor extends Dinosaur
     public Class<? extends EntityDinosaur> getDinosaurClass()
     {
         return EntityVelociraptor.class;
+    }
+
+    @Override
+    public int getPeriod()
+    {
+        return BlockEncasedFossil.EnumTimePeriod.CRETACEOUS.getMetadata();
     }
 
     @Override

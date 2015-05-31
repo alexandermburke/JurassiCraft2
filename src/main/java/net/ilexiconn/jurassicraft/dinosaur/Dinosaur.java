@@ -26,6 +26,8 @@ public abstract class Dinosaur
 
     public abstract int getEggPrimaryColor();
 
+    public abstract int getPeriod();
+
     public abstract int getEggSecondaryColor();
 
     public abstract double getBabyHealth();

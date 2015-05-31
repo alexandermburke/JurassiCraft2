@@ -49,6 +49,7 @@ tile.block_embryo_insemination_machine.name=Embryo Insemination Machine
 
 //Containers ==================================================
 container.cleaning_station=Cleaning Station
+container.cleaning_station.cleanFossilButton=Clean Fossil
 container.fossil_grinder=Fossil Grinder
 container.dna_sequencer=DNA Sequencer
 container.dna_synthesizer=DNA Synthesizer
