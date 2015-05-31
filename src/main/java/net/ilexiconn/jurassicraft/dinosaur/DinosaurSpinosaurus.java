@@ -76,7 +76,7 @@ public class DinosaurSpinosaurus extends Dinosaur
 
     public double getAttackSpeed()
     {
-        return 0.70;
+        return 0.50;
     }
 
     @Override
