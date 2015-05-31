@@ -10,14 +10,17 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
-public class GuiFossilGrinder extends GuiContainer {
+public class GuiFossilGrinder extends GuiContainer
+{
 
     private TileFossilGrinder fossilGrinder;
     private ResourceLocation texture = new ResourceLocation("jurassicraft:textures/gui/gui_fossil_grinder.png");
 
-    public GuiFossilGrinder(InventoryPlayer inventoryPlayer, TileEntity tileEntity) {
+    public GuiFossilGrinder(InventoryPlayer inventoryPlayer, TileEntity tileEntity)
+    {
         super(new ContainerFossilGrinder(inventoryPlayer, tileEntity));
-        if (tileEntity instanceof TileFossilGrinder) {
+        if (tileEntity instanceof TileFossilGrinder)
+        {
             fossilGrinder = (TileFossilGrinder) tileEntity;
             this.xSize = 176;
             this.ySize = 188;
@@ -25,18 +28,21 @@ public class GuiFossilGrinder extends GuiContainer {
     }
 
     @Override
-    public void onGuiClosed() {
+    public void onGuiClosed()
+    {
         super.onGuiClosed();
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(int i, int j) {
+    protected void drawGuiContainerForegroundLayer(int i, int j)
+    {
         String name = StatCollector.translateToLocal(fossilGrinder.getName());
         this.fontRendererObj.drawString(name, xSize / 2 - this.fontRendererObj.getStringWidth(name) / 2, 5, 4210752);
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3) {
+    protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3)
+    {
         GL11.glColor4f(1F, 1F, 1F, 1F);
         Minecraft.getMinecraft().getTextureManager().bindTexture(texture);
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);

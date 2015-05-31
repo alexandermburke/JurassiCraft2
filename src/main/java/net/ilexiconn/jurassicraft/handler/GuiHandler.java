@@ -9,14 +9,18 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 
-public class GuiHandler implements IGuiHandler {
+public class GuiHandler implements IGuiHandler
+{
 
     @Override
-    public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
+    public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z)
+    {
         BlockPos pos = new BlockPos(x, y, z);
         TileEntity tileEntity = world.getTileEntity(pos);
-        if (tileEntity != null) {
-            if (tileEntity instanceof TileCleaningStation) {
+        if (tileEntity != null)
+        {
+            if (tileEntity instanceof TileCleaningStation)
+            {
                 return new ContainerCleaningStation(player.inventory, tileEntity);
             }
         }
@@ -24,11 +28,14 @@ public class GuiHandler implements IGuiHandler {
     }
 
     @Override
-    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
+    {
         BlockPos pos = new BlockPos(x, y, z);
         TileEntity tileEntity = world.getTileEntity(pos);
-        if (tileEntity != null) {
-            if (tileEntity instanceof TileCleaningStation) {
+        if (tileEntity != null)
+        {
+            if (tileEntity instanceof TileCleaningStation)
+            {
                 return new GuiCleaningStation(player.inventory, tileEntity);
             }
         }

@@ -15,77 +15,95 @@ import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IChatComponent;
 
-public class TileFossilGrinder extends TileEntity implements IUpdatePlayerListBox, ISidedInventory {
+public class TileFossilGrinder extends TileEntity implements IUpdatePlayerListBox, ISidedInventory
+{
 
     private ItemStack[] slots = new ItemStack[1];
     private static final int[] slotFossilBlock = new int[]{0};
 
     private String tileCustomName;
 
-    public TileFossilGrinder() {
+    public TileFossilGrinder()
+    {
 
     }
 
     @Override
-    public void update() {
+    public void update()
+    {
 
     }
 
     @Override
-    public int[] getSlotsForFace(EnumFacing side) {
+    public int[] getSlotsForFace(EnumFacing side)
+    {
         return this.slotFossilBlock;
     }
 
     @Override
-    public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction) {
+    public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction)
+    {
         return false;
     }
 
     @Override
-    public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
+    public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction)
+    {
         return false;
     }
 
     @Override
-    public int getSizeInventory() {
+    public int getSizeInventory()
+    {
         return this.slots.length;
     }
 
     @Override
-    public ItemStack getStackInSlot(int index) {
+    public ItemStack getStackInSlot(int index)
+    {
         return this.slots[index];
     }
 
     @Override
-    public ItemStack decrStackSize(int index, int count) {
-        if (this.slots[index] != null) {
+    public ItemStack decrStackSize(int index, int count)
+    {
+        if (this.slots[index] != null)
+        {
             ItemStack itemstack;
-            if (this.slots[index].stackSize <= count) {
+            if (this.slots[index].stackSize <= count)
+            {
                 itemstack = this.slots[index];
                 this.slots[index] = null;
                 return itemstack;
-            } else {
+            }
+            else
+            {
                 itemstack = this.slots[index].splitStack(count);
                 if (this.slots[index].stackSize == 0)
                     this.slots[index] = null;
                 return itemstack;
             }
-        } else
+        }
+        else
             return null;
     }
 
     @Override
-    public ItemStack getStackInSlotOnClosing(int index) {
-        if (this.slots[index] != null) {
+    public ItemStack getStackInSlotOnClosing(int index)
+    {
+        if (this.slots[index] != null)
+        {
             ItemStack itemstack = this.slots[index];
             this.slots[index] = null;
             return itemstack;
-        } else
+        }
+        else
             return null;
     }
 
     @Override
-    public void setInventorySlotContents(int index, ItemStack stack) {
+    public void setInventorySlotContents(int index, ItemStack stack)
+    {
         boolean flag = stack != null && stack.isItemEqual(this.slots[index]) && ItemStack.areItemStackTagsEqual(stack, this.slots[index]);
         this.slots[index] = stack;
 
@@ -94,77 +112,93 @@ public class TileFossilGrinder extends TileEntity implements IUpdatePlayerListBo
     }
 
     @Override
-    public int getInventoryStackLimit() {
+    public int getInventoryStackLimit()
+    {
         return 64;
     }
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer player) {
+    public boolean isUseableByPlayer(EntityPlayer player)
+    {
         return this.worldObj.getTileEntity(this.pos) != this && player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
     }
 
     @Override
-    public void openInventory(EntityPlayer player) {
+    public void openInventory(EntityPlayer player)
+    {
 
     }
 
     @Override
-    public void closeInventory(EntityPlayer player) {
+    public void closeInventory(EntityPlayer player)
+    {
 
     }
 
     @Override
-    public boolean isItemValidForSlot(int index, ItemStack stack) {
+    public boolean isItemValidForSlot(int index, ItemStack stack)
+    {
         return false;
     }
 
     @Override
-    public int getField(int id) {
+    public int getField(int id)
+    {
         return 0;
     }
 
     @Override
-    public void setField(int id, int value) {
+    public void setField(int id, int value)
+    {
 
     }
 
     @Override
-    public int getFieldCount() {
+    public int getFieldCount()
+    {
         return 0;
     }
 
     @Override
-    public void clear() {
+    public void clear()
+    {
         for (int i = 0; i < this.slots.length; i++)
             this.slots[i] = null;
     }
 
     @Override
-    public String getName() {
+    public String getName()
+    {
         return this.hasCustomName() ? this.tileCustomName : "container.cleaning_station";
     }
 
     @Override
-    public boolean hasCustomName() {
+    public boolean hasCustomName()
+    {
         return this.tileCustomName != null && this.tileCustomName.length() > 0;
     }
 
-    public void setCustomInventoryName(String name) {
+    public void setCustomInventoryName(String name)
+    {
         this.tileCustomName = name;
     }
 
     @Override
-    public IChatComponent getDisplayName() {
+    public IChatComponent getDisplayName()
+    {
         return (IChatComponent) (this.hasCustomName() ? new ChatComponentText(this.getName()) : new ChatComponentTranslation(this.getName(), new Object[0]));
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound compound) {
+    public void writeToNBT(NBTTagCompound compound)
+    {
         super.writeToNBT(compound);
 
         NBTTagList nbttaglist = new NBTTagList();
-        for (int i = 0; i < this.slots.length; ++i) {
-            if (this.slots[i] != null) {
+        for (int i = 0; i < this.slots.length; ++i)
+        {
+            if (this.slots[i] != null)
+            {
                 NBTTagCompound nbttagcompound1 = new NBTTagCompound();
                 nbttagcompound1.setByte("Slot", (byte) i);
                 this.slots[i].writeToNBT(nbttagcompound1);
@@ -178,13 +212,15 @@ public class TileFossilGrinder extends TileEntity implements IUpdatePlayerListBo
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound compound) {
+    public void readFromNBT(NBTTagCompound compound)
+    {
 
         super.readFromNBT(compound);
 
         NBTTagList nbttaglist = compound.getTagList("Items", 10);
         this.slots = new ItemStack[this.getSizeInventory()];
-        for (int i = 0; i < nbttaglist.tagCount(); ++i) {
+        for (int i = 0; i < nbttaglist.tagCount(); ++i)
+        {
             NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
             byte b0 = nbttagcompound1.getByte("Slot");
             if (b0 >= 0 && b0 < this.slots.length)
@@ -196,14 +232,16 @@ public class TileFossilGrinder extends TileEntity implements IUpdatePlayerListBo
     }
 
     @Override
-    public Packet getDescriptionPacket() {
+    public Packet getDescriptionPacket()
+    {
         NBTTagCompound compound = new NBTTagCompound();
         this.writeToNBT(compound);
         return new S35PacketUpdateTileEntity(this.pos, this.getBlockMetadata(), compound);
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet)
+    {
         NBTTagCompound compound = packet.getNbtCompound();
         this.readFromNBT(compound);
     }

@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.dinosaur;
 
+import net.ilexiconn.jurassicraft.block.BlockEncasedFossil;
 import net.ilexiconn.jurassicraft.client.model.animation.AnimationRugops;
 import net.ilexiconn.jurassicraft.entity.EntityRugops;
 import net.ilexiconn.jurassicraft.entity.base.EntityDinosaur;
@@ -51,6 +52,12 @@ public class DinosaurRugops extends Dinosaur
     }
 
     @Override
+    public int getPeriod()
+    {
+        return BlockEncasedFossil.EnumTimePeriod.CRETACEOUS.getMetadata();
+    }
+
+    @Override
     public int getEggSecondaryColor()
     {
         return 0x403F31;
@@ -80,7 +87,10 @@ public class DinosaurRugops extends Dinosaur
     }
 
     @Override
-    public double getAdultSpeed() { return 0.80; }
+    public double getAdultSpeed()
+    {
+        return 0.80;
+    }
 
     @Override
     public double getBabyStrength()
