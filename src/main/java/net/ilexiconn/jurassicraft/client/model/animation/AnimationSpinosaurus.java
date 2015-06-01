@@ -29,11 +29,11 @@ public class AnimationSpinosaurus implements IModelAnimator
         MowzieModelRenderer rightCalf2 = model.getCube("Right Calf 2");
         MowzieModelRenderer rightFoot = model.getCube("Foot Right");
 
-        // left feet
-        MowzieModelRenderer leftThigh = model.getCube("Left Thigh");
-        MowzieModelRenderer leftCalf = model.getCube("Left Calf 1");
-        MowzieModelRenderer leftCalf2 = model.getCube("Left Calf 2");
-        MowzieModelRenderer leftFoot = model.getCube("Foot Left");
+        // LEFT feet
+        MowzieModelRenderer LEFTThigh = model.getCube("Left Thigh");
+        MowzieModelRenderer LEFTCalf = model.getCube("Left Calf 1");
+        MowzieModelRenderer LEFTCalf2 = model.getCube("Left Calf 2");
+        MowzieModelRenderer LEFTFoot = model.getCube("Foot Left");
 
         // neck
         MowzieModelRenderer neck1 = model.getCube("Neck 1");
@@ -54,7 +54,7 @@ public class AnimationSpinosaurus implements IModelAnimator
         MowzieModelRenderer lowerArmRight = model.getCube("Lower Arm Right");
 
         // hands
-        MowzieModelRenderer handLeft = model.getCube("hand left");
+        MowzieModelRenderer handLeft = model.getCube("hand LEFT");
         MowzieModelRenderer handRight = model.getCube("hand right");
 
         // tail
@@ -78,20 +78,20 @@ public class AnimationSpinosaurus implements IModelAnimator
         MowzieModelRenderer lowerJawFront = model.getCube("Lower jaw front");
 
         MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[]{handRight, lowerArmRight, upperArmRight};
-        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[]{handLeft, lowerArmLeft, upperArmLeft};
+        MowzieModelRenderer[] LEFTArmParts = new MowzieModelRenderer[]{handLeft, lowerArmLeft, upperArmLeft};
         MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
         MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[]{head, neck1, neck2, neck3, neck4, neck5, shoulders, chest, waist};
         MowzieModelRenderer[] bottomJaw = new MowzieModelRenderer[]{lowerJawFront, lowerJaw};
 
         // Body animations
         model.bob(waist, 1F * globalSpeed, height, false, f, f1);
-        model.bob(leftThigh, 1F * globalSpeed, height, false, f, f1);
+        model.bob(LEFTThigh, 1F * globalSpeed, height, false, f, f1);
         model.bob(rightThigh, 1F * globalSpeed, height, false, f, f1);
-        leftThigh.rotationPointY -= -2 * f1 * Math.cos(f * 0.5 * globalSpeed);
+        LEFTThigh.rotationPointY -= -2 * f1 * Math.cos(f * 0.5 * globalSpeed);
         rightThigh.rotationPointY -= 2 * f1 * Math.cos(f * 0.5 * globalSpeed);
         model.chainWave(bodyParts, 1F * globalSpeed, 0.05F, 3, f, f1);
         model.chainWave(tailParts, 1F * globalSpeed, height * 0.05F, 3, f, f1);
-        model.chainWave(leftArmParts, 1F * globalSpeed, height * 0.05F, 3, f, f1);
+        model.chainWave(LEFTArmParts, 1F * globalSpeed, height * 0.05F, 3, f, f1);
         model.chainWave(rightArmParts, 1F * globalSpeed, height * 0.05F, 3, f, f1);
 
         model.walk(head, 1F * globalSpeed, 0.15F, true, 0F, -0.2F, f, f1);
@@ -101,10 +101,10 @@ public class AnimationSpinosaurus implements IModelAnimator
         model.walk(neck4, 1F * globalSpeed, 0.03F, false, 0F, 0.04F, f, f1);
         model.walk(neck5, 1F * globalSpeed, 0.03F, false, 0F, 0.04F, f, f1);
 
-        model.walk(leftThigh, 0.5F * globalSpeed, 0.8F * globalDegree, false, 0F, 0.2F, f, f1);
-        model.walk(leftCalf, 0.5F * globalSpeed, 1F * globalDegree, true, 1F, 0.4F, f, f1);
-        model.walk(leftCalf2, 0.5F * globalSpeed, 1F * globalDegree, false, 0F, 0F, f, f1);
-        model.walk(leftFoot, 0.5F * globalSpeed, 1.5F * globalDegree, true, 0.5F, -0.1F, f, f1);
+        model.walk(LEFTThigh, 0.5F * globalSpeed, 0.8F * globalDegree, false, 0F, 0.2F, f, f1);
+        model.walk(LEFTCalf, 0.5F * globalSpeed, 1F * globalDegree, true, 1F, 0.4F, f, f1);
+        model.walk(LEFTCalf2, 0.5F * globalSpeed, 1F * globalDegree, false, 0F, 0F, f, f1);
+        model.walk(LEFTFoot, 0.5F * globalSpeed, 1.5F * globalDegree, true, 0.5F, -0.1F, f, f1);
 
         model.walk(rightThigh, 0.5F * globalSpeed, 0.8F * globalDegree, true, 0F, 0.2F, f, f1);
         model.walk(rightCalf, 0.5F * globalSpeed, 1F * globalDegree, false, 1F, 0.4F, f, f1);
@@ -116,10 +116,6 @@ public class AnimationSpinosaurus implements IModelAnimator
         model.chainWave(bodyParts, 0.1F, -0.03F, 5, entity.ticksExisted, 1F);
         model.chainWave(rightArmParts, 0.1F, -0.1F, 4, entity.ticksExisted, 1F);
         model.chainWave(LEFTArmParts, 0.1F, -0.1F, 4, entity.ticksExisted, 1F);
-          model.chainWave(tailParts, 0.1F, -0.05F, 2, entity.ticksExisted, 1F);
-          model.chainWave(bodyParts, 0.1F, -0.03F, 5, entity.ticksExisted, 1F);
-          model.chainWave(rightArmParts, 0.1F, -0.1F, 4, entity.ticksExisted, 1F);
-          model.chainWave(leftArmParts, 0.1F, -0.1F, 4, entity.ticksExisted, 1F);
 
         model.faceTarget(head, 6, rotationYaw, rotationPitch);
         model.faceTarget(neck1, 6, rotationYaw, rotationPitch);
