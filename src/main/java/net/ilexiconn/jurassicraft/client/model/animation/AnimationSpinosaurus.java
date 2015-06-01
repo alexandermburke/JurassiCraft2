@@ -112,17 +112,10 @@ public class AnimationSpinosaurus implements IModelAnimator
         model.walk(rightFoot, 0.5F * globalSpeed, 1.5F * globalDegree, false, 0.5F, -0.1F, f, f1);
 
         // idling
-<<<<<<< HEAD
         model.chainWave(tailParts, 0.1F, -0.05F, 2, entity.ticksExisted, 1F);
         model.chainWave(bodyParts, 0.1F, -0.03F, 5, entity.ticksExisted, 1F);
         model.chainWave(rightArmParts, 0.1F, -0.1F, 4, entity.ticksExisted, 1F);
-        model.chainWave(LEFTArmParts, 0.1F, -0.1F, 4, entity.ticksExisted, 1F);
-=======
-          model.chainWave(tailParts, 0.1F, -0.05F, 2, entity.ticksExisted, 1F);
-          model.chainWave(bodyParts, 0.1F, -0.03F, 5, entity.ticksExisted, 1F);
-          model.chainWave(rightArmParts, 0.1F, -0.1F, 4, entity.ticksExisted, 1F);
-          model.chainWave(leftArmParts, 0.1F, -0.1F, 4, entity.ticksExisted, 1F);
->>>>>>> parent of d2f111d... For jack
+        model.chainWave(leftArmParts, 0.1F, -0.1F, 4, entity.ticksExisted, 1F);
 
         model.faceTarget(head, 6, rotationYaw, rotationPitch);
         model.faceTarget(neck1, 6, rotationYaw, rotationPitch);

@@ -203,7 +203,7 @@ public class DinosaurRugops extends Dinosaur
     @Override
     public float getScaleAdjustment()
     {
-        return 2.37F;
+        return 1.00F;
     }
 
     @Override

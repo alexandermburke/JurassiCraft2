@@ -46,10 +46,10 @@ public class AnimationRugops implements IModelAnimator
         MowzieModelRenderer head = model.getCube("Head");
 
         // arms
-        MowzieModelRenderer lowerArmLeft1 = model.getCube("Lower Arm Left 1");
-        MowzieModelRenderer lowerArmLeft2 = model.getCube("Lower Arm Left 2");
-        MowzieModelRenderer lowerArmRight1 = model.getCube("Lower Arm Right 1");
-        MowzieModelRenderer lowerArmRight2 = model.getCube("Lower Arm Right 2");
+        MowzieModelRenderer upperArmLeft = model.getCube("Upper Arm Left");
+        MowzieModelRenderer lowerArmLeft = model.getCube("Lower Arm Left");
+        MowzieModelRenderer upperArmRight = model.getCube("Upper Arm Right");
+        MowzieModelRenderer lowerArmRight = model.getCube("Lower Arm Right");
 
         // hands
         MowzieModelRenderer handRight = model.getCube("Hand Right");
@@ -66,8 +66,8 @@ public class AnimationRugops implements IModelAnimator
         // Jaw
         MowzieModelRenderer lowerJaw = model.getCube("Lower Jaw");
 
-        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[]{handRight, lowerArmRight1, lowerArmRight2};
-        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[]{handLeft, lowerArmLeft1, lowerArmLeft2};
+        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[]{handRight, upperArmRight, lowerArmRight};
+        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[]{handLeft, upperArmLeft, lowerArmLeft};
         MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
         MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[]{head, neck1, neck2, neck3, neck4, shoulders, waist};
 
