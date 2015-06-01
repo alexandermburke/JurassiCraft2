@@ -2,9 +2,11 @@ package net.ilexiconn.jurassicraft.client.model.animation;
 
 import net.ilexiconn.jurassicraft.entity.EntityVelociraptor;
 import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
+import net.ilexiconn.llibrary.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.llibrary.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 
 public class AnimationVelociraptor implements IModelAnimator
 {
@@ -31,50 +33,50 @@ public class AnimationVelociraptor implements IModelAnimator
         MowzieModelRenderer waist = model.getCube("body3");
         MowzieModelRenderer chest = model.getCube("body2");
         MowzieModelRenderer shoulders = model.getCube("body1");
-        MowzieModelRenderer LEFTThigh = model.getCube("LEFT thigh");
+        MowzieModelRenderer leftThigh = model.getCube("Left thigh");
         MowzieModelRenderer rightThigh = model.getCube("Right thigh");
         MowzieModelRenderer neck1 = model.getCube("neck1");
         MowzieModelRenderer neck2 = model.getCube("neck2");
         MowzieModelRenderer neck3 = model.getCube("neck3");
         MowzieModelRenderer neck4 = model.getCube("neck4");
         MowzieModelRenderer head = model.getCube("head");
-        MowzieModelRenderer LEFTShin = model.getCube("LEFT shin");
+        MowzieModelRenderer leftShin = model.getCube("Left shin");
         MowzieModelRenderer rightShin = model.getCube("Right shin");
-        MowzieModelRenderer LEFTUpperFoot = model.getCube("LEFT upper foot");
-        MowzieModelRenderer LEFTFoot = model.getCube("LEFT foot");
+        MowzieModelRenderer leftUpperFoot = model.getCube("Left upper foot");
+        MowzieModelRenderer leftFoot = model.getCube("Left foot");
         MowzieModelRenderer rightUpperFoot = model.getCube("Right upper foot");
         MowzieModelRenderer rightFoot = model.getCube("Right foot");
         MowzieModelRenderer upperArmRight = model.getCube("Right arm");
-        MowzieModelRenderer upperArmLEFT = model.getCube("LEFT arm");
+        MowzieModelRenderer upperArmLeft = model.getCube("Left arm");
         MowzieModelRenderer tail1 = model.getCube("tail1");
         MowzieModelRenderer tail2 = model.getCube("tail2");
         MowzieModelRenderer tail3 = model.getCube("tail3");
         MowzieModelRenderer tail4 = model.getCube("tail4");
         MowzieModelRenderer tail5 = model.getCube("tail5");
         // MowzieModelRenderer Right_Claw_1 = model.getCube("Right Claw 1");
-        // MowzieModelRenderer LEFT_Claw_1 = model.getCube("LEFT Claw 1");
+        // MowzieModelRenderer Left_Claw_1 = model.getCube("Left Claw 1");
         // MowzieModelRenderer Lower_Jaw = model.getCube("down_jaw");
 
         MowzieModelRenderer Lower_Arm_Right = model.getCube("Right forearm");
-        MowzieModelRenderer Lower_Arm_LEFT = model.getCube("LEFT forearm");
+        MowzieModelRenderer Lower_Arm_Left = model.getCube("Left forearm");
         MowzieModelRenderer Hand_Right = model.getCube("Right hand");
-        MowzieModelRenderer Hand_LEFT = model.getCube("LEFT hand");
+        MowzieModelRenderer Hand_Left = model.getCube("Left hand");
 
         MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[]{Hand_Right, Lower_Arm_Right, upperArmRight};
-        MowzieModelRenderer[] LEFTArmParts = new MowzieModelRenderer[]{Hand_LEFT, Lower_Arm_LEFT, upperArmLEFT};
+        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[]{Hand_Left, Lower_Arm_Left, upperArmLeft};
         MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{tail5, tail4, tail3, tail2, tail1};
         MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[]{waist, chest, shoulders, neck4, neck3, neck2, neck1, head};
 
         model.bob(waist, 1F * speed, height, false, f, f1);
-        model.bob(LEFTThigh, 1F * speed, height, false, f, f1);
+        model.bob(leftThigh, 1F * speed, height, false, f, f1);
         model.bob(rightThigh, 1F * speed, height, false, f, f1);
         model.walk(shoulders, 1F * speed, 0.2F, true, 1, 0, f, f1);
         model.walk(chest, 1F * speed, 0.2F, false, 0.5F, 0, f, f1);
 
-        model.walk(LEFTThigh, 0.5F * speed, 0.7F, false, 3.14F, 0.2F, f, f1);
-        model.walk(LEFTShin, 0.5F * speed, 0.6F, false, 1.5F, 0.3F, f, f1);
-        model.walk(LEFTUpperFoot, 0.5F * speed, 0.8F, false, -1F, -0.1F, f, f1);
-        model.walk(LEFTFoot, 0.5F * speed, 1.5F, true, -1F, 1F, f, f1);
+        model.walk(leftThigh, 0.5F * speed, 0.7F, false, 3.14F, 0.2F, f, f1);
+        model.walk(leftShin, 0.5F * speed, 0.6F, false, 1.5F, 0.3F, f, f1);
+        model.walk(leftUpperFoot, 0.5F * speed, 0.8F, false, -1F, -0.1F, f, f1);
+        model.walk(leftFoot, 0.5F * speed, 1.5F, true, -1F, 1F, f, f1);
 
         model.walk(rightThigh, 0.5F * speed, 0.7F, true, 3.14F, 0.2F, f, f1);
         model.walk(rightShin, 0.5F * speed, 0.6F, true, 1.5F, 0.3F, f, f1);
@@ -94,13 +96,13 @@ public class AnimationVelociraptor implements IModelAnimator
         neck4.rotateAngleX -= 0.2 * f1;
         head.rotateAngleX -= 0.3 * f1;
         model.chainWave(rightArmParts, 1F * speed, -0.3F, 4, f, f1);
-        model.chainWave(LEFTArmParts, 1F * speed, -0.3F, 4, f, f1);
+        model.chainWave(leftArmParts, 1F * speed, -0.3F, 4, f, f1);
 
         // Idling
         model.chainWave(tailParts, 0.1F, -0.05F, 2, entity.ticksExisted, 1F);
         model.chainWave(bodyParts, 0.1F, -0.03F, 5, entity.ticksExisted, 1F);
         model.chainWave(rightArmParts, 0.1F, -0.1F, 4, entity.ticksExisted, 1F);
-        model.chainWave(LEFTArmParts, 0.1F, -0.1F, 4, entity.ticksExisted, 1F);
+        model.chainWave(leftArmParts, 0.1F, -0.1F, 4, entity.ticksExisted, 1F);
 
         // float sittingProgress =
         // raptor.sittingProgress.getAnimationProgressSin();
@@ -116,9 +118,9 @@ public class AnimationVelociraptor implements IModelAnimator
         //
         // Body_1.rotationPointY += 13.25F * sittingProgress;
         // Right_Thigh.rotationPointY += 14.25F * sittingProgress;
-        // LEFT_Thigh.rotationPointY += 14.25F * sittingProgress;
+        // Left_Thigh.rotationPointY += 14.25F * sittingProgress;
         // Right_Thigh.rotationPointZ += 0.5F * sittingProgress;
-        // LEFT_Thigh.rotationPointZ += 0.5F * sittingProgress;
+        // Left_Thigh.rotationPointZ += 0.5F * sittingProgress;
         //
         // if (sittingProgressTemporary > 0.001F)
         // {
@@ -126,7 +128,7 @@ public class AnimationVelociraptor implements IModelAnimator
         // Neck.rotateAngleX += 0.4F * sittingProgressTemporary;
         // Head.rotateAngleX += 0.2F * sittingProgressTemporary;
         // Upper_Arm_Right.rotateAngleX += 0.5F * sittingProgressTemporary;
-        // Upper_Arm_LEFT.rotateAngleX += 0.5F * sittingProgressTemporary;
+        // Upper_Arm_Left.rotateAngleX += 0.5F * sittingProgressTemporary;
         //
         // if (raptor.isSitting())
         // {
@@ -149,30 +151,30 @@ public class AnimationVelociraptor implements IModelAnimator
         // Body_1.rotateAngleX -= 0.075F * sittingProgress;
         //
         // Upper_Arm_Right.rotateAngleX -= 0.8F * sittingProgress;
-        // Upper_Arm_LEFT.rotateAngleX -= 0.8F * sittingProgress;
+        // Upper_Arm_Left.rotateAngleX -= 0.8F * sittingProgress;
         //
         // Right_Thigh.rotateAngleX -= 0.75F * sittingProgress;
-        // LEFT_Thigh.rotateAngleX -= 0.75F * sittingProgress;
+        // Left_Thigh.rotateAngleX -= 0.75F * sittingProgress;
         //
         // Right_Calf_1.rotationPointZ += 0.5F * sittingProgress;
-        // LEFT_Calf_1.rotationPointZ += 0.5F * sittingProgress;
+        // Left_Calf_1.rotationPointZ += 0.5F * sittingProgress;
         // Right_Calf_1.rotationPointY += 1.5F * sittingProgress;
-        // LEFT_Calf_1.rotationPointY += 1.5F * sittingProgress;
+        // Left_Calf_1.rotationPointY += 1.5F * sittingProgress;
         // Right_Calf_1.rotateAngleX += 1.2F * sittingProgress;
-        // LEFT_Calf_1.rotateAngleX += 1.2F * sittingProgress;
+        // Left_Calf_1.rotateAngleX += 1.2F * sittingProgress;
         //
         // Right_Upper_Foot.rotationPointZ -= 0.6F * sittingProgress;
-        // LEFT_Upper_Foot.rotationPointZ -= 0.6F * sittingProgress;
+        // Left_Upper_Foot.rotationPointZ -= 0.6F * sittingProgress;
         // Right_Upper_Foot.rotateAngleX -= 1.45F * sittingProgress;
-        // LEFT_Upper_Foot.rotateAngleX -= 1.45F * sittingProgress;
+        // Left_Upper_Foot.rotateAngleX -= 1.45F * sittingProgress;
         //
         // Foot_Right.rotationPointZ -= 0.5F * sittingProgress;
-        // Foot_LEFT.rotationPointZ -= 0.5F * sittingProgress;
+        // Foot_Left.rotationPointZ -= 0.5F * sittingProgress;
         // Foot_Right.rotateAngleX += 1.0F * sittingProgress;
-        // Foot_LEFT.rotateAngleX += 1.0F * sittingProgress;
+        // Foot_Left.rotateAngleX += 1.0F * sittingProgress;
         //
         // Right_Claw_1.rotateAngleX += 0.7F * sittingProgress;
-        // LEFT_Claw_1.rotateAngleX += 0.7F * sittingProgress;
+        // Left_Claw_1.rotateAngleX += 0.7F * sittingProgress;
         //
         // //Idling
         // model.chainWave(tailParts, 0.1F, -0.05F, 2, entity.ticksExisted, 1.0F
@@ -185,7 +187,7 @@ public class AnimationVelociraptor implements IModelAnimator
         // 1.0F - 0.7F * sittingProgress);
         // model.chainWave(rightArmParts, 0.1F, -0.1F, 4, entity.ticksExisted,
         // 1.0F - 0.5F * sittingProgress);
-        // model.chainWave(LEFTArmParts, 0.1F, -0.1F, 4, entity.ticksExisted,
+        // model.chainWave(leftArmParts, 0.1F, -0.1F, 4, entity.ticksExisted,
         // 1.0F - 0.5F * sittingProgress);
         // }
         // else
