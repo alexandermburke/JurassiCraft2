@@ -2,7 +2,6 @@ package net.ilexiconn.jurassicraft.entity.base;
 
 import com.google.common.collect.Lists;
 import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.block.BlockEncasedFossil;
 import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
 import net.ilexiconn.jurassicraft.dinosaur.DinosaurRugops;
 import net.ilexiconn.jurassicraft.dinosaur.DinosaurSpinosaurus;
@@ -52,12 +51,20 @@ public class JCEntityRegistry implements IContentHandler
     public static void registerDinosaur(Dinosaur dino)
     {
         dinosaurs.add(dino);
-
-        //int period = dino.getPeriod();
-        //List<Dinosaur> dinoList = dinosaursFromPeriod.get(period);
-        //dinoList.add(dino);
-        //dinosaursFromPeriod.remove(period);
-       // dinosaursFromPeriod.put(period, dinoList);
+        int period = dino.getPeriod();
+        List<Dinosaur> dinoList = dinosaursFromPeriod.get(period);
+        if (dinoList != null)
+        {
+            dinoList.add(dino);
+            dinosaursFromPeriod.remove(period);
+            dinosaursFromPeriod.put(period, dinoList);
+        }
+        else
+        {
+            List<Dinosaur> newDinoList = Lists.newArrayList();
+            newDinoList.add(dino);
+            dinosaursFromPeriod.put(period, newDinoList);
+        }
     }
 
     public static Dinosaur getDinosaurById(int id)
