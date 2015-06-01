@@ -53,11 +53,11 @@ public class JCEntityRegistry implements IContentHandler
     {
         dinosaurs.add(dino);
 
-        int period = dino.getPeriod();
-        List<Dinosaur> dinoList = dinosaursFromPeriod.get(period);
-        dinoList.add(dino);
-        dinosaursFromPeriod.remove(period);
-        dinosaursFromPeriod.put(period, dinoList);
+        //int period = dino.getPeriod();
+        //List<Dinosaur> dinoList = dinosaursFromPeriod.get(period);
+        //dinoList.add(dino);
+        //dinosaursFromPeriod.remove(period);
+        //dinosaursFromPeriod.put(period, dinoList);
     }
 
     public static Dinosaur getDinosaurById(int id)
