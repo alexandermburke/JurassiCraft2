@@ -39,7 +39,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive
 
             this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityPlayer.class}));
 
-            //this.tasks.addTask(6, new EntityAIWander(this, 1.0D));
+            this.tasks.addTask(6, new EntityAIWander(this, 1.0D));
             this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
             this.tasks.addTask(8, new EntityAILookIdle(this));
         }

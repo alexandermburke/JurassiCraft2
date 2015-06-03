@@ -5,12 +5,12 @@ import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
 import net.ilexiconn.jurassicraft.json.JsonHelper;
 import net.ilexiconn.llibrary.common.entity.multipart.EntityPart;
 import net.ilexiconn.llibrary.common.entity.multipart.IEntityMultiPart;
+import net.minecraft.entity.EntityCreature;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
-import net.reuxertz.ecocraft.entity.EntityAICreature;
 
-public class EntityDinosaur extends EntityAICreature implements IEntityMultiPart, IEntityAdditionalSpawnData
+public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, IEntityAdditionalSpawnData
 {
     protected EntityPart[] parts;
     protected Dinosaur dinosaur;

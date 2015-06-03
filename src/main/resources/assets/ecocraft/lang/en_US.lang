@@ -1,9 +1,0 @@
-//Items ==================================================
-item.iron_nugget.name=Iron Nugget
-item.diamond_shard.name=Diamond Shard
-item.emerald_shard.name=Emerald Shard
-
-item.flint_axe.name=Flint Axe
-item.flint_pickaxe.name=Flint Pickaxe
-item.flint_shovel.name=Flint Shovel
-item.flint_hoe.name=Flint Hoe
