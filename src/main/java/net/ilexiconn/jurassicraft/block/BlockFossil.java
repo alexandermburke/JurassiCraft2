@@ -1,11 +1,11 @@
 package net.ilexiconn.jurassicraft.block;
 
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.world.Explosion;
-
-import java.util.Random;
 
 public class BlockFossil extends Block
 {

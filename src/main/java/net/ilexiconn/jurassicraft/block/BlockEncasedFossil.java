@@ -1,5 +1,7 @@
 package net.ilexiconn.jurassicraft.block;
 
+import java.util.List;
+
 import net.ilexiconn.jurassicraft.api.ISubBlocksBlock;
 import net.ilexiconn.jurassicraft.item.ItemEncasedFossil;
 import net.minecraft.block.Block;
@@ -19,8 +21,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.List;
 
 public class BlockEncasedFossil extends Block implements ISubBlocksBlock
 {

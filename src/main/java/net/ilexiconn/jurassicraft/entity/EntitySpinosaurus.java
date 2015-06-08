@@ -1,20 +1,22 @@
 package net.ilexiconn.jurassicraft.entity;
 
 import net.ilexiconn.jurassicraft.dinosaur.DinosaurSpinosaurus;
-import net.ilexiconn.jurassicraft.dinosaur.DinosaurVelociraptor;
 import net.ilexiconn.jurassicraft.entity.base.EntityDinosaurAggressive;
 import net.ilexiconn.llibrary.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.llibrary.common.entity.multipart.IEntityMultiPart;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.*;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 public class EntitySpinosaurus extends EntityDinosaurAggressive implements IEntityMultiPart
 {
-
     public ChainBuffer tailBuffer = new ChainBuffer(6);
 
     public EntitySpinosaurus(World world)

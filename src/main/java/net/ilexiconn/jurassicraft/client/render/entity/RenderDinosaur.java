@@ -78,7 +78,7 @@ public class RenderDinosaur extends RenderMultiPart
             if (time > 0.5F)
                 time = 1 - time;
 
-            GL11.glScalef(1, 1 + time * 0.5F, 1);
+            GL11.glScalef(0.5F + time * 0.5F, 1 + time * 0.5F, 0.9F + time * 0.25F);
         }
     }
 

@@ -1,12 +1,12 @@
 package net.ilexiconn.jurassicraft.block;
 
+import java.lang.reflect.Field;
+
 import net.ilexiconn.jurassicraft.api.ISubBlocksBlock;
 import net.ilexiconn.jurassicraft.creativetab.JCCreativeTabs;
 import net.ilexiconn.llibrary.common.content.IContentHandler;
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-
-import java.lang.reflect.Field;
 
 public class JCBlockRegistry implements IContentHandler
 {

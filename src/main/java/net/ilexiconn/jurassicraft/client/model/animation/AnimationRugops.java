@@ -1,7 +1,6 @@
 package net.ilexiconn.jurassicraft.client.model.animation;
 
 import net.ilexiconn.jurassicraft.entity.EntityRugops;
-import net.ilexiconn.jurassicraft.entity.EntitySpinosaurus;
 import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
 import net.ilexiconn.llibrary.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.llibrary.client.model.tabula.ModelJson;

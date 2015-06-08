@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.item;
 
-import net.ilexiconn.jurassicraft.handler.FossilHandler;
 import net.ilexiconn.jurassicraft.block.JCBlockRegistry;
 import net.ilexiconn.jurassicraft.creativetab.JCCreativeTabs;
+import net.ilexiconn.jurassicraft.handler.FossilHandler;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

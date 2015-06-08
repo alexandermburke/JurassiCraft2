@@ -1,6 +1,8 @@
 package net.ilexiconn.jurassicraft.proxy;
 
-import com.google.common.collect.Maps;
+import java.util.Map;
+import java.util.Map.Entry;
+
 import net.ilexiconn.jurassicraft.block.JCBlockRegistry;
 import net.ilexiconn.jurassicraft.client.render.entity.RenderDinosaur;
 import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
@@ -11,7 +13,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
@@ -20,8 +21,7 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.Map;
-import java.util.Map.Entry;
+import com.google.common.collect.Maps;
 
 @SideOnly(Side.CLIENT)
 public class ClientProxy extends ServerProxy

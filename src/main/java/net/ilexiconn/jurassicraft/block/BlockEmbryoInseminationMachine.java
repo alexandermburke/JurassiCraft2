@@ -1,5 +1,7 @@
 package net.ilexiconn.jurassicraft.block;
 
+import java.util.Random;
+
 import net.ilexiconn.jurassicraft.tileentity.TileEmbryoInseminationMachine;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -12,8 +14,6 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.Random;
 
 public class BlockEmbryoInseminationMachine extends BlockOriented
 {

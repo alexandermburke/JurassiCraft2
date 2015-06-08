@@ -1,10 +1,7 @@
 package net.ilexiconn.jurassicraft.proxy;
 
 import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
-import net.minecraft.entity.Entity;
-import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.ItemModelMesher;
-import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 

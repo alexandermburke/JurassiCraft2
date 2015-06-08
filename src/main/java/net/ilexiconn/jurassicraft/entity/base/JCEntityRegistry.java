@@ -1,6 +1,8 @@
 package net.ilexiconn.jurassicraft.entity.base;
 
-import com.google.common.collect.Lists;
+import java.util.HashMap;
+import java.util.List;
+
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
 import net.ilexiconn.jurassicraft.dinosaur.DinosaurRugops;
@@ -9,8 +11,7 @@ import net.ilexiconn.jurassicraft.dinosaur.DinosaurVelociraptor;
 import net.ilexiconn.llibrary.common.content.IContentHandler;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
-import java.util.HashMap;
-import java.util.List;
+import com.google.common.collect.Lists;
 
 public class JCEntityRegistry implements IContentHandler
 {

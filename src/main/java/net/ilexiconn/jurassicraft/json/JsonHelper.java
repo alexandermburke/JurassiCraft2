@@ -1,9 +1,9 @@
 package net.ilexiconn.jurassicraft.json;
 
+import java.util.List;
+
 import net.ilexiconn.llibrary.common.entity.multipart.EntityPart;
 import net.minecraft.entity.EntityLivingBase;
-
-import java.util.List;
 
 public class JsonHelper
 {

@@ -1,5 +1,7 @@
 package net.ilexiconn.jurassicraft.item;
 
+import java.util.List;
+
 import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
 import net.ilexiconn.jurassicraft.entity.base.JCEntityRegistry;
 import net.minecraft.creativetab.CreativeTabs;
@@ -8,8 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.List;
 
 public class ItemFossil extends Item
 {

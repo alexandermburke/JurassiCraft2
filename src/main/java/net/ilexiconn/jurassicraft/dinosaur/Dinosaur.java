@@ -1,14 +1,5 @@
 package net.ilexiconn.jurassicraft.dinosaur;
 
-import net.ilexiconn.jurassicraft.JurassiCraft;
-import net.ilexiconn.jurassicraft.entity.base.EntityDinosaur;
-import net.ilexiconn.jurassicraft.json.JsonHitbox;
-import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
-import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
-import net.ilexiconn.llibrary.common.json.JsonHelper;
-import net.minecraft.client.model.ModelBase;
-import org.apache.commons.io.IOUtils;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -17,6 +8,16 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+
+import net.ilexiconn.jurassicraft.JurassiCraft;
+import net.ilexiconn.jurassicraft.entity.base.EntityDinosaur;
+import net.ilexiconn.jurassicraft.json.JsonHitbox;
+import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
+import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
+import net.ilexiconn.llibrary.common.json.JsonHelper;
+import net.minecraft.client.model.ModelBase;
+
+import org.apache.commons.io.IOUtils;
 
 public abstract class Dinosaur
 {

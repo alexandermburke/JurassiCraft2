@@ -1,5 +1,7 @@
 package net.ilexiconn.jurassicraft.item;
 
+import java.lang.reflect.Field;
+
 import net.ilexiconn.jurassicraft.creativetab.JCCreativeTabs;
 import net.ilexiconn.llibrary.common.content.IContentHandler;
 import net.minecraft.client.renderer.ItemMeshDefinition;
@@ -8,8 +10,6 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-
-import java.lang.reflect.Field;
 
 public class JCItemRegistry implements IContentHandler
 {

@@ -2,11 +2,9 @@ package net.ilexiconn.jurassicraft.client.model.animation;
 
 import net.ilexiconn.jurassicraft.entity.EntityVelociraptor;
 import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
-import net.ilexiconn.llibrary.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.llibrary.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 
 public class AnimationVelociraptor implements IModelAnimator
 {

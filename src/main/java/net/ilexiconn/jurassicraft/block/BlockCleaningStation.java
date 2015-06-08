@@ -1,5 +1,7 @@
 package net.ilexiconn.jurassicraft.block;
 
+import java.util.Random;
+
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.tileentity.TileCleaningStation;
 import net.minecraft.block.Block;
@@ -16,8 +18,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.Random;
 
 public class BlockCleaningStation extends BlockOriented
 {
