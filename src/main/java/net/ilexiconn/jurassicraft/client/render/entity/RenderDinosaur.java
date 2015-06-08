@@ -4,11 +4,16 @@ import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
 import net.ilexiconn.jurassicraft.entity.EntityVelociraptor;
 import net.ilexiconn.jurassicraft.entity.base.EntityDinosaur;
 import net.ilexiconn.llibrary.client.render.entity.RenderMultiPart;
+import net.ilexiconn.llibrary.common.color.ColorHelper;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
 import org.lwjgl.opengl.GL11;
 
 import java.util.Random;
@@ -34,14 +39,25 @@ public class RenderDinosaur extends RenderMultiPart
     {
         float scale = dino.getScaleAdjustment();
         shadowSize = scale * dino.getShadowSize();
-        if (entity instanceof EntityVelociraptor && (entity.getCustomNameTag().equals("iLexiconn")
-                || entity.getCustomNameTag().equals("JTGhawk137")))
+        if (entity instanceof EntityVelociraptor && (entity.getCustomNameTag().equals("iLexiconn") || entity.getCustomNameTag().equals("JTGhawk137")))
         {
             GL11.glScalef(scale - 0.86F, scale, scale);
         }
         else
         {
             GL11.glScalef(scale, scale, scale);
+        }
+
+        if(entity.getCustomNameTag().equals("Gegy"))
+        {
+            int ticksExisted = entity.ticksExisted / 25 + entity.getEntityId();
+            int colorTypes = EnumDyeColor.values().length;
+            int k = ticksExisted % colorTypes; 
+            int l = (ticksExisted + 1) % colorTypes;
+            float time = ((float)(entity.ticksExisted % 25) + 2) / 25.0F;
+            float[] colors = EntitySheep.func_175513_a(EnumDyeColor.byMetadata(k));
+            float[] colors2 = EntitySheep.func_175513_a(EnumDyeColor.byMetadata(l));
+            GlStateManager.color(colors[0] * (1.0F - time) + colors2[0] * time, colors[1] * (1.0F - time) + colors2[1] * time, colors[2] * (1.0F - time) + colors2[2] * time);
         }
     }
 
