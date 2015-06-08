@@ -5,6 +5,7 @@ itemGroup.jurassicraft.blocks=JurassiCraft Blocks
 //Entities ==================================================
 entity.velociraptor.name=Velociraptor
 entity.spinosaurus.name=Spinosaurus
+entity.rugops.name=Rugops
 
 
 //Items ==================================================

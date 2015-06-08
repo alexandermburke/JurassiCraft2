@@ -54,13 +54,13 @@ public class DinosaurSpinosaurus extends Dinosaur
     @Override
     public int getEggPrimaryColor()
     {
-        return 0x85866E;
+        return 0x48403D;
     }
 
     @Override
     public int getEggSecondaryColor()
     {
-        return 0x403F31;
+        return 0xC5CFDA;
     }
 
     @Override
