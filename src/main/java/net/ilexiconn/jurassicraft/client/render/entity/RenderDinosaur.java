@@ -1,10 +1,11 @@
 package net.ilexiconn.jurassicraft.client.render.entity;
 
+import java.util.Random;
+
 import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
 import net.ilexiconn.jurassicraft.entity.EntityVelociraptor;
 import net.ilexiconn.jurassicraft.entity.base.EntityDinosaur;
 import net.ilexiconn.llibrary.client.render.entity.RenderMultiPart;
-import net.ilexiconn.llibrary.common.color.ColorHelper;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,14 +17,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.lwjgl.opengl.GL11;
 
-import java.util.Random;
-
 @SideOnly(Side.CLIENT)
 public class RenderDinosaur extends RenderMultiPart
 {
     public Dinosaur dino;
-    public ResourceLocation maleTexture;
-    public ResourceLocation femaleTexture;
+    public ResourceLocation[] maleTextures;
+    public ResourceLocation[] femaleTextures;
     public Random random;
 
     public RenderDinosaur(Dinosaur creature) throws Exception
@@ -31,13 +30,30 @@ public class RenderDinosaur extends RenderMultiPart
         super(creature.getModel(), creature.getShadowSize());
         dino = creature;
         random = new Random();
-        maleTexture = new ResourceLocation(creature.getMaleTextures()[0]); // TODO: Random textures
-        femaleTexture = new ResourceLocation(creature.getFemaleTextures()[0]);
+        
+        maleTextures = new ResourceLocation[creature.getMaleTextures().length];
+        femaleTextures = new ResourceLocation[creature.getFemaleTextures().length];
+        
+        int i = 0;
+        
+        for (String texture : creature.getMaleTextures())
+        {
+            maleTextures[i] = new ResourceLocation(texture);
+            i++;
+        }
+        
+        i = 0;
+        
+        for (String texture : creature.getFemaleTextures())
+        {
+            femaleTextures[i] = new ResourceLocation(texture);
+            i++;
+        }
     }
 
     public void preRenderCallback(EntityLivingBase entity, float side)
     {
-        float scale = dino.getScaleAdjustment();
+        float scale = dino.getScaleAdjustment(); //ModelBiped
         shadowSize = scale * dino.getShadowSize();
         if (entity instanceof EntityVelociraptor && (entity.getCustomNameTag().equals("iLexiconn") || entity.getCustomNameTag().equals("JTGhawk137")))
         {
@@ -58,12 +74,17 @@ public class RenderDinosaur extends RenderMultiPart
             float[] colors = EntitySheep.func_175513_a(EnumDyeColor.byMetadata(k));
             float[] colors2 = EntitySheep.func_175513_a(EnumDyeColor.byMetadata(l));
             GlStateManager.color(colors[0] * (1.0F - time) + colors2[0] * time, colors[1] * (1.0F - time) + colors2[1] * time, colors[2] * (1.0F - time) + colors2[2] * time);
+           
+            if(time > 0.5F)
+                time = 1 - time;
+            
+            GL11.glScalef(1, 1 + time * 0.5F, 1);
         }
     }
 
     public ResourceLocation getEntityTexture(EntityDinosaur entity)
     {
-        return entity.isMale() ? maleTexture : femaleTexture;
+        return entity.isMale() ? maleTextures[entity.getTexture()] : femaleTextures[entity.getTexture()];
     }
 
     public ResourceLocation getEntityTexture(Entity entity)

@@ -39,8 +39,8 @@ public class JurassiCraft
 
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 
-        this.wrapper = NetworkRegistry.INSTANCE.newSimpleChannel("jurassicraft");
-        this.wrapper.registerMessage(MessageCleaningTable.Handler.class, MessageCleaningTable.class, 0, Side.SERVER);
+        JurassiCraft.wrapper = NetworkRegistry.INSTANCE.newSimpleChannel("jurassicraft");
+        JurassiCraft.wrapper.registerMessage(MessageCleaningTable.Handler.class, MessageCleaningTable.class, 0, Side.SERVER);
     }
 
     @Mod.EventHandler

@@ -14,6 +14,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
 {
     protected EntityPart[] parts;
     protected Dinosaur dinosaur;
+    protected int randTexture;
 
     protected boolean gender;
 
@@ -22,6 +23,15 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
         super(world);
         parts = JsonHelper.parseHitboxList(this, dinosaur.getHitBoxList());
         gender = rand.nextBoolean();
+
+        if(gender)
+        {
+            randTexture = rand.nextInt(dinosaur.getMaleTextures().length);
+        }
+        else
+        {
+            randTexture = rand.nextInt(dinosaur.getFemaleTextures().length);
+        }
     }
 
     public void entityInit()
@@ -67,6 +77,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
         super.writeToNBT(nbt);
 
         nbt.setBoolean("Gender", gender);
+        nbt.setInteger("Texture", randTexture);
     }
 
     public void readFromNBT(NBTTagCompound nbt)
@@ -74,17 +85,25 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
         super.readFromNBT(nbt);
 
         gender = nbt.getBoolean("Gender");
+        randTexture = nbt.getInteger("Texture");
     }
 
     @Override
     public void writeSpawnData(ByteBuf buffer)
     {
         buffer.writeBoolean(gender);
+        buffer.writeInt(randTexture);
     }
 
     @Override
     public void readSpawnData(ByteBuf additionalData)
     {
         gender = additionalData.readBoolean();
+        randTexture = additionalData.readInt();
+    }
+
+    public int getTexture()
+    {
+        return randTexture;
     }
 }
