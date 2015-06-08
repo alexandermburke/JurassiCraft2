@@ -80,6 +80,10 @@ public class RenderDinosaur extends RenderMultiPart
 
             GL11.glScalef(0.5F + time * 0.5F, 1 + time * 0.5F, 0.9F + time * 0.25F);
         }
+        else if(entity.getCustomNameTag().equals("Notch") || entity.getCustomNameTag().equals("Jumbo"))
+        {
+            GL11.glScalef(5, 5, 5);
+        }
     }
 
     public ResourceLocation getEntityTexture(EntityDinosaur entity)
