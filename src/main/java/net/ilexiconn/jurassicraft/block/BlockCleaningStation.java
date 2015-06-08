@@ -21,7 +21,6 @@ import java.util.Random;
 
 public class BlockCleaningStation extends BlockOriented
 {
-
     public BlockCleaningStation()
     {
         super(Material.wood);
@@ -34,6 +33,7 @@ public class BlockCleaningStation extends BlockOriented
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+
         if (stack.hasDisplayName())
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
@@ -46,10 +46,12 @@ public class BlockCleaningStation extends BlockOriented
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
+
         if (tileentity instanceof TileCleaningStation)
         {
             InventoryHelper.dropInventoryItems(worldIn, pos, (TileCleaningStation) tileentity);
         }
+
         super.breakBlock(worldIn, pos, state);
     }
 

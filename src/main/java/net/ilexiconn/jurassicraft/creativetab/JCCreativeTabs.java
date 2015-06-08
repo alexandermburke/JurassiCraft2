@@ -1,8 +1,8 @@
 package net.ilexiconn.jurassicraft.creativetab;
 
+import net.ilexiconn.jurassicraft.block.JCBlockRegistry;
+import net.ilexiconn.jurassicraft.item.JCItemRegistry;
 import net.ilexiconn.llibrary.common.content.IContentHandler;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
 public class JCCreativeTabs implements IContentHandler
@@ -12,11 +12,11 @@ public class JCCreativeTabs implements IContentHandler
 
     public void init()
     {
-        items = new CreativeTabJurassiCraft("jurassicraft.item")
+        items = new CreativeTabJurassiCraft("jurassicraft.items")
         {
             public Item getTabIconItem()
             {
-                return Items.bone;
+                return JCItemRegistry.fossil;
             }
         };
 
@@ -24,7 +24,7 @@ public class JCCreativeTabs implements IContentHandler
         {
             public Item getTabIconItem()
             {
-                return Item.getItemFromBlock(Blocks.stone);
+                return Item.getItemFromBlock(JCBlockRegistry.encased_fossil);
             }
         };
     }

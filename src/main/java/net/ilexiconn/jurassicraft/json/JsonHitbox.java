@@ -1,6 +1,5 @@
 package net.ilexiconn.jurassicraft.json;
 
-
 import net.ilexiconn.llibrary.common.json.JsonFactory;
 
 public class JsonHitbox

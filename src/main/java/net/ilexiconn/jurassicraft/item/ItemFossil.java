@@ -24,10 +24,10 @@ public class ItemFossil extends Item
     public String getItemStackDisplayName(ItemStack stack)
     {
         Dinosaur dinosaur = this.getDinosaur(stack);
-        
+
         if (dinosaur != null)
             return (StatCollector.translateToLocal("entity." + dinosaur.getName().replace(" ", "_").toLowerCase() + ".name") + " " + StatCollector.translateToLocal("item.item_fossil.name")).trim();
-       
+
         return super.getItemStackDisplayName(stack);
     }
 

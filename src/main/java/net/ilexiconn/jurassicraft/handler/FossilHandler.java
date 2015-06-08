@@ -21,7 +21,6 @@ public class FossilHandler
     {
         world.getBiomeGenForCoords(pos);
 
-
         return BlockEncasedFossil.EnumTimePeriod.CRETACEOUS.getMetadata();
     }
 }

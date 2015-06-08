@@ -118,6 +118,6 @@ public abstract class BlockOriented extends BlockContainer
     @Override
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[]{FACING});
+        return new BlockState(this, new IProperty[] { FACING });
     }
 }

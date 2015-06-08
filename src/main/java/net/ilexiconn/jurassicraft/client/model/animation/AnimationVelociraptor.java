@@ -18,15 +18,15 @@ public class AnimationVelociraptor implements IModelAnimator
 
         int frame = velociraptor.ticksExisted;
 
-//        f = entity.ticksExisted;
-//        f1 = 1F;
-//        f1 = (float) (Math.sin(velociraptor.ticksExisted * 0.01) * Math.sin(velociraptor.ticksExisted * 0.01));
+        // f = entity.ticksExisted;
+        // f1 = 1F;
+        // f1 = (float) (Math.sin(velociraptor.ticksExisted * 0.01) * Math.sin(velociraptor.ticksExisted * 0.01));
 
-//        if (raptor.leaping)
-//        limbSwingAmount = 0;
-//        if (raptor.getAnimationId() == JurassiCraftAnimationIDs.LEAP.animID()
-//        && raptor.getAnimationTick() >= 6)
-//        limbSwingAmount = 0;
+        // if (raptor.leaping)
+        // limbSwingAmount = 0;
+        // if (raptor.getAnimationId() == JurassiCraftAnimationIDs.LEAP.animID()
+        // && raptor.getAnimationTick() >= 6)
+        // limbSwingAmount = 0;
         float speed = 0.75F;
         float height = 2F * f1;
 
@@ -62,10 +62,10 @@ public class AnimationVelociraptor implements IModelAnimator
         MowzieModelRenderer Hand_Right = model.getCube("Right hand");
         MowzieModelRenderer Hand_Left = model.getCube("Left hand");
 
-        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[]{Hand_Right, Lower_Arm_Right, upperArmRight};
-        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[]{Hand_Left, Lower_Arm_Left, upperArmLeft};
-        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{tail5, tail4, tail3, tail2, tail1};
-        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[]{waist, chest, shoulders, neck4, neck3, neck2, neck1, head};
+        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[] { Hand_Right, Lower_Arm_Right, upperArmRight };
+        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[] { Hand_Left, Lower_Arm_Left, upperArmLeft };
+        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[] { tail5, tail4, tail3, tail2, tail1 };
+        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[] { waist, chest, shoulders, neck4, neck3, neck2, neck1, head };
 
         model.bob(waist, 1F * speed, height, false, f, f1);
         model.bob(leftThigh, 1F * speed, height, false, f, f1);

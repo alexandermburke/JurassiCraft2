@@ -18,8 +18,8 @@ public class DinosaurSpinosaurus extends Dinosaur
     public DinosaurSpinosaurus()
     {
         this.animator = new AnimationSpinosaurus();
-        this.maleTextures = new String[]{"jurassicraft:textures/entities/spinosaurus/spinosaurus_male.png"};
-        this.femaleTextures = new String[]{"jurassicraft:textures/entities/spinosaurus/spinosaurus_female.png"};
+        this.maleTextures = new String[] { "jurassicraft:textures/entities/spinosaurus/spinosaurus_male.png" };
+        this.femaleTextures = new String[] { "jurassicraft:textures/entities/spinosaurus/spinosaurus_female.png" };
 
         try
         {

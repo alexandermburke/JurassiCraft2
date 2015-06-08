@@ -44,7 +44,7 @@ public class ItemPlasterAndBandage extends Item
 
                     if (world.rand.nextFloat() < 0.9F)
                     {
-                        //Change the block state depending on the pos later.
+                        // Change the block state depending on the pos later.
                         world.setBlockState(pos, JCBlockRegistry.encased_fossil.getStateFromMeta(FossilHandler.getDefaultTimePeriod()));
                         return true;
                     }

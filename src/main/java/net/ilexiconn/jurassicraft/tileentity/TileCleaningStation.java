@@ -22,8 +22,8 @@ public class TileCleaningStation extends TileEntity implements ISidedInventory
 {
 
     private ItemStack[] slots = new ItemStack[7];
-    private static final int[] slotFossilBlock = new int[]{0};
-    private static final int[] slotFossil = new int[]{1, 2, 3, 4, 5, 6};
+    private static final int[] slotFossilBlock = new int[] { 0 };
+    private static final int[] slotFossil = new int[] { 1, 2, 3, 4, 5, 6 };
     private String tileCustomName;
 
     public TileCleaningStation()

@@ -15,8 +15,8 @@ public class AnimationSpinosaurus implements IModelAnimator
         float globalDegree = 0.4F;
         float height = 1.0F;
 
-        //f = entity.ticksExisted;
-        //f1 = 1F;
+        // f = entity.ticksExisted;
+        // f1 = 1F;
 
         // middle
         MowzieModelRenderer shoulders = model.getCube("Body 3");
@@ -77,11 +77,11 @@ public class AnimationSpinosaurus implements IModelAnimator
         MowzieModelRenderer lowerJaw = model.getCube("Lower jaw");
         MowzieModelRenderer lowerJawFront = model.getCube("Lower jaw front");
 
-        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[]{handRight, lowerArmRight, upperArmRight};
-        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[]{handLeft, lowerArmLeft, upperArmLeft};
-        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
-        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[]{head, neck1, neck2, neck3, neck4, neck5, shoulders, chest, waist};
-        MowzieModelRenderer[] bottomJaw = new MowzieModelRenderer[]{lowerJawFront, lowerJaw};
+        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[] { handRight, lowerArmRight, upperArmRight };
+        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[] { handLeft, lowerArmLeft, upperArmLeft };
+        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
+        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[] { head, neck1, neck2, neck3, neck4, neck5, shoulders, chest, waist };
+        MowzieModelRenderer[] bottomJaw = new MowzieModelRenderer[] { lowerJawFront, lowerJaw };
 
         // Body animations
         model.bob(waist, 1F * globalSpeed, height, false, f, f1);

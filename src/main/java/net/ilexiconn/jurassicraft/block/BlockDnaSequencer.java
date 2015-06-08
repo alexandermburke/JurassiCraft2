@@ -33,8 +33,8 @@ public class BlockDnaSequencer extends BlockOriented
         if (stack.hasDisplayName())
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
-            //if (tileentity instanceof TileDnaSequencer)
-            //((TileDnaSequencer) tileentity).setCustomInventoryName(stack.getDisplayName());
+            // if (tileentity instanceof TileDnaSequencer)
+            // ((TileDnaSequencer) tileentity).setCustomInventoryName(stack.getDisplayName());
         }
     }
 
@@ -44,7 +44,7 @@ public class BlockDnaSequencer extends BlockOriented
         TileEntity tileentity = worldIn.getTileEntity(pos);
         if (tileentity instanceof TileDnaSequencer)
         {
-            //InventoryHelper.dropInventoryItems(worldIn, pos, (TileDnaSequencer) tileentity);
+            // InventoryHelper.dropInventoryItems(worldIn, pos, (TileDnaSequencer) tileentity);
         }
         super.breakBlock(worldIn, pos, state);
     }

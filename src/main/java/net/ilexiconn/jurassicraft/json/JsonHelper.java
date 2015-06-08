@@ -15,7 +15,8 @@ public class JsonHelper
     public static EntityPart[] parseHitboxList(EntityLivingBase parent, JsonHitbox[] hitbox)
     {
         EntityPart[] list = new EntityPart[hitbox.length];
-        for (int i = 0; i < hitbox.length; i++) list[i] = parseHitbox(parent, hitbox[i]);
+        for (int i = 0; i < hitbox.length; i++)
+            list[i] = parseHitbox(parent, hitbox[i]);
         return list;
     }
 

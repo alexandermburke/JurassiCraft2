@@ -19,7 +19,7 @@ public class TileFossilGrinder extends TileEntity implements IUpdatePlayerListBo
 {
 
     private ItemStack[] slots = new ItemStack[1];
-    private static final int[] slotFossilBlock = new int[]{0};
+    private static final int[] slotFossilBlock = new int[] { 0 };
 
     private String tileCustomName;
 

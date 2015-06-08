@@ -18,8 +18,8 @@ public class DinosaurRugops extends Dinosaur
     public DinosaurRugops()
     {
         this.animator = new AnimationRugops();
-        this.maleTextures = new String[]{"jurassicraft:textures/entities/rugops/rugops_male.png"};
-        this.femaleTextures = new String[]{"jurassicraft:textures/entities/rugops/rugops_female.png"};
+        this.maleTextures = new String[] { "jurassicraft:textures/entities/rugops/rugops_male.png" };
+        this.femaleTextures = new String[] { "jurassicraft:textures/entities/rugops/rugops_female.png" };
 
         try
         {

@@ -54,13 +54,13 @@ public class ClientProxy extends ServerProxy
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
         ItemModelMesher itemModelMesher = renderItem.getItemModelMesher();
 
-        //Items
+        // Items
         this.registerItemRenderer(itemModelMesher, JCItemRegistry.plaster_and_bandage, "jurassicraft:item_plaster_and_bandage", "inventory");
         this.registerItemRenderer(itemModelMesher, JCItemRegistry.spawn_egg, "jurassicraft:item_dino_spawn_egg", "inventory");
         this.registerItemRenderer(itemModelMesher, JCItemRegistry.fossil, "jurassicraft:item_fossil", "inventory");
-        //this.registerFossilRenderer(itemModelMesher);
+        // this.registerFossilRenderer(itemModelMesher);
 
-        //Blocks
+        // Blocks
         this.registerBlockRenderer(itemModelMesher, JCBlockRegistry.fossil, "jurassicraft:block_fossil", "inventory");
         this.registerBlockRenderer(itemModelMesher, JCBlockRegistry.encased_fossil, "jurassicraft:block_encased_fossil", "inventory");
         this.registerBlockRenderer(itemModelMesher, JCBlockRegistry.cleaning_station, "jurassicraft:block_cleaning_station", "inventory");

@@ -18,8 +18,8 @@ public class DinosaurVelociraptor extends Dinosaur
     public DinosaurVelociraptor()
     {
         this.animator = new AnimationVelociraptor();
-        this.maleTextures = new String[]{"jurassicraft:textures/entities/velociraptor/velociraptor_male.png"};
-        this.femaleTextures = new String[]{"jurassicraft:textures/entities/velociraptor/velociraptor_female.png"};
+        this.maleTextures = new String[] { "jurassicraft:textures/entities/velociraptor/velociraptor_male.png" };
+        this.femaleTextures = new String[] { "jurassicraft:textures/entities/velociraptor/velociraptor_female.png" };
 
         try
         {

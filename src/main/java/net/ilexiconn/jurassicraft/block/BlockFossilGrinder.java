@@ -17,7 +17,6 @@ import java.util.Random;
 
 public class BlockFossilGrinder extends BlockOriented
 {
-
     public BlockFossilGrinder()
     {
         super(Material.wood);
@@ -33,8 +32,8 @@ public class BlockFossilGrinder extends BlockOriented
         if (stack.hasDisplayName())
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
-            //if (tileentity instanceof TileFossilGrinder)
-            //((TileFossilGrinder) tileentity).setCustomInventoryName(stack.getDisplayName());
+            // if (tileentity instanceof TileFossilGrinder)
+            // ((TileFossilGrinder) tileentity).setCustomInventoryName(stack.getDisplayName());
         }
     }
 
@@ -44,7 +43,7 @@ public class BlockFossilGrinder extends BlockOriented
         TileEntity tileentity = worldIn.getTileEntity(pos);
         if (tileentity instanceof TileFossilGrinder)
         {
-            //InventoryHelper.dropInventoryItems(worldIn, pos, (TileFossilGrinder) tileentity);
+            // InventoryHelper.dropInventoryItems(worldIn, pos, (TileFossilGrinder) tileentity);
         }
         super.breakBlock(worldIn, pos, state);
     }
