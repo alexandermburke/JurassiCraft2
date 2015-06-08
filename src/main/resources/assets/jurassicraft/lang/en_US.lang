@@ -2,26 +2,18 @@
 itemGroup.jurassicraft.items=JurassiCraft Items
 itemGroup.jurassicraft.blocks=JurassiCraft Blocks
 
-
-
 //Entities ==================================================
 entity.velociraptor.name=Velociraptor
 entity.spinosaurus.name=Spinosaurus
-
-
 
 
 //Items ==================================================
 item.item_rock_pick.name=Rock Pick
 item.item_plaster_and_bandage.name=Plaster and Bandage
 
-item.item_dino_spawn_egg.velociraptor.name=Spawn Velociraptor
-item.item_dino_spawn_egg.spinosaurus.name=Spawn Spinosaurus
+item.item_fossil.name=Fossil
 
-item.item_fossil.velociraptor.name=Velociraptor Fossil
-item.item_fossil.spinosaurus.name=Spinosaurus Fossil
-
-
+item.dino_spawn_egg.name=Spawn
 
 //Blocks ==================================================
 tile.block_fossil.name=Fossil Block
