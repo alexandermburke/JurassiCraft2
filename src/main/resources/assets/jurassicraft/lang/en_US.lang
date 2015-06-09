@@ -7,7 +7,6 @@ entity.velociraptor.name=Velociraptor
 entity.spinosaurus.name=Spinosaurus
 entity.rugops.name=Rugops
 
-
 //Items ==================================================
 item.item_rock_pick.name=Rock Pick
 item.item_plaster_and_bandage.name=Plaster and Bandage
