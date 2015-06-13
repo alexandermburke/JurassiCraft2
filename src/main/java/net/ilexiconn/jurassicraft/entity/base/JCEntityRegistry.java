@@ -43,7 +43,7 @@ public class JCEntityRegistry implements IContentHandler
             String dinoName = dino.getName().toLowerCase();
 
             EntityRegistry.registerGlobalEntityID(entityClass, dinoName, entityId);
-            EntityRegistry.registerModEntity(entityClass, dinoName, entityId, JurassiCraft.instance, 64, 1, true);
+            EntityRegistry.registerModEntity(entityClass, dinoName, entityId, JurassiCraft.instance, 128, 1, true);
 
             JurassiCraft.proxy.registerEntityRenderer(entityClass, dino);
         }
@@ -53,7 +53,9 @@ public class JCEntityRegistry implements IContentHandler
     {
         dinosaurs.add(dino);
         int period = dino.getPeriod();
+        
         List<Dinosaur> dinoList = dinosaursFromPeriod.get(period);
+        
         if (dinoList != null)
         {
             dinoList.add(dino);

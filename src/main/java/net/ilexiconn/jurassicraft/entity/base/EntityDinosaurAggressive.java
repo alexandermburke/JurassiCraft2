@@ -23,13 +23,7 @@ public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
     public void onLivingUpdate()
     {
         this.updateArmSwingProgress();
-        float f = this.getBrightness(1.0F);
-
-        if (f > 0.5F)
-        {
-            this.entityAge += 2;
-        }
-
+        
         super.onLivingUpdate();
     }
 

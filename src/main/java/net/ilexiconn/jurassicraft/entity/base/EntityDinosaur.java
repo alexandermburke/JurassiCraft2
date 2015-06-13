@@ -21,6 +21,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
     public EntityDinosaur(World world)
     {
         super(world);
+        
         parts = JsonHelper.parseHitboxList(this, dinosaur.getHitBoxList());
         gender = rand.nextBoolean();
 

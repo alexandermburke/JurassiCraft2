@@ -47,6 +47,7 @@ public class MessageCleaningTable implements IMessage
             {
                 BlockPos pos = new BlockPos(message.xCoord, message.yCoord, message.zCoord);
                 TileEntity tileEntity = ctx.getServerHandler().playerEntity.worldObj.getTileEntity(pos);
+              
                 if (tileEntity instanceof TileCleaningStation)
                 {
                     TileCleaningStation cleaningStation = (TileCleaningStation) tileEntity;
@@ -54,6 +55,7 @@ public class MessageCleaningTable implements IMessage
                     cleaningStation.cleanFossil();
                 }
             }
+            
             return null;
         }
     }

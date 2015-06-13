@@ -1,6 +1,5 @@
 package net.ilexiconn.jurassicraft.entity;
 
-import net.ilexiconn.jurassicraft.dinosaur.DinosaurVelociraptor;
 import net.ilexiconn.jurassicraft.entity.base.EntityDinosaurAggressive;
 import net.ilexiconn.llibrary.client.model.modelbase.ChainBuffer;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -26,13 +25,11 @@ public class EntityVelociraptor extends EntityDinosaurAggressive
         // this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
 
         // Placeholder AI
-        DinosaurVelociraptor dino = new DinosaurVelociraptor();
-
         if (!this.isChild())
         {
-            this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, dino.getAttackSpeed(), false));
+            this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, dinosaur.getAttackSpeed(), false));
             this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
-            this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPig.class, dino.getAttackSpeed(), false));
+            this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPig.class, dinosaur.getAttackSpeed(), false));
             this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPig.class, false));
 
             this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[] { EntityPlayer.class }));
@@ -45,21 +42,21 @@ public class EntityVelociraptor extends EntityDinosaurAggressive
 
     protected void applyEntityAttributes()
     {
-        DinosaurVelociraptor dino = new DinosaurVelociraptor();
         super.applyEntityAttributes();
+        
         if (this.isChild())
         {
-            this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(dino.getBabyHealth());
-            this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(dino.getBabySpeed());
-            this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(dino.getBabyStrength());
-            this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(dino.getBabyKnockback());
+            this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(dinosaur.getBabyHealth());
+            this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(dinosaur.getBabySpeed());
+            this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(dinosaur.getBabyStrength());
+            this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(dinosaur.getBabyKnockback());
         }
         else
         {
-            this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(dino.getAdultHealth());
-            this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(dino.getAdultSpeed());
-            this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(dino.getAdultStrength());
-            this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(dino.getAdultKnockback());
+            this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(dinosaur.getAdultHealth());
+            this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(dinosaur.getAdultSpeed());
+            this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(dinosaur.getAdultStrength());
+            this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(dinosaur.getAdultKnockback());
         }
     }
 

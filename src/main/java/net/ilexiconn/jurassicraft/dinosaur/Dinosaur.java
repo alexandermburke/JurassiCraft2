@@ -85,6 +85,11 @@ public abstract class Dinosaur
 
     public abstract String[] getFemaleTextures();
 
+    public double getAttackSpeed()
+    {
+        return 0.5D;
+    }
+    
     public List<JsonHitbox> getHitBoxList()
     {
         return new ArrayList<JsonHitbox>();
