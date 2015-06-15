@@ -1,14 +1,22 @@
-*.iml
-*.ipr
-*.iws
 minecraft/
+
+## IDEA files
+.idea/
 build/
 out/
 .gradle/
+*.iml
+*.ipr
+*.iws
+
+## Eclipse files
 bin/
+eclipse/
 .project
 .classpath
 .settings/
+
+## Minecraft files
 config/
 logs/
 saves/
@@ -16,3 +24,8 @@ usernamecache.json
 options.txt
 crash-reports/
 screenshots/
+
+## Forge files
+gradle/
+gradlew
+gradlew.bat
