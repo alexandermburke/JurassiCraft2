@@ -74,20 +74,20 @@ public class BlockCleaningStation extends BlockOriented
     {
         if (world.isRemote)
         {
-            System.out.println("Hello0");
+            JurassiCraft.instance.getLogger().debug("Hello0");
             return true;
         }
         else if (!player.isSneaking())
         {
-            System.out.println("Hello1");
+            JurassiCraft.instance.getLogger().debug("Hello1");
             TileEntity tileEntity = world.getTileEntity(pos);
             if (tileEntity instanceof TileCleaningStation)
             {
-                System.out.println("Hello2");
+                JurassiCraft.instance.getLogger().debug("Hello2");
                 TileCleaningStation cleaningStation = (TileCleaningStation) tileEntity;
                 if (cleaningStation.isUseableByPlayer(player))
                 {
-                    System.out.println("Hello3");
+                    JurassiCraft.instance.getLogger().debug("Hello3");
                     player.openGui(JurassiCraft.instance, 0, world, pos.getX(), pos.getY(), pos.getZ());
                     return true;
                 }

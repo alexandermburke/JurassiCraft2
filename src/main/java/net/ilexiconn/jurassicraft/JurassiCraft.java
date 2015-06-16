@@ -18,6 +18,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
+import org.apache.logging.log4j.Logger;
 
 @Mod(modid = JurassiCraft.MODID, name = "JurassiCraft", version = "${version}", dependencies = "required-after:llibrary@[0.1.0-1.8,)")
 public class JurassiCraft
@@ -32,10 +33,13 @@ public class JurassiCraft
     public static JurassiCraft instance;
 
     public static boolean debug;
+    private Logger logger;
 
     @Mod.EventHandler
-    public void init(FMLPreInitializationEvent event) throws IOException
+    public void preInit(FMLPreInitializationEvent event) throws IOException
     {
+        logger = event.getModLog();
+        logger.info("Loading Jurassicraft...");
         ContentHandlerList.createList(new JCCreativeTabs(), new JCItemRegistry(), new JCBlockRegistry(), new JCEntityRegistry()).init();
         proxy.init();
 
@@ -46,8 +50,13 @@ public class JurassiCraft
     }
 
     @Mod.EventHandler
-    public void init(FMLPostInitializationEvent event)
+    public void postInit(FMLPostInitializationEvent event)
     {
         proxy.postInit();
+        logger.info("Successfully loaded Jurassicraft!");
+    }
+
+    public Logger getLogger() {
+        return logger;
     }
 }
