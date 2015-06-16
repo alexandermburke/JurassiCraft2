@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 
 public class EntityRugops extends EntityDinosaurAggressive
 {
-    public ChainBuffer tailBuffer = new ChainBuffer(5);
+    public ChainBuffer tailBuffer = new ChainBuffer(6);
 
     public EntityRugops(World world)
     {

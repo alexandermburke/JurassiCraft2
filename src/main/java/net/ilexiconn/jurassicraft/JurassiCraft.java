@@ -19,14 +19,16 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 
-@Mod(modid = "jurassicraft", name = "JurassiCraft", version = "${version}", dependencies = "required-after:llibrary@[0.1.0-1.8,)")
+@Mod(modid = JurassiCraft.MODID, name = "JurassiCraft", version = "${version}", dependencies = "required-after:llibrary@[0.1.0-1.8,)")
 public class JurassiCraft
 {
     @SidedProxy(serverSide = "net.ilexiconn.jurassicraft.proxy.ServerProxy", clientSide = "net.ilexiconn.jurassicraft.proxy.ClientProxy")
     public static ServerProxy proxy;
     public static SimpleNetworkWrapper wrapper;
 
-    @Instance("jurassicraft")
+    public static final String MODID = "jurassicraft";
+
+    @Instance(MODID)
     public static JurassiCraft instance;
 
     public static boolean debug;
@@ -39,7 +41,7 @@ public class JurassiCraft
 
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 
-        JurassiCraft.wrapper = NetworkRegistry.INSTANCE.newSimpleChannel("jurassicraft");
+        JurassiCraft.wrapper = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
         JurassiCraft.wrapper.registerMessage(MessageCleaningTable.Handler.class, MessageCleaningTable.class, 0, Side.SERVER);
     }
 
