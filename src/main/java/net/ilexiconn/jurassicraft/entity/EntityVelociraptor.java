@@ -24,7 +24,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive
         // this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.5F, false));
         // this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
 
-        // Placeholder AI
+        // Placeholder AIs
         if (!this.isChild())
         {
             this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, dinosaur.getAttackSpeed(), false));
