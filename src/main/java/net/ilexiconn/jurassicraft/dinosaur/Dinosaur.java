@@ -8,6 +8,7 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
 
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.entity.base.EntityDinosaur;
@@ -107,38 +108,26 @@ public abstract class Dinosaur
 
     public ModelJson getTabulaModel(String tabulaModel) throws Exception
     {
-        File tempFile = File.createTempFile(tabulaModel, ".tbl");
-        tempFile.deleteOnExit();
-
-        FileOutputStream out = new FileOutputStream(tempFile);
-        IOUtils.copy(JurassiCraft.class.getResourceAsStream(tabulaModel + ".tbl"), out);
-
-        ZipFile zipFile = new ZipFile(tempFile);
-        Enumeration<? extends ZipEntry> entries = zipFile.entries();
-
-        while (entries.hasMoreElements())
+        try(ZipInputStream inputStream = new ZipInputStream(JurassiCraft.class.getResourceAsStream(tabulaModel + ".tbl")))
         {
-            ZipEntry entry = entries.nextElement();
-
-            if (entry.getName().equals("model.json"))
+            ZipEntry entry;
+            while ((entry = inputStream.getNextEntry()) != null)
             {
-                InputStream stream = zipFile.getInputStream(entry);
-
-                IModelAnimator modelAnimator = getModelAnimator();
-
-                if (modelAnimator != null)
+                if (entry.getName().equals("model.json"))
                 {
-                    return new ModelJson(JsonHelper.parseTabulaModel(stream), modelAnimator);
-                }
-                else
-                {
-                    return new ModelJson(JsonHelper.parseTabulaModel(stream));
+                    IModelAnimator modelAnimator = getModelAnimator();
+
+                    if (modelAnimator != null)
+                    {
+                        return new ModelJson(JsonHelper.parseTabulaModel(inputStream), modelAnimator);
+                    }
+                    else
+                    {
+                        return new ModelJson(JsonHelper.parseTabulaModel(inputStream));
+                    }
                 }
             }
         }
-
-        zipFile.close();
-
         return null;
     }
 }
