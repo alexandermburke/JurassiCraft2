@@ -11,6 +11,7 @@ import net.ilexiconn.jurassicraft.json.JsonHitbox;
 import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
 import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.ilexiconn.llibrary.common.json.JsonHelper;
+import net.ilexiconn.llibrary.common.json.container.JsonTabulaModel;
 import net.minecraft.client.model.ModelBase;
 
 public abstract class Dinosaur
@@ -104,23 +105,31 @@ public abstract class Dinosaur
         try (ZipInputStream inputStream = new ZipInputStream(JurassiCraft.class.getResourceAsStream(tabulaModel + ".tbl")))
         {
             ZipEntry entry;
+            
             while ((entry = inputStream.getNextEntry()) != null)
             {
                 if (entry.getName().equals("model.json"))
                 {
                     IModelAnimator modelAnimator = getModelAnimator();
 
+                    JsonTabulaModel parseTabulaModel = JsonHelper.parseTabulaModel(inputStream);
+                    
+                    inputStream.close();
+                    
                     if (modelAnimator != null)
                     {
-                        return new ModelJson(JsonHelper.parseTabulaModel(inputStream), modelAnimator);
+                        return new ModelJson(parseTabulaModel, modelAnimator);
                     }
                     else
                     {
-                        return new ModelJson(JsonHelper.parseTabulaModel(inputStream));
+                        return new ModelJson(parseTabulaModel);
                     }
                 }
             }
+            
+            inputStream.close();
         }
+        
         return null;
     }
 }
