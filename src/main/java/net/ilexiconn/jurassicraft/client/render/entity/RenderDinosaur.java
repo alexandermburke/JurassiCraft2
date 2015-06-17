@@ -6,7 +6,6 @@ import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
 import net.ilexiconn.jurassicraft.entity.EntityVelociraptor;
 import net.ilexiconn.jurassicraft.entity.base.EntityDinosaur;
 import net.ilexiconn.llibrary.client.render.entity.RenderMultiPart;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -81,11 +80,11 @@ public class RenderDinosaur extends RenderMultiPart
 
             GL11.glScalef(0.5F + time * 0.5F, 1 + time * 0.5F, 0.9F + time * 0.25F);
         }
-        else if(entity.getCustomNameTag().equals("Notch") || entity.getCustomNameTag().equals("Jumbo"))
+        else if (entity.getCustomNameTag().equals("Notch") || entity.getCustomNameTag().equals("Jumbo"))
         {
             GL11.glScalef(5, 5, 5);
         }
-        else if(entity.getCustomNameTag().equals("jglrxavpok"))
+        else if (entity.getCustomNameTag().equals("jglrxavpok"))
         {
             GL11.glScalef(1, 1, -1);
         }

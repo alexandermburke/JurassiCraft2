@@ -2,7 +2,8 @@ package net.ilexiconn.jurassicraft.api.animation;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class Transform {
+public class Transform
+{
 
     public float rotX;
     public float rotY;
@@ -15,11 +16,13 @@ public class Transform {
     public float rotOffsetY;
     public float rotOffsetZ;
 
-    public Transform() {
+    public Transform()
+    {
 
     }
 
-    public Transform(ModelRenderer m) {
+    public Transform(ModelRenderer m)
+    {
         rotX = m.rotateAngleX;
         rotY = m.rotateAngleY;
         rotZ = m.rotateAngleZ;
@@ -31,7 +34,8 @@ public class Transform {
         rotOffsetZ = m.rotationPointZ;
     }
 
-    public Transform copy() {
+    public Transform copy()
+    {
         Transform tr = new Transform();
         tr.rotX = rotX;
         tr.rotY = rotY;
@@ -46,7 +50,8 @@ public class Transform {
         return tr;
     }
 
-    public void add(Transform o) {
+    public void add(Transform o)
+    {
         rotX += o.rotX;
         rotY += o.rotY;
         rotZ += o.rotZ;

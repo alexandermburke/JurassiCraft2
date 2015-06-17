@@ -43,7 +43,7 @@ public class EntityRugops extends EntityDinosaurAggressive
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        
+
         if (this.isChild())
         {
             this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(dinosaur.getBabyHealth());

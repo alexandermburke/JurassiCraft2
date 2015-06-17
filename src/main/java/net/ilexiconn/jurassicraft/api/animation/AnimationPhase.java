@@ -1,12 +1,14 @@
 package net.ilexiconn.jurassicraft.api.animation;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Maps;
-import net.minecraft.client.model.ModelRenderer;
-
 import java.util.HashMap;
 
-public class AnimationPhase {
+import net.minecraft.client.model.ModelRenderer;
+
+import com.google.common.base.Function;
+import com.google.common.collect.Maps;
+
+public class AnimationPhase
+{
 
     private final Function<Float, Float> easing;
     private final long offset;
@@ -15,7 +17,8 @@ public class AnimationPhase {
     private final HashMap<ModelRenderer, Transform> destTransforms;
     private boolean looping;
 
-    public AnimationPhase(long duration, long offset, Function<Float, Float> easing) {
+    public AnimationPhase(long duration, long offset, Function<Float, Float> easing)
+    {
         this.duration = duration;
         this.offset = offset;
         this.easing = easing;
@@ -24,20 +27,25 @@ public class AnimationPhase {
         looping = true;
     }
 
-    public long getDuration() {
+    public long getDuration()
+    {
         return duration;
     }
 
-    public Function<Float, Float> getEasing() {
+    public Function<Float, Float> getEasing()
+    {
         return easing;
     }
 
-    public long getOffset() {
+    public long getOffset()
+    {
         return offset;
     }
 
-    public Transform getTransform(ModelRenderer part) {
-        if(!destTransforms.containsKey(part)) {
+    public Transform getTransform(ModelRenderer part)
+    {
+        if (!destTransforms.containsKey(part))
+        {
             Transform start = new Transform();
             start.rotOffsetX = part.rotationPointX;
             start.rotOffsetY = part.rotationPointY;
@@ -54,19 +62,23 @@ public class AnimationPhase {
         return destTransforms.get(part);
     }
 
-    public HashMap<ModelRenderer, Transform> getStartTransforms() {
+    public HashMap<ModelRenderer, Transform> getStartTransforms()
+    {
         return startTransforms;
     }
 
-    public HashMap<ModelRenderer, Transform> getDestTransforms() {
+    public HashMap<ModelRenderer, Transform> getDestTransforms()
+    {
         return destTransforms;
     }
 
-    public boolean isLooping() {
+    public boolean isLooping()
+    {
         return looping;
     }
 
-    public void setLooping(boolean looping) {
+    public void setLooping(boolean looping)
+    {
         this.looping = looping;
     }
 }

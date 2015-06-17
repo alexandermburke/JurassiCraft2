@@ -46,7 +46,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive implements IAni
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        
+
         if (this.isChild())
         {
             this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(dinosaur.getBabyHealth());
@@ -70,12 +70,14 @@ public class EntityVelociraptor extends EntityDinosaurAggressive implements IAni
     }
 
     @Override
-    public void setAnimID(int id) {
+    public void setAnimID(int id)
+    {
         animID = id;
     }
 
     @Override
-    public int getAnimID() {
+    public int getAnimID()
+    {
         return animID;
     }
 }

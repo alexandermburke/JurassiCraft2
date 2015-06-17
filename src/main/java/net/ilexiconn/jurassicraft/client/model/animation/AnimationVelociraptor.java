@@ -20,7 +20,7 @@ public class AnimationVelociraptor implements IModelAnimator
     @Override
     public void setRotationAngles(ModelJson model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
     {
-        if(!animator.isInitialized())
+        if (!animator.isInitialized())
             animator.init(model);
         EntityVelociraptor velociraptor = (EntityVelociraptor) entity;
 
@@ -211,23 +211,26 @@ public class AnimationVelociraptor implements IModelAnimator
         {
             animator.startPhase(55L + 10L, 10L);
             {
-                if (velociraptor.isMale()) {
+                if (velociraptor.isMale())
+                {
                     animator.rotate(Lower_Arm_Left, (float) (Math.PI * 2f), 0, 0);
                     animator.rotate(Hand_Left, (float) (Math.PI * 2f), 0, 0);
-                } else {
+                }
+                else
+                {
                     animator.rotate(Lower_Arm_Right, (float) (Math.PI * 2f), 0, 0);
                     animator.rotate(Hand_Right, (float) (Math.PI * 2f), 0, 0);
                 }
             }
             animator.endPhase();
 
-            float angle = (float) (Math.PI/4f);
-            animator.startPhase(65L/2L);
-                animator.rotate(neck1, -angle, 0, 0);
+            float angle = (float) (Math.PI / 4f);
+            animator.startPhase(65L / 2L);
+            animator.rotate(neck1, -angle, 0, 0);
             animator.endPhase();
 
-            animator.startPhase(65L/2L+1, 65L/2L);
-                animator.rotate(neck1, angle, 0, 0);
+            animator.startPhase(65L / 2L + 1, 65L / 2L);
+            animator.rotate(neck1, angle, 0, 0);
             animator.endPhase();
             // OtherStuff
         }

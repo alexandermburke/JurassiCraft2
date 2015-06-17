@@ -1,13 +1,8 @@
 package net.ilexiconn.jurassicraft.dinosaur;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 
 import net.ilexiconn.jurassicraft.JurassiCraft;
@@ -17,8 +12,6 @@ import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
 import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.ilexiconn.llibrary.common.json.JsonHelper;
 import net.minecraft.client.model.ModelBase;
-
-import org.apache.commons.io.IOUtils;
 
 public abstract class Dinosaur
 {
@@ -90,7 +83,7 @@ public abstract class Dinosaur
     {
         return 0.5D;
     }
-    
+
     public List<JsonHitbox> getHitBoxList()
     {
         return new ArrayList<JsonHitbox>();
@@ -108,7 +101,7 @@ public abstract class Dinosaur
 
     public ModelJson getTabulaModel(String tabulaModel) throws Exception
     {
-        try(ZipInputStream inputStream = new ZipInputStream(JurassiCraft.class.getResourceAsStream(tabulaModel + ".tbl")))
+        try (ZipInputStream inputStream = new ZipInputStream(JurassiCraft.class.getResourceAsStream(tabulaModel + ".tbl")))
         {
             ZipEntry entry;
             while ((entry = inputStream.getNextEntry()) != null)

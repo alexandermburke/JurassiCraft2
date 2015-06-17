@@ -18,6 +18,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
+
 import org.apache.logging.log4j.Logger;
 
 @Mod(modid = JurassiCraft.MODID, name = "JurassiCraft", version = "${version}", dependencies = "required-after:llibrary@[0.1.0-1.8,)")
@@ -56,7 +57,8 @@ public class JurassiCraft
         logger.info("Successfully loaded Jurassicraft!");
     }
 
-    public Logger getLogger() {
+    public Logger getLogger()
+    {
         return logger;
     }
 }

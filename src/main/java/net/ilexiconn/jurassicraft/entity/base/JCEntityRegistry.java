@@ -53,9 +53,9 @@ public class JCEntityRegistry implements IContentHandler
     {
         dinosaurs.add(dino);
         int period = dino.getPeriod();
-        
+
         List<Dinosaur> dinoList = dinosaursFromPeriod.get(period);
-        
+
         if (dinoList != null)
         {
             dinoList.add(dino);

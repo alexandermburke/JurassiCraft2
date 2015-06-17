@@ -37,7 +37,7 @@ public class BlockCleaningStation extends BlockOriented
         if (stack.hasDisplayName())
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
-            
+
             if (tileentity instanceof TileCleaningStation)
                 ((TileCleaningStation) tileentity).setCustomInventoryName(stack.getDisplayName());
         }

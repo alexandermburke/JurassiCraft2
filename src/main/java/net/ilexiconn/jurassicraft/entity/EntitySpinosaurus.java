@@ -46,9 +46,9 @@ public class EntitySpinosaurus extends EntityDinosaurAggressive implements IEnti
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        
-        //TODO move between the two as age changes
-        
+
+        // TODO move between the two as age changes
+
         if (this.isChild())
         {
             this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(dinosaur.getBabyHealth());

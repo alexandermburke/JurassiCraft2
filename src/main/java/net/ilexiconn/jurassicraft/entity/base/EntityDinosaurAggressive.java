@@ -23,7 +23,7 @@ public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
     public void onLivingUpdate()
     {
         this.updateArmSwingProgress();
-        
+
         super.onLivingUpdate();
     }
 
