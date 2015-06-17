@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.entity;
 
+import net.ilexiconn.jurassicraft.api.animation.IAnimatedEntity;
 import net.ilexiconn.jurassicraft.entity.base.EntityDinosaurAggressive;
 import net.ilexiconn.llibrary.client.model.modelbase.ChainBuffer;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -13,10 +14,11 @@ import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-public class EntityVelociraptor extends EntityDinosaurAggressive
+public class EntityVelociraptor extends EntityDinosaurAggressive implements IAnimatedEntity
 {
     public static final int LEAPING_ANIMATION_ID = 0;
     public ChainBuffer tailBuffer = new ChainBuffer(5);
+    private int animID;
 
     public EntityVelociraptor(World world)
     {
@@ -64,5 +66,15 @@ public class EntityVelociraptor extends EntityDinosaurAggressive
     {
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
         super.onUpdate();
+    }
+
+    @Override
+    public void setAnimID(int id) {
+        animID = id;
+    }
+
+    @Override
+    public int getAnimID() {
+        return animID;
     }
 }

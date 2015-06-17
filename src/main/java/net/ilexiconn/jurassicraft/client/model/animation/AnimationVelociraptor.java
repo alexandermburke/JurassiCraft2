@@ -1,5 +1,6 @@
 package net.ilexiconn.jurassicraft.client.model.animation;
 
+import net.ilexiconn.jurassicraft.api.animation.Animator;
 import net.ilexiconn.jurassicraft.entity.EntityVelociraptor;
 import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
 import net.ilexiconn.llibrary.client.model.modelbase.MowzieModelRenderer;
@@ -9,9 +10,18 @@ import net.minecraft.entity.Entity;
 public class AnimationVelociraptor implements IModelAnimator
 {
 
+    private final Animator animator;
+
+    public AnimationVelociraptor()
+    {
+        this.animator = new Animator();
+    }
+
     @Override
     public void setRotationAngles(ModelJson model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
     {
+        if(!animator.isInitialized())
+            animator.init(model);
         EntityVelociraptor velociraptor = (EntityVelociraptor) entity;
 
         int frame = velociraptor.ticksExisted;
@@ -195,5 +205,33 @@ public class AnimationVelociraptor implements IModelAnimator
         model.faceTarget(neck1, 2, rotationYaw, rotationPitch);
 
         ((EntityVelociraptor) entity).tailBuffer.applyChainSwingBuffer(tailParts);
+
+        animator.begin(velociraptor, partialTicks); // Start animating the velociraptor
+        animator.startPhase(65L); // Main phase, duration: 150 ticks
+        {
+            animator.startPhase(55L + 10L, 10L);
+            {
+                if (velociraptor.isMale()) {
+                    animator.rotate(Lower_Arm_Left, (float) (Math.PI * 2f), 0, 0);
+                    animator.rotate(Hand_Left, (float) (Math.PI * 2f), 0, 0);
+                } else {
+                    animator.rotate(Lower_Arm_Right, (float) (Math.PI * 2f), 0, 0);
+                    animator.rotate(Hand_Right, (float) (Math.PI * 2f), 0, 0);
+                }
+            }
+            animator.endPhase();
+
+            float angle = (float) (Math.PI/4f);
+            animator.startPhase(65L/2L);
+                animator.rotate(neck1, -angle, 0, 0);
+            animator.endPhase();
+
+            animator.startPhase(65L/2L+1, 65L/2L);
+                animator.rotate(neck1, angle, 0, 0);
+            animator.endPhase();
+            // OtherStuff
+        }
+        animator.endPhase(); // Ends main phase definition
+        animator.end(); // Ends animation definition and applies it
     }
 }
