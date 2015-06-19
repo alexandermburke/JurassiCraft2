@@ -1,8 +1,7 @@
 package net.ilexiconn.jurassicraft.entity;
 
+import net.ilexiconn.jurassicraft.api.animation.IAnimatedEntity;
 import net.ilexiconn.jurassicraft.entity.base.EntityDinosaurAggressive;
-import net.ilexiconn.llibrary.client.model.modelbase.ChainBuffer;
-import net.ilexiconn.llibrary.common.entity.multipart.IEntityMultiPart;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -13,14 +12,15 @@ import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-public class EntitySpinosaurus extends EntityDinosaurAggressive implements IEntityMultiPart
+public class EntityIndominusRex extends EntityDinosaurAggressive implements IAnimatedEntity
 {
-    public ChainBuffer tailBuffer = new ChainBuffer(6);
+    private int animationId = -1;
 
-    public EntitySpinosaurus(World world)
+    public EntityIndominusRex(World world)
     {
         super(world);
 
+        // Placeholder AI
         if (!this.isChild())
         {
             this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, dinosaur.getAttackSpeed(), false));
@@ -36,9 +36,15 @@ public class EntitySpinosaurus extends EntityDinosaurAggressive implements IEnti
         }
     }
 
-    public void onUpdate()
+    @Override
+    public void setAnimID(int id)
     {
-        super.onUpdate();
-        this.tailBuffer.calculateChainSwingBuffer(68.0F, 10, 4.0F, this);
+        this.animationId = id;
+    }
+
+    @Override
+    public int getAnimID()
+    {
+        return animationId;
     }
 }

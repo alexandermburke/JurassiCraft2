@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
+import net.ilexiconn.jurassicraft.dinosaur.DinosaurIndominusRex;
 import net.ilexiconn.jurassicraft.dinosaur.DinosaurRugops;
 import net.ilexiconn.jurassicraft.dinosaur.DinosaurSpinosaurus;
 import net.ilexiconn.jurassicraft.dinosaur.DinosaurVelociraptor;
@@ -23,6 +24,7 @@ public class JCEntityRegistry implements IContentHandler
         registerDinosaur(new DinosaurSpinosaurus());
         registerDinosaur(new DinosaurVelociraptor());
         registerDinosaur(new DinosaurRugops());
+        registerDinosaur(new DinosaurIndominusRex());
     }
 
     public void gameRegistry() throws Exception

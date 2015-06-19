@@ -3,7 +3,6 @@ package net.ilexiconn.jurassicraft.entity;
 import net.ilexiconn.jurassicraft.api.animation.IAnimatedEntity;
 import net.ilexiconn.jurassicraft.entity.base.EntityDinosaurAggressive;
 import net.ilexiconn.llibrary.client.model.modelbase.ChainBuffer;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -40,26 +39,6 @@ public class EntityVelociraptor extends EntityDinosaurAggressive implements IAni
             this.tasks.addTask(6, new EntityAIWander(this, 1.0D));
             this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
             this.tasks.addTask(8, new EntityAILookIdle(this));
-        }
-    }
-
-    protected void applyEntityAttributes()
-    {
-        super.applyEntityAttributes();
-
-        if (this.isChild())
-        {
-            this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(dinosaur.getBabyHealth());
-            this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(dinosaur.getBabySpeed());
-            this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(dinosaur.getBabyStrength());
-            this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(dinosaur.getBabyKnockback());
-        }
-        else
-        {
-            this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(dinosaur.getAdultHealth());
-            this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(dinosaur.getAdultSpeed());
-            this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(dinosaur.getAdultStrength());
-            this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(dinosaur.getAdultKnockback());
         }
     }
 

@@ -101,8 +101,17 @@ public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
         super.applyEntityAttributes();
 
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
+        
+        if (this.isChild())
+        {
+            this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(dinosaur.getBabyStrength());
+        }
+        else
+        {
+            this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(dinosaur.getAdultStrength());
+        }
     }
-
+    
     protected boolean func_146066_aG()
     {
         return true;
