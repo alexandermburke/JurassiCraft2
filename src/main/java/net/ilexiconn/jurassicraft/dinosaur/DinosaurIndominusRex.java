@@ -201,7 +201,7 @@ public class DinosaurIndominusRex extends Dinosaur
     @Override
     public float getScaleAdjustment()
     {
-        return 5F;
+        return 3.5F;
     }
 
     @Override
