@@ -52,13 +52,13 @@ public class DinosaurIndominusRex extends Dinosaur
     @Override
     public int getEggPrimaryColor()
     {
-        return 0x85866E;
+        return 0xBEBABB;
     }
 
     @Override
     public int getEggSecondaryColor()
     {
-        return 0x403F31;
+        return 0x95949A;
     }
 
     @Override

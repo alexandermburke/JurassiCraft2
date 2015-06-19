@@ -6,6 +6,7 @@ itemGroup.jurassicraft.blocks=JurassiCraft Blocks
 entity.velociraptor.name=Velociraptor
 entity.spinosaurus.name=Spinosaurus
 entity.rugops.name=Rugops
+entity.indominus_rex.name=Indominus Rex
 
 //Items ==================================================
 item.item_rock_pick.name=Rock Pick
