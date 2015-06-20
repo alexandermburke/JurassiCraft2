@@ -9,7 +9,6 @@ import net.minecraft.world.Explosion;
 
 public class BlockFossil extends Block
 {
-
     public BlockFossil()
     {
         super(Material.rock);

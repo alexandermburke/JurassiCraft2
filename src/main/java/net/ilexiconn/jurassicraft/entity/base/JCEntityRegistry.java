@@ -1,13 +1,21 @@
 package net.ilexiconn.jurassicraft.entity.base;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
 import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
+import net.ilexiconn.jurassicraft.dinosaur.DinosaurAchillobator;
+import net.ilexiconn.jurassicraft.dinosaur.DinosaurCarnotaurus;
+import net.ilexiconn.jurassicraft.dinosaur.DinosaurCompsognathus;
+import net.ilexiconn.jurassicraft.dinosaur.DinosaurGiganotosaurus;
 import net.ilexiconn.jurassicraft.dinosaur.DinosaurIndominusRex;
+import net.ilexiconn.jurassicraft.dinosaur.DinosaurMajungasaurus;
 import net.ilexiconn.jurassicraft.dinosaur.DinosaurRugops;
 import net.ilexiconn.jurassicraft.dinosaur.DinosaurSpinosaurus;
+import net.ilexiconn.jurassicraft.dinosaur.DinosaurStegosaurus;
+import net.ilexiconn.jurassicraft.dinosaur.DinosaurTyrannosaurusRex;
 import net.ilexiconn.jurassicraft.dinosaur.DinosaurVelociraptor;
 import net.ilexiconn.llibrary.common.content.IContentHandler;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
@@ -25,10 +33,19 @@ public class JCEntityRegistry implements IContentHandler
         registerDinosaur(new DinosaurVelociraptor());
         registerDinosaur(new DinosaurRugops());
         registerDinosaur(new DinosaurIndominusRex());
+        registerDinosaur(new DinosaurTyrannosaurusRex());
+        registerDinosaur(new DinosaurStegosaurus());
+        registerDinosaur(new DinosaurAchillobator());
+        registerDinosaur(new DinosaurCarnotaurus());
+        registerDinosaur(new DinosaurCompsognathus());
+        registerDinosaur(new DinosaurGiganotosaurus());
+        registerDinosaur(new DinosaurMajungasaurus());
     }
 
     public void gameRegistry() throws Exception
     {
+        Collections.sort(dinosaurs);
+
         for (Dinosaur dino : dinosaurs)
         {
             registerEntity(dino);

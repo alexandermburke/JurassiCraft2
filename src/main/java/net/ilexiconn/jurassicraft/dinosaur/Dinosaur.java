@@ -1,6 +1,7 @@
 package net.ilexiconn.jurassicraft.dinosaur;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -14,7 +15,7 @@ import net.ilexiconn.llibrary.common.json.JsonHelper;
 import net.ilexiconn.llibrary.common.json.container.JsonTabulaModel;
 import net.minecraft.client.model.ModelBase;
 
-public abstract class Dinosaur
+public abstract class Dinosaur implements Comparable<Dinosaur>
 {
     public abstract String getName();
 
@@ -100,12 +101,17 @@ public abstract class Dinosaur
         return true;
     }
 
+    public float getRenderYOffset()
+    {
+        return 0.0F;
+    }
+
     public ModelJson getTabulaModel(String tabulaModel) throws Exception
     {
         try (ZipInputStream inputStream = new ZipInputStream(JurassiCraft.class.getResourceAsStream(tabulaModel + ".tbl")))
         {
             ZipEntry entry;
-            
+
             while ((entry = inputStream.getNextEntry()) != null)
             {
                 if (entry.getName().equals("model.json"))
@@ -113,9 +119,9 @@ public abstract class Dinosaur
                     IModelAnimator modelAnimator = getModelAnimator();
 
                     JsonTabulaModel parseTabulaModel = JsonHelper.parseTabulaModel(inputStream);
-                    
+
                     inputStream.close();
-                    
+
                     if (modelAnimator != null)
                     {
                         return new ModelJson(parseTabulaModel, modelAnimator);
@@ -126,10 +132,16 @@ public abstract class Dinosaur
                     }
                 }
             }
-            
+
             inputStream.close();
         }
-        
+
         return null;
+    }
+
+    @Override
+    public int compareTo(Dinosaur dino)
+    {
+        return this.getName().compareTo(dino.getName());
     }
 }

@@ -4,11 +4,7 @@ import java.lang.reflect.Field;
 
 import net.ilexiconn.jurassicraft.creativetab.JCCreativeTabs;
 import net.ilexiconn.llibrary.common.content.IContentHandler;
-import net.minecraft.client.renderer.ItemMeshDefinition;
-import net.minecraft.client.renderer.ItemModelMesher;
-import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class JCItemRegistry implements IContentHandler
@@ -17,12 +13,15 @@ public class JCItemRegistry implements IContentHandler
     public static ItemDinosaurSpawnEgg spawn_egg;
     public static ItemFossil fossil;
 
+    public static ItemDNA dna;
+
     @Override
     public void init()
     {
         plaster_and_bandage = new ItemPlasterAndBandage();
         spawn_egg = new ItemDinosaurSpawnEgg();
         fossil = new ItemFossil();
+        dna = new ItemDNA();
     }
 
     public void initCreativeTabs()
@@ -36,11 +35,13 @@ public class JCItemRegistry implements IContentHandler
     public void gameRegistry() throws Exception
     {
         initCreativeTabs();
+
         try
         {
             for (Field f : this.getClass().getDeclaredFields())
             {
                 Object obj = f.get(null);
+
                 if (obj instanceof Item)
                     registerItem((Item) obj);
                 else if (obj instanceof Item[])
@@ -60,16 +61,5 @@ public class JCItemRegistry implements IContentHandler
         String[] strings = name.split("\\.");
         name = strings[strings.length - 1];
         GameRegistry.registerItem(item, name);
-    }
-
-    public void registerItemRenderer(ItemModelMesher itemModelMesher, Item item, final String path, final String type)
-    {
-        itemModelMesher.register(item, new ItemMeshDefinition()
-        {
-            public ModelResourceLocation getModelLocation(ItemStack stack)
-            {
-                return new ModelResourceLocation(path, type);
-            }
-        });
     }
 }

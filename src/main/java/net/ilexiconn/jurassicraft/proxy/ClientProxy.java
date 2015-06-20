@@ -3,6 +3,7 @@ package net.ilexiconn.jurassicraft.proxy;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import net.ilexiconn.jurassicraft.JurassiCraft;
 import net.ilexiconn.jurassicraft.block.JCBlockRegistry;
 import net.ilexiconn.jurassicraft.client.render.entity.RenderDinosaur;
 import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
@@ -13,6 +14,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
@@ -24,7 +26,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import com.google.common.collect.Maps;
 
 @SideOnly(Side.CLIENT)
-public class ClientProxy extends ServerProxy
+public class ClientProxy extends CommonProxy
 {
     private Map<Class<? extends Entity>, Dinosaur> renderersToRegister = Maps.newHashMap();
 
@@ -32,6 +34,14 @@ public class ClientProxy extends ServerProxy
     public void init()
     {
         super.init();
+
+        for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
+        {
+            String dinoName = dino.getName().toLowerCase().replaceAll(" ", "_");
+
+            ModelBakery.addVariantName(JCItemRegistry.dna, "jurassicraft:fossil/fossil_" + dinoName);
+            ModelBakery.addVariantName(JCItemRegistry.dna, "jurassicraft:dna/dna_" + dinoName);
+        }
     }
 
     @Override
@@ -52,27 +62,39 @@ public class ClientProxy extends ServerProxy
         }
 
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
-        ItemModelMesher itemModelMesher = renderItem.getItemModelMesher();
+        ItemModelMesher modelMesher = renderItem.getItemModelMesher();
 
         // Items
-        this.registerItemRenderer(itemModelMesher, JCItemRegistry.plaster_and_bandage, "jurassicraft:item_plaster_and_bandage", "inventory");
-        this.registerItemRenderer(itemModelMesher, JCItemRegistry.spawn_egg, "jurassicraft:item_dino_spawn_egg", "inventory");
-        this.registerItemRenderer(itemModelMesher, JCItemRegistry.fossil, "jurassicraft:item_fossil", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.plaster_and_bandage, "item_plaster_and_bandage", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.spawn_egg, "item_dino_spawn_egg", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.fossil, "item_fossil", "inventory");
+
+        int meta = 0;
+
+        for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
+        {
+            String dinoName = dino.getName().toLowerCase().replaceAll(" ", "_");
+
+            this.registerItemRenderer(modelMesher, JCItemRegistry.dna, meta, "dna/dna_" + dinoName, "inventory");
+            this.registerItemRenderer(modelMesher, JCItemRegistry.fossil, meta, "fossil/fossil_" + dinoName, "inventory");
+
+            meta++;
+        }
         // this.registerFossilRenderer(itemModelMesher);
 
         // Blocks
-        this.registerBlockRenderer(itemModelMesher, JCBlockRegistry.fossil, "jurassicraft:block_fossil", "inventory");
-        this.registerBlockRenderer(itemModelMesher, JCBlockRegistry.encased_fossil, "jurassicraft:block_encased_fossil", "inventory");
-        this.registerBlockRenderer(itemModelMesher, JCBlockRegistry.cleaning_station, "jurassicraft:block_cleaning_station", "inventory");
-        this.registerBlockRenderer(itemModelMesher, JCBlockRegistry.fossil_grinder, "jurassicraft:block_fossil_grinder", "inventory");
-        this.registerBlockRenderer(itemModelMesher, JCBlockRegistry.dna_sequencer, "jurassicraft:block_dna_sequencer", "inventory");
-        this.registerBlockRenderer(itemModelMesher, JCBlockRegistry.dna_synthesizer, "jurassicraft:block_dna_synthesizer", "inventory");
-        this.registerBlockRenderer(itemModelMesher, JCBlockRegistry.embryonic_machine, "jurassicraft:block_embryonic_machine", "inventory");
-        this.registerBlockRenderer(itemModelMesher, JCBlockRegistry.embryo_insemination_machine, "jurassicraft:block_embryo_insemination_machine", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.fossil, "block_fossil", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.encased_fossil, "block_encased_fossil", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.cleaning_station, "block_cleaning_station", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.fossil_grinder, "block_fossil_grinder", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.dna_sequencer, "block_dna_sequencer", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.dna_synthesizer, "block_dna_synthesizer", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.embryonic_machine, "block_embryonic_machine", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.embryo_insemination_machine, "block_embryo_insemination_machine", "inventory");
     }
 
     /**
-     * Registers an item
+     * Registers an item renderer
      */
     public void registerItemRenderer(ItemModelMesher itemModelMesher, Item item, final String path, final String type)
     {
@@ -81,22 +103,17 @@ public class ClientProxy extends ServerProxy
             @Override
             public ModelResourceLocation getModelLocation(ItemStack stack)
             {
-                return new ModelResourceLocation(path, type);
+                return new ModelResourceLocation(JurassiCraft.modid + ":" + path, type);
             }
         });
     }
 
     /**
-     * Registers all fossils
+     * Registers an item
      */
-    public void registerFossilRenderer(ItemModelMesher itemModelMesher)
+    public void registerItemRenderer(ItemModelMesher itemModelMesher, Item item, int meta, String path, String type)
     {
-        int metadata = 0;
-        for (final Dinosaur dinosaur : JCEntityRegistry.getDinosaurs())
-        {
-            Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(JCItemRegistry.fossil, metadata, new ModelResourceLocation("jurassicraft:item_fossil_" + dinosaur.getName().replace(" ", "_").toLowerCase(), "inventory"));
-            metadata++;
-        }
+        itemModelMesher.register(item, meta, new ModelResourceLocation(JurassiCraft.modid + ":" + path, type));
     }
 
     /**
@@ -109,7 +126,7 @@ public class ClientProxy extends ServerProxy
             @Override
             public ModelResourceLocation getModelLocation(ItemStack stack)
             {
-                return new ModelResourceLocation(path, type);
+                return new ModelResourceLocation(JurassiCraft.modid + ":" + path, type);
             }
         });
     }

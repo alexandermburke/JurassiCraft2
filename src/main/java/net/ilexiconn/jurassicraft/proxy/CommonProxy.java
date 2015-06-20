@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 
-public class ServerProxy
+public class CommonProxy
 {
     public void init()
     {

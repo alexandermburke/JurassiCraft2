@@ -8,7 +8,7 @@ import net.ilexiconn.jurassicraft.entity.base.JCEntityRegistry;
 import net.ilexiconn.jurassicraft.handler.GuiHandler;
 import net.ilexiconn.jurassicraft.item.JCItemRegistry;
 import net.ilexiconn.jurassicraft.packets.MessageCleaningTable;
-import net.ilexiconn.jurassicraft.proxy.ServerProxy;
+import net.ilexiconn.jurassicraft.proxy.CommonProxy;
 import net.ilexiconn.llibrary.common.content.ContentHandlerList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -25,7 +25,7 @@ import org.apache.logging.log4j.Logger;
 public class JurassiCraft
 {
     @SidedProxy(serverSide = "net.ilexiconn.jurassicraft.proxy.ServerProxy", clientSide = "net.ilexiconn.jurassicraft.proxy.ClientProxy")
-    public static ServerProxy proxy;
+    public static CommonProxy proxy;
     public static SimpleNetworkWrapper wrapper;
 
     public static final String modid = "jurassicraft";
@@ -41,7 +41,7 @@ public class JurassiCraft
     {
         logger = event.getModLog();
         logger.info("Loading Jurassicraft...");
-        ContentHandlerList.createList(new JCCreativeTabs(), new JCItemRegistry(), new JCBlockRegistry(), new JCEntityRegistry()).init();
+        ContentHandlerList.createList(new JCEntityRegistry(), new JCCreativeTabs(), new JCItemRegistry(), new JCBlockRegistry()).init();
         proxy.init();
 
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());

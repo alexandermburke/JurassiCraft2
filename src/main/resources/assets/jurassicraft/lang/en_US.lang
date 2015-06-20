@@ -7,6 +7,13 @@ entity.velociraptor.name=Velociraptor
 entity.spinosaurus.name=Spinosaurus
 entity.rugops.name=Rugops
 entity.indominus_rex.name=Indominus Rex
+entity.tyrannosaurus_rex.name=Tyrannosaurus Rex
+entity.stegosaurus.name=Stegosaurus
+entity.achillobator.name=Achillobator
+entity.carnotaurus.name=Carnotaurus
+entity.giganotosaurus.name=Giganotosaurus
+entity.majungasaurus.name=Majungasaurus
+entity.compsognathus.name=Compsognathus
 
 //Items ==================================================
 item.item_rock_pick.name=Rock Pick
@@ -15,6 +22,8 @@ item.item_plaster_and_bandage.name=Plaster and Bandage
 item.item_fossil.name=Fossil
 
 item.dino_spawn_egg.name=Spawn
+
+item.dna.name=DNA
 
 //Blocks ==================================================
 tile.block_fossil.name=Fossil Block

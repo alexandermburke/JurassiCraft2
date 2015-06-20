@@ -41,13 +41,13 @@ public class ItemFossil extends Item
     public void getSubItems(Item item, CreativeTabs tab, List subtypes)
     {
         int i = 0;
+
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
         {
             if (dino.shouldRegister())
-            {
                 subtypes.add(new ItemStack(item, 1, i));
-                i++;
-            }
+
+            i++;
         }
     }
 }
