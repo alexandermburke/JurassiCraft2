@@ -65,8 +65,8 @@ public class ClientProxy extends CommonProxy
         ItemModelMesher modelMesher = renderItem.getItemModelMesher();
 
         // Items
-        this.registerItemRenderer(modelMesher, JCItemRegistry.plaster_and_bandage, "plaster_and_bandage", "inventory");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.spawn_egg, "dino_spawn_egg", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.plaster_and_bandage, "item_plaster_and_bandage", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.spawn_egg, "item_dino_spawn_egg", "inventory");
 
         int meta = 0;
 
