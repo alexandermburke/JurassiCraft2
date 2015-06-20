@@ -1,8 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-		"layer0": "jurassicraft:items/dino_spawn_egg",
-        "layer1": "jurassicraft:items/dino_spawn_egg_spots"
+		"layer0": "jurassicraft:items/item_plaster_and_bandage"
     },
     "display": {
         "thirdperson": {
