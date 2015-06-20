@@ -62,10 +62,10 @@ public class JCEntityRegistry implements IContentHandler
             Class<? extends EntityDinosaur> entityClass = dino.getDinosaurClass();
 
             int entityId = EntityRegistry.findGlobalUniqueEntityId();
-            String dinoName = dino.getName().toLowerCase();
+            String dinoName = dino.getName().toLowerCase().replaceAll(" ", "_");
 
             EntityRegistry.registerGlobalEntityID(entityClass, dinoName, entityId);
-            EntityRegistry.registerModEntity(entityClass, dinoName, entityId, JurassiCraft.instance, 128, 1, true);
+            EntityRegistry.registerModEntity(entityClass, dinoName, entityId, JurassiCraft.instance, 1024, 1, true);
 
             JurassiCraft.proxy.registerEntityRenderer(entityClass, dino);
         }
