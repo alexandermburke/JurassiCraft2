@@ -78,7 +78,7 @@ public class DinosaurGiganotosaurus extends Dinosaur
     @Override
     public double getBabySpeed()
     {
-        return 0.22;
+        return 0.82;
     }
 
     @Override
@@ -90,7 +90,7 @@ public class DinosaurGiganotosaurus extends Dinosaur
     @Override
     public double getAdultSpeed()
     {
-        return 0.4D;
+        return 0.6D;
     }
 
     @Override

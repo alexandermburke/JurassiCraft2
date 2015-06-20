@@ -26,6 +26,10 @@ public class AnimationGiganotosaurus implements IModelAnimator
         MowzieModelRenderer neck2 = model.getCube("Neck 2");
         MowzieModelRenderer neck3 = model.getCube("Neck 3");
         MowzieModelRenderer neck4 = model.getCube("Neck 4");
+        
+        MowzieModelRenderer throat = model.getCube("Throat 1");
+        MowzieModelRenderer throat2 = model.getCube("Throat 2");
+        
         MowzieModelRenderer head = model.getCube("Head");
         
         MowzieModelRenderer tail1 = model.getCube("Tail 1");
@@ -58,7 +62,10 @@ public class AnimationGiganotosaurus implements IModelAnimator
         
         float breathSpeed = 0.05F;
         
-        body3.rotateAngleX += f1 * 0.1F;
+        body3.rotateAngleX += f1 * 0.15F;
+        
+        model.faceTarget(head, 3, rotationYaw, rotationPitch);
+        model.faceTarget(neck, 3, rotationYaw, rotationPitch);
         
         model.walk(head, breathSpeed, 0.05F, true, 0F, -0.2F, ticksExisted, 1.0F);
         model.walk(neck, breathSpeed, 0.03F, false, 0F, 0.04F, ticksExisted, 1.0F);
@@ -66,14 +73,16 @@ public class AnimationGiganotosaurus implements IModelAnimator
         model.walk(neck3, breathSpeed, 0.03F, false, 0F, 0.04F, ticksExisted, 1.0F);
         model.walk(neck4, breathSpeed, 0.03F, false, 0F, 0.04F, ticksExisted, 1.0F);
         
-        model.walk(rightLeg, 1, 0.4F, false, 0F, 0.1F, f * 0.5F, f1);
-        model.walk(leftLeg, 1, 0.4F, true, 0F, 0.1F, f * 0.5F, f1);
+        float walkSpeed = f * 0.25F;
         
-        model.walk(rightCalf, 1, 0.15F, true, 0F, 0.1F, f * 0.5F, f1);
-        model.walk(leftCalf, 1, 0.15F, false, 0F, 0.1F, f * 0.5F, f1);
+        model.walk(rightLeg, 1, 0.8F, false, 0F, 0.1F, walkSpeed, f1);
+        model.walk(leftLeg, 1, 0.8F, true, 0F, 0.1F, walkSpeed, f1);
         
-        model.walk(rightFoot, 1, 0.2F, true, -0.5F, 0.1F, f * 0.5F, f1);
-        model.walk(leftFoot, 1, 0.2F, false, -0.5F, 0.1F, f * 0.5F, f1);
+        model.walk(rightCalf, 1, 0.3F, true, 0F, 0.1F, walkSpeed, f1);
+        model.walk(leftCalf, 1, 0.3F, false, 0F, 0.1F, walkSpeed, f1);
+        
+        model.walk(rightFoot, 1, 0.4F, true, -0.5F, 0.1F, walkSpeed, f1);
+        model.walk(leftFoot, 1, 0.4F, false, -0.5F, 0.1F, walkSpeed, f1);
         
         model.walk(lowerJaw, breathSpeed, 0.04F, false, 0.1F, 0.12F, ticksExisted, 1.0F);
         
