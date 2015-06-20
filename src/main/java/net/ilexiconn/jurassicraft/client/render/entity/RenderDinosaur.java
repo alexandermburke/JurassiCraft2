@@ -3,6 +3,7 @@ package net.ilexiconn.jurassicraft.client.render.entity;
 import java.util.Random;
 
 import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
+import net.ilexiconn.jurassicraft.entity.EntityCompsognathus;
 import net.ilexiconn.jurassicraft.entity.EntityVelociraptor;
 import net.ilexiconn.jurassicraft.entity.base.EntityDinosaur;
 import net.ilexiconn.llibrary.client.render.entity.RenderMultiPart;
@@ -53,7 +54,7 @@ public class RenderDinosaur extends RenderMultiPart
 
     public void preRenderCallback(EntityLivingBase entity, float side)
     {
-        GL11.glTranslatef(0, dino.getRenderYOffset(), 0);
+        GL11.glTranslatef(0, dino.getRenderYOffset(), entity instanceof EntityCompsognathus ? -0.1F : 0.0F);
 
         float scale = dino.getScaleAdjustment();
         shadowSize = scale * dino.getShadowSize();

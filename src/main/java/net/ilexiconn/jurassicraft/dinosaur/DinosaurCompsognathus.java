@@ -78,7 +78,7 @@ public class DinosaurCompsognathus extends Dinosaur
     @Override
     public double getBabySpeed()
     {
-        return 0.52;
+        return 0.3;
     }
 
     @Override
@@ -90,7 +90,7 @@ public class DinosaurCompsognathus extends Dinosaur
     @Override
     public double getAdultSpeed()
     {
-        return 0.80;
+        return 0.2;
     }
 
     @Override
@@ -132,13 +132,13 @@ public class DinosaurCompsognathus extends Dinosaur
     @Override
     public double getBabyKnockback()
     {
-        return 0.3;
+        return 0.7;
     }
 
     @Override
     public double getAdultKnockback()
     {
-        return 0.6;
+        return 0.5;
     }
 
     @Override
@@ -216,7 +216,7 @@ public class DinosaurCompsognathus extends Dinosaur
     @Override
     public float getShadowSize()
     {
-        return 1F;
+        return 1.8F;
     }
 
     @Override
