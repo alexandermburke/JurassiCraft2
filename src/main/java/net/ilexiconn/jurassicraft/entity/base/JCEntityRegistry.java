@@ -1,6 +1,5 @@
 package net.ilexiconn.jurassicraft.entity.base;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,6 +8,8 @@ import net.ilexiconn.jurassicraft.dinosaur.Dinosaur;
 import net.ilexiconn.jurassicraft.dinosaur.DinosaurAchillobator;
 import net.ilexiconn.jurassicraft.dinosaur.DinosaurCarnotaurus;
 import net.ilexiconn.jurassicraft.dinosaur.DinosaurCompsognathus;
+import net.ilexiconn.jurassicraft.dinosaur.DinosaurDilophosaurus;
+import net.ilexiconn.jurassicraft.dinosaur.DinosaurGallimimus;
 import net.ilexiconn.jurassicraft.dinosaur.DinosaurGiganotosaurus;
 import net.ilexiconn.jurassicraft.dinosaur.DinosaurIndominusRex;
 import net.ilexiconn.jurassicraft.dinosaur.DinosaurMajungasaurus;
@@ -29,23 +30,25 @@ public class JCEntityRegistry implements IContentHandler
 
     public void init()
     {
-        registerDinosaur(new DinosaurSpinosaurus());
-        registerDinosaur(new DinosaurVelociraptor());
-        registerDinosaur(new DinosaurRugops());
-        registerDinosaur(new DinosaurIndominusRex());
-        registerDinosaur(new DinosaurTyrannosaurusRex());
-        registerDinosaur(new DinosaurStegosaurus());
         registerDinosaur(new DinosaurAchillobator());
         registerDinosaur(new DinosaurCarnotaurus());
         registerDinosaur(new DinosaurCompsognathus());
+        registerDinosaur(new DinosaurDilophosaurus());
+        registerDinosaur(new DinosaurGallimimus());
         registerDinosaur(new DinosaurGiganotosaurus());
+        registerDinosaur(new DinosaurIndominusRex());
         registerDinosaur(new DinosaurMajungasaurus());
+        registerDinosaur(new DinosaurRugops());
+        registerDinosaur(new DinosaurSpinosaurus());
+        registerDinosaur(new DinosaurStegosaurus());
+        registerDinosaur(new DinosaurTyrannosaurusRex());
+        registerDinosaur(new DinosaurVelociraptor());
+        
+        //Always register a new dinosaur after last one in list, otherwise all items with metadata will be shifted by one (UNLESS it is before the release of JC2)
     }
 
     public void gameRegistry() throws Exception
     {
-        Collections.sort(dinosaurs);
-
         for (Dinosaur dino : dinosaurs)
         {
             registerEntity(dino);

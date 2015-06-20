@@ -15,7 +15,7 @@ import net.ilexiconn.llibrary.common.json.JsonHelper;
 import net.ilexiconn.llibrary.common.json.container.JsonTabulaModel;
 import net.minecraft.client.model.ModelBase;
 
-public abstract class Dinosaur implements Comparable<Dinosaur>
+public abstract class Dinosaur
 {
     public abstract String getName();
 
@@ -137,11 +137,5 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
         }
 
         return null;
-    }
-
-    @Override
-    public int compareTo(Dinosaur dino)
-    {
-        return this.getName().compareTo(dino.getName());
     }
 }

@@ -14,6 +14,8 @@ entity.carnotaurus.name=Carnotaurus
 entity.giganotosaurus.name=Giganotosaurus
 entity.majungasaurus.name=Majungasaurus
 entity.compsognathus.name=Compsognathus
+entity.dilophosaurus.name=Dilophosaurus
+entity.gallimimus.name=Gallimimus
 
 //Items ==================================================
 item.item_rock_pick.name=Rock Pick
