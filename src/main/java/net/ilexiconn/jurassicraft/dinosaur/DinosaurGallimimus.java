@@ -78,7 +78,7 @@ public class DinosaurGallimimus extends Dinosaur
     @Override
     public double getBabySpeed()
     {
-        return 0.52;
+        return 0.62;
     }
 
     @Override
@@ -90,7 +90,7 @@ public class DinosaurGallimimus extends Dinosaur
     @Override
     public double getAdultSpeed()
     {
-        return 0.80;
+        return 0.50;
     }
 
     @Override

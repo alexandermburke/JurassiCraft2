@@ -23,7 +23,7 @@ public class EntityGiganotosaurus extends EntityDinosaurAggressive implements IE
             this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, dinosaur.getAttackSpeed(), false));
             this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
             this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPig.class, dinosaur.getAttackSpeed(), false));
-            this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPig.class, false));
+            this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityGallimimus.class, false));
 
             this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, EntityPlayer.class));
 
