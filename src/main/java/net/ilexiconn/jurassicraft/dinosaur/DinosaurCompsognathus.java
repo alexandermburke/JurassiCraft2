@@ -204,13 +204,19 @@ public class DinosaurCompsognathus extends Dinosaur
     @Override
     public float getScaleAdjustment()
     {
-        return 2.37F;
+        return 0.1F;
     }
 
     @Override
+    public float getRenderYOffset()
+    {
+        return -1.2F;
+    }
+    
+    @Override
     public float getShadowSize()
     {
-        return 0.65F;
+        return 1F;
     }
 
     @Override

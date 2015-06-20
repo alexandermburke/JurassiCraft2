@@ -204,7 +204,7 @@ public class DinosaurAchillobator extends Dinosaur
     @Override
     public float getScaleAdjustment()
     {
-        return 2.37F;
+        return 1.1F;
     }
 
     @Override

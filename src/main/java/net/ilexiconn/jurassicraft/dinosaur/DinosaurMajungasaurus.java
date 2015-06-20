@@ -54,13 +54,13 @@ public class DinosaurMajungasaurus extends Dinosaur
     @Override
     public int getEggPrimaryColor()
     {
-        return 0x48403D;
+        return 0xE6CC9B;
     }
 
     @Override
     public int getEggSecondaryColor()
     {
-        return 0xC5CFDA;
+        return 0x7C8A7D;
     }
 
     @Override
