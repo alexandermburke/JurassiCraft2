@@ -24,7 +24,7 @@ import org.apache.logging.log4j.Logger;
 @Mod(modid = JurassiCraft.modid, name = "JurassiCraft", version = "${version}", dependencies = "required-after:llibrary@[0.1.0-1.8,)")
 public class JurassiCraft
 {
-    @SidedProxy(serverSide = "net.ilexiconn.jurassicraft.proxy.ServerProxy", clientSide = "net.ilexiconn.jurassicraft.proxy.ClientProxy")
+    @SidedProxy(serverSide = "net.ilexiconn.jurassicraft.proxy.CommonProxy", clientSide = "net.ilexiconn.jurassicraft.proxy.ClientProxy")
     public static CommonProxy proxy;
     public static SimpleNetworkWrapper wrapper;
 
