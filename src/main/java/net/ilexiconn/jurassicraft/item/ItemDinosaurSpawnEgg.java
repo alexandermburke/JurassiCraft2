@@ -35,25 +35,20 @@ public class ItemDinosaurSpawnEgg extends Item
 
     public EntityDinosaur spawnCreature(World world, EntityPlayer player, ItemStack stack, double x, double y, double z)
     {
-        Class dinoClass = getDinosaur(stack).getDinosaurClass();
+        Dinosaur dinoInEgg = getDinosaur(stack);
+        if(dinoInEgg != null) {
+            Class<? extends EntityDinosaur> dinoClass = dinoInEgg.getDinosaurClass();
 
-        try
-        {
-            Entity dinoToSpawn = (Entity) dinoClass.getConstructor(World.class).newInstance(player.worldObj);
-
-            if (dinoToSpawn instanceof EntityDinosaur)
-            {
-                EntityDinosaur dino = (EntityDinosaur) dinoToSpawn;
+            try {
+                EntityDinosaur dino = dinoClass.getConstructor(World.class).newInstance(player.worldObj);
                 dino.setPosition(x, y, z);
                 dino.setLocationAndAngles(x, y, z, MathHelper.wrapAngleTo180_float(world.rand.nextFloat() * 360.0F), 0.0F);
                 dino.rotationYawHead = dino.rotationYaw;
                 dino.renderYawOffset = dino.rotationYaw;
                 return dino;
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
         }
 
         return null;

@@ -3,7 +3,6 @@ package net.ilexiconn.jurassicraft.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
@@ -38,22 +37,22 @@ public abstract class BlockOriented extends BlockContainer
     {
         if (!worldIn.isRemote)
         {
-            Block block = worldIn.getBlockState(pos.north()).getBlock();
-            Block block1 = worldIn.getBlockState(pos.south()).getBlock();
-            Block block2 = worldIn.getBlockState(pos.west()).getBlock();
-            Block block3 = worldIn.getBlockState(pos.east()).getBlock();
+            Block blockNorth = worldIn.getBlockState(pos.north()).getBlock();
+            Block blockSouth = worldIn.getBlockState(pos.south()).getBlock();
+            Block blockWest = worldIn.getBlockState(pos.west()).getBlock();
+            Block blockEast = worldIn.getBlockState(pos.east()).getBlock();
             EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
 
-            if (enumfacing == EnumFacing.NORTH && block.isFullBlock() && !block1.isFullBlock())
+            if (enumfacing == EnumFacing.NORTH && blockNorth.isFullBlock() && !blockSouth.isFullBlock())
                 enumfacing = EnumFacing.SOUTH;
 
-            else if (enumfacing == EnumFacing.SOUTH && block1.isFullBlock() && !block.isFullBlock())
+            else if (enumfacing == EnumFacing.SOUTH && blockSouth.isFullBlock() && !blockNorth.isFullBlock())
                 enumfacing = EnumFacing.NORTH;
 
-            else if (enumfacing == EnumFacing.WEST && block2.isFullBlock() && !block3.isFullBlock())
+            else if (enumfacing == EnumFacing.WEST && blockWest.isFullBlock() && !blockEast.isFullBlock())
                 enumfacing = EnumFacing.EAST;
 
-            else if (enumfacing == EnumFacing.EAST && block3.isFullBlock() && !block2.isFullBlock())
+            else if (enumfacing == EnumFacing.EAST && blockEast.isFullBlock() && !blockWest.isFullBlock())
                 enumfacing = EnumFacing.WEST;
 
             worldIn.setBlockState(pos, state.withProperty(FACING, enumfacing), 2);
@@ -118,6 +117,6 @@ public abstract class BlockOriented extends BlockContainer
     @Override
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] { FACING });
+        return new BlockState(this, FACING);
     }
 }

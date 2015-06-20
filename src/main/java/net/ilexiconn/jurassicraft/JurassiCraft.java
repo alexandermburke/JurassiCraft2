@@ -37,7 +37,7 @@ public class JurassiCraft
     private Logger logger;
 
     @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event) throws IOException
+    public void preInit(FMLPreInitializationEvent event)
     {
         logger = event.getModLog();
         logger.info("Loading Jurassicraft...");

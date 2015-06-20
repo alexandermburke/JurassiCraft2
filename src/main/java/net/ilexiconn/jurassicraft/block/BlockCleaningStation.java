@@ -99,13 +99,6 @@ public class BlockCleaningStation extends BlockOriented
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta)
     {
-        try
-        {
-            return new TileCleaningStation();
-        }
-        catch (Exception e)
-        {
-            throw new RuntimeException(e);
-        }
+        return new TileCleaningStation();
     }
 }

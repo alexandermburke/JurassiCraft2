@@ -1,7 +1,6 @@
 package net.ilexiconn.jurassicraft.dinosaur;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -88,7 +87,7 @@ public abstract class Dinosaur
 
     public List<JsonHitbox> getHitBoxList()
     {
-        return new ArrayList<JsonHitbox>();
+        return new ArrayList<>();
     }
 
     public IModelAnimator getModelAnimator()

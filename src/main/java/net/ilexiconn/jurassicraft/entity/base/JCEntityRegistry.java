@@ -26,7 +26,7 @@ import com.google.common.collect.Lists;
 public class JCEntityRegistry implements IContentHandler
 {
     private static List<Dinosaur> dinosaurs = Lists.newArrayList();
-    private static HashMap<Integer, List<Dinosaur>> dinosaursFromPeriod = new HashMap<Integer, List<Dinosaur>>();
+    private static HashMap<Integer, List<Dinosaur>> dinosaursFromPeriod = new HashMap<>();
 
     public void init()
     {

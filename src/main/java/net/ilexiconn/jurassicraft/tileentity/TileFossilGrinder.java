@@ -37,7 +37,7 @@ public class TileFossilGrinder extends TileEntity implements IUpdatePlayerListBo
     @Override
     public int[] getSlotsForFace(EnumFacing side)
     {
-        return this.slotFossilBlock;
+        return slotFossilBlock;
     }
 
     @Override
@@ -186,7 +186,7 @@ public class TileFossilGrinder extends TileEntity implements IUpdatePlayerListBo
     @Override
     public IChatComponent getDisplayName()
     {
-        return (IChatComponent) (this.hasCustomName() ? new ChatComponentText(this.getName()) : new ChatComponentTranslation(this.getName(), new Object[0]));
+        return this.hasCustomName() ? new ChatComponentText(this.getName()) : new ChatComponentTranslation(this.getName());
     }
 
     @Override

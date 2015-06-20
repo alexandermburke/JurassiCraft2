@@ -25,7 +25,7 @@ public class RenderDinosaur extends RenderMultiPart
     public ResourceLocation[] femaleTextures;
     public Random random;
 
-    public RenderDinosaur(Dinosaur creature) throws Exception
+    public RenderDinosaur(Dinosaur creature)
     {
         super(creature.getModel(), creature.getShadowSize());
         dino = creature;

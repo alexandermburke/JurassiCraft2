@@ -28,7 +28,7 @@ public class EntityTyrannosaurusRex extends EntityDinosaurAggressive implements 
             this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPig.class, dinosaur.getAttackSpeed(), false));
             this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPig.class, false));
 
-            this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[] { EntityPlayer.class }));
+            this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, EntityPlayer.class));
 
             this.tasks.addTask(6, new EntityAIWander(this, 1.0D));
             this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
