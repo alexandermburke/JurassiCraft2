@@ -1,7 +1,5 @@
 package net.timeless.jurassicraft;
 
-import java.io.IOException;
-
 import net.ilexiconn.llibrary.common.content.ContentHandlerList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -24,7 +22,7 @@ import org.apache.logging.log4j.Logger;
 @Mod(modid = JurassiCraft.modid, name = "JurassiCraft", version = "${version}", dependencies = "required-after:llibrary@[0.1.0-1.8,)")
 public class JurassiCraft
 {
-    @SidedProxy(serverSide = "net.ilexiconn.jurassicraft.proxy.CommonProxy", clientSide = "net.ilexiconn.jurassicraft.proxy.ClientProxy")
+    @SidedProxy(serverSide = "net.timeless.jurassicraft.proxy.CommonProxy", clientSide = "net.timeless.jurassicraft.proxy.ClientProxy")
     public static CommonProxy proxy;
     public static SimpleNetworkWrapper wrapper;
 
@@ -40,7 +38,7 @@ public class JurassiCraft
     public void preInit(FMLPreInitializationEvent event)
     {
         logger = event.getModLog();
-        logger.info("Loading Jurassicraft...");
+        logger.info("Loading JurassiCraft...");
         ContentHandlerList.createList(new JCEntityRegistry(), new JCCreativeTabs(), new JCItemRegistry(), new JCBlockRegistry()).init();
         proxy.init();
 
@@ -54,7 +52,7 @@ public class JurassiCraft
     public void postInit(FMLPostInitializationEvent event)
     {
         proxy.postInit();
-        logger.info("Successfully loaded Jurassicraft!");
+        logger.info("Successfully loaded JurassicCraft!");
     }
 
     public Logger getLogger()
