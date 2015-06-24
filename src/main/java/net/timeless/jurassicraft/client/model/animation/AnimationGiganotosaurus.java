@@ -62,10 +62,10 @@ public class AnimationGiganotosaurus implements IModelAnimator
         
         float breathSpeed = 0.05F;
         
-        body3.rotateAngleX += f1 * 0.15F;
+        //body3.rotateAngleX += f1 * 0.15F;
         
-        model.faceTarget(head, 3, rotationYaw, rotationPitch);
-        model.faceTarget(neck, 3, rotationYaw, rotationPitch);
+        model.faceTarget(head, 2, rotationYaw, rotationPitch);
+        model.faceTarget(neck, 2, rotationYaw, rotationPitch);
         
         model.walk(head, breathSpeed, 0.05F, true, 0F, -0.2F, ticksExisted, 1.0F);
         model.walk(neck, breathSpeed, 0.03F, false, 0F, 0.04F, ticksExisted, 1.0F);
@@ -86,8 +86,8 @@ public class AnimationGiganotosaurus implements IModelAnimator
         
         model.walk(lowerJaw, breathSpeed, 0.04F, false, 0.1F, 0.12F, ticksExisted, 1.0F);
         
-        model.chainWave(tail, breathSpeed, -0.03F, 2, ticksExisted, 1F);
+        model.chainWave(tail, breathSpeed, 0.05F, -2, ticksExisted, 1F);
         
-        model.chainWave(body, breathSpeed, -0.03F, 2, ticksExisted, 1F);
+        model.chainWave(body, breathSpeed, 0.04F, 2, ticksExisted, 1F);
     }
 }
