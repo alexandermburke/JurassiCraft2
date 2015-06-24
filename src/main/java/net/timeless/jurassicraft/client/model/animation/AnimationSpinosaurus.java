@@ -15,8 +15,8 @@ public class AnimationSpinosaurus implements IModelAnimator
         float globalDegree = 0.4F;
         float height = 1.0F;
 
-        // f = entity.ticksExisted;
-        // f1 = 1F;
+//        f = entity.ticksExisted;
+//        f1 = 1F;
 
         // middle
         MowzieModelRenderer shoulders = model.getCube("Body 3");
@@ -91,34 +91,37 @@ public class AnimationSpinosaurus implements IModelAnimator
         rightThigh.rotationPointY -= 2 * f1 * Math.cos(f * 0.5 * globalSpeed);
         model.chainWave(bodyParts, 1F * globalSpeed, 0.05F, 3, f, f1);
         model.chainWave(tailParts, 1F * globalSpeed, height * 0.05F, 3, f, f1);
+        model.chainSwing(tailParts, 0.5F * globalSpeed, height * -0.05F, 2, f, f1);
         model.chainWave(leftArmParts, 1F * globalSpeed, height * 0.05F, 3, f, f1);
         model.chainWave(rightArmParts, 1F * globalSpeed, height * 0.05F, 3, f, f1);
 
-        model.walk(head, 1F * globalSpeed, 0.15F, true, 0F, -0.2F, f, f1);
-        model.walk(neck1, 1F * globalSpeed, 0.03F, false, 0F, 0.04F, f, f1);
-        model.walk(neck2, 1F * globalSpeed, 0.03F, false, 0F, 0.04F, f, f1);
-        model.walk(neck3, 1F * globalSpeed, 0.03F, false, 0F, 0.04F, f, f1);
-        model.walk(neck4, 1F * globalSpeed, 0.03F, false, 0F, 0.04F, f, f1);
-        model.walk(neck5, 1F * globalSpeed, 0.03F, false, 0F, 0.04F, f, f1);
+        model.walk(head, 1F * globalSpeed, 0.1F, true, 0F, -0.2F, f, f1);
+        model.walk(neck1, 1F * globalSpeed, 0.02F, false, 0F, 0.04F, f, f1);
+        model.walk(neck2, 1F * globalSpeed, 0.02F, false, 0F, 0.04F, f, f1);
+        model.walk(neck3, 1F * globalSpeed, 0.02F, false, 0F, 0.04F, f, f1);
+        model.walk(neck4, 1F * globalSpeed, 0.02F, false, 0F, 0.04F, f, f1);
+        model.walk(neck5, 1F * globalSpeed, 0.02F, false, 0F, 0.04F, f, f1);
 
         model.walk(leftThigh, 0.5F * globalSpeed, 0.8F * globalDegree, false, 0F, 0.2F, f, f1);
         model.walk(leftCalf, 0.5F * globalSpeed, 1F * globalDegree, true, 1F, 0.4F, f, f1);
         model.walk(leftCalf2, 0.5F * globalSpeed, 1F * globalDegree, false, 0F, 0F, f, f1);
-        model.walk(leftFoot, 0.5F * globalSpeed, 1.5F * globalDegree, true, 0.5F, -0.1F, f, f1);
+        model.walk(leftFoot, 0.5F * globalSpeed, 1.5F * globalDegree, true, 0.5F, 0.1F, f, f1);
 
         model.walk(rightThigh, 0.5F * globalSpeed, 0.8F * globalDegree, true, 0F, 0.2F, f, f1);
         model.walk(rightCalf, 0.5F * globalSpeed, 1F * globalDegree, false, 1F, 0.4F, f, f1);
         model.walk(rightCalf2, 0.5F * globalSpeed, 1F * globalDegree, true, 0F, 0F, f, f1);
-        model.walk(rightFoot, 0.5F * globalSpeed, 1.5F * globalDegree, false, 0.5F, -0.1F, f, f1);
+        model.walk(rightFoot, 0.5F * globalSpeed, 1.5F * globalDegree, false, 0.5F, 0.1F, f, f1);
 
         // idling
-        model.chainWave(tailParts, 0.1F, -0.05F, 2, entity.ticksExisted, 1F);
-        model.chainWave(bodyParts, 0.1F, -0.03F, 5, entity.ticksExisted, 1F);
+        model.chainWave(tailParts, 0.1F, 0.05F, 2, entity.ticksExisted, 1F);
+        model.chainWave(bodyParts, 0.1F, -0.03F, 4, entity.ticksExisted, 1F);
         model.chainWave(rightArmParts, 0.1F, -0.1F, 4, entity.ticksExisted, 1F);
         model.chainWave(leftArmParts, 0.1F, -0.1F, 4, entity.ticksExisted, 1F);
 
-        model.faceTarget(head, 6, rotationYaw, rotationPitch);
-        model.faceTarget(neck1, 6, rotationYaw, rotationPitch);
+        model.faceTarget(head, 3, rotationYaw, rotationPitch);
+        model.faceTarget(neck1, 3, rotationYaw, rotationPitch);
+        neck7.rotationPointX -= rotationYaw * 0.025;
+        model.faceTarget(neck5, 3, rotationYaw, rotationPitch);
 
         ((EntitySpinosaurus) entity).tailBuffer.applyChainSwingBuffer(tailParts);
     }
