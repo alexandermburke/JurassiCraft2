@@ -18,12 +18,12 @@ public class DinosaurTyrannosaurusRex extends Dinosaur
     public DinosaurTyrannosaurusRex()
     {
         this.animator = new AnimationTyrannosaurusRex();
-        this.maleTextures = new String[] { "jurassicraft:textures/entities/tyrannosaurus_rex/tyrannosaurus_male.png" };
-        this.femaleTextures = new String[] { "jurassicraft:textures/entities/tyrannosaurus_rex/tyrannosaurus_female.png" };
+        this.maleTextures = new String[] { getDinosaurTexture("male") };
+        this.femaleTextures = new String[] { getDinosaurTexture("female") };
 
         try
         {
-            this.model = getTabulaModel("/assets/jurassicraft/models/entities/tyrannosaurus_rex");
+            this.model = getDefaultTabulaModel();
         }
         catch (Exception e)
         {
@@ -103,30 +103,6 @@ public class DinosaurTyrannosaurusRex extends Dinosaur
     }
 
     @Override
-    public double getBabyLength()
-    {
-        return 2.0;
-    }
-
-    @Override
-    public double getBabyHeight()
-    {
-        return 1.0;
-    }
-
-    @Override
-    public double getAdultLength()
-    {
-        return 4.9;
-    }
-
-    @Override
-    public double getAdultHeight()
-    {
-        return 1.7;
-    }
-
-    @Override
     public double getBabyKnockback()
     {
         return 0.3;
@@ -139,63 +115,9 @@ public class DinosaurTyrannosaurusRex extends Dinosaur
     }
 
     @Override
-    public double getMinLipids()
-    {
-        return 500;
-    }
-
-    @Override
-    public double getMinProximate()
-    {
-        return 1600;
-    }
-
-    @Override
-    public double getMinMinerals()
-    {
-        return 1200;
-    }
-
-    @Override
-    public double getMinVitamins()
-    {
-        return 1600;
-    }
-
-    @Override
-    public double getRidingSpeed()
-    {
-        return 0;
-    }
-
-    @Override
-    public float getAdultAge()
+    public float getMaximumAge()
     {
         return 0.5F;
-    }
-
-    @Override
-    public float getXZBoxMin()
-    {
-        return 0.4F;
-    }
-
-    @Override
-    public float getYBoxMin()
-    {
-        return 0.5F;
-    }
-
-    @Override
-    public float getXZBoxDelta()
-    {
-        return 1.2F;
-    }
-
-    @Override
-    public float getYBoxDelta()
-    {
-        return 1.1F;
     }
 
     @Override

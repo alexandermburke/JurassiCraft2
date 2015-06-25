@@ -27,48 +27,18 @@ public abstract class Dinosaur
     public abstract int getEggSecondaryColor();
 
     public abstract double getBabyHealth();
-
     public abstract double getAdultHealth();
 
     public abstract double getBabySpeed();
-
     public abstract double getAdultSpeed();
 
     public abstract double getBabyStrength();
-
     public abstract double getAdultStrength();
 
-    public abstract double getBabyLength();
-
-    public abstract double getBabyHeight();
-
-    public abstract double getAdultLength();
-
-    public abstract double getAdultHeight();
-
     public abstract double getBabyKnockback();
-
     public abstract double getAdultKnockback();
 
-    public abstract double getMinLipids();
-
-    public abstract double getMinProximate();
-
-    public abstract double getMinMinerals();
-
-    public abstract double getMinVitamins();
-
-    public abstract double getRidingSpeed();
-
-    public abstract float getAdultAge();
-
-    public abstract float getXZBoxMin();
-
-    public abstract float getYBoxMin();
-
-    public abstract float getXZBoxDelta();
-
-    public abstract float getYBoxDelta();
+    public abstract float getMaximumAge();
 
     public abstract float getScaleAdjustment();
 
@@ -100,11 +70,21 @@ public abstract class Dinosaur
         return true;
     }
 
+    public float getRenderXOffset()
+    {
+        return 0.0F;
+    }
+    
     public float getRenderYOffset()
     {
         return 0.0F;
     }
 
+    public float getRenderZOffset()
+    {
+        return 0.0F;
+    }
+    
     public ModelJson getTabulaModel(String tabulaModel) throws Exception
     {
         try (ZipInputStream inputStream = new ZipInputStream(JurassiCraft.class.getResourceAsStream(tabulaModel + ".tbl")))
@@ -136,5 +116,22 @@ public abstract class Dinosaur
         }
 
         return null;
+    }
+    
+    protected String getDinosaurTexture(String subtype)
+    {
+        String dinosaurName = getName().toLowerCase().replaceAll(" ", "_");
+        
+        String texture = "jurassicraft:textures/entities/" + dinosaurName + "/" + dinosaurName;
+        
+        if(subtype != "")
+            texture += "_" + subtype;
+        
+        return texture + ".png";
+    }
+    
+    public ModelJson getDefaultTabulaModel() throws Exception
+    {
+        return getTabulaModel("/assets/jurassicraft/models/entities/" + getName().toLowerCase().replaceAll(" ", "_"));
     }
 }

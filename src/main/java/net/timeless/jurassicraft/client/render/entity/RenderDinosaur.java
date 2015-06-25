@@ -54,7 +54,7 @@ public class RenderDinosaur extends RenderMultiPart
 
     public void preRenderCallback(EntityLivingBase entity, float side)
     {
-        GL11.glTranslatef(0, dino.getRenderYOffset(), entity instanceof EntityCompsognathus ? -0.1F : 0.0F);
+        GL11.glTranslatef(dino.getRenderXOffset(), dino.getRenderYOffset(), dino.getRenderZOffset());
 
         float scale = dino.getScaleAdjustment();
         shadowSize = scale * dino.getShadowSize();
