@@ -82,7 +82,7 @@ public class AnimationMajungasaurus implements IModelAnimator
         model.bob(leftThigh, globalSpeed * 1F, globalHeight * 0.8F, false, f, f1);
         model.bob(rightThigh, globalSpeed * 1F, globalHeight * 0.8F, false, f, f1);
         
-        model.chainWave(body, globalSpeed * 1F, globalHeight * -0.03F, -3, f, f1);
+        model.chainWave(body, globalSpeed * 1F, globalHeight * -0.02F, -3, f, f1);
         model.chainWave(tail, globalSpeed * 1F, globalHeight * 0.05F, -2, f, f1);
         
         model.walk(rightThigh, globalSpeed * 0.5F, globalDegree * 0.8F, true, -0.3F, 0.2F, f, f1);
