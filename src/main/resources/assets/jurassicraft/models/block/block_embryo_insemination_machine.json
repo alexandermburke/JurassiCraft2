@@ -1,6 +1,0 @@
-{
-    "parent": "block/cube_all",
-    "textures": {
-        "all": "jurassicraft:blocks/block_embryo_insemination_machine"
-    }
-}
