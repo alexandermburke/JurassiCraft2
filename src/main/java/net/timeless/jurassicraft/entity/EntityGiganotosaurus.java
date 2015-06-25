@@ -17,8 +17,8 @@ public class EntityGiganotosaurus extends EntityDinosaurAggressive implements IE
     public EntityGiganotosaurus(World world)
     {
         super(world);
-        
-        if (!this.isChild()) 
+
+        if (!this.isChild())
         {
             this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, dinosaur.getAttackSpeed(), false));
             this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
@@ -32,7 +32,7 @@ public class EntityGiganotosaurus extends EntityDinosaurAggressive implements IE
             this.tasks.addTask(8, new EntityAIJCLookIdle(this, 1F, 40F));
         }
     }
-    
+
     public float getEyeHeight()
     {
         return 5F;

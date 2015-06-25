@@ -16,7 +16,7 @@ public class ItemPlasterAndBandage extends Item
     public ItemPlasterAndBandage()
     {
         super();
-        this.setUnlocalizedName("item_plaster_and_bandage");
+        this.setUnlocalizedName("plaster_and_bandage");
         this.setCreativeTab(JCCreativeTabs.items);
     }
 
@@ -33,16 +33,16 @@ public class ItemPlasterAndBandage extends Item
         }
         else
         {
-            IBlockState iblockstate = world.getBlockState(pos);
-            if (iblockstate.getBlock() == JCBlockRegistry.fossil)
+            IBlockState state = world.getBlockState(pos);
+            
+            if (state.getBlock() == JCBlockRegistry.fossil)
             {
                 if (player.getHeldItem().getItem() instanceof ItemPlasterAndBandage)
                 {
-                    ItemStack plasterAndBandages = player.getHeldItem();
                     if (!player.capabilities.isCreativeMode)
-                        plasterAndBandages.stackSize--;
+                        stack.stackSize--;
 
-                    if (world.rand.nextFloat() < 0.9F)
+                    if (player.getRNG().nextFloat() < 0.9F)
                     {
                         // Change the block state depending on the pos later.
                         world.setBlockState(pos, JCBlockRegistry.encased_fossil.getStateFromMeta(FossilHandler.getDefaultTimePeriod()));

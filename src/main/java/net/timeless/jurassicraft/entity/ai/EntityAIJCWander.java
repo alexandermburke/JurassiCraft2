@@ -15,7 +15,7 @@ public class EntityAIJCWander extends EntityAIBase
     private int probability;
     private boolean field_179482_g;
     private int distance;
-    
+
     public EntityAIJCWander(EntityCreature entity, double speed, int distance)
     {
         this(entity, speed, 120, distance);

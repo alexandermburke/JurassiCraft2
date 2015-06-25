@@ -14,6 +14,7 @@ public class JCItemRegistry implements IContentHandler
     public static ItemFossil fossil;
 
     public static ItemDNA dna;
+    public static Item egg;
 
     @Override
     public void init()
@@ -22,6 +23,7 @@ public class JCItemRegistry implements IContentHandler
         spawn_egg = new ItemDinosaurSpawnEgg();
         fossil = new ItemFossil();
         dna = new ItemDNA();
+        egg = new ItemDinosaurEgg();
     }
 
     public void initCreativeTabs()
@@ -29,6 +31,7 @@ public class JCItemRegistry implements IContentHandler
         plaster_and_bandage.setCreativeTab(JCCreativeTabs.items);
         spawn_egg.setCreativeTab(JCCreativeTabs.items);
         fossil.setCreativeTab(JCCreativeTabs.items);
+        egg.setCreativeTab(JCCreativeTabs.items);
     }
 
     @Override
@@ -60,6 +63,7 @@ public class JCItemRegistry implements IContentHandler
         String name = item.getUnlocalizedName();
         String[] strings = name.split("\\.");
         name = strings[strings.length - 1];
+        
         GameRegistry.registerItem(item, name);
     }
 }

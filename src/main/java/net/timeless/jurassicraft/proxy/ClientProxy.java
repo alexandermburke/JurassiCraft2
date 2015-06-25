@@ -39,8 +39,9 @@ public class ClientProxy extends CommonProxy
         {
             String dinoName = dino.getName().toLowerCase().replaceAll(" ", "_");
 
-            ModelBakery.addVariantName(JCItemRegistry.dna, "jurassicraft:fossil/fossil_" + dinoName);
+            ModelBakery.addVariantName(JCItemRegistry.fossil, "jurassicraft:fossil/fossil_" + dinoName);
             ModelBakery.addVariantName(JCItemRegistry.dna, "jurassicraft:dna/dna_" + dinoName);
+            ModelBakery.addVariantName(JCItemRegistry.egg, "jurassicraft:egg/egg_" + dinoName);
         }
     }
 
@@ -51,22 +52,15 @@ public class ClientProxy extends CommonProxy
 
         for (Entry<Class<? extends Entity>, Dinosaur> entry : renderersToRegister.entrySet())
         {
-            try
-            {
-                RenderingRegistry.registerEntityRenderingHandler(entry.getKey(), new RenderDinosaur(entry.getValue()));
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
+            RenderingRegistry.registerEntityRenderingHandler(entry.getKey(), new RenderDinosaur(entry.getValue()));
         }
-
+        
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
         ItemModelMesher modelMesher = renderItem.getItemModelMesher();
 
         // Items
-        this.registerItemRenderer(modelMesher, JCItemRegistry.plaster_and_bandage, "item_plaster_and_bandage", "inventory");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.spawn_egg, "item_dino_spawn_egg", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.plaster_and_bandage, "plaster_and_bandage", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.spawn_egg, "dino_spawn_egg", "inventory");
 
         int meta = 0;
 
@@ -76,20 +70,21 @@ public class ClientProxy extends CommonProxy
 
             this.registerItemRenderer(modelMesher, JCItemRegistry.dna, meta, "dna/dna_" + dinoName, "inventory");
             this.registerItemRenderer(modelMesher, JCItemRegistry.fossil, meta, "fossil/fossil_" + dinoName, "inventory");
+            this.registerItemRenderer(modelMesher, JCItemRegistry.egg, meta, "egg/egg_" + dinoName, "inventory");
 
             meta++;
         }
         // this.registerFossilRenderer(itemModelMesher);
 
         // Blocks
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.fossil, "block_fossil", "inventory");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.encased_fossil, "block_encased_fossil", "inventory");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.cleaning_station, "block_cleaning_station", "inventory");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.fossil_grinder, "block_fossil_grinder", "inventory");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.dna_sequencer, "block_dna_sequencer", "inventory");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.dna_synthesizer, "block_dna_synthesizer", "inventory");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.embryonic_machine, "block_embryonic_machine", "inventory");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.embryo_insemination_machine, "block_embryo_insemination_machine", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.fossil, "fossil_block", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.encased_fossil, "encased_fossil", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.cleaning_station, "cleaning_station", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.fossil_grinder, "fossil_grinder", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.dna_sequencer, "dna_sequencer", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.dna_synthesizer, "dna_synthesizer", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.embryonic_machine, "embryonic_machine", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.embryo_insemination_machine, "embryo_insemination_machine", "inventory");
     }
 
     /**

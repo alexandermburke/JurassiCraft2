@@ -29,13 +29,13 @@ public class BlockEncasedFossil extends Block implements ISubBlocksBlock
     public BlockEncasedFossil()
     {
         super(Material.rock);
-        this.setUnlocalizedName("block_encased_fossil");
+        this.setUnlocalizedName("encased_fossil");
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockEncasedFossil.PROPERTYPERIOD, BlockEncasedFossil.EnumTimePeriod.CRETACEOUS));
         this.setHardness(2.0F);
         this.setResistance(8.0F);
         this.setStepSound(Block.soundTypeStone);
     }
-
+    
     @Override
     public Class<? extends ItemBlock> getItemBlockClass()
     {

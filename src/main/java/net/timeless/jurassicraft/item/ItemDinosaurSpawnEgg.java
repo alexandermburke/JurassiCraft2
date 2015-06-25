@@ -5,7 +5,6 @@ import java.util.List;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -29,24 +28,29 @@ public class ItemDinosaurSpawnEgg extends Item
 {
     public ItemDinosaurSpawnEgg()
     {
-        this.setUnlocalizedName("item_dino_spawn_egg");
+        this.setUnlocalizedName("dino_spawn_egg");
         this.setHasSubtypes(true);
     }
 
     public EntityDinosaur spawnCreature(World world, EntityPlayer player, ItemStack stack, double x, double y, double z)
     {
         Dinosaur dinoInEgg = getDinosaur(stack);
-        if(dinoInEgg != null) {
+
+        if (dinoInEgg != null)
+        {
             Class<? extends EntityDinosaur> dinoClass = dinoInEgg.getDinosaurClass();
 
-            try {
+            try
+            {
                 EntityDinosaur dino = dinoClass.getConstructor(World.class).newInstance(player.worldObj);
                 dino.setPosition(x, y, z);
                 dino.setLocationAndAngles(x, y, z, MathHelper.wrapAngleTo180_float(world.rand.nextFloat() * 360.0F), 0.0F);
                 dino.rotationYawHead = dino.rotationYaw;
                 dino.renderYawOffset = dino.rotationYaw;
                 return dino;
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 e.printStackTrace();
             }
         }
@@ -58,8 +62,11 @@ public class ItemDinosaurSpawnEgg extends Item
     public String getItemStackDisplayName(ItemStack stack)
     {
         Dinosaur dinosaur = this.getDinosaur(stack);
+    
         if (dinosaur != null)
+     
             return (StatCollector.translateToLocal("item.dino_spawn_egg.name") + " " + StatCollector.translateToLocal("entity." + dinosaur.getName().replace(" ", "_").toLowerCase() + ".name")).trim();
+       
         return super.getItemStackDisplayName(stack);
     }
 
@@ -86,10 +93,9 @@ public class ItemDinosaurSpawnEgg extends Item
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
         {
             if (dino.shouldRegister())
-            {
                 subtypes.add(new ItemStack(item, 1, i));
-                i++;
-            }
+            
+            i++;
         }
     }
 

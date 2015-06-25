@@ -33,7 +33,7 @@ public class DinosaurStegosaurus extends Dinosaur
 
     public float getRenderYOffset()
     {
-        return 1.8F;
+        return 1.9F;
     }
 
     // TODO: Figure out all the entities properties

@@ -212,7 +212,7 @@ public class DinosaurCompsognathus extends Dinosaur
     {
         return -1.2F;
     }
-    
+
     @Override
     public float getShadowSize()
     {

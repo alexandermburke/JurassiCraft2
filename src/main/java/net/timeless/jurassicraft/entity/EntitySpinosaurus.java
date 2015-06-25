@@ -39,6 +39,7 @@ public class EntitySpinosaurus extends EntityDinosaurAggressive implements IEnti
     public void onUpdate()
     {
         super.onUpdate();
+        
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 10, 4.0F, this);
     }
 }

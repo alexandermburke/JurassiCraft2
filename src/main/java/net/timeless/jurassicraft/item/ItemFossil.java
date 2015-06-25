@@ -13,10 +13,9 @@ import net.timeless.jurassicraft.entity.base.JCEntityRegistry;
 
 public class ItemFossil extends Item
 {
-
     public ItemFossil()
     {
-        this.setUnlocalizedName("item_fossil");
+        this.setUnlocalizedName("fossil");
         this.setHasSubtypes(true);
     }
 
@@ -26,7 +25,7 @@ public class ItemFossil extends Item
         Dinosaur dinosaur = this.getDinosaur(stack);
 
         if (dinosaur != null)
-            return (StatCollector.translateToLocal("entity." + dinosaur.getName().replace(" ", "_").toLowerCase() + ".name") + " " + StatCollector.translateToLocal("item.item_fossil.name")).trim();
+            return (StatCollector.translateToLocal("entity." + dinosaur.getName().replace(" ", "_").toLowerCase() + ".name") + " " + StatCollector.translateToLocal("item.fossil.name")).trim();
 
         return super.getItemStackDisplayName(stack);
     }

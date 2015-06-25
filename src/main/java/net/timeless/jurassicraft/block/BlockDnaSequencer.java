@@ -17,11 +17,10 @@ import net.timeless.jurassicraft.tileentity.TileDnaSequencer;
 
 public class BlockDnaSequencer extends BlockOriented
 {
-
     public BlockDnaSequencer()
     {
         super(Material.wood);
-        this.setUnlocalizedName("block_dna_sequencer");
+        this.setUnlocalizedName("dna_sequencer");
         this.setHardness(2.0F);
         this.setStepSound(Block.soundTypeWood);
     }

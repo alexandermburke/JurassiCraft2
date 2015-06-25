@@ -17,11 +17,10 @@ import net.timeless.jurassicraft.tileentity.TileEmbryoInseminationMachine;
 
 public class BlockEmbryoInseminationMachine extends BlockOriented
 {
-
     public BlockEmbryoInseminationMachine()
     {
         super(Material.wood);
-        this.setUnlocalizedName("block_embryo_insemination_machine");
+        this.setUnlocalizedName("embryo_insemination_machine");
         this.setHardness(2.0F);
         this.setStepSound(Block.soundTypeWood);
     }

@@ -18,7 +18,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class BlockOriented extends BlockContainer
 {
-
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
     public BlockOriented(Material material)

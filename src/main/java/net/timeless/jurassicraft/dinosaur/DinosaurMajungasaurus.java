@@ -90,7 +90,7 @@ public class DinosaurMajungasaurus extends Dinosaur
     @Override
     public double getAdultSpeed()
     {
-        return 0.80;
+        return 0.40;
     }
 
     @Override

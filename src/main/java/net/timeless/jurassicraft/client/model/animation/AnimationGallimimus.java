@@ -42,16 +42,16 @@ public class AnimationGallimimus implements IModelAnimator
 
         MowzieModelRenderer legRight = model.getCube("leg1");
         MowzieModelRenderer legLeft = model.getCube("leg2");
-        
+
         MowzieModelRenderer lowerLegRight = model.getCube("upperfoot1");
         MowzieModelRenderer lowerLegLeft = model.getCube("upperfoot2");
-        
+
         MowzieModelRenderer footRight = model.getCube("foot1");
         MowzieModelRenderer footLeft = model.getCube("foot2");
-        
-        MowzieModelRenderer[] body = new MowzieModelRenderer[]{body3, body2, body1, neck1, neck2, neck3, neck4, neck5};
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail1, tail2, tail3, tail4, tail5, tail6};
+        MowzieModelRenderer[] body = new MowzieModelRenderer[] { body3, body2, body1, neck1, neck2, neck3, neck4, neck5 };
+
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail1, tail2, tail3, tail4, tail5, tail6 };
 
         int ticksExisted = entity.ticksExisted;
 
@@ -67,13 +67,13 @@ public class AnimationGallimimus implements IModelAnimator
 
         model.walk(thighRight, 0.5F, 0.8F, true, -0.4F, 0.1F, f, f1 * 1.5F);
         model.walk(thighLeft, 0.5F, 0.8F, false, -0.4F, 0.1F, f, f1 * 1.5F);
-        
+
         model.walk(legRight, 0.5F, 0.26F, false, -0.5F, 0.1F, f, f1 * 1.5F);
         model.walk(legLeft, 0.5F, 0.26F, true, -0.5F, 0.1F, f, f1 * 1.5F);
-        
+
         model.walk(lowerLegRight, 0.5F, 0.26F, false, -0.5F, 0.1F, f, f1 * 1.5F);
         model.walk(lowerLegLeft, 0.5F, 0.26F, true, -0.5F, 0.1F, f, f1 * 1.5F);
-        
+
         model.walk(footRight, 0.5F, 0.26F, true, -0.5F, 0.1F, f, f1 * 1.5F);
         model.walk(footLeft, 0.5F, 0.26F, false, -0.5F, 0.1F, f, f1 * 1.5F);
     }

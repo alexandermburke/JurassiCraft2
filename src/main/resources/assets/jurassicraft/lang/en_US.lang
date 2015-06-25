@@ -16,40 +16,28 @@ entity.majungasaurus.name=Majungasaurus
 entity.compsognathus.name=Compsognathus
 entity.dilophosaurus.name=Dilophosaurus
 entity.gallimimus.name=Gallimimus
+entity.parasaurolophus.name=Parasaurolophus
 
 //Items ==================================================
-item.item_rock_pick.name=Rock Pick
-item.item_plaster_and_bandage.name=Plaster and Bandage
+item.rock_pick.name=Rock Pick
+item.plaster_and_bandage.name=Plaster and Bandage
 
-item.item_fossil.name=Fossil
-
+item.fossil.name=Fossil
+item.dino_egg.name=Egg
 item.dino_spawn_egg.name=Spawn
 
 item.dna.name=DNA
 
 //Blocks ==================================================
-tile.block_fossil.name=Fossil Block
-tile.block_encased_fossil.quaternary.name=Quaternary Fossil Block
-tile.block_encased_fossil.neogene.name=Neogene Fossil Block
-tile.block_encased_fossil.paleogene.name=Paleogene Fossil Block
-tile.block_encased_fossil.cretaceous.name=Cretaceous Fossil Block
-tile.block_encased_fossil.jurassic.name=Jurassic Fossil Block
-tile.block_encased_fossil.triassic.name=Triassic Fossil Block
-tile.block_encased_fossil.permian.name=Permian Fossil Block
-tile.block_encased_fossil.carboniferous.name=Carboniferous Fossil Block
-tile.block_encased_fossil.devonian.name=Encased Devonian Block
-tile.block_encased_fossil.silurian.name=Encased Silurian Block
-tile.block_encased_fossil.ordovician.name=Encased Ordovician Block
-tile.block_encased_fossil.cambrian.name=Encased Cambrian Block
+tile.fossil_block.name=Fossil
+tile.encased_fossil.name=Fossil
 
-tile.block_cleaning_station.name=Cleaning Station
-tile.block_fossil_grinder.name=Fossil Grinder
-tile.block_dna_sequencer.name=DNA Sequencer
-tile.block_dna_synthesizer.name=DNA Synthesizer
-tile.block_embryonic_machine.name=Embryonic Machine
-tile.block_embryo_insemination_machine.name=Embryo Insemination Machine
-
-
+tile.cleaning_station.name=Cleaning Station
+tile.fossil_grinder.name=Fossil Grinder
+tile.dna_sequencer.name=DNA Sequencer
+tile.dna_synthesizer.name=DNA Synthesizer
+tile.embryonic_machine.name=Embryonic Machine
+tile.embryo_insemination_machine.name=Embryo Insemination Machine
 
 //Containers ==================================================
 container.cleaning_station=Cleaning Station
@@ -59,8 +47,6 @@ container.dna_sequencer=DNA Sequencer
 container.dna_synthesizer=DNA Synthesizer
 container.embryonic_machine=Embryonic Machine
 container.embryo_insemination_machine=Embryo Insemination Machine
-
-
 
 //Others ==================================================
 period.quaternary.name=Quaternary

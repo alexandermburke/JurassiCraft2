@@ -12,7 +12,7 @@ public class BlockFossil extends Block
     public BlockFossil()
     {
         super(Material.rock);
-        this.setUnlocalizedName("block_fossil");
+        this.setUnlocalizedName("fossil_block");
         this.setHardness(0.5F);
         this.setResistance(1.0F);
         this.setStepSound(Block.soundTypeStone);

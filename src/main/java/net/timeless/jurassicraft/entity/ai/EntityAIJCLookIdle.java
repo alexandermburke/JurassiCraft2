@@ -7,28 +7,28 @@ public class EntityAIJCLookIdle extends EntityAIBase
 {
     /** The entity that is looking idle. */
     private EntityLiving idleEntity;
-    
+
     /** X offset to look at */
     private double lookX;
-    
+
     /** Z offset to look at */
     private double lookZ;
-    
+
     /** A decrementing tick that stops the entity from being idle once it reaches 0. */
     private int idleTime;
 
-    /** How fast to turn on the Y axis (yaw)*/
+    /** How fast to turn on the Y axis (yaw) */
     private float turnSpeedYaw;
 
-    /** How fast to turn on the X axis (pitch)*/
+    /** How fast to turn on the X axis (pitch) */
     private float turnSpeedPitch;
-    
+
     public EntityAIJCLookIdle(EntityLiving entity, float turnSpeedYaw, float turnSpeedPitch)
     {
         this.idleEntity = entity;
         this.turnSpeedYaw = turnSpeedYaw;
         this.turnSpeedPitch = turnSpeedPitch;
-        
+
         this.setMutexBits(3);
     }
 
@@ -65,6 +65,6 @@ public class EntityAIJCLookIdle extends EntityAIBase
     public void updateTask()
     {
         --this.idleTime;
-        this.idleEntity.getLookHelper().setLookPosition(this.idleEntity.posX + this.lookX, this.idleEntity.posY + (double)this.idleEntity.getEyeHeight(), this.idleEntity.posZ + this.lookZ, turnSpeedYaw, turnSpeedPitch);
+        this.idleEntity.getLookHelper().setLookPosition(this.idleEntity.posX + this.lookX, this.idleEntity.posY + (double) this.idleEntity.getEyeHeight(), this.idleEntity.posZ + this.lookZ, turnSpeedYaw, turnSpeedPitch);
     }
 }

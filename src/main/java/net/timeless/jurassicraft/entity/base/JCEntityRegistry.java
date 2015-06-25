@@ -15,6 +15,7 @@ import net.timeless.jurassicraft.dinosaur.DinosaurGallimimus;
 import net.timeless.jurassicraft.dinosaur.DinosaurGiganotosaurus;
 import net.timeless.jurassicraft.dinosaur.DinosaurIndominusRex;
 import net.timeless.jurassicraft.dinosaur.DinosaurMajungasaurus;
+import net.timeless.jurassicraft.dinosaur.DinosaurParasaurolophus;
 import net.timeless.jurassicraft.dinosaur.DinosaurRugops;
 import net.timeless.jurassicraft.dinosaur.DinosaurSpinosaurus;
 import net.timeless.jurassicraft.dinosaur.DinosaurStegosaurus;
@@ -38,13 +39,14 @@ public class JCEntityRegistry implements IContentHandler
         registerDinosaur(new DinosaurGiganotosaurus());
         registerDinosaur(new DinosaurIndominusRex());
         registerDinosaur(new DinosaurMajungasaurus());
+        registerDinosaur(new DinosaurParasaurolophus());
         registerDinosaur(new DinosaurRugops());
         registerDinosaur(new DinosaurSpinosaurus());
         registerDinosaur(new DinosaurStegosaurus());
         registerDinosaur(new DinosaurTyrannosaurusRex());
         registerDinosaur(new DinosaurVelociraptor());
-        
-        //Always register a new dinosaur after last one in list, otherwise all items with metadata will be shifted by one (UNLESS it is before the release of JC2)
+
+        // Always register a new dinosaur after last one in list, otherwise all items with metadata will be shifted by one (all dinosaurs will change form D:) (UNLESS it is before the release of JC2)
     }
 
     public void gameRegistry() throws Exception
