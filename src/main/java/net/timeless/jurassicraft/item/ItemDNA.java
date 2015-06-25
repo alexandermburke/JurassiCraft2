@@ -8,7 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.jurassicraft.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.entity.base.JCEntityRegistry;
 
@@ -19,7 +18,6 @@ public class ItemDNA extends Item
         super();
 
         this.setUnlocalizedName("dna");
-        this.setCreativeTab(JCCreativeTabs.items);
     }
 
     public String getItemStackDisplayName(ItemStack stack)

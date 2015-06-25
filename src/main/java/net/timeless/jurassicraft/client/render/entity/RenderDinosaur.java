@@ -12,7 +12,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.dinosaur.Dinosaur;
-import net.timeless.jurassicraft.entity.EntityCompsognathus;
 import net.timeless.jurassicraft.entity.EntityVelociraptor;
 import net.timeless.jurassicraft.entity.base.EntityDinosaur;
 

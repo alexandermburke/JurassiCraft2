@@ -18,8 +18,8 @@ public class AnimationCarnotaurus implements IModelAnimator
     @Override
     public void setRotationAngles(ModelJson model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
     {
-        //f = entity.ticksExisted / 2; 
-        //f1 = 1F;
+        // f = entity.ticksExisted / 2;
+        // f1 = 1F;
 
         float globalSpeed = 1F;
         float globalDegree = 0.4F;

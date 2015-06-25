@@ -15,8 +15,8 @@ public class AnimationSpinosaurus implements IModelAnimator
         float globalDegree = 0.4F;
         float height = 1.0F;
 
-//        f = entity.ticksExisted;
-//        f1 = 1F;
+        // f = entity.ticksExisted;
+        // f1 = 1F;
 
         // middle
         MowzieModelRenderer shoulders = model.getCube("Body 3");

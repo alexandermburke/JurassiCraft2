@@ -164,7 +164,7 @@ public class DinosaurCompsognathus extends Dinosaur
     {
         return animator;
     }
-    
+
     public float getRenderZOffset()
     {
         return -0.1F;

@@ -1,6 +1,9 @@
 //Tabs ==================================================
 itemGroup.jurassicraft.items=JurassiCraft Items
 itemGroup.jurassicraft.blocks=JurassiCraft Blocks
+itemGroup.jurassicraft.eggs=JurassiCraft Eggs
+itemGroup.jurassicraft.spawnEggs=JurassiCraft Spawn Eggs
+itemGroup.jurassicraft.dna=JurassiCraft DNA
 
 //Entities ==================================================
 entity.velociraptor.name=Velociraptor

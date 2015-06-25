@@ -140,7 +140,7 @@ public class DinosaurParasaurolophus extends Dinosaur
     {
         return 1.43F;
     }
-    
+
     @Override
     public ModelBase getModel()
     {

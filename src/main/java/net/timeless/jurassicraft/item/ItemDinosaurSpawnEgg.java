@@ -62,11 +62,11 @@ public class ItemDinosaurSpawnEgg extends Item
     public String getItemStackDisplayName(ItemStack stack)
     {
         Dinosaur dinosaur = this.getDinosaur(stack);
-    
+
         if (dinosaur != null)
-     
+
             return (StatCollector.translateToLocal("item.dino_spawn_egg.name") + " " + StatCollector.translateToLocal("entity." + dinosaur.getName().replace(" ", "_").toLowerCase() + ".name")).trim();
-       
+
         return super.getItemStackDisplayName(stack);
     }
 
@@ -94,7 +94,7 @@ public class ItemDinosaurSpawnEgg extends Item
         {
             if (dino.shouldRegister())
                 subtypes.add(new ItemStack(item, 1, i));
-            
+
             i++;
         }
     }

@@ -48,13 +48,13 @@ public class JCBlockRegistry implements IContentHandler
     public void gameRegistry() throws Exception
     {
         initCreativeTabs();
-       
+
         try
         {
             for (Field f : JCBlockRegistry.class.getDeclaredFields())
             {
                 Object obj = f.get(null);
-               
+
                 if (obj instanceof Block)
                     registerBlock((Block) obj);
                 else if (obj instanceof Block[])

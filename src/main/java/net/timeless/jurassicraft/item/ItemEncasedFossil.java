@@ -20,7 +20,7 @@ public class ItemEncasedFossil extends ItemBlock
     {
         return StatCollector.translateToLocal("period." + BlockEncasedFossil.EnumTimePeriod.byMetadata(stack.getMetadata()).getName() + ".name") + " " + StatCollector.translateToLocal("tile.encased_fossil.name");
     }
-    
+
     @Override
     public int getMetadata(int metadata)
     {

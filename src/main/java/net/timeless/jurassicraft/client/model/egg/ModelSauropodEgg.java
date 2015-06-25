@@ -39,7 +39,7 @@ public class ModelSauropodEgg extends ModelBase
         this.side2 = new ModelRenderer(this, 19, 8);
         this.side2.setRotationPoint(0.0F, 1.5F, -2.0F);
         this.side2.addBox(-2.0F, -2.0F, -1.0F, 4, 4, 1, 0.0F);
-        
+
         this.main1.addChild(this.top);
         this.main1.addChild(this.side3);
         this.bottom.addChild(this.main1);
@@ -49,15 +49,15 @@ public class ModelSauropodEgg extends ModelBase
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) 
-    { 
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    {
         this.bottom.render(f5);
     }
 
     /**
      * This is a helper function from Tabula to set the rotation of model parts
      */
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) 
+    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z)
     {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;

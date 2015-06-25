@@ -34,7 +34,7 @@ public class ItemPlasterAndBandage extends Item
         else
         {
             IBlockState state = world.getBlockState(pos);
-            
+
             if (state.getBlock() == JCBlockRegistry.fossil)
             {
                 if (player.getHeldItem().getItem() instanceof ItemPlasterAndBandage)

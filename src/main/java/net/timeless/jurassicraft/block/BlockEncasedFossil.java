@@ -35,7 +35,7 @@ public class BlockEncasedFossil extends Block implements ISubBlocksBlock
         this.setResistance(8.0F);
         this.setStepSound(Block.soundTypeStone);
     }
-    
+
     @Override
     public Class<? extends ItemBlock> getItemBlockClass()
     {

@@ -29,9 +29,10 @@ public class JCItemRegistry implements IContentHandler
     public void initCreativeTabs()
     {
         plaster_and_bandage.setCreativeTab(JCCreativeTabs.items);
-        spawn_egg.setCreativeTab(JCCreativeTabs.items);
+        spawn_egg.setCreativeTab(JCCreativeTabs.spawnEggs);
         fossil.setCreativeTab(JCCreativeTabs.items);
-        egg.setCreativeTab(JCCreativeTabs.items);
+        egg.setCreativeTab(JCCreativeTabs.eggs);
+        dna.setCreativeTab(JCCreativeTabs.dna);
     }
 
     @Override
@@ -63,7 +64,7 @@ public class JCItemRegistry implements IContentHandler
         String name = item.getUnlocalizedName();
         String[] strings = name.split("\\.");
         name = strings[strings.length - 1];
-        
+
         GameRegistry.registerItem(item, name);
     }
 }

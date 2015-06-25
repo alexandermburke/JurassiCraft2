@@ -27,15 +27,19 @@ public abstract class Dinosaur
     public abstract int getEggSecondaryColor();
 
     public abstract double getBabyHealth();
+
     public abstract double getAdultHealth();
 
     public abstract double getBabySpeed();
+
     public abstract double getAdultSpeed();
 
     public abstract double getBabyStrength();
+
     public abstract double getAdultStrength();
 
     public abstract double getBabyKnockback();
+
     public abstract double getAdultKnockback();
 
     public abstract float getMaximumAge();
@@ -74,7 +78,7 @@ public abstract class Dinosaur
     {
         return 0.0F;
     }
-    
+
     public float getRenderYOffset()
     {
         return 0.0F;
@@ -84,7 +88,7 @@ public abstract class Dinosaur
     {
         return 0.0F;
     }
-    
+
     public ModelJson getTabulaModel(String tabulaModel) throws Exception
     {
         try (ZipInputStream inputStream = new ZipInputStream(JurassiCraft.class.getResourceAsStream(tabulaModel + ".tbl")))
@@ -117,19 +121,19 @@ public abstract class Dinosaur
 
         return null;
     }
-    
+
     protected String getDinosaurTexture(String subtype)
     {
         String dinosaurName = getName().toLowerCase().replaceAll(" ", "_");
-        
+
         String texture = "jurassicraft:textures/entities/" + dinosaurName + "/" + dinosaurName;
-        
-        if(subtype != "")
+
+        if (subtype != "")
             texture += "_" + subtype;
-        
+
         return texture + ".png";
     }
-    
+
     public ModelJson getDefaultTabulaModel() throws Exception
     {
         return getTabulaModel("/assets/jurassicraft/models/entities/" + getName().toLowerCase().replaceAll(" ", "_"));

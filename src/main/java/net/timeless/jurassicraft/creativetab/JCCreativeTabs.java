@@ -10,6 +10,10 @@ public class JCCreativeTabs implements IContentHandler
     public static CreativeTabJurassiCraft items;
     public static CreativeTabJurassiCraft blocks;
 
+    public static CreativeTabJurassiCraft dna;
+    public static CreativeTabJurassiCraft eggs;
+    public static CreativeTabJurassiCraft spawnEggs;
+
     public void init()
     {
         items = new CreativeTabJurassiCraft("jurassicraft.items")
@@ -17,6 +21,30 @@ public class JCCreativeTabs implements IContentHandler
             public Item getTabIconItem()
             {
                 return JCItemRegistry.fossil;
+            }
+        };
+
+        dna = new CreativeTabJurassiCraft("jurassicraft.dna")
+        {
+            public Item getTabIconItem()
+            {
+                return JCItemRegistry.dna;
+            }
+        };
+
+        eggs = new CreativeTabJurassiCraft("jurassicraft.eggs")
+        {
+            public Item getTabIconItem()
+            {
+                return JCItemRegistry.egg;
+            }
+        };
+
+        spawnEggs = new CreativeTabJurassiCraft("jurassicraft.spawnEggs")
+        {
+            public Item getTabIconItem()
+            {
+                return JCItemRegistry.spawn_egg;
             }
         };
 
