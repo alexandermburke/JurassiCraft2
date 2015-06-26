@@ -37,7 +37,7 @@ public class RenderDinosaurMultilayer extends RenderMultiPart
 
         maleTextures = new ResourceLocation[creature.getMaleTextures().length];
         femaleTextures = new ResourceLocation[creature.getFemaleTextures().length];
-        
+
         maleOverlayTextures = new ResourceLocation[creature.getMaleOverlayTextures().length];
         femaleOverlayTextures = new ResourceLocation[creature.getFemaleOverlayTextures().length];
 
@@ -56,7 +56,7 @@ public class RenderDinosaurMultilayer extends RenderMultiPart
             femaleTextures[i] = new ResourceLocation(texture);
             i++;
         }
-        
+
         i = 0;
 
         for (String texture : creature.getMaleOverlayTextures())
@@ -64,7 +64,7 @@ public class RenderDinosaurMultilayer extends RenderMultiPart
             maleOverlayTextures[i] = new ResourceLocation(texture);
             i++;
         }
-        
+
         i = 0;
 
         for (String texture : creature.getFemaleOverlayTextures())
@@ -121,7 +121,7 @@ public class RenderDinosaurMultilayer extends RenderMultiPart
     {
         return getEntityTexture((EntityDinosaur) entity);
     }
-    
+
     @SideOnly(Side.CLIENT)
     public class LayerDinosaurFeatures implements LayerRenderer
     {
@@ -135,7 +135,7 @@ public class RenderDinosaurMultilayer extends RenderMultiPart
         public void render(EntityDinosaur entity, float armSwing, float armSwingAmount, float p_177148_4_, float p_177148_5_, float p_177148_6_, float p_177148_7_, float partialTicks)
         {
             this.renderer.bindTexture(entity.isMale() ? maleOverlayTextures[entity.getTexture()] : femaleOverlayTextures[entity.getTexture()]);
-        
+
             this.renderer.getMainModel().render(entity, armSwing, armSwingAmount, p_177148_5_, p_177148_6_, p_177148_7_, partialTicks);
             this.renderer.func_177105_a(entity, p_177148_4_);
         }
@@ -147,7 +147,7 @@ public class RenderDinosaurMultilayer extends RenderMultiPart
 
         public void doRenderLayer(EntityLivingBase entity, float p_177141_2_, float p_177141_3_, float p_177141_4_, float p_177141_5_, float p_177141_6_, float p_177141_7_, float p_177141_8_)
         {
-            this.render((EntityDinosaur)entity, p_177141_2_, p_177141_3_, p_177141_4_, p_177141_5_, p_177141_6_, p_177141_7_, p_177141_8_);
+            this.render((EntityDinosaur) entity, p_177141_2_, p_177141_3_, p_177141_4_, p_177141_5_, p_177141_6_, p_177141_7_, p_177141_8_);
         }
     }
 }

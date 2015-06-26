@@ -3,10 +3,10 @@ package net.timeless.jurassicraft.dinosaur;
 import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
 import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.minecraft.client.model.ModelBase;
-import net.timeless.jurassicraft.block.BlockEncasedFossil;
 import net.timeless.jurassicraft.client.model.animation.AnimationIndominusRex;
 import net.timeless.jurassicraft.entity.EntityIndominusRex;
 import net.timeless.jurassicraft.entity.base.EntityDinosaur;
+import net.timeless.jurassicraft.period.EnumTimePeriod;
 
 public class DinosaurIndominusRex extends Dinosaur
 {
@@ -22,7 +22,7 @@ public class DinosaurIndominusRex extends Dinosaur
         this.animator = new AnimationIndominusRex();
         this.maleTextures = new String[] { getDinosaurTexture("") };
         this.femaleTextures = new String[] { getDinosaurTexture("") };
-        
+
         this.maleOverlayTextures = new String[] { getDinosaurTexture("detail") };
         this.femaleOverlayTextures = new String[] { getDinosaurTexture("detail") };
 
@@ -49,9 +49,9 @@ public class DinosaurIndominusRex extends Dinosaur
     }
 
     @Override
-    public int getPeriod()
+    public EnumTimePeriod getPeriod()
     {
-        return BlockEncasedFossil.EnumTimePeriod.CRETACEOUS.getMetadata();
+        return EnumTimePeriod.CRETACEOUS;
     }
 
     @Override
@@ -154,7 +154,7 @@ public class DinosaurIndominusRex extends Dinosaur
     {
         return femaleTextures;
     }
-    
+
     @Override
     public String[] getMaleOverlayTextures()
     {

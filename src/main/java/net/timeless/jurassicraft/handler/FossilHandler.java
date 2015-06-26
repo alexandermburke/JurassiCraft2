@@ -2,7 +2,7 @@ package net.timeless.jurassicraft.handler;
 
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import net.timeless.jurassicraft.block.BlockEncasedFossil;
+import net.timeless.jurassicraft.period.EnumTimePeriod;
 
 public class FossilHandler
 {
@@ -11,7 +11,7 @@ public class FossilHandler
      */
     public static int getDefaultTimePeriod()
     {
-        return BlockEncasedFossil.EnumTimePeriod.CRETACEOUS.getMetadata();
+        return EnumTimePeriod.CRETACEOUS.getMetadata();
     }
 
     /**
@@ -21,6 +21,6 @@ public class FossilHandler
     {
         world.getBiomeGenForCoords(pos);
 
-        return BlockEncasedFossil.EnumTimePeriod.CRETACEOUS.getMetadata();
+        return EnumTimePeriod.CRETACEOUS.getMetadata();
     }
 }

@@ -16,6 +16,7 @@ import net.minecraft.util.IChatComponent;
 import net.timeless.jurassicraft.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.item.ItemEncasedFossil;
 import net.timeless.jurassicraft.item.JCItemRegistry;
+import net.timeless.jurassicraft.period.EnumTimePeriod;
 
 public class TileCleaningStation extends TileEntity implements ISidedInventory
 {
@@ -51,7 +52,8 @@ public class TileCleaningStation extends TileEntity implements ISidedInventory
         {
             ItemStack fossil = new ItemStack(JCItemRegistry.fossil);
             int periodID = encasedFossil.getMetadata();
-            int dinosaurID = this.worldObj.rand.nextInt(JCEntityRegistry.getDinosaursFromPeriod(periodID).size());
+
+            int dinosaurID = this.worldObj.rand.nextInt(JCEntityRegistry.getDinosaursFromPeriod(EnumTimePeriod.byMetadata(periodID)).size());
             fossil.setItemDamage(dinosaurID);
 
             for (int slot : slotFossil)

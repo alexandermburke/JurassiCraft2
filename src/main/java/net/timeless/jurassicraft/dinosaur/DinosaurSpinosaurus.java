@@ -3,10 +3,10 @@ package net.timeless.jurassicraft.dinosaur;
 import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
 import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.minecraft.client.model.ModelBase;
-import net.timeless.jurassicraft.block.BlockEncasedFossil;
 import net.timeless.jurassicraft.client.model.animation.AnimationSpinosaurus;
 import net.timeless.jurassicraft.entity.EntitySpinosaurus;
 import net.timeless.jurassicraft.entity.base.EntityDinosaur;
+import net.timeless.jurassicraft.period.EnumTimePeriod;
 
 public class DinosaurSpinosaurus extends Dinosaur
 {
@@ -22,10 +22,10 @@ public class DinosaurSpinosaurus extends Dinosaur
         this.animator = new AnimationSpinosaurus();
         this.maleTextures = new String[] { getDinosaurTexture("male") };
         this.femaleTextures = new String[] { getDinosaurTexture("female") };
-        
+
         this.maleOverlayTextures = new String[] { getDinosaurTexture("male_detail") };
         this.femaleOverlayTextures = new String[] { getDinosaurTexture("female_detail") };
-        
+
         try
         {
             this.model = getDefaultTabulaModel();
@@ -51,9 +51,9 @@ public class DinosaurSpinosaurus extends Dinosaur
     }
 
     @Override
-    public int getPeriod()
+    public EnumTimePeriod getPeriod()
     {
-        return BlockEncasedFossil.EnumTimePeriod.CRETACEOUS.getMetadata();
+        return EnumTimePeriod.CRETACEOUS;
     }
 
     @Override
@@ -163,7 +163,7 @@ public class DinosaurSpinosaurus extends Dinosaur
     {
         return animator;
     }
-    
+
     @Override
     public String[] getMaleOverlayTextures()
     {

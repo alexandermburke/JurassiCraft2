@@ -21,13 +21,14 @@ import net.timeless.jurassicraft.dinosaur.DinosaurSpinosaurus;
 import net.timeless.jurassicraft.dinosaur.DinosaurStegosaurus;
 import net.timeless.jurassicraft.dinosaur.DinosaurTyrannosaurusRex;
 import net.timeless.jurassicraft.dinosaur.DinosaurVelociraptor;
+import net.timeless.jurassicraft.period.EnumTimePeriod;
 
 import com.google.common.collect.Lists;
 
 public class JCEntityRegistry implements IContentHandler
 {
     private static List<Dinosaur> dinosaurs = Lists.newArrayList();
-    private static HashMap<Integer, List<Dinosaur>> dinosaursFromPeriod = new HashMap<>();
+    private static HashMap<EnumTimePeriod, List<Dinosaur>> dinosaursFromPeriod = new HashMap<>();
 
     public void init()
     {
@@ -76,13 +77,14 @@ public class JCEntityRegistry implements IContentHandler
     public static void registerDinosaur(Dinosaur dino)
     {
         dinosaurs.add(dino);
-        int period = dino.getPeriod();
+        EnumTimePeriod period = dino.getPeriod();
 
         List<Dinosaur> dinoList = dinosaursFromPeriod.get(period);
 
         if (dinoList != null)
         {
             dinoList.add(dino);
+
             dinosaursFromPeriod.remove(period);
             dinosaursFromPeriod.put(period, dinoList);
         }
@@ -90,6 +92,7 @@ public class JCEntityRegistry implements IContentHandler
         {
             List<Dinosaur> newDinoList = Lists.newArrayList();
             newDinoList.add(dino);
+
             dinosaursFromPeriod.put(period, newDinoList);
         }
     }
@@ -109,9 +112,9 @@ public class JCEntityRegistry implements IContentHandler
         return dinosaurs;
     }
 
-    public static List<Dinosaur> getDinosaursFromPeriod(int periodID)
+    public static List<Dinosaur> getDinosaursFromPeriod(EnumTimePeriod period)
     {
-        return dinosaursFromPeriod.get(periodID);
+        return dinosaursFromPeriod.get(period);
     }
 
     public static Dinosaur getDinosaurByClass(Class<? extends EntityDinosaur> clazz)

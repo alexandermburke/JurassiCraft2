@@ -53,7 +53,7 @@ public class ClientProxy extends CommonProxy
 
         for (Entry<Class<? extends Entity>, Dinosaur> entry : renderersToRegister.entrySet())
         {
-            if(entry.getValue().getMaleOverlayTextures().length > 0)
+            if (entry.getValue().getMaleOverlayTextures().length > 0)
                 RenderingRegistry.registerEntityRenderingHandler(entry.getKey(), new RenderDinosaurMultilayer(entry.getValue()));
             else
                 RenderingRegistry.registerEntityRenderingHandler(entry.getKey(), new RenderDinosaur(entry.getValue()));

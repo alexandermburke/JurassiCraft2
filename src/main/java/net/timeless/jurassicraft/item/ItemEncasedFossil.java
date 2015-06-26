@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
-import net.timeless.jurassicraft.block.BlockEncasedFossil;
+import net.timeless.jurassicraft.period.EnumTimePeriod;
 
 public class ItemEncasedFossil extends ItemBlock
 {
@@ -18,7 +18,7 @@ public class ItemEncasedFossil extends ItemBlock
 
     public String getItemStackDisplayName(ItemStack stack)
     {
-        return StatCollector.translateToLocal("period." + BlockEncasedFossil.EnumTimePeriod.byMetadata(stack.getMetadata()).getName() + ".name") + " " + StatCollector.translateToLocal("tile.encased_fossil.name");
+        return StatCollector.translateToLocal("period." + EnumTimePeriod.byMetadata(stack.getMetadata()).getName() + ".name") + " " + StatCollector.translateToLocal("tile.encased_fossil.name");
     }
 
     @Override
@@ -30,7 +30,7 @@ public class ItemEncasedFossil extends ItemBlock
     @Override
     public String getUnlocalizedName(ItemStack stack)
     {
-        BlockEncasedFossil.EnumTimePeriod timePeriod = BlockEncasedFossil.EnumTimePeriod.byMetadata(stack.getMetadata());
+        EnumTimePeriod timePeriod = EnumTimePeriod.byMetadata(stack.getMetadata());
         return super.getUnlocalizedName() + "." + timePeriod.getName();
     }
 }

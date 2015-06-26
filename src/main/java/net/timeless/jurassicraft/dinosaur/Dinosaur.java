@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import org.apache.commons.lang3.text.StrBuilder;
-
 import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
 import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.ilexiconn.llibrary.common.json.JsonHelper;
@@ -15,6 +13,7 @@ import net.minecraft.client.model.ModelBase;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.json.JsonHitbox;
+import net.timeless.jurassicraft.period.EnumTimePeriod;
 
 public abstract class Dinosaur
 {
@@ -24,7 +23,7 @@ public abstract class Dinosaur
 
     public abstract int getEggPrimaryColor();
 
-    public abstract int getPeriod();
+    public abstract EnumTimePeriod getPeriod();
 
     public abstract int getEggSecondaryColor();
 
@@ -55,7 +54,7 @@ public abstract class Dinosaur
     public abstract String[] getMaleTextures();
 
     public abstract String[] getFemaleTextures();
-    
+
     public String[] getMaleOverlayTextures()
     {
         return new String[0];

@@ -3,10 +3,10 @@ package net.timeless.jurassicraft.dinosaur;
 import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
 import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.minecraft.client.model.ModelBase;
-import net.timeless.jurassicraft.block.BlockEncasedFossil;
 import net.timeless.jurassicraft.client.model.animation.AnimationGallimimus;
 import net.timeless.jurassicraft.entity.EntityGallimimus;
 import net.timeless.jurassicraft.entity.base.EntityDinosaur;
+import net.timeless.jurassicraft.period.EnumTimePeriod;
 
 public class DinosaurGallimimus extends Dinosaur
 {
@@ -46,9 +46,9 @@ public class DinosaurGallimimus extends Dinosaur
     }
 
     @Override
-    public int getPeriod()
+    public EnumTimePeriod getPeriod()
     {
-        return BlockEncasedFossil.EnumTimePeriod.CRETACEOUS.getMetadata();
+        return EnumTimePeriod.CRETACEOUS;
     }
 
     @Override
