@@ -13,6 +13,8 @@ public class DinosaurSpinosaurus extends Dinosaur
     private IModelAnimator animator;
     private String[] maleTextures;
     private String[] femaleTextures;
+    private String[] maleOverlayTextures;
+    private String[] femaleOverlayTextures;
     private ModelJson model;
 
     public DinosaurSpinosaurus()
@@ -20,7 +22,10 @@ public class DinosaurSpinosaurus extends Dinosaur
         this.animator = new AnimationSpinosaurus();
         this.maleTextures = new String[] { getDinosaurTexture("male") };
         this.femaleTextures = new String[] { getDinosaurTexture("female") };
-
+        
+        this.maleOverlayTextures = new String[] { getDinosaurTexture("male_detail") };
+        this.femaleOverlayTextures = new String[] { getDinosaurTexture("female_detail") };
+        
         try
         {
             this.model = getDefaultTabulaModel();
@@ -157,5 +162,17 @@ public class DinosaurSpinosaurus extends Dinosaur
     public IModelAnimator getModelAnimator()
     {
         return animator;
+    }
+    
+    @Override
+    public String[] getMaleOverlayTextures()
+    {
+        return maleOverlayTextures;
+    }
+
+    @Override
+    public String[] getFemaleOverlayTextures()
+    {
+        return femaleOverlayTextures;
     }
 }
