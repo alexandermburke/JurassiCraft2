@@ -28,7 +28,7 @@ item.plaster_and_bandage.name=Plaster and Bandage
 item.fossil.name=Fossil
 item.dino_egg.name=Egg
 item.dino_spawn_egg.name=Spawn
-
+item.paleo_pad.name=Paleo Pad
 item.dna.name=DNA
 
 //Blocks ==================================================
@@ -64,3 +64,5 @@ period.devonian.name=Devonian
 period.silurian.name=Silurian
 period.ordovician.name=Ordovician
 period.cambrian.name=Cambrian
+
+misc.ownership.name='s

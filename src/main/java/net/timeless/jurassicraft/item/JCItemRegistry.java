@@ -14,8 +14,9 @@ public class JCItemRegistry implements IContentHandler
     public static ItemFossil fossil;
 
     public static ItemDNA dna;
-    public static Item egg;
-
+    public static ItemDinosaurEgg egg;
+    public static ItemPaleoPad paleo_pad;
+    
     @Override
     public void init()
     {
@@ -24,6 +25,7 @@ public class JCItemRegistry implements IContentHandler
         fossil = new ItemFossil();
         dna = new ItemDNA();
         egg = new ItemDinosaurEgg();
+        paleo_pad = new ItemPaleoPad();
     }
 
     public void initCreativeTabs()
@@ -33,6 +35,7 @@ public class JCItemRegistry implements IContentHandler
         fossil.setCreativeTab(JCCreativeTabs.items);
         egg.setCreativeTab(JCCreativeTabs.eggs);
         dna.setCreativeTab(JCCreativeTabs.dna);
+        paleo_pad.setCreativeTab(JCCreativeTabs.items);
     }
 
     @Override
