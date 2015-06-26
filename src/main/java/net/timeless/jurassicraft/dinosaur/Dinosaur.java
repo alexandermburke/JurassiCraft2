@@ -12,7 +12,7 @@ import net.ilexiconn.llibrary.common.json.container.JsonTabulaModel;
 import net.minecraft.client.model.ModelBase;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.entity.base.EntityDinosaur;
-import net.timeless.jurassicraft.json.JsonHitbox;
+import net.timeless.jurassicraft.entity.base.EntityHitbox;
 import net.timeless.jurassicraft.period.EnumTimePeriod;
 
 public abstract class Dinosaur
@@ -70,7 +70,7 @@ public abstract class Dinosaur
         return 0.5D;
     }
 
-    public List<JsonHitbox> getHitBoxList()
+    public List<EntityHitbox> getHitBoxList()
     {
         return new ArrayList<>();
     }

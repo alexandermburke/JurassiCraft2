@@ -9,7 +9,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.timeless.jurassicraft.dinosaur.Dinosaur;
-import net.timeless.jurassicraft.json.JsonHelper;
 
 public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, IEntityAdditionalSpawnData
 {
@@ -23,17 +22,14 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
     {
         super(world);
 
-        parts = JsonHelper.parseHitboxList(this, dinosaur.getHitBoxList());
+        parts = EntityHitbox.parseHitboxList(this, dinosaur.getHitBoxList());
+
         gender = rand.nextBoolean();
 
         if (gender)
-        {
             randTexture = rand.nextInt(dinosaur.getMaleTextures().length);
-        }
         else
-        {
             randTexture = rand.nextInt(dinosaur.getFemaleTextures().length);
-        }
     }
 
     public void entityInit()

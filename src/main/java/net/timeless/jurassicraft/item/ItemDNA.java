@@ -18,6 +18,7 @@ public class ItemDNA extends Item
         super();
 
         this.setUnlocalizedName("dna");
+        this.setMaxStackSize(1);
     }
 
     public String getItemStackDisplayName(ItemStack stack)

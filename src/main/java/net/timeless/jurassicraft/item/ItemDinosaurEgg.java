@@ -18,6 +18,7 @@ public class ItemDinosaurEgg extends Item
         super();
 
         this.setUnlocalizedName("dino_egg");
+        this.setMaxStackSize(1);
     }
 
     public String getItemStackDisplayName(ItemStack stack)
