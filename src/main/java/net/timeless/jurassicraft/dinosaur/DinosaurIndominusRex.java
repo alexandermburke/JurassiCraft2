@@ -13,6 +13,8 @@ public class DinosaurIndominusRex extends Dinosaur
     private IModelAnimator animator;
     private String[] maleTextures;
     private String[] femaleTextures;
+    private String[] maleOverlayTextures;
+    private String[] femaleOverlayTextures;
     private ModelJson model;
 
     public DinosaurIndominusRex()
@@ -20,6 +22,9 @@ public class DinosaurIndominusRex extends Dinosaur
         this.animator = new AnimationIndominusRex();
         this.maleTextures = new String[] { getDinosaurTexture("") };
         this.femaleTextures = new String[] { getDinosaurTexture("") };
+        
+        this.maleOverlayTextures = new String[] { getDinosaurTexture("detail") };
+        this.femaleOverlayTextures = new String[] { getDinosaurTexture("detail") };
 
         try
         {
@@ -148,6 +153,18 @@ public class DinosaurIndominusRex extends Dinosaur
     public String[] getFemaleTextures()
     {
         return femaleTextures;
+    }
+    
+    @Override
+    public String[] getMaleOverlayTextures()
+    {
+        return maleOverlayTextures;
+    }
+
+    @Override
+    public String[] getFemaleOverlayTextures()
+    {
+        return femaleOverlayTextures;
     }
 
     @Override

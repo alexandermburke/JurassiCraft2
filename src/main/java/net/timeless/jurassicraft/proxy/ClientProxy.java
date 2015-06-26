@@ -19,6 +19,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.block.JCBlockRegistry;
 import net.timeless.jurassicraft.client.render.entity.RenderDinosaur;
+import net.timeless.jurassicraft.client.render.entity.RenderDinosaurMultilayer;
 import net.timeless.jurassicraft.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.item.JCItemRegistry;
@@ -52,7 +53,10 @@ public class ClientProxy extends CommonProxy
 
         for (Entry<Class<? extends Entity>, Dinosaur> entry : renderersToRegister.entrySet())
         {
-            RenderingRegistry.registerEntityRenderingHandler(entry.getKey(), new RenderDinosaur(entry.getValue()));
+            if(entry.getValue().getMaleOverlayTextures().length > 0)
+                RenderingRegistry.registerEntityRenderingHandler(entry.getKey(), new RenderDinosaurMultilayer(entry.getValue()));
+            else
+                RenderingRegistry.registerEntityRenderingHandler(entry.getKey(), new RenderDinosaur(entry.getValue()));
         }
 
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
