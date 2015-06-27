@@ -81,12 +81,11 @@ public class RenderDinosaurMultilayer extends RenderMultiPart
         float scale = dino.getScaleAdjustment();
         shadowSize = scale * dino.getShadowSize();
 
-        if (entity instanceof EntityVelociraptor && (entity.getCustomNameTag().equals("iLexiconn") || entity.getCustomNameTag().equals("JTGhawk137")))
+        String name = entity.getCustomNameTag();
+        
+        if (entity instanceof EntityVelociraptor && (name.equals("iLexiconn") || name.equals("JTGhawk137")))
             GL11.glScalef(scale - 0.86F, scale, scale);
-        else
-            GL11.glScalef(scale, scale, scale);
-
-        if (entity.getCustomNameTag().equals("Gegy"))
+        else if (name.equals("Gegy"))
         {
             int ticksExisted = entity.ticksExisted / 25 + entity.getEntityId();
             int colorTypes = EnumDyeColor.values().length;
@@ -100,16 +99,14 @@ public class RenderDinosaurMultilayer extends RenderMultiPart
             if (time > 0.5F)
                 time = 1 - time;
 
-            GL11.glScalef(0.5F + time * 0.5F, 1 + time * 0.5F, 0.9F + time * 0.25F);
+            GL11.glScalef(scale * (0.5F + time * 0.5F), scale * (1 + time * 0.5F), scale * (0.9F + time * 0.25F));
         }
-        else if (entity.getCustomNameTag().equals("Notch") || entity.getCustomNameTag().equals("Jumbo"))
-        {
-            GL11.glScalef(5, 5, 5);
-        }
-        else if (entity.getCustomNameTag().equals("jglrxavpok"))
-        {
-            GL11.glScalef(1, 1, -1);
-        }
+        else if (name.equals("Notch") || name.equals("Jumbo"))
+            GL11.glScalef(scale * 2, scale * 2, scale * 2);
+        else if (name.equals("jglrxavpok"))
+            GL11.glScalef(scale, scale, scale * -1);
+        else
+            GL11.glScalef(scale, scale, scale);
     }
 
     public ResourceLocation getEntityTexture(EntityDinosaur entity)
