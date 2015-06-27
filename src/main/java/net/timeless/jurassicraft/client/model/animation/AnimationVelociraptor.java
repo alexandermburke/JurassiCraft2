@@ -26,8 +26,8 @@ public class AnimationVelociraptor implements IModelAnimator
 
         int frame = velociraptor.ticksExisted;
 
-        //         f = entity.ticksExisted;
-        //         f1 = 1F;
+//                 f = entity.ticksExisted;
+//                 f1 = 1F;
         // f1 = (float) (Math.sin(velociraptor.ticksExisted * 0.01) * Math.sin(velociraptor.ticksExisted * 0.01));
 
         // if (raptor.leaping)
