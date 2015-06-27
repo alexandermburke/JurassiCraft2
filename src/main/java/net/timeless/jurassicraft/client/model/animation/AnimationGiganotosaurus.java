@@ -64,8 +64,11 @@ public class AnimationGiganotosaurus implements IModelAnimator
 
         // body3.rotateAngleX += f1 * 0.15F;
 
-        model.faceTarget(head, 2, rotationYaw, rotationPitch);
-        model.faceTarget(neck, 2, rotationYaw, rotationPitch);
+        model.faceTarget(head, 5, rotationYaw, rotationPitch);
+        model.faceTarget(neck, 5, rotationYaw, rotationPitch);
+        model.faceTarget(neck2, 5, rotationYaw, rotationPitch);
+        model.faceTarget(neck3, 5, rotationYaw, rotationPitch);
+        model.faceTarget(neck4, 5, rotationYaw, rotationPitch);
 
         model.walk(head, breathSpeed, 0.05F, true, 0F, -0.2F, ticksExisted, 1.0F);
         model.walk(neck, breathSpeed, 0.03F, false, 0F, 0.04F, ticksExisted, 1.0F);

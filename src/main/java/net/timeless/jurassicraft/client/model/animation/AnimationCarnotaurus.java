@@ -112,7 +112,10 @@ public class AnimationCarnotaurus implements IModelAnimator
         model.chainWave(armRight, 0.1F, 0.1F, 4, ticksExisted, 1F);
         model.chainWave(armLeft, 0.1F, 0.1F, 4, ticksExisted, 1F);
 
-        model.faceTarget(head, 2, rotationYaw, rotationPitch);
-        model.faceTarget(neck1, 2, rotationYaw, rotationPitch);
+        model.faceTarget(head, 5, rotationYaw, rotationPitch);
+        model.faceTarget(neck1, 5, rotationYaw, rotationPitch);
+        model.faceTarget(neck2, 5, rotationYaw, rotationPitch);
+        model.faceTarget(neck3, 5, rotationYaw, rotationPitch);
+        model.faceTarget(neck4, 5, rotationYaw, rotationPitch);
     }
 }
