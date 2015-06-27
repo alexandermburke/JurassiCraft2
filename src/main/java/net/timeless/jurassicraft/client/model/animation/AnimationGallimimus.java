@@ -37,44 +37,20 @@ public class AnimationGallimimus implements IModelAnimator
 
         MowzieModelRenderer head = model.getCube("Head Base");
 
-        MowzieModelRenderer thighRight = model.getCube("thigh1");
-        MowzieModelRenderer thighLeft = model.getCube("thigh2");
+        MowzieModelRenderer thighRight = model.getCube("thigh right");
+        MowzieModelRenderer thighLeft = model.getCube("thigh left");
 
-        MowzieModelRenderer legRight = model.getCube("leg1");
-        MowzieModelRenderer legLeft = model.getCube("leg2");
+        MowzieModelRenderer legRight = model.getCube("leg right");
+        MowzieModelRenderer legLeft = model.getCube("leg left");
 
-        MowzieModelRenderer lowerLegRight = model.getCube("upperfoot1");
-        MowzieModelRenderer lowerLegLeft = model.getCube("upperfoot2");
+        MowzieModelRenderer lowerLegRight = model.getCube("upperfoot right");
+        MowzieModelRenderer lowerLegLeft = model.getCube("upperfoot left");
 
-        MowzieModelRenderer footRight = model.getCube("foot1");
-        MowzieModelRenderer footLeft = model.getCube("foot2");
+        MowzieModelRenderer footRight = model.getCube("foot right");
+        MowzieModelRenderer footLeft = model.getCube("foot left");
 
         MowzieModelRenderer[] body = new MowzieModelRenderer[] { body3, body2, body1, neck1, neck2, neck3, neck4, neck5 };
 
         MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail1, tail2, tail3, tail4, tail5, tail6 };
-
-        int ticksExisted = entity.ticksExisted;
-
-        float breathSpeed = 0.08F;
-
-        model.chainWave(tail, breathSpeed, -0.05F, 2, ticksExisted, 1F);
-        model.chainWave(body, breathSpeed, -0.03F, 2, ticksExisted, 1F);
-
-        model.faceTarget(head, 4, rotationYaw, rotationPitch);
-        model.faceTarget(neck1, 4, rotationYaw, rotationPitch);
-        model.faceTarget(neck2, 4, rotationYaw, rotationPitch);
-        model.faceTarget(body1, 4, rotationYaw, rotationPitch);
-
-        model.walk(thighRight, 0.5F, 0.8F, true, -0.4F, 0.1F, f, f1 * 1.5F);
-        model.walk(thighLeft, 0.5F, 0.8F, false, -0.4F, 0.1F, f, f1 * 1.5F);
-
-        model.walk(legRight, 0.5F, 0.26F, false, -0.5F, 0.1F, f, f1 * 1.5F);
-        model.walk(legLeft, 0.5F, 0.26F, true, -0.5F, 0.1F, f, f1 * 1.5F);
-
-        model.walk(lowerLegRight, 0.5F, 0.26F, false, -0.5F, 0.1F, f, f1 * 1.5F);
-        model.walk(lowerLegLeft, 0.5F, 0.26F, true, -0.5F, 0.1F, f, f1 * 1.5F);
-
-        model.walk(footRight, 0.5F, 0.26F, true, -0.5F, 0.1F, f, f1 * 1.5F);
-        model.walk(footLeft, 0.5F, 0.26F, false, -0.5F, 0.1F, f, f1 * 1.5F);
     }
 }
