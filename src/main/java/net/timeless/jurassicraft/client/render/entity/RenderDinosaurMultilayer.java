@@ -134,10 +134,13 @@ public class RenderDinosaurMultilayer extends RenderMultiPart
 
         public void render(EntityDinosaur entity, float armSwing, float armSwingAmount, float p_177148_4_, float p_177148_5_, float p_177148_6_, float p_177148_7_, float partialTicks)
         {
-            this.renderer.bindTexture(entity.isMale() ? maleOverlayTextures[entity.getTexture()] : femaleOverlayTextures[entity.getTexture()]);
+            if (!entity.isInvisible())
+            {
+                this.renderer.bindTexture(entity.isMale() ? maleOverlayTextures[entity.getTexture()] : femaleOverlayTextures[entity.getTexture()]);
 
-            this.renderer.getMainModel().render(entity, armSwing, armSwingAmount, p_177148_5_, p_177148_6_, p_177148_7_, partialTicks);
-            this.renderer.func_177105_a(entity, p_177148_4_);
+                this.renderer.getMainModel().render(entity, armSwing, armSwingAmount, p_177148_5_, p_177148_6_, p_177148_7_, partialTicks);
+                this.renderer.func_177105_a(entity, p_177148_4_);
+            }
         }
 
         public boolean shouldCombineTextures()
