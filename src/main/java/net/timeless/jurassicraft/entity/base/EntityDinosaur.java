@@ -18,10 +18,13 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
 
     protected boolean gender;
 
+    private double dinosaurAge;
+    
     public EntityDinosaur(World world)
     {
         super(world);
 
+        dinosaurAge = 0;
         parts = EntityHitbox.parseHitboxList(this, dinosaur.getHitBoxList());
 
         gender = rand.nextBoolean();
@@ -56,7 +59,28 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
             this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(dinosaur.getAdultKnockback());
         }
     }
-
+    
+//    public double transitionFromAge(double baby, double adult)
+//    {
+//        double maxAge = dinosaur.getMaximumAge();
+//        
+//        double difference = adult - baby; // baby - 5  adult - 1
+//        
+//        return
+//    }
+    
+    public void onLivingUpdate()
+    {
+        super.onLivingUpdate();
+        
+        this.dinosaurAge += 0.01D;
+    }
+    
+    public void setFullyGrown()
+    {
+        this.dinosaurAge = dinosaur.getMaximumAge();
+    }
+    
     public Dinosaur getDinosaur()
     {
         return dinosaur;
@@ -65,11 +89,6 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
     public EntityPart[] getParts()
     {
         return parts;
-    }
-
-    public void onUpdate()
-    {
-        super.onUpdate();
     }
 
     public boolean isMale()
@@ -89,6 +108,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
 
         nbt.setBoolean("Gender", gender);
         nbt.setInteger("Texture", randTexture);
+        nbt.setDouble("Dinosaur Age", dinosaurAge);
     }
 
     public void readFromNBT(NBTTagCompound nbt)
@@ -97,6 +117,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
 
         gender = nbt.getBoolean("Gender");
         randTexture = nbt.getInteger("Texture");
+        dinosaurAge = nbt.getDouble("Dinosaur Age");
     }
 
     @Override
@@ -104,6 +125,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
     {
         buffer.writeBoolean(gender);
         buffer.writeInt(randTexture);
+        buffer.writeDouble(dinosaurAge);
     }
 
     @Override
@@ -111,8 +133,14 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
     {
         gender = additionalData.readBoolean();
         randTexture = additionalData.readInt();
+        dinosaurAge = additionalData.readDouble();
     }
 
+    public double getDinosaurAge()
+    {
+        return dinosaurAge;
+    }
+    
     public int getTexture()
     {
         return randTexture;

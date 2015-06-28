@@ -118,17 +118,23 @@ public class DinosaurGallimimus extends Dinosaur
     }
 
     @Override
-    public float getMaximumAge()
+    public double getMaximumAge()
     {
         return 0.5F;
     }
 
     @Override
-    public float getScaleAdjustment()
+    public float getAdultScaleAdjustment()
     {
         return 1.2F;
     }
 
+    @Override
+    public float getBabyScaleAdjustment()
+    {
+        return 0.1F;
+    }
+    
     @Override
     public float getShadowSize()
     {

@@ -5,8 +5,10 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.Explosion;
-import net.timeless.jurassicraft.creativetab.JCCreativeTabs;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockFossil extends Block
 {
@@ -17,7 +19,6 @@ public class BlockFossil extends Block
         this.setHardness(0.5F);
         this.setResistance(1.0F);
         this.setStepSound(Block.soundTypeStone);
-        this.setCreativeTab(JCCreativeTabs.blocks);
     }
 
     @Override
@@ -30,5 +31,29 @@ public class BlockFossil extends Block
     public boolean canDropFromExplosion(Explosion explosion)
     {
         return false;
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public EnumWorldBlockLayer getBlockLayer()
+    {
+        return EnumWorldBlockLayer.SOLID;
+    }
+
+    @Override
+    public boolean isOpaqueCube() 
+    {
+        return true;
+    }
+
+    @Override
+    public boolean isFullCube() 
+    {
+        return true;
+    }
+
+    @Override
+    public int getRenderType() 
+    {
+        return 3;
     }
 }

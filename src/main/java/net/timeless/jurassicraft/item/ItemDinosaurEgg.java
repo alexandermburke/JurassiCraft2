@@ -8,7 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.jurassicraft.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.entity.base.JCEntityRegistry;
 
@@ -17,9 +16,9 @@ public class ItemDinosaurEgg extends Item
     public ItemDinosaurEgg()
     {
         super();
-        this.setUnlocalizedName("egg");
+
+        this.setUnlocalizedName("dino_egg");
         this.setMaxStackSize(1);
-        this.setCreativeTab(JCCreativeTabs.eggs);
     }
 
     public String getItemStackDisplayName(ItemStack stack)

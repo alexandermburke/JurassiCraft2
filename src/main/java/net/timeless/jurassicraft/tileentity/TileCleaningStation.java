@@ -142,7 +142,9 @@ public class TileCleaningStation extends TileEntity implements ISidedInventory
     @Override
     public void setInventorySlotContents(int index, ItemStack stack)
     {
+        boolean flag = stack != null && stack.isItemEqual(this.slots[index]) && ItemStack.areItemStackTagsEqual(stack, this.slots[index]);
         this.slots[index] = stack;
+
         if (stack != null && stack.stackSize > this.getInventoryStackLimit())
             stack.stackSize = this.getInventoryStackLimit();
     }

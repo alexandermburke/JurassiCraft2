@@ -9,16 +9,20 @@ import net.timeless.jurassicraft.client.gui.GuiCleaningStation;
 import net.timeless.jurassicraft.container.ContainerCleaningStation;
 import net.timeless.jurassicraft.tileentity.TileCleaningStation;
 
-public class GuiHandlerRegistry implements IGuiHandler
+public class GuiHandler implements IGuiHandler
 {
+
     @Override
     public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z)
     {
         BlockPos pos = new BlockPos(x, y, z);
         TileEntity tileEntity = world.getTileEntity(pos);
-        if (tileEntity instanceof TileCleaningStation)
+        if (tileEntity != null)
         {
-            return new ContainerCleaningStation(player.inventory, (TileCleaningStation) tileEntity);
+            if (tileEntity instanceof TileCleaningStation)
+            {
+                return new ContainerCleaningStation(player.inventory, tileEntity);
+            }
         }
         return null;
     }
@@ -28,10 +32,14 @@ public class GuiHandlerRegistry implements IGuiHandler
     {
         BlockPos pos = new BlockPos(x, y, z);
         TileEntity tileEntity = world.getTileEntity(pos);
-        if (tileEntity instanceof TileCleaningStation)
+        if (tileEntity != null)
         {
-            return new GuiCleaningStation(player.inventory, (TileCleaningStation) tileEntity);
+            if (tileEntity instanceof TileCleaningStation)
+            {
+                return new GuiCleaningStation(player.inventory, tileEntity);
+            }
         }
         return null;
     }
+
 }

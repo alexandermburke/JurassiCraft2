@@ -14,12 +14,12 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.api.ISubBlocksBlock;
-import net.timeless.jurassicraft.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.item.ItemEncasedFossil;
 import net.timeless.jurassicraft.period.EnumTimePeriod;
 
@@ -35,7 +35,6 @@ public class BlockEncasedFossil extends Block implements ISubBlocksBlock
         this.setHardness(2.0F);
         this.setResistance(8.0F);
         this.setStepSound(Block.soundTypeStone);
-        this.setCreativeTab(JCCreativeTabs.blocks);
     }
 
     @Override
@@ -96,5 +95,29 @@ public class BlockEncasedFossil extends Block implements ISubBlocksBlock
     {
         EnumTimePeriod timePeriod = EnumTimePeriod.byMetadata(meta);
         return this.getDefaultState().withProperty(BlockEncasedFossil.PROPERTYPERIOD, timePeriod);
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public EnumWorldBlockLayer getBlockLayer()
+    {
+        return EnumWorldBlockLayer.SOLID;
+    }
+
+    @Override
+    public boolean isOpaqueCube() 
+    {
+        return true;
+    }
+
+    @Override
+    public boolean isFullCube() 
+    {
+        return true;
+    }
+
+    @Override
+    public int getRenderType() 
+    {
+        return 3;
     }
 }

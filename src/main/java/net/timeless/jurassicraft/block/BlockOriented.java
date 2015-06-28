@@ -28,31 +28,6 @@ public abstract class BlockOriented extends BlockContainer
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public EnumWorldBlockLayer getBlockLayer()
-    {
-        return EnumWorldBlockLayer.SOLID;
-    }
-
-    @Override
-    public boolean isOpaqueCube()
-    {
-        return true;
-    }
-
-    @Override
-    public boolean isFullCube()
-    {
-        return true;
-    }
-
-    @Override
-    public int getRenderType()
-    {
-        return 3;
-    }
-
-    @Override
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
     {
         this.setDefaultFacing(worldIn, pos, state);
@@ -143,5 +118,29 @@ public abstract class BlockOriented extends BlockContainer
     protected BlockState createBlockState()
     {
         return new BlockState(this, FACING);
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public EnumWorldBlockLayer getBlockLayer()
+    {
+        return EnumWorldBlockLayer.SOLID;
+    }
+
+    @Override
+    public boolean isOpaqueCube() 
+    {
+        return true;
+    }
+
+    @Override
+    public boolean isFullCube() 
+    {
+        return true;
+    }
+
+    @Override
+    public int getRenderType() 
+    {
+        return 3;
     }
 }

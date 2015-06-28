@@ -14,9 +14,9 @@ public class ContainerCleaningStation extends Container
 
     private TileCleaningStation cleaningStation;
 
-    public ContainerCleaningStation(InventoryPlayer playerInventory, TileCleaningStation tileEntity)
+    public ContainerCleaningStation(InventoryPlayer playerInventory, TileEntity tileEntity)
     {
-        this.cleaningStation = tileEntity;
+        this.cleaningStation = (TileCleaningStation) tileEntity;
         this.addSlotToContainer(new Slot(cleaningStation, 0, 29, 29));
 
         this.addSlotToContainer(new SlotFossil(cleaningStation, 1, 29, 29));

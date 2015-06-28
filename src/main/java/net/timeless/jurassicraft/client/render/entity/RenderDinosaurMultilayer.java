@@ -78,7 +78,7 @@ public class RenderDinosaurMultilayer extends RenderMultiPart
     {
         GL11.glTranslatef(dino.getRenderXOffset(), dino.getRenderYOffset(), dino.getRenderZOffset());
 
-        float scale = dino.getScaleAdjustment();
+        float scale = dino.getAdultScaleAdjustment();
         shadowSize = scale * dino.getShadowSize();
 
         String name = entity.getCustomNameTag();

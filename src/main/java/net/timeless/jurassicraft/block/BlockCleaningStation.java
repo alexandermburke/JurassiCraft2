@@ -1,5 +1,7 @@
 package net.timeless.jurassicraft.block;
 
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -15,10 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
-import net.timeless.jurassicraft.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.tileentity.TileCleaningStation;
-
-import java.util.Random;
 
 public class BlockCleaningStation extends BlockOriented
 {
@@ -28,7 +27,6 @@ public class BlockCleaningStation extends BlockOriented
         this.setUnlocalizedName("cleaning_station");
         this.setHardness(2.0F);
         this.setStepSound(Block.soundTypeWood);
-        this.setCreativeTab(JCCreativeTabs.blocks);
     }
 
     @Override

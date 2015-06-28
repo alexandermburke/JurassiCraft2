@@ -101,8 +101,8 @@ public enum EnumTimePeriod implements IStringSerializable
 
     EnumTimePeriod(int meta, String name, float startTime, float endTime, boolean shouldImplement)
     {
-        this.meta = meta;
         this.name = name;
+        this.meta = meta;
         this.startTime = startTime;
         this.endTime = endTime;
         this.shouldImplement = shouldImplement;

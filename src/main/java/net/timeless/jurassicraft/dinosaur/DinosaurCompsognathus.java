@@ -118,17 +118,23 @@ public class DinosaurCompsognathus extends Dinosaur
     }
 
     @Override
-    public float getMaximumAge()
+    public double getMaximumAge()
     {
         return 0.5F;
     }
 
     @Override
-    public float getScaleAdjustment()
+    public float getAdultScaleAdjustment()
     {
         return 0.1F;
     }
 
+    @Override
+    public float getBabyScaleAdjustment()
+    {
+        return 0.02F;
+    }
+    
     @Override
     public float getRenderYOffset()
     {
@@ -165,6 +171,7 @@ public class DinosaurCompsognathus extends Dinosaur
         return animator;
     }
 
+    @Override
     public float getRenderZOffset()
     {
         return -0.1F;

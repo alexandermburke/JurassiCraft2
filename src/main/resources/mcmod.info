@@ -2,10 +2,10 @@
     {
         "modid": "jurassicraft",
         "name": "JurassiCraft",
-        "description": "WIP",
         "version": "${version}",
         "authorList": ["TeamJC"],
         "url": "https://jurassicraft.net/",
-        "dependencies": []
+        "dependencies": ["llibrary"],
+        "description": "WIP"
     }
 ]

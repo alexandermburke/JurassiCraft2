@@ -1,24 +1,23 @@
 package net.timeless.jurassicraft.creativetab;
 
+import net.ilexiconn.llibrary.common.content.IContentHandler;
 import net.minecraft.item.Item;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.block.JCBlockRegistry;
 import net.timeless.jurassicraft.item.JCItemRegistry;
 
-public class JCCreativeTabs
+public class JCCreativeTabs implements IContentHandler
 {
     public static CreativeTabJurassiCraft items;
     public static CreativeTabJurassiCraft blocks;
+
     public static CreativeTabJurassiCraft dna;
     public static CreativeTabJurassiCraft eggs;
     public static CreativeTabJurassiCraft spawnEggs;
 
-    public static void preInitCommon()
+    public void init()
     {
         items = new CreativeTabJurassiCraft("jurassicraft.items")
         {
-            @SideOnly(Side.CLIENT)
             public Item getTabIconItem()
             {
                 return JCItemRegistry.fossil;
@@ -27,7 +26,6 @@ public class JCCreativeTabs
 
         dna = new CreativeTabJurassiCraft("jurassicraft.dna")
         {
-            @SideOnly(Side.CLIENT)
             public Item getTabIconItem()
             {
                 return JCItemRegistry.dna;
@@ -36,7 +34,6 @@ public class JCCreativeTabs
 
         eggs = new CreativeTabJurassiCraft("jurassicraft.eggs")
         {
-            @SideOnly(Side.CLIENT)
             public Item getTabIconItem()
             {
                 return JCItemRegistry.egg;
@@ -45,7 +42,6 @@ public class JCCreativeTabs
 
         spawnEggs = new CreativeTabJurassiCraft("jurassicraft.spawnEggs")
         {
-            @SideOnly(Side.CLIENT)
             public Item getTabIconItem()
             {
                 return JCItemRegistry.spawn_egg;
@@ -54,7 +50,6 @@ public class JCCreativeTabs
 
         blocks = new CreativeTabJurassiCraft("jurassicraft.blocks")
         {
-            @SideOnly(Side.CLIENT)
             public Item getTabIconItem()
             {
                 return Item.getItemFromBlock(JCBlockRegistry.encased_fossil);
@@ -62,27 +57,7 @@ public class JCCreativeTabs
         };
     }
 
-    public static void initCommon()
-    {
-
-    }
-
-    public static void postInitCommon()
-    {
-
-    }
-
-    public static void preInitClientOnly()
-    {
-
-    }
-
-    public static void initClientOnly()
-    {
-
-    }
-
-    public static void postInitClientOnly()
+    public void gameRegistry() throws Exception
     {
 
     }
