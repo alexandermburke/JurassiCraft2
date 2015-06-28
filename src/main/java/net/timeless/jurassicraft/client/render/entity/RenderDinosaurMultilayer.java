@@ -44,7 +44,6 @@ public class RenderDinosaurMultilayer extends RenderMultiPart
         this.maleOverlayTextures = new ResourceLocation[dinosaur.getMaleOverlayTextures().length];
         this.femaleOverlayTextures = new ResourceLocation[dinosaur.getFemaleOverlayTextures().length];
 
-        
         int i = 0;
 
         for (String texture : dinosaur.getMaleTextures())

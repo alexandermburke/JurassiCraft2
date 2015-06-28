@@ -17,6 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
+import net.timeless.jurassicraft.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.tileentity.TileCleaningStation;
 
 public class BlockCleaningStation extends BlockOriented
@@ -27,6 +28,7 @@ public class BlockCleaningStation extends BlockOriented
         this.setUnlocalizedName("cleaning_station");
         this.setHardness(2.0F);
         this.setStepSound(Block.soundTypeWood);
+        this.setCreativeTab(JCCreativeTabs.blocks);
     }
 
     @Override

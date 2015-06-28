@@ -3,7 +3,6 @@ package net.timeless.jurassicraft.entity.base;
 import java.util.HashMap;
 import java.util.List;
 
-import net.ilexiconn.llibrary.common.content.IContentHandler;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.dinosaur.Dinosaur;
@@ -25,7 +24,7 @@ import net.timeless.jurassicraft.period.EnumTimePeriod;
 
 import com.google.common.collect.Lists;
 
-public class JCEntityRegistry implements IContentHandler
+public class JCEntityRegistry
 {
     private static List<Dinosaur> dinosaurs = Lists.newArrayList();
     private static HashMap<EnumTimePeriod, List<Dinosaur>> dinosaursFromPeriod = new HashMap<>();
@@ -44,8 +43,8 @@ public class JCEntityRegistry implements IContentHandler
     public static final Dinosaur stegosaurus = new DinosaurStegosaurus();
     public static final Dinosaur tyrannosaurus_rex = new DinosaurTyrannosaurusRex();
     public static final Dinosaur velociraptor = new DinosaurVelociraptor();
-    
-    public void init()
+
+    public void register()
     {
         registerDinosaur(achillobator);
         registerDinosaur(carnotaurus);
@@ -65,24 +64,21 @@ public class JCEntityRegistry implements IContentHandler
         // Always register a new dinosaur after last one in list, otherwise all
         // items with metadata will be shifted by one (all dinosaurs will change
         // form D:) (UNLESS it is before the release of JC2) I want to change the way IDs work so this will not be the case.
-    }
 
-    public void gameRegistry() throws Exception
-    {
         for (Dinosaur dino : dinosaurs)
         {
             registerEntity(dino);
         }
     }
 
-    public void registerEntity(Dinosaur dino)
+    public void registerEntity(Dinosaur dinosaur)
     {
-        if (dino.shouldRegister())
+        if (dinosaur.shouldRegister())
         {
-            Class<? extends EntityDinosaur> entityClass = dino.getDinosaurClass();
+            Class<? extends EntityDinosaur> entityClass = dinosaur.getDinosaurClass();
 
             int entityId = EntityRegistry.findGlobalUniqueEntityId();
-            String dinoName = dino.getName().toLowerCase().replaceAll(" ", "_");
+            String dinoName = dinosaur.getName().toLowerCase().replaceAll(" ", "_");
 
             EntityRegistry.registerGlobalEntityID(entityClass, dinoName, entityId);
             EntityRegistry.registerModEntity(entityClass, dinoName, entityId, JurassiCraft.instance, 1024, 1, true);

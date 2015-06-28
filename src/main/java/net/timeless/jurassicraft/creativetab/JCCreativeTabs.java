@@ -1,11 +1,10 @@
 package net.timeless.jurassicraft.creativetab;
 
-import net.ilexiconn.llibrary.common.content.IContentHandler;
 import net.minecraft.item.Item;
 import net.timeless.jurassicraft.block.JCBlockRegistry;
 import net.timeless.jurassicraft.item.JCItemRegistry;
 
-public class JCCreativeTabs implements IContentHandler
+public class JCCreativeTabs
 {
     public static CreativeTabJurassiCraft items;
     public static CreativeTabJurassiCraft blocks;
@@ -14,7 +13,7 @@ public class JCCreativeTabs implements IContentHandler
     public static CreativeTabJurassiCraft eggs;
     public static CreativeTabJurassiCraft spawnEggs;
 
-    public void init()
+    public void register()
     {
         items = new CreativeTabJurassiCraft("jurassicraft.items")
         {
@@ -55,10 +54,5 @@ public class JCCreativeTabs implements IContentHandler
                 return Item.getItemFromBlock(JCBlockRegistry.encased_fossil);
             }
         };
-    }
-
-    public void gameRegistry() throws Exception
-    {
-
     }
 }

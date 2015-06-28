@@ -1,14 +1,9 @@
 package net.timeless.jurassicraft.block;
 
-import java.lang.reflect.Field;
-
-import net.ilexiconn.llibrary.common.content.IContentHandler;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.timeless.jurassicraft.api.ISubBlocksBlock;
-import net.timeless.jurassicraft.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.tileentity.TileCleaningStation;
 import net.timeless.jurassicraft.tileentity.TileDnaSequencer;
 import net.timeless.jurassicraft.tileentity.TileDnaSynthesizer;
@@ -16,7 +11,7 @@ import net.timeless.jurassicraft.tileentity.TileEmbryoInseminationMachine;
 import net.timeless.jurassicraft.tileentity.TileEmbryonicMachine;
 import net.timeless.jurassicraft.tileentity.TileFossilGrinder;
 
-public class JCBlockRegistry implements IContentHandler
+public class JCBlockRegistry
 {
     public static BlockFossil fossil;
     public static BlockEncasedFossil encased_fossil;
@@ -27,8 +22,7 @@ public class JCBlockRegistry implements IContentHandler
     public static BlockEmbryonicMachine embryonic_machine;
     public static BlockEmbryoInseminationMachine embryo_insemination_machine;
 
-    @Override
-    public void init()
+    public void register()
     {
         fossil = new BlockFossil();
         encased_fossil = new BlockEncasedFossil();
@@ -39,63 +33,31 @@ public class JCBlockRegistry implements IContentHandler
         embryonic_machine = new BlockEmbryonicMachine();
         embryo_insemination_machine = new BlockEmbryoInseminationMachine();
 
-        registerTileEntity(TileCleaningStation.class, cleaning_station);
-        registerTileEntity(TileDnaSequencer.class, dna_sequencer);
-        registerTileEntity(TileDnaSynthesizer.class, dna_synthesizer);
-        registerTileEntity(TileEmbryoInseminationMachine.class, embryo_insemination_machine);
-        registerTileEntity(TileEmbryonicMachine.class, embryonic_machine);
-        registerTileEntity(TileFossilGrinder.class, fossil_grinder);
+        registerBlock(fossil, "Fossil Block");
+        registerBlock(encased_fossil, "Encased Fossil");
+
+        registerBlockTileEntity(TileCleaningStation.class, cleaning_station, "Cleaning Station");
+        registerBlockTileEntity(TileDnaSequencer.class, dna_sequencer, "DNA Sequencer");
+        registerBlockTileEntity(TileDnaSynthesizer.class, dna_synthesizer, "DNA Synthesizer");
+        registerBlockTileEntity(TileEmbryoInseminationMachine.class, embryo_insemination_machine, "Embryo Insemination Machine");
+        registerBlockTileEntity(TileEmbryonicMachine.class, embryonic_machine, "Embryonic Machine");
+        registerBlockTileEntity(TileFossilGrinder.class, fossil_grinder, "Fossil Grinder");
     }
 
-    public void registerTileEntity(Class<? extends TileEntity> tileEntity, BlockContainer block)
+    public void registerBlockTileEntity(Class<? extends TileEntity> tileEntity, Block block, String name)
     {
-        GameRegistry.registerTileEntity(tileEntity, "jurassicraft:" + block.getUnlocalizedName());
+        registerBlock(block, name);
+
+        GameRegistry.registerTileEntity(tileEntity, "jurassicraft:" + name.toLowerCase().replaceAll(" ", "_"));
     }
 
-    public void initCreativeTabs()
+    public void registerBlock(Block block, String name)
     {
-        fossil.setCreativeTab(JCCreativeTabs.blocks);
-        encased_fossil.setCreativeTab(JCCreativeTabs.blocks);
-        cleaning_station.setCreativeTab(JCCreativeTabs.blocks);
-        fossil_grinder.setCreativeTab(JCCreativeTabs.blocks);
-        dna_sequencer.setCreativeTab(JCCreativeTabs.blocks);
-        dna_synthesizer.setCreativeTab(JCCreativeTabs.blocks);
-        embryonic_machine.setCreativeTab(JCCreativeTabs.blocks);
-        embryo_insemination_machine.setCreativeTab(JCCreativeTabs.blocks);
-    }
-
-    @Override
-    public void gameRegistry() throws Exception
-    {
-        initCreativeTabs();
-
-        try
-        {
-            for (Field f : JCBlockRegistry.class.getDeclaredFields())
-            {
-                Object obj = f.get(null);
-
-                if (obj instanceof Block)
-                    registerBlock((Block) obj);
-                else if (obj instanceof Block[])
-                    for (Block block : (Block[]) obj)
-                        registerBlock(block);
-            }
-        }
-        catch (IllegalAccessException e)
-        {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void registerBlock(Block block)
-    {
-        String name = block.getUnlocalizedName();
-        String[] strings = name.split("\\.");
+        name = name.toLowerCase().replaceAll(" ", "_");
 
         if (block instanceof ISubBlocksBlock)
-            GameRegistry.registerBlock(block, ((ISubBlocksBlock) block).getItemBlockClass(), strings[strings.length - 1]);
+            GameRegistry.registerBlock(block, ((ISubBlocksBlock) block).getItemBlockClass(), name);
         else
-            GameRegistry.registerBlock(block, strings[strings.length - 1]);
+            GameRegistry.registerBlock(block, name);
     }
 }

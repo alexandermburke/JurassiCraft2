@@ -20,6 +20,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.api.ISubBlocksBlock;
+import net.timeless.jurassicraft.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.item.ItemEncasedFossil;
 import net.timeless.jurassicraft.period.EnumTimePeriod;
 
@@ -35,6 +36,7 @@ public class BlockEncasedFossil extends Block implements ISubBlocksBlock
         this.setHardness(2.0F);
         this.setResistance(8.0F);
         this.setStepSound(Block.soundTypeStone);
+        this.setCreativeTab(JCCreativeTabs.blocks);
     }
 
     @Override

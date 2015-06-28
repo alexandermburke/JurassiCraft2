@@ -13,6 +13,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.jurassicraft.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.tileentity.TileDnaSequencer;
 
 public class BlockDnaSequencer extends BlockOriented
@@ -23,6 +24,7 @@ public class BlockDnaSequencer extends BlockOriented
         this.setUnlocalizedName("dna_sequencer");
         this.setHardness(2.0F);
         this.setStepSound(Block.soundTypeWood);
+        this.setCreativeTab(JCCreativeTabs.blocks);
     }
 
     @Override

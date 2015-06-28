@@ -9,6 +9,7 @@ import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.Explosion;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.jurassicraft.creativetab.JCCreativeTabs;
 
 public class BlockFossil extends Block
 {
@@ -19,6 +20,7 @@ public class BlockFossil extends Block
         this.setHardness(0.5F);
         this.setResistance(1.0F);
         this.setStepSound(Block.soundTypeStone);
+        this.setCreativeTab(JCCreativeTabs.blocks);
     }
 
     @Override

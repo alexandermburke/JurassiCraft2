@@ -20,6 +20,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.jurassicraft.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.entity.base.JCEntityRegistry;
@@ -30,6 +31,8 @@ public class ItemDinosaurSpawnEgg extends Item
     {
         this.setUnlocalizedName("dino_spawn_egg");
         this.setHasSubtypes(true);
+
+        this.setCreativeTab(JCCreativeTabs.spawnEggs);
     }
 
     public EntityDinosaur spawnCreature(World world, EntityPlayer player, ItemStack stack, double x, double y, double z)
