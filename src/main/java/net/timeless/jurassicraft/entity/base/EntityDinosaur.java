@@ -45,35 +45,33 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
         super.applyEntityAttributes();
 
         dinosaur = JCEntityRegistry.getDinosaurByClass(getClass());
-
-        if (this.isChild())
-        {
-            this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(dinosaur.getBabyHealth());
-            this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(dinosaur.getBabySpeed());
-            this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(dinosaur.getBabyKnockback());
-        }
-        else
-        {
-            this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(dinosaur.getAdultHealth());
-            this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(dinosaur.getAdultSpeed());
-            this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(dinosaur.getAdultKnockback());
-        }
     }
     
-//    public double transitionFromAge(double baby, double adult)
-//    {
-//        double maxAge = dinosaur.getMaximumAge();
-//        
-//        double difference = adult - baby; // baby - 5  adult - 1
-//        
-//        return
-//    }
+    public void updateCreatureData()
+    {
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(transitionFromAge(dinosaur.getBabyHealth(), dinosaur.getAdultHealth()));
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(transitionFromAge(dinosaur.getBabySpeed(), dinosaur.getAdultSpeed()));
+        this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(transitionFromAge(dinosaur.getBabyKnockback(), dinosaur.getAdultKnockback()));
+    }
+    
+    public double transitionFromAge(double baby, double adult)
+    {
+        return (dinosaurAge * adult - baby) / dinosaur.getMaximumAge() + baby;
+    }
     
     public void onLivingUpdate()
     {
         super.onLivingUpdate();
         
-        this.dinosaurAge += 0.01D;
+        if(dinosaurAge < dinosaur.getMaximumAge())
+        {
+            this.dinosaurAge += 0.01D;
+            
+            if(dinosaurAge % 0.5D == 0)
+            {
+                updateCreatureData();
+            }
+        }
     }
     
     public void setFullyGrown()
@@ -145,4 +143,9 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
     {
         return randTexture;
     }
+
+	public void setAge(double age) 
+	{
+		this.dinosaurAge = age;
+	}
 }

@@ -1,30 +1,31 @@
 package net.timeless.jurassicraft.entity.ai;
 
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.util.Vec3;
+import net.timeless.jurassicraft.dinosaur.Dinosaur;
+import net.timeless.jurassicraft.entity.base.EntityDinosaur;
 
 public class EntityAIJCWander extends EntityAIBase
 {
-    private EntityCreature entity;
+    private EntityDinosaur entity;
     private double xPosition;
     private double yPosition;
     private double zPosition;
-    private double speed;
     private int probability;
     private boolean field_179482_g;
     private int distance;
 
-    public EntityAIJCWander(EntityCreature entity, double speed, int distance)
+    public EntityAIJCWander(EntityDinosaur entity, int distance)
     {
-        this(entity, speed, 120, distance);
+        this(entity, 120, distance);
     }
+    
+    //TODO Distance depend on age
 
-    public EntityAIJCWander(EntityCreature entity, double speed, int probability, int distance)
+    public EntityAIJCWander(EntityDinosaur entity, int probability, int distance)
     {
         this.entity = entity;
-        this.speed = speed;
         this.probability = probability;
         this.setMutexBits(1);
         this.distance = distance;
@@ -77,7 +78,9 @@ public class EntityAIJCWander extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.entity.getNavigator().tryMoveToXYZ(this.xPosition, this.yPosition, this.zPosition, this.speed);
+        Dinosaur dino = entity.getDinosaur();
+        
+		this.entity.getNavigator().tryMoveToXYZ(this.xPosition, this.yPosition, this.zPosition, entity.transitionFromAge(dino.getBabySpeed(), dino.getAdultSpeed()));
     }
 
     public void func_179480_f()

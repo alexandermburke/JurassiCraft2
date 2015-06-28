@@ -117,7 +117,7 @@ public class DinosaurVelociraptor extends Dinosaur
     @Override
     public double getMaximumAge()
     {
-        return 0.5F;
+        return 20F;
     }
 
     @Override
@@ -129,7 +129,7 @@ public class DinosaurVelociraptor extends Dinosaur
     @Override
     public float getBabyScaleAdjustment()
     {
-        return 0.1F;
+        return 0.3F;
     }
     
     @Override

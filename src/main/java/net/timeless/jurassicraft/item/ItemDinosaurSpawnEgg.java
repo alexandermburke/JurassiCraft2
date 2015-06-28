@@ -43,6 +43,12 @@ public class ItemDinosaurSpawnEgg extends Item
             try
             {
                 EntityDinosaur dino = dinoClass.getConstructor(World.class).newInstance(player.worldObj);
+                
+                if(!player.isSneaking())
+                {
+                	dino.setAge(dino.getDinosaur().getMaximumAge());
+                }
+                
                 dino.setPosition(x, y, z);
                 dino.setLocationAndAngles(x, y, z, MathHelper.wrapAngleTo180_float(world.rand.nextFloat() * 360.0F), 0.0F);
                 dino.rotationYawHead = dino.rotationYaw;

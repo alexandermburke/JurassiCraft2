@@ -120,7 +120,7 @@ public class DinosaurMajungasaurus extends Dinosaur
     @Override
     public double getMaximumAge()
     {
-        return 0.5F;
+        return 20F;
     }
 
     @Override

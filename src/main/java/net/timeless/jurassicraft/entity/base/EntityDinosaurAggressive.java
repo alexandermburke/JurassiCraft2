@@ -12,108 +12,106 @@ import net.minecraft.world.World;
 
 public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
 {
-    public EntityDinosaurAggressive(World world)
-    {
-        super(world);
-    }
+	public EntityDinosaurAggressive(World world)
+	{
+		super(world);
+	}
 
-    /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
-     */
-    public void onLivingUpdate()
-    {
-        this.updateArmSwingProgress();
+	/**
+	 * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
+	 */
+	public void onLivingUpdate()
+	{
+		this.updateArmSwingProgress();
 
-        super.onLivingUpdate();
-    }
+		super.onLivingUpdate();
+	}
 
-    /**
-     * Called to update the entity's position/logic.
-     */
-    public void onUpdate()
-    {
-        super.onUpdate();
+	/**
+	 * Called to update the entity's position/logic.
+	 */
+	public void onUpdate()
+	{
+		super.onUpdate();
 
-        if (!this.worldObj.isRemote && this.worldObj.getDifficulty() == EnumDifficulty.PEACEFUL)
-        {
-            this.setDead();
-        }
-    }
+		if (!this.worldObj.isRemote && this.worldObj.getDifficulty() == EnumDifficulty.PEACEFUL)
+		{
+			this.setDead();
+		}
+	}
 
-    /**
-     * Called when the entity is attacked.
-     */
-    public boolean attackEntityFrom(DamageSource source, float amount)
-    {
-        if (this.isEntityInvulnerable(source))
-        {
-            return false;
-        }
-        else if (super.attackEntityFrom(source, amount))
-        {
-            Entity entity = source.getEntity();
-            return this.riddenByEntity != entity && this.ridingEntity != entity ? true : true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+	/**
+	 * Called when the entity is attacked.
+	 */
+	public boolean attackEntityFrom(DamageSource source, float amount)
+	{
+		if (this.isEntityInvulnerable(source))
+		{
+			return false;
+		}
+		else if (super.attackEntityFrom(source, amount))
+		{
+			Entity entity = source.getEntity();
+			return this.riddenByEntity != entity && this.ridingEntity != entity ? true : true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
-    public boolean attackEntityAsMob(Entity entity)
-    {
-        float damage = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
-        int knockback = 0;
+	public boolean attackEntityAsMob(Entity entity)
+	{
+		float damage = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
+		int knockback = 0;
 
-        if (entity instanceof EntityLivingBase)
-        {
-            damage += EnchantmentHelper.func_152377_a(this.getHeldItem(), ((EntityLivingBase) entity).getCreatureAttribute());
-            knockback += EnchantmentHelper.getKnockbackModifier(this);
-        }
+		if (entity instanceof EntityLivingBase)
+		{
+			damage += EnchantmentHelper.func_152377_a(this.getHeldItem(), ((EntityLivingBase) entity).getCreatureAttribute());
+			knockback += EnchantmentHelper.getKnockbackModifier(this);
+		}
 
-        boolean attacked = entity.attackEntityFrom(DamageSource.causeMobDamage(this), damage);
+		boolean attacked = entity.attackEntityFrom(DamageSource.causeMobDamage(this), damage);
 
-        if (attacked)
-        {
-            if (knockback > 0)
-            {
-                entity.addVelocity((double) (-MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F) * (float) knockback * 0.5F), 0.1D, (double) (MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F) * (float) knockback * 0.5F));
-                this.motionX *= 0.6D;
-                this.motionZ *= 0.6D;
-            }
+		if (attacked)
+		{
+			if (knockback > 0)
+			{
+				entity.addVelocity((double) (-MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F) * (float) knockback * 0.5F), 0.1D, (double) (MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F) * (float) knockback * 0.5F));
+				this.motionX *= 0.6D;
+				this.motionZ *= 0.6D;
+			}
 
-            this.func_174815_a(this, entity);
-        }
+			this.func_174815_a(this, entity);
+		}
 
-        return attacked;
-    }
+		return attacked;
+	}
 
-    /**
-     * Checks if the entity's current position is a valid location to spawn this entity.
-     */
-    public boolean getCanSpawnHere()
-    {
-        return this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && super.getCanSpawnHere();
-    }
+	/**
+	 * Checks if the entity's current position is a valid location to spawn this entity.
+	 */
+	public boolean getCanSpawnHere()
+	{
+		return this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && super.getCanSpawnHere();
+	}
 
-    protected void applyEntityAttributes()
-    {
-        super.applyEntityAttributes();
+	protected void applyEntityAttributes()
+	{
+		this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
 
-        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
+		super.applyEntityAttributes();
+	}
 
-        if (this.isChild())
-        {
-            this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(dinosaur.getBabyStrength());
-        }
-        else
-        {
-            this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(dinosaur.getAdultStrength());
-        }
-    }
+	public void updateCreatureData()
+	{
+		super.updateCreatureData();
 
-    protected boolean func_146066_aG()
-    {
-        return true;
-    }
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(transitionFromAge(dinosaur.getBabyStrength(), dinosaur.getAdultStrength()));
+	}
+
+	protected boolean func_146066_aG()
+	{
+		return true;
+	}
 }

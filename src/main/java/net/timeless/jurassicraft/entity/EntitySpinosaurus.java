@@ -6,11 +6,11 @@ import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.timeless.jurassicraft.entity.ai.EntityAIJCWander;
 import net.timeless.jurassicraft.entity.base.EntityDinosaurAggressive;
 
 public class EntitySpinosaurus extends EntityDinosaurAggressive implements IEntityMultiPart
@@ -30,7 +30,7 @@ public class EntitySpinosaurus extends EntityDinosaurAggressive implements IEnti
 
             this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, EntityPlayer.class));
 
-            this.tasks.addTask(6, new EntityAIWander(this, dinosaur.getAdultSpeed()));
+            this.tasks.addTask(6, new EntityAIJCWander(this, 20));
             this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
             this.tasks.addTask(8, new EntityAILookIdle(this));
         }
