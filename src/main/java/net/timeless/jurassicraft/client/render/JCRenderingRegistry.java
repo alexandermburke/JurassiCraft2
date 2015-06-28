@@ -15,6 +15,7 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.block.JCBlockRegistry;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefAchillobator;
+import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefAnklyosaurus;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefCarnotaurus;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefCompsognathus;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefDilophosaurus;
@@ -56,6 +57,7 @@ public class JCRenderingRegistry
     public void init()
     {
         renderDefs.put(JCEntityRegistry.achillobator, new RenderDefAchillobator());
+        renderDefs.put(JCEntityRegistry.anklyosaurus, new RenderDefAnklyosaurus());
         renderDefs.put(JCEntityRegistry.carnotaurus, new RenderDefCarnotaurus());
         renderDefs.put(JCEntityRegistry.compsognathus, new RenderDefCompsognathus());
         renderDefs.put(JCEntityRegistry.dilophosaurus, new RenderDefDilophosaurus());
@@ -69,7 +71,7 @@ public class JCRenderingRegistry
         renderDefs.put(JCEntityRegistry.stegosaurus, new RenderDefStegosaurus());
         renderDefs.put(JCEntityRegistry.tyrannosaurus_rex, new RenderDefTyrannosaurusRex());
         renderDefs.put(JCEntityRegistry.velociraptor, new RenderDefVelociraptor());
-
+        
         // Blocks
         ItemModelMesher modelMesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
 

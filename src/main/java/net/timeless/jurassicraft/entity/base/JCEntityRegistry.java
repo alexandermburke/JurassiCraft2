@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.dinosaur.DinosaurAchillobator;
+import net.timeless.jurassicraft.dinosaur.DinosaurAnklyosaurus;
 import net.timeless.jurassicraft.dinosaur.DinosaurCarnotaurus;
 import net.timeless.jurassicraft.dinosaur.DinosaurCompsognathus;
 import net.timeless.jurassicraft.dinosaur.DinosaurDilophosaurus;
@@ -30,6 +31,7 @@ public class JCEntityRegistry
     private static HashMap<EnumTimePeriod, List<Dinosaur>> dinosaursFromPeriod = new HashMap<>();
 
     public static final Dinosaur achillobator = new DinosaurAchillobator();
+    public static final Dinosaur anklyosaurus = new DinosaurAnklyosaurus();
     public static final Dinosaur carnotaurus = new DinosaurCarnotaurus();
     public static final Dinosaur compsognathus = new DinosaurCompsognathus();
     public static final Dinosaur dilophosaurus = new DinosaurDilophosaurus();
@@ -47,6 +49,7 @@ public class JCEntityRegistry
     public void register()
     {
         registerDinosaur(achillobator);
+        registerDinosaur(anklyosaurus);
         registerDinosaur(carnotaurus);
         registerDinosaur(compsognathus);
         registerDinosaur(dilophosaurus);
