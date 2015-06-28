@@ -123,7 +123,7 @@ public class DinosaurVelociraptor extends Dinosaur
     @Override
     public float getAdultScaleAdjustment()
     {
-        return 0.87F;
+        return 1F;
     }
 
     @Override
