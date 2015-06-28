@@ -23,8 +23,10 @@ public class EntityVelociraptor extends EntityDinosaurAggressive implements IAni
     {
         super(world);
         setAnimID(-1);
-        // this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.5F, false));
-        // this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
+        // this.tasks.addTask(0, new EntityAIAttackOnCollide(this,
+        // EntityPlayer.class, 0.5F, false));
+        // this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this,
+        // EntityPlayer.class, false));
 
         // Placeholder AIs
         if (!this.isChild())

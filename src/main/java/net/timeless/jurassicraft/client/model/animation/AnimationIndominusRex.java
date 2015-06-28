@@ -18,8 +18,8 @@ public class AnimationIndominusRex implements IModelAnimator
     @Override
     public void setRotationAngles(ModelJson model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
     {
-//        f = entity.ticksExisted;
-//        f1 = 1F;
+        // f = entity.ticksExisted;
+        // f1 = 1F;
 
         float globalSpeed = 1.0F;
         float globalDegree = 0.4F;
@@ -61,24 +61,24 @@ public class AnimationIndominusRex implements IModelAnimator
 
         MowzieModelRenderer upperArmLeft = model.getCube("Arm UPPER LEFT");
         MowzieModelRenderer upperArmRight = model.getCube("Arm UPPER RIGHT");
-        
+
         MowzieModelRenderer lowerArmLeft = model.getCube("Arm MID LEFT");
         MowzieModelRenderer lowerArmRight = model.getCube("Arm MID RIGHT");
-        
+
         MowzieModelRenderer handLeft = model.getCube("Hand LEFT");
         MowzieModelRenderer handRight = model.getCube("Hand RIGHT");
-        
+
         MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail7, tail6, tail5, tail4, tail3, tail2, tail1 };
         MowzieModelRenderer[] body = new MowzieModelRenderer[] { head, neck4, neck3, neck2, neck1, bodyFront, bodyMid, bodyRear };
-        
+
         MowzieModelRenderer[] armLeft = new MowzieModelRenderer[] { handLeft, lowerArmLeft, upperArmLeft };
         MowzieModelRenderer[] armRight = new MowzieModelRenderer[] { handRight, lowerArmRight, upperArmRight };
-        
+
         model.bob(bodyRear, globalSpeed * 0.25F, globalHeight * 1.0F, false, f, f1);
-        
+
         model.bob(leftThigh, globalSpeed * 0.25F, globalHeight * 1.0F, false, f, f1);
         model.bob(rightThigh, globalSpeed * 0.25F, globalHeight * 1.0F, false, f, f1);
-        
+
         model.chainWave(body, globalSpeed * 0.25F, globalHeight * 0.025F, 3, f, f1);
         model.chainWave(tail, globalSpeed * 0.25F, globalHeight * 0.025F, 2, f, f1);
 
@@ -91,13 +91,13 @@ public class AnimationIndominusRex implements IModelAnimator
         model.walk(rightCalf1, 0.15F * globalSpeed, 1F * globalDegree, false, 1F, 0.4F, f, f1);
         model.walk(rightCalf2, 0.15F * globalSpeed, 1F * globalDegree, true, 0F, 0F, f, f1);
         model.walk(rightFoot, 0.15F * globalSpeed, 1.5F * globalDegree, false, 0.5F, 0.1F, f, f1);
-        
+
         leftThigh.rotationPointY -= 2 * f1 * Math.cos(f * 0.15F * globalSpeed);
         rightThigh.rotationPointY -= 2 * f1 * Math.cos(f * 0.15F * globalSpeed);
-        
+
         model.chainWave(armRight, globalSpeed * 0.25F, globalHeight * 0.25F, 3, f, f1);
         model.chainWave(armLeft, globalSpeed * 0.25F, globalHeight * 0.25F, 3, f, f1);
-        
+
         int ticksExisted = entity.ticksExisted;
 
         model.chainWave(tail, 0.1F, 0.05F, 2, ticksExisted, 1F);

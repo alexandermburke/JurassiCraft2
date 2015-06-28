@@ -38,7 +38,7 @@ public class JCBlockRegistry implements IContentHandler
         dna_synthesizer = new BlockDnaSynthesizer();
         embryonic_machine = new BlockEmbryonicMachine();
         embryo_insemination_machine = new BlockEmbryoInseminationMachine();
-        
+
         registerTileEntity(TileCleaningStation.class, cleaning_station);
         registerTileEntity(TileDnaSequencer.class, dna_sequencer);
         registerTileEntity(TileDnaSynthesizer.class, dna_synthesizer);
@@ -51,7 +51,7 @@ public class JCBlockRegistry implements IContentHandler
     {
         GameRegistry.registerTileEntity(tileEntity, "jurassicraft:" + block.getUnlocalizedName());
     }
-    
+
     public void initCreativeTabs()
     {
         fossil.setCreativeTab(JCCreativeTabs.blocks);

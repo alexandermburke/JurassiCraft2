@@ -133,7 +133,7 @@ public class DinosaurRugops extends Dinosaur
     {
         return 0.1F;
     }
-    
+
     @Override
     public float getShadowSize()
     {

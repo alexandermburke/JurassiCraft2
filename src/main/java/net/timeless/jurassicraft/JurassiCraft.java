@@ -55,7 +55,6 @@ public class JurassiCraft
         proxy.init();
     }
 
-    
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {

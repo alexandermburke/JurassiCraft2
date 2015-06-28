@@ -133,7 +133,7 @@ public class DinosaurSpinosaurus extends Dinosaur
     {
         return 2.37F;
     }
-    
+
     @Override
     public float getBabyScaleAdjustment()
     {

@@ -128,7 +128,7 @@ public class DinosaurMajungasaurus extends Dinosaur
     {
         return 1.6F;
     }
-    
+
     @Override
     public float getBabyScaleAdjustment()
     {

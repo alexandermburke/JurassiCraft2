@@ -26,9 +26,10 @@ public class AnimationVelociraptor implements IModelAnimator
 
         int frame = velociraptor.ticksExisted;
 
-//                 f = entity.ticksExisted;
-//                 f1 = 1F;
-        // f1 = (float) (Math.sin(velociraptor.ticksExisted * 0.01) * Math.sin(velociraptor.ticksExisted * 0.01));
+        // f = entity.ticksExisted;
+        // f1 = 1F;
+        // f1 = (float) (Math.sin(velociraptor.ticksExisted * 0.01) *
+        // Math.sin(velociraptor.ticksExisted * 0.01));
 
         // if (raptor.leaping)
         // limbSwingAmount = 0;
@@ -209,35 +210,36 @@ public class AnimationVelociraptor implements IModelAnimator
 
         ((EntityVelociraptor) entity).tailBuffer.applyChainSwingBuffer(tailParts);
 
-        //        animator.begin(velociraptor, partialTicks); // Start animating the velociraptor
-        //        animator.startPhase(65L); // Main phase, duration: 150 ticks
-        //        {
-        //            animator.startPhase(55L + 10L, 10L);
-        //            {
-        //                if (velociraptor.isMale())
-        //                {
-        //                    animator.rotate(Lower_Arm_Left, (float) (Math.PI * 2f), 0, 0);
-        //                    animator.rotate(Hand_Left, (float) (Math.PI * 2f), 0, 0);
-        //                }
-        //                else
-        //                {
-        //                    animator.rotate(Lower_Arm_Right, (float) (Math.PI * 2f), 0, 0);
-        //                    animator.rotate(Hand_Right, (float) (Math.PI * 2f), 0, 0);
-        //                }
-        //            }
-        //            animator.endPhase();
+        // animator.begin(velociraptor, partialTicks); // Start animating the
+        // velociraptor
+        // animator.startPhase(65L); // Main phase, duration: 150 ticks
+        // {
+        // animator.startPhase(55L + 10L, 10L);
+        // {
+        // if (velociraptor.isMale())
+        // {
+        // animator.rotate(Lower_Arm_Left, (float) (Math.PI * 2f), 0, 0);
+        // animator.rotate(Hand_Left, (float) (Math.PI * 2f), 0, 0);
+        // }
+        // else
+        // {
+        // animator.rotate(Lower_Arm_Right, (float) (Math.PI * 2f), 0, 0);
+        // animator.rotate(Hand_Right, (float) (Math.PI * 2f), 0, 0);
+        // }
+        // }
+        // animator.endPhase();
         //
-        //            float angle = (float) (Math.PI / 4f);
-        //            animator.startPhase(65L / 2L);
-        //            animator.rotate(neck1, -angle, 0, 0);
-        //            animator.endPhase();
+        // float angle = (float) (Math.PI / 4f);
+        // animator.startPhase(65L / 2L);
+        // animator.rotate(neck1, -angle, 0, 0);
+        // animator.endPhase();
         //
-        //            animator.startPhase(65L / 2L + 1, 65L / 2L);
-        //            animator.rotate(neck1, angle, 0, 0);
-        //            animator.endPhase();
-        //            // OtherStuff
-        //        }
-        //        animator.endPhase(); // Ends main phase definition
-        //        animator.end(); // Ends animation definition and applies it
+        // animator.startPhase(65L / 2L + 1, 65L / 2L);
+        // animator.rotate(neck1, angle, 0, 0);
+        // animator.endPhase();
+        // // OtherStuff
+        // }
+        // animator.endPhase(); // Ends main phase definition
+        // animator.end(); // Ends animation definition and applies it
     }
 }

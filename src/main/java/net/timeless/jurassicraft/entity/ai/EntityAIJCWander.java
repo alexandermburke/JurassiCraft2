@@ -20,8 +20,8 @@ public class EntityAIJCWander extends EntityAIBase
     {
         this(entity, 120, distance);
     }
-    
-    //TODO Distance depend on age
+
+    // TODO Distance depend on age
 
     public EntityAIJCWander(EntityDinosaur entity, int probability, int distance)
     {
@@ -79,8 +79,8 @@ public class EntityAIJCWander extends EntityAIBase
     public void startExecuting()
     {
         Dinosaur dino = entity.getDinosaur();
-        
-		this.entity.getNavigator().tryMoveToXYZ(this.xPosition, this.yPosition, this.zPosition, entity.transitionFromAge(dino.getBabySpeed(), dino.getAdultSpeed()));
+
+        this.entity.getNavigator().tryMoveToXYZ(this.xPosition, this.yPosition, this.zPosition, entity.transitionFromAge(dino.getBabySpeed(), dino.getAdultSpeed()));
     }
 
     public void func_179480_f()

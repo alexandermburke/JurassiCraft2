@@ -33,7 +33,8 @@ public class BlockEmbryonicMachine extends BlockOriented
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
             // if (tileentity instanceof TileEmbryonicMachine)
-            // ((TileEmbryonicMachine) tileentity).setCustomInventoryName(stack.getDisplayName());
+            // ((TileEmbryonicMachine)
+            // tileentity).setCustomInventoryName(stack.getDisplayName());
         }
     }
 
@@ -43,7 +44,8 @@ public class BlockEmbryonicMachine extends BlockOriented
         TileEntity tileentity = worldIn.getTileEntity(pos);
         if (tileentity instanceof TileEmbryonicMachine)
         {
-            // InventoryHelper.dropInventoryItems(worldIn, pos, (TileEmbryonicMachine) tileentity);
+            // InventoryHelper.dropInventoryItems(worldIn, pos,
+            // (TileEmbryonicMachine) tileentity);
         }
         super.breakBlock(worldIn, pos, state);
     }

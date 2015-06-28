@@ -46,9 +46,9 @@ public abstract class Dinosaur
     public abstract double getMaximumAge();
 
     public abstract float getAdultScaleAdjustment();
-    
+
     public abstract float getBabyScaleAdjustment();
-    
+
     public abstract float getShadowSize();
 
     public abstract ModelBase getModel();

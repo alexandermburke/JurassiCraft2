@@ -131,7 +131,7 @@ public class DinosaurVelociraptor extends Dinosaur
     {
         return 0.3F;
     }
-    
+
     @Override
     public float getShadowSize()
     {

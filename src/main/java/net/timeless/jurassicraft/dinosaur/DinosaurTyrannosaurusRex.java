@@ -13,6 +13,8 @@ public class DinosaurTyrannosaurusRex extends Dinosaur
     private IModelAnimator animator;
     private String[] maleTextures;
     private String[] femaleTextures;
+    private String[] maleOverlayTextures;
+    private String[] femaleOverlayTextures;
     private ModelJson model;
 
     public DinosaurTyrannosaurusRex()
@@ -20,6 +22,9 @@ public class DinosaurTyrannosaurusRex extends Dinosaur
         this.animator = new AnimationTyrannosaurusRex();
         this.maleTextures = new String[] { getDinosaurTexture("male") };
         this.femaleTextures = new String[] { getDinosaurTexture("female") };
+
+        this.maleOverlayTextures = new String[] { getDinosaurTexture("male_detail") };
+        this.femaleOverlayTextures = new String[] { getDinosaurTexture("female_detail") };
 
         try
         {
@@ -125,7 +130,7 @@ public class DinosaurTyrannosaurusRex extends Dinosaur
     {
         return 2.4F;
     }
-    
+
     @Override
     public float getBabyScaleAdjustment()
     {
@@ -160,5 +165,17 @@ public class DinosaurTyrannosaurusRex extends Dinosaur
     public IModelAnimator getModelAnimator()
     {
         return animator;
+    }
+
+    @Override
+    public String[] getMaleOverlayTextures()
+    {
+        return maleOverlayTextures;
+    }
+
+    @Override
+    public String[] getFemaleOverlayTextures()
+    {
+        return femaleOverlayTextures;
     }
 }

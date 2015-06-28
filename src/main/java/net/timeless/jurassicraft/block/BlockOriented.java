@@ -119,7 +119,7 @@ public abstract class BlockOriented extends BlockContainer
     {
         return new BlockState(this, FACING);
     }
-    
+
     @SideOnly(Side.CLIENT)
     public EnumWorldBlockLayer getBlockLayer()
     {
@@ -127,19 +127,19 @@ public abstract class BlockOriented extends BlockContainer
     }
 
     @Override
-    public boolean isOpaqueCube() 
+    public boolean isOpaqueCube()
     {
         return true;
     }
 
     @Override
-    public boolean isFullCube() 
+    public boolean isFullCube()
     {
         return true;
     }
 
     @Override
-    public int getRenderType() 
+    public int getRenderType()
     {
         return 3;
     }

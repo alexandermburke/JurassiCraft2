@@ -96,7 +96,7 @@ public class BlockEncasedFossil extends Block implements ISubBlocksBlock
         EnumTimePeriod timePeriod = EnumTimePeriod.byMetadata(meta);
         return this.getDefaultState().withProperty(BlockEncasedFossil.PROPERTYPERIOD, timePeriod);
     }
-    
+
     @SideOnly(Side.CLIENT)
     public EnumWorldBlockLayer getBlockLayer()
     {
@@ -104,19 +104,19 @@ public class BlockEncasedFossil extends Block implements ISubBlocksBlock
     }
 
     @Override
-    public boolean isOpaqueCube() 
+    public boolean isOpaqueCube()
     {
         return true;
     }
 
     @Override
-    public boolean isFullCube() 
+    public boolean isFullCube()
     {
         return true;
     }
 
     @Override
-    public int getRenderType() 
+    public int getRenderType()
     {
         return 3;
     }

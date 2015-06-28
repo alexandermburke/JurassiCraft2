@@ -232,7 +232,8 @@ public class Animator
             float totalDuration = prevPhase.getDuration();
             float tick = getTick(currentEntity) - prevPhase.getOffset();
             if (tick >= totalDuration && prevPhase.isLooping())
-            { // Loop main phase
+            { // Loop main
+              // phase
                 reset(currentEntity);
             }
         }

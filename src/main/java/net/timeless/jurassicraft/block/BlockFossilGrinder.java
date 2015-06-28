@@ -33,7 +33,8 @@ public class BlockFossilGrinder extends BlockOriented
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
             // if (tileentity instanceof TileFossilGrinder)
-            // ((TileFossilGrinder) tileentity).setCustomInventoryName(stack.getDisplayName());
+            // ((TileFossilGrinder)
+            // tileentity).setCustomInventoryName(stack.getDisplayName());
         }
     }
 
@@ -43,7 +44,8 @@ public class BlockFossilGrinder extends BlockOriented
         TileEntity tileentity = worldIn.getTileEntity(pos);
         if (tileentity instanceof TileFossilGrinder)
         {
-            // InventoryHelper.dropInventoryItems(worldIn, pos, (TileFossilGrinder) tileentity);
+            // InventoryHelper.dropInventoryItems(worldIn, pos,
+            // (TileFossilGrinder) tileentity);
         }
         super.breakBlock(worldIn, pos, state);
     }

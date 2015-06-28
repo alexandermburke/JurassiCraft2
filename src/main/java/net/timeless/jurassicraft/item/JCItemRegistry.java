@@ -16,7 +16,7 @@ public class JCItemRegistry implements IContentHandler
     public static ItemDNA dna;
     public static ItemDinosaurEgg egg;
     public static ItemPaleoPad paleo_pad;
-    
+
     @Override
     public void init()
     {

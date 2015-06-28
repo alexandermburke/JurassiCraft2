@@ -122,7 +122,7 @@ public class DinosaurGiganotosaurus extends Dinosaur
     {
         return 20F;
     }
-    
+
     @Override
     public float getBabyScaleAdjustment()
     {

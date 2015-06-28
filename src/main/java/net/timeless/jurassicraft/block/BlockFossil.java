@@ -32,7 +32,7 @@ public class BlockFossil extends Block
     {
         return false;
     }
-    
+
     @SideOnly(Side.CLIENT)
     public EnumWorldBlockLayer getBlockLayer()
     {
@@ -40,19 +40,19 @@ public class BlockFossil extends Block
     }
 
     @Override
-    public boolean isOpaqueCube() 
+    public boolean isOpaqueCube()
     {
         return true;
     }
 
     @Override
-    public boolean isFullCube() 
+    public boolean isFullCube()
     {
         return true;
     }
 
     @Override
-    public int getRenderType() 
+    public int getRenderType()
     {
         return 3;
     }

@@ -14,7 +14,9 @@ public class EntityAIJCLookIdle extends EntityAIBase
     /** Z offset to look at */
     private double lookZ;
 
-    /** A decrementing tick that stops the entity from being idle once it reaches 0. */
+    /**
+     * A decrementing tick that stops the entity from being idle once it reaches 0.
+     */
     private int idleTime;
 
     /** How fast to turn on the Y axis (yaw) */

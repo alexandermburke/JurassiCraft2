@@ -54,12 +54,12 @@ public class RenderDinosaur extends RenderMultiPart
     public void preRenderCallback(EntityLivingBase entity, float side)
     {
         EntityDinosaur entityDinosaur = (EntityDinosaur) entity;
-        
+
         float scale = (float) entityDinosaur.transitionFromAge(dino.getBabyScaleAdjustment(), dino.getAdultScaleAdjustment());
         shadowSize = scale * dino.getShadowSize();
 
         GL11.glTranslatef(dino.getRenderXOffset() * scale, dino.getRenderYOffset() * scale, dino.getRenderZOffset() * scale);
-        
+
         String name = entity.getCustomNameTag();
 
         if (entity instanceof EntityVelociraptor && (name.equals("iLexiconn") || name.equals("JTGhawk137")))

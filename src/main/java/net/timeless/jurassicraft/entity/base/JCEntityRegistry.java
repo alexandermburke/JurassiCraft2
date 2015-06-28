@@ -47,7 +47,9 @@ public class JCEntityRegistry implements IContentHandler
         registerDinosaur(new DinosaurTyrannosaurusRex());
         registerDinosaur(new DinosaurVelociraptor());
 
-        // Always register a new dinosaur after last one in list, otherwise all items with metadata will be shifted by one (all dinosaurs will change form D:) (UNLESS it is before the release of JC2)
+        // Always register a new dinosaur after last one in list, otherwise all
+        // items with metadata will be shifted by one (all dinosaurs will change
+        // form D:) (UNLESS it is before the release of JC2)
     }
 
     public void gameRegistry() throws Exception

@@ -19,7 +19,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
     protected boolean gender;
 
     private double dinosaurAge;
-    
+
     public EntityDinosaur(World world)
     {
         super(world);
@@ -46,39 +46,39 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
 
         dinosaur = JCEntityRegistry.getDinosaurByClass(getClass());
     }
-    
+
     public void updateCreatureData()
     {
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(transitionFromAge(dinosaur.getBabyHealth(), dinosaur.getAdultHealth()));
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(transitionFromAge(dinosaur.getBabySpeed(), dinosaur.getAdultSpeed()));
         this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(transitionFromAge(dinosaur.getBabyKnockback(), dinosaur.getAdultKnockback()));
     }
-    
+
     public double transitionFromAge(double baby, double adult)
     {
         return (dinosaurAge * adult - baby) / dinosaur.getMaximumAge() + baby;
     }
-    
+
     public void onLivingUpdate()
     {
         super.onLivingUpdate();
-        
-        if(dinosaurAge < dinosaur.getMaximumAge())
+
+        if (dinosaurAge < dinosaur.getMaximumAge())
         {
             this.dinosaurAge += 0.01D;
-            
-            if(dinosaurAge % 0.5D == 0)
+
+            if (dinosaurAge % 0.5D == 0)
             {
                 updateCreatureData();
             }
         }
     }
-    
+
     public void setFullyGrown()
     {
         this.dinosaurAge = dinosaur.getMaximumAge();
     }
-    
+
     public Dinosaur getDinosaur()
     {
         return dinosaur;
@@ -138,14 +138,14 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
     {
         return dinosaurAge;
     }
-    
+
     public int getTexture()
     {
         return randTexture;
     }
 
-	public void setAge(double age) 
-	{
-		this.dinosaurAge = age;
-	}
+    public void setAge(double age)
+    {
+        this.dinosaurAge = age;
+    }
 }
