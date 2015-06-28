@@ -5,6 +5,7 @@ import net.ilexiconn.llibrary.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.minecraft.entity.Entity;
 import net.timeless.jurassicraft.api.animation.Animator;
+import net.timeless.jurassicraft.entity.EntityIndominusRex;
 
 public class AnimationIndominusRex implements IModelAnimator
 {
@@ -105,7 +106,11 @@ public class AnimationIndominusRex implements IModelAnimator
         model.chainWave(armRight, 0.1F, 0.1F, 4, ticksExisted, 1F);
         model.chainWave(armLeft, 0.1F, 0.1F, 4, ticksExisted, 1F);
 
-        model.faceTarget(head, 2, rotationYaw, rotationPitch);
-        model.faceTarget(neck1, 2, rotationYaw, rotationPitch);
+        model.faceTarget(head, 4, rotationYaw, rotationPitch);
+        model.faceTarget(neck1, 4, rotationYaw, rotationPitch);
+        model.faceTarget(neck2, 4, rotationYaw, rotationPitch);
+        model.faceTarget(neck3, 4, rotationYaw, rotationPitch);
+        
+        ((EntityIndominusRex) entity).tailBuffer.applyChainSwingBuffer(tail);
     }
 }

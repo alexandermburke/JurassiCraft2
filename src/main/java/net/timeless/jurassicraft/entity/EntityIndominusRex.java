@@ -1,5 +1,6 @@
 package net.timeless.jurassicraft.entity;
 
+import net.ilexiconn.llibrary.client.model.modelbase.ChainBuffer;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
@@ -16,6 +17,8 @@ public class EntityIndominusRex extends EntityDinosaurAggressive implements IAni
 {
     private int animationId = -1;
 
+    public ChainBuffer tailBuffer = new ChainBuffer(7);
+    
     public EntityIndominusRex(World world)
     {
         super(world);
@@ -46,5 +49,11 @@ public class EntityIndominusRex extends EntityDinosaurAggressive implements IAni
     public int getAnimID()
     {
         return animationId;
+    }
+    
+    public void onUpdate()
+    {
+        this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
+        super.onUpdate();
     }
 }
