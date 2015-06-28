@@ -8,11 +8,17 @@ public class DinosaurAchillobator extends Dinosaur
 {
     private String[] maleTextures;
     private String[] femaleTextures;
+    
+    private String[] maleOverlayTextures;
+    private String[] femaleOverlayTextures;
 
     public DinosaurAchillobator()
     {
         this.maleTextures = new String[] { getDinosaurTexture("male") };
         this.femaleTextures = new String[] { getDinosaurTexture("female") };
+        
+        this.maleOverlayTextures = new String[] { getDinosaurTexture("male_detail") };
+        this.femaleOverlayTextures = new String[] { getDinosaurTexture("female_detail") };
     }
 
     // TODO: Figure out all the entities properties
@@ -117,5 +123,17 @@ public class DinosaurAchillobator extends Dinosaur
     public String[] getFemaleTextures()
     {
         return femaleTextures;
+    }
+    
+    @Override
+    public String[] getMaleOverlayTextures()
+    {
+        return maleOverlayTextures;
+    }
+
+    @Override
+    public String[] getFemaleOverlayTextures()
+    {
+        return femaleOverlayTextures;
     }
 }
