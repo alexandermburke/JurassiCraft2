@@ -30,26 +30,41 @@ public class JCEntityRegistry implements IContentHandler
     private static List<Dinosaur> dinosaurs = Lists.newArrayList();
     private static HashMap<EnumTimePeriod, List<Dinosaur>> dinosaursFromPeriod = new HashMap<>();
 
+    public static final Dinosaur achillobator = new DinosaurAchillobator();
+    public static final Dinosaur carnotaurus = new DinosaurCarnotaurus();
+    public static final Dinosaur compsognathus = new DinosaurCompsognathus();
+    public static final Dinosaur dilophosaurus = new DinosaurDilophosaurus();
+    public static final Dinosaur gallimimus = new DinosaurGallimimus();
+    public static final Dinosaur giganotosaurus = new DinosaurGiganotosaurus();
+    public static final Dinosaur indominus_rex = new DinosaurIndominusRex();
+    public static final Dinosaur majungasaurus = new DinosaurMajungasaurus();
+    public static final Dinosaur parasaurolophus = new DinosaurParasaurolophus();
+    public static final Dinosaur rugops = new DinosaurRugops();
+    public static final Dinosaur spinosaurus = new DinosaurSpinosaurus();
+    public static final Dinosaur stegosaurus = new DinosaurStegosaurus();
+    public static final Dinosaur tyrannosaurus_rex = new DinosaurTyrannosaurusRex();
+    public static final Dinosaur velociraptor = new DinosaurVelociraptor();
+    
     public void init()
     {
-        registerDinosaur(new DinosaurAchillobator());
-        registerDinosaur(new DinosaurCarnotaurus());
-        registerDinosaur(new DinosaurCompsognathus());
-        registerDinosaur(new DinosaurDilophosaurus());
-        registerDinosaur(new DinosaurGallimimus());
-        registerDinosaur(new DinosaurGiganotosaurus());
-        registerDinosaur(new DinosaurIndominusRex());
-        registerDinosaur(new DinosaurMajungasaurus());
-        registerDinosaur(new DinosaurParasaurolophus());
-        registerDinosaur(new DinosaurRugops());
-        registerDinosaur(new DinosaurSpinosaurus());
-        registerDinosaur(new DinosaurStegosaurus());
-        registerDinosaur(new DinosaurTyrannosaurusRex());
-        registerDinosaur(new DinosaurVelociraptor());
+        registerDinosaur(achillobator);
+        registerDinosaur(carnotaurus);
+        registerDinosaur(compsognathus);
+        registerDinosaur(dilophosaurus);
+        registerDinosaur(gallimimus);
+        registerDinosaur(giganotosaurus);
+        registerDinosaur(indominus_rex);
+        registerDinosaur(majungasaurus);
+        registerDinosaur(parasaurolophus);
+        registerDinosaur(rugops);
+        registerDinosaur(spinosaurus);
+        registerDinosaur(stegosaurus);
+        registerDinosaur(tyrannosaurus_rex);
+        registerDinosaur(velociraptor);
 
         // Always register a new dinosaur after last one in list, otherwise all
         // items with metadata will be shifted by one (all dinosaurs will change
-        // form D:) (UNLESS it is before the release of JC2)
+        // form D:) (UNLESS it is before the release of JC2) I want to change the way IDs work so this will not be the case.
     }
 
     public void gameRegistry() throws Exception

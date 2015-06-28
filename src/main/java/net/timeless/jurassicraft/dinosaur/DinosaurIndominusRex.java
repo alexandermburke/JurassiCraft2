@@ -1,39 +1,23 @@
 package net.timeless.jurassicraft.dinosaur;
 
-import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
-import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
-import net.minecraft.client.model.ModelBase;
-import net.timeless.jurassicraft.client.model.animation.AnimationIndominusRex;
 import net.timeless.jurassicraft.entity.EntityIndominusRex;
 import net.timeless.jurassicraft.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.period.EnumTimePeriod;
 
 public class DinosaurIndominusRex extends Dinosaur
 {
-    private IModelAnimator animator;
     private String[] maleTextures;
     private String[] femaleTextures;
     private String[] maleOverlayTextures;
     private String[] femaleOverlayTextures;
-    private ModelJson model;
 
     public DinosaurIndominusRex()
     {
-        this.animator = new AnimationIndominusRex();
         this.maleTextures = new String[] { getDinosaurTexture("") };
         this.femaleTextures = new String[] { getDinosaurTexture("") };
 
         this.maleOverlayTextures = new String[] { getDinosaurTexture("detail") };
         this.femaleOverlayTextures = new String[] { getDinosaurTexture("detail") };
-
-        try
-        {
-            this.model = getDefaultTabulaModel();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -126,30 +110,6 @@ public class DinosaurIndominusRex extends Dinosaur
     }
 
     @Override
-    public float getBabyScaleAdjustment()
-    {
-        return 0.5F;
-    }
-
-    @Override
-    public float getAdultScaleAdjustment()
-    {
-        return 3.6F;
-    }
-
-    @Override
-    public float getShadowSize()
-    {
-        return 0.65F;
-    }
-
-    @Override
-    public ModelBase getModel()
-    {
-        return model;
-    }
-
-    @Override
     public String[] getMaleTextures()
     {
         return maleTextures;
@@ -171,11 +131,5 @@ public class DinosaurIndominusRex extends Dinosaur
     public String[] getFemaleOverlayTextures()
     {
         return femaleOverlayTextures;
-    }
-
-    @Override
-    public IModelAnimator getModelAnimator()
-    {
-        return animator;
     }
 }

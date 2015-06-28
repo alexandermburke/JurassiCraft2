@@ -40,8 +40,8 @@ public class JurassiCraft
     {
         logger = event.getModLog();
         logger.info("Loading JurassiCraft...");
-        ContentHandlerList.createList(new JCEntityRegistry(), new JCCreativeTabs(), new JCItemRegistry(), new JCBlockRegistry()).init();
         proxy.preInit();
+        ContentHandlerList.createList(new JCEntityRegistry(), new JCCreativeTabs(), new JCItemRegistry(), new JCBlockRegistry()).init();
 
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 
@@ -50,7 +50,7 @@ public class JurassiCraft
     }
 
     @Mod.EventHandler
-    public void preInit(FMLInitializationEvent event)
+    public void init(FMLInitializationEvent event)
     {
         proxy.init();
     }

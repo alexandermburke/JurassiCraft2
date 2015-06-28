@@ -12,6 +12,7 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDinosaurDefinition;
 import net.timeless.jurassicraft.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.entity.EntityVelociraptor;
 import net.timeless.jurassicraft.entity.base.EntityDinosaur;
@@ -21,55 +22,58 @@ import org.lwjgl.opengl.GL11;
 @SideOnly(Side.CLIENT)
 public class RenderDinosaurMultilayer extends RenderMultiPart
 {
-    public Dinosaur dino;
+    public Dinosaur dinosaur;
+    public RenderDinosaurDefinition renderDef;
     public ResourceLocation[] maleTextures;
     public ResourceLocation[] femaleTextures;
     public ResourceLocation[] maleOverlayTextures;
     public ResourceLocation[] femaleOverlayTextures;
     public Random random;
 
-    public RenderDinosaurMultilayer(Dinosaur creature)
+    public RenderDinosaurMultilayer(Dinosaur dinosaur, RenderDinosaurDefinition renderDef)
     {
-        super(creature.getModel(), creature.getShadowSize());
-        dino = creature;
-        random = new Random();
+        super(renderDef.getModel(), renderDef.getShadowSize());
         this.addLayer(new LayerDinosaurFeatures(this));
 
-        maleTextures = new ResourceLocation[creature.getMaleTextures().length];
-        femaleTextures = new ResourceLocation[creature.getFemaleTextures().length];
+        this.dinosaur = dinosaur;
+        this.random = new Random();
+        this.renderDef = renderDef;
 
-        maleOverlayTextures = new ResourceLocation[creature.getMaleOverlayTextures().length];
-        femaleOverlayTextures = new ResourceLocation[creature.getFemaleOverlayTextures().length];
+        this.maleTextures = new ResourceLocation[dinosaur.getMaleTextures().length];
+        this.femaleTextures = new ResourceLocation[dinosaur.getFemaleTextures().length];
+        this.maleOverlayTextures = new ResourceLocation[dinosaur.getMaleOverlayTextures().length];
+        this.femaleOverlayTextures = new ResourceLocation[dinosaur.getFemaleOverlayTextures().length];
 
+        
         int i = 0;
 
-        for (String texture : creature.getMaleTextures())
+        for (String texture : dinosaur.getMaleTextures())
         {
-            maleTextures[i] = new ResourceLocation(texture);
+            this.maleTextures[i] = new ResourceLocation(texture);
             i++;
         }
 
         i = 0;
 
-        for (String texture : creature.getFemaleTextures())
+        for (String texture : dinosaur.getFemaleTextures())
         {
-            femaleTextures[i] = new ResourceLocation(texture);
+            this.femaleTextures[i] = new ResourceLocation(texture);
             i++;
         }
 
         i = 0;
 
-        for (String texture : creature.getMaleOverlayTextures())
+        for (String texture : dinosaur.getMaleOverlayTextures())
         {
-            maleOverlayTextures[i] = new ResourceLocation(texture);
+            this.maleOverlayTextures[i] = new ResourceLocation(texture);
             i++;
         }
 
         i = 0;
 
-        for (String texture : creature.getFemaleOverlayTextures())
+        for (String texture : dinosaur.getFemaleOverlayTextures())
         {
-            femaleOverlayTextures[i] = new ResourceLocation(texture);
+            this.femaleOverlayTextures[i] = new ResourceLocation(texture);
             i++;
         }
     }
@@ -78,10 +82,10 @@ public class RenderDinosaurMultilayer extends RenderMultiPart
     {
         EntityDinosaur entityDinosaur = (EntityDinosaur) entity;
 
-        float scale = (float) entityDinosaur.transitionFromAge(dino.getBabyScaleAdjustment(), dino.getAdultScaleAdjustment());
-        shadowSize = scale * dino.getShadowSize();
+        float scale = (float) entityDinosaur.transitionFromAge(renderDef.getBabyScaleAdjustment(), renderDef.getAdultScaleAdjustment());
+        shadowSize = scale * renderDef.getShadowSize();
 
-        GL11.glTranslatef(dino.getRenderXOffset() * scale, dino.getRenderYOffset() * scale, dino.getRenderZOffset() * scale);
+        GL11.glTranslatef(renderDef.getRenderXOffset() * scale, renderDef.getRenderYOffset() * scale, renderDef.getRenderZOffset() * scale);
 
         String name = entity.getCustomNameTag();
 

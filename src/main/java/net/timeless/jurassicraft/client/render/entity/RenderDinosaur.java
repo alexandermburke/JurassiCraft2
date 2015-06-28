@@ -11,6 +11,7 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDinosaurDefinition;
 import net.timeless.jurassicraft.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.entity.EntityVelociraptor;
 import net.timeless.jurassicraft.entity.base.EntityDinosaur;
@@ -20,33 +21,37 @@ import org.lwjgl.opengl.GL11;
 @SideOnly(Side.CLIENT)
 public class RenderDinosaur extends RenderMultiPart
 {
-    public Dinosaur dino;
+    public Dinosaur dinosaur;
+    public RenderDinosaurDefinition renderDef;
+
     public ResourceLocation[] maleTextures;
     public ResourceLocation[] femaleTextures;
     public Random random;
 
-    public RenderDinosaur(Dinosaur creature)
+    public RenderDinosaur(Dinosaur dinosaur, RenderDinosaurDefinition renderDef)
     {
-        super(creature.getModel(), creature.getShadowSize());
-        dino = creature;
-        random = new Random();
+        super(renderDef.getModel(), renderDef.getShadowSize());
 
-        maleTextures = new ResourceLocation[creature.getMaleTextures().length];
-        femaleTextures = new ResourceLocation[creature.getFemaleTextures().length];
+        this.dinosaur = dinosaur;
+        this.random = new Random();
+        this.renderDef = renderDef;
+
+        this.maleTextures = new ResourceLocation[dinosaur.getMaleTextures().length];
+        this.femaleTextures = new ResourceLocation[dinosaur.getFemaleTextures().length];
 
         int i = 0;
 
-        for (String texture : creature.getMaleTextures())
+        for (String texture : dinosaur.getMaleTextures())
         {
-            maleTextures[i] = new ResourceLocation(texture);
+            this.maleTextures[i] = new ResourceLocation(texture);
             i++;
         }
 
         i = 0;
 
-        for (String texture : creature.getFemaleTextures())
+        for (String texture : dinosaur.getFemaleTextures())
         {
-            femaleTextures[i] = new ResourceLocation(texture);
+            this.femaleTextures[i] = new ResourceLocation(texture);
             i++;
         }
     }
@@ -55,10 +60,10 @@ public class RenderDinosaur extends RenderMultiPart
     {
         EntityDinosaur entityDinosaur = (EntityDinosaur) entity;
 
-        float scale = (float) entityDinosaur.transitionFromAge(dino.getBabyScaleAdjustment(), dino.getAdultScaleAdjustment());
-        shadowSize = scale * dino.getShadowSize();
+        float scale = (float) entityDinosaur.transitionFromAge(renderDef.getBabyScaleAdjustment(), renderDef.getAdultScaleAdjustment());
+        shadowSize = scale * renderDef.getShadowSize();
 
-        GL11.glTranslatef(dino.getRenderXOffset() * scale, dino.getRenderYOffset() * scale, dino.getRenderZOffset() * scale);
+        GL11.glTranslatef(renderDef.getRenderXOffset() * scale, renderDef.getRenderYOffset() * scale, renderDef.getRenderZOffset() * scale);
 
         String name = entity.getCustomNameTag();
 

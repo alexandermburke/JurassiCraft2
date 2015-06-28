@@ -1,34 +1,18 @@
 package net.timeless.jurassicraft.dinosaur;
 
-import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
-import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
-import net.minecraft.client.model.ModelBase;
-import net.timeless.jurassicraft.client.model.animation.AnimationCarnotaurus;
 import net.timeless.jurassicraft.entity.EntityCarnotaurus;
 import net.timeless.jurassicraft.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.period.EnumTimePeriod;
 
 public class DinosaurCarnotaurus extends Dinosaur
 {
-    private IModelAnimator animator;
     private String[] maleTextures;
     private String[] femaleTextures;
-    private ModelJson model;
 
     public DinosaurCarnotaurus()
     {
-        this.animator = new AnimationCarnotaurus();
         this.maleTextures = new String[] { getDinosaurTexture("male") };
         this.femaleTextures = new String[] { getDinosaurTexture("female") };
-
-        try
-        {
-            this.model = getDefaultTabulaModel();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
     }
 
     // TODO: Figure out all the entities properties
@@ -124,30 +108,6 @@ public class DinosaurCarnotaurus extends Dinosaur
     }
 
     @Override
-    public float getAdultScaleAdjustment()
-    {
-        return 1.3F;
-    }
-
-    @Override
-    public float getBabyScaleAdjustment()
-    {
-        return 0.1F;
-    }
-
-    @Override
-    public float getShadowSize()
-    {
-        return 0.65F;
-    }
-
-    @Override
-    public ModelBase getModel()
-    {
-        return model;
-    }
-
-    @Override
     public String[] getMaleTextures()
     {
         return maleTextures;
@@ -157,11 +117,5 @@ public class DinosaurCarnotaurus extends Dinosaur
     public String[] getFemaleTextures()
     {
         return femaleTextures;
-    }
-
-    @Override
-    public IModelAnimator getModelAnimator()
-    {
-        return animator;
     }
 }

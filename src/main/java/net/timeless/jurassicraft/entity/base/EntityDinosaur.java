@@ -49,9 +49,13 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
 
     public void updateCreatureData()
     {
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(transitionFromAge(dinosaur.getBabyHealth(), dinosaur.getAdultHealth()));
+        double newHealth = transitionFromAge(dinosaur.getBabyHealth(), dinosaur.getAdultHealth());
+
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(newHealth);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(transitionFromAge(dinosaur.getBabySpeed(), dinosaur.getAdultSpeed()));
         this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(transitionFromAge(dinosaur.getBabyKnockback(), dinosaur.getAdultKnockback()));
+
+        this.heal((float) (newHealth - this.getHealth()));
     }
 
     public double transitionFromAge(double baby, double adult)

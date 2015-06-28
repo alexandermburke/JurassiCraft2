@@ -18,7 +18,7 @@ public class EntityIndominusRex extends EntityDinosaurAggressive implements IAni
     private int animationId = -1;
 
     public ChainBuffer tailBuffer = new ChainBuffer(7);
-    
+
     public EntityIndominusRex(World world)
     {
         super(world);
@@ -35,7 +35,7 @@ public class EntityIndominusRex extends EntityDinosaurAggressive implements IAni
 
             this.tasks.addTask(6, new EntityAIWander(this, dinosaur.getAdultSpeed()));
             this.tasks.addTask(7, new EntityAIJCWatchClosest(this, EntityPlayer.class, 6.0F, 1F, 40F));
-            this.tasks.addTask(8, new EntityAIJCLookIdle(this, 1F, 40F));
+            this.tasks.addTask(8, new EntityAIJCLookIdle(this, 1F, 40F));// RendererLivingEntity
         }
     }
 
@@ -50,7 +50,7 @@ public class EntityIndominusRex extends EntityDinosaurAggressive implements IAni
     {
         return animationId;
     }
-    
+
     public void onUpdate()
     {
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);

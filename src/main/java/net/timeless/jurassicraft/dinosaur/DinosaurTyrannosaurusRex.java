@@ -1,39 +1,23 @@
 package net.timeless.jurassicraft.dinosaur;
 
-import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
-import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
-import net.minecraft.client.model.ModelBase;
-import net.timeless.jurassicraft.client.model.animation.AnimationTyrannosaurusRex;
 import net.timeless.jurassicraft.entity.EntityTyrannosaurusRex;
 import net.timeless.jurassicraft.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.period.EnumTimePeriod;
 
 public class DinosaurTyrannosaurusRex extends Dinosaur
 {
-    private IModelAnimator animator;
     private String[] maleTextures;
     private String[] femaleTextures;
     private String[] maleOverlayTextures;
     private String[] femaleOverlayTextures;
-    private ModelJson model;
 
     public DinosaurTyrannosaurusRex()
     {
-        this.animator = new AnimationTyrannosaurusRex();
         this.maleTextures = new String[] { getDinosaurTexture("male") };
         this.femaleTextures = new String[] { getDinosaurTexture("female") };
 
         this.maleOverlayTextures = new String[] { getDinosaurTexture("male_detail") };
         this.femaleOverlayTextures = new String[] { getDinosaurTexture("female_detail") };
-
-        try
-        {
-            this.model = getDefaultTabulaModel();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -126,30 +110,6 @@ public class DinosaurTyrannosaurusRex extends Dinosaur
     }
 
     @Override
-    public float getAdultScaleAdjustment()
-    {
-        return 2.4F;
-    }
-
-    @Override
-    public float getBabyScaleAdjustment()
-    {
-        return 0.3F;
-    }
-
-    @Override
-    public float getShadowSize()
-    {
-        return 0.65F;
-    }
-
-    @Override
-    public ModelBase getModel()
-    {
-        return model;
-    }
-
-    @Override
     public String[] getMaleTextures()
     {
         return maleTextures;
@@ -159,12 +119,6 @@ public class DinosaurTyrannosaurusRex extends Dinosaur
     public String[] getFemaleTextures()
     {
         return femaleTextures;
-    }
-
-    @Override
-    public IModelAnimator getModelAnimator()
-    {
-        return animator;
     }
 
     @Override

@@ -110,7 +110,7 @@ public class AnimationIndominusRex implements IModelAnimator
         model.faceTarget(neck1, 4, rotationYaw, rotationPitch);
         model.faceTarget(neck2, 4, rotationYaw, rotationPitch);
         model.faceTarget(neck3, 4, rotationYaw, rotationPitch);
-        
+
         ((EntityIndominusRex) entity).tailBuffer.applyChainSwingBuffer(tail);
     }
 }
