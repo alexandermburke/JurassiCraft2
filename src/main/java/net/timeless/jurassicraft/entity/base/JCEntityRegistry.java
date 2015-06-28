@@ -86,8 +86,6 @@ public class JCEntityRegistry implements IContentHandler
 
             EntityRegistry.registerGlobalEntityID(entityClass, dinoName, entityId);
             EntityRegistry.registerModEntity(entityClass, dinoName, entityId, JurassiCraft.instance, 1024, 1, true);
-
-            JurassiCraft.proxy.registerEntityRenderer(entityClass, dino);
         }
     }
 

@@ -36,6 +36,7 @@ import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDinosaurDefinit
 import net.timeless.jurassicraft.client.render.entity.RenderDinosaur;
 import net.timeless.jurassicraft.client.render.entity.RenderDinosaurMultilayer;
 import net.timeless.jurassicraft.dinosaur.Dinosaur;
+import net.timeless.jurassicraft.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.item.JCItemRegistry;
 
@@ -60,7 +61,18 @@ public class ClientProxy extends CommonProxy
             ModelBakery.addVariantName(JCItemRegistry.dna, "jurassicraft:dna/dna_" + dinoName);
             ModelBakery.addVariantName(JCItemRegistry.egg, "jurassicraft:egg/egg_" + dinoName);
         }
-        
+    }
+
+    public static void registerRenderDef(Dinosaur dinosaur, RenderDinosaurDefinition def)
+    {
+        renderDefs.put(dinosaur, def);
+    }
+
+    @Override
+    public void init()
+    {
+        super.init();
+
         registerRenderDef(JCEntityRegistry.achillobator, new RenderDefAchillobator());
         registerRenderDef(JCEntityRegistry.carnotaurus, new RenderDefCarnotaurus());
         registerRenderDef(JCEntityRegistry.compsognathus, new RenderDefCompsognathus());
@@ -75,18 +87,7 @@ public class ClientProxy extends CommonProxy
         registerRenderDef(JCEntityRegistry.stegosaurus, new RenderDefStegosaurus());
         registerRenderDef(JCEntityRegistry.tyrannosaurus_rex, new RenderDefTyrannosaurusRex());
         registerRenderDef(JCEntityRegistry.velociraptor, new RenderDefVelociraptor());
-    }
-
-    public static void registerRenderDef(Dinosaur dinosaur, RenderDinosaurDefinition def)
-    {
-        renderDefs.put(dinosaur, def);
-    }
-
-    @Override
-    public void init()
-    {
-        super.init();
-
+        
         // Blocks
         ItemModelMesher modelMesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
 
@@ -105,16 +106,16 @@ public class ClientProxy extends CommonProxy
     {
         super.postInit();
 
-        for (Entry<Class<? extends Entity>, RenderDinosaurDefinition> entry : renderersToRegister.entrySet())
+        for (Dinosaur dinosaur : JCEntityRegistry.getDinosaurs())
         {
-            RenderDinosaurDefinition renderDef = entry.getValue();
+            RenderDinosaurDefinition renderDef = renderDefs.get(dinosaur);
 
-            Dinosaur dinosaur = renderDef.getDinosaur();
-
-            if (dinosaur.getMaleOverlayTextures().length > 0)
-                RenderingRegistry.registerEntityRenderingHandler(entry.getKey(), new RenderDinosaurMultilayer(dinosaur, renderDef));
+            String[] maleOverlayTextures = dinosaur.getMaleOverlayTextures();
+            
+            if (maleOverlayTextures != null && maleOverlayTextures.length > 0)
+                RenderingRegistry.registerEntityRenderingHandler(dinosaur.getDinosaurClass(), new RenderDinosaurMultilayer(dinosaur, renderDef));
             else
-                RenderingRegistry.registerEntityRenderingHandler(entry.getKey(), new RenderDinosaur(dinosaur, renderDef));
+                RenderingRegistry.registerEntityRenderingHandler(dinosaur.getDinosaurClass(), new RenderDinosaur(dinosaur, renderDef));
         }
 
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
@@ -175,13 +176,5 @@ public class ClientProxy extends CommonProxy
                 return new ModelResourceLocation(JurassiCraft.modid + ":" + path, type);
             }
         });
-    }
-
-    @Override
-    public void registerEntityRenderer(Class<? extends Entity> clazz, Dinosaur creature)
-    {
-        super.registerEntityRenderer(clazz, creature);
-
-        renderersToRegister.put(clazz, renderDefs.get(creature));
     }
 }

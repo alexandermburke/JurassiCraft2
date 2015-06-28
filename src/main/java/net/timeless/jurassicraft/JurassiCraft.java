@@ -40,9 +40,9 @@ public class JurassiCraft
     {
         logger = event.getModLog();
         logger.info("Loading JurassiCraft...");
-        proxy.preInit();
         ContentHandlerList.createList(new JCEntityRegistry(), new JCCreativeTabs(), new JCItemRegistry(), new JCBlockRegistry()).init();
-
+        proxy.preInit();
+        
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 
         JurassiCraft.wrapper = NetworkRegistry.INSTANCE.newSimpleChannel(JurassiCraft.modid);
