@@ -4,9 +4,17 @@ import java.lang.reflect.Field;
 
 import net.ilexiconn.llibrary.common.content.IContentHandler;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.timeless.jurassicraft.api.ISubBlocksBlock;
 import net.timeless.jurassicraft.creativetab.JCCreativeTabs;
+import net.timeless.jurassicraft.tileentity.TileCleaningStation;
+import net.timeless.jurassicraft.tileentity.TileDnaSequencer;
+import net.timeless.jurassicraft.tileentity.TileDnaSynthesizer;
+import net.timeless.jurassicraft.tileentity.TileEmbryoInseminationMachine;
+import net.timeless.jurassicraft.tileentity.TileEmbryonicMachine;
+import net.timeless.jurassicraft.tileentity.TileFossilGrinder;
 
 public class JCBlockRegistry implements IContentHandler
 {
@@ -30,8 +38,20 @@ public class JCBlockRegistry implements IContentHandler
         dna_synthesizer = new BlockDnaSynthesizer();
         embryonic_machine = new BlockEmbryonicMachine();
         embryo_insemination_machine = new BlockEmbryoInseminationMachine();
+        
+        registerTileEntity(TileCleaningStation.class, cleaning_station);
+        registerTileEntity(TileDnaSequencer.class, dna_sequencer);
+        registerTileEntity(TileDnaSynthesizer.class, dna_synthesizer);
+        registerTileEntity(TileEmbryoInseminationMachine.class, embryo_insemination_machine);
+        registerTileEntity(TileEmbryonicMachine.class, embryonic_machine);
+        registerTileEntity(TileFossilGrinder.class, fossil_grinder);
     }
 
+    public void registerTileEntity(Class<? extends TileEntity> tileEntity, BlockContainer block)
+    {
+        GameRegistry.registerTileEntity(tileEntity, "jurassicraft:" + block.getUnlocalizedName());
+    }
+    
     public void initCreativeTabs()
     {
         fossil.setCreativeTab(JCCreativeTabs.blocks);
