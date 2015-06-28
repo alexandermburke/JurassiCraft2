@@ -7,15 +7,16 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import net.timeless.jurassicraft.creativetab.JCCreativeTabs;
 
 public class ItemPaleoPad extends Item
 {
     public ItemPaleoPad()
     {
         super();
-
         this.setUnlocalizedName("paleo_pad");
         this.setMaxStackSize(1);
+        this.setCreativeTab(JCCreativeTabs.items);
     }
 
     public String getItemStackDisplayName(ItemStack stack)

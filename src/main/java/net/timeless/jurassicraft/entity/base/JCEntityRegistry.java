@@ -1,36 +1,28 @@
 package net.timeless.jurassicraft.entity.base;
 
-import java.util.HashMap;
-import java.util.List;
-
-import net.ilexiconn.llibrary.common.content.IContentHandler;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import net.minecraft.entity.Entity;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.timeless.jurassicraft.JurassiCraft;
-import net.timeless.jurassicraft.dinosaur.Dinosaur;
-import net.timeless.jurassicraft.dinosaur.DinosaurAchillobator;
-import net.timeless.jurassicraft.dinosaur.DinosaurCarnotaurus;
-import net.timeless.jurassicraft.dinosaur.DinosaurCompsognathus;
-import net.timeless.jurassicraft.dinosaur.DinosaurDilophosaurus;
-import net.timeless.jurassicraft.dinosaur.DinosaurGallimimus;
-import net.timeless.jurassicraft.dinosaur.DinosaurGiganotosaurus;
-import net.timeless.jurassicraft.dinosaur.DinosaurIndominusRex;
-import net.timeless.jurassicraft.dinosaur.DinosaurMajungasaurus;
-import net.timeless.jurassicraft.dinosaur.DinosaurParasaurolophus;
-import net.timeless.jurassicraft.dinosaur.DinosaurRugops;
-import net.timeless.jurassicraft.dinosaur.DinosaurSpinosaurus;
-import net.timeless.jurassicraft.dinosaur.DinosaurStegosaurus;
-import net.timeless.jurassicraft.dinosaur.DinosaurTyrannosaurusRex;
-import net.timeless.jurassicraft.dinosaur.DinosaurVelociraptor;
+import net.timeless.jurassicraft.client.render.entity.RenderDinosaur;
+import net.timeless.jurassicraft.client.render.entity.RenderDinosaurMultilayer;
+import net.timeless.jurassicraft.dinosaur.*;
 import net.timeless.jurassicraft.period.EnumTimePeriod;
 
-import com.google.common.collect.Lists;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class JCEntityRegistry implements IContentHandler
+public class JCEntityRegistry
 {
     private static List<Dinosaur> dinosaurs = Lists.newArrayList();
     private static HashMap<EnumTimePeriod, List<Dinosaur>> dinosaursFromPeriod = new HashMap<>();
+    private static Map<Class<? extends Entity>, Dinosaur> renderersToRegister = Maps.newHashMap();
 
-    public void init()
+
+    public static void preInitCommon()
     {
         registerDinosaur(new DinosaurAchillobator());
         registerDinosaur(new DinosaurCarnotaurus());
@@ -47,69 +39,93 @@ public class JCEntityRegistry implements IContentHandler
         registerDinosaur(new DinosaurTyrannosaurusRex());
         registerDinosaur(new DinosaurVelociraptor());
 
+        for (Dinosaur dinosaur : dinosaurs)
+            registerEntityDinosaur(dinosaur);
         // Always register a new dinosaur after last one in list, otherwise all items with metadata will be shifted by one (all dinosaurs will change form D:) (UNLESS it is before the release of JC2)
     }
 
-    public void gameRegistry() throws Exception
+    public static void initCommon()
     {
-        for (Dinosaur dino : dinosaurs)
+
+    }
+
+    public static void postInitCommon()
+    {
+
+    }
+
+    public static void preInitClientOnly()
+    {
+
+    }
+
+    public static void initClientOnly()
+    {
+        for (Dinosaur dinosaur : dinosaurs)
+            registerEntityDinosaurRenderer(dinosaur);
+    }
+
+    public static void postInitClientOnly()
+    {
+
+    }
+
+    public static void registerDinosaur(Dinosaur dinosaur)
+    {
+        if (dinosaur.shouldRegister())
         {
-            registerEntity(dino);
+            dinosaurs.add(dinosaur);
+            EnumTimePeriod period = dinosaur.getPeriod();
+            List<Dinosaur> dinoList = dinosaursFromPeriod.get(period);
+            if (dinoList != null)
+            {
+                dinoList.add(dinosaur);
+                dinosaursFromPeriod.remove(period);
+                dinosaursFromPeriod.put(period, dinoList);
+            }
+            else
+            {
+                List<Dinosaur> newDinoList = Lists.newArrayList();
+                newDinoList.add(dinosaur);
+                dinosaursFromPeriod.put(period, newDinoList);
+            }
         }
     }
 
-    public void registerEntity(Dinosaur dino)
+    public static void registerEntityDinosaur(Dinosaur dinosaur)
     {
-        if (dino.shouldRegister())
+        if (dinosaur.shouldRegister())
         {
-            Class<? extends EntityDinosaur> entityClass = dino.getDinosaurClass();
+            Class<? extends EntityDinosaur> entityClass = dinosaur.getDinosaurClass();
+            int uniqueEntityId = EntityRegistry.findGlobalUniqueEntityId();
+            String name = dinosaur.getName().toLowerCase().replaceAll(" ", "_");
 
-            int entityId = EntityRegistry.findGlobalUniqueEntityId();
-            String dinoName = dino.getName().toLowerCase().replaceAll(" ", "_");
-
-            EntityRegistry.registerGlobalEntityID(entityClass, dinoName, entityId);
-            EntityRegistry.registerModEntity(entityClass, dinoName, entityId, JurassiCraft.instance, 1024, 1, true);
-
-            JurassiCraft.proxy.registerEntityRenderer(entityClass, dino);
+            EntityRegistry.registerGlobalEntityID(entityClass, name, uniqueEntityId);
+            EntityRegistry.registerModEntity(entityClass, name, uniqueEntityId, JurassiCraft.instance, 1024, 1, true);
         }
     }
 
-    public static void registerDinosaur(Dinosaur dino)
+    public static void registerEntityDinosaurRenderer(Dinosaur dinosaur)
     {
-        dinosaurs.add(dino);
-        EnumTimePeriod period = dino.getPeriod();
-
-        List<Dinosaur> dinoList = dinosaursFromPeriod.get(period);
-
-        if (dinoList != null)
+        if (dinosaur.shouldRegister())
         {
-            dinoList.add(dino);
-
-            dinosaursFromPeriod.remove(period);
-            dinosaursFromPeriod.put(period, dinoList);
+            if (dinosaur.getMaleOverlayTextures().length > 0)
+                RenderingRegistry.registerEntityRenderingHandler(dinosaur.getDinosaurClass(), new RenderDinosaurMultilayer(dinosaur));
+            else
+                RenderingRegistry.registerEntityRenderingHandler(dinosaur.getDinosaurClass(), new RenderDinosaur(dinosaur));
         }
-        else
-        {
-            List<Dinosaur> newDinoList = Lists.newArrayList();
-            newDinoList.add(dino);
-
-            dinosaursFromPeriod.put(period, newDinoList);
-        }
-    }
-
-    public static Dinosaur getDinosaurById(int id)
-    {
-        if (id > dinosaurs.size() - 1)
-        {
-            id = 0;
-        }
-
-        return dinosaurs.get(id);
     }
 
     public static List<Dinosaur> getDinosaurs()
     {
         return dinosaurs;
+    }
+
+    public static Dinosaur getDinosaurById(int id)
+    {
+        if (id > dinosaurs.size() - 1)
+            id = 0;
+        return dinosaurs.get(id);
     }
 
     public static List<Dinosaur> getDinosaursFromPeriod(EnumTimePeriod period)
@@ -122,11 +138,8 @@ public class JCEntityRegistry implements IContentHandler
         for (Dinosaur dino : dinosaurs)
         {
             if (dino.getDinosaurClass().equals(clazz))
-            {
                 return dino;
-            }
         }
-
         return null;
     }
 }

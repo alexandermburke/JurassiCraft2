@@ -1,7 +1,5 @@
 package net.timeless.jurassicraft.block;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -13,7 +11,10 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.jurassicraft.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.tileentity.TileEmbryoInseminationMachine;
+
+import java.util.Random;
 
 public class BlockEmbryoInseminationMachine extends BlockOriented
 {
@@ -23,6 +24,7 @@ public class BlockEmbryoInseminationMachine extends BlockOriented
         this.setUnlocalizedName("embryo_insemination_machine");
         this.setHardness(2.0F);
         this.setStepSound(Block.soundTypeWood);
+        this.setCreativeTab(JCCreativeTabs.blocks);
     }
 
     @Override

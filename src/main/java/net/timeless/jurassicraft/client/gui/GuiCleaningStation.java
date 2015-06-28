@@ -4,7 +4,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
@@ -12,7 +11,6 @@ import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.container.ContainerFossilGrinder;
 import net.timeless.jurassicraft.packets.MessageCleaningTable;
 import net.timeless.jurassicraft.tileentity.TileCleaningStation;
-
 import org.lwjgl.opengl.GL11;
 
 public class GuiCleaningStation extends GuiContainer
@@ -21,15 +19,12 @@ public class GuiCleaningStation extends GuiContainer
     private TileCleaningStation cleaningStation;
     private ResourceLocation texture = new ResourceLocation("jurassicraft:textures/gui/gui_cleaning_station.png");
 
-    public GuiCleaningStation(InventoryPlayer inventoryPlayer, TileEntity tileEntity)
+    public GuiCleaningStation(InventoryPlayer inventoryPlayer, TileCleaningStation tileEntity)
     {
         super(new ContainerFossilGrinder(inventoryPlayer, tileEntity));
-        if (tileEntity instanceof TileCleaningStation)
-        {
-            cleaningStation = (TileCleaningStation) tileEntity;
-            this.xSize = 176;
-            this.ySize = 188;
-        }
+        cleaningStation = (TileCleaningStation) tileEntity;
+        this.xSize = 176;
+        this.ySize = 188;
     }
 
     @Override

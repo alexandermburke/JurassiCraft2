@@ -1,5 +1,5 @@
 {
-    "parent": "jurassicraft:block/cleaning_station",
+    "parent":"jurassicraft:block/cleaning_station",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],
