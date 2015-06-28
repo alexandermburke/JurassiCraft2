@@ -138,7 +138,7 @@ public class DinosaurCompsognathus extends Dinosaur
     @Override
     public float getRenderYOffset()
     {
-        return -1.2F;
+        return -12F;
     }
 
     @Override
@@ -174,6 +174,6 @@ public class DinosaurCompsognathus extends Dinosaur
     @Override
     public float getRenderZOffset()
     {
-        return -0.1F;
+        return -0.8F;
     }
 }
