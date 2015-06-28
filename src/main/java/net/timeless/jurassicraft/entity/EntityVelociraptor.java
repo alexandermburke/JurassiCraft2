@@ -16,7 +16,7 @@ import net.timeless.jurassicraft.entity.base.EntityDinosaurAggressive;
 public class EntityVelociraptor extends EntityDinosaurAggressive implements IAnimatedEntity
 {
     public static final int LEAPING_ANIMATION_ID = 0;
-    public ChainBuffer tailBuffer = new ChainBuffer(5);
+    public ChainBuffer tailBuffer = new ChainBuffer(6);
     private int animID;
 
     public EntityVelociraptor(World world)
