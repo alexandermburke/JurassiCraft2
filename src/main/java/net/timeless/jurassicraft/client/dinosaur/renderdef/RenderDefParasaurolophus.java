@@ -54,7 +54,7 @@ public class RenderDefParasaurolophus extends RenderDinosaurDefinition
     @Override
     public float getRenderYOffset()
     {
-        return 1.43F;
+        return 0.75F;
     }
 
     @Override
