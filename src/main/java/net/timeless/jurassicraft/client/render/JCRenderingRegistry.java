@@ -25,6 +25,7 @@ import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefIndominusRex
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefMajungasaurus;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefParasaurolophus;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefRugops;
+import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefSegisaurus;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefSpinosaurus;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefStegosaurus;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefTyrannosaurusRex;
@@ -56,21 +57,22 @@ public class JCRenderingRegistry
 
     public void init()
     {
-        renderDefs.put(JCEntityRegistry.achillobator, new RenderDefAchillobator());
-        renderDefs.put(JCEntityRegistry.anklyosaurus, new RenderDefAnklyosaurus());
-        renderDefs.put(JCEntityRegistry.carnotaurus, new RenderDefCarnotaurus());
-        renderDefs.put(JCEntityRegistry.compsognathus, new RenderDefCompsognathus());
-        renderDefs.put(JCEntityRegistry.dilophosaurus, new RenderDefDilophosaurus());
-        renderDefs.put(JCEntityRegistry.gallimimus, new RenderDefGallimimus());
-        renderDefs.put(JCEntityRegistry.giganotosaurus, new RenderDefGiganotosaurus());
-        renderDefs.put(JCEntityRegistry.indominus_rex, new RenderDefIndominusRex());
-        renderDefs.put(JCEntityRegistry.majungasaurus, new RenderDefMajungasaurus());
-        renderDefs.put(JCEntityRegistry.parasaurolophus, new RenderDefParasaurolophus());
-        renderDefs.put(JCEntityRegistry.rugops, new RenderDefRugops());
-        renderDefs.put(JCEntityRegistry.spinosaurus, new RenderDefSpinosaurus());
-        renderDefs.put(JCEntityRegistry.stegosaurus, new RenderDefStegosaurus());
-        renderDefs.put(JCEntityRegistry.tyrannosaurus_rex, new RenderDefTyrannosaurusRex());
-        renderDefs.put(JCEntityRegistry.velociraptor, new RenderDefVelociraptor());
+        registerRenderDef(new RenderDefAchillobator());
+        registerRenderDef(new RenderDefAnklyosaurus());
+        registerRenderDef(new RenderDefCarnotaurus());
+        registerRenderDef(new RenderDefCompsognathus());
+        registerRenderDef(new RenderDefDilophosaurus());
+        registerRenderDef(new RenderDefGallimimus());
+        registerRenderDef(new RenderDefGiganotosaurus());
+        registerRenderDef(new RenderDefIndominusRex());
+        registerRenderDef(new RenderDefMajungasaurus());
+        registerRenderDef(new RenderDefParasaurolophus());
+        registerRenderDef(new RenderDefRugops());
+        registerRenderDef(new RenderDefSegisaurus());
+        registerRenderDef(new RenderDefSpinosaurus());
+        registerRenderDef(new RenderDefStegosaurus());
+        registerRenderDef(new RenderDefTyrannosaurusRex());
+        registerRenderDef(new RenderDefVelociraptor());
         
         // Blocks
         ItemModelMesher modelMesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
@@ -156,5 +158,10 @@ public class JCRenderingRegistry
                 return new ModelResourceLocation(JurassiCraft.modid + ":" + path, type);
             }
         });
+    }
+    
+    private void registerRenderDef(RenderDinosaurDefinition renderDef)
+    {
+        renderDefs.put(renderDef.getDinosaur(), renderDef);
     }
 }

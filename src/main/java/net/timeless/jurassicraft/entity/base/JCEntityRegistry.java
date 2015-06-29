@@ -17,6 +17,7 @@ import net.timeless.jurassicraft.dinosaur.DinosaurIndominusRex;
 import net.timeless.jurassicraft.dinosaur.DinosaurMajungasaurus;
 import net.timeless.jurassicraft.dinosaur.DinosaurParasaurolophus;
 import net.timeless.jurassicraft.dinosaur.DinosaurRugops;
+import net.timeless.jurassicraft.dinosaur.DinosaurSegisaurus;
 import net.timeless.jurassicraft.dinosaur.DinosaurSpinosaurus;
 import net.timeless.jurassicraft.dinosaur.DinosaurStegosaurus;
 import net.timeless.jurassicraft.dinosaur.DinosaurTyrannosaurusRex;
@@ -41,6 +42,7 @@ public class JCEntityRegistry
     public static final Dinosaur majungasaurus = new DinosaurMajungasaurus();
     public static final Dinosaur parasaurolophus = new DinosaurParasaurolophus();
     public static final Dinosaur rugops = new DinosaurRugops();
+    public static final Dinosaur segisaurus = new DinosaurSegisaurus();
     public static final Dinosaur spinosaurus = new DinosaurSpinosaurus();
     public static final Dinosaur stegosaurus = new DinosaurStegosaurus();
     public static final Dinosaur tyrannosaurus_rex = new DinosaurTyrannosaurusRex();
@@ -59,6 +61,7 @@ public class JCEntityRegistry
         registerDinosaur(majungasaurus);
         registerDinosaur(parasaurolophus);
         registerDinosaur(rugops);
+        registerDinosaur(segisaurus);
         registerDinosaur(spinosaurus);
         registerDinosaur(stegosaurus);
         registerDinosaur(tyrannosaurus_rex);

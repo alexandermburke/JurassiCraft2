@@ -21,6 +21,7 @@ entity.dilophosaurus.name=Dilophosaurus
 entity.gallimimus.name=Gallimimus
 entity.parasaurolophus.name=Parasaurolophus
 entity.anklyosaurus.name=Anklyosaurus
+entity.segisaurus.name=Segisaurus
 
 //Items ==================================================
 item.rock_pick.name=Rock Pick
