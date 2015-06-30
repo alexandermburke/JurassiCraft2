@@ -6,6 +6,7 @@ import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.minecraft.entity.Entity;
 import net.timeless.jurassicraft.api.animation.Animator;
 import net.timeless.jurassicraft.entity.EntityMajungasaurus;
+import net.timeless.jurassicraft.entity.EntityVelociraptor;
 
 public class AnimationMajungasaurus implements IModelAnimator
 {
@@ -121,5 +122,7 @@ public class AnimationMajungasaurus implements IModelAnimator
         model.faceTarget(neck2, 5, rotationYaw, rotationPitch);
         model.faceTarget(neck3, 5, rotationYaw, rotationPitch);
         model.faceTarget(neck4, 5, rotationYaw, rotationPitch);
+        
+        ((EntityMajungasaurus) entity).tailBuffer.applyChainSwingBuffer(tail);
     }
 }

@@ -1,5 +1,6 @@
 package net.timeless.jurassicraft.entity;
 
+import net.ilexiconn.llibrary.client.model.modelbase.ChainBuffer;
 import net.ilexiconn.llibrary.common.entity.multipart.IEntityMultiPart;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -14,6 +15,8 @@ import net.timeless.jurassicraft.entity.base.EntityDinosaurAggressive;
 
 public class EntityMajungasaurus extends EntityDinosaurAggressive implements IEntityMultiPart
 {
+    public ChainBuffer tailBuffer = new ChainBuffer(6);
+    
     public EntityMajungasaurus(World world)
     {
         super(world);
@@ -31,5 +34,11 @@ public class EntityMajungasaurus extends EntityDinosaurAggressive implements IEn
             this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
             this.tasks.addTask(8, new EntityAILookIdle(this));
         }
+    }
+    
+    public void onUpdate()
+    {
+        this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
+        super.onUpdate();
     }
 }

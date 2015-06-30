@@ -1,6 +1,6 @@
 package net.timeless.jurassicraft.entity;
 
-import net.ilexiconn.llibrary.common.entity.multipart.IEntityMultiPart;
+import net.ilexiconn.llibrary.client.model.modelbase.ChainBuffer;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -12,12 +12,19 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.timeless.jurassicraft.entity.base.EntityDinosaurAggressive;
 
-public class EntityAchillobator extends EntityDinosaurAggressive implements IEntityMultiPart
+public class EntityAchillobator extends EntityDinosaurAggressive
 {
+    public ChainBuffer tailBuffer = new ChainBuffer(6);
+
     public EntityAchillobator(World world)
     {
         super(world);
+        // this.tasks.addTask(0, new EntityAIAttackOnCollide(this,
+        // EntityPlayer.class, 0.5F, false));
+        // this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this,
+        // EntityPlayer.class, false));
 
+        // Placeholder AIs
         if (!this.isChild())
         {
             this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, dinosaur.getAttackSpeed(), false));
@@ -31,5 +38,11 @@ public class EntityAchillobator extends EntityDinosaurAggressive implements IEnt
             this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
             this.tasks.addTask(8, new EntityAILookIdle(this));
         }
+    }
+
+    public void onUpdate()
+    {
+        this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
+        super.onUpdate();
     }
 }
