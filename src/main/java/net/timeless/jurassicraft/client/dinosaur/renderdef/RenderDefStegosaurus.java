@@ -48,7 +48,7 @@ public class RenderDefStegosaurus extends RenderDinosaurDefinition
     @Override
     public float getRenderYOffset()
     {
-        return 0.8F;
+        return 0.775F;
     }
     
     @Override

@@ -42,7 +42,7 @@ public class RenderDefCompsognathus extends RenderDinosaurDefinition
     @Override
     public float getBabyScaleAdjustment()
     {
-        return 0.02F;
+        return 0.04F;
     }
 
     @Override

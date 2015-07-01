@@ -107,9 +107,9 @@ public class DinosaurSpinosaurus extends Dinosaur
     }
 
     @Override
-    public double getMaximumAge()
+    public int getMaximumAge()
     {
-        return 20F;
+        return 10000;
     }
 
     @Override

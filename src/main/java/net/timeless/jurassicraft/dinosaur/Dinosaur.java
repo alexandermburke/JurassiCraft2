@@ -35,7 +35,7 @@ public abstract class Dinosaur
 
     public abstract double getAdultKnockback();
 
-    public abstract double getMaximumAge();
+    public abstract int getMaximumAge();
 
     public abstract String[] getMaleTextures();
 

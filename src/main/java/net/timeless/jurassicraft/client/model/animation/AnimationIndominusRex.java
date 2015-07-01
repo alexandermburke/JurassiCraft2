@@ -106,11 +106,11 @@ public class AnimationIndominusRex implements IModelAnimator
         model.chainWave(armRight, 0.1F, 0.1F, 4, ticksExisted, 1F);
         model.chainWave(armLeft, 0.1F, 0.1F, 4, ticksExisted, 1F);
 
-        model.faceTarget(head, 4, rotationYaw, rotationPitch);
-        model.faceTarget(neck1, 4, rotationYaw, rotationPitch);
-        model.faceTarget(neck2, 4, rotationYaw, rotationPitch);
-        model.faceTarget(neck3, 4, rotationYaw, rotationPitch);
-
+        model.faceTarget(bodyMid, 6.0F, rotationYaw, rotationPitch);
+        model.faceTarget(bodyFront, 6.0F, rotationYaw, rotationPitch);
+        model.faceTarget(head, 3.0F, rotationYaw, rotationPitch);
+        model.faceTarget(neck1, 3.0F, rotationYaw, rotationPitch);
+        
         ((EntityIndominusRex) entity).tailBuffer.applyChainSwingBuffer(tail);
     }
 }

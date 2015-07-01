@@ -18,7 +18,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
 
     protected boolean gender;
 
-    private double dinosaurAge;
+    private int dinosaurAge;
 
     public EntityDinosaur(World world)
     {
@@ -67,13 +67,20 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
     {
         super.onLivingUpdate();
 
-        if (dinosaurAge < dinosaur.getMaximumAge())
+        if(ticksExisted % 16 == 0)
         {
-            this.dinosaurAge += 0.01D;
-
-            if (dinosaurAge % 0.5D == 0)
+            if (dinosaurAge < dinosaur.getMaximumAge())
             {
-                updateCreatureData();
+                this.dinosaurAge++;
+
+                if (dinosaurAge % 20 == 0)
+                {
+                    updateCreatureData();
+                }
+            }
+            else if (dinosaurAge > dinosaur.getMaximumAge())
+            {
+                dinosaurAge = dinosaur.getMaximumAge();
             }
         }
     }
@@ -119,7 +126,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
 
         gender = nbt.getBoolean("Gender");
         randTexture = nbt.getInteger("Texture");
-        dinosaurAge = nbt.getDouble("Dinosaur Age");
+        dinosaurAge = nbt.getInteger("Dinosaur Age");
     }
 
     @Override
@@ -127,7 +134,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
     {
         buffer.writeBoolean(gender);
         buffer.writeInt(randTexture);
-        buffer.writeDouble(dinosaurAge);
+        buffer.writeInt(dinosaurAge);
     }
 
     @Override
@@ -135,7 +142,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
     {
         gender = additionalData.readBoolean();
         randTexture = additionalData.readInt();
-        dinosaurAge = additionalData.readDouble();
+        dinosaurAge = additionalData.readInt();
     }
 
     public double getDinosaurAge()
@@ -148,7 +155,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
         return randTexture;
     }
 
-    public void setAge(double age)
+    public void setAge(int age)
     {
         this.dinosaurAge = age;
     }

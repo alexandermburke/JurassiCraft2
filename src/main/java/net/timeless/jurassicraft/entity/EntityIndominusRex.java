@@ -35,7 +35,7 @@ public class EntityIndominusRex extends EntityDinosaurAggressive implements IAni
 
             this.tasks.addTask(6, new EntityAIWander(this, dinosaur.getAdultSpeed()));
             this.tasks.addTask(7, new EntityAIJCWatchClosest(this, EntityPlayer.class, 6.0F, 1F, 40F));
-            this.tasks.addTask(8, new EntityAIJCLookIdle(this, 1F, 40F));// RendererLivingEntity
+            this.tasks.addTask(8, new EntityAIJCLookIdle(this, 1F, 40F));
         }
     }
 
