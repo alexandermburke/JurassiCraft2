@@ -42,9 +42,15 @@ public class RenderDefStegosaurus extends RenderDinosaurDefinition
     @Override
     public float getBabyScaleAdjustment()
     {
-        return 0.1F;
+        return 0.35F;
     }
 
+    @Override
+    public float getRenderYOffset()
+    {
+        return 0.8F;
+    }
+    
     @Override
     public float getShadowSize()
     {

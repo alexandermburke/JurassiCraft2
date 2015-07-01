@@ -36,7 +36,7 @@ public class RenderDefGiganotosaurus extends RenderDinosaurDefinition
     @Override
     public float getBabyScaleAdjustment()
     {
-        return 0.1F;
+        return 0.3F;
     }
 
     @Override

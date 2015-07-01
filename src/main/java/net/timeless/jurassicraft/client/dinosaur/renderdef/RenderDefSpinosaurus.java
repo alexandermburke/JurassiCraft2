@@ -42,7 +42,7 @@ public class RenderDefSpinosaurus extends RenderDinosaurDefinition
     @Override
     public float getBabyScaleAdjustment()
     {
-        return 0.5F;
+        return 0.35F;
     }
 
     @Override

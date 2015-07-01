@@ -42,7 +42,7 @@ public class RenderDefAchillobator extends RenderDinosaurDefinition
     @Override
     public float getBabyScaleAdjustment()
     {
-        return 0.4F;
+        return 0.325F;
     }
 
     @Override

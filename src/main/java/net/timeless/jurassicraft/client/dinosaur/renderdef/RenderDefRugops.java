@@ -36,13 +36,13 @@ public class RenderDefRugops extends RenderDinosaurDefinition
     @Override
     public float getAdultScaleAdjustment()
     {
-        return 1.00F;
+        return 1.0F;
     }
 
     @Override
     public float getBabyScaleAdjustment()
     {
-        return 0.1F;
+        return 0.3F;
     }
 
     @Override

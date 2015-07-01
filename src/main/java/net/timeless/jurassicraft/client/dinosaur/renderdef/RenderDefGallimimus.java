@@ -42,7 +42,7 @@ public class RenderDefGallimimus extends RenderDinosaurDefinition
     @Override
     public float getBabyScaleAdjustment()
     {
-        return 0.3F;
+        return 0.25F;
     }
 
     @Override

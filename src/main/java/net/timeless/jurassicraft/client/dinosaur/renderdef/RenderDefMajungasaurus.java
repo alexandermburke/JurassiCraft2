@@ -42,7 +42,7 @@ public class RenderDefMajungasaurus extends RenderDinosaurDefinition
     @Override
     public float getBabyScaleAdjustment()
     {
-        return 0.45F;
+        return 0.4F;
     }
 
     @Override
