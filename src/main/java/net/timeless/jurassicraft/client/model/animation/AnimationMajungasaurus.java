@@ -74,8 +74,8 @@ public class AnimationMajungasaurus implements IModelAnimator
 
         MowzieModelRenderer[] body = new MowzieModelRenderer[] { bodyRear, bodyMid, bodyFront, neck1, neck2, neck3, neck4, head };
 
-        float globalSpeed = 1F;
-        float globalDegree = 0.4F;
+        float globalSpeed = 0.8F;
+        float globalDegree = 0.8F;
         float globalHeight = 1.0F;
 
         model.bob(bodyRear, globalSpeed * 1F, globalHeight * 0.8F, false, f, f1);
@@ -117,11 +117,9 @@ public class AnimationMajungasaurus implements IModelAnimator
         model.chainWave(armRight, 0.1F, 0.1F, -4, ticksExisted, 1F);
         model.chainWave(armLeft, 0.1F, 0.1F, -4, ticksExisted, 1F);
 
-        model.faceTarget(head, 5, rotationYaw, rotationPitch);
-        model.faceTarget(neck1, 5, rotationYaw, rotationPitch);
-        model.faceTarget(neck2, 5, rotationYaw, rotationPitch);
-        model.faceTarget(neck3, 5, rotationYaw, rotationPitch);
-        model.faceTarget(neck4, 5, rotationYaw, rotationPitch);
+        model.faceTarget(head, 3, rotationYaw, rotationPitch);
+        model.faceTarget(neck1, 3, rotationYaw, rotationPitch);
+        model.faceTarget(neck2, 3, rotationYaw, rotationPitch);
         
         ((EntityMajungasaurus) entity).tailBuffer.applyChainSwingBuffer(tail);
     }

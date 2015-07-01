@@ -60,7 +60,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
 
     public double transitionFromAge(double baby, double adult)
     {
-        return (dinosaurAge * adult - baby) / dinosaur.getMaximumAge() + baby;
+        return (adult - baby) / (dinosaur.getMaximumAge()) * dinosaurAge + baby;
     }
 
     public void onLivingUpdate()

@@ -110,7 +110,7 @@ public class DinosaurAchillobator extends Dinosaur
     @Override
     public double getMaximumAge()
     {
-        return 20F;
+        return 100F;
     }
 
     @Override

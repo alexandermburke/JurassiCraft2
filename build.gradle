@@ -23,7 +23,7 @@ apply plugin: 'forge'
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
-version = "0.2.0-beta"
+version = "2.0.0-pre-alpha"
 group = "net.ilexiconn.jurassicraft"
 archivesBaseName = "JurassiCraft"
 

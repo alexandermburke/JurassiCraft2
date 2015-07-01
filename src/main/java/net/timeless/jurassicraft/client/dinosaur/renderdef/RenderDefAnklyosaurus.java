@@ -42,7 +42,7 @@ public class RenderDefAnklyosaurus extends RenderDinosaurDefinition
     @Override
     public float getBabyScaleAdjustment()
     {
-        return 0.1F;
+        return 0.5F;
     }
 
     @Override
