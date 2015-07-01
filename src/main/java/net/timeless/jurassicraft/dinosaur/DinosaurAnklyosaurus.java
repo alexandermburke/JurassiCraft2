@@ -136,4 +136,16 @@ public class DinosaurAnklyosaurus extends Dinosaur
     {
         return femaleOverlayTextures;
     }
+    
+    @Override
+    public float getBabyEyeHeight()
+    {
+        return 1.8F;
+    }
+
+    @Override
+    public float getAdultEyeHeight()
+    {
+        return 1.8F;
+    }
 }

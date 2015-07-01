@@ -3,14 +3,14 @@ package net.timeless.jurassicraft.entity;
 import net.ilexiconn.llibrary.client.model.modelbase.ChainBuffer;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.timeless.jurassicraft.api.animation.IAnimatedEntity;
-import net.timeless.jurassicraft.entity.ai.EntityAIJCLookIdle;
-import net.timeless.jurassicraft.entity.ai.EntityAIJCWatchClosest;
+import net.timeless.jurassicraft.entity.ai.EntityAIJCWander;
 import net.timeless.jurassicraft.entity.base.EntityDinosaurAggressive;
 
 public class EntityIndominusRex extends EntityDinosaurAggressive implements IAnimatedEntity
@@ -33,9 +33,9 @@ public class EntityIndominusRex extends EntityDinosaurAggressive implements IAni
 
             this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, EntityPlayer.class));
 
-            this.tasks.addTask(6, new EntityAIWander(this, dinosaur.getAdultSpeed()));
-            this.tasks.addTask(7, new EntityAIJCWatchClosest(this, EntityPlayer.class, 6.0F, 1F, 40F));
-            this.tasks.addTask(8, new EntityAIJCLookIdle(this, 1F, 40F));
+            this.tasks.addTask(6, new EntityAIJCWander(this, 40));
+            this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
+            this.tasks.addTask(8, new EntityAILookIdle(this));
         }
     }
 

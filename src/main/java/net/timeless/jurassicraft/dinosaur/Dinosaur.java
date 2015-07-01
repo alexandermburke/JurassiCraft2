@@ -35,6 +35,10 @@ public abstract class Dinosaur
 
     public abstract double getAdultKnockback();
 
+    public abstract float getBabyEyeHeight();
+    
+    public abstract float getAdultEyeHeight();
+    
     public abstract int getMaximumAge();
 
     public abstract String[] getMaleTextures();

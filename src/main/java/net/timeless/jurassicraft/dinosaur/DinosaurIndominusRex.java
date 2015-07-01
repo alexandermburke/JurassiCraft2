@@ -132,4 +132,16 @@ public class DinosaurIndominusRex extends Dinosaur
     {
         return femaleOverlayTextures;
     }
+    
+    @Override
+    public float getBabyEyeHeight()
+    {
+        return 0.85F;
+    }
+
+    @Override
+    public float getAdultEyeHeight()
+    {
+        return 6.8F;
+    }
 }

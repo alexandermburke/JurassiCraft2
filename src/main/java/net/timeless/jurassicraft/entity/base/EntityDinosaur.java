@@ -159,4 +159,9 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
     {
         this.dinosaurAge = age;
     }
+    
+    public float getEyeHeight()
+    {
+        return (float) transitionFromAge(dinosaur.getBabyEyeHeight(), dinosaur.getAdultEyeHeight());
+    }
 }
