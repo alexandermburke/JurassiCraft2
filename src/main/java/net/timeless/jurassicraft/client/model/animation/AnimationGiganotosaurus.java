@@ -22,9 +22,9 @@ public class AnimationGiganotosaurus implements IModelAnimator
         float globalDegree = 0.45F;
         float height = 1.0F;
 
-//        f = entity.ticksExisted;
-//        f1 = 1.0F;
-        
+        // f = entity.ticksExisted;
+        // f1 = 1.0F;
+
         MowzieModelRenderer neck = model.getCube("Neck 1");
         MowzieModelRenderer neck2 = model.getCube("Neck 2");
         MowzieModelRenderer neck3 = model.getCube("Neck 3");
@@ -57,7 +57,7 @@ public class AnimationGiganotosaurus implements IModelAnimator
 
         MowzieModelRenderer rightCalf2 = model.getCube("Right Calf 2");
         MowzieModelRenderer leftCalf2 = model.getCube("Left Calf 2");
-        
+
         MowzieModelRenderer lowerJaw = model.getCube("Lower jaw");
 
         MowzieModelRenderer[] body = new MowzieModelRenderer[] { head, neck4, neck3, neck2, neck, body1, body2, body3 };
@@ -67,7 +67,7 @@ public class AnimationGiganotosaurus implements IModelAnimator
         int ticksExisted = entity.ticksExisted;
 
         head.rotateAngleX -= f1 * 0.35F;
-        
+
         // body3.rotateAngleX += f1 * 0.15F;
 
         model.bob(body3, globalSpeed * 1.0F, height * 1.0F, false, f, f1);

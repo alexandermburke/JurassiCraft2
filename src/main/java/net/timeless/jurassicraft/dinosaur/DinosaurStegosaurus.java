@@ -123,7 +123,7 @@ public class DinosaurStegosaurus extends Dinosaur
     {
         return femaleTextures;
     }
-    
+
     @Override
     public float getBabyEyeHeight()
     {
@@ -135,7 +135,7 @@ public class DinosaurStegosaurus extends Dinosaur
     {
         return 2.2F;
     }
-    
+
     @Override
     public float getBabySizeX()
     {

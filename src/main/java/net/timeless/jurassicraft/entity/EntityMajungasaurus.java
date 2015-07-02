@@ -15,7 +15,7 @@ import net.timeless.jurassicraft.entity.base.EntityDinosaurAggressive;
 public class EntityMajungasaurus extends EntityDinosaurAggressive
 {
     public ChainBuffer tailBuffer = new ChainBuffer(6);
-    
+
     public EntityMajungasaurus(World world)
     {
         super(world);
@@ -34,7 +34,7 @@ public class EntityMajungasaurus extends EntityDinosaurAggressive
             this.tasks.addTask(8, new EntityAILookIdle(this));
         }
     }
-    
+
     public void onUpdate()
     {
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);

@@ -118,7 +118,7 @@ public class DinosaurGallimimus extends Dinosaur
     {
         return femaleTextures;
     }
-    
+
     @Override
     public float getBabyEyeHeight()
     {
@@ -130,7 +130,7 @@ public class DinosaurGallimimus extends Dinosaur
     {
         return 3F;
     }
-    
+
     @Override
     public float getBabySizeX()
     {

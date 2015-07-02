@@ -115,7 +115,7 @@ public class DinosaurVelociraptor extends Dinosaur
     {
         return femaleTextures;
     }
-    
+
     @Override
     public float getBabyEyeHeight()
     {
@@ -127,7 +127,7 @@ public class DinosaurVelociraptor extends Dinosaur
     {
         return 1.45F;
     }
-    
+
     @Override
     public float getBabySizeX()
     {

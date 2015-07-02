@@ -106,7 +106,7 @@ public class DinosaurCompsognathus extends Dinosaur
     {
         return 10000;
     }
-    
+
     @Override
     public String[] getMaleTextures()
     {
@@ -118,7 +118,7 @@ public class DinosaurCompsognathus extends Dinosaur
     {
         return femaleTextures;
     }
-    
+
     @Override
     public float getBabyEyeHeight()
     {
@@ -130,7 +130,7 @@ public class DinosaurCompsognathus extends Dinosaur
     {
         return 0.5F;
     }
-    
+
     @Override
     public float getBabySizeX()
     {

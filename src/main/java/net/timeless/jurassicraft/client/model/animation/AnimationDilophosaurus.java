@@ -41,8 +41,8 @@ public class AnimationDilophosaurus implements IModelAnimator
         float globalDegree = 0.4F;
         float globalHeight = 1.0F;
 
-//        f = entity.ticksExisted;
-//        f1 = 1F;
+        // f = entity.ticksExisted;
+        // f1 = 1F;
 
         MowzieModelRenderer head = model.getCube("head");
 
@@ -82,8 +82,8 @@ public class AnimationDilophosaurus implements IModelAnimator
         MowzieModelRenderer handRight = model.getCube("hand1");
         MowzieModelRenderer handLeft = model.getCube("hand2");
 
-//        MowzieModelRenderer upperJaw = model.getCube("upperjaw");
-//        MowzieModelRenderer lowerJaw = model.getCube("down_jaw");
+        // MowzieModelRenderer upperJaw = model.getCube("upperjaw");
+        // MowzieModelRenderer lowerJaw = model.getCube("down_jaw");
 
         MowzieModelRenderer[] body = new MowzieModelRenderer[] { head, neck4, neck3, neck2, neck1, body1, body2, body3 };
         MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail5, tail4, tail3, tail2, tail1 };

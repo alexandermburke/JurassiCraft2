@@ -117,7 +117,7 @@ public class DinosaurRugops extends Dinosaur
     {
         return femaleTextures;
     }
-    
+
     @Override
     public float getBabyEyeHeight()
     {
@@ -129,7 +129,7 @@ public class DinosaurRugops extends Dinosaur
     {
         return 2.05F;
     }
-    
+
     @Override
     public float getBabySizeX()
     {

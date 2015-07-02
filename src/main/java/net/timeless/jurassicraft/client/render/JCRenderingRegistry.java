@@ -73,7 +73,7 @@ public class JCRenderingRegistry
         registerRenderDef(new RenderDefStegosaurus());
         registerRenderDef(new RenderDefTyrannosaurusRex());
         registerRenderDef(new RenderDefVelociraptor());
-        
+
         // Blocks
         ItemModelMesher modelMesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
 
@@ -159,7 +159,7 @@ public class JCRenderingRegistry
             }
         });
     }
-    
+
     private void registerRenderDef(RenderDinosaurDefinition renderDef)
     {
         renderDefs.put(renderDef.getDinosaur(), renderDef);

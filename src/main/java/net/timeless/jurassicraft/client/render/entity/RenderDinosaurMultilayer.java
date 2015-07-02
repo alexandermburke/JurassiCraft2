@@ -140,19 +140,19 @@ public class RenderDinosaurMultilayer extends RenderLiving
             if (!entity.isInvisible())
             {
                 int texture = entity.getTexture();
-                
-                if(entity.isMale())
+
+                if (entity.isMale())
                 {
-                    if(texture > maleOverlayTextures.length)
+                    if (texture > maleOverlayTextures.length)
                         texture = maleOverlayTextures.length;
-                    
+
                     this.renderer.bindTexture(maleOverlayTextures[texture]);
                 }
                 else
                 {
-                    if(texture > femaleOverlayTextures.length)
+                    if (texture > femaleOverlayTextures.length)
                         texture = femaleOverlayTextures.length;
-                    
+
                     this.renderer.bindTexture(femaleOverlayTextures[texture]);
                 }
 

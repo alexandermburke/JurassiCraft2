@@ -30,7 +30,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         else
             randTexture = rand.nextInt(dinosaur.getFemaleTextures().length);
     }
-    
+
     public void entityInit()
     {
         super.entityInit();
@@ -52,7 +52,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(transitionFromAge(dinosaur.getBabyKnockback(), dinosaur.getAdultKnockback()));
 
         this.setSize((float) transitionFromAge(dinosaur.getBabySizeX(), dinosaur.getBabySizeY()), (float) transitionFromAge(dinosaur.getAdultSizeX(), dinosaur.getAdultSizeY()));
-        
+
         this.heal((float) (newHealth - this.getHealth()));
     }
 
@@ -64,10 +64,10 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     public void onLivingUpdate()
     {
         super.onLivingUpdate();
-        
+
         this.setSize((float) transitionFromAge(dinosaur.getBabySizeX(), dinosaur.getAdultSizeX()), (float) transitionFromAge(dinosaur.getBabySizeY(), dinosaur.getAdultSizeY()));
-        
-        if(ticksExisted % 16 == 0)
+
+        if (ticksExisted % 16 == 0)
         {
             if (dinosaurAge < dinosaur.getMaximumAge())
             {
@@ -154,7 +154,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     {
         this.dinosaurAge = age;
     }
-    
+
     public float getEyeHeight()
     {
         return (float) transitionFromAge(dinosaur.getBabyEyeHeight(), dinosaur.getAdultEyeHeight());

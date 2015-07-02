@@ -8,7 +8,7 @@ public class DinosaurSegisaurus extends Dinosaur
 {
     private String[] maleTextures;
     private String[] femaleTextures;
-    
+
     private String[] maleOverlayTextures;
     private String[] femaleOverlayTextures;
 
@@ -16,7 +16,7 @@ public class DinosaurSegisaurus extends Dinosaur
     {
         this.maleTextures = new String[] { getDinosaurTexture("male") };
         this.femaleTextures = new String[] { getDinosaurTexture("female") };
-        
+
         this.maleOverlayTextures = new String[] { getDinosaurTexture("male_detail") };
         this.femaleOverlayTextures = new String[] { getDinosaurTexture("female_detail") };
     }
@@ -124,7 +124,7 @@ public class DinosaurSegisaurus extends Dinosaur
     {
         return femaleTextures;
     }
-    
+
     @Override
     public String[] getMaleOverlayTextures()
     {
@@ -136,7 +136,7 @@ public class DinosaurSegisaurus extends Dinosaur
     {
         return femaleOverlayTextures;
     }
-    
+
     @Override
     public float getBabyEyeHeight()
     {
@@ -148,7 +148,7 @@ public class DinosaurSegisaurus extends Dinosaur
     {
         return 0.85F;
     }
-    
+
     @Override
     public float getBabySizeX()
     {

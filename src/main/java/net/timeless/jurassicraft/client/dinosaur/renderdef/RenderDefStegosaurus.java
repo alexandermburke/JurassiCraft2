@@ -50,7 +50,7 @@ public class RenderDefStegosaurus extends RenderDinosaurDefinition
     {
         return 0.775F;
     }
-    
+
     @Override
     public float getShadowSize()
     {
