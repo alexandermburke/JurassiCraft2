@@ -1,10 +1,6 @@
 package net.timeless.jurassicraft.dinosaur;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.timeless.jurassicraft.entity.base.EntityDinosaur;
-import net.timeless.jurassicraft.entity.base.EntityHitbox;
 import net.timeless.jurassicraft.period.EnumTimePeriod;
 
 public abstract class Dinosaur
@@ -66,11 +62,6 @@ public abstract class Dinosaur
     public double getAttackSpeed()
     {
         return 0.5D;
-    }
-
-    public List<EntityHitbox> getHitBoxList()
-    {
-        return new ArrayList<>();
     }
 
     public boolean shouldRegister()

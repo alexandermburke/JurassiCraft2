@@ -1,7 +1,6 @@
 package net.timeless.jurassicraft.entity.base;
 
 import io.netty.buffer.ByteBuf;
-import net.ilexiconn.llibrary.common.entity.multipart.EntityPart;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.nbt.NBTTagCompound;
@@ -11,7 +10,6 @@ import net.timeless.jurassicraft.dinosaur.Dinosaur;
 
 public class EntityDinosaur extends EntityCreature implements IEntityAdditionalSpawnData
 {
-    protected EntityPart[] parts;
     protected Dinosaur dinosaur;
     protected int randTexture;
 
@@ -24,7 +22,6 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         super(world);
 
         dinosaurAge = 0;
-        parts = EntityHitbox.parseHitboxList(this, dinosaur.getHitBoxList());
 
         gender = rand.nextBoolean();
 
@@ -96,11 +93,6 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     public Dinosaur getDinosaur()
     {
         return dinosaur;
-    }
-
-    public EntityPart[] getParts()
-    {
-        return parts;
     }
 
     public boolean isMale()

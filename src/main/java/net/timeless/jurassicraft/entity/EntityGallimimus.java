@@ -1,6 +1,5 @@
 package net.timeless.jurassicraft.entity;
 
-import net.ilexiconn.llibrary.common.entity.multipart.IEntityMultiPart;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -12,7 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.timeless.jurassicraft.entity.base.EntityDinosaurAggressive;
 
-public class EntityGallimimus extends EntityDinosaurAggressive implements IEntityMultiPart
+public class EntityGallimimus extends EntityDinosaurAggressive
 {
     public EntityGallimimus(World world)
     {
