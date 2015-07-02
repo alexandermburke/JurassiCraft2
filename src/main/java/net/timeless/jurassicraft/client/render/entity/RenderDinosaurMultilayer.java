@@ -139,7 +139,22 @@ public class RenderDinosaurMultilayer extends RenderLiving
         {
             if (!entity.isInvisible())
             {
-                this.renderer.bindTexture(entity.isMale() ? maleOverlayTextures[entity.getTexture()] : femaleOverlayTextures[entity.getTexture()]);
+                int texture = entity.getTexture();
+                
+                if(entity.isMale())
+                {
+                    if(texture > maleOverlayTextures.length)
+                        texture = maleOverlayTextures.length;
+                    
+                    this.renderer.bindTexture(maleOverlayTextures[texture]);
+                }
+                else
+                {
+                    if(texture > femaleOverlayTextures.length)
+                        texture = femaleOverlayTextures.length;
+                    
+                    this.renderer.bindTexture(femaleOverlayTextures[texture]);
+                }
 
                 this.renderer.getMainModel().render(entity, armSwing, armSwingAmount, p_177148_5_, p_177148_6_, p_177148_7_, partialTicks);
                 this.renderer.func_177105_a(entity, p_177148_4_);

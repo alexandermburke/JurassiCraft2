@@ -30,7 +30,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         else
             randTexture = rand.nextInt(dinosaur.getFemaleTextures().length);
     }
-
+    
     public void entityInit()
     {
         super.entityInit();
