@@ -36,13 +36,13 @@ public class DinosaurVelociraptor extends Dinosaur
     @Override
     public int getEggPrimaryColor()
     {
-        return 0x85866E;
+        return 0xB17041;
     }
 
     @Override
     public int getEggSecondaryColor()
     {
-        return 0x403F31;
+        return 0x3B1505;
     }
 
     @Override
