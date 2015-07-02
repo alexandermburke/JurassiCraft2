@@ -1,7 +1,9 @@
 package net.timeless.jurassicraft.creativetab;
 
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.timeless.jurassicraft.block.JCBlockRegistry;
+import net.timeless.jurassicraft.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.item.JCItemRegistry;
 
 public class JCCreativeTabs
@@ -25,6 +27,11 @@ public class JCCreativeTabs
 
         dna = new CreativeTabJurassiCraft("jurassicraft.dna")
         {
+            public int getIconItemDamage()
+            {
+                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus_rex);   
+            }
+
             public Item getTabIconItem()
             {
                 return JCItemRegistry.dna;
@@ -33,6 +40,11 @@ public class JCCreativeTabs
 
         eggs = new CreativeTabJurassiCraft("jurassicraft.eggs")
         {
+            public int getIconItemDamage()
+            {
+                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus_rex);   
+            }
+            
             public Item getTabIconItem()
             {
                 return JCItemRegistry.egg;
@@ -41,6 +53,11 @@ public class JCCreativeTabs
 
         spawnEggs = new CreativeTabJurassiCraft("jurassicraft.spawnEggs")
         {
+            public int getIconItemDamage()
+            {
+                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus_rex);   
+            }
+            
             public Item getTabIconItem()
             {
                 return JCItemRegistry.spawn_egg;
