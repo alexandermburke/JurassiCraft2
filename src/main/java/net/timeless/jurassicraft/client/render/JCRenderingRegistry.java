@@ -24,6 +24,7 @@ import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefGiganotosaur
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefIndominusRex;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefMajungasaurus;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefParasaurolophus;
+import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefPteranodon;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefRugops;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefSegisaurus;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefSpinosaurus;
@@ -67,6 +68,7 @@ public class JCRenderingRegistry
         registerRenderDef(new RenderDefIndominusRex());
         registerRenderDef(new RenderDefMajungasaurus());
         registerRenderDef(new RenderDefParasaurolophus());
+        registerRenderDef(new RenderDefPteranodon());
         registerRenderDef(new RenderDefRugops());
         registerRenderDef(new RenderDefSegisaurus());
         registerRenderDef(new RenderDefSpinosaurus());

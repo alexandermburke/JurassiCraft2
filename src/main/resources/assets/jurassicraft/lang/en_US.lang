@@ -22,6 +22,7 @@ entity.gallimimus.name=Gallimimus
 entity.parasaurolophus.name=Parasaurolophus
 entity.anklyosaurus.name=Anklyosaurus
 entity.segisaurus.name=Segisaurus
+entity.pteranodon.name=Pteranodon
 
 //Items ==================================================
 item.rock_pick.name=Rock Pick
