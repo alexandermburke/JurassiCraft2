@@ -35,6 +35,14 @@ public abstract class Dinosaur
 
     public abstract double getAdultKnockback();
 
+    public abstract float getBabySizeX();
+    
+    public abstract float getBabySizeY();
+    
+    public abstract float getAdultSizeX();
+    
+    public abstract float getAdultSizeY();
+    
     public abstract float getBabyEyeHeight();
     
     public abstract float getAdultEyeHeight();

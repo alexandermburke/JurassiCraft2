@@ -130,4 +130,28 @@ public class DinosaurGallimimus extends Dinosaur
     {
         return 3F;
     }
+    
+    @Override
+    public float getBabySizeX()
+    {
+        return 0.6F;
+    }
+
+    @Override
+    public float getBabySizeY()
+    {
+        return 0.65F;
+    }
+
+    @Override
+    public float getAdultSizeX()
+    {
+        return 2.0F;
+    }
+
+    @Override
+    public float getAdultSizeY()
+    {
+        return 3.25F;
+    }
 }

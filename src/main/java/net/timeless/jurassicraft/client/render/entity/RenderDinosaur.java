@@ -2,8 +2,9 @@ package net.timeless.jurassicraft.client.render.entity;
 
 import java.util.Random;
 
-import net.ilexiconn.llibrary.client.render.entity.RenderMultiPart;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntitySheep;
@@ -19,7 +20,7 @@ import net.timeless.jurassicraft.entity.base.EntityDinosaur;
 import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
-public class RenderDinosaur extends RenderMultiPart
+public class RenderDinosaur extends RenderLiving
 {
     public Dinosaur dinosaur;
     public RenderDinosaurDefinition renderDef;
@@ -30,7 +31,7 @@ public class RenderDinosaur extends RenderMultiPart
 
     public RenderDinosaur(Dinosaur dinosaur, RenderDinosaurDefinition renderDef)
     {
-        super(renderDef.getModel(), renderDef.getShadowSize());
+        super(Minecraft.getMinecraft().getRenderManager(), renderDef.getModel(), renderDef.getShadowSize());
 
         this.dinosaur = dinosaur;
         this.random = new Random();

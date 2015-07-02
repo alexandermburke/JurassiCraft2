@@ -148,4 +148,28 @@ public class DinosaurAchillobator extends Dinosaur
     {
         return 1.6F;
     }
+
+    @Override
+    public float getBabySizeX()
+    {
+        return 0.8F;
+    }
+
+    @Override
+    public float getBabySizeY()
+    {
+        return 0.6F;
+    }
+
+    @Override
+    public float getAdultSizeX()
+    {
+        return 2.0F;
+    }
+
+    @Override
+    public float getAdultSizeY()
+    {
+        return 1.8F;
+    }
 }

@@ -130,4 +130,28 @@ public class DinosaurCompsognathus extends Dinosaur
     {
         return 0.5F;
     }
+    
+    @Override
+    public float getBabySizeX()
+    {
+        return 0.2F;
+    }
+
+    @Override
+    public float getBabySizeY()
+    {
+        return 0.25F;
+    }
+
+    @Override
+    public float getAdultSizeX()
+    {
+        return 0.4F;
+    }
+
+    @Override
+    public float getAdultSizeY()
+    {
+        return 0.55F;
+    }
 }

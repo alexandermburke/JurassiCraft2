@@ -148,4 +148,28 @@ public class DinosaurSegisaurus extends Dinosaur
     {
         return 0.85F;
     }
+    
+    @Override
+    public float getBabySizeX()
+    {
+        return 0.5F;
+    }
+
+    @Override
+    public float getBabySizeY()
+    {
+        return 0.4F;
+    }
+
+    @Override
+    public float getAdultSizeX()
+    {
+        return 1.25F;
+    }
+
+    @Override
+    public float getAdultSizeY()
+    {
+        return 0.95F;
+    }
 }

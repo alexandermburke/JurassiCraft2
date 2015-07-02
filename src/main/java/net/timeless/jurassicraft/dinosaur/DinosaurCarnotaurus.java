@@ -130,4 +130,28 @@ public class DinosaurCarnotaurus extends Dinosaur
     {
         return 2.4F;
     }
+    
+    @Override
+    public float getBabySizeX()
+    {
+        return 1.0F;
+    }
+
+    @Override
+    public float getBabySizeY()
+    {
+        return 0.6F;
+    }
+
+    @Override
+    public float getAdultSizeX()
+    {
+        return 3.5F;
+    }
+
+    @Override
+    public float getAdultSizeY()
+    {
+        return 2.8F;
+    }
 }

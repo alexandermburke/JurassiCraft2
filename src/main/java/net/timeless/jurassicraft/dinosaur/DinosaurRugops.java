@@ -129,4 +129,28 @@ public class DinosaurRugops extends Dinosaur
     {
         return 2.05F;
     }
+    
+    @Override
+    public float getBabySizeX()
+    {
+        return 1.0F;
+    }
+
+    @Override
+    public float getBabySizeY()
+    {
+        return 0.8F;
+    }
+
+    @Override
+    public float getAdultSizeX()
+    {
+        return 2.0F;
+    }
+
+    @Override
+    public float getAdultSizeY()
+    {
+        return 2.6F;
+    }
 }

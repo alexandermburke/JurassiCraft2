@@ -144,4 +144,28 @@ public class DinosaurIndominusRex extends Dinosaur
     {
         return 6.8F;
     }
+    
+    @Override
+    public float getBabySizeX()
+    {
+        return 1.2F;
+    }
+
+    @Override
+    public float getBabySizeY()
+    {
+        return 1.0F;
+    }
+
+    @Override
+    public float getAdultSizeX()
+    {
+        return 8.0F;
+    }
+
+    @Override
+    public float getAdultSizeY()
+    {
+        return 8.0F;
+    }
 }

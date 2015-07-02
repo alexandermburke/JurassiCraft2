@@ -148,4 +148,28 @@ public class DinosaurAnklyosaurus extends Dinosaur
     {
         return 2F;
     }
+    
+    @Override
+    public float getBabySizeX()
+    {
+        return 1.0F;
+    }
+
+    @Override
+    public float getBabySizeY()
+    {
+        return 0.8F;
+    }
+
+    @Override
+    public float getAdultSizeX()
+    {
+        return 4.0F;
+    }
+
+    @Override
+    public float getAdultSizeY()
+    {
+        return 3F;
+    }
 }

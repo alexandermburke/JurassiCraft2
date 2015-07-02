@@ -2,7 +2,6 @@ package net.timeless.jurassicraft.entity.base;
 
 import io.netty.buffer.ByteBuf;
 import net.ilexiconn.llibrary.common.entity.multipart.EntityPart;
-import net.ilexiconn.llibrary.common.entity.multipart.IEntityMultiPart;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.nbt.NBTTagCompound;
@@ -10,7 +9,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.timeless.jurassicraft.dinosaur.Dinosaur;
 
-public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, IEntityAdditionalSpawnData
+public class EntityDinosaur extends EntityCreature implements IEntityAdditionalSpawnData
 {
     protected EntityPart[] parts;
     protected Dinosaur dinosaur;
@@ -55,6 +54,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(transitionFromAge(dinosaur.getBabySpeed(), dinosaur.getAdultSpeed()));
         this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(transitionFromAge(dinosaur.getBabyKnockback(), dinosaur.getAdultKnockback()));
 
+        this.setSize((float) transitionFromAge(dinosaur.getBabySizeX(), dinosaur.getBabySizeY()), (float) transitionFromAge(dinosaur.getAdultSizeX(), dinosaur.getAdultSizeY()));
+        
         this.heal((float) (newHealth - this.getHealth()));
     }
 
@@ -66,7 +67,9 @@ public class EntityDinosaur extends EntityCreature implements IEntityMultiPart, 
     public void onLivingUpdate()
     {
         super.onLivingUpdate();
-
+        
+        this.setSize((float) transitionFromAge(dinosaur.getBabySizeX(), dinosaur.getAdultSizeX()), (float) transitionFromAge(dinosaur.getBabySizeY(), dinosaur.getAdultSizeY()));
+        
         if(ticksExisted % 16 == 0)
         {
             if (dinosaurAge < dinosaur.getMaximumAge())

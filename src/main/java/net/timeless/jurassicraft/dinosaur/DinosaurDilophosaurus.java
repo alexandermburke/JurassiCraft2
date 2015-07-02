@@ -130,4 +130,28 @@ public class DinosaurDilophosaurus extends Dinosaur
     {
         return 2.8F;
     }
+    
+    @Override
+    public float getBabySizeX()
+    {
+        return 0.5F;
+    }
+
+    @Override
+    public float getBabySizeY()
+    {
+        return 0.6F;
+    }
+
+    @Override
+    public float getAdultSizeX()
+    {
+        return 3.0F;
+    }
+
+    @Override
+    public float getAdultSizeY()
+    {
+        return 3.0F;
+    }
 }

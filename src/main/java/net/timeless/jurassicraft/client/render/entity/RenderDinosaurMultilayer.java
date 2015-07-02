@@ -2,8 +2,9 @@ package net.timeless.jurassicraft.client.render.entity;
 
 import java.util.Random;
 
-import net.ilexiconn.llibrary.client.render.entity.RenderMultiPart;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -20,7 +21,7 @@ import net.timeless.jurassicraft.entity.base.EntityDinosaur;
 import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
-public class RenderDinosaurMultilayer extends RenderMultiPart
+public class RenderDinosaurMultilayer extends RenderLiving
 {
     public Dinosaur dinosaur;
     public RenderDinosaurDefinition renderDef;
@@ -32,7 +33,7 @@ public class RenderDinosaurMultilayer extends RenderMultiPart
 
     public RenderDinosaurMultilayer(Dinosaur dinosaur, RenderDinosaurDefinition renderDef)
     {
-        super(renderDef.getModel(), renderDef.getShadowSize());
+        super(Minecraft.getMinecraft().getRenderManager(), renderDef.getModel(), renderDef.getShadowSize());
         this.addLayer(new LayerDinosaurFeatures(this));
 
         this.dinosaur = dinosaur;

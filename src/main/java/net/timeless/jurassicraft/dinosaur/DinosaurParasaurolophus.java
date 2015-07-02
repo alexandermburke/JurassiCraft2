@@ -130,4 +130,28 @@ public class DinosaurParasaurolophus extends Dinosaur
     {
         return 2.45F;
     }
+    
+    @Override
+    public float getBabySizeX()
+    {
+        return 1.0F;
+    }
+
+    @Override
+    public float getBabySizeY()
+    {
+        return 0.8F;
+    }
+
+    @Override
+    public float getAdultSizeX()
+    {
+        return 3.5F;
+    }
+
+    @Override
+    public float getAdultSizeY()
+    {
+        return 3.5F;
+    }
 }

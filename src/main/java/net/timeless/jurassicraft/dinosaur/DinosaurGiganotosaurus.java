@@ -130,4 +130,28 @@ public class DinosaurGiganotosaurus extends Dinosaur
     {
         return 4.8F;
     }
+    
+    @Override
+    public float getBabySizeX()
+    {
+        return 1.2F;
+    }
+
+    @Override
+    public float getBabySizeY()
+    {
+        return 0.8F;
+    }
+
+    @Override
+    public float getAdultSizeX()
+    {
+        return 6F;
+    }
+
+    @Override
+    public float getAdultSizeY()
+    {
+        return 5.8F;
+    }
 }

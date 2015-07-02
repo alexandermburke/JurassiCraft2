@@ -144,4 +144,28 @@ public class DinosaurTyrannosaurusRex extends Dinosaur
     {
         return 3.8F;
     }
+    
+    @Override
+    public float getBabySizeX()
+    {
+        return 0.8F;
+    }
+
+    @Override
+    public float getBabySizeY()
+    {
+        return 0.8F;
+    }
+
+    @Override
+    public float getAdultSizeX()
+    {
+        return 6.5F;
+    }
+
+    @Override
+    public float getAdultSizeY()
+    {
+        return 5F;
+    }
 }

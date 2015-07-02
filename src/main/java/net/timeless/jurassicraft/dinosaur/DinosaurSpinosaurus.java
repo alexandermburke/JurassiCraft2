@@ -147,4 +147,28 @@ public class DinosaurSpinosaurus extends Dinosaur
     {
         return 3.8F;
     }
+    
+    @Override
+    public float getBabySizeX()
+    {
+        return 1.0F;
+    }
+
+    @Override
+    public float getBabySizeY()
+    {
+        return 1.0F;
+    }
+
+    @Override
+    public float getAdultSizeX()
+    {
+        return 4.0F;
+    }
+
+    @Override
+    public float getAdultSizeY()
+    {
+        return 5.8F;
+    }
 }

@@ -127,4 +127,28 @@ public class DinosaurVelociraptor extends Dinosaur
     {
         return 1.45F;
     }
+    
+    @Override
+    public float getBabySizeX()
+    {
+        return 0.6F;
+    }
+
+    @Override
+    public float getBabySizeY()
+    {
+        return 0.6F;
+    }
+
+    @Override
+    public float getAdultSizeX()
+    {
+        return 1.5F;
+    }
+
+    @Override
+    public float getAdultSizeY()
+    {
+        return 1.8F;
+    }
 }

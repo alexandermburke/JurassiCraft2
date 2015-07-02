@@ -135,4 +135,28 @@ public class DinosaurStegosaurus extends Dinosaur
     {
         return 2.2F;
     }
+    
+    @Override
+    public float getBabySizeX()
+    {
+        return 1.0F;
+    }
+
+    @Override
+    public float getBabySizeY()
+    {
+        return 0.7F;
+    }
+
+    @Override
+    public float getAdultSizeX()
+    {
+        return 5.0F;
+    }
+
+    @Override
+    public float getAdultSizeY()
+    {
+        return 4.8F;
+    }
 }
