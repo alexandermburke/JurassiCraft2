@@ -25,8 +25,10 @@ public class AnimationParasaurolophus implements IModelAnimator
         MowzieModelRenderer head = model.getCube("Head");
         
         MowzieModelRenderer neck1 = model.getCube("Neck");
+        MowzieModelRenderer neck2 = model.getCube("Neck 2");
         
-        model.faceTarget(head, 2, rotationYaw, rotationPitch);
-        model.faceTarget(neck1, 2, rotationYaw, rotationPitch);
+        model.faceTarget(head, 3, rotationYaw, rotationPitch);
+        model.faceTarget(neck1, 3, rotationYaw, rotationPitch);
+        model.faceTarget(neck2, 3, rotationYaw, rotationPitch);
     }
 }

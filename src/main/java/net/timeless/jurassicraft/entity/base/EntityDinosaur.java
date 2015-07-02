@@ -29,6 +29,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
             randTexture = rand.nextInt(dinosaur.getMaleTextures().length);
         else
             randTexture = rand.nextInt(dinosaur.getFemaleTextures().length);
+        
+        adjustHitbox();
     }
 
     public void entityInit()
@@ -51,9 +53,14 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(transitionFromAge(dinosaur.getBabySpeed(), dinosaur.getAdultSpeed()));
         this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(transitionFromAge(dinosaur.getBabyKnockback(), dinosaur.getAdultKnockback()));
 
-        this.setSize((float) transitionFromAge(dinosaur.getBabySizeX(), dinosaur.getBabySizeY()), (float) transitionFromAge(dinosaur.getAdultSizeX(), dinosaur.getAdultSizeY()));
+        adjustHitbox();
 
         this.heal((float) (newHealth - this.getHealth()));
+    }
+
+    private void adjustHitbox()
+    {
+        this.setSize((float) transitionFromAge(dinosaur.getBabySizeX(), dinosaur.getBabySizeY()), (float) transitionFromAge(dinosaur.getAdultSizeX(), dinosaur.getAdultSizeY()));
     }
 
     public double transitionFromAge(double baby, double adult)
@@ -122,6 +129,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         gender = nbt.getBoolean("Gender");
         randTexture = nbt.getInteger("Texture");
         dinosaurAge = nbt.getInteger("Dinosaur Age");
+        
+        adjustHitbox();
     }
 
     @Override
@@ -138,6 +147,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         gender = additionalData.readBoolean();
         randTexture = additionalData.readInt();
         dinosaurAge = additionalData.readInt();
+        
+        adjustHitbox();
     }
 
     public double getDinosaurAge()
