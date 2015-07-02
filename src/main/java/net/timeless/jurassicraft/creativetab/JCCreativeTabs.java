@@ -18,6 +18,11 @@ public class JCCreativeTabs
     {
         items = new CreativeTabJurassiCraft("jurassicraft.items")
         {
+            public int getIconItemDamage()
+            {
+                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus_rex);   
+            }
+            
             public Item getTabIconItem()
             {
                 return JCItemRegistry.fossil;
