@@ -136,12 +136,12 @@ public class DinosaurTyrannosaurusRex extends Dinosaur
     @Override
     public float getBabyEyeHeight()
     {
-        return 1.8F;
+        return 0.6F;
     }
 
     @Override
     public float getAdultEyeHeight()
     {
-        return 1.8F;
+        return 3.8F;
     }
 }

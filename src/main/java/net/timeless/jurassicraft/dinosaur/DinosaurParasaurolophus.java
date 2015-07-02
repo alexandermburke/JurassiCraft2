@@ -122,12 +122,12 @@ public class DinosaurParasaurolophus extends Dinosaur
     @Override
     public float getBabyEyeHeight()
     {
-        return 1.8F;
+        return 0.45F;
     }
 
     @Override
     public float getAdultEyeHeight()
     {
-        return 1.8F;
+        return 2.45F;
     }
 }

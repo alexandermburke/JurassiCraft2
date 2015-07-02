@@ -119,12 +119,12 @@ public class DinosaurVelociraptor extends Dinosaur
     @Override
     public float getBabyEyeHeight()
     {
-        return 1.8F;
+        return 0.45F;
     }
 
     @Override
     public float getAdultEyeHeight()
     {
-        return 1.8F;
+        return 1.45F;
     }
 }

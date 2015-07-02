@@ -140,12 +140,12 @@ public class DinosaurAnklyosaurus extends Dinosaur
     @Override
     public float getBabyEyeHeight()
     {
-        return 1.8F;
+        return 0.4F;
     }
 
     @Override
     public float getAdultEyeHeight()
     {
-        return 1.8F;
+        return 2F;
     }
 }
