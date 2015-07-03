@@ -21,6 +21,7 @@ import net.timeless.jurassicraft.dinosaur.DinosaurRugops;
 import net.timeless.jurassicraft.dinosaur.DinosaurSegisaurus;
 import net.timeless.jurassicraft.dinosaur.DinosaurSpinosaurus;
 import net.timeless.jurassicraft.dinosaur.DinosaurStegosaurus;
+import net.timeless.jurassicraft.dinosaur.DinosaurTriceratops;
 import net.timeless.jurassicraft.dinosaur.DinosaurTyrannosaurusRex;
 import net.timeless.jurassicraft.dinosaur.DinosaurVelociraptor;
 import net.timeless.jurassicraft.period.EnumTimePeriod;
@@ -47,6 +48,7 @@ public class JCEntityRegistry
     public static final Dinosaur segisaurus = new DinosaurSegisaurus();
     public static final Dinosaur spinosaurus = new DinosaurSpinosaurus();
     public static final Dinosaur stegosaurus = new DinosaurStegosaurus();
+    public static final Dinosaur triceratops = new DinosaurTriceratops();
     public static final Dinosaur tyrannosaurus_rex = new DinosaurTyrannosaurusRex();
     public static final Dinosaur velociraptor = new DinosaurVelociraptor();
 
@@ -67,6 +69,7 @@ public class JCEntityRegistry
         registerDinosaur(segisaurus);
         registerDinosaur(spinosaurus);
         registerDinosaur(stegosaurus);
+        registerDinosaur(triceratops);
         registerDinosaur(tyrannosaurus_rex);
         registerDinosaur(velociraptor);
 

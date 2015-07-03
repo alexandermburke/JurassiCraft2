@@ -12,6 +12,7 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDinosaurDefinition;
 import net.timeless.jurassicraft.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.entity.EntityVelociraptor;
@@ -28,6 +29,11 @@ public class RenderDinosaur extends RenderLiving
     public ResourceLocation[] maleTextures;
     public ResourceLocation[] femaleTextures;
     public Random random;
+
+    public ResourceLocation velociraptorBlue = new ResourceLocation(JurassiCraft.modid, "textures/entities/velociraptor/velociraptor_blue.png");
+    public ResourceLocation velociraptorCharlie = new ResourceLocation(JurassiCraft.modid, "textures/entities/velociraptor/velociraptor_charlie.png");
+    public ResourceLocation velociraptorDelta = new ResourceLocation(JurassiCraft.modid, "textures/entities/velociraptor/velociraptor_delta.png");
+    public ResourceLocation velociraptorEcho = new ResourceLocation(JurassiCraft.modid, "textures/entities/velociraptor/velociraptor_echo.png");
 
     public RenderDinosaur(Dinosaur dinosaur, RenderDinosaurDefinition renderDef)
     {
@@ -96,7 +102,23 @@ public class RenderDinosaur extends RenderLiving
 
     public ResourceLocation getEntityTexture(EntityDinosaur entity)
     {
-        return entity.isMale() ? maleTextures[entity.getTexture()] : femaleTextures[entity.getTexture()];
+        ResourceLocation texture = entity.isMale() ? maleTextures[entity.getTexture()] : femaleTextures[entity.getTexture()];
+
+        if(entity instanceof EntityVelociraptor)
+        {
+            String customNameTag = entity.getCustomNameTag();
+
+            if(customNameTag.equals("Blue"))
+                texture = velociraptorBlue;
+            else if(customNameTag.equals("Echo"))
+                texture = velociraptorEcho;
+            else if(customNameTag.equals("Charlie"))
+                texture = velociraptorCharlie;
+            else if(customNameTag.equals("Delta"))
+                texture = velociraptorDelta;
+        }
+
+        return texture;
     }
 
     public ResourceLocation getEntityTexture(Entity entity)

@@ -104,7 +104,7 @@ public class AnimationTyrannosaurusRex implements IModelAnimator
         model.chainWave(leftArmParts, -0.1F, 0.2F, 4, entity.ticksExisted, 1.0F);
 
         model.chainSwing(tailParts, 0.1F, 0.05F - (0.05F), 1, entity.ticksExisted, 1.0F - 0.6F);
-        model.chainWave(tailParts, 0.1F, -0.05F - (-0.05F), 2, entity.ticksExisted, 1.0F - 0.6F);
+        model.chainWave(tailParts, 0.1F, -0.1F, 2, entity.ticksExisted, 1.0F - 0.6F);
 
         ((EntityTyrannosaurusRex) entity).tailBuffer.applyChainSwingBuffer(tailParts);
     }
