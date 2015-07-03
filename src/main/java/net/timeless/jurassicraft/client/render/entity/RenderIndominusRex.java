@@ -4,17 +4,13 @@ import java.util.Random;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntitySheep;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDinosaurDefinition;
@@ -93,6 +89,8 @@ public class RenderIndominusRex extends RenderLiving
     {
         super.doRender(entity, x, y, z, p_76986_8_, partialTicks);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glEnable(GL11.GL_ALPHA_TEST);
     }
 
     public void preRenderCallback(EntityLivingBase entity, float side)
@@ -102,14 +100,20 @@ public class RenderIndominusRex extends RenderLiving
         float scale = (float) entityDinosaur.transitionFromAge(renderDef.getBabyScaleAdjustment(), renderDef.getAdultScaleAdjustment());
         shadowSize = scale * renderDef.getShadowSize();
 
-        if(((EntityIndominusRex)entity).isCamouflaging())
+        EntityIndominusRex iRex = (EntityIndominusRex)entity;
+        
+        if(iRex.isCamouflaging())
         {
-            int color = BiomeColorHelper.getGrassColorAtPos(entity.worldObj, entity.getPosition()); //BlockGrass
-            float red = (float)(color >> 16 & 255) / 255.0F;
-            float green = (float)(color >> 8 & 255) / 255.0F;
-            float blue = (float)(color & 255) / 255.0F;
-
-            GlStateManager.color(red, green, blue, 1.0F);
+//            int color = BiomeColorHelper.getGrassColorAtPos(entity.worldObj, entity.getPosition()); //BlockGrass
+//            float red = (float)(color >> 16 & 255) / 255.0F;
+//            float green = (float)(color >> 8 & 255) / 255.0F;
+//            float blue = (float)(color & 255) / 255.0F;
+            
+            GL11.glEnable(GL11.GL_BLEND);
+            GL11.glDisable(GL11.GL_ALPHA_TEST);
+            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+            float[] color = iRex.getSkinColor();
+            GlStateManager.color(color[0], color[1], color[2], 0.7F);
         }
 
         GlStateManager.translate(renderDef.getRenderXOffset() * scale, renderDef.getRenderYOffset() * scale, renderDef.getRenderZOffset() * scale);
@@ -180,7 +184,11 @@ public class RenderIndominusRex extends RenderLiving
 
                     this.renderer.bindTexture(femaleOverlayTextures[texture]);
                 }
-
+                
+                GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+                GL11.glDisable(GL11.GL_BLEND);
+                GL11.glEnable(GL11.GL_ALPHA_TEST);
+                
                 this.renderer.getMainModel().render(entity, armSwing, armSwingAmount, p_177148_5_, p_177148_6_, p_177148_7_, partialTicks);
                 this.renderer.func_177105_a(entity, p_177148_4_);
             }
