@@ -61,8 +61,7 @@ processResources {
 }
 
 idea { 
-    module 
-    {
+    module {
         inheritOutputDirs = true 
     }
 }
