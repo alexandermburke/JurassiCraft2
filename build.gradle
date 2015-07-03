@@ -23,24 +23,24 @@ apply plugin: 'forge'
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
-version = "2.0.0-pre-alpha"
-group = "net.ilexiconn.jurassicraft"
+version = "2.0.0"
+group = "net.timeless.jurassicraft"
 archivesBaseName = "JurassiCraft"
 
 repositories {
     mavenCentral()
     maven {
         name = "ilexiconn"
-        url = "http://ilexiconn.net/maven"
+        url = "https://maven.ilexiconn.net"
     }
 }
 
 dependencies {
-    compile 'net.ilexiconn.llibrary:LLibrary:0.2.0-1.8:dev'
+    compile 'net.ilexiconn.llibrary:LLibrary:0.3.0-1.8:dev'
 }
 
 minecraft {
-    version = "1.8-11.14.1.1398"
+    version = "1.8-11.14.3.1450"
     runDir = "minecraft"
     replace '${version}', project.version
     mappings = "snapshot_20141130"
@@ -60,4 +60,8 @@ processResources {
     }
 }
 
-idea { module { inheritOutputDirs = true } }
+idea { 
+    module {
+        inheritOutputDirs = true 
+    }
+}
