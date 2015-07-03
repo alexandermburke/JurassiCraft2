@@ -35,8 +35,10 @@ import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefVelociraptor
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDinosaurDefinition;
 import net.timeless.jurassicraft.client.render.entity.RenderDinosaur;
 import net.timeless.jurassicraft.client.render.entity.RenderDinosaurMultilayer;
+import net.timeless.jurassicraft.client.render.entity.RenderJurassiCraftSign;
 import net.timeless.jurassicraft.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.entity.base.JCEntityRegistry;
+import net.timeless.jurassicraft.entity.item.EntityJurassiCraftSign;
 import net.timeless.jurassicraft.item.JCItemRegistry;
 
 import com.google.common.collect.Maps;
@@ -104,6 +106,8 @@ public class JCRenderingRegistry
             else
                 RenderingRegistry.registerEntityRenderingHandler(dinosaur.getDinosaurClass(), new RenderDinosaur(dinosaur, renderDef));
         }
+        
+        RenderingRegistry.registerEntityRenderingHandler(EntityJurassiCraftSign.class, new RenderJurassiCraftSign());
 
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
         ItemModelMesher modelMesher = renderItem.getItemModelMesher();
@@ -112,6 +116,7 @@ public class JCRenderingRegistry
         this.registerItemRenderer(modelMesher, JCItemRegistry.plaster_and_bandage, "plaster_and_bandage", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.spawn_egg, "dino_spawn_egg", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.paleo_pad, "paleo_pad", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.gentle_giants_sign, "gentle_giants_sign", "inventory");
 
         int meta = 0;
 

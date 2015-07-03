@@ -160,7 +160,7 @@ public class DinosaurIndominusRex extends Dinosaur
     @Override
     public float getAdultSizeX()
     {
-        return 8.0F;
+        return 6.0F;
     }
 
     @Override

@@ -160,7 +160,7 @@ public class DinosaurTyrannosaurusRex extends Dinosaur
     @Override
     public float getAdultSizeX()
     {
-        return 6.5F;
+        return 4.5F;
     }
 
     @Override

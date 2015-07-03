@@ -3,6 +3,7 @@ package net.timeless.jurassicraft.entity.base;
 import java.util.HashMap;
 import java.util.List;
 
+import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.dinosaur.Dinosaur;
@@ -24,6 +25,7 @@ import net.timeless.jurassicraft.dinosaur.DinosaurStegosaurus;
 import net.timeless.jurassicraft.dinosaur.DinosaurTriceratops;
 import net.timeless.jurassicraft.dinosaur.DinosaurTyrannosaurusRex;
 import net.timeless.jurassicraft.dinosaur.DinosaurVelociraptor;
+import net.timeless.jurassicraft.entity.item.EntityJurassiCraftSign;
 import net.timeless.jurassicraft.period.EnumTimePeriod;
 
 import com.google.common.collect.Lists;
@@ -54,59 +56,61 @@ public class JCEntityRegistry
 
     public void register()
     {
-        registerDinosaur(achillobator);
-        registerDinosaur(anklyosaurus);
-        registerDinosaur(carnotaurus);
-        registerDinosaur(compsognathus);
-        registerDinosaur(dilophosaurus);
-        registerDinosaur(gallimimus);
-        registerDinosaur(giganotosaurus);
-        registerDinosaur(indominus_rex);
-        registerDinosaur(majungasaurus);
-        registerDinosaur(parasaurolophus);
-        registerDinosaur(pteranodon);
-        registerDinosaur(rugops);
-        registerDinosaur(segisaurus);
-        registerDinosaur(spinosaurus);
-        registerDinosaur(stegosaurus);
-        registerDinosaur(triceratops);
-        registerDinosaur(tyrannosaurus_rex);
-        registerDinosaur(velociraptor);
+        registerDinosaurType(achillobator);
+        registerDinosaurType(anklyosaurus);
+        registerDinosaurType(carnotaurus);
+        registerDinosaurType(compsognathus);
+        registerDinosaurType(dilophosaurus);
+        registerDinosaurType(gallimimus);
+        registerDinosaurType(giganotosaurus);
+        registerDinosaurType(indominus_rex);
+        registerDinosaurType(majungasaurus);
+        registerDinosaurType(parasaurolophus);
+        registerDinosaurType(pteranodon);
+        registerDinosaurType(rugops);
+        registerDinosaurType(segisaurus);
+        registerDinosaurType(spinosaurus);
+        registerDinosaurType(stegosaurus);
+        registerDinosaurType(triceratops);
+        registerDinosaurType(tyrannosaurus_rex);
+        registerDinosaurType(velociraptor);
 
         // Always register a new dinosaur after last one in list, otherwise all
         // items with metadata will be shifted by one (all dinosaurs will change
         // form D:) (UNLESS it is before the release of JC2) I want to change the way IDs work so this will not be the case.
 
-        for (Dinosaur dino : dinosaurs)
-        {
-            registerEntity(dino);
-        }
+        for (Dinosaur dinosaur : dinosaurs)
+            registerDinosaur(dinosaur);
+        
+        registerEntity(EntityJurassiCraftSign.class, "Gentle Giants Sign");
     }
 
-    public void registerEntity(Dinosaur dinosaur)
+    public void registerDinosaur(Dinosaur dinosaur)
     {
         if (dinosaur.shouldRegister())
-        {
-            Class<? extends EntityDinosaur> entityClass = dinosaur.getDinosaurClass();
-
-            int entityId = EntityRegistry.findGlobalUniqueEntityId();
-            String dinoName = dinosaur.getName().toLowerCase().replaceAll(" ", "_");
-
-            EntityRegistry.registerGlobalEntityID(entityClass, dinoName, entityId);
-            EntityRegistry.registerModEntity(entityClass, dinoName, entityId, JurassiCraft.instance, 1024, 1, true);
-        }
+            registerEntity(dinosaur.getDinosaurClass(), dinosaur.getName());
     }
 
-    public static void registerDinosaur(Dinosaur dino)
+    private void registerEntity(Class<? extends Entity> entity, String name)
     {
-        dinosaurs.add(dino);
-        EnumTimePeriod period = dino.getPeriod();
+        int entityId = EntityRegistry.findGlobalUniqueEntityId();
+        
+        String formattedName = name.toLowerCase().replaceAll(" ", "_");
+        
+        EntityRegistry.registerGlobalEntityID(entity, formattedName, entityId);
+        EntityRegistry.registerModEntity(entity, formattedName, entityId, JurassiCraft.instance, 1024, 1, true);
+    }
+    
+    public static void registerDinosaurType(Dinosaur dinosaur)
+    {
+        dinosaurs.add(dinosaur);
+        EnumTimePeriod period = dinosaur.getPeriod();
 
         List<Dinosaur> dinoList = dinosaursFromPeriod.get(period);
 
         if (dinoList != null)
         {
-            dinoList.add(dino);
+            dinoList.add(dinosaur);
 
             dinosaursFromPeriod.remove(period);
             dinosaursFromPeriod.put(period, dinoList);
@@ -114,7 +118,7 @@ public class JCEntityRegistry
         else
         {
             List<Dinosaur> newDinoList = Lists.newArrayList();
-            newDinoList.add(dino);
+            newDinoList.add(dinosaur);
 
             dinosaursFromPeriod.put(period, newDinoList);
         }

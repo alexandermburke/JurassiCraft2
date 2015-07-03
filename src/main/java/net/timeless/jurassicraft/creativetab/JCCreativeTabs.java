@@ -13,7 +13,8 @@ public class JCCreativeTabs
     public static CreativeTabJurassiCraft dna;
     public static CreativeTabJurassiCraft eggs;
     public static CreativeTabJurassiCraft spawnEggs;
-
+    public static CreativeTabJurassiCraft decorations;
+    
     public void register()
     {
         items = new CreativeTabJurassiCraft("jurassicraft.items")
@@ -68,6 +69,14 @@ public class JCCreativeTabs
             }
         };
 
+        decorations = new CreativeTabJurassiCraft("jurassicraft.decorations")
+        {
+            public Item getTabIconItem()
+            {
+                return Item.getItemFromBlock(JCBlockRegistry.encased_fossil);
+            }
+        };
+        
         blocks = new CreativeTabJurassiCraft("jurassicraft.blocks")
         {
             public Item getTabIconItem()
