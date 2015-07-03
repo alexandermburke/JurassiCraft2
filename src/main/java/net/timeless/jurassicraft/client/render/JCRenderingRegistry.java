@@ -33,8 +33,6 @@ import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefTriceratops;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefTyrannosaurusRex;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefVelociraptor;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDinosaurDefinition;
-import net.timeless.jurassicraft.client.render.entity.RenderDinosaur;
-import net.timeless.jurassicraft.client.render.entity.RenderDinosaurMultilayer;
 import net.timeless.jurassicraft.client.render.entity.RenderJurassiCraftSign;
 import net.timeless.jurassicraft.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.entity.base.JCEntityRegistry;
@@ -96,17 +94,8 @@ public class JCRenderingRegistry
     public void postInit()
     {
         for (Dinosaur dinosaur : JCEntityRegistry.getDinosaurs())
-        {
-            RenderDinosaurDefinition renderDef = renderDefs.get(dinosaur);
+            RenderingRegistry.registerEntityRenderingHandler(dinosaur.getDinosaurClass(), renderDefs.get(dinosaur).getRenderer());
 
-            String[] maleOverlayTextures = dinosaur.getMaleOverlayTextures();
-
-            if (maleOverlayTextures != null && maleOverlayTextures.length > 0)
-                RenderingRegistry.registerEntityRenderingHandler(dinosaur.getDinosaurClass(), new RenderDinosaurMultilayer(dinosaur, renderDef));
-            else
-                RenderingRegistry.registerEntityRenderingHandler(dinosaur.getDinosaurClass(), new RenderDinosaur(dinosaur, renderDef));
-        }
-        
         RenderingRegistry.registerEntityRenderingHandler(EntityJurassiCraftSign.class, new RenderJurassiCraftSign());
 
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();

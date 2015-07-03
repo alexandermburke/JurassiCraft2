@@ -8,7 +8,10 @@ import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.ilexiconn.llibrary.common.json.JsonHelper;
 import net.ilexiconn.llibrary.common.json.container.JsonTabulaModel;
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.entity.RenderLiving;
 import net.timeless.jurassicraft.JurassiCraft;
+import net.timeless.jurassicraft.client.render.entity.RenderDinosaur;
+import net.timeless.jurassicraft.client.render.entity.RenderDinosaurMultilayer;
 import net.timeless.jurassicraft.dinosaur.Dinosaur;
 
 public abstract class RenderDinosaurDefinition
@@ -89,5 +92,15 @@ public abstract class RenderDinosaurDefinition
     public Dinosaur getDinosaur()
     {
         return dinosaur;
+    }
+    
+    public RenderLiving getRenderer()
+    {
+        String[] maleOverlayTextures = dinosaur.getMaleOverlayTextures();
+
+        if (maleOverlayTextures != null && maleOverlayTextures.length > 0)
+            return new RenderDinosaurMultilayer(this);
+        else
+            return new RenderDinosaur(this);
     }
 }

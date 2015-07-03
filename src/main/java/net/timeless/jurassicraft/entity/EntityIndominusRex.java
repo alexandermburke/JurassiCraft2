@@ -53,4 +53,9 @@ public class EntityIndominusRex extends EntityDinosaurAggressive implements IAni
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
         super.onUpdate();
     }
+
+    public boolean isCamouflaging()
+    {
+        return false;
+    }
 }

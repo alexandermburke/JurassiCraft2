@@ -35,11 +35,11 @@ public class RenderDinosaur extends RenderLiving
     public ResourceLocation velociraptorDelta = new ResourceLocation(JurassiCraft.modid, "textures/entities/velociraptor/velociraptor_delta.png");
     public ResourceLocation velociraptorEcho = new ResourceLocation(JurassiCraft.modid, "textures/entities/velociraptor/velociraptor_echo.png");
 
-    public RenderDinosaur(Dinosaur dinosaur, RenderDinosaurDefinition renderDef)
+    public RenderDinosaur(RenderDinosaurDefinition renderDef)
     {
         super(Minecraft.getMinecraft().getRenderManager(), renderDef.getModel(), renderDef.getShadowSize());
 
-        this.dinosaur = dinosaur;
+        this.dinosaur = renderDef.getDinosaur();
         this.random = new Random();
         this.renderDef = renderDef;
 

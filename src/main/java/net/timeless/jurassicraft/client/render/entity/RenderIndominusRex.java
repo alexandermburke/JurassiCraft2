@@ -4,24 +4,28 @@ import java.util.Random;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDinosaurDefinition;
 import net.timeless.jurassicraft.dinosaur.Dinosaur;
-import net.timeless.jurassicraft.entity.EntityVelociraptor;
+import net.timeless.jurassicraft.entity.EntityIndominusRex;
 import net.timeless.jurassicraft.entity.base.EntityDinosaur;
 
 import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
-public class RenderDinosaurMultilayer extends RenderLiving
+public class RenderIndominusRex extends RenderLiving
 {
     public Dinosaur dinosaur;
     public RenderDinosaurDefinition renderDef;
@@ -31,9 +35,10 @@ public class RenderDinosaurMultilayer extends RenderLiving
     public ResourceLocation[] femaleOverlayTextures;
     public Random random;
 
-    public RenderDinosaurMultilayer(RenderDinosaurDefinition renderDef)
+    public RenderIndominusRex(RenderDinosaurDefinition renderDef)
     {
         super(Minecraft.getMinecraft().getRenderManager(), renderDef.getModel(), renderDef.getShadowSize());
+
         this.addLayer(new LayerDinosaurFeatures(this));
 
         this.dinosaur = renderDef.getDinosaur();
@@ -78,6 +83,18 @@ public class RenderDinosaurMultilayer extends RenderLiving
         }
     }
 
+    /**
+     * Actually renders the given argument. This is a synthetic bridge method, always casting down its argument and then
+     * handing it off to a worker function which does the actual work. In all probabilty, the class Render is generic
+     * (Render<T extends Entity>) and this method has signature public void func_76986_a(T entity, double d, double d1,
+     * double d2, float f, float f1). But JAD is pre 1.5 so doe
+     */
+    public void doRender(EntityLivingBase entity, double x, double y, double z, float p_76986_8_, float partialTicks)
+    {
+        super.doRender(entity, x, y, z, p_76986_8_, partialTicks);
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+    }
+
     public void preRenderCallback(EntityLivingBase entity, float side)
     {
         EntityDinosaur entityDinosaur = (EntityDinosaur) entity;
@@ -85,13 +102,21 @@ public class RenderDinosaurMultilayer extends RenderLiving
         float scale = (float) entityDinosaur.transitionFromAge(renderDef.getBabyScaleAdjustment(), renderDef.getAdultScaleAdjustment());
         shadowSize = scale * renderDef.getShadowSize();
 
-        GL11.glTranslatef(renderDef.getRenderXOffset() * scale, renderDef.getRenderYOffset() * scale, renderDef.getRenderZOffset() * scale);
+        if(((EntityIndominusRex)entity).isCamouflaging())
+        {
+            int color = BiomeColorHelper.getGrassColorAtPos(entity.worldObj, entity.getPosition()); //BlockGrass
+            float red = (float)(color >> 16 & 255) / 255.0F;
+            float green = (float)(color >> 8 & 255) / 255.0F;
+            float blue = (float)(color & 255) / 255.0F;
+
+            GlStateManager.color(red, green, blue, 1.0F);
+        }
+
+        GlStateManager.translate(renderDef.getRenderXOffset() * scale, renderDef.getRenderYOffset() * scale, renderDef.getRenderZOffset() * scale);
 
         String name = entity.getCustomNameTag();
 
-        if (entity instanceof EntityVelociraptor && (name.equals("iLexiconn") || name.equals("JTGhawk137")))
-            GL11.glScalef(scale - 0.86F, scale, scale);
-        else if (name.equals("Gegy"))
+        if (name.equals("Gegy"))
         {
             int ticksExisted = entity.ticksExisted / 25 + entity.getEntityId();
             int colorTypes = EnumDyeColor.values().length;
@@ -105,14 +130,14 @@ public class RenderDinosaurMultilayer extends RenderLiving
             if (time > 0.5F)
                 time = 1 - time;
 
-            GL11.glScalef(scale * (0.5F + time * 0.5F), scale * (1 + time * 0.5F), scale * (0.9F + time * 0.25F));
+            GlStateManager.scale(scale * (0.5F + time * 0.5F), scale * (1 + time * 0.5F), scale * (0.9F + time * 0.25F));
         }
         else if (name.equals("Notch") || name.equals("Jumbo"))
-            GL11.glScalef(scale * 2, scale * 2, scale * 2);
+            GlStateManager.scale(scale * 2, scale * 2, scale * 2);
         else if (name.equals("jglrxavpok"))
-            GL11.glScalef(scale, scale, scale * -1);
+            GlStateManager.scale(scale, scale, scale * -1);
         else
-            GL11.glScalef(scale, scale, scale);
+            GlStateManager.scale(scale, scale, scale);
     }
 
     public ResourceLocation getEntityTexture(EntityDinosaur entity)
@@ -128,9 +153,9 @@ public class RenderDinosaurMultilayer extends RenderLiving
     @SideOnly(Side.CLIENT)
     public class LayerDinosaurFeatures implements LayerRenderer
     {
-        private final RenderDinosaurMultilayer renderer;
+        private final RenderIndominusRex renderer;
 
-        public LayerDinosaurFeatures(RenderDinosaurMultilayer renderer)
+        public LayerDinosaurFeatures(RenderIndominusRex renderer)
         {
             this.renderer = renderer;
         }
