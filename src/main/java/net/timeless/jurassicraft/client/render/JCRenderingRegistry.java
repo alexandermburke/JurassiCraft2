@@ -12,6 +12,8 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.block.JCBlockRegistry;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefAchillobator;
@@ -41,6 +43,7 @@ import net.timeless.jurassicraft.item.JCItemRegistry;
 
 import com.google.common.collect.Maps;
 
+@SideOnly(Side.CLIENT)
 public class JCRenderingRegistry
 {
     private static Map<Dinosaur, RenderDinosaurDefinition> renderDefs = Maps.newHashMap();

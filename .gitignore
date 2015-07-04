@@ -24,6 +24,13 @@ usernamecache.json
 options.txt
 crash-reports/
 screenshots/
+banned-ips.json
+banned-players.json
+ops.json
+server.properties
+world
+usercache.json
+whitelist.json
 
 ## JurassiCraft files
 Resources.zip
