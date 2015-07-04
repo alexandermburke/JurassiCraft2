@@ -80,10 +80,7 @@ public class RenderIndominusRex extends RenderLiving
     }
 
     /**
-     * Actually renders the given argument. This is a synthetic bridge method, always casting down its argument and then
-     * handing it off to a worker function which does the actual work. In all probabilty, the class Render is generic
-     * (Render<T extends Entity>) and this method has signature public void func_76986_a(T entity, double d, double d1,
-     * double d2, float f, float f1). But JAD is pre 1.5 so doe
+     * Actually renders the given argument. This is a synthetic bridge method, always casting down its argument and then handing it off to a worker function which does the actual work. In all probabilty, the class Render is generic (Render<T extends Entity>) and this method has signature public void func_76986_a(T entity, double d, double d1, double d2, float f, float f1). But JAD is pre 1.5 so doe
      */
     public void doRender(EntityLivingBase entity, double x, double y, double z, float p_76986_8_, float partialTicks)
     {
@@ -100,15 +97,15 @@ public class RenderIndominusRex extends RenderLiving
         float scale = (float) entityDinosaur.transitionFromAge(renderDef.getBabyScaleAdjustment(), renderDef.getAdultScaleAdjustment());
         shadowSize = scale * renderDef.getShadowSize();
 
-        EntityIndominusRex iRex = (EntityIndominusRex)entity;
-        
-        if(iRex.isCamouflaging())
+        EntityIndominusRex iRex = (EntityIndominusRex) entity;
+
+        if (iRex.isCamouflaging())
         {
-//            int color = BiomeColorHelper.getGrassColorAtPos(entity.worldObj, entity.getPosition()); //BlockGrass
-//            float red = (float)(color >> 16 & 255) / 255.0F;
-//            float green = (float)(color >> 8 & 255) / 255.0F;
-//            float blue = (float)(color & 255) / 255.0F;
-            
+            // int color = BiomeColorHelper.getGrassColorAtPos(entity.worldObj, entity.getPosition()); //BlockGrass
+            // float red = (float)(color >> 16 & 255) / 255.0F;
+            // float green = (float)(color >> 8 & 255) / 255.0F;
+            // float blue = (float)(color & 255) / 255.0F;
+
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glDisable(GL11.GL_ALPHA_TEST);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
@@ -184,11 +181,11 @@ public class RenderIndominusRex extends RenderLiving
 
                     this.renderer.bindTexture(femaleOverlayTextures[texture]);
                 }
-                
+
                 GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                 GL11.glDisable(GL11.GL_BLEND);
                 GL11.glEnable(GL11.GL_ALPHA_TEST);
-                
+
                 this.renderer.getMainModel().render(entity, armSwing, armSwingAmount, p_177148_5_, p_177148_6_, p_177148_7_, partialTicks);
                 this.renderer.func_177105_a(entity, p_177148_4_);
             }

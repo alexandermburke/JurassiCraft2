@@ -65,9 +65,9 @@ public class EntityIndominusRex extends EntityDinosaurAggressive implements IAni
 
     public boolean isCamouflaging()
     {
-        return false;
+        return true;
     }
-    
+
     public void changeSkinColor()
     {
         BlockPos pos = new BlockPos(this).offset(EnumFacing.DOWN);
@@ -79,11 +79,11 @@ public class EntityIndominusRex extends EntityDinosaurAggressive implements IAni
             color = state.getBlock().getMapColor(state).colorValue;
         }
 
-        if(color == 0)
-        {
-            color = 0xFFFFFF;
-        }
-        
+        // if(color == 0)
+        // {
+        // color = 0xFFFFFF;
+        // }
+
         if (color != 0)
         {
             this.newSkinColor[0] = color >> 16 & 255;
@@ -97,7 +97,7 @@ public class EntityIndominusRex extends EntityDinosaurAggressive implements IAni
                 this.skinColor[2] = this.newSkinColor[2];
             }
         }
-        
+
         for (int i = 0; i < 3; ++i)
         {
             if (this.skinColor[i] < this.newSkinColor[i])
@@ -111,10 +111,10 @@ public class EntityIndominusRex extends EntityDinosaurAggressive implements IAni
             }
         }
     }
-    
+
     @SideOnly(Side.CLIENT)
     public float[] getSkinColor()
     {
-        return new float[] {(float)this.skinColor[0] / 255.0F, (float)this.skinColor[1] / 255.0F, (float)this.skinColor[2] / 255.0F};
+        return new float[] { (float) this.skinColor[0] / 255.0F, (float) this.skinColor[1] / 255.0F, (float) this.skinColor[2] / 255.0F };
     }
 }

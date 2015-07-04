@@ -8,30 +8,30 @@ import net.minecraftforge.common.IExtendedEntityProperties;
 
 public class JCPlayerData implements IExtendedEntityProperties
 {
-    //Store all Paleo Pad data
-    
+    // Store all Paleo Pad data
+
     public static final String identifier = "JurassiCraftPlayerData";
-    
+
     public static JCPlayerData getPlayerData(EntityPlayer player)
     {
         return (JCPlayerData) player.getExtendedProperties(JCPlayerData.identifier);
     }
-    
+
     @Override
     public void saveNBTData(NBTTagCompound nbt)
     {
-        
+
     }
 
     @Override
     public void loadNBTData(NBTTagCompound nbt)
     {
-        
+
     }
 
     @Override
     public void init(Entity entity, World world)
     {
-        
+
     }
 }

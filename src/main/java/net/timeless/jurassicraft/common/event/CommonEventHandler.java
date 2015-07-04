@@ -10,7 +10,7 @@ public class CommonEventHandler
     @SubscribeEvent
     public void entityConstructing(EntityConstructing event)
     {
-        if(event.entity instanceof EntityPlayer)
+        if (event.entity instanceof EntityPlayer)
         {
             event.entity.registerExtendedProperties(JCPlayerData.identifier, new JCPlayerData());
         }

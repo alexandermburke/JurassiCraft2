@@ -19,7 +19,7 @@ public class EntityRugops extends EntityDinosaurAggressive
     public EntityRugops(World world)
     {
         super(world);
-        
+
         // Placeholder AI
         this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, dinosaur.getAttackSpeed(), false));
         this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));

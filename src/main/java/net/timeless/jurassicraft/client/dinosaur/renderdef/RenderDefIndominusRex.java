@@ -5,8 +5,6 @@ import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.timeless.jurassicraft.client.model.animation.AnimationIndominusRex;
-import net.timeless.jurassicraft.client.render.entity.RenderDinosaur;
-import net.timeless.jurassicraft.client.render.entity.RenderDinosaurMultilayer;
 import net.timeless.jurassicraft.client.render.entity.RenderIndominusRex;
 import net.timeless.jurassicraft.entity.base.JCEntityRegistry;
 

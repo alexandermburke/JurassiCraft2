@@ -104,17 +104,17 @@ public class RenderDinosaur extends RenderLiving
     {
         ResourceLocation texture = entity.isMale() ? maleTextures[entity.getTexture()] : femaleTextures[entity.getTexture()];
 
-        if(entity instanceof EntityVelociraptor)
+        if (entity instanceof EntityVelociraptor)
         {
             String customNameTag = entity.getCustomNameTag();
 
-            if(customNameTag.equals("Blue"))
+            if (customNameTag.equals("Blue"))
                 texture = velociraptorBlue;
-            else if(customNameTag.equals("Echo"))
+            else if (customNameTag.equals("Echo"))
                 texture = velociraptorEcho;
-            else if(customNameTag.equals("Charlie"))
+            else if (customNameTag.equals("Charlie"))
                 texture = velociraptorCharlie;
-            else if(customNameTag.equals("Delta"))
+            else if (customNameTag.equals("Delta"))
                 texture = velociraptorDelta;
         }
 

@@ -93,7 +93,7 @@ public abstract class RenderDinosaurDefinition
     {
         return dinosaur;
     }
-    
+
     public RenderLiving getRenderer()
     {
         String[] maleOverlayTextures = dinosaur.getMaleOverlayTextures();

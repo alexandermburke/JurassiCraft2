@@ -14,16 +14,16 @@ public class JCCreativeTabs
     public static CreativeTabJurassiCraft eggs;
     public static CreativeTabJurassiCraft spawnEggs;
     public static CreativeTabJurassiCraft decorations;
-    
+
     public void register()
     {
         items = new CreativeTabJurassiCraft("jurassicraft.items")
         {
             public int getIconItemDamage()
             {
-                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus_rex);   
+                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus_rex);
             }
-            
+
             public Item getTabIconItem()
             {
                 return JCItemRegistry.fossil;
@@ -34,7 +34,7 @@ public class JCCreativeTabs
         {
             public int getIconItemDamage()
             {
-                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus_rex);   
+                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus_rex);
             }
 
             public Item getTabIconItem()
@@ -47,9 +47,9 @@ public class JCCreativeTabs
         {
             public int getIconItemDamage()
             {
-                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus_rex);   
+                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus_rex);
             }
-            
+
             public Item getTabIconItem()
             {
                 return JCItemRegistry.egg;
@@ -60,9 +60,9 @@ public class JCCreativeTabs
         {
             public int getIconItemDamage()
             {
-                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus_rex);   
+                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus_rex);
             }
-            
+
             public Item getTabIconItem()
             {
                 return JCItemRegistry.spawn_egg;
@@ -76,7 +76,7 @@ public class JCCreativeTabs
                 return Item.getItemFromBlock(JCBlockRegistry.encased_fossil);
             }
         };
-        
+
         blocks = new CreativeTabJurassiCraft("jurassicraft.blocks")
         {
             public Item getTabIconItem()

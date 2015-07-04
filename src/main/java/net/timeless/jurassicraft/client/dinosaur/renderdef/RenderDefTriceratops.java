@@ -50,7 +50,7 @@ public class RenderDefTriceratops extends RenderDinosaurDefinition
     {
         return 0.65F;
     }
-    
+
     @Override
     public float getRenderYOffset()
     {

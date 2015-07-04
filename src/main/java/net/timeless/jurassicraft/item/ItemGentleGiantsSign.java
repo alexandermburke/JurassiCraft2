@@ -18,12 +18,14 @@ public class ItemGentleGiantsSign extends Item
         this.setUnlocalizedName("gentle_giants_sign");
         this.setCreativeTab(JCCreativeTabs.decorations);
     }
-    
+
     /**
      * Called when a Block is right-clicked with this Item
-     *  
-     * @param pos The block being right-clicked
-     * @param side The side being right-clicked
+     * 
+     * @param pos
+     *            The block being right-clicked
+     * @param side
+     *            The side being right-clicked
      */
     public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {

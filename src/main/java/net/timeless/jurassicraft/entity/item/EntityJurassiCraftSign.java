@@ -49,7 +49,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
 
         if (!arraylist.isEmpty())
         {
-            this.art = (EntityJurassiCraftSign.EnumArt)arraylist.get(this.rand.nextInt(arraylist.size()));
+            this.art = (EntityJurassiCraftSign.EnumArt) arraylist.get(this.rand.nextInt(arraylist.size()));
         }
 
         this.func_174859_a(p_i45849_3_);
@@ -75,8 +75,8 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
 
         this.func_174859_a(p_i45850_3_);
     }
-    
-    public void setPositionAndRotation2(double par1, double par3, double par5, float par7, float par8, int par9) 
+
+    public void setPositionAndRotation2(double par1, double par3, double par5, float par7, float par8, int par9)
     {
     }
 
@@ -135,7 +135,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
         {
             if (p_110128_1_ instanceof EntityPlayer)
             {
-                EntityPlayer entityplayer = (EntityPlayer)p_110128_1_;
+                EntityPlayer entityplayer = (EntityPlayer) p_110128_1_;
 
                 if (entityplayer.capabilities.isCreativeMode)
                 {
@@ -154,7 +154,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
     {
         BlockPos blockpos = new BlockPos(x - this.posX, y - this.posY, z - this.posZ);
         BlockPos blockpos1 = this.hangingPosition.add(blockpos);
-        this.setPosition((double)blockpos1.getX(), (double)blockpos1.getY(), (double)blockpos1.getZ());
+        this.setPosition((double) blockpos1.getX(), (double) blockpos1.getY(), (double) blockpos1.getZ());
     }
 
     @SideOnly(Side.CLIENT)
@@ -162,13 +162,13 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
     {
         BlockPos blockpos = new BlockPos(p_180426_1_ - this.posX, p_180426_3_ - this.posY, p_180426_5_ - this.posZ);
         BlockPos blockpos1 = this.hangingPosition.add(blockpos);
-        this.setPosition((double)blockpos1.getX(), (double)blockpos1.getY(), (double)blockpos1.getZ());
+        this.setPosition((double) blockpos1.getX(), (double) blockpos1.getY(), (double) blockpos1.getZ());
     }
 
     public static enum EnumArt
     {
         GENTLE_GIANTS("Gentle Giants", 16, 16, 0, 0);
-        
+
         /** Painting Title. */
         public final String title;
         public final int sizeX;
@@ -190,33 +190,33 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
     public void writeSpawnData(ByteBuf buffer)
     {
         int index = 0;
-        
+
         EnumArt[] artValues = EnumArt.values();
-        
+
         for (int i = 0; i < artValues.length; i++)
         {
-            if(artValues[i].equals(art))
+            if (artValues[i].equals(art))
             {
                 index = i;
                 break;
             }
         }
-        
+
         buffer.writeInt(index);
-        
+
         index = 0;
-        
+
         EnumFacing[] facingValues = EnumFacing.values();
-        
+
         for (int i = 0; i < facingValues.length; i++)
         {
-            if(facingValues[i].equals(field_174860_b))
+            if (facingValues[i].equals(field_174860_b))
             {
                 index = i;
                 break;
             }
         }
-        
+
         buffer.writeInt(index);
     }
 

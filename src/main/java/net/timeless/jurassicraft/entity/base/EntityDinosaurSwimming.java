@@ -10,7 +10,7 @@ public class EntityDinosaurSwimming extends EntityDinosaur
     {
         super(world);
     }
-    
+
     public boolean isInWater()
     {
         return this.worldObj.handleMaterialAcceleration(this.getEntityBoundingBox(), Material.water, this);
@@ -23,7 +23,7 @@ public class EntityDinosaurSwimming extends EntityDinosaur
         if (this.isInWater())
             this.motionY *= 0.1D;
     }
-    
+
     public boolean canBreatheUnderwater()
     {
         return true;

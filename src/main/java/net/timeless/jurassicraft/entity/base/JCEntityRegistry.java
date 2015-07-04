@@ -81,7 +81,7 @@ public class JCEntityRegistry
 
         for (Dinosaur dinosaur : dinosaurs)
             registerDinosaur(dinosaur);
-        
+
         registerEntity(EntityJurassiCraftSign.class, "Gentle Giants Sign");
     }
 
@@ -94,13 +94,13 @@ public class JCEntityRegistry
     private void registerEntity(Class<? extends Entity> entity, String name)
     {
         int entityId = EntityRegistry.findGlobalUniqueEntityId();
-        
+
         String formattedName = name.toLowerCase().replaceAll(" ", "_");
-        
+
         EntityRegistry.registerGlobalEntityID(entity, formattedName, entityId);
         EntityRegistry.registerModEntity(entity, formattedName, entityId, JurassiCraft.instance, 1024, 1, true);
     }
-    
+
     public static void registerDinosaurType(Dinosaur dinosaur)
     {
         dinosaurs.add(dinosaur);
@@ -131,7 +131,7 @@ public class JCEntityRegistry
 
         return dinosaurs.get(id);
     }
-    
+
     public static int getDinosaurId(Dinosaur dinosaur)
     {
         return dinosaurs.indexOf(dinosaur);

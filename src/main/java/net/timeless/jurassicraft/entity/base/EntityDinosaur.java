@@ -29,7 +29,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
             randTexture = rand.nextInt(dinosaur.getMaleTextures().length);
         else
             randTexture = rand.nextInt(dinosaur.getFemaleTextures().length);
-        
+
         adjustHitbox();
     }
 
@@ -129,7 +129,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         gender = nbt.getBoolean("Gender");
         randTexture = nbt.getInteger("Texture");
         dinosaurAge = nbt.getInteger("Dinosaur Age");
-        
+
         adjustHitbox();
     }
 
@@ -147,7 +147,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         gender = additionalData.readBoolean();
         randTexture = additionalData.readInt();
         dinosaurAge = additionalData.readInt();
-        
+
         adjustHitbox();
     }
 

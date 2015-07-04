@@ -21,11 +21,11 @@ public class AnimationCompsognathus implements IModelAnimator
         float globalSpeed = 1.0F;
         float globalDegree = 0.4F;
         float globalHeight = 1.0F;
-        
+
         MowzieModelRenderer head = model.getCube("Head");
-        
+
         MowzieModelRenderer neck1 = model.getCube("Neck 1");
-        
+
         model.faceTarget(head, 2, rotationYaw, rotationPitch);
         model.faceTarget(neck1, 2, rotationYaw, rotationPitch);
     }
