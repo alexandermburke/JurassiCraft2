@@ -15,6 +15,7 @@ eclipse/
 .project
 .classpath
 .settings/
+logs/
 
 ## JurassiCraft files
 Resources.zip
