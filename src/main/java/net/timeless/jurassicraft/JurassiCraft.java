@@ -15,7 +15,7 @@ import net.timeless.jurassicraft.proxy.CommonProxy;
 
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = JurassiCraft.modid, name = "JurassiCraft", version = "${version}", dependencies = "required-after:llibrary@[0.1.0-1.8,)")
+@Mod(modid = JurassiCraft.modid, name = "JurassiCraft", version = "${version}", dependencies = "required-after:llibrary@[0.3.0-1.8,)")
 public class JurassiCraft
 {
     @SidedProxy(serverSide = "net.timeless.jurassicraft.proxy.CommonProxy", clientSide = "net.timeless.jurassicraft.proxy.ClientProxy")
@@ -27,7 +27,6 @@ public class JurassiCraft
     @Instance(JurassiCraft.modid)
     public static JurassiCraft instance;
 
-    public static boolean debug;
     private Logger logger;
 
     public static JCEntityRegistry entityRegistry = new JCEntityRegistry();
@@ -61,5 +60,10 @@ public class JurassiCraft
     public Logger getLogger()
     {
         return logger;
+    }
+
+    public boolean isDebugging()
+    {
+        return "${version}".equals("${" + "version" + "}");
     }
 }
