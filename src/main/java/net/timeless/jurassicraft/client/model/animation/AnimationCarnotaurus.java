@@ -18,8 +18,8 @@ public class AnimationCarnotaurus implements IModelAnimator
     @Override
     public void setRotationAngles(ModelJson model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
     {
-        // f = entity.ticksExisted / 2;
-        // f1 = 1F;
+//        f = entity.ticksExisted / 2;
+//        f1 = 1F;
 
         float globalSpeed = 1F;
         float globalDegree = 0.4F;
@@ -79,7 +79,9 @@ public class AnimationCarnotaurus implements IModelAnimator
         model.bob(rightThigh, globalSpeed * 1.0F, globalHeight * 1.0F, false, f, f1);
 
         model.chainWave(body, globalSpeed * 1.0F, globalHeight * 0.02F, 3, f, f1);
-        model.chainWave(tail, globalSpeed * 1.0F, globalHeight * 0.05F, 2, f, f1);
+        model.chainWave(tail, globalSpeed * 1.0F, globalHeight * -0.05F, 2, f, f1);
+        model.chainSwing(tail, globalSpeed * 0.5F, globalHeight * 0.05F, 2, f, f1);
+
 
         model.walk(rightThigh, globalSpeed * 0.5F, globalDegree * 0.8F, true, -0.3F, 0.2F, f, f1);
         model.walk(leftThigh, globalSpeed * 0.5F, globalDegree * 0.8F, false, -0.3F, 0.2F, f, f1);
@@ -87,8 +89,8 @@ public class AnimationCarnotaurus implements IModelAnimator
         model.walk(leftCalf1, globalSpeed * 0.5F, globalDegree * 1F, false, -1.3F, 0.4F, f, f1);
         model.walk(rightCalf1, globalSpeed * 0.5F, globalDegree * 1F, true, -1.3F, 0.4F, f, f1);
 
-        model.walk(leftCalf2, globalSpeed * 0.5F, globalDegree * 1F, true, -0.3F, 0F, f, f1);
-        model.walk(rightCalf2, globalSpeed * 0.5F, globalDegree * 1F, false, -0.3F, 0F, f, f1);
+        model.walk(leftCalf2, globalSpeed * 0.5F, globalDegree * 1F, true, -1.6F, 0F, f, f1);
+        model.walk(rightCalf2, globalSpeed * 0.5F, globalDegree * 1F, false, -1.6F, 0F, f, f1);
 
         model.walk(leftFoot, globalSpeed * 0.5F, globalDegree * 1.5F, false, -0.8F, 0.3F, f, f1);
         model.walk(rightFoot, globalSpeed * 0.5F, globalDegree * 1.5F, true, -0.8F, 0.3F, f, f1);
@@ -107,7 +109,7 @@ public class AnimationCarnotaurus implements IModelAnimator
 
         int ticksExisted = entity.ticksExisted;
 
-        model.chainWave(tail, 0.1F, 0.05F, 2, ticksExisted, 1F);
+        model.chainWave(tail, 0.1F, -0.05F, 2, ticksExisted, 1F);
         model.chainWave(body, 0.1F, 0.03F, 5, ticksExisted, 1F);
         model.chainWave(armRight, 0.1F, 0.1F, 4, ticksExisted, 1F);
         model.chainWave(armLeft, 0.1F, 0.1F, 4, ticksExisted, 1F);

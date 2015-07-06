@@ -37,12 +37,12 @@ public class AnimationDilophosaurus implements IModelAnimator
         frillLeftBottom.rotateAngleY = (float) Math.toRadians(180);
         frillLeftBottom.rotationPointX += 10F;
 
-        float globalSpeed = 0.8F;
-        float globalDegree = 0.4F;
-        float globalHeight = 1.0F;
+        float globalSpeed = 0.2F;
+        float globalDegree = 0.77F;
+        float globalHeight = 2F;
 
-        // f = entity.ticksExisted;
-        // f1 = 1F;
+//        f = entity.ticksExisted;
+//        f1 = 1F;
 
         MowzieModelRenderer head = model.getCube("head");
 
@@ -91,45 +91,43 @@ public class AnimationDilophosaurus implements IModelAnimator
         MowzieModelRenderer[] armRight = new MowzieModelRenderer[] { handRight, lowerArmRight, upperArmRight };
         MowzieModelRenderer[] armLeft = new MowzieModelRenderer[] { handLeft, lowerArmLeft, upperArmLeft };
 
-        model.bob(body3, globalSpeed * 1.0F, globalHeight * 1.0F, false, f, f1);
+        model.faceTarget(head, 5, rotationYaw, rotationPitch);
+        model.faceTarget(neck1, 5, rotationYaw, rotationPitch);
+        model.faceTarget(neck2, 5, rotationYaw, rotationPitch);
+        model.faceTarget(neck3, 5, rotationYaw, rotationPitch);
+        model.faceTarget(neck4, 5, rotationYaw, rotationPitch);
 
-        model.bob(leftThigh, globalSpeed * 1.0F, globalHeight * 1.0F, false, f, f1);
-        model.bob(rightThigh, globalSpeed * 1.0F, globalHeight * 1.0F, false, f, f1);
+        neck4.rotateAngleZ += (rotationYaw / (180f / (float) Math.PI)) / 5;
+        neck3.rotateAngleZ += (rotationYaw / (180f / (float) Math.PI)) / 5;
+        head.rotateAngleZ += (rotationYaw / (180f / (float) Math.PI)) / 5;
 
-        model.chainWave(body, globalSpeed * 1.0F, globalHeight * 0.02F, 3, f, f1);
-        model.chainWave(tail, globalSpeed * 1.0F, globalHeight * 0.05F, 2, f, f1);
+        model.bob(body3, 1F * globalSpeed, globalHeight * 0.7F, false, f, f1);
+        model.bob(leftThigh, 1F * globalSpeed, globalHeight * 0.7F, false, f, f1);
+        model.bob(rightThigh, 1F * globalSpeed, globalHeight * 0.7F, false, f, f1);
+        model.walk(body3, 1F * globalSpeed, globalHeight * 0.05F, true, 0.1F, 0F, f, f1);
+        model.chainWave(body, 1F * globalSpeed, -0.03F * globalHeight, 3.5F, f, f1);
 
-        model.walk(rightThigh, globalSpeed * 0.5F, globalDegree * 0.8F, true, -0.3F, 0.2F, f, f1);
-        model.walk(leftThigh, globalSpeed * 0.5F, globalDegree * 0.8F, false, -0.3F, 0.2F, f, f1);
+        model.walk(leftThigh, 0.5F * globalSpeed, 0.8F * globalDegree, false, 0F, 0.4F, f, f1);
+        model.walk(lowerLeftLeg, 0.5F * globalSpeed, 0.8F * globalDegree, true, 1F, 0F, f, f1);
+        model.walk(upperLeftFoot, 0.5F * globalSpeed, 0.5F * globalDegree, false, 0F, 0F, f, f1);
+        model.walk(leftFoot, 0.5F * globalSpeed, 1.5F * globalDegree, true, 0.5F, 0.7F, f, f1);
 
-        model.walk(lowerLeftLeg, globalSpeed * 0.5F, globalDegree * 1F, false, -1.3F, 0.4F, f, f1);
-        model.walk(lowerRightLeg, globalSpeed * 0.5F, globalDegree * 1F, true, -1.3F, 0.4F, f, f1);
+        model.walk(rightThigh, 0.5F * globalSpeed, 0.8F * globalDegree, true, 0F, 0.4F, f, f1);
+        model.walk(lowerRightLeg, 0.5F * globalSpeed, 0.8F * globalDegree, false, 1F, 0F, f, f1);
+        model.walk(upperRightFoot, 0.5F * globalSpeed, 0.5F * globalDegree, true, 0F, 0F, f, f1);
+        model.walk(rightFoot, 0.5F * globalSpeed, 1.5F * globalDegree, false, 0.5F, 0.7F, f, f1);
 
-        model.walk(upperLeftFoot, globalSpeed * 0.5F, globalDegree * 1F, true, -0.3F, 0F, f, f1);
-        model.walk(upperRightFoot, globalSpeed * 0.5F, globalDegree * 1F, false, -0.3F, 0F, f, f1);
-
-        model.walk(leftFoot, globalSpeed * 0.5F, globalDegree * 1.5F, false, -0.8F, 0.3F, f, f1);
-        model.walk(rightFoot, globalSpeed * 0.5F, globalDegree * 1.5F, true, -0.8F, 0.3F, f, f1);
-
-        model.chainWave(armRight, globalSpeed * 1F, globalHeight * 0.25F, 3, f, f1);
-        model.chainWave(armLeft, globalSpeed * 1F, globalHeight * 0.25F, 3, f, f1);
-
-        model.walk(neck1, 1F * globalSpeed, 0.03F, false, 0F, 0.04F, f, f1);
-        model.walk(neck2, 1F * globalSpeed, 0.03F, false, 0F, 0.04F, f, f1);
-        model.walk(neck3, 1F * globalSpeed, 0.03F, false, 0F, 0.04F, f, f1);
-        model.walk(neck4, 1F * globalSpeed, 0.03F, false, 0F, 0.04F, f, f1);
-
-        leftThigh.rotationPointY -= 2F * f1 * Math.cos(f * 0.5F * globalSpeed);
-        rightThigh.rotationPointY -= 2F * f1 * Math.cos(f * 0.5F * globalSpeed);
+        model.chainSwing(tail, 0.5F * globalSpeed, -0.1F, 2, f, f1);
+        model.chainWave(tail, 1F * globalSpeed, -0.05F, 2, f, f1);
+        model.chainWave(armRight, 1F * globalSpeed, 0.2F, 3, f, f1);
+        model.chainWave(armLeft, 1F * globalSpeed, 0.2F, 3, f, f1);
 
         int ticksExisted = entity.ticksExisted;
 
-        model.chainWave(tail, 0.1F, 0.05F, 2, ticksExisted, 1F);
-        model.chainWave(body, 0.1F, 0.03F, 5, ticksExisted, 1F);
-        model.chainWave(armRight, 0.1F, 0.1F, 4, ticksExisted, 1F);
-        model.chainWave(armLeft, 0.1F, 0.1F, 4, ticksExisted, 1F);
-
-        model.faceTarget(head, 2, rotationYaw, rotationPitch);
-        model.faceTarget(neck2, 2, rotationYaw, rotationPitch);
+        model.chainWave(tail, 0.15F, -0.03F, 2, ticksExisted, 1.0F);
+        model.chainWave(body, 0.15F, 0.03F, 3.5F, ticksExisted, 1.0F);
+        model.chainWave(armRight, 0.15F, -0.1F, 4, ticksExisted, 1.0F);
+        model.chainWave(armLeft, 0.15F, -0.1F, 4, ticksExisted, 1.0F);
+        model.chainSwing(tail, 0.15F, -0.1F, 3, ticksExisted, 1.0F);
     }
 }

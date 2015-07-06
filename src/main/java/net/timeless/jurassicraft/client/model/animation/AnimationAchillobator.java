@@ -19,8 +19,8 @@ public class AnimationAchillobator implements IModelAnimator
     @Override
     public void setRotationAngles(ModelJson model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
     {
-        // f = entity.ticksExisted;
-        // f1 = 1F;
+//        f = entity.ticksExisted;
+//        f1 = 1F;
 
         float speed = 0.75F;
         float height = 2F * f1;
@@ -81,11 +81,11 @@ public class AnimationAchillobator implements IModelAnimator
 
         shoulders.rotationPointY -= 0.5 * f1;
         shoulders.rotationPointZ -= 0.5 * f1;
-        shoulders.rotateAngleX += 0.6 * f1;
+        shoulders.rotateAngleX += 0.5 * f1;
         chest.rotateAngleX += 0.1 * f1;
         neck1.rotateAngleX += 0.1 * f1;
         neck2.rotateAngleX += 0.1 * f1;
-        neck3.rotateAngleX -= 0.2 * f1;
+        neck3.rotateAngleX -= 0.3 * f1;
         neck4.rotateAngleX -= 0.2 * f1;
         head.rotateAngleX -= 0.3 * f1;
 
@@ -97,7 +97,7 @@ public class AnimationAchillobator implements IModelAnimator
         model.chainWave(leftArmParts, 1F * speed, -0.3F, 4, f, f1);
 
         // Idling
-        model.chainWave(tailParts, 0.1F, -0.05F, 2, entity.ticksExisted, 1F);
+        model.chainWave(tailParts, 0.1F, 0.05F, 2, entity.ticksExisted, 1F);
         model.chainWave(bodyParts, 0.1F, -0.03F, 5, entity.ticksExisted, 1F);
         model.chainWave(rightArmParts, 0.1F, -0.1F, 4, entity.ticksExisted, 1F);
         model.chainWave(leftArmParts, 0.1F, -0.1F, 4, entity.ticksExisted, 1F);
