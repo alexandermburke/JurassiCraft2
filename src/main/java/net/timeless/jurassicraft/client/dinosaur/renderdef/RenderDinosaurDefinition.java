@@ -4,12 +4,12 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
-import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.ilexiconn.llibrary.common.json.JsonHelper;
 import net.ilexiconn.llibrary.common.json.container.JsonTabulaModel;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.timeless.jurassicraft.JurassiCraft;
+import net.timeless.jurassicraft.client.model.ModelDinosaur;
 import net.timeless.jurassicraft.client.render.entity.RenderDinosaur;
 import net.timeless.jurassicraft.client.render.entity.RenderDinosaurMultilayer;
 import net.timeless.jurassicraft.dinosaur.Dinosaur;
@@ -51,7 +51,7 @@ public abstract class RenderDinosaurDefinition
 
     public abstract float getShadowSize();
 
-    public ModelJson getTabulaModel(String tabulaModel) throws Exception
+    public ModelDinosaur getTabulaModel(String tabulaModel) throws Exception
     {
         try (ZipInputStream inputStream = new ZipInputStream(JurassiCraft.class.getResourceAsStream(tabulaModel + ".tbl")))
         {
@@ -69,11 +69,11 @@ public abstract class RenderDinosaurDefinition
 
                     if (modelAnimator != null)
                     {
-                        return new ModelJson(parseTabulaModel, modelAnimator);
+                        return new ModelDinosaur(parseTabulaModel, modelAnimator);
                     }
                     else
                     {
-                        return new ModelJson(parseTabulaModel);
+                        return new ModelDinosaur(parseTabulaModel);
                     }
                 }
             }
@@ -84,7 +84,7 @@ public abstract class RenderDinosaurDefinition
         return null;
     }
 
-    public ModelJson getDefaultTabulaModel() throws Exception
+    public ModelDinosaur getDefaultTabulaModel() throws Exception
     {
         return getTabulaModel("/assets/jurassicraft/models/entities/" + dinosaur.getName().toLowerCase().replaceAll(" ", "_"));
     }

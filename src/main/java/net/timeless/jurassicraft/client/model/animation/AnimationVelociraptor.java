@@ -9,7 +9,6 @@ import net.timeless.jurassicraft.entity.EntityVelociraptor;
 
 public class AnimationVelociraptor implements IModelAnimator
 {
-
     private final Animator animator;
 
     public AnimationVelociraptor()
@@ -22,6 +21,7 @@ public class AnimationVelociraptor implements IModelAnimator
     {
         if (!animator.isInitialized())
             animator.init(model);
+        
         EntityVelociraptor velociraptor = (EntityVelociraptor) entity;
 
         int frame = velociraptor.ticksExisted;
