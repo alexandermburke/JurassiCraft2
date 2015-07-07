@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-		"layer0": "jurassicraft:items/dna/anklyosaurus"
+		"layer0": "jurassicraft:items/egg/ankylosaurus"
     },
     "display": {
         "thirdperson": {
