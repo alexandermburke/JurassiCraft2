@@ -4,7 +4,7 @@ import net.timeless.jurassicraft.entity.EntityAnklyosaurus;
 import net.timeless.jurassicraft.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.period.EnumTimePeriod;
 
-public class DinosaurAnkylosaurus extends Dinosaur
+public class DinosaurAnklyosaurus extends Dinosaur
 {
     private String[] maleTextures;
     private String[] femaleTextures;
@@ -12,7 +12,7 @@ public class DinosaurAnkylosaurus extends Dinosaur
     private String[] maleOverlayTextures;
     private String[] femaleOverlayTextures;
 
-    public DinosaurAnkylosaurus()
+    public DinosaurAnklyosaurus()
     {
         this.maleTextures = new String[] { getDinosaurTexture("male") };
         this.femaleTextures = new String[] { getDinosaurTexture("female") };
@@ -26,7 +26,7 @@ public class DinosaurAnkylosaurus extends Dinosaur
     @Override
     public String getName()
     {
-        return "Ankylosaurus";
+        return "Anklyosaurus";
     }
 
     @Override
