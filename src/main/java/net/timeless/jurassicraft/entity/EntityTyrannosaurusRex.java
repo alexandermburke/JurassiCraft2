@@ -1,6 +1,5 @@
 package net.timeless.jurassicraft.entity;
 
-import net.ilexiconn.llibrary.client.model.modelbase.ChainBuffer;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -12,6 +11,7 @@ import net.minecraft.world.World;
 import net.timeless.jurassicraft.api.animation.IAnimatedEntity;
 import net.timeless.jurassicraft.entity.ai.EntityAIJCWander;
 import net.timeless.jurassicraft.entity.base.EntityDinosaurAggressive;
+import net.timeless.jurassicraft.entity.base.buffer.ChainBuffer;
 
 public class EntityTyrannosaurusRex extends EntityDinosaurAggressive implements IAnimatedEntity
 {
