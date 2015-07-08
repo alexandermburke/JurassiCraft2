@@ -25,7 +25,6 @@ import net.timeless.jurassicraft.dinosaur.DinosaurStegosaurus;
 import net.timeless.jurassicraft.dinosaur.DinosaurTriceratops;
 import net.timeless.jurassicraft.dinosaur.DinosaurTyrannosaurusRex;
 import net.timeless.jurassicraft.dinosaur.DinosaurVelociraptor;
-import net.timeless.jurassicraft.entity.item.EntityJurassiCraftSign;
 import net.timeless.jurassicraft.period.EnumTimePeriod;
 
 import com.google.common.collect.Lists;
@@ -81,8 +80,6 @@ public class JCEntityRegistry
 
         for (Dinosaur dinosaur : dinosaurs)
             registerDinosaur(dinosaur);
-
-        registerEntity(EntityJurassiCraftSign.class, "Gentle Giants Sign");
     }
 
     public void registerDinosaur(Dinosaur dinosaur)

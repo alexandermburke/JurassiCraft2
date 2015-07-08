@@ -12,7 +12,6 @@ public class JCItemRegistry
     public static ItemDNA dna;
     public static ItemDinosaurEgg egg;
     public static ItemPaleoPad paleo_pad;
-    public static ItemGentleGiantsSign gentle_giants_sign;
 
     public void register()
     {
@@ -22,7 +21,6 @@ public class JCItemRegistry
         dna = new ItemDNA();
         egg = new ItemDinosaurEgg();
         paleo_pad = new ItemPaleoPad();
-        gentle_giants_sign = new ItemGentleGiantsSign();
 
         registerItem(plaster_and_bandage, "Plaster And Bandage");
         registerItem(spawn_egg, "Dino Spawn Egg");
@@ -30,7 +28,6 @@ public class JCItemRegistry
         registerItem(dna, "DNA");
         registerItem(egg, "Dino Egg");
         registerItem(paleo_pad, "Paleo Pad");
-        registerItem(gentle_giants_sign, "Gentle Giants Sign");
     }
 
     public void registerItem(Item item, String name)
