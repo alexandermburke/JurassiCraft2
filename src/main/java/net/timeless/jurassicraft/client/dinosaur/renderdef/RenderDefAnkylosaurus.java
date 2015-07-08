@@ -5,20 +5,20 @@ import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.minecraft.client.model.ModelBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.jurassicraft.client.model.animation.AnimationAnklyosaurus;
+import net.timeless.jurassicraft.client.model.animation.AnimationAnkylosaurus;
 import net.timeless.jurassicraft.entity.base.JCEntityRegistry;
 
 @SideOnly(Side.CLIENT)
-public class RenderDefAnklyosaurus extends RenderDinosaurDefinition
+public class RenderDefAnkylosaurus extends RenderDinosaurDefinition
 {
     private IModelAnimator animator;
     private ModelJson model;
 
-    public RenderDefAnklyosaurus()
+    public RenderDefAnkylosaurus()
     {
         super(JCEntityRegistry.anklyosaurus);
 
-        this.animator = new AnimationAnklyosaurus();
+        this.animator = new AnimationAnkylosaurus();
 
         try
         {

@@ -11,9 +11,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.timeless.jurassicraft.entity.base.EntityDinosaurAggressive;
 
-public class EntityAnklyosaurus extends EntityDinosaurAggressive
+public class EntityAnkylosaurus extends EntityDinosaurAggressive
 {
-    public EntityAnklyosaurus(World world)
+    public EntityAnkylosaurus(World world)
     {
         super(world);
 

@@ -1,6 +1,6 @@
 package net.timeless.jurassicraft.dinosaur;
 
-import net.timeless.jurassicraft.entity.EntityAnklyosaurus;
+import net.timeless.jurassicraft.entity.EntityAnkylosaurus;
 import net.timeless.jurassicraft.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.period.EnumTimePeriod;
 
@@ -32,7 +32,7 @@ public class DinosaurAnkylosaurus extends Dinosaur
     @Override
     public Class<? extends EntityDinosaur> getDinosaurClass()
     {
-        return EntityAnklyosaurus.class;
+        return EntityAnkylosaurus.class;
     }
 
     @Override

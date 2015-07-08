@@ -5,11 +5,11 @@ import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.minecraft.entity.Entity;
 import net.timeless.jurassicraft.api.animation.Animator;
 
-public class AnimationAnklyosaurus implements IModelAnimator
+public class AnimationAnkylosaurus implements IModelAnimator
 {
     private final Animator animator;
 
-    public AnimationAnklyosaurus()
+    public AnimationAnkylosaurus()
     {
         this.animator = new Animator();
     }

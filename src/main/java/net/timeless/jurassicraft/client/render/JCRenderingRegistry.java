@@ -17,7 +17,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.block.JCBlockRegistry;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefAchillobator;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefAnklyosaurus;
+import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefAnkylosaurus;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefCarnotaurus;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefCompsognathus;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefDilophosaurus;
@@ -63,7 +63,7 @@ public class JCRenderingRegistry
     public void init()
     {
         registerRenderDef(new RenderDefAchillobator());
-        registerRenderDef(new RenderDefAnklyosaurus());
+        registerRenderDef(new RenderDefAnkylosaurus());
         registerRenderDef(new RenderDefCarnotaurus());
         registerRenderDef(new RenderDefCompsognathus());
         registerRenderDef(new RenderDefDilophosaurus());
