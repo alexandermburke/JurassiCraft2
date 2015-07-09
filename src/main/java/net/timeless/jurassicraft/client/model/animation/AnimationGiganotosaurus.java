@@ -22,8 +22,8 @@ public class AnimationGiganotosaurus implements IModelAnimator
         float globalDegree = 0.45F;
         float height = 1.0F;
 
-        // f = entity.ticksExisted;
-        // f1 = 1.0F;
+//        f = entity.ticksExisted;
+//        f1 = 1.0F;
 
         MowzieModelRenderer neck = model.getCube("Neck 1");
         MowzieModelRenderer neck2 = model.getCube("Neck 2");
@@ -64,6 +64,8 @@ public class AnimationGiganotosaurus implements IModelAnimator
 
         MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
 
+        //TODO:Arms
+
         int ticksExisted = entity.ticksExisted;
 
         head.rotateAngleX -= f1 * 0.35F;
@@ -78,17 +80,17 @@ public class AnimationGiganotosaurus implements IModelAnimator
         model.chainWave(body, globalSpeed * 1.0F, height * 0.02F, 3, f, f1);
         model.chainWave(tail, globalSpeed * 1.0F, height * 0.05F, 2, f, f1);
 
-        model.walk(rightThigh, globalSpeed * 0.5F, globalDegree * 0.8F, true, 0.3F, 0.2F, f, f1);
-        model.walk(leftThigh, globalSpeed * 0.5F, globalDegree * 0.8F, false, 0.3F, 0.2F, f, f1);
+        model.walk(rightThigh, globalSpeed * 0.5F, globalDegree * 0.8F, true, 0, 0.2F, f, f1);
+        model.walk(leftThigh, globalSpeed * 0.5F, globalDegree * 0.8F, false, 0, 0.2F, f, f1);
 
-        model.walk(leftCalf, globalSpeed * 0.5F, globalDegree * 1F, false, 1.3F, 0.4F, f, f1);
-        model.walk(rightCalf, globalSpeed * 0.5F, globalDegree * 1F, true, 1.3F, 0.4F, f, f1);
+        model.walk(leftCalf, globalSpeed * 0.5F, globalDegree * 1F, false, -1.3F, 0.4F, f, f1);
+        model.walk(rightCalf, globalSpeed * 0.5F, globalDegree * 1F, true, -1.3F, 0.4F, f, f1);
 
-        model.walk(leftCalf2, globalSpeed * 0.5F, globalDegree * 1F, true, 0.3F, 0F, f, f1);
-        model.walk(rightCalf2, globalSpeed * 0.5F, globalDegree * 1F, false, 0.3F, 0F, f, f1);
+        model.walk(leftCalf2, globalSpeed * 0.5F, globalDegree * 1.1F, true, -2F, 0F, f, f1);
+        model.walk(rightCalf2, globalSpeed * 0.5F, globalDegree * 1.1F, false, -2F, 0F, f, f1);
 
-        model.walk(leftFoot, globalSpeed * 0.5F, globalDegree * 1.5F, false, 0.8F, 0.3F, f, f1);
-        model.walk(rightFoot, globalSpeed * 0.5F, globalDegree * 1.5F, true, 0.8F, 0.3F, f, f1);
+        model.walk(leftFoot, globalSpeed * 0.5F, globalDegree * 1.7F, false, -0.8F, 0.55F, f, f1);
+        model.walk(rightFoot, globalSpeed * 0.5F, globalDegree * 1.7F, true, -0.8F, 0.55F, f, f1);
 
         model.walk(head, 1F * globalSpeed, 0.15F, true, 0F, 0.2F, f, f1);
         model.walk(neck, 1F * globalSpeed, 0.03F, false, 0F, 0.04F, f, f1);
@@ -96,11 +98,11 @@ public class AnimationGiganotosaurus implements IModelAnimator
         model.walk(neck3, 1F * globalSpeed, 0.03F, false, 0F, 0.04F, f, f1);
         model.walk(neck4, 1F * globalSpeed, 0.03F, false, 0F, 0.04F, f, f1);
 
-        leftThigh.rotationPointY -= 2 * f1 * Math.cos(f * 0.5F * globalSpeed);
+        leftThigh.rotationPointY += 2 * f1 * Math.cos(f * 0.5F * globalSpeed);
         rightThigh.rotationPointY -= 2 * f1 * Math.cos(f * 0.5F * globalSpeed);
 
-        model.chainWave(tail, 0.1F, 0.05F, 2, ticksExisted, 1F);
-        model.chainWave(body, 0.1F, 0.03F, 5, ticksExisted, 1F);
+        model.chainWave(tail, 0.1F, -0.05F, 2, ticksExisted, 1F);
+        model.chainWave(body, 0.1F, 0.03F, 4, ticksExisted, 1F);
 
         model.faceTarget(head, 2, rotationYaw, rotationPitch);
         model.faceTarget(neck, 2, rotationYaw, rotationPitch);

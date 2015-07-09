@@ -21,8 +21,8 @@ public class AnimationMajungasaurus implements IModelAnimator
     {
         EntityMajungasaurus dino = (EntityMajungasaurus) entity;
 
-        // f = dino.ticksExisted / 2;
-        // f1 = 1F;
+//        f = dino.ticksExisted;
+//        f1 = 1F;
 
         MowzieModelRenderer tail1 = model.getCube("Tail Base");
         MowzieModelRenderer tail2 = model.getCube("Tail 2");
@@ -73,8 +73,8 @@ public class AnimationMajungasaurus implements IModelAnimator
 
         MowzieModelRenderer[] body = new MowzieModelRenderer[] { bodyRear, bodyMid, bodyFront, neck1, neck2, neck3, neck4, head };
 
-        float globalSpeed = 0.8F;
-        float globalDegree = 0.8F;
+        float globalSpeed = 0.5F;
+        float globalDegree = 0.4F;
         float globalHeight = 1.0F;
 
         model.bob(bodyRear, globalSpeed * 1F, globalHeight * 0.8F, false, f, f1);
@@ -85,17 +85,17 @@ public class AnimationMajungasaurus implements IModelAnimator
         model.chainWave(body, globalSpeed * 1F, globalHeight * -0.02F, -3, f, f1);
         model.chainWave(tail, globalSpeed * 1F, globalHeight * 0.05F, -2, f, f1);
 
-        model.walk(rightThigh, globalSpeed * 0.5F, globalDegree * 0.8F, true, -0.3F, 0.2F, f, f1);
-        model.walk(leftThigh, globalSpeed * 0.5F, globalDegree * 0.8F, false, -0.3F, 0.2F, f, f1);
+        model.walk(rightThigh, globalSpeed * 0.5F, globalDegree * 0.8F, true, 0F, 0.2F, f, f1);
+        model.walk(leftThigh, globalSpeed * 0.5F, globalDegree * 0.8F, false, 0F, 0.2F, f, f1);
 
         model.walk(leftCalf1, globalSpeed * 0.5F, globalDegree * 1F, false, -1.3F, 0.4F, f, f1);
         model.walk(rightCalf1, globalSpeed * 0.5F, globalDegree * 1F, true, -1.3F, 0.4F, f, f1);
 
-        model.walk(leftCalf2, globalSpeed * 0.5F, globalDegree * 1F, true, -0.3F, 0F, f, f1);
-        model.walk(rightCalf2, globalSpeed * 0.5F, globalDegree * 1F, false, -0.3F, 0F, f, f1);
+        model.walk(leftCalf2, globalSpeed * 0.5F, globalDegree * 1F, true, -2F, 0F, f, f1);
+        model.walk(rightCalf2, globalSpeed * 0.5F, globalDegree * 1F, false, -2F, 0F, f, f1);
 
-        model.walk(leftFoot, globalSpeed * 0.5F, globalDegree * 1.5F, false, -0.8F, 0.3F, f, f1);
-        model.walk(rightFoot, globalSpeed * 0.5F, globalDegree * 1.5F, true, -0.8F, 0.3F, f, f1);
+        model.walk(leftFoot, globalSpeed * 0.5F, globalDegree * 1.7F, false, -0.8F, 0.5F, f, f1);
+        model.walk(rightFoot, globalSpeed * 0.5F, globalDegree * 1.7F, true, -0.8F, 0.5F, f, f1);
 
         model.chainWave(armRight, globalSpeed * 1F, globalHeight * -0.25F, -3, f, f1);
         model.chainWave(armLeft, globalSpeed * 1F, globalHeight * -0.25F, -3, f, f1);
@@ -105,9 +105,6 @@ public class AnimationMajungasaurus implements IModelAnimator
         model.walk(neck2, 1F * globalSpeed, 0.03F, false, 0F, 0.04F, f, f1);
         model.walk(neck3, 1F * globalSpeed, 0.03F, false, 0F, 0.04F, f, f1);
         model.walk(neck4, 1F * globalSpeed, 0.03F, false, 0F, 0.04F, f, f1);
-
-        leftThigh.rotationPointY -= 2 * f1 * Math.cos(f * 0.5F * globalSpeed);
-        rightThigh.rotationPointY -= 2 * f1 * Math.cos(f * 0.5F * globalSpeed);
 
         int ticksExisted = entity.ticksExisted;
 

@@ -15,9 +15,10 @@ public class AnimationRugops implements IModelAnimator
         float globalDegree = 0.4F;
         float height = 1.0F;
 
-        // f = entity.ticksExisted;
-        // f1 = 1F;
+//        f = entity.ticksExisted;
+//        f1 = 1F;
 
+        //TODO wrong body part
         MowzieModelRenderer shoulders = model.getCube("Body shoulders");
         MowzieModelRenderer waist = model.getCube("Body waist");
 
@@ -72,6 +73,7 @@ public class AnimationRugops implements IModelAnimator
 
         // Body animations
         model.bob(leftThigh, 1F * globalSpeed, height, false, f, f1);
+        model.bob(waist, 1F * globalSpeed, height, false, f, f1);
         model.bob(rightThigh, 1F * globalSpeed, height, false, f, f1);
         leftThigh.rotationPointY -= -2 * f1 * Math.cos(f * 0.5 * globalSpeed);
         rightThigh.rotationPointY -= 2 * f1 * Math.cos(f * 0.5 * globalSpeed);
@@ -97,7 +99,7 @@ public class AnimationRugops implements IModelAnimator
         model.walk(rightFoot, 0.5F * globalSpeed, 1.5F * globalDegree, false, 0.5F, -0.1F, f, f1);
 
         // idling
-        model.chainWave(tailParts, 0.1F, -0.05F, 2, entity.ticksExisted, 1F);
+        model.chainWave(tailParts, 0.1F, 0.05F, 2, entity.ticksExisted, 1F);
         model.chainWave(bodyParts, 0.1F, -0.03F, 5, entity.ticksExisted, 1F);
         model.chainWave(rightArmParts, 0.1F, -0.1F, 4, entity.ticksExisted, 1F);
         model.chainWave(leftArmParts, 0.1F, -0.1F, 4, entity.ticksExisted, 1F);

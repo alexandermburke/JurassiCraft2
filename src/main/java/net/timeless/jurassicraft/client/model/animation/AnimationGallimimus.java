@@ -18,10 +18,10 @@ public class AnimationGallimimus implements IModelAnimator
     @Override
     public void setRotationAngles(ModelJson model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
     {
-        f = entity.ticksExisted;
-        f1 = 1F;
+//        f = entity.ticksExisted;
+//        f1 = 1F;
 
-        float globalSpeed = 0.7F;
+        float globalSpeed = 0.8F;
         float globalDegree = 1.0F;
         float globalHeight = 1.0F;
 
@@ -30,6 +30,9 @@ public class AnimationGallimimus implements IModelAnimator
         MowzieModelRenderer neck3 = model.getCube("neck3");
         MowzieModelRenderer neck4 = model.getCube("neck4");
         MowzieModelRenderer neck5 = model.getCube("neck5");
+
+        //TODO
+        MowzieModelRenderer throat = model.getCube("Throat");
 
         MowzieModelRenderer tail1 = model.getCube("tail1");
         MowzieModelRenderer tail2 = model.getCube("tail2");
@@ -79,8 +82,8 @@ public class AnimationGallimimus implements IModelAnimator
         rightThigh.rotationPointX += -f1 * globalHeight * Math.cos(f * 0.5 * globalSpeed);
         leftThigh.rotationPointX += -f1 * globalHeight * Math.cos(f * 0.5 * globalSpeed);
 
-        neck1.rotateAngleZ += f1 * 0.2 * globalHeight * Math.cos(f * 0.5 * globalSpeed);
-        neck2.rotateAngleY += f1 * 0.2 * globalHeight * Math.cos(f * 0.5 * globalSpeed);
+        body1.rotateAngleZ += f1 * 0.1 * globalHeight * Math.cos(f * 0.5 * globalSpeed);
+        head.rotateAngleZ -= f1 * 0.1 * globalHeight * Math.cos(f * 0.5 * globalSpeed);
 
         model.walk(leftThigh, 0.5F * globalSpeed, 0.8F * globalDegree, false, 0F + 0.1F, 0.2F, f, f1);
         model.walk(leftCalf1, 0.5F * globalSpeed, 0.7F * globalDegree, true, 2F + 0.1F, 0F, f, f1);
@@ -92,22 +95,32 @@ public class AnimationGallimimus implements IModelAnimator
         model.walk(rightCalf2, 0.5F * globalSpeed, 0.5F * globalDegree, true, 3F + 0.1F, 0F, f, f1);
         model.walk(rightFoot, 0.5F * globalSpeed, 0.5F * globalDegree, false, 1.5F + 0.1F, 1F, f, f1);
 
-        model.walk(upperArmRight, 1 * globalSpeed, 0.3F * globalDegree, true, 0.3F, -0.3F, f, f1);
-        model.walk(upperArmLeft, 1 * globalSpeed, 0.3F * globalDegree, true, 0.3F, -0.3F, f, f1);
-        model.walk(lowerArmRight, 1 * globalSpeed, 0.3F * globalDegree, true, 0.6F, -0.7F, f, f1);
-        model.walk(lowerArmLeft, 1 * globalSpeed, 0.3F * globalDegree, true, 0.6F, -0.7F, f, f1);
-        model.walk(handLeft, 1 * globalSpeed, 0.3F * globalDegree, true, 0.9F, 1F, f, f1);
-        model.walk(handRight, 1 * globalSpeed, 0.3F * globalDegree, true, 0.9F, 1F, f, f1);
+        model.walk(upperArmRight, 1 * globalSpeed, 0.3F, true, 0.3F, -0.3F, f, f1);
+        model.walk(upperArmLeft, 1 * globalSpeed, 0.3F, true, 0.3F, -0.3F, f, f1);
+        model.walk(lowerArmRight, 1 * globalSpeed, 0.3F, true, 0.6F, -0.7F, f, f1);
+        model.walk(lowerArmLeft, 1 * globalSpeed, 0.3F, true, 0.6F, -0.7F, f, f1);
+        model.walk(handLeft, 1 * globalSpeed, 0.3F, true, 0.9F, 1F, f, f1);
+        model.walk(handRight, 1 * globalSpeed, 0.3F, true, 0.9F, 1F, f, f1);
 
-        model.walk(body1, globalSpeed, 0.1F * globalDegree, true, 1.5F, -0.2F, f, f1);
-
-        model.walk(neck1, globalSpeed, 0.3F * globalDegree, true, 1.5F, -0.5F, f, f1);
-        model.walk(neck2, globalSpeed, 0.1F * globalDegree, true, 1.5F, -0.5F, f, f1);
-        model.walk(neck3, globalSpeed, 0.1F * globalDegree, false, 1.5F, 0.5F, f, f1);
-        model.walk(neck4, globalSpeed, 0.1F * globalDegree, false, 1.5F, 0.3F, f, f1);
-        model.walk(neck5, globalSpeed, 0.1F * globalDegree, false, 1.5F, 0.3F, f, f1);
+        model.walk(body1, globalSpeed, 0.1F, true, 1.5F, -0.2F, f, f1);
+        model.walk(neck1, globalSpeed, 0.1F, true, 1.5F, -0.4F, f, f1);
+        model.walk(neck2, globalSpeed, 0.1F, true, 1.5F, -0.5F, f, f1);
+        model.walk(neck3, globalSpeed, 0.1F, false, 1.5F, 0.4F, f, f1);
+        model.walk(neck4, globalSpeed, 0.1F, false, 1.5F, 0.3F, f, f1);
+        model.walk(neck5, globalSpeed, 0.1F, false, 1.5F, 0.3F, f, f1);
+        body1.rotationPointZ += 1.1 * f1;
+        neck1.rotationPointZ += 1.6 * f1;
+        neck2.rotationPointZ += 1.4 * f1;
+        throat.rotationPointZ -= 3 * f1;
 
         model.chainWave(tail, 1 * globalSpeed, -0.05F, 1, f, f1);
         model.chainSwing(tail, 0.5F * globalSpeed, 0.1F, 2, f, f1);
+
+        int frame = entity.ticksExisted;
+
+        model.chainWave(tail, 0.1F, 0.05F, 1, frame, 1.0F);
+        model.chainWave(body, 0.1F, -0.05F, 4, frame, 1.0F);
+        model.chainWave(armRight, 0.1F, -0.15F, 4, frame, 1.0F);
+        model.chainWave(armLeft, 0.1F, -0.15F, 4, frame, 1.0F);
     }
 }
