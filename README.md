@@ -5,7 +5,7 @@ JurassiCraft is a mod made to bring prehistoric creatures to the world of Minecr
 
 # The team
 ## Managers
-TheLieutenantGhost
+TheLieutenantGhost 
 
 ## Programmers
 gegy1000  
