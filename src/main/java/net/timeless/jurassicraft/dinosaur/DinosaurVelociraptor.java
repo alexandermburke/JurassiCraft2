@@ -101,7 +101,7 @@ public class DinosaurVelociraptor extends Dinosaur
     @Override
     public int getMaximumAge()
     {
-        return 10000;
+        return fromDays(45);
     }
 
     @Override

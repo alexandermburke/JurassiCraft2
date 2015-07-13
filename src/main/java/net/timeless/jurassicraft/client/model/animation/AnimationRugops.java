@@ -15,8 +15,8 @@ public class AnimationRugops implements IModelAnimator
         float globalDegree = 0.4F;
         float height = 1.0F;
 
-//        f = entity.ticksExisted;
-//        f1 = 1F;
+        //        f = entity.ticksExisted;
+        //        f1 = 1F;
 
         //TODO wrong body part
         MowzieModelRenderer shoulders = model.getCube("Body shoulders");

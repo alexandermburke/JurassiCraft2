@@ -13,10 +13,10 @@ public class ItemDnaContainer extends Item
     public int getDNAQuality(EntityPlayer player, ItemStack stack)
     {
         int quality = player.capabilities.isCreativeMode ? 100 : 0;
-        
+
         NBTTagCompound nbt = stack.getTagCompound();
-        
-        if(nbt == null)
+
+        if (nbt == null)
         {
             nbt = new NBTTagCompound();
             nbt.setInteger("DNAQuality", quality);
@@ -25,18 +25,18 @@ public class ItemDnaContainer extends Item
         {
             quality = nbt.getInteger("DNAQuality");
         }
-        
+
         stack.setTagCompound(nbt);
-        
+
         return quality;
     }
-    
+
     public void addInformation(ItemStack stack, EntityPlayer player, List lore, boolean advanced)
     {
         int quality = getDNAQuality(player, stack);
-        
+
         EnumChatFormatting colour;
-        
+
         if (quality > 75)
             colour = EnumChatFormatting.GREEN;
         else if (quality > 50)
@@ -45,7 +45,7 @@ public class ItemDnaContainer extends Item
             colour = EnumChatFormatting.GOLD;
         else
             colour = EnumChatFormatting.RED;
-        
+
         lore.add(colour + "DNA Quality: " + quality + "%"); //TODO translation
     }
 }

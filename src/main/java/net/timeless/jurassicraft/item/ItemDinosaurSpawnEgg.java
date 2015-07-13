@@ -172,7 +172,7 @@ public class ItemDinosaurSpawnEgg extends Item
             return true;
         }
     }
-    
+
     public void addInformation(ItemStack stack, EntityPlayer player, List lore, boolean advanced)
     {
         lore.add("Sneak + Right Click to spawn baby dinosaur"); //TODO Translations

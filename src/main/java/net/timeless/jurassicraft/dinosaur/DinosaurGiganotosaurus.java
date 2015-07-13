@@ -104,7 +104,7 @@ public class DinosaurGiganotosaurus extends Dinosaur
     @Override
     public int getMaximumAge()
     {
-        return 10000;
+        return fromDays(65);
     }
 
     @Override

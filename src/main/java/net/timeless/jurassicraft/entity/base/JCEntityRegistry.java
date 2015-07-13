@@ -9,9 +9,12 @@ import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.dinosaur.DinosaurAchillobator;
 import net.timeless.jurassicraft.dinosaur.DinosaurAnkylosaurus;
+import net.timeless.jurassicraft.dinosaur.DinosaurBrachiosaurus;
 import net.timeless.jurassicraft.dinosaur.DinosaurCarnotaurus;
+import net.timeless.jurassicraft.dinosaur.DinosaurCoelacanth;
 import net.timeless.jurassicraft.dinosaur.DinosaurCompsognathus;
 import net.timeless.jurassicraft.dinosaur.DinosaurDilophosaurus;
+import net.timeless.jurassicraft.dinosaur.DinosaurDunkleosteus;
 import net.timeless.jurassicraft.dinosaur.DinosaurGallimimus;
 import net.timeless.jurassicraft.dinosaur.DinosaurGiganotosaurus;
 import net.timeless.jurassicraft.dinosaur.DinosaurIndominusRex;
@@ -36,9 +39,12 @@ public class JCEntityRegistry
 
     public static final Dinosaur achillobator = new DinosaurAchillobator();
     public static final Dinosaur anklyosaurus = new DinosaurAnkylosaurus();
+    public static final Dinosaur brachiosaurus = new DinosaurBrachiosaurus();
     public static final Dinosaur carnotaurus = new DinosaurCarnotaurus();
+    public static final Dinosaur coelacanth = new DinosaurCoelacanth();
     public static final Dinosaur compsognathus = new DinosaurCompsognathus();
     public static final Dinosaur dilophosaurus = new DinosaurDilophosaurus();
+    public static final Dinosaur dunkleosteus = new DinosaurDunkleosteus();
     public static final Dinosaur gallimimus = new DinosaurGallimimus();
     public static final Dinosaur giganotosaurus = new DinosaurGiganotosaurus();
     public static final Dinosaur indominus_rex = new DinosaurIndominusRex();
@@ -57,9 +63,12 @@ public class JCEntityRegistry
     {
         registerDinosaurType(achillobator);
         registerDinosaurType(anklyosaurus);
+        registerDinosaurType(brachiosaurus);
         registerDinosaurType(carnotaurus);
+        registerDinosaurType(coelacanth);
         registerDinosaurType(compsognathus);
         registerDinosaurType(dilophosaurus);
+        registerDinosaurType(dunkleosteus);
         registerDinosaurType(gallimimus);
         registerDinosaurType(giganotosaurus);
         registerDinosaurType(indominus_rex);

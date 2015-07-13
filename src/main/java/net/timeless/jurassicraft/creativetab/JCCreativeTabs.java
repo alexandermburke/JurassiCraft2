@@ -13,7 +13,7 @@ public class JCCreativeTabs
     public static CreativeTabJurassiCraft dna;
     public static CreativeTabJurassiCraft eggs;
     public static CreativeTabJurassiCraft spawnEggs;
-    public static CreativeTabJurassiCraft decorations;
+    public static CreativeTabJurassiCraft foods;
 
     public void register()
     {
@@ -69,11 +69,16 @@ public class JCCreativeTabs
             }
         };
 
-        decorations = new CreativeTabJurassiCraft("jurassicraft.decorations")
+        foods = new CreativeTabJurassiCraft("jurassicraft.foods")
         {
+            public int getIconItemDamage()
+            {
+                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus_rex);
+            }
+
             public Item getTabIconItem()
             {
-                return Item.getItemFromBlock(JCBlockRegistry.encased_fossil);
+                return JCItemRegistry.dino_meat;
             }
         };
 
@@ -81,7 +86,7 @@ public class JCCreativeTabs
         {
             public Item getTabIconItem()
             {
-                return Item.getItemFromBlock(JCBlockRegistry.encased_fossil);
+                return Item.getItemFromBlock(JCBlockRegistry.fossil_grinder);
             }
         };
     }

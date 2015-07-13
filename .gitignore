@@ -1,5 +1,3 @@
-minecraft/
-
 ## IDEA files
 .idea/
 build/
@@ -15,7 +13,9 @@ eclipse/
 .project
 .classpath
 .settings/
-logs/
 
 ## JurassiCraft files
 Resources.zip
+
+## Minecraft files
+minecraft/

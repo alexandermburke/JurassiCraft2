@@ -103,7 +103,7 @@ public class DinosaurRugops extends Dinosaur
     @Override
     public int getMaximumAge()
     {
-        return 10000;
+        return fromDays(40);
     }
 
     @Override

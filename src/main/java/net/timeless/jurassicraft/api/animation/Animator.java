@@ -44,12 +44,12 @@ public class Animator
         this.currentEntity = entity;
         int oldAnimID = getPreviousAnim(entity);
         setTick(entity, getTick(entity) + partialTick);
-        
+
         if (oldAnimID != entity.getAnimID())
         {
             reset(entity);
         }
-        
+
         animTree.clear();
         currentPhase = null;
     }
@@ -275,7 +275,7 @@ public class Animator
     public void translate(ModelRenderer part, float offsetX, float offsetY, float offsetZ, boolean keepRotationOffset)
     {
         Transform tr = currentPhase.getTransform(part);
-        
+
         tr.trX += offsetX;
         tr.trY += offsetY;
         tr.trZ += offsetZ;
@@ -303,7 +303,7 @@ public class Animator
     public void translateRotOffset(ModelRenderer part, float offsetX, float offsetY, float offsetZ)
     {
         Transform tr = currentPhase.getTransform(part);
-        
+
         tr.rotOffsetX += offsetX;
         tr.rotOffsetY += offsetY;
         tr.rotOffsetZ += offsetZ;
@@ -324,7 +324,7 @@ public class Animator
     public void rotate(ModelRenderer part, float x, float y, float z)
     {
         Transform tr = currentPhase.getTransform(part);
-        
+
         tr.rotX += x;
         tr.rotY += y;
         tr.rotZ += z;
@@ -337,18 +337,18 @@ public class Animator
      */
     public void init(ModelJson model)
     {
-        if(model instanceof ModelDinosaur)
+        if (model instanceof ModelDinosaur)
         {
             this.model = (ModelDinosaur) model;
-            
+
             initPose = Maps.newHashMap();
-            
+
             for (ModelRenderer p : this.model.getParts())
             {
                 Transform tr = new Transform(p);
                 initPose.put(p, tr);
             }
-            
+
             globalStart.putAll(initPose);
             initialized = true;
         }

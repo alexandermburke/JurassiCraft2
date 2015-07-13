@@ -104,7 +104,7 @@ public class DinosaurGallimimus extends Dinosaur
     @Override
     public int getMaximumAge()
     {
-        return 10000;
+        return fromDays(35);
     }
 
     @Override

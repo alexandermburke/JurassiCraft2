@@ -18,8 +18,8 @@ public class AnimationCarnotaurus implements IModelAnimator
     @Override
     public void setRotationAngles(ModelJson model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
     {
-//        f = entity.ticksExisted / 2;
-//        f1 = 1F;
+        //        f = entity.ticksExisted / 2;
+        //        f1 = 1F;
 
         float globalSpeed = 1F;
         float globalDegree = 0.4F;
@@ -81,7 +81,6 @@ public class AnimationCarnotaurus implements IModelAnimator
         model.chainWave(body, globalSpeed * 1.0F, globalHeight * 0.02F, 3, f, f1);
         model.chainWave(tail, globalSpeed * 1.0F, globalHeight * -0.05F, 2, f, f1);
         model.chainSwing(tail, globalSpeed * 0.5F, globalHeight * 0.05F, 2, f, f1);
-
 
         model.walk(rightThigh, globalSpeed * 0.5F, globalDegree * 0.8F, true, -0.3F, 0.2F, f, f1);
         model.walk(leftThigh, globalSpeed * 0.5F, globalDegree * 0.8F, false, -0.3F, 0.2F, f, f1);

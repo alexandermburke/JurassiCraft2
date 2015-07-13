@@ -1,9 +1,14 @@
 package net.timeless.jurassicraft.block;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.timeless.jurassicraft.api.ISubBlocksBlock;
+import net.timeless.jurassicraft.dinosaur.Dinosaur;
+import net.timeless.jurassicraft.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.tileentity.TileCleaningStation;
 import net.timeless.jurassicraft.tileentity.TileDnaSequencer;
 import net.timeless.jurassicraft.tileentity.TileDnaSynthesizer;
@@ -13,8 +18,9 @@ import net.timeless.jurassicraft.tileentity.TileFossilGrinder;
 
 public class JCBlockRegistry
 {
-    public static BlockFossil fossil;
-    public static BlockEncasedFossil encased_fossil;
+    public static List<BlockFossil> fossils;
+    public static List<BlockEncasedFossil> encased_fossils;
+
     public static BlockCleaningStation cleaning_station;
     public static BlockFossilGrinder fossil_grinder;
     public static BlockDnaSequencer dna_sequencer;
@@ -24,8 +30,9 @@ public class JCBlockRegistry
 
     public void register()
     {
-        fossil = new BlockFossil();
-        encased_fossil = new BlockEncasedFossil();
+        fossils = new ArrayList<BlockFossil>();
+        encased_fossils = new ArrayList<BlockEncasedFossil>();
+
         cleaning_station = new BlockCleaningStation();
         fossil_grinder = new BlockFossilGrinder();
         dna_sequencer = new BlockDnaSequencer();
@@ -33,8 +40,21 @@ public class JCBlockRegistry
         embryonic_machine = new BlockEmbryonicMachine();
         embryo_insemination_machine = new BlockEmbryoInseminationMachine();
 
-        registerBlock(fossil, "Fossil Block");
-        registerBlock(encased_fossil, "Encased Fossil");
+        List<Dinosaur> dinosaurs = JCEntityRegistry.getDinosaurs();
+
+        int blocksToCreate = (int) (Math.ceil(((float) dinosaurs.size()) / 16.0F));
+
+        for (int i = 0; i < blocksToCreate; i++)
+        {
+            BlockFossil fossil = new BlockFossil(i);
+            BlockEncasedFossil encasedFossil = new BlockEncasedFossil(i);
+
+            fossils.add(fossil);
+            encased_fossils.add(encasedFossil);
+
+            registerBlock(fossil, "Fossil Block " + i);
+            registerBlock(encasedFossil, "Encased Fossil " + i);
+        }
 
         registerBlockTileEntity(TileCleaningStation.class, cleaning_station, "Cleaning Station");
         registerBlockTileEntity(TileDnaSequencer.class, dna_sequencer, "DNA Sequencer");
@@ -42,6 +62,51 @@ public class JCBlockRegistry
         registerBlockTileEntity(TileEmbryoInseminationMachine.class, embryo_insemination_machine, "Embryo Insemination Machine");
         registerBlockTileEntity(TileEmbryonicMachine.class, embryonic_machine, "Embryonic Machine");
         registerBlockTileEntity(TileFossilGrinder.class, fossil_grinder, "Fossil Grinder");
+    }
+
+    public BlockFossil getFossilBlock(Dinosaur dinosaur)
+    {
+        return getFossilBlock(JCEntityRegistry.getDinosaurId(dinosaur));
+    }
+
+    private int getBlockId(int dinosaurId)
+    {
+        return (int) (Math.floor(((float) dinosaurId + 1.0F) / 16.0F));
+    }
+
+    public BlockEncasedFossil getEncasedFossil(Dinosaur dinosaur)
+    {
+        return getEncasedFossil(JCEntityRegistry.getDinosaurId(dinosaur));
+    }
+
+    public BlockEncasedFossil getEncasedFossil(int id)
+    {
+        return encased_fossils.get(getBlockId(id));
+    }
+
+    public BlockFossil getFossilBlock(int id)
+    {
+        return fossils.get(getBlockId(id));
+    }
+
+    public int getDinosaurId(BlockFossil fossil, int metadata)
+    {
+        return (fossils.indexOf(fossil) * 16) + metadata;
+    }
+
+    public int getDinosaurId(BlockEncasedFossil fossil, int metadata)
+    {
+        return (encased_fossils.indexOf(fossil) * 16) + metadata;
+    }
+
+    public int getMetadata(int id)
+    {
+        return id % 16;
+    }
+
+    public int getMetadata(Dinosaur dinosaur)
+    {
+        return getMetadata(JCEntityRegistry.getDinosaurId(dinosaur));
     }
 
     public void registerBlockTileEntity(Class<? extends TileEntity> tileEntity, Block block, String name)

@@ -13,6 +13,9 @@ public class JCItemRegistry
     public static ItemDinosaurEgg egg;
     public static ItemPaleoPad paleo_pad;
 
+    public static ItemDinosaurMeat dino_meat;
+    public static ItemDinosaurSteak dino_steak;
+
     public void register()
     {
         plaster_and_bandage = new ItemPlasterAndBandage();
@@ -21,6 +24,8 @@ public class JCItemRegistry
         dna = new ItemDNA();
         egg = new ItemDinosaurEgg();
         paleo_pad = new ItemPaleoPad();
+        dino_meat = new ItemDinosaurMeat();
+        dino_steak = new ItemDinosaurSteak();
 
         registerItem(plaster_and_bandage, "Plaster And Bandage");
         registerItem(spawn_egg, "Dino Spawn Egg");
@@ -28,6 +33,9 @@ public class JCItemRegistry
         registerItem(dna, "DNA");
         registerItem(egg, "Dino Egg");
         registerItem(paleo_pad, "Paleo Pad");
+
+        registerItem(dino_meat, "Dinosaur Meat");
+        registerItem(dino_steak, "Dinosaur Steak");
     }
 
     public void registerItem(Item item, String name)

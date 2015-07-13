@@ -1,12 +1,12 @@
 package net.timeless.jurassicraft.entity;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
@@ -32,15 +32,15 @@ public class EntityIndominusRex extends EntityDinosaurAggressive implements IAni
         super(world);
 
         // Placeholder AI
-        this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, dinosaur.getAttackSpeed(), false));
+        this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, dinosaur.getAttackSpeed(), false));
         this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
-        this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPig.class, dinosaur.getAttackSpeed(), false));
-        this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPig.class, false));
+        //        this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPig.class, dinosaur.getAttackSpeed(), false));
+        this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, false));
 
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, EntityPlayer.class));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, EntityLivingBase.class));
 
         this.tasks.addTask(6, new EntityAIJCWander(this, 40));
-        this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
+        this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityLivingBase.class, 6.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
     }
 
@@ -65,7 +65,7 @@ public class EntityIndominusRex extends EntityDinosaurAggressive implements IAni
 
     public boolean isCamouflaging()
     {
-        return true;
+        return false;
     }
 
     public void changeSkinColor()

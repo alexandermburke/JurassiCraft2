@@ -3,11 +3,11 @@ package net.timeless.jurassicraft.proxy;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.event.CommonEventHandler;
-import net.timeless.jurassicraft.handler.GuiHandler;
-import net.timeless.jurassicraft.packets.MessageCleaningTable;
+import net.timeless.jurassicraft.handler.JCGuiHandler;
+import net.timeless.jurassicraft.world.FossilGenerator;
 
 public class CommonProxy
 {
@@ -17,11 +17,14 @@ public class CommonProxy
         JurassiCraft.creativeTabRegistry.register();
         JurassiCraft.itemRegistry.register();
         JurassiCraft.blockRegistry.register();
+        JurassiCraft.recipeRegistry.register();
 
-        NetworkRegistry.INSTANCE.registerGuiHandler(JurassiCraft.instance, new GuiHandler());
+        GameRegistry.registerWorldGenerator(new FossilGenerator(), 0);
+
+        NetworkRegistry.INSTANCE.registerGuiHandler(JurassiCraft.instance, new JCGuiHandler());
 
         JurassiCraft.wrapper = NetworkRegistry.INSTANCE.newSimpleChannel(JurassiCraft.modid);
-        JurassiCraft.wrapper.registerMessage(MessageCleaningTable.Handler.class, MessageCleaningTable.class, 0, Side.SERVER);
+        //        JurassiCraft.wrapper.registerMessage(MessageCleaningTable.Handler.class, MessageCleaningTable.class, 0, Side.SERVER);
 
         CommonEventHandler eventHandler = new CommonEventHandler();
 

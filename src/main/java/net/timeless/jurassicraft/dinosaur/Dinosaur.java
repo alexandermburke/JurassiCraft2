@@ -86,4 +86,9 @@ public abstract class Dinosaur
     {
         return getName().hashCode();
     }
+
+    protected int fromDays(int days)
+    {
+        return (days * 24000) / 32;
+    }
 }

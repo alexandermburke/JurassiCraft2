@@ -19,8 +19,8 @@ public class AnimationIndominusRex implements IModelAnimator
     @Override
     public void setRotationAngles(ModelJson model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
     {
-//        f = entity.ticksExisted;
-//        f1 = 1F;
+        //        f = entity.ticksExisted;
+        //        f1 = 1F;
 
         float globalSpeed = 0.5F;
         float globalDegree = 0.4F;

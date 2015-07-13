@@ -4,6 +4,9 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
+import net.timeless.jurassicraft.block.BlockEncasedFossil;
+import net.timeless.jurassicraft.dinosaur.Dinosaur;
+import net.timeless.jurassicraft.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.period.EnumTimePeriod;
 
 public class ItemEncasedFossil extends ItemBlock
@@ -18,7 +21,9 @@ public class ItemEncasedFossil extends ItemBlock
 
     public String getItemStackDisplayName(ItemStack stack)
     {
-        return StatCollector.translateToLocal("period." + EnumTimePeriod.byMetadata(stack.getMetadata()).getName() + ".name") + " " + StatCollector.translateToLocal("tile.encased_fossil.name");
+        Dinosaur dinosaur = ((BlockEncasedFossil) block).getDinosaur(stack.getMetadata());
+
+        return StatCollector.translateToLocal("period." + dinosaur.getPeriod().getName() + ".name") + " " + StatCollector.translateToLocal("tile.encased_fossil.name");
     }
 
     @Override
@@ -30,7 +35,7 @@ public class ItemEncasedFossil extends ItemBlock
     @Override
     public String getUnlocalizedName(ItemStack stack)
     {
-        EnumTimePeriod timePeriod = EnumTimePeriod.byMetadata(stack.getMetadata());
+        EnumTimePeriod timePeriod = JCEntityRegistry.getDinosaurById(stack.getMetadata()).getPeriod();
         return super.getUnlocalizedName() + "." + timePeriod.getName();
     }
 }

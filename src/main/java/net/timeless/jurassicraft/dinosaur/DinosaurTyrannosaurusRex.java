@@ -106,7 +106,7 @@ public class DinosaurTyrannosaurusRex extends Dinosaur
     @Override
     public int getMaximumAge()
     {
-        return 10000;
+        return fromDays(60);
     }
 
     @Override

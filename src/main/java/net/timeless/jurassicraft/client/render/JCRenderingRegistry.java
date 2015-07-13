@@ -15,12 +15,17 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
+import net.timeless.jurassicraft.block.BlockEncasedFossil;
+import net.timeless.jurassicraft.block.BlockFossil;
 import net.timeless.jurassicraft.block.JCBlockRegistry;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefAchillobator;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefAnkylosaurus;
+import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefBrachiosaurus;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefCarnotaurus;
+import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefCoelacanth;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefCompsognathus;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefDilophosaurus;
+import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefDunkleosteus;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefGallimimus;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefGiganotosaurus;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefIndominusRex;
@@ -55,6 +60,8 @@ public class JCRenderingRegistry
             ModelBakery.addVariantName(JCItemRegistry.fossil, "jurassicraft:fossil/fossil_" + dinoName);
             ModelBakery.addVariantName(JCItemRegistry.dna, "jurassicraft:dna/dna_" + dinoName);
             ModelBakery.addVariantName(JCItemRegistry.egg, "jurassicraft:egg/egg_" + dinoName);
+            ModelBakery.addVariantName(JCItemRegistry.dino_meat, "jurassicraft:meat/meat_" + dinoName);
+            ModelBakery.addVariantName(JCItemRegistry.dino_steak, "jurassicraft:meat/steak_" + dinoName);
         }
     }
 
@@ -62,9 +69,12 @@ public class JCRenderingRegistry
     {
         registerRenderDef(new RenderDefAchillobator());
         registerRenderDef(new RenderDefAnkylosaurus());
+        registerRenderDef(new RenderDefBrachiosaurus());
         registerRenderDef(new RenderDefCarnotaurus());
+        registerRenderDef(new RenderDefCoelacanth());
         registerRenderDef(new RenderDefCompsognathus());
         registerRenderDef(new RenderDefDilophosaurus());
+        registerRenderDef(new RenderDefDunkleosteus());
         registerRenderDef(new RenderDefGallimimus());
         registerRenderDef(new RenderDefGiganotosaurus());
         registerRenderDef(new RenderDefIndominusRex());
@@ -82,8 +92,24 @@ public class JCRenderingRegistry
         // Blocks
         ItemModelMesher modelMesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
 
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.fossil, "fossil_block", "inventory");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.encased_fossil, "encased_fossil", "inventory");
+        int i = 0;
+
+        for (BlockEncasedFossil fossil : JCBlockRegistry.encased_fossils)
+        {
+            this.registerBlockRenderer(modelMesher, fossil, "encased_fossil_" + i, "inventory");
+
+            i++;
+        }
+
+        i = 0;
+
+        for (BlockFossil fossil : JCBlockRegistry.fossils)
+        {
+            this.registerBlockRenderer(modelMesher, fossil, "fossil_block_" + i, "inventory");
+
+            i++;
+        }
+
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.cleaning_station, "cleaning_station", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.fossil_grinder, "fossil_grinder", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.dna_sequencer, "dna_sequencer", "inventory");
@@ -114,6 +140,8 @@ public class JCRenderingRegistry
             this.registerItemRenderer(modelMesher, JCItemRegistry.dna, meta, "dna/dna_" + dinoName, "inventory");
             this.registerItemRenderer(modelMesher, JCItemRegistry.fossil, meta, "fossil/fossil_" + dinoName, "inventory");
             this.registerItemRenderer(modelMesher, JCItemRegistry.egg, meta, "egg/egg_" + dinoName, "inventory");
+            this.registerItemRenderer(modelMesher, JCItemRegistry.dino_meat, meta, "meat/meat_" + dinoName, "inventory");
+            this.registerItemRenderer(modelMesher, JCItemRegistry.dino_steak, meta, "meat/steak_" + dinoName, "inventory");
 
             meta++;
         }
@@ -135,11 +163,19 @@ public class JCRenderingRegistry
     }
 
     /**
-     * Registers an item renderer with meta
+     * Registers an item renderer with metadata
      */
     public void registerItemRenderer(ItemModelMesher itemModelMesher, Item item, int meta, String path, String type)
     {
         itemModelMesher.register(item, meta, new ModelResourceLocation(JurassiCraft.modid + ":" + path, type));
+    }
+
+    /**
+     * Registers an block renderer with metadata
+     */
+    public void registerBlockRenderer(ItemModelMesher itemModelMesher, Block block, int meta, String path, String type)
+    {
+        itemModelMesher.register(Item.getItemFromBlock(block), meta, new ModelResourceLocation(JurassiCraft.modid + ":" + path, type));
     }
 
     /**
@@ -160,5 +196,10 @@ public class JCRenderingRegistry
     private void registerRenderDef(RenderDinosaurDefinition renderDef)
     {
         renderDefs.put(renderDef.getDinosaur(), renderDef);
+    }
+
+    public RenderDinosaurDefinition getRenderDef(Dinosaur dino)
+    {
+        return renderDefs.get(dino);
     }
 }

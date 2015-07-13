@@ -13,7 +13,7 @@ public class ModelDinosaur extends ModelJson
     {
         super(model);
     }
-    
+
     public ModelDinosaur(JsonTabulaModel model, IModelAnimator animator)
     {
         super(model, animator);

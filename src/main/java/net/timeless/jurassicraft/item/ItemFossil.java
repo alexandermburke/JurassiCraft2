@@ -12,7 +12,7 @@ import net.timeless.jurassicraft.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.entity.base.JCEntityRegistry;
 
-public class ItemFossil extends ItemDnaContainer
+public class ItemFossil extends Item
 {
     public ItemFossil()
     {

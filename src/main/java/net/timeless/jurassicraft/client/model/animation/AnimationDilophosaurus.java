@@ -41,8 +41,8 @@ public class AnimationDilophosaurus implements IModelAnimator
         float globalDegree = 0.77F;
         float globalHeight = 2F;
 
-//        f = entity.ticksExisted;
-//        f1 = 1F;
+        //        f = entity.ticksExisted;
+        //        f1 = 1F;
 
         MowzieModelRenderer head = model.getCube("head");
 

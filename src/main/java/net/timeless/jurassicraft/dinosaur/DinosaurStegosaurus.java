@@ -37,7 +37,7 @@ public class DinosaurStegosaurus extends Dinosaur
     @Override
     public EnumTimePeriod getPeriod()
     {
-        return EnumTimePeriod.CRETACEOUS;
+        return EnumTimePeriod.JURASSIC;
     }
 
     @Override
@@ -109,7 +109,7 @@ public class DinosaurStegosaurus extends Dinosaur
     @Override
     public int getMaximumAge()
     {
-        return 10000;
+        return fromDays(50);
     }
 
     @Override

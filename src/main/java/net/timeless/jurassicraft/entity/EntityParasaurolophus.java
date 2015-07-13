@@ -10,9 +10,13 @@ import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.timeless.jurassicraft.entity.base.EntityDinosaurAggressive;
+import net.timeless.jurassicraft.entity.base.buffer.ChainBuffer;
 
 public class EntityParasaurolophus extends EntityDinosaurAggressive
 {
+
+    public ChainBuffer tailBuffer = new ChainBuffer(6);
+
     public EntityParasaurolophus(World world)
     {
         super(world);

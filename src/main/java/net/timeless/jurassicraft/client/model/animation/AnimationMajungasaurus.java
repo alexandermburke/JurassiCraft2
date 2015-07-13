@@ -21,8 +21,8 @@ public class AnimationMajungasaurus implements IModelAnimator
     {
         EntityMajungasaurus dino = (EntityMajungasaurus) entity;
 
-//        f = dino.ticksExisted;
-//        f1 = 1F;
+        //        f = dino.ticksExisted;
+        //        f1 = 1F;
 
         MowzieModelRenderer tail1 = model.getCube("Tail Base");
         MowzieModelRenderer tail2 = model.getCube("Tail 2");

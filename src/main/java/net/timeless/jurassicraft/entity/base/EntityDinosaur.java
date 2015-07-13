@@ -3,10 +3,12 @@ package net.timeless.jurassicraft.entity.base;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.timeless.jurassicraft.dinosaur.Dinosaur;
+import net.timeless.jurassicraft.item.JCItemRegistry;
 
 public class EntityDinosaur extends EntityCreature implements IEntityAdditionalSpawnData
 {
@@ -65,7 +67,13 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
 
     public double transitionFromAge(double baby, double adult)
     {
-        return (adult - baby) / (dinosaur.getMaximumAge()) * dinosaurAge + baby;
+        int dinosaurAge = this.dinosaurAge;
+        int maxAge = dinosaur.getMaximumAge();
+
+        if (dinosaurAge > maxAge)
+            dinosaurAge = maxAge;
+
+        return (adult - baby) / maxAge * dinosaurAge + baby;
     }
 
     public void onLivingUpdate()
@@ -74,22 +82,20 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
 
         this.setSize((float) transitionFromAge(dinosaur.getBabySizeX(), dinosaur.getAdultSizeX()), (float) transitionFromAge(dinosaur.getBabySizeY(), dinosaur.getAdultSizeY()));
 
-        if (ticksExisted % 16 == 0)
+        if (ticksExisted % 32 == 0)
         {
-            if (dinosaurAge < dinosaur.getMaximumAge())
-            {
-                this.dinosaurAge++;
+            this.dinosaurAge++;
 
-                if (dinosaurAge % 20 == 0)
-                {
-                    updateCreatureData();
-                }
-            }
-            else if (dinosaurAge > dinosaur.getMaximumAge())
+            if (dinosaurAge % 20 == 0)
             {
-                dinosaurAge = dinosaur.getMaximumAge();
+                updateCreatureData();
             }
         }
+    }
+
+    public int getDaysExisted()
+    {
+        return (dinosaurAge * 32) / 24000;
     }
 
     public void setFullyGrown()
@@ -169,5 +175,21 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     public float getEyeHeight()
     {
         return (float) transitionFromAge(dinosaur.getBabyEyeHeight(), dinosaur.getAdultEyeHeight());
+    }
+
+    /**
+     * Drop 0-2 items of this living's type
+     */
+    protected void dropFewItems(boolean p_70628_1_, int p_70628_2_)
+    {
+        int meatAmount = this.rand.nextInt(5);
+
+        for (int i = 0; i < meatAmount; ++i)
+        {
+            if (this.isBurning())
+                entityDropItem(new ItemStack(JCItemRegistry.dino_steak, 1, JCEntityRegistry.getDinosaurId(dinosaur)), 0.0F);
+            else
+                entityDropItem(new ItemStack(JCItemRegistry.dino_meat, 1, JCEntityRegistry.getDinosaurId(dinosaur)), 0.0F);
+        }
     }
 }

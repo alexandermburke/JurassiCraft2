@@ -12,6 +12,7 @@ import net.timeless.jurassicraft.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.item.JCItemRegistry;
 import net.timeless.jurassicraft.proxy.CommonProxy;
+import net.timeless.jurassicraft.recipe.JCRecipeRegistry;
 
 import org.apache.logging.log4j.Logger;
 
@@ -33,6 +34,7 @@ public class JurassiCraft
     public static JCCreativeTabs creativeTabRegistry = new JCCreativeTabs();
     public static JCItemRegistry itemRegistry = new JCItemRegistry();
     public static JCBlockRegistry blockRegistry = new JCBlockRegistry();
+    public static JCRecipeRegistry recipeRegistry = new JCRecipeRegistry();
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)

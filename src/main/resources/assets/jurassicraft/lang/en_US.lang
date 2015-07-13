@@ -4,7 +4,7 @@ itemGroup.jurassicraft.blocks=JurassiCraft Blocks
 itemGroup.jurassicraft.eggs=JurassiCraft Eggs
 itemGroup.jurassicraft.spawnEggs=JurassiCraft Spawn Eggs
 itemGroup.jurassicraft.dna=JurassiCraft DNA
-itemGroup.jurassicraft.decorations=JurassiCraft Decorations
+itemGroup.jurassicraft.foods=JurassiCraft Foodstuffs
 
 //Entities ==================================================
 entity.velociraptor.name=Velociraptor
@@ -25,6 +25,9 @@ entity.ankylosaurus.name=Ankylosaurus
 entity.segisaurus.name=Segisaurus
 entity.pteranodon.name=Pteranodon
 entity.triceratops.name=Triceratops
+entity.coelacanth.name=Coelacanth
+entity.brachiosaurus.name=Brachiosaurus
+entity.dunkleosteus.name=Dunkleosteus
 
 //Items ==================================================
 item.rock_pick.name=Rock Pick
@@ -33,6 +36,8 @@ item.plaster_and_bandage.name=Plaster and Bandage
 item.fossil.name=Fossil
 item.dino_egg.name=Egg
 item.dino_spawn_egg.name=Spawn
+item.dinosaur_meat.name=Meat
+item.dinosaur_steak.name=Steak
 item.paleo_pad.name=Paleo Pad
 item.dna.name=DNA
 item.gentle_giants_sign.name=Gentle Giants Sign

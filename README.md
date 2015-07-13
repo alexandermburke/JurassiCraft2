@@ -1,11 +1,11 @@
-# [![JurassiCraft2](http://i.imgur.com/3CXpCDv.png)](http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2444641)
+# [![JurassiCraft2](http://i.imgur.com/3CXpCDv.png)](http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2320045)
 A total rewrite of the dinosaur mod JurassiCraft
 
 JurassiCraft is a mod made to bring prehistoric creatures to the world of Minecraft. It is inspired by Jurassic Park, but is not limited to all JP canon: as many creatures and features as possible will be added! Creatures are made Jurassic Park style, by obtaining fossils or amber, using the fossils or amber to create DNA, inserting the DNA into eggs, and hatching the eggs. The mod recently merged with two other mods, entitled the Bygone Age Mod and the Fossil Hunting Mod, which will bring users a more complete modded-Minecraft experience.
 
 # The team
 ## Managers
-TheLieutenantGhost 
+TheLieutenantGhost
 
 ## Programmers
 gegy1000  

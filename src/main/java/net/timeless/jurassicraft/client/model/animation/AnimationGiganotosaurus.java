@@ -22,8 +22,8 @@ public class AnimationGiganotosaurus implements IModelAnimator
         float globalDegree = 0.45F;
         float height = 1.0F;
 
-//        f = entity.ticksExisted;
-//        f1 = 1.0F;
+        //        f = entity.ticksExisted;
+        //        f1 = 1.0F;
 
         MowzieModelRenderer neck = model.getCube("Neck 1");
         MowzieModelRenderer neck2 = model.getCube("Neck 2");
