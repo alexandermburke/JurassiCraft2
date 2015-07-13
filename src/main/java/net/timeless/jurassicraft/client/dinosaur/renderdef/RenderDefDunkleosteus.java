@@ -5,7 +5,7 @@ import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.minecraft.client.model.ModelBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.jurassicraft.client.model.animation.AnimationCoelacanth;
+import net.timeless.jurassicraft.client.model.animation.AnimationDunkleosteus;
 import net.timeless.jurassicraft.entity.base.JCEntityRegistry;
 
 @SideOnly(Side.CLIENT)
@@ -18,7 +18,7 @@ public class RenderDefDunkleosteus extends RenderDinosaurDefinition
     {
         super(JCEntityRegistry.dunkleosteus);
 
-        this.animator = new AnimationCoelacanth();
+        this.animator = new AnimationDunkleosteus();
 
         try
         {
