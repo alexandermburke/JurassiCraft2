@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityHanging;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.dinosaur.Dinosaur;
@@ -28,6 +29,7 @@ import net.timeless.jurassicraft.dinosaur.DinosaurStegosaurus;
 import net.timeless.jurassicraft.dinosaur.DinosaurTriceratops;
 import net.timeless.jurassicraft.dinosaur.DinosaurTyrannosaurusRex;
 import net.timeless.jurassicraft.dinosaur.DinosaurVelociraptor;
+import net.timeless.jurassicraft.entity.item.EntityBluePrint;
 import net.timeless.jurassicraft.period.EnumTimePeriod;
 
 import com.google.common.collect.Lists;
@@ -83,6 +85,7 @@ public class JCEntityRegistry
         registerDinosaurType(tyrannosaurus_rex);
         registerDinosaurType(velociraptor);
 
+        registerEntity(EntityBluePrint.class, "blueprint");
         // Always register a new dinosaur after last one in list, otherwise all
         // items with metadata will be shifted by one (all dinosaurs will change
         // form D:) (UNLESS it is before the release of JC2) I want to change the way IDs work so this will not be the case.
