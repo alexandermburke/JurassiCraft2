@@ -1,8 +1,6 @@
 package net.timeless.jurassicraft.item;
 
 import net.minecraft.entity.EntityHanging;
-import net.minecraft.entity.item.EntityItemFrame;
-import net.minecraft.entity.item.EntityPainting;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -14,12 +12,10 @@ import net.timeless.jurassicraft.entity.item.EntityBluePrint;
 
 public class ItemBluePrint extends Item
 {
-    private final Class hangingEntityClass;
-
     public ItemBluePrint()
     {
-        this.hangingEntityClass = EntityBluePrint.class;
-        this.setUnlocalizedName("blueprint");
+        this.setUnlocalizedName("blue_print");
+        this.setCreativeTab(JCCreativeTabs.items);
     }
 
     public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
@@ -42,13 +38,13 @@ public class ItemBluePrint extends Item
             }
             else
             {
-                EntityHanging entityhanging = this.createEntity(worldIn, blockpos1, side);
+                EntityBluePrint bluePrint = new EntityBluePrint(worldIn, blockpos1, side);
 
-                if (entityhanging != null && entityhanging.onValidSurface())
+                if (bluePrint.onValidSurface())
                 {
                     if (!worldIn.isRemote)
                     {
-                        worldIn.spawnEntityInWorld(entityhanging);
+                        worldIn.spawnEntityInWorld(bluePrint);
                     }
 
                     --stack.stackSize;
@@ -57,10 +53,5 @@ public class ItemBluePrint extends Item
                 return true;
             }
         }
-    }
-
-    private EntityHanging createEntity(World worldIn, BlockPos pos, EnumFacing clickedSide)
-    {
-        return new EntityBluePrint(worldIn, pos, clickedSide);
     }
 }

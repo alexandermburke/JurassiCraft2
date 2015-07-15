@@ -1,23 +1,28 @@
 package net.timeless.jurassicraft.entity.item;
 
-import com.google.common.collect.Lists;
+import io.netty.buffer.ByteBuf;
+
+import java.util.ArrayList;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHanging;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import java.util.ArrayList;
+import net.timeless.jurassicraft.item.JCItemRegistry;
 
-public class EntityBluePrint extends EntityHanging
+import com.google.common.collect.Lists;
+
+public class EntityBluePrint extends EntityHanging implements IEntityAdditionalSpawnData
 {
     public EnumBluePrint art;
-    private static final String __OBFID = "CL_00001556";
 
     public EntityBluePrint(World world)
     {
@@ -55,12 +60,19 @@ public class EntityBluePrint extends EntityHanging
     public EntityBluePrint(World world, BlockPos pos, EnumFacing enumFacing, String titleName)
     {
         this(world, pos, enumFacing);
-        EntityBluePrint.EnumBluePrint[] aenumart = EntityBluePrint.EnumBluePrint.values();
-        int i = aenumart.length;
+        setType(titleName);
+
+        this.func_174859_a(enumFacing);
+    }
+
+    private void setType(String titleName)
+    {
+        EntityBluePrint.EnumBluePrint[] art = EntityBluePrint.EnumBluePrint.values();
+        int i = art.length;
 
         for (int j = 0; j < i; ++j)
         {
-            EntityBluePrint.EnumBluePrint enumart = aenumart[j];
+            EntityBluePrint.EnumBluePrint enumart = art[j];
 
             if (enumart.title.equals(titleName))
             {
@@ -68,8 +80,9 @@ public class EntityBluePrint extends EntityHanging
                 break;
             }
         }
-
-        this.func_174859_a(enumFacing);
+        
+        if (this.art == null)
+            this.art = EnumBluePrint.TYRANNOSAURUS;
     }
 
     /**
@@ -87,23 +100,8 @@ public class EntityBluePrint extends EntityHanging
     public void readEntityFromNBT(NBTTagCompound tagCompund)
     {
         String s = tagCompund.getString("Motive");
-        EntityBluePrint.EnumBluePrint[] aenumart = EntityBluePrint.EnumBluePrint.values();
-        int i = aenumart.length;
 
-        for (int j = 0; j < i; ++j)
-        {
-            EntityBluePrint.EnumBluePrint enumart = aenumart[j];
-
-            if (this.art.title.equals(s))
-            {
-                this.art = enumart;
-            }
-        }
-
-        if (this.art == null)
-        {
-            this.art = EnumBluePrint.Tyrannosaur;
-        }
+        setType(s);
 
         super.readEntityFromNBT(tagCompund);
     }
@@ -121,13 +119,13 @@ public class EntityBluePrint extends EntityHanging
     /**
      * Called when this entity is broken. Entity parameter may be null.
      */
-    public void onBroken(Entity p_110128_1_)
+    public void onBroken(Entity entity)
     {
         if (this.worldObj.getGameRules().getGameRuleBooleanValue("doTileDrops"))
         {
-            if (p_110128_1_ instanceof EntityPlayer)
+            if (entity instanceof EntityPlayer)
             {
-                EntityPlayer entityplayer = (EntityPlayer)p_110128_1_;
+                EntityPlayer entityplayer = (EntityPlayer)entity;
 
                 if (entityplayer.capabilities.isCreativeMode)
                 {
@@ -135,7 +133,7 @@ public class EntityBluePrint extends EntityHanging
                 }
             }
 
-            this.entityDropItem(new ItemStack(Items.painting), 0.0F);
+            this.entityDropItem(new ItemStack(JCItemRegistry.blue_print), 0.0F);
         }
     }
 
@@ -151,7 +149,7 @@ public class EntityBluePrint extends EntityHanging
 
     public enum EnumBluePrint
     {
-        Tyrannosaur("Savage", 32, 16, 0, 0);
+        TYRANNOSAURUS("Tyrannosaurus", 32, 16, 0, 0);
 
         public final String title;
         public final int sizeX;
@@ -172,8 +170,24 @@ public class EntityBluePrint extends EntityHanging
     @SideOnly(Side.CLIENT)
     public void func_180426_a(double p_180426_1_, double p_180426_3_, double p_180426_5_, float p_180426_7_, float p_180426_8_, int p_180426_9_, boolean p_180426_10_)
     {
-        BlockPos blockpos = new BlockPos(p_180426_1_ - this.posX, p_180426_3_ - this.posY, p_180426_5_ - this.posZ);
-        BlockPos blockpos1 = this.hangingPosition.add(blockpos);
-        this.setPosition((double)blockpos1.getX(), (double)blockpos1.getY(), (double)blockpos1.getZ());
+//        BlockPos blockpos = new BlockPos(p_180426_1_ - this.posX, p_180426_3_ - this.posY, p_180426_5_ - this.posZ);
+//        BlockPos blockpos1 = this.hangingPosition.add(blockpos);
+//        this.setPosition((double)blockpos1.getX(), (double)blockpos1.getY(), (double)blockpos1.getZ());
+    }
+
+    @Override
+    public void writeSpawnData(ByteBuf buffer)
+    {
+        ByteBufUtils.writeUTF8String(buffer, art.title);
+        buffer.writeLong(func_174857_n().toLong());
+        buffer.writeByte(field_174860_b.getHorizontalIndex());
+    }
+
+    @Override
+    public void readSpawnData(ByteBuf buf)
+    {
+        setType(ByteBufUtils.readUTF8String(buf));
+        hangingPosition = BlockPos.fromLong(buf.readLong());
+        func_174859_a(EnumFacing.getHorizontal(buf.readByte()));
     }
 }

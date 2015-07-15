@@ -16,7 +16,7 @@ public class JCItemRegistry
     public static ItemDinosaurMeat dino_meat;
     public static ItemDinosaurSteak dino_steak;
 
-    public static ItemBluePrint bluePrint;
+    public static ItemBluePrint blue_print;
 
     public void register()
     {
@@ -28,9 +28,9 @@ public class JCItemRegistry
         paleo_pad = new ItemPaleoPad();
         dino_meat = new ItemDinosaurMeat();
         dino_steak = new ItemDinosaurSteak();
-        bluePrint = new ItemBluePrint();
+        blue_print = new ItemBluePrint();
 
-        registerItem(bluePrint, "Blue Print");
+        registerItem(blue_print, "Blue Print");
         registerItem(plaster_and_bandage, "Plaster And Bandage");
         registerItem(spawn_egg, "Dino Spawn Egg");
         registerItem(fossil, "Fossil");
