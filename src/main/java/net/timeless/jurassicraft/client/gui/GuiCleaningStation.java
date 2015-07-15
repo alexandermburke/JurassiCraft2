@@ -7,8 +7,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.jurassicraft.container.ContainerCleaningStation;
-import net.timeless.jurassicraft.tileentity.TileCleaningStation;
+import net.timeless.jurassicraft.common.container.ContainerCleaningStation;
+import net.timeless.jurassicraft.common.tileentity.TileCleaningStation;
 
 @SideOnly(Side.CLIENT)
 public class GuiCleaningStation extends GuiContainer

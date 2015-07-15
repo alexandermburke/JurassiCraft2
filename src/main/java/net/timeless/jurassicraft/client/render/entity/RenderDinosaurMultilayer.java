@@ -14,9 +14,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDinosaurDefinition;
-import net.timeless.jurassicraft.dinosaur.Dinosaur;
-import net.timeless.jurassicraft.entity.EntityVelociraptor;
-import net.timeless.jurassicraft.entity.base.EntityDinosaur;
+import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
+import net.timeless.jurassicraft.common.entity.EntityVelociraptor;
+import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 
 import org.lwjgl.opengl.GL11;
 

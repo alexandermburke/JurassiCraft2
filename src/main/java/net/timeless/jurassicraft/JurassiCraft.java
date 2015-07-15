@@ -7,12 +7,12 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import net.timeless.jurassicraft.block.JCBlockRegistry;
-import net.timeless.jurassicraft.creativetab.JCCreativeTabs;
-import net.timeless.jurassicraft.entity.base.JCEntityRegistry;
-import net.timeless.jurassicraft.item.JCItemRegistry;
-import net.timeless.jurassicraft.proxy.CommonProxy;
-import net.timeless.jurassicraft.recipe.JCRecipeRegistry;
+import net.timeless.jurassicraft.common.block.JCBlockRegistry;
+import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
+import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
+import net.timeless.jurassicraft.common.item.JCItemRegistry;
+import net.timeless.jurassicraft.common.proxy.CommonProxy;
+import net.timeless.jurassicraft.common.recipe.JCRecipeRegistry;
 
 import org.apache.logging.log4j.Logger;
 

@@ -4,7 +4,7 @@ import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
 import net.ilexiconn.llibrary.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.minecraft.entity.Entity;
-import net.timeless.jurassicraft.entity.EntitySpinosaurus;
+import net.timeless.jurassicraft.common.entity.EntitySpinosaurus;
 
 public class AnimationSpinosaurus implements IModelAnimator
 {

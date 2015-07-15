@@ -8,7 +8,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.client.model.animation.AnimationIndominusRex;
 import net.timeless.jurassicraft.client.render.entity.RenderIndominusRex;
-import net.timeless.jurassicraft.entity.base.JCEntityRegistry;
+import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 
 @SideOnly(Side.CLIENT)
 public class RenderDefIndominusRex extends RenderDinosaurDefinition

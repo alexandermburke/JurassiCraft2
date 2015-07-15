@@ -6,8 +6,8 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-import net.timeless.jurassicraft.container.ContainerFossilGrinder;
-import net.timeless.jurassicraft.tileentity.TileFossilGrinder;
+import net.timeless.jurassicraft.common.container.ContainerFossilGrinder;
+import net.timeless.jurassicraft.common.tileentity.TileFossilGrinder;
 
 import org.lwjgl.opengl.GL11;
 

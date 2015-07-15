@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
-import net.timeless.jurassicraft.entity.item.EntityBluePrint;
+import net.timeless.jurassicraft.common.entity.item.EntityBluePrint;
 
 @SideOnly(Side.CLIENT)
 public class RenderBluePrint extends Render
@@ -161,7 +161,7 @@ public class RenderBluePrint extends Render
      */
     protected ResourceLocation getEntityTexture(Entity entity)
     {
-        return this.getBluePrintTexture((net.timeless.jurassicraft.entity.item.EntityBluePrint) entity);
+        return this.getBluePrintTexture((net.timeless.jurassicraft.common.entity.item.EntityBluePrint) entity);
     }
 
     /**

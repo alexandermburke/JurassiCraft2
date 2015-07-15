@@ -4,7 +4,7 @@ import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
 import net.ilexiconn.llibrary.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.minecraft.entity.Entity;
-import net.timeless.jurassicraft.entity.EntityRugops;
+import net.timeless.jurassicraft.common.entity.EntityRugops;
 
 public class AnimationRugops implements IModelAnimator
 {

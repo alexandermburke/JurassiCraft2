@@ -4,8 +4,8 @@ import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
 import net.ilexiconn.llibrary.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.minecraft.entity.Entity;
-import net.timeless.jurassicraft.api.animation.Animator;
-import net.timeless.jurassicraft.entity.EntityTyrannosaurusRex;
+import net.timeless.jurassicraft.common.api.animation.Animator;
+import net.timeless.jurassicraft.common.entity.EntityTyrannosaurusRex;
 
 public class AnimationTyrannosaurusRex implements IModelAnimator
 {

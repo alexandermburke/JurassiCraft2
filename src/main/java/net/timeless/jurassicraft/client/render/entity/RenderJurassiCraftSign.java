@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
-import net.timeless.jurassicraft.entity.item.EntityJurassiCraftSign;
+import net.timeless.jurassicraft.common.entity.item.EntityJurassiCraftSign;
 
 @SideOnly(Side.CLIENT)
 public class RenderJurassiCraftSign extends Render
@@ -161,7 +161,7 @@ public class RenderJurassiCraftSign extends Render
      */
     protected ResourceLocation getEntityTexture(Entity entity)
     {
-        return this.getSignTexture((net.timeless.jurassicraft.entity.item.EntityJurassiCraftSign) entity);
+        return this.getSignTexture((net.timeless.jurassicraft.common.entity.item.EntityJurassiCraftSign) entity);
     }
 
     /**
