@@ -41,9 +41,11 @@ import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefTyrannosauru
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefVelociraptor;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDinosaurDefinition;
 import net.timeless.jurassicraft.client.render.entity.RenderBluePrint;
+import net.timeless.jurassicraft.client.render.entity.RenderJurassiCraftSign;
 import net.timeless.jurassicraft.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.entity.item.EntityBluePrint;
+import net.timeless.jurassicraft.entity.item.EntityJurassiCraftSign;
 import net.timeless.jurassicraft.item.JCItemRegistry;
 
 import com.google.common.collect.Maps;
@@ -126,7 +128,8 @@ public class JCRenderingRegistry
             RenderingRegistry.registerEntityRenderingHandler(dinosaur.getDinosaurClass(), renderDefs.get(dinosaur).getRenderer());
 
         RenderingRegistry.registerEntityRenderingHandler(EntityBluePrint.class, new RenderBluePrint());
-
+        RenderingRegistry.registerEntityRenderingHandler(EntityJurassiCraftSign.class, new RenderJurassiCraftSign());
+        
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
         ItemModelMesher modelMesher = renderItem.getItemModelMesher();
 
@@ -135,7 +138,8 @@ public class JCRenderingRegistry
         this.registerItemRenderer(modelMesher, JCItemRegistry.spawn_egg, "dino_spawn_egg", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.paleo_pad, "paleo_pad", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.blue_print, "blue_print", "inventory");
-
+        this.registerItemRenderer(modelMesher, JCItemRegistry.jc_sign, "jurassicraft_sign", "inventory");
+        
         int meta = 0;
 
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())

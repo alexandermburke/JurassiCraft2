@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-		"layer0": "jurassicraft:items/gentle_giants"
+		"layer0": "jurassicraft:items/jurassicraft_sign"
     },
     "display": {
         "thirdperson": {

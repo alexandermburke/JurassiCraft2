@@ -20,26 +20,26 @@ import net.timeless.jurassicraft.item.JCItemRegistry;
 
 import com.google.common.collect.Lists;
 
-public class EntityBluePrint extends EntityHanging implements IEntityAdditionalSpawnData
+public class EntityJurassiCraftSign extends EntityHanging implements IEntityAdditionalSpawnData
 {
-    public EnumBluePrint art;
+    public EnumSignType signType;
 
-    public EntityBluePrint(World world)
+    public EntityJurassiCraftSign(World world)
     {
         super(world);
     }
 
-    public EntityBluePrint(World world, BlockPos blockPos, EnumFacing enumFacing)
+    public EntityJurassiCraftSign(World world, BlockPos blockPos, EnumFacing enumFacing)
     {
         super(world, blockPos);
         ArrayList arraylist = Lists.newArrayList();
-        EntityBluePrint.EnumBluePrint[] aenumart = EntityBluePrint.EnumBluePrint.values();
+        EntityJurassiCraftSign.EnumSignType[] aenumart = EntityJurassiCraftSign.EnumSignType.values();
         int i = aenumart.length;
 
         for (int j = 0; j < i; ++j)
         {
-            EntityBluePrint.EnumBluePrint enumart = aenumart[j];
-            this.art = enumart;
+            EntityJurassiCraftSign.EnumSignType enumart = aenumart[j];
+            this.signType = enumart;
             this.func_174859_a(enumFacing);
 
             if (this.onValidSurface())
@@ -50,14 +50,14 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
 
         if (!arraylist.isEmpty())
         {
-            this.art = (EntityBluePrint.EnumBluePrint) arraylist.get(this.rand.nextInt(arraylist.size()));
+            this.signType = (EntityJurassiCraftSign.EnumSignType) arraylist.get(this.rand.nextInt(arraylist.size()));
         }
 
         this.func_174859_a(enumFacing);
     }
 
     @SideOnly(Side.CLIENT)
-    public EntityBluePrint(World world, BlockPos pos, EnumFacing enumFacing, String titleName)
+    public EntityJurassiCraftSign(World world, BlockPos pos, EnumFacing enumFacing, String titleName)
     {
         this(world, pos, enumFacing);
         setType(titleName);
@@ -67,22 +67,22 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
 
     private void setType(String titleName)
     {
-        EntityBluePrint.EnumBluePrint[] art = EntityBluePrint.EnumBluePrint.values();
+        EntityJurassiCraftSign.EnumSignType[] art = EntityJurassiCraftSign.EnumSignType.values();
         int i = art.length;
 
         for (int j = 0; j < i; ++j)
         {
-            EntityBluePrint.EnumBluePrint enumart = art[j];
+            EntityJurassiCraftSign.EnumSignType enumart = art[j];
 
             if (enumart.title.equals(titleName))
             {
-                this.art = enumart;
+                this.signType = enumart;
                 break;
             }
         }
 
-        if (this.art == null)
-            this.art = EnumBluePrint.TYRANNOSAURUS;
+        if (this.signType == null)
+            this.signType = EnumSignType.GENTLE_GIANTS;
     }
 
     /**
@@ -90,7 +90,7 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
      */
     public void writeEntityToNBT(NBTTagCompound tagCompound)
     {
-        tagCompound.setString("Motive", this.art.title);
+        tagCompound.setString("Motive", this.signType.title);
         super.writeEntityToNBT(tagCompound);
     }
 
@@ -108,12 +108,12 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
 
     public int getWidthPixels()
     {
-        return this.art.sizeX;
+        return this.signType.sizeX;
     }
 
     public int getHeightPixels()
     {
-        return this.art.sizeY;
+        return this.signType.sizeY;
     }
 
     /**
@@ -147,10 +147,9 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
         this.setPosition((double) blockpos1.getX(), (double) blockpos1.getY(), (double) blockpos1.getZ());
     }
 
-    public enum EnumBluePrint
+    public enum EnumSignType
     {
-        TYRANNOSAURUS("Tyrannosaurus", 32, 16, 0, 0),
-        VELOCIRAPTOR("Velociraptor", 32, 16, 0, 16);
+        GENTLE_GIANTS("Gentle Giants", 128, 64, 0, 0);
         
         public final String title;
         public final int sizeX;
@@ -158,7 +157,7 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
         public final int offsetX;
         public final int offsetY;
 
-        EnumBluePrint(String title, int xSize, int ySize, int textureX, int textureY)
+        EnumSignType(String title, int xSize, int ySize, int textureX, int textureY)
         {
             this.title = title;
             this.sizeX = xSize;
@@ -179,7 +178,7 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
     @Override
     public void writeSpawnData(ByteBuf buffer)
     {
-        ByteBufUtils.writeUTF8String(buffer, art.title);
+        ByteBufUtils.writeUTF8String(buffer, signType.title);
         buffer.writeLong(func_174857_n().toLong());
         buffer.writeByte(field_174860_b.getHorizontalIndex());
     }
