@@ -1,6 +1,5 @@
 package net.timeless.jurassicraft.item;
 
-import net.minecraft.entity.EntityHanging;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityHanging;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.dinosaur.Dinosaur;

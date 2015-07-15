@@ -21,7 +21,7 @@ public class AnimationDunkleosteus implements IModelAnimator
         float globalSpeed = 0.2F;
         float globalDegree = 0.77F;
         float globalHeight = 2F;
-        
+
         f = entity.ticksExisted;
         f1 = 1F;
 
@@ -32,7 +32,7 @@ public class AnimationDunkleosteus implements IModelAnimator
         MowzieModelRenderer tail4 = model.getCube("Tail Section 4");
         MowzieModelRenderer tail5 = model.getCube("Tail Section 5");
         MowzieModelRenderer tail6 = model.getCube("Tail Section 6");
-        
+
         //body
         MowzieModelRenderer body2 = model.getCube("Body Section 2");
         MowzieModelRenderer body3 = model.getCube("Body Section 3");

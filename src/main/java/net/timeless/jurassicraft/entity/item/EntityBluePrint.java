@@ -50,7 +50,7 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
 
         if (!arraylist.isEmpty())
         {
-            this.art = (EntityBluePrint.EnumBluePrint)arraylist.get(this.rand.nextInt(arraylist.size()));
+            this.art = (EntityBluePrint.EnumBluePrint) arraylist.get(this.rand.nextInt(arraylist.size()));
         }
 
         this.func_174859_a(enumFacing);
@@ -80,7 +80,7 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
                 break;
             }
         }
-        
+
         if (this.art == null)
             this.art = EnumBluePrint.TYRANNOSAURUS;
     }
@@ -125,7 +125,7 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
         {
             if (entity instanceof EntityPlayer)
             {
-                EntityPlayer entityplayer = (EntityPlayer)entity;
+                EntityPlayer entityplayer = (EntityPlayer) entity;
 
                 if (entityplayer.capabilities.isCreativeMode)
                 {
@@ -144,7 +144,7 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
     {
         BlockPos blockpos = new BlockPos(x - this.posX, y - this.posY, z - this.posZ);
         BlockPos blockpos1 = this.hangingPosition.add(blockpos);
-        this.setPosition((double)blockpos1.getX(), (double)blockpos1.getY(), (double)blockpos1.getZ());
+        this.setPosition((double) blockpos1.getX(), (double) blockpos1.getY(), (double) blockpos1.getZ());
     }
 
     public enum EnumBluePrint
@@ -170,9 +170,9 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
     @SideOnly(Side.CLIENT)
     public void func_180426_a(double p_180426_1_, double p_180426_3_, double p_180426_5_, float p_180426_7_, float p_180426_8_, int p_180426_9_, boolean p_180426_10_)
     {
-//        BlockPos blockpos = new BlockPos(p_180426_1_ - this.posX, p_180426_3_ - this.posY, p_180426_5_ - this.posZ);
-//        BlockPos blockpos1 = this.hangingPosition.add(blockpos);
-//        this.setPosition((double)blockpos1.getX(), (double)blockpos1.getY(), (double)blockpos1.getZ());
+        //        BlockPos blockpos = new BlockPos(p_180426_1_ - this.posX, p_180426_3_ - this.posY, p_180426_5_ - this.posZ);
+        //        BlockPos blockpos1 = this.hangingPosition.add(blockpos);
+        //        this.setPosition((double)blockpos1.getX(), (double)blockpos1.getY(), (double)blockpos1.getZ());
     }
 
     @Override

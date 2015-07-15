@@ -5,7 +5,6 @@ import net.ilexiconn.llibrary.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.minecraft.entity.Entity;
 import net.timeless.jurassicraft.api.animation.Animator;
-import net.timeless.jurassicraft.entity.EntityIndominusRex;
 import net.timeless.jurassicraft.entity.EntityParasaurolophus;
 
 public class AnimationParasaurolophus implements IModelAnimator

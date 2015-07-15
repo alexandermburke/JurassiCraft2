@@ -126,7 +126,7 @@ public class JCRenderingRegistry
             RenderingRegistry.registerEntityRenderingHandler(dinosaur.getDinosaurClass(), renderDefs.get(dinosaur).getRenderer());
 
         RenderingRegistry.registerEntityRenderingHandler(EntityBluePrint.class, new RenderBluePrint());
-        
+
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
         ItemModelMesher modelMesher = renderItem.getItemModelMesher();
 
