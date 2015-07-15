@@ -19,7 +19,7 @@ import org.apache.logging.log4j.Logger;
 @Mod(modid = JurassiCraft.modid, name = "JurassiCraft", version = "${version}", dependencies = "required-after:llibrary@[0.3.0-1.8,)")
 public class JurassiCraft
 {
-    @SidedProxy(serverSide = "net.timeless.jurassicraft.proxy.CommonProxy", clientSide = "net.timeless.jurassicraft.proxy.ClientProxy")
+    @SidedProxy(serverSide = "net.timeless.jurassicraft.common.proxy.CommonProxy", clientSide = "net.timeless.jurassicraft.common.proxy.ClientProxy")
     public static CommonProxy proxy;
     public static SimpleNetworkWrapper wrapper;
 
