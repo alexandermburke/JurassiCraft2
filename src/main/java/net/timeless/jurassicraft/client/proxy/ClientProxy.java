@@ -1,8 +1,9 @@
-package net.timeless.jurassicraft.common.proxy;
+package net.timeless.jurassicraft.client.proxy;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.client.render.JCRenderingRegistry;
+import net.timeless.jurassicraft.common.proxy.CommonProxy;
 
 @SideOnly(Side.CLIENT)
 public class ClientProxy extends CommonProxy
