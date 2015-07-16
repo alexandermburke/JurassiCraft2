@@ -82,7 +82,7 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
         }
 
         if (this.art == null)
-            this.art = EnumBluePrint.TYRANNOSAURUS;
+            this.art = EnumBluePrint.INDOMINUS;
     }
 
     /**
@@ -149,7 +149,7 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
 
     public enum EnumBluePrint
     {
-        TYRANNOSAURUS("Tyrannosaurus", 32, 16, 0, 0), VELOCIRAPTOR("Velociraptor", 32, 16, 0, 16);
+        INDOMINUS("Indominus", 32, 16, 0, 0);
 
         public final String title;
         public final int sizeX;

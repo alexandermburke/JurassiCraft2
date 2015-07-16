@@ -133,7 +133,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
                 }
             }
 
-            this.entityDropItem(new ItemStack(JCItemRegistry.blue_print), 0.0F);
+            this.entityDropItem(new ItemStack(JCItemRegistry.jc_sign), 0.0F);
         }
     }
 
