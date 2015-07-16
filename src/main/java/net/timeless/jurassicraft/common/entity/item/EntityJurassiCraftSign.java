@@ -170,9 +170,6 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
     @SideOnly(Side.CLIENT)
     public void func_180426_a(double p_180426_1_, double p_180426_3_, double p_180426_5_, float p_180426_7_, float p_180426_8_, int p_180426_9_, boolean p_180426_10_)
     {
-        //        BlockPos blockpos = new BlockPos(p_180426_1_ - this.posX, p_180426_3_ - this.posY, p_180426_5_ - this.posZ);
-        //        BlockPos blockpos1 = this.hangingPosition.add(blockpos);
-        //        this.setPosition((double)blockpos1.getX(), (double)blockpos1.getY(), (double)blockpos1.getZ());
     }
 
     @Override
