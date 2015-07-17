@@ -52,12 +52,12 @@ public class EntityCarcass extends Entity implements IEntityAdditionalSpawnData
     protected void readEntityFromNBT(NBTTagCompound tagCompound)
     {
         this.dinoId = tagCompound.getInteger("DinoId");
-        
+
         NBTTagCompound entity = (NBTTagCompound) tagCompound.getTag("DeadEntity");
 
         Dinosaur dinosaurById = JCEntityRegistry.getDinosaurById(dinoId);
 
-        if(dinosaurById != null)
+        if (dinosaurById != null)
         {
             Class<? extends EntityDinosaur> dinoClass = dinosaurById.getDinosaurClass();
 
@@ -69,7 +69,7 @@ public class EntityCarcass extends Entity implements IEntityAdditionalSpawnData
                 dinosaur.readEntityFromNBT(entity);
                 dinosaur.width = entity.getFloat("DinoWidth");
                 dinosaur.height = entity.getFloat("DinoHeight");
-                
+
                 this.deadDinosaur = dinosaur;
 
                 updateProperties();
@@ -89,7 +89,7 @@ public class EntityCarcass extends Entity implements IEntityAdditionalSpawnData
         deadDinosaur.writeEntityToNBT(entity);
         entity.setFloat("DinoWidth", deadDinosaur.width);
         entity.setFloat("DinoHeight", deadDinosaur.height);
-        
+
         tagCompound.setTag("DeadEntity", entity);
         tagCompound.setInteger("DinoId", dinoId);
     }
@@ -97,16 +97,16 @@ public class EntityCarcass extends Entity implements IEntityAdditionalSpawnData
     @Override
     public void writeSpawnData(ByteBuf buffer)
     {
-        if(deadDinosaur != null)
+        if (deadDinosaur != null)
         {
             NBTTagCompound entity = new NBTTagCompound();
             deadDinosaur.writeToNBT(entity);
             deadDinosaur.writeEntityToNBT(entity);
             entity.setFloat("DinoWidth", deadDinosaur.width);
             entity.setFloat("DinoHeight", deadDinosaur.height);
-            
+
             ByteBufUtils.writeTag(buffer, entity);
-            
+
             buffer.writeInt(dinoId);
         }
     }
@@ -120,7 +120,7 @@ public class EntityCarcass extends Entity implements IEntityAdditionalSpawnData
 
         Dinosaur dinosaurById = JCEntityRegistry.getDinosaurById(dinoId);
 
-        if(dinosaurById != null)
+        if (dinosaurById != null)
         {
             Class<? extends EntityDinosaur> dinoClass = dinosaurById.getDinosaurClass();
 
@@ -132,7 +132,7 @@ public class EntityCarcass extends Entity implements IEntityAdditionalSpawnData
                 dinosaur.readEntityFromNBT(entity);
                 dinosaur.width = entity.getFloat("DinoWidth");
                 dinosaur.height = entity.getFloat("DinoHeight");
-                
+
                 this.deadDinosaur = dinosaur;
 
                 updateProperties();
@@ -149,7 +149,7 @@ public class EntityCarcass extends Entity implements IEntityAdditionalSpawnData
     /**
      * Called when the entity is attacked.
      */
-     public boolean attackEntityFrom(DamageSource source, float amount)
+    public boolean attackEntityFrom(DamageSource source, float amount)
     {
         if (this.isEntityInvulnerable(source) && ticksExisted < 20)
         {
@@ -167,8 +167,8 @@ public class EntityCarcass extends Entity implements IEntityAdditionalSpawnData
         }
     }
 
-     public EntityDinosaur getDinosaur()
-     {
-         return deadDinosaur;
-     }
+    public EntityDinosaur getDinosaur()
+    {
+        return deadDinosaur;
+    }
 }

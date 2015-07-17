@@ -25,13 +25,13 @@ public class RenderCarcass extends Render
 
         EntityDinosaur dinosaur = carcass.getDinosaur();
 
-        if(dinosaur != null)
+        if (dinosaur != null)
         {
             RendererLivingEntity renderer = (RendererLivingEntity) renderManager.getEntityRenderObject(dinosaur);
 
-            if(renderer != null)
+            if (renderer != null)
             {
-                GlStateManager.translate((float)x, (float)y + 0.25F, (float)z);
+                GlStateManager.translate((float) x, (float) y + 0.25F, (float) z);
 
                 float scale = 0.75F;
 
@@ -43,7 +43,7 @@ public class RenderCarcass extends Render
                 dinosaur.deathTime = 20;
 
                 GlStateManager.translate(-dinosaur.height / 4, -dinosaur.width / 4, dinosaur.height / 2);
-                
+
                 renderer.doRender(dinosaur, 0, 0, 0, 0, 0);
             }
         }
@@ -52,7 +52,7 @@ public class RenderCarcass extends Render
 
         super.doRender(carcass, x, y, z, p_180552_8_, partialTicks);
     }
-    
+
     /**
      * Actually renders the given argument. This is a synthetic bridge method, always casting down its argument and then
      * handing it off to a worker function which does the actual work. In all probabilty, the class Render is generic
@@ -61,7 +61,7 @@ public class RenderCarcass extends Render
      */
     public void doRender(Entity entity, double x, double y, double z, float p_76986_8_, float partialTicks)
     {
-        this.doRender((EntityCarcass)entity, x, y, z, p_76986_8_, partialTicks);
+        this.doRender((EntityCarcass) entity, x, y, z, p_76986_8_, partialTicks);
     }
 
     @Override

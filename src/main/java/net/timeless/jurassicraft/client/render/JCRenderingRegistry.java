@@ -132,7 +132,7 @@ public class JCRenderingRegistry
         RenderingRegistry.registerEntityRenderingHandler(EntityBluePrint.class, new RenderBluePrint());
         RenderingRegistry.registerEntityRenderingHandler(EntityJurassiCraftSign.class, new RenderJurassiCraftSign());
         RenderingRegistry.registerEntityRenderingHandler(EntityCarcass.class, new RenderCarcass());
-        
+
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
         ItemModelMesher modelMesher = renderItem.getItemModelMesher();
 
