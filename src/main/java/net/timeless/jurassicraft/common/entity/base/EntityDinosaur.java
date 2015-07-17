@@ -92,6 +92,21 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
             }
         }
     }
+    
+    public void onUpdate()
+    {
+        super.onUpdate();  
+        
+        if(deathTime >= 20)
+        {
+            if(!worldObj.isRemote)
+            {
+                EntityCarcass carcass = new EntityCarcass(this);
+                
+                worldObj.spawnEntityInWorld(carcass);
+            }
+        }
+    }
 
     public int getDaysExisted()
     {
