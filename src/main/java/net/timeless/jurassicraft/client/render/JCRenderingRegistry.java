@@ -15,9 +15,6 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
-import net.timeless.jurassicraft.block.BlockEncasedFossil;
-import net.timeless.jurassicraft.block.BlockFossil;
-import net.timeless.jurassicraft.block.JCBlockRegistry;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefAchillobator;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefAnkylosaurus;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefBrachiosaurus;
@@ -40,9 +37,18 @@ import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefTriceratops;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefTyrannosaurusRex;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefVelociraptor;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDinosaurDefinition;
-import net.timeless.jurassicraft.dinosaur.Dinosaur;
-import net.timeless.jurassicraft.entity.base.JCEntityRegistry;
-import net.timeless.jurassicraft.item.JCItemRegistry;
+import net.timeless.jurassicraft.client.render.entity.RenderBluePrint;
+import net.timeless.jurassicraft.client.render.entity.RenderCarcass;
+import net.timeless.jurassicraft.client.render.entity.RenderJurassiCraftSign;
+import net.timeless.jurassicraft.common.block.BlockEncasedFossil;
+import net.timeless.jurassicraft.common.block.BlockFossil;
+import net.timeless.jurassicraft.common.block.JCBlockRegistry;
+import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
+import net.timeless.jurassicraft.common.entity.base.EntityCarcass;
+import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
+import net.timeless.jurassicraft.common.entity.item.EntityBluePrint;
+import net.timeless.jurassicraft.common.entity.item.EntityJurassiCraftSign;
+import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 import com.google.common.collect.Maps;
 
@@ -123,6 +129,10 @@ public class JCRenderingRegistry
         for (Dinosaur dinosaur : JCEntityRegistry.getDinosaurs())
             RenderingRegistry.registerEntityRenderingHandler(dinosaur.getDinosaurClass(), renderDefs.get(dinosaur).getRenderer());
 
+        RenderingRegistry.registerEntityRenderingHandler(EntityBluePrint.class, new RenderBluePrint());
+        RenderingRegistry.registerEntityRenderingHandler(EntityJurassiCraftSign.class, new RenderJurassiCraftSign());
+        RenderingRegistry.registerEntityRenderingHandler(EntityCarcass.class, new RenderCarcass());
+        
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
         ItemModelMesher modelMesher = renderItem.getItemModelMesher();
 
@@ -130,6 +140,8 @@ public class JCRenderingRegistry
         this.registerItemRenderer(modelMesher, JCItemRegistry.plaster_and_bandage, "plaster_and_bandage", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.spawn_egg, "dino_spawn_egg", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.paleo_pad, "paleo_pad", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.blue_print, "blue_print", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.jc_sign, "jurassicraft_sign", "inventory");
 
         int meta = 0;
 

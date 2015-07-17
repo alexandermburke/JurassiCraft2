@@ -12,7 +12,7 @@ import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
 import net.timeless.jurassicraft.client.render.entity.RenderDinosaur;
 import net.timeless.jurassicraft.client.render.entity.RenderDinosaurMultilayer;
-import net.timeless.jurassicraft.dinosaur.Dinosaur;
+import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 
 public abstract class RenderDinosaurDefinition
 {
