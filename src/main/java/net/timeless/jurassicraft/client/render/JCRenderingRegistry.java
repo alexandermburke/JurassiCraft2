@@ -38,13 +38,11 @@ import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefTyrannosauru
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefVelociraptor;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDinosaurDefinition;
 import net.timeless.jurassicraft.client.render.entity.RenderBluePrint;
-import net.timeless.jurassicraft.client.render.entity.RenderCarcass;
 import net.timeless.jurassicraft.client.render.entity.RenderJurassiCraftSign;
 import net.timeless.jurassicraft.common.block.BlockEncasedFossil;
 import net.timeless.jurassicraft.common.block.BlockFossil;
 import net.timeless.jurassicraft.common.block.JCBlockRegistry;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
-import net.timeless.jurassicraft.common.entity.base.EntityCarcass;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.entity.item.EntityBluePrint;
 import net.timeless.jurassicraft.common.entity.item.EntityJurassiCraftSign;
@@ -131,7 +129,6 @@ public class JCRenderingRegistry
 
         RenderingRegistry.registerEntityRenderingHandler(EntityBluePrint.class, new RenderBluePrint());
         RenderingRegistry.registerEntityRenderingHandler(EntityJurassiCraftSign.class, new RenderJurassiCraftSign());
-        RenderingRegistry.registerEntityRenderingHandler(EntityCarcass.class, new RenderCarcass());
 
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
         ItemModelMesher modelMesher = renderItem.getItemModelMesher();

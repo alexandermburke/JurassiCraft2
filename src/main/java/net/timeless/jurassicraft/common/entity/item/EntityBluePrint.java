@@ -149,7 +149,7 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
 
     public enum EnumBluePrint
     {
-        INDOMINUS("Indominus", 32, 16, 0, 0), TYRANNOSAURUS("Tyrannosaurus", 32, 16, 32, 0), VELOCIRAPTOR("Velociraptor", 32, 16, 64, 0);
+        INDOMINUS("Indominus", 32, 16, 0, 0), TYRANNOSAURUS("Tyrannosaurus", 32, 16, 32, 0), VELOCIRAPTOR("Velociraptor", 32, 16, 64, 0), SPINOSAURUS("Spinosaurus", 32, 16, 96, 0);
 
         public final String title;
         public final int sizeX;

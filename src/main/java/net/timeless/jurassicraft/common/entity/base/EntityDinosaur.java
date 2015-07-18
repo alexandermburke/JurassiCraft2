@@ -101,9 +101,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         {
             if (!worldObj.isRemote)
             {
-                EntityCarcass carcass = new EntityCarcass(this);
-
-                worldObj.spawnEntityInWorld(carcass);
+                //Carcass
             }
         }
     }
