@@ -125,5 +125,10 @@ public class RenderDinosaur extends RenderLiving
     {
         return getEntityTexture((EntityDinosaur) entity);
     }
-
+    
+    @Override
+    protected float getDeathMaxRotation(EntityLivingBase entity)
+    {
+        return 0.0F;
+    }
 }

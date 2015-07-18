@@ -5,6 +5,7 @@ import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
@@ -18,6 +19,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     protected boolean gender;
 
     private int dinosaurAge;
+
+    private boolean isCarcass;
 
     public EntityDinosaur(World world)
     {
@@ -38,6 +41,17 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     public void entityInit()
     {
         super.entityInit();
+        this.dataWatcher.addObject(25, 0);
+    }
+    
+    public boolean attackEntityFrom(DamageSource source, float amount)
+    {
+        if(isCarcass && !isEntityInvulnerable(source))
+        {
+            this.setDead();
+        }
+        
+        return super.attackEntityFrom(source, amount);
     }
 
     protected void applyEntityAttributes()
@@ -96,13 +110,14 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     public void onUpdate()
     {
         super.onUpdate();
-
-        if (deathTime >= 20)
+        
+        if(!worldObj.isRemote)
         {
-            if (!worldObj.isRemote)
-            {
-                //Carcass
-            }
+            dataWatcher.updateObject(25, isCarcass ? 1 : 0);
+        }
+        else
+        {
+            isCarcass = dataWatcher.getWatchableObjectInt(25) == 1;
         }
     }
 
@@ -139,6 +154,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         nbt.setBoolean("Gender", gender);
         nbt.setInteger("Texture", randTexture);
         nbt.setDouble("Dinosaur Age", dinosaurAge);
+        nbt.setBoolean("IsCarcass", isCarcass);
     }
 
     public void readFromNBT(NBTTagCompound nbt)
@@ -148,7 +164,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         gender = nbt.getBoolean("Gender");
         randTexture = nbt.getInteger("Texture");
         dinosaurAge = nbt.getInteger("Dinosaur Age");
-
+        isCarcass = nbt.getBoolean("IsCarcass");
+        
         adjustHitbox();
     }
 
@@ -158,6 +175,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         buffer.writeBoolean(gender);
         buffer.writeInt(randTexture);
         buffer.writeInt(dinosaurAge);
+        buffer.writeBoolean(isCarcass);
     }
 
     @Override
@@ -166,7 +184,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         gender = additionalData.readBoolean();
         randTexture = additionalData.readInt();
         dinosaurAge = additionalData.readInt();
-
+        isCarcass = additionalData.readBoolean();
+        
         adjustHitbox();
     }
 
@@ -204,5 +223,15 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
             else
                 entityDropItem(new ItemStack(JCItemRegistry.dino_meat, 1, JCEntityRegistry.getDinosaurId(dinosaur)), 0.0F);
         }
+    }
+
+    public void setCarcass(boolean carcass)
+    {
+        this.isCarcass = carcass;
+    }
+    
+    public boolean isCarcass()
+    {
+        return isCarcass;
     }
 }
