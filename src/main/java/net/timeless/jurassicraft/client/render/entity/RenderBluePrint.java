@@ -1,5 +1,7 @@
 package net.timeless.jurassicraft.client.render.entity;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -39,10 +41,12 @@ public class RenderBluePrint extends Render
         GlStateManager.rotate(180.0F - p_76986_8_, 0.0F, 1.0F, 0.0F);
         GlStateManager.enableRescaleNormal();
         this.bindEntityTexture(entity);
-        EntityBluePrint.EnumBluePrint enumart = entity.art;
         float f2 = 0.0625F;
         GlStateManager.scale(f2, f2, f2);
-        this.func_77010_a(entity, enumart.sizeX, enumart.sizeY, enumart.offsetX, enumart.offsetY);
+        
+        int id = entity.getDinosaur();
+        
+        this.drawBluePrint(entity, 32, 16, ((id) % 8) * 32, (int) Math.floor((id) / 8) * 16); //8x16 art
         GlStateManager.disableRescaleNormal();
         GlStateManager.popMatrix();
         super.doRender(entity, x, y, z, p_76986_8_, partialTicks);
@@ -53,37 +57,35 @@ public class RenderBluePrint extends Render
         return texture;
     }
 
-    private void func_77010_a(EntityBluePrint bluePrint, int p_77010_2_, int p_77010_3_, int p_77010_4_, int p_77010_5_)
+    private void drawBluePrint(EntityBluePrint bluePrint, int width, int height, int u, int v)
     {
-        float f = (float) (-p_77010_2_) / 2.0F;
-        float f1 = (float) (-p_77010_3_) / 2.0F;
-        float f2 = 0.5F;
+        float f = (float) (-width) / 2.0F;
+        float f1 = (float) (-height) / 2.0F;
+        float f2 = 0F;
         float f3 = 0.75F;
         float f4 = 0.8125F;
         float f5 = 0.0F;
         float f6 = 0.0625F;
-        float f7 = 0.75F;
-        float f8 = 0.8125F;
         float f9 = 0.001953125F;
         float f10 = 0.001953125F;
-        float f11 = 0.7519531F;
-        float f12 = 0.7519531F;
         float f13 = 0.0F;
         float f14 = 0.0625F;
 
-        for (int i1 = 0; i1 < p_77010_2_ / 16; ++i1)
+        GL11.glTranslatef(0, 0, 0.49F);
+        
+        for (int i1 = 0; i1 < width / 16; ++i1)
         {
-            for (int j1 = 0; j1 < p_77010_3_ / 16; ++j1)
+            for (int j1 = 0; j1 < height / 16; ++j1)
             {
                 float f15 = f + (float) ((i1 + 1) * 16);
                 float f16 = f + (float) (i1 * 16);
                 float f17 = f1 + (float) ((j1 + 1) * 16);
                 float f18 = f1 + (float) (j1 * 16);
                 this.func_77008_a(bluePrint, (f15 + f16) / 2.0F, (f17 + f18) / 2.0F);
-                float f19 = (float) (p_77010_4_ + p_77010_2_ - i1 * 16) / 256.0F;
-                float f20 = (float) (p_77010_4_ + p_77010_2_ - (i1 + 1) * 16) / 256.0F;
-                float f21 = (float) (p_77010_5_ + p_77010_3_ - j1 * 16) / 256.0F;
-                float f22 = (float) (p_77010_5_ + p_77010_3_ - (j1 + 1) * 16) / 256.0F;
+                float f19 = (float) (u + width - i1 * 16) / 256.0F;
+                float f20 = (float) (u + width - (i1 + 1) * 16) / 256.0F;
+                float f21 = (float) (v + height - j1 * 16) / 256.0F;
+                float f22 = (float) (v + height - (j1 + 1) * 16) / 256.0F;
                 Tessellator tessellator = Tessellator.getInstance();
                 WorldRenderer worldrenderer = tessellator.getWorldRenderer();
                 worldrenderer.startDrawingQuads();
@@ -98,25 +100,25 @@ public class RenderBluePrint extends Render
                 worldrenderer.addVertexWithUV((double) f16, (double) f18, (double) f2, (double) f4, (double) f6);
                 worldrenderer.addVertexWithUV((double) f15, (double) f18, (double) f2, (double) f3, (double) f6);
                 worldrenderer.setNormal(0.0F, 1.0F, 0.0F);
-                worldrenderer.addVertexWithUV((double) f15, (double) f17, (double) (-f2), (double) f7, (double) f9);
-                worldrenderer.addVertexWithUV((double) f16, (double) f17, (double) (-f2), (double) f8, (double) f9);
-                worldrenderer.addVertexWithUV((double) f16, (double) f17, (double) f2, (double) f8, (double) f10);
-                worldrenderer.addVertexWithUV((double) f15, (double) f17, (double) f2, (double) f7, (double) f10);
+                worldrenderer.addVertexWithUV((double) f15, (double) f17, (double) (-f2), (double) 0, (double) f9);
+                worldrenderer.addVertexWithUV((double) f16, (double) f17, (double) (-f2), (double) 0, (double) f9);
+                worldrenderer.addVertexWithUV((double) f16, (double) f17, (double) f2, (double) 0, (double) f10);
+                worldrenderer.addVertexWithUV((double) f15, (double) f17, (double) f2, (double) 0, (double) f10);
                 worldrenderer.setNormal(0.0F, -1.0F, 0.0F);
-                worldrenderer.addVertexWithUV((double) f15, (double) f18, (double) f2, (double) f7, (double) f9);
-                worldrenderer.addVertexWithUV((double) f16, (double) f18, (double) f2, (double) f8, (double) f9);
-                worldrenderer.addVertexWithUV((double) f16, (double) f18, (double) (-f2), (double) f8, (double) f10);
-                worldrenderer.addVertexWithUV((double) f15, (double) f18, (double) (-f2), (double) f7, (double) f10);
+                worldrenderer.addVertexWithUV((double) f15, (double) f18, (double) f2, (double) 0, (double) f9);
+                worldrenderer.addVertexWithUV((double) f16, (double) f18, (double) f2, (double) 0, (double) f9);
+                worldrenderer.addVertexWithUV((double) f16, (double) f18, (double) (-f2), (double) 0, (double) f10);
+                worldrenderer.addVertexWithUV((double) f15, (double) f18, (double) (-f2), (double) 0, (double) f10);
                 worldrenderer.setNormal(-1.0F, 0.0F, 0.0F);
-                worldrenderer.addVertexWithUV((double) f15, (double) f17, (double) f2, (double) f12, (double) f13);
-                worldrenderer.addVertexWithUV((double) f15, (double) f18, (double) f2, (double) f12, (double) f14);
-                worldrenderer.addVertexWithUV((double) f15, (double) f18, (double) (-f2), (double) f11, (double) f14);
-                worldrenderer.addVertexWithUV((double) f15, (double) f17, (double) (-f2), (double) f11, (double) f13);
+                worldrenderer.addVertexWithUV((double) f15, (double) f17, (double) f2, (double) 0, (double) f13);
+                worldrenderer.addVertexWithUV((double) f15, (double) f18, (double) f2, (double) 0, (double) f14);
+                worldrenderer.addVertexWithUV((double) f15, (double) f18, (double) (-f2), (double) 0, (double) f14);
+                worldrenderer.addVertexWithUV((double) f15, (double) f17, (double) (-f2), (double) 0, (double) f13);
                 worldrenderer.setNormal(1.0F, 0.0F, 0.0F);
-                worldrenderer.addVertexWithUV((double) f16, (double) f17, (double) (-f2), (double) f12, (double) f13);
-                worldrenderer.addVertexWithUV((double) f16, (double) f18, (double) (-f2), (double) f12, (double) f14);
-                worldrenderer.addVertexWithUV((double) f16, (double) f18, (double) f2, (double) f11, (double) f14);
-                worldrenderer.addVertexWithUV((double) f16, (double) f17, (double) f2, (double) f11, (double) f13);
+                worldrenderer.addVertexWithUV((double) f16, (double) f17, (double) (-f2), (double) 0, (double) f13);
+                worldrenderer.addVertexWithUV((double) f16, (double) f18, (double) (-f2), (double) 0, (double) f14);
+                worldrenderer.addVertexWithUV((double) f16, (double) f18, (double) f2, (double) 0, (double) f14);
+                worldrenderer.addVertexWithUV((double) f16, (double) f17, (double) f2, (double) 0, (double) f13);
                 tessellator.draw();
             }
         }

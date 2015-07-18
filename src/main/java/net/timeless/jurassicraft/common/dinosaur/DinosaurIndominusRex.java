@@ -2,15 +2,18 @@ package net.timeless.jurassicraft.common.dinosaur;
 
 import net.timeless.jurassicraft.common.entity.EntityIndominusRex;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
+import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.period.EnumTimePeriod;
 
-public class DinosaurIndominusRex extends Dinosaur
+public class DinosaurIndominusRex extends Dinosaur implements IHybrid
 {
     private String[] maleTextures;
     private String[] femaleTextures;
     private String[] maleOverlayTextures;
     private String[] femaleOverlayTextures;
 
+    private Dinosaur[] combo;
+    
     public DinosaurIndominusRex()
     {
         this.maleTextures = new String[] { getDinosaurTexture("") };
@@ -18,6 +21,8 @@ public class DinosaurIndominusRex extends Dinosaur
 
         this.maleOverlayTextures = new String[] { getDinosaurTexture("detail") };
         this.femaleOverlayTextures = new String[] { getDinosaurTexture("detail") };
+        
+        this.combo = new Dinosaur[]{ JCEntityRegistry.tyrannosaurus_rex, JCEntityRegistry.velociraptor, JCEntityRegistry.giganotosaurus, JCEntityRegistry.rugops, JCEntityRegistry.carnotaurus };
     }
 
     @Override
@@ -167,5 +172,11 @@ public class DinosaurIndominusRex extends Dinosaur
     public float getAdultSizeY()
     {
         return 8.0F;
+    }
+
+    @Override
+    public Dinosaur[] getCombination()
+    {
+        return combo;
     }
 }
