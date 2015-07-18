@@ -83,7 +83,7 @@ public class DinosaurVelociraptor extends Dinosaur
     @Override
     public double getAdultStrength()
     {
-        return 36;
+        return 21;
     }
 
     @Override

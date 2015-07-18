@@ -53,13 +53,13 @@ public class DinosaurTyrannosaurusRex extends Dinosaur
     @Override
     public double getBabyHealth()
     {
-        return 16;
+        return 35;
     }
 
     @Override
     public double getAdultHealth()
     {
-        return 55;
+        return 90;
     }
 
     @Override
@@ -82,13 +82,13 @@ public class DinosaurTyrannosaurusRex extends Dinosaur
     @Override
     public double getBabyStrength()
     {
-        return 6;
+        return 16;
     }
 
     @Override
     public double getAdultStrength()
     {
-        return 36;
+        return 38;
     }
 
     @Override

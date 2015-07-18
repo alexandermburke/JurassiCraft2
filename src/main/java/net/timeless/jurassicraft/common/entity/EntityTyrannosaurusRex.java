@@ -23,11 +23,28 @@ public class EntityTyrannosaurusRex extends EntityDinosaurAggressive implements 
     {
         super(world);
 
-        // Placeholder AI
-        this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, dinosaur.getAttackSpeed(), false));
-        this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
-        this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPig.class, dinosaur.getAttackSpeed(), false));
-        this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPig.class, false));
+        this.attackCreature(EntityPig.class, 2);
+        this.attackCreature(EntityPlayer.class, 0);
+        this.attackCreature(EntityCompsognathus.class, 1);
+        this.attackCreature(EntityGallimimus.class, 3);
+        this.attackCreature(EntitySegisaurus.class, 1);
+        this.attackCreature(EntityAchillobator.class, 0);
+        this.attackCreature(EntityRugops.class, 1);
+        this.attackCreature(EntityDilophosaurus.class, 0);
+        this.attackCreature(EntityAnkylosaurus.class, 0);
+        this.attackCreature(EntityBrachiosaurus.class, 0);
+        this.attackCreature(EntityCarnotaurus.class, 0);
+        this.attackCreature(EntityTriceratops.class, 0);
+        this.attackCreature(EntityMajungasaurus.class, 0);
+        this.attackCreature(EntityParasaurolophus.class, 0);
+        this.attackCreature(EntityStegosaurus.class, 0);
+
+        this.defendFromAttacker(EntityPlayer.class, 0);
+        this.defendFromAttacker(EntityIndominusRex.class, 0);
+        this.defendFromAttacker(EntitySpinosaurus.class, 0);
+        this.defendFromAttacker(EntityGiganotosaurus.class, 0);
+        
+
 
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, EntityPlayer.class));
 
