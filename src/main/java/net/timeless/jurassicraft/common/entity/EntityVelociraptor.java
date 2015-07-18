@@ -3,6 +3,7 @@ package net.timeless.jurassicraft.common.entity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIWander;
@@ -39,7 +40,8 @@ public class EntityVelociraptor extends EntityDinosaurAggressive implements IAni
         this.defendFromAttacker(EntitySpinosaurus.class, 0);
         this.defendFromAttacker(EntityAchillobator.class, 0);
 
-        
+        this.tasks.addTask(3, new EntityAILeapAtTarget(this, 0.4F));
+
         this.tasks.addTask(6, new EntityAIWander(this, dinosaur.getAdultSpeed()));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
