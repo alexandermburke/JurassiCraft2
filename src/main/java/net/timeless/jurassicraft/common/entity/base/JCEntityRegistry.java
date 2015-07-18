@@ -136,8 +136,8 @@ public class JCEntityRegistry
 
     public static Dinosaur getDinosaurById(int id)
     {
-        if (id > dinosaurs.size() - 1)
-            id = 0;
+        if (id >= dinosaurs.size() || id < 0)
+            return null;
 
         return dinosaurs.get(id);
     }

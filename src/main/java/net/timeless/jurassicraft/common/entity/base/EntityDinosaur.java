@@ -3,12 +3,15 @@ package net.timeless.jurassicraft.common.entity.base;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
+import net.timeless.jurassicraft.common.item.ItemBluePrint;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 public class EntityDinosaur extends EntityCreature implements IEntityAdditionalSpawnData
@@ -233,5 +236,20 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     public boolean isCarcass()
     {
         return isCarcass;
+    }
+    
+    public boolean interact(EntityPlayer player)
+    {
+        ItemStack heldItem = player.getHeldItem();
+        
+        if(heldItem != null)
+        {
+            if(heldItem.getItem() instanceof ItemBluePrint)
+            {
+                ((ItemBluePrint)heldItem.getItem()).setDinosaur(heldItem, JCEntityRegistry.getDinosaurId(getDinosaur()));
+            }
+        }
+        
+        return false;
     }
 }
