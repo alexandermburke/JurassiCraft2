@@ -20,11 +20,19 @@ public class EntityAchillobator extends EntityDinosaurAggressive
     {
         super(world);
 
-        // Placeholder AIs
-        this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, dinosaur.getAttackSpeed(), false));
-        this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
-        this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPig.class, dinosaur.getAttackSpeed(), false));
-        this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPig.class, false));
+        //Attacks smaller dinosaurs(And pigs, everyone hates pigs!)
+        this.attackCreature(EntityPig.class, 4);
+        this.attackCreature(EntityPlayer.class, 0);
+        this.attackCreature(EntityCompsognathus.class, 1);
+        this.attackCreature(EntityGallimimus.class, 3);
+        this.attackCreature(EntitySegisaurus.class, 1);
+        this.attackCreature(EntityVelociraptor.class, 1);
+        
+        this.defendFromAttacker(EntityPlayer.class, 0);
+        this.defendFromAttacker(EntityTyrannosaurusRex.class, 0);
+        this.defendFromAttacker(EntityIndominusRex.class, 0);
+        this.defendFromAttacker(EntitySpinosaurus.class, 0);
+        this.defendFromAttacker(EntityVelociraptor.class, 0);
 
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, EntityPlayer.class));
 

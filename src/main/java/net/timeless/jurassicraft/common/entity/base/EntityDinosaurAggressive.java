@@ -4,7 +4,11 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
@@ -87,7 +91,20 @@ public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
 
         return attacked;
     }
-
+    
+    //NOTE: This adds an attack target. Class should be the entity class for the target, lower prio get executed earlier
+    protected void attackCreature(Class entity, int prio)
+    {
+        this.tasks.addTask(0, new EntityAIAttackOnCollide(this, entity, dinosaur.getAttackSpeed(), false));
+        this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, entity, false));
+    }
+    
+    //NOTE: This registers which attackers to defend from. Class should be the entity class for the attacker, lower prio get executed earlier
+    protected void defendFromAttacker(Class entity, int prio)
+    {
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, entity));
+    }
+    
     /**
      * Checks if the entity's current position is a valid location to spawn this entity.
      */
