@@ -91,13 +91,9 @@ public class EntityDinosaurProvokable extends EntityDinosaur
         }
         else
         {
-            Entity entity = source.getEntity();
-            if (entity != null && !(entity instanceof EntityPlayer) && !(entity instanceof EntityArrow))
-            {
-                amount = (amount + 1.0F) / 2.0F;
-            }
+            float damage = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
 
-            return super.attackEntityFrom(source, amount);
+            return super.attackEntityFrom(source, damage);
         }
     }
 

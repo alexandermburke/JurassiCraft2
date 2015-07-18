@@ -3,6 +3,10 @@ package net.timeless.jurassicraft.common.entity.base;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -28,6 +32,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     public EntityDinosaur(World world)
     {
         super(world);
+        this.tasks.addTask(0, new EntityAISwimming(this));
 
         dinosaurAge = 0;
 
@@ -251,5 +256,18 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         }
         
         return false;
+    }
+    
+    //NOTE: This adds an attack target. Class should be the entity class for the target, lower prio get executed earlier
+    protected void attackCreature(Class entity, int prio)
+    {
+        this.tasks.addTask(0, new EntityAIAttackOnCollide(this, entity, dinosaur.getAttackSpeed(), false));
+        this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, entity, false));
+    }
+    
+    //NOTE: This registers which attackers to defend from. Class should be the entity class for the attacker, lower prio get executed earlier
+    protected void defendFromAttacker(Class entity, int prio)
+    {
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, entity));
     }
 }

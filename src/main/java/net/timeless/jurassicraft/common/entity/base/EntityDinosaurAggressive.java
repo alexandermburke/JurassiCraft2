@@ -92,19 +92,6 @@ public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
         return attacked;
     }
     
-    //NOTE: This adds an attack target. Class should be the entity class for the target, lower prio get executed earlier
-    protected void attackCreature(Class entity, int prio)
-    {
-        this.tasks.addTask(0, new EntityAIAttackOnCollide(this, entity, dinosaur.getAttackSpeed(), false));
-        this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, entity, false));
-    }
-    
-    //NOTE: This registers which attackers to defend from. Class should be the entity class for the attacker, lower prio get executed earlier
-    protected void defendFromAttacker(Class entity, int prio)
-    {
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, entity));
-    }
-    
     /**
      * Checks if the entity's current position is a valid location to spawn this entity.
      */
