@@ -315,37 +315,43 @@ public class TileFossilGrinder extends TileEntityLockable implements IUpdatePlay
             
             Random rand = new Random();
             
-            switch (rand.nextInt(2))
+            int item = rand.nextInt(6);
+            
+            System.out.println(item);
+            
+            if(item < 3)
             {
-                case 0:
-                    output = new ItemStack(Items.dye, 1, 15);
-                    break;
-                case 1:
-                    output = new ItemStack(Items.flint);
-                default:
-                    output = new ItemStack(JCItemRegistry.soft_tissue, 1, slots[0].getItemDamage());
+                output = new ItemStack(Items.dye, 1, 15);
+            }
+            else if(item < 5)
+            {
+                output = new ItemStack(Items.flint);
+            }
+            else
+            {
+                output = new ItemStack(JCItemRegistry.soft_tissue, 1, slots[0].getItemDamage());
+                
+                int quality = rand.nextInt(25);
+                
+                if(rand.nextInt(2) == 0)
+                {
+                    quality += 25;
                     
-                    int quality = rand.nextInt(25);
-                    
-                    if(rand.nextInt(2) == 0)
+                    if(rand.nextInt(3) == 0)
                     {
                         quality += 25;
                         
-                        if(rand.nextInt(3) == 0)
+                        if(rand.nextInt(4) == 0)
                         {
                             quality += 25;
-                            
-                            if(rand.nextInt(4) == 0)
-                            {
-                                quality += 25;
-                            }
                         }
                     }
-                    
-                    NBTTagCompound nbt = new NBTTagCompound();
-                    nbt.setInteger("DNAQuality", quality + 1);
-                    
-                    output.setTagCompound(nbt);
+                }
+                
+                NBTTagCompound nbt = new NBTTagCompound();
+                nbt.setInteger("DNAQuality", quality + 1);
+                
+                output.setTagCompound(nbt);
             }
             
             int emptySlot = -1;
