@@ -1,8 +1,5 @@
 package net.timeless.jurassicraft.common.item;
 
-import java.util.List;
-
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -11,11 +8,8 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
-import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.entity.item.EntityBluePrint;
 
@@ -27,14 +21,8 @@ public class ItemBluePrint extends Item
         this.setCreativeTab(JCCreativeTabs.items);
     }
 
-    /**
-     * allows items to add custom lines of information to the mouseover description
-     *  
-     * @param tooltip All lines to display in the Item's tooltip. This is a List of Strings.
-     * @param advanced Whether the setting "Advanced tooltips" is enabled
-     */
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced)
+    @Override
+    public String getItemStackDisplayName(ItemStack stack)
     {
         int dinoId = getDinosaur(stack);
         Dinosaur dino = JCEntityRegistry.getDinosaurById(dinoId);
@@ -42,8 +30,8 @@ public class ItemBluePrint extends Item
 
         if(dino != null)
             name = StatCollector.translateToLocal("entity." + dino.getName().toLowerCase().replaceAll(" ", "_") + ".name");
-
-        tooltip.add(name);
+        
+        return name + " " + super.getItemStackDisplayName(stack);
     }
 
 //    /**
