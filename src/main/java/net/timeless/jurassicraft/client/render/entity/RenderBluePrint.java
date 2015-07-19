@@ -71,7 +71,7 @@ public class RenderBluePrint extends Render
         float f13 = 0.0F;
         float f14 = 0.0625F;
 
-        GL11.glTranslatef(0, 0, 0.49F);
+        GL11.glTranslatef(0, 0, 0.45F);
 
         for (int i1 = 0; i1 < width / 16; ++i1)
         {
