@@ -24,7 +24,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
 
     protected boolean gender;
 
-    private int dinosaurAge;
+    protected int dinosaurAge;
 
     private boolean isCarcass;
 
