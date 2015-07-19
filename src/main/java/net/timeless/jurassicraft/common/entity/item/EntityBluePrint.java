@@ -17,7 +17,7 @@ import net.timeless.jurassicraft.common.item.JCItemRegistry;
 public class EntityBluePrint extends EntityHanging implements IEntityAdditionalSpawnData
 {
     private int dinosaur;
-    
+
     public EntityBluePrint(World world)
     {
         super(world);
@@ -85,7 +85,7 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
             ItemStack stack = new ItemStack(JCItemRegistry.blue_print);
             NBTTagCompound nbt = new NBTTagCompound();
             nbt.setInteger("Dinosaur", dinosaur);
-            
+
             this.entityDropItem(stack, 0.0F);
         }
     }

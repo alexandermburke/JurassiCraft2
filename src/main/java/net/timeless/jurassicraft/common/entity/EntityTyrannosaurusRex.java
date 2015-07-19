@@ -1,9 +1,7 @@
 package net.timeless.jurassicraft.common.entity;
 
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
@@ -43,8 +41,6 @@ public class EntityTyrannosaurusRex extends EntityDinosaurAggressive implements 
         this.defendFromAttacker(EntityIndominusRex.class, 0);
         this.defendFromAttacker(EntitySpinosaurus.class, 0);
         this.defendFromAttacker(EntityGiganotosaurus.class, 0);
-        
-
 
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, EntityPlayer.class));
 

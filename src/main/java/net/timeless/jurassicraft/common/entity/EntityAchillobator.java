@@ -1,9 +1,7 @@
 package net.timeless.jurassicraft.common.entity;
 
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityPig;
@@ -27,7 +25,7 @@ public class EntityAchillobator extends EntityDinosaurAggressive
         this.attackCreature(EntityGallimimus.class, 3);
         this.attackCreature(EntitySegisaurus.class, 1);
         this.attackCreature(EntityVelociraptor.class, 1);
-        
+
         this.defendFromAttacker(EntityPlayer.class, 0);
         this.defendFromAttacker(EntityTyrannosaurusRex.class, 0);
         this.defendFromAttacker(EntityIndominusRex.class, 0);

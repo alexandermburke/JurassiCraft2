@@ -36,8 +36,8 @@ public class AnimationCoelacanth implements IModelAnimator
 
         MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail3, tail2, tail1, body3, body2, body1, neck, head };
 
-//        f = entity.ticksExisted;
-//        f1 = 0.4f;
+        //        f = entity.ticksExisted;
+        //        f1 = 0.4f;
 
         //NOTES: A fish's movement involves moving its head side to side, which sends a wave impulse down its tail. Its fins move back in forth and up and down in a symmetrical rythm, too.
         head.rotationPointX -= -4 * f1 * Math.sin((f + 1) * 0.6); //Head moves side to side

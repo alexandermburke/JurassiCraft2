@@ -1,11 +1,7 @@
 package net.timeless.jurassicraft.common.entity;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityPig;
@@ -25,7 +21,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive implements IAni
     {
         super(world);
         setAnimID(-1);
-       
+
         //Attacks smaller dinosaurs(And pigs, everyone hates pigs!)
         this.attackCreature(EntityPig.class, 2);
         this.attackCreature(EntityPlayer.class, 0);
@@ -46,7 +42,6 @@ public class EntityVelociraptor extends EntityDinosaurAggressive implements IAni
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
     }
-
 
     public void onUpdate()
     {

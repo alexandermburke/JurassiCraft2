@@ -46,12 +46,12 @@ public class AnimationPteranodon implements IModelAnimator
         MowzieModelRenderer rightArm3 = model.getCube("Right Arm 3");
         MowzieModelRenderer rightArm4 = model.getCube("Right Arm 4");
 
-        MowzieModelRenderer[] neck = new MowzieModelRenderer[] {head, neck3, neck2, neck1};
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[] {tail1, tail2, tail3};
-        MowzieModelRenderer[] wingLeft = new MowzieModelRenderer[] {leftArm4, leftArm3, leftArm2, leftArm1};
-        MowzieModelRenderer[] wingRight = new MowzieModelRenderer[] {rightArm4, rightArm3, rightArm2, rightArm1};
-        MowzieModelRenderer[] legLeft = new MowzieModelRenderer[] {leftThigh, leftCalf, leftUpperFoot, leftFoot};
-        MowzieModelRenderer[] legRight = new MowzieModelRenderer[] {rightThigh, rightCalf, rightUpperFoot, rightFoot};
+        MowzieModelRenderer[] neck = new MowzieModelRenderer[] { head, neck3, neck2, neck1 };
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail1, tail2, tail3 };
+        MowzieModelRenderer[] wingLeft = new MowzieModelRenderer[] { leftArm4, leftArm3, leftArm2, leftArm1 };
+        MowzieModelRenderer[] wingRight = new MowzieModelRenderer[] { rightArm4, rightArm3, rightArm2, rightArm1 };
+        MowzieModelRenderer[] legLeft = new MowzieModelRenderer[] { leftThigh, leftCalf, leftUpperFoot, leftFoot };
+        MowzieModelRenderer[] legRight = new MowzieModelRenderer[] { rightThigh, rightCalf, rightUpperFoot, rightFoot };
 
         f = entity.ticksExisted;
         f1 = 0.8f;
@@ -102,50 +102,50 @@ public class AnimationPteranodon implements IModelAnimator
         leftArm1.rotationPointZ -= 1 * Math.cos(frame * 0.08);
         rightArm1.rotationPointZ -= 1 * Math.cos(frame * 0.08);
 
-  /*      //Flying
-        body1.rotateAngleX += 0.3;
-        neck1.rotateAngleX -= 0.1;
-        leftThigh.rotateAngleX += 0.8;
-        rightThigh.rotateAngleX += 0.8;
-        leftCalf.rotateAngleX += 0.7;
-        rightCalf.rotateAngleX += 0.7;
-        leftUpperFoot.rotateAngleX -= 0.3;
-        rightUpperFoot.rotateAngleX -= 0.3;
-        leftFoot.rotateAngleX += 2;
-        rightFoot.rotateAngleX += 2;
-        leftArm1.rotateAngleZ -= 1;
-        leftArm2.rotateAngleZ -= 0.4;
-        leftArm3.rotateAngleZ -= 0.1;
-        leftArm4.rotateAngleZ += 3.3;
-        leftArm4.rotateAngleY += 2.6;
-        leftArm4.rotateAngleX += 1.2;
-        rightArm1.rotateAngleZ += 1;
-        rightArm2.rotateAngleZ += 0.4;
-        rightArm3.rotateAngleZ += 0.1;
-        rightArm4.rotateAngleZ -= 3.3;
-        rightArm4.rotateAngleY -= 2.6;
-        rightArm4.rotateAngleX += 1.2;
+        /*      //Flying
+              body1.rotateAngleX += 0.3;
+              neck1.rotateAngleX -= 0.1;
+              leftThigh.rotateAngleX += 0.8;
+              rightThigh.rotateAngleX += 0.8;
+              leftCalf.rotateAngleX += 0.7;
+              rightCalf.rotateAngleX += 0.7;
+              leftUpperFoot.rotateAngleX -= 0.3;
+              rightUpperFoot.rotateAngleX -= 0.3;
+              leftFoot.rotateAngleX += 2;
+              rightFoot.rotateAngleX += 2;
+              leftArm1.rotateAngleZ -= 1;
+              leftArm2.rotateAngleZ -= 0.4;
+              leftArm3.rotateAngleZ -= 0.1;
+              leftArm4.rotateAngleZ += 3.3;
+              leftArm4.rotateAngleY += 2.6;
+              leftArm4.rotateAngleX += 1.2;
+              rightArm1.rotateAngleZ += 1;
+              rightArm2.rotateAngleZ += 0.4;
+              rightArm3.rotateAngleZ += 0.1;
+              rightArm4.rotateAngleZ -= 3.3;
+              rightArm4.rotateAngleY -= 2.6;
+              rightArm4.rotateAngleX += 1.2;
 
-        model.bob(body1, 0.3f, 7, false, f, f1);
-        model.bob(leftThigh, 0.3f, 7, false, f, f1);
-        model.bob(rightThigh, 0.3f, 7, false, f, f1);
-        model.walk(body1, 0.3f, 0.2f, true, 1, 0, f, f1);
-        model.swing(leftArm1, 0.3f, 0.2f, false, 1, 0, f, f1);
-        model.swing(leftArm2, 0.3f, 0.2f, false, 1, 0, f, f1);
-        model.walk(neck1, 0.3f, 0.2f, false, 1, 0.2f, f, f1);
-        model.walk(head, 0.3f, 0.2f, true, 1, -0.4f, f, f1);
+              model.bob(body1, 0.3f, 7, false, f, f1);
+              model.bob(leftThigh, 0.3f, 7, false, f, f1);
+              model.bob(rightThigh, 0.3f, 7, false, f, f1);
+              model.walk(body1, 0.3f, 0.2f, true, 1, 0, f, f1);
+              model.swing(leftArm1, 0.3f, 0.2f, false, 1, 0, f, f1);
+              model.swing(leftArm2, 0.3f, 0.2f, false, 1, 0, f, f1);
+              model.walk(neck1, 0.3f, 0.2f, false, 1, 0.2f, f, f1);
+              model.walk(head, 0.3f, 0.2f, true, 1, -0.4f, f, f1);
 
-        model.chainFlap(wingLeft, 0.3f, 0.8f, 2, f, f1);
-        model.walk(leftArm1, 0.3f, 0.6f, false, -1f, -0.2f, f, f1);
-        model.walk(leftArm2, 0.3f, 1.2f, true, -1f, 0, f, f1);
-        model.walk(leftArm3, 0.3f, 0.7f, false, -1f, 0.2f, f, f1);
-        model.chainFlap(wingRight, 0.3f, -0.8f, 2, f, f1);
-        model.walk(rightArm1, 0.3f, 0.6f, false, -1f, -0.2f, f, f1);
-        model.walk(rightArm2, 0.3f, 1.2f, true, -1f, 0, f, f1);
-        model.walk(rightArm3, 0.3f, 0.7f, false, -1f, 0.2f, f, f1);
-        model.chainWave(legLeft, 0.3f, 0.2f, -3, f, f1);
-        model.chainWave(legRight, 0.3f, 0.2f, -3, f, f1);
-        model.chainWave(tail, 0.3f, 0.2f, 1, f, f1);
-        model.chainWave(neck, 0.3f, 0.4f, 4, f, f1);*/
+              model.chainFlap(wingLeft, 0.3f, 0.8f, 2, f, f1);
+              model.walk(leftArm1, 0.3f, 0.6f, false, -1f, -0.2f, f, f1);
+              model.walk(leftArm2, 0.3f, 1.2f, true, -1f, 0, f, f1);
+              model.walk(leftArm3, 0.3f, 0.7f, false, -1f, 0.2f, f, f1);
+              model.chainFlap(wingRight, 0.3f, -0.8f, 2, f, f1);
+              model.walk(rightArm1, 0.3f, 0.6f, false, -1f, -0.2f, f, f1);
+              model.walk(rightArm2, 0.3f, 1.2f, true, -1f, 0, f, f1);
+              model.walk(rightArm3, 0.3f, 0.7f, false, -1f, 0.2f, f, f1);
+              model.chainWave(legLeft, 0.3f, 0.2f, -3, f, f1);
+              model.chainWave(legRight, 0.3f, 0.2f, -3, f, f1);
+              model.chainWave(tail, 0.3f, 0.2f, 1, f, f1);
+              model.chainWave(neck, 0.3f, 0.4f, 4, f, f1);*/
     }
 }

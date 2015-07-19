@@ -50,14 +50,14 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         super.entityInit();
         this.dataWatcher.addObject(25, 0);
     }
-    
+
     public boolean attackEntityFrom(DamageSource source, float amount)
     {
-        if(isCarcass && !isEntityInvulnerable(source))
+        if (isCarcass && !isEntityInvulnerable(source))
         {
             this.setDead();
         }
-        
+
         return super.attackEntityFrom(source, amount);
     }
 
@@ -117,8 +117,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     public void onUpdate()
     {
         super.onUpdate();
-        
-        if(!worldObj.isRemote)
+
+        if (!worldObj.isRemote)
         {
             dataWatcher.updateObject(25, isCarcass ? 1 : 0);
         }
@@ -172,7 +172,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         randTexture = nbt.getInteger("Texture");
         dinosaurAge = nbt.getInteger("Dinosaur Age");
         isCarcass = nbt.getBoolean("IsCarcass");
-        
+
         adjustHitbox();
     }
 
@@ -192,7 +192,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         randTexture = additionalData.readInt();
         dinosaurAge = additionalData.readInt();
         isCarcass = additionalData.readBoolean();
-        
+
         adjustHitbox();
     }
 
@@ -236,34 +236,34 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     {
         this.isCarcass = carcass;
     }
-    
+
     public boolean isCarcass()
     {
         return isCarcass;
     }
-    
+
     public boolean interact(EntityPlayer player)
     {
         ItemStack heldItem = player.getHeldItem();
-        
-        if(heldItem != null)
+
+        if (heldItem != null)
         {
-            if(heldItem.getItem() instanceof ItemBluePrint)
+            if (heldItem.getItem() instanceof ItemBluePrint)
             {
-                ((ItemBluePrint)heldItem.getItem()).setDinosaur(heldItem, JCEntityRegistry.getDinosaurId(getDinosaur()));
+                ((ItemBluePrint) heldItem.getItem()).setDinosaur(heldItem, JCEntityRegistry.getDinosaurId(getDinosaur()));
             }
         }
-        
+
         return false;
     }
-    
+
     //NOTE: This adds an attack target. Class should be the entity class for the target, lower prio get executed earlier
     protected void attackCreature(Class entity, int prio)
     {
         this.tasks.addTask(0, new EntityAIAttackOnCollide(this, entity, dinosaur.getAttackSpeed(), false));
         this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, entity, false));
     }
-    
+
     //NOTE: This registers which attackers to defend from. Class should be the entity class for the attacker, lower prio get executed earlier
     protected void defendFromAttacker(Class entity, int prio)
     {

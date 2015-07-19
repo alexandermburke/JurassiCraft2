@@ -28,38 +28,38 @@ public class ItemBluePrint extends Item
         Dinosaur dino = JCEntityRegistry.getDinosaurById(dinoId);
         String name = "Blank"; //TODO Translation
 
-        if(dino != null)
+        if (dino != null)
             name = StatCollector.translateToLocal("entity." + dino.getName().toLowerCase().replaceAll(" ", "_") + ".name");
-        
+
         return name + " " + super.getItemStackDisplayName(stack);
     }
 
-//    /**
-//     * Returns true if the item can be used on the given entity, e.g. shears on sheep.
-//     */
-//    public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer playerIn, EntityLivingBase target)
-//    {
-//        if(target instanceof EntityDinosaur) //TODO try from EntityDinosaur interactFirst
-//        {
-//            EntityDinosaur dino = (EntityDinosaur) target;
-//
-//            setDinosaur(stack, JCEntityRegistry.getDinosaurId(dino.getDinosaur()));
-//
-//            return true;
-//        }
-//
-//        return false;
-//    }
+    //    /**
+    //     * Returns true if the item can be used on the given entity, e.g. shears on sheep.
+    //     */
+    //    public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer playerIn, EntityLivingBase target)
+    //    {
+    //        if(target instanceof EntityDinosaur) //TODO try from EntityDinosaur interactFirst
+    //        {
+    //            EntityDinosaur dino = (EntityDinosaur) target;
+    //
+    //            setDinosaur(stack, JCEntityRegistry.getDinosaurId(dino.getDinosaur()));
+    //
+    //            return true;
+    //        }
+    //
+    //        return false;
+    //    }
 
     public void setDinosaur(ItemStack stack, int dino)
     {
         NBTTagCompound nbt = stack.getTagCompound();
 
-        if(nbt == null)
+        if (nbt == null)
             nbt = new NBTTagCompound();
 
         nbt.setInteger("Dinosaur", dino);
-        
+
         stack.setTagCompound(nbt);
     }
 
@@ -67,9 +67,9 @@ public class ItemBluePrint extends Item
     {
         NBTTagCompound nbt = stack.getTagCompound();
 
-        if(nbt != null)
+        if (nbt != null)
         {
-            if(nbt.hasKey("Dinosaur"))
+            if (nbt.hasKey("Dinosaur"))
             {
                 return nbt.getInteger("Dinosaur");
             }
@@ -99,8 +99,8 @@ public class ItemBluePrint extends Item
             else
             {
                 int dinosaur = getDinosaur(stack);
-                
-                if(dinosaur != -1)
+
+                if (dinosaur != -1)
                 {
                     EntityBluePrint bluePrint = new EntityBluePrint(worldIn, blockpos1, side, dinosaur);
 
@@ -112,13 +112,13 @@ public class ItemBluePrint extends Item
                         }
 
                         --stack.stackSize;
-                        
+
                         return true;
                     }
                 }
             }
         }
-        
+
         return false;
     }
 }

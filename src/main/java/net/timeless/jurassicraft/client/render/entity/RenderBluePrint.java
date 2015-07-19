@@ -1,7 +1,5 @@
 package net.timeless.jurassicraft.client.render.entity;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -17,6 +15,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.entity.item.EntityBluePrint;
+
+import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class RenderBluePrint extends Render
@@ -43,9 +43,9 @@ public class RenderBluePrint extends Render
         this.bindEntityTexture(entity);
         float f2 = 0.0625F;
         GlStateManager.scale(f2, f2, f2);
-        
+
         int id = entity.getDinosaur();
-        
+
         this.drawBluePrint(entity, 32, 16, ((id) % 8) * 32, (int) Math.floor((id) / 8) * 16); //8x16 art
         GlStateManager.disableRescaleNormal();
         GlStateManager.popMatrix();
@@ -72,7 +72,7 @@ public class RenderBluePrint extends Render
         float f14 = 0.0625F;
 
         GL11.glTranslatef(0, 0, 0.49F);
-        
+
         for (int i1 = 0; i1 < width / 16; ++i1)
         {
             for (int j1 = 0; j1 < height / 16; ++j1)
