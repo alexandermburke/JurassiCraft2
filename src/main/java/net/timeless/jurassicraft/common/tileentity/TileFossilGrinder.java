@@ -317,8 +317,6 @@ public class TileFossilGrinder extends TileEntityLockable implements IUpdatePlay
             
             int item = rand.nextInt(6);
             
-            System.out.println(item);
-            
             if(item < 3)
             {
                 output = new ItemStack(Items.dye, 1, 15);
