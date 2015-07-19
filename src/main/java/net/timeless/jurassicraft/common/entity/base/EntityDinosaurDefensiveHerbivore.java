@@ -66,10 +66,7 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
 		{
 			this.setAge((int)(dinosaurAge + dinosaurAge * 0.05));
 		}
-		else
-		{
 			this.setHealth((float)(this.getHealth() + this.getHealth() * 0.15));
-		}
 	}
 
     /**

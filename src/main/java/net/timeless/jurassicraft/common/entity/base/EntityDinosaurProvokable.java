@@ -68,8 +68,6 @@ public class EntityDinosaurProvokable extends EntityDinosaur
         {
             this.setAngry(false);
         }
-
-        System.out.println(this.isAngry());
     }
 
     public void entityInit()
