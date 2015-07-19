@@ -7,7 +7,6 @@ import net.timeless.jurassicraft.common.item.ItemFossil;
 
 public class SlotFossil extends Slot
 {
-
     public SlotFossil(IInventory inventory, int slotIndex, int xPosition, int yPosition)
     {
         super(inventory, slotIndex, xPosition, yPosition);

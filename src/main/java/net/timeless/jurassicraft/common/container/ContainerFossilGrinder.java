@@ -6,29 +6,39 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.timeless.jurassicraft.common.container.slot.SlotFossil;
 import net.timeless.jurassicraft.common.tileentity.TileFossilGrinder;
 
 public class ContainerFossilGrinder extends Container
 {
-
     private TileFossilGrinder fossilGrinder;
 
     public ContainerFossilGrinder(InventoryPlayer playerInventory, TileEntity tileEntity)
     {
         this.fossilGrinder = (TileFossilGrinder) tileEntity;
-        this.addSlotToContainer(new Slot(fossilGrinder, 0, 29, 29));
+        this.addSlotToContainer(new SlotFossil(fossilGrinder, 0, 50, 35));
 
-        for (int i = 0; i < 3; i++)
+        int i;
+
+        for (i = 0; i < 3; i++)
         {
-            for (int k = 0; k < 9; k++)
+            for (int j = 0; j < 2; j++)
             {
-                this.addSlotToContainer(new Slot(playerInventory, k + i * 9 + 9, 8 + k * 18, 106 + i * 18));
+                this.addSlotToContainer(new Slot(fossilGrinder, i + (j * 3) + 1, i * 18 + 93 + 15, j * 18 + 26));
             }
         }
 
-        for (int i = 0; i < 9; i++)
+        for (i = 0; i < 3; ++i)
         {
-            this.addSlotToContainer(new Slot(playerInventory, i, 8 + i * 18, 164));
+            for (int j = 0; j < 9; ++j)
+            {
+                this.addSlotToContainer(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+            }
+        }
+
+        for (i = 0; i < 9; ++i)
+        {
+            this.addSlotToContainer(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
     }
 

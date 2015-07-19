@@ -6,8 +6,11 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.timeless.jurassicraft.client.gui.GuiCleaningStation;
+import net.timeless.jurassicraft.client.gui.GuiFossilGrinder;
 import net.timeless.jurassicraft.common.container.ContainerCleaningStation;
+import net.timeless.jurassicraft.common.container.ContainerFossilGrinder;
 import net.timeless.jurassicraft.common.tileentity.TileCleaningStation;
+import net.timeless.jurassicraft.common.tileentity.TileFossilGrinder;
 
 public class JCGuiHandler implements IGuiHandler
 {
@@ -22,6 +25,10 @@ public class JCGuiHandler implements IGuiHandler
             if (tileEntity instanceof TileCleaningStation && id == 0)
             {
                 return new ContainerCleaningStation(player.inventory, (TileCleaningStation) tileEntity);
+            }
+            else if (tileEntity instanceof TileFossilGrinder && id == 1)
+            {
+                return new ContainerFossilGrinder(player.inventory, (TileFossilGrinder) tileEntity);
             }
         }
 
@@ -39,6 +46,10 @@ public class JCGuiHandler implements IGuiHandler
             if (tileEntity instanceof TileCleaningStation && id == 0)
             {
                 return new GuiCleaningStation(player.inventory, (TileCleaningStation) tileEntity);
+            }
+            else if (tileEntity instanceof TileFossilGrinder && id == 1)
+            {
+                return new GuiFossilGrinder(player.inventory, (TileFossilGrinder) tileEntity);
             }
         }
 

@@ -12,7 +12,8 @@ public class JCItemRegistry
     public static ItemDNA dna;
     public static ItemDinosaurEgg egg;
     public static ItemPaleoPad paleo_pad;
-
+    public static ItemSoftTissue soft_tissue;
+    
     public static ItemDinosaurMeat dino_meat;
     public static ItemDinosaurSteak dino_steak;
 
@@ -31,7 +32,8 @@ public class JCItemRegistry
         dino_steak = new ItemDinosaurSteak();
         blue_print = new ItemBluePrint();
         jc_sign = new ItemJurassiCraftSign();
-
+        soft_tissue = new ItemSoftTissue();
+            
         registerItem(blue_print, "Blue Print");
         registerItem(jc_sign, "JurassiCraft Sign");
         registerItem(plaster_and_bandage, "Plaster And Bandage");
@@ -40,6 +42,7 @@ public class JCItemRegistry
         registerItem(dna, "DNA");
         registerItem(egg, "Dino Egg");
         registerItem(paleo_pad, "Paleo Pad");
+        registerItem(soft_tissue, "Soft Tissue");
 
         registerItem(dino_meat, "Dinosaur Meat");
         registerItem(dino_steak, "Dinosaur Steak");

@@ -42,6 +42,7 @@ item.paleo_pad.name=Paleo Pad
 item.dna.name=DNA
 item.jurassicraft_sign.name=JurassiCraft Sign
 item.blue_print.name=Blue Print
+item.soft_tissue.name=Soft Tissue
 
 //Blocks ==================================================
 tile.fossil_block.name=Fossil

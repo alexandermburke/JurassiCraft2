@@ -76,7 +76,6 @@ public class BlockCleaningStation extends BlockOriented
     {
         if (world.isRemote)
         {
-            JurassiCraft.instance.getLogger().debug("Hello0");
             return true;
         }
         else if (!player.isSneaking())

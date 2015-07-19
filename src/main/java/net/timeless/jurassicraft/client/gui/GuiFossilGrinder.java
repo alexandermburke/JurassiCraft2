@@ -1,51 +1,59 @@
 package net.timeless.jurassicraft.client.gui;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.common.container.ContainerFossilGrinder;
-import net.timeless.jurassicraft.common.tileentity.TileFossilGrinder;
 
-import org.lwjgl.opengl.GL11;
-
+@SideOnly(Side.CLIENT)
 public class GuiFossilGrinder extends GuiContainer
 {
+    private static final ResourceLocation texture = new ResourceLocation("jurassicraft:textures/gui/fossil_grinder.png");
+    /** The player inventory bound to this GUI. */
+    private final InventoryPlayer playerInventory;
+    private IInventory fossilGrinder;
 
-    private TileFossilGrinder fossilGrinder;
-    private ResourceLocation texture = new ResourceLocation("jurassicraft:textures/gui/gui_fossil_grinder.png");
-
-    public GuiFossilGrinder(InventoryPlayer inventoryPlayer, TileEntity tileEntity)
+    public GuiFossilGrinder(InventoryPlayer playerInv, IInventory fossilGrinder)
     {
-        super(new ContainerFossilGrinder(inventoryPlayer, tileEntity));
-        if (tileEntity instanceof TileFossilGrinder)
-        {
-            fossilGrinder = (TileFossilGrinder) tileEntity;
-            this.xSize = 176;
-            this.ySize = 188;
-        }
+        super(new ContainerFossilGrinder(playerInv, (TileEntity) fossilGrinder));
+        this.playerInventory = playerInv;
+        this.fossilGrinder = fossilGrinder;
     }
 
-    @Override
-    public void onGuiClosed()
+    /**
+     * Draw the foreground layer for the GuiContainer (everything in front of the items). Args : mouseX, mouseY
+     */
+    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
-        super.onGuiClosed();
+        String s = this.fossilGrinder.getDisplayName().getUnformattedText();
+        this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
+        this.fontRendererObj.drawString(this.playerInventory.getDisplayName().getUnformattedText(), 8, this.ySize - 96 + 2, 4210752);
     }
 
-    @Override
-    protected void drawGuiContainerForegroundLayer(int i, int j)
+    /**
+     * Args : renderPartialTicks, mouseX, mouseY
+     */
+    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
     {
-        String name = StatCollector.translateToLocal(fossilGrinder.getName());
-        this.fontRendererObj.drawString(name, xSize / 2 - this.fontRendererObj.getStringWidth(name) / 2, 5, 4210752);
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        this.mc.getTextureManager().bindTexture(texture);
+        int k = (this.width - this.xSize) / 2;
+        int l = (this.height - this.ySize) / 2;
+        this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
+
+        int progress = this.getProgress(24);
+        this.drawTexturedModalRect(k + 79, l + 34, 176, 14, progress + 1, 16);
     }
 
-    @Override
-    protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3)
+    private int getProgress(int scale)
     {
-        GL11.glColor4f(1F, 1F, 1F, 1F);
-        Minecraft.getMinecraft().getTextureManager().bindTexture(texture);
-        drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+        int j = this.fossilGrinder.getField(0);
+        int k = this.fossilGrinder.getField(1);
+        return k != 0 && j != 0 ? j * scale / k : 0;
     }
 }
