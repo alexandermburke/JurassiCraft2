@@ -264,7 +264,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, entity, false));
     }
 
-    //NOTE: This registers which attackers to defend from. Class should be the entity class for the attacker, lower prio get executed earlier
+    //NOTE: This registers which attackers to defend from. Class should be the entity class for the attacker, lower prio get executed earlier (Should be based upon attacker's strength and health to decide whether to defend or flee)
     protected void defendFromAttacker(Class entity, int prio)
     {
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, entity));
