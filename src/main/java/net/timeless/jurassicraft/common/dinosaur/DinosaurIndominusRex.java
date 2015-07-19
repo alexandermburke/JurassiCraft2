@@ -22,7 +22,7 @@ public class DinosaurIndominusRex extends Dinosaur implements IHybrid
         this.maleOverlayTextures = new String[] { getDinosaurTexture("detail") };
         this.femaleOverlayTextures = new String[] { getDinosaurTexture("detail") };
 
-        this.combo = new Dinosaur[] { JCEntityRegistry.tyrannosaurus_rex, JCEntityRegistry.velociraptor, JCEntityRegistry.giganotosaurus, JCEntityRegistry.rugops, JCEntityRegistry.carnotaurus };
+        this.combo = new Dinosaur[] { JCEntityRegistry.tyrannosaurus_rex, JCEntityRegistry.velociraptor, JCEntityRegistry.giganotosaurus, JCEntityRegistry.rugops, JCEntityRegistry.majungasaurus };
     }
 
     @Override

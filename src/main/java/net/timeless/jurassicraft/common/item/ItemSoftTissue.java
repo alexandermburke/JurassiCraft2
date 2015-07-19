@@ -12,7 +12,7 @@ import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 
-public class ItemSoftTissue extends ItemDnaContainer
+public class ItemSoftTissue extends Item
 {
     public ItemSoftTissue()
     {
