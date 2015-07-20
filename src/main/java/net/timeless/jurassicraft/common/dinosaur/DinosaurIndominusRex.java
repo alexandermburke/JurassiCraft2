@@ -93,7 +93,7 @@ public class DinosaurIndominusRex extends Dinosaur implements IHybrid
     @Override
     public double getAdultStrength()
     {
-        return 36;
+        return 3;
     }
 
     @Override
