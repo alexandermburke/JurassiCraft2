@@ -86,7 +86,7 @@ public class DinosaurBrachiosaurus extends Dinosaur
     @Override
     public double getAdultStrength()
     {
-        return 2;
+        return 36;
     }
 
     @Override

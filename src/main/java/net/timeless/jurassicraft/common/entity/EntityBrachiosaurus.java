@@ -21,6 +21,4 @@ public class EntityBrachiosaurus extends EntityDinosaurDefensiveHerbivore
         this.tasks.addTask(8, new EntityAILookIdle(this));
         
     }
-    
-    
 }

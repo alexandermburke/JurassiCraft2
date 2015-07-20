@@ -88,7 +88,7 @@ public class DinosaurTyrannosaurusRex extends Dinosaur
     @Override
     public double getAdultStrength()
     {
-        return 1;
+        return 38;
     }
 
     @Override
