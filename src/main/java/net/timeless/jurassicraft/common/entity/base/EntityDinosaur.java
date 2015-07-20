@@ -14,7 +14,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
-import net.timeless.jurassicraft.common.entity.ai.EntityAIJCShouldDefend;
 import net.timeless.jurassicraft.common.item.ItemBluePrint;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
@@ -59,6 +58,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         if (isCarcass && !isEntityInvulnerable(source))
         {
             this.setDead();
+            this.onDeath(source);
         }
 
         return super.attackEntityFrom(source, amount);
@@ -226,9 +226,9 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     /**
      * Drop 0-2 items of this living's type
      */
-    protected void dropFewItems(boolean p_70628_1_, int p_70628_2_)
+    protected void dropFewItems(boolean p_70628_1_, int looting)
     {
-        int meatAmount = (int) (this.rand.nextInt(3) + ((width * height) / 4));
+        int meatAmount = (int) (this.rand.nextInt(3) + ((width * height) / 4)) + looting;
 
         for (int i = 0; i < meatAmount; ++i)
         {
@@ -285,6 +285,15 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     {
         //this.targetTasks.addTask(prio, new EntityAIJCShouldDefend(this, true, entity));
         this.targetTasks.addTask(prio, new EntityAIHurtByTarget(this, true, entity));
+    }
 
+    public int getDNAQuality()
+    {
+        return quality;
+    }
+    
+    public void setDNAQuality(int quality)
+    {
+        this.quality = quality;
     }
 }

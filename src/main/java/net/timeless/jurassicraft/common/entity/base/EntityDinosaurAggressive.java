@@ -98,9 +98,9 @@ public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
 
     protected void applyEntityAttributes()
     {
-        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
-
         super.applyEntityAttributes();
+        
+        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
     }
 
     public void updateCreatureData()

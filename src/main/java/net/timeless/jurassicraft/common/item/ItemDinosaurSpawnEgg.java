@@ -47,6 +47,8 @@ public class ItemDinosaurSpawnEgg extends Item
             {
                 EntityDinosaur dino = dinoClass.getConstructor(World.class).newInstance(player.worldObj);
 
+                dino.setDNAQuality(100);
+                
                 if (!player.isSneaking())
                 {
                     dino.setAge(dino.getDinosaur().getMaximumAge());
