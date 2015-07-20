@@ -4,6 +4,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.player.EntityPlayer;
@@ -282,6 +283,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     //NOTE: This registers which attackers to defend from. Class should be the entity class for the attacker, lower prio get executed earlier (Should be based upon attacker's strength and health to decide whether to defend or flee)
     protected void defendFromAttacker(Class entity, int prio)
     {
-        this.targetTasks.addTask(1, new EntityAIJCShouldDefend(this, true, entity));
+        //this.targetTasks.addTask(prio, new EntityAIJCShouldDefend(this, true, entity));
+        this.targetTasks.addTask(prio, new EntityAIHurtByTarget(this, true, entity));
+
     }
 }
