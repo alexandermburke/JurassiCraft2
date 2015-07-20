@@ -31,8 +31,6 @@ public class EntityIndominusRex extends EntityDinosaurAggressive implements IAni
     {
         super(world);
 
-        this.defendFromAttacker(false);
-        
         // Placeholder AI
         this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, dinosaur.getAttackSpeed(), false));
         this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));

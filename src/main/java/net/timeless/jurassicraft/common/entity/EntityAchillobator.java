@@ -1,5 +1,6 @@
 package net.timeless.jurassicraft.common.entity;
 
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
@@ -25,7 +26,13 @@ public class EntityAchillobator extends EntityDinosaurAggressive
         this.attackCreature(EntitySegisaurus.class, 1);
         this.attackCreature(EntityVelociraptor.class, 1);
 
-        this.defendFromAttacker(false);
+        this.defendFromAttacker(EntityPlayer.class, 0);
+        this.defendFromAttacker(EntityTyrannosaurusRex.class, 0);
+        this.defendFromAttacker(EntityIndominusRex.class, 0);
+        this.defendFromAttacker(EntitySpinosaurus.class, 0);
+        this.defendFromAttacker(EntityVelociraptor.class, 0);
+
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, EntityPlayer.class));
 
         this.tasks.addTask(6, new EntityAIWander(this, dinosaur.getAdultSpeed()));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));

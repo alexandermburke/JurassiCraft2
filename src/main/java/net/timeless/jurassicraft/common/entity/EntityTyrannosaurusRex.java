@@ -37,7 +37,10 @@ public class EntityTyrannosaurusRex extends EntityDinosaurAggressive implements 
         this.attackCreature(EntityParasaurolophus.class, 0);
         this.attackCreature(EntityStegosaurus.class, 0);
 
-        this.defendFromAttacker(false);
+        this.defendFromAttacker(EntityPlayer.class, 0);
+        this.defendFromAttacker(EntityIndominusRex.class, 0);
+        this.defendFromAttacker(EntitySpinosaurus.class, 0);
+        this.defendFromAttacker(EntityGiganotosaurus.class, 0);
 
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, EntityPlayer.class));
 
