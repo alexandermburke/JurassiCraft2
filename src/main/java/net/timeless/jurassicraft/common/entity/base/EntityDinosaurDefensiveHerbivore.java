@@ -14,15 +14,17 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements IMob
 {
+
     private EntityAIEatGrass entityAIEatGrass = new EntityAIEatGrass(this);
     private int eatTimer;
 
-    public EntityDinosaurDefensiveHerbivore(World world)
-    {
-        super(world);
+	public EntityDinosaurDefensiveHerbivore(World world)
+	{
+		super(world);
         this.tasks.addTask(5, this.entityAIEatGrass);
-    }
 
+	}
+	
     protected void updateAITasks()
     {
         this.eatTimer = this.entityAIEatGrass.getEatingGrassTimer();
@@ -43,7 +45,7 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
 
         super.onLivingUpdate();
     }
-
+    
     @SideOnly(Side.CLIENT)
     public void handleHealthUpdate(byte p_70103_1_)
     {
@@ -57,14 +59,14 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
         }
     }
 
-    public void eatGrassBonus() 
-    {
-        if(this.isChild())
-        {
-            this.setAge((int)(dinosaurAge + dinosaurAge * 0.05));
-        }
-        this.setHealth((float)(this.getHealth() + this.getHealth() * 0.15));
-    }
+	public void eatGrassBonus() 
+	{
+		if(this.isChild())
+		{
+			this.setAge((int)(dinosaurAge + dinosaurAge * 0.05));
+		}
+			this.setHealth((float)(this.getHealth() + this.getHealth() * 0.15));
+	}
 
     /**
      * Called when the entity is attacked.
@@ -89,7 +91,7 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
     public boolean attackEntityAsMob(Entity entity)
     {
         float damage = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
-        int knockback = (int) transitionFromAge(dinosaur.getBabyKnockback(), dinosaur.getAdultKnockback());;
+        int knockback = 0;
 
         if (entity instanceof EntityLivingBase)
         {
@@ -133,5 +135,5 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
         return true;
     }
 }
-
+	
 
