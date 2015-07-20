@@ -17,6 +17,8 @@ public class EntityDilophosaurus extends EntityDinosaurAggressive
     {
         super(world);
 
+        this.defendFromAttacker(false);
+        
         this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, dinosaur.getAttackSpeed(), false));
         this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
         this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPig.class, dinosaur.getAttackSpeed(), false));

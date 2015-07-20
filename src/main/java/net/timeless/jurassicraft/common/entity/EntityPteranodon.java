@@ -8,5 +8,7 @@ public class EntityPteranodon extends EntityDinosaurFlyingAggressive
     public EntityPteranodon(World world)
     {
         super(world);
+        
+        this.defendFromAttacker(false);
     }
 }

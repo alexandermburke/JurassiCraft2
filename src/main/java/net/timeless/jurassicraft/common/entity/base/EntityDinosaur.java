@@ -14,6 +14,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
+import net.timeless.jurassicraft.common.entity.ai.EntityAIDefendFlee;
 import net.timeless.jurassicraft.common.item.ItemBluePrint;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
@@ -265,8 +266,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     }
 
     //NOTE: This registers which attackers to defend from. Class should be the entity class for the attacker, lower prio get executed earlier (Should be based upon attacker's strength and health to decide whether to defend or flee)
-    protected void defendFromAttacker(Class entity, int prio)
+    protected void defendFromAttacker(boolean callForHelp)
     {
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, entity));
+        this.targetTasks.addTask(1, new EntityAIDefendFlee(this, callForHelp));
     }
 }
