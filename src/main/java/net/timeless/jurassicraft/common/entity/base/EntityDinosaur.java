@@ -27,6 +27,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     protected int dinosaurAge;
 
     private boolean isCarcass;
+    
+    private int quality;
 
     public EntityDinosaur(World world)
     {
@@ -162,6 +164,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         nbt.setInteger("Texture", randTexture);
         nbt.setDouble("Dinosaur Age", dinosaurAge);
         nbt.setBoolean("IsCarcass", isCarcass);
+        nbt.setInteger("DNAQuality", quality);
     }
 
     public void readFromNBT(NBTTagCompound nbt)
@@ -172,6 +175,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         randTexture = nbt.getInteger("Texture");
         dinosaurAge = nbt.getInteger("Dinosaur Age");
         isCarcass = nbt.getBoolean("IsCarcass");
+        quality = nbt.getInteger("DNAQuality");
 
         adjustHitbox();
     }
@@ -183,6 +187,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         buffer.writeInt(randTexture);
         buffer.writeInt(dinosaurAge);
         buffer.writeBoolean(isCarcass);
+        buffer.writeInt(quality);
     }
 
     @Override
@@ -192,7 +197,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         randTexture = additionalData.readInt();
         dinosaurAge = additionalData.readInt();
         isCarcass = additionalData.readBoolean();
-
+        quality = additionalData.readInt();
+        
         adjustHitbox();
     }
 
@@ -221,15 +227,24 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
      */
     protected void dropFewItems(boolean p_70628_1_, int p_70628_2_)
     {
-        int meatAmount = this.rand.nextInt(5);
+        int meatAmount = (int) (this.rand.nextInt(3) + ((width * height) / 4));
 
         for (int i = 0; i < meatAmount; ++i)
         {
             if (this.isBurning())
-                entityDropItem(new ItemStack(JCItemRegistry.dino_steak, 1, JCEntityRegistry.getDinosaurId(dinosaur)), 0.0F);
+                dropStackWithQuality(new ItemStack(JCItemRegistry.dino_steak, 1, JCEntityRegistry.getDinosaurId(dinosaur)));
             else
-                entityDropItem(new ItemStack(JCItemRegistry.dino_meat, 1, JCEntityRegistry.getDinosaurId(dinosaur)), 0.0F);
+                dropStackWithQuality(new ItemStack(JCItemRegistry.dino_meat, 1, JCEntityRegistry.getDinosaurId(dinosaur)));
         }
+    }
+    
+    private void dropStackWithQuality(ItemStack stack)
+    {
+        NBTTagCompound nbt = new NBTTagCompound();
+        nbt.setInteger("DNAQuality", quality);
+        stack.setTagCompound(nbt);
+        
+        entityDropItem(stack, 0.0F);
     }
 
     public void setCarcass(boolean carcass)
