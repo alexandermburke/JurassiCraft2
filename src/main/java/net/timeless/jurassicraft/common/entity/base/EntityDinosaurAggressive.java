@@ -63,7 +63,7 @@ public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
     public boolean attackEntityAsMob(Entity entity)
     {
         float damage = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
-        int knockback = 0;
+        int knockback = (int) transitionFromAge(dinosaur.getBabyKnockback(), dinosaur.getAdultKnockback());
 
         if (entity instanceof EntityLivingBase)
         {
