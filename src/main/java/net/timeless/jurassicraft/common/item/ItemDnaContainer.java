@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
+import net.timeless.jurassicraft.common.lang.AdvLang;
 
 public class ItemDnaContainer extends Item
 {
@@ -46,6 +47,6 @@ public class ItemDnaContainer extends Item
         else
             colour = EnumChatFormatting.RED;
 
-        lore.add(colour + "DNA Quality: " + quality + "%"); //TODO translation
+        lore.add(colour + new AdvLang("lore.dna_quality.name").withProperty("quality", quality + "").build());
     }
 }

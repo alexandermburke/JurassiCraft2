@@ -18,7 +18,6 @@ public class AnimationRugops implements IModelAnimator
         //        f = entity.ticksExisted;
         //        f1 = 1F;
 
-        //TODO wrong body part
         MowzieModelRenderer shoulders = model.getCube("Body shoulders");
         MowzieModelRenderer waist = model.getCube("Body waist");
 

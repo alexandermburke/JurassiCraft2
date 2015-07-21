@@ -31,25 +31,8 @@ public class ItemBluePrint extends Item
         if (dino != null)
             name = "entity." + dino.getName().toLowerCase().replaceAll(" ", "_") + ".name";
 
-        return new AdvLang("item.blue_print.name").withProperty("type", name).toString();
+        return new AdvLang("item.blue_print.name").withProperty("type", name).build();
     }
-
-    //    /**
-    //     * Returns true if the item can be used on the given entity, e.g. shears on sheep.
-    //     */
-    //    public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer playerIn, EntityLivingBase target)
-    //    {
-    //        if(target instanceof EntityDinosaur) //TODO try from EntityDinosaur interactFirst
-    //        {
-    //            EntityDinosaur dino = (EntityDinosaur) target;
-    //
-    //            setDinosaur(stack, JCEntityRegistry.getDinosaurId(dino.getDinosaur()));
-    //
-    //            return true;
-    //        }
-    //
-    //        return false;
-    //    }
 
     public void setDinosaur(ItemStack stack, int dino)
     {

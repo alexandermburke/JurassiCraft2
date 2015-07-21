@@ -28,7 +28,7 @@ public class ItemDNA extends ItemDnaContainer
     {
         String dinoName = getDinosaur(stack).getName().toLowerCase().replaceAll(" ", "_");
 
-        return new AdvLang("item.dna.name").withProperty("dino", "entity." + dinoName + ".name").toString();
+        return new AdvLang("item.dna.name").withProperty("dino", "entity." + dinoName + ".name").build();
     }
 
     public Dinosaur getDinosaur(ItemStack stack)

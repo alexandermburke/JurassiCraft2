@@ -16,6 +16,7 @@ import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -74,7 +75,7 @@ public class ItemDinosaurSpawnEgg extends Item
     {
         Dinosaur dinosaur = this.getDinosaur(stack);
 
-        return new AdvLang("item.dino_spawn_egg.name").withProperty("dino", "entity." + dinosaur.getName().replace(" ", "_").toLowerCase() + ".name").toString();
+        return new AdvLang("item.dino_spawn_egg.name").withProperty("dino", "entity." + dinosaur.getName().replace(" ", "_").toLowerCase() + ".name").build();
     }
 
     public Dinosaur getDinosaur(ItemStack stack)
@@ -178,6 +179,6 @@ public class ItemDinosaurSpawnEgg extends Item
 
     public void addInformation(ItemStack stack, EntityPlayer player, List lore, boolean advanced)
     {
-        lore.add("Sneak + Right Click to spawn baby dinosaur"); //TODO Translations
+        lore.add(StatCollector.translateToLocal("lore.baby_dino.name"));
     }
 }

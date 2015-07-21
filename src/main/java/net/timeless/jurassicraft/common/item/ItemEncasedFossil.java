@@ -3,10 +3,10 @@ package net.timeless.jurassicraft.common.item;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
 import net.timeless.jurassicraft.common.block.BlockEncasedFossil;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
+import net.timeless.jurassicraft.common.lang.AdvLang;
 import net.timeless.jurassicraft.common.period.EnumTimePeriod;
 
 public class ItemEncasedFossil extends ItemBlock
@@ -23,7 +23,7 @@ public class ItemEncasedFossil extends ItemBlock
     {
         Dinosaur dinosaur = ((BlockEncasedFossil) block).getDinosaur(stack.getMetadata());
 
-        return StatCollector.translateToLocal("period." + dinosaur.getPeriod().getName() + ".name") + " " + StatCollector.translateToLocal("tile.encased_fossil.name");
+        return new AdvLang("tile.encased_fossil.name").withProperty("period", "period." + dinosaur.getPeriod().getName() + ".name").build();
     }
 
     @Override

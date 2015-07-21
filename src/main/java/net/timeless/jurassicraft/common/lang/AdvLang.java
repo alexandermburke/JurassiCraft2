@@ -24,8 +24,7 @@ public class AdvLang
         return this;
     }
 
-    @Override
-    public String toString()
+    public String build()
     {
         String translation = StatCollector.translateToLocal(langPath);
 

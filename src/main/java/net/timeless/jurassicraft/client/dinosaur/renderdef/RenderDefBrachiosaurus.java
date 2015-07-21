@@ -31,7 +31,6 @@ public class RenderDefBrachiosaurus extends RenderDinosaurDefinition
     }
 
     @Override
-    //TODO offset and hitbox
     public ModelBase getModel()
     {
         return model;

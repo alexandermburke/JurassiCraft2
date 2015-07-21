@@ -45,8 +45,8 @@ item.blue_print.name={type} Blue Print
 item.soft_tissue.name={dino} Soft Tissue
 
 //Blocks ==================================================
-tile.fossil_block.name=Fossil
-tile.encased_fossil.name=Fossil
+tile.fossil_block.name={period} Fossil
+tile.encased_fossil.name=Encased {period} Fossil
 
 tile.cleaning_station.name=Cleaning Station
 tile.fossil_grinder.name=Fossil Grinder
@@ -66,6 +66,8 @@ container.embryo_insemination_machine=Embryo Insemination Machine
 
 //Others ==================================================
 blue_print.blank.name=Blank
+lore.dna_quality.name=DNA Quality: {quality}%
+lore.baby_dino.name=Sneak + Right Click to spawn baby dinosaur
 
 period.quaternary.name=Quaternary
 period.neogene.name=Neogene
