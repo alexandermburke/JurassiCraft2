@@ -33,7 +33,7 @@ entity.dunkleosteus.name=Dunkleosteus
 item.rock_pick.name=Rock Pick
 item.plaster_and_bandage.name=Plaster and Bandage
 
-item.fossil.name=Fossil
+item.fossil.name={dino} Fossil
 item.dino_egg.name=Egg
 item.dino_spawn_egg.name=Spawn
 item.dinosaur_meat.name=Meat
