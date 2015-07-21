@@ -92,7 +92,7 @@ public class DinosaurAchillobator extends Dinosaur
     @Override
     public double getAdultStrength()
     {
-        return 21;
+        return 15;
     }
 
     @Override

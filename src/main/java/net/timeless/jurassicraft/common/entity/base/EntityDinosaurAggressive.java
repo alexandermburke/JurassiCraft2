@@ -99,14 +99,12 @@ public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
     }
 
     public void updateCreatureData()
     {
         super.updateCreatureData();
-
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(transitionFromAge(dinosaur.getBabyStrength(), dinosaur.getAdultStrength()));
     }
 

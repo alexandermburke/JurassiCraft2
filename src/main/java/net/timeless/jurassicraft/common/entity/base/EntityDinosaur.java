@@ -69,6 +69,12 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         super.applyEntityAttributes();
 
         dinosaur = JCEntityRegistry.getDinosaurByClass(getClass());
+        double newHealth = transitionFromAge(dinosaur.getBabyHealth(), dinosaur.getAdultHealth());
+
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(newHealth);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(transitionFromAge(dinosaur.getBabySpeed(), dinosaur.getAdultSpeed()));
+        this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(transitionFromAge(dinosaur.getBabyKnockback(), dinosaur.getAdultKnockback()));
+
     }
 
     public void updateCreatureData()

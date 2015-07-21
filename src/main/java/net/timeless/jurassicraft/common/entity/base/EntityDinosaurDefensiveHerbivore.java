@@ -27,8 +27,8 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
 
     protected void updateAITasks()
     {
-        this.eatTimer = this.entityAIEatGrass.getEatingGrassTimer();
         super.updateAITasks();
+        this.eatTimer = this.entityAIEatGrass.getEatingGrassTimer();
     }
 
     /**
@@ -37,13 +37,12 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
      */
     public void onLivingUpdate()
     {
+        super.onLivingUpdate();
         if (this.worldObj.isRemote)
         {
             this.eatTimer = Math.max(0, this.eatTimer - 1);
         }
         this.updateArmSwingProgress();
-
-        super.onLivingUpdate();
     }
 
     @SideOnly(Side.CLIENT)
@@ -118,9 +117,8 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
 
     protected void applyEntityAttributes()
     {
-        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
-
         super.applyEntityAttributes();
+        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
     }
 
     public void updateCreatureData()
