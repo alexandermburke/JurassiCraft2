@@ -17,6 +17,7 @@ import net.timeless.jurassicraft.common.dinosaur.DinosaurDilophosaurus;
 import net.timeless.jurassicraft.common.dinosaur.DinosaurDunkleosteus;
 import net.timeless.jurassicraft.common.dinosaur.DinosaurGallimimus;
 import net.timeless.jurassicraft.common.dinosaur.DinosaurGiganotosaurus;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurHypsilophodon;
 import net.timeless.jurassicraft.common.dinosaur.DinosaurIndominusRex;
 import net.timeless.jurassicraft.common.dinosaur.DinosaurMajungasaurus;
 import net.timeless.jurassicraft.common.dinosaur.DinosaurParasaurolophus;
@@ -49,6 +50,7 @@ public class JCEntityRegistry
     public static final Dinosaur dunkleosteus = new DinosaurDunkleosteus();
     public static final Dinosaur gallimimus = new DinosaurGallimimus();
     public static final Dinosaur giganotosaurus = new DinosaurGiganotosaurus();
+    public static final Dinosaur hypsilophodon = new DinosaurHypsilophodon();
     public static final Dinosaur indominus_rex = new DinosaurIndominusRex();
     public static final Dinosaur majungasaurus = new DinosaurMajungasaurus();
     public static final Dinosaur parasaurolophus = new DinosaurParasaurolophus();
@@ -84,6 +86,7 @@ public class JCEntityRegistry
         registerDinosaurType(stegosaurus);
         registerDinosaurType(triceratops);
         registerDinosaurType(tyrannosaurus_rex);
+        registerDinosaurType(hypsilophodon);
 
         registerEntity(EntityBluePrint.class, "Blueprint");
         registerEntity(EntityJurassiCraftSign.class, "JurassiCraft Sign");
