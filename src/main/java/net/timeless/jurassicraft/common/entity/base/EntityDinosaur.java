@@ -27,7 +27,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     protected int dinosaurAge;
 
     private boolean isCarcass;
-    
+
     private int quality;
 
     public EntityDinosaur(World world)
@@ -199,7 +199,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         dinosaurAge = additionalData.readInt();
         isCarcass = additionalData.readBoolean();
         quality = additionalData.readInt();
-        
+
         adjustHitbox();
     }
 
@@ -238,13 +238,13 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
                 dropStackWithQuality(new ItemStack(JCItemRegistry.dino_meat, 1, JCEntityRegistry.getDinosaurId(dinosaur)));
         }
     }
-    
+
     private void dropStackWithQuality(ItemStack stack)
     {
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setInteger("DNAQuality", quality);
         stack.setTagCompound(nbt);
-        
+
         entityDropItem(stack, 0.0F);
     }
 
@@ -291,7 +291,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     {
         return quality;
     }
-    
+
     public void setDNAQuality(int quality)
     {
         this.quality = quality;

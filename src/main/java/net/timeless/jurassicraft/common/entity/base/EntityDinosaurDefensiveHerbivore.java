@@ -8,7 +8,6 @@ import net.minecraft.entity.ai.EntityAIEatGrass;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
-import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -19,13 +18,13 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
     private EntityAIEatGrass entityAIEatGrass = new EntityAIEatGrass(this);
     private int eatTimer;
 
-	public EntityDinosaurDefensiveHerbivore(World world)
-	{
-		super(world);
+    public EntityDinosaurDefensiveHerbivore(World world)
+    {
+        super(world);
         this.tasks.addTask(5, this.entityAIEatGrass);
 
-	}
-	
+    }
+
     protected void updateAITasks()
     {
         this.eatTimer = this.entityAIEatGrass.getEatingGrassTimer();
@@ -46,7 +45,7 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
 
         super.onLivingUpdate();
     }
-    
+
     @SideOnly(Side.CLIENT)
     public void handleHealthUpdate(byte p_70103_1_)
     {
@@ -60,14 +59,14 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
         }
     }
 
-	public void eatGrassBonus() 
-	{
-		if(this.isChild())
-		{
-			this.setAge((int)(dinosaurAge + dinosaurAge * 0.05));
-		}
-			this.setHealth((float)(this.getHealth() + this.getHealth() * 0.15));
-	}
+    public void eatGrassBonus()
+    {
+        if (this.isChild())
+        {
+            this.setAge((int) (dinosaurAge + dinosaurAge * 0.05));
+        }
+        this.setHealth((float) (this.getHealth() + this.getHealth() * 0.15));
+    }
 
     /**
      * Called when the entity is attacked.
@@ -136,5 +135,3 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
         return true;
     }
 }
-	
-

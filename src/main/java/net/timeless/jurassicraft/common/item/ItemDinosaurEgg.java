@@ -5,12 +5,12 @@ import java.util.List;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
+import net.timeless.jurassicraft.common.lang.AdvLang;
 
 public class ItemDinosaurEgg extends ItemDnaContainer
 {
@@ -28,7 +28,7 @@ public class ItemDinosaurEgg extends ItemDnaContainer
     {
         String dinoName = getDinosaur(stack).getName().toLowerCase().replaceAll(" ", "_");
 
-        return StatCollector.translateToLocal("entity." + dinoName + ".name") + " " + StatCollector.translateToLocal("item.dino_egg.name");
+        return new AdvLang("item.dino_egg.name").withProperty("dino", "entity." + dinoName + ".name").toString();
     }
 
     public Dinosaur getDinosaur(ItemStack stack)

@@ -16,7 +16,6 @@ import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -24,6 +23,7 @@ import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
+import net.timeless.jurassicraft.common.lang.AdvLang;
 
 public class ItemDinosaurSpawnEgg extends Item
 {
@@ -48,7 +48,7 @@ public class ItemDinosaurSpawnEgg extends Item
                 EntityDinosaur dino = dinoClass.getConstructor(World.class).newInstance(player.worldObj);
 
                 dino.setDNAQuality(100);
-                
+
                 if (!player.isSneaking())
                 {
                     dino.setAge(dino.getDinosaur().getMaximumAge());
@@ -74,16 +74,17 @@ public class ItemDinosaurSpawnEgg extends Item
     {
         Dinosaur dinosaur = this.getDinosaur(stack);
 
-        if (dinosaur != null)
-
-            return (StatCollector.translateToLocal("item.dino_spawn_egg.name") + " " + StatCollector.translateToLocal("entity." + dinosaur.getName().replace(" ", "_").toLowerCase() + ".name")).trim();
-
-        return super.getItemStackDisplayName(stack);
+        return new AdvLang("item.dino_spawn_egg.name").withProperty("dino", "entity." + dinosaur.getName().replace(" ", "_").toLowerCase() + ".name").toString();
     }
 
     public Dinosaur getDinosaur(ItemStack stack)
     {
-        return JCEntityRegistry.getDinosaurById(stack.getItemDamage());
+        Dinosaur dinosaur = JCEntityRegistry.getDinosaurById(stack.getItemDamage());
+
+        if (dinosaur == null)
+            dinosaur = JCEntityRegistry.achillobator;
+
+        return dinosaur;
     }
 
     @Override

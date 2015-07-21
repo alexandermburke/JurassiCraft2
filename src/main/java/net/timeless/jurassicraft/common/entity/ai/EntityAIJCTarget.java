@@ -1,6 +1,5 @@
 package net.timeless.jurassicraft.common.entity.ai;
 
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityOwnable;
@@ -95,7 +94,7 @@ public abstract class EntityAIJCTarget extends EntityAIBase
                         }
                     }
 
-                    return !(entitylivingbase instanceof EntityPlayer) || !((EntityPlayer)entitylivingbase).capabilities.disableDamage;
+                    return !(entitylivingbase instanceof EntityPlayer) || !((EntityPlayer) entitylivingbase).capabilities.disableDamage;
                 }
             }
         }
@@ -122,7 +121,7 @@ public abstract class EntityAIJCTarget extends EntityAIBase
      */
     public void resetTask()
     {
-        this.taskOwner.setAttackTarget((EntityLivingBase)null);
+        this.taskOwner.setAttackTarget((EntityLivingBase) null);
     }
 
     public static boolean func_179445_a(EntityLiving p_179445_0_, EntityLivingBase p_179445_1_, boolean p_179445_2_, boolean p_179445_3_)
@@ -154,19 +153,19 @@ public abstract class EntityAIJCTarget extends EntityAIBase
             }
             else
             {
-                if (p_179445_0_ instanceof IEntityOwnable && StringUtils.isNotEmpty(((IEntityOwnable)p_179445_0_).getOwnerId()))
+                if (p_179445_0_ instanceof IEntityOwnable && StringUtils.isNotEmpty(((IEntityOwnable) p_179445_0_).getOwnerId()))
                 {
-                    if (p_179445_1_ instanceof IEntityOwnable && ((IEntityOwnable)p_179445_0_).getOwnerId().equals(((IEntityOwnable)p_179445_1_).getOwnerId()))
+                    if (p_179445_1_ instanceof IEntityOwnable && ((IEntityOwnable) p_179445_0_).getOwnerId().equals(((IEntityOwnable) p_179445_1_).getOwnerId()))
                     {
                         return false;
                     }
 
-                    if (p_179445_1_ == ((IEntityOwnable)p_179445_0_).getOwner())
+                    if (p_179445_1_ == ((IEntityOwnable) p_179445_0_).getOwner())
                     {
                         return false;
                     }
                 }
-                else if (p_179445_1_ instanceof EntityPlayer && !p_179445_2_ && ((EntityPlayer)p_179445_1_).capabilities.disableDamage)
+                else if (p_179445_1_ instanceof EntityPlayer && !p_179445_2_ && ((EntityPlayer) p_179445_1_).capabilities.disableDamage)
                 {
                     return false;
                 }
@@ -175,7 +174,7 @@ public abstract class EntityAIJCTarget extends EntityAIBase
             }
         }
     }
-    
+
     protected Dinosaur dinosaur;
 
     /**
@@ -211,22 +210,22 @@ public abstract class EntityAIJCTarget extends EntityAIBase
                     return false;
                 }
             }
-            if(entity instanceof EntityDinosaur)
+            if (entity instanceof EntityDinosaur)
             {
-            	if(entity.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue() <= this.taskOwner.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue())
-            	{
+                if (entity.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue() <= this.taskOwner.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue())
+                {
                     return true;
-            	}
-            	else
-            	{
-            		return false;
-            	}
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
-            return false;
+                return false;
             }
-            }
+        }
     }
 
     /**
@@ -253,7 +252,7 @@ public abstract class EntityAIJCTarget extends EntityAIBase
             {
                 int i = pathpoint.xCoord - MathHelper.floor_double(p_75295_1_.posX);
                 int j = pathpoint.zCoord - MathHelper.floor_double(p_75295_1_.posZ);
-                return (double)(i * i + j * j) <= 2.25D;
+                return (double) (i * i + j * j) <= 2.25D;
             }
         }
     }

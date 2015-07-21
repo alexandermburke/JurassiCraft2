@@ -31,7 +31,7 @@ public class TileFossilGrinder extends TileEntityLockable implements IUpdatePlay
     private static final int[] slotsTop = new int[] { 0 }; //input
     private static final int[] slotsBottom = new int[] { 6, 5, 4, 3, 2, 1 }; //output
     private static final int[] slotsSides = new int[] {};
-    
+
     /** The ItemStacks that hold the items currently being used in the fossil grinder */
     private ItemStack[] slots = new ItemStack[7];
 
@@ -262,7 +262,7 @@ public class TileFossilGrinder extends TileEntityLockable implements IUpdatePlay
                     sync = true;
                 }
             }
-            
+
             if (flag != this.isGrinding())
             {
                 sync = true;
@@ -312,18 +312,18 @@ public class TileFossilGrinder extends TileEntityLockable implements IUpdatePlay
         if (this.canGrind())
         {
             ItemStack output;
-            
+
             Random rand = new Random();
-            
+
             int item = rand.nextInt(6);
-            
-            if(item < 3)
+
+            if (item < 3)
                 output = new ItemStack(Items.dye, 1, 15);
-            else if(item < 5)
+            else if (item < 5)
                 output = new ItemStack(Items.flint);
             else
                 output = new ItemStack(JCItemRegistry.soft_tissue, 1, slots[0].getItemDamage());
-            
+
             int emptySlot = -1;
 
             for (int i = 1; i < 7; i++)

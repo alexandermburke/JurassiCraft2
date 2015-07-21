@@ -16,7 +16,7 @@ public class EntityAIJCShouldDefend extends EntityAIJCTarget
     private final Class[] field_179447_c;
     private static final String __OBFID = "CL_00001619";
 
-    public EntityAIJCShouldDefend(EntityDinosaur p_i45885_1_, boolean p_i45885_2_, Class ... p_i45885_3_)
+    public EntityAIJCShouldDefend(EntityDinosaur p_i45885_1_, boolean p_i45885_2_, Class... p_i45885_3_)
     {
         super(p_i45885_1_, false);
         this.entityCallsForHelp = p_i45885_2_;
@@ -49,7 +49,7 @@ public class EntityAIJCShouldDefend extends EntityAIJCTarget
 
             while (iterator.hasNext())
             {
-                EntityCreature entitycreature = (EntityCreature)iterator.next();
+                EntityCreature entitycreature = (EntityCreature) iterator.next();
 
                 if (this.taskOwner != entitycreature && entitycreature.getAttackTarget() == null && !entitycreature.isOnSameTeam(this.taskOwner.getAITarget()))
                 {

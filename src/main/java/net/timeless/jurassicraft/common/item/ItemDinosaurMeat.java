@@ -5,12 +5,12 @@ import java.util.List;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
+import net.timeless.jurassicraft.common.lang.AdvLang;
 
 public class ItemDinosaurMeat extends ItemDnaContainer
 {
@@ -27,15 +27,17 @@ public class ItemDinosaurMeat extends ItemDnaContainer
     {
         Dinosaur dinosaur = this.getDinosaur(stack);
 
-        if (dinosaur != null)
-            return (StatCollector.translateToLocal("entity." + dinosaur.getName().replace(" ", "_").toLowerCase() + ".name") + " " + StatCollector.translateToLocal("item.dinosaur_meat.name")).trim();
-
-        return super.getItemStackDisplayName(stack);
+        return new AdvLang("item.dinosaur_meat.name").withProperty("dino", "entity." + dinosaur.getName().replace(" ", "_").toLowerCase() + ".name").toString();
     }
 
     public Dinosaur getDinosaur(ItemStack stack)
     {
-        return JCEntityRegistry.getDinosaurById(stack.getItemDamage());
+        Dinosaur dinosaur = JCEntityRegistry.getDinosaurById(stack.getItemDamage());
+
+        if (dinosaur == null)
+            dinosaur = JCEntityRegistry.achillobator;
+
+        return dinosaur;
     }
 
     @Override

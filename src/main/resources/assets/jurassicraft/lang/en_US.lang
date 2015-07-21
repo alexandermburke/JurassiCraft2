@@ -34,15 +34,15 @@ item.rock_pick.name=Rock Pick
 item.plaster_and_bandage.name=Plaster and Bandage
 
 item.fossil.name={dino} Fossil
-item.dino_egg.name=Egg
-item.dino_spawn_egg.name=Spawn
-item.dinosaur_meat.name=Meat
-item.dinosaur_steak.name=Steak
+item.dino_egg.name={dino} Egg
+item.dino_spawn_egg.name=Spawn {dino}
+item.dinosaur_meat.name={dino} Meat
+item.dinosaur_steak.name={dino} Steak
 item.paleo_pad.name=Paleo Pad
-item.dna.name=DNA
+item.dna.name={dino} DNA
 item.jurassicraft_sign.name=JurassiCraft Sign
-item.blue_print.name=Blue Print
-item.soft_tissue.name=Soft Tissue
+item.blue_print.name={type} Blue Print
+item.soft_tissue.name={dino} Soft Tissue
 
 //Blocks ==================================================
 tile.fossil_block.name=Fossil
@@ -65,6 +65,8 @@ container.embryonic_machine=Embryonic Machine
 container.embryo_insemination_machine=Embryo Insemination Machine
 
 //Others ==================================================
+blue_print.blank.name=Blank
+
 period.quaternary.name=Quaternary
 period.neogene.name=Neogene
 period.paleogene.name=Paleogene

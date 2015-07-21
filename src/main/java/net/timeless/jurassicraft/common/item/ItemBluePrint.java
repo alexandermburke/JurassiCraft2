@@ -6,12 +6,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.entity.item.EntityBluePrint;
+import net.timeless.jurassicraft.common.lang.AdvLang;
 
 public class ItemBluePrint extends Item
 {
@@ -26,12 +26,12 @@ public class ItemBluePrint extends Item
     {
         int dinoId = getDinosaur(stack);
         Dinosaur dino = JCEntityRegistry.getDinosaurById(dinoId);
-        String name = "Blank"; //TODO Translation
+        String name = "blue_print.blank.name";
 
         if (dino != null)
-            name = StatCollector.translateToLocal("entity." + dino.getName().toLowerCase().replaceAll(" ", "_") + ".name");
+            name = "entity." + dino.getName().toLowerCase().replaceAll(" ", "_") + ".name";
 
-        return name + " " + super.getItemStackDisplayName(stack);
+        return new AdvLang("item.blue_print.name").withProperty("type", name).toString();
     }
 
     //    /**
