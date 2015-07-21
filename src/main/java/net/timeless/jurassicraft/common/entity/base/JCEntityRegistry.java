@@ -63,6 +63,7 @@ public class JCEntityRegistry
 
     public void register()
     {
+        registerDinosaurType(velociraptor);
         registerDinosaurType(achillobator);
         registerDinosaurType(anklyosaurus);
         registerDinosaurType(brachiosaurus);
@@ -83,7 +84,6 @@ public class JCEntityRegistry
         registerDinosaurType(stegosaurus);
         registerDinosaurType(triceratops);
         registerDinosaurType(tyrannosaurus_rex);
-        registerDinosaurType(velociraptor);
 
         registerEntity(EntityBluePrint.class, "Blueprint");
         registerEntity(EntityJurassiCraftSign.class, "JurassiCraft Sign");

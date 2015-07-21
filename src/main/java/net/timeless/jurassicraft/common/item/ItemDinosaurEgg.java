@@ -1,6 +1,9 @@
 package net.timeless.jurassicraft.common.item;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -40,14 +43,25 @@ public class ItemDinosaurEgg extends ItemDnaContainer
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List subtypes)
     {
-        int i = 0;
+        List<Dinosaur> dinosaurs = JCEntityRegistry.getDinosaurs();
 
-        for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
+        Map<Dinosaur, Integer> ids = new HashMap<Dinosaur, Integer>();
+
+        int id = 0;
+
+        for (Dinosaur dino : dinosaurs)
+        {
+            ids.put(dino, id);
+
+            id++;
+        }
+
+        Collections.sort(dinosaurs);
+
+        for (Dinosaur dino : dinosaurs)
         {
             if (dino.shouldRegister())
-                subtypes.add(new ItemStack(item, 1, i));
-
-            i++;
+                subtypes.add(new ItemStack(item, 1, ids.get(dino)));
         }
     }
 }

@@ -3,7 +3,7 @@ package net.timeless.jurassicraft.common.dinosaur;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.common.period.EnumTimePeriod;
 
-public abstract class Dinosaur
+public abstract class Dinosaur implements Comparable<Dinosaur>
 {
     public abstract String getName();
 
@@ -90,5 +90,11 @@ public abstract class Dinosaur
     protected int fromDays(int days)
     {
         return (days * 24000) / 32;
+    }
+
+    @Override
+    public int compareTo(Dinosaur dinosaur)
+    {
+        return this.getName().compareTo(dinosaur.getName());
     }
 }
