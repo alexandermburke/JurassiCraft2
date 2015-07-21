@@ -1,5 +1,8 @@
 package net.timeless.jurassicraft.client.render;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import net.minecraft.block.Block;
@@ -125,8 +128,23 @@ public class JCRenderingRegistry
 
     public void postInit()
     {
-        for (Dinosaur dinosaur : JCEntityRegistry.getDinosaurs())
-            RenderingRegistry.registerEntityRenderingHandler(dinosaur.getDinosaurClass(), renderDefs.get(dinosaur).getRenderer());
+        List<Dinosaur> dinosaurs = JCEntityRegistry.getDinosaurs();
+
+        Map<Dinosaur, Integer> ids = new HashMap<Dinosaur, Integer>();
+
+        int id = 0;
+
+        for (Dinosaur dino : dinosaurs)
+        {
+            ids.put(dino, id);
+
+            id++;
+        }
+
+        Collections.sort(dinosaurs);
+
+        for (Dinosaur dino : dinosaurs)
+            RenderingRegistry.registerEntityRenderingHandler(dino.getDinosaurClass(), renderDefs.get(dino).getRenderer());
 
         RenderingRegistry.registerEntityRenderingHandler(EntityBluePrint.class, new RenderBluePrint());
         RenderingRegistry.registerEntityRenderingHandler(EntityJurassiCraftSign.class, new RenderJurassiCraftSign());
@@ -143,7 +161,7 @@ public class JCRenderingRegistry
 
         int meta = 0;
 
-        for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
+        for (Dinosaur dino : dinosaurs)
         {
             String dinoName = dino.getName().toLowerCase().replaceAll(" ", "_");
 
