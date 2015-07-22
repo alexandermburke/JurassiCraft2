@@ -114,6 +114,11 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         return (adult - baby) / maxAge * dinosaurAge + baby;
     }
 
+    public float getSoundPitch()
+    {
+        return (float) transitionFromAge(1.5F, 1.0F);
+    }
+    
     public void onLivingUpdate()
     {
         super.onLivingUpdate();
