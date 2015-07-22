@@ -1,3 +1,86 @@
 {
-
+    "velociraptor_hurt_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/velociraptor/velociraptor_hurt_1"
+        ]
+    },
+	"velociraptor_living_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/velociraptor/velociraptor_living_1"
+        ]
+    },
+	"velociraptor_living_2": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/velociraptor/velociraptor_living_2"
+        ]
+    },
+	"velociraptor_living_3": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/velociraptor/velociraptor_living_3"
+        ]
+    },
+	"velociraptor_bark_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/velociraptor/velociraptor_bark_1"
+        ]
+    },
+	"velociraptor_bark_2": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/velociraptor/velociraptor_bark_2"
+        ]
+    },
+	"velociraptor_bark_3": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/velociraptor/velociraptor_bark_3"
+        ]
+    },
+	"velociraptor_call_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/velociraptor/velociraptor_call_1"
+        ]
+    },
+	"velociraptor_call_2": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/velociraptor/velociraptor_call_2"
+        ]
+    },
+	"velociraptor_call_3": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/velociraptor/velociraptor_call_3"
+        ]
+    },
+	"velociraptor_hiss_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/velociraptor/velociraptor_hiss_1"
+        ]
+    },
+	"velociraptor_hiss_2": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/velociraptor/velociraptor_hiss_2"
+        ]
+    },
+	"velociraptor_hiss_3": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/velociraptor/velociraptor_hiss_3"
+        ]
+    },
+	"velociraptor_death_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/velociraptor/velociraptor_death_1"
+        ]
+    }
 }

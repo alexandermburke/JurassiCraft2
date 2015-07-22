@@ -15,10 +15,16 @@ public class EntityVelociraptor extends EntityDinosaurAggressive
     public static final int LEAPING_ANIMATION_ID = 0;
     public ChainBuffer tailBuffer = new ChainBuffer(6);
 
+    private static final String[] hurtSounds = new String[] { "velociraptor_hurt_1" };
+    private static final String[] livingSounds = new String[] { "velociraptor_living_1", "velociraptor_living_2", "velociraptor_living_3" };
+    private static final String[] deathSounds = new String[] { "velociraptor_death_1" };
+    private static final String[] callSounds = new String[] { "velociraptor_call_1", "velociraptor_call_2", "velociraptor_call_3" };
+    private static final String[] barkSounds = new String[] { "velociraptor_bark_1", "velociraptor_bark_2", "velociraptor_bark_3" };
+    private static final String[] hissSounds = new String[] { "velociraptor_hiss_1", "velociraptor_hiss_2", "velociraptor_hiss_3" };
+    
     public EntityVelociraptor(World world)
     {
         super(world);
-        setAnimID(-1);
 
         //Attacks smaller dinosaurs(And pigs, everyone hates pigs!)
         this.attackCreature(EntityPig.class, 2);
@@ -41,6 +47,21 @@ public class EntityVelociraptor extends EntityDinosaurAggressive
         this.tasks.addTask(8, new EntityAILookIdle(this));
     }
 
+    public String getLivingSound()
+    {
+        return randomSound(livingSounds);
+    }
+
+    public String getHurtSound()
+    {
+        return randomSound(hurtSounds);
+    }
+
+    public String getDeathSound()
+    {
+        return randomSound(deathSounds);
+    }
+    
     public void onUpdate()
     {
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);

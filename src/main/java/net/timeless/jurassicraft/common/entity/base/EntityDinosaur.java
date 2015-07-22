@@ -14,6 +14,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.timeless.animationapi.IAnimatedEntity;
+import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.item.ItemBluePrint;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
@@ -49,6 +50,9 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
             randTexture = rand.nextInt(dinosaur.getFemaleTextures().length);
 
         adjustHitbox();
+        
+        animTick = 0;
+        animId = 0;
     }
 
     public void entityInit()
@@ -56,7 +60,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         super.entityInit();
         this.dataWatcher.addObject(25, 0);
     }
-
+    
     public boolean attackEntityFrom(DamageSource source, float amount)
     {
         if (isCarcass && !isEntityInvulnerable(source))
@@ -329,5 +333,10 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     public int getAnimTick()
     {
         return animTick;
+    }
+    
+    protected String randomSound(String[] sounds)
+    {
+        return JurassiCraft.modid + ":" + sounds[rand.nextInt(sounds.length)];
     }
 }
