@@ -19,6 +19,7 @@ public class EntityTyrannosaurusRex extends EntityDinosaurAggressive implements 
     private static final String[] livingSounds = new String[] { "tyrannosaurus_living_1", "tyrannosaurus_living_2", "tyrannosaurus_living_3", "tyrannosaurus_living_4", "tyrannosaurus_living_5", "tyrannosaurus_living_6" };
     private static final String[] deathSounds = new String[] { "tyrannosaurus_death_1" };
     private static final String[] roarSounds = new String[] { "tyrannosaurus_roar_1" };
+    private static final String[] breathSounds = new String[] { "tyrannosaurus_breath_1" };
     
     public EntityTyrannosaurusRex(World world)
     {
@@ -54,7 +55,7 @@ public class EntityTyrannosaurusRex extends EntityDinosaurAggressive implements 
 
     public String getLivingSound()
     {
-        return randomSound(livingSounds);
+        return randomSound(breathSounds);
     }
 
     public String getHurtSound()
