@@ -6,10 +6,13 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.timeless.jurassicraft.client.gui.GuiCleaningStation;
+import net.timeless.jurassicraft.client.gui.GuiDNASequencer;
 import net.timeless.jurassicraft.client.gui.GuiFossilGrinder;
 import net.timeless.jurassicraft.common.container.ContainerCleaningStation;
+import net.timeless.jurassicraft.common.container.ContainerDNASequencer;
 import net.timeless.jurassicraft.common.container.ContainerFossilGrinder;
 import net.timeless.jurassicraft.common.tileentity.TileCleaningStation;
+import net.timeless.jurassicraft.common.tileentity.TileDnaSequencer;
 import net.timeless.jurassicraft.common.tileentity.TileFossilGrinder;
 
 public class JCGuiHandler implements IGuiHandler
@@ -29,6 +32,10 @@ public class JCGuiHandler implements IGuiHandler
             else if (tileEntity instanceof TileFossilGrinder && id == 1)
             {
                 return new ContainerFossilGrinder(player.inventory, (TileFossilGrinder) tileEntity);
+            }
+            else if (tileEntity instanceof TileDnaSequencer && id == 2)
+            {
+                return new ContainerDNASequencer(player.inventory, (TileDnaSequencer) tileEntity);
             }
         }
 
@@ -50,6 +57,10 @@ public class JCGuiHandler implements IGuiHandler
             else if (tileEntity instanceof TileFossilGrinder && id == 1)
             {
                 return new GuiFossilGrinder(player.inventory, (TileFossilGrinder) tileEntity);
+            }
+            else if (tileEntity instanceof TileDnaSequencer && id == 2)
+            {
+                return new GuiDNASequencer(player.inventory, (TileDnaSequencer) tileEntity);
             }
         }
 

@@ -1,5 +1,6 @@
 package net.timeless.jurassicraft.common.dna;
 
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class DNA
@@ -11,6 +12,11 @@ public class DNA
     {
         this.quality = quality;
         this.dinosaur = dinosaur;
+    }
+    
+    public DNA(ItemStack stack)
+    {
+        this(stack.getTagCompound().getInteger("DNAQuality"), stack.getItemDamage());
     }
     
     public void writeToNBT(NBTTagCompound nbt)
