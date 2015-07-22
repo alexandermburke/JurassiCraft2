@@ -148,7 +148,7 @@
         "sounds": [
             "dinosaurs/tyrannosaurus_rex/tyrannosaurus_breath_1"
         ]
-    }
+    },
 	"brachiosaurus_living_1": {
         "category": "hostile",
         "sounds": [
