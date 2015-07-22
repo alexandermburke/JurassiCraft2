@@ -4,7 +4,7 @@ import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
 import net.ilexiconn.llibrary.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.minecraft.entity.Entity;
-import net.timeless.jurassicraft.common.api.animation.Animator;
+import net.timeless.animationapi.client.Animator;
 import net.timeless.jurassicraft.common.entity.EntityVelociraptor;
 
 public class AnimationVelociraptor implements IModelAnimator
@@ -19,9 +19,6 @@ public class AnimationVelociraptor implements IModelAnimator
     @Override
     public void setRotationAngles(ModelJson model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
     {
-        if (!animator.isInitialized())
-            animator.init(model);
-
         EntityVelociraptor velociraptor = (EntityVelociraptor) entity;
 
         MowzieModelRenderer waist = model.getCube("body3");
@@ -215,25 +212,6 @@ public class AnimationVelociraptor implements IModelAnimator
             model.faceTarget(neck1, 2, rotationYaw, rotationPitch);
 
             velociraptor.tailBuffer.applyChainSwingBuffer(tailParts);
-
-            animator.begin(velociraptor, partialTicks);
-            {
-                animator.startPhase(5L);
-                {
-                    animator.rotate(shoulders, 0.4f, 0, 0);
-                    animator.rotate(neck1, 0.4f, 0, 0);
-                    animator.rotate(neck2, 0.4f, 0, 0);
-                    animator.rotate(neck3, -0.4f, 0, 0);
-                    animator.rotate(neck4, -0.4f, 0, 0);
-                    animator.rotate(head, -0.4f, 0, 0);
-                }
-                //            animator.endPhase();
-                //            animator.startPhase(10);
-                //            animator.endPhase();
-                //            animator.startPhase(5);
-                //            animator.endPhase();
-            }
-            animator.end();
         }
     }
 }

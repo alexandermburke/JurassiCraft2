@@ -13,15 +13,12 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.jurassicraft.common.api.animation.IAnimatedEntity;
 import net.timeless.jurassicraft.common.entity.ai.EntityAIJCWander;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.jurassicraft.common.entity.base.buffer.ChainBuffer;
 
-public class EntityIndominusRex extends EntityDinosaurAggressive implements IAnimatedEntity
+public class EntityIndominusRex extends EntityDinosaurAggressive
 {
-    private int animationId = -1;
-
     public ChainBuffer tailBuffer = new ChainBuffer(7);
 
     private float[] newSkinColor = new float[3];
@@ -42,18 +39,6 @@ public class EntityIndominusRex extends EntityDinosaurAggressive implements IAni
         this.tasks.addTask(6, new EntityAIJCWander(this, 40));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityLivingBase.class, 6.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
-    }
-
-    @Override
-    public void setAnimID(int id)
-    {
-        this.animationId = id;
-    }
-
-    @Override
-    public int getAnimID()
-    {
-        return animationId;
     }
 
     public void onUpdate()

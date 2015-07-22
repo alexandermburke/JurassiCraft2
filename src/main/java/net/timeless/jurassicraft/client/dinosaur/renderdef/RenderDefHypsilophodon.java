@@ -53,7 +53,7 @@ public class RenderDefHypsilophodon extends RenderDinosaurDefinition
     {
         return 0.65F;
     }
-    
+
     public float getRenderXOffset()
     {
         return 0.0F;

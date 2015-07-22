@@ -6,16 +6,20 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import net.timeless.jurassicraft.common.api.animation.IAnimatedEntity;
+import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.jurassicraft.common.entity.ai.EntityAIJCWander;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.jurassicraft.common.entity.base.buffer.ChainBuffer;
 
 public class EntityTyrannosaurusRex extends EntityDinosaurAggressive implements IAnimatedEntity
 {
-    private int animationId = -1;
-
     public ChainBuffer tailBuffer = new ChainBuffer(6);
+
+    private static final String[] hurtSounds = new String[] { "tyrannosaurus_hurt_1", "tyrannosaurus_hurt_2" };
+    private static final String[] livingSounds = new String[] { "tyrannosaurus_living_1", "tyrannosaurus_living_2", "tyrannosaurus_living_3", "tyrannosaurus_living_4", "tyrannosaurus_living_5", "tyrannosaurus_living_6" };
+    private static final String[] deathSounds = new String[] { "tyrannosaurus_death_1" };
+    private static final String[] roarSounds = new String[] { "tyrannosaurus_roar_1" };
+    private static final String[] breathSounds = new String[] { "tyrannosaurus_breath_1" };
 
     public EntityTyrannosaurusRex(World world)
     {
@@ -49,16 +53,19 @@ public class EntityTyrannosaurusRex extends EntityDinosaurAggressive implements 
         this.tasks.addTask(8, new EntityAILookIdle(this));
     }
 
-    @Override
-    public void setAnimID(int id)
+    public String getLivingSound()
     {
-        this.animationId = id;
+        return randomSound(breathSounds);
     }
 
-    @Override
-    public int getAnimID()
+    public String getHurtSound()
     {
-        return animationId;
+        return randomSound(hurtSounds);
+    }
+
+    public String getDeathSound()
+    {
+        return randomSound(deathSounds);
     }
 
     public void onUpdate()
