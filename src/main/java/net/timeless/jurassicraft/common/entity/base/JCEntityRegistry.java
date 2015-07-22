@@ -6,29 +6,7 @@ import java.util.List;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.timeless.jurassicraft.JurassiCraft;
-import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
-import net.timeless.jurassicraft.common.dinosaur.DinosaurAchillobator;
-import net.timeless.jurassicraft.common.dinosaur.DinosaurAnkylosaurus;
-import net.timeless.jurassicraft.common.dinosaur.DinosaurBrachiosaurus;
-import net.timeless.jurassicraft.common.dinosaur.DinosaurCarnotaurus;
-import net.timeless.jurassicraft.common.dinosaur.DinosaurCoelacanth;
-import net.timeless.jurassicraft.common.dinosaur.DinosaurCompsognathus;
-import net.timeless.jurassicraft.common.dinosaur.DinosaurDilophosaurus;
-import net.timeless.jurassicraft.common.dinosaur.DinosaurDunkleosteus;
-import net.timeless.jurassicraft.common.dinosaur.DinosaurGallimimus;
-import net.timeless.jurassicraft.common.dinosaur.DinosaurGiganotosaurus;
-import net.timeless.jurassicraft.common.dinosaur.DinosaurHypsilophodon;
-import net.timeless.jurassicraft.common.dinosaur.DinosaurIndominusRex;
-import net.timeless.jurassicraft.common.dinosaur.DinosaurMajungasaurus;
-import net.timeless.jurassicraft.common.dinosaur.DinosaurParasaurolophus;
-import net.timeless.jurassicraft.common.dinosaur.DinosaurPteranodon;
-import net.timeless.jurassicraft.common.dinosaur.DinosaurRugops;
-import net.timeless.jurassicraft.common.dinosaur.DinosaurSegisaurus;
-import net.timeless.jurassicraft.common.dinosaur.DinosaurSpinosaurus;
-import net.timeless.jurassicraft.common.dinosaur.DinosaurStegosaurus;
-import net.timeless.jurassicraft.common.dinosaur.DinosaurTriceratops;
-import net.timeless.jurassicraft.common.dinosaur.DinosaurTyrannosaurusRex;
-import net.timeless.jurassicraft.common.dinosaur.DinosaurVelociraptor;
+import net.timeless.jurassicraft.common.dinosaur.*;
 import net.timeless.jurassicraft.common.entity.item.EntityBluePrint;
 import net.timeless.jurassicraft.common.entity.item.EntityJurassiCraftSign;
 import net.timeless.jurassicraft.common.period.EnumTimePeriod;
@@ -40,6 +18,7 @@ public class JCEntityRegistry
     private static List<Dinosaur> dinosaurs = Lists.newArrayList();
     private static HashMap<EnumTimePeriod, List<Dinosaur>> dinosaursFromPeriod = new HashMap<>();
 
+    public static final Dinosaur dodo = new DinosaurDodo();
     public static final Dinosaur achillobator = new DinosaurAchillobator();
     public static final Dinosaur anklyosaurus = new DinosaurAnkylosaurus();
     public static final Dinosaur brachiosaurus = new DinosaurBrachiosaurus();
@@ -87,6 +66,7 @@ public class JCEntityRegistry
         registerDinosaurType(triceratops);
         registerDinosaurType(tyrannosaurus_rex);
         registerDinosaurType(hypsilophodon);
+        registerDinosaurType(dodo);
 
         registerEntity(EntityBluePrint.class, "Blueprint");
         registerEntity(EntityJurassiCraftSign.class, "JurassiCraft Sign");
