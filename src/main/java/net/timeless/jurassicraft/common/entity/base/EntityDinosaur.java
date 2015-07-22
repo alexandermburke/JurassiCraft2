@@ -50,7 +50,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
             randTexture = rand.nextInt(dinosaur.getFemaleTextures().length);
 
         adjustHitbox();
-        
+
         animTick = 0;
         animId = 0;
     }
@@ -60,7 +60,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         super.entityInit();
         this.dataWatcher.addObject(25, 0);
     }
-    
+
     public boolean attackEntityFrom(DamageSource source, float amount)
     {
         if (isCarcass && !isEntityInvulnerable(source))
@@ -118,7 +118,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     {
         return (float) transitionFromAge(1.5F, 1.0F);
     }
-    
+
     public void onLivingUpdate()
     {
         super.onLivingUpdate();
@@ -339,7 +339,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     {
         return animTick;
     }
-    
+
     protected String randomSound(String[] sounds)
     {
         return JurassiCraft.modid + ":" + sounds[rand.nextInt(sounds.length)];

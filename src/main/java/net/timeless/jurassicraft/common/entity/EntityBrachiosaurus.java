@@ -10,7 +10,7 @@ import net.timeless.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbi
 public class EntityBrachiosaurus extends EntityDinosaurDefensiveHerbivore
 {
     private static final String[] livingSounds = new String[] { "brachiosaurus_living_1", "brachiosaurus_living_2", "brachiosaurus_living_3", "brachiosaurus_living_4" };
-    
+
     public EntityBrachiosaurus(World world)
     {
         super(world);

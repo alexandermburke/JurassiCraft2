@@ -21,7 +21,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive
     private static final String[] callSounds = new String[] { "velociraptor_call_1", "velociraptor_call_2", "velociraptor_call_3" };
     private static final String[] barkSounds = new String[] { "velociraptor_bark_1", "velociraptor_bark_2", "velociraptor_bark_3" };
     private static final String[] hissSounds = new String[] { "velociraptor_hiss_1", "velociraptor_hiss_2", "velociraptor_hiss_3" };
-    
+
     public EntityVelociraptor(World world)
     {
         super(world);
@@ -61,7 +61,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive
     {
         return randomSound(deathSounds);
     }
-    
+
     public void onUpdate()
     {
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);

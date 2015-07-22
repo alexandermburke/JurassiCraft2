@@ -20,7 +20,7 @@ public class EntityTyrannosaurusRex extends EntityDinosaurAggressive implements 
     private static final String[] deathSounds = new String[] { "tyrannosaurus_death_1" };
     private static final String[] roarSounds = new String[] { "tyrannosaurus_roar_1" };
     private static final String[] breathSounds = new String[] { "tyrannosaurus_breath_1" };
-    
+
     public EntityTyrannosaurusRex(World world)
     {
         super(world);
@@ -67,7 +67,7 @@ public class EntityTyrannosaurusRex extends EntityDinosaurAggressive implements 
     {
         return randomSound(deathSounds);
     }
-    
+
     public void onUpdate()
     {
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
