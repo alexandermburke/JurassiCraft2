@@ -15,6 +15,11 @@ public class EntityTyrannosaurusRex extends EntityDinosaurAggressive implements 
 {
     public ChainBuffer tailBuffer = new ChainBuffer(6);
 
+    private static final String[] hurtSounds = new String[] { "tyrannosaurus_hurt_1", "tyrannosaurus_hurt_2" };
+    private static final String[] livingSounds = new String[] { "tyrannosaurus_living_1", "tyrannosaurus_living_2", "tyrannosaurus_living_3", "tyrannosaurus_living_4", "tyrannosaurus_living_5", "tyrannosaurus_living_6" };
+    private static final String[] deathSounds = new String[] { "tyrannosaurus_death_1" };
+    private static final String[] roarSounds = new String[] { "tyrannosaurus_roar_1" };
+    
     public EntityTyrannosaurusRex(World world)
     {
         super(world);
@@ -47,6 +52,21 @@ public class EntityTyrannosaurusRex extends EntityDinosaurAggressive implements 
         this.tasks.addTask(8, new EntityAILookIdle(this));
     }
 
+    public String getLivingSound()
+    {
+        return randomSound(livingSounds);
+    }
+
+    public String getHurtSound()
+    {
+        return randomSound(hurtSounds);
+    }
+
+    public String getDeathSound()
+    {
+        return randomSound(deathSounds);
+    }
+    
     public void onUpdate()
     {
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);

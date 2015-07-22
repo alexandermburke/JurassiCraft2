@@ -82,5 +82,71 @@
         "sounds": [
             "dinosaurs/velociraptor/velociraptor_death_1"
         ]
+    },
+	"tyrannosaurus_breath_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/tyrannosaurus_rex/tyrannosaurus_breath_1"
+        ]
+    },
+	"tyrannosaurus_death_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/tyrannosaurus_rex/tyrannosaurus_death_1"
+        ]
+    },
+	"tyrannosaurus_hurt_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/tyrannosaurus_rex/tyrannosaurus_hurt_1"
+        ]
+    },
+	"tyrannosaurus_hurt_2": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/tyrannosaurus_rex/tyrannosaurus_hurt_2"
+        ]
+    },
+	"tyrannosaurus_living_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/tyrannosaurus_rex/tyrannosaurus_living_1"
+        ]
+    },
+	"tyrannosaurus_living_2": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/tyrannosaurus_rex/tyrannosaurus_living_2"
+        ]
+    },
+	"tyrannosaurus_living_3": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/tyrannosaurus_rex/tyrannosaurus_living_3"
+        ]
+    },
+	"tyrannosaurus_living_4": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/tyrannosaurus_rex/tyrannosaurus_living_4"
+        ]
+    },
+	"tyrannosaurus_living_5": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/tyrannosaurus_rex/tyrannosaurus_living_5"
+        ]
+    },
+	"tyrannosaurus_living_6": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/tyrannosaurus_rex/tyrannosaurus_living_6"
+        ]
+    },
+	"tyrannosaurus_roar_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/tyrannosaurus_rex/tyrannosaurus_breath_1"
+        ]
     }
 }
