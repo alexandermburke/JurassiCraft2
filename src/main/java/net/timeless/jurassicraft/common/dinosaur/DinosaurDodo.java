@@ -15,8 +15,6 @@ public class DinosaurDodo extends Dinosaur
         this.femaleTextures = new String[] { getDinosaurTexture("female") };
     }
 
-    // TODO: Figure out all the entities properties
-
     @Override
     public String getName()
     {
