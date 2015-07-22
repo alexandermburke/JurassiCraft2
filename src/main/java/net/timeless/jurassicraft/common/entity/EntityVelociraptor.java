@@ -7,15 +7,13 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import net.timeless.jurassicraft.common.api.animation.IAnimatedEntity;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.jurassicraft.common.entity.base.buffer.ChainBuffer;
 
-public class EntityVelociraptor extends EntityDinosaurAggressive implements IAnimatedEntity
+public class EntityVelociraptor extends EntityDinosaurAggressive
 {
     public static final int LEAPING_ANIMATION_ID = 0;
     public ChainBuffer tailBuffer = new ChainBuffer(6);
-    private int animID;
 
     public EntityVelociraptor(World world)
     {
@@ -47,17 +45,5 @@ public class EntityVelociraptor extends EntityDinosaurAggressive implements IAni
     {
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
         super.onUpdate();
-    }
-
-    @Override
-    public void setAnimID(int id)
-    {
-        animID = id;
-    }
-
-    @Override
-    public int getAnimID()
-    {
-        return animID;
     }
 }

@@ -3,7 +3,7 @@ package net.timeless.jurassicraft.client.model.animation;
 import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
 import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.minecraft.entity.Entity;
-import net.timeless.jurassicraft.common.api.animation.Animator;
+import net.timeless.animationapi.client.Animator;
 
 public class AnimationHypsilophodon implements IModelAnimator
 {

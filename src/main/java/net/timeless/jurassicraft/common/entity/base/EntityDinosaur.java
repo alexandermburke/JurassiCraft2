@@ -13,11 +13,12 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
+import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.item.ItemBluePrint;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
-public class EntityDinosaur extends EntityCreature implements IEntityAdditionalSpawnData
+public class EntityDinosaur extends EntityCreature implements IEntityAdditionalSpawnData, IAnimatedEntity
 {
     protected Dinosaur dinosaur;
     protected int randTexture;
@@ -29,6 +30,9 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     private boolean isCarcass;
 
     private int quality;
+
+    private int animTick;
+    private int animId;
 
     public EntityDinosaur(World world)
     {
@@ -301,5 +305,29 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     public void setDNAQuality(int quality)
     {
         this.quality = quality;
+    }
+
+    @Override
+    public void setAnimID(int id)
+    {
+        this.animId = id;
+    }
+
+    @Override
+    public void setAnimTick(int tick)
+    {
+        this.animTick = tick;
+    }
+
+    @Override
+    public int getAnimID()
+    {
+        return animId;
+    }
+
+    @Override
+    public int getAnimTick()
+    {
+        return animTick;
     }
 }
