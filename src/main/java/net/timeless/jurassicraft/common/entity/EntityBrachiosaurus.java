@@ -9,6 +9,8 @@ import net.timeless.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbi
 
 public class EntityBrachiosaurus extends EntityDinosaurDefensiveHerbivore
 {
+    private static final String[] livingSounds = new String[] { "brachiosaurus_living_1", "brachiosaurus_living_2", "brachiosaurus_living_3", "brachiosaurus_living_4" };
+    
     public EntityBrachiosaurus(World world)
     {
         super(world);
@@ -19,7 +21,10 @@ public class EntityBrachiosaurus extends EntityDinosaurDefensiveHerbivore
         this.tasks.addTask(6, new EntityAIWander(this, dinosaur.getAdultSpeed()));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
-
     }
 
+    public String getLivingSound()
+    {
+        return randomSound(livingSounds);
+    }
 }

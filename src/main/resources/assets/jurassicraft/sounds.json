@@ -149,4 +149,28 @@
             "dinosaurs/tyrannosaurus_rex/tyrannosaurus_breath_1"
         ]
     }
+	"brachiosaurus_living_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/brachiosaurus/brachiosaurus_living_1"
+        ]
+    },
+	"brachiosaurus_living_2": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/brachiosaurus/brachiosaurus_living_2"
+        ]
+    },
+	"brachiosaurus_living_3": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/brachiosaurus/brachiosaurus_living_3"
+        ]
+    },
+	"brachiosaurus_living_4": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/brachiosaurus/brachiosaurus_living_4"
+        ]
+    }
 }
