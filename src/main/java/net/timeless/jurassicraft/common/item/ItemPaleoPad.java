@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
-import net.timeless.jurassicraft.client.gui.GuiPaleoPadViewEntity;
+import net.timeless.jurassicraft.client.gui.GuiPaleoPad;
 import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 
@@ -26,6 +26,19 @@ public class ItemPaleoPad extends Item
     }
 
     /**
+     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
+     */
+    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
+    {
+        if (player.worldObj.isRemote)
+        {
+            Minecraft.getMinecraft().displayGuiScreen(new GuiPaleoPad()); //Test for now must not use this though
+        }
+        
+        return stack;
+    }
+    
+    /**
      * Returns true if the item can be used on the given entity, e.g. shears on sheep.
      */
     public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase target)
@@ -36,8 +49,7 @@ public class ItemPaleoPad extends Item
 
             if (player.worldObj.isRemote)
             {
-                Minecraft.getMinecraft().displayGuiScreen(new GuiPaleoPadViewEntity(dino, dino.getDinosaur())); //Test for now must not use this though
-                player.addChatMessage(new ChatComponentText("Days Existed: " + dino.getDaysExisted()));
+                player.addChatMessage(new ChatComponentText("Days Existed: " + dino.getDaysExisted())); //TODO view entity
             }
 
             return true;

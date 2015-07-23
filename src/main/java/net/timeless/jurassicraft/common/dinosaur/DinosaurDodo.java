@@ -120,36 +120,36 @@ public class DinosaurDodo extends Dinosaur
     @Override
     public float getBabyEyeHeight()
     {
-        return 0.4F;
+        return 0.35F;
     }
 
     @Override
     public float getAdultEyeHeight()
     {
-        return .8F;
+        return 0.95F;
     }
 
     @Override
     public float getBabySizeX()
     {
-        return 0.2F;
+        return 0.25F;
     }
 
     @Override
     public float getBabySizeY()
     {
-        return 0.25F;
+        return 0.35F;
     }
 
     @Override
     public float getAdultSizeX()
     {
-        return 0.4F;
+        return 0.5F;
     }
 
     @Override
     public float getAdultSizeY()
     {
-        return 0.55F;
+        return 0.95F;
     }
 }
