@@ -32,6 +32,7 @@ public class ModelDinosaur extends ModelJson
     public ModelDinosaur(JsonTabulaModel model, IModelAnimator animator)
     {
         super(model, animator);
+        this.animator = new Animator(this);
     }
 
     public List<MowzieModelRenderer> getParts()
