@@ -46,8 +46,8 @@ public class GuiDNASequencer extends GuiContainer
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 
-        int progress = this.getProgress(24);
-        this.drawTexturedModalRect(k + 79, l + 34, 176, 14, progress + 1, 16);
+        int progress = this.getProgress(22);
+        this.drawTexturedModalRect(k + 74, l + 41, 176, 0, progress, 4);
     }
 
     private int getProgress(int scale)
