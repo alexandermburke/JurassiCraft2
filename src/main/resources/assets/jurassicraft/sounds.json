@@ -197,7 +197,7 @@
             "dinosaurs/dodo/dodo_hurt_2"
         ]
     },
-	dodo_living_1": {
+	"dodo_living_1": {
         "category": "hostile",
         "sounds": [
             "dinosaurs/dodo/dodo_living_1"
@@ -213,6 +213,60 @@
         "category": "hostile",
         "sounds": [
             "dinosaurs/dodo/dodo_living_3"
+        ]
+    },
+	"rugops_attack_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/rugops/rugops_attack_1"
+        ]
+    },
+	"rugops_death_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/rugops/rugops_death_1"
+        ]
+    },
+	"rugops_death_2": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/rugops/rugops_death_2"
+        ]
+    },
+	"rugops_hurt_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/rugops/rugops_hurt_1"
+        ]
+    },
+	"rugops_hurt_2": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/rugops/rugops_hurt_2"
+        ]
+    },
+	"rugops_living_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/rugops/rugops_living_1"
+        ]
+    },
+	"rugops_living_2": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/rugops/rugops_living_2"
+        ]
+    },
+	"rugops_living_3": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/rugops/rugops_living_3"
+        ]
+    },	
+	"rugops_living_4": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/rugops/rugops_living_4"
         ]
     }
 }
