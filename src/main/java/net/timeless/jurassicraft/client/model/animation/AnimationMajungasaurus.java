@@ -5,20 +5,17 @@ import net.ilexiconn.llibrary.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.minecraft.entity.Entity;
 import net.timeless.animationapi.client.Animator;
+import net.timeless.jurassicraft.client.model.ModelDinosaur;
 import net.timeless.jurassicraft.common.entity.EntityMajungasaurus;
 
 public class AnimationMajungasaurus implements IModelAnimator
 {
-    private final Animator animator;
-
-    public AnimationMajungasaurus()
-    {
-        this.animator = new Animator();
-    }
-
     @Override
-    public void setRotationAngles(ModelJson model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
+    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
     {
+        ModelDinosaur model = (ModelDinosaur) modelJson;
+        Animator animator = model.animator;
+
         EntityMajungasaurus dino = (EntityMajungasaurus) entity;
 
         //        f = dino.ticksExisted;

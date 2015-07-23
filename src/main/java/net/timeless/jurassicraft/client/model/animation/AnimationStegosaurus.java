@@ -5,20 +5,17 @@ import net.ilexiconn.llibrary.client.model.modelbase.MowzieModelRenderer;
 import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.minecraft.entity.Entity;
 import net.timeless.animationapi.client.Animator;
+import net.timeless.jurassicraft.client.model.ModelDinosaur;
 import net.timeless.jurassicraft.common.entity.EntityStegosaurus;
 
 public class AnimationStegosaurus implements IModelAnimator
 {
-    private final Animator animator;
-
-    public AnimationStegosaurus()
-    {
-        this.animator = new Animator();
-    }
-
     @Override
-    public void setRotationAngles(ModelJson model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
+    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
     {
+        ModelDinosaur model = (ModelDinosaur) modelJson;
+        Animator animator = model.animator;
+
         float globalSpeed = 0.5F;
         float globalDegree = 0.4F;
         float globalHeight = 1.2F;

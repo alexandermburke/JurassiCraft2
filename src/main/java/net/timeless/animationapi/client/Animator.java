@@ -13,12 +13,15 @@ import net.timeless.animationapi.IAnimatedEntity;
 @SideOnly(Side.CLIENT)
 public class Animator
 {
-    public Animator()
+    private ModelBase modelBase;
+
+    public Animator(ModelBase model)
     {
         tempTick = 0;
         correctAnim = false;
         transformMap = new HashMap<ModelRenderer, Transform>();
         prevTransformMap = new HashMap<ModelRenderer, Transform>();
+        modelBase = model;
     }
 
     public IAnimatedEntity getEntity()
@@ -26,16 +29,17 @@ public class Animator
         return animEntity;
     }
 
-    public void update(ModelBase mainModel, IAnimatedEntity entity)
+    public void update(IAnimatedEntity entity)
     {
         tempTick = prevTempTick = 0;
         correctAnim = false;
         animEntity = entity;
         transformMap.clear();
         prevTransformMap.clear();
-        for (int i = 0; i < mainModel.boxList.size(); i++)
+
+        for (int i = 0; i < modelBase.boxList.size(); i++)
         {
-            ModelRenderer box = (ModelRenderer) mainModel.boxList.get(i);
+            ModelRenderer box = (ModelRenderer) modelBase.boxList.get(i);
             box.rotateAngleX = 0F;
             box.rotateAngleY = 0F;
             box.rotateAngleZ = 0F;

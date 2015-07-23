@@ -17,7 +17,7 @@ public class ContainerDNASequencer extends Container
     public ContainerDNASequencer(InventoryPlayer playerInventory, TileEntity tileEntity)
     {
         this.dnaSequencer = (TileDnaSequencer) tileEntity;
-        
+
         this.addSlotToContainer(new SlotDNAHolder(dnaSequencer, 0, 53, 35));
         this.addSlotToContainer(new SlotStorage(dnaSequencer, 1, 100, 35));
 
@@ -39,7 +39,7 @@ public class ContainerDNASequencer extends Container
     public void onContainerClosed(EntityPlayer player)
     {
         super.onContainerClosed(player);
-        
+
         if (!player.worldObj.isRemote)
             dnaSequencer.closeInventory(player);
     }

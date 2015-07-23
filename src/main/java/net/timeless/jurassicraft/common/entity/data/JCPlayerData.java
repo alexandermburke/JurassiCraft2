@@ -42,7 +42,7 @@ public class JCPlayerData implements IExtendedEntityProperties
     public void loadNBTData(NBTTagCompound nbt)
     {
         NBTTagList sequencedDNAList = nbt.getTagList("SequencedDNA", 10);
-        
+
         for (int i = 0; i < sequencedDNAList.tagCount(); i++)
         {
             NBTTagCompound dnaTag = (NBTTagCompound) sequencedDNAList.get(i);
@@ -55,7 +55,7 @@ public class JCPlayerData implements IExtendedEntityProperties
     {
         this.sequencedDNA.add(dna);
     }
-    
+
     @Override
     public void init(Entity entity, World world)
     {

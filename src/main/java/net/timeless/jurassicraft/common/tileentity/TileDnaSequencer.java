@@ -301,7 +301,7 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
         if (input != null && input.getItem() instanceof ItemSoftTissue)
         {
             if (storage != null && storage.getItem() instanceof ItemPaleoPad)
-                if(worldObj.getPlayerEntityByUUID(UUID.fromString(storage.getTagCompound().getString("LastOwner"))) != null)
+                if (worldObj.getPlayerEntityByUUID(UUID.fromString(storage.getTagCompound().getString("LastOwner"))) != null)
                     return true;
         }
 
@@ -318,29 +318,29 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
             Random rand = new Random();
 
             EntityPlayer player = worldObj.getPlayerEntityByUUID(UUID.fromString(slots[1].getTagCompound().getString("LastOwner")));
-            
+
             int quality = rand.nextInt(25) + 1;
 
-            if(rand.nextInt(3) == 0)
+            if (rand.nextInt(3) == 0)
             {
                 quality += 25;
 
-                if(rand.nextInt(3) == 0)
+                if (rand.nextInt(3) == 0)
                 {
                     quality += 25;
 
-                    if(rand.nextInt(3) == 0)
+                    if (rand.nextInt(3) == 0)
                     {
                         quality += 25;
                     }
                 }
             }
-            
+
             JCPlayerData.getPlayerData(player).addSequencedDNA(new DNA(quality, slots[0].getItemDamage()));
-            
+
             slots[0].stackSize--;
-            
-            if(slots[0].stackSize <= 0)
+
+            if (slots[0].stackSize <= 0)
             {
                 slots[0] = null;
             }

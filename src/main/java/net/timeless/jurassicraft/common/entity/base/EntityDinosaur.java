@@ -1,7 +1,6 @@
 package net.timeless.jurassicraft.common.entity.base;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
@@ -40,7 +39,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     private int animId;
 
     private static final int DEATH_ANIMATION_ID = -1;
-    
+
     public EntityDinosaur(World world)
     {
         super(world);
@@ -355,14 +354,14 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     {
         playAnimation(DEATH_ANIMATION_ID);
     }
-    
+
     public void playAnimation(int animID)
     {
         if (FMLCommonHandler.instance().getEffectiveSide().isClient())
             return;
-        
+
         this.setAnimID(animID);
-        
+
         AnimationAPI.wrapper.sendToAll(new PacketAnim((byte) animID, this.getEntityId()));
     }
 }
