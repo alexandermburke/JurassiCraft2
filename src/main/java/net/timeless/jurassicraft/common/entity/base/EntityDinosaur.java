@@ -1,6 +1,7 @@
 package net.timeless.jurassicraft.common.entity.base;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
@@ -12,8 +13,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
+import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
+import net.timeless.animationapi.packet.PacketAnim;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.item.ItemBluePrint;
@@ -35,6 +39,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     private int animTick;
     private int animId;
 
+    private static final int DEATH_ANIMATION_ID = -1;
+    
     public EntityDinosaur(World world)
     {
         super(world);
@@ -343,5 +349,20 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     protected String randomSound(String[] sounds)
     {
         return JurassiCraft.modid + ":" + sounds[rand.nextInt(sounds.length)];
+    }
+
+    public void playDeathAnimation()
+    {
+        playAnimation(DEATH_ANIMATION_ID);
+    }
+    
+    public void playAnimation(int animID)
+    {
+        if (FMLCommonHandler.instance().getEffectiveSide().isClient())
+            return;
+        
+        this.setAnimID(animID);
+        
+        AnimationAPI.wrapper.sendToAll(new PacketAnim((byte) animID, this.getEntityId()));
     }
 }
