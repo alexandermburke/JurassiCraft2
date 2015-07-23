@@ -269,12 +269,6 @@
             "dinosaurs/rugops/rugops_living_4"
         ]
     },
-	"rugops_attack_1": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/hypsilophodon/rugops_attack_1"
-        ]
-    },
 	"hypsilophodon_hurt_1": {
         "category": "hostile",
         "sounds": [
