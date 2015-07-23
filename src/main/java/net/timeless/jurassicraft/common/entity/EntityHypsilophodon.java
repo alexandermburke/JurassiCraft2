@@ -10,6 +10,9 @@ import net.timeless.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbi
 
 public class EntityHypsilophodon extends EntityDinosaurDefensiveHerbivore
 {
+    private static final String[] hurtSounds = new String[] { "hypsilophodon_hurt_1", "hypsilophodon_hurt_2" };
+    private static final String[] livingSounds = new String[] { "hypsilophodon_living_1", "hypsilophodon_living_2", "hypsilophodon_living_3", "hypsilophodon_living_4" };
+    
     public EntityHypsilophodon(World world)
     {
         super(world);
@@ -18,5 +21,20 @@ public class EntityHypsilophodon extends EntityDinosaurDefensiveHerbivore
         this.tasks.addTask(6, new EntityAIWander(this, dinosaur.getAdultSpeed()));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
+    }
+    
+    public String getLivingSound()
+    {
+        return randomSound(livingSounds);
+    }
+
+    public String getHurtSound()
+    {
+        return randomSound(hurtSounds);
+    }
+
+    public String getDeathSound()
+    {
+        return randomSound(hurtSounds);
     }
 }
