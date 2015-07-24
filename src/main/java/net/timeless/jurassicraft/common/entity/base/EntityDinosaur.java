@@ -274,6 +274,16 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     public void setCarcass(boolean carcass)
     {
         this.isCarcass = carcass;
+        
+        if(isCarcass)
+        {
+            String s = this.getDeathSound();
+
+            if (s != null)
+            {
+                this.playSound(s, this.getSoundVolume(), (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+            }
+        }
     }
 
     public boolean isCarcass()
