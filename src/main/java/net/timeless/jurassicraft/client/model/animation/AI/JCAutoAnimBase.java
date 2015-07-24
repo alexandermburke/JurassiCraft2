@@ -4,7 +4,7 @@ import net.timeless.animationapi.AIAnimation;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 
-public abstract class JCAutoAnimBase extends AIAnimation
+public class JCAutoAnimBase extends AIAnimation
 {
     protected EntityDinosaur animatingEntity;
     protected int duration;

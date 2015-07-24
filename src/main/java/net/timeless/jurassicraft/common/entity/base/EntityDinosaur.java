@@ -41,7 +41,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     public EntityDinosaur(World world)
     {
         super(world);
-        this.tasks.addTask(0, new EntityAISwimming(this));
+        tasks.addTask(0, new EntityAISwimming(this));
 
         dinosaurAge = 0;
 
