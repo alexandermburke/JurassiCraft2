@@ -17,7 +17,7 @@ public class EntityRugops extends EntityDinosaurAggressive
     private static final String[] hurtSounds = new String[] { "rugops_hurt_1", "rugops_hurt_2" };
     private static final String[] livingSounds = new String[] { "rugops_living_1", "rugops_living_2", "rugops_living_3", "rugops_living_4" };
     private static final String[] deathSounds = new String[] { "rugops_death_1", "rugops_death_2" };
-    
+
     public EntityRugops(World world)
     {
         super(world);
@@ -48,7 +48,7 @@ public class EntityRugops extends EntityDinosaurAggressive
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
         super.onUpdate();
     }
-    
+
     public String getLivingSound()
     {
         return randomSound(livingSounds);

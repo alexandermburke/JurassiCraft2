@@ -29,7 +29,7 @@ public class GuiPaleoPad extends GuiScreen
     @Override
     protected void actionPerformed(GuiButton button) throws IOException
     {
-        
+
     }
 
     @Override

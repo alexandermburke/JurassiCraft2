@@ -151,7 +151,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         {
             isCarcass = dataWatcher.getWatchableObjectInt(25) == 1;
         }
-        if (getAnimID() != 0) animTick++;
+        if (getAnimID() != 0)
+            animTick++;
     }
 
     public int getDaysExisted()
@@ -274,8 +275,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     public void setCarcass(boolean carcass)
     {
         this.isCarcass = carcass;
-        
-        if(isCarcass)
+
+        if (isCarcass)
         {
             String s = this.getDeathSound();
 

@@ -19,7 +19,8 @@ public class JCAutoAnimBase extends AIAnimation
     }
 
     @Override
-    public int getAnimID() {
+    public int getAnimID()
+    {
         return id;
     }
 

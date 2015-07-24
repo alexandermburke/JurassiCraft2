@@ -50,8 +50,8 @@ public class AnimationPteranodon implements IModelAnimator
         MowzieModelRenderer[] legLeft = new MowzieModelRenderer[] { leftThigh, leftCalf, leftUpperFoot, leftFoot };
         MowzieModelRenderer[] legRight = new MowzieModelRenderer[] { rightThigh, rightCalf, rightUpperFoot, rightFoot };
 
-//        f = entity.ticksExisted;
-//        f1 = 0.4f;
+        //        f = entity.ticksExisted;
+        //        f1 = 0.4f;
 
         float globalSpeed = 0.45F;
         float globalDegree = 2F;

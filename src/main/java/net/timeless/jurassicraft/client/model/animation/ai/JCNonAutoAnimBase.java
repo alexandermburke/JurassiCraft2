@@ -24,7 +24,8 @@ public class JCNonAutoAnimBase extends AIAnimation
     }
 
     @Override
-    public int getAnimID() {
+    public int getAnimID()
+    {
         return id;
     }
 
@@ -39,7 +40,8 @@ public class JCNonAutoAnimBase extends AIAnimation
     }
 
     @Override
-    public boolean shouldExecute() {
+    public boolean shouldExecute()
+    {
         return animatingEntity.getAnimID() == 0 && animatingEntity.getRNG().nextInt(chance) == 0;
     }
 

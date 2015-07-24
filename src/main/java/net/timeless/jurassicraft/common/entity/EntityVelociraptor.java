@@ -51,9 +51,9 @@ public class EntityVelociraptor extends EntityDinosaurAggressive
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
         tasks.addTask(2, new JCAutoAnimBase(this, 25, 1)); //Call
-//        tasks.addTask(2, new JCAutoAnimBase(this, 25, 2)); //Attack
-//        tasks.addTask(2, new JCAutoAnimBase(this, 25, 3)); //Die
-//        tasks.addTask(2, new JCAutoAnimBase(this, 6, 4)); //Hurt
+        //        tasks.addTask(2, new JCAutoAnimBase(this, 25, 2)); //Attack
+        //        tasks.addTask(2, new JCAutoAnimBase(this, 25, 3)); //Die
+        //        tasks.addTask(2, new JCAutoAnimBase(this, 6, 4)); //Hurt
         tasks.addTask(2, new JCNonAutoAnimBase(this, 25, 10, 100)); //Head twitch right
         tasks.addTask(2, new JCNonAutoAnimBase(this, 25, 11, 100)); //Head twitch left
         tasks.addTask(2, new JCNonAutoAnimBase(this, 45, 12, 150)); //Sniff
@@ -61,7 +61,8 @@ public class EntityVelociraptor extends EntityDinosaurAggressive
 
     public String getLivingSound()
     {
-        if (getAnimID() == 0) {
+        if (getAnimID() == 0)
+        {
             AnimationAPI.sendAnimPacket(this, 1);
             return randomSound(livingSounds);
         }
@@ -83,7 +84,9 @@ public class EntityVelociraptor extends EntityDinosaurAggressive
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
         super.onUpdate();
 
-        if (getAnimID() == 12 || getAnimID() == 1) dontLean.decreaseTimer();
-        else dontLean.increaseTimer();
+        if (getAnimID() == 12 || getAnimID() == 1)
+            dontLean.decreaseTimer();
+        else
+            dontLean.increaseTimer();
     }
 }

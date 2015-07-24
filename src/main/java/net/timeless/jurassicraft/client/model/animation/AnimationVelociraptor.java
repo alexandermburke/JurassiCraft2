@@ -352,7 +352,7 @@ public class AnimationVelociraptor implements IModelAnimator
             animator.move(neck2, 0, 0, 0.5f);
             animator.rotate(neck3, -0.2f, -0.2f, 0);
             animator.move(neck3, 0, 0, 0.5f);
-            animator.rotate(neck4, -0.3f,- 0.3f, 0);
+            animator.rotate(neck4, -0.3f, -0.3f, 0);
             animator.move(neck4, 0, 0, 0.5f);
             animator.rotate(head, -0.6f, -0.3f, 0);
             animator.move(head, 0, 0, 0.5f);

@@ -34,10 +34,10 @@ public class ItemPaleoPad extends Item
         {
             Minecraft.getMinecraft().displayGuiScreen(new GuiPaleoPad()); //Test for now must not use this though
         }
-        
+
         return stack;
     }
-    
+
     /**
      * Returns true if the item can be used on the given entity, e.g. shears on sheep.
      */
