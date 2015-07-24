@@ -28,19 +28,6 @@ public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
     }
 
     /**
-     * Called to update the entity's position/logic.
-     */
-    public void onUpdate()
-    {
-        super.onUpdate();
-
-        if (!this.worldObj.isRemote && this.worldObj.getDifficulty() == EnumDifficulty.PEACEFUL)
-        {
-            this.setDead();
-        }
-    }
-
-    /**
      * Called when the entity is attacked.
      */
     public boolean attackEntityFrom(DamageSource source, float amount)
