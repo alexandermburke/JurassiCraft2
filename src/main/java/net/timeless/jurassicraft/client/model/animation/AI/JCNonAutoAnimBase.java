@@ -1,4 +1,4 @@
-package net.timeless.jurassicraft.client.model.animation.AI;
+package net.timeless.jurassicraft.client.model.animation.ai;
 
 import net.timeless.animationapi.AIAnimation;
 import net.timeless.animationapi.IAnimatedEntity;

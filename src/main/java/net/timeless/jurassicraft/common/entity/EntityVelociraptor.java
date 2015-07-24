@@ -8,7 +8,7 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import net.timeless.jurassicraft.client.model.animation.AI.JCNonAutoAnimBase;
+import net.timeless.jurassicraft.client.model.animation.ai.JCNonAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.jurassicraft.common.entity.base.buffer.ChainBuffer;
 
