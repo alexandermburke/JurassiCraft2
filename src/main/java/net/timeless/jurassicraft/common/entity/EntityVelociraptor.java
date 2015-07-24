@@ -66,12 +66,19 @@ public class EntityVelociraptor extends EntityDinosaurAggressive
             AnimationAPI.sendAnimPacket(this, 1);
             return randomSound(livingSounds);
         }
+        
         return null;
     }
 
     public String getHurtSound()
     {
-        return randomSound(hurtSounds);
+        if (getAnimID() == 0)
+        {
+            AnimationAPI.sendAnimPacket(this, 1);
+            return randomSound(hurtSounds);
+        }
+        
+        return null;
     }
 
     public String getDeathSound()
