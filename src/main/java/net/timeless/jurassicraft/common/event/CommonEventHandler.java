@@ -30,7 +30,6 @@ public class CommonEventHandler
                 event.setCanceled(true);
                 event.ammount = 0;
                 dino.setCarcass(true);
-                dino.playDeathAnimation();
             }
         }
     }

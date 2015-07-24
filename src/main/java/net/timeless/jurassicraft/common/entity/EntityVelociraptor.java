@@ -1,5 +1,6 @@
 package net.timeless.jurassicraft.common.entity;
 
+import net.ilexiconn.llibrary.client.model.modelbase.ControlledAnimation;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIWander;
@@ -7,12 +8,12 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.timeless.jurassicraft.client.model.animation.AI.JCNonAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.jurassicraft.common.entity.base.buffer.ChainBuffer;
 
 public class EntityVelociraptor extends EntityDinosaurAggressive
 {
-    public static final int LEAPING_ANIMATION_ID = 0;
     public ChainBuffer tailBuffer = new ChainBuffer(6);
 
     private static final String[] hurtSounds = new String[] { "velociraptor_hurt_1" };
@@ -21,6 +22,8 @@ public class EntityVelociraptor extends EntityDinosaurAggressive
     private static final String[] callSounds = new String[] { "velociraptor_call_1", "velociraptor_call_2", "velociraptor_call_3" };
     private static final String[] barkSounds = new String[] { "velociraptor_bark_1", "velociraptor_bark_2", "velociraptor_bark_3" };
     private static final String[] hissSounds = new String[] { "velociraptor_hiss_1", "velociraptor_hiss_2", "velociraptor_hiss_3" };
+
+    public ControlledAnimation dontLean = new ControlledAnimation(5);
 
     public EntityVelociraptor(World world)
     {
@@ -45,6 +48,9 @@ public class EntityVelociraptor extends EntityDinosaurAggressive
         this.tasks.addTask(6, new EntityAIWander(this, dinosaur.getAdultSpeed()));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
+        tasks.addTask(2, new JCNonAutoAnimBase(this, 25, 10, 100)); //Head twitch right
+        tasks.addTask(2, new JCNonAutoAnimBase(this, 25, 11, 100)); //Head twitch left
+        tasks.addTask(2, new JCNonAutoAnimBase(this, 45, 12, 150)); //Sniff
     }
 
     public String getLivingSound()
@@ -66,5 +72,8 @@ public class EntityVelociraptor extends EntityDinosaurAggressive
     {
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
         super.onUpdate();
+
+        if (getAnimID() == 12) dontLean.decreaseTimer();
+        else dontLean.increaseTimer();
     }
 }

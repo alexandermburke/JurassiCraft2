@@ -12,11 +12,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
-import net.timeless.animationapi.AnimationAPI;
+import net.timeless.animationapi.AIAnimation;
 import net.timeless.animationapi.IAnimatedEntity;
-import net.timeless.animationapi.packet.PacketAnim;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.item.ItemBluePrint;
@@ -36,9 +34,9 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     private int quality;
 
     private int animTick;
-    private int animId;
+    private int animID;
 
-    private static final int DEATH_ANIMATION_ID = -1;
+    public AIAnimation currentAnim = null;
 
     public EntityDinosaur(World world)
     {
@@ -57,7 +55,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         adjustHitbox();
 
         animTick = 0;
-        animId = 0;
+        animID = 0;
     }
 
     public void entityInit()
@@ -153,6 +151,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         {
             isCarcass = dataWatcher.getWatchableObjectInt(25) == 1;
         }
+        if (getAnimID() != 0) animTick++;
     }
 
     public int getDaysExisted()
@@ -324,7 +323,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     @Override
     public void setAnimID(int id)
     {
-        this.animId = id;
+        this.animID = id;
     }
 
     @Override
@@ -336,7 +335,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     @Override
     public int getAnimID()
     {
-        return animId;
+        return animID;
     }
 
     @Override
@@ -348,20 +347,5 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     protected String randomSound(String[] sounds)
     {
         return JurassiCraft.modid + ":" + sounds[rand.nextInt(sounds.length)];
-    }
-
-    public void playDeathAnimation()
-    {
-        playAnimation(DEATH_ANIMATION_ID);
-    }
-
-    public void playAnimation(int animID)
-    {
-        if (FMLCommonHandler.instance().getEffectiveSide().isClient())
-            return;
-
-        this.setAnimID(animID);
-
-        AnimationAPI.wrapper.sendToAll(new PacketAnim((byte) animID, this.getEntityId()));
     }
 }

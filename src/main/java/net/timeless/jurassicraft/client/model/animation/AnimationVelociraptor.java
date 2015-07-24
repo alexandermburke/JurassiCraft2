@@ -77,6 +77,8 @@ public class AnimationVelociraptor implements IModelAnimator
             float speed = 0.75F;
             float height = 2F * f1;
 
+            float dontLeanProgress = velociraptor.dontLean.getAnimationProgressSinSqrt();
+
             model.bob(waist, 1F * speed, height, false, f, f1);
             model.bob(leftThigh, 1F * speed, height, false, f, f1);
             model.bob(rightThigh, 1F * speed, height, false, f, f1);
@@ -93,15 +95,15 @@ public class AnimationVelociraptor implements IModelAnimator
             model.walk(rightUpperFoot, 0.5F * speed, 0.8F, true, -1F, -0.1F, f, f1);
             model.walk(rightFoot, 0.5F * speed, 1.5F, false, -1F, 1F, f, f1);
 
-            shoulders.rotationPointY -= 0.5 * f1;
-            shoulders.rotationPointZ -= 0.5 * f1;
-            shoulders.rotateAngleX += 0.6 * f1;
-            chest.rotateAngleX += 0.1 * f1;
-            neck1.rotateAngleX += 0.1 * f1;
-            neck2.rotateAngleX += 0.1 * f1;
-            neck3.rotateAngleX -= 0.2 * f1;
-            neck4.rotateAngleX -= 0.2 * f1;
-            head.rotateAngleX -= 0.3 * f1;
+            shoulders.rotationPointY -= 0.5 * f1 * dontLeanProgress;
+            shoulders.rotationPointZ -= 0.5 * f1 * dontLeanProgress;
+            shoulders.rotateAngleX += 0.6 * f1 * dontLeanProgress;
+            chest.rotateAngleX += 0.1 * f1 * dontLeanProgress;
+            neck1.rotateAngleX += 0.1 * f1 * dontLeanProgress;
+            neck2.rotateAngleX += 0.1 * f1 * dontLeanProgress;
+            neck3.rotateAngleX -= 0.2 * f1 * dontLeanProgress;
+            neck4.rotateAngleX -= 0.2 * f1 * dontLeanProgress;
+            head.rotateAngleX -= 0.3 * f1 * dontLeanProgress;
 
             model.chainSwing(tailParts, 0.5F * speed, -0.1F, 2, f, f1);
             model.chainWave(tailParts, 1F * speed, -0.1F, 2.5F, f, f1);
@@ -209,6 +211,149 @@ public class AnimationVelociraptor implements IModelAnimator
             model.faceTarget(neck1, 2, rotationYaw, rotationPitch);
 
             velociraptor.tailBuffer.applyChainSwingBuffer(tailParts);
+
+            animator.setAnim(10);
+            animator.startPhase(3);
+            animator.rotate(head, 0, 0, 0.3f);
+            animator.endPhase();
+            animator.setStationaryPhase(19);
+            animator.resetPhase(3);
+
+
+            animator.setAnim(11);
+            animator.startPhase(3);
+            animator.rotate(head, 0, 0, -0.3f);
+            animator.endPhase();
+            animator.setStationaryPhase(19);
+            animator.resetPhase(3);
+
+
+            animator.setAnim(12);
+            animator.startPhase(8);
+            animator.rotate(shoulders, 0.5f, 0.1f, 0);
+            animator.move(shoulders, 0, -1, -0.5f);
+            animator.rotate(neck1, 0.4f, 0.2f, 0);
+            animator.move(neck1, 0, -1, 0.5f);
+            animator.rotate(neck2, 0.3f, 0.2f, 0);
+            animator.move(neck2, 0, 0, 0.5f);
+            animator.rotate(neck3, -0.2f, 0.3f, 0);
+            animator.move(neck3, 0, 0, 0.5f);
+            animator.rotate(neck4, -0.3f, 0.3f, 0);
+            animator.move(neck4, 0, 0, 0.5f);
+            animator.rotate(head, -0.6f, 0.3f, 0);
+            animator.move(head, 0, 0, 0.5f);
+            animator.endPhase();
+
+            animator.startPhase(1);
+            animator.rotate(shoulders, 0.5f, 0.1f, 0);
+            animator.move(shoulders, 0, -1, -0.5f);
+            animator.rotate(neck1, 0.4f, 0.2f, 0);
+            animator.move(neck1, 0, -1, 0.5f);
+            animator.rotate(neck2, 0.3f, 0.2f, 0);
+            animator.move(neck2, 0, 0, 0.5f);
+            animator.rotate(neck3, -0.2f, 0.3f, 0);
+            animator.move(neck3, 0, 0, 0.5f);
+            animator.rotate(neck4, -0.35f, 0.3f, 0);
+            animator.move(neck4, 0, 0, 0.5f);
+            animator.rotate(head, -0.65f, 0.3f, 0);
+            animator.move(head, 0, 0, 0.5f);
+            animator.endPhase();
+            animator.setStationaryPhase(1);
+            animator.startPhase(1);
+            animator.rotate(shoulders, 0.5f, 0.1f, 0);
+            animator.move(shoulders, 0, -1, -0.5f);
+            animator.rotate(neck1, 0.4f, 0.2f, 0);
+            animator.move(neck1, 0, -1, 0.5f);
+            animator.rotate(neck2, 0.3f, 0.2f, 0);
+            animator.move(neck2, 0, 0, 0.5f);
+            animator.rotate(neck3, -0.2f, 0.3f, 0);
+            animator.move(neck3, 0, 0, 0.5f);
+            animator.rotate(neck4, -0.3f, 0.3f, 0);
+            animator.move(neck4, 0, 0, 0.5f);
+            animator.rotate(head, -0.6f, 0.3f, 0);
+            animator.move(head, 0, 0, 0.5f);
+            animator.endPhase();
+            animator.setStationaryPhase(1);
+            animator.startPhase(1);
+            animator.rotate(shoulders, 0.5f, 0.1f, 0);
+            animator.move(shoulders, 0, -1, -0.5f);
+            animator.rotate(neck1, 0.4f, 0.2f, 0);
+            animator.move(neck1, 0, -1, 0.5f);
+            animator.rotate(neck2, 0.3f, 0.2f, 0);
+            animator.move(neck2, 0, 0, 0.5f);
+            animator.rotate(neck3, -0.2f, 0.3f, 0);
+            animator.move(neck3, 0, 0, 0.5f);
+            animator.rotate(neck4, -0.35f, 0.3f, 0);
+            animator.move(neck4, 0, 0, 0.5f);
+            animator.rotate(head, -0.65f, 0.3f, 0);
+            animator.move(head, 0, 0, 0.5f);
+            animator.endPhase();
+            animator.setStationaryPhase(1);
+            animator.startPhase(2);
+            animator.rotate(shoulders, 0.5f, 0.1f, 0);
+            animator.move(shoulders, 0, -1, -0.5f);
+            animator.rotate(neck1, 0.4f, 0.2f, 0);
+            animator.move(neck1, 0, -1, 0.5f);
+            animator.rotate(neck2, 0.3f, 0.2f, 0);
+            animator.move(neck2, 0, 0, 0.5f);
+            animator.rotate(neck3, -0.2f, 0.3f, 0);
+            animator.move(neck3, 0, 0, 0.5f);
+            animator.rotate(neck4, -0.3f, 0.3f, 0);
+            animator.move(neck4, 0, 0, 0.5f);
+            animator.rotate(head, -0.6f, 0.3f, 0);
+            animator.move(head, 0, 0, 0.5f);
+            animator.endPhase();
+
+            animator.setStationaryPhase(3);
+
+            animator.startPhase(8);
+            animator.rotate(shoulders, 0.5f, -0.1f, 0);
+            animator.move(shoulders, 0, -1, -0.5f);
+            animator.rotate(neck1, 0.4f, -0.1f, 0);
+            animator.move(neck1, 0, -1, 0.5f);
+            animator.rotate(neck2, 0.3f, -0.2f, 0);
+            animator.move(neck2, 0, 0, 0.5f);
+            animator.rotate(neck3, -0.2f, -0.2f, 0);
+            animator.move(neck3, 0, 0, 0.5f);
+            animator.rotate(neck4, -0.3f,- 0.3f, 0);
+            animator.move(neck4, 0, 0, 0.5f);
+            animator.rotate(head, -0.6f, -0.3f, 0);
+            animator.move(head, 0, 0, 0.5f);
+            animator.endPhase();
+
+            animator.startPhase(2);
+            animator.rotate(shoulders, 0.5f, -0.1f, 0);
+            animator.move(shoulders, 0, -1, -0.5f);
+            animator.rotate(neck1, 0.4f, -0.1f, 0);
+            animator.move(neck1, 0, -1, 0.5f);
+            animator.rotate(neck2, 0.3f, -0.2f, 0);
+            animator.move(neck2, 0, 0, 0.5f);
+            animator.rotate(neck3, -0.2f, -0.2f, 0);
+            animator.move(neck3, 0, 0, 0.5f);
+            animator.rotate(neck4, -0.35f, -0.3f, 0);
+            animator.move(neck4, 0, 0, 0.5f);
+            animator.rotate(head, -0.65f, -0.3f, 0);
+            animator.move(head, 0, 0, 0.5f);
+            animator.endPhase();
+            animator.setStationaryPhase(1);
+            animator.startPhase(2);
+            animator.rotate(shoulders, 0.5f, -0.1f, 0);
+            animator.move(shoulders, 0, -1, -0.5f);
+            animator.rotate(neck1, 0.4f, -0.1f, 0);
+            animator.move(neck1, 0, -1, 0.5f);
+            animator.rotate(neck2, 0.3f, -0.2f, 0);
+            animator.move(neck2, 0, 0, 0.5f);
+            animator.rotate(neck3, -0.2f, -0.2f, 0);
+            animator.move(neck3, 0, 0, 0.5f);
+            animator.rotate(neck4, -0.3f, -0.3f, 0);
+            animator.move(neck4, 0, 0, 0.5f);
+            animator.rotate(head, -0.6f, -0.3f, 0);
+            animator.move(head, 0, 0, 0.5f);
+            animator.endPhase();
+
+            animator.setStationaryPhase(5);
+
+            animator.resetPhase(8);
         }
     }
 }
