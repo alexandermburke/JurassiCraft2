@@ -9,8 +9,8 @@ import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.timeless.animationapi.AnimationAPI;
-import net.timeless.jurassicraft.client.model.animation.AI.JCAutoAnimBase;
-import net.timeless.jurassicraft.client.model.animation.AI.JCNonAutoAnimBase;
+import net.timeless.jurassicraft.client.model.animation.ai.JCAutoAnimBase;
+import net.timeless.jurassicraft.client.model.animation.ai.JCNonAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.jurassicraft.common.entity.base.buffer.ChainBuffer;
 
