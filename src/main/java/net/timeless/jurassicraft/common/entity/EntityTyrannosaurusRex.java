@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.jurassicraft.common.entity.ai.EntityAIJCWander;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
-import net.timeless.jurassicraft.common.entity.base.buffer.ChainBuffer;
+import net.timeless.unilib.common.animation.ChainBuffer;
 
 public class EntityTyrannosaurusRex extends EntityDinosaurAggressive implements IAnimatedEntity
 {

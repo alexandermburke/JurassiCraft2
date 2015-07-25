@@ -8,7 +8,7 @@ import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
-import net.timeless.jurassicraft.common.entity.base.buffer.ChainBuffer;
+import net.timeless.unilib.common.animation.ChainBuffer;
 
 public class EntityAchillobator extends EntityDinosaurAggressive
 {

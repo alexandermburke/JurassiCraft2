@@ -3,9 +3,8 @@ package net.timeless.jurassicraft.client.dinosaur.renderdef;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
-import net.ilexiconn.llibrary.common.json.JsonHelper;
-import net.ilexiconn.llibrary.common.json.container.JsonTabulaModel;
+import net.timeless.unilib.client.model.json.IModelAnimator;
+import net.timeless.unilib.client.model.json.ModelJson;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.timeless.jurassicraft.JurassiCraft;
@@ -13,6 +12,7 @@ import net.timeless.jurassicraft.client.model.ModelDinosaur;
 import net.timeless.jurassicraft.client.render.entity.RenderDinosaur;
 import net.timeless.jurassicraft.client.render.entity.RenderDinosaurMultilayer;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
+import net.timeless.unilib.client.model.json.TabulaModelHelper;
 
 public abstract class RenderDinosaurDefinition
 {
@@ -53,35 +53,7 @@ public abstract class RenderDinosaurDefinition
 
     public ModelDinosaur getTabulaModel(String tabulaModel) throws Exception
     {
-        try (ZipInputStream inputStream = new ZipInputStream(JurassiCraft.class.getResourceAsStream(tabulaModel + ".tbl")))
-        {
-            ZipEntry entry;
-
-            while ((entry = inputStream.getNextEntry()) != null)
-            {
-                if (entry.getName().equals("model.json"))
-                {
-                    IModelAnimator modelAnimator = getModelAnimator();
-
-                    JsonTabulaModel parseTabulaModel = JsonHelper.parseTabulaModel(inputStream);
-
-                    inputStream.close();
-
-                    if (modelAnimator != null)
-                    {
-                        return new ModelDinosaur(parseTabulaModel, modelAnimator);
-                    }
-                    else
-                    {
-                        return new ModelDinosaur(parseTabulaModel);
-                    }
-                }
-            }
-
-            inputStream.close();
-        }
-
-        return null;
+        return new ModelDinosaur(TabulaModelHelper.parseModel(tabulaModel));
     }
 
     public ModelDinosaur getDefaultTabulaModel() throws Exception

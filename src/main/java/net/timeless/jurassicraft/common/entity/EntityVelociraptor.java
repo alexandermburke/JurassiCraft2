@@ -1,6 +1,5 @@
 package net.timeless.jurassicraft.common.entity;
 
-import net.ilexiconn.llibrary.client.model.modelbase.ControlledAnimation;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIWander;
@@ -14,7 +13,8 @@ import net.timeless.animationapi.AnimationAPI;
 import net.timeless.jurassicraft.client.model.animation.ai.JCAutoAnimBase;
 import net.timeless.jurassicraft.client.model.animation.ai.JCNonAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
-import net.timeless.jurassicraft.common.entity.base.buffer.ChainBuffer;
+import net.timeless.unilib.common.animation.ChainBuffer;
+import net.timeless.unilib.common.animation.ControlledAnimation;
 
 public class EntityVelociraptor extends EntityDinosaurAggressive implements IEntityAICreature, ICarnivore
 {

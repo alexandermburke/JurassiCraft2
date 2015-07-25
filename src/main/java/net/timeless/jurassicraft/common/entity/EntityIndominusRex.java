@@ -15,7 +15,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.common.entity.ai.EntityAIJCWander;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
-import net.timeless.jurassicraft.common.entity.base.buffer.ChainBuffer;
+import net.timeless.unilib.common.animation.ChainBuffer;
 
 public class EntityIndominusRex extends EntityDinosaurAggressive
 {

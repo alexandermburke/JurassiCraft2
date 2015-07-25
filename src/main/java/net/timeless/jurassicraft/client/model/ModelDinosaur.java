@@ -1,15 +1,15 @@
 package net.timeless.jurassicraft.client.model;
 
-import java.util.List;
-
-import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
-import net.ilexiconn.llibrary.client.model.modelbase.MowzieModelRenderer;
-import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
-import net.ilexiconn.llibrary.common.json.container.JsonTabulaModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.Animator;
+import net.timeless.unilib.client.model.json.IModelAnimator;
+import net.timeless.unilib.client.model.json.JsonTabulaModel;
+import net.timeless.unilib.client.model.json.ModelJson;
+import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+
+import java.util.List;
 
 public class ModelDinosaur extends ModelJson
 {

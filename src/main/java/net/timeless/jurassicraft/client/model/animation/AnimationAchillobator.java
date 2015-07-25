@@ -1,12 +1,12 @@
 package net.timeless.jurassicraft.client.model.animation;
 
-import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
-import net.ilexiconn.llibrary.client.model.modelbase.MowzieModelRenderer;
-import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.minecraft.entity.Entity;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
 import net.timeless.jurassicraft.common.entity.EntityAchillobator;
+import net.timeless.unilib.client.model.json.IModelAnimator;
+import net.timeless.unilib.client.model.json.ModelJson;
+import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 
 public class AnimationAchillobator implements IModelAnimator
 {

@@ -1,7 +1,7 @@
 package net.timeless.jurassicraft.client.dinosaur.renderdef;
 
-import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
-import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
+import net.timeless.unilib.client.model.json.IModelAnimator;
+import net.timeless.unilib.client.model.json.ModelJson;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraftforge.fml.relauncher.Side;
