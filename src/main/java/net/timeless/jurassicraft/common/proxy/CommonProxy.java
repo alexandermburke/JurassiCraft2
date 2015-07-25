@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.event.CommonEventHandler;
 import net.timeless.jurassicraft.common.handler.JCGuiHandler;
-import net.timeless.jurassicraft.common.world.FossilGenerator;
+import net.timeless.jurassicraft.common.world.WorldGenerator;
 
 public class CommonProxy
 {
@@ -19,7 +19,7 @@ public class CommonProxy
         JurassiCraft.blockRegistry.register();
         JurassiCraft.recipeRegistry.register();
 
-        GameRegistry.registerWorldGenerator(new FossilGenerator(), 0);
+        GameRegistry.registerWorldGenerator(new WorldGenerator(), 0);
 
         NetworkRegistry.INSTANCE.registerGuiHandler(JurassiCraft.instance, new JCGuiHandler());
 

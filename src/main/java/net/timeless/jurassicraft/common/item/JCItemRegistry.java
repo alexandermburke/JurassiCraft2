@@ -2,6 +2,7 @@ package net.timeless.jurassicraft.common.item;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
 
 public class JCItemRegistry
 {
@@ -20,6 +21,8 @@ public class JCItemRegistry
     public static ItemBluePrint blue_print;
     public static ItemJurassiCraftSign jc_sign;
 
+    public static ItemBasic amber;
+
     public void register()
     {
         plaster_and_bandage = new ItemPlasterAndBandage();
@@ -33,6 +36,7 @@ public class JCItemRegistry
         blue_print = new ItemBluePrint();
         jc_sign = new ItemJurassiCraftSign();
         soft_tissue = new ItemSoftTissue();
+        amber = new ItemBasic("Amber", JCCreativeTabs.items);
 
         registerItem(blue_print, "Blue Print");
         registerItem(jc_sign, "JurassiCraft Sign");
@@ -43,6 +47,7 @@ public class JCItemRegistry
         registerItem(egg, "Dino Egg");
         registerItem(paleo_pad, "Paleo Pad");
         registerItem(soft_tissue, "Soft Tissue");
+        registerItem(amber, "Amber");
 
         registerItem(dino_meat, "Dinosaur Meat");
         registerItem(dino_steak, "Dinosaur Steak");

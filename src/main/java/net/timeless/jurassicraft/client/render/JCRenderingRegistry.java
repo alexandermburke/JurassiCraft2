@@ -132,6 +132,7 @@ public class JCRenderingRegistry
             this.registerBlockRenderer(modelMesher, JCBlockRegistry.jc_log, i, "jc_log_" + i, "inventory"); //Here i register one for each type with the metadata as a parmaeter
         }
 
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.amber_ore, "amber_ore", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.cleaning_station, "cleaning_station", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.fossil_grinder, "fossil_grinder", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.dna_sequencer, "dna_sequencer", "inventory");
@@ -167,6 +168,7 @@ public class JCRenderingRegistry
         ItemModelMesher modelMesher = renderItem.getItemModelMesher();
 
         // Items
+        this.registerItemRenderer(modelMesher, JCItemRegistry.amber, "amber", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.plaster_and_bandage, "plaster_and_bandage", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.spawn_egg, "dino_spawn_egg", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.paleo_pad, "paleo_pad", "inventory");

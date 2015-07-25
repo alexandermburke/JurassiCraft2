@@ -45,10 +45,12 @@ item.dna.name={dino} DNA
 item.jurassicraft_sign.name=JurassiCraft Sign
 item.blue_print.name={type} Blue Print
 item.soft_tissue.name={dino} Soft Tissue
+item.amber.name=Amber
 
 //Blocks ==================================================
 tile.fossil_block.name={period} Fossil
 tile.encased_fossil.name=Encased {period} Fossil
+tile.amber_ore.name=Amber Ore
 
 tile.jc_wood.name={wood} Wood
 

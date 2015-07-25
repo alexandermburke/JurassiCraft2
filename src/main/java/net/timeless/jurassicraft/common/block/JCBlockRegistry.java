@@ -31,6 +31,8 @@ public class JCBlockRegistry
 
     public static BlockJCLog jc_log;
 
+    public static BlockAmber amber_ore;
+
     public void register()
     {
         fossils = new ArrayList<BlockFossil>();
@@ -44,6 +46,7 @@ public class JCBlockRegistry
         embryo_insemination_machine = new BlockEmbryoInseminationMachine();
 
         jc_log = new BlockJCLog();
+        amber_ore = new BlockAmber();
 
         List<Dinosaur> dinosaurs = JCEntityRegistry.getDinosaurs();
 
@@ -62,6 +65,7 @@ public class JCBlockRegistry
         }
 
         registerBlock(jc_log, "JC Log");
+        registerBlock(amber_ore, "Amber Ore");
 
         registerBlockTileEntity(TileCleaningStation.class, cleaning_station, "Cleaning Station");
         registerBlockTileEntity(TileDnaSequencer.class, dna_sequencer, "DNA Sequencer");
