@@ -1,7 +1,6 @@
 package net.timeless.jurassicraft.common.entity.base;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
@@ -26,11 +25,6 @@ public class EntityDinosaurSwimmingAggressive extends EntityDinosaurAggressive
     }
 
     public boolean canBreatheUnderwater()
-    {
-        return true;
-    }
-
-    public boolean isPushedByWater()
     {
         return true;
     }
