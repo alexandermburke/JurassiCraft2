@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.timeless.animationapi.packet.PacketAnim;
 
-@Mod(modid = "AnimationAPI", name = "AnimationAPI", version = "1.2.5")
+@Mod(modid = "JCAnimationAPI", name = "JurassiCraft AnimationAPI", version = "1.2.5")
 public class AnimationAPI
 {
 
