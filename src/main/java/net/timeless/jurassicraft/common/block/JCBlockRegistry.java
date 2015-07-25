@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.timeless.jurassicraft.common.api.ISubBlocksBlock;
@@ -28,6 +29,8 @@ public class JCBlockRegistry
     public static BlockEmbryonicMachine embryonic_machine;
     public static BlockEmbryoInseminationMachine embryo_insemination_machine;
 
+    public static BlockJCLog jc_log;
+
     public void register()
     {
         fossils = new ArrayList<BlockFossil>();
@@ -39,6 +42,8 @@ public class JCBlockRegistry
         dna_synthesizer = new BlockDnaSynthesizer();
         embryonic_machine = new BlockEmbryonicMachine();
         embryo_insemination_machine = new BlockEmbryoInseminationMachine();
+
+        jc_log = new BlockJCLog();
 
         List<Dinosaur> dinosaurs = JCEntityRegistry.getDinosaurs();
 
@@ -55,6 +60,8 @@ public class JCBlockRegistry
             registerBlock(fossil, "Fossil Block " + i);
             registerBlock(encasedFossil, "Encased Fossil " + i);
         }
+
+        registerBlock(jc_log, "JC Log");
 
         registerBlockTileEntity(TileCleaningStation.class, cleaning_station, "Cleaning Station");
         registerBlockTileEntity(TileDnaSequencer.class, dna_sequencer, "DNA Sequencer");

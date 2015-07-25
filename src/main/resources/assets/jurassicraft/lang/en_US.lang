@@ -50,12 +50,17 @@ item.soft_tissue.name={dino} Soft Tissue
 tile.fossil_block.name={period} Fossil
 tile.encased_fossil.name=Encased {period} Fossil
 
+tile.jc_wood.name={wood} Wood
+
 tile.cleaning_station.name=Cleaning Station
 tile.fossil_grinder.name=Fossil Grinder
 tile.dna_sequencer.name=DNA Sequencer
 tile.dna_synthesizer.name=DNA Synthesizer
 tile.embryonic_machine.name=Embryonic Machine
 tile.embryo_insemination_machine.name=Embryo Insemination Machine
+
+wood.0.name=First
+wood.1.name=Second
 
 //Containers ==================================================
 container.cleaning_station=Cleaning Station

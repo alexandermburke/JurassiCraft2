@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "variant=0": { "model": "jurassicraft:jc_log_0" },
+		"variant=1": { "model": "jurassicraft:jc_log_1" }
+    }
+}
