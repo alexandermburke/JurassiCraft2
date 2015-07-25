@@ -10,9 +10,11 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
+import net.reuxertz.ecoapi.entity.EntityAICreature;
 import net.timeless.animationapi.AIAnimation;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.jurassicraft.JurassiCraft;
@@ -20,7 +22,7 @@ import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.item.ItemBluePrint;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
-public class EntityDinosaur extends EntityCreature implements IEntityAdditionalSpawnData, IAnimatedEntity
+public class EntityDinosaur extends EntityAICreature implements IEntityAdditionalSpawnData, IAnimatedEntity
 {
     protected Dinosaur dinosaur;
     protected int randTexture;
@@ -38,6 +40,10 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
 
     public AIAnimation currentAnim = null;
 
+    public void setNavigator(PathNavigate pn)
+    {
+        this.navigator = pn;
+    }
     public EntityDinosaur(World world)
     {
         super(world);

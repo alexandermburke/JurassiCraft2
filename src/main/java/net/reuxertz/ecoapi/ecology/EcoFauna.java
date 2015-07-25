@@ -70,6 +70,8 @@ public class EcoFauna
         omn.add(AIGather.class);
 
         EcoFauna.registerClassToAI(IOmnivore.class, omn);
+        EcoFauna.registerClassToAI(ICarnivore.class, carn);
+        EcoFauna.registerClassToAI(IHerbivore.class, herb);
         //EcoFauna.registerClassToAI(EntityHuman.class, Arrays.asList(AILumberjack.class));
     }
 
