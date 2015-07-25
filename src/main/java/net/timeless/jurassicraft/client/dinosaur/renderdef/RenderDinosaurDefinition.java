@@ -53,7 +53,7 @@ public abstract class RenderDinosaurDefinition
 
     public ModelDinosaur getTabulaModel(String tabulaModel) throws Exception
     {
-        return new ModelDinosaur(TabulaModelHelper.parseModel(tabulaModel));
+        return new ModelDinosaur(TabulaModelHelper.parseModel(tabulaModel), getModelAnimator());
     }
 
     public ModelDinosaur getDefaultTabulaModel() throws Exception
