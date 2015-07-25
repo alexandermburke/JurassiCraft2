@@ -11,6 +11,10 @@ import net.reuxertz.ecoai.ai.AINavigate;
 
 public class EntityAICreature extends EntityCreature implements IEntityAICreature
 {
+    public boolean canBreatheUnderwater()
+    {
+        return IEntityAIAquaticCreature.class.isInstance(this);
+    }
     public void setNavigator(PathNavigate pn)
     {
         this.navigator = pn;
@@ -46,7 +50,7 @@ public class EntityAICreature extends EntityCreature implements IEntityAICreatur
         {
             if (IEntityAIFlyingCreature.class.isInstance(entity))
                 ((PathNavigateGround) entity.getNavigator()).func_179690_a(true);
-            else if (IEntityAIAquaticCreature.class.isInstance(entity))
+            else if (IEntityAISwimmingCreature.class.isInstance(entity))
             {
                 //((PathNavigateGround) entity.getNavigator()).func_179690_a(false);
                 ((IEntityAICreature)entity).setNavigator(new PathNavigateSwimmer(entity, entity.worldObj));
