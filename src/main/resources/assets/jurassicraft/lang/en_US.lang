@@ -47,6 +47,7 @@ item.blue_print.name={type} Blue Print
 item.soft_tissue.name={dino} Soft Tissue
 item.amber.name=Amber
 item.petri_dish.name=Petri Dish
+item.empty_test_tube.name=Empty Test Tube
 
 //Blocks ==================================================
 tile.fossil_block.name={period} Fossil

@@ -26,6 +26,10 @@ public class JCItemRegistry
 
     public static ItemBasic amber;
     public static ItemBasic petri_dish;
+    public static ItemBasic empty_test_tube;
+
+    public static ItemSyringe syringe;
+    public static ItemBasic empty_syringe;
 
     public void register()
     {
@@ -42,6 +46,9 @@ public class JCItemRegistry
         soft_tissue = new ItemSoftTissue();
         amber = new ItemBasic("Amber", JCCreativeTabs.items);
         petri_dish = new ItemBasic("Petri Dish", JCCreativeTabs.items);
+        empty_test_tube = new ItemBasic("Empty Test Tube", JCCreativeTabs.dna);
+        syringe = new ItemSyringe();
+        empty_syringe = new ItemBasic("Empty Syringe", JCCreativeTabs.dna);
 
         registerItem(blue_print, "Blue Print");
         registerItem(jc_sign, "JurassiCraft Sign");
@@ -54,6 +61,9 @@ public class JCItemRegistry
         registerItem(soft_tissue, "Soft Tissue");
         registerItem(amber, "Amber");
         registerItem(petri_dish, "Petri Dish");
+        registerItem(empty_test_tube, "Empty Test Tube");
+        registerItem(syringe, "Syringe");
+        registerItem(empty_syringe, "Empty Syringe");
 
         registerItem(dino_meat, "Dinosaur Meat");
         registerItem(dino_steak, "Dinosaur Steak");

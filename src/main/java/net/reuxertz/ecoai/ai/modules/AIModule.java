@@ -127,6 +127,8 @@ public abstract class AIModule
             return;
         }
 
+        //Division between pre AI and post AI
+
         boolean pReached = this.isAtWorkPosition();
 
         //If ready to work but not at location, goto location

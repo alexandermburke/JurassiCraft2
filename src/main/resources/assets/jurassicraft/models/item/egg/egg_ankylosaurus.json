@@ -1,7 +1,8 @@
 {
     "parent": "builtin/generated",
     "textures": {
-		"layer0": "jurassicraft:items/egg/ankylosaurus"
+		"layer0": "jurassicraft:items/egg/ankylosaurus",
+		"layer1": "jurassicraft:items/overlay/ankylosaurus"
     },
     "display": {
         "thirdperson": {

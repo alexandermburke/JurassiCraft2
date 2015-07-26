@@ -1,7 +1,8 @@
 {
     "parent": "builtin/generated",
     "textures": {
-		"layer0": "jurassicraft:items/egg/spinosaurus"
+		"layer0": "jurassicraft:items/egg/spinosaurus",
+		"layer1": "jurassicraft:items/overlay/spinosaurus"
     },
     "display": {
         "thirdperson": {
