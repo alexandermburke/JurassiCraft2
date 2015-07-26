@@ -27,7 +27,8 @@ public class JCItemRegistry
     public static ItemBasic amber;
     public static ItemBasic petri_dish;
 
-    public void register() {
+    public void register()
+    {
         plaster_and_bandage = new ItemPlasterAndBandage();
         spawn_egg = new ItemDinosaurSpawnEgg();
         skull = new ItemSkull();
