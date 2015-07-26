@@ -79,6 +79,9 @@ public class JCEntityRegistry
 
         for (Dinosaur dinosaur : dinosaurs)
             registerDinosaur(dinosaur);
+
+        for (int i = 0; i < dinosaurs.size(); i++)
+            EcoAPI.registerEntityClassDropItems(dinosaurs.get(i).getDinosaurClass(), new ItemStack[] { new ItemStack(JCItemRegistry.dino_meat, 1, i), new ItemStack(JCItemRegistry.dino_steak, 1, i) } );
     }
 
     public void registerDinosaur(Dinosaur dinosaur)
@@ -100,10 +103,6 @@ public class JCEntityRegistry
     public static void registerDinosaurType(Dinosaur dinosaur)
     {
         dinosaurs.add(dinosaur);
-
-        int id = dinosaurs.indexOf(dinosaur);
-
-        EcoAPI.registerEntityClassDropItems(dinosaur.getDinosaurClass(), new ItemStack[] { new ItemStack(JCItemRegistry.dino_meat, 1, id), new ItemStack(JCItemRegistry.dino_steak, 1, id) } );
 
         if(!(dinosaur instanceof IHybrid))
         {
