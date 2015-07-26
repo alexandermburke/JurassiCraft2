@@ -17,7 +17,7 @@ import net.timeless.jurassicraft.common.lang.AdvLang;
 
 public class ItemDinosaurMeat extends ItemDnaContainer
 {
-    public ItemDinosaurMeat()
+    public ItemDinosaurMeat() //TODO Cannot be eaten yet
     {
         this.setUnlocalizedName("dinosaur_meat");
         this.setHasSubtypes(true);

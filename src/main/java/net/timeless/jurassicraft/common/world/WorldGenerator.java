@@ -46,7 +46,7 @@ public class WorldGenerator implements IWorldGenerator
         for (int i = 0; i < 16; i++)
         {
             int randPosX = chunkX + random.nextInt(16);
-            int randPosY = random.nextInt(10);
+            int randPosY = random.nextInt(20);
             int randPosZ = chunkZ + random.nextInt(16);
 
             new WorldGenMinable(JCBlockRegistry.amber_ore.getDefaultState(), 3).generate(world, random, new BlockPos(randPosX, randPosY, randPosZ));
