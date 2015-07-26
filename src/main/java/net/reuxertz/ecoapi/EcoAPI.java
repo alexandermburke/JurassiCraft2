@@ -19,7 +19,7 @@ public class EcoAPI
         EcoFauna.addToClassDropRegistry(entityClass, dropItems);
     }
 
-    public static void registerFoodItem(IEcologicalRole role, ItemStack stack)
+    public static void registerEcologicalRoleFoodItem(IEcologicalRole role, ItemStack stack)
     {
          role.addFoodItem(stack);
     }
