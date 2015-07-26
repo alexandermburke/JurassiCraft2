@@ -27,8 +27,7 @@ public class JCItemRegistry
     public static ItemBasic amber;
     public static ItemBasic petri_dish;
 
-    public void register()
-    {
+    public void register() {
         plaster_and_bandage = new ItemPlasterAndBandage();
         spawn_egg = new ItemDinosaurSpawnEgg();
         skull = new ItemSkull();
@@ -59,7 +58,11 @@ public class JCItemRegistry
         registerItem(dino_steak, "Dinosaur Steak");
 
         for (int i = 0; i < JCEntityRegistry.getDinosaurs().size(); i++)
+        {
+            EcoAPI.registerFoodItem(EcoAPI.carnivore, new ItemStack(JCItemRegistry.dino_meat, 1, i));
+            EcoAPI.registerFoodItem(EcoAPI.carnivore, new ItemStack(JCItemRegistry.dino_steak, 1, i));
             EcoAPI.registerEntityClassDropItems(JCEntityRegistry.getDinosaurs().get(i).getDinosaurClass(), new ItemStack[]{new ItemStack(JCItemRegistry.dino_meat, 1, i), new ItemStack(JCItemRegistry.dino_steak, 1, i)});
+        }
     }
 
     public void registerItem(Item item, String name)
