@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-		"layer0": "jurassicraft:items/fossil/giganotosaurus"
+		"layer0": "jurassicraft:items/skull/rugops"
     },
     "display": {
         "thirdperson": {

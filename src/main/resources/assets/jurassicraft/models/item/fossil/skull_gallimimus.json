@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-		"layer0": "jurassicraft:items/fossil/rugops"
+		"layer0": "jurassicraft:items/skull/gallimimus"
     },
     "display": {
         "thirdperson": {

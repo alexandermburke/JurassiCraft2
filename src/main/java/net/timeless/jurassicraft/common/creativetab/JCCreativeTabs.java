@@ -26,7 +26,7 @@ public class JCCreativeTabs
 
             public Item getTabIconItem()
             {
-                return JCItemRegistry.fossil;
+                return JCItemRegistry.skull;
             }
         };
 

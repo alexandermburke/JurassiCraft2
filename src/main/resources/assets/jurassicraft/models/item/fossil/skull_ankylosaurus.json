@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-		"layer0": "jurassicraft:items/fossil/indominus_rex"
+		"layer0": "jurassicraft:items/skull/ankylosaurus"
     },
     "display": {
         "thirdperson": {

@@ -348,7 +348,7 @@ public class TileCleaningStation extends TileEntityLockable implements IUpdatePl
     {
         if (this.canClean())
         {
-            ItemStack fossil = new ItemStack(JCItemRegistry.fossil, 1, JurassiCraft.blockRegistry.getDinosaurId((BlockEncasedFossil) Block.getBlockFromItem(slots[0].getItem()), slots[0].getItemDamage()));
+            ItemStack fossil = new ItemStack(JCItemRegistry.skull, 1, JurassiCraft.blockRegistry.getDinosaurId((BlockEncasedFossil) Block.getBlockFromItem(slots[0].getItem()), slots[0].getItemDamage()));
 
             int emptySlot = -1;
 

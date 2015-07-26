@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-		"layer0": "jurassicraft:items/fossil/gallimimus"
+		"layer0": "jurassicraft:items/skull/hypsilophodon"
     },
     "display": {
         "thirdperson": {

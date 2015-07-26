@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-		"layer0": "jurassicraft:items/fossil/dunkleosteus"
+		"layer0": "jurassicraft:items/skull/spinosaurus"
     },
     "display": {
         "thirdperson": {

@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-		"layer0": "jurassicraft:items/fossil/coelacanth"
+		"layer0": "jurassicraft:items/skull/indominus_rex"
     },
     "display": {
         "thirdperson": {

@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-		"layer0": "jurassicraft:items/fossil/majungasaurus"
+		"layer0": "jurassicraft:items/skull/dodo"
     },
     "display": {
         "thirdperson": {

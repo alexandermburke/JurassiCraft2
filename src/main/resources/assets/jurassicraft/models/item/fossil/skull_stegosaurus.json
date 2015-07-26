@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-		"layer0": "jurassicraft:items/fossil/achillobator"
+		"layer0": "jurassicraft:items/skull/stegosaurus"
     },
     "display": {
         "thirdperson": {

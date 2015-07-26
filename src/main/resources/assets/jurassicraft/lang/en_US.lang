@@ -35,7 +35,7 @@ entity.dodo.name=Dodo
 item.rock_pick.name=Rock Pick
 item.plaster_and_bandage.name=Plaster and Bandage
 
-item.fossil.name={dino} Fossil
+item.skull.name={dino} Skull
 item.dino_egg.name={dino} Egg
 item.dino_spawn_egg.name=Spawn {dino}
 item.dinosaur_meat.name={dino} Meat
@@ -46,6 +46,7 @@ item.jurassicraft_sign.name=JurassiCraft Sign
 item.blue_print.name={type} Blue Print
 item.soft_tissue.name={dino} Soft Tissue
 item.amber.name=Amber
+item.petri_dish.name=Petri Dish
 
 //Blocks ==================================================
 tile.fossil_block.name={period} Fossil

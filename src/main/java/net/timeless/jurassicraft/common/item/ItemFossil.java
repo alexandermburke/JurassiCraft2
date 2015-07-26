@@ -1,10 +1,5 @@
 package net.timeless.jurassicraft.common.item;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,11 +10,20 @@ import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.lang.AdvLang;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class ItemFossil extends Item
 {
-    public ItemFossil()
+    private String type;
+
+    public ItemFossil(String type)
     {
-        this.setUnlocalizedName("fossil");
+        this.type = type.toLowerCase().replaceAll(" ", "_");
+
+        this.setUnlocalizedName("fossil_" + this.type);
         this.setHasSubtypes(true);
 
         this.setCreativeTab(JCCreativeTabs.items);
@@ -31,7 +35,7 @@ public class ItemFossil extends Item
         Dinosaur dinosaur = this.getDinosaur(stack);
 
         if (dinosaur != null)
-            return new AdvLang("item.fossil.name").withProperty("dino", "entity." + dinosaur.getName().replace(" ", "_").toLowerCase() + ".name").build();
+            return new AdvLang("item." + type + ".name").withProperty("dino", "entity." + dinosaur.getName().replace(" ", "_").toLowerCase() + ".name").build();
 
         return super.getItemStackDisplayName(stack);
     }

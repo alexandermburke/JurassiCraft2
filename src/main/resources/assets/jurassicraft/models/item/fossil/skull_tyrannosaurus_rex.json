@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-		"layer0": "jurassicraft:items/fossil/pteranodon"
+		"layer0": "jurassicraft:items/skull/tyrannosaurus_rex"
     },
     "display": {
         "thirdperson": {

@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-		"layer0": "jurassicraft:items/fossil/dilophosaurus"
+		"layer0": "jurassicraft:items/petri_dish"
     },
     "display": {
         "thirdperson": {

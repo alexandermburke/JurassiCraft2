@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-		"layer0": "jurassicraft:items/fossil/velociraptor"
+		"layer0": "jurassicraft:items/skull/compsognathus"
     },
     "display": {
         "thirdperson": {
