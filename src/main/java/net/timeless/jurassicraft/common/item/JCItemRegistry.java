@@ -1,8 +1,11 @@
 package net.timeless.jurassicraft.common.item;
 
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.reuxertz.ecoapi.EcoAPI;
 import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
+import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 
 public class JCItemRegistry
 {
@@ -54,6 +57,9 @@ public class JCItemRegistry
 
         registerItem(dino_meat, "Dinosaur Meat");
         registerItem(dino_steak, "Dinosaur Steak");
+
+        for (int i = 0; i < JCEntityRegistry.getDinosaurs().size(); i++)
+            EcoAPI.registerEntityClassDropItems(JCEntityRegistry.getDinosaurs().get(i).getDinosaurClass(), new ItemStack[]{new ItemStack(JCItemRegistry.dino_meat, 1, i), new ItemStack(JCItemRegistry.dino_steak, 1, i)});
     }
 
     public void registerItem(Item item, String name)
