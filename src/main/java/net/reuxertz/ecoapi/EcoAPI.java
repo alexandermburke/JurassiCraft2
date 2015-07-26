@@ -21,6 +21,6 @@ public class EcoAPI
 
     public static void registerFoodItem(IEcologicalRole role, ItemStack stack)
     {
-        EcoAPI.registerEntityClassDropItems(EntityRabbit.class,     new ItemStack[]     { stack.copy()   });
+         role.addFoodItem(stack);
     }
 }
