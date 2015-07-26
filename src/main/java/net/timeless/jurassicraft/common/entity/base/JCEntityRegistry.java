@@ -4,11 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.reuxertz.ecoapi.EcoAPI;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.dinosaur.*;
 import net.timeless.jurassicraft.common.entity.item.EntityBluePrint;
 import net.timeless.jurassicraft.common.entity.item.EntityJurassiCraftSign;
+import net.timeless.jurassicraft.common.item.JCItemRegistry;
 import net.timeless.jurassicraft.common.period.EnumTimePeriod;
 
 import com.google.common.collect.Lists;
@@ -97,6 +100,10 @@ public class JCEntityRegistry
     public static void registerDinosaurType(Dinosaur dinosaur)
     {
         dinosaurs.add(dinosaur);
+
+        int id = dinosaurs.indexOf(dinosaur);
+
+        EcoAPI.registerEntityClassDropItems(dinosaur.getDinosaurClass(), new ItemStack[] { new ItemStack(JCItemRegistry.dino_meat, 1, id), new ItemStack(JCItemRegistry.dino_steak, 1, id) } );
 
         if(!(dinosaur instanceof IHybrid))
         {
