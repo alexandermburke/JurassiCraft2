@@ -6,9 +6,11 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.reuxertz.ecoapi.ecology.role.IHerbivore;
+import net.reuxertz.ecoapi.entity.IEntityAICreature;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 
-public class EntityDodo extends EntityDinosaur
+public class EntityDodo extends EntityDinosaur implements IEntityAICreature, IHerbivore
 {
     private static final String[] hurtSounds = new String[] { "dodo_hurt_1", "dodo_hurt_2" };
     private static final String[] livingSounds = new String[] { "dodo_living_1", "dodo_living_2", "dodo_living_3" };

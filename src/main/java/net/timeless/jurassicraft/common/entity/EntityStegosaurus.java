@@ -5,10 +5,12 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.reuxertz.ecoapi.ecology.role.IHerbivore;
+import net.reuxertz.ecoapi.entity.IEntityAICreature;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurProvokableHerbivore;
 import net.timeless.unilib.common.animation.ChainBuffer;
 
-public class EntityStegosaurus extends EntityDinosaurProvokableHerbivore
+public class EntityStegosaurus extends EntityDinosaurProvokableHerbivore implements IEntityAICreature, IHerbivore
 {
     public ChainBuffer tailBuffer = new ChainBuffer(6);
 

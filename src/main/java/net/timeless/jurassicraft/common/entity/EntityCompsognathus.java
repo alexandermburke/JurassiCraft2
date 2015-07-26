@@ -6,9 +6,12 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.reuxertz.ecoapi.ecology.role.ICarnivore;
+import net.reuxertz.ecoapi.ecology.role.IHerbivore;
+import net.reuxertz.ecoapi.entity.IEntityAICreature;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbivore;
 
-public class EntityCompsognathus extends EntityDinosaurDefensiveHerbivore
+public class EntityCompsognathus extends EntityDinosaurDefensiveHerbivore implements IEntityAICreature, ICarnivore
 {
     public EntityCompsognathus(World world)
     {

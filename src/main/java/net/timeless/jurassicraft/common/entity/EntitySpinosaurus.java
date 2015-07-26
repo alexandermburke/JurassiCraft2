@@ -8,11 +8,14 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.reuxertz.ecoapi.ecology.role.ICarnivore;
+import net.reuxertz.ecoapi.ecology.role.IOmnivore;
+import net.reuxertz.ecoapi.entity.IEntityAICreature;
 import net.timeless.jurassicraft.common.entity.ai.EntityAIJCWander;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
 
-public class EntitySpinosaurus extends EntityDinosaurAggressive
+public class EntitySpinosaurus extends EntityDinosaurAggressive implements IEntityAICreature, IOmnivore
 {
     public ChainBuffer tailBuffer = new ChainBuffer(6);
 

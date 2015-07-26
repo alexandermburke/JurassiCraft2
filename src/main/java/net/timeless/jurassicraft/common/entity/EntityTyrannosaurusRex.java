@@ -6,12 +6,14 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.reuxertz.ecoapi.ecology.role.ICarnivore;
+import net.reuxertz.ecoapi.entity.IEntityAICreature;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.jurassicraft.common.entity.ai.EntityAIJCWander;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
 
-public class EntityTyrannosaurusRex extends EntityDinosaurAggressive implements IAnimatedEntity
+public class EntityTyrannosaurusRex extends EntityDinosaurAggressive implements IAnimatedEntity, IEntityAICreature, ICarnivore
 {
     public ChainBuffer tailBuffer = new ChainBuffer(6);
 

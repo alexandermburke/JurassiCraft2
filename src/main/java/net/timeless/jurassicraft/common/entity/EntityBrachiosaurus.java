@@ -5,9 +5,11 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.reuxertz.ecoapi.ecology.role.IHerbivore;
+import net.reuxertz.ecoapi.entity.IEntityAICreature;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbivore;
 
-public class EntityBrachiosaurus extends EntityDinosaurDefensiveHerbivore
+public class EntityBrachiosaurus extends EntityDinosaurDefensiveHerbivore implements IEntityAICreature, IHerbivore
 {
     private static final String[] livingSounds = new String[] { "brachiosaurus_living_1", "brachiosaurus_living_2", "brachiosaurus_living_3", "brachiosaurus_living_4" };
 

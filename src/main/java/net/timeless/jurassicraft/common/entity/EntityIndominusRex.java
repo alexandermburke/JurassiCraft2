@@ -13,11 +13,13 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.reuxertz.ecoapi.ecology.role.ICarnivore;
+import net.reuxertz.ecoapi.entity.IEntityAICreature;
 import net.timeless.jurassicraft.common.entity.ai.EntityAIJCWander;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
 
-public class EntityIndominusRex extends EntityDinosaurAggressive
+public class EntityIndominusRex extends EntityDinosaurAggressive implements ICarnivore, IEntityAICreature
 {
     public ChainBuffer tailBuffer = new ChainBuffer(7);
 

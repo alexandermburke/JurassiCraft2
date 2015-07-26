@@ -6,10 +6,12 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.reuxertz.ecoapi.ecology.role.IHerbivore;
+import net.reuxertz.ecoapi.entity.IEntityAICreature;
 import net.timeless.jurassicraft.client.model.animation.ai.JCNonAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbivore;
 
-public class EntityHypsilophodon extends EntityDinosaurDefensiveHerbivore
+public class EntityHypsilophodon extends EntityDinosaurDefensiveHerbivore implements IEntityAICreature, IHerbivore
 {
     private static final String[] hurtSounds = new String[] { "hypsilophodon_hurt_1", "hypsilophodon_hurt_2" };
     private static final String[] livingSounds = new String[] { "hypsilophodon_living_1", "hypsilophodon_living_2", "hypsilophodon_living_3", "hypsilophodon_living_4" };
