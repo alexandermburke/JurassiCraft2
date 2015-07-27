@@ -40,7 +40,7 @@ public class WorldGenerator implements IWorldGenerator
             Dinosaur dinosaur = dinos.get(random.nextInt(dinos.size()));
             int meta = JurassiCraft.blockRegistry.getMetadata(dinosaur);
 
-            new WorldGenMinable(JurassiCraft.blockRegistry.getFossilBlock(dinosaur).getDefaultState().withProperty(BlockFossil.VARIANT, meta), 5).generate(world, random, new BlockPos(randPosX, randPosY, randPosZ));
+            new WorldGenMinable(JurassiCraft.blockRegistry.getFossilBlock(dinosaur).getStateFromMeta(meta), 5).generate(world, random, new BlockPos(randPosX, randPosY, randPosZ));
         }
 
         for (int i = 0; i < 16; i++)
