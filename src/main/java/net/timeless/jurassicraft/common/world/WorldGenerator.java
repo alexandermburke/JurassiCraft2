@@ -1,8 +1,5 @@
 package net.timeless.jurassicraft.common.world;
 
-import java.util.List;
-import java.util.Random;
-
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -14,6 +11,9 @@ import net.timeless.jurassicraft.common.block.JCBlockRegistry;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.period.EnumTimePeriod;
+
+import java.util.List;
+import java.util.Random;
 
 public class WorldGenerator implements IWorldGenerator
 {

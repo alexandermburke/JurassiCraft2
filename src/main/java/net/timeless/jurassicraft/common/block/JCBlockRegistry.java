@@ -54,8 +54,8 @@ public class JCBlockRegistry
 
         for (int i = 0; i < blocksToCreate; i++)
         {
-            BlockFossil fossil = new BlockFossil(i);
-            BlockEncasedFossil encasedFossil = new BlockEncasedFossil(i);
+            BlockFossil fossil = new BlockFossil(i * 16);
+            BlockEncasedFossil encasedFossil = new BlockEncasedFossil(i * 16);
 
             fossils.add(fossil);
             encased_fossils.add(encasedFossil);
@@ -82,7 +82,7 @@ public class JCBlockRegistry
 
     private int getBlockId(int dinosaurId)
     {
-        return (int) (Math.floor(((float) dinosaurId + 1.0F) / 16.0F));
+        return (int) (Math.floor((((float) dinosaurId + 1.0F) / 16.0F) - 0.0625F));
     }
 
     public BlockEncasedFossil getEncasedFossil(Dinosaur dinosaur)
@@ -102,7 +102,7 @@ public class JCBlockRegistry
 
     public int getDinosaurId(BlockFossil fossil, int metadata)
     {
-        return (fossils.indexOf(fossil) * 16) + metadata;
+        return (fossils.indexOf(fossil) * 15) + metadata;
     }
 
     public int getDinosaurId(BlockEncasedFossil fossil, int metadata)
