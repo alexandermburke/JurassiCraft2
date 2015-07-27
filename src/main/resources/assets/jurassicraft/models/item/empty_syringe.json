@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-		"layer0": "jurassicraft:items/dna/empty_test_tube"
+		"layer0": "jurassicraft:items/syringe/empty_syringe"
     },
     "display": {
         "thirdperson": {

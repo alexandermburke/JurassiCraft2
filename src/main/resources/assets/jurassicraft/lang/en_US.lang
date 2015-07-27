@@ -48,6 +48,8 @@ item.soft_tissue.name={dino} Soft Tissue
 item.amber.name=Amber
 item.petri_dish.name=Petri Dish
 item.empty_test_tube.name=Empty Test Tube
+item.syringe.name={dino} Syringe
+item.empty_syringe.name=Empty Syringe
 
 //Blocks ==================================================
 tile.fossil_block.name={period} Fossil
