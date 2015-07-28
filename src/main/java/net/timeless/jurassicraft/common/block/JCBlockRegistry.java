@@ -102,20 +102,18 @@ public class JCBlockRegistry
         //initialize blocks within arrays
         for (int i = 0; i < numOfTrees; i++)
         {
-            planks[i] = new BlockJCPlanks(EnumType.getMetaLookup()[i], JurassiCraft.modid + "_" + EnumType.getMetaLookup()[i].getName());
-            woods[i] = new BlockJCLog(EnumType.getMetaLookup()[i], JurassiCraft.modid + "_" + EnumType.getMetaLookup()[i].getName());
-            leaves[i] = new BlockJCLeaves(EnumType.getMetaLookup()[i], JurassiCraft.modid + "_" + EnumType.getMetaLookup()[i].getName());
-            saplings[i] = new BlockJCSapling(EnumType.getMetaLookup()[i], JurassiCraft.modid + "_" + EnumType.getMetaLookup()[i].getName());
+            EnumType type = EnumType.getMetaLookup()[i];
+            String typeName = type.getName();
 
-            System.out.println(planks[i].getUnlocalizedName());
-            System.out.println(woods[i].getUnlocalizedName());
-            System.out.println(leaves[i].getUnlocalizedName());
-            System.out.println(saplings[i].getUnlocalizedName());
+            planks[i] = new BlockJCPlanks(type, typeName);
+            woods[i] = new BlockJCLog(type, typeName);
+            leaves[i] = new BlockJCLeaves(type, typeName);
+            saplings[i] = new BlockJCSapling(type, typeName);
 
-            GameRegistry.registerBlock(planks[i], planks[i].getUnlocalizedName().substring(15));
-            GameRegistry.registerBlock(woods[i], woods[i].getUnlocalizedName().substring(15));
-            GameRegistry.registerBlock(leaves[i], leaves[i].getUnlocalizedName().substring(15));
-            GameRegistry.registerBlock(saplings[i], saplings[i].getUnlocalizedName().substring(15));
+            GameRegistry.registerBlock(planks[i], typeName + "_planks");
+            GameRegistry.registerBlock(woods[i], typeName + "_log");
+            GameRegistry.registerBlock(leaves[i], typeName + "_leaves");
+            GameRegistry.registerBlock(saplings[i], typeName + "_sapling");
 
             OreDictionary.registerOre("logWood", woods[i]);
             OreDictionary.registerOre("plankWood", planks[i]);

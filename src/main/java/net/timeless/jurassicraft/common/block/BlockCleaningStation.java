@@ -92,7 +92,7 @@ public class BlockCleaningStation extends BlockOriented
 
                 if (cleaningStation.isUseableByPlayer(player))
                 {
-                    player.openGui(JurassiCraft.instance, 0, world, pos.getX(), pos.getY(), pos.getZ()); 
+                    player.openGui(JurassiCraft.instance, 0, world, pos.getX(), pos.getY(), pos.getZ());
                     return true;
                 }
             }

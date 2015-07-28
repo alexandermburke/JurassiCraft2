@@ -1,9 +1,0 @@
-{
-    "variants": {
-        "normal": { "model": "highlands:aspen_leaves" },
-        "check_decay=false,decayable=false": { "model": "jurassicraft:gingko_leaves" },
-        "check_decay=true,decayable=false": { "model": "jurassicraft:gingko_leaves" },
-        "check_decay=true,decayable=true": { "model": "jurassicraft:gingko_leaves" },
-        "check_decay=false,decayable=true": { "model": "jurassicraft:gingko_leaves" }
-    }
-}

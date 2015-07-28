@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "axis=y":  { "model": "jurassicraft:gingko_log" },
-        "axis=z":   { "model": "jurassicraft:gingko_log_side" },
-        "axis=x":   { "model": "jurassicraft:gingko_log_side", "y": 90 },
-        "axis=none": { "model": "jurassicraft:gingko_bark" }
-    }
-}

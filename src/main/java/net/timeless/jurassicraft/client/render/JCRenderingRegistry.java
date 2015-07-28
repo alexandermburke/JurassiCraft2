@@ -47,6 +47,7 @@ import net.timeless.jurassicraft.client.render.entity.RenderJurassiCraftSign;
 import net.timeless.jurassicraft.common.block.BlockEncasedFossil;
 import net.timeless.jurassicraft.common.block.BlockFossil;
 import net.timeless.jurassicraft.common.block.JCBlockRegistry;
+import net.timeless.jurassicraft.common.block.tree.EnumType;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.entity.item.EntityBluePrint;
@@ -135,10 +136,11 @@ public class JCRenderingRegistry
 
         for (i = 0; i < JCBlockRegistry.numOfTrees; i++)
         {
-            this.registerBlockRenderer(modelMesher, JCBlockRegistry.leaves[i], "jurassicraft_" + i + "_leaves", "inventory");
-            this.registerBlockRenderer(modelMesher, JCBlockRegistry.saplings[i], "jurassicraft_leaves_", "inventory");
-            this.registerBlockRenderer(modelMesher, JCBlockRegistry.planks[i], "jurassicraft_leaves_", "inventory");
-            this.registerBlockRenderer(modelMesher, JCBlockRegistry.woods[i], "jurassicraft_leaves_", "inventory");
+            String name = EnumType.getMetaLookup()[i].getName();
+            this.registerBlockRenderer(modelMesher, JCBlockRegistry.leaves[i], name + "_leaves", "inventory");
+            this.registerBlockRenderer(modelMesher, JCBlockRegistry.saplings[i], name + "_sapling", "inventory");
+            this.registerBlockRenderer(modelMesher, JCBlockRegistry.planks[i], name + "_planks", "inventory");
+            this.registerBlockRenderer(modelMesher, JCBlockRegistry.woods[i], name + "_log", "inventory");
         }
 
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.amber_ore, "amber_ore", "inventory");
