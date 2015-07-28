@@ -1,7 +1,9 @@
 package net.timeless.jurassicraft.common.entity.data;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,6 +13,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.timeless.jurassicraft.common.dna.DNA;
+import net.timeless.jurassicraft.common.paleopad.App;
 
 public class JCPlayerData implements IExtendedEntityProperties
 {
@@ -27,6 +30,9 @@ public class JCPlayerData implements IExtendedEntityProperties
     {
         return JCPlayerDataClient.getPlayerData();
     }
+
+    private Map<String, NBTTagCompound> appdata = new HashMap<>();
+    private List<App> openApps = new ArrayList<>();
 
     public static void setPlayerData(EntityPlayer player, NBTTagCompound nbt)
     {
@@ -46,8 +52,10 @@ public class JCPlayerData implements IExtendedEntityProperties
     }
 
     @Override
-    public void saveNBTData(NBTTagCompound nbt)
+    public void saveNBTData(NBTTagCompound playerData)
     {
+        NBTTagCompound nbt = new NBTTagCompound();
+
         NBTTagList sequencedDNAList = new NBTTagList();
 
         for (DNA dna : sequencedDNA)
@@ -59,11 +67,29 @@ public class JCPlayerData implements IExtendedEntityProperties
         }
 
         nbt.setTag("SequencedDNA", sequencedDNAList);
+
+        NBTTagList appDataList = new NBTTagList();
+
+        for (Map.Entry<String, NBTTagCompound> data : appdata.entrySet())
+        {
+            NBTTagCompound appData = new NBTTagCompound();
+
+            appData.setString("Name", data.getKey());
+            appData.setTag("Data", data.getValue());
+
+            appDataList.appendTag(appData);
+        }
+
+        nbt.setTag("JCAppData", appDataList);
+
+        playerData.setTag("PaleoPadData", nbt);
     }
 
     @Override
-    public void loadNBTData(NBTTagCompound nbt)
+    public void loadNBTData(NBTTagCompound playerData)
     {
+        NBTTagCompound nbt = playerData.getCompoundTag("PaleoPadData");
+
         NBTTagList sequencedDNAList = nbt.getTagList("SequencedDNA", 10);
 
         for (int i = 0; i < sequencedDNAList.tagCount(); i++)
@@ -71,6 +97,15 @@ public class JCPlayerData implements IExtendedEntityProperties
             NBTTagCompound dnaTag = (NBTTagCompound) sequencedDNAList.get(i);
 
             sequencedDNA.add(DNA.readFromNBT(dnaTag));
+        }
+
+        NBTTagList appDataList = nbt.getTagList("JCAppData", 10);
+
+        for (int i = 0; i < appDataList.tagCount(); i++)
+        {
+            NBTTagCompound appData = (NBTTagCompound) appDataList.get(i);
+
+            this.appdata.put()
         }
     }
 

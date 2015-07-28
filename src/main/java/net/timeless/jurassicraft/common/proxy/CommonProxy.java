@@ -18,13 +18,11 @@ public class CommonProxy
         JurassiCraft.itemRegistry.register();
         JurassiCraft.blockRegistry.register();
         JurassiCraft.recipeRegistry.register();
+        JurassiCraft.networkManager.register();
 
         GameRegistry.registerWorldGenerator(new WorldGenerator(), 0);
 
         NetworkRegistry.INSTANCE.registerGuiHandler(JurassiCraft.instance, new JCGuiHandler());
-
-        JurassiCraft.wrapper = NetworkRegistry.INSTANCE.newSimpleChannel(JurassiCraft.modid);
-        //        JurassiCraft.wrapper.registerMessage(MessageCleaningTable.Handler.class, MessageCleaningTable.class, 0, Side.SERVER);
 
         CommonEventHandler eventHandler = new CommonEventHandler();
 

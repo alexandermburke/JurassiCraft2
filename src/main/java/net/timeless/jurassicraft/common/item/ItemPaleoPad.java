@@ -4,14 +4,17 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
+import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.client.gui.GuiPaleoPad;
 import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
+import net.timeless.jurassicraft.common.message.MessageSyncPaleoPad;
 
 public class ItemPaleoPad extends Item
 {
@@ -33,6 +36,10 @@ public class ItemPaleoPad extends Item
         if (player.worldObj.isRemote)
         {
             Minecraft.getMinecraft().displayGuiScreen(new GuiPaleoPad()); //Test for now must not use this though
+        }
+        else
+        {
+            JurassiCraft.networkManager.networkWrapper.sendTo(new MessageSyncPaleoPad(player), (EntityPlayerMP) player);
         }
 
         return stack;
