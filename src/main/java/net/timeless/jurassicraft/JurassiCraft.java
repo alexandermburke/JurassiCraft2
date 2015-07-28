@@ -6,14 +6,13 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.timeless.jurassicraft.common.block.JCBlockRegistry;
 import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
+import net.timeless.jurassicraft.common.message.JCNetworkManager;
 import net.timeless.jurassicraft.common.proxy.CommonProxy;
 import net.timeless.jurassicraft.common.recipe.JCRecipeRegistry;
-
 import org.apache.logging.log4j.Logger;
 
 @Mod(modid = JurassiCraft.modid, name = "JurassiCraft", version = "${version}")
@@ -21,7 +20,6 @@ public class JurassiCraft
 {
     @SidedProxy(serverSide = "net.timeless.jurassicraft.common.proxy.CommonProxy", clientSide = "net.timeless.jurassicraft.client.proxy.ClientProxy")
     public static CommonProxy proxy;
-    public static SimpleNetworkWrapper wrapper;
 
     public static final String modid = "jurassicraft";
 
@@ -35,6 +33,7 @@ public class JurassiCraft
     public static JCItemRegistry itemRegistry = new JCItemRegistry();
     public static JCBlockRegistry blockRegistry = new JCBlockRegistry();
     public static JCRecipeRegistry recipeRegistry = new JCRecipeRegistry();
+    public static JCNetworkManager networkManager = new JCNetworkManager();
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)

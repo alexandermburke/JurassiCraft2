@@ -9,6 +9,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.timeless.jurassicraft.common.dna.DNA;
 
 public class JCPlayerData implements IExtendedEntityProperties
@@ -19,7 +20,29 @@ public class JCPlayerData implements IExtendedEntityProperties
 
     public static JCPlayerData getPlayerData(EntityPlayer player)
     {
-        return (JCPlayerData) player.getExtendedProperties(JCPlayerData.identifier);
+        return FMLCommonHandler.instance().getEffectiveSide().isClient() ? getPlayerDataClient() : (JCPlayerData) player.getExtendedProperties(JCPlayerData.identifier);
+    }
+
+    private static JCPlayerData getPlayerDataClient()
+    {
+        return JCPlayerDataClient.getPlayerData();
+    }
+
+    public static void setPlayerData(EntityPlayer player, NBTTagCompound nbt)
+    {
+        if(FMLCommonHandler.instance().getEffectiveSide().isClient())
+        {
+            setPlayerDataClient(nbt);
+        }
+        else
+        {
+            getPlayerData(player).loadNBTData(nbt);
+        }
+    }
+
+    private static void setPlayerDataClient(NBTTagCompound nbt)
+    {
+        JCPlayerDataClient.updatePlayerData(nbt);
     }
 
     @Override
