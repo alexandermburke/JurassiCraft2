@@ -111,6 +111,9 @@ public class JCPlayerData implements IExtendedEntityProperties
 
     public void openApp(App app)
     {
+        if(appdata.containsKey(app.getName()))
+            app.readFromNBT(appdata.get(app.getName()));
+
         openApps.add(app);
     }
 
