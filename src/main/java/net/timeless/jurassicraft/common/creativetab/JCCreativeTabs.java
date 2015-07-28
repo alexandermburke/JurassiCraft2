@@ -96,7 +96,7 @@ public class JCCreativeTabs
         {
             public Item getTabIconItem()
             {
-                return Items.birch_door;
+                return Item.getItemFromBlock(JCBlockRegistry.saplings[0]);
             }
         };
     }

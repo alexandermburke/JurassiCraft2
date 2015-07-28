@@ -1,5 +1,6 @@
 package net.timeless.jurassicraft.common.block.tree;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.IProperty;
@@ -21,7 +22,6 @@ import java.util.Random;
 
 public class BlockJCSapling extends BlockBush implements IGrowable
 {
-
     private EnumType treeType;
 
     public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
@@ -32,6 +32,7 @@ public class BlockJCSapling extends BlockBush implements IGrowable
         treeType = type;
         setUnlocalizedName(name + "_sapling");
         this.setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
+        this.setStepSound(Block.soundTypeGrass);
 
         float f = 0.4F;
         this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 2.0F, 0.5F + f);
