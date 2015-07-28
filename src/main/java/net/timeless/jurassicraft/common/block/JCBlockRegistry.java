@@ -1,24 +1,18 @@
 package net.timeless.jurassicraft.common.block;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
-import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.api.ISubBlocksBlock;
 import net.timeless.jurassicraft.common.block.tree.*;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
-import net.timeless.jurassicraft.common.tileentity.TileCleaningStation;
-import net.timeless.jurassicraft.common.tileentity.TileDnaSequencer;
-import net.timeless.jurassicraft.common.tileentity.TileDnaSynthesizer;
-import net.timeless.jurassicraft.common.tileentity.TileEmbryoInseminationMachine;
-import net.timeless.jurassicraft.common.tileentity.TileEmbryonicMachine;
-import net.timeless.jurassicraft.common.tileentity.TileFossilGrinder;
+import net.timeless.jurassicraft.common.tileentity.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class JCBlockRegistry
 {
@@ -47,8 +41,6 @@ public class JCBlockRegistry
     public static BlockEmbryonicMachine embryonic_machine;
     public static BlockEmbryoInseminationMachine embryo_insemination_machine;
 
-    public static SubBlockTutorial jc_log;
-
     public static BlockAmber amber_ore;
 
     public void register()
@@ -63,7 +55,6 @@ public class JCBlockRegistry
         embryonic_machine = new BlockEmbryonicMachine();
         embryo_insemination_machine = new BlockEmbryoInseminationMachine();
 
-        jc_log = new SubBlockTutorial();
         amber_ore = new BlockAmber();
 
         List<Dinosaur> dinosaurs = JCEntityRegistry.getDinosaurs();
@@ -82,7 +73,6 @@ public class JCBlockRegistry
             registerBlock(encasedFossil, "Encased Fossil " + i);
         }
 
-        registerBlock(jc_log, "JC Log");
         registerBlock(amber_ore, "Amber Ore");
 
         //initialize EnumType meta lookup

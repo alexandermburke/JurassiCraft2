@@ -11,7 +11,6 @@ import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
 
 public class BlockJCLog extends BlockLog
 {
-
     private EnumType treeType;
 
     public BlockJCLog(EnumType type, String treeName)

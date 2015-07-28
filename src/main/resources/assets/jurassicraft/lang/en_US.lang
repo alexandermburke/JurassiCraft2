@@ -56,8 +56,6 @@ tile.fossil_block.name={period} Fossil
 tile.encased_fossil.name=Encased {period} Fossil
 tile.amber_ore.name=Amber Ore
 
-tile.jc_wood.name={wood} Wood
-
 tile.cleaning_station.name=Cleaning Station
 tile.fossil_grinder.name=Fossil Grinder
 tile.dna_sequencer.name=DNA Sequencer
@@ -65,8 +63,10 @@ tile.dna_synthesizer.name=DNA Synthesizer
 tile.embryonic_machine.name=Embryonic Machine
 tile.embryo_insemination_machine.name=Embryo Insemination Machine
 
-wood.0.name=First
-wood.1.name=Second
+tile.ginkgo_sapling.name=Ginkgo Sapling
+tile.ginkgo_planks.name=Ginkgo Planks
+tile.ginkgo_log.name=Ginkgo Log
+tile.ginkgo_leaves.name=Ginkgo Leaves
 
 //Containers ==================================================
 container.cleaning_station=Cleaning Station

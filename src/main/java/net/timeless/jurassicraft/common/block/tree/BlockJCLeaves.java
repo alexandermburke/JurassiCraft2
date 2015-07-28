@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -39,9 +40,8 @@ public class BlockJCLeaves extends BlockLeaves
         this.setHardness(0.2F);
         this.setLightOpacity(1);
         this.setStepSound(soundTypeGrass);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, Boolean.valueOf(true)).withProperty(DECAYABLE, Boolean.valueOf(true)));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, Boolean.valueOf(true)).withProperty(DECAYABLE, Boolean.valueOf(false)));
         this.setCreativeTab(JCCreativeTabs.plants);
-
 
         this.setGraphics();
     }
@@ -77,7 +77,7 @@ public class BlockJCLeaves extends BlockLeaves
 
     protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance)
     {
-        //does nothing, since Highlands trees don't drop apples.
+
     }
 
    /* protected int getSaplingDropChance(IBlockState state)
@@ -201,6 +201,4 @@ public class BlockJCLeaves extends BlockLeaves
         // returns Birch since it doesn't drop any apples. Probably safe, and safer than null.
         return BlockPlanks.EnumType.BIRCH;
     }
-
-
 }

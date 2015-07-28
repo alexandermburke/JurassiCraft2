@@ -75,11 +75,6 @@ public class JCRenderingRegistry
             ModelBakery.addVariantName(JCItemRegistry.soft_tissue, "jurassicraft:soft_tissue/soft_tissue_" + dinoName);
             ModelBakery.addVariantName(JCItemRegistry.syringe, "jurassicraft:syringe/syringe_" + dinoName);
         }
-
-        for (int i = 0; i < 2; i++) //This adds the variant names... because mc is evil
-        {
-            ModelBakery.addVariantName(Item.getItemFromBlock(JCBlockRegistry.jc_log), "jurassicraft:jc_log_" + i);
-        }
     }
 
     public void init()
@@ -127,11 +122,6 @@ public class JCRenderingRegistry
             this.registerBlockRenderer(modelMesher, fossil, "fossil_block_" + i, "inventory");
 
             i++;
-        }
-
-        for (i = 0; i < 2; i++)
-        {
-            this.registerBlockRenderer(modelMesher, JCBlockRegistry.jc_log, i, "jc_log_" + i, "inventory"); //Here i register one for each type with the metadata as a parmaeter
         }
 
         for (i = 0; i < JCBlockRegistry.numOfTrees; i++)
