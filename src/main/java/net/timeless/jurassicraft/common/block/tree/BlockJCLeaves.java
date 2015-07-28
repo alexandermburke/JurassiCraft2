@@ -106,7 +106,7 @@ public class BlockJCLeaves extends BlockLeaves
     public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
     {
         boolean fancyGraphics = Minecraft.getMinecraft().isFancyGraphicsEnabled();
-        
+
         if(this.fancyGraphics != fancyGraphics)
         {
             this.setGraphicsLevel(fancyGraphics);   
