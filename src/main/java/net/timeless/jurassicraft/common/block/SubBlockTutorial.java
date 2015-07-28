@@ -19,12 +19,12 @@ import net.timeless.jurassicraft.common.item.ItemJCLog;
 
 import java.util.List;
 
-public class BlockJCLog extends Block implements ISubBlocksBlock //We have to implement this to make a subblock. (It's one of our classes)
+public class SubBlockTutorial extends Block implements ISubBlocksBlock //We have to implement this to make a subblock. (It's one of our classes)
 {
     public static final PropertyInteger VARIANT = PropertyInteger.create("variant", 0, 15); //Metadata can only store a value from 0 - 15
     //PropertyInteger is a BlockState property that is a number. BlockStates use 'properties' and you can have multiple if you want
 
-    public BlockJCLog()
+    public SubBlockTutorial()
     {
         super(Material.wood);
         this.setUnlocalizedName("jc_log");

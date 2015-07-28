@@ -1,5 +1,6 @@
 package net.timeless.jurassicraft.common.creativetab;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.timeless.jurassicraft.common.block.JCBlockRegistry;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
@@ -14,6 +15,7 @@ public class JCCreativeTabs
     public static CreativeTabJurassiCraft eggs;
     public static CreativeTabJurassiCraft spawnEggs;
     public static CreativeTabJurassiCraft foods;
+    public static CreativeTabJurassiCraft plants;
 
     public void register()
     {
@@ -87,6 +89,14 @@ public class JCCreativeTabs
             public Item getTabIconItem()
             {
                 return Item.getItemFromBlock(JCBlockRegistry.fossil_grinder);
+            }
+        };
+
+        plants = new CreativeTabJurassiCraft("jurassicraft.plants")
+        {
+            public Item getTabIconItem()
+            {
+                return Items.birch_door;
             }
         };
     }

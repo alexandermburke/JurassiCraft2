@@ -133,6 +133,14 @@ public class JCRenderingRegistry
             this.registerBlockRenderer(modelMesher, JCBlockRegistry.jc_log, i, "jc_log_" + i, "inventory"); //Here i register one for each type with the metadata as a parmaeter
         }
 
+        for (i = 0; i < JCBlockRegistry.numOfTrees; i++)
+        {
+            this.registerBlockRenderer(modelMesher, JCBlockRegistry.leaves[i], "jurassicraft_" + i + "_leaves", "inventory");
+            this.registerBlockRenderer(modelMesher, JCBlockRegistry.saplings[i], "jurassicraft_leaves_", "inventory");
+            this.registerBlockRenderer(modelMesher, JCBlockRegistry.planks[i], "jurassicraft_leaves_", "inventory");
+            this.registerBlockRenderer(modelMesher, JCBlockRegistry.woods[i], "jurassicraft_leaves_", "inventory");
+        }
+
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.amber_ore, "amber_ore", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.cleaning_station, "cleaning_station", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.fossil_grinder, "fossil_grinder", "inventory");
