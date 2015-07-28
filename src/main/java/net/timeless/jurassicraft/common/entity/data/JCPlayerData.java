@@ -109,6 +109,20 @@ public class JCPlayerData implements IExtendedEntityProperties
         }
     }
 
+    public void openApp(App app)
+    {
+        openApps.add(app);
+    }
+
+    public void closeApp(App app)
+    {
+        NBTTagCompound data = new NBTTagCompound();
+        app.writeToNBT(data);
+
+        appdata.put(app.getName(), data);
+        openApps.remove(app);
+    }
+
     public void addSequencedDNA(DNA dna)
     {
         this.sequencedDNA.add(dna);
