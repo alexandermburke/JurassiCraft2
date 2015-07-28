@@ -105,7 +105,7 @@ public class JCPlayerData implements IExtendedEntityProperties
         {
             NBTTagCompound appData = (NBTTagCompound) appDataList.get(i);
 
-            this.appdata.put()
+            this.appdata.put(appData.getString("Name"), appData.getCompoundTag("Data"));
         }
     }
 
