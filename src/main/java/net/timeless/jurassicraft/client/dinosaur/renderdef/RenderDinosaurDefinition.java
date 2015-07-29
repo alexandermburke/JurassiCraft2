@@ -2,6 +2,8 @@ package net.timeless.jurassicraft.client.dinosaur.renderdef;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
 import net.timeless.jurassicraft.client.render.entity.RenderDinosaur;
 import net.timeless.jurassicraft.client.render.entity.RenderDinosaurMultilayer;
@@ -9,6 +11,7 @@ import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
 
+@SideOnly(Side.CLIENT)
 public abstract class RenderDinosaurDefinition
 {
     private Dinosaur dinosaur;

@@ -8,7 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.reuxertz.ecoapi.ecology.role.IHerbivore;
 import net.reuxertz.ecoapi.entity.IEntityAICreature;
-import net.timeless.jurassicraft.client.model.animation.ai.JCNonAutoAnimBase;
+import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbivore;
 
 public class EntityHypsilophodon extends EntityDinosaurDefensiveHerbivore implements IEntityAICreature, IHerbivore

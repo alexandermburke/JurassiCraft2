@@ -1,10 +1,6 @@
 package net.timeless.jurassicraft.client.render;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.google.common.collect.Maps;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
@@ -18,30 +14,8 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefAchillobator;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefAnkylosaurus;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefBrachiosaurus;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefCarnotaurus;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefCoelacanth;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefCompsognathus;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefDilophosaurus;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefDodo;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefDunkleosteus;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefGallimimus;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefGiganotosaurus;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefHypsilophodon;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefIndominusRex;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefMajungasaurus;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefParasaurolophus;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefPteranodon;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefRugops;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefSegisaurus;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefSpinosaurus;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefStegosaurus;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefTriceratops;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefTyrannosaurusRex;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDefVelociraptor;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDinosaurDefinition;
+import net.timeless.jurassicraft.client.dinosaur.renderdef.*;
+import net.timeless.jurassicraft.client.gui.app.GuiAppRegistry;
 import net.timeless.jurassicraft.client.render.entity.RenderBluePrint;
 import net.timeless.jurassicraft.client.render.entity.RenderJurassiCraftSign;
 import net.timeless.jurassicraft.common.block.BlockEncasedFossil;
@@ -54,7 +28,7 @@ import net.timeless.jurassicraft.common.entity.item.EntityBluePrint;
 import net.timeless.jurassicraft.common.entity.item.EntityJurassiCraftSign;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
-import com.google.common.collect.Maps;
+import java.util.Map;
 
 @SideOnly(Side.CLIENT)
 public class JCRenderingRegistry
@@ -102,6 +76,8 @@ public class JCRenderingRegistry
         registerRenderDef(new RenderDefTyrannosaurusRex());
         registerRenderDef(new RenderDefVelociraptor());
         registerRenderDef(new RenderDefDodo());
+
+        GuiAppRegistry.register();
 
         // Blocks
         ItemModelMesher modelMesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();

@@ -1,6 +1,8 @@
 package net.timeless.unilib.client.model.json;
 
 import net.minecraft.entity.Entity;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * Interface for animating Tabula models.
@@ -10,6 +12,7 @@ import net.minecraft.entity.Entity;
  * @author Gegy1000
  * TAKEN FROM LLIBRARY
  */
+@SideOnly(Side.CLIENT)
 public interface IModelAnimator
 {
     /**
