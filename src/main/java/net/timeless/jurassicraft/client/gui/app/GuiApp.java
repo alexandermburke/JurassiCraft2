@@ -3,6 +3,7 @@ package net.timeless.jurassicraft.client.gui.app;
 import com.google.common.collect.Lists;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.common.entity.data.JCPlayerData;
@@ -50,4 +51,6 @@ public abstract class GuiApp
     public abstract void actionPerformed(GuiButton button);
 
     public abstract void init();
+
+    public abstract ResourceLocation getTexture();
 }
