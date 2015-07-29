@@ -19,6 +19,7 @@ public class CommonProxy
         JurassiCraft.blockRegistry.register();
         JurassiCraft.recipeRegistry.register();
         JurassiCraft.networkManager.register();
+        JurassiCraft.appRegistry.register();
 
         GameRegistry.registerWorldGenerator(new WorldGenerator(), 0);
 

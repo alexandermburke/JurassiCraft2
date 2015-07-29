@@ -11,6 +11,7 @@ import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 import net.timeless.jurassicraft.common.message.JCNetworkManager;
+import net.timeless.jurassicraft.common.paleopad.AppRegistry;
 import net.timeless.jurassicraft.common.proxy.CommonProxy;
 import net.timeless.jurassicraft.common.recipe.JCRecipeRegistry;
 import org.apache.logging.log4j.Logger;
@@ -34,6 +35,7 @@ public class JurassiCraft
     public static JCBlockRegistry blockRegistry = new JCBlockRegistry();
     public static JCRecipeRegistry recipeRegistry = new JCRecipeRegistry();
     public static JCNetworkManager networkManager = new JCNetworkManager();
+    public static AppRegistry appRegistry = new AppRegistry();
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)

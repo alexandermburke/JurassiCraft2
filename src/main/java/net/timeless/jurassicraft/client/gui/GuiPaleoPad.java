@@ -8,6 +8,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
+import net.timeless.jurassicraft.common.paleopad.App;
+import net.timeless.jurassicraft.common.paleopad.AppRegistry;
+
+import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public class GuiPaleoPad extends GuiScreen
@@ -32,6 +36,13 @@ public class GuiPaleoPad extends GuiScreen
 
         ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
         drawTexturedModalRect(dimensions.getScaledWidth() / 2 - 128, dimensions.getScaledHeight() / 2 - 128, 0, 0, 256, 256);
+
+        List<App> apps = AppRegistry.getApps();
+
+        for (int i = 0; i < apps.size(); i++)
+        {
+            //TODO
+        }
 
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
