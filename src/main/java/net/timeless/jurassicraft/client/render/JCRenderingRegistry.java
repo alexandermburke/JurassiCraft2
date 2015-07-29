@@ -144,22 +144,7 @@ public class JCRenderingRegistry
 
     public void postInit()
     {
-        List<Dinosaur> dinosaurs = JCEntityRegistry.getDinosaurs();
-
-        Map<Dinosaur, Integer> ids = new HashMap<Dinosaur, Integer>();
-
-        int id = 0;
-
-        for (Dinosaur dino : dinosaurs)
-        {
-            ids.put(dino, id);
-
-            id++;
-        }
-
-        Collections.sort(dinosaurs);
-
-        for (Dinosaur dino : dinosaurs)
+        for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
             RenderingRegistry.registerEntityRenderingHandler(dino.getDinosaurClass(), renderDefs.get(dino).getRenderer());
 
         RenderingRegistry.registerEntityRenderingHandler(EntityBluePrint.class, new RenderBluePrint());
@@ -181,7 +166,7 @@ public class JCRenderingRegistry
 
         int meta = 0;
 
-        for (Dinosaur dino : dinosaurs)
+        for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
         {
             String dinoName = dino.getName().toLowerCase().replaceAll(" ", "_");
 

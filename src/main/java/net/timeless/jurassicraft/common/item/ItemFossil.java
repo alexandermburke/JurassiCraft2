@@ -10,10 +10,7 @@ import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.lang.AdvLang;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ItemFossil extends Item
 {
@@ -49,7 +46,7 @@ public class ItemFossil extends Item
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List subtypes)
     {
-        List<Dinosaur> dinosaurs = JCEntityRegistry.getDinosaurs();
+        List<Dinosaur> dinosaurs = new ArrayList<>(JCEntityRegistry.getDinosaurs());
 
         Map<Dinosaur, Integer> ids = new HashMap<Dinosaur, Integer>();
 
