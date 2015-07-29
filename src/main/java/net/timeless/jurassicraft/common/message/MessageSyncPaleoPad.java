@@ -26,7 +26,7 @@ public class MessageSyncPaleoPad implements IMessage
 
     public MessageSyncPaleoPad(EntityPlayer player)
     {
-        NBTTagCompound nbt = new NBTTagCompound();
+        nbt = new NBTTagCompound();
         JCPlayerData.getPlayerData(player).saveNBTData(nbt);
     }
 
