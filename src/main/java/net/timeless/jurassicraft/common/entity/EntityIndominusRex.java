@@ -30,7 +30,7 @@ public class EntityIndominusRex extends EntityDinosaurAggressive implements ICar
     {
         super(world);
 
-        // Placeholder AI
+      /*  // Placeholder AI
         this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, dinosaur.getAttackSpeed(), false));
         this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
         //        this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPig.class, dinosaur.getAttackSpeed(), false));
@@ -41,6 +41,7 @@ public class EntityIndominusRex extends EntityDinosaurAggressive implements ICar
         this.tasks.addTask(6, new EntityAIJCWander(this, 40));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityLivingBase.class, 6.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
+        */
     }
 
     public void onUpdate()

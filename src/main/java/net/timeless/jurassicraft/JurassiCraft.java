@@ -42,7 +42,6 @@ public class JurassiCraft
     {
         logger = event.getModLog();
         logger.info("Loading JurassiCraft...");
-
         proxy.preInit();
     }
 
@@ -56,7 +55,6 @@ public class JurassiCraft
     public void postInit(FMLPostInitializationEvent event)
     {
         proxy.postInit();
-
         logger.info("Successfully loaded JurassicCraft!");
     }
 
