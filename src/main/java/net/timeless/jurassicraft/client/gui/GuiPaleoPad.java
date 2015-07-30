@@ -14,6 +14,7 @@ import net.timeless.jurassicraft.client.gui.app.GuiApp;
 import net.timeless.jurassicraft.client.gui.app.GuiAppRegistry;
 import net.timeless.jurassicraft.common.paleopad.App;
 import net.timeless.jurassicraft.common.paleopad.AppRegistry;
+import org.lwjgl.opengl.GL11;
 
 import java.util.List;
 
@@ -41,9 +42,31 @@ public class GuiPaleoPad extends GuiScreen
         ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
         int scaledWidth = dimensions.getScaledWidth();
         int scaledHeight = dimensions.getScaledHeight();
-        drawTexturedModalRect(scaledWidth / 2 - 128, scaledHeight / 2 - 128, 0, 0, 256, 256);
+        drawTexturedModalRect(scaledWidth / 2 - 128, 40, 0, 0, 256, 256);
 
         List<App> apps = AppRegistry.getApps();
+
+        double worldTime = mc.theWorld.getWorldTime() + 6000 % 24000;
+
+        double hours = worldTime / 1000;
+        double minutes = hours * 60;
+
+        String hoursStr = "" + (int) hours % 24;
+
+        while(hoursStr.length() < 2)
+        {
+            hoursStr = "0" + hoursStr;
+        }
+
+        String minutesStr = "" + (int) minutes % 60;
+
+        while(minutesStr.length() < 2)
+        {
+            minutesStr = "0" + minutesStr;
+        }
+
+        drawScaledText(hoursStr + ":" + minutesStr, scaledWidth / 2, 55, 1.0F, 0xFFFFFF);
+        drawScaledRect(scaledWidth / 2 - 115, 65, 458, 2, 0.5F, 0x404040);
 
         for (int i = 0; i < apps.size(); i++)
         {
@@ -55,7 +78,7 @@ public class GuiPaleoPad extends GuiScreen
 
             mc.getTextureManager().bindTexture(gui.getTexture());
 
-            drawTexturedModalRect(x + scaledWidth / 2 - 105, y + scaledHeight / 2 - 105, 0, 0, 16, 16, 16, 16);
+            drawScaledTexturedModalRect(x + scaledWidth / 2 - 110, y + 70, 0, 0, 32, 32, 32, 32, 1.0F);
         }
 
         super.drawScreen(mouseX, mouseY, partialTicks);
@@ -64,8 +87,15 @@ public class GuiPaleoPad extends GuiScreen
     /**
      * Draws a textured rectangle at the stored z-value. Args: x, y, u, v, width, height
      */
-    public void drawTexturedModalRect(int x, int y, int textureX, int textureY, int width, int height, int textureWidth, int textureHeight)
+    public void drawScaledTexturedModalRect(int x, int y, int textureX, int textureY, int width, int height, int textureWidth, int textureHeight, float scale)
     {
+        GL11.glPushMatrix();
+
+        x /= scale;
+        y /= scale;
+
+        GL11.glScalef(scale, scale, scale);
+
         float f = 1.0F / (float) textureWidth;
         float f1 = 1.0F / (float) textureHeight;
         Tessellator tessellator = Tessellator.getInstance();
@@ -76,6 +106,62 @@ public class GuiPaleoPad extends GuiScreen
         worldrenderer.addVertexWithUV((double)(x + width), (double)(y + 0), (double)this.zLevel, (double)((float)(textureX + width) * f), (double)((float)(textureY + 0) * f1));
         worldrenderer.addVertexWithUV((double)(x + 0), (double)(y + 0), (double)this.zLevel, (double)((float)(textureX + 0) * f), (double)((float)(textureY + 0) * f1));
         tessellator.draw();
+
+        GL11.glColor3f(1.0F, 1.0F, 1.0F);
+
+        GL11.glPopMatrix();
+    }
+
+    /**
+     * Draws a textured rectangle at the stored z-value. Args: x, y, u, v, width, height
+     */
+    public void drawScaledRect(int x, int y, int width, int height, float scale, int colour)
+    {
+        GL11.glPushMatrix();
+
+        x /= scale;
+        y /= scale;
+
+        GL11.glScalef(scale, scale, scale);
+
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+
+        float red = (float)(colour >> 16 & 255) / 255.0F;
+        float blue = (float)(colour >> 8 & 255) / 255.0F;
+        float green = (float)(colour & 255) / 255.0F;
+
+        GL11.glColor3f(red, green, blue);
+
+        float f = 1.0F / (float) width;
+        float f1 = 1.0F / (float) height;
+        Tessellator tessellator = Tessellator.getInstance();
+        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+        worldrenderer.startDrawingQuads();
+        worldrenderer.addVertexWithUV((double)(x + 0), (double)(y + height), (double)this.zLevel, (double)(0), (double)((float)(height) * f1));
+        worldrenderer.addVertexWithUV((double)(x + width), (double)(y + height), (double)this.zLevel, (double)((float)(width) * f), (double)((float)( height) * f1));
+        worldrenderer.addVertexWithUV((double)(x + width), (double)(y + 0), (double)this.zLevel, (double)((float)(width) * f), (double)((float) 0));
+        worldrenderer.addVertexWithUV((double)(x + 0), (double)(y + 0), (double)this.zLevel, (double)((float)0), (double)((float)0));
+        tessellator.draw();
+
+        GL11.glColor3f(1.0F, 1.0F, 1.0F);
+
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+
+        GL11.glPopMatrix();
+    }
+
+    public void drawScaledText(String text, int x, int y, float scale, int colour)
+    {
+        GL11.glPushMatrix();
+
+        GL11.glScalef(scale, scale, scale);
+
+        x /= scale;
+        y /= scale;
+
+        drawCenteredString(fontRendererObj, text, x, y, colour);
+
+        GL11.glPopMatrix();
     }
 
     @Override
