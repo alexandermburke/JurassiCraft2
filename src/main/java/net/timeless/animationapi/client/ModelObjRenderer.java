@@ -6,7 +6,6 @@ import net.minecraft.client.renderer.GLAllocation;
 import net.minecraftforge.client.model.IModelCustomData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
 import org.lwjgl.opengl.GL11;
 
 /**

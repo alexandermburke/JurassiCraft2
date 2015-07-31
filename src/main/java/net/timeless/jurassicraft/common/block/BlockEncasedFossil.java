@@ -1,7 +1,5 @@
 package net.timeless.jurassicraft.common.block;
 
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -20,6 +18,8 @@ import net.timeless.jurassicraft.common.api.ISubBlocksBlock;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.item.ItemEncasedFossil;
+
+import java.util.List;
 
 public class BlockEncasedFossil extends Block implements ISubBlocksBlock
 {

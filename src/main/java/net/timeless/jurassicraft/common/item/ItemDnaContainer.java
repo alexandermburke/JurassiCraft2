@@ -1,13 +1,13 @@
 package net.timeless.jurassicraft.common.item;
 
-import java.util.List;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.timeless.jurassicraft.common.lang.AdvLang;
+
+import java.util.List;
 
 public class ItemDnaContainer extends Item
 {

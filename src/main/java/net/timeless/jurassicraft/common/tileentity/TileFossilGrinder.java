@@ -1,7 +1,5 @@
 package net.timeless.jurassicraft.common.tileentity;
 
-import java.util.Random;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
@@ -25,6 +23,8 @@ import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.container.ContainerFossilGrinder;
 import net.timeless.jurassicraft.common.item.ItemFossil;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
+
+import java.util.Random;
 
 public class TileFossilGrinder extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {

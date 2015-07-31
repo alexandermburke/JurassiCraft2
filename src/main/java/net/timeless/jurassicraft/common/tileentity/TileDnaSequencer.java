@@ -1,8 +1,5 @@
 package net.timeless.jurassicraft.common.tileentity;
 
-import java.util.Random;
-import java.util.UUID;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
@@ -28,6 +25,9 @@ import net.timeless.jurassicraft.common.dna.DNA;
 import net.timeless.jurassicraft.common.entity.data.JCPlayerData;
 import net.timeless.jurassicraft.common.item.ItemPaleoPad;
 import net.timeless.jurassicraft.common.item.ItemSoftTissue;
+
+import java.util.Random;
+import java.util.UUID;
 
 public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {

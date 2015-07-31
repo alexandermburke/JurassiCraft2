@@ -1,7 +1,5 @@
 package net.timeless.jurassicraft.common.item;
 
-import java.util.*;
-
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -25,6 +23,8 @@ import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.lang.AdvLang;
+
+import java.util.*;
 
 public class ItemDinosaurSpawnEgg extends Item
 {

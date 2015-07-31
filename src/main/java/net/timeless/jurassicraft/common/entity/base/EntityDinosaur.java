@@ -1,12 +1,11 @@
 package net.timeless.jurassicraft.common.entity.base;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -364,5 +363,15 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     protected String randomSound(String[] sounds)
     {
         return JurassiCraft.modid + ":" + sounds[rand.nextInt(sounds.length)];
+    }
+
+    public double getAttackDamage()
+    {
+        return transitionFromAge(dinosaur.getBabyStrength(), dinosaur.getAdultStrength());
+    }
+
+    public boolean isStronger(EntityDinosaur dinosaur)
+    {
+        return this.getHealth() * (float) this.getAttackDamage() < dinosaur.getHealth() * (float) dinosaur.getAttackDamage();
     }
 }

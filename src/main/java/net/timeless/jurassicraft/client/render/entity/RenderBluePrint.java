@@ -15,7 +15,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.entity.item.EntityBluePrint;
-
 import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)

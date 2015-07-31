@@ -1,7 +1,5 @@
 package net.timeless.jurassicraft.common.block;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -21,6 +19,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.common.tileentity.TileFossilGrinder;
+
+import java.util.Random;
 
 public class BlockFossilGrinder extends BlockOriented
 {

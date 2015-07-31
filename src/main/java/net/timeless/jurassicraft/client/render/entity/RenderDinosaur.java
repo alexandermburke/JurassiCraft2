@@ -1,7 +1,5 @@
 package net.timeless.jurassicraft.client.render.entity;
 
-import java.util.Random;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -17,8 +15,9 @@ import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDinosaurDefinit
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.EntityVelociraptor;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
-
 import org.lwjgl.opengl.GL11;
+
+import java.util.Random;
 
 @SideOnly(Side.CLIENT)
 public class RenderDinosaur extends RenderLiving

@@ -1,11 +1,11 @@
 package net.timeless.jurassicraft.common.lang;
 
+import net.minecraft.util.StatCollector;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
-
-import net.minecraft.util.StatCollector;
 
 public class AdvLang
 {

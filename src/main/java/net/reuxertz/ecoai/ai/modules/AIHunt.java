@@ -14,6 +14,7 @@ import net.reuxertz.ecoapi.ecology.EcoFauna;
 import net.reuxertz.ecoapi.entity.Target;
 import net.reuxertz.ecoapi.item.BaseItem;
 import net.reuxertz.ecoapi.util.EntityHelper;
+import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 
 import java.util.List;
 
@@ -41,31 +42,43 @@ public class AIHunt extends AIModule
         List<Entity> distEnts = EntityHelper.getEntitiesWithinDistance(this.getAgent(), 10, 10);
         for (Entity distEnt : distEnts)
         {
-            boolean seek = false, heldItem = false;
-            Target t = null;
-            //Is Entity Item
-            if ((EntityItem.class.isInstance(distEnt) && (this.demand.isItemDemanded(((EntityItem) distEnt).getEntityItem()) != null) ||
-                    this.demand.isEntityDemanded(distEnt) != null))
-                t = new Target(this.getAgent().worldObj, distEnt);
-            //seek = true;
+            boolean strongerDino = false;
 
-            if (EntityPlayer.class.isInstance(distEnt) && this.demand.isItemDemanded(((EntityPlayer) distEnt).getHeldItem()) != null)
+            if(distEnt instanceof EntityDinosaur && getAgent() instanceof EntityDinosaur)
             {
-                //seek = true;
-                heldItem = true;
-                t = new Target(this.getAgent().worldObj, distEnt, ((EntityPlayer) distEnt).getHeldItem());
+                EntityDinosaur agent = (EntityDinosaur) this.getAgent();
+
+                strongerDino = agent.isStronger((EntityDinosaur) distEnt);
             }
 
-            if (!seek)
+            if(!strongerDino)
             {
-                List<ItemStack> dropItemStacks = EcoFauna.getDropItemsByEntity(distEnt);
-                if (dropItemStacks != null && dropItemStacks.size() > 0 && this.demand.isItemDemanded(dropItemStacks.get(0)) != null)
+                boolean seek = false, heldItem = false;
+                Target t = null;
+                //Is Entity Item
+                if ((EntityItem.class.isInstance(distEnt) && (this.demand.isItemDemanded(((EntityItem) distEnt).getEntityItem()) != null) ||
+                        this.demand.isEntityDemanded(distEnt) != null))
                     t = new Target(this.getAgent().worldObj, distEnt);
                 //seek = true;
-            }
 
-            if (t != null && this.evaluateTarget(t))
-                return t;
+                if (EntityPlayer.class.isInstance(distEnt) && this.demand.isItemDemanded(((EntityPlayer) distEnt).getHeldItem()) != null)
+                {
+                    //seek = true;
+                    heldItem = true;
+                    t = new Target(this.getAgent().worldObj, distEnt, ((EntityPlayer) distEnt).getHeldItem());
+                }
+
+                if (!seek)
+                {
+                    List<ItemStack> dropItemStacks = EcoFauna.getDropItemsByEntity(distEnt);
+                    if (dropItemStacks != null && dropItemStacks.size() > 0 && this.demand.isItemDemanded(dropItemStacks.get(0)) != null)
+                        t = new Target(this.getAgent().worldObj, distEnt);
+                    //seek = true;
+                }
+
+                if (t != null && this.evaluateTarget(t))
+                    return t;
+            }
         }
 
         return null;

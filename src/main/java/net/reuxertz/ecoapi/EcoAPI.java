@@ -1,7 +1,5 @@
 package net.reuxertz.ecoapi;
 
-import net.minecraft.entity.passive.EntityRabbit;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.reuxertz.ecoapi.ecology.EcoFauna;
 import net.reuxertz.ecoapi.ecology.role.IEcologicalRole;

@@ -1,9 +1,7 @@
 package net.timeless.jurassicraft.common.entity.item;
 
+import com.google.common.collect.Lists;
 import io.netty.buffer.ByteBuf;
-
-import java.util.ArrayList;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHanging;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,7 +16,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 
 public class EntityJurassiCraftSign extends EntityHanging implements IEntityAdditionalSpawnData
 {

@@ -1,10 +1,5 @@
 package net.timeless.jurassicraft.common.entity.data;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -14,6 +9,11 @@ import net.minecraftforge.common.IExtendedEntityProperties;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.timeless.jurassicraft.common.dna.DNA;
 import net.timeless.jurassicraft.common.paleopad.App;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class JCPlayerData implements IExtendedEntityProperties
 {

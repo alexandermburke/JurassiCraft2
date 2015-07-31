@@ -1,20 +1,16 @@
 package net.timeless.jurassicraft.common.entity.base;
 
-import java.util.HashMap;
-import java.util.List;
-
+import com.google.common.collect.Lists;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
-import net.reuxertz.ecoapi.EcoAPI;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.dinosaur.*;
 import net.timeless.jurassicraft.common.entity.item.EntityBluePrint;
 import net.timeless.jurassicraft.common.entity.item.EntityJurassiCraftSign;
-import net.timeless.jurassicraft.common.item.JCItemRegistry;
 import net.timeless.jurassicraft.common.period.EnumTimePeriod;
 
-import com.google.common.collect.Lists;
+import java.util.HashMap;
+import java.util.List;
 
 public class JCEntityRegistry
 {

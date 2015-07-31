@@ -3,11 +3,7 @@ package net.timeless.jurassicraft.common.item;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.timeless.jurassicraft.common.block.BlockFossil;
-import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
-import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.lang.AdvLang;
-import net.timeless.jurassicraft.common.period.EnumTimePeriod;
 
 public class ItemJCLog extends ItemBlock
 {

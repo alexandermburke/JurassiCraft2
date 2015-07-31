@@ -1,7 +1,5 @@
 package net.timeless.jurassicraft.common.item;
 
-import java.util.*;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -11,6 +9,8 @@ import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.lang.AdvLang;
+
+import java.util.*;
 
 public class ItemDinosaurSteak extends Item
 {
