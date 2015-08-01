@@ -19,6 +19,6 @@ public class GeneticsHelper
 
     private static int rand(Random rand, int range, int quality)
     {
-        return rand.nextInt(range * (int) Math.ceil((101.0F - (float) quality) / 10.0F));
+        return rand.nextInt(range) + ((100 - quality) / 10);
     }
 }

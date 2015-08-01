@@ -83,7 +83,7 @@ public class RenderDinosaurMultilayer extends RenderLiving
 
         float scale = (float) entityDinosaur.transitionFromAge(renderDef.getBabyScaleAdjustment(), renderDef.getAdultScaleAdjustment());
 
-        scale -= (((float) entityDinosaur.getScaleOffset()) * 0.005F) - 0.15F;
+        scale *= (((float) entityDinosaur.getScaleOffset()) * 0.09F);
 
         shadowSize = scale * renderDef.getShadowSize();
 
