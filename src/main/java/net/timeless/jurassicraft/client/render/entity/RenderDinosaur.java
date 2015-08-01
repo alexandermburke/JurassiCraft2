@@ -67,6 +67,9 @@ public class RenderDinosaur extends RenderLiving
         EntityDinosaur entityDinosaur = (EntityDinosaur) entity;
 
         float scale = (float) entityDinosaur.transitionFromAge(renderDef.getBabyScaleAdjustment(), renderDef.getAdultScaleAdjustment());
+
+        scale -= (((float) entityDinosaur.getScaleOffset()) * 0.005F) - 0.15F;
+
         shadowSize = scale * renderDef.getShadowSize();
 
         GL11.glTranslatef(renderDef.getRenderXOffset() * scale, renderDef.getRenderYOffset() * scale, renderDef.getRenderZOffset() * scale);

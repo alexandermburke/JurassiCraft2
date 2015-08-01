@@ -22,6 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.container.ContainerDNASequencer;
 import net.timeless.jurassicraft.common.dna.DNA;
+import net.timeless.jurassicraft.common.dna.GeneticsHelper;
 import net.timeless.jurassicraft.common.entity.data.JCPlayerData;
 import net.timeless.jurassicraft.common.item.ItemPaleoPad;
 import net.timeless.jurassicraft.common.item.ItemSoftTissue;
@@ -336,7 +337,7 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
                 }
             }
 
-            JCPlayerData.getPlayerData(player).addSequencedDNA(new DNA(quality, slots[0].getItemDamage()));
+            JCPlayerData.getPlayerData(player).addSequencedDNA(new DNA(quality, GeneticsHelper.randomGenetics(rand, slots[0].getItemDamage(), quality).toString()));
 
             slots[0].stackSize--;
 

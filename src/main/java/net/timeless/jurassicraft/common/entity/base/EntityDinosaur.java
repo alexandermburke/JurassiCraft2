@@ -12,12 +12,15 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.reuxertz.ecoapi.entity.EntityAICreature;
 import net.timeless.animationapi.AIAnimation;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
+import net.timeless.jurassicraft.common.dna.GeneticsContainer;
+import net.timeless.jurassicraft.common.dna.GeneticsHelper;
 import net.timeless.jurassicraft.common.item.ItemBluePrint;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
@@ -25,8 +28,6 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 {
     protected Dinosaur dinosaur;
     protected int randTexture;
-
-    protected boolean gender;
 
     protected int dinosaurAge;
 
@@ -37,12 +38,15 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     private int animTick;
     private int animID;
 
+    private GeneticsContainer genetics;
+
     public AIAnimation currentAnim = null;
 
     public void setNavigator(PathNavigate pn)
     {
         this.navigator = pn;
     }
+
     public EntityDinosaur(World world)
     {
         super(world);
@@ -50,12 +54,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
         dinosaurAge = 0;
 
-        gender = rand.nextBoolean();
-
-        if (gender)
-            randTexture = rand.nextInt(dinosaur.getMaleTextures().length);
-        else
-            randTexture = rand.nextInt(dinosaur.getFemaleTextures().length);
+        genetics = GeneticsHelper.randomGenetics(rand, getDinosaur(), getDNAQuality());
 
         adjustHitbox();
 
@@ -127,6 +126,16 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         return (float) transitionFromAge(1.5F, 1.0F);
     }
 
+    public void setGenetics(String genetics)
+    {
+        this.genetics = new GeneticsContainer(genetics);
+    }
+
+    public GeneticsContainer getGenetics()
+    {
+        return genetics;
+    }
+
     public void onLivingUpdate()
     {
         super.onLivingUpdate();
@@ -175,11 +184,6 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         return dinosaur;
     }
 
-    public boolean isMale()
-    {
-        return gender;
-    }
-
     @Override
     public boolean canDespawn()
     {
@@ -190,22 +194,22 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     {
         super.writeToNBT(nbt);
 
-        nbt.setBoolean("Gender", gender);
         nbt.setInteger("Texture", randTexture);
         nbt.setDouble("Dinosaur Age", dinosaurAge);
         nbt.setBoolean("IsCarcass", isCarcass);
         nbt.setInteger("DNAQuality", quality);
+        nbt.setString("Genetics", genetics.toString());
     }
 
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
 
-        gender = nbt.getBoolean("Gender");
         randTexture = nbt.getInteger("Texture");
         dinosaurAge = nbt.getInteger("Dinosaur Age");
         isCarcass = nbt.getBoolean("IsCarcass");
         quality = nbt.getInteger("DNAQuality");
+        genetics = new GeneticsContainer(nbt.getString("Genetics"));
 
         adjustHitbox();
     }
@@ -213,21 +217,22 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     @Override
     public void writeSpawnData(ByteBuf buffer)
     {
-        buffer.writeBoolean(gender);
         buffer.writeInt(randTexture);
         buffer.writeInt(dinosaurAge);
         buffer.writeBoolean(isCarcass);
         buffer.writeInt(quality);
+        ByteBufUtils.writeUTF8String(buffer, genetics.toString());
     }
 
     @Override
     public void readSpawnData(ByteBuf additionalData)
     {
-        gender = additionalData.readBoolean();
         randTexture = additionalData.readInt();
         dinosaurAge = additionalData.readInt();
         isCarcass = additionalData.readBoolean();
         quality = additionalData.readInt();
+
+        genetics = new GeneticsContainer(ByteBufUtils.readUTF8String(additionalData));
 
         adjustHitbox();
     }
@@ -373,5 +378,15 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     public boolean isStronger(EntityDinosaur dinosaur)
     {
         return this.getHealth() * (float) this.getAttackDamage() < dinosaur.getHealth() * (float) dinosaur.getAttackDamage();
+    }
+
+    public boolean isMale()
+    {
+        return genetics.isMale();
+    }
+
+    public int getScaleOffset()
+    {
+        return genetics.getScaleOffset();
     }
 }

@@ -5,12 +5,19 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
+import net.timeless.jurassicraft.common.dna.GeneticsContainer;
+import net.timeless.jurassicraft.common.dna.GeneticsHelper;
 import net.timeless.jurassicraft.common.lang.AdvLang;
 
 import java.util.List;
 
 public class ItemDnaContainer extends Item
 {
+    public int getContainerDinosaur(ItemStack stack)
+    {
+        return 0;
+    }
+
     public int getDNAQuality(EntityPlayer player, ItemStack stack)
     {
         int quality = player.capabilities.isCreativeMode ? 100 : 0;
@@ -20,16 +27,47 @@ public class ItemDnaContainer extends Item
         if (nbt == null)
         {
             nbt = new NBTTagCompound();
-            nbt.setInteger("DNAQuality", quality);
+        }
+
+        if (nbt.hasKey("DNAQuality"))
+        {
+            quality = nbt.getInteger("DNAQuality");
         }
         else
         {
-            quality = nbt.getInteger("DNAQuality");
+            nbt.setInteger("DNAQuality", quality);
         }
 
         stack.setTagCompound(nbt);
 
         return quality;
+    }
+
+    public GeneticsContainer getGeneticCode(EntityPlayer player, ItemStack stack)
+    {
+        int quality = getDNAQuality(player, stack);
+
+        NBTTagCompound nbt = stack.getTagCompound();
+
+        GeneticsContainer genetics = GeneticsHelper.randomGenetics(player.worldObj.rand, getContainerDinosaur(stack), quality);
+
+        if (nbt == null)
+        {
+            nbt = new NBTTagCompound();
+        }
+
+        if (nbt.hasKey("Genetics"))
+        {
+            genetics = new GeneticsContainer(nbt.getString("Genetics"));
+        }
+        else
+        {
+            nbt.setString("Genetics", genetics.toString());
+        }
+
+        stack.setTagCompound(nbt);
+
+        return genetics;
     }
 
     public void addInformation(ItemStack stack, EntityPlayer player, List lore, boolean advanced)
@@ -48,5 +86,6 @@ public class ItemDnaContainer extends Item
             colour = EnumChatFormatting.RED;
 
         lore.add(colour + new AdvLang("lore.dna_quality.name").withProperty("quality", quality + "").build());
+        lore.add(EnumChatFormatting.BLUE + new AdvLang("lore.genetic_code.name").withProperty("code", getGeneticCode(player, stack).toString()).build());
     }
 }

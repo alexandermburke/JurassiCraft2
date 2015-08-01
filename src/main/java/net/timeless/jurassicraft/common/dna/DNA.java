@@ -6,27 +6,27 @@ import net.minecraft.nbt.NBTTagCompound;
 public class DNA
 {
     private int quality;
-    private int dinosaur;
+    private String genetics;
 
-    public DNA(int quality, int dinosaur)
+    public DNA(int quality, String genetics)
     {
         this.quality = quality;
-        this.dinosaur = dinosaur;
+        this.genetics = genetics;
     }
 
     public DNA(ItemStack stack)
     {
-        this(stack.getTagCompound().getInteger("DNAQuality"), stack.getItemDamage());
+        this(stack.getTagCompound().getInteger("DNAQuality"), stack.getTagCompound().getString("Genetics"));
     }
 
     public void writeToNBT(NBTTagCompound nbt)
     {
         nbt.setInteger("DNAQuality", quality);
-        nbt.setInteger("Dinosaur", dinosaur);
+        nbt.setString("Genetics", genetics);
     }
 
     public static DNA readFromNBT(NBTTagCompound nbt)
     {
-        return new DNA(nbt.getInteger("DNAQuality"), nbt.getInteger("Dinosaur"));
+        return new DNA(nbt.getInteger("DNAQuality"), nbt.getString("Genetics"));
     }
 }

@@ -41,6 +41,11 @@ public class ItemDNA extends ItemDnaContainer
         return dinosaur;
     }
 
+    public int getContainerDinosaur(ItemStack stack)
+    {
+        return JCEntityRegistry.getDinosaurId(getDinosaur(stack));
+    }
+
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List subtypes)
