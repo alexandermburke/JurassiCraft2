@@ -1,6 +1,5 @@
 package net.timeless.jurassicraft.common.event;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
