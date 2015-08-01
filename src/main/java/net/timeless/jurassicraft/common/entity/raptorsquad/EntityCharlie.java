@@ -1,4 +1,4 @@
-package net.timeless.jurassicraft.common.entity;
+package net.timeless.jurassicraft.common.entity.raptorsquad;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
@@ -11,13 +11,14 @@ import net.minecraft.world.World;
 import net.reuxertz.ecoapi.ecology.role.ICarnivore;
 import net.reuxertz.ecoapi.entity.IEntityAICreature;
 import net.timeless.animationapi.AnimationAPI;
+import net.timeless.jurassicraft.common.entity.*;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
 import net.timeless.unilib.common.animation.ControlledAnimation;
 
-public class EntityVelociraptor extends EntityDinosaurAggressive implements IEntityAICreature, ICarnivore
+public class EntityCharlie extends EntityDinosaurAggressive implements IEntityAICreature, ICarnivore
 {
     public ChainBuffer tailBuffer = new ChainBuffer(6);
 
@@ -31,7 +32,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive implements IEnt
     public ControlledAnimation dontLean = new ControlledAnimation(5);
     private int frame = this.ticksExisted;
 
-    public EntityVelociraptor(World world)
+    public EntityCharlie(World world)
     {
         super(world);
 
@@ -71,7 +72,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive implements IEnt
             AnimationAPI.sendAnimPacket(this, 1);
             return randomSound(livingSounds);
         }
-        
+
         return null;
     }
 
@@ -82,7 +83,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive implements IEnt
             AnimationAPI.sendAnimPacket(this, 1);
             return randomSound(hurtSounds);
         }
-        
+
         return null;
     }
 

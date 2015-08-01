@@ -15,6 +15,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.*;
+import net.timeless.jurassicraft.client.dinosaur.renderdef.raptorsquad.RenderDefBlue;
+import net.timeless.jurassicraft.client.dinosaur.renderdef.raptorsquad.RenderDefCharlie;
+import net.timeless.jurassicraft.client.dinosaur.renderdef.raptorsquad.RenderDefDelta;
+import net.timeless.jurassicraft.client.dinosaur.renderdef.raptorsquad.RenderDefEcho;
 import net.timeless.jurassicraft.client.gui.app.GuiAppRegistry;
 import net.timeless.jurassicraft.client.render.entity.RenderBluePrint;
 import net.timeless.jurassicraft.client.render.entity.RenderJurassiCraftSign;
@@ -76,6 +80,10 @@ public class JCRenderingRegistry
         registerRenderDef(new RenderDefTyrannosaurusRex());
         registerRenderDef(new RenderDefVelociraptor());
         registerRenderDef(new RenderDefDodo());
+        registerRenderDef(new RenderDefBlue());
+        registerRenderDef(new RenderDefDelta());
+        registerRenderDef(new RenderDefEcho());
+        registerRenderDef(new RenderDefCharlie());
 
         GuiAppRegistry.register();
 

@@ -5,6 +5,10 @@ import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.dinosaur.*;
+import net.timeless.jurassicraft.common.dinosaur.raptorsquad.DinosaurBlue;
+import net.timeless.jurassicraft.common.dinosaur.raptorsquad.DinosaurCharlie;
+import net.timeless.jurassicraft.common.dinosaur.raptorsquad.DinosaurDelta;
+import net.timeless.jurassicraft.common.dinosaur.raptorsquad.DinosaurEcho;
 import net.timeless.jurassicraft.common.entity.item.EntityBluePrint;
 import net.timeless.jurassicraft.common.entity.item.EntityJurassiCraftSign;
 import net.timeless.jurassicraft.common.period.EnumTimePeriod;
@@ -17,6 +21,10 @@ public class JCEntityRegistry
     private static List<Dinosaur> dinosaurs = Lists.newArrayList();
     private static HashMap<EnumTimePeriod, List<Dinosaur>> dinosaursFromPeriod = new HashMap<>();
 
+    public static final Dinosaur echo = new DinosaurEcho();
+    public static final Dinosaur charlie = new DinosaurCharlie();
+    public static final Dinosaur blue = new DinosaurBlue();
+    public static final Dinosaur delta = new DinosaurDelta();
     public static final Dinosaur dodo = new DinosaurDodo();
     public static final Dinosaur achillobator = new DinosaurAchillobator();
     public static final Dinosaur anklyosaurus = new DinosaurAnkylosaurus();
@@ -66,6 +74,10 @@ public class JCEntityRegistry
         registerDinosaurType(tyrannosaurus_rex);
         registerDinosaurType(hypsilophodon);
         registerDinosaurType(dodo);
+        registerDinosaurType(blue);
+        registerDinosaurType(echo);
+        registerDinosaurType(delta);
+        registerDinosaurType(charlie);
 
         registerEntity(EntityBluePrint.class, "Blueprint");
         registerEntity(EntityJurassiCraftSign.class, "JurassiCraft Sign");
