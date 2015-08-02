@@ -24,7 +24,7 @@ public class GuiPaleoPad extends GuiScreen
 {
     private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_pad/paleo_pad.png");
 
-    private App focus;
+    private GuiApp focus;
 
     public GuiPaleoPad()
     {
@@ -55,7 +55,12 @@ public class GuiPaleoPad extends GuiScreen
                 {
                     App app = apps.get(i);
                     JCPlayerDataClient.getPlayerData().openApp(app);
-                    focus = app;
+                    focus = GuiAppRegistry.getGui(app);
+
+                    focus.buttons.clear();
+                    focus.init();
+                    buttonList.clear();
+                    buttonList.addAll(focus.buttons);
                 }
             }
         }
@@ -113,8 +118,7 @@ public class GuiPaleoPad extends GuiScreen
         }
         else
         {
-            GuiApp gui = GuiAppRegistry.getGui(focus);
-            gui.render(mouseX, mouseY, this);
+            focus.render(mouseX, mouseY, this);
         }
 
         super.drawScreen(mouseX, mouseY, partialTicks);
@@ -141,10 +145,10 @@ public class GuiPaleoPad extends GuiScreen
         Tessellator tessellator = Tessellator.getInstance();
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
         worldrenderer.startDrawingQuads();
-        worldrenderer.addVertexWithUV((double)(x + 0), (double)(y + height), (double)this.zLevel, (double)((float)(textureX + 0) * f), (double)((float)(textureY + height) * f1));
+        worldrenderer.addVertexWithUV((double)(x), (double)(y + height), (double)this.zLevel, (double)((float)(textureX) * f), (double)((float)(textureY + height) * f1));
         worldrenderer.addVertexWithUV((double)(x + width), (double)(y + height), (double)this.zLevel, (double)((float)(textureX + width) * f), (double)((float)(textureY + height) * f1));
-        worldrenderer.addVertexWithUV((double)(x + width), (double)(y + 0), (double)this.zLevel, (double)((float)(textureX + width) * f), (double)((float)(textureY + 0) * f1));
-        worldrenderer.addVertexWithUV((double)(x + 0), (double)(y + 0), (double)this.zLevel, (double)((float)(textureX + 0) * f), (double)((float)(textureY + 0) * f1));
+        worldrenderer.addVertexWithUV((double)(x + width), (double)(y), (double)this.zLevel, (double)((float)(textureX + width) * f), (double)((float)(textureY) * f1));
+        worldrenderer.addVertexWithUV((double)(x), (double)(y), (double)this.zLevel, (double)((float)(textureX) * f), (double)((float)(textureY) * f1));
         tessellator.draw();
 
         GL11.glColor3f(1.0F, 1.0F, 1.0F);
@@ -181,10 +185,10 @@ public class GuiPaleoPad extends GuiScreen
         Tessellator tessellator = Tessellator.getInstance();
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
         worldrenderer.startDrawingQuads();
-        worldrenderer.addVertexWithUV((double)(x + 0), (double)(y + height), (double)this.zLevel, (double)(0), (double)((float)(height) * f1));
+        worldrenderer.addVertexWithUV((double)(x), (double)(y + height), (double)this.zLevel, (double)(0), (double)((float)(height) * f1));
         worldrenderer.addVertexWithUV((double)(x + width), (double)(y + height), (double)this.zLevel, (double)((float)(width) * f), (double)((float)( height) * f1));
-        worldrenderer.addVertexWithUV((double)(x + width), (double)(y + 0), (double)this.zLevel, (double)((float)(width) * f), (double)((float) 0));
-        worldrenderer.addVertexWithUV((double)(x + 0), (double)(y + 0), (double)this.zLevel, (double)((float)0), (double)((float)0));
+        worldrenderer.addVertexWithUV((double)(x + width), (double)(y), (double)this.zLevel, (double)((float)(width) * f), (double)((float) 0));
+        worldrenderer.addVertexWithUV((double)(x), (double)(y), (double)this.zLevel, (double)((float)0), (double)((float)0));
         tessellator.draw();
 
         GL11.glColor3f(1.0F, 1.0F, 1.0F);

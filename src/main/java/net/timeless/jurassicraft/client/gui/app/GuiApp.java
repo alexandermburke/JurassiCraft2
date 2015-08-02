@@ -3,6 +3,7 @@ package net.timeless.jurassicraft.client.gui.app;
 import com.google.common.collect.Lists;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.util.ResourceLocation;
@@ -27,7 +28,7 @@ public abstract class GuiApp
         this.app = app;
     }
 
-    private List<GuiButton> buttons = Lists.newArrayList();
+    public List<GuiButton> buttons = Lists.newArrayList();
 
     private boolean requestShutdown;
 
@@ -49,7 +50,9 @@ public abstract class GuiApp
     protected void renderButtons(int mouseX, int mouseY, GuiPaleoPad gui)
     {
         for (GuiButton button : buttons)
+        {
             button.drawButton(Minecraft.getMinecraft(), mouseX, mouseY);
+        }
     }
 
     public void keyPressed(int key){}
