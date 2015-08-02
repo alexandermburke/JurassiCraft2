@@ -31,6 +31,10 @@ entity.brachiosaurus.name=Brachiosaurus
 entity.dunkleosteus.name=Dunkleosteus
 entity.hypsilophodon.name=Hypsilophodon
 entity.dodo.name=Dodo
+entity.charlie.name=Charlie
+entity.delta.name=Delta
+entity.blue.name=Blue
+entity.echo.name=Echo
 
 //Items ==================================================
 item.rock_pick.name=Rock Pick
@@ -51,6 +55,7 @@ item.petri_dish.name=Petri Dish
 item.empty_test_tube.name=Empty Test Tube
 item.syringe.name={dino} Syringe
 item.empty_syringe.name=Empty Syringe
+item.entity_remover.name=Entity Remover
 
 //Blocks ==================================================
 tile.fossil_block.name={period} Fossil

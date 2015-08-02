@@ -46,11 +46,20 @@ public class AnimationCompsognathus implements IModelAnimator
         MowzieModelRenderer tail4 = model.getCube("Tail 4");
         MowzieModelRenderer tail5 = model.getCube("Tail 5");
 
+        MowzieModelRenderer leftArm = model.getCube("Left arm");
+        MowzieModelRenderer leftForeArm = model.getCube("Left forearm");
+        MowzieModelRenderer leftHand = model.getCube("Left hand");
+
+        MowzieModelRenderer rightArm = model.getCube("Right arm");
+        MowzieModelRenderer rightForeArm = model.getCube("Right forearm");
+        MowzieModelRenderer rightHand = model.getCube("Right hand");
+
         model.faceTarget(head, 2, rotationYaw, rotationPitch);
         model.faceTarget(neck1, 2, rotationYaw, rotationPitch);
 
         //beg animation
         // 60 ticks
+        // Squat phase
         animator.setAnim(13);
         animator.startPhase(10);
         animator.rotate(leftThigh, -0.3F, 0, 0);
@@ -71,29 +80,38 @@ public class AnimationCompsognathus implements IModelAnimator
         animator.rotate(tail5, 0.1F, 0, 0);
         animator.endPhase();
 
+        // jump phase
         animator.startPhase(10);
         animator.rotate(leftThigh, 0, 0, 0);
         animator.move(leftThigh, 0, -20F, 0);
-        animator.rotate(leftMidLeg, 0, 0, 0);
+        animator.rotate(leftMidLeg, -0.1F, 0, 0);
         animator.rotate(leftShin, 0, 0, 0);
         animator.rotate(leftFoot, 0.6F, 0, 0);
         animator.rotate(rightThigh, 0, 0, 0);
         animator.move(rightThigh, 0, -20F, 0);
-        animator.rotate(rightMidLeg, 0, 0, 0);
-        animator.rotate(rightShin, 0, 0, 0);
+        animator.rotate(rightMidLeg, -0.1F, 0, 0);
+        animator.rotate(rightShin, -0.1F, 0, 0);
         animator.rotate(rightFoot, 0.6F, 0, 0);
         animator.rotate(lowerJaw, 0.1F, 0, 0);
         animator.rotate(head, -0.7F, 0, 0);
-        animator.rotate(abdomen, -0.4F, 0, 0);
+        animator.rotate(abdomen, -0.6F, 0, 0);
         animator.move(abdomen, 0, -20F, 0);
         animator.rotate(lowerJaw, 0.4F, 0, 0);
         animator.rotate(tail2, 0.1F, 0, 0);
         animator.rotate(tail3, -0.2F, 0, 0);
         animator.rotate(tail4, -0.1F, 0, 0);
         animator.rotate(tail5, -0.1F, 0, 0);
+        animator.rotate(leftArm, -1.6F, 0, 0);
+        animator.rotate(leftForeArm, 0.6F, 0, 0);
+        animator.rotate(leftHand, -1.6F, 0, 0);
+        animator.rotate(rightArm, -1.5F, 0, 0);
+        animator.rotate(rightForeArm, 0.6F, 0, 0);
+        animator.rotate(rightHand, -1.5F, 0, 0);
         animator.endPhase();
 
+        // land phase
         animator.startPhase(10);
+        animator.endPhase();
         animator.resetPhase(20);
     }
 }
