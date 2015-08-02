@@ -20,8 +20,9 @@ public class GuiAppTest extends GuiApp
     {
         super.renderButtons(mouseX, mouseY, gui);
 
-        gui.drawScaledText("ikr", 10, 10, 1.0F, 0xFFFFFF);
-//        gui.drawScaledRect(0, 0, 100, 2, 1.0F, 0xFFFFFF);
+        gui.drawScaledText("Hello " + mc.thePlayer.getName() + "! I am " + app.getName() + "!", 10, 10, 1.0F, 0xFFFFFF);
+        mc.getTextureManager().bindTexture(texture);
+        gui.drawScaledTexturedModalRect(8, 25, 0, 0, 32 ,32, 32, 32, 1.0F);
     }
 
     @Override

@@ -20,7 +20,7 @@ public abstract class GuiApp
 {
     protected App app;
 
-    private static final Minecraft mc = Minecraft.getMinecraft();
+    protected static final Minecraft mc = Minecraft.getMinecraft();
 
     public GuiApp(App app)
     {
