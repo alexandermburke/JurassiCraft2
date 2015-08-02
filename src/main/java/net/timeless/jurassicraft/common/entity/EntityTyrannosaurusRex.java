@@ -56,9 +56,9 @@ public class EntityTyrannosaurusRex extends EntityDinosaurAggressive implements 
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
 
-//        tasks.addTask(2, new JCAutoAnimBase(this, 75, 1));
-//        tasks.addTask(2, new JCAutoAnimBase(this, 75, 2));
-//        tasks.addTask(2, new JCAutoAnimBase(this, 75, 3));
+        tasks.addTask(2, new JCAutoAnimBase(this, 75, 1));
+        tasks.addTask(2, new JCAutoAnimBase(this, 75, 2));
+        tasks.addTask(2, new JCAutoAnimBase(this, 75, 3));
     }
 
     public String getLivingSound()
@@ -80,7 +80,7 @@ public class EntityTyrannosaurusRex extends EntityDinosaurAggressive implements 
     {
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
         super.onUpdate();
-//        if (getAnimID() == 0)
-//            AnimationAPI.sendAnimPacket(this, 1);
+        if (getAnimID() == 0)
+            AnimationAPI.sendAnimPacket(this, 1);
     }
 }

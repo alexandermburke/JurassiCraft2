@@ -71,16 +71,16 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
 
         scale *= (((float) entityDinosaur.getScaleOffset()) * 0.09F);
 
-        float color = (((float) entityDinosaur.getColorOffset()) * 0.004F);
-
-        if(entityDinosaur.getColorOffset() % 2 == 0)
-        {
-            GL11.glColor3f(1.0F + color, 1.0F - color, 1.0F + color);
-        }
-        else
-        {
-            GL11.glColor3f(1.0F - color, 1.0F + color, 1.0F - color);
-        }
+//        float color = (((float) entityDinosaur.getColorOffset()) * 0.004F);
+//
+//        if(entityDinosaur.getColorOffset() % 2 == 0)
+//        {
+//            GL11.glColor3f(1.0F + color, 1.0F - color, 1.0F + color);
+//        }
+//        else
+//        {
+//            GL11.glColor3f(1.0F - color, 1.0F + color, 1.0F - color);
+//        }
 
         shadowSize = scale * renderDef.getShadowSize();
 
