@@ -14,7 +14,7 @@ public class GeneticsHelper
 
     public static GeneticsContainer randomGenetics(Random rand, int dinosaur, int quality)
     {
-        return new GeneticsContainer(dinosaur, rand.nextBoolean(), rand(rand, 4, quality), rand(rand, 4, quality), rand(rand, 4, quality), rand(rand, 4, quality), 0);
+        return new GeneticsContainer(dinosaur, rand.nextBoolean(), rand(rand, 4, quality), rand(rand, 4, quality), rand(rand, 4, quality), rand(rand, 4, quality), 0, 0, 0, 0);
     }
 
     private static int rand(Random rand, int range, int quality)
