@@ -354,7 +354,7 @@ public class TileCleaningStation extends TileEntityLockable implements IUpdatePl
 
             for (int i = 2; i < 8; i++)
             {
-                if (this.slots[i] == null)
+                if (this.slots[i] == null || (ItemStack.areItemsEqual(slots[i], fossil) && ItemStack.areItemStackTagsEqual(slots[i], fossil)))
                 {
                     emptySlot = i;
 
