@@ -147,6 +147,7 @@ public class JCRenderingRegistry
         this.registerItemRenderer(modelMesher, JCItemRegistry.jc_sign, "jurassicraft_sign", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.empty_test_tube, "empty_test_tube", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.empty_syringe, "empty_syringe", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.entityRemover, "entity_remover", "inventory");
 
         int meta = 0;
 
