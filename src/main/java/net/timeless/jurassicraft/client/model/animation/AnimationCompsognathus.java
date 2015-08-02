@@ -22,6 +22,8 @@ public class AnimationCompsognathus implements IModelAnimator
         float globalDegree = 0.4F;
         float globalHeight = 1.0F;
 
+        MowzieModelRenderer abdomen = model.getCube("abdomen");
+
         MowzieModelRenderer head = model.getCube("Head");
 
         MowzieModelRenderer neck1 = model.getCube("Neck 1");
@@ -38,18 +40,60 @@ public class AnimationCompsognathus implements IModelAnimator
         MowzieModelRenderer rightShin = model.getCube("Right shin");
         MowzieModelRenderer rightFoot = model.getCube("Right foot");
 
+        MowzieModelRenderer tail1 = model.getCube("Tail 1");
+        MowzieModelRenderer tail2 = model.getCube("Tail 2");
+        MowzieModelRenderer tail3 = model.getCube("Tail 3");
+        MowzieModelRenderer tail4 = model.getCube("Tail 4");
+        MowzieModelRenderer tail5 = model.getCube("Tail 5");
+
         model.faceTarget(head, 2, rotationYaw, rotationPitch);
         model.faceTarget(neck1, 2, rotationYaw, rotationPitch);
 
         //beg animation
-        animator.setAnim(1);
-        animator.startPhase(20);
-        animator.rotate(head, 0, 0, 0);
-        animator.move(head, 0, 1.3F, 0);
-        animator.endPhase();
+        // 60 ticks
+        animator.setAnim(13);
         animator.startPhase(10);
-        animator.rotate(lowerJaw, 0, 1.3F, 0);
+        animator.rotate(leftThigh, -0.3F, 0, 0);
+        animator.move(leftThigh, 0, 3F, 0);
+        animator.rotate(leftMidLeg, 0.8F, 0, 0);
+        animator.rotate(leftShin, -0.5F, 0, 0);
+        animator.rotate(leftFoot, -0.1F, 0, 0);
+        animator.rotate(rightThigh, -0.3F, 0, 0);
+        animator.move(rightThigh, 0, 3F, 0);
+        animator.rotate(rightMidLeg, 0.8F, 0, 0);
+        animator.rotate(rightShin, -0.4F, 0, 0);
+        animator.rotate(rightFoot, -0.1F, 0, 0);
+        animator.rotate(head, -0.4F, 0, 0);
+        animator.rotate(lowerJaw, 0.3F, 0, 0);
+        animator.rotate(abdomen, -0.1F, 0, 0);
+        animator.move(abdomen, 0, 3F, 0);
+        animator.rotate(tail4, 0.1F, 0, 0);
+        animator.rotate(tail5, 0.1F, 0, 0);
         animator.endPhase();
-        animator.resetPhase(15);
+
+        animator.startPhase(10);
+        animator.rotate(leftThigh, 0, 0, 0);
+        animator.move(leftThigh, 0, -20F, 0);
+        animator.rotate(leftMidLeg, 0, 0, 0);
+        animator.rotate(leftShin, 0, 0, 0);
+        animator.rotate(leftFoot, 0.6F, 0, 0);
+        animator.rotate(rightThigh, 0, 0, 0);
+        animator.move(rightThigh, 0, -20F, 0);
+        animator.rotate(rightMidLeg, 0, 0, 0);
+        animator.rotate(rightShin, 0, 0, 0);
+        animator.rotate(rightFoot, 0.6F, 0, 0);
+        animator.rotate(lowerJaw, 0.1F, 0, 0);
+        animator.rotate(head, -0.7F, 0, 0);
+        animator.rotate(abdomen, -0.4F, 0, 0);
+        animator.move(abdomen, 0, -20F, 0);
+        animator.rotate(lowerJaw, 0.4F, 0, 0);
+        animator.rotate(tail2, 0.1F, 0, 0);
+        animator.rotate(tail3, -0.2F, 0, 0);
+        animator.rotate(tail4, -0.1F, 0, 0);
+        animator.rotate(tail5, -0.1F, 0, 0);
+        animator.endPhase();
+
+        animator.startPhase(10);
+        animator.resetPhase(20);
     }
 }

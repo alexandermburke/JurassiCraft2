@@ -1,13 +1,11 @@
 package net.timeless.jurassicraft.common.entity.raptorsquad;
 
 import net.minecraft.world.World;
-import net.reuxertz.ecoapi.ecology.role.ICarnivore;
-import net.reuxertz.ecoapi.entity.IEntityAICreature;
-import net.timeless.jurassicraft.common.entity.*;
+import net.timeless.jurassicraft.common.entity.EntityVelociraptor;
 import net.timeless.unilib.common.animation.ChainBuffer;
 import net.timeless.unilib.common.animation.ControlledAnimation;
 
-public class EntityBlue extends EntityVelociraptor implements IEntityAICreature, ICarnivore
+public class EntityBlue extends EntityVelociraptor
 {
     public ChainBuffer tailBuffer = new ChainBuffer(6);
 
