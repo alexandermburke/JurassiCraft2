@@ -12,6 +12,7 @@ import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.jurassicraft.common.entity.ai.EntityAIJCWander;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
+import net.timeless.jurassicraft.common.entity.ai.animations.JCAutoAnimSoundBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
 
@@ -56,9 +57,9 @@ public class EntityTyrannosaurusRex extends EntityDinosaurAggressive implements 
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
 
-        tasks.addTask(2, new JCAutoAnimBase(this, 75, 1));
-        tasks.addTask(2, new JCAutoAnimBase(this, 75, 2));
-        tasks.addTask(2, new JCAutoAnimBase(this, 75, 3));
+        tasks.addTask(2, new JCAutoAnimSoundBase(this, 75, 1, "jurassicraft:" + roarSounds[0]));
+        tasks.addTask(2, new JCAutoAnimSoundBase(this, 75, 2, "jurassicraft:" + roarSounds[0]));
+        tasks.addTask(2, new JCAutoAnimSoundBase(this, 75, 3, "jurassicraft:" + roarSounds[0]));
     }
 
     public String getLivingSound()

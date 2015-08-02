@@ -126,6 +126,11 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         return (float) transitionFromAge(1.5F, 1.0F);
     }
 
+    public float getSoundVolume()
+    {
+        return (float) transitionFromAge(0.5F, 1.0F);
+    }
+
     public void setGenetics(String genetics)
     {
         this.genetics = new GeneticsContainer(genetics);
