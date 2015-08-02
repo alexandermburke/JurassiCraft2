@@ -1,6 +1,7 @@
 package net.timeless.jurassicraft.client.render.entity;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
@@ -20,7 +21,7 @@ import org.lwjgl.opengl.GL11;
 import java.util.Random;
 
 @SideOnly(Side.CLIENT)
-public class RenderDinosaur extends RenderLiving
+public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
 {
     public Dinosaur dinosaur;
     public RenderDinosaurDefinition renderDef;
@@ -113,14 +114,6 @@ public class RenderDinosaur extends RenderLiving
             GL11.glScalef(scale, scale, scale);
     }
 
-    @Override
-    public void doRender(EntityLivingBase entity, double x, double y, double z, float yaw, float partialTicks)
-    {
-        mainModel = renderDef.getModel(((EntityDinosaur) entity).getGeneticVariant());
-        super.doRender(entity, x, y, z, yaw, partialTicks);
-        GL11.glColor3f(1.0F, 1.0F, 1.0F);
-    }
-
     public ResourceLocation getEntityTexture(EntityDinosaur entity)
     {
         return entity.isMale() ? maleTextures[entity.getGeneticVariant()][entity.getTexture()] : femaleTextures[entity.getGeneticVariant()][entity.getTexture()];
@@ -135,5 +128,17 @@ public class RenderDinosaur extends RenderLiving
     protected float getDeathMaxRotation(EntityLivingBase entity)
     {
         return 0.0F;
+    }
+
+    @Override
+    public void setModel(ModelBase model)
+    {
+        this.mainModel = model;
+    }
+
+    @Override
+    public RenderDinosaurDefinition getRenderDef()
+    {
+        return renderDef;
     }
 }

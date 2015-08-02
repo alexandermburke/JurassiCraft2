@@ -1,6 +1,7 @@
 package net.timeless.jurassicraft.client.render.entity;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
@@ -20,7 +21,7 @@ import org.lwjgl.opengl.GL11;
 import java.util.Random;
 
 @SideOnly(Side.CLIENT)
-public class RenderIndominusRex extends RenderLiving
+public class RenderIndominusRex extends RenderLiving implements IDinosaurRenderer
 {
     public Dinosaur dinosaur;
     public RenderDinosaurDefinition renderDef;
@@ -202,5 +203,17 @@ public class RenderIndominusRex extends RenderLiving
         {
             this.render((EntityDinosaur) entity, p_177141_2_, p_177141_3_, p_177141_4_, p_177141_5_, p_177141_6_, p_177141_7_, p_177141_8_);
         }
+    }
+
+    @Override
+    public void setModel(ModelBase model)
+    {
+        this.mainModel = model;
+    }
+
+    @Override
+    public RenderDinosaurDefinition getRenderDef()
+    {
+        return renderDef;
     }
 }

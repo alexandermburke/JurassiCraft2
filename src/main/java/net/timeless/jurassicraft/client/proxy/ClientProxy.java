@@ -2,10 +2,12 @@ package net.timeless.jurassicraft.client.proxy;
 
 import com.google.common.collect.Lists;
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
+import net.timeless.jurassicraft.client.event.ClientEventHandler;
 import net.timeless.jurassicraft.client.render.JCRenderingRegistry;
 import net.timeless.jurassicraft.common.proxy.CommonProxy;
 
@@ -56,6 +58,10 @@ public class ClientProxy extends CommonProxy
         {
             FMLCommonHandler.instance().exitJava(-1, false);
         }
+
+        ClientEventHandler eventHandler = new ClientEventHandler();
+        FMLCommonHandler.instance().bus().register(eventHandler);
+        MinecraftForge.EVENT_BUS.register(eventHandler);
 
         renderingRegistry.preInit();
     }
