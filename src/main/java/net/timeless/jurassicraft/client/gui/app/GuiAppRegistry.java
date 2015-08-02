@@ -20,7 +20,8 @@ public class GuiAppRegistry
 
     public static void register()
     {
-        registerApp(new GuiAppJurassiPedia(AppRegistry.test));
+        registerApp(new GuiAppJurassiPedia(AppRegistry.jurassipedia));
+        registerApp(new GuiAppJurassiExplorer(AppRegistry.jurassiexplorer));
     }
 
     public static GuiApp getGui(App app)

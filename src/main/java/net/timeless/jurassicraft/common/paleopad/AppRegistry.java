@@ -6,7 +6,8 @@ import java.util.List;
 public class AppRegistry
 {
     private static List<App> registeredApps = new ArrayList<>();
-    public static App test;
+    public static App jurassipedia;
+    public static App jurassiexplorer;
 
     public static void registerApp(App app)
     {
@@ -15,9 +16,11 @@ public class AppRegistry
 
     public static void register()
     {
-        test = new AppJurassiPedia();
+        jurassipedia = new AppJurassiPedia();
+        jurassiexplorer = new AppJurassiExplorer();
 
-        registerApp(test);
+        registerApp(jurassipedia);
+        registerApp(jurassiexplorer);
     }
 
     public static List<App> getApps()

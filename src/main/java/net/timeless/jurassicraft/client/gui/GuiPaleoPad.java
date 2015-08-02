@@ -61,8 +61,8 @@ public class GuiPaleoPad extends GuiScreen
 
             for (int i = 0; i < apps.size(); i++)
             {
-                int x = ((i % 6) * 17) + scaledWidth / 2 - 110;
-                int y = ((int) Math.floor((float) i / 6.0F) * 17) + 70;
+                int x = ((i % 6) * 55) + scaledWidth / 2 - 110;
+                int y = ((int) Math.floor((float) i / 6.0F) * 38) + 70;
 
                 if(mouseX > x && mouseY > y && mouseX < x + 32 && mouseY < y + 32)
                 {
@@ -119,8 +119,8 @@ public class GuiPaleoPad extends GuiScreen
         {
             for (int i = 0; i < apps.size(); i++)
             {
-                int x = (i % 6) * 17 + 5;
-                int y = (int) Math.floor((float) i / 6.0F) * 17;
+                int x = (i % 6) * 55 + 5;
+                int y = (int) Math.floor((float) i / 6.0F) * 38;
 
                 App app = apps.get(i);
                 GuiApp gui = GuiAppRegistry.getGui(app);
