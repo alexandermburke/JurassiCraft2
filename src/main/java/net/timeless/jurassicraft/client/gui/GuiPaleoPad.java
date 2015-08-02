@@ -105,7 +105,7 @@ public class GuiPaleoPad extends GuiScreen
         {
             for (int i = 0; i < apps.size(); i++)
             {
-                int x = (i % 6) * 17;
+                int x = (i % 6) * 17 + 5;
                 int y = (int) Math.floor((float) i / 6.0F) * 17;
 
                 App app = apps.get(i);
@@ -114,10 +114,15 @@ public class GuiPaleoPad extends GuiScreen
                 mc.getTextureManager().bindTexture(gui.getTexture(this));
 
                 drawScaledTexturedModalRect(x + 5, y + 5, 0, 0, 32, 32, 32, 32, 1.0F);
+
+                drawCenteredScaledText(app.getName(), x + 21, y + 38, 0.7F, 0xFFFFFF);
             }
+
+            drawScaledText("JurassiOS 1.0.0", 2, -10, 1.0F, 0xFFFFFF);
         }
         else
         {
+            drawScaledText(focus.getApp().getName(), 2, -10, 1.0F, 0xFFFFFF);
             focus.render(mouseX, mouseY, this);
         }
 

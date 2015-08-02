@@ -62,4 +62,9 @@ public abstract class GuiApp
     public abstract void init();
 
     public abstract ResourceLocation getTexture(GuiPaleoPad gui);
+
+    public App getApp()
+    {
+        return app;
+    }
 }

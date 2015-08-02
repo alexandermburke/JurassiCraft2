@@ -2,12 +2,12 @@ package net.timeless.jurassicraft.common.paleopad;
 
 import net.minecraft.nbt.NBTTagCompound;
 
-public class AppTest extends App
+public class ApJurassiPedia extends App
 {
     @Override
     public String getName()
     {
-        return "Test";
+        return "JurassiPedia";
     }
 
     @Override

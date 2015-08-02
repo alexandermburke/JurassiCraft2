@@ -15,7 +15,7 @@ public class AppRegistry
 
     public static void register()
     {
-        test = new AppTest();
+        test = new ApJurassiPedia();
 
         registerApp(test);
     }

@@ -7,11 +7,11 @@ import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.client.gui.GuiPaleoPad;
 import net.timeless.jurassicraft.common.paleopad.App;
 
-public class GuiAppTest extends GuiApp
+public class GuiAppJurassiPedia extends GuiApp
 {
-    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_pad/apps/test.png");
+    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_pad/apps/jurassipedia.png");
 
-    public GuiAppTest(App app)
+    public GuiAppJurassiPedia(App app)
     {
         super(app);
     }
