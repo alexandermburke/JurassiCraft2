@@ -128,7 +128,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
     public float getSoundVolume()
     {
-        return (float) transitionFromAge(0.5F, 1.0F);
+        return (float) transitionFromAge(0.3F, 1.0F);
     }
 
     public void setGenetics(String genetics)
@@ -282,6 +282,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     {
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setInteger("DNAQuality", quality);
+        nbt.setString("Genetics", genetics.toString());
         stack.setTagCompound(nbt);
 
         entityDropItem(stack, 0.0F);

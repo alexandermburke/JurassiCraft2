@@ -12,6 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.client.gui.app.GuiApp;
 import net.timeless.jurassicraft.client.gui.app.GuiAppRegistry;
+import net.timeless.jurassicraft.common.entity.data.JCPlayerDataClient;
 import net.timeless.jurassicraft.common.paleopad.App;
 import net.timeless.jurassicraft.common.paleopad.AppRegistry;
 import org.lwjgl.opengl.GL11;
@@ -23,6 +24,8 @@ public class GuiPaleoPad extends GuiScreen
 {
     private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_pad/paleo_pad.png");
 
+    private App focus;
+
     public GuiPaleoPad()
     {
     }
@@ -31,6 +34,31 @@ public class GuiPaleoPad extends GuiScreen
     public void initGui()
     {
         super.initGui();
+    }
+
+    @Override
+    protected void mouseReleased(int mouseX, int mouseY, int state)
+    {
+        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+        int scaledWidth = dimensions.getScaledWidth();
+
+        if(focus == null)
+        {
+            List<App> apps = AppRegistry.getApps();
+
+            for (int i = 0; i < apps.size(); i++)
+            {
+                int x = ((i % 6) * 17) + scaledWidth / 2 - 110;
+                int y = ((int) Math.floor((float) i / 6.0F) * 17) + 70;
+
+                if(mouseX > x && mouseY > y && mouseX < x + 32 && mouseY < y + 32)
+                {
+                    App app = apps.get(i);
+                    JCPlayerDataClient.getPlayerData().openApp(app);
+                    focus = app;
+                }
+            }
+        }
     }
 
     @Override
@@ -65,20 +93,28 @@ public class GuiPaleoPad extends GuiScreen
             minutesStr = "0" + minutesStr;
         }
 
-        drawScaledText(hoursStr + ":" + minutesStr, scaledWidth / 2, 55, 1.0F, 0xFFFFFF);
-        drawScaledRect(scaledWidth / 2 - 115, 65, 458, 2, 0.5F, 0x404040);
+        drawCenteredScaledText(hoursStr + ":" + minutesStr, 115, -10, 1.0F, 0xFFFFFF);
+        drawScaledRect(0, 0, 458, 2, 0.5F, 0x404040);
 
-        for (int i = 0; i < apps.size(); i++)
+        if(focus == null)
         {
-            int x = (i % 6) * 17;
-            int y = (int) Math.floor((float) i / 6.0F) * 17;
+            for (int i = 0; i < apps.size(); i++)
+            {
+                int x = (i % 6) * 17;
+                int y = (int) Math.floor((float) i / 6.0F) * 17;
 
-            App app = apps.get(i);
-            GuiApp gui = GuiAppRegistry.getGui(app);
+                App app = apps.get(i);
+                GuiApp gui = GuiAppRegistry.getGui(app);
 
-            mc.getTextureManager().bindTexture(gui.getTexture());
+                mc.getTextureManager().bindTexture(gui.getTexture(this));
 
-            drawScaledTexturedModalRect(x + scaledWidth / 2 - 110, y + 70, 0, 0, 32, 32, 32, 32, 1.0F);
+                drawScaledTexturedModalRect(x + 5, y + 5, 0, 0, 32, 32, 32, 32, 1.0F);
+            }
+        }
+        else
+        {
+            GuiApp gui = GuiAppRegistry.getGui(focus);
+            gui.render(mouseX, mouseY, this);
         }
 
         super.drawScreen(mouseX, mouseY, partialTicks);
@@ -90,6 +126,10 @@ public class GuiPaleoPad extends GuiScreen
     public void drawScaledTexturedModalRect(int x, int y, int textureX, int textureY, int width, int height, int textureWidth, int textureHeight, float scale)
     {
         GL11.glPushMatrix();
+
+        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+        x += dimensions.getScaledWidth() / 2 - 115;
+        y += 65;
 
         x /= scale;
         y /= scale;
@@ -118,6 +158,10 @@ public class GuiPaleoPad extends GuiScreen
     public void drawScaledRect(int x, int y, int width, int height, float scale, int colour)
     {
         GL11.glPushMatrix();
+
+        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+        x += dimensions.getScaledWidth() / 2 - 115;
+        y += 65;
 
         x /= scale;
         y /= scale;
@@ -150,9 +194,13 @@ public class GuiPaleoPad extends GuiScreen
         GL11.glPopMatrix();
     }
 
-    public void drawScaledText(String text, int x, int y, float scale, int colour)
+    public void drawCenteredScaledText(String text, int x, int y, float scale, int colour)
     {
         GL11.glPushMatrix();
+
+        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+        x += dimensions.getScaledWidth() / 2 - 115;
+        y += 65;
 
         GL11.glScalef(scale, scale, scale);
 
@@ -163,6 +211,25 @@ public class GuiPaleoPad extends GuiScreen
 
         GL11.glPopMatrix();
     }
+
+    public void drawScaledText(String text, int x, int y, float scale, int colour)
+    {
+        GL11.glPushMatrix();
+
+        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+        x += dimensions.getScaledWidth() / 2 - 115;
+        y += 65;
+
+        GL11.glScalef(scale, scale, scale);
+
+        x /= scale;
+        y /= scale;
+
+        drawString(fontRendererObj, text, x, y, colour);
+
+        GL11.glPopMatrix();
+    }
+
 
     @Override
     protected void actionPerformed(GuiButton button)
