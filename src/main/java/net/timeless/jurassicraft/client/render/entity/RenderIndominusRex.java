@@ -98,7 +98,7 @@ public class RenderIndominusRex extends RenderLiving implements IDinosaurRendere
         scale *= (((float) entityDinosaur.getScaleOffset()) * 0.09F);
         shadowSize = scale * renderDef.getShadowSize();
 
-        GL11.glColor3f(1.0F, 1.0F, 1.0F);
+        GlStateManager.color(1.0F, 1.0F, 1.0F);
 
         EntityIndominusRex iRex = (EntityIndominusRex) entity;
 

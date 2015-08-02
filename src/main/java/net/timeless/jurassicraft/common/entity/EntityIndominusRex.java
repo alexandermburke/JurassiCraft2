@@ -95,6 +95,6 @@ public class EntityIndominusRex extends EntityDinosaurAggressive implements ICar
     @SideOnly(Side.CLIENT)
     public float[] getSkinColor()
     {
-        return new float[] { (float) this.skinColor[0] / 255.0F, (float) this.skinColor[1] / 255.0F, (float) this.skinColor[2] / 255.0F };
+        return new float[] { this.skinColor[0] / 255.0F, this.skinColor[1] / 255.0F, this.skinColor[2] / 255.0F };
     }
 }
