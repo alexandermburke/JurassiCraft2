@@ -32,7 +32,7 @@ public class RenderDinosaurMultilayer extends RenderLiving
 
     public RenderDinosaurMultilayer(RenderDinosaurDefinition renderDef)
     {
-        super(Minecraft.getMinecraft().getRenderManager(), null, renderDef.getShadowSize());
+        super(Minecraft.getMinecraft().getRenderManager(), renderDef.getModel(0), renderDef.getShadowSize());
         this.addLayer(new LayerDinosaurFeatures(this));
 
         this.dinosaur = renderDef.getDinosaur();
@@ -85,7 +85,6 @@ public class RenderDinosaurMultilayer extends RenderLiving
         EntityDinosaur entityDinosaur = (EntityDinosaur) entity;
 
         int geneticVariant = entityDinosaur.getGeneticVariant();
-        mainModel = renderDef.getModel(geneticVariant);
 
         float scale = (float) entityDinosaur.transitionFromAge(renderDef.getBabyScaleAdjustment(), renderDef.getAdultScaleAdjustment());
 
@@ -137,6 +136,7 @@ public class RenderDinosaurMultilayer extends RenderLiving
     @Override
     public void doRender(EntityLivingBase entity, double x, double y, double z, float yaw, float partialTicks)
     {
+        mainModel = renderDef.getModel(((EntityDinosaur) entity).getGeneticVariant());
         super.doRender(entity, x, y, z, yaw, partialTicks);
         GL11.glColor3f(1.0F, 1.0F, 1.0F);
     }
