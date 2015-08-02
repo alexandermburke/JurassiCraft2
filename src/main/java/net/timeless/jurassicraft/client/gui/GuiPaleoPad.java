@@ -13,6 +13,7 @@ import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.client.gui.app.GuiApp;
 import net.timeless.jurassicraft.client.gui.app.GuiAppRegistry;
 import net.timeless.jurassicraft.common.entity.data.JCPlayerDataClient;
+import net.timeless.jurassicraft.common.message.MessageSyncPaleoPad;
 import net.timeless.jurassicraft.common.paleopad.App;
 import net.timeless.jurassicraft.common.paleopad.AppRegistry;
 import org.lwjgl.opengl.GL11;
@@ -36,6 +37,18 @@ public class GuiPaleoPad extends GuiScreen
         super.initGui();
     }
 
+    /**
+     * Called when the screen is unloaded. Used to disable keyboard repeat events
+     */
+    public void onGuiClosed()
+    {
+        if(focus != null)
+        {
+            JCPlayerDataClient.getPlayerData().closeApp(focus.getApp());
+            JurassiCraft.networkManager.networkWrapper.sendToServer(new MessageSyncPaleoPad(mc.thePlayer));
+        }
+    }
+
     @Override
     protected void mouseReleased(int mouseX, int mouseY, int state)
     {
@@ -54,11 +67,12 @@ public class GuiPaleoPad extends GuiScreen
                 if(mouseX > x && mouseY > y && mouseX < x + 32 && mouseY < y + 32)
                 {
                     App app = apps.get(i);
-                    JCPlayerDataClient.getPlayerData().openApp(app);
+
                     focus = GuiAppRegistry.getGui(app);
+                    focus.init();
+                    JCPlayerDataClient.getPlayerData().openApp(app);
 
                     focus.buttons.clear();
-                    focus.init();
                     buttonList.clear();
                     buttonList.addAll(focus.buttons);
                 }

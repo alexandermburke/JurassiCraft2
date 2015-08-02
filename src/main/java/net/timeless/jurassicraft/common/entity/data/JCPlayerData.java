@@ -112,9 +112,10 @@ public class JCPlayerData implements IExtendedEntityProperties
     public void openApp(App app)
     {
         if(appdata.containsKey(app.getName()))
-            app.readFromNBT(appdata.get(app.getName()));
+            app.readAppFromNBT(appdata.get(app.getName()));
 
         app.init();
+        app.open();
 
         openApps.add(app);
     }
@@ -122,7 +123,7 @@ public class JCPlayerData implements IExtendedEntityProperties
     public void closeApp(App app)
     {
         NBTTagCompound data = new NBTTagCompound();
-        app.writeToNBT(data);
+        app.writeAppToNBT(data);
 
         appdata.put(app.getName(), data);
         openApps.remove(app);
