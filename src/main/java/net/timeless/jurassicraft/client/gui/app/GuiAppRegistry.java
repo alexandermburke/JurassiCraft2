@@ -21,7 +21,7 @@ public class GuiAppRegistry
     public static void register()
     {
         registerApp(new GuiAppJurassiPedia(AppRegistry.jurassipedia));
-        registerApp(new GuiAppJurassiExplorer(AppRegistry.jurassiexplorer));
+        registerApp(new GuiAppBrowser(AppRegistry.browser));
     }
 
     public static GuiApp getGui(App app)

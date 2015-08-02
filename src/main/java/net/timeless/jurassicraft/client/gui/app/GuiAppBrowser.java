@@ -6,13 +6,13 @@ import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.client.gui.GuiPaleoPad;
 import net.timeless.jurassicraft.common.paleopad.App;
 
-public class GuiAppJurassiExplorer extends GuiApp
+public class GuiAppBrowser extends GuiApp
 {
-    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_pad/apps/jurassiexplorer.png");
+    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_pad/apps/browser.png");
 
     private boolean intro;
 
-    public GuiAppJurassiExplorer(App app)
+    public GuiAppBrowser(App app)
     {
         super(app);
     }

@@ -9,6 +9,7 @@ import net.minecraftforge.common.IExtendedEntityProperties;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.timeless.jurassicraft.common.dna.DNA;
 import net.timeless.jurassicraft.common.paleopad.App;
+import net.timeless.jurassicraft.common.paleopad.JCFile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,8 +18,6 @@ import java.util.Map;
 
 public class JCPlayerData implements IExtendedEntityProperties
 {
-    private List<DNA> sequencedDNA = new ArrayList<DNA>();
-
     public static final String identifier = "JurassiCraftPlayerData";
 
     public static JCPlayerData getPlayerData(EntityPlayer player)
@@ -33,6 +32,10 @@ public class JCPlayerData implements IExtendedEntityProperties
 
     private Map<String, NBTTagCompound> appdata = new HashMap<>();
     private List<App> openApps = new ArrayList<>();
+
+    private List<JCFile> rootFiles = new ArrayList<>();
+
+    private EntityPlayer player;
 
     public static void setPlayerData(EntityPlayer player, NBTTagCompound nbt)
     {
@@ -56,17 +59,20 @@ public class JCPlayerData implements IExtendedEntityProperties
     {
         NBTTagCompound nbt = new NBTTagCompound();
 
-        NBTTagList sequencedDNAList = new NBTTagList();
+        NBTTagList files = new NBTTagList();
 
-        for (DNA dna : sequencedDNA)
+        for (JCFile file : rootFiles)
         {
-            NBTTagCompound dnaTag = new NBTTagCompound();
-            dna.writeToNBT(dnaTag);
+            if(file != null)
+            {
+                NBTTagCompound fileNBT = new NBTTagCompound();
+                file.writeToNBT(fileNBT);
 
-            sequencedDNAList.appendTag(dnaTag);
+                files.appendTag(fileNBT);
+            }
         }
 
-        nbt.setTag("SequencedDNA", sequencedDNAList);
+        nbt.setTag("Files", files);
 
         NBTTagList appDataList = new NBTTagList();
 
@@ -88,15 +94,18 @@ public class JCPlayerData implements IExtendedEntityProperties
     @Override
     public void loadNBTData(NBTTagCompound playerData)
     {
+        rootFiles.clear();
+        appdata.clear();
+
         NBTTagCompound nbt = playerData.getCompoundTag("PaleoPadData");
 
-        NBTTagList sequencedDNAList = nbt.getTagList("SequencedDNA", 10);
+        NBTTagList filesList = nbt.getTagList("Files", 10);
 
-        for (int i = 0; i < sequencedDNAList.tagCount(); i++)
+        for (int i = 0; i < filesList.tagCount(); i++)
         {
-            NBTTagCompound dnaTag = (NBTTagCompound) sequencedDNAList.get(i);
+            NBTTagCompound fileTag = (NBTTagCompound) filesList.get(i);
 
-            sequencedDNA.add(DNA.readFromNBT(dnaTag));
+            rootFiles.add(JCFile.readFromNBT(fileTag, player, null));
         }
 
         NBTTagList appDataList = nbt.getTagList("JCAppData", 10);
@@ -131,11 +140,64 @@ public class JCPlayerData implements IExtendedEntityProperties
 
     public void addSequencedDNA(DNA dna)
     {
-        this.sequencedDNA.add(dna);
+        JCFile sequencedDNADir = new JCFile(player, null, "Sequenced DNA");
+        sequencedDNADir.createDirectory();
+
+        JCFile dnaFile = new JCFile(player, sequencedDNADir, dna.toString());
+
+        NBTTagCompound data = new NBTTagCompound();
+        dna.writeToNBT(data);
+
+        dnaFile.createFile(data);
     }
 
     @Override
     public void init(Entity entity, World world)
     {
+        if(entity instanceof EntityPlayer)
+        {
+            player = (EntityPlayer) entity;
+        }
+    }
+
+    public JCFile getFile(String file)
+    {
+        JCFile jcFile = null;
+
+        for (JCFile rFile : rootFiles)
+        {
+            if(rFile.toString().equals(file))
+            {
+                jcFile = rFile;
+
+                break;
+            }
+        }
+
+        return jcFile;
+    }
+
+    public void createDirectory(JCFile file)
+    {
+        if(!rootFiles.contains(file) && file.getParent() == null)
+        {
+            rootFiles.add(file);
+        }
+    }
+
+    public void createFile(JCFile file)
+    {
+        if(!rootFiles.contains(file) && file.getParent() == null)
+        {
+            rootFiles.add(file);
+        }
+    }
+
+    public void remove(JCFile file)
+    {
+        if(file.getParent() == null && rootFiles.contains(file))
+        {
+            rootFiles.remove(file);
+        }
     }
 }

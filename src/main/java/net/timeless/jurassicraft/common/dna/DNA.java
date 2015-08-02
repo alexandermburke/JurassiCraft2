@@ -29,4 +29,9 @@ public class DNA
     {
         return new DNA(nbt.getInteger("DNAQuality"), nbt.getString("Genetics"));
     }
+
+    public String toString()
+    {
+        return genetics + "-" + quality;
+    }
 }

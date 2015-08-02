@@ -7,7 +7,7 @@ public class AppRegistry
 {
     private static List<App> registeredApps = new ArrayList<>();
     public static App jurassipedia;
-    public static App jurassiexplorer;
+    public static App browser;
 
     public static void registerApp(App app)
     {
@@ -17,10 +17,10 @@ public class AppRegistry
     public static void register()
     {
         jurassipedia = new AppJurassiPedia();
-        jurassiexplorer = new AppJurassiExplorer();
+        browser = new AppBrowser();
 
         registerApp(jurassipedia);
-        registerApp(jurassiexplorer);
+        registerApp(browser);
     }
 
     public static List<App> getApps()

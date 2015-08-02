@@ -88,12 +88,12 @@ public class AnimationDodo implements IModelAnimator
         model.chainWave(neckParts, globalSpeed * 0.125F, globalHeight * 0.05F, 3, ticksExisted, 1.0F);
         model.chainWave(bodyParts, globalSpeed * 0.125F, globalHeight * 0.05F, 3, ticksExisted, 1.0F);
 
-//        animator.setAnim(1);
-//        animator.startPhase(3);
-//        animator.rotate(head, 0, 0, -0.3f);
-//        animator.move(head, -1, 0, 0);
-//        animator.endPhase();
-//        animator.setStationaryPhase(19);
-//        animator.resetPhase(3);
+        animator.setAnim(1);
+        animator.startPhase(3);
+        animator.rotate(head, 0, 0, -0.3f);
+        animator.move(head, -1, 0, 0);
+        animator.endPhase();
+        animator.setStationaryPhase(19);
+        animator.resetPhase(3);
     }
 }

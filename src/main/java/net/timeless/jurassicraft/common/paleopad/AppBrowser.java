@@ -2,12 +2,12 @@ package net.timeless.jurassicraft.common.paleopad;
 
 import net.minecraft.nbt.NBTTagCompound;
 
-public class AppJurassiExplorer extends App
+public class AppBrowser extends App
 {
     @Override
     public String getName()
     {
-        return "JurassiExplorer";
+        return "Browser";
     }
 
     @Override
