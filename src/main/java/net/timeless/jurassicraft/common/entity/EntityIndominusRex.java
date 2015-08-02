@@ -45,7 +45,7 @@ public class EntityIndominusRex extends EntityDinosaurAggressive implements ICar
 
     public boolean isCamouflaging()
     {
-        return true;
+        return false;
     }
 
     public void changeSkinColor()
