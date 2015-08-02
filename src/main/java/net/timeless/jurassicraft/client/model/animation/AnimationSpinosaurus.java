@@ -23,8 +23,8 @@ public class AnimationSpinosaurus implements IModelAnimator
         float globalDegree = 0.4F;
         float height = 1.0F;
 
-        // f = entity.ticksExisted;
-        // f1 = 1F;
+        f = entity.ticksExisted;
+        f1 = 1F;
 
         // middle
         MowzieModelRenderer shoulders = model.getCube("Body 3");
@@ -132,5 +132,8 @@ public class AnimationSpinosaurus implements IModelAnimator
         model.faceTarget(neck5, 3, rotationYaw, rotationPitch);
 
         ((EntitySpinosaurus) entity).tailBuffer.applyChainSwingBuffer(tailParts);
+
+        animator.setAnim(13);
+        animator.startPhase(15);
     }
 }

@@ -8,8 +8,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.reuxertz.ecoapi.ecology.role.ICarnivore;
 import net.reuxertz.ecoapi.entity.IEntityAICreature;
+import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.jurassicraft.common.entity.ai.EntityAIJCWander;
+import net.timeless.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
 
@@ -53,6 +55,10 @@ public class EntityTyrannosaurusRex extends EntityDinosaurAggressive implements 
         this.tasks.addTask(6, new EntityAIJCWander(this, 40));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
+
+//        tasks.addTask(2, new JCAutoAnimBase(this, 75, 1));
+//        tasks.addTask(2, new JCAutoAnimBase(this, 75, 2));
+//        tasks.addTask(2, new JCAutoAnimBase(this, 75, 3));
     }
 
     public String getLivingSound()
@@ -74,5 +80,7 @@ public class EntityTyrannosaurusRex extends EntityDinosaurAggressive implements 
     {
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
         super.onUpdate();
+//        if (getAnimID() == 0)
+//            AnimationAPI.sendAnimPacket(this, 1);
     }
 }
