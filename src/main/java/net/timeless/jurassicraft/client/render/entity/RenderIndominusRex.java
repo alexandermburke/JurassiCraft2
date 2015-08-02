@@ -97,6 +97,8 @@ public class RenderIndominusRex extends RenderLiving
         scale *= (((float) entityDinosaur.getScaleOffset()) * 0.09F);
         shadowSize = scale * renderDef.getShadowSize();
 
+        GL11.glColor3f(1.0F, 1.0F, 1.0F);
+
         EntityIndominusRex iRex = (EntityIndominusRex) entity;
 
         if (iRex.isCamouflaging())

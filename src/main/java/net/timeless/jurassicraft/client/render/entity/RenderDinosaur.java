@@ -70,6 +70,17 @@ public class RenderDinosaur extends RenderLiving
 
         scale *= (((float) entityDinosaur.getScaleOffset()) * 0.09F);
 
+        float color = (((float) entityDinosaur.getColorOffset()) * 0.004F);
+
+        if(entityDinosaur.getColorOffset() % 2 == 0)
+        {
+            GL11.glColor3f(1.0F + color, 1.0F - color, 1.0F + color);
+        }
+        else
+        {
+            GL11.glColor3f(1.0F - color, 1.0F + color, 1.0F - color);
+        }
+
         shadowSize = scale * renderDef.getShadowSize();
 
         GL11.glTranslatef(renderDef.getRenderXOffset() * scale, renderDef.getRenderYOffset() * scale, renderDef.getRenderZOffset() * scale);
@@ -100,6 +111,13 @@ public class RenderDinosaur extends RenderLiving
             GL11.glScalef(scale, scale, scale * -1);
         else
             GL11.glScalef(scale, scale, scale);
+    }
+
+    @Override
+    public void doRender(EntityLivingBase entity, double x, double y, double z, float yaw, float partialTicks)
+    {
+        super.doRender(entity, x, y, z, yaw, partialTicks);
+        GL11.glColor3f(1.0F, 1.0F, 1.0F);
     }
 
     public ResourceLocation getEntityTexture(EntityDinosaur entity)
