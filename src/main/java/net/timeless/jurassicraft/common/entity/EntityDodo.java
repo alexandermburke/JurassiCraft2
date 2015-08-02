@@ -8,6 +8,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.reuxertz.ecoapi.ecology.role.IHerbivore;
 import net.reuxertz.ecoapi.entity.IEntityAICreature;
+import net.timeless.animationapi.AnimationAPI;
+import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 
 public class EntityDodo extends EntityDinosaur implements IEntityAICreature, IHerbivore
@@ -26,6 +28,8 @@ public class EntityDodo extends EntityDinosaur implements IEntityAICreature, IHe
         this.tasks.addTask(6, new EntityAIWander(this, dinosaur.getAdultSpeed()));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
+
+        this.tasks.addTask(2, new JCNonAutoAnimBase(this, 50, 1, 100));
     }
 
     public String getLivingSound()
@@ -41,5 +45,13 @@ public class EntityDodo extends EntityDinosaur implements IEntityAICreature, IHe
     public String getDeathSound()
     {
         return randomSound(deathSounds);
+    }
+
+    public void onUpdate()
+    {
+        super.onUpdate();
+
+        if (getAnimID() == 0)
+            AnimationAPI.sendAnimPacket(this, 1);
     }
 }
