@@ -35,7 +35,7 @@ public class JCFile
 
     public void writeToNBT(NBTTagCompound nbt)
     {
-        nbt.setString("Name", name);
+        nbt.setString("n", name);
 
         if(isDirectory())
         {
@@ -51,25 +51,23 @@ public class JCFile
                 }
             }
 
-            nbt.setTag("Children", childrenList);
+            nbt.setTag("c", childrenList);
         }
         else
         {
-            nbt.setTag("Data", this.nbt);
+            nbt.setTag("d", this.nbt);
         }
-
-        nbt.setBoolean("Directory", directory);
     }
 
     public static JCFile readFromNBT(NBTTagCompound nbt, EntityPlayer player, JCFile parent)
     {
-        JCFile file = new JCFile(player, parent, nbt.getString("Name"));
+        JCFile file = new JCFile(player, parent, nbt.getString("n"));
 
-        file.directory = nbt.getBoolean("Directory");
+        file.directory = !nbt.hasKey("d");
 
         if(file.directory)
         {
-            NBTTagList childrenList = nbt.getTagList("Children", 10);
+            NBTTagList childrenList = nbt.getTagList("c", 10);
 
             for (int i = 0; i < childrenList.tagCount(); i++)
             {
@@ -82,7 +80,7 @@ public class JCFile
         }
         else
         {
-            file.createFile(nbt.getCompoundTag("Data"));
+            file.createFile(nbt.getCompoundTag("d"));
         }
 
         return parent;
