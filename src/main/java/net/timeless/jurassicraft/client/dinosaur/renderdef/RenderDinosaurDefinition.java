@@ -21,24 +21,24 @@ public abstract class RenderDinosaurDefinition
         this.dinosaur = dinosaur;
     }
 
-    public abstract ModelBase getModel();
+    public abstract ModelBase getModel(int geneticVariant);
 
-    public IModelAnimator getModelAnimator()
+    public IModelAnimator getModelAnimator(int geneticVariant)
     {
         return null;
     }
 
-    public float getRenderXOffset()
+    public float getRenderXOffset(int geneticVariant)
     {
         return 0.0F;
     }
 
-    public float getRenderYOffset()
+    public float getRenderYOffset(int geneticVariant)
     {
         return 0.0F;
     }
 
-    public float getRenderZOffset()
+    public float getRenderZOffset(int geneticVariant)
     {
         return 0.0F;
     }
@@ -49,14 +49,24 @@ public abstract class RenderDinosaurDefinition
 
     public abstract float getShadowSize();
 
+    public ModelDinosaur getTabulaModel(String tabulaModel, int geneticVariant) throws Exception
+    {
+        return new ModelDinosaur(TabulaModelHelper.parseModel(tabulaModel), getModelAnimator(geneticVariant));
+    }
+
     public ModelDinosaur getTabulaModel(String tabulaModel) throws Exception
     {
-        return new ModelDinosaur(TabulaModelHelper.parseModel(tabulaModel), getModelAnimator());
+        return getTabulaModel(tabulaModel, 0);
+    }
+
+    public ModelDinosaur getDefaultTabulaModel(int geneticVariant) throws Exception
+    {
+        return getTabulaModel("/assets/jurassicraft/models/entities/" + dinosaur.getName(geneticVariant).toLowerCase().replaceAll(" ", "_"), geneticVariant);
     }
 
     public ModelDinosaur getDefaultTabulaModel() throws Exception
     {
-        return getTabulaModel("/assets/jurassicraft/models/entities/" + dinosaur.getName().toLowerCase().replaceAll(" ", "_"));
+        return getDefaultTabulaModel(0);
     }
 
     public Dinosaur getDinosaur()
@@ -64,9 +74,9 @@ public abstract class RenderDinosaurDefinition
         return dinosaur;
     }
 
-    public RenderLiving getRenderer()
+    public RenderLiving getRenderer(int geneticVariant)
     {
-        String[] maleOverlayTextures = dinosaur.getMaleOverlayTextures();
+        String[] maleOverlayTextures = dinosaur.getMaleOverlayTextures(geneticVariant);
 
         if (maleOverlayTextures != null && maleOverlayTextures.length > 0)
             return new RenderDinosaurMultilayer(this);

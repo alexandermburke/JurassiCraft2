@@ -32,7 +32,7 @@ public class RenderIndominusRex extends RenderLiving
 
     public RenderIndominusRex(RenderDinosaurDefinition renderDef)
     {
-        super(Minecraft.getMinecraft().getRenderManager(), renderDef.getModel(), renderDef.getShadowSize());
+        super(Minecraft.getMinecraft().getRenderManager(), renderDef.getModel(0), renderDef.getShadowSize());
 
         this.addLayer(new LayerDinosaurFeatures(this));
 
@@ -40,14 +40,14 @@ public class RenderIndominusRex extends RenderLiving
         this.random = new Random();
         this.renderDef = renderDef;
 
-        this.maleTextures = new ResourceLocation[dinosaur.getMaleTextures().length];
-        this.femaleTextures = new ResourceLocation[dinosaur.getFemaleTextures().length];
-        this.maleOverlayTextures = new ResourceLocation[dinosaur.getMaleOverlayTextures().length];
-        this.femaleOverlayTextures = new ResourceLocation[dinosaur.getFemaleOverlayTextures().length];
+        this.maleTextures = new ResourceLocation[dinosaur.getMaleTextures(0).length];
+        this.femaleTextures = new ResourceLocation[dinosaur.getFemaleTextures(0).length];
+        this.maleOverlayTextures = new ResourceLocation[dinosaur.getMaleOverlayTextures(0).length];
+        this.femaleOverlayTextures = new ResourceLocation[dinosaur.getFemaleOverlayTextures(0).length];
 
         int i = 0;
 
-        for (String texture : dinosaur.getMaleTextures())
+        for (String texture : dinosaur.getMaleTextures(0))
         {
             this.maleTextures[i] = new ResourceLocation(texture);
             i++;
@@ -55,7 +55,7 @@ public class RenderIndominusRex extends RenderLiving
 
         i = 0;
 
-        for (String texture : dinosaur.getFemaleTextures())
+        for (String texture : dinosaur.getFemaleTextures(0))
         {
             this.femaleTextures[i] = new ResourceLocation(texture);
             i++;
@@ -63,7 +63,7 @@ public class RenderIndominusRex extends RenderLiving
 
         i = 0;
 
-        for (String texture : dinosaur.getMaleOverlayTextures())
+        for (String texture : dinosaur.getMaleOverlayTextures(0))
         {
             this.maleOverlayTextures[i] = new ResourceLocation(texture);
             i++;
@@ -71,7 +71,7 @@ public class RenderIndominusRex extends RenderLiving
 
         i = 0;
 
-        for (String texture : dinosaur.getFemaleOverlayTextures())
+        for (String texture : dinosaur.getFemaleOverlayTextures(0))
         {
             this.femaleOverlayTextures[i] = new ResourceLocation(texture);
             i++;
@@ -115,7 +115,7 @@ public class RenderIndominusRex extends RenderLiving
             GlStateManager.color(color[0], color[1], color[2], 0.7F);
         }
 
-        GlStateManager.translate(renderDef.getRenderXOffset() * scale, renderDef.getRenderYOffset() * scale, renderDef.getRenderZOffset() * scale);
+        GlStateManager.translate(renderDef.getRenderXOffset(0) * scale, renderDef.getRenderYOffset(0) * scale, renderDef.getRenderZOffset(0) * scale);
 
         String name = entity.getCustomNameTag();
 

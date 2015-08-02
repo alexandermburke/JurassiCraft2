@@ -24,56 +24,59 @@ public class RenderDinosaurMultilayer extends RenderLiving
 {
     public Dinosaur dinosaur;
     public RenderDinosaurDefinition renderDef;
-    public ResourceLocation[] maleTextures;
-    public ResourceLocation[] femaleTextures;
-    public ResourceLocation[] maleOverlayTextures;
-    public ResourceLocation[] femaleOverlayTextures;
+    public ResourceLocation[][] maleTextures;
+    public ResourceLocation[][] femaleTextures;
+    public ResourceLocation[][] maleOverlayTextures;
+    public ResourceLocation[][] femaleOverlayTextures;
     public Random random;
 
     public RenderDinosaurMultilayer(RenderDinosaurDefinition renderDef)
     {
-        super(Minecraft.getMinecraft().getRenderManager(), renderDef.getModel(), renderDef.getShadowSize());
+        super(Minecraft.getMinecraft().getRenderManager(), null, renderDef.getShadowSize());
         this.addLayer(new LayerDinosaurFeatures(this));
 
         this.dinosaur = renderDef.getDinosaur();
         this.random = new Random();
         this.renderDef = renderDef;
 
-        this.maleTextures = new ResourceLocation[dinosaur.getMaleTextures().length];
-        this.femaleTextures = new ResourceLocation[dinosaur.getFemaleTextures().length];
-        this.maleOverlayTextures = new ResourceLocation[dinosaur.getMaleOverlayTextures().length];
-        this.femaleOverlayTextures = new ResourceLocation[dinosaur.getFemaleOverlayTextures().length];
+        this.maleTextures = new ResourceLocation[dinosaur.getGeneticVariants()][dinosaur.getMaleTextures(0).length]; //TODO
+        this.femaleTextures = new ResourceLocation[dinosaur.getGeneticVariants()][dinosaur.getFemaleTextures(0).length];
+        this.maleOverlayTextures = new ResourceLocation[dinosaur.getGeneticVariants()][dinosaur.getMaleOverlayTextures(0).length];
+        this.femaleOverlayTextures = new ResourceLocation[dinosaur.getGeneticVariants()][dinosaur.getFemaleOverlayTextures(0).length];
 
-        int i = 0;
-
-        for (String texture : dinosaur.getMaleTextures())
+        for (int v = 0; v < dinosaur.getGeneticVariants(); v++)
         {
-            this.maleTextures[i] = new ResourceLocation(texture);
-            i++;
-        }
+            int i = 0;
 
-        i = 0;
+            for (String texture : dinosaur.getMaleTextures(v))
+            {
+                this.maleTextures[v][i] = new ResourceLocation(texture);
+                i++;
+            }
 
-        for (String texture : dinosaur.getFemaleTextures())
-        {
-            this.femaleTextures[i] = new ResourceLocation(texture);
-            i++;
-        }
+            i = 0;
 
-        i = 0;
+            for (String texture : dinosaur.getFemaleTextures(v))
+            {
+                this.femaleTextures[v][i] = new ResourceLocation(texture);
+                i++;
+            }
 
-        for (String texture : dinosaur.getMaleOverlayTextures())
-        {
-            this.maleOverlayTextures[i] = new ResourceLocation(texture);
-            i++;
-        }
+            i = 0;
 
-        i = 0;
+            for (String texture : dinosaur.getMaleOverlayTextures(v))
+            {
+                this.maleOverlayTextures[v][i] = new ResourceLocation(texture);
+                i++;
+            }
 
-        for (String texture : dinosaur.getFemaleOverlayTextures())
-        {
-            this.femaleOverlayTextures[i] = new ResourceLocation(texture);
-            i++;
+            i = 0;
+
+            for (String texture : dinosaur.getFemaleOverlayTextures(v))
+            {
+                this.femaleOverlayTextures[v][i] = new ResourceLocation(texture);
+                i++;
+            }
         }
     }
 
@@ -81,11 +84,12 @@ public class RenderDinosaurMultilayer extends RenderLiving
     {
         EntityDinosaur entityDinosaur = (EntityDinosaur) entity;
 
+        int geneticVariant = entityDinosaur.getGeneticVariant();
+        mainModel = renderDef.getModel(geneticVariant);
+
         float scale = (float) entityDinosaur.transitionFromAge(renderDef.getBabyScaleAdjustment(), renderDef.getAdultScaleAdjustment());
 
         scale *= (((float) entityDinosaur.getScaleOffset()) * 0.09F);
-
-        shadowSize = scale * renderDef.getShadowSize();
 
         float color = (((float) entityDinosaur.getColorOffset()) * 0.004F);
 
@@ -98,7 +102,9 @@ public class RenderDinosaurMultilayer extends RenderLiving
             GL11.glColor3f(1.0F - color, 1.0F + color, 1.0F - color);
         }
 
-        GL11.glTranslatef(renderDef.getRenderXOffset() * scale, renderDef.getRenderYOffset() * scale, renderDef.getRenderZOffset() * scale);
+        shadowSize = scale * renderDef.getShadowSize();
+
+        GL11.glTranslatef(renderDef.getRenderXOffset(geneticVariant) * scale, renderDef.getRenderYOffset(geneticVariant) * scale, renderDef.getRenderZOffset(geneticVariant) * scale);
 
         String name = entity.getCustomNameTag();
 
@@ -137,7 +143,7 @@ public class RenderDinosaurMultilayer extends RenderLiving
 
     public ResourceLocation getEntityTexture(EntityDinosaur entity)
     {
-        return entity.isMale() ? maleTextures[entity.getTexture()] : femaleTextures[entity.getTexture()];
+        return entity.isMale() ? maleTextures[entity.getGeneticVariant()][entity.getTexture()] : femaleTextures[entity.getGeneticVariant()][entity.getTexture()];
     }
 
     public ResourceLocation getEntityTexture(Entity entity)
@@ -160,20 +166,21 @@ public class RenderDinosaurMultilayer extends RenderLiving
             if (!entity.isInvisible())
             {
                 int texture = entity.getTexture();
+                int variation = entity.getGeneticVariant();
 
                 if (entity.isMale())
                 {
                     if (texture > maleOverlayTextures.length)
                         texture = maleOverlayTextures.length;
 
-                    this.renderer.bindTexture(maleOverlayTextures[texture]);
+                    this.renderer.bindTexture(maleOverlayTextures[variation][texture]);
                 }
                 else
                 {
                     if (texture > femaleOverlayTextures.length)
                         texture = femaleOverlayTextures.length;
 
-                    this.renderer.bindTexture(femaleOverlayTextures[texture]);
+                    this.renderer.bindTexture(femaleOverlayTextures[variation][texture]);
                 }
 
                 this.renderer.getMainModel().render(entity, armSwing, armSwingAmount, p_177148_5_, p_177148_6_, p_177148_7_, partialTicks);

@@ -3,7 +3,7 @@ package net.timeless.jurassicraft.client.model.animation.raptorsquad;
 import net.minecraft.entity.Entity;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
-import net.timeless.jurassicraft.common.entity.raptorsquad.EntityBlue;
+import net.timeless.jurassicraft.common.entity.EntityVelociraptor;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
@@ -16,7 +16,7 @@ public class AnimationBlue implements IModelAnimator
         ModelDinosaur model = (ModelDinosaur) modelJson;
         Animator animator = model.animator;
 
-        EntityBlue velociraptor = (EntityBlue) entity;
+        EntityVelociraptor velociraptor = (EntityVelociraptor) entity;
 
         MowzieModelRenderer waist = model.getCube("body3");
         MowzieModelRenderer chest = model.getCube("body2");

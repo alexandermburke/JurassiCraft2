@@ -31,7 +31,7 @@ public class RenderDefStegosaurus extends RenderDinosaurDefinition
     }
 
     @Override
-    public ModelBase getModel()
+    public ModelBase getModel(int geneticVariant)
     {
         return model;
     }
@@ -49,7 +49,7 @@ public class RenderDefStegosaurus extends RenderDinosaurDefinition
     }
 
     @Override
-    public float getRenderYOffset()
+    public float getRenderYOffset(int geneticVariant)
     {
         return 0.775F;
     }
@@ -61,7 +61,7 @@ public class RenderDefStegosaurus extends RenderDinosaurDefinition
     }
 
     @Override
-    public IModelAnimator getModelAnimator()
+    public IModelAnimator getModelAnimator(int geneticVariant)
     {
         return animator;
     }

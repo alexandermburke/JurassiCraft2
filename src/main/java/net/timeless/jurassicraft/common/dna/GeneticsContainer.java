@@ -8,15 +8,16 @@ public class GeneticsContainer
     private static final int GENDER = 1;
     private static final int COLOR = 2;
     private static final int SCALE = 3;
-    private static final int CAUTIOUSNESS = 4;
-    private static final int AGRESSION = 5;
+    private static final int CAUTIOUSNESS = 5;
+    private static final int AGRESSION = 6;
+    private static final int GENETIC_VARIATION = 4;
 
     public GeneticsContainer(String genetics)
     {
         this.genetics = genetics;
     }
 
-    public GeneticsContainer(int dinosaur, boolean gender, int colorOffset, int scaleOffset, int cautiousness, int agression)
+    public GeneticsContainer(int dinosaur, boolean gender, int colorOffset, int scaleOffset, int cautiousness, int agression, int geneticVariation)
     {
         genetics = defaultGeneticCode();
         set(DINOSAUR, dinosaur);
@@ -25,11 +26,12 @@ public class GeneticsContainer
         set(SCALE, scaleOffset);
         set(CAUTIOUSNESS, cautiousness);
         set(AGRESSION, agression);
+        set(GENETIC_VARIATION, geneticVariation);
     }
 
     private String defaultGeneticCode()
     {
-        return "AAAAAAAAAAAAAAAAAAAAAAAA";
+        return "AAAAAAAAAAAAAAAAAAAAAAAAAAAA";
     }
 
     public int getDinosaur()
@@ -65,6 +67,11 @@ public class GeneticsContainer
     public int getAgression()
     {
         return get(AGRESSION);
+    }
+
+    public int getGeneticVariation()
+    {
+        return get(GENETIC_VARIATION);
     }
 
     public int get(int id)

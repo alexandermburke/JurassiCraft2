@@ -9,16 +9,39 @@ public class DinosaurVelociraptor extends Dinosaur
     private String[] maleTextures;
     private String[] femaleTextures;
 
+    private String[] blueTextures;
+    private String[] echoTextures;
+    private String[] deltaTextures;
+    private String[] charlieTextures;
+
     public DinosaurVelociraptor()
     {
         this.maleTextures = new String[] { getDinosaurTexture("male") };
         this.femaleTextures = new String[] { getDinosaurTexture("female") };
+
+        this.blueTextures = new String[] { getDinosaurTexture("", 1)};
+        this.echoTextures = new String[] { getDinosaurTexture("", 2)};
+        this.deltaTextures = new String[] { getDinosaurTexture("", 3)};
+        this.charlieTextures = new String[] { getDinosaurTexture("", 4)};
+
     }
 
     @Override
-    public String getName()
+    public String getName(int geneticVariant)
     {
-        return "Velociraptor";
+        switch (geneticVariant)
+        {
+            case 1:
+                return "Blue";
+            case 2:
+                return "Echo";
+            case 3:
+                return "Delta";
+            case 4:
+                return "Charlie";
+            default:
+                return "Velociraptor";
+        }
     }
 
     @Override
@@ -105,15 +128,39 @@ public class DinosaurVelociraptor extends Dinosaur
     }
 
     @Override
-    public String[] getMaleTextures()
+    public String[] getMaleTextures(int geneticVariant)
     {
-        return maleTextures;
+        switch (geneticVariant)
+        {
+            case 1:
+                return blueTextures;
+            case 2:
+                return echoTextures;
+            case 3:
+                return deltaTextures;
+            case 4:
+                return charlieTextures;
+            default:
+                return maleTextures;
+        }
     }
 
     @Override
-    public String[] getFemaleTextures()
+    public String[] getFemaleTextures(int geneticVariant)
     {
-        return femaleTextures;
+        switch (geneticVariant)
+        {
+            case 1:
+                return blueTextures;
+            case 2:
+                return echoTextures;
+            case 3:
+                return deltaTextures;
+            case 4:
+                return charlieTextures;
+            default:
+                return femaleTextures;
+        }
     }
 
     @Override
@@ -150,5 +197,11 @@ public class DinosaurVelociraptor extends Dinosaur
     public float getAdultSizeY()
     {
         return 1.8F;
+    }
+
+    @Override
+    public int getGeneticVariants()
+    {
+        return 5;
     }
 }

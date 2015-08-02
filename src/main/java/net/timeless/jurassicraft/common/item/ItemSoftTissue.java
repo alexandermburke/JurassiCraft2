@@ -24,7 +24,7 @@ public class ItemSoftTissue extends Item
 
     public String getItemStackDisplayName(ItemStack stack)
     {
-        String dinoName = getDinosaur(stack).getName().toLowerCase().replaceAll(" ", "_");
+        String dinoName = getDinosaur(stack).getName(0).toLowerCase().replaceAll(" ", "_");
 
         return new AdvLang("item.soft_tissue.name").withProperty("dino", "entity." + dinoName + ".name").build();
     }

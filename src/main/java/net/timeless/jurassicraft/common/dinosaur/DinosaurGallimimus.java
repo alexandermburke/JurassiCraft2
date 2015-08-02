@@ -18,7 +18,7 @@ public class DinosaurGallimimus extends Dinosaur
     // TODO: Figure out all the entities properties
 
     @Override
-    public String getName()
+    public String getName(int geneticVariant)
     {
         return "Gallimimus";
     }
@@ -108,13 +108,13 @@ public class DinosaurGallimimus extends Dinosaur
     }
 
     @Override
-    public String[] getMaleTextures()
+    public String[] getMaleTextures(int geneticVariant)
     {
         return maleTextures;
     }
 
     @Override
-    public String[] getFemaleTextures()
+    public String[] getFemaleTextures(int geneticVariant)
     {
         return femaleTextures;
     }

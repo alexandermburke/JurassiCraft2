@@ -16,7 +16,7 @@ public class DinosaurDodo extends Dinosaur
     }
 
     @Override
-    public String getName()
+    public String getName(int geneticVariant)
     {
         return "Dodo";
     }
@@ -106,13 +106,13 @@ public class DinosaurDodo extends Dinosaur
     }
 
     @Override
-    public String[] getMaleTextures()
+    public String[] getMaleTextures(int geneticVariant)
     {
         return maleTextures;
     }
 
     @Override
-    public String[] getFemaleTextures()
+    public String[] getFemaleTextures(int geneticVariant)
     {
         return femaleTextures;
     }

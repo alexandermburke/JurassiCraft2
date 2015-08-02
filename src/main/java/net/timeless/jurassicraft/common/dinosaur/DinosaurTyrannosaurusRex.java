@@ -21,7 +21,7 @@ public class DinosaurTyrannosaurusRex extends Dinosaur
     }
 
     @Override
-    public String getName()
+    public String getName(int geneticVariant)
     {
         return "Tyrannosaurus Rex";
     }
@@ -110,25 +110,25 @@ public class DinosaurTyrannosaurusRex extends Dinosaur
     }
 
     @Override
-    public String[] getMaleTextures()
+    public String[] getMaleTextures(int geneticVariant)
     {
         return maleTextures;
     }
 
     @Override
-    public String[] getFemaleTextures()
+    public String[] getFemaleTextures(int geneticVariant)
     {
         return femaleTextures;
     }
 
     @Override
-    public String[] getMaleOverlayTextures()
+    public String[] getMaleOverlayTextures(int geneticVariant)
     {
         return maleOverlayTextures;
     }
 
     @Override
-    public String[] getFemaleOverlayTextures()
+    public String[] getFemaleOverlayTextures(int geneticVariant)
     {
         return femaleOverlayTextures;
     }

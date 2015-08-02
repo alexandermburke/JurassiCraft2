@@ -31,7 +31,7 @@ public class RenderDefParasaurolophus extends RenderDinosaurDefinition
     }
 
     @Override
-    public ModelBase getModel()
+    public ModelBase getModel(int geneticVariant)
     {
         return model;
     }
@@ -55,13 +55,13 @@ public class RenderDefParasaurolophus extends RenderDinosaurDefinition
     }
 
     @Override
-    public float getRenderYOffset()
+    public float getRenderYOffset(int geneticVariant)
     {
         return 0.75F;
     }
 
     @Override
-    public IModelAnimator getModelAnimator()
+    public IModelAnimator getModelAnimator(int geneticVariant)
     {
         return animator;
     }

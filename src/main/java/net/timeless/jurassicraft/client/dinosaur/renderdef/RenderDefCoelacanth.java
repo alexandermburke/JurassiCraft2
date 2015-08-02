@@ -31,7 +31,7 @@ public class RenderDefCoelacanth extends RenderDinosaurDefinition
     }
 
     @Override
-    public ModelBase getModel()
+    public ModelBase getModel(int geneticVariant)
     {
         return model;
     }
@@ -55,25 +55,25 @@ public class RenderDefCoelacanth extends RenderDinosaurDefinition
     }
 
     @Override
-    public float getRenderXOffset()
+    public float getRenderXOffset(int geneticVariant)
     {
         return 0.0F;
     }
 
     @Override
-    public float getRenderYOffset()
+    public float getRenderYOffset(int geneticVariant)
     {
         return 1.0F;
     }
 
     @Override
-    public float getRenderZOffset()
+    public float getRenderZOffset(int geneticVariant)
     {
         return -0.25F;
     }
 
     @Override
-    public IModelAnimator getModelAnimator()
+    public IModelAnimator getModelAnimator(int geneticVariant)
     {
         return animator;
     }

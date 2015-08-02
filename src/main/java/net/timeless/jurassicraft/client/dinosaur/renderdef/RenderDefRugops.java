@@ -31,7 +31,7 @@ public class RenderDefRugops extends RenderDinosaurDefinition
     }
 
     @Override
-    public ModelBase getModel()
+    public ModelBase getModel(int geneticVariant)
     {
         return model;
     }
@@ -55,7 +55,7 @@ public class RenderDefRugops extends RenderDinosaurDefinition
     }
 
     @Override
-    public IModelAnimator getModelAnimator()
+    public IModelAnimator getModelAnimator(int geneticVariant)
     {
         return animator;
     }

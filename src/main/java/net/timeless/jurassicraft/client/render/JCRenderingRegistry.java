@@ -15,10 +15,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.client.dinosaur.renderdef.*;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.raptorsquad.RenderDefBlue;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.raptorsquad.RenderDefCharlie;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.raptorsquad.RenderDefDelta;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.raptorsquad.RenderDefEcho;
 import net.timeless.jurassicraft.client.gui.app.GuiAppRegistry;
 import net.timeless.jurassicraft.client.render.entity.RenderBluePrint;
 import net.timeless.jurassicraft.client.render.entity.RenderJurassiCraftSign;
@@ -43,7 +39,7 @@ public class JCRenderingRegistry
     {
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
         {
-            String dinoName = dino.getName().toLowerCase().replaceAll(" ", "_");
+            String dinoName = dino.getName(0).toLowerCase().replaceAll(" ", "_");
 
             ModelBakery.addVariantName(JCItemRegistry.skull, "jurassicraft:fossil/skull_" + dinoName);
             ModelBakery.addVariantName(JCItemRegistry.dna, "jurassicraft:dna/dna_" + dinoName);
@@ -80,10 +76,6 @@ public class JCRenderingRegistry
         registerRenderDef(new RenderDefTyrannosaurusRex());
         registerRenderDef(new RenderDefVelociraptor());
         registerRenderDef(new RenderDefDodo());
-        registerRenderDef(new RenderDefBlue());
-        registerRenderDef(new RenderDefDelta());
-        registerRenderDef(new RenderDefEcho());
-        registerRenderDef(new RenderDefCharlie());
 
         GuiAppRegistry.register();
 
@@ -129,7 +121,7 @@ public class JCRenderingRegistry
     public void postInit()
     {
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
-            RenderingRegistry.registerEntityRenderingHandler(dino.getDinosaurClass(), renderDefs.get(dino).getRenderer());
+            RenderingRegistry.registerEntityRenderingHandler(dino.getDinosaurClass(), renderDefs.get(dino).getRenderer(0));
 
         RenderingRegistry.registerEntityRenderingHandler(EntityBluePrint.class, new RenderBluePrint());
         RenderingRegistry.registerEntityRenderingHandler(EntityJurassiCraftSign.class, new RenderJurassiCraftSign());
@@ -153,7 +145,7 @@ public class JCRenderingRegistry
 
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
         {
-            String dinoName = dino.getName().toLowerCase().replaceAll(" ", "_");
+            String dinoName = dino.getName(0).toLowerCase().replaceAll(" ", "_");
 
             this.registerItemRenderer(modelMesher, JCItemRegistry.dna, meta, "dna/dna_" + dinoName, "inventory");
             this.registerItemRenderer(modelMesher, JCItemRegistry.skull, meta, "fossil/skull_" + dinoName, "inventory");

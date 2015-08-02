@@ -31,7 +31,7 @@ public class RenderDefHypsilophodon extends RenderDinosaurDefinition
     }
 
     @Override
-    public ModelBase getModel()
+    public ModelBase getModel(int geneticVariant)
     {
         return model;
     }
@@ -54,23 +54,23 @@ public class RenderDefHypsilophodon extends RenderDinosaurDefinition
         return 0.65F;
     }
 
-    public float getRenderXOffset()
+    public float getRenderXOffset(int geneticVariant)
     {
         return 0.0F;
     }
 
-    public float getRenderYOffset()
+    public float getRenderYOffset(int geneticVariant)
     {
         return -0.05F;
     }
 
-    public float getRenderZOffset()
+    public float getRenderZOffset(int geneticVariant)
     {
         return 0.0F;
     }
 
     @Override
-    public IModelAnimator getModelAnimator()
+    public IModelAnimator getModelAnimator(int geneticVariant)
     {
         return animator;
     }
