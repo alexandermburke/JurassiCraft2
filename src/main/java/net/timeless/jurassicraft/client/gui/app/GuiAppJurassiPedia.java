@@ -21,10 +21,11 @@ public class GuiAppJurassiPedia extends GuiApp
     {
         super.renderButtons(mouseX, mouseY, gui);
 
-        gui.drawScaledText("Hello " + mc.thePlayer.getName() + "! I am " + app.getName() + "!", 10, 10, 1.0F, 0xFFFFFF);
+        gui.drawScaledText("Hello " + mc.thePlayer.getName() + "! Welcome to " + app.getName() + "!", 4, 10, 1.0F, 0xFFFFFF);
         mc.getTextureManager().bindTexture(texture);
-        gui.drawScaledTexturedModalRect(8, 25, 0, 0, 32 ,32, 32, 32, 1.0F);
-        gui.drawScaledText("<-- I look like this", 45, 35, 1.0F, 0xFFFFFF);
+        gui.drawScaledTexturedModalRect(1, 20, 0, 0, 32, 32, 32, 32, 1.0F);
+        gui.drawScaledText("Using " + app.getName() + " you can find all the information", 34, 29, 0.7F, 0xFFFFFF);
+        gui.drawScaledText("you need to start creating living dinosaurs!", 34, 37, 0.7F, 0xFFFFFF);
     }
 
     @Override
