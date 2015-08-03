@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class JCPlayerData implements IExtendedEntityProperties
 {
@@ -140,15 +141,14 @@ public class JCPlayerData implements IExtendedEntityProperties
 
     public void addSequencedDNA(DNA dna)
     {
-        JCFile sequencedDNADir = new JCFile(player, null, "Sequenced DNA");
-        sequencedDNADir.createDirectory();
+        JCFile sequencedDNADir = getFile("Sequenced DNA", true);
 
-        JCFile dnaFile = new JCFile(player, sequencedDNADir, dna.toString());
+        JCFile dnaFile = new JCFile(dna.toString(), sequencedDNADir, player, false);
 
         NBTTagCompound data = new NBTTagCompound();
         dna.writeToNBT(data);
 
-        dnaFile.createFile(data);
+        dnaFile.setData(data);
     }
 
     @Override
@@ -160,13 +160,43 @@ public class JCPlayerData implements IExtendedEntityProperties
         }
     }
 
-    public JCFile getFile(String file)
+    public JCFile getFileFromPath(String path)
+    {
+        String[] pathSplit = path.split(Pattern.quote("/"));
+
+        if(pathSplit.length == 0)
+        {
+            pathSplit = new String[] { path };
+        }
+
+        return traversePath(pathSplit, 1, getFile(pathSplit[0], true));
+    }
+
+    public JCFile traversePath(String[] path, int i, JCFile lastFile)
+    {
+        if(i == path.length)
+        {
+            return lastFile;
+        }
+
+        for (JCFile child : lastFile.getChildren())
+        {
+            if(child.getName().equals(path[i]))
+            {
+                return traversePath(path, i + 1, child);
+            }
+        }
+
+        return null;
+    }
+
+    public JCFile getFile(String file, boolean dir)
     {
         JCFile jcFile = null;
 
         for (JCFile rFile : rootFiles)
         {
-            if(rFile.toString().equals(file))
+            if(rFile.getName().equals(file))
             {
                 jcFile = rFile;
 
@@ -174,22 +204,25 @@ public class JCPlayerData implements IExtendedEntityProperties
             }
         }
 
+        if(jcFile == null)
+        {
+            jcFile = new JCFile(file, null, player, dir);
+            addRootFile(jcFile);
+        }
+
         return jcFile;
     }
 
-    public void createDirectory(JCFile file)
+    public void addRootFile(JCFile jcFile)
     {
-        if(!rootFiles.contains(file) && file.getParent() == null)
+        if(jcFile.getParent() == null)
         {
-            rootFiles.add(file);
-        }
-    }
+            if(rootFiles.contains(jcFile))
+            {
+                rootFiles.remove(jcFile);
+            }
 
-    public void createFile(JCFile file)
-    {
-        if(!rootFiles.contains(file) && file.getParent() == null)
-        {
-            rootFiles.add(file);
+            rootFiles.add(jcFile);
         }
     }
 

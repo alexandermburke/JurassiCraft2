@@ -1,5 +1,6 @@
 package net.timeless.jurassicraft.common.proxy;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -39,5 +40,10 @@ public class CommonProxy
     public void init()
     {
 
+    }
+
+    public EntityPlayer getPlayer()
+    {
+        return null;
     }
 }

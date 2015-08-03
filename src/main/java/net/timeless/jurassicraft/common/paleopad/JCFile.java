@@ -5,37 +5,108 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.timeless.jurassicraft.common.entity.data.JCPlayerData;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class JCFile
 {
-    private boolean directory;
+    private boolean dir;
     private String name;
 
-    private List<JCFile> children = new ArrayList<>();
     private JCFile parent;
 
-    private EntityPlayer player;
+    private NBTTagCompound data;
 
-    private NBTTagCompound nbt;
+    private JCPlayerData playerData;
 
-    public JCFile(EntityPlayer player, JCFile parent, String name)
+    private List<JCFile> children;
+
+    public JCFile(String name, JCFile parent, EntityPlayer player, boolean dir)
     {
         this.name = name;
         this.parent = parent;
-        this.player = player;
-        this.directory = true;
+
+        this.playerData = JCPlayerData.getPlayerData(player);
+
+        if(parent != null)
+        {
+            parent.addChild(this);
+        }
+        else
+        {
+            playerData.addRootFile(this);
+        }
+
+        this.dir = dir;
+    }
+
+    public NBTTagCompound getData()
+    {
+        return data;
+    }
+
+    public void addChild(JCFile file)
+    {
+        if(this.children.contains(file))
+        {
+            this.children.remove(file);
+        }
+
+        this.children.add(file);
+    }
+
+    public void removeChild(JCFile file)
+    {
+        this.children.remove(file);
+    }
+
+    public List<JCFile> getChildren()
+    {
+        return children;
+    }
+
+    public JCFile getParent()
+    {
+        return parent;
+    }
+
+    public void delete()
+    {
+        if(parent != null)
+        {
+            parent.removeChild(this);
+        }
+
+        playerData.remove(this);
     }
 
     public boolean isDirectory()
     {
-        return directory;
+        return dir;
+    }
+
+    public boolean isFile()
+    {
+        return !isDirectory();
+    }
+
+    public void setData(NBTTagCompound data)
+    {
+        this.data = data;
+    }
+
+    public String getPath()
+    {
+        return (parent != null ? parent.getPath() + "/" : "") + name;
+    }
+
+    public String getName()
+    {
+        return name;
     }
 
     public void writeToNBT(NBTTagCompound nbt)
     {
-        nbt.setString("n", name);
+        nbt.setString("Name", name);
 
         if(isDirectory())
         {
@@ -51,23 +122,21 @@ public class JCFile
                 }
             }
 
-            nbt.setTag("c", childrenList);
+            nbt.setTag("Children", childrenList);
         }
         else
         {
-            nbt.setTag("d", this.nbt);
+            nbt.setTag("Data", this.data);
         }
     }
 
     public static JCFile readFromNBT(NBTTagCompound nbt, EntityPlayer player, JCFile parent)
     {
-        JCFile file = new JCFile(player, parent, nbt.getString("n"));
+        JCFile file = new JCFile(nbt.getString("Name"), parent, player, !nbt.hasKey("Data"));
 
-        file.directory = !nbt.hasKey("d");
-
-        if(file.directory)
+        if(file.dir)
         {
-            NBTTagList childrenList = nbt.getTagList("c", 10);
+            NBTTagList childrenList = nbt.getTagList("Children", 10);
 
             for (int i = 0; i < childrenList.tagCount(); i++)
             {
@@ -75,63 +144,18 @@ public class JCFile
 
                 file.children.add(readFromNBT(childNBT, player, file));
             }
-
-            file.createDirectory();
         }
         else
         {
-            file.createFile(nbt.getCompoundTag("d"));
+            file.setData(nbt.getCompoundTag("Data"));
         }
 
         return parent;
-    }
-
-    public JCFile getParent()
-    {
-        return parent;
-    }
-
-    public void remove()
-    {
-        JCPlayerData.getPlayerData(player).remove(this);
-    }
-
-    public void addChild(JCFile file)
-    {
-        if(!children.contains(file))
-            children.add(file);
-    }
-
-    public void createFile(NBTTagCompound nbt)
-    {
-        this.directory = false;
-        this.nbt = nbt;
-
-        JCPlayerData playerData = JCPlayerData.getPlayerData(player);
-
-        parent = playerData.getFile(parent.toString());
-
-        if(parent != null)
-            parent.addChild(this);
-        else
-            playerData.createFile(this);
-    }
-
-    public void createDirectory()
-    {
-        this.directory = true;
-
-        if(parent != null)
-            parent.addChild(this);
-        else
-            JCPlayerData.getPlayerData(player).createDirectory(this);
     }
 
     public String toString()
     {
-        String parentString = parent != null ? parent.toString() + "/" : "";
-
-        return parentString + name;
+        return getPath();
     }
 
     public boolean equals(Object obj)

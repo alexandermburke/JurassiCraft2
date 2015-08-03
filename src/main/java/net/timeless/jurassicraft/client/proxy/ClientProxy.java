@@ -2,6 +2,7 @@ package net.timeless.jurassicraft.client.proxy;
 
 import com.google.common.collect.Lists;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -80,5 +81,11 @@ public class ClientProxy extends CommonProxy
         super.postInit();
 
         renderingRegistry.postInit();
+    }
+
+    @Override
+    public EntityPlayer getPlayer()
+    {
+        return Minecraft.getMinecraft().thePlayer;
     }
 }

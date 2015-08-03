@@ -16,6 +16,8 @@ public class JCNetworkManager
         networkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel("jurassicraft");
 
         registerPacket(MessageSyncPaleoPad.Handler.class, MessageSyncPaleoPad.class);
+        registerPacket(MessageRequestFile.Handler.class, MessageRequestFile.class);
+        registerPacket(MessageSendFile.Handler.class, MessageSendFile.class);
     }
 
     private static <REQ extends IMessage, REPLY extends IMessage> void registerPacket(Class<? extends IMessageHandler<REQ, REPLY>> messageHandler, Class<REQ> requestMessageType)
