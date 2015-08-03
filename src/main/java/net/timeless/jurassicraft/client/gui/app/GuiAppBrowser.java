@@ -1,6 +1,7 @@
 package net.timeless.jurassicraft.client.gui.app;
 
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.ResourceLocation;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.client.gui.GuiPaleoPad;
@@ -12,6 +13,7 @@ import net.timeless.jurassicraft.common.paleopad.AppBrowser;
 import net.timeless.jurassicraft.common.paleopad.JCFile;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class GuiAppBrowser extends GuiApp
 {
@@ -78,6 +80,9 @@ public class GuiAppBrowser extends GuiApp
 
                 gui.drawScaledRect(217, 5, 7, 140, 1.0F, 0x7F7F7F);
                 gui.drawBoxOutline(217, 5, 7, 140, 1, 1.0F, 0x606060);
+
+                gui.drawBoxOutline(5, 132, 65, 12, 1, 1.0F, 0x606060);
+                gui.drawScaledText("<-- Move up", 8, 135, 1.0F, 0xFFFFFF);
             }
 //            gui.drawBoxOutline(10, 10, 100, 15, 1, 1.0F, 0x606060);
         }
@@ -87,6 +92,63 @@ public class GuiAppBrowser extends GuiApp
     public void actionPerformed(GuiButton button)
     {
 
+    }
+
+    @Override
+    public void mouseClicked(int mouseX, int mouseY, GuiPaleoPad gui)
+    {
+        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+        mouseX -= dimensions.getScaledWidth() / 2 - 115;
+        mouseY -= 65;
+
+        if(intro)
+        {
+
+        }
+        else
+        {
+            AppBrowser app = (AppBrowser) getApp();
+
+            String path = app.getPath();
+
+            List<JCFile> filesAtPath = JCPlayerDataClient.getPlayerData().getFilesAtPath(path);
+
+            if(filesAtPath != null)
+            {
+                requested = false;
+
+                int y = 5;
+
+                for (JCFile file : filesAtPath)
+                {
+                    if(file != null && file.getName().length() > 0 && file.isDirectory())
+                    {
+                        if(mouseX > 5 && mouseX < 212 && mouseY > y && mouseY < y + 12)
+                        {
+                            app.setPath(file.getPath());
+
+                            break;
+                        }
+
+                        y += 15;
+                    }
+                }
+            }
+
+            if(mouseX > 5 && mouseX < 70 && mouseY > 132 && mouseY < 144)
+            {
+                String[] split = path.split(Pattern.quote("/"));
+
+                if(split.length > 1)
+                {
+                    app.setPath(path.substring(0, path.lastIndexOf("/")));
+                }
+                else
+                {
+                    app.setPath("");
+                }
+            }
+        }
     }
 
     @Override

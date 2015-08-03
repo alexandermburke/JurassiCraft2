@@ -78,6 +78,10 @@ public class GuiPaleoPad extends GuiScreen
                 }
             }
         }
+        else
+        {
+            focus.mouseClicked(mouseX, mouseY, this);
+        }
     }
 
     @Override
