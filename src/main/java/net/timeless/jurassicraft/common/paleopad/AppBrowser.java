@@ -21,13 +21,21 @@ public class AppBrowser extends App
     @Override
     public void writeToNBT(NBTTagCompound nbt)
     {
-        nbt.setString("Path", path);
+        if(path != null && path.length() != 0)
+        {
+            nbt.setString("Path", path);
+        }
     }
 
     @Override
     public void readFromNBT(NBTTagCompound nbt)
     {
         path = nbt.getString("Path");
+
+        if(path == null)
+        {
+            path = "";
+        }
     }
 
     public void setPath(String path)

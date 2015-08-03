@@ -11,16 +11,18 @@ import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.entity.data.JCPlayerData;
 import net.timeless.jurassicraft.common.paleopad.JCFile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MessageSendFile implements IMessage
 {
     //Send
     private JCFile file;
+    private JCPlayerData playerData;
 
     //Receive
     private String path;
-    private List<String> children;
+    private List<String> children = new ArrayList<>();
     private NBTTagCompound data;
     private boolean isFile;
 
@@ -28,29 +30,52 @@ public class MessageSendFile implements IMessage
     {
     }
 
-    public MessageSendFile(JCFile file)
+    public MessageSendFile(JCPlayerData data, JCFile file)
     {
         this.file = file;
+        this.playerData = data;
     }
 
     @Override
     public void toBytes(ByteBuf buffer)
     {
-        ByteBufUtils.writeUTF8String(buffer, file.getPath());
-
-        List<JCFile> children = file.getChildren();
-
-        buffer.writeInt(children.size());
-        buffer.writeBoolean(file.isFile());
-
-        for (JCFile child : children)
+        if(file == null)
         {
-            ByteBufUtils.writeUTF8String(buffer, child.getName());
+            ByteBufUtils.writeUTF8String(buffer, "");
+
+            List<JCFile> children = playerData.getFilesAtPath("");
+
+            buffer.writeInt(children.size());
+
+            for (JCFile child : children)
+            {
+                if(child != null)
+                {
+                    ByteBufUtils.writeUTF8String(buffer, child.getName());
+                }
+            }
         }
-
-        if(file.isFile() && file.getData() != null)
+        else
         {
-            ByteBufUtils.writeTag(buffer, file.getData());
+            ByteBufUtils.writeUTF8String(buffer, file.getPath());
+
+            List<JCFile> children = file.getChildren();
+
+            buffer.writeInt(children.size());
+            buffer.writeBoolean(file.isFile());
+
+            for (JCFile child : children)
+            {
+                if(child != null)
+                {
+                    ByteBufUtils.writeUTF8String(buffer, child.getName());
+                }
+            }
+
+            if(file.isFile() && file.getData() != null)
+            {
+                ByteBufUtils.writeTag(buffer, file.getData());
+            }
         }
     }
 
@@ -59,19 +84,34 @@ public class MessageSendFile implements IMessage
     {
         path = ByteBufUtils.readUTF8String(buffer);
 
-        int childCount = buffer.readInt();
-        isFile = buffer.readBoolean();
-
-        for (int i = 0; i < childCount; i++)
+        if(path.length() > 0)
         {
-            String childName = ByteBufUtils.readUTF8String(buffer);
+            int childCount = buffer.readInt();
+            isFile = buffer.readBoolean();
 
-            children.add(childName);
+            for (int i = 0; i < childCount; i++)
+            {
+                String childName = ByteBufUtils.readUTF8String(buffer);
+
+                children.add(childName);
+            }
+
+            if(isFile)
+            {
+                data = ByteBufUtils.readTag(buffer);
+            }
         }
-
-        if(isFile)
+        else
         {
-            data = ByteBufUtils.readTag(buffer);
+            int childCount = buffer.readInt();
+            isFile = false;
+
+            for (int i = 0; i < childCount; i++)
+            {
+                String childName = ByteBufUtils.readUTF8String(buffer);
+
+                children.add(childName);
+            }
         }
     }
 

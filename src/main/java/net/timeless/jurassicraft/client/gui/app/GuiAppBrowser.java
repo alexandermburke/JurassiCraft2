@@ -26,7 +26,7 @@ public class GuiAppBrowser extends GuiApp
         super(app);
     }
 
-    private boolean requested;
+    private boolean loading;
 
     @Override
     public void render(int mouseX, int mouseY, GuiPaleoPad gui)
@@ -48,12 +48,11 @@ public class GuiAppBrowser extends GuiApp
 
             List<JCFile> filesAtPath = JCPlayerDataClient.getPlayerData().getFilesAtPath(path);
 
-            if(filesAtPath == null)
+            if(loading)
             {
-                if(!requested)
+                if(filesAtPath != null)
                 {
-                    requested = true;
-                    JurassiCraft.networkManager.networkWrapper.sendToServer(new MessageRequestFile(path));
+                    loading = false;
                 }
                 else
                 {
@@ -62,8 +61,6 @@ public class GuiAppBrowser extends GuiApp
             }
             else
             {
-                requested = false;
-
                 int y = 5;
 
                 for (JCFile file : filesAtPath)
@@ -122,8 +119,6 @@ public class GuiAppBrowser extends GuiApp
 
             if(filesAtPath != null)
             {
-                requested = false;
-
                 int y = 5;
 
                 for (JCFile file : filesAtPath)
@@ -133,6 +128,11 @@ public class GuiAppBrowser extends GuiApp
                         if(mouseX > 5 && mouseX < 212 && mouseY > y && mouseY < y + 12)
                         {
                             app.setPath(file.getPath());
+
+                            if(!(path.equals(app.getPath())))
+                            {
+                                request(app.getPath());
+                            }
 
                             break;
                         }
@@ -154,14 +154,43 @@ public class GuiAppBrowser extends GuiApp
                 {
                     app.setPath("");
                 }
+
+                if(!(path.equals(app.getPath())))
+                {
+                    request(app.getPath());
+                }
             }
         }
+    }
+
+    private void request(String path)
+    {
+        if (path == null)
+        {
+            path = "";
+        }
+
+        JurassiCraft.networkManager.networkWrapper.sendToServer(new MessageRequestFile(path));
+        JCPlayerData playerData = JCPlayerDataClient.getPlayerData();
+
+        if(path.length() == 0)
+        {
+            playerData.clearRootFiles();
+        }
+        else
+        {
+            playerData.remove(playerData.getFileFromPath(path));
+        }
+
+        loading = true;
     }
 
     @Override
     public void init()
     {
         intro = !app.hasBeenPreviouslyOpened();
+
+        request(((AppBrowser)app).getPath());
     }
 
     @Override

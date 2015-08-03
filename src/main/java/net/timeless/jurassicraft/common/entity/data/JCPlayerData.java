@@ -162,6 +162,11 @@ public class JCPlayerData implements IExtendedEntityProperties
 
     public JCFile getFileFromPath(String path)
     {
+        if(path.length() == 0)
+        {
+            return null;
+        }
+
         String[] pathSplit = path.split(Pattern.quote("/"));
 
         if(pathSplit.length == 0)
@@ -259,5 +264,10 @@ public class JCPlayerData implements IExtendedEntityProperties
         {
             rootFiles.remove(file);
         }
+    }
+
+    public void clearRootFiles()
+    {
+        rootFiles.clear();
     }
 }
