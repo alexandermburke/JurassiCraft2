@@ -27,6 +27,12 @@ public class AnimationCompsognathus implements IModelAnimator
         MowzieModelRenderer head = model.getCube("Head");
 
         MowzieModelRenderer neck1 = model.getCube("Neck 1");
+        MowzieModelRenderer neck2 = model.getCube("Neck 2");
+        MowzieModelRenderer neck3 = model.getCube("Neck 3");
+        MowzieModelRenderer neck4 = model.getCube("Neck 4");
+        MowzieModelRenderer neck5 = model.getCube("Neck 5");
+        MowzieModelRenderer neck6 = model.getCube("Neck 6");
+        MowzieModelRenderer neck7 = model.getCube("Neck 7");
 
         MowzieModelRenderer lowerJaw = model.getCube("Lower Jaw");
 
@@ -61,7 +67,7 @@ public class AnimationCompsognathus implements IModelAnimator
         // 60 ticks
         // Squat phase
         animator.setAnim(13);
-        animator.startPhase(10);
+        animator.startPhase(5);
         animator.rotate(leftThigh, -0.3F, 0, 0);
         animator.move(leftThigh, 0, 3F, 0);
         animator.rotate(leftMidLeg, 0.8F, 0, 0);
@@ -76,12 +82,15 @@ public class AnimationCompsognathus implements IModelAnimator
         animator.rotate(lowerJaw, 0.3F, 0, 0);
         animator.rotate(abdomen, -0.1F, 0, 0);
         animator.move(abdomen, 0, 3F, 0);
+        animator.rotate(tail1, 0.1F, 0, 0);
+        animator.rotate(tail2, 0.1F, 0, 0);
+        animator.rotate(tail3, 0.2F, 0, 0);
         animator.rotate(tail4, 0.1F, 0, 0);
         animator.rotate(tail5, 0.1F, 0, 0);
         animator.endPhase();
 
         // jump phase
-        animator.startPhase(10);
+        animator.startPhase(7);
         animator.rotate(leftThigh, 0, 0, 0);
         animator.move(leftThigh, 0, -20F, 0);
         animator.rotate(leftMidLeg, -0.1F, 0, 0);
@@ -94,14 +103,20 @@ public class AnimationCompsognathus implements IModelAnimator
         animator.rotate(rightFoot, 0.6F, 0, 0);
         animator.rotate(lowerJaw, 0.1F, 0, 0);
         animator.rotate(head, -0.7F, 0, 0);
-        animator.rotate(abdomen, -0.6F, 0, 0);
+        animator.rotate(abdomen, -0.8F, 0, 0);
         animator.move(abdomen, 0, -20F, 0);
         animator.rotate(lowerJaw, 0.4F, 0, 0);
-        animator.rotate(tail2, 0.1F, 0, 0);
-        animator.rotate(tail3, -0.2F, 0, 0);
+        animator.rotate(tail1, -0.1F, 0, 0);
+        animator.rotate(tail2, -0.1F, 0, 0);
+        animator.rotate(tail3, -0.1F, 0, 0);
         animator.rotate(tail4, -0.1F, 0, 0);
         animator.rotate(tail5, -0.1F, 0, 0);
-        animator.rotate(leftArm, -1.6F, 0, 0);
+        animator.rotate(neck1, 0.6F, 0, 0);
+        animator.rotate(neck2, 0.1F, 0, 0);
+        animator.rotate(neck5, -0.2F, 0, 0);
+        animator.rotate(neck6, -0.2F, 0, 0);
+        animator.rotate(neck7, -0.2F, 0, 0);
+        animator.rotate(leftArm, -1.7F, 0, 0);
         animator.rotate(leftForeArm, 0.6F, 0, 0);
         animator.rotate(leftHand, -1.6F, 0, 0);
         animator.rotate(rightArm, -1.5F, 0, 0);
@@ -110,8 +125,28 @@ public class AnimationCompsognathus implements IModelAnimator
         animator.endPhase();
 
         // land phase
-        animator.startPhase(10);
+        animator.startPhase(5);
+        animator.rotate(leftThigh, -0.4F, 0, 0);
+        animator.move(leftThigh, 0, 3F, 0);
+        animator.rotate(leftMidLeg, 0.9F, 0, 0);
+        animator.rotate(leftShin, -0.6F, 0, 0);
+        animator.rotate(leftFoot, -0.1F, 0, 0);
+        animator.rotate(rightThigh, -0.4F, 0, 0);
+        animator.move(rightThigh, 0, 3F, 0);
+        animator.rotate(rightMidLeg, 0.9F, 0, 0);
+        animator.rotate(rightShin, -0.5F, 0, 0);
+        animator.rotate(rightFoot, -0.1F, 0, 0);
+        animator.rotate(head, -0.4F, 0, 0);
+        animator.rotate(lowerJaw, 0.3F, 0, 0);
+        animator.rotate(abdomen, -0.1F, 0, 0);
+        animator.rotate(neck4, 0.2F, 0, 0);
+        animator.rotate(neck5, 0.2F, 0, 0);
+        animator.rotate(neck6, 0.2F, 0, 0);
+        animator.rotate(neck7, 0.2F, 0, 0);
+        animator.move(abdomen, 0, 3F, 0);
+        animator.rotate(tail4, 0.1F, 0, 0);
+        animator.rotate(tail5, 0.1F, 0, 0);
         animator.endPhase();
-        animator.resetPhase(20);
+        animator.resetPhase(8);
     }
 }

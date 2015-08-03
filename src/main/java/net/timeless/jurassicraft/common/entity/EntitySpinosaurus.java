@@ -30,8 +30,6 @@ public class EntitySpinosaurus extends EntityDinosaurAggressive implements IEnti
         this.tasks.addTask(6, new EntityAIJCWander(this, 20));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
-
-        tasks.addTask(2, new JCAutoAnimBase(this, 25, 1));
     }
 
     public void onUpdate()
@@ -39,7 +37,5 @@ public class EntitySpinosaurus extends EntityDinosaurAggressive implements IEnti
         super.onUpdate();
 
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 10, 4.0F, this);
-        if (getAnimID() == 0)
-            AnimationAPI.sendAnimPacket(this, 13);
     }
 }

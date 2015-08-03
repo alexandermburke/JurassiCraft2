@@ -25,7 +25,7 @@ public class EntityCompsognathus extends EntityDinosaurDefensiveHerbivore implem
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
 
-        tasks.addTask(2, new JCAutoAnimBase(this, 40, 13)); //Beg
+        tasks.addTask(2, new JCAutoAnimBase(this, 25, 13)); //Beg
     }
 
     public void onUpdate()
