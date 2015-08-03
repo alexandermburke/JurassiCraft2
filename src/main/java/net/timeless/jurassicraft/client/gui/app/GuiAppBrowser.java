@@ -71,7 +71,14 @@ public class GuiAppBrowser extends GuiApp
                     if(file != null && file.getName().length() > 0)
                     {
                         gui.drawBoxOutline(5, y, 207, 12, 1, 1.0F, 0x606060);
-                        gui.drawScaledText(file.getName(), 7, y + 3, 1.0F, 0xFFFFFF);
+                        String name = file.getName();
+
+                        if(name.length() > 23)
+                        {
+                            name = name.substring(0, 23) + "...";
+                        }
+
+                        gui.drawScaledText(name, 7, y + 3, 1.0F, 0xFFFFFF);
                         gui.drawScaledText(file.isFile() ? "       File" : "Directory", 160, y + 3, 1.0F, 0x7F7F7F);
 
                         y += 15;
