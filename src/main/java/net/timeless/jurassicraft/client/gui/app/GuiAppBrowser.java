@@ -66,10 +66,13 @@ public class GuiAppBrowser extends GuiApp
 
                 for (JCFile file : filesAtPath)
                 {
-                    gui.drawBoxOutline(10, y, 100, 10, 1, 1.0F, 0x606060);
-                    gui.drawScaledText(file.getName(), 12, y + 2, 1.0F, 0xFFFFFF);
+                    if(file != null)
+                    {
+                        gui.drawBoxOutline(10, y, 100, 12, 1, 1.0F, 0x606060);
+                        gui.drawScaledText(file.getName(), 12, y + 2, 1.0F, 0xFFFFFF);
 
-                    y += 15;
+                        y += 15;
+                    }
                 }
             }
 //            gui.drawBoxOutline(10, 10, 100, 15, 1, 1.0F, 0x606060);

@@ -174,7 +174,7 @@ public class JCPlayerData implements IExtendedEntityProperties
 
     public List<JCFile> getFilesAtPath(String path)
     {
-        if(path == null || path == "")
+        if(path == null || path.length() == 0)
         {
             return rootFiles;
         }
