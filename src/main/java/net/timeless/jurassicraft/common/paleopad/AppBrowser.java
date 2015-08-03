@@ -4,6 +4,8 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class AppBrowser extends App
 {
+    private String path;
+
     @Override
     public String getName()
     {
@@ -19,13 +21,23 @@ public class AppBrowser extends App
     @Override
     public void writeToNBT(NBTTagCompound nbt)
     {
-        
+        nbt.setString("Path", path);
     }
 
     @Override
     public void readFromNBT(NBTTagCompound nbt)
     {
+        path = nbt.getString("Path");
+    }
 
+    public void setPath(String path)
+    {
+        this.path = path;
+    }
+
+    public String getPath()
+    {
+        return path;
     }
 
     @Override
@@ -33,6 +45,4 @@ public class AppBrowser extends App
     {
 
     }
-
-
 }

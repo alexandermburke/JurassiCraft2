@@ -172,6 +172,27 @@ public class JCPlayerData implements IExtendedEntityProperties
         return traversePath(pathSplit, 1, getFile(pathSplit[0], true));
     }
 
+    public List<JCFile> getFilesAtPath(String path)
+    {
+        if(path == null || path == "")
+        {
+            return rootFiles;
+        }
+        else
+        {
+            JCFile fileFromPath = getFileFromPath(path);
+
+            if(fileFromPath == null)
+            {
+                return null;
+            }
+            else
+            {
+                return fileFromPath.getChildren();
+            }
+        }
+    }
+
     public JCFile traversePath(String[] path, int i, JCFile lastFile)
     {
         if(i == path.length)
@@ -196,11 +217,14 @@ public class JCPlayerData implements IExtendedEntityProperties
 
         for (JCFile rFile : rootFiles)
         {
-            if(rFile.getName().equals(file))
+            if(rFile != null)
             {
-                jcFile = rFile;
+                if(rFile.getName().equals(file))
+                {
+                    jcFile = rFile;
 
-                break;
+                    break;
+                }
             }
         }
 
@@ -222,7 +246,10 @@ public class JCPlayerData implements IExtendedEntityProperties
                 rootFiles.remove(jcFile);
             }
 
-            rootFiles.add(jcFile);
+            if(jcFile != null)
+            {
+                rootFiles.add(jcFile);
+            }
         }
     }
 

@@ -5,6 +5,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.timeless.jurassicraft.common.entity.data.JCPlayerData;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class JCFile
@@ -18,7 +19,7 @@ public class JCFile
 
     private JCPlayerData playerData;
 
-    private List<JCFile> children;
+    private List<JCFile> children = new ArrayList<>();
 
     public JCFile(String name, JCFile parent, EntityPlayer player, boolean dir)
     {

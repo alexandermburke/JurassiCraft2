@@ -217,6 +217,18 @@ public class GuiPaleoPad extends GuiScreen
         GL11.glPopMatrix();
     }
 
+    public void drawBoxOutline(int x, int y, int sizeX, int sizeY, int borderSize, float scale, int colour)
+    {
+        GL11.glPushMatrix();
+
+        drawScaledRect(x, y, sizeX, borderSize, scale, colour);
+        drawScaledRect(x + sizeX, y, borderSize, sizeY + borderSize, scale, colour);
+        drawScaledRect(x, y, borderSize, sizeY + borderSize, scale, colour);
+        drawScaledRect(x, y + sizeY, sizeX, borderSize, scale, colour);
+
+        GL11.glPopMatrix();
+    }
+
     public void drawCenteredScaledText(String text, int x, int y, float scale, int colour)
     {
         GL11.glPushMatrix();
@@ -252,6 +264,7 @@ public class GuiPaleoPad extends GuiScreen
 
         GL11.glPopMatrix();
     }
+
 
 
     @Override
