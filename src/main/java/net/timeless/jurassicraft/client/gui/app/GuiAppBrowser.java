@@ -62,18 +62,22 @@ public class GuiAppBrowser extends GuiApp
             {
                 requested = false;
 
-                int y = 10;
+                int y = 5;
 
                 for (JCFile file : filesAtPath)
                 {
-                    if(file != null)
+                    if(file != null && file.getName().length() > 0)
                     {
-                        gui.drawBoxOutline(10, y, 100, 12, 1, 1.0F, 0x606060);
-                        gui.drawScaledText(file.getName(), 12, y + 2, 1.0F, 0xFFFFFF);
+                        gui.drawBoxOutline(5, y, 207, 12, 1, 1.0F, 0x606060);
+                        gui.drawScaledText(file.getName(), 7, y + 3, 1.0F, 0xFFFFFF);
+                        gui.drawScaledText(file.isFile() ? "       File" : "Directory", 160, y + 3, 1.0F, 0x7F7F7F);
 
                         y += 15;
                     }
                 }
+
+                gui.drawScaledRect(217, 5, 7, 140, 1.0F, 0x7F7F7F);
+                gui.drawBoxOutline(217, 5, 7, 140, 1, 1.0F, 0x606060);
             }
 //            gui.drawBoxOutline(10, 10, 100, 15, 1, 1.0F, 0x606060);
         }
