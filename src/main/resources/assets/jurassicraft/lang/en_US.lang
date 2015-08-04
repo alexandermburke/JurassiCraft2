@@ -11,8 +11,8 @@ itemGroup.jurassicraft.plants=JurassiCraft Plants
 entity.velociraptor.name=Velociraptor
 entity.spinosaurus.name=Spinosaurus
 entity.rugops.name=Rugops
-entity.indominus_rex.name=Indominus
-entity.tyrannosaurus_rex.name=Tyrannosaurus
+entity.indominus.name=Indominus
+entity.tyrannosaurus.name=Tyrannosaurus
 entity.stegosaurus.name=Stegosaurus
 entity.achillobator.name=Achillobator
 entity.carnotaurus.name=Carnotaurus
@@ -46,7 +46,7 @@ item.dino_egg.name={dino} Egg
 item.dino_spawn_egg.name=Spawn {dino}
 item.dinosaur_meat.name={dino} Meat
 item.dinosaur_steak.name={dino} Steak
-item.paleo_pad.name=Paleo Pad
+item.paleo_tab.name=Paleo Tab
 item.dna.name={dino} DNA
 item.jurassicraft_sign.name=JurassiCraft Sign
 item.blue_print.name={type} Blue Print
@@ -102,3 +102,7 @@ period.devonian.name=Devonian
 period.silurian.name=Silurian
 period.ordovician.name=Ordovician
 period.cambrian.name=Cambrian
+
+//PaleoTab ==================================================
+paleotab.os.name=PaleOS 1.0.0
+paleotab.time.name={hours}:{minutes}

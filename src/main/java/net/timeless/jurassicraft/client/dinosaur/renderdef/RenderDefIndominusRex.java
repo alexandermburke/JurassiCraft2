@@ -18,7 +18,7 @@ public class RenderDefIndominusRex extends RenderDinosaurDefinition
 
     public RenderDefIndominusRex()
     {
-        super(JCEntityRegistry.indominus_rex);
+        super(JCEntityRegistry.indominus);
 
         this.animator = new AnimationIndominusRex();
 

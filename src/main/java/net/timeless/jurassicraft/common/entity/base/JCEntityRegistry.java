@@ -29,7 +29,7 @@ public class JCEntityRegistry
     public static final Dinosaur gallimimus = new DinosaurGallimimus();
     public static final Dinosaur giganotosaurus = new DinosaurGiganotosaurus();
     public static final Dinosaur hypsilophodon = new DinosaurHypsilophodon();
-    public static final Dinosaur indominus_rex = new DinosaurIndominusRex();
+    public static final Dinosaur indominus = new DinosaurIndominus();
     public static final Dinosaur majungasaurus = new DinosaurMajungasaurus();
     public static final Dinosaur parasaurolophus = new DinosaurParasaurolophus();
     public static final Dinosaur pteranodon = new DinosaurPteranodon();
@@ -38,7 +38,7 @@ public class JCEntityRegistry
     public static final Dinosaur spinosaurus = new DinosaurSpinosaurus();
     public static final Dinosaur stegosaurus = new DinosaurStegosaurus();
     public static final Dinosaur triceratops = new DinosaurTriceratops();
-    public static final Dinosaur tyrannosaurus_rex = new DinosaurTyrannosaurusRex();
+    public static final Dinosaur tyrannosaurus = new DinosaurTyrannosaurus();
     public static final Dinosaur velociraptor = new DinosaurVelociraptor();
     public static final Dinosaur leptictidium = new DinosaurLeptictidium();
 
@@ -55,7 +55,7 @@ public class JCEntityRegistry
         registerDinosaurType(dunkleosteus);
         registerDinosaurType(gallimimus);
         registerDinosaurType(giganotosaurus);
-        registerDinosaurType(indominus_rex);
+        registerDinosaurType(indominus);
         registerDinosaurType(majungasaurus);
         registerDinosaurType(parasaurolophus);
         registerDinosaurType(pteranodon);
@@ -64,7 +64,7 @@ public class JCEntityRegistry
         registerDinosaurType(spinosaurus);
         registerDinosaurType(stegosaurus);
         registerDinosaurType(triceratops);
-        registerDinosaurType(tyrannosaurus_rex);
+        registerDinosaurType(tyrannosaurus);
         registerDinosaurType(hypsilophodon);
         registerDinosaurType(dodo);
         registerDinosaurType(leptictidium);

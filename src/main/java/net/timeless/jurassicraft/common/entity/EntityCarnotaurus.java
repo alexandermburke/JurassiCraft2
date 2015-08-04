@@ -24,7 +24,7 @@ public class EntityCarnotaurus extends EntityDinosaurAggressive implements IEnti
         this.attackCreature(EntityAchillobator.class, 0);
 
         this.defendFromAttacker(EntityPlayer.class, 0);
-        this.defendFromAttacker(EntityTyrannosaurusRex.class, 0);
+        this.defendFromAttacker(EntityTyrannosaurus.class, 0);
         this.defendFromAttacker(EntityIndominusRex.class, 0);
         this.defendFromAttacker(EntitySpinosaurus.class, 0);
         this.defendFromAttacker(EntityAchillobator.class, 0);

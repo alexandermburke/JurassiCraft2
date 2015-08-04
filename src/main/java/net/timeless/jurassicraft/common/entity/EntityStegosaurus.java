@@ -17,7 +17,7 @@ public class EntityStegosaurus extends EntityDinosaurProvokableHerbivore impleme
     public EntityStegosaurus(World world)
     {
         super(world);
-        this.defendFromAttacker(EntityTyrannosaurusRex.class, 1);
+        this.defendFromAttacker(EntityTyrannosaurus.class, 1);
         this.defendFromAttacker(EntityPlayer.class, 3);
         this.defendFromAttacker(EntityIndominusRex.class, 1);
 

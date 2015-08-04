@@ -24,7 +24,7 @@ import net.timeless.jurassicraft.common.container.ContainerDNASequencer;
 import net.timeless.jurassicraft.common.dna.DNA;
 import net.timeless.jurassicraft.common.dna.GeneticsHelper;
 import net.timeless.jurassicraft.common.entity.data.JCPlayerData;
-import net.timeless.jurassicraft.common.item.ItemPaleoPad;
+import net.timeless.jurassicraft.common.item.ItemPaleoTab;
 import net.timeless.jurassicraft.common.item.ItemSoftTissue;
 
 import java.util.Random;
@@ -301,7 +301,7 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
 
         if (input != null && input.getItem() instanceof ItemSoftTissue)
         {
-            if (storage != null && storage.getItem() instanceof ItemPaleoPad)
+            if (storage != null && storage.getItem() instanceof ItemPaleoTab)
                 if (worldObj.getPlayerEntityByUUID(UUID.fromString(storage.getTagCompound().getString("LastOwner"))) != null)
                     return true;
         }

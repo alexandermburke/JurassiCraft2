@@ -5,7 +5,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
-import net.timeless.jurassicraft.common.entity.EntityTyrannosaurusRex;
+import net.timeless.jurassicraft.common.entity.EntityTyrannosaurus;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
@@ -111,7 +111,7 @@ public class AnimationTyrannosaurusRex implements IModelAnimator
         model.chainSwing(tailParts, 0.1F, 0.05F - (0.05F), 1, entity.ticksExisted, 1.0F - 0.6F);
         model.chainWave(tailParts, 0.1F, -0.1F, 2, entity.ticksExisted, 1.0F - 0.6F);
 
-        ((EntityTyrannosaurusRex) entity).tailBuffer.applyChainSwingBuffer(tailParts);
+        ((EntityTyrannosaurus) entity).tailBuffer.applyChainSwingBuffer(tailParts);
 
         animator.setAnim(1);
         animator.startPhase(15);

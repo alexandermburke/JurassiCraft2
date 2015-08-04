@@ -19,6 +19,6 @@ public class EntityAnkylosaurus extends EntityDinosaurProvokableHerbivore implem
         this.tasks.addTask(8, new EntityAILookIdle(this));
 
         this.defendFromAttacker(EntityPlayer.class, 2);
-        this.defendFromAttacker(EntityTyrannosaurusRex.class, 1);
+        this.defendFromAttacker(EntityTyrannosaurus.class, 1);
     }
 }

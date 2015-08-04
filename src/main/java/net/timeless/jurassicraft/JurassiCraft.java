@@ -11,7 +11,7 @@ import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 import net.timeless.jurassicraft.common.message.JCNetworkManager;
-import net.timeless.jurassicraft.common.paleopad.AppRegistry;
+import net.timeless.jurassicraft.common.paleotab.AppRegistry;
 import net.timeless.jurassicraft.common.proxy.CommonProxy;
 import net.timeless.jurassicraft.common.recipe.JCRecipeRegistry;
 import org.apache.logging.log4j.Logger;

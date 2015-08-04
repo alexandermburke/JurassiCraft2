@@ -2,8 +2,8 @@ package net.timeless.jurassicraft.client.gui.app;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.jurassicraft.common.paleopad.App;
-import net.timeless.jurassicraft.common.paleopad.AppRegistry;
+import net.timeless.jurassicraft.common.paleotab.App;
+import net.timeless.jurassicraft.common.paleotab.AppRegistry;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,8 +20,8 @@ public class GuiAppRegistry
 
     public static void register()
     {
-        registerApp(new GuiAppJurassiPedia(AppRegistry.jurassipedia));
-        registerApp(new GuiAppBrowser(AppRegistry.browser));
+        registerApp(new GuiAppDinoPedia(AppRegistry.dinopedia));
+        registerApp(new GuiAppFileExplorer(AppRegistry.file_explorer));
     }
 
     public static GuiApp getGui(App app)

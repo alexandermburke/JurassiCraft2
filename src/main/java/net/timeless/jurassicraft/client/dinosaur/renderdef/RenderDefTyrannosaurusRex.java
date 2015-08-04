@@ -16,7 +16,7 @@ public class RenderDefTyrannosaurusRex extends RenderDinosaurDefinition
 
     public RenderDefTyrannosaurusRex()
     {
-        super(JCEntityRegistry.tyrannosaurus_rex);
+        super(JCEntityRegistry.tyrannosaurus);
 
         this.animator = new AnimationTyrannosaurusRex();
 

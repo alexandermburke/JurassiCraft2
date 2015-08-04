@@ -8,8 +8,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.timeless.jurassicraft.common.dna.DNA;
-import net.timeless.jurassicraft.common.paleopad.App;
-import net.timeless.jurassicraft.common.paleopad.JCFile;
+import net.timeless.jurassicraft.common.paleotab.App;
+import net.timeless.jurassicraft.common.paleotab.JCFile;
 
 import java.util.ArrayList;
 import java.util.HashMap;

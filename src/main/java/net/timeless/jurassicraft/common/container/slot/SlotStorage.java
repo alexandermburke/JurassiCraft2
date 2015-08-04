@@ -3,7 +3,7 @@ package net.timeless.jurassicraft.common.container.slot;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.timeless.jurassicraft.common.item.ItemPaleoPad;
+import net.timeless.jurassicraft.common.item.ItemPaleoTab;
 
 public class SlotStorage extends Slot
 {
@@ -15,6 +15,6 @@ public class SlotStorage extends Slot
     @Override
     public boolean isItemValid(ItemStack stack)
     {
-        return stack.getItem() instanceof ItemPaleoPad;
+        return stack.getItem() instanceof ItemPaleoTab;
     }
 }

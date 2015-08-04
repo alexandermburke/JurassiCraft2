@@ -16,7 +16,7 @@ public class EntityBrachiosaurus extends EntityDinosaurDefensiveHerbivore implem
     public EntityBrachiosaurus(World world)
     {
         super(world);
-        this.defendFromAttacker(EntityTyrannosaurusRex.class, 1);
+        this.defendFromAttacker(EntityTyrannosaurus.class, 1);
         this.defendFromAttacker(EntityPlayer.class, 3);
         this.defendFromAttacker(EntityIndominusRex.class, 1);
 

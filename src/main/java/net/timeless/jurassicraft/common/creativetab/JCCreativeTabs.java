@@ -22,7 +22,7 @@ public class JCCreativeTabs
         {
             public int getIconItemDamage()
             {
-                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus_rex);
+                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus);
             }
 
             public Item getTabIconItem()
@@ -35,7 +35,7 @@ public class JCCreativeTabs
         {
             public int getIconItemDamage()
             {
-                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus_rex);
+                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus);
             }
 
             public Item getTabIconItem()
@@ -48,7 +48,7 @@ public class JCCreativeTabs
         {
             public int getIconItemDamage()
             {
-                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus_rex);
+                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus);
             }
 
             public Item getTabIconItem()
@@ -61,7 +61,7 @@ public class JCCreativeTabs
         {
             public int getIconItemDamage()
             {
-                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus_rex);
+                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus);
             }
 
             public Item getTabIconItem()
@@ -74,7 +74,7 @@ public class JCCreativeTabs
         {
             public int getIconItemDamage()
             {
-                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus_rex);
+                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus);
             }
 
             public Item getTabIconItem()
