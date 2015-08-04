@@ -45,7 +45,17 @@ public class MessageSendFile implements IMessage
 
             List<JCFile> children = playerData.getFilesAtPath("");
 
-            buffer.writeInt(children.size());
+            int i = 0;
+
+            for (JCFile child : children)
+            {
+                if (child != null)
+                {
+                    i++;
+                }
+            }
+
+            buffer.writeInt(i);
 
             for (JCFile child : children)
             {
@@ -61,7 +71,17 @@ public class MessageSendFile implements IMessage
 
             List<JCFile> children = file.getChildren();
 
-            buffer.writeInt(children.size());
+            int i = 0;
+
+            for (JCFile child : children)
+            {
+                if (child != null)
+                {
+                    i++;
+                }
+            }
+
+            buffer.writeInt(i);
             buffer.writeBoolean(file.isFile());
 
             for (JCFile child : children)
