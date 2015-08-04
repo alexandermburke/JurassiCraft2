@@ -1,15 +1,16 @@
 package net.timeless.jurassicraft.common.dinosaur;
 
 import net.timeless.jurassicraft.common.entity.EntityDodo;
+import net.timeless.jurassicraft.common.entity.EntityLeptictidium;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.common.period.EnumTimePeriod;
 
-public class DinosaurDodo extends Dinosaur
+public class DinosaurLeptictidium extends Dinosaur
 {
     private String[] maleTextures;
     private String[] femaleTextures;
 
-    public DinosaurDodo()
+    public DinosaurLeptictidium()
     {
         this.maleTextures = new String[] { getDinosaurTexture("male") };
         this.femaleTextures = new String[] { getDinosaurTexture("female") };
@@ -18,31 +19,31 @@ public class DinosaurDodo extends Dinosaur
     @Override
     public String getName(int geneticVariant)
     {
-        return "Dodo";
+        return "Leptictidium";
     }
 
     @Override
     public Class<? extends EntityDinosaur> getDinosaurClass()
     {
-        return EntityDodo.class;
+        return EntityLeptictidium.class;
     }
 
     @Override
     public EnumTimePeriod getPeriod()
     {
         return EnumTimePeriod.CRETACEOUS;
-    }
+    } //TODO EOCENE
 
     @Override
     public int getEggPrimaryColor()
     {
-        return 0xA2996E;
+        return 0x362410;
     }
 
     @Override
     public int getEggSecondaryColor()
     {
-        return 0x545338;
+        return 0x978A78;
     }
 
     @Override
@@ -120,25 +121,25 @@ public class DinosaurDodo extends Dinosaur
     @Override
     public float getBabyEyeHeight()
     {
-        return 0.35F;
+        return 0.16F;
     }
 
     @Override
     public float getAdultEyeHeight()
     {
-        return 0.95F;
+        return 0.63F;
     }
 
     @Override
     public float getBabySizeX()
     {
-        return 0.25F;
+        return 0.15F;
     }
 
     @Override
     public float getBabySizeY()
     {
-        return 0.35F;
+        return 0.2F;
     }
 
     @Override
@@ -150,6 +151,12 @@ public class DinosaurDodo extends Dinosaur
     @Override
     public float getAdultSizeY()
     {
-        return 0.95F;
+        return 0.75F;
+    }
+
+    @Override
+    public boolean shouldRegister()
+    {
+        return false;
     }
 }

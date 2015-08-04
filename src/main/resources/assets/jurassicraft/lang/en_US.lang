@@ -35,6 +35,7 @@ entity.charlie.name=Charlie
 entity.delta.name=Delta
 entity.blue.name=Blue
 entity.echo.name=Echo
+entity.leptictidium.name=Leptictidium
 
 //Items ==================================================
 item.rock_pick.name=Rock Pick
