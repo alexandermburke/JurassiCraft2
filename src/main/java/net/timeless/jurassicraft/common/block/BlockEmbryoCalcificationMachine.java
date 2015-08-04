@@ -24,10 +24,10 @@ public class BlockEmbryoCalcificationMachine extends BlockOriented
 {
     public BlockEmbryoCalcificationMachine()
     {
-        super(Material.wood);
+        super(Material.iron);
         this.setUnlocalizedName("embryo_calcification_machine");
         this.setHardness(2.0F);
-        this.setStepSound(Block.soundTypeWood);
+        this.setStepSound(Block.soundTypeMetal);
         this.setCreativeTab(JCCreativeTabs.blocks);
     }
 

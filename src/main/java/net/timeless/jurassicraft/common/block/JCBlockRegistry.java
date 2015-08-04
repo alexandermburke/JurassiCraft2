@@ -40,6 +40,8 @@ public class JCBlockRegistry
     public static BlockDnaSynthesizer dna_synthesizer;
     public static BlockEmbryonicMachine embryonic_machine;
     public static BlockEmbryoCalcificationMachine embryo_calcification_machine;
+    public static BlockIncubator incubator;
+    public static BlockDNAExtractor dna_extractor;
 
     public static BlockAmber amber_ore;
 
@@ -54,6 +56,8 @@ public class JCBlockRegistry
         dna_synthesizer = new BlockDnaSynthesizer();
         embryonic_machine = new BlockEmbryonicMachine();
         embryo_calcification_machine = new BlockEmbryoCalcificationMachine();
+        incubator = new BlockIncubator();
+        dna_extractor = new BlockDNAExtractor();
 
         amber_ore = new BlockAmber();
 
@@ -116,11 +120,13 @@ public class JCBlockRegistry
         }
 
         registerBlockTileEntity(TileCleaningStation.class, cleaning_station, "Cleaning Station");
+        registerBlockTileEntity(TileFossilGrinder.class, fossil_grinder, "Fossil Grinder");
         registerBlockTileEntity(TileDnaSequencer.class, dna_sequencer, "DNA Sequencer");
         registerBlockTileEntity(TileDnaSynthesizer.class, dna_synthesizer, "DNA Synthesizer");
-        registerBlockTileEntity(TileEmbryoCalcificationMachine.class, embryo_calcification_machine, "Embryo Calcification Machine");
         registerBlockTileEntity(TileEmbryonicMachine.class, embryonic_machine, "Embryonic Machine");
-        registerBlockTileEntity(TileFossilGrinder.class, fossil_grinder, "Fossil Grinder");
+        registerBlockTileEntity(TileEmbryoCalcificationMachine.class, embryo_calcification_machine, "Embryo Calcification Machine");
+        registerBlockTileEntity(TileDNAExtractor.class, dna_extractor, "DNA Extractor");
+        registerBlockTileEntity(TileIncubator.class, incubator, "Incubator");
     }
 
     public BlockFossil getFossilBlock(Dinosaur dinosaur)

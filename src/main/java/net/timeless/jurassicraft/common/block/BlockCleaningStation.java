@@ -26,11 +26,11 @@ public class BlockCleaningStation extends BlockOriented
 {
     public BlockCleaningStation()
     {
-        super(Material.wood);
+        super(Material.iron);
         this.setUnlocalizedName("cleaning_station");
         this.setHardness(2.0F);
         this.setLightOpacity(0);
-        this.setStepSound(Block.soundTypeWood);
+        this.setStepSound(Block.soundTypeMetal);
         this.setCreativeTab(JCCreativeTabs.blocks);
     }
 

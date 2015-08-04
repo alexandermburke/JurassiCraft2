@@ -117,6 +117,8 @@ public class JCRenderingRegistry
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.dna_synthesizer, "dna_synthesizer", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.embryonic_machine, "embryonic_machine", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.embryo_calcification_machine, "embryo_calcification_machine", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.incubator, "incubator", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.dna_extractor, "dna_extractor", "inventory");
     }
 
     public void postInit()

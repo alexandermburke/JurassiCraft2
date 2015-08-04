@@ -25,10 +25,10 @@ public class BlockEmbryonicMachine extends BlockOriented
 {
     public BlockEmbryonicMachine()
     {
-        super(Material.wood);
+        super(Material.iron);
         this.setUnlocalizedName("embryonic_machine");
         this.setHardness(2.0F);
-        this.setStepSound(Block.soundTypeWood);
+        this.setStepSound(Block.soundTypeMetal);
         this.setCreativeTab(JCCreativeTabs.blocks);
     }
 

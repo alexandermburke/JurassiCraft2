@@ -24,10 +24,10 @@ public class BlockDnaSequencer extends BlockOriented
 {
     public BlockDnaSequencer()
     {
-        super(Material.wood);
+        super(Material.iron);
         this.setUnlocalizedName("dna_sequencer");
         this.setHardness(2.0F);
-        this.setStepSound(Block.soundTypeWood);
+        this.setStepSound(Block.soundTypeMetal);
         this.setCreativeTab(JCCreativeTabs.blocks);
     }
 

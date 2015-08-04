@@ -20,10 +20,10 @@ public class BlockDnaSynthesizer extends BlockOriented
 {
     public BlockDnaSynthesizer()
     {
-        super(Material.wood);
+        super(Material.iron);
         this.setUnlocalizedName("dna_synthesizer");
         this.setHardness(2.0F);
-        this.setStepSound(Block.soundTypeWood);
+        this.setStepSound(Block.soundTypeMetal);
         this.setCreativeTab(JCCreativeTabs.blocks);
     }
 

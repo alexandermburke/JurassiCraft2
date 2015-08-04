@@ -69,6 +69,8 @@ tile.dna_sequencer.name=DNA Sequencer
 tile.dna_synthesizer.name=DNA Synthesizer
 tile.embryonic_machine.name=Embryonic Machine
 tile.embryo_calcification_machine.name=Embryo Calcification Machine
+tile.incubator.name=Incubator
+tile.dna_extractor.name=DNA Extractor
 
 tile.ginkgo_sapling.name=Ginkgo Sapling
 tile.ginkgo_planks.name=Ginkgo Planks
@@ -83,6 +85,8 @@ container.dna_sequencer=DNA Sequencer
 container.dna_synthesizer=DNA Synthesizer
 container.embryonic_machine=Embryonic Machine
 container.embryo_calcification_machine=Embryo Calcification Machine
+container.incubator=Incubator
+container.dna_extractor=DNA Extractor
 
 //Others ==================================================
 blue_print.blank.name=Blank

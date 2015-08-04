@@ -26,10 +26,10 @@ public class BlockFossilGrinder extends BlockOriented
 {
     public BlockFossilGrinder()
     {
-        super(Material.wood);
+        super(Material.iron);
         this.setUnlocalizedName("fossil_grinder");
         this.setHardness(2.0F);
-        this.setStepSound(Block.soundTypeWood);
+        this.setStepSound(Block.soundTypeMetal);
         this.setCreativeTab(JCCreativeTabs.blocks);
     }
 
