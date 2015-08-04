@@ -65,7 +65,7 @@ public class GuiAppBrowser extends GuiApp
 
                 for (JCFile file : filesAtPath)
                 {
-                    if(file != null && file.getName().length() > 0)
+                    if(file != null && file.getName().length() > 0 && y < 125)
                     {
                         gui.drawBoxOutline(5, y, 207, 12, 1, 1.0F, 0x606060);
                         String name = file.getName();
@@ -123,7 +123,7 @@ public class GuiAppBrowser extends GuiApp
 
                 for (JCFile file : filesAtPath)
                 {
-                    if(file != null && file.getName().length() > 0 && file.isDirectory())
+                    if(file != null && file.getName().length() > 0 && file.isDirectory() && y < 125)
                     {
                         if(mouseX > 5 && mouseX < 212 && mouseY > y && mouseY < y + 12)
                         {
