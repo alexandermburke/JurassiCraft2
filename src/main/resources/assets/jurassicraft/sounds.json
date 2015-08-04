@@ -146,7 +146,7 @@
 	"tyrannosaurus_roar_1": {
         "category": "hostile",
         "sounds": [
-            "dinosaurs/tyrannosaurus_rex/tyrannosaurus_breath_1"
+            "dinosaurs/tyrannosaurus_rex/tyrannosaurus_roar_1"
         ]
     },
 	"brachiosaurus_living_1": {
