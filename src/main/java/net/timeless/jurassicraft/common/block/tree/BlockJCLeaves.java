@@ -9,6 +9,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -74,42 +75,24 @@ public class BlockJCLeaves extends BlockLeaves
 
     public boolean isOpaqueCube()
     {
-        return !this.fancyGraphics;
-    }
-
-    /**
-     * Pass true to draw this block using fancy graphics, or false for fast graphics.
-     */
-    @SideOnly(Side.CLIENT)
-    public void setGraphicsLevel(boolean fancy)
-    {
-        this.isTransparent = fancy;
-        this.fancyGraphics = fancy;
-        this.iconIndex = fancy ? 0 : 1;
+        return Blocks.leaves.isOpaqueCube();
     }
 
     @SideOnly(Side.CLIENT)
     public EnumWorldBlockLayer getBlockLayer()
     {
-        return this.isTransparent ? EnumWorldBlockLayer.CUTOUT_MIPPED : EnumWorldBlockLayer.SOLID;
+        return Blocks.leaves.getBlockLayer();
     }
 
     public boolean isVisuallyOpaque()
     {
-        return false;
+        return Blocks.leaves.isVisuallyOpaque();
     }
 
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
     {
-        boolean fancyGraphics = Minecraft.getMinecraft().isFancyGraphicsEnabled();
-
-        if(this.fancyGraphics != fancyGraphics)
-        {
-            this.setGraphicsLevel(fancyGraphics);   
-        }
-        
-        return !this.fancyGraphics && worldIn.getBlockState(pos).getBlock() == this ? false : super.shouldSideBeRendered(worldIn, pos, side);
+        return Blocks.leaves.shouldSideBeRendered(worldIn, pos, side);
     }
 
    /* protected int getSaplingDropChance(IBlockState state)
