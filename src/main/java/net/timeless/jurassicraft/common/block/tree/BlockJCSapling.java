@@ -15,6 +15,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
+import net.timeless.jurassicraft.common.world.gen.WorldGenGinkgo;
 
 import java.util.List;
 import java.util.Random;
@@ -60,6 +61,8 @@ public class BlockJCSapling extends BlockBush implements IGrowable
         }
         else
         {
+            WorldGenGinkgo gen = new WorldGenGinkgo();
+            gen.generate(worldIn, rand, pos);
            // this.generateTree(worldIn, pos, state, rand);
         }
     }
