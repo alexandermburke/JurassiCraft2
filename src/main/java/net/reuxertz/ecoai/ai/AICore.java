@@ -9,7 +9,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.reuxertz.ecoai.ai.modules.AIModule;
 import net.reuxertz.ecoai.demand.DemandHunger;
-import net.reuxertz.ecoai.demand.DemandTemp;
 import net.reuxertz.ecoai.demand.IDemand;
 import net.reuxertz.ecoai.demand.ItemDemand;
 import net.reuxertz.ecoai.state.StateLife;
@@ -223,7 +222,7 @@ public class AICore extends AIBase
 
         if (role != null)
             this.curDemands.add(new DemandHunger(this, role.getFoodItems()));
-        this.curDemands.add(new DemandTemp(this));
+        //this.curDemands.add(new DemandTemp(this));
         /*for (IEcologicalRole role : this.roles)
         {
             for (int j = 0; j < role.getFoodItems().size(); j++)
