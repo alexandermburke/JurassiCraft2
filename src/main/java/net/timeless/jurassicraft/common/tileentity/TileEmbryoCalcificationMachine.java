@@ -307,7 +307,7 @@ public class TileEmbryoCalcificationMachine extends TileEntityLockable implement
             output.setTagCompound(slots[0].getTagCompound());
 
             if (egg != null && egg.getItem() instanceof ItemEgg)
-                return this.slots[2] == null || ItemStack.areItemStacksEqual(this.slots[2], output);
+                return this.slots[2] == null || ItemStack.areItemsEqual(this.slots[2], output) && ItemStack.areItemStackTagsEqual(this.slots[2], output);
         }
 
         return false;

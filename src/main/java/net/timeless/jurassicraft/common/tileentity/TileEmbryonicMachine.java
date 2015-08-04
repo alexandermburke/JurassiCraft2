@@ -302,7 +302,7 @@ public class TileEmbryonicMachine extends TileEntityLockable implements IUpdateP
 
             for (int i = 2; i < 6; i++)
             {
-                if (this.slots[i] == null || ItemStack.areItemStacksEqual(output, slots[i]))
+                if (this.slots[i] == null || ItemStack.areItemsEqual(this.slots[i], output) && ItemStack.areItemStackTagsEqual(this.slots[i], output))
                     return true;
             }
         }
