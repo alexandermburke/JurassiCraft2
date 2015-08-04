@@ -134,7 +134,7 @@ public class GuiPaleoTab extends GuiScreen
 
                 drawScaledTexturedModalRect(x + 5, y + 5, 0, 0, 32, 32, 32, 32, 1.0F);
 
-                drawCenteredScaledText(app.getName(), x + 21, y + 38, 0.7F, 0xFFFFFF);
+                drawCenteredScaledText(app.getName(), x + 22, y + 39, 0.7F, 0xFFFFFF);
             }
 
             drawScaledText(StatCollector.translateToLocal("paleotab.os.name"), 2, -10, 1.0F, 0xFFFFFF);
