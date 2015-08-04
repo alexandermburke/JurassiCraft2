@@ -85,6 +85,10 @@ public class AnimationSpinosaurus implements IModelAnimator
         MowzieModelRenderer lowerJaw = model.getCube("Lower jaw");
         MowzieModelRenderer lowerJawFront = model.getCube("Lower jaw front");
 
+        //throat
+        MowzieModelRenderer throat1 = model.getCube("Neck Under 1");
+        MowzieModelRenderer throat2 = model.getCube("Neck Under 2");
+
         MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[] { handRight, lowerArmRight, upperArmRight };
         MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[] { handLeft, lowerArmLeft, upperArmLeft };
         MowzieModelRenderer[] tailParts = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
@@ -132,5 +136,51 @@ public class AnimationSpinosaurus implements IModelAnimator
         model.faceTarget(neck5, 3, rotationYaw, rotationPitch);
 
         ((EntitySpinosaurus) entity).tailBuffer.applyChainSwingBuffer(tailParts);
+
+        animator.setAnim(1);
+        animator.startPhase(15);
+        animator.move(waist, 0, -3, -5);
+        animator.move(rightThigh, 0, -3, -5);
+        animator.move(leftThigh, 0, -3, -5);
+        animator.rotate(waist, -0.3F, 0, 0);
+        animator.rotate(head, 0.3F, 0, 0);
+        animator.rotate(rightThigh, 0.3F, 0, 0);
+        animator.rotate(rightCalf, -0.4F, 0, 0);
+        animator.rotate(rightCalf2, 0.4F, 0, 0);
+        animator.rotate(rightFoot, -0.3F, 0, 0);
+        animator.rotate(leftThigh, -0.7F, 0, 0);
+        animator.rotate(leftCalf, 0.7F, 0, 0);
+        animator.rotate(leftCalf2, -0.5F, 0, 0);
+        animator.rotate(leftFoot, 0.7F, 0, 0);
+        animator.endPhase();
+        animator.startPhase(10);
+        animator.move(waist, 0, 3, -10);
+        animator.move(rightThigh, 0, 3, -10);
+        animator.move(leftThigh, 0, 3, -10);
+        animator.move(head, 0, 1, 2);
+        animator.move(lowerJaw, 0, 0, 1);
+        animator.rotate(waist, 0.2F, 0, 0);
+        animator.rotate(neck1, 0.2F, 0, 0);
+        animator.rotate(neck2, 0.2F, 0, 0);
+        animator.rotate(neck3, -0.2F, 0, 0);
+        animator.rotate(neck4, -0.1F, 0, 0);
+        animator.rotate(neck5, -0.1F, 0, 0);
+        animator.move(neck5, 0, 0, 1);
+        animator.move(throat1, 0, -0.5F, 0);
+        animator.move(throat2, 0, -1, 0);
+        animator.rotate(head, -0.5F, 0, 0);
+        animator.move(head, 0, 1, 0);
+        animator.rotate(lowerJaw, 0.9F, 0, 0);
+        animator.rotate(rightThigh, 0.6F, 0, 0);
+        animator.rotate(rightCalf, 0.05F, 0, 0);
+        animator.rotate(rightCalf2, -0.3F, 0, 0);
+        animator.rotate(rightFoot, -0.3F, 0, 0);
+        animator.rotate(leftThigh, -0.3F, 0, 0);
+        animator.rotate(leftCalf, 0.2F, 0, 0);
+        animator.rotate(leftCalf2, -0.2F, 0, 0);
+        animator.rotate(leftFoot, 0.3F, 0, 0);
+        animator.endPhase();
+        animator.setStationaryPhase(35);
+        animator.resetPhase(15);
     }
 }

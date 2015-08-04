@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 import net.reuxertz.ecoapi.ecology.role.IHerbivore;
 import net.reuxertz.ecoapi.entity.IEntityAICreature;
 import net.timeless.animationapi.AnimationAPI;
+import net.timeless.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 
@@ -29,7 +30,7 @@ public class EntityDodo extends EntityDinosaur implements IEntityAICreature, IHe
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
 
-        this.tasks.addTask(2, new JCNonAutoAnimBase(this, 25, 1, 100));
+        this.tasks.addTask(2, new JCAutoAnimBase(this, 25, 1));
     }
 
     public String getLivingSound()
