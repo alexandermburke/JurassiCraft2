@@ -4,14 +4,19 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
+import net.timeless.jurassicraft.common.tileentity.TileDnaSequencer;
 import net.timeless.jurassicraft.common.tileentity.TileEmbryonicMachine;
 
 import java.util.Random;
@@ -31,12 +36,13 @@ public class BlockEmbryonicMachine extends BlockOriented
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+
         if (stack.hasDisplayName())
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
-            // if (tileentity instanceof TileEmbryonicMachine)
-            // ((TileEmbryonicMachine)
-            // tileentity).setCustomInventoryName(stack.getDisplayName());
+
+            if (tileentity instanceof TileEmbryonicMachine)
+                ((TileEmbryonicMachine) tileentity).setCustomInventoryName(stack.getDisplayName());
         }
     }
 
@@ -44,11 +50,12 @@ public class BlockEmbryonicMachine extends BlockOriented
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
+
         if (tileentity instanceof TileEmbryonicMachine)
         {
-            // InventoryHelper.dropInventoryItems(worldIn, pos,
-            // (TileEmbryonicMachine) tileentity);
+            InventoryHelper.dropInventoryItems(worldIn, pos, (TileEmbryonicMachine) tileentity);
         }
+
         super.breakBlock(worldIn, pos, state);
     }
 
@@ -63,6 +70,31 @@ public class BlockEmbryonicMachine extends BlockOriented
     public Item getItem(World worldIn, BlockPos pos)
     {
         return Item.getItemFromBlock(JCBlockRegistry.embryonic_machine);
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
+    {
+        if (world.isRemote)
+        {
+            return true;
+        }
+        else if (!player.isSneaking())
+        {
+            TileEntity tileEntity = world.getTileEntity(pos);
+
+            if (tileEntity instanceof TileEmbryonicMachine)
+            {
+                TileEmbryonicMachine embryonicMachine = (TileEmbryonicMachine) tileEntity;
+
+                if (embryonicMachine.isUseableByPlayer(player))
+                {
+                    player.openGui(JurassiCraft.instance, 3, world, pos.getX(), pos.getY(), pos.getZ());
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override

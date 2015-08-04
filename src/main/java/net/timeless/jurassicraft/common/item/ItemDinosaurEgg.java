@@ -19,7 +19,6 @@ public class ItemDinosaurEgg extends ItemDnaContainer
         super();
 
         this.setUnlocalizedName("dino_egg");
-        this.setMaxStackSize(1);
 
         this.setCreativeTab(JCCreativeTabs.eggs);
     }

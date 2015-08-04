@@ -19,7 +19,6 @@ public class ItemDNA extends ItemDnaContainer
         super();
 
         this.setUnlocalizedName("dna");
-        this.setMaxStackSize(1);
 
         this.setCreativeTab(JCCreativeTabs.dna);
     }

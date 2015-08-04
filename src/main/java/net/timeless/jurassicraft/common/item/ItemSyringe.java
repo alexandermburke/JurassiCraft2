@@ -19,7 +19,6 @@ public class ItemSyringe extends ItemDnaContainer
         super();
 
         this.setUnlocalizedName("syringe");
-        this.setMaxStackSize(1);
 
         this.setCreativeTab(JCCreativeTabs.dna);
     }

@@ -8,15 +8,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.jurassicraft.client.gui.GuiCleaningStation;
-import net.timeless.jurassicraft.client.gui.GuiDNASequencer;
-import net.timeless.jurassicraft.client.gui.GuiFossilGrinder;
-import net.timeless.jurassicraft.client.gui.GuiPaleoTab;
+import net.timeless.jurassicraft.client.gui.*;
 import net.timeless.jurassicraft.common.container.ContainerCleaningStation;
 import net.timeless.jurassicraft.common.container.ContainerDNASequencer;
+import net.timeless.jurassicraft.common.container.ContainerEmbryonicMachine;
 import net.timeless.jurassicraft.common.container.ContainerFossilGrinder;
 import net.timeless.jurassicraft.common.tileentity.TileCleaningStation;
 import net.timeless.jurassicraft.common.tileentity.TileDnaSequencer;
+import net.timeless.jurassicraft.common.tileentity.TileEmbryonicMachine;
 import net.timeless.jurassicraft.common.tileentity.TileFossilGrinder;
 
 public class JCGuiHandler implements IGuiHandler
@@ -35,11 +34,15 @@ public class JCGuiHandler implements IGuiHandler
             }
             else if (tileEntity instanceof TileFossilGrinder && id == 1)
             {
-                return new ContainerFossilGrinder(player.inventory, (TileFossilGrinder) tileEntity);
+                return new ContainerFossilGrinder(player.inventory, tileEntity);
             }
             else if (tileEntity instanceof TileDnaSequencer && id == 2)
             {
-                return new ContainerDNASequencer(player.inventory, (TileDnaSequencer) tileEntity);
+                return new ContainerDNASequencer(player.inventory, tileEntity);
+            }
+            else if (tileEntity instanceof TileEmbryonicMachine && id == 3)
+            {
+                return new ContainerEmbryonicMachine(player.inventory, tileEntity);
             }
         }
 
@@ -65,6 +68,10 @@ public class JCGuiHandler implements IGuiHandler
             else if (tileEntity instanceof TileDnaSequencer && id == 2)
             {
                 return new GuiDNASequencer(player.inventory, (TileDnaSequencer) tileEntity);
+            }
+            else if (tileEntity instanceof TileEmbryonicMachine && id == 3)
+            {
+                return new GuiEmbryonicMachine(player.inventory, (TileEmbryonicMachine) tileEntity);
             }
         }
 
