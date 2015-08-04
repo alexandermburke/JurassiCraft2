@@ -63,7 +63,7 @@ public class EcoFauna
 
         List<Class> herb = new ArrayList<Class>();
         herb.add(AIGather.class);
-        EcoFauna.registerClassToAI(IOmnivore.class, herb);
+        EcoFauna.registerClassToAI(IHerbivore.class, herb);
 
         List<Class> omn = new ArrayList<Class>();
         omn.add(AIHunt.class);

@@ -36,6 +36,7 @@ public class Target
         this(w);
         this.pos = pos;
         this.posBlockState = w.getBlockState(pos);
+        return;
     }
     public Target(World w, Entity entity)
     {
