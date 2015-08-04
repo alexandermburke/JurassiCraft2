@@ -7,6 +7,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemEgg;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -21,26 +22,27 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.container.ContainerDNASequencer;
+import net.timeless.jurassicraft.common.container.ContainerEmbryoCalcificationMachine;
 import net.timeless.jurassicraft.common.dna.DNA;
 import net.timeless.jurassicraft.common.dna.GeneticsHelper;
 import net.timeless.jurassicraft.common.entity.data.JCPlayerData;
-import net.timeless.jurassicraft.common.item.ItemPaleoTab;
-import net.timeless.jurassicraft.common.item.ItemSoftTissue;
+import net.timeless.jurassicraft.common.item.ItemSyringe;
+import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 import java.util.Random;
 import java.util.UUID;
 
-public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
+public class TileEmbryoCalcificationMachine extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
-    private static final int[] slotsTop = new int[] { 0 }; //input
-    private static final int[] slotsBottom = new int[] { 1 }; //output
+    private static final int[] slotsTop = new int[] { 0, 1 }; //input
+    private static final int[] slotsBottom = new int[] { 2 }; //output
     private static final int[] slotsSides = new int[] {};
 
     /** The ItemStacks that hold the items currently being used in the dna sequencer */
-    private ItemStack[] slots = new ItemStack[2];
+    private ItemStack[] slots = new ItemStack[3];
 
-    private int sequenceTime;
-    private int totalSequenceTime;
+    private int calcifyTime;
+    private int totalCalcifyTime;
 
     private String customName;
 
@@ -127,8 +129,8 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
 
         if (index == 0 && !flag)
         {
-            this.totalSequenceTime = this.getStackSequenceTime(stack);
-            this.sequenceTime = 0;
+            this.totalCalcifyTime = this.getStackCalcifyTime(stack);
+            this.calcifyTime = 0;
             worldObj.markBlockForUpdate(pos);
         }
     }
@@ -138,7 +140,7 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
      */
     public String getName()
     {
-        return this.hasCustomName() ? this.customName : "container.dna_sequencer";
+        return this.hasCustomName() ? this.customName : "container.embryo_calcification_machine";
     }
 
     /**
@@ -173,8 +175,8 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
             }
         }
 
-        this.sequenceTime = compound.getShort("SequenceTime");
-        this.totalSequenceTime = compound.getShort("SequenceTimeTotal");
+        this.calcifyTime = compound.getShort("CalcificationTime");
+        this.totalCalcifyTime = compound.getShort("CalcificationTimeTotal");
 
         if (compound.hasKey("CustomName", 8))
         {
@@ -185,8 +187,8 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
     public void writeToNBT(NBTTagCompound compound)
     {
         super.writeToNBT(compound);
-        compound.setShort("SequenceTime", (short) this.sequenceTime);
-        compound.setShort("SequenceTimeTotal", (short) this.totalSequenceTime);
+        compound.setShort("CalcificationTime", (short) this.calcifyTime);
+        compound.setShort("CalcificationTimeTotal", (short) this.totalCalcifyTime);
         NBTTagList itemList = new NBTTagList();
 
         for (int slot = 0; slot < this.slots.length; ++slot)
@@ -218,13 +220,13 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
         return 64;
     }
 
-    public boolean isSequenceing()
+    public boolean isCalcifying()
     {
-        return this.sequenceTime > 0;
+        return this.calcifyTime > 0;
     }
 
     @SideOnly(Side.CLIENT)
-    public static boolean isSequenceing(IInventory inventory)
+    public static boolean isCalcifying(IInventory inventory)
     {
         return inventory.getField(0) > 0;
     }
@@ -234,49 +236,49 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
      */
     public void update()
     {
-        boolean flag = this.isSequenceing();
+        boolean flag = this.isCalcifying();
         boolean sync = false;
 
         if (!this.worldObj.isRemote)
         {
-            if (!this.isSequenceing() && (this.slots[0] == null))
+            if (!this.isCalcifying() && (this.slots[0] == null))
             {
-                if (!this.isSequenceing() && this.sequenceTime > 0)
+                if (!this.isCalcifying() && this.calcifyTime > 0)
                 {
-                    this.sequenceTime = MathHelper.clamp_int(this.sequenceTime - 2, 0, this.totalSequenceTime);
+                    this.calcifyTime = MathHelper.clamp_int(this.calcifyTime - 2, 0, this.totalCalcifyTime);
                 }
             }
             else
             {
-                if (this.canSequence())
+                if (this.canCalcify())
                 {
-                    ++this.sequenceTime;
+                    ++this.calcifyTime;
 
-                    if (this.sequenceTime == this.totalSequenceTime)
+                    if (this.calcifyTime == this.totalCalcifyTime)
                     {
-                        this.sequenceTime = 0;
-                        this.totalSequenceTime = this.getStackSequenceTime(this.slots[0]);
-                        this.sequenceItem();
+                        this.calcifyTime = 0;
+                        this.totalCalcifyTime = this.getStackCalcifyTime(this.slots[0]);
+                        this.calcifyItem();
                         sync = true;
                     }
                 }
                 else
                 {
-                    this.sequenceTime = 0;
+                    this.calcifyTime = 0;
                     sync = true;
                 }
             }
 
-            if (flag != this.isSequenceing())
+            if (flag != this.isCalcifying())
             {
                 sync = true;
             }
         }
         else
         {
-            if (this.canSequence())
+            if (this.canCalcify())
             {
-                ++this.sequenceTime;
+                ++this.calcifyTime;
             }
         }
 
@@ -286,7 +288,7 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
         }
     }
 
-    public int getStackSequenceTime(ItemStack stack)
+    public int getStackCalcifyTime(ItemStack stack)
     {
         return 200;
     }
@@ -294,16 +296,18 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
     /**
      * Returns true if the dna sequencer can smelt an item, i.e. has a source item, destination stack isn't full, etc.
      */
-    private boolean canSequence()
+    private boolean canCalcify()
     {
         ItemStack input = this.slots[0];
-        ItemStack storage = this.slots[1];
+        ItemStack egg = this.slots[1];
 
-        if (input != null && input.getItem() instanceof ItemSoftTissue)
+        if (input != null && input.getItem() instanceof ItemSyringe)
         {
-            if (storage != null && storage.getItem() instanceof ItemPaleoTab)
-                if (worldObj.getPlayerEntityByUUID(UUID.fromString(storage.getTagCompound().getString("LastOwner"))) != null)
-                    return true;
+            ItemStack output = new ItemStack(JCItemRegistry.egg, 1, slots[0].getItemDamage());
+            output.setTagCompound(slots[0].getTagCompound());
+
+            if (egg != null && egg.getItem() instanceof ItemEgg)
+                return this.slots[2] == null || ItemStack.areItemStacksEqual(this.slots[2], output);
         }
 
         return false;
@@ -312,38 +316,33 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
     /**
      * Turn one item from the dna sequencer source stack into the appropriate sequenceed item in the dna sequencer result stack
      */
-    public void sequenceItem()
+    public void calcifyItem()
     {
-        if (this.canSequence())
+        if (this.canCalcify())
         {
-            Random rand = new Random();
+            ItemStack output = new ItemStack(JCItemRegistry.egg, 1, slots[0].getItemDamage());
+            output.setTagCompound(slots[0].getTagCompound());
 
-            EntityPlayer player = worldObj.getPlayerEntityByUUID(UUID.fromString(slots[1].getTagCompound().getString("LastOwner")));
-
-            int quality = rand.nextInt(25) + 1;
-
-            if (rand.nextInt(3) == 0)
+            if (this.slots[2] == null)
             {
-                quality += 25;
-
-                if (rand.nextInt(3) == 0)
-                {
-                    quality += 25;
-
-                    if (rand.nextInt(3) == 0)
-                    {
-                        quality += 25;
-                    }
-                }
+                this.slots[2] = output;
+            }
+            else if (this.slots[2].getItem() == output.getItem() && ItemStack.areItemStackTagsEqual(this.slots[2], output))
+            {
+                this.slots[2].stackSize += output.stackSize;
             }
 
-            JCPlayerData.getPlayerData(player).addSequencedDNA(new DNA(quality, GeneticsHelper.randomGenetics(rand, slots[0].getItemDamage(), quality).toString()));
-
             slots[0].stackSize--;
+            slots[1].stackSize--;
 
             if (slots[0].stackSize <= 0)
             {
                 slots[0] = null;
+            }
+
+            if (slots[1].stackSize <= 0)
+            {
+                slots[1] = null;
             }
         }
     }
@@ -407,12 +406,12 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
 
     public String getGuiID()
     {
-        return JurassiCraft.modid + ":dna_sequencer";
+        return JurassiCraft.modid + ":embryo_calcification_machine";
     }
 
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
     {
-        return new ContainerDNASequencer(playerInventory, this);
+        return new ContainerEmbryoCalcificationMachine(playerInventory, this);
     }
 
     public int getField(int id)
@@ -420,9 +419,9 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
         switch (id)
         {
             case 0:
-                return this.sequenceTime;
+                return this.calcifyTime;
             case 1:
-                return this.totalSequenceTime;
+                return this.totalCalcifyTime;
             default:
                 return 0;
         }
@@ -433,10 +432,10 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
         switch (id)
         {
             case 0:
-                this.sequenceTime = value;
+                this.calcifyTime = value;
                 break;
             case 1:
-                this.totalSequenceTime = value;
+                this.totalCalcifyTime = value;
         }
     }
 

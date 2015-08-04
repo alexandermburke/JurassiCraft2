@@ -1,5 +1,5 @@
 {
-    "parent": "jurassicraft:block/embryo_insemination_machine",
+    "parent": "jurassicraft:block/embryo_calcification_machine",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

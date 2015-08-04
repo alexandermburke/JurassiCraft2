@@ -39,7 +39,7 @@ public class JCBlockRegistry
     public static BlockDnaSequencer dna_sequencer;
     public static BlockDnaSynthesizer dna_synthesizer;
     public static BlockEmbryonicMachine embryonic_machine;
-    public static BlockEmbryoInseminationMachine embryo_insemination_machine;
+    public static BlockEmbryoCalcificationMachine embryo_calcification_machine;
 
     public static BlockAmber amber_ore;
 
@@ -53,7 +53,7 @@ public class JCBlockRegistry
         dna_sequencer = new BlockDnaSequencer();
         dna_synthesizer = new BlockDnaSynthesizer();
         embryonic_machine = new BlockEmbryonicMachine();
-        embryo_insemination_machine = new BlockEmbryoInseminationMachine();
+        embryo_calcification_machine = new BlockEmbryoCalcificationMachine();
 
         amber_ore = new BlockAmber();
 
@@ -118,7 +118,7 @@ public class JCBlockRegistry
         registerBlockTileEntity(TileCleaningStation.class, cleaning_station, "Cleaning Station");
         registerBlockTileEntity(TileDnaSequencer.class, dna_sequencer, "DNA Sequencer");
         registerBlockTileEntity(TileDnaSynthesizer.class, dna_synthesizer, "DNA Synthesizer");
-        registerBlockTileEntity(TileEmbryoInseminationMachine.class, embryo_insemination_machine, "Embryo Insemination Machine");
+        registerBlockTileEntity(TileEmbryoCalcificationMachine.class, embryo_calcification_machine, "Embryo Calcification Machine");
         registerBlockTileEntity(TileEmbryonicMachine.class, embryonic_machine, "Embryonic Machine");
         registerBlockTileEntity(TileFossilGrinder.class, fossil_grinder, "Fossil Grinder");
     }

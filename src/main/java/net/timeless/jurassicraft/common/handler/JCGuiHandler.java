@@ -9,14 +9,8 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.client.gui.*;
-import net.timeless.jurassicraft.common.container.ContainerCleaningStation;
-import net.timeless.jurassicraft.common.container.ContainerDNASequencer;
-import net.timeless.jurassicraft.common.container.ContainerEmbryonicMachine;
-import net.timeless.jurassicraft.common.container.ContainerFossilGrinder;
-import net.timeless.jurassicraft.common.tileentity.TileCleaningStation;
-import net.timeless.jurassicraft.common.tileentity.TileDnaSequencer;
-import net.timeless.jurassicraft.common.tileentity.TileEmbryonicMachine;
-import net.timeless.jurassicraft.common.tileentity.TileFossilGrinder;
+import net.timeless.jurassicraft.common.container.*;
+import net.timeless.jurassicraft.common.tileentity.*;
 
 public class JCGuiHandler implements IGuiHandler
 {
@@ -43,6 +37,10 @@ public class JCGuiHandler implements IGuiHandler
             else if (tileEntity instanceof TileEmbryonicMachine && id == 3)
             {
                 return new ContainerEmbryonicMachine(player.inventory, tileEntity);
+            }
+            else if (tileEntity instanceof TileEmbryoCalcificationMachine && id == 4)
+            {
+                return new ContainerEmbryoCalcificationMachine(player.inventory, tileEntity);
             }
         }
 
@@ -72,6 +70,10 @@ public class JCGuiHandler implements IGuiHandler
             else if (tileEntity instanceof TileEmbryonicMachine && id == 3)
             {
                 return new GuiEmbryonicMachine(player.inventory, (TileEmbryonicMachine) tileEntity);
+            }
+            else if (tileEntity instanceof TileEmbryoCalcificationMachine && id == 4)
+            {
+                return new GuiEmbryoCalcificationMachine(player.inventory, (TileEmbryoCalcificationMachine) tileEntity);
             }
         }
 
