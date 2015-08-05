@@ -14,10 +14,10 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.*;
 import net.timeless.jurassicraft.client.gui.app.GuiAppRegistry;
 import net.timeless.jurassicraft.client.render.entity.RenderBluePrint;
 import net.timeless.jurassicraft.client.render.entity.RenderJurassiCraftSign;
+import net.timeless.jurassicraft.client.render.renderdef.*;
 import net.timeless.jurassicraft.common.block.BlockEncasedFossil;
 import net.timeless.jurassicraft.common.block.BlockFossil;
 import net.timeless.jurassicraft.common.block.JCBlockRegistry;
@@ -77,6 +77,7 @@ public class JCRenderingRegistry
         registerRenderDef(new RenderDefVelociraptor());
         registerRenderDef(new RenderDefDodo());
         registerRenderDef(new RenderDefLeptictidium());
+        registerRenderDef(new RenderDefMicroceratus());
 
         GuiAppRegistry.register();
 

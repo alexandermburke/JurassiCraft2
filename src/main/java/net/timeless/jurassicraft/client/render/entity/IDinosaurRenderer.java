@@ -1,7 +1,7 @@
 package net.timeless.jurassicraft.client.render.entity;
 
 import net.minecraft.client.model.ModelBase;
-import net.timeless.jurassicraft.client.dinosaur.renderdef.RenderDinosaurDefinition;
+import net.timeless.jurassicraft.client.render.renderdef.RenderDinosaurDefinition;
 
 public interface IDinosaurRenderer
 {
