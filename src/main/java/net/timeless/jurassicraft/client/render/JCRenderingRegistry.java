@@ -78,6 +78,7 @@ public class JCRenderingRegistry
         registerRenderDef(new RenderDefDodo());
         registerRenderDef(new RenderDefLeptictidium());
         registerRenderDef(new RenderDefMicroceratus());
+        registerRenderDef(new RenderDefOviraptor());
 
         GuiAppRegistry.register();
 
