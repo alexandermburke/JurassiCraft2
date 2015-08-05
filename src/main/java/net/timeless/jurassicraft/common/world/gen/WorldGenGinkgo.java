@@ -1,6 +1,9 @@
 package net.timeless.jurassicraft.common.world.gen;
 
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.EnumFaceDirection;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.timeless.jurassicraft.common.block.JCBlockRegistry;
@@ -19,22 +22,136 @@ public class WorldGenGinkgo extends WorldGenAbstractTree
     {
         int treeHeight = rand.nextInt(3) + 7;
 
+        IBlockState wood = JCBlockRegistry.woods[0].getDefaultState();
+        IBlockState leaves = JCBlockRegistry.leaves[0].getDefaultState();
+
         for (int i = 0; i < treeHeight; i++)
         {
-            world.setBlockState(pos.add(0, i, 0), JCBlockRegistry.woods[0].getDefaultState());
+            world.setBlockState(pos.add(0, i, 0), wood);
         }
 
-        int sideHeight = treeHeight - 3;
+        int sideHeight = treeHeight - 4;
 
-        world.setBlockState(pos.add(1, sideHeight, 0), JCBlockRegistry.woods[0].getDefaultState());
-        world.setBlockState(pos.add(0, sideHeight, 1), JCBlockRegistry.woods[0].getDefaultState());
-        world.setBlockState(pos.add(-1, sideHeight, 0), JCBlockRegistry.woods[0].getDefaultState());
-        world.setBlockState(pos.add(0, sideHeight, -1), JCBlockRegistry.woods[0].getDefaultState());
+        int facing = rand.nextInt(4);
 
-        world.setBlockState(pos.add(2, sideHeight + 1, 0), JCBlockRegistry.woods[0].getDefaultState());
-        world.setBlockState(pos.add(0, sideHeight + 1, 2), JCBlockRegistry.woods[0].getDefaultState());
-        world.setBlockState(pos.add(-2, sideHeight + 1, 0), JCBlockRegistry.woods[0].getDefaultState());
-        world.setBlockState(pos.add(0, sideHeight + 1, -2), JCBlockRegistry.woods[0].getDefaultState());
+        EnumFacing eFacing;
+
+        if(facing == 0)
+        {
+            eFacing = EnumFacing.NORTH;
+        }
+        else if(facing == 1)
+        {
+            eFacing = EnumFacing.EAST;
+        }
+        else if(facing == 2)
+        {
+            eFacing = EnumFacing.SOUTH;
+        }
+        else
+        {
+            eFacing = EnumFacing.WEST;
+        }
+
+        world.setBlockState(pos.add(0, 1, 0).offset(eFacing), wood);
+
+        world.setBlockState(pos.add(1, sideHeight, 0), wood);
+        world.setBlockState(pos.add(0, sideHeight, 1), wood);
+        world.setBlockState(pos.add(-1, sideHeight, 0), wood);
+        world.setBlockState(pos.add(0, sideHeight, -1), wood);
+
+        world.setBlockState(pos.add(2, sideHeight + 1, 0), wood);
+        world.setBlockState(pos.add(0, sideHeight + 1, 2), wood);
+        world.setBlockState(pos.add(-2, sideHeight + 1, 0), wood);
+        world.setBlockState(pos.add(0, sideHeight + 1, -2), wood);
+
+        world.setBlockState(pos.add(3, sideHeight + 1, 0), leaves);
+        world.setBlockState(pos.add(0, sideHeight + 1, 3), leaves);
+        world.setBlockState(pos.add(-3, sideHeight + 1, 0), leaves);
+        world.setBlockState(pos.add(0, sideHeight + 1, -3), leaves);
+
+        world.setBlockState(pos.add(3, sideHeight + 2, 0), leaves);
+        world.setBlockState(pos.add(0, sideHeight + 2, 3), leaves);
+        world.setBlockState(pos.add(-3, sideHeight + 2, 0), leaves);
+        world.setBlockState(pos.add(0, sideHeight + 2, -3), leaves);
+
+        world.setBlockState(pos.add(3, sideHeight + 3, 0), leaves);
+        world.setBlockState(pos.add(0, sideHeight + 3, 3), leaves);
+        world.setBlockState(pos.add(-3, sideHeight + 3, 0), leaves);
+        world.setBlockState(pos.add(0, sideHeight + 3, -3), leaves);
+
+        world.setBlockState(pos.add(4, sideHeight + 2, 0), leaves);
+        world.setBlockState(pos.add(0, sideHeight + 2, 4), leaves);
+        world.setBlockState(pos.add(-4, sideHeight + 2, 0), leaves);
+        world.setBlockState(pos.add(0, sideHeight + 2, -4), leaves);
+
+        world.setBlockState(pos.add(3, sideHeight + 2, 1), leaves);
+        world.setBlockState(pos.add(1, sideHeight + 2, 3), leaves);
+        world.setBlockState(pos.add(-3, sideHeight + 2, 1), leaves);
+        world.setBlockState(pos.add(1, sideHeight + 2, -3), leaves);
+
+        world.setBlockState(pos.add(3, sideHeight + 2, -1), leaves);
+        world.setBlockState(pos.add(-1, sideHeight + 2, 3), leaves);
+        world.setBlockState(pos.add(-3, sideHeight + 2, -1), leaves);
+        world.setBlockState(pos.add(-1, sideHeight + 2, -3), leaves);
+
+        world.setBlockState(pos.add(2, sideHeight + 2, 1), leaves);
+        world.setBlockState(pos.add(1, sideHeight + 2, 2), leaves);
+        world.setBlockState(pos.add(-2, sideHeight + 2, 1), leaves);
+        world.setBlockState(pos.add(1, sideHeight + 2, -2), leaves);
+
+        world.setBlockState(pos.add(2, sideHeight + 2, -1), leaves);
+        world.setBlockState(pos.add(-1, sideHeight + 2, 2), leaves);
+        world.setBlockState(pos.add(-2, sideHeight + 2, -1), leaves);
+        world.setBlockState(pos.add(-1, sideHeight + 2, -2), leaves);
+
+        world.setBlockState(pos.add(2, sideHeight + 2, 0), leaves);
+        world.setBlockState(pos.add(0, sideHeight + 2, 2), leaves);
+        world.setBlockState(pos.add(-2, sideHeight + 2, 0), leaves);
+        world.setBlockState(pos.add(0, sideHeight + 2, -2), leaves);
+
+        world.setBlockState(pos.add(0, treeHeight, 0), leaves);
+        world.setBlockState(pos.add(0, treeHeight + 1, 0), leaves);
+
+        world.setBlockState(pos.add(1, treeHeight, 0), leaves);
+        world.setBlockState(pos.add(0, treeHeight, 1), leaves);
+        world.setBlockState(pos.add(-1, treeHeight, 0), leaves);
+        world.setBlockState(pos.add(0, treeHeight, -1), leaves);
+
+        world.setBlockState(pos.add(1, treeHeight, 1), leaves);
+        world.setBlockState(pos.add(-1, treeHeight, 1), leaves);
+        world.setBlockState(pos.add(-1, treeHeight, -1), leaves);
+        world.setBlockState(pos.add(1, treeHeight, -1), leaves);
+
+        world.setBlockState(pos.add(2, treeHeight, 0), leaves);
+        world.setBlockState(pos.add(0, treeHeight, 2), leaves);
+        world.setBlockState(pos.add(-2, treeHeight, 0), leaves);
+        world.setBlockState(pos.add(0, treeHeight, -2), leaves);
+
+        world.setBlockState(pos.add(1, treeHeight - 1, 0), leaves);
+        world.setBlockState(pos.add(0, treeHeight - 1, 1), leaves);
+        world.setBlockState(pos.add(-1, treeHeight - 1, 0), leaves);
+        world.setBlockState(pos.add(0, treeHeight - 1, -1), leaves);
+
+        world.setBlockState(pos.add(1, treeHeight - 1, 1), leaves);
+        world.setBlockState(pos.add(-1, treeHeight - 1, 1), leaves);
+        world.setBlockState(pos.add(-1, treeHeight - 1, -1), leaves);
+        world.setBlockState(pos.add(1, treeHeight - 1, -1), leaves);
+
+        world.setBlockState(pos.add(2, treeHeight - 1, 0), leaves);
+        world.setBlockState(pos.add(0, treeHeight - 1, 2), leaves);
+        world.setBlockState(pos.add(-2, treeHeight - 1, 0), leaves);
+        world.setBlockState(pos.add(0, treeHeight - 1, -2), leaves);
+
+        world.setBlockState(pos.add(-2, treeHeight - 1, -1), leaves);
+        world.setBlockState(pos.add(-1, treeHeight - 1, -2), leaves);
+        world.setBlockState(pos.add(2, treeHeight - 1, 1), leaves);
+        world.setBlockState(pos.add(1, treeHeight - 1, 2), leaves);
+
+        world.setBlockState(pos.add(-2, treeHeight - 1, 1), leaves);
+        world.setBlockState(pos.add(-1, treeHeight - 1, 2), leaves);
+        world.setBlockState(pos.add(2, treeHeight - 1, -1), leaves);
+        world.setBlockState(pos.add(1, treeHeight - 1, -2), leaves);
 
         return true;
     }
