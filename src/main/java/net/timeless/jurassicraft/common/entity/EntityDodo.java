@@ -30,7 +30,7 @@ public class EntityDodo extends EntityDinosaur implements IEntityAICreature, IHe
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
 
-        this.tasks.addTask(2, new JCAutoAnimBase(this, 25, 1));
+        this.tasks.addTask(2, new JCAutoAnimBase(this, 18, 1));
     }
 
     public String getLivingSound()

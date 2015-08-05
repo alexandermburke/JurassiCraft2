@@ -91,23 +91,18 @@ public class AnimationDodo implements IModelAnimator
         animator.setAnim(1);
         animator.startPhase(7);
         animator.rotate(head, -0.3f, 0, 0);
-        animator.rotate(body, 0.45f, 0, 0);
+        animator.rotate(body, 0.35f, 0, 0);
         animator.rotate(bodyFront, 0.4f, 0, 0);
         animator.rotate(neck1, 0.3f, 0, 0);
         animator.rotate(neck2, 0.2f, 0, 0);
         animator.rotate(neck3, 0.2f, 0, 0);
-        animator.endPhase();
-        animator.setStationaryPhase(15);
-
-        animator.startPhase(5);
         animator.rotate(lowerJaw, 0.2f, 0, 0);
         animator.endPhase();
-        animator.setStationaryPhase(5);
 
-        animator.startPhase(5);
-        animator.rotate(lowerJaw, -0.2f, 0, 0);
+        animator.startPhase(6);
+        animator.rotate(lowerJaw, 0, 0, 0);
         animator.endPhase();
 
-        animator.resetPhase(10);
+        animator.resetPhase(5);
     }
 }
