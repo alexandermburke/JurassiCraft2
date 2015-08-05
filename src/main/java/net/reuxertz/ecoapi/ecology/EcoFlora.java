@@ -48,10 +48,10 @@ public class EcoFlora
         floraBlockDropRegistry.put(Blocks.pumpkin.getStateFromMeta(0), new ItemStack(Items.pumpkin_seeds));
         floraBlockSeedRegistry.put(Blocks.pumpkin.getStateFromMeta(0), new ItemStack(Items.pumpkin_seeds));
 
-        floraBlockDropRegistry.put(Blocks.leaves.getStateFromMeta(0), new ItemStack(Items.apple));
+        //floraBlockDropRegistry.put(Blocks.leaves.getStateFromMeta(0), new ItemStack(Items.apple));
 
         //Tree Saplings
-        for (int i = 0; i < 16; i++)
+        /*for (int i = 0; i < 16; i++)
         {
             IBlockState b1 = Blocks.log.getStateFromMeta(i);
             ItemStack s1 = new ItemStack(Item.getItemFromBlock(Blocks.sapling), 1, i % 4);
@@ -63,11 +63,13 @@ public class EcoFlora
                 IBlockState b2 = Blocks.log2.getStateFromMeta(i);
                 floraBlockSeedRegistry.put(b2, s2);
             }
-        }
+        }*/
 
         //Resources
-        for (int i = 0; i < 16; i++)
-            floraBlockDropRegistry.put(Blocks.log.getStateFromMeta(i), new ItemStack(Items.apple));
+        //for (int i = 0; i < 16; i++)
+        //{
+        //    floraBlockDropRegistry.put(Blocks.leaves.getStateFromMeta(i), new ItemStack(Items.apple));
+        //}
 
     }
     /*public static Block getFloraBlockDrop(ItemStack stack)
