@@ -4,6 +4,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.timeless.jurassicraft.common.item.ItemPaleoTab;
+import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 public class SlotStorage extends Slot
 {
@@ -15,6 +16,6 @@ public class SlotStorage extends Slot
     @Override
     public boolean isItemValid(ItemStack stack)
     {
-        return stack.getItem() instanceof ItemPaleoTab;
+        return stack.getItem() == JCItemRegistry.storage_disc;
     }
 }

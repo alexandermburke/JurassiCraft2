@@ -59,6 +59,7 @@ item.empty_test_tube.name=Empty Test Tube
 item.syringe.name={dino} Syringe
 item.empty_syringe.name=Empty Syringe
 item.entity_remover.name=Entity Remover
+item.storage_disc.name=Storage Disc
 
 //Blocks ==================================================
 tile.fossil_block.name={period} Fossil

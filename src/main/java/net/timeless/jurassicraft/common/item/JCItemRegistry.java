@@ -33,6 +33,8 @@ public class JCItemRegistry
 
     public static ItemEntityRemover entityRemover;
 
+    public static ItemBasic storage_disc;
+
     public void register()
     {
         plaster_and_bandage = new ItemPlasterAndBandage();
@@ -52,6 +54,7 @@ public class JCItemRegistry
         syringe = new ItemSyringe();
         empty_syringe = new ItemBasic("Empty Syringe", JCCreativeTabs.dna);
         entityRemover = new ItemEntityRemover();
+        storage_disc = new ItemBasic("Storage Disc", JCCreativeTabs.items);
 
         registerItem(blue_print, "Blue Print");
         registerItem(jc_sign, "JurassiCraft Sign");
@@ -71,6 +74,7 @@ public class JCItemRegistry
         registerItem(dino_meat, "Dinosaur Meat");
         registerItem(dino_steak, "Dinosaur Steak");
         registerItem(entityRemover, "Entity Remover");
+        registerItem(storage_disc, "Storage Disc");
 
         for (int i = 0; i < JCEntityRegistry.getDinosaurs().size(); i++)
         {

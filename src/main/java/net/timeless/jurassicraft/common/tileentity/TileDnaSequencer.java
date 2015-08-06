@@ -26,6 +26,7 @@ import net.timeless.jurassicraft.common.dna.GeneticsHelper;
 import net.timeless.jurassicraft.common.entity.data.JCPlayerData;
 import net.timeless.jurassicraft.common.item.ItemPaleoTab;
 import net.timeless.jurassicraft.common.item.ItemSoftTissue;
+import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 import java.util.Random;
 import java.util.UUID;
@@ -301,9 +302,10 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
 
         if (input != null && input.getItem() instanceof ItemSoftTissue)
         {
-            if (storage != null && storage.getItem() instanceof ItemPaleoTab)
-                if (worldObj.getPlayerEntityByUUID(UUID.fromString(storage.getTagCompound().getString("LastOwner"))) != null)
-                    return true;
+            if (storage != null && storage.getItem() == JCItemRegistry.storage_disc)
+                return storage.getTagCompound() == null || !storage.getTagCompound().hasKey("Storage");
+//                if (worldObj.getPlayerEntityByUUID(UUID.fromString(storage.getTagCompound().getString("LastOwner"))) != null)
+//                    return true;
         }
 
         return false;
@@ -318,7 +320,7 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
         {
             Random rand = new Random();
 
-            EntityPlayer player = worldObj.getPlayerEntityByUUID(UUID.fromString(slots[1].getTagCompound().getString("LastOwner")));
+//            EntityPlayer player = worldObj.getPlayerEntityByUUID(UUID.fromString(slots[1].getTagCompound().getString("LastOwner")));
 
             int quality = rand.nextInt(25) + 1;
 
@@ -337,7 +339,19 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
                 }
             }
 
-            JCPlayerData.getPlayerData(player).addSequencedDNA(new DNA(quality, GeneticsHelper.randomGenetics(rand, slots[0].getItemDamage(), quality).toString()));
+            NBTTagCompound nbt = slots[1].getTagCompound();
+
+            if(nbt == null)
+            {
+                nbt = new NBTTagCompound();
+            }
+
+            NBTTagCompound storage = new NBTTagCompound();
+            new DNA(quality, GeneticsHelper.randomGenetics(rand, slots[0].getItemDamage(), quality).toString()).writeToNBT(storage);
+            nbt.setTag("Storage", storage);
+
+            slots[1].setTagCompound(nbt);
+//            JCPlayerData.getPlayerData(player).addSequencedDNA(new DNA(quality, GeneticsHelper.randomGenetics(rand, slots[0].getItemDamage(), quality).toString()));
 
             slots[0].stackSize--;
 
