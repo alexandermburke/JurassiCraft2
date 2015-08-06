@@ -303,7 +303,7 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
         if (input != null && input.getItem() instanceof ItemSoftTissue)
         {
             if (storage != null && storage.getItem() == JCItemRegistry.storage_disc)
-                return storage.getTagCompound() == null || !storage.getTagCompound().hasKey("Storage");
+                return storage.getTagCompound() == null || !storage.getTagCompound().hasKey("Genetics");
 //                if (worldObj.getPlayerEntityByUUID(UUID.fromString(storage.getTagCompound().getString("LastOwner"))) != null)
 //                    return true;
         }
@@ -346,9 +346,10 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
                 nbt = new NBTTagCompound();
             }
 
-            NBTTagCompound storage = new NBTTagCompound();
-            new DNA(quality, GeneticsHelper.randomGenetics(rand, slots[0].getItemDamage(), quality).toString()).writeToNBT(storage);
-            nbt.setTag("Storage", storage);
+            DNA dna = new DNA(quality, GeneticsHelper.randomGenetics(rand, slots[0].getItemDamage(), quality).toString());
+            dna.writeToNBT(nbt);
+
+            slots[1].setItemDamage(dna.getContainer().getDinosaur());
 
             slots[1].setTagCompound(nbt);
 //            JCPlayerData.getPlayerData(player).addSequencedDNA(new DNA(quality, GeneticsHelper.randomGenetics(rand, slots[0].getItemDamage(), quality).toString()));

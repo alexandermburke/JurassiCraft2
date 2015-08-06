@@ -2,16 +2,17 @@ package net.timeless.jurassicraft.common.dna;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.timeless.jurassicraft.common.item.ItemSoftTissue;
 
 public class DNA
 {
     private int quality;
-    private String genetics;
+    private GeneticsContainer genetics;
 
     public DNA(int quality, String genetics)
     {
         this.quality = quality;
-        this.genetics = genetics;
+        this.genetics = new GeneticsContainer(genetics);
     }
 
     public DNA(ItemStack stack)
@@ -22,7 +23,7 @@ public class DNA
     public void writeToNBT(NBTTagCompound nbt)
     {
         nbt.setInteger("DNAQuality", quality);
-        nbt.setString("Genetics", genetics);
+        nbt.setString("Genetics", genetics.toString());
     }
 
     public static DNA readFromNBT(NBTTagCompound nbt)
@@ -32,6 +33,11 @@ public class DNA
 
     public String toString()
     {
-        return genetics + "-" + quality;
+        return genetics.toString();
+    }
+
+    public GeneticsContainer getContainer()
+    {
+        return genetics;
     }
 }

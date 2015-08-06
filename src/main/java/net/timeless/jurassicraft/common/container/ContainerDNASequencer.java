@@ -19,7 +19,7 @@ public class ContainerDNASequencer extends Container
         this.dnaSequencer = (TileDnaSequencer) tileEntity;
 
         this.addSlotToContainer(new SlotDNAHolder(dnaSequencer, 0, 53, 35));
-        this.addSlotToContainer(new SlotStorage(dnaSequencer, 1, 100, 35));
+        this.addSlotToContainer(new SlotStorage(dnaSequencer, 1, 100, 35, false));
 
         for (int i = 0; i < 3; ++i)
         {

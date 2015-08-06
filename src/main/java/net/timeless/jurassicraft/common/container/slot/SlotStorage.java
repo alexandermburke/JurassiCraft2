@@ -8,14 +8,25 @@ import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 public class SlotStorage extends Slot
 {
-    public SlotStorage(IInventory inventory, int slotIndex, int xPosition, int yPosition)
+    private boolean stored;
+
+    public SlotStorage(IInventory inventory, int slotIndex, int xPosition, int yPosition, boolean stored)
     {
         super(inventory, slotIndex, xPosition, yPosition);
+
+        this.stored = stored;
     }
 
     @Override
     public boolean isItemValid(ItemStack stack)
     {
-        return stack.getItem() == JCItemRegistry.storage_disc;
+        if(stored)
+        {
+            return stack.getItem() == JCItemRegistry.storage_disc && (stack.getTagCompound() != null && stack.getTagCompound().hasKey("Genetics"));
+        }
+        else
+        {
+            return stack.getItem() == JCItemRegistry.storage_disc && (stack.getTagCompound() == null || !stack.getTagCompound().hasKey("Genetics"));
+        }
     }
 }

@@ -2,6 +2,7 @@ package net.timeless.jurassicraft.common.handler;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
@@ -42,6 +43,10 @@ public class JCGuiHandler implements IGuiHandler
             {
                 return new ContainerEmbryoCalcificationMachine(player.inventory, tileEntity);
             }
+            else if (tileEntity instanceof TileDnaSynthesizer && id == 5)
+            {
+                return new ContainerDnaSynthesizer(player.inventory, tileEntity);
+            }
         }
 
         return null;
@@ -74,6 +79,10 @@ public class JCGuiHandler implements IGuiHandler
             else if (tileEntity instanceof TileEmbryoCalcificationMachine && id == 4)
             {
                 return new GuiEmbryoCalcificationMachine(player.inventory, (TileEmbryoCalcificationMachine) tileEntity);
+            }
+            else if (tileEntity instanceof TileDnaSynthesizer && id == 5)
+            {
+                return new GuiDNASynthesizer(player.inventory, (TileDnaSynthesizer) tileEntity);
             }
         }
 
