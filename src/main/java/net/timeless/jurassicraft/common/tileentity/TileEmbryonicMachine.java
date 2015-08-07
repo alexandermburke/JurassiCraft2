@@ -31,12 +31,12 @@ import java.util.Random;
 
 public class TileEmbryonicMachine extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
-    private static final int[] slotsTop = new int[] { 0, 1 }; //input
-    private static final int[] slotsBottom = new int[] { 5, 4, 3, 2 }; //output
+    private static final int[] slotsTop = new int[] { 0, 1, 2 }; //input
+    private static final int[] slotsBottom = new int[] { 6, 5, 4, 3 }; //output
     private static final int[] slotsSides = new int[] {};
 
     /** The ItemStacks that hold the items currently being used in the embryonic machine */
-    private ItemStack[] slots = new ItemStack[6];
+    private ItemStack[] slots = new ItemStack[7];
 
     private int embryoTime;
     private int totalEmbryoTime;
@@ -295,12 +295,12 @@ public class TileEmbryonicMachine extends TileEntityLockable implements IUpdateP
      */
     private boolean canInsert()
     {
-        if (this.slots[0] != null && this.slots[0].getItem() instanceof ItemDNA && this.slots[1] != null && this.slots[1].getItem() == JCItemRegistry.petri_dish)
+        if (this.slots[0] != null && this.slots[0].getItem() instanceof ItemDNA && this.slots[1] != null && this.slots[1].getItem() == JCItemRegistry.petri_dish && this.slots[2] != null && this.slots[2].getItem() == JCItemRegistry.empty_syringe)
         {
             ItemStack output = new ItemStack(JCItemRegistry.syringe, 1, slots[0].getItemDamage());
             output.setTagCompound(slots[0].getTagCompound());
 
-            for (int i = 2; i < 6; i++)
+            for (int i = 3; i < 7; i++)
             {
                 if (this.slots[i] == null || ItemStack.areItemsEqual(this.slots[i], output) && ItemStack.areItemStackTagsEqual(this.slots[i], output))
                     return true;
@@ -322,7 +322,7 @@ public class TileEmbryonicMachine extends TileEntityLockable implements IUpdateP
 
             int emptySlot = -1;
 
-            for (int i = 2; i < 6; i++)
+            for (int i = 3; i < 7; i++)
             {
                 if (this.slots[i] == null || (ItemStack.areItemStackTagsEqual(this.slots[i], output) && this.slots[i].getItem() == output.getItem()))
                 {
@@ -343,14 +343,13 @@ public class TileEmbryonicMachine extends TileEntityLockable implements IUpdateP
                     this.slots[emptySlot].stackSize += output.stackSize;
                 }
 
-                this.slots[0].stackSize--;
-                this.slots[1].stackSize--;
+                for (int i = 0; i < 3; i++)
+                {
+                    this.slots[i].stackSize--;
 
-                if (this.slots[0].stackSize <= 0)
-                    this.slots[0] = null;
-
-                if (this.slots[1].stackSize <= 0)
-                    this.slots[1] = null;
+                    if (this.slots[i].stackSize <= 0)
+                        this.slots[i] = null;
+                }
             }
         }
     }

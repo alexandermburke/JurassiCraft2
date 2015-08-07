@@ -20,8 +20,9 @@ public class ContainerEmbryonicMachine extends Container
     public ContainerEmbryonicMachine(InventoryPlayer playerInventory, TileEntity tileEntity)
     {
         this.embryonicMachine = (TileEmbryonicMachine) tileEntity;
-        this.addSlotToContainer(new SlotTestTube(embryonicMachine, 0, 24, 35));
-        this.addSlotToContainer(new SlotCustom(embryonicMachine, 1, 50, 35, JCItemRegistry.petri_dish));
+        this.addSlotToContainer(new SlotTestTube(embryonicMachine, 0, 38, 22));
+        this.addSlotToContainer(new SlotCustom(embryonicMachine, 1, 50, 49, JCItemRegistry.petri_dish));
+        this.addSlotToContainer(new SlotCustom(embryonicMachine, 2, 24, 49, JCItemRegistry.empty_syringe));
 
         int i;
 
@@ -29,7 +30,7 @@ public class ContainerEmbryonicMachine extends Container
         {
             for (int j = 0; j < 2; j++)
             {
-                this.addSlotToContainer(new Slot(embryonicMachine, i + (j * 2) + 2, i * 18 + 119, j * 18 + 26));
+                this.addSlotToContainer(new Slot(embryonicMachine, i + (j * 2) + 3, i * 18 + 119, j * 18 + 26));
             }
         }
 
