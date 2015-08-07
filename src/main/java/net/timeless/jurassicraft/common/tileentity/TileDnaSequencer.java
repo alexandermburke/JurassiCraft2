@@ -33,12 +33,12 @@ import java.util.UUID;
 
 public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
-    private static final int[] slotsTop = new int[] { 0 }; //input
-    private static final int[] slotsBottom = new int[] { 1 }; //output
+    private static final int[] slotsTop = new int[] { 0, 1 }; //input
+    private static final int[] slotsBottom = new int[] { 2, 3, 4 }; //output
     private static final int[] slotsSides = new int[] {};
 
     /** The ItemStacks that hold the items currently being used in the dna sequencer */
-    private ItemStack[] slots = new ItemStack[2];
+    private ItemStack[] slots = new ItemStack[5];
 
     private int sequenceTime;
     private int totalSequenceTime;
@@ -303,9 +303,16 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
         if (input != null && input.getItem() instanceof ItemSoftTissue)
         {
             if (storage != null && storage.getItem() == JCItemRegistry.storage_disc)
-                return storage.getTagCompound() == null || !storage.getTagCompound().hasKey("Genetics");
-//                if (worldObj.getPlayerEntityByUUID(UUID.fromString(storage.getTagCompound().getString("LastOwner"))) != null)
-//                    return true;
+            {
+                ItemStack output = new ItemStack(JCItemRegistry.storage_disc, 1, input.getItemDamage());
+                output.setTagCompound(input.getTagCompound());
+
+                for (int i = 2; i < 5; i++)
+                {
+                    if (this.slots[i] == null || ItemStack.areItemsEqual(this.slots[i], output) && ItemStack.areItemStackTagsEqual(this.slots[i], output))
+                        return true;
+                }
+            }
         }
 
         return false;
@@ -349,16 +356,43 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
             DNA dna = new DNA(quality, GeneticsHelper.randomGenetics(rand, slots[0].getItemDamage(), quality).toString());
             dna.writeToNBT(nbt);
 
-            slots[1].setItemDamage(dna.getContainer().getDinosaur());
+            ItemStack output = new ItemStack(JCItemRegistry.storage_disc, 1, slots[0].getItemDamage());
+            output.setItemDamage(dna.getContainer().getDinosaur());
+            output.setTagCompound(nbt);
 
-            slots[1].setTagCompound(nbt);
 //            JCPlayerData.getPlayerData(player).addSequencedDNA(new DNA(quality, GeneticsHelper.randomGenetics(rand, slots[0].getItemDamage(), quality).toString()));
 
-            slots[0].stackSize--;
+            int emptySlot = -1;
 
-            if (slots[0].stackSize <= 0)
+            for (int i = 2; i < 5; i++)
             {
-                slots[0] = null;
+                if (this.slots[i] == null || (ItemStack.areItemStackTagsEqual(this.slots[i], output) && this.slots[i].getItem() == output.getItem()))
+                {
+                    emptySlot = i;
+
+                    break;
+                }
+            }
+
+            if (emptySlot != -1)
+            {
+                if (this.slots[emptySlot] == null)
+                {
+                    this.slots[emptySlot] = output;
+                }
+                else if (this.slots[emptySlot].getItem() == output.getItem() && ItemStack.areItemStackTagsEqual(this.slots[emptySlot], output))
+                {
+                    this.slots[emptySlot].stackSize += output.stackSize;
+                }
+
+                this.slots[0].stackSize--;
+                this.slots[1].stackSize--;
+
+                if (this.slots[0].stackSize <= 0)
+                    this.slots[0] = null;
+
+                if (this.slots[1].stackSize <= 0)
+                    this.slots[1] = null;
             }
         }
     }
