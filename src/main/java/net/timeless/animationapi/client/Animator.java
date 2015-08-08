@@ -7,20 +7,22 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
+import net.timeless.unilib.client.model.tools.MowzieModelBase;
+import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 
 import java.util.HashMap;
 
 @SideOnly(Side.CLIENT)
 public class Animator
 {
-    private ModelBase modelBase;
+    private MowzieModelBase modelBase;
 
-    public Animator(ModelBase model)
+    public Animator(MowzieModelBase model)
     {
         tempTick = 0;
         correctAnim = false;
-        transformMap = new HashMap<ModelRenderer, Transform>();
-        prevTransformMap = new HashMap<ModelRenderer, Transform>();
+        transformMap = new HashMap<MowzieModelRenderer, Transform>();
+        prevTransformMap = new HashMap<MowzieModelRenderer, Transform>();
         modelBase = model;
     }
 
@@ -37,13 +39,7 @@ public class Animator
         transformMap.clear();
         prevTransformMap.clear();
 
-        for (int i = 0; i < modelBase.boxList.size(); i++)
-        {
-            ModelRenderer box = (ModelRenderer) modelBase.boxList.get(i);
-            box.rotateAngleX = 0F;
-            box.rotateAngleY = 0F;
-            box.rotateAngleZ = 0F;
-        }
+        modelBase.setToInitPose();
     }
 
     public boolean setAnim(int animID)
@@ -73,7 +69,7 @@ public class Animator
         endPhase();
     }
 
-    public void rotate(ModelRenderer box, float x, float y, float z)
+    public void rotate(MowzieModelRenderer box, float x, float y, float z)
     {
         if (!correctAnim)
             return;
@@ -83,10 +79,11 @@ public class Animator
             transformMap.get(box).addRot(x, y, z);
     }
 
-    public void move(ModelRenderer box, float x, float y, float z)
+    public void move(MowzieModelRenderer box, float x, float y, float z)
     {
         if (!correctAnim)
             return;
+
         if (!transformMap.containsKey(box))
             transformMap.put(box, new Transform(x, y, z, 0F, 0F, 0F));
         else
@@ -107,7 +104,7 @@ public class Animator
         {
             if (stationary)
             {
-                for (ModelRenderer box : prevTransformMap.keySet())
+                for (MowzieModelRenderer box : prevTransformMap.keySet())
                 {
                     Transform transform = prevTransformMap.get(box);
                     box.rotateAngleX += transform.rotX;
@@ -122,7 +119,8 @@ public class Animator
             {
                 float tick = (animTick - prevTempTick + AnimationAPI.getProxy().getPartialTick()) / (tempTick - prevTempTick);
                 float inc = MathHelper.sin(tick * PI / 2F), dec = 1F - inc;
-                for (ModelRenderer box : prevTransformMap.keySet())
+
+                for (MowzieModelRenderer box : prevTransformMap.keySet())
                 {
                     Transform transform = prevTransformMap.get(box);
                     box.rotateAngleX += dec * transform.rotX;
@@ -132,7 +130,8 @@ public class Animator
                     box.rotationPointY += dec * transform.offsetY;
                     box.rotationPointZ += dec * transform.offsetZ;
                 }
-                for (ModelRenderer box : transformMap.keySet())
+
+                for (MowzieModelRenderer box : transformMap.keySet())
                 {
                     Transform transform = transformMap.get(box);
                     box.rotateAngleX += inc * transform.rotX;
@@ -155,7 +154,7 @@ public class Animator
     private int tempTick, prevTempTick;
     private boolean correctAnim;
     private IAnimatedEntity animEntity;
-    private HashMap<ModelRenderer, Transform> transformMap, prevTransformMap;
+    private HashMap<MowzieModelRenderer, Transform> transformMap, prevTransformMap;
 
     public static final float PI = (float) Math.PI;
 }
