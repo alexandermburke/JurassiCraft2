@@ -39,7 +39,7 @@ public class Animator
         transformMap.clear();
         prevTransformMap.clear();
 
-        modelBase.setToInitPose();
+//        modelBase.setToInitPose();
     }
 
     public boolean setAnim(int animID)

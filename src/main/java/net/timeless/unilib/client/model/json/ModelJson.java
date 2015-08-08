@@ -89,17 +89,17 @@ public class ModelJson extends MowzieModelBase
 
         if (!Minecraft.getMinecraft().isGamePaused())
         {
-            this.setToInitPose();
-
             if (playingAnimation != null)
             {
                 updateAnimation(entity);
             }
+        }
 
-            if (animator != null)
-            {
-                animator.setRotationAngles(this, limbSwing, limbSwingAmount, rotation, rotationYaw, rotationPitch, partialTicks, entity);
-            }
+        this.setToInitPose();
+
+        if (animator != null)
+        {
+            animator.setRotationAngles(this, limbSwing, limbSwingAmount, rotation, rotationYaw, rotationPitch, partialTicks, entity);
         }
     }
 
