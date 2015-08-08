@@ -5,6 +5,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
+import net.timeless.jurassicraft.common.entity.EntityGallimimus;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
@@ -122,5 +123,7 @@ public class AnimationGallimimus implements IModelAnimator
         model.chainWave(body, 0.1F, -0.05F, 4, frame, 1.0F);
         model.chainWave(armRight, 0.1F, -0.15F, 4, frame, 1.0F);
         model.chainWave(armLeft, 0.1F, -0.15F, 4, frame, 1.0F);
+
+        ((EntityGallimimus) entity).tailBuffer.applyChainWaveBuffer(tail);
     }
 }

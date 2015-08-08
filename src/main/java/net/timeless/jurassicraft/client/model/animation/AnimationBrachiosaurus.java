@@ -5,6 +5,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
+import net.timeless.jurassicraft.common.entity.EntityApatosaurus;
+import net.timeless.jurassicraft.common.entity.EntityBrachiosaurus;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
@@ -60,7 +62,7 @@ public class AnimationBrachiosaurus implements IModelAnimator
         float scaleFactor = 0.2F;
         float height = 1.7F;
         float frontOffset = -2F;
-        float animationDegree = 0.5F;
+        float animationDegree = 0.25F;
 
         model.bob(body_1, 2 * scaleFactor, height * animationDegree, false, f, f1);
         model.bob(top_leg_left, 2 * scaleFactor, height * animationDegree, false, f, f1);
@@ -98,6 +100,6 @@ public class AnimationBrachiosaurus implements IModelAnimator
         model.chainWave(tailParts, 0.05F, -0.05F, 1, entity.ticksExisted, 1);
         model.chainSwing(tailParts, 0.05F, 0.2F, 2, entity.ticksExisted, 1);
 
-//        brachObama.tailBuffer.applyChainSwingBuffer(tailParts2);
+        ((EntityBrachiosaurus) entity).tailBuffer.applyChainSwingBuffer(tailParts2);
     }
 }

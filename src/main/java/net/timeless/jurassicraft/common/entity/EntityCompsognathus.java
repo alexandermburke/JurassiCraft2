@@ -1,5 +1,6 @@
 package net.timeless.jurassicraft.common.entity;
 
+import com.sun.net.httpserver.Filter;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIPanic;
 import net.minecraft.entity.ai.EntityAIWander;
@@ -13,9 +14,12 @@ import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCBegAnimation;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbivore;
+import net.timeless.unilib.common.animation.ChainBuffer;
 
 public class EntityCompsognathus extends EntityDinosaurDefensiveHerbivore implements IEntityAICreature, ICarnivore
 {
+    public ChainBuffer tailBuffer = new ChainBuffer(5);
+
     public EntityCompsognathus(World world)
     {
         super(world);
@@ -31,7 +35,10 @@ public class EntityCompsognathus extends EntityDinosaurDefensiveHerbivore implem
     public void onUpdate()
     {
         super.onUpdate();
+
         if (getAnimID() == 0)
             AnimationAPI.sendAnimPacket(this, 13);
+
+        this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
     }
 }

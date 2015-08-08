@@ -9,9 +9,12 @@ import net.minecraft.world.World;
 import net.reuxertz.ecoapi.ecology.role.ICarnivore;
 import net.reuxertz.ecoapi.entity.IEntityAICreature;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
+import net.timeless.unilib.common.animation.ChainBuffer;
 
 public class EntityCarnotaurus extends EntityDinosaurAggressive implements IEntityAICreature, ICarnivore
 {
+    public ChainBuffer tailBuffer = new ChainBuffer(6);
+
     public EntityCarnotaurus(World world)
     {
         super(world);
@@ -34,5 +37,11 @@ public class EntityCarnotaurus extends EntityDinosaurAggressive implements IEnti
         this.tasks.addTask(6, new EntityAIWander(this, dinosaur.getAdultSpeed()));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
+    }
+
+    public void onUpdate()
+    {
+        super.onUpdate();
+        this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
     }
 }

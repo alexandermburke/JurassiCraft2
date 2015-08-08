@@ -5,6 +5,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
+import net.timeless.jurassicraft.common.entity.EntityDilophosaurus;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
@@ -129,5 +130,7 @@ public class AnimationDilophosaurus implements IModelAnimator
         model.chainWave(armRight, 0.15F, -0.1F, 4, ticksExisted, 1.0F);
         model.chainWave(armLeft, 0.15F, -0.1F, 4, ticksExisted, 1.0F);
         model.chainSwing(tail, 0.15F, -0.1F, 3, ticksExisted, 1.0F);
+
+        ((EntityDilophosaurus) entity).tailBuffer.applyChainSwingBuffer(tail);
     }
 }

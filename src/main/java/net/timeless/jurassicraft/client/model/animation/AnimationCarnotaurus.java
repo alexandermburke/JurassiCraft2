@@ -5,6 +5,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
+import net.timeless.jurassicraft.common.entity.EntityCarnotaurus;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
@@ -115,5 +116,7 @@ public class AnimationCarnotaurus implements IModelAnimator
 
         model.faceTarget(head, 2, rotationYaw, rotationPitch);
         model.faceTarget(neck1, 2, rotationYaw, rotationPitch);
+
+        ((EntityCarnotaurus) entity).tailBuffer.applyChainSwingBuffer(tail);
     }
 }

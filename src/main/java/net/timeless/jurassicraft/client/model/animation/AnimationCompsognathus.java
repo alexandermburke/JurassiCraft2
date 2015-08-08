@@ -5,6 +5,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
+import net.timeless.jurassicraft.common.entity.EntityCompsognathus;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
@@ -62,6 +63,10 @@ public class AnimationCompsognathus implements IModelAnimator
 
         model.faceTarget(head, 2, rotationYaw, rotationPitch);
         model.faceTarget(neck1, 2, rotationYaw, rotationPitch);
+
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail5, tail4, tail3, tail2, tail1 };
+
+        ((EntityCompsognathus) entity).tailBuffer.applyChainSwingBuffer(tail);
 
         //beg animation
         // 60 ticks
