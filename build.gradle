@@ -40,7 +40,7 @@ repositories {
 }
 
 dependencies {
-    compile 'eu.thog92:isbrhcore:1.2.12:dev'
+    compile 'eu.thog92:isbrhcore:1.2.15:dev'
 }
 
 minecraft {
