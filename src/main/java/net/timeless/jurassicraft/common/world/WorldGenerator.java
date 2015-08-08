@@ -9,6 +9,7 @@ import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.block.JCBlockRegistry;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
+import net.timeless.jurassicraft.common.handler.FossilHandler;
 import net.timeless.jurassicraft.common.period.EnumTimePeriod;
 
 import java.util.List;
@@ -38,14 +39,16 @@ public class WorldGenerator implements IWorldGenerator
 
             int randPosY = random.nextInt(worldHeight);
 
-            EnumTimePeriod period = EnumTimePeriod.CRETACEOUS;
+            BlockPos pos = new BlockPos(randPosX, randPosY, randPosZ);
+
+            EnumTimePeriod period = FossilHandler.getTimePeriod(world, pos);
 
             List<Dinosaur> dinos = JCEntityRegistry.getDinosaursFromPeriod(period);
 
             Dinosaur dinosaur = dinos.get(random.nextInt(dinos.size()));
             int meta = JurassiCraft.blockRegistry.getMetadata(dinosaur);
 
-            new WorldGenMinable(JurassiCraft.blockRegistry.getFossilBlock(dinosaur).getStateFromMeta(meta), 5).generate(world, random, new BlockPos(randPosX, randPosY, randPosZ));
+            new WorldGenMinable(JurassiCraft.blockRegistry.getFossilBlock(dinosaur).getStateFromMeta(meta), 5).generate(world, random, pos);
         }
 
         int x = random.nextInt(16) + (chunkX * 16);
