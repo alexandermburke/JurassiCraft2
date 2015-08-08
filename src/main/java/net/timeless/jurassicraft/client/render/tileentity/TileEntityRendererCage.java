@@ -40,7 +40,6 @@ public class TileEntityRendererCage extends TileEntitySpecialRenderer
         else if(front == EnumFacing.WEST)
             front = EnumFacing.EAST;
 
-        System.out.println(front);
         GlStateManager.rotate((front.getHorizontalIndex()) * 90, 0, 1, 0);
         GlStateManager.translate(0.0F, -0.4F, 0.0F);
         entity.setLocationAndAngles(posX, posY, posZ, 0.0F, 0.0F);
