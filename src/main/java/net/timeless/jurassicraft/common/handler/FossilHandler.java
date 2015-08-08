@@ -9,18 +9,18 @@ public class FossilHandler
     /**
      * Returns the period of time (or metadata) as cretaceous.
      */
-    public static EnumTimePeriod getDefaultTimePeriod()
+    public static int getDefaultTimePeriod()
     {
-        return EnumTimePeriod.CRETACEOUS;
+        return EnumTimePeriod.CRETACEOUS.getMetadata();
     }
 
     /**
      * Returns the period of time (or metadata) based on a position.
      */
-    public static EnumTimePeriod getTimePeriod(World world, BlockPos pos)
+    public static int getTimePeriod(World world, BlockPos pos)
     {
-//        world.getBiomeGenForCoords(pos);
+        world.getBiomeGenForCoords(pos);
 
-        return EnumTimePeriod.CRETACEOUS;
+        return EnumTimePeriod.CRETACEOUS.getMetadata();
     }
 }
