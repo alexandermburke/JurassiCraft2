@@ -13,6 +13,10 @@ buildscript {
             name = "ilexiconn"
             url = "https://ilexiconn.net"
         }
+		maven {
+			name = "rx14"
+			url = "http://mvn.rx14.co.uk/repo/"
+		}
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
@@ -36,7 +40,7 @@ repositories {
 }
 
 dependencies {
-    
+    compile 'eu.thog92:isbrhcore:1.2.12:dev'
 }
 
 minecraft {

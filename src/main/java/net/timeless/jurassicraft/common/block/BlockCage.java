@@ -1,6 +1,5 @@
 package net.timeless.jurassicraft.common.block;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
@@ -11,7 +10,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
-import net.timeless.jurassicraft.common.tileentity.TileEntityCage;
+import net.timeless.jurassicraft.common.tileentity.TileCage;
 
 public class BlockCage extends BlockOriented
 {
@@ -51,6 +50,6 @@ public class BlockCage extends BlockOriented
     @Override
     public TileEntity createNewTileEntity(World world, int meta)
     {
-        return new TileEntityCage();
+        return new TileCage();
     }
 }

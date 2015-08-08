@@ -123,7 +123,7 @@ public class JCBlockRegistry
             Blocks.fire.setFireInfo(woods[i], 5, 5);
         }
 
-        registerBlockTileEntity(TileEntityCage.class, cage_small, "Cage Small");
+        registerBlockTileEntity(TileCage.class, cage_small, "Cage Small");
 
         registerBlockTileEntity(TileCleaningStation.class, cleaning_station, "Cleaning Station");
         registerBlockTileEntity(TileFossilGrinder.class, fossil_grinder, "Fossil Grinder");
