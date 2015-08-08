@@ -26,11 +26,17 @@ public class WorldGenerator implements IWorldGenerator
 
     public void generateOverworld(World world, Random random, int chunkX, int chunkZ)
     {
-        for (int i = 0; i < 32; i++)
+        for (int i = 0; i < 20; i++)
         {
-            int randPosX = chunkX + random.nextInt(16);
-            int randPosY = random.nextInt(64);
-            int randPosZ = chunkZ + random.nextInt(16);
+            int randPosX = random.nextInt(16) + (chunkX * 16);
+            int randPosZ = random.nextInt(16) + (chunkZ * 16);
+
+            int worldHeight = world.getHorizon(new BlockPos(randPosX, 0, randPosZ)).getY();
+
+            if (worldHeight <= 0)
+                worldHeight = 4;
+
+            int randPosY = random.nextInt(worldHeight);
 
             EnumTimePeriod period = EnumTimePeriod.CRETACEOUS;
 
@@ -42,13 +48,10 @@ public class WorldGenerator implements IWorldGenerator
             new WorldGenMinable(JurassiCraft.blockRegistry.getFossilBlock(dinosaur).getStateFromMeta(meta), 5).generate(world, random, new BlockPos(randPosX, randPosY, randPosZ));
         }
 
-        for (int i = 0; i < 16; i++)
-        {
-            int randPosX = chunkX + random.nextInt(16);
-            int randPosY = random.nextInt(20);
-            int randPosZ = chunkZ + random.nextInt(16);
+        int x = random.nextInt(16) + (chunkX * 16);
+        int y = random.nextInt(20);
+        int z = random.nextInt(16) + (chunkZ * 16);
 
-            new WorldGenMinable(JCBlockRegistry.amber_ore.getDefaultState(), 3).generate(world, random, new BlockPos(randPosX, randPosY, randPosZ));
-        }
+        (new WorldGenMinable(JCBlockRegistry.amber_ore.getDefaultState(), 6)).generate(world, random, new BlockPos(x, y, z));
     }
 }
