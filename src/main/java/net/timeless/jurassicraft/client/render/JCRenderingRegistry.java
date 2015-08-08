@@ -10,6 +10,7 @@ import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -18,6 +19,7 @@ import net.timeless.jurassicraft.client.gui.app.GuiAppRegistry;
 import net.timeless.jurassicraft.client.render.entity.RenderBluePrint;
 import net.timeless.jurassicraft.client.render.entity.RenderJurassiCraftSign;
 import net.timeless.jurassicraft.client.render.renderdef.*;
+import net.timeless.jurassicraft.client.render.tileentity.TileEntityRendererCage;
 import net.timeless.jurassicraft.common.block.BlockEncasedFossil;
 import net.timeless.jurassicraft.common.block.BlockFossil;
 import net.timeless.jurassicraft.common.block.JCBlockRegistry;
@@ -27,6 +29,7 @@ import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.entity.item.EntityBluePrint;
 import net.timeless.jurassicraft.common.entity.item.EntityJurassiCraftSign;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
+import net.timeless.jurassicraft.common.tileentity.TileCage;
 
 import java.util.Map;
 
@@ -49,6 +52,8 @@ public class JCRenderingRegistry
             ModelBakery.addVariantName(JCItemRegistry.soft_tissue, "jurassicraft:soft_tissue/soft_tissue_" + dinoName);
             ModelBakery.addVariantName(JCItemRegistry.syringe, "jurassicraft:syringe/syringe_" + dinoName);
         }
+
+        ClientRegistry.bindTileEntitySpecialRenderer(TileCage.class, new TileEntityRendererCage());
     }
 
     public void init()
