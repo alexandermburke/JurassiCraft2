@@ -45,6 +45,8 @@ public class JCBlockRegistry
 
     public static BlockAmber amber_ore;
 
+    public static BlockCage cage_small;
+
     public void register()
     {
         fossils = new ArrayList<BlockFossil>();
@@ -60,6 +62,8 @@ public class JCBlockRegistry
         dna_extractor = new BlockDNAExtractor();
 
         amber_ore = new BlockAmber();
+
+        cage_small = new BlockCage("Small");
 
         List<Dinosaur> dinosaurs = JCEntityRegistry.getDinosaurs();
 
@@ -118,6 +122,8 @@ public class JCBlockRegistry
             Blocks.fire.setFireInfo(planks[i], 5, 20);
             Blocks.fire.setFireInfo(woods[i], 5, 5);
         }
+
+        registerBlockTileEntity(TileEntityCage.class, cage_small, "Cage Small");
 
         registerBlockTileEntity(TileCleaningStation.class, cleaning_station, "Cleaning Station");
         registerBlockTileEntity(TileFossilGrinder.class, fossil_grinder, "Fossil Grinder");

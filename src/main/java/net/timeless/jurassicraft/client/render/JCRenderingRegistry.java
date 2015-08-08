@@ -113,6 +113,7 @@ public class JCRenderingRegistry
             this.registerBlockRenderer(modelMesher, JCBlockRegistry.woods[i], name + "_log", "inventory");
         }
 
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.cage_small, "cage_small", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.amber_ore, "amber_ore", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.cleaning_station, "cleaning_station", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.fossil_grinder, "fossil_grinder", "inventory");

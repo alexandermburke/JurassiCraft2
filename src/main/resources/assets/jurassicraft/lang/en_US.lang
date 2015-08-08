@@ -68,6 +68,8 @@ tile.fossil_block.name={period} Fossil
 tile.encased_fossil.name=Encased {period} Fossil
 tile.amber_ore.name=Amber Ore
 
+tile.cage_small.name=Small Cage
+
 tile.cleaning_station.name=Cleaning Station
 tile.fossil_grinder.name=Fossil Grinder
 tile.dna_sequencer.name=DNA Sequencer

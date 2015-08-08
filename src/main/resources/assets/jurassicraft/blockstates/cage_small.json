@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "jurassicraft:cage_small", "y": 180 },
+        "facing=south": { "model": "jurassicraft:cage_small" },
+        "facing=west": { "model": "jurassicraft:cage_small", "y": 90 },
+        "facing=east": { "model": "jurassicraft:cage_small", "y": 270 }
+    }
+}
