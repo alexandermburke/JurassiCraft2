@@ -42,6 +42,8 @@ public class ClientProxy extends CommonProxy
         uuids.add("71ec2c00-7ab3-437b-bf3f-aac35c530813"); //TheDurpiDaedric (Harvey)
         uuids.add("8803f3ac-1ed0-412a-ab44-844981af6e8b"); //kashmoney (Kash)
         uuids.add("4e88e24d-f77e-436a-ac80-457365c8deaa"); //CarrotJet (Cyrano)
+        uuids.add("a94683c5-aac9-464f-b064-67b1696237a5"); //TheLarsinator
+        
 
 //        uuids.add("487a286b-25a6-44d0-aaa0-f6b87fee6bfb"); //BobMowzie (Josh)
 //        uuids.add("40e85e42-21f6-46b6-b5b3-6aeb07f3e3fd"); //iLexiconn (Lex)
