@@ -15,7 +15,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.client.gui.app.GuiAppRegistry;
-import net.timeless.jurassicraft.client.render.block.JCBlockRenderingRegistry;
 import net.timeless.jurassicraft.client.render.entity.RenderBluePrint;
 import net.timeless.jurassicraft.client.render.entity.RenderJurassiCraftSign;
 import net.timeless.jurassicraft.client.render.renderdef.*;
@@ -36,12 +35,8 @@ public class JCRenderingRegistry
 {
     private static Map<Dinosaur, RenderDinosaurDefinition> renderDefs = Maps.newHashMap();
 
-    public JCBlockRenderingRegistry blockRenderingRegistry;
-
     public void preInit()
     {
-        blockRenderingRegistry = new JCBlockRenderingRegistry();
-
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
         {
             String dinoName = dino.getName(0).toLowerCase().replaceAll(" ", "_");
@@ -85,8 +80,6 @@ public class JCRenderingRegistry
         registerRenderDef(new RenderDefMicroceratus());
         registerRenderDef(new RenderDefOviraptor());
         registerRenderDef(new RenderDefApatosaurus());
-
-        blockRenderingRegistry.register();
 
         GuiAppRegistry.register();
 

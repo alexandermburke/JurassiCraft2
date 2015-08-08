@@ -1,6 +1,5 @@
 package net.timeless.jurassicraft.common.block;
 
-import eu.thog92.isbrh.render.ITextureHandler;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
@@ -10,7 +9,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.jurassicraft.client.render.block.JCBlockRenderingRegistry;
 import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.common.tileentity.TileCage;
 
@@ -49,11 +47,11 @@ public class BlockCage extends BlockOriented
         return true;
     }
 
-    @SideOnly(Side.CLIENT)
-    public int getRenderType()
-    {
-        return JCBlockRenderingRegistry.cageID;
-    }
+//    @SideOnly(Side.CLIENT)
+//    public int getRenderType()
+//    {
+//        return JCBlockRenderingRegistry.cageID;
+//    }
 
     @Override
     public TileEntity createNewTileEntity(World world, int meta)

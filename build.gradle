@@ -33,14 +33,9 @@ repositories {
         name = "ilexiconn"
         url = "http://maven.ilexiconn.net"
     }
-	maven {
-		name = "rx14"
-		url = "http://mvn.rx14.co.uk/repo/"
-	}
 }
 
 dependencies {
-    compile 'eu.thog92:isbrhcore:1.2.15:dev'
 }
 
 minecraft {
