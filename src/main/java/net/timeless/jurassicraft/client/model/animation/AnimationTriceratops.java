@@ -5,6 +5,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
+import net.timeless.jurassicraft.common.entity.EntityTriceratops;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
@@ -45,6 +46,8 @@ public class AnimationTriceratops implements IModelAnimator
         MowzieModelRenderer footRight = model.getCube("RearLeg Foot Right");
         MowzieModelRenderer jaw = model.getCube("Jaw LOWER");
 
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
+
         f = entity.ticksExisted;
         f1 = 0.3F;
 
@@ -61,5 +64,6 @@ public class AnimationTriceratops implements IModelAnimator
         model.bob(waist, 1 * globalSpeed, height, false, f, f1);
         model.walk(waist, 1 * globalSpeed, 0.1F * height, true, -1.5F, 0.05F, f, f1);
 
+        ((EntityTriceratops) entity).tailBuffer.applyChainSwingBuffer(tail);
     }
 }

@@ -5,6 +5,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
+import net.timeless.jurassicraft.common.entity.EntityGallimimus;
+import net.timeless.jurassicraft.common.entity.EntityGiganotosaurus;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
@@ -106,5 +108,7 @@ public class AnimationGiganotosaurus implements IModelAnimator
 
         model.faceTarget(head, 2, rotationYaw, rotationPitch);
         model.faceTarget(neck, 2, rotationYaw, rotationPitch);
+
+        ((EntityGiganotosaurus) entity).tailBuffer.applyChainSwingBuffer(tail);
     }
 }

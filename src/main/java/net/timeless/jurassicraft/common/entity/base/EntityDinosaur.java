@@ -31,7 +31,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
     protected int dinosaurAge;
 
-    private boolean isCarcass;
+//    private boolean isCarcass;
 
     private int quality;
 
@@ -66,17 +66,6 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     {
         super.entityInit();
         this.dataWatcher.addObject(25, 0);
-    }
-
-    public boolean attackEntityFrom(DamageSource source, float amount)
-    {
-        if (isCarcass && !isEntityInvulnerable(source))
-        {
-            this.setDead();
-            this.onDeath(source);
-        }
-
-        return super.attackEntityFrom(source, amount);
     }
 
     protected void applyEntityAttributes()
@@ -162,14 +151,14 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     {
         super.onUpdate();
 
-        if (!worldObj.isRemote)
-        {
-            dataWatcher.updateObject(25, isCarcass ? 1 : 0);
-        }
-        else
-        {
-            isCarcass = dataWatcher.getWatchableObjectInt(25) == 1;
-        }
+//        if (!worldObj.isRemote)
+//        {
+//            dataWatcher.updateObject(25, isCarcass ? 1 : 0);
+//        }
+//        else
+//        {
+//            isCarcass = dataWatcher.getWatchableObjectInt(25) == 1;
+//        }
         if (getAnimID() != 0)
             animTick++;
     }
@@ -201,7 +190,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
         nbt.setInteger("Texture", randTexture);
         nbt.setDouble("Dinosaur Age", dinosaurAge);
-        nbt.setBoolean("IsCarcass", isCarcass);
+//        nbt.setBoolean("IsCarcass", isCarcass);
         nbt.setInteger("DNAQuality", quality);
         nbt.setString("Genetics", genetics.toString());
     }
@@ -212,7 +201,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
         randTexture = nbt.getInteger("Texture");
         dinosaurAge = nbt.getInteger("Dinosaur Age");
-        isCarcass = nbt.getBoolean("IsCarcass");
+//        isCarcass = nbt.getBoolean("IsCarcass");
         quality = nbt.getInteger("DNAQuality");
         genetics = new GeneticsContainer(nbt.getString("Genetics"));
 
@@ -224,7 +213,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     {
         buffer.writeInt(randTexture);
         buffer.writeInt(dinosaurAge);
-        buffer.writeBoolean(isCarcass);
+//        buffer.writeBoolean(isCarcass);
         buffer.writeInt(quality);
         ByteBufUtils.writeUTF8String(buffer, genetics.toString());
     }
@@ -234,7 +223,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     {
         randTexture = additionalData.readInt();
         dinosaurAge = additionalData.readInt();
-        isCarcass = additionalData.readBoolean();
+//        isCarcass = additionalData.readBoolean();
         quality = additionalData.readInt();
 
         genetics = new GeneticsContainer(ByteBufUtils.readUTF8String(additionalData));
@@ -288,25 +277,25 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         entityDropItem(stack, 0.0F);
     }
 
-    public void setCarcass(boolean carcass)
-    {
-        this.isCarcass = carcass;
-
-        if (isCarcass)
-        {
-            String s = this.getDeathSound();
-
-            if (s != null)
-            {
-                this.playSound(s, this.getSoundVolume(), (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-            }
-        }
-    }
-
-    public boolean isCarcass()
-    {
-        return isCarcass;
-    }
+//    public void setCarcass(boolean carcass)
+//    {
+//        this.isCarcass = carcass;
+//
+//        if (isCarcass)
+//        {
+//            String s = this.getDeathSound();
+//
+//            if (s != null)
+//            {
+//                this.playSound(s, this.getSoundVolume(), (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+//            }
+//        }
+//    }
+//
+//    public boolean isCarcass()
+//    {
+//        return isCarcass;
+//    }
 
     public boolean interact(EntityPlayer player)
     {

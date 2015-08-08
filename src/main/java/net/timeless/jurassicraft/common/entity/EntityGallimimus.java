@@ -31,6 +31,6 @@ public class EntityGallimimus extends EntityDinosaurDefensiveHerbivore implement
     {
         super.onUpdate();
 
-        tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
+        this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
     }
 }

@@ -124,6 +124,6 @@ public class AnimationGallimimus implements IModelAnimator
         model.chainWave(armRight, 0.1F, -0.15F, 4, frame, 1.0F);
         model.chainWave(armLeft, 0.1F, -0.15F, 4, frame, 1.0F);
 
-        ((EntityGallimimus) entity).tailBuffer.applyChainWaveBuffer(tail);
+        ((EntityGallimimus) entity).tailBuffer.applyChainSwingBuffer(tail);
     }
 }

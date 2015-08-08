@@ -18,19 +18,19 @@ public class CommonEventHandler
         }
     }
 
-    @SubscribeEvent
-    public void onPlayerHurt(LivingHurtEvent event)
-    {
-        if (event.entityLiving instanceof EntityDinosaur)
-        {
-            EntityDinosaur dino = (EntityDinosaur) event.entityLiving;
-
-            if (!dino.isCarcass() && dino.getHealth() - event.ammount <= 0)
-            {
-                event.setCanceled(true);
-                event.ammount = 0;
-                dino.setCarcass(true);
-            }
-        }
-    }
+//    @SubscribeEvent
+//    public void livingHurt(LivingHurtEvent event)
+//    {
+//        if (event.entityLiving instanceof EntityDinosaur)
+//        {
+//            EntityDinosaur dino = (EntityDinosaur) event.entityLiving;
+//
+//            if (!dino.isCarcass() && dino.getHealth() - event.ammount <= 0)
+//            {
+//                event.setCanceled(true);
+//                event.ammount = 0;
+//                dino.setCarcass(true);
+//            }
+//        }
+//    }
 }

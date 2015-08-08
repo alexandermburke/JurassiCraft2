@@ -56,12 +56,12 @@ public class AnimationBlue implements IModelAnimator
         MowzieModelRenderer[] tailParts = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
         MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[] { waist, chest, shoulders, neck4, neck3, neck2, neck1, head };
 
-        if (velociraptor.isCarcass()) //Death Animation
-        {
-            model.walk(head, 1.0F, 0.5F, false, 0, 0, velociraptor.hurtTime, 1.0F);
-        }
-        else
-        {
+//        if (velociraptor.isCarcass()) //Death Animation
+//        {
+//            model.walk(head, 1.0F, 0.5F, false, 0, 0, velociraptor.hurtTime, 1.0F);
+//        }
+//        else
+//        {
             int frame = velociraptor.ticksExisted;
 
             // f = entity.ticksExisted;
@@ -391,6 +391,6 @@ public class AnimationBlue implements IModelAnimator
             animator.setStationaryPhase(5);
 
             animator.resetPhase(8);
-        }
+//        }
     }
 }

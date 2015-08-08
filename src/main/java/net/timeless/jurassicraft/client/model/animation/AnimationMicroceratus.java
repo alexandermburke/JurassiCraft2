@@ -5,6 +5,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
+import net.timeless.jurassicraft.common.entity.EntityMicroceratus;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
@@ -87,5 +88,7 @@ public class AnimationMicroceratus implements IModelAnimator
 
         model.chainWave(tail, globalSpeed * 0.2F, globalHeight * 0.05F, 2, frame, 1.0F);
         model.chainWave(neck, globalSpeed * 0.2F, globalHeight * 0.05F, 3, frame, 1.0F);
+
+        ((EntityMicroceratus) entity).tailBuffer.applyChainSwingBuffer(tail);
     }
 }

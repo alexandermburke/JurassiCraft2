@@ -171,6 +171,6 @@ public class AnimationHypsilophodon implements IModelAnimator
             animator.resetPhase(5);
         }
         
-//        hypster.tailBuffer.applyChainSwingBuffer(tailParts);
+        ((EntityHypsilophodon) entity).tailBuffer.applyChainSwingBuffer(tailParts);
     }
 }
