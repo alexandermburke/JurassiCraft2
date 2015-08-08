@@ -58,7 +58,7 @@ public class AnimationApatosaurus implements IModelAnimator
         MowzieModelRenderer[] tailParts2 = new MowzieModelRenderer[]{tail5, tail4, tail3, tail2, tail1};
 
         float scaleFactor = 0.2F;
-        float height = 1.7F;
+        float height = 0.85F;
         float frontOffset = -2F;
         float animationDegree = 0.25F;
 
