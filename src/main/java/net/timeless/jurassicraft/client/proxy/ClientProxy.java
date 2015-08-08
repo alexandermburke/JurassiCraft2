@@ -24,17 +24,25 @@ public class ClientProxy extends CommonProxy
 
     static
     {
+        //Patrons
+
         uuids.add("119fdbf2-a86b-4dfc-aaf2-a59e332b6e8c");
-        uuids.add("54201149-1f1f-498b-98ca-50f66951a68f");
         uuids.add("6e1f5ca8-bad8-4ee5-8114-c5dae4e83b22");
         uuids.add("a6888946-9303-45d9-8c9e-15f4b25aa283");
         uuids.add("40e85e42-21f6-46b6-b5b3-6aeb07f3e3fd");
         uuids.add("dc35774d-1883-48ca-b4db-eb6ab26350ab");
-        uuids.add("c3ed4d52-fb4f-4964-ba1b-9cda2453741e");
         uuids.add("487a286b-25a6-44d0-aaa0-f6b87fee6bfb");
         uuids.add("a02ae44b-fff6-4d7d-8d49-d53006a820e4");
         uuids.add("a43845fa-b76e-42fe-803f-e2edf58c23a1");
         uuids.add("71ec2c00-7ab3-437b-bf3f-aac35c530813");
+
+        //Team
+        uuids.add("d0e40dd9-fda1-4dbf-a4fe-43d689f77fc6"); //Raptor20 (wysssy)
+        uuids.add("2d8bdb70-030c-490f-a35d-b7d8fd8be605"); //PigeonAce (Peter)
+        uuids.add("1d2b4b67-7d3a-415e-9a77-47b50f275a99"); //Harry26548 (Harry)
+        uuids.add("c3ed4d52-fb4f-4964-ba1b-9cda2453741e"); //Gegy (gegy1000)
+        uuids.add("54201149-1f1f-498b-98ca-50f66951a68f"); //JTGhawk137 (Jack)
+//        uuids.add("8803f3ac-1ed0-412a-ab44-844981af6e8b"); //kashmoney (Kash) NOT CHECKED
     }
 
     @Override
