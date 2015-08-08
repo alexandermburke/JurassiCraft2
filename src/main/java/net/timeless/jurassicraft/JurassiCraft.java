@@ -16,7 +16,7 @@ import net.timeless.jurassicraft.common.proxy.CommonProxy;
 import net.timeless.jurassicraft.common.recipe.JCRecipeRegistry;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = JurassiCraft.modid, name = "JurassiCraft", version = "${version}")
+@Mod(modid = JurassiCraft.modid, name = "JurassiCraft", version = "${version}", dependencies = "after:isbrhcore")
 public class JurassiCraft
 {
     @SidedProxy(serverSide = "net.timeless.jurassicraft.common.proxy.CommonProxy", clientSide = "net.timeless.jurassicraft.client.proxy.ClientProxy")

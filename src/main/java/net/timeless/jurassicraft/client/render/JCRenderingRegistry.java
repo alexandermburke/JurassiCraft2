@@ -42,8 +42,6 @@ public class JCRenderingRegistry
     {
         blockRenderingRegistry = new JCBlockRenderingRegistry();
 
-        blockRenderingRegistry.regisiter();
-
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
         {
             String dinoName = dino.getName(0).toLowerCase().replaceAll(" ", "_");
@@ -87,6 +85,8 @@ public class JCRenderingRegistry
         registerRenderDef(new RenderDefMicroceratus());
         registerRenderDef(new RenderDefOviraptor());
         registerRenderDef(new RenderDefApatosaurus());
+
+        blockRenderingRegistry.register();
 
         GuiAppRegistry.register();
 

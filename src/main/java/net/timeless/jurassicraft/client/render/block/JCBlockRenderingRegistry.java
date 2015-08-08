@@ -6,7 +6,7 @@ public class JCBlockRenderingRegistry
 {
     public static int cageID;
 
-    public static void regisiter()
+    public static void register()
     {
         cageID = RenderRegistry.getNextAvailableRenderId();
         RenderRegistry.registerBlockHandler(new RenderCage());
