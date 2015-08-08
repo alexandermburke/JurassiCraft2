@@ -10,6 +10,9 @@ public class EntityBrachiosaurus extends EntityDinosaurDefensiveHerbivore implem
 {
     private static final String[] livingSounds = new String[] { "brachiosaurus_living_1", "brachiosaurus_living_2", "brachiosaurus_living_3", "brachiosaurus_living_4" };
 
+    private static final String[] hurtSounds = new String[] { "brachiosaurus_hurt_1", "brachiosaurus_hurt_2" };
+    private static final String[] deathSounds = new String[] { "brachiosaurus_death_1", "brachiosaurus_death_2" };
+
     public ChainBuffer tailBuffer = new ChainBuffer(5);
 
     public EntityBrachiosaurus(World world)
@@ -26,5 +29,15 @@ public class EntityBrachiosaurus extends EntityDinosaurDefensiveHerbivore implem
     public String getLivingSound()
     {
         return randomSound(livingSounds);
+    }
+
+    public String getHurtSound()
+    {
+        return randomSound(hurtSounds);
+    }
+
+    public String getDeathSound()
+    {
+        return randomSound(deathSounds);
     }
 }

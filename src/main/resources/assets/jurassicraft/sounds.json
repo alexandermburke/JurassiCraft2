@@ -173,6 +173,30 @@
             "dinosaurs/brachiosaurus/brachiosaurus_living_4"
         ]
     },
+	"brachiosaurus_hurt_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/brachiosaurus/brachiosaurus_hurt_1"
+        ]
+    },
+	"brachiosaurus_hurt_2": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/brachiosaurus/brachiosaurus_hurt_2"
+        ]
+    },
+	"brachiosaurus_death_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/brachiosaurus/brachiosaurus_death_1"
+        ]
+    },
+	"brachiosaurus_death_2": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/brachiosaurus/brachiosaurus_death_2"
+        ]
+    },
 	"dodo_death_1": {
         "category": "hostile",
         "sounds": [
