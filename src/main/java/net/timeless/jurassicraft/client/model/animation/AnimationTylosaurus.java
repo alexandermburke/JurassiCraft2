@@ -60,5 +60,7 @@ public class AnimationTylosaurus implements IModelAnimator
         model.walk(leftFrontFlipper, 0.25F * scaleFactor, 1.5F, false, 0F, 0F, ticksExisted, 0.1F);
         model.walk(leftBackFlipper, 0.25F * scaleFactor, 1.5F, false, -1F, 0F, ticksExisted, 0.1F);
         model.walk(rightBackFlipper, 0.25F * scaleFactor, 1.5F, false, -1F, 0F, ticksExisted, 0.1F);
+
+        entity.tailBuffer.applyChainSwingBuffer(bodyParts);
     }
 }
