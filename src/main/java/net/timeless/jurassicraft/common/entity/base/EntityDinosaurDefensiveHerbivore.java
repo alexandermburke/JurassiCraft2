@@ -117,8 +117,8 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
 
     protected void applyEntityAttributes()
     {
-        super.applyEntityAttributes();
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
+        super.applyEntityAttributes();
     }
 
     public void updateCreatureData()

@@ -102,7 +102,7 @@ public class DinosaurProtoceratops extends Dinosaur
     @Override
     public int getMaximumAge()
     {
-        return fromDays(20);
+        return fromDays(30);
     }
 
     @Override

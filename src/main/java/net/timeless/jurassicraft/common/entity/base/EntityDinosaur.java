@@ -56,10 +56,10 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
         genetics = GeneticsHelper.randomGenetics(rand, getDinosaur(), getDNAQuality());
 
-        adjustHitbox();
-
         animTick = 0;
         animID = 0;
+
+        updateCreatureData();
     }
 
     public void entityInit()
@@ -73,12 +73,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         super.applyEntityAttributes();
 
         dinosaur = JCEntityRegistry.getDinosaurByClass(getClass());
-        double newHealth = transitionFromAge(dinosaur.getBabyHealth(), dinosaur.getAdultHealth());
 
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(newHealth);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(transitionFromAge(dinosaur.getBabySpeed(), dinosaur.getAdultSpeed()));
-        this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(transitionFromAge(dinosaur.getBabyKnockback(), dinosaur.getAdultKnockback()));
-
+        updateCreatureData();
     }
 
     public void updateCreatureData()
@@ -228,7 +224,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
         genetics = new GeneticsContainer(ByteBufUtils.readUTF8String(additionalData));
 
-        adjustHitbox();
+        updateCreatureData();
     }
 
     public double getDinosaurAge()

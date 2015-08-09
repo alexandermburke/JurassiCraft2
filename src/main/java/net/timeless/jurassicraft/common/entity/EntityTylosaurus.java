@@ -22,6 +22,6 @@ public class EntityTylosaurus extends EntityDinosaurSwimmingAggressive implement
     {
         super.onUpdate();
 
-        this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
+        this.tailBuffer.calculateChainSwingBuffer(68.0F, 7, 4.0F, this);
     }
 }
