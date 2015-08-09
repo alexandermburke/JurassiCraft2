@@ -39,13 +39,13 @@ public class RenderDefOthnielia extends RenderDinosaurDefinition
     @Override
     public float getAdultScaleAdjustment()
     {
-        return 2.6F;
+        return 0.35F;
     }
 
     @Override
     public float getBabyScaleAdjustment()
     {
-        return 0.55F;
+        return 0.15F;
     }
 
     @Override

@@ -30,19 +30,19 @@ public class DinosaurOthnielia extends Dinosaur
     @Override
     public EnumTimePeriod getPeriod()
     {
-        return EnumTimePeriod.CRETACEOUS;
+        return EnumTimePeriod.JURASSIC;
     }
 
     @Override
     public int getEggPrimaryColor()
     {
-        return 0xA2996E;
+        return 0x3EA999;
     }
 
     @Override
     public int getEggSecondaryColor()
     {
-        return 0x545338;
+        return 0x584F41;
     }
 
     @Override
@@ -120,36 +120,36 @@ public class DinosaurOthnielia extends Dinosaur
     @Override
     public float getBabyEyeHeight()
     {
-        return 0.35F;
+        return 0.2F;
     }
 
     @Override
     public float getAdultEyeHeight()
     {
-        return 0.95F;
+        return 0.55F;
     }
 
     @Override
     public float getBabySizeX()
     {
-        return 0.25F;
+        return 0.15F;
     }
 
     @Override
     public float getBabySizeY()
     {
-        return 0.35F;
+        return 0.25F;
     }
 
     @Override
     public float getAdultSizeX()
     {
-        return 0.5F;
+        return 0.4F;
     }
 
     @Override
     public float getAdultSizeY()
     {
-        return 0.95F;
+        return 0.55F;
     }
 }
