@@ -43,6 +43,7 @@ entity.othnielia.name=Othnielia
 entity.dimorphodon.name=Dimorphodon
 entity.tylosaurus.name=Tylosaurus
 entity.ludodactylus.name=Ludodactylus
+entity.protoceratops.name=Protoceratops
 
 //Items ==================================================
 item.rock_pick.name=Rock Pick
