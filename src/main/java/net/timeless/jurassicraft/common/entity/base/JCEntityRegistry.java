@@ -105,7 +105,7 @@ public class JCEntityRegistry
     {
         dinosaurs.add(dinosaur);
 
-        if(!(dinosaur instanceof IHybrid))
+        if(!(dinosaur instanceof IHybrid) && dinosaur.shouldRegister())
         {
             EnumTimePeriod period = dinosaur.getPeriod();
 
