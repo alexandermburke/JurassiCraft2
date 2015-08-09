@@ -42,6 +42,7 @@ entity.apatosaurus.name=Apatosaurus
 entity.othnielia.name=Othnielia
 entity.dimorphodon.name=Dimorphodon
 entity.tylosaurus.name=Tylosaurus
+entity.ludodactylus.name=Ludodactylus
 
 //Items ==================================================
 item.rock_pick.name=Rock Pick

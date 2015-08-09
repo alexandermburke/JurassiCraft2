@@ -47,6 +47,7 @@ public class JCEntityRegistry
     public static final Dinosaur othnielia = new DinosaurOthnielia();
     public static final Dinosaur dimorphodon = new DinosaurDimorphodon();
     public static final Dinosaur tylosaurus = new DinosaurTylosaurus();
+    public static final Dinosaur ludodactylus = new DinosaurLudodactylus();
 
     public void register()
     {
@@ -80,6 +81,7 @@ public class JCEntityRegistry
         registerDinosaurType(othnielia);
         registerDinosaurType(dimorphodon);
         registerDinosaurType(tylosaurus);
+        registerDinosaurType(ludodactylus);
 
         registerEntity(EntityBluePrint.class, "Blueprint");
         registerEntity(EntityJurassiCraftSign.class, "JurassiCraft Sign");
