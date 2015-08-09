@@ -50,12 +50,6 @@ public class BlockCage extends BlockOriented implements ISubBlocksBlock
         return true;
     }
 
-//    @SideOnly(Side.CLIENT)
-//    public int getRenderType()
-//    {
-//        return JCBlockRenderingRegistry.cageID;
-//    }
-
     @Override
     public TileEntity createNewTileEntity(World world, int meta)
     {
