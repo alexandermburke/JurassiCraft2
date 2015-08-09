@@ -40,6 +40,7 @@ entity.microceratus.name=Microceratus
 entity.oviraptor.name=Oviraptor
 entity.apatosaurus.name=Apatosaurus
 entity.othnielia.name=Othnielia
+entity.dimorphodon.name=Dimorphodon
 
 //Items ==================================================
 item.rock_pick.name=Rock Pick
