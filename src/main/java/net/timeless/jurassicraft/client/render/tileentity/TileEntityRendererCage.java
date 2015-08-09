@@ -43,7 +43,7 @@ public class TileEntityRendererCage extends TileEntitySpecialRenderer
         GlStateManager.rotate((front.getHorizontalIndex()) * 90, 0, 1, 0);
         GlStateManager.translate(0.0F, -0.4F, 0.0F);
         entity.setLocationAndAngles(posX, posY, posZ, 0.0F, 0.0F);
-        Minecraft.getMinecraft().getRenderManager().renderEntityWithPosYaw(entity, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
+        mc.getRenderManager().renderEntityWithPosYaw(entity, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
 
         GlStateManager.popMatrix();
     }

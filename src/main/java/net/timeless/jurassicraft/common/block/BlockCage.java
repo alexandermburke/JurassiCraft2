@@ -1,6 +1,7 @@
 package net.timeless.jurassicraft.common.block;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
@@ -9,10 +10,12 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.jurassicraft.common.api.ISubBlocksBlock;
 import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
+import net.timeless.jurassicraft.common.item.ItemCage;
 import net.timeless.jurassicraft.common.tileentity.TileCage;
 
-public class BlockCage extends BlockOriented
+public class BlockCage extends BlockOriented implements ISubBlocksBlock
 {
     public BlockCage(String size)
     {
@@ -57,5 +60,11 @@ public class BlockCage extends BlockOriented
     public TileEntity createNewTileEntity(World world, int meta)
     {
         return new TileCage();
+    }
+
+    @Override
+    public Class<? extends ItemBlock> getItemBlockClass()
+    {
+        return ItemCage.class;
     }
 }
