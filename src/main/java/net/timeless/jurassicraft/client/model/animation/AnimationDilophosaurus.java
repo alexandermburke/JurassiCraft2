@@ -38,7 +38,7 @@ public class AnimationDilophosaurus implements IModelAnimator
         frillLeftBottom.rotateAngleY = (float) Math.toRadians(180);
         frillLeftBottom.rotationPointX += 10F;
 
-        float globalSpeed = 0.2F;
+        float globalSpeed = 0.6F;
         float globalDegree = 0.77F;
         float globalHeight = 2F;
 

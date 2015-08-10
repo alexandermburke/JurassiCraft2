@@ -22,8 +22,8 @@ public class AnimationCarnotaurus implements IModelAnimator
         //        f = entity.ticksExisted / 2;
         //        f1 = 1F;
 
-        float globalSpeed = 1F;
-        float globalDegree = 0.4F;
+        float globalSpeed = 0.5F;
+        float globalDegree = 0.6F;
         float globalHeight = 1.0F;
 
         MowzieModelRenderer neck1 = model.getCube("Neck 1");
