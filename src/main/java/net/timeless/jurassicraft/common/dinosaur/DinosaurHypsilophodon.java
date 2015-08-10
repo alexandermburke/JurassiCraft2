@@ -50,19 +50,19 @@ public class DinosaurHypsilophodon extends Dinosaur
     @Override
     public double getBabyHealth()
     {
-        return 16;
+        return 10;
     }
 
     @Override
     public double getAdultHealth()
     {
-        return 5;
+        return 25;
     }
 
     @Override
     public double getBabySpeed()
     {
-        return 0.15;
+        return 0.35;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class DinosaurHypsilophodon extends Dinosaur
     @Override
     public double getAdultSpeed()
     {
-        return 0.10;
+        return 0.30;
     }
 
     @Override

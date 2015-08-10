@@ -54,13 +54,13 @@ public class DinosaurHerrerasaurus extends Dinosaur
     @Override
     public double getAdultHealth()
     {
-        return 5;
+        return 65;
     }
 
     @Override
     public double getBabySpeed()
     {
-        return 0.11;
+        return 0.45;
     }
 
     @Override
@@ -72,7 +72,7 @@ public class DinosaurHerrerasaurus extends Dinosaur
     @Override
     public double getAdultSpeed()
     {
-        return 0.10;
+        return 0.40;
     }
 
     @Override
@@ -102,7 +102,7 @@ public class DinosaurHerrerasaurus extends Dinosaur
     @Override
     public int getMaximumAge()
     {
-        return fromDays(40);
+        return fromDays(50);
     }
 
     @Override

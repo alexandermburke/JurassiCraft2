@@ -54,13 +54,13 @@ public class DinosaurLudodactylus extends Dinosaur
     @Override
     public double getAdultHealth()
     {
-        return 5;
+        return 40;
     }
 
     @Override
     public double getBabySpeed()
     {
-        return 0.11;
+        return 0.47;
     }
 
     @Override
@@ -72,7 +72,7 @@ public class DinosaurLudodactylus extends Dinosaur
     @Override
     public double getAdultSpeed()
     {
-        return 0.10;
+        return 0.40;
     }
 
     @Override

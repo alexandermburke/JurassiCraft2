@@ -50,19 +50,19 @@ public class DinosaurGiganotosaurus extends Dinosaur
     @Override
     public double getBabyHealth()
     {
-        return 16;
+        return 20;
     }
 
     @Override
     public double getAdultHealth()
     {
-        return 5;
+        return 95;
     }
 
     @Override
     public double getBabySpeed()
     {
-        return 0.82;
+        return 0.52;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class DinosaurGiganotosaurus extends Dinosaur
     @Override
     public double getAdultSpeed()
     {
-        return 0.6D;
+        return 0.4;
     }
 
     @Override
@@ -134,7 +134,7 @@ public class DinosaurGiganotosaurus extends Dinosaur
     @Override
     public float getBabySizeX()
     {
-        return 1.2F;
+        return 0.5F;
     }
 
     @Override
@@ -146,7 +146,7 @@ public class DinosaurGiganotosaurus extends Dinosaur
     @Override
     public float getAdultSizeX()
     {
-        return 6F;
+        return 4F;
     }
 
     @Override

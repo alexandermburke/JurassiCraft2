@@ -50,13 +50,13 @@ public class DinosaurDunkleosteus extends Dinosaur
     @Override
     public double getBabyHealth()
     {
-        return 16;
+        return 18;
     }
 
     @Override
     public double getAdultHealth()
     {
-        return 5;
+        return 70;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class DinosaurDunkleosteus extends Dinosaur
     @Override
     public double getAdultSpeed()
     {
-        return 0.80;
+        return 0.45;
     }
 
     @Override

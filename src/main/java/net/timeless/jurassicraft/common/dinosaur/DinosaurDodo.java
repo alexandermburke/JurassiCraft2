@@ -48,19 +48,19 @@ public class DinosaurDodo extends Dinosaur
     @Override
     public double getBabyHealth()
     {
-        return 16;
+        return 5;
     }
 
     @Override
     public double getAdultHealth()
     {
-        return 5;
+        return 15;
     }
 
     @Override
     public double getBabySpeed()
     {
-        return 0.11;
+        return 0.35;
     }
 
     @Override
@@ -72,7 +72,7 @@ public class DinosaurDodo extends Dinosaur
     @Override
     public double getAdultSpeed()
     {
-        return 0.10;
+        return 0.30;
     }
 
     @Override

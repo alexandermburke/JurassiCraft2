@@ -56,13 +56,13 @@ public class DinosaurGallimimus extends Dinosaur
     @Override
     public double getAdultHealth()
     {
-        return 5;
+        return 65;
     }
 
     @Override
     public double getBabySpeed()
     {
-        return 0.62;
+        return 0.52;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class DinosaurGallimimus extends Dinosaur
     @Override
     public double getAdultSpeed()
     {
-        return 0.50;
+        return 0.40;
     }
 
     @Override
@@ -134,7 +134,7 @@ public class DinosaurGallimimus extends Dinosaur
     @Override
     public float getBabySizeX()
     {
-        return 0.6F;
+        return 0.3F;
     }
 
     @Override
@@ -146,7 +146,7 @@ public class DinosaurGallimimus extends Dinosaur
     @Override
     public float getAdultSizeX()
     {
-        return 2.0F;
+        return 1.5F;
     }
 
     @Override
