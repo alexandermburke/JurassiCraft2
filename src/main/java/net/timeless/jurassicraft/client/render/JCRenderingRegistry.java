@@ -91,6 +91,7 @@ public class JCRenderingRegistry
         registerRenderDef(new RenderDefLudodactylus());
         registerRenderDef(new RenderDefProtoceratops());
         registerRenderDef(new RenderDefTropeognathus());
+        registerRenderDef(new RenderDefLeaellynasaura());
 
         GuiAppRegistry.register();
 
