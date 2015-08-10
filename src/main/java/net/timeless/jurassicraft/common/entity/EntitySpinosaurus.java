@@ -17,6 +17,10 @@ public class EntitySpinosaurus extends EntityDinosaurAggressive implements IEnti
 {
     public ChainBuffer tailBuffer = new ChainBuffer(6);
 
+    private static final String[] hurtSounds = new String[] { "spinosaurus_hurt_1" };
+    private static final String[] livingSounds = new String[] { "spinosaurus_living_1", "spinosaurus_living_2", "spinosaurus_living_3", "spinosaurus_living_4" };
+    private static final String[] deathSounds = new String[] { "spinosaurus_death_1", "spinosaurus_death_2" };
+
     public EntitySpinosaurus(World world)
     {
         super(world);
@@ -41,6 +45,21 @@ public class EntitySpinosaurus extends EntityDinosaurAggressive implements IEnti
         if(this.getAnimID() == 0)
             AnimationAPI.sendAnimPacket(this, 1);
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 10, 4.0F, this);
+    }
+
+    public String getLivingSound()
+    {
+        return randomSound(livingSounds);
+    }
+
+    public String getHurtSound()
+    {
+        return randomSound(hurtSounds);
+    }
+
+    public String getDeathSound()
+    {
+        return randomSound(deathSounds);
     }
 
     private boolean isAIDisabled()

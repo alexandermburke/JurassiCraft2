@@ -1,11 +1,95 @@
 {
+	"spinosaurus_living_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/spinosaurus/spinosaurus_living_1"
+        ]
+    },
+	"spinosaurus_living_2": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/spinosaurus/spinosaurus_living_2"
+        ]
+    },
+	"spinosaurus_living_3": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/spinosaurus/spinosaurus_living_3"
+        ]
+    },
+	"spinosaurus_living_4": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/spinosaurus/spinosaurus_living_4"
+        ]
+    },
+	"spinosaurus_hurt_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/spinosaurus/spinosaurus_hurt_1"
+        ]
+    },
+	"spinosaurus_death_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/spinosaurus/spinosaurus_death_1"
+        ]
+    },
+	"spinosaurus_death_2": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/spinosaurus/spinosaurus_death_2"
+        ]
+    },
+	"spinosaurus_death_3": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/spinosaurus/spinosaurus_death_3"
+        ]
+    },
+	"ankylosaurus_living_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/ankylosaurus/ankylosaurus_living_1"
+        ]
+    },
+	"ankylosaurus_living_2": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/ankylosaurus/ankylosaurus_living_2"
+        ]
+    },
+	"ankylosaurus_living_3": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/ankylosaurus/ankylosaurus_living_3"
+        ]
+    },
+	"ankylosaurus_living_4": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/ankylosaurus/ankylosaurus_living_4"
+        ]
+    },
+	"ankylosaurus_hurt_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/ankylosaurus/ankylosaurus_hurt_1"
+        ]
+    },
+	"ankylosaurus_hurt_2": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/ankylosaurus/ankylosaurus_hurt_2"
+        ]
+    },
     "herrerasaurus_living_1": {
         "category": "hostile",
         "sounds": [
             "dinosaurs/herrerasaurus/herrerasaurus_living_1"
         ]
     },
-	  "herrerasaurus_death_1": {
+	"herrerasaurus_death_1": {
         "category": "hostile",
         "sounds": [
             "dinosaurs/herrerasaurus/herrerasaurus_death_1"
