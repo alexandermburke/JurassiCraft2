@@ -44,4 +44,19 @@ public class EntityCarnotaurus extends EntityDinosaurAggressive implements IEnti
         super.onUpdate();
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
     }
+
+    public String getLivingSound()
+    {
+        return randomSound("carnotaurus_living_1");
+    }
+
+    public String getHurtSound()
+    {
+        return randomSound("carnotaurus_hurt_1");
+    }
+
+    public String getDeathSound()
+    {
+        return randomSound("carnotaurus_death_1");
+    }
 }

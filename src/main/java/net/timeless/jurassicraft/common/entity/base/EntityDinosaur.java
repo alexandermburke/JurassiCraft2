@@ -360,7 +360,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         return animTick;
     }
 
-    protected String randomSound(String[] sounds)
+    protected String randomSound(String... sounds)
     {
         return JurassiCraft.modid + ":" + sounds[rand.nextInt(sounds.length)];
     }

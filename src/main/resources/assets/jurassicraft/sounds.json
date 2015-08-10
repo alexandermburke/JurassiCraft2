@@ -1,4 +1,58 @@
 {
+	"carnotaurus_living_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/carnotaurus/carnotaurus_living_1"
+        ]
+    },
+	"carnotaurus_hurt_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/carnotaurus/carnotaurus_hurt_1"
+        ]
+    },
+	"carnotaurus_death_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/carnotaurus/carnotaurus_death_1"
+        ]
+    },
+	"gallimimus_living_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/gallimimus/gallimimus_living_1"
+        ]
+    },
+	"gallimimus_living_2": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/gallimimus/gallimimus_living_2"
+        ]
+    },
+	"gallimimus_death_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/gallimimus/gallimimus_death_1"
+        ]
+    },
+	"gallimimus_death_2": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/gallimimus/gallimimus_death_2"
+        ]
+    },
+	"gallimimus_hurt_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/gallimimus/gallimimus_hurt_1"
+        ]
+    },
+	"gallimimus_hurt_2": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/gallimimus/gallimimus_hurt_2"
+        ]
+    },
 	"spinosaurus_living_1": {
         "category": "hostile",
         "sounds": [
