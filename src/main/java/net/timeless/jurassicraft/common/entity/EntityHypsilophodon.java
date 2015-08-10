@@ -24,12 +24,7 @@ public class EntityHypsilophodon extends EntityDinosaurDefensiveHerbivore implem
     public EntityHypsilophodon(World world)
     {
         super(world);
-        this.tasks.addTask(1, new EntityAIPanic(this, 2.0D));
-
-        this.tasks.addTask(6, new EntityAIWander(this, dinosaur.getAdultSpeed()));
-        this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
-        this.tasks.addTask(8, new EntityAILookIdle(this));
-        tasks.addTask(2, new JCNonAutoAnimBase(this, 35, SCRATCH, 60)); //Sniff
+        tasks.addTask(2, new JCNonAutoAnimBase(this, 35, SCRATCH, 60)); //Scratch Animation
     }
 
     public String getLivingSound()

@@ -69,6 +69,8 @@ public class AnimationParasaurolophus implements IModelAnimator
         MowzieModelRenderer leftHand = model.getCube("Left Hand");
         MowzieModelRenderer leftFingers = model.getCube("Left Fingers");
 
+        MowzieModelRenderer jaw = model.getCube("Jaw");
+
         MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
 
         float scaleFactor = 0.6F;
@@ -142,34 +144,38 @@ public class AnimationParasaurolophus implements IModelAnimator
 
         model.chainWave(tail, 0.1F, -0.02F, 2, ticksExisted, 1F);
 
-//        model.faceTarget(head, 3, rotationYaw, rotationPitch);
-//        model.faceTarget(neck1, 3, rotationYaw, rotationPitch);
-//        model.faceTarget(neck2, 3, rotationYaw, rotationPitch);
-//
-//        int ticksExisted = entity.ticksExisted;
-//
-//        model.chainWave(tail, 0.1F, -0.05F, 2, ticksExisted, 1F);
-//
-//        model.walk(leftThigh, 0.5F * globalSpeed, 0.8F * globalDegree, false, 0F, 0.2F, f, f1);
-//        model.walk(leftCalf, 0.5F * globalSpeed, 1F * globalDegree, true, 1F, 0.4F, f, f1);
-//        model.walk(leftUpperFoot, 0.5F * globalSpeed, 1F * globalDegree, false, 0F, 0F, f, f1);
-//        model.walk(leftFoot, 0.5F * globalSpeed, 1.5F * globalDegree, true, 0.5F, -0.1F, f, f1);
-//
-//        model.walk(rightThigh, 0.5F * globalSpeed, 0.8F * globalDegree, true, 0F, 0.2F, f, f1);
-//        model.walk(rightCalf, 0.5F * globalSpeed, 1F * globalDegree, false, 1F, 0.4F, f, f1);
-//        model.walk(rightUpperFoot, 0.5F * globalSpeed, 1F * globalDegree, true, 0F, 0F, f, f1);
-//        model.walk(rightFoot, 0.5F * globalSpeed, 1.5F * globalDegree, false, 0.5F, -0.1F, f, f1);
-//
-//        model.walk(upperArmLeft, 0.5F * globalSpeed, 0.8F * globalDegree, true, 0F, 0.2F, f, f1);
-//        model.walk(lowerArmLeft, 0.5F * globalSpeed, 1F * globalDegree, false, 1F, 0.4F, f, f1);
-//        model.walk(leftHand, 0.5F * globalSpeed, 1F * globalDegree, true, 0F, 0F, f, f1);
-//        model.walk(leftFingers, 0.5F * globalSpeed, 1.5F * globalDegree, false, 0.5F, -0.1F, f, f1);
-//
-//        model.walk(upperArmRight, 0.5F * globalSpeed, 0.8F * globalDegree, false, 0F, 0.2F, f, f1);
-//        model.walk(lowerArmRight, 0.5F * globalSpeed, 1F * globalDegree, true, 1F, 0.4F, f, f1);
-//        model.walk(rightHand, 0.5F * globalSpeed, 1F * globalDegree, false, 0F, 0F, f, f1);
-//        model.walk(rightFingers, 0.5F * globalSpeed, 1.5F * globalDegree, true, 0.5F, -0.1F, f, f1);
-
         ((EntityParasaurolophus) entity).tailBuffer.applyChainSwingBuffer(tail);
+
+        animator.setAnim(1);
+        animator.startPhase(15);
+        animator.rotate(waist, 0.3F, 0, 0);
+        animator.rotate(shoulders, 0.1F, 0, 0);
+        animator.rotate(stomach, 0.1F, 0, 0);
+        animator.rotate(neck1, -0.6F, 0, 0);
+        animator.move(neck1, 0, -2, 0);
+        animator.rotate(head, 0.7F, 0, 0);
+        animator.rotate(upperArmRight, 0.4F, 0, 0);
+        animator.rotate(upperArmLeft, 0.4F, 0, 0);
+        animator.rotate(lowerArmRight, -0.6F, 0, 0);
+        animator.rotate(lowerArmLeft, -0.6F, 0, 0);
+        animator.rotate(rightHand, 0.4F, 0, 0);
+        animator.rotate(leftHand, 0.4F, 0, 0);
+        animator.endPhase();
+        animator.setStationaryPhase(5);
+        animator.startPhase(10);
+        animator.rotate(waist, -0.5F, 0, 0);
+        animator.rotate(neck1, 0.5F, 0, 0);
+        animator.rotate(head, -0.5F, 0, 0);
+        animator.rotate(jaw, 0.2F, 0, 0);
+        animator.move(neck1, 0, -2.3F, 0);
+        animator.rotate(tail1, 0.2F, 0, 0);
+        animator.rotate(tail2, 0.2F, 0, 0);
+        animator.rotate(tail3, 0.2F, 0, 0);
+        animator.rotate(tail4, 0.2F, 0, 0);
+        animator.rotate(tail5, 0.2F, 0, 0);
+        animator.rotate(tail6, 0.2F, 0, 0);
+        animator.endPhase();
+        animator.setStationaryPhase(20);
+        animator.resetPhase(10);
     }
 }
