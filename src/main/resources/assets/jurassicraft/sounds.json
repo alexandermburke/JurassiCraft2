@@ -1,4 +1,16 @@
 {
+    "herrerasaurus_living_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/herrerasaurus/herrerasaurus_living_1"
+        ]
+    },
+	  "herrerasaurus_death_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/herrerasaurus/herrerasaurus_death_1"
+        ]
+    },
     "velociraptor_hurt_1": {
         "category": "hostile",
         "sounds": [
