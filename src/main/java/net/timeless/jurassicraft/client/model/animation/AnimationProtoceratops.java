@@ -20,6 +20,15 @@ public class AnimationProtoceratops implements IModelAnimator
 		EntityProtoceratops entity = (EntityProtoceratops) e;
         Animator animator = model.animator;
 
+//        f = entity.ticksExisted;
+//        f1 = 0.5F;
+
+        float globalSpeed = 0.5F;
+        float globalHeight = 0.5F;
+        float globalDegree = 0.5F;
+
+        float frontOffset = 1.0F;
+
         MowzieModelRenderer head = model.getCube("Head");
 
         MowzieModelRenderer lowerJaw = model.getCube("Lower jaw");
@@ -56,5 +65,35 @@ public class AnimationProtoceratops implements IModelAnimator
         MowzieModelRenderer footRight = model.getCube("Leg Foot RIGHT");
 
         MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail4, tail3, tail2, tail1 };
+        MowzieModelRenderer[] neck = new MowzieModelRenderer[] { head, neck3, neck2, neck1 };
+
+        model.bob(body, globalSpeed * 1.0F, globalHeight * 1.0F, false, f, f1);
+        model.bob(thighLeft, globalSpeed * 1.0F, globalHeight * 1.0F, false, f, f1);
+        model.bob(thighRight, globalSpeed * 1.0F, globalHeight * 1.0F, false, f, f1);
+
+        model.chainWave(tail, globalSpeed * 1.0F, globalHeight * 0.25F, 3, f, f1);
+        model.chainSwing(tail, globalSpeed * 0.5F, globalHeight * 0.25F, 3, f, f1);
+        model.chainWave(neck, globalSpeed * 1.0F, globalHeight * 0.25F, -3, f, f1);
+
+        model.walk(thighLeft, 1F * globalSpeed, 0.7F * globalDegree, false, 0F, -0.4F, f, f1);
+        model.walk(thighLowerLeft, 1F * globalSpeed, 0.6F * globalDegree, true, 1F, 0.5F, f, f1);
+        model.walk(footUpperLeft, 1F * globalSpeed, 0.6F * globalDegree, false, -1.5F, 0.85F, f, f1);
+
+        model.walk(thighRight, 1F * globalSpeed, 0.7F * globalDegree, true, 0F, -0.4F, f, f1);
+        model.walk(thighLowerRight, 1F * globalSpeed, 0.6F * globalDegree, false, 1F, 0.5F, f, f1);
+        model.walk(footUpperRight, 1F * globalSpeed, 0.6F * globalDegree, true, -1.5F, 0.85F, f, f1);
+
+        model.walk(armUpperLeft, 1F * globalSpeed, 0.7F * globalDegree, true, frontOffset + 0F, -0.2F, f, f1);
+        model.walk(armLowerLeft, 1F * globalSpeed, 0.6F * globalDegree, true, frontOffset + 1F, -0.2F, f, f1);
+        model.walk(handLeft, 1F * globalSpeed, 0.6F * globalDegree, false, frontOffset + 2F, 0.8F, f, f1);
+
+        model.walk(armUpperRight, 1F * globalSpeed, 0.7F * globalDegree, false, frontOffset + 0F, -0.2F, f, f1);
+        model.walk(armLowerRight, 1F * globalSpeed, 0.6F * globalDegree, false, frontOffset + 1F, -0.2F, f, f1);
+        model.walk(handRight, 1F * globalSpeed, 0.6F * globalDegree, true, frontOffset + 2F, 0.8F, f, f1);
+
+        int ticksExisted = entity.ticksExisted;
+
+        model.chainWave(tail, globalSpeed * 0.25F, globalHeight * 1.0F, 3, ticksExisted, 0.1F);
+        model.chainWave(neck, globalSpeed * 0.25F, globalHeight * 1.0F, -3, ticksExisted, 0.1F);
     }
 }
