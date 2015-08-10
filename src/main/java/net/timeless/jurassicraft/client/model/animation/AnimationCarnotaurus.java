@@ -22,7 +22,7 @@ public class AnimationCarnotaurus implements IModelAnimator
         //        f = entity.ticksExisted / 2;
         //        f1 = 1F;
 
-        float globalSpeed = 0.5F;
+        float globalSpeed = 0.8F;
         float globalDegree = 0.6F;
         float globalHeight = 1.0F;
 

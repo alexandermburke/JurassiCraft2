@@ -59,10 +59,10 @@ public class AnimationBrachiosaurus implements IModelAnimator
         MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{tail5, tail4, tail3};
         MowzieModelRenderer[] tailParts2 = new MowzieModelRenderer[]{tail5, tail4, tail3, tail2, tail1};
 
-        float scaleFactor = 0.2F;
+        float scaleFactor = 0.4F;
         float height = 0.85F;
         float frontOffset = -2F;
-        float animationDegree = 0.25F;
+        float animationDegree = 0.5F;
 
         model.bob(body_1, 2 * scaleFactor, height * animationDegree, false, f, f1);
         model.bob(top_leg_left, 2 * scaleFactor, height * animationDegree, false, f, f1);

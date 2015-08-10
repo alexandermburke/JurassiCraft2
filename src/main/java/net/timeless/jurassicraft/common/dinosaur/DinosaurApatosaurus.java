@@ -51,19 +51,19 @@ public class DinosaurApatosaurus extends Dinosaur
     @Override
     public double getBabyHealth()
     {
-        return 16;
+        return 20;
     }
 
     @Override
     public double getAdultHealth()
     {
-        return 5;
+        return 120;
     }
 
     @Override
     public double getBabySpeed()
     {
-        return 0.52;
+        return 0.32;
     }
 
     @Override
@@ -75,7 +75,7 @@ public class DinosaurApatosaurus extends Dinosaur
     @Override
     public double getAdultSpeed()
     {
-        return 0.80;
+        return 0.25;
     }
 
     @Override

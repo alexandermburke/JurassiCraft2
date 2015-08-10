@@ -56,13 +56,13 @@ public class DinosaurCarnotaurus extends Dinosaur
     @Override
     public double getAdultHealth()
     {
-        return 5;
+        return 65;
     }
 
     @Override
     public double getBabySpeed()
     {
-        return 0.52;
+        return 0.42;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class DinosaurCarnotaurus extends Dinosaur
     @Override
     public double getAdultSpeed()
     {
-        return 0.80;
+        return 0.30;
     }
 
     @Override
@@ -134,7 +134,7 @@ public class DinosaurCarnotaurus extends Dinosaur
     @Override
     public float getBabySizeX()
     {
-        return 1.0F;
+        return 0.45F;
     }
 
     @Override
@@ -146,7 +146,7 @@ public class DinosaurCarnotaurus extends Dinosaur
     @Override
     public float getAdultSizeX()
     {
-        return 3.5F;
+        return 2.25F;
     }
 
     @Override

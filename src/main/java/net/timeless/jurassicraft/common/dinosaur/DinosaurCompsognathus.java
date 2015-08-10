@@ -50,13 +50,13 @@ public class DinosaurCompsognathus extends Dinosaur
     @Override
     public double getBabyHealth()
     {
-        return 16;
+        return 5;
     }
 
     @Override
     public double getAdultHealth()
     {
-        return 5;
+        return 15;
     }
 
     @Override
@@ -134,7 +134,7 @@ public class DinosaurCompsognathus extends Dinosaur
     @Override
     public float getBabySizeX()
     {
-        return 0.2F;
+        return 0.1F;
     }
 
     @Override
@@ -146,7 +146,7 @@ public class DinosaurCompsognathus extends Dinosaur
     @Override
     public float getAdultSizeX()
     {
-        return 0.4F;
+        return 0.3F;
     }
 
     @Override

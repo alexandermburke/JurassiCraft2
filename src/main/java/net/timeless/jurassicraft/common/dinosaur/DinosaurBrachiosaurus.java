@@ -62,7 +62,7 @@ public class DinosaurBrachiosaurus extends Dinosaur
     @Override
     public double getBabySpeed()
     {
-        return 0.52;
+        return 0.32;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class DinosaurBrachiosaurus extends Dinosaur
     @Override
     public double getAdultSpeed()
     {
-        return 0.80;
+        return 0.25;
     }
 
     @Override

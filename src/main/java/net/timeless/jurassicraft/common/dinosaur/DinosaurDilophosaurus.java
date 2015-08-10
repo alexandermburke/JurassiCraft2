@@ -56,7 +56,7 @@ public class DinosaurDilophosaurus extends Dinosaur
     @Override
     public double getAdultHealth()
     {
-        return 5;
+        return 75;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class DinosaurDilophosaurus extends Dinosaur
     @Override
     public double getAdultSpeed()
     {
-        return 0.80;
+        return 0.40;
     }
 
     @Override
@@ -134,7 +134,7 @@ public class DinosaurDilophosaurus extends Dinosaur
     @Override
     public float getBabySizeX()
     {
-        return 0.5F;
+        return 0.4F;
     }
 
     @Override
@@ -146,7 +146,7 @@ public class DinosaurDilophosaurus extends Dinosaur
     @Override
     public float getAdultSizeX()
     {
-        return 3.0F;
+        return 1.5F;
     }
 
     @Override

@@ -39,7 +39,7 @@ public class RenderDefDilophosaurus extends RenderDinosaurDefinition
     @Override
     public float getAdultScaleAdjustment()
     {
-        return 1.7F;
+        return 1.45F;
     }
 
     @Override

@@ -62,7 +62,7 @@ public class DinosaurAchillobator extends Dinosaur
     @Override
     public double getAdultHealth()
     {
-        return 70;
+        return 60;
     }
 
     @Override
@@ -152,19 +152,19 @@ public class DinosaurAchillobator extends Dinosaur
     @Override
     public float getBabySizeX()
     {
-        return 0.8F;
+        return 0.3F;
     }
 
     @Override
     public float getBabySizeY()
     {
-        return 0.6F;
+        return 0.5F;
     }
 
     @Override
     public float getAdultSizeX()
     {
-        return 2.0F;
+        return 1.4F;
     }
 
     @Override

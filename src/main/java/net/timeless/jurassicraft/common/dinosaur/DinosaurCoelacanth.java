@@ -50,19 +50,19 @@ public class DinosaurCoelacanth extends Dinosaur
     @Override
     public double getBabyHealth()
     {
-        return 16;
+        return 10;
     }
 
     @Override
     public double getAdultHealth()
     {
-        return 5;
+        return 40;
     }
 
     @Override
     public double getBabySpeed()
     {
-        return 0.52;
+        return 0.62;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class DinosaurCoelacanth extends Dinosaur
     @Override
     public double getAdultSpeed()
     {
-        return 0.80;
+        return 0.50;
     }
 
     @Override
@@ -134,7 +134,7 @@ public class DinosaurCoelacanth extends Dinosaur
     @Override
     public float getBabySizeX()
     {
-        return 0.4F;
+        return 0.3F;
     }
 
     @Override
@@ -146,7 +146,7 @@ public class DinosaurCoelacanth extends Dinosaur
     @Override
     public float getAdultSizeX()
     {
-        return 1.4F;
+        return 1.2F;
     }
 
     @Override
