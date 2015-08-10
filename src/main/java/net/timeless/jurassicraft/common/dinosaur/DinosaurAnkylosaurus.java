@@ -9,16 +9,10 @@ public class DinosaurAnkylosaurus extends Dinosaur
     private String[] maleTextures;
     private String[] femaleTextures;
 
-    private String[] maleOverlayTextures;
-    private String[] femaleOverlayTextures;
-
     public DinosaurAnkylosaurus()
     {
         this.maleTextures = new String[] { getDinosaurTexture("male") };
         this.femaleTextures = new String[] { getDinosaurTexture("female") };
-
-        this.maleOverlayTextures = new String[] { getDinosaurTexture("male_detail") };
-        this.femaleOverlayTextures = new String[] { getDinosaurTexture("female_detail") };
     }
 
     // TODO: Figure out all the entities properties
@@ -44,13 +38,13 @@ public class DinosaurAnkylosaurus extends Dinosaur
     @Override
     public int getEggPrimaryColor()
     {
-        return 0x7A7268;
+        return 0xAB9B82;
     }
 
     @Override
     public int getEggSecondaryColor()
     {
-        return 0x7E4941;
+        return 0x7C6270;
     }
 
     @Override
@@ -126,18 +120,6 @@ public class DinosaurAnkylosaurus extends Dinosaur
     }
 
     @Override
-    public String[] getMaleOverlayTextures(int geneticVariant)
-    {
-        return maleOverlayTextures;
-    }
-
-    @Override
-    public String[] getFemaleOverlayTextures(int geneticVariant)
-    {
-        return femaleOverlayTextures;
-    }
-
-    @Override
     public float getBabyEyeHeight()
     {
         return 0.4F;
@@ -152,19 +134,19 @@ public class DinosaurAnkylosaurus extends Dinosaur
     @Override
     public float getBabySizeX()
     {
-        return 1.0F;
+        return 0.7F;
     }
 
     @Override
     public float getBabySizeY()
     {
-        return 0.8F;
+        return 0.6F;
     }
 
     @Override
     public float getAdultSizeX()
     {
-        return 4.0F;
+        return 3.0F;
     }
 
     @Override

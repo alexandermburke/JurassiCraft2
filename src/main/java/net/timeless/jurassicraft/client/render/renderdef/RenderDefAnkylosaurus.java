@@ -39,19 +39,19 @@ public class RenderDefAnkylosaurus extends RenderDinosaurDefinition
     @Override
     public float getAdultScaleAdjustment()
     {
-        return 2.6F;
+        return 2.3F;
     }
 
     @Override
     public float getBabyScaleAdjustment()
     {
-        return 0.55F;
+        return 0.45F;
     }
 
     @Override
     public float getShadowSize()
     {
-        return 0.65F;
+        return 0.85F;
     }
 
     @Override
