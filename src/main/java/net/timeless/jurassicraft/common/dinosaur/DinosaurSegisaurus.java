@@ -62,13 +62,13 @@ public class DinosaurSegisaurus extends Dinosaur
     @Override
     public double getAdultHealth()
     {
-        return 5;
+        return 30;
     }
 
     @Override
     public double getBabySpeed()
     {
-        return 0.52;
+        return 0.46;
     }
 
     @Override
@@ -80,7 +80,7 @@ public class DinosaurSegisaurus extends Dinosaur
     @Override
     public double getAdultSpeed()
     {
-        return 0.80;
+        return 0.40;
     }
 
     @Override
@@ -110,7 +110,7 @@ public class DinosaurSegisaurus extends Dinosaur
     @Override
     public int getMaximumAge()
     {
-        return fromDays(35);
+        return fromDays(30);
     }
 
     @Override
@@ -152,7 +152,7 @@ public class DinosaurSegisaurus extends Dinosaur
     @Override
     public float getBabySizeX()
     {
-        return 0.5F;
+        return 0.3F;
     }
 
     @Override
@@ -164,12 +164,12 @@ public class DinosaurSegisaurus extends Dinosaur
     @Override
     public float getAdultSizeX()
     {
-        return 1.25F;
+        return 0.5F;
     }
 
     @Override
     public float getAdultSizeY()
     {
-        return 0.95F;
+        return 0.85F;
     }
 }

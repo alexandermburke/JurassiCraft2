@@ -55,25 +55,25 @@ public class DinosaurSpinosaurus extends Dinosaur
     @Override
     public double getBabyHealth()
     {
-        return 16;
+        return 20;
     }
 
     @Override
     public double getAdultHealth()
     {
-        return 5;
+        return 100;
     }
 
     @Override
     public double getBabySpeed()
     {
-        return 0.52;
+        return 0.46;
     }
 
     @Override
     public double getAttackSpeed()
     {
-        return 0.50;
+        return 0.40;
     }
 
     @Override
@@ -151,24 +151,24 @@ public class DinosaurSpinosaurus extends Dinosaur
     @Override
     public float getBabySizeX()
     {
-        return 1.0F;
+        return 0.6F;
     }
 
     @Override
     public float getBabySizeY()
     {
-        return 1.0F;
+        return 0.8F;
     }
 
     @Override
     public float getAdultSizeX()
     {
-        return 4.0F;
+        return 3.0F;
     }
 
     @Override
     public float getAdultSizeY()
     {
-        return 5.8F;
+        return 4.8F;
     }
 }

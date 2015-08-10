@@ -48,19 +48,19 @@ public class DinosaurOthnielia extends Dinosaur
     @Override
     public double getBabyHealth()
     {
-        return 16;
+        return 10;
     }
 
     @Override
     public double getAdultHealth()
     {
-        return 5;
+        return 28;
     }
 
     @Override
     public double getBabySpeed()
     {
-        return 0.11;
+        return 0.4;
     }
 
     @Override
@@ -72,7 +72,7 @@ public class DinosaurOthnielia extends Dinosaur
     @Override
     public double getAdultSpeed()
     {
-        return 0.10;
+        return 0.35;
     }
 
     @Override

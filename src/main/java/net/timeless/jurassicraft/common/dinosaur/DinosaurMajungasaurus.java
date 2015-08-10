@@ -56,13 +56,13 @@ public class DinosaurMajungasaurus extends Dinosaur
     @Override
     public double getAdultHealth()
     {
-        return 5;
+        return 65;
     }
 
     @Override
     public double getBabySpeed()
     {
-        return 0.52;
+        return 0.48;
     }
 
     @Override
@@ -134,7 +134,7 @@ public class DinosaurMajungasaurus extends Dinosaur
     @Override
     public float getBabySizeX()
     {
-        return 0.8F;
+        return 0.5F;
     }
 
     @Override
@@ -146,7 +146,7 @@ public class DinosaurMajungasaurus extends Dinosaur
     @Override
     public float getAdultSizeX()
     {
-        return 3.5F;
+        return 2.25F;
     }
 
     @Override

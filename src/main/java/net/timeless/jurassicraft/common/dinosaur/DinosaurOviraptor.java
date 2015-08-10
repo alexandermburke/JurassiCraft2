@@ -153,4 +153,10 @@ public class DinosaurOviraptor extends Dinosaur
     {
         return 0.95F;
     }
+
+    @Override
+    public boolean shouldRegister()
+    {
+        return false;
+    }
 }

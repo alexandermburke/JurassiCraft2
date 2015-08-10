@@ -59,24 +59,24 @@ public class DinosaurTyrannosaurus extends Dinosaur
     @Override
     public double getAdultHealth()
     {
-        return 90;
+        return 100;
     }
 
     @Override
     public double getBabySpeed()
     {
-        return 0.82;
+        return 0.46;
     }
 
     @Override
     public double getAdultSpeed()
     {
-        return 0.60;
+        return 0.42;
     }
 
     public double getAttackSpeed()
     {
-        return 1.20;
+        return 0.50;
     }
 
     @Override
@@ -148,7 +148,7 @@ public class DinosaurTyrannosaurus extends Dinosaur
     @Override
     public float getBabySizeX()
     {
-        return 0.8F;
+        return 0.45F;
     }
 
     @Override
@@ -166,6 +166,6 @@ public class DinosaurTyrannosaurus extends Dinosaur
     @Override
     public float getAdultSizeY()
     {
-        return 5F;
+        return 4F;
     }
 }

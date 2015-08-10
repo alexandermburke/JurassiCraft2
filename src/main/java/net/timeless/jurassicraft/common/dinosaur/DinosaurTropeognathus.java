@@ -48,19 +48,19 @@ public class DinosaurTropeognathus extends Dinosaur
     @Override
     public double getBabyHealth()
     {
-        return 16;
+        return 12;
     }
 
     @Override
     public double getAdultHealth()
     {
-        return 5;
+        return 55;
     }
 
     @Override
     public double getBabySpeed()
     {
-        return 0.11;
+        return 0.46;
     }
 
     @Override
@@ -72,7 +72,7 @@ public class DinosaurTropeognathus extends Dinosaur
     @Override
     public double getAdultSpeed()
     {
-        return 0.10;
+        return 0.30;
     }
 
     @Override
@@ -102,7 +102,7 @@ public class DinosaurTropeognathus extends Dinosaur
     @Override
     public int getMaximumAge()
     {
-        return fromDays(40);
+        return fromDays(45);
     }
 
     @Override

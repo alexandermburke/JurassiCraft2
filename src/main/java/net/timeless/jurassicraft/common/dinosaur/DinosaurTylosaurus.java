@@ -48,13 +48,13 @@ public class DinosaurTylosaurus extends Dinosaur
     @Override
     public double getBabyHealth()
     {
-        return 16;
+        return 20;
     }
 
     @Override
     public double getAdultHealth()
     {
-        return 5;
+        return 95;
     }
 
     @Override

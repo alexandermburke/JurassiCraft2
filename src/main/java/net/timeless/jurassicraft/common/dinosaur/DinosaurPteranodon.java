@@ -56,13 +56,13 @@ public class DinosaurPteranodon extends Dinosaur
     @Override
     public double getAdultHealth()
     {
-        return 5;
+        return 55;
     }
 
     @Override
     public double getBabySpeed()
     {
-        return 0.52;
+        return 0.46;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class DinosaurPteranodon extends Dinosaur
     @Override
     public double getAdultSpeed()
     {
-        return 0.80;
+        return 0.40;
     }
 
     @Override

@@ -61,13 +61,13 @@ public class DinosaurStegosaurus extends Dinosaur
     @Override
     public double getAdultHealth()
     {
-        return 5;
+        return 55;
     }
 
     @Override
     public double getBabySpeed()
     {
-        return 0.52;
+        return 0.38;
     }
 
     @Override
@@ -79,7 +79,7 @@ public class DinosaurStegosaurus extends Dinosaur
     @Override
     public double getAdultSpeed()
     {
-        return 0.80;
+        return 0.32;
     }
 
     @Override
@@ -139,7 +139,7 @@ public class DinosaurStegosaurus extends Dinosaur
     @Override
     public float getBabySizeX()
     {
-        return 1.0F;
+        return 0.5F;
     }
 
     @Override
@@ -151,7 +151,7 @@ public class DinosaurStegosaurus extends Dinosaur
     @Override
     public float getAdultSizeX()
     {
-        return 5.0F;
+        return 4.0F;
     }
 
     @Override

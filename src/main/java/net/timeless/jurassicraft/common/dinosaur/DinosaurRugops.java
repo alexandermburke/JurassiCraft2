@@ -56,13 +56,13 @@ public class DinosaurRugops extends Dinosaur
     @Override
     public double getAdultHealth()
     {
-        return 5;
+        return 65;
     }
 
     @Override
     public double getBabySpeed()
     {
-        return 0.52;
+        return 0.47;
     }
 
     public double getAttackSpeed()
@@ -73,7 +73,7 @@ public class DinosaurRugops extends Dinosaur
     @Override
     public double getAdultSpeed()
     {
-        return 0.80;
+        return 0.40;
     }
 
     @Override
@@ -103,7 +103,7 @@ public class DinosaurRugops extends Dinosaur
     @Override
     public int getMaximumAge()
     {
-        return fromDays(40);
+        return fromDays(45);
     }
 
     @Override
@@ -133,7 +133,7 @@ public class DinosaurRugops extends Dinosaur
     @Override
     public float getBabySizeX()
     {
-        return 1.0F;
+        return 0.50F;
     }
 
     @Override
@@ -145,7 +145,7 @@ public class DinosaurRugops extends Dinosaur
     @Override
     public float getAdultSizeX()
     {
-        return 2.0F;
+        return 1.5F;
     }
 
     @Override

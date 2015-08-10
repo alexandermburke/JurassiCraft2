@@ -56,7 +56,7 @@ public class DinosaurTriceratops extends Dinosaur
     @Override
     public double getAdultHealth()
     {
-        return 5;
+        return 55;
     }
 
     @Override
@@ -134,7 +134,7 @@ public class DinosaurTriceratops extends Dinosaur
     @Override
     public float getBabySizeX()
     {
-        return 0.55F;
+        return 0.35F;
     }
 
     @Override
@@ -146,7 +146,7 @@ public class DinosaurTriceratops extends Dinosaur
     @Override
     public float getAdultSizeX()
     {
-        return 3.5F;
+        return 2.5F;
     }
 
     @Override

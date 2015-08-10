@@ -77,24 +77,24 @@ public class DinosaurVelociraptor extends Dinosaur
     @Override
     public double getAdultHealth()
     {
-        return 55;
+        return 65;
     }
 
     @Override
     public double getBabySpeed()
     {
-        return 0.82;
+        return 0.48;
     }
 
     @Override
     public double getAdultSpeed()
     {
-        return 0.60;
+        return 0.40;
     }
 
     public double getAttackSpeed()
     {
-        return 1.20;
+        return 0.50;
     }
 
     @Override
@@ -178,19 +178,19 @@ public class DinosaurVelociraptor extends Dinosaur
     @Override
     public float getBabySizeX()
     {
-        return 0.6F;
+        return 0.4F;
     }
 
     @Override
     public float getBabySizeY()
     {
-        return 0.6F;
+        return 0.5F;
     }
 
     @Override
     public float getAdultSizeX()
     {
-        return 1.5F;
+        return 1.25F;
     }
 
     @Override
