@@ -1,4 +1,112 @@
 {
+	"triceratops_living_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/triceratops/triceratops_living_1"
+        ]
+    },
+	"triceratops_living_2": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/triceratops/triceratops_living_2"
+        ]
+    },
+	"triceratops_living_3": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/triceratops/triceratops_living_3"
+        ]
+    },
+	"triceratops_living_4": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/triceratops/triceratops_living_4"
+        ]
+    },
+	"triceratops_death_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/triceratops/triceratops_death_1"
+        ]
+    },
+	"triceratops_hurt_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/triceratops/triceratops_hurt_1"
+        ]
+    },
+	"stegosaurus_living_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/stegosaurus/stegosaurus_living_1"
+        ]
+    },
+	"stegosaurus_living_2": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/stegosaurus/stegosaurus_living_2"
+        ]
+    },
+	"stegosaurus_hurt_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/stegosaurus/stegosaurus_hurt_1"
+        ]
+    },
+	"stegosaurus_hurt_2": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/stegosaurus/stegosaurus_hurt_2"
+        ]
+    },
+	"stegosaurus_death_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/stegosaurus/stegosaurus_death_1"
+        ]
+    },
+	"stegosaurus_death_2": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/stegosaurus/stegosaurus_death_2"
+        ]
+    },
+	"dilophosaurus_living_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/dilophosaurus/dilophosaurus_living_1"
+        ]
+    },
+	"dilophosaurus_living_2": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/dilophosaurus/dilophosaurus_living_2"
+        ]
+    },
+	"dilophosaurus_living_3": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/dilophosaurus/dilophosaurus_living_3"
+        ]
+    },
+	"dilophosaurus_hurt_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/dilophosaurus/dilophosaurus_hurt_1"
+        ]
+    },
+	"dilophosaurus_hurt_2": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/dilophosaurus/dilophosaurus_hurt_2"
+        ]
+    },
+	"dilophosaurus_death_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/dilophosaurus/dilophosaurus_death_1"
+        ]
+    },
 	"carnotaurus_living_1": {
         "category": "hostile",
         "sounds": [

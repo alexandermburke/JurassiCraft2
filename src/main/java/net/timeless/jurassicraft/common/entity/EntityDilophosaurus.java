@@ -16,6 +16,10 @@ public class EntityDilophosaurus extends EntityDinosaurAggressive implements IEn
 {
     public ChainBuffer tailBuffer = new ChainBuffer(5);
 
+    private static final String[] hurtSounds = new String[] { "dilophosaurus_hurt_1", "dilophosaurus_hurt_2" };
+    private static final String[] livingSounds = new String[] { "dilophosaurus_living_1", "dilophosaurus_living_2", "dilophosaurus_living_3" };
+    private static final String[] deathSounds = new String[] { "dilophosaurus_death_1" };
+
     public EntityDilophosaurus(World world)
     {
         super(world);
@@ -45,5 +49,20 @@ public class EntityDilophosaurus extends EntityDinosaurAggressive implements IEn
         super.onUpdate();
 
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
+    }
+
+    public String getLivingSound()
+    {
+        return randomSound(livingSounds);
+    }
+
+    public String getHurtSound()
+    {
+        return randomSound(hurtSounds);
+    }
+
+    public String getDeathSound()
+    {
+        return randomSound(deathSounds);
     }
 }
