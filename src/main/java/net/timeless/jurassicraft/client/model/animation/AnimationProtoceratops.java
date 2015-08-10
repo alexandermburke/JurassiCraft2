@@ -95,5 +95,8 @@ public class AnimationProtoceratops implements IModelAnimator
 
         model.chainWave(tail, globalSpeed * 0.25F, globalHeight * 1.0F, 3, ticksExisted, 0.1F);
         model.chainWave(neck, globalSpeed * 0.25F, globalHeight * 1.0F, -3, ticksExisted, 0.1F);
+
+        model.faceTarget(head, 2, rotationYaw, rotationPitch);
+        model.faceTarget(neck1, 2, rotationYaw, rotationPitch);
     }
 }
