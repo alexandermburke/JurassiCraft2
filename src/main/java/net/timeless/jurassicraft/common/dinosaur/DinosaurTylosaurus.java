@@ -60,7 +60,7 @@ public class DinosaurTylosaurus extends Dinosaur
     @Override
     public double getBabySpeed()
     {
-        return 0.11;
+        return 4.8;
     }
 
     @Override
@@ -72,7 +72,7 @@ public class DinosaurTylosaurus extends Dinosaur
     @Override
     public double getAdultSpeed()
     {
-        return 0.10;
+        return 3.8;
     }
 
     @Override
@@ -102,7 +102,7 @@ public class DinosaurTylosaurus extends Dinosaur
     @Override
     public int getMaximumAge()
     {
-        return fromDays(20);
+        return fromDays(35);
     }
 
     @Override

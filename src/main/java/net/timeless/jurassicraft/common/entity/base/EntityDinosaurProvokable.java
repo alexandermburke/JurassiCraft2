@@ -132,8 +132,7 @@ public class EntityDinosaurProvokable extends EntityDinosaur
 
     protected void applyEntityAttributes()
     {
-        super.applyEntityAttributes();
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
+        super.applyEntityAttributes();
     }
-
 }

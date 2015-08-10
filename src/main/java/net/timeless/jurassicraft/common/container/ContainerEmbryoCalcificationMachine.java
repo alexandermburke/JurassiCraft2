@@ -23,10 +23,10 @@ public class ContainerEmbryoCalcificationMachine extends Container
     {
         this.calcificationMachine = (TileEmbryoCalcificationMachine) tileEntity;
 
-        this.addSlotToContainer(new SlotSyringe(calcificationMachine, 0, 34, 35));
-        this.addSlotToContainer(new SlotCustom(calcificationMachine, 1, 58, 35, Items.egg));
+        this.addSlotToContainer(new SlotSyringe(calcificationMachine, 0, 34, 14));
+        this.addSlotToContainer(new SlotCustom(calcificationMachine, 1, 34, 50, Items.egg));
 
-        this.addSlotToContainer(new Slot(calcificationMachine, 2, 109, 35));
+        this.addSlotToContainer(new Slot(calcificationMachine, 2, 97, 32));
 
         for (int i = 0; i < 3; ++i)
         {

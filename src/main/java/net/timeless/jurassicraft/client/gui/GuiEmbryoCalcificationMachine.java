@@ -32,7 +32,7 @@ public class GuiEmbryoCalcificationMachine extends GuiContainer
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
         String s = this.calcificationMachine.getDisplayName().getUnformattedText();
-        this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
+        this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 4, 4210752);
         this.fontRendererObj.drawString(this.playerInventory.getDisplayName().getUnformattedText(), 8, this.ySize - 96 + 2, 4210752);
     }
 
@@ -48,7 +48,16 @@ public class GuiEmbryoCalcificationMachine extends GuiContainer
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 
         int progress = this.getProgress(24);
-        this.drawTexturedModalRect(k + 79, l + 34, 176, 14, progress + 1, 16);
+        int progress1 = this.getProgress(9);
+        int progress2 = this.getProgress(20);
+        this.drawTexturedModalRect(k + 67, l + 31, 176, 14, progress + 1, 16);
+       //Syringe Top
+        this.drawTexturedModalRect(k + 38, l + 32, 177, 32, 9, progress1);
+       //Syringe Inside  
+        this.drawTexturedModalRect(k + 38, l + 38, 197, 38, 9, progress2);
+       //Clean up 
+        this.drawTexturedModalRect(k + 38, l + 32, 187, 32, 9, progress1-1);
+ 
     }
 
     private int getProgress(int scale)
