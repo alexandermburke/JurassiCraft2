@@ -60,6 +60,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         animID = 0;
 
         updateCreatureData();
+        adjustHitbox();
     }
 
     public void entityInit()
@@ -75,6 +76,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         dinosaur = JCEntityRegistry.getDinosaurByClass(getClass());
 
         updateCreatureData();
+        adjustHitbox();
     }
 
     public void updateCreatureData()
@@ -85,14 +87,14 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(transitionFromAge(dinosaur.getBabySpeed(), dinosaur.getAdultSpeed()));
         this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(transitionFromAge(dinosaur.getBabyKnockback(), dinosaur.getAdultKnockback()));
 
-        adjustHitbox();
+//        adjustHitbox();
 
         this.heal((float) (newHealth - this.getHealth()));
     }
 
     private void adjustHitbox()
     {
-        this.setSize((float) transitionFromAge(dinosaur.getBabySizeX(), dinosaur.getBabySizeY()), (float) transitionFromAge(dinosaur.getAdultSizeX(), dinosaur.getAdultSizeY()));
+        this.setSize((float) transitionFromAge(dinosaur.getBabySizeX(), dinosaur.getAdultSizeX()), (float) transitionFromAge(dinosaur.getBabySizeY(), dinosaur.getAdultSizeY()));
     }
 
     public double transitionFromAge(double baby, double adult)
@@ -130,7 +132,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     {
         super.onLivingUpdate();
 
-        this.setSize((float) transitionFromAge(dinosaur.getBabySizeX(), dinosaur.getAdultSizeX()), (float) transitionFromAge(dinosaur.getBabySizeY(), dinosaur.getAdultSizeY()));
+        adjustHitbox();
 
         if (ticksExisted % 32 == 0)
         {
@@ -201,6 +203,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         quality = nbt.getInteger("DNAQuality");
         genetics = new GeneticsContainer(nbt.getString("Genetics"));
 
+        updateCreatureData();
         adjustHitbox();
     }
 
@@ -225,6 +228,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         genetics = new GeneticsContainer(ByteBufUtils.readUTF8String(additionalData));
 
         updateCreatureData();
+        adjustHitbox();
     }
 
     public double getDinosaurAge()

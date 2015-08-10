@@ -46,6 +46,7 @@ entity.ludodactylus.name=Ludodactylus
 entity.protoceratops.name=Protoceratops
 entity.tropeognathus.name=Tropeognathus
 entity.leaellynasaura.name=Leaellynasaura
+entity.herrerasaurus.name=Herrerasaurus
 
 //Items ==================================================
 item.rock_pick.name=Rock Pick

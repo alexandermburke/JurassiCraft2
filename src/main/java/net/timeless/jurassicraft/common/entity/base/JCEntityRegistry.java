@@ -51,6 +51,7 @@ public class JCEntityRegistry
     public static final Dinosaur protoceratops = new DinosaurProtoceratops();
     public static final Dinosaur tropeognathus = new DinosaurTropeognathus();
     public static final Dinosaur leaellynasaura = new DinosaurLeaellynasaura();
+    public static final Dinosaur herrerasaurus = new DinosaurHerrerasaurus();
 
     public void register()
     {
@@ -88,6 +89,7 @@ public class JCEntityRegistry
         registerDinosaurType(protoceratops);
         registerDinosaurType(tropeognathus);
         registerDinosaurType(leaellynasaura);
+        registerDinosaurType(herrerasaurus);
 
         registerEntity(EntityBluePrint.class, "Blueprint");
         registerEntity(EntityJurassiCraftSign.class, "JurassiCraft Sign");
