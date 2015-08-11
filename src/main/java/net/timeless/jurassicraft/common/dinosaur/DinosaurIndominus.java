@@ -141,19 +141,19 @@ public class DinosaurIndominus extends Dinosaur implements IHybrid
     @Override
     public float getBabyEyeHeight()
     {
-        return 0.85F;
+        return 0.75F;
     }
 
     @Override
     public float getAdultEyeHeight()
     {
-        return 6.8F;
+        return 5.8F;
     }
 
     @Override
     public float getBabySizeX()
     {
-        return 1.2F;
+        return 0.8F;
     }
 
     @Override
@@ -165,13 +165,13 @@ public class DinosaurIndominus extends Dinosaur implements IHybrid
     @Override
     public float getAdultSizeX()
     {
-        return 6.0F;
+        return 5.0F;
     }
 
     @Override
     public float getAdultSizeY()
     {
-        return 8.0F;
+        return 7.0F;
     }
 
     @Override
