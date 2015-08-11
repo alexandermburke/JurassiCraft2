@@ -38,8 +38,6 @@ public class AnimationVelociraptor implements IModelAnimator
         MowzieModelRenderer leftFoot = model.getCube("Left foot");
         MowzieModelRenderer rightUpperFoot = model.getCube("Right upper foot");
         MowzieModelRenderer rightFoot = model.getCube("Right foot");
-        MowzieModelRenderer upperArmRight = model.getCube("Right arm");
-        MowzieModelRenderer upperArmLeft = model.getCube("Left arm");
         MowzieModelRenderer tail1 = model.getCube("tail1");
         MowzieModelRenderer tail2 = model.getCube("tail2");
         MowzieModelRenderer tail3 = model.getCube("tail3");
@@ -49,6 +47,8 @@ public class AnimationVelociraptor implements IModelAnimator
         MowzieModelRenderer rightToe = model.getCube("Right toe");
         MowzieModelRenderer leftToe = model.getCube("Left toe");
 
+        MowzieModelRenderer upperArmRight = model.getCube("Right arm");
+        MowzieModelRenderer upperArmLeft = model.getCube("Left arm");
         MowzieModelRenderer lowerArmRight = model.getCube("Right forearm");
         MowzieModelRenderer lowerArmLeft = model.getCube("Left forearm");
         MowzieModelRenderer Hand_Right = model.getCube("Right hand");
@@ -396,27 +396,36 @@ public class AnimationVelociraptor implements IModelAnimator
         animator.resetPhase(8);
 
         animator.setAnim(30);
-        animator.startPhase(15);
+        animator.startPhase(10);
         animator.rotate(waist, -0.4F, 0, 0);
         animator.rotate(head, -0.05F, 0, 0);
+        animator.rotate(lowerArmRight, -0.3F, 0, 0);
+        animator.rotate(lowerArmLeft, -0.3F, 0, 0);
         animator.endPhase();
         animator.setStationaryPhase(5);
         animator.startPhase(5);
         animator.rotate(waist, -0.4F, 0, 0);
         animator.rotate(jaw, 0.4F, 0, 0);
         animator.rotate(head, -0.3F, 0, 0);
+        animator.rotate(lowerArmRight, -0.3F, 0, 0);
+        animator.rotate(lowerArmLeft, -0.3F, 0, 0);
         animator.endPhase();
         animator.startPhase(10);
         animator.rotate(waist, -0.4F, 0, 0);
         animator.rotate(head, -0.05F, 0, 0);
+        animator.rotate(lowerArmRight, -0.3F, 0, 0);
+        animator.rotate(lowerArmLeft, -0.3F, 0, 0);
         animator.endPhase();
         animator.startPhase(5);
         animator.rotate(waist, -0.4F, 0, 0);
         animator.rotate(jaw, 0.4F, 0, 0);
         animator.rotate(head, -0.3F, 0, 0);
+        animator.rotate(lowerArmRight, -0.3F, 0, 0);
+        animator.rotate(lowerArmLeft, -0.3F, 0, 0);
         animator.endPhase();
-        animator.startPhase(10);
-        animator.rotate(waist, 0.1F, 0, 0);
+        animator.startPhase(13);
+        animator.rotate(waist, 0.05F, 0, 0);
+        animator.rotate(neck2, 0.1F, 0, 0);
         animator.endPhase();
         animator.resetPhase(10);
 //        }

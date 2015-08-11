@@ -9,6 +9,7 @@ import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.timeless.animationapi.AnimationAPI;
+import net.timeless.jurassicraft.common.entity.ai.animations.AnimationAICall;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
@@ -41,7 +42,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive
         tasks.addTask(2, new JCNonAutoAnimBase(this, 25, 10, 100)); //Head twitch right
         tasks.addTask(2, new JCNonAutoAnimBase(this, 25, 11, 100)); //Head twitch left
         tasks.addTask(2, new JCNonAutoAnimBase(this, 45, 12, 150)); //Sniff
-        tasks.addTask(2, new JCAutoAnimBase(this, 80, 30));
+        tasks.addTask(2, new AnimationAICall(this, 78, 30));
     }
 
     public String getLivingSound()
