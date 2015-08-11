@@ -1,6 +1,7 @@
 package net.timeless.jurassicraft.common.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -47,6 +48,10 @@ public class JCBlockRegistry
 
     public static BlockCage cage_small;
 
+    public static Block gypsum_cobblestone;
+    public static Block gypsum_stone;
+    public static Block gypsum_bricks;
+
     public void register()
     {
         fossils = new ArrayList<BlockFossil>();
@@ -62,6 +67,10 @@ public class JCBlockRegistry
         dna_extractor = new BlockDNAExtractor();
 
         amber_ore = new BlockAmber();
+
+        gypsum_stone = new BlockBasic(Material.rock, "Gypsum Stone").setDrop(gypsum_cobblestone).setHardness(1.0F);
+        gypsum_cobblestone = new BlockBasic(Material.rock, "Gypsum Cobblestone").setHardness(1.0F);
+        gypsum_bricks = new BlockBasic(Material.rock, "Gypsum Bricks").setHardness(1.0F);
 
         cage_small = new BlockCage("Small");
 
@@ -82,6 +91,10 @@ public class JCBlockRegistry
         }
 
         registerBlock(amber_ore, "Amber Ore");
+
+        registerBlock(gypsum_stone, "Gypsum Stone");
+        registerBlock(gypsum_cobblestone, "Gypsum Cobblestone");
+        registerBlock(gypsum_bricks, "Gypsum Bricks");
 
         //initialize EnumType meta lookup
         EnumType.GINKGO.setMetaLookup();

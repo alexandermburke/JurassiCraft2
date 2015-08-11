@@ -87,6 +87,10 @@ tile.embryo_calcification_machine.name=Embryo Calcification Machine
 tile.incubator.name=Incubator
 tile.dna_extractor.name=DNA Extractor
 
+tile.gypsum_stone.name=Gypsum Stone
+tile.gypsum_cobblestone.name=Gypsum Cobblestone
+tile.gypsum_bricks.name=Gypsum Bricks
+
 tile.ginkgo_sapling.name=Ginkgo Sapling
 tile.ginkgo_planks.name=Ginkgo Planks
 tile.ginkgo_log.name=Ginkgo Log

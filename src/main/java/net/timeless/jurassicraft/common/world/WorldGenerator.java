@@ -50,5 +50,14 @@ public class WorldGenerator implements IWorldGenerator
 
             new WorldGenMinable(JCBlockRegistry.amber_ore.getDefaultState(), 3).generate(world, random, new BlockPos(randPosX, randPosY, randPosZ));
         }
+
+        for (int i = 0; i < 2; i++)
+        {
+            int randPosX = chunkX + random.nextInt(16);
+            int randPosY = random.nextInt(128);
+            int randPosZ = chunkZ + random.nextInt(16);
+
+            (new WorldGenMinable(JCBlockRegistry.gypsum_stone.getDefaultState(), 10)).generate(world, random, new BlockPos(randPosX, randPosY, randPosZ));
+        }
     }
 }
