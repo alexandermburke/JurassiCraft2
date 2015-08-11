@@ -36,6 +36,8 @@ public class JCItemRegistry
     public static ItemBasic storage_disc;
     public static ItemBasic dna_base;
 
+    public static ItemCage cage_small;
+
     public void register()
     {
         plaster_and_bandage = new ItemPlasterAndBandage();
@@ -57,6 +59,7 @@ public class JCItemRegistry
         entityRemover = new ItemEntityRemover();
         storage_disc = new ItemBasic("Storage Disc", JCCreativeTabs.items);
         dna_base = new ItemBasic("DNA Base Material", JCCreativeTabs.items);
+        cage_small = new ItemCage();
 
         registerItem(blue_print, "Blue Print");
         registerItem(jc_sign, "JurassiCraft Sign");
@@ -78,6 +81,7 @@ public class JCItemRegistry
         registerItem(entityRemover, "Entity Remover");
         registerItem(storage_disc, "Storage Disc");
         registerItem(dna_base, "DNA Base Material");
+        registerItem(cage_small, "Small Cage");
 
         for (int i = 0; i < JCEntityRegistry.getDinosaurs().size(); i++)
         {

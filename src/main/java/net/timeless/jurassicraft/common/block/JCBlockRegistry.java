@@ -46,8 +46,6 @@ public class JCBlockRegistry
 
     public static BlockAmber amber_ore;
 
-    public static BlockCage cage_small;
-
     public static Block gypsum_cobblestone;
     public static Block gypsum_stone;
     public static Block gypsum_bricks;
@@ -71,8 +69,6 @@ public class JCBlockRegistry
         gypsum_stone = new BlockBasic(Material.rock, "Gypsum Stone").setDrop(gypsum_cobblestone).setHardness(1.0F);
         gypsum_cobblestone = new BlockBasic(Material.rock, "Gypsum Cobblestone").setHardness(1.0F);
         gypsum_bricks = new BlockBasic(Material.rock, "Gypsum Bricks").setHardness(1.0F);
-
-        cage_small = new BlockCage("Small");
 
         List<Dinosaur> dinosaurs = JCEntityRegistry.getDinosaurs();
 
@@ -135,8 +131,6 @@ public class JCBlockRegistry
             Blocks.fire.setFireInfo(planks[i], 5, 20);
             Blocks.fire.setFireInfo(woods[i], 5, 5);
         }
-
-        registerBlockTileEntity(TileCage.class, cage_small, "Cage Small");
 
         registerBlockTileEntity(TileCleaningStation.class, cleaning_station, "Cleaning Station");
         registerBlockTileEntity(TileFossilGrinder.class, fossil_grinder, "Fossil Grinder");

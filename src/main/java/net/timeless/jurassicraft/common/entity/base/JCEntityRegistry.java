@@ -6,6 +6,7 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.dinosaur.*;
 import net.timeless.jurassicraft.common.entity.item.EntityBluePrint;
+import net.timeless.jurassicraft.common.entity.item.EntityCageSmall;
 import net.timeless.jurassicraft.common.entity.item.EntityJurassiCraftSign;
 import net.timeless.jurassicraft.common.period.EnumTimePeriod;
 
@@ -93,6 +94,7 @@ public class JCEntityRegistry
 
         registerEntity(EntityBluePrint.class, "Blueprint");
         registerEntity(EntityJurassiCraftSign.class, "JurassiCraft Sign");
+        registerEntity(EntityCageSmall.class, "Small Dinosaur Cage");
         // Always register a new dinosaur after last one in list, otherwise all
         // items with metadata will be shifted by one (all dinosaurs will change
         // form D:) (UNLESS it is before the release of JC2) I want to change the way IDs work so this will not be the case.

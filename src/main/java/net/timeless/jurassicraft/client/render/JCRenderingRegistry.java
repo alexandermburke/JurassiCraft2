@@ -5,21 +5,21 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.ItemModelMesher;
+import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.client.gui.app.GuiAppRegistry;
 import net.timeless.jurassicraft.client.render.entity.RenderBluePrint;
+import net.timeless.jurassicraft.client.render.entity.RenderCageSmall;
 import net.timeless.jurassicraft.client.render.entity.RenderJurassiCraftSign;
 import net.timeless.jurassicraft.client.render.renderdef.*;
-import net.timeless.jurassicraft.client.render.tileentity.TileEntityRendererCage;
 import net.timeless.jurassicraft.common.block.BlockEncasedFossil;
 import net.timeless.jurassicraft.common.block.BlockFossil;
 import net.timeless.jurassicraft.common.block.JCBlockRegistry;
@@ -27,9 +27,9 @@ import net.timeless.jurassicraft.common.block.tree.EnumType;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.entity.item.EntityBluePrint;
+import net.timeless.jurassicraft.common.entity.item.EntityCageSmall;
 import net.timeless.jurassicraft.common.entity.item.EntityJurassiCraftSign;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
-import net.timeless.jurassicraft.common.tileentity.TileCage;
 
 import java.util.Map;
 
@@ -52,8 +52,6 @@ public class JCRenderingRegistry
             ModelBakery.addVariantName(JCItemRegistry.soft_tissue, "jurassicraft:soft_tissue/soft_tissue_" + dinoName);
             ModelBakery.addVariantName(JCItemRegistry.syringe, "jurassicraft:syringe/syringe_" + dinoName);
         }
-
-        ClientRegistry.bindTileEntitySpecialRenderer(TileCage.class, new TileEntityRendererCage());
     }
 
     public void init()
@@ -126,7 +124,6 @@ public class JCRenderingRegistry
             this.registerBlockRenderer(modelMesher, JCBlockRegistry.woods[i], name + "_log", "inventory");
         }
 
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.cage_small, "cage_small", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.amber_ore, "amber_ore", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.cleaning_station, "cleaning_station", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.fossil_grinder, "fossil_grinder", "inventory");
@@ -146,6 +143,7 @@ public class JCRenderingRegistry
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
             RenderingRegistry.registerEntityRenderingHandler(dino.getDinosaurClass(), renderDefs.get(dino).getRenderer(0));
 
+        RenderingRegistry.registerEntityRenderingHandler(EntityCageSmall.class, new RenderCageSmall());
         RenderingRegistry.registerEntityRenderingHandler(EntityBluePrint.class, new RenderBluePrint());
         RenderingRegistry.registerEntityRenderingHandler(EntityJurassiCraftSign.class, new RenderJurassiCraftSign());
 

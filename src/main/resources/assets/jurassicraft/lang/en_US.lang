@@ -70,13 +70,12 @@ item.empty_syringe.name=Empty Syringe
 item.entity_remover.name=Entity Remover
 item.storage_disc.name=Storage Disc
 item.dna_base_material.name=DNA Nucleotides
+item.cage_small.name=Small Cage
 
 //Blocks ==================================================
 tile.fossil_block.name={period} Fossil
 tile.encased_fossil.name=Encased {period} Fossil
 tile.amber_ore.name=Amber Ore
-
-tile.cage_small.name=Small Cage
 
 tile.cleaning_station.name=Cleaning Station
 tile.fossil_grinder.name=Fossil Grinder
