@@ -114,6 +114,9 @@ public class AnimationStegosaurus implements IModelAnimator
         armUpperLeft.rotationPointZ -= 0.5 * Math.cos(ticksExisted * 0.1F);
         armUpperRight.rotationPointZ -= 0.5 * Math.cos(ticksExisted * 0.1F);
 
+        model.chainSwing(tail, 0.1F, 0.2F, 3, ticksExisted, 1.0F);
+        model.chainWave(tail, 0.1F, -0.05F, 1, ticksExisted, 1.0F);
+
         ((EntityStegosaurus) entity).tailBuffer.applyChainSwingBuffer(tail);
     }
 }
