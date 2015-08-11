@@ -25,7 +25,7 @@ public class AnimationLeaellynasaura implements IModelAnimator
 
         float globalSpeed = 0.4F;
         float globalHeight = 0.8F;
-        float globalDegree = 0.4F;
+        float globalDegree = 0.8F;
 
         MowzieModelRenderer head = model.getCube("Head ");
 
@@ -84,10 +84,10 @@ public class AnimationLeaellynasaura implements IModelAnimator
         model.chainWave(armLeft, globalSpeed * 1.0F, globalHeight * 0.4F, -2, f, f1);
         model.chainWave(armRight, globalSpeed * 1.0F, globalHeight * 0.4F, -2, f, f1);
 
-        model.walk(thighLeft, 1.0F * globalSpeed, 0.8F, false, 0F, 0.4F, f, f1);
-        model.walk(calf1Left, 1.0F * globalSpeed, 0.5F, true, 1F, 0F, f, f1);
-        model.walk(calf2Left, 1.0F * globalSpeed, 0.5F, false, 0F, 0F, f, f1);
-        model.walk(footLeft, 1.0F * globalSpeed, 1.5F, true, 0.5F, 1F, f, f1);
+        model.walk(thighLeft, 1.0F * globalSpeed, globalDegree * 0.8F, false, 0F, 0.4F, f, f1);
+        model.walk(calf1Left, 1.0F * globalSpeed, globalDegree * 0.5F, true, 1F, 0F, f, f1);
+        model.walk(calf2Left, 1.0F * globalSpeed, globalDegree * 0.5F, false, 0F, 0F, f, f1);
+        model.walk(footLeft, 1.0F * globalSpeed, globalDegree * 1.5F, true, 0.5F, 1F, f, f1);
 
         model.walk(thighRight, 1.0F * globalSpeed, globalDegree * 0.8F, true, 0F, 0.4F, f, f1);
         model.walk(calf1Right, 1.0F * globalSpeed, globalDegree * 0.5F, false, 1F, 0F, f, f1);
