@@ -10,7 +10,6 @@ import net.timeless.animationapi.IAnimatedEntity;
 
 public class PacketAnim implements IMessage
 {
-
     private byte animID;
     private int entityID;
 

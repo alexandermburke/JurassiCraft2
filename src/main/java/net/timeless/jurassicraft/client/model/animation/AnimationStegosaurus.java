@@ -19,13 +19,8 @@ public class AnimationStegosaurus implements IModelAnimator
         ModelDinosaur model = (ModelDinosaur) modelJson;
         Animator animator = model.animator;
 
-        float globalSpeed = 0.5F;
-        float globalDegree = 0.4F;
-        float globalHeight = 1.2F;
-        float frontOffset = 0.84F;
-
-        //        f = entity.ticksExisted;
-        //        f1 = 1F;
+//        f = entity.ticksExisted;
+//        f1 = 0.25F;
 
         MowzieModelRenderer head = model.getCube("Head");
 
@@ -49,66 +44,75 @@ public class AnimationStegosaurus implements IModelAnimator
         MowzieModelRenderer shoulders = model.getCube("Body shoulders");
         MowzieModelRenderer bodyFront = model.getCube("Body FRONT");
 
-        MowzieModelRenderer rearLegR = model.getCube("RearLeg Upper Right");
-        MowzieModelRenderer rearLegL = model.getCube("RearLeg Upper Left");
+        MowzieModelRenderer thighRight = model.getCube("RearLeg Upper Right");
+        MowzieModelRenderer thighLeft = model.getCube("RearLeg Upper Left");
 
-        MowzieModelRenderer rearLegLowerR = model.getCube("RearLeg Middle Right");
-        MowzieModelRenderer rearLegLowerL = model.getCube("RearLeg Middle Left");
+        MowzieModelRenderer calfRight = model.getCube("RearLeg Middle Right");
+        MowzieModelRenderer calfLeft = model.getCube("RearLeg Middle Left");
 
-        MowzieModelRenderer rearFootR = model.getCube("RearLeg Foot Right");
-        MowzieModelRenderer rearFootL = model.getCube("RearLeg Foot Left");
+        MowzieModelRenderer footRight = model.getCube("RearLeg Foot Right");
+        MowzieModelRenderer footLeft = model.getCube("RearLeg Foot Left");
 
-        MowzieModelRenderer frontLegR = model.getCube("FrontLeg Upper Right");
-        MowzieModelRenderer frontLegL = model.getCube("FrontLeg Upper Left");
+        MowzieModelRenderer armUpperRight = model.getCube("FrontLeg Upper Right");
+        MowzieModelRenderer armUpperLeft = model.getCube("FrontLeg Upper Left");
 
-        MowzieModelRenderer frontLegLowerR = model.getCube("FrontLeg MID Right");
-        MowzieModelRenderer frontLegLowerL = model.getCube("FrontLeg MID Left");
+        MowzieModelRenderer armLowerRight = model.getCube("FrontLeg MID Right");
+        MowzieModelRenderer armLowerLeft = model.getCube("FrontLeg MID Left");
 
-        MowzieModelRenderer frontFootR = model.getCube("FrontLeg FOOT Right");
-        MowzieModelRenderer frontFootL = model.getCube("FrontLeg FOOT Left");
+        MowzieModelRenderer handRight = model.getCube("FrontLeg FOOT Right");
+        MowzieModelRenderer handLeft = model.getCube("FrontLeg FOOT Left");
 
         MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
 
-        model.bob(hips, globalSpeed * 1.0F, globalHeight * 1.0F, false, f, f1);
-        model.bob(rearLegR, globalSpeed * 1.0F, globalHeight * 1.0F, false, f, f1);
-        model.bob(rearLegL, globalSpeed * 1.0F, globalHeight * 1.0F, false, f, f1);
-        model.bob(frontLegR, globalSpeed * 1.0F, globalHeight * 1.0F, false, f, f1);
-        model.bob(frontLegL, globalSpeed * 1.0F, globalHeight * 1.0F, false, f, f1);
+        float scaleFactor = 0.5F;
+        float height = 0.8F;
+        float frontOffset = -2F;
 
-        model.walk(hips, 1 * globalSpeed, 0.05F * globalHeight, true, -1.5F, 0.05F, f, f1);
-        model.walk(bodyFrontBase, 1 * globalSpeed, 0.035F * globalHeight, true, -2F, 0.05F, f, f1);
+        model.faceTarget(head, 3, rotationYaw, rotationPitch);
+        model.faceTarget(neck3, 3, rotationYaw, rotationPitch);
+        model.faceTarget(neck1, 3, rotationYaw, rotationPitch);
 
-        model.walk(rearLegL, 1F * globalSpeed, 0.7F * globalDegree, false, 0F, -0.4F, f, f1);
-        model.walk(rearLegLowerL, 1F * globalSpeed, 0.6F * globalDegree, true, 1F, 0.5F, f, f1);
-        model.walk(rearFootL, 1F * globalSpeed, 0.6F * globalDegree, false, -1.5F, 0.85F, f, f1);
+        model.bob(hips, 2 * scaleFactor, height, false, f, f1);
+        model.bob(thighLeft, 2 * scaleFactor, height, false, f, f1);
+        model.bob(thighRight, 2 * scaleFactor, height, false, f, f1);
+        model.walk(hips, 2 * scaleFactor, 0.1F * height, true, -1.5F, 0F, f, f1);
+        model.walk(neck1, 2 * scaleFactor, 0.07F * height, false, -0.5F, 0F, f, f1);
+        model.walk(neck3, 2 * scaleFactor, 0.07F * height, false, 0.5F, 0F, f, f1);
+        model.walk(head, 2 * scaleFactor, 0.07F * height, true, 1.5F, 0F, f, f1);
 
-        model.walk(rearLegR, 1F * globalSpeed, 0.7F * globalDegree, true, 0F, -0.4F, f, f1);
-        model.walk(rearLegLowerR, 1F * globalSpeed, 0.6F * globalDegree, false, 1F, 0.5F, f, f1);
-        model.walk(rearFootR, 1F * globalSpeed, 0.6F * globalDegree, true, -1.5F, 0.85F, f, f1);
+        model.walk(thighLeft, 1F * scaleFactor, 0.8F, false, 0F, 0F, f, f1);
+        model.walk(calfLeft, 1F * scaleFactor, 0.8F, true, 1F, 0F, f, f1);
+        model.walk(footLeft, 1F * scaleFactor, 0.8F, false, 1.5F, 0F, f, f1);
 
-        model.walk(frontLegL, 1F * globalSpeed, 0.7F * globalDegree, true, frontOffset + 0F, -0.2F, f, f1);
-        model.walk(frontLegLowerL, 1F * globalSpeed, 0.6F * globalDegree, true, frontOffset + 1F, -0.2F, f, f1);
-        model.walk(frontFootL, 1F * globalSpeed, 0.6F * globalDegree, false, frontOffset + 2F, 0.8F, f, f1);
+        model.walk(thighRight, 1F * scaleFactor, 0.8F, true, 0F, 0F, f, f1);
+        model.walk(calfRight, 1F * scaleFactor, 0.8F, false, 1F, 0F, f, f1);
+        model.walk(footRight, 1F * scaleFactor, 0.8F, true, 1.5F, 0F, f, f1);
 
-        model.walk(frontLegR, 1F * globalSpeed, 0.7F * globalDegree, false, frontOffset + 0F, -0.2F, f, f1);
-        model.walk(frontLegLowerR, 1F * globalSpeed, 0.6F * globalDegree, false, frontOffset + 1F, -0.2F, f, f1);
-        model.walk(frontFootR, 1F * globalSpeed, 0.6F * globalDegree, true, frontOffset + 2F, 0.8F, f, f1);
+        model.walk(armUpperRight, 1F * scaleFactor, 0.8F, true, frontOffset + 0F, -0.1F, f, f1);
+        model.walk(armLowerRight, 1F * scaleFactor, 0.6F, true, frontOffset + 1F, -0.2F, f, f1);
+        model.walk(handRight, 1F * scaleFactor, 0.8F, false, frontOffset + 1.5F, 0F, f, f1);
 
-        model.chainWave(tail, 1.0F * globalSpeed, -0.12F, 2, f, f1);
-        model.chainSwing(tail, 0.5F * globalSpeed, 0.3F, 3, f, f1);
+        model.walk(armUpperLeft, 1F * scaleFactor, 0.8F, false, frontOffset + 0F, -0.1F, f, f1);
+        model.walk(armLowerLeft, 1F * scaleFactor, 0.6F, false, frontOffset + 1F, -0.2F, f, f1);
+        model.walk(handLeft, 1F * scaleFactor, 0.8F, true, frontOffset + 1.5F, 0F, f, f1);
 
+        // Idling
         int ticksExisted = entity.ticksExisted;
 
-        // Idle
-        model.walk(neck1, 0.1F, 0.05F, false, -1F, 0F, ticksExisted, 1F);
-        model.walk(head, 0.1F, 0.05F, true, 0F, 0F, ticksExisted, 1F);
+        model.walk(neck1, 0.1F, 0.04F, false, -1F, 0F, ticksExisted, 1F);
+        model.walk(head, 0.1F, 0.07F, true, 0F, 0F, ticksExisted, 1F);
+        model.walk(neck3, 0.1F, 0.03F, false, 0F, 0F, ticksExisted, 1F);
         model.walk(hips, 0.1F, 0.025F, false, 0F, 0F, ticksExisted, 1F);
 
-        model.chainSwing(tail, 0.1F, 0.05F, 2, ticksExisted, 1F);
-        model.chainWave(tail, 0.1F, -0.05F, 1, ticksExisted, 1F);
-
-        model.faceTarget(head, 2, rotationYaw, rotationPitch);
-        model.faceTarget(neck1, 2, rotationYaw, rotationPitch);
+        float inverseKinematicsConstant = 0.6F;
+        model.walk(armUpperRight, 0.1F, 0.1F * inverseKinematicsConstant, false, 0F, 0F, ticksExisted, 1F);
+        model.walk(armLowerRight, 0.1F, 0.3F * inverseKinematicsConstant, true, 0F, 0F, ticksExisted, 1F);
+        model.walk(handRight, 0.1F, 0.175F * inverseKinematicsConstant, false, 0F, 0F, ticksExisted, 1F);
+        model.walk(armUpperLeft, 0.1F, 0.1F * inverseKinematicsConstant, false, 0F, 0F, ticksExisted, 1F);
+        model.walk(armLowerLeft, 0.1F, 0.3F * inverseKinematicsConstant, true, 0F, 0F, ticksExisted, 1F);
+        model.walk(handLeft, 0.1F, 0.175F * inverseKinematicsConstant, false, 0F, 0F, ticksExisted, 1F);
+        armUpperLeft.rotationPointZ -= 0.5 * Math.cos(ticksExisted * 0.1F);
+        armUpperRight.rotationPointZ -= 0.5 * Math.cos(ticksExisted * 0.1F);
 
         ((EntityStegosaurus) entity).tailBuffer.applyChainSwingBuffer(tail);
     }
