@@ -126,30 +126,30 @@ public class DinosaurProtoceratops extends Dinosaur
     @Override
     public float getAdultEyeHeight()
     {
-        return 1.15F;
+        return 0.85F;
     }
 
     @Override
     public float getBabySizeX()
     {
-        return 0.35F;
+        return 0.3F;
     }
 
     @Override
     public float getBabySizeY()
     {
-        return 0.45F;
+        return 0.4F;
     }
 
     @Override
     public float getAdultSizeX()
     {
-        return 1.2F;
+        return 1.0F;
     }
 
     @Override
     public float getAdultSizeY()
     {
-        return 1.75F;
+        return 1.25F;
     }
 }

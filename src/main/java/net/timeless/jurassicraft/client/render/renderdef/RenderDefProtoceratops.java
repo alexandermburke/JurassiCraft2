@@ -39,7 +39,7 @@ public class RenderDefProtoceratops extends RenderDinosaurDefinition
     @Override
     public float getAdultScaleAdjustment()
     {
-        return 1.5F;
+        return 1.2F;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class RenderDefProtoceratops extends RenderDinosaurDefinition
     @Override
     public float getShadowSize()
     {
-        return 0.65F;
+        return 0.55F;
     }
 
     @Override
