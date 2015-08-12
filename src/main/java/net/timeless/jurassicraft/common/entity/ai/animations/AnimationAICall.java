@@ -9,12 +9,14 @@ import net.timeless.jurassicraft.common.entity.EntityVelociraptor;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 
 import java.util.List;
+import java.util.Random;
 
 public class AnimationAICall extends AIAnimation
 {
     protected EntityDinosaur animatingEntity;
     protected int duration;
     protected int id;
+    private Random random = new Random();
 
     public AnimationAICall(IAnimatedEntity entity, int duration, int id)
     {
@@ -43,12 +45,18 @@ public class AnimationAICall extends AIAnimation
     @Override
     public boolean shouldAnimate()
     {
-        List<Entity> entities = EntityHelper.getEntitiesWithinDistance(animatingEntity, 10, 2);
-        for(Entity entity : entities)
-        {
-            if(entity.equals(EntityVelociraptor.class))
-                return true;
-        }
+        List<Entity> entities = EntityHelper.getEntitiesWithinDistance(animatingEntity, 50, 2);
+
+            for (Entity entity : entities)
+            {
+                if (entity instanceof EntityVelociraptor)
+                {
+                    if(random.nextDouble() < 0.001)
+                        return true;
+                    else
+                        return false;
+                }
+            }
         return false;
     }
 
@@ -56,6 +64,7 @@ public class AnimationAICall extends AIAnimation
     {
         super.startExecuting();
         animatingEntity.currentAnim = this;
+        animatingEntity.getNavigator().clearPathEntity();
     }
 
     public void resetTask()
