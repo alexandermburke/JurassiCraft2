@@ -94,6 +94,7 @@ public class JCBlockRegistry
 
         //initialize EnumType meta lookup
         EnumType.GINKGO.setMetaLookup();
+        EnumType.CALAMITES.setMetaLookup();
 
         //initialize arrays
         planks = new Block[numOfTrees];
