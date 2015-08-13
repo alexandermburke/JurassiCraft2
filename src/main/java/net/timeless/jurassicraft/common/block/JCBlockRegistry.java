@@ -17,7 +17,7 @@ import java.util.List;
 
 public class JCBlockRegistry
 {
-    public static final int numOfTrees = 1;
+    public static final int numOfTrees = 2;
 
     //tree blocks
     public static Block[] planks;
