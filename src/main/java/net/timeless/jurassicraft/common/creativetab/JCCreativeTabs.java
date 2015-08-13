@@ -15,6 +15,7 @@ public class JCCreativeTabs
     public static CreativeTabJurassiCraft spawnEggs;
     public static CreativeTabJurassiCraft foods;
     public static CreativeTabJurassiCraft plants;
+    public static CreativeTabJurassiCraft fossils;
 
     public void register()
     {
@@ -96,6 +97,14 @@ public class JCCreativeTabs
             public Item getTabIconItem()
             {
                 return Item.getItemFromBlock(JCBlockRegistry.saplings[0]);
+            }
+        };
+
+        fossils = new CreativeTabJurassiCraft("jurassicraft.fossils")
+        {
+            public Item getTabIconItem()
+            {
+                return Item.getItemFromBlock(JCBlockRegistry.fossils.get(0));
             }
         };
     }

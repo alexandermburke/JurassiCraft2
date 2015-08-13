@@ -33,7 +33,7 @@ public class TileEntitySpecialRendererIncubator extends TileEntitySpecialRendere
         GlStateManager.pushMatrix();
 
         GlStateManager.color(1.0F, 1.0F, 1.0F);
-        GlStateManager.translate(posX + 0.5, posY + 1.5, posZ + 0.5);
+        GlStateManager.translate(posX + 0.5, posY + 1.6, posZ + 0.5);
         GlStateManager.scale(1.0F, -1.0F, 1.0F);
 
         mc.getTextureManager().bindTexture(texture);

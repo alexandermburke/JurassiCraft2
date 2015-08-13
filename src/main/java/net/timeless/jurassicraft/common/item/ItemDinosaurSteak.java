@@ -2,6 +2,7 @@ package net.timeless.jurassicraft.common.item;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -12,10 +13,12 @@ import net.timeless.jurassicraft.common.lang.AdvLang;
 
 import java.util.*;
 
-public class ItemDinosaurSteak extends Item
+public class ItemDinosaurSteak extends ItemFood
 {
     public ItemDinosaurSteak()
     {
+        super(8, 0.8F, true);
+
         this.setUnlocalizedName("dinosaur_steak");
         this.setHasSubtypes(true);
 

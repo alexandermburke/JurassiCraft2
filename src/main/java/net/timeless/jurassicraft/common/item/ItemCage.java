@@ -1,13 +1,13 @@
 package net.timeless.jurassicraft.common.item;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.common.entity.item.EntityCageSmall;
 
 public class ItemCage extends Item
@@ -16,6 +16,7 @@ public class ItemCage extends Item
     {
         super();
         this.setUnlocalizedName("cage_small");
+        this.setCreativeTab(JCCreativeTabs.items);
     }
 
     /**
@@ -31,7 +32,7 @@ public class ItemCage extends Item
     {
         pos = pos.offset(side);
 
-        if(player.canPlayerEdit(pos, side, stack))
+        if(player.canPlayerEdit(pos, side, stack) && !world.isRemote)
         {
             EntityCageSmall cage = new EntityCageSmall(world);
             cage.setEntity(getCaged(stack));
@@ -48,24 +49,21 @@ public class ItemCage extends Item
 
     private int getCaged(ItemStack stack)
     {
-        return getNBT(stack).getInteger("Caged");
+        if(stack.getTagCompound() != null)
+        {
+            return stack.getTagCompound().getInteger("Caged");
+        }
+
+        return -1;
     }
 
     private NBTTagCompound getData(ItemStack stack)
     {
-        return getNBT(stack).getCompoundTag("Entity");
-    }
-
-    private NBTTagCompound getNBT(ItemStack stack)
-    {
-        NBTTagCompound nbt = stack.getTagCompound();
-
-        if(nbt == null)
+        if (stack.getTagCompound() != null)
         {
-            nbt = new NBTTagCompound();
-            stack.setTagCompound(nbt);
+            return stack.getTagCompound().getCompoundTag("Entity");
         }
 
-        return nbt;
+        return null;
     }
 }

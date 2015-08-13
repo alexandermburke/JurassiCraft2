@@ -72,11 +72,14 @@ public class EntityCageSmall extends Entity
         {
             ItemStack stack = new ItemStack(JCItemRegistry.cage_small);
 
-            NBTTagCompound nbt = new NBTTagCompound();
+            if(entity != null)
+            {
+                NBTTagCompound nbt = new NBTTagCompound();
 
-            this.writeEntityToNBT(nbt);
+                this.writeEntityToNBT(nbt);
 
-            stack.setTagCompound(nbt);
+                stack.setTagCompound(nbt);
+            }
 
             this.entityDropItem(stack, 0.5F);
         }

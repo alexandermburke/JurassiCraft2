@@ -23,6 +23,11 @@ public class ItemFossilBlock extends ItemBlock
     {
         Dinosaur dinosaur = ((BlockFossil) block).getDinosaur(stack.getMetadata());
 
+        if(dinosaur == null)
+        {
+            dinosaur = JCEntityRegistry.getDinosaurById(0);
+        }
+
         return new AdvLang("tile.fossil_block.name").withProperty("period", "period." + dinosaur.getPeriod().getName() + ".name").build();
     }
 

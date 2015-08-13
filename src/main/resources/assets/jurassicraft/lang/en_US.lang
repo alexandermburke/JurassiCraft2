@@ -6,6 +6,7 @@ itemGroup.jurassicraft.spawnEggs=JurassiCraft Spawn Eggs
 itemGroup.jurassicraft.dna=JurassiCraft DNA
 itemGroup.jurassicraft.foods=JurassiCraft Foodstuffs
 itemGroup.jurassicraft.plants=JurassiCraft Plants
+itemGroup.jurassicraft.fossils=JurassiCraft Fossils
 
 //Entities ==================================================
 entity.velociraptor.name=Velociraptor

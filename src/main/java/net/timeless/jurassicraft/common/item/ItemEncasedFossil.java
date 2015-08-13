@@ -23,6 +23,11 @@ public class ItemEncasedFossil extends ItemBlock
     {
         Dinosaur dinosaur = ((BlockEncasedFossil) block).getDinosaur(stack.getMetadata());
 
+        if(dinosaur == null)
+        {
+            dinosaur = JCEntityRegistry.getDinosaurById(0);
+        }
+
         return new AdvLang("tile.encased_fossil.name").withProperty("period", "period." + dinosaur.getPeriod().getName() + ".name").build();
     }
 
