@@ -3,6 +3,7 @@ package net.timeless.jurassicraft.common.world.jurdstrees.trees;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import net.timeless.jurassicraft.common.world.jurdstrees.algorythms.TreeGenerator;
 
 import java.util.Random;
 
@@ -11,15 +12,23 @@ import java.util.Random;
  */
 public class WorldGenCalamites extends WorldGenAbstractTree {
 
+    private int code;
 
-    public WorldGenCalamites() {
+    public WorldGenCalamites(int code) {
+
         super(true);
+        this.code = code;
+
     }
 
     @Override
     public boolean generate(World worldIn, Random random, BlockPos pos) {
 
-        return false;
+
+        TreeGenerator generator = new TreeGenerator(code, worldIn, pos);
+        generator.placeTree();
+
+        return true;
 
     }
 }

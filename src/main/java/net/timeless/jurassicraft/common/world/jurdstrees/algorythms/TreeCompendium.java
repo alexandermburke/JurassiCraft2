@@ -311,7 +311,7 @@ public class TreeCompendium {
 
         Tree tree;
 
-        tree = new Tree(1, 7, 3);
+        tree = new Tree(2, 7, 3);
         tree.addFeatureList(new int[]{1, 1}, FeatureType.Trunk);
         tree.addFeatureList(new int[]{3, 6, 7, 8, 9, 10}, FeatureType.Branch);
         tree.addFeatureList(new int[]{5, 6}, FeatureType.Fruit);
@@ -321,7 +321,7 @@ public class TreeCompendium {
 
         TreeList.add(tree);
 
-        tree = new Tree(2, 8, 4);
+        tree = new Tree(1, 8, 4);
         tree.addFeatureList(new int[]{1, 1}, FeatureType.Trunk);
         tree.addFeatureList(new int[]{11, 12, 13, 14, 15, 16, 17, 18}, FeatureType.Branch);
         tree.addFeatureList(new int[]{5, 6}, FeatureType.Fruit);

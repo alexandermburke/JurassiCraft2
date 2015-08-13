@@ -11,6 +11,7 @@ import net.timeless.jurassicraft.common.block.tree.*;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.tileentity.*;
+import net.timeless.jurassicraft.common.world.jurdstrees.algorythms.TreeCompendium;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,6 +96,10 @@ public class JCBlockRegistry
         //initialize EnumType meta lookup
         EnumType.GINKGO.setMetaLookup();
         EnumType.CALAMITES.setMetaLookup();
+
+        //register Tree Variables
+        TreeCompendium.addShapesToCompendium();
+        TreeCompendium.registerTrees();
 
         //initialize arrays
         planks = new Block[numOfTrees];

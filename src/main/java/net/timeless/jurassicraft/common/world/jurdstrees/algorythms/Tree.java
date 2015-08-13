@@ -131,7 +131,7 @@ public class Tree {
         Random random = new Random();
 
         // adding the first insert point to the tree. It is placed above the main block (supposedly the TileEntity).
-        insPList.add(new InsPCoord(TrunkList[random.nextInt(TrunkList.length)], InsPType.getTypeIndex(InsPType.trunk), 0, 1, 0, 0, 1, 0, 0, 0));
+        insPList.add(new InsPCoord(TrunkList[random.nextInt(TrunkList.length)], InsPType.getTypeIndex(InsPType.trunk), 0, 0, 0, 0, 1, 0, 0, 0));
 
 		/*
          * ROTATION AND SHAPE ARE DETERMINED IN THE INSERTPOINT BEFORE THE FEATURE. ALSO REMEMBER THAT SHAPES ARE ALWAYS FACING EAST AT THE BEGGINING.
