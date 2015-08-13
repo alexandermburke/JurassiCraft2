@@ -81,7 +81,7 @@ public class JCItemRegistry
         registerItem(entityRemover, "Entity Remover");
         registerItem(storage_disc, "Storage Disc");
         registerItem(dna_base, "DNA Base Material");
-        registerItem(cage_small, "Small Cage");
+        registerItem(cage_small, "Cage Small");
 
         for (int i = 0; i < JCEntityRegistry.getDinosaurs().size(); i++)
         {
