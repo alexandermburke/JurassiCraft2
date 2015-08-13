@@ -150,6 +150,7 @@ public class JCRenderingRegistry
         ItemModelMesher modelMesher = renderItem.getItemModelMesher();
 
         // Items
+        this.registerItemRenderer(modelMesher, JCItemRegistry.cage_small, "cage_small", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.petri_dish, "petri_dish", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.amber, "amber", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.plaster_and_bandage, "plaster_and_bandage", "inventory");
