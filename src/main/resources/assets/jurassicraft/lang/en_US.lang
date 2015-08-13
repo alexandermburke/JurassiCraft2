@@ -86,6 +86,8 @@ tile.embryonic_machine.name=Embryonic Machine
 tile.embryo_calcification_machine.name=Embryo Calcification Machine
 tile.incubator.name=Incubator
 tile.dna_extractor.name=DNA Extractor
+tile.dna_hybridizer.name=DNA Hybridizer
+tile.dna_combinator.name=DNA Combinator
 
 tile.gypsum_stone.name=Gypsum Stone
 tile.gypsum_cobblestone.name=Gypsum Cobblestone

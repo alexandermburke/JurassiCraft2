@@ -5,7 +5,6 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.ItemModelMesher;
-import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -21,7 +20,8 @@ import net.timeless.jurassicraft.client.render.entity.RenderBluePrint;
 import net.timeless.jurassicraft.client.render.entity.RenderCageSmall;
 import net.timeless.jurassicraft.client.render.entity.RenderJurassiCraftSign;
 import net.timeless.jurassicraft.client.render.renderdef.*;
-import net.timeless.jurassicraft.client.render.tileentity.TileEntitySpecialRendererIncubator;
+import net.timeless.jurassicraft.client.render.tileentity.TileRendererIncubator;
+import net.timeless.jurassicraft.client.render.tileentity.TileRendererDnaCombinator;
 import net.timeless.jurassicraft.common.block.BlockEncasedFossil;
 import net.timeless.jurassicraft.common.block.BlockFossil;
 import net.timeless.jurassicraft.common.block.JCBlockRegistry;
@@ -32,6 +32,7 @@ import net.timeless.jurassicraft.common.entity.item.EntityBluePrint;
 import net.timeless.jurassicraft.common.entity.item.EntityCageSmall;
 import net.timeless.jurassicraft.common.entity.item.EntityJurassiCraftSign;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
+import net.timeless.jurassicraft.common.tileentity.TileDNACombinator;
 import net.timeless.jurassicraft.common.tileentity.TileIncubator;
 
 import java.util.Map;
@@ -56,7 +57,8 @@ public class JCRenderingRegistry
             ModelBakery.addVariantName(JCItemRegistry.syringe, "jurassicraft:syringe/syringe_" + dinoName);
         }
 
-        ClientRegistry.bindTileEntitySpecialRenderer(TileIncubator.class, new TileEntitySpecialRendererIncubator());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileIncubator.class, new TileRendererIncubator());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileDNACombinator.class, new TileRendererDnaCombinator());
     }
 
     public void init()

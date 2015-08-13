@@ -9,13 +9,12 @@ import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
 
-public class TileEntitySpecialRendererIncubator extends TileEntitySpecialRenderer
+public class TileRendererIncubator extends TileEntitySpecialRenderer
 {
     private ModelJson model;
     private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/blocks/incubator.png");
-    private static final Minecraft mc = Minecraft.getMinecraft();
 
-    public TileEntitySpecialRendererIncubator()
+    public TileRendererIncubator()
     {
         try
         {
@@ -36,7 +35,7 @@ public class TileEntitySpecialRendererIncubator extends TileEntitySpecialRendere
         GlStateManager.translate(posX + 0.5, posY + 1.6, posZ + 0.5);
         GlStateManager.scale(1.0F, -1.0F, 1.0F);
 
-        mc.getTextureManager().bindTexture(texture);
+        bindTexture(texture);
         model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
 
         GlStateManager.popMatrix();

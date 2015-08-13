@@ -50,6 +50,8 @@ public class JCBlockRegistry
     public static Block gypsum_cobblestone;
     public static Block gypsum_stone;
     public static Block gypsum_bricks;
+    public static Block dna_hybridizer;
+    public static Block dna_combinator;
 
     public void register()
     {
@@ -64,6 +66,8 @@ public class JCBlockRegistry
         embryo_calcification_machine = new BlockEmbryoCalcificationMachine();
         incubator = new BlockIncubator();
         dna_extractor = new BlockDNAExtractor();
+        dna_hybridizer = new BlockDNAHybridizer();
+        dna_combinator = new BlockDNACombinator();
 
         amber_ore = new BlockAmber();
 
@@ -145,6 +149,8 @@ public class JCBlockRegistry
         registerBlockTileEntity(TileEmbryonicMachine.class, embryonic_machine, "Embryonic Machine");
         registerBlockTileEntity(TileEmbryoCalcificationMachine.class, embryo_calcification_machine, "Embryo Calcification Machine");
         registerBlockTileEntity(TileDNAExtractor.class, dna_extractor, "DNA Extractor");
+        registerBlockTileEntity(TileDNAHybridizer.class, dna_hybridizer, "DNA Hybridizer");
+        registerBlockTileEntity(TileDNACombinator.class, dna_combinator, "DNA Combinator");
         registerBlockTileEntity(TileIncubator.class, incubator, "Incubator");
     }
 
