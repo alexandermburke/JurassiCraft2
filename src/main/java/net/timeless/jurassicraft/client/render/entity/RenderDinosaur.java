@@ -68,7 +68,7 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
 
         float scale = (float) entityDinosaur.transitionFromAge(renderDef.getBabyScaleAdjustment(), renderDef.getAdultScaleAdjustment());
 
-        scale *= (((float) entityDinosaur.getScaleOffset()) * 0.09F);
+//        scale *= (((float) entityDinosaur.getScaleOffset()) * 0.09F); TODO color offset and scale offset
 
 //        float color = (((float) entityDinosaur.getColorOffset()) * 0.004F);
 //

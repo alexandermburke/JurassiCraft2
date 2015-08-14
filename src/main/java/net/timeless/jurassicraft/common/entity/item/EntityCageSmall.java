@@ -128,6 +128,16 @@ public class EntityCageSmall extends Entity
         this.entity = EntityList.createEntityByID(entity, worldObj);
     }
 
+    public void setEntity(Entity entity)
+    {
+        this.entity = entity;
+
+        NBTTagCompound nbt = new NBTTagCompound();
+        entity.writeToNBT(nbt);
+
+        setEntityData(nbt);
+    }
+
     public void setEntityData(NBTTagCompound entityData)
     {
         if(entity != null)
