@@ -1,5 +1,6 @@
 package net.timeless.jurassicraft.common.entity.item;
 
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
@@ -8,17 +9,33 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
+import net.timeless.jurassicraft.common.entity.EntityCompsognathus;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
+import net.timeless.jurassicraft.common.item.ItemCage;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
-public class EntityCageSmall extends Entity
+public class EntityCage extends Entity implements IEntityAdditionalSpawnData
 {
     private EntityDinosaur entity;
+    private float scale;
 
-    public EntityCageSmall(World world)
+    public EntityCage(World world)
     {
         super(world);
-        this.setSize(1.0F, 1.0F);
+        this.setSize(1.0F * scale, 1.0F * scale);
+    }
+
+    public EntityCage(World world, float scale)
+    {
+        this(world);
+
+        this.scale = scale;
+    }
+
+    public float getScale()
+    {
+        return scale;
     }
 
     /**
@@ -125,12 +142,18 @@ public class EntityCageSmall extends Entity
             entity.fallDistance = 0;
 
             this.setDead();
-            this.entityDropItem(new ItemStack(JCItemRegistry.cage_small), 0.5F);
+
+            this.entityDropItem(new ItemStack(getCage()), 0.5F);
 
             entity = null;
         }
 
         return true;
+    }
+
+    private ItemCage getCage()
+    {
+        return scale == 1.0F ? JCItemRegistry.cage_small : JCItemRegistry.cage_large;
     }
 
     @Override
@@ -140,7 +163,7 @@ public class EntityCageSmall extends Entity
 
         if(!worldObj.isRemote)
         {
-            ItemStack stack = new ItemStack(JCItemRegistry.cage_small);
+            ItemStack stack = new ItemStack(getCage());
 
             if(entity != null)
             {
@@ -214,5 +237,19 @@ public class EntityCageSmall extends Entity
     public Entity getEntity()
     {
         return entity;
+    }
+
+    @Override
+    public void writeSpawnData(ByteBuf buffer)
+    {
+        buffer.writeFloat(scale);
+    }
+
+    @Override
+    public void readSpawnData(ByteBuf additionalData)
+    {
+        scale = additionalData.readFloat();
+
+        this.setSize(1.0F * scale, 1.0F * scale);
     }
 }

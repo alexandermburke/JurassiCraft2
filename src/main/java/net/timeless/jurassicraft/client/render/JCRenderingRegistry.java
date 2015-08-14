@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.client.gui.app.GuiAppRegistry;
 import net.timeless.jurassicraft.client.render.entity.RenderBluePrint;
-import net.timeless.jurassicraft.client.render.entity.RenderCageSmall;
+import net.timeless.jurassicraft.client.render.entity.RenderCage;
 import net.timeless.jurassicraft.client.render.entity.RenderJurassiCraftSign;
 import net.timeless.jurassicraft.client.render.renderdef.*;
 import net.timeless.jurassicraft.common.block.BlockEncasedFossil;
@@ -26,7 +26,7 @@ import net.timeless.jurassicraft.common.block.tree.EnumType;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.entity.item.EntityBluePrint;
-import net.timeless.jurassicraft.common.entity.item.EntityCageSmall;
+import net.timeless.jurassicraft.common.entity.item.EntityCage;
 import net.timeless.jurassicraft.common.entity.item.EntityJurassiCraftSign;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
@@ -142,7 +142,7 @@ public class JCRenderingRegistry
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
             RenderingRegistry.registerEntityRenderingHandler(dino.getDinosaurClass(), renderDefs.get(dino).getRenderer(0));
 
-        RenderingRegistry.registerEntityRenderingHandler(EntityCageSmall.class, new RenderCageSmall());
+        RenderingRegistry.registerEntityRenderingHandler(EntityCage.class, new RenderCage());
         RenderingRegistry.registerEntityRenderingHandler(EntityBluePrint.class, new RenderBluePrint());
         RenderingRegistry.registerEntityRenderingHandler(EntityJurassiCraftSign.class, new RenderJurassiCraftSign());
 
@@ -151,6 +151,7 @@ public class JCRenderingRegistry
 
         // Items
         this.registerItemRenderer(modelMesher, JCItemRegistry.cage_small, "cage_small", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.cage_large, "cage_large", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.petri_dish, "petri_dish", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.amber, "amber", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.plaster_and_bandage, "plaster_and_bandage", "inventory");
