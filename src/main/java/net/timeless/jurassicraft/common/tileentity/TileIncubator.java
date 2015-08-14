@@ -307,7 +307,7 @@ public class TileIncubator extends TileEntityLockable implements IUpdatePlayerLi
 
     public int getStackIncubateTime(ItemStack stack)
     {
-        return 1024;
+        return 20;
     }
 
     /**
@@ -348,9 +348,13 @@ public class TileIncubator extends TileEntityLockable implements IUpdatePlayerLi
 
                     EntityCageSmall cage = null;
 
-                    if(cages.size() > 0)
+                    for (EntityCageSmall cCage : cages)
                     {
-                        cage = cages.get(0);
+                        if(cCage.getEntity() == null)
+                        {
+                            cage = cCage;
+                            break;
+                        }
                     }
 
                     if (cage != null)

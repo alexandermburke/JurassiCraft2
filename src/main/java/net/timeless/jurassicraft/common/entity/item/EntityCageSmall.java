@@ -7,11 +7,12 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 public class EntityCageSmall extends Entity
 {
-    private Entity entity;
+    private EntityDinosaur entity;
 
     public EntityCageSmall(World world)
     {
@@ -53,13 +54,58 @@ public class EntityCageSmall extends Entity
     }
 
     @Override
+    protected void entityInit()
+    {
+        this.dataWatcher.addObject(25, new Integer(-1));
+        this.dataWatcher.addObject(26, new Integer(0));
+        this.dataWatcher.addObject(27, new Integer(0));
+        this.dataWatcher.addObject(28, new String(""));
+    }
+
+    @Override
     public void onUpdate()
     {
         super.onUpdate();
 
+        if(worldObj.isRemote)
+        {
+            int id = dataWatcher.getWatchableObjectInt(25);
+
+            if(id != -1)
+            {
+                entity = (EntityDinosaur) EntityList.createEntityByID(id, worldObj);
+
+                if(entity != null)
+                {
+                    entity.setAge(dataWatcher.getWatchableObjectInt(26));
+                    entity.setDNAQuality(dataWatcher.getWatchableObjectInt(27));
+                    entity.setGenetics(dataWatcher.getWatchableObjectString(28));
+                }
+            }
+            else
+            {
+                entity = null;
+            }
+        }
+
         if(entity != null)
         {
             entity.onUpdate();
+        }
+
+        if(!worldObj.isRemote)
+        {
+            if(entity != null)
+            {
+                dataWatcher.updateObject(25, EntityList.getEntityID(entity));
+                dataWatcher.updateObject(26, entity.getDinosaurAge());
+                dataWatcher.updateObject(27, entity.getDNAQuality());
+                dataWatcher.updateObject(28, entity.getGenetics());
+            }
+            else
+            {
+                dataWatcher.updateObject(25, -1);
+            }
         }
     }
 
@@ -85,11 +131,6 @@ public class EntityCageSmall extends Entity
         }
 
         return true;
-    }
-
-    @Override
-    protected void entityInit()
-    {
     }
 
     @Override
@@ -125,12 +166,12 @@ public class EntityCageSmall extends Entity
 
     public void setEntity(int entity)
     {
-        this.entity = EntityList.createEntityByID(entity, worldObj);
+        this.entity = (EntityDinosaur) EntityList.createEntityByID(entity, worldObj);
     }
 
     public void setEntity(Entity entity)
     {
-        this.entity = entity;
+        this.entity = (EntityDinosaur) entity;
 
         NBTTagCompound nbt = new NBTTagCompound();
         entity.writeToNBT(nbt);

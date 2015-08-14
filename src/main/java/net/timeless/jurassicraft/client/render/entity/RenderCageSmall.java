@@ -40,6 +40,11 @@ public class RenderCageSmall extends Render
         GlStateManager.translate((float)x, (float)y + 1.5F, (float)z);
         GlStateManager.rotate(180.0F - yaw, 0.0F, 1.0F, 0.0F);
 
+        if(cage.getEntity() != null)
+        {
+            Minecraft.getMinecraft().getRenderManager().renderEntityWithPosYaw(cage.getEntity(), 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
+        }
+
         float f4 = 0.75F;
         GlStateManager.scale(f4, f4, f4);
         GlStateManager.scale(1.0F / f4, 1.0F / f4, 1.0F / f4);

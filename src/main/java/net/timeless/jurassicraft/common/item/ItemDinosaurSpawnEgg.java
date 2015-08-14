@@ -145,7 +145,7 @@ public class ItemDinosaurSpawnEgg extends Item
                 if (tileentity instanceof TileEntityMobSpawner)
                 {
                     MobSpawnerBaseLogic mobspawnerbaselogic = ((TileEntityMobSpawner) tileentity).getSpawnerBaseLogic();
-                    mobspawnerbaselogic.setEntityName(EntityList.getStringFromID(stack.getMetadata()));
+                    mobspawnerbaselogic.setEntityName((String) EntityList.classToStringMapping.get(getDinosaur(stack).getDinosaurClass()));
                     tileentity.markDirty();
                     world.markBlockForUpdate(pos);
 
@@ -161,7 +161,7 @@ public class ItemDinosaurSpawnEgg extends Item
             pos = pos.offset(side);
             double yOffset = 0.0D;
 
-            if (side == EnumFacing.UP && iblockstate instanceof BlockFence)
+            if (side == EnumFacing.UP && iblockstate.getBlock() instanceof BlockFence)
             {
                 yOffset = 0.5D;
             }
