@@ -8,18 +8,15 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
-import net.timeless.jurassicraft.common.entity.item.EntityCage;
+import net.timeless.jurassicraft.common.entity.item.EntityCageSmall;
 
 public class ItemCage extends Item
 {
-    private float scale;
-
-    public ItemCage(float size, String sizeName)
+    public ItemCage()
     {
         super();
-        this.setUnlocalizedName("cage_" + sizeName.toLowerCase().replaceAll(" ", "_"));
+        this.setUnlocalizedName("cage_small");
         this.setCreativeTab(JCCreativeTabs.items);
-        this.scale = size;
     }
 
     /**
@@ -37,17 +34,14 @@ public class ItemCage extends Item
 
         if(player.canPlayerEdit(pos, side, stack) && !world.isRemote)
         {
-            EntityCage cage = new EntityCage(world, scale);
+            EntityCageSmall cage = new EntityCageSmall(world);
             cage.setEntity(getCaged(stack));
             cage.setEntityData(getData(stack));
             cage.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
 
             world.spawnEntityInWorld(cage);
 
-            if(!player.capabilities.isCreativeMode)
-            {
-                stack.stackSize--;
-            }
+            stack.stackSize--;
 
             return true;
         }

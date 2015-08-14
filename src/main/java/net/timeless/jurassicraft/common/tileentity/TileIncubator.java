@@ -1,5 +1,6 @@
 package net.timeless.jurassicraft.common.tileentity;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
@@ -22,14 +23,17 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
+import net.timeless.jurassicraft.common.container.ContainerFossilGrinder;
 import net.timeless.jurassicraft.common.container.ContainerIncubator;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
-import net.timeless.jurassicraft.common.entity.item.EntityCage;
+import net.timeless.jurassicraft.common.entity.item.EntityCageSmall;
 import net.timeless.jurassicraft.common.item.ItemDinosaurEgg;
+import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 import java.util.List;
+import java.util.Random;
 
 public class TileIncubator extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
@@ -303,7 +307,7 @@ public class TileIncubator extends TileEntityLockable implements IUpdatePlayerLi
 
     public int getStackIncubateTime(ItemStack stack)
     {
-        return 20;
+        return 2048;
     }
 
     /**
@@ -340,13 +344,13 @@ public class TileIncubator extends TileEntityLockable implements IUpdatePlayerLi
                     int blockY = pos.getY();
                     int blockZ = pos.getZ();
 
-                    List<EntityCage> cages = worldObj.getEntitiesWithinAABB(EntityCage.class, AxisAlignedBB.fromBounds(blockX - 2, blockY, blockZ - 2, blockX + 2, blockY + 1, blockZ + 2));
+                    List<EntityCageSmall> cages = worldObj.getEntitiesWithinAABB(EntityCageSmall.class, AxisAlignedBB.fromBounds(blockX - 2, blockY, blockZ - 2, blockX + 2, blockY + 1, blockZ + 2));
 
-                    EntityCage cage = null;
+                    EntityCageSmall cage = null;
 
-                    for (EntityCage cCage : cages)
+                    for (EntityCageSmall cCage : cages)
                     {
-                        if(cCage.getEntity() == null /** && cCage.width > dino.width && cCage.height > dino.height **/)
+                        if(cCage.getEntity() == null)
                         {
                             cage = cCage;
                             break;

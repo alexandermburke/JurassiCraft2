@@ -1,6 +1,5 @@
 package net.timeless.jurassicraft.common.entity.item;
 
-import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,33 +8,17 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
-import net.timeless.jurassicraft.common.entity.EntityCompsognathus;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
-import net.timeless.jurassicraft.common.item.ItemCage;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
-public class EntityCage extends Entity implements IEntityAdditionalSpawnData
+public class EntityCageSmall extends Entity
 {
     private EntityDinosaur entity;
-    private float scale;
 
-    public EntityCage(World world)
+    public EntityCageSmall(World world)
     {
         super(world);
-        this.setSize(1.0F * scale, 1.0F * scale);
-    }
-
-    public EntityCage(World world, float scale)
-    {
-        this(world);
-
-        this.scale = scale;
-    }
-
-    public float getScale()
-    {
-        return scale;
+        this.setSize(1.0F, 1.0F);
     }
 
     /**
@@ -142,18 +125,12 @@ public class EntityCage extends Entity implements IEntityAdditionalSpawnData
             entity.fallDistance = 0;
 
             this.setDead();
-
-            this.entityDropItem(new ItemStack(getCage()), 0.5F);
+            this.entityDropItem(new ItemStack(JCItemRegistry.cage_small), 0.5F);
 
             entity = null;
         }
 
         return true;
-    }
-
-    private ItemCage getCage()
-    {
-        return scale == 1.0F ? JCItemRegistry.cage_small : JCItemRegistry.cage_large;
     }
 
     @Override
@@ -163,7 +140,7 @@ public class EntityCage extends Entity implements IEntityAdditionalSpawnData
 
         if(!worldObj.isRemote)
         {
-            ItemStack stack = new ItemStack(getCage());
+            ItemStack stack = new ItemStack(JCItemRegistry.cage_small);
 
             if(entity != null)
             {
@@ -237,19 +214,5 @@ public class EntityCage extends Entity implements IEntityAdditionalSpawnData
     public Entity getEntity()
     {
         return entity;
-    }
-
-    @Override
-    public void writeSpawnData(ByteBuf buffer)
-    {
-        buffer.writeFloat(scale);
-    }
-
-    @Override
-    public void readSpawnData(ByteBuf additionalData)
-    {
-        scale = additionalData.readFloat();
-
-        this.setSize(1.0F * scale, 1.0F * scale);
     }
 }
