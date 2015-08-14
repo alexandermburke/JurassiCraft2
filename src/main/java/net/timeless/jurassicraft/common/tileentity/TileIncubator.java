@@ -1,7 +1,513 @@
 package net.timeless.jurassicraft.common.tileentity;
 
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.server.gui.IUpdatePlayerListBox;
+import net.minecraft.tileentity.TileEntityLockable;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.jurassicraft.JurassiCraft;
+import net.timeless.jurassicraft.common.container.ContainerFossilGrinder;
+import net.timeless.jurassicraft.common.container.ContainerIncubator;
+import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
+import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
+import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
+import net.timeless.jurassicraft.common.entity.item.EntityCageSmall;
+import net.timeless.jurassicraft.common.item.ItemDinosaurEgg;
+import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
-public class TileIncubator extends TileEntity
+import java.util.List;
+import java.util.Random;
+
+public class TileIncubator extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
+    private static final int[] slotsTop = new int[] { 0, 1, 2, 3, 4 }; //eggs
+    private static final int[] slotsBottom = new int[] { 5 }; //ground
+    private static final int[] slotsSides = new int[] {};
+
+    /** The ItemStacks that hold the items currently being used in the fossil grinder */
+    private ItemStack[] slots = new ItemStack[6];
+
+    private String customName;
+
+    private int[] incubateTime = new int[5];
+    private int[] totalIncubateTime = new int[5];
+    private int[] temperature = new int[5];
+
+    /**
+     * Returns the number of slots in the inventory.
+     */
+    public int getSizeInventory()
+    {
+        return this.slots.length;
+    }
+
+    /**
+     * Returns the stack in slot i
+     */
+    public ItemStack getStackInSlot(int index)
+    {
+        return this.slots[index];
+    }
+
+    /**
+     * Removes from an inventory slot (first arg) up to a specified number (second arg) of items and returns them in a
+     * new stack.
+     */
+    public ItemStack decrStackSize(int index, int count)
+    {
+        if (this.slots[index] != null)
+        {
+            ItemStack itemstack;
+
+            if (this.slots[index].stackSize <= count)
+            {
+                itemstack = this.slots[index];
+                this.slots[index] = null;
+                return itemstack;
+            }
+            else
+            {
+                itemstack = this.slots[index].splitStack(count);
+
+                if (this.slots[index].stackSize == 0)
+                {
+                    this.slots[index] = null;
+                }
+
+                return itemstack;
+            }
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    /**
+     * When some containers are closed they call this on each slot, then drop whatever it returns as an EntityItem -
+     * like when you close a workbench GUI.
+     */
+    public ItemStack getStackInSlotOnClosing(int index)
+    {
+        if (this.slots[index] != null)
+        {
+            ItemStack itemstack = this.slots[index];
+            this.slots[index] = null;
+            return itemstack;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    /**
+     * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
+     */
+    public void setInventorySlotContents(int index, ItemStack stack)
+    {
+        boolean flag = stack != null && stack.isItemEqual(this.slots[index]) && ItemStack.areItemStackTagsEqual(stack, this.slots[index]);
+        this.slots[index] = stack;
+
+        if (stack != null && stack.stackSize > this.getInventoryStackLimit())
+        {
+            stack.stackSize = this.getInventoryStackLimit();
+        }
+
+        if (index < 5 && !flag)
+        {
+            this.totalIncubateTime[index] = this.getStackIncubateTime(stack);
+            this.incubateTime[index] = 0;
+            worldObj.markBlockForUpdate(pos);
+        }
+    }
+
+    /**
+     * Gets the name of this command sender (usually username, but possibly "Rcon")
+     */
+    public String getName()
+    {
+        return this.hasCustomName() ? this.customName : "container.incubator";
+    }
+
+    /**
+     * Returns true if this thing is named
+     */
+    public boolean hasCustomName()
+    {
+        return this.customName != null && this.customName.length() > 0;
+    }
+
+    public void setCustomInventoryName(String customName)
+    {
+        this.customName = customName;
+    }
+
+    public void readFromNBT(NBTTagCompound compound)
+    {
+        super.readFromNBT(compound);
+
+        NBTTagList itemList = compound.getTagList("Items", 10);
+        this.slots = new ItemStack[this.getSizeInventory()];
+
+        for (int i = 0; i < itemList.tagCount(); ++i)
+        {
+            NBTTagCompound item = itemList.getCompoundTagAt(i);
+
+            byte slot = item.getByte("Slot");
+
+            if (slot >= 0 && slot < this.slots.length)
+            {
+                this.slots[slot] = ItemStack.loadItemStackFromNBT(item);
+            }
+        }
+
+        for (int i = 0; i < 5; i++)
+        {
+            this.incubateTime[i] = compound.getShort("IncubateTime" + i);
+            this.totalIncubateTime[i] = compound.getShort("IncubateTimeTotal" + i);
+            this.temperature[i] = compound.getShort("Temperature" + i);
+        }
+
+        if (compound.hasKey("CustomName", 8))
+        {
+            this.customName = compound.getString("CustomName");
+        }
+    }
+
+    public void writeToNBT(NBTTagCompound compound)
+    {
+        super.writeToNBT(compound);
+
+        for (int i = 0; i < 5; i++)
+        {
+            compound.setShort("IncubateTime" + i, (short) incubateTime[i]);
+            compound.setShort("IncubateTimeTotal" + i, (short) totalIncubateTime[i]);
+            compound.setShort("Temperature" + i, (short) temperature[i]);
+        }
+
+        NBTTagList itemList = new NBTTagList();
+
+        for (int slot = 0; slot < this.slots.length; ++slot)
+        {
+            if (this.slots[slot] != null)
+            {
+                NBTTagCompound itemTag = new NBTTagCompound();
+                itemTag.setByte("Slot", (byte) slot);
+
+                this.slots[slot].writeToNBT(itemTag);
+                itemList.appendTag(itemTag);
+            }
+        }
+
+        compound.setTag("Items", itemList);
+
+        if (this.hasCustomName())
+        {
+            compound.setString("CustomName", this.customName);
+        }
+    }
+
+    /**
+     * Returns the maximum stack size for a inventory slot. Seems to always be 64, possibly will be extended. *Isn't
+     * this more of a set than a get?*
+     */
+    public int getInventoryStackLimit()
+    {
+        return 64;
+    }
+
+    public boolean isIncubating(int index)
+    {
+        return this.totalIncubateTime[index] > 0;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static boolean isIncubating(IInventory inventory, int index)
+    {
+        return inventory.getField(index) > 0;
+    }
+
+    /**
+     * Updates the JList with a new model.
+     */
+    public void update()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            boolean flag = this.isIncubating(i);
+            boolean sync = false;
+
+            if (!this.worldObj.isRemote)
+            {
+                if (!this.isIncubating(i) && (this.slots[0] == null))
+                {
+                    if (!this.isIncubating(i) && this.incubateTime[i] > 0)
+                    {
+                        this.incubateTime[i] = MathHelper.clamp_int(this.incubateTime[i] - 2, 0, this.totalIncubateTime[i]);
+                    }
+                }
+                else
+                {
+                    if (this.canIncubate(i))
+                    {
+                        ++this.incubateTime[i];
+
+                        if (this.incubateTime[i] == this.totalIncubateTime[i])
+                        {
+                            this.incubateTime[i] = 0;
+                            this.totalIncubateTime[i] = this.getStackIncubateTime(this.slots[0]);
+                            this.hatchEgg(i);
+                            sync = true;
+                        }
+                    }
+                    else if(this.incubateTime[i] != 0)
+                    {
+                        this.incubateTime[i] = 0;
+                        sync = true;
+                    }
+                }
+
+                if (flag != this.isIncubating(i))
+                {
+                    sync = true;
+                }
+            }
+            else
+            {
+                if (this.canIncubate(i))
+                {
+                    ++this.incubateTime[i];
+                }
+            }
+
+            if (sync)
+            {
+                worldObj.markBlockForUpdate(pos);
+            }
+        }
+    }
+
+    public int getStackIncubateTime(ItemStack stack)
+    {
+        return 1024;
+    }
+
+    /**
+     * Returns true if the fossil grinder can smelt an item, i.e. has a source item, destination stack isn't full, etc.
+     */
+    private boolean canIncubate(int index)
+    {
+        return slots[index] != null && slots[index].stackSize > 0 && slots[index].getItem() instanceof ItemDinosaurEgg;
+    }
+
+    /**
+     * Turn one item from the fossil grinder source stack into the appropriate grinded item in the fossil grinder result stack
+     */
+    public void hatchEgg(int index)
+    {
+        if (this.canIncubate(index) && !worldObj.isRemote)
+        {
+            ItemStack egg = slots[index];
+
+            Dinosaur dinoInEgg = JCEntityRegistry.getDinosaurById(egg.getMetadata());
+
+            if(dinoInEgg != null)
+            {
+                Class<? extends EntityDinosaur> dinoClass = dinoInEgg.getDinosaurClass();
+
+                try
+                {
+                    EntityDinosaur dino = dinoClass.getConstructor(World.class).newInstance(worldObj);
+
+                    dino.setDNAQuality(egg.getTagCompound().getInteger("DNAQuality"));
+                    dino.setGenetics(egg.getTagCompound().getString("Genetics"));
+
+                    int blockX = pos.getX();
+                    int blockY = pos.getY();
+                    int blockZ = pos.getZ();
+
+                    List<EntityCageSmall> cages = worldObj.getEntitiesWithinAABB(EntityCageSmall.class, AxisAlignedBB.fromBounds(blockX - 2, blockY, blockZ - 2, blockX + 2, blockY + 1, blockZ + 2));
+
+                    EntityCageSmall cage = null;
+
+                    if(cages.size() > 0)
+                    {
+                        cage = cages.get(0);
+                    }
+
+                    if (cage != null)
+                    {
+                        cage.setEntity(dino);
+                    }
+                    else
+                    {
+                        //TODO find valid spawn area
+                        dino.setLocationAndAngles(blockX + 2, blockY + 0.5, blockZ + 2, MathHelper.wrapAngleTo180_float(worldObj.rand.nextFloat() * 360.0F), 0.0F);
+                        dino.rotationYawHead = dino.rotationYaw;
+                        dino.renderYawOffset = dino.rotationYaw;
+
+                        worldObj.spawnEntityInWorld(dino);
+                    }
+
+                    slots[index].stackSize--;
+
+                    if(slots[index].stackSize <= 0)
+                    {
+                        slots[index] = null;
+                    }
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    /**
+     * Do not make give this method the name canInteractWith because it clashes with Container
+     */
+    public boolean isUseableByPlayer(EntityPlayer player)
+    {
+        return this.worldObj.getTileEntity(this.pos) != this ? false : player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
+    }
+
+    public void openInventory(EntityPlayer player)
+    {
+    }
+
+    public void closeInventory(EntityPlayer player)
+    {
+    }
+
+    /**
+     * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
+     */
+    public boolean isItemValidForSlot(int index, ItemStack stack)
+    {
+        return index == 2 ? false : true;
+    }
+
+    public int[] getSlotsForFace(EnumFacing side)
+    {
+        return side == EnumFacing.DOWN ? slotsBottom : (side == EnumFacing.UP ? slotsTop : slotsSides);
+    }
+
+    /**
+     * Returns true if automation can insert the given item in the given slot from the given side. Args: slot, item,
+     * side
+     */
+    public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction)
+    {
+        return this.isItemValidForSlot(index, itemStackIn);
+    }
+
+    /**
+     * Returns true if automation can extract the given item in the given slot from the given side. Args: slot, item,
+     * side
+     */
+    public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction)
+    {
+        if (direction == EnumFacing.DOWN && index == 1)
+        {
+            Item item = stack.getItem();
+
+            if (item != Items.water_bucket && item != Items.bucket)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public String getGuiID()
+    {
+        return JurassiCraft.modid + ":incubator";
+    }
+
+    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
+    {
+        return new ContainerIncubator(playerInventory, this);
+    }
+
+    public int getField(int id)
+    {
+        if(id < 5)
+        {
+            return incubateTime[id];
+        }
+        else if(id < 10)
+        {
+            return totalIncubateTime[id - 5];
+        }
+        else if(id < 15)
+        {
+            return temperature[id - 10];
+        }
+
+        return 0;
+    }
+
+    public void setField(int id, int value)
+    {
+        if(id < 5)
+        {
+            incubateTime[id] = value;
+        }
+        else if(id < 10)
+        {
+            totalIncubateTime[id - 5] = value;
+        }
+        else if(id < 15)
+        {
+            temperature[id - 10] = value;
+        }
+    }
+
+    public int getFieldCount()
+    {
+        return 15;
+    }
+
+    public void clear()
+    {
+        for (int i = 0; i < this.slots.length; ++i)
+        {
+            this.slots[i] = null;
+        }
+    }
+
+    @Override
+    public Packet getDescriptionPacket()
+    {
+        NBTTagCompound compound = new NBTTagCompound();
+        this.writeToNBT(compound);
+        return new S35PacketUpdateTileEntity(this.pos, this.getBlockMetadata(), compound);
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet)
+    {
+        NBTTagCompound compound = packet.getNbtCompound();
+        this.readFromNBT(compound);
+    }
 }
