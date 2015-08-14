@@ -42,7 +42,7 @@ public class RenderCageSmall extends Render
 
         if(cage.getEntity() != null)
         {
-            Minecraft.getMinecraft().getRenderManager().renderEntityWithPosYaw(cage.getEntity(), 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
+            Minecraft.getMinecraft().getRenderManager().renderEntityWithPosYaw(cage.getEntity(), 0.0D, -1.45D, 0.0D, 0.0F, 0.0F);
         }
 
         float f4 = 0.75F;

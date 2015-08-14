@@ -51,7 +51,7 @@ public class ItemCage extends Item
     {
         if(stack.getTagCompound() != null)
         {
-            return stack.getTagCompound().getInteger("Caged");
+            return stack.getTagCompound().getInteger("CagedID");
         }
 
         return -1;

@@ -2,6 +2,7 @@ package net.timeless.jurassicraft.common.entity.item;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
@@ -100,13 +101,33 @@ public class EntityCageSmall extends Entity
                 dataWatcher.updateObject(25, EntityList.getEntityID(entity));
                 dataWatcher.updateObject(17, entity.getDinosaurAge());
                 dataWatcher.updateObject(18, entity.getDNAQuality());
-                dataWatcher.updateObject(19, entity.getGenetics());
+                dataWatcher.updateObject(19, entity.getGenetics().toString());
             }
             else
             {
                 dataWatcher.updateObject(25, -1);
             }
         }
+    }
+
+    /**
+     * First layer of player interaction
+     */
+    public boolean interactFirst(EntityPlayer playerIn)
+    {
+        if(entity != null && !worldObj.isRemote)
+        {
+            entity.setPosition(posX, posY, posZ);
+            worldObj.spawnEntityInWorld(entity);
+            entity.motionX = 0;
+            entity.motionY = 0;
+            entity.motionZ = 0;
+            entity.fallDistance = 0;
+
+            entity = null;
+        }
+
+        return true;
     }
 
     @Override
