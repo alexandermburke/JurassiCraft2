@@ -124,6 +124,9 @@ public class EntityCageSmall extends Entity
             entity.motionZ = 0;
             entity.fallDistance = 0;
 
+            this.setDead();
+            this.entityDropItem(new ItemStack(JCItemRegistry.cage_small), 0.5F);
+
             entity = null;
         }
 
