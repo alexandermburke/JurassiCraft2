@@ -57,9 +57,9 @@ public class EntityCageSmall extends Entity
     protected void entityInit()
     {
         this.dataWatcher.addObject(25, new Integer(-1));
-        this.dataWatcher.addObject(26, new Integer(0));
-        this.dataWatcher.addObject(27, new Integer(0));
-        this.dataWatcher.addObject(28, new String(""));
+        this.dataWatcher.addObject(17, new Integer(0));
+        this.dataWatcher.addObject(18, new Integer(0));
+        this.dataWatcher.addObject(19, new String(""));
     }
 
     @Override
@@ -77,9 +77,9 @@ public class EntityCageSmall extends Entity
 
                 if(entity != null)
                 {
-                    entity.setAge(dataWatcher.getWatchableObjectInt(26));
-                    entity.setDNAQuality(dataWatcher.getWatchableObjectInt(27));
-                    entity.setGenetics(dataWatcher.getWatchableObjectString(28));
+                    entity.setAge(dataWatcher.getWatchableObjectInt(17));
+                    entity.setDNAQuality(dataWatcher.getWatchableObjectInt(18));
+                    entity.setGenetics(dataWatcher.getWatchableObjectString(19));
                 }
             }
             else
@@ -98,9 +98,9 @@ public class EntityCageSmall extends Entity
             if(entity != null)
             {
                 dataWatcher.updateObject(25, EntityList.getEntityID(entity));
-                dataWatcher.updateObject(26, entity.getDinosaurAge());
-                dataWatcher.updateObject(27, entity.getDNAQuality());
-                dataWatcher.updateObject(28, entity.getGenetics());
+                dataWatcher.updateObject(17, entity.getDinosaurAge());
+                dataWatcher.updateObject(18, entity.getDNAQuality());
+                dataWatcher.updateObject(19, entity.getGenetics());
             }
             else
             {

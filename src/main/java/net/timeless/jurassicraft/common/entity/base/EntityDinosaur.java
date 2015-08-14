@@ -231,7 +231,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         adjustHitbox();
     }
 
-    public double getDinosaurAge()
+    public int getDinosaurAge()
     {
         return dinosaurAge;
     }
