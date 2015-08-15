@@ -114,6 +114,7 @@ blue_print.blank.name=Blank
 lore.dna_quality.name=DNA Quality: {quality}%
 lore.baby_dino.name=Sneak + Right Click to spawn baby dinosaur
 lore.genetic_code.name=Genetics Code: {code}
+cage.empty.name=Empty
 
 period.quaternary.name=Quaternary
 period.neogene.name=Neogene

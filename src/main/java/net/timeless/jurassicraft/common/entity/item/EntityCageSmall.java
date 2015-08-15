@@ -61,6 +61,7 @@ public class EntityCageSmall extends Entity
         this.dataWatcher.addObject(17, new Integer(0));
         this.dataWatcher.addObject(18, new Integer(0));
         this.dataWatcher.addObject(19, new String(""));
+        this.dataWatcher.addObject(20, new Integer(0));
     }
 
     @Override
@@ -78,6 +79,7 @@ public class EntityCageSmall extends Entity
 
                 if(entity != null)
                 {
+                    entity.setMale(dataWatcher.getWatchableObjectInt(20) == 0);
                     entity.setAge(dataWatcher.getWatchableObjectInt(17));
                     entity.setDNAQuality(dataWatcher.getWatchableObjectInt(18));
                     entity.setGenetics(dataWatcher.getWatchableObjectString(19));
@@ -102,6 +104,7 @@ public class EntityCageSmall extends Entity
                 dataWatcher.updateObject(17, entity.getDinosaurAge());
                 dataWatcher.updateObject(18, entity.getDNAQuality());
                 dataWatcher.updateObject(19, entity.getGenetics().toString());
+                dataWatcher.updateObject(20, entity.isMale() ? 0 : 1);
             }
             else
             {
