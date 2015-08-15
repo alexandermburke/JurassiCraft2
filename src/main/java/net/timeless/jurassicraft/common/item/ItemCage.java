@@ -41,7 +41,10 @@ public class ItemCage extends Item
 
             world.spawnEntityInWorld(cage);
 
-            stack.stackSize--;
+            if(!player.capabilities.isCreativeMode)
+            {
+                stack.stackSize--;
+            }
 
             return true;
         }
