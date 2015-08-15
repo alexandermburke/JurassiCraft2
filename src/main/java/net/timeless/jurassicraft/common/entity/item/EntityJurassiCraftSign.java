@@ -145,6 +145,26 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
         this.setPosition((double) blockpos1.getX(), (double) blockpos1.getY(), (double) blockpos1.getZ());
     }
 
+    public enum EnumSignType
+    {
+        GENTLE_GIANTS("Gentle Giants", 128, 64, 0, 0);
+
+        public final String title;
+        public final int sizeX;
+        public final int sizeY;
+        public final int offsetX;
+        public final int offsetY;
+
+        EnumSignType(String title, int xSize, int ySize, int textureX, int textureY)
+        {
+            this.title = title;
+            this.sizeX = xSize;
+            this.sizeY = ySize;
+            this.offsetX = textureX;
+            this.offsetY = textureY;
+        }
+    }
+
     @SideOnly(Side.CLIENT)
     public void func_180426_a(double p_180426_1_, double p_180426_3_, double p_180426_5_, float p_180426_7_, float p_180426_8_, int p_180426_9_, boolean p_180426_10_)
     {
@@ -164,25 +184,5 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
         setType(ByteBufUtils.readUTF8String(buf));
         hangingPosition = BlockPos.fromLong(buf.readLong());
         func_174859_a(EnumFacing.getHorizontal(buf.readByte()));
-    }
-
-    public enum EnumSignType
-    {
-        GENTLE_GIANTS("Gentle Giants", 128, 64, 0, 0);
-
-        public final String title;
-        public final int sizeX;
-        public final int sizeY;
-        public final int offsetX;
-        public final int offsetY;
-
-        EnumSignType(String title, int xSize, int ySize, int textureX, int textureY)
-        {
-            this.title = title;
-            this.sizeX = xSize;
-            this.sizeY = ySize;
-            this.offsetX = textureX;
-            this.offsetY = textureY;
-        }
     }
 }

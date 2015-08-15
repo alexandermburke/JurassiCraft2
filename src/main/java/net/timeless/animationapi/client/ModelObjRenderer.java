@@ -21,11 +21,6 @@ import org.lwjgl.opengl.GL11;
 public class ModelObjRenderer extends ModelRenderer
 {
 
-    public IModelCustomData model;
-    private float theScale;
-    private int displayList;
-    private boolean compiled;
-
     public ModelObjRenderer(ModelBase bass)
     {
         this(bass, null, 1F);
@@ -79,7 +74,8 @@ public class ModelObjRenderer extends ModelRenderer
                                 ((ModelRenderer) this.childModels.get(i)).render(scale);
                             }
                         }
-                    } else
+                    }
+                    else
                     {
                         GL11.glTranslatef(this.rotationPointX * scale, this.rotationPointY * scale, this.rotationPointZ * scale);
                         GL11.glPushMatrix();
@@ -97,7 +93,8 @@ public class ModelObjRenderer extends ModelRenderer
 
                         GL11.glTranslatef(-this.rotationPointX * scale, -this.rotationPointY * scale, -this.rotationPointZ * scale);
                     }
-                } else
+                }
+                else
                 {
                     GL11.glPushMatrix();
                     GL11.glTranslatef(this.rotationPointX * scale, this.rotationPointY * scale, this.rotationPointZ * scale);
@@ -190,4 +187,10 @@ public class ModelObjRenderer extends ModelRenderer
         GL11.glEndList();
         compiled = true;
     }
+
+    public IModelCustomData model;
+    private float theScale;
+
+    private int displayList;
+    private boolean compiled;
 }

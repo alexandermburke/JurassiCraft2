@@ -60,7 +60,8 @@ public class ItemDinosaurSpawnEgg extends Item
                 dino.rotationYawHead = dino.rotationYaw;
                 dino.renderYawOffset = dino.rotationYaw;
                 return dino;
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 e.printStackTrace();
             }
@@ -128,10 +129,12 @@ public class ItemDinosaurSpawnEgg extends Item
         if (world.isRemote)
         {
             return true;
-        } else if (!player.canPlayerEdit(pos.offset(side), side, stack))
+        }
+        else if (!player.canPlayerEdit(pos.offset(side), side, stack))
         {
             return false;
-        } else
+        }
+        else
         {
             IBlockState iblockstate = world.getBlockState(pos);
 

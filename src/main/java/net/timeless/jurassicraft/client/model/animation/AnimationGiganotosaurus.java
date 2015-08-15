@@ -61,9 +61,9 @@ public class AnimationGiganotosaurus implements IModelAnimator
 
         MowzieModelRenderer lowerJaw = model.getCube("Lower jaw");
 
-        MowzieModelRenderer[] body = new MowzieModelRenderer[]{head, neck4, neck3, neck2, neck, body1, body2, body3};
+        MowzieModelRenderer[] body = new MowzieModelRenderer[] { head, neck4, neck3, neck2, neck, body1, body2, body3 };
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
 
         //TODO:Arms
 

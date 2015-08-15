@@ -25,25 +25,17 @@ import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 public class TileDnaSynthesizer extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
-    private static final int[] slotsTop = new int[]{0, 1, 2}; //input
-    private static final int[] slotsBottom = new int[]{6, 5, 4, 3}; //output
-    private static final int[] slotsSides = new int[]{};
+    private static final int[] slotsTop = new int[] { 0, 1, 2 }; //input
+    private static final int[] slotsBottom = new int[] { 6, 5, 4, 3 }; //output
+    private static final int[] slotsSides = new int[] {};
 
-    /**
-     * The ItemStacks that hold the items currently being used in the dna synthesizer
-     */
+    /** The ItemStacks that hold the items currently being used in the dna synthesizer */
     private ItemStack[] slots = new ItemStack[7];
 
     private int synthesizeTime;
     private int totalSynthesizeTime;
 
     private String customName;
-
-    @SideOnly(Side.CLIENT)
-    public static boolean isSynthesizing(IInventory inventory)
-    {
-        return inventory.getField(0) > 0;
-    }
 
     /**
      * Returns the number of slots in the inventory.
@@ -76,7 +68,8 @@ public class TileDnaSynthesizer extends TileEntityLockable implements IUpdatePla
                 itemstack = this.slots[index];
                 this.slots[index] = null;
                 return itemstack;
-            } else
+            }
+            else
             {
                 itemstack = this.slots[index].splitStack(count);
 
@@ -87,7 +80,8 @@ public class TileDnaSynthesizer extends TileEntityLockable implements IUpdatePla
 
                 return itemstack;
             }
-        } else
+        }
+        else
         {
             return null;
         }
@@ -104,7 +98,8 @@ public class TileDnaSynthesizer extends TileEntityLockable implements IUpdatePla
             ItemStack itemstack = this.slots[index];
             this.slots[index] = null;
             return itemstack;
-        } else
+        }
+        else
         {
             return null;
         }
@@ -221,6 +216,12 @@ public class TileDnaSynthesizer extends TileEntityLockable implements IUpdatePla
         return this.synthesizeTime > 0;
     }
 
+    @SideOnly(Side.CLIENT)
+    public static boolean isSynthesizing(IInventory inventory)
+    {
+        return inventory.getField(0) > 0;
+    }
+
     /**
      * Updates the JList with a new model.
      */
@@ -237,7 +238,8 @@ public class TileDnaSynthesizer extends TileEntityLockable implements IUpdatePla
                 {
                     this.synthesizeTime = MathHelper.clamp_int(this.synthesizeTime - 2, 0, this.totalSynthesizeTime);
                 }
-            } else
+            }
+            else
             {
                 if (this.canSynthesize())
                 {
@@ -250,7 +252,8 @@ public class TileDnaSynthesizer extends TileEntityLockable implements IUpdatePla
                         this.synthesize();
                         sync = true;
                     }
-                } else
+                }
+                else
                 {
                     this.synthesizeTime = 0;
                     sync = true;
@@ -261,7 +264,8 @@ public class TileDnaSynthesizer extends TileEntityLockable implements IUpdatePla
             {
                 sync = true;
             }
-        } else
+        }
+        else
         {
             if (this.canSynthesize())
             {
@@ -331,7 +335,8 @@ public class TileDnaSynthesizer extends TileEntityLockable implements IUpdatePla
                 if (this.slots[emptySlot] == null)
                 {
                     this.slots[emptySlot] = output;
-                } else if (this.slots[emptySlot].getItem() == output.getItem() && ItemStack.areItemStackTagsEqual(this.slots[emptySlot], output))
+                }
+                else if (this.slots[emptySlot].getItem() == output.getItem() && ItemStack.areItemStackTagsEqual(this.slots[emptySlot], output))
                 {
                     this.slots[emptySlot].stackSize += output.stackSize;
                 }

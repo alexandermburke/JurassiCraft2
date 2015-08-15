@@ -21,60 +21,6 @@ public enum EnumTimePeriod implements IStringSerializable
     CAMBRIAN(11, "cambrian", 541.0F, 485.5F, false);
 
     /**
-     * META_LOOKUP array.
-     */
-    private static final EnumTimePeriod[] META_LOOKUP = new EnumTimePeriod[values().length];
-
-    static
-    {
-        for (EnumTimePeriod timePeriod : values())
-        {
-            META_LOOKUP[timePeriod.getMetadata()] = timePeriod;
-        }
-    }
-
-    /**
-     * Name of this period.
-     */
-    private final String name;
-    /**
-     * ID of this period.
-     */
-    private final int meta;
-    /**
-     * Start time of this period.
-     */
-    private final float startTime;
-    /**
-     * Final time of this period.
-     */
-    private final float endTime;
-    /**
-     * Tells if this period should be used.
-     */
-    private final boolean shouldImplement;
-
-    EnumTimePeriod(int meta, String name, float startTime, float endTime, boolean shouldImplement)
-    {
-        this.name = name;
-        this.meta = meta;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.shouldImplement = shouldImplement;
-    }
-
-    /**
-     * Returns the time period from its metadata.
-     */
-    public static EnumTimePeriod byMetadata(int meta)
-    {
-        if (meta < 0 || meta >= META_LOOKUP.length)
-            meta = 0;
-
-        return META_LOOKUP[meta];
-    }
-
-    /**
      * Returns the metadata of this time period.
      */
     public int getMetadata()
@@ -86,6 +32,17 @@ public enum EnumTimePeriod implements IStringSerializable
     public String toString()
     {
         return this.name;
+    }
+
+    /**
+     * Returns the time period from its metadata.
+     */
+    public static EnumTimePeriod byMetadata(int meta)
+    {
+        if (meta < 0 || meta >= META_LOOKUP.length)
+            meta = 0;
+
+        return META_LOOKUP[meta];
     }
 
     /**
@@ -126,5 +83,47 @@ public enum EnumTimePeriod implements IStringSerializable
     public boolean shouldBeImplement()
     {
         return this.shouldImplement;
+    }
+
+    /**
+     * Name of this period.
+     */
+    private final String name;
+    /**
+     * ID of this period.
+     */
+    private final int meta;
+    /**
+     * Start time of this period.
+     */
+    private final float startTime;
+    /**
+     * Final time of this period.
+     */
+    private final float endTime;
+    /**
+     * Tells if this period should be used.
+     */
+    private final boolean shouldImplement;
+    /**
+     * META_LOOKUP array.
+     */
+    private static final EnumTimePeriod[] META_LOOKUP = new EnumTimePeriod[values().length];
+
+    EnumTimePeriod(int meta, String name, float startTime, float endTime, boolean shouldImplement)
+    {
+        this.name = name;
+        this.meta = meta;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.shouldImplement = shouldImplement;
+    }
+
+    static
+    {
+        for (EnumTimePeriod timePeriod : values())
+        {
+            META_LOOKUP[timePeriod.getMetadata()] = timePeriod;
+        }
     }
 }

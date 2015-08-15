@@ -5,19 +5,13 @@ import net.minecraft.entity.ai.EntityAIBase;
 
 public class EntityAIJCLookIdle extends EntityAIBase
 {
-    /**
-     * The entity that is looking idle.
-     */
+    /** The entity that is looking idle. */
     private EntityLiving idleEntity;
 
-    /**
-     * X offset to look at
-     */
+    /** X offset to look at */
     private double lookX;
 
-    /**
-     * Z offset to look at
-     */
+    /** Z offset to look at */
     private double lookZ;
 
     /**
@@ -25,14 +19,10 @@ public class EntityAIJCLookIdle extends EntityAIBase
      */
     private int idleTime;
 
-    /**
-     * How fast to turn on the Y axis (yaw)
-     */
+    /** How fast to turn on the Y axis (yaw) */
     private float turnSpeedYaw;
 
-    /**
-     * How fast to turn on the X axis (pitch)
-     */
+    /** How fast to turn on the X axis (pitch) */
     private float turnSpeedPitch;
 
     public EntityAIJCLookIdle(EntityLiving entity, float turnSpeedYaw, float turnSpeedPitch)

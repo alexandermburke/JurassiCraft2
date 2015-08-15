@@ -92,7 +92,8 @@ public class ItemDinosaurMeat extends ItemFood
         if (nbt.hasKey("DNAQuality"))
         {
             quality = nbt.getInteger("DNAQuality");
-        } else
+        }
+        else
         {
             nbt.setInteger("DNAQuality", quality);
         }
@@ -118,7 +119,8 @@ public class ItemDinosaurMeat extends ItemFood
         if (nbt.hasKey("Genetics"))
         {
             genetics = new GeneticsContainer(nbt.getString("Genetics"));
-        } else
+        }
+        else
         {
             nbt.setString("Genetics", genetics.toString());
         }

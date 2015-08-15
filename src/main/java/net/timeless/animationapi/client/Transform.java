@@ -7,9 +7,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class Transform
 {
 
-    public float rotX, rotY, rotZ;
-    public float offsetX, offsetY, offsetZ;
-
     public Transform()
     {
         rotX = rotY = rotZ = 0F;
@@ -45,4 +42,7 @@ public class Transform
         offsetY += y;
         offsetZ += z;
     }
+
+    public float rotX, rotY, rotZ;
+    public float offsetX, offsetY, offsetZ;
 }

@@ -40,12 +40,10 @@ public class EcoTerra
         if (!EcoTerra.earthDropBlocks.contains(b))
             EcoTerra.earthDropBlocks.add(b);
     }
-
     public static void registerItemAsEarthDrop(ItemStack is)
     {
         EcoTerra.registerItemAsEarthDrop(is, false);
     }
-
     public static void registerItemAsEarthDrop(ItemStack is, boolean override)
     {
         if (!override)
@@ -55,7 +53,6 @@ public class EcoTerra
 
         EcoTerra.earthDrops.add(is);
     }
-
     public static void handleRandomEarthDrops(BlockEvent.HarvestDropsEvent e)
     {
         Block broken = e.state.getBlock();

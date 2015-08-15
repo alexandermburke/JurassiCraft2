@@ -13,44 +13,31 @@ public abstract class AIBase extends EntityAIBase
     protected BlockPos workingPosition = null;
     protected double probRecursion = .01;
 
-    //Constructor
-    public AIBase(EntityCreature entity)
-    {
-        super();
-        this.entity = entity;
-    }
-
     //Modifiers
     public EntityCreature entity()
     {
         return this.entity;
     }
-
     public boolean isEnabled()
     {
         return this.isEnabled;
     }
-
     public void setEnabled(boolean enabled)
     {
         this.isEnabled = enabled;
     }
-
     public boolean isFinished()
     {
         return this.isFinished;
     }
-
     public void setFinished(boolean b)
     {
         this.isFinished = b;
     }
-
     public BlockPos getWorkingPosition()
     {
         return this.workingPosition;
     }
-
     public void setWorkingPosition(BlockPos p)
     {
         if (p == null)
@@ -59,11 +46,17 @@ public abstract class AIBase extends EntityAIBase
             workingPosition = new BlockPos(p);
     }
 
+    //Constructor
+    public AIBase(EntityCreature entity)
+    {
+        super();
+        this.entity = entity;
+    }
+
     public NBTTagCompound writeToEntityNbt()
     {
         return this.entity.getEntityData();
     }
-
     public void readFromEntityNbt()
     {
     }

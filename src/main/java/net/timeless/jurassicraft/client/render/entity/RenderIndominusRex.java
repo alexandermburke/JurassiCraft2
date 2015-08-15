@@ -135,7 +135,8 @@ public class RenderIndominusRex extends RenderLiving implements IDinosaurRendere
                 time = 1 - time;
 
             GlStateManager.scale(scale * (0.5F + time * 0.5F), scale * (1 + time * 0.5F), scale * (0.9F + time * 0.25F));
-        } else if (name.equals("Notch") || name.equals("Jumbo"))
+        }
+        else if (name.equals("Notch") || name.equals("Jumbo"))
             GlStateManager.scale(scale * 2, scale * 2, scale * 2);
         else if (name.equals("jglrxavpok"))
             GlStateManager.scale(scale, scale, scale * -1);
@@ -151,18 +152,6 @@ public class RenderIndominusRex extends RenderLiving implements IDinosaurRendere
     public ResourceLocation getEntityTexture(Entity entity)
     {
         return getEntityTexture((EntityDinosaur) entity);
-    }
-
-    @Override
-    public void setModel(ModelBase model)
-    {
-        this.mainModel = model;
-    }
-
-    @Override
-    public RenderDinosaurDefinition getRenderDef()
-    {
-        return renderDef;
     }
 
     @SideOnly(Side.CLIENT)
@@ -187,7 +176,8 @@ public class RenderIndominusRex extends RenderLiving implements IDinosaurRendere
                         texture = maleOverlayTextures.length;
 
                     this.renderer.bindTexture(maleOverlayTextures[texture]);
-                } else
+                }
+                else
                 {
                     if (texture > femaleOverlayTextures.length)
                         texture = femaleOverlayTextures.length;
@@ -213,5 +203,17 @@ public class RenderIndominusRex extends RenderLiving implements IDinosaurRendere
         {
             this.render((EntityDinosaur) entity, p_177141_2_, p_177141_3_, p_177141_4_, p_177141_5_, p_177141_6_, p_177141_7_, p_177141_8_);
         }
+    }
+
+    @Override
+    public void setModel(ModelBase model)
+    {
+        this.mainModel = model;
+    }
+
+    @Override
+    public RenderDinosaurDefinition getRenderDef()
+    {
+        return renderDef;
     }
 }

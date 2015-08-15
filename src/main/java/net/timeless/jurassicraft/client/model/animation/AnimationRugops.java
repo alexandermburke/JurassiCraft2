@@ -73,10 +73,10 @@ public class AnimationRugops implements IModelAnimator
         // Jaw
         MowzieModelRenderer lowerJaw = model.getCube("Lower Jaw");
 
-        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[]{handRight, upperArmRight, lowerArmRight};
-        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[]{handLeft, upperArmLeft, lowerArmLeft};
-        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
-        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[]{head, neck1, neck2, neck3, neck4, shoulders, waist};
+        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[] { handRight, upperArmRight, lowerArmRight };
+        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[] { handLeft, upperArmLeft, lowerArmLeft };
+        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
+        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[] { head, neck1, neck2, neck3, neck4, shoulders, waist };
 
         // Body animations
         model.bob(leftThigh, 1F * globalSpeed, height, false, f, f1);

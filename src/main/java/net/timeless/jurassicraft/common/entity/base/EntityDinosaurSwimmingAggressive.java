@@ -45,7 +45,8 @@ public class EntityDinosaurSwimmingAggressive extends EntityDinosaurAggressive
                 this.setAir(0);
                 this.attackEntityFrom(DamageSource.drown, 2.0F);
             }
-        } else
+        }
+        else
             this.setAir(300);
     }
 

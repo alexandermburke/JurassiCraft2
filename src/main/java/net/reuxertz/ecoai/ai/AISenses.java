@@ -20,7 +20,6 @@ public class AISenses extends AIBase
         return this.entity().getEntityData();
 
     }
-
     @Override
     public void readFromEntityNbt()
     {

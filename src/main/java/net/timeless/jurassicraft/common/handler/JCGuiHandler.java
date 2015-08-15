@@ -14,20 +14,6 @@ import net.timeless.jurassicraft.common.tileentity.*;
 
 public class JCGuiHandler implements IGuiHandler
 {
-    public static void openPaleoPad(EntityPlayer player)
-    {
-        if (player.worldObj.isRemote)
-            displayPaleoPadGUIClient();
-//        else
-//            JurassiCraft.networkManager.networkWrapper.sendTo(new MessageSyncPaleoPad(player), (EntityPlayerMP) player);
-    }
-
-    @SideOnly(Side.CLIENT)
-    private static void displayPaleoPadGUIClient()
-    {
-        Minecraft.getMinecraft().displayGuiScreen(new GuiPaleoTab());
-    }
-
     @Override
     public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z)
     {
@@ -39,22 +25,28 @@ public class JCGuiHandler implements IGuiHandler
             if (tileEntity instanceof TileCleaningStation && id == 0)
             {
                 return new ContainerCleaningStation(player.inventory, (TileCleaningStation) tileEntity);
-            } else if (tileEntity instanceof TileFossilGrinder && id == 1)
+            }
+            else if (tileEntity instanceof TileFossilGrinder && id == 1)
             {
                 return new ContainerFossilGrinder(player.inventory, tileEntity);
-            } else if (tileEntity instanceof TileDnaSequencer && id == 2)
+            }
+            else if (tileEntity instanceof TileDnaSequencer && id == 2)
             {
                 return new ContainerDNASequencer(player.inventory, tileEntity);
-            } else if (tileEntity instanceof TileEmbryonicMachine && id == 3)
+            }
+            else if (tileEntity instanceof TileEmbryonicMachine && id == 3)
             {
                 return new ContainerEmbryonicMachine(player.inventory, tileEntity);
-            } else if (tileEntity instanceof TileEmbryoCalcificationMachine && id == 4)
+            }
+            else if (tileEntity instanceof TileEmbryoCalcificationMachine && id == 4)
             {
                 return new ContainerEmbryoCalcificationMachine(player.inventory, tileEntity);
-            } else if (tileEntity instanceof TileDnaSynthesizer && id == 5)
+            }
+            else if (tileEntity instanceof TileDnaSynthesizer && id == 5)
             {
                 return new ContainerDnaSynthesizer(player.inventory, tileEntity);
-            } else if (tileEntity instanceof TileIncubator && id == 6)
+            }
+            else if (tileEntity instanceof TileIncubator && id == 6)
             {
                 return new ContainerIncubator(player.inventory, tileEntity);
             }
@@ -74,27 +66,47 @@ public class JCGuiHandler implements IGuiHandler
             if (tileEntity instanceof TileCleaningStation && id == 0)
             {
                 return new GuiCleaningStation(player.inventory, (TileCleaningStation) tileEntity);
-            } else if (tileEntity instanceof TileFossilGrinder && id == 1)
+            }
+            else if (tileEntity instanceof TileFossilGrinder && id == 1)
             {
                 return new GuiFossilGrinder(player.inventory, (TileFossilGrinder) tileEntity);
-            } else if (tileEntity instanceof TileDnaSequencer && id == 2)
+            }
+            else if (tileEntity instanceof TileDnaSequencer && id == 2)
             {
                 return new GuiDNASequencer(player.inventory, (TileDnaSequencer) tileEntity);
-            } else if (tileEntity instanceof TileEmbryonicMachine && id == 3)
+            }
+            else if (tileEntity instanceof TileEmbryonicMachine && id == 3)
             {
                 return new GuiEmbryonicMachine(player.inventory, (TileEmbryonicMachine) tileEntity);
-            } else if (tileEntity instanceof TileEmbryoCalcificationMachine && id == 4)
+            }
+            else if (tileEntity instanceof TileEmbryoCalcificationMachine && id == 4)
             {
                 return new GuiEmbryoCalcificationMachine(player.inventory, (TileEmbryoCalcificationMachine) tileEntity);
-            } else if (tileEntity instanceof TileDnaSynthesizer && id == 5)
+            }
+            else if (tileEntity instanceof TileDnaSynthesizer && id == 5)
             {
                 return new GuiDNASynthesizer(player.inventory, (TileDnaSynthesizer) tileEntity);
-            } else if (tileEntity instanceof TileIncubator && id == 6)
+            }
+            else if (tileEntity instanceof TileIncubator && id == 6)
             {
                 return new GuiIncubator(player.inventory, (TileIncubator) tileEntity);
             }
         }
 
         return null;
+    }
+
+    public static void openPaleoPad(EntityPlayer player)
+    {
+        if (player.worldObj.isRemote)
+           displayPaleoPadGUIClient();
+//        else
+//            JurassiCraft.networkManager.networkWrapper.sendTo(new MessageSyncPaleoPad(player), (EntityPlayerMP) player);
+    }
+
+    @SideOnly(Side.CLIENT)
+    private static void displayPaleoPadGUIClient()
+    {
+        Minecraft.getMinecraft().displayGuiScreen(new GuiPaleoTab());
     }
 }

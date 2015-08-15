@@ -15,6 +15,9 @@ import java.util.List;
 
 public class JCEntityRegistry
 {
+    private static List<Dinosaur> dinosaurs = Lists.newArrayList();
+    private static HashMap<EnumTimePeriod, List<Dinosaur>> dinosaursFromPeriod = new HashMap<>();
+
     public static final Dinosaur dodo = new DinosaurDodo();
     public static final Dinosaur achillobator = new DinosaurAchillobator();
     public static final Dinosaur anklyosaurus = new DinosaurAnkylosaurus();
@@ -50,70 +53,6 @@ public class JCEntityRegistry
     public static final Dinosaur tropeognathus = new DinosaurTropeognathus();
     public static final Dinosaur leaellynasaura = new DinosaurLeaellynasaura();
     public static final Dinosaur herrerasaurus = new DinosaurHerrerasaurus();
-    private static List<Dinosaur> dinosaurs = Lists.newArrayList();
-    private static HashMap<EnumTimePeriod, List<Dinosaur>> dinosaursFromPeriod = new HashMap<>();
-
-    public static void registerDinosaurType(Dinosaur dinosaur)
-    {
-        dinosaurs.add(dinosaur);
-
-        if (!(dinosaur instanceof IHybrid) && dinosaur.shouldRegister())
-        {
-            EnumTimePeriod period = dinosaur.getPeriod();
-
-            List<Dinosaur> dinoList = dinosaursFromPeriod.get(period);
-
-            if (dinoList != null)
-            {
-                dinoList.add(dinosaur);
-
-                dinosaursFromPeriod.remove(period);
-                dinosaursFromPeriod.put(period, dinoList);
-            } else
-            {
-                List<Dinosaur> newDinoList = Lists.newArrayList();
-                newDinoList.add(dinosaur);
-
-                dinosaursFromPeriod.put(period, newDinoList);
-            }
-        }
-    }
-
-    public static Dinosaur getDinosaurById(int id)
-    {
-        if (id >= dinosaurs.size() || id < 0)
-            return null;
-
-        return dinosaurs.get(id);
-    }
-
-    public static int getDinosaurId(Dinosaur dinosaur)
-    {
-        return dinosaurs.indexOf(dinosaur);
-    }
-
-    public static List<Dinosaur> getDinosaurs()
-    {
-        return dinosaurs;
-    }
-
-    public static List<Dinosaur> getDinosaursFromPeriod(EnumTimePeriod period)
-    {
-        return dinosaursFromPeriod.get(period);
-    }
-
-    public static Dinosaur getDinosaurByClass(Class<? extends EntityDinosaur> clazz)
-    {
-        for (Dinosaur dino : dinosaurs)
-        {
-            if (dino.getDinosaurClass().equals(clazz))
-            {
-                return dino;
-            }
-        }
-
-        return null;
-    }
 
     public void register()
     {
@@ -178,5 +117,68 @@ public class JCEntityRegistry
 
         EntityRegistry.registerGlobalEntityID(entity, formattedName, entityId);
         EntityRegistry.registerModEntity(entity, formattedName, entityId, JurassiCraft.instance, 1024, 1, true);
+    }
+
+    public static void registerDinosaurType(Dinosaur dinosaur)
+    {
+        dinosaurs.add(dinosaur);
+
+        if(!(dinosaur instanceof IHybrid) && dinosaur.shouldRegister())
+        {
+            EnumTimePeriod period = dinosaur.getPeriod();
+
+            List<Dinosaur> dinoList = dinosaursFromPeriod.get(period);
+
+            if (dinoList != null)
+            {
+                dinoList.add(dinosaur);
+
+                dinosaursFromPeriod.remove(period);
+                dinosaursFromPeriod.put(period, dinoList);
+            }
+            else
+            {
+                List<Dinosaur> newDinoList = Lists.newArrayList();
+                newDinoList.add(dinosaur);
+
+                dinosaursFromPeriod.put(period, newDinoList);
+            }
+        }
+    }
+
+    public static Dinosaur getDinosaurById(int id)
+    {
+        if (id >= dinosaurs.size() || id < 0)
+            return null;
+
+        return dinosaurs.get(id);
+    }
+
+    public static int getDinosaurId(Dinosaur dinosaur)
+    {
+        return dinosaurs.indexOf(dinosaur);
+    }
+
+    public static List<Dinosaur> getDinosaurs()
+    {
+        return dinosaurs;
+    }
+
+    public static List<Dinosaur> getDinosaursFromPeriod(EnumTimePeriod period)
+    {
+        return dinosaursFromPeriod.get(period);
+    }
+
+    public static Dinosaur getDinosaurByClass(Class<? extends EntityDinosaur> clazz)
+    {
+        for (Dinosaur dino : dinosaurs)
+        {
+            if (dino.getDinosaurClass().equals(clazz))
+            {
+                return dino;
+            }
+        }
+
+        return null;
     }
 }

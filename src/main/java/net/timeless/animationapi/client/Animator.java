@@ -13,12 +13,7 @@ import java.util.HashMap;
 @SideOnly(Side.CLIENT)
 public class Animator
 {
-    public static final float PI = (float) Math.PI;
     private MowzieModelBase modelBase;
-    private int tempTick, prevTempTick;
-    private boolean correctAnim;
-    private IAnimatedEntity animEntity;
-    private HashMap<MowzieModelRenderer, Transform> transformMap, prevTransformMap;
 
     public Animator(MowzieModelBase model)
     {
@@ -117,7 +112,8 @@ public class Animator
                     box.rotationPointY += transform.offsetY;
                     box.rotationPointZ += transform.offsetZ;
                 }
-            } else
+            }
+            else
             {
                 float tick = (animTick - prevTempTick + AnimationAPI.getProxy().getPartialTick()) / (tempTick - prevTempTick);
                 float inc = MathHelper.sin(tick * PI / 2F), dec = 1F - inc;
@@ -152,4 +148,11 @@ public class Animator
             transformMap.clear();
         }
     }
+
+    private int tempTick, prevTempTick;
+    private boolean correctAnim;
+    private IAnimatedEntity animEntity;
+    private HashMap<MowzieModelRenderer, Transform> transformMap, prevTransformMap;
+
+    public static final float PI = (float) Math.PI;
 }

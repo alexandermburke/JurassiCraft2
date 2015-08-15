@@ -10,11 +10,12 @@ import java.util.Random;
 //Constructors
 public class IdObject
 {
+    private static Random random = new Random();
+
     //Fields
     public static final int idLength = 25;
     public static final String idAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
     public static final String idField = "ainow_id";
-    private static Random random = new Random();
     protected String id;
 
     protected IdObject(NBTTagCompound nbt)

@@ -2,6 +2,8 @@ package net.timeless.jurassicraft.common.genetics;
 
 public class GeneticsContainer
 {
+    private String genetics;
+
     private static final int DINOSAUR = 0; //Which dinosaur is this?
     private static final int COLOR = 1; //Color offset
     private static final int SCALE = 2; //Scale offset
@@ -11,8 +13,8 @@ public class GeneticsContainer
     private static final int LIFE_TIME = 6; //How long to live after adulthood
     private static final int SPEED = 7; //Speed Modifier
     private static final int ADULT_TIME = 8; //How long to become an adult
+
     private static final int VAR_COUNT = 8;
-    private String genetics;
 
     public GeneticsContainer(String genetics)
     {
@@ -94,7 +96,7 @@ public class GeneticsContainer
     {
         int charStart = id * 4;
 
-        if (charStart >= 0 && charStart + 3 < genetics.length())
+        if(charStart >= 0 && charStart + 3 < genetics.length())
         {
             return convert(genetics.charAt(charStart), genetics.charAt(charStart + 1), genetics.charAt(charStart + 2), genetics.charAt(charStart + 3));
         }
@@ -106,7 +108,7 @@ public class GeneticsContainer
     {
         int charStart = id * 4;
 
-        if (charStart >= 0 && charStart + 3 < genetics.length())
+        if(charStart >= 0 && charStart + 3 < genetics.length())
         {
             char[] chars = convert(value);
 
@@ -129,11 +131,11 @@ public class GeneticsContainer
 
         for (char c : chars)
         {
-            if (c == 'C')
+            if(c == 'C')
                 value += 1 * Math.pow(4, i);
-            else if (c == 'G')
+            else if(c == 'G')
                 value += 2 * Math.pow(4, i);
-            else if (c == 'T')
+            else if(c == 'T')
                 value += 3 * Math.pow(4, i);
 
             i++;
@@ -150,7 +152,7 @@ public class GeneticsContainer
 
         int index = 0;
 
-        while (next > 0)
+        while(next > 0)
         {
             int r = next % 4;
             next = (int) Math.floor(next / 4);

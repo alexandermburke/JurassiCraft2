@@ -9,14 +9,12 @@ import net.timeless.unilib.common.structure.rules.RepeatRule;
 import java.util.HashMap;
 import java.util.List;
 
-public class ComponentInfo
-{
+public class ComponentInfo {
     public HashMap<BlockCoords, BlockList> blocks;
     public List<RepeatRule> repeats;
     public EnumFacing facing;
 
-    public ComponentInfo()
-    {
+    public ComponentInfo() {
         facing = EnumFacing.NORTH;
         blocks = Maps.newHashMap();
         repeats = Lists.newArrayList();

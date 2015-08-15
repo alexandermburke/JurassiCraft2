@@ -77,7 +77,8 @@ public class BlockEmbryoCalcificationMachine extends BlockOriented
         if (world.isRemote)
         {
             return true;
-        } else if (!player.isSneaking())
+        }
+        else if (!player.isSneaking())
         {
             TileEntity tileEntity = world.getTileEntity(pos);
 

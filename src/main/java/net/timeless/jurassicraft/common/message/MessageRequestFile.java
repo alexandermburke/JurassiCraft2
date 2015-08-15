@@ -48,7 +48,8 @@ public class MessageRequestFile implements IMessage
                     JCPlayerData playerData = JCPlayerData.getPlayerData(player);
                     JurassiCraft.networkManager.networkWrapper.sendTo(new MessageSendFile(playerData, playerData.getFileFromPath(packet.path)), player);
                 }
-            } else //TODO
+            }
+            else //TODO
             {
 
             }

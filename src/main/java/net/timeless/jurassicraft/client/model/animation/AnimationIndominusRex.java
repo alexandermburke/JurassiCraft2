@@ -69,11 +69,11 @@ public class AnimationIndominusRex implements IModelAnimator
         MowzieModelRenderer handLeft = model.getCube("Hand LEFT");
         MowzieModelRenderer handRight = model.getCube("Hand RIGHT");
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail7, tail6, tail5, tail4, tail3, tail2, tail1};
-        MowzieModelRenderer[] body = new MowzieModelRenderer[]{head, neck4, neck3, neck2, neck1, bodyFront, bodyMid, bodyRear};
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail7, tail6, tail5, tail4, tail3, tail2, tail1 };
+        MowzieModelRenderer[] body = new MowzieModelRenderer[] { head, neck4, neck3, neck2, neck1, bodyFront, bodyMid, bodyRear };
 
-        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[]{handLeft, lowerArmLeft, upperArmLeft};
-        MowzieModelRenderer[] armRight = new MowzieModelRenderer[]{handRight, lowerArmRight, upperArmRight};
+        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[] { handLeft, lowerArmLeft, upperArmLeft };
+        MowzieModelRenderer[] armRight = new MowzieModelRenderer[] { handRight, lowerArmRight, upperArmRight };
 
         model.bob(bodyRear, globalSpeed * 1F, globalHeight * 1.0F, false, f, f1);
 

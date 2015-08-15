@@ -1,7 +1,5 @@
 {
-  "variants": {
-    "normal": {
-      "model": "jurassicraft:ginkgo_planks"
+    "variants": {
+        "normal": { "model": "jurassicraft:ginkgo_planks" }
     }
-  }
 }

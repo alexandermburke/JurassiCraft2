@@ -11,7 +11,7 @@ import org.lwjgl.opengl.GL11;
 
 /**
  * @author BobMowzie, gegy1000, FiskFille
- *         TAKEN FROM LLIBRARY
+ * TAKEN FROM LLIBRARY
  */
 @SideOnly(Side.CLIENT)
 public class MowzieModelRenderer extends ModelRenderer
@@ -31,10 +31,12 @@ public class MowzieModelRenderer extends ModelRenderer
     public float scaleX = 1.0F;
     public float scaleY = 1.0F;
     public float scaleZ = 1.0F;
-    public ModelRenderer parent;
-    public boolean hasInitPose;
+
     private boolean compiled;
     private int displayList;
+
+    public ModelRenderer parent;
+    public boolean hasInitPose;
 
     public MowzieModelRenderer(ModelBase modelBase, String name)
     {
@@ -73,7 +75,8 @@ public class MowzieModelRenderer extends ModelRenderer
         if (parent instanceof MowzieModelRenderer)
         {
             ((MowzieModelRenderer) this.parent).postRenderParentChain(par1);
-        } else if (parent != null)
+        }
+        else if (parent != null)
         {
             parent.postRender(par1);
         }
@@ -252,7 +255,8 @@ public class MowzieModelRenderer extends ModelRenderer
         if (parent instanceof MowzieModelRenderer)
         {
             ((MowzieModelRenderer) this.parent).renderWithParents(partialTicks);
-        } else if (parent != null)
+        }
+        else if (parent != null)
         {
             parent.render(partialTicks);
         }
@@ -301,7 +305,8 @@ public class MowzieModelRenderer extends ModelRenderer
                                 ((MowzieModelRenderer) this.childModels.get(i)).render(p_78785_1_);
                             }
                         }
-                    } else
+                    }
+                    else
                     {
                         GL11.glTranslatef(this.rotationPointX * p_78785_1_, this.rotationPointY * p_78785_1_, this.rotationPointZ * p_78785_1_);
                         GL11.glCallList(this.displayList);
@@ -316,7 +321,8 @@ public class MowzieModelRenderer extends ModelRenderer
 
                         GL11.glTranslatef(-this.rotationPointX * p_78785_1_, -this.rotationPointY * p_78785_1_, -this.rotationPointZ * p_78785_1_);
                     }
-                } else
+                }
+                else
                 {
                     GL11.glPushMatrix();
                     GL11.glTranslatef(this.rotationPointX * p_78785_1_, this.rotationPointY * p_78785_1_, this.rotationPointZ * p_78785_1_);

@@ -24,17 +24,28 @@ import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 public class EntityDinosaur extends EntityAICreature implements IEntityAdditionalSpawnData, IAnimatedEntity
 {
-    public AIAnimation currentAnim = null;
     protected Dinosaur dinosaur;
     protected int randTexture;
 
-//    private boolean isCarcass;
     protected int dinosaurAge;
+
+//    private boolean isCarcass;
+
     private int quality;
+
     private int animTick;
     private int animID;
+
     private GeneticsContainer genetics;
+
+    public AIAnimation currentAnim = null;
+
     private boolean isMale;
+
+    public void setNavigator(PathNavigate pn)
+    {
+        this.navigator = pn;
+    }
 
     public EntityDinosaur(World world)
     {
@@ -51,11 +62,6 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
         updateCreatureData();
         adjustHitbox();
-    }
-
-    public void setNavigator(PathNavigate pn)
-    {
-        this.navigator = pn;
     }
 
     public void entityInit()
@@ -113,14 +119,14 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         return (float) transitionFromAge(0.3F, 1.0F);
     }
 
-    public GeneticsContainer getGenetics()
-    {
-        return genetics;
-    }
-
     public void setGenetics(String genetics)
     {
         this.genetics = new GeneticsContainer(genetics);
+    }
+
+    public GeneticsContainer getGenetics()
+    {
+        return genetics;
     }
 
     public void onLivingUpdate()
@@ -336,27 +342,27 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     }
 
     @Override
-    public int getAnimID()
-    {
-        return animID;
-    }
-
-    @Override
     public void setAnimID(int id)
     {
         this.animID = id;
     }
 
     @Override
-    public int getAnimTick()
-    {
-        return animTick;
-    }
-
-    @Override
     public void setAnimTick(int tick)
     {
         this.animTick = tick;
+    }
+
+    @Override
+    public int getAnimID()
+    {
+        return animID;
+    }
+
+    @Override
+    public int getAnimTick()
+    {
+        return animTick;
     }
 
     protected String randomSound(String... sounds)

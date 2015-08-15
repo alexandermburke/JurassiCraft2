@@ -17,7 +17,7 @@ public class AnimationTylosaurus implements IModelAnimator
     public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity e)
     {
         ModelDinosaur model = (ModelDinosaur) modelJson;
-        EntityTylosaurus entity = (EntityTylosaurus) e;
+		EntityTylosaurus entity = (EntityTylosaurus) e;
         Animator animator = model.animator;
 
         MowzieModelRenderer head = model.getCube("Main head");
@@ -43,7 +43,7 @@ public class AnimationTylosaurus implements IModelAnimator
 //        f = entity.ticksExisted;
 //        f1 = 0.4F;
 
-        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[]{head, neck, body1, body2, body3, tail1, tail2, tail3, tail4};
+        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[] { head, neck, body1, body2, body3, tail1, tail2, tail3, tail4 };
 
         model.chainSwing(bodyParts, 1F * scaleFactor, 0.2F, -3, f, f1);
         head.rotationPointX -= 6 * f1 * Math.sin(f * scaleFactor);

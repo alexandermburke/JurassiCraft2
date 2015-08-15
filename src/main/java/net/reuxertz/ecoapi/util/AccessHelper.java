@@ -5,8 +5,7 @@ import java.lang.reflect.Field;
 public class AccessHelper
 {
     public static Object getStaticValue(final String className, final String fieldName) throws SecurityException, NoSuchFieldException, ClassNotFoundException,
-            IllegalArgumentException, IllegalAccessException
-    {
+            IllegalArgumentException, IllegalAccessException {
         // Get the private field
         final Field field = Class.forName(className).getDeclaredField(fieldName);
         // Allow modification on the field

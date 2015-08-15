@@ -23,7 +23,7 @@ public class ItemFossilBlock extends ItemBlock
     {
         Dinosaur dinosaur = ((BlockFossil) block).getDinosaur(stack.getMetadata());
 
-        if (dinosaur == null)
+        if(dinosaur == null)
         {
             dinosaur = JCEntityRegistry.getDinosaurById(0);
         }

@@ -195,7 +195,8 @@ public class BlockJCLeaves extends BlockLeaves
         {
             player.triggerAchievement(StatList.mineBlockStatArray[Block.getIdFromBlock(this)]);
             spawnAsEntity(worldIn, pos, new ItemStack(Item.getItemFromBlock(this), 1, 0));
-        } else
+        }
+        else
         {
             super.harvestBlock(worldIn, player, pos, state, te);
         }

@@ -66,17 +66,20 @@ public class ItemBluePrint extends Item
         if (side == EnumFacing.DOWN)
         {
             return false;
-        } else if (side == EnumFacing.UP)
+        }
+        else if (side == EnumFacing.UP)
         {
             return false;
-        } else
+        }
+        else
         {
             BlockPos blockpos1 = pos.offset(side);
 
             if (!playerIn.canPlayerEdit(blockpos1, side, stack))
             {
                 return false;
-            } else
+            }
+            else
             {
                 int dinosaur = getDinosaur(stack);
 

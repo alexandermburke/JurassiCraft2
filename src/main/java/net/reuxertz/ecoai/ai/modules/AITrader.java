@@ -23,11 +23,6 @@ public class AITrader extends AIModule
 {
     protected int collectDistXZ = 6, collectDistY = 4, blockSearchPasses = 30;
 
-    public AITrader(IDemand demand, AICore entity, AINavigate navigate, Target t)
-    {
-        super(demand, entity, navigate, t);
-    }
-
     public boolean evaluateTarget(Target t)
     {
         if (!t.enableEvaluateTarget)
@@ -45,7 +40,6 @@ public class AITrader extends AIModule
         return t.entity != null && !t.entity.isDead && t.entityHeldItem != null && BaseItem.itemsEqual(((EntityPlayer) t.entity).getHeldItem(), t.entityHeldItem);
 
     }
-
     public Target nextNavigatePosition()
     {
         Target t = null;
@@ -78,7 +72,7 @@ public class AITrader extends AIModule
                 continue;
 
             if (this.demand.isItemDemanded(s) != null)
-                t = new Target(this.agentAI.entity().worldObj, p);
+                t =  new Target(this.agentAI.entity().worldObj, p);
         }
 
         if (t != null)
@@ -86,7 +80,6 @@ public class AITrader extends AIModule
 
         return null;
     }
-
     public boolean doWorkContinue()
     {
         if (this.getAgent().worldObj.isRemote)
@@ -105,7 +98,7 @@ public class AITrader extends AIModule
 
         if (this.workTarget.entity instanceof EntityItem)
         {
-            EntityItem entityItem = (EntityItem) this.workTarget.entity;
+            EntityItem entityItem = (EntityItem)this.workTarget.entity;
             ItemStack r = this.agentAI.addToInventory(entityItem.getEntityItem());
 
             if (r == null)
@@ -120,5 +113,10 @@ public class AITrader extends AIModule
         }
 
         return false;
+    }
+
+    public AITrader(IDemand demand, AICore entity, AINavigate navigate, Target t)
+    {
+        super(demand, entity, navigate, t);
     }
 }

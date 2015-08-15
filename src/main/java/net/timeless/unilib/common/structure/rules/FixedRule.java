@@ -5,25 +5,21 @@ import net.timeless.unilib.common.structure.BlockCoords;
 
 import java.util.Random;
 
-public class FixedRule extends RepeatRule
-{
+public class FixedRule extends RepeatRule {
     protected int times;
     protected int countdown;
 
-    public FixedRule(int times)
-    {
+    public FixedRule(int times) {
         super();
         this.times = times;
         this.countdown = times;
     }
 
-    public boolean continueRepeating(World world, Random rand, BlockCoords position)
-    {
+    public boolean continueRepeating(World world, Random rand, BlockCoords position) {
         return countdown > 0;
     }
 
-    public void repeat(World world, Random rand, BlockCoords position)
-    {
+    public void repeat(World world, Random rand, BlockCoords position) {
         countdown--;
         position.x += getSpacingX();
         position.y += getSpacingY();
@@ -31,8 +27,7 @@ public class FixedRule extends RepeatRule
     }
 
     @Override
-    public void reset(World world, Random random, BlockCoords pos)
-    {
+    public void reset(World world, Random random, BlockCoords pos) {
         countdown = times;
     }
 

@@ -68,11 +68,11 @@ public class AnimationCarnotaurus implements IModelAnimator
         MowzieModelRenderer lowerJaw = model.getCube("Lower Jaw");
         MowzieModelRenderer upperJaw = model.getCube("Upper Jaw");
 
-        MowzieModelRenderer[] body = new MowzieModelRenderer[]{head, neck4, neck3, neck2, neck1, shoulders, waist, hips};
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
+        MowzieModelRenderer[] body = new MowzieModelRenderer[] { head, neck4, neck3, neck2, neck1, shoulders, waist, hips };
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
 
-        MowzieModelRenderer[] armRight = new MowzieModelRenderer[]{handRight, lowerArmRight, upperArmRight};
-        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[]{handLeft, lowerArmLeft, upperArmLeft};
+        MowzieModelRenderer[] armRight = new MowzieModelRenderer[] { handRight, lowerArmRight, upperArmRight };
+        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[] { handLeft, lowerArmLeft, upperArmLeft };
 
         model.bob(hips, globalSpeed * 1.0F, globalHeight * 1.0F, false, f, f1);
 

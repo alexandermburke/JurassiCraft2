@@ -35,16 +35,19 @@ public class WorldGenGinkgo extends WorldGenAbstractTree
 
         EnumFacing eFacing;
 
-        if (facing == 0)
+        if(facing == 0)
         {
             eFacing = EnumFacing.NORTH;
-        } else if (facing == 1)
+        }
+        else if(facing == 1)
         {
             eFacing = EnumFacing.EAST;
-        } else if (facing == 2)
+        }
+        else if(facing == 2)
         {
             eFacing = EnumFacing.SOUTH;
-        } else
+        }
+        else
         {
             eFacing = EnumFacing.WEST;
         }

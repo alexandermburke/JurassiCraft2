@@ -11,13 +11,6 @@ public class BaseNBTBoolRecipe extends BaseNBTRecipe
 {
     protected List<Boolean> booleans = new ArrayList<Boolean>();
 
-    protected BaseNBTBoolRecipe(IRecipe recipe, List<Boolean> bools)
-    {
-        super(recipe);
-
-        this.booleans = bools;
-    }
-
     public static BaseNBTBoolRecipe ShapelessBoolRecipe(ItemStack output, Object... inputList)
     {
         List<Object> objs = new ArrayList<Object>();
@@ -35,5 +28,12 @@ public class BaseNBTBoolRecipe extends BaseNBTRecipe
 
         return rrec;
 
+    }
+
+    protected BaseNBTBoolRecipe(IRecipe recipe, List<Boolean> bools)
+    {
+        super(recipe);
+
+        this.booleans = bools;
     }
 }

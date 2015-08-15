@@ -24,19 +24,10 @@ import java.util.List;
 
 public class AIQuarry extends AIFarming
 {
-    public static List<Block> ignoreBlocks = Arrays.asList(new Block[]{Blocks.air,
+    public static List<Block> ignoreBlocks = Arrays.asList(new Block[] { Blocks.air,
             Blocks.deadbush, Blocks.double_plant, Blocks.tallgrass, Blocks.red_flower, Blocks.yellow_flower});
 
     protected List<BlockPos> workPos = new ArrayList<>();
-
-    public AIQuarry(IDemand demand, AICore entity, AINavigate navigate, Target t)
-    {
-        super(demand, entity, navigate, t);
-
-        this.collectDistY = 5;
-        this.collectDistXZ = 5;
-        this.blockSearchPasses = 10;
-    }
 
     public void nextWorkPos(BlockPos curPos, List<BlockPos> positions)
     {
@@ -72,13 +63,12 @@ public class AIQuarry extends AIFarming
                             }
                         }
 
-                        if (add)
+                        if  (add)
                             positions.add(b);
                     }
 
                 }
     }
-
     public boolean isPositionValid(World w, BlockPos curPos)
     {
         IBlockState curBlock = w.getBlockState(curPos);
@@ -97,6 +87,15 @@ public class AIQuarry extends AIFarming
 
         return count >= 3;
 
+    }
+
+    public AIQuarry(IDemand demand, AICore entity, AINavigate navigate, Target t)
+    {
+        super(demand, entity, navigate, t);
+
+        this.collectDistY = 5;
+        this.collectDistXZ = 5;
+        this.blockSearchPasses = 10;
     }
 
     public Target nextNavigatePosition()
@@ -134,7 +133,7 @@ public class AIQuarry extends AIFarming
                 continue;
 
             if (this.demand.isItemDemanded(s) != null)
-                t = new Target(this.agentAI.entity().worldObj, p);
+                t =  new Target(this.agentAI.entity().worldObj, p);
 
             //return t;
         }
@@ -144,7 +143,6 @@ public class AIQuarry extends AIFarming
 
         return null;
     }
-
     public boolean doWorkContinue()
     {
         if (this.getAgent().worldObj.isRemote)

@@ -6,7 +6,7 @@ import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 
 /**
  * @author RafaMv0
- *         TAKEN FROM LLIBRARY
+ * TAKEN FROM LLIBRARY
  */
 public class ChainBuffer
 {
@@ -48,9 +48,11 @@ public class ChainBuffer
                     yawVariation = 0f;
                     yawTimer = 0;
                 }
-            } else
+            }
+            else
                 yawTimer++;
-        } else if (yawVariation < -0.7f * angleDecrement)
+        }
+        else if (yawVariation < -0.7f * angleDecrement)
         {
             if (yawTimer > bufferTime)
             {
@@ -60,7 +62,8 @@ public class ChainBuffer
                     yawVariation = 0f;
                     yawTimer = 0;
                 }
-            } else
+            }
+            else
                 yawTimer++;
         }
 
@@ -83,9 +86,11 @@ public class ChainBuffer
                     pitchVariation = 0f;
                     pitchTimer = 0;
                 }
-            } else
+            }
+            else
                 pitchTimer++;
-        } else if (pitchVariation < -0.7f * angleDecrement)
+        }
+        else if (pitchVariation < -0.7f * angleDecrement)
         {
             if (pitchTimer > bufferTime)
             {
@@ -95,7 +100,8 @@ public class ChainBuffer
                     pitchVariation = 0f;
                     pitchTimer = 0;
                 }
-            } else
+            }
+            else
                 pitchTimer++;
         }
 
@@ -118,9 +124,11 @@ public class ChainBuffer
                     yawVariation = 0f;
                     yawTimer = 0;
                 }
-            } else
+            }
+            else
                 yawTimer++;
-        } else if (yawVariation < -0.7f * angleDecrement)
+        }
+        else if (yawVariation < -0.7f * angleDecrement)
         {
             if (yawTimer > bufferTime)
             {
@@ -130,7 +138,8 @@ public class ChainBuffer
                     yawVariation = 0f;
                     yawTimer = 0;
                 }
-            } else
+            }
+            else
                 yawTimer++;
         }
 
@@ -153,9 +162,11 @@ public class ChainBuffer
                     pitchVariation = 0f;
                     pitchTimer = 0;
                 }
-            } else
+            }
+            else
                 pitchTimer++;
-        } else if (pitchVariation < -0.7f * angleDecrement)
+        }
+        else if (pitchVariation < -0.7f * angleDecrement)
         {
             if (pitchTimer > bufferTime)
             {
@@ -165,7 +176,8 @@ public class ChainBuffer
                     pitchVariation = 0f;
                     pitchTimer = 0;
                 }
-            } else
+            }
+            else
                 pitchTimer++;
         }
 

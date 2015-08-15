@@ -9,26 +9,19 @@ public class EntityAIJCWatchClosest extends EntityAIBase
 {
     protected EntityLiving theWatcher;
 
-    /**
-     * The closest entity which is being watched by this one.
-     */
+    /** The closest entity which is being watched by this one. */
     protected Entity closestEntity;
 
-    /**
-     * This is the Maximum distance that the AI will look for the Entity
-     */
+    /** This is the Maximum distance that the AI will look for the Entity */
     protected float maxDistanceForPlayer;
-    protected Class watchedClass;
     private int lookTime;
     private float chance;
-    /**
-     * How fast to turn on the Y axis (yaw)
-     */
+    protected Class watchedClass;
+
+    /** How fast to turn on the Y axis (yaw) */
     private float turnSpeedYaw;
 
-    /**
-     * How fast to turn on the X axis (pitch)
-     */
+    /** How fast to turn on the X axis (pitch) */
     private float turnSpeedPitch;
 
     public EntityAIJCWatchClosest(EntityLiving entity, Class watch, float maxDistance, float turnSpeedYaw, float turnSpeedPitch)
@@ -65,7 +58,8 @@ public class EntityAIJCWatchClosest extends EntityAIBase
         if (this.theWatcher.getRNG().nextFloat() >= this.chance)
         {
             return false;
-        } else
+        }
+        else
         {
             if (this.theWatcher.getAttackTarget() != null)
             {
@@ -75,7 +69,8 @@ public class EntityAIJCWatchClosest extends EntityAIBase
             if (this.watchedClass == EntityPlayer.class)
             {
                 this.closestEntity = this.theWatcher.worldObj.getClosestPlayerToEntity(this.theWatcher, (double) this.maxDistanceForPlayer);
-            } else
+            }
+            else
             {
                 this.closestEntity = this.theWatcher.worldObj.findNearestEntityWithinAABB(this.watchedClass, this.theWatcher.getEntityBoundingBox().expand((double) this.maxDistanceForPlayer, 3.0D, (double) this.maxDistanceForPlayer), this.theWatcher);
             }
