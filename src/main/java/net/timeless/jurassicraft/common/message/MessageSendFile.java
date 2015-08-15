@@ -39,7 +39,7 @@ public class MessageSendFile implements IMessage
     @Override
     public void toBytes(ByteBuf buffer)
     {
-        if (file == null)
+        if(file == null)
         {
             ByteBufUtils.writeUTF8String(buffer, "");
 
@@ -59,7 +59,7 @@ public class MessageSendFile implements IMessage
 
             for (JCFile child : children)
             {
-                if (child != null)
+                if(child != null)
                 {
                     ByteBufUtils.writeUTF8String(buffer, child.getName());
                 }
@@ -86,13 +86,13 @@ public class MessageSendFile implements IMessage
 
             for (JCFile child : children)
             {
-                if (child != null)
+                if(child != null)
                 {
                     ByteBufUtils.writeUTF8String(buffer, child.getName());
                 }
             }
 
-            if (file.isFile() && file.getData() != null)
+            if(file.isFile() && file.getData() != null)
             {
                 ByteBufUtils.writeTag(buffer, file.getData());
             }
@@ -104,7 +104,7 @@ public class MessageSendFile implements IMessage
     {
         path = ByteBufUtils.readUTF8String(buffer);
 
-        if (path.length() > 0)
+        if(path.length() > 0)
         {
             int childCount = buffer.readInt();
             isFile = buffer.readBoolean();
@@ -116,7 +116,7 @@ public class MessageSendFile implements IMessage
                 children.add(childName);
             }
 
-            if (isFile)
+            if(isFile)
             {
                 data = ByteBufUtils.readTag(buffer);
             }
@@ -144,7 +144,7 @@ public class MessageSendFile implements IMessage
             {
                 JCFile file = JCPlayerData.getPlayerData(null).getFileFromPath(packet.path);
 
-                if (packet.isFile)
+                if(packet.isFile)
                 {
                     file.setData(file.getData());
                 }
@@ -162,7 +162,7 @@ public class MessageSendFile implements IMessage
                 {
                     JCFile file = JCPlayerData.getPlayerData(player).getFileFromPath(packet.path);
 
-                    if (packet.isFile)
+                    if(packet.isFile)
                     {
                         file.setData(file.getData());
                     }

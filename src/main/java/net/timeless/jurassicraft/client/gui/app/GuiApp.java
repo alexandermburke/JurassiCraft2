@@ -15,15 +15,18 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public abstract class GuiApp
 {
-    protected static final Minecraft mc = Minecraft.getMinecraft();
-    public List<GuiButton> buttons = Lists.newArrayList();
     protected App app;
-    private boolean requestShutdown;
+
+    protected static final Minecraft mc = Minecraft.getMinecraft();
 
     public GuiApp(App app)
     {
         this.app = app;
     }
+
+    public List<GuiButton> buttons = Lists.newArrayList();
+
+    private boolean requestShutdown;
 
     public void requestShutdown()
     {
@@ -48,14 +51,8 @@ public abstract class GuiApp
         }
     }
 
-    public void keyPressed(int key)
-    {
-    }
-
-    public void mouseClicked(int mouseX, int mouseY, GuiPaleoTab gui)
-    {
-    }
-
+    public void keyPressed(int key){}
+    public void mouseClicked(int mouseX, int mouseY, GuiPaleoTab gui){}
     public abstract void actionPerformed(GuiButton button);
 
     public abstract void init();

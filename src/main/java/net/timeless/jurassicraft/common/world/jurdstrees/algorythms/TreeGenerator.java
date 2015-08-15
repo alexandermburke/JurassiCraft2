@@ -11,18 +11,16 @@ import net.timeless.jurassicraft.common.world.jurdstrees.algorythms.TreeBlock.Ro
 import java.util.Random;
 
 
-public class TreeGenerator
-{
+public class TreeGenerator {
 
-    int x, y, z;
     private Tree tree;
     private int code;
     private BlockPos pos;
     private World world;
+    int x, y, z;
     private Random random = new Random();
 
-    public TreeGenerator(int code, World world, BlockPos pos)
-    {
+    public TreeGenerator(int code, World world, BlockPos pos) {
 
         this.world = world;
         x = 0;
@@ -34,19 +32,16 @@ public class TreeGenerator
     }
 
 
-    public void placeTree()
-    {
+    public void placeTree() {
 
 
-        if (!world.isRemote)
-        {
+        if (!world.isRemote) {
 
 
             tree = TreeCompendium.getTreeFromCode(code);
 
 
-            if (!tree.hasBeenGenerated())
-            {
+            if (!tree.hasBeenGenerated()) {
 
 
                 tree.generateTree();
@@ -54,23 +49,19 @@ public class TreeGenerator
 
             }
 
-            for (InsPCoord coord : tree.getInsPList())
-            {
+            for (InsPCoord coord : tree.getInsPList()) {
 
-                if (coord.getLevel() <= tree.getMaxAge())
-                {
+                if (coord.getLevel() <= tree.getMaxAge()) {
 
                     Shape skull = TreeCompendium.getRotatedShapeFromCode(coord.getCode(), Rotation.getRotationFromIndex(coord.getRotation()));
                     Shape wood = TreeCompendium.getRotatedShapeFromCode(tree.getWoodList()[random.nextInt(tree.getWoodList().length)],
                             Rotation.getRotationFromIndex(coord.getRotation()));
 
-                    if (coord.getLeaves() == 0)
-                    {
+                    if (coord.getLeaves() == 0) {
 
                         setBlocksFromShape(world, x, y, z, coord, skull, wood);
 
-                        if (coord.getTrunk() == 0 && coord.getRotation() == 0)
-                        {
+                        if (coord.getTrunk() == 0 && coord.getRotation() == 0) {
 
                             skull = TreeCompendium.getRotatedShapeFromCode(coord.getCode(), Rotation.north);
                             setBlocksFromShape(world, x, y, z, coord, skull, wood);
@@ -89,45 +80,36 @@ public class TreeGenerator
         }
     }
 
-    private void buildLeavesFromInsPCoord(World world, int x, int y, int z, InsPCoord coord)
-    {
+    private void buildLeavesFromInsPCoord(World world, int x, int y, int z, InsPCoord coord) {
 
         IBlockState leaves = tree.getLeavesFromCode(tree.getCode()).getDefaultState();
 
 
-        if (coord.getLevel() <= tree.getMaxAge() + 1 && coord.getLeaves() == 1)
-        {
+        if (coord.getLevel() <= tree.getMaxAge() + 1 && coord.getLeaves() == 1) {
 
             int leafCode;
 
-            if (coord.getType() == InsPType.getTypeIndex(InsPType.trunk))
-            {
+            if (coord.getType() == InsPType.getTypeIndex(InsPType.trunk)) {
                 leafCode = tree.getTrunkLeavesList()[random.nextInt(tree.getTrunkLeavesList().length)];
-            }
-            else
-            {
+            } else {
                 leafCode = tree.getLeavesList()[random.nextInt(tree.getLeavesList().length)];
             }
 
             Shape leaf = TreeCompendium.getRotatedShapeFromCode(leafCode, Rotation.getRotationFromIndex(coord.getRotation()));
 
-            for (TreeBlock LeafB : leaf.blocksList)
-            {
+            for (TreeBlock LeafB : leaf.blocksList) {
 
                 int xW;
                 int yW;
                 int zW;
 
-                if (coord.getType() == InsPType.getTypeIndex(InsPType.trunk))
-                {
+                if (coord.getType() == InsPType.getTypeIndex(InsPType.trunk)) {
 
                     xW = x + -LeafB.getY() + coord.getX();
                     yW = y + LeafB.getX() + coord.getY();
                     zW = z + LeafB.getZ() + coord.getZ();
 
-                }
-                else
-                {
+                } else {
 
                     xW = x + LeafB.getX() + coord.getX();
                     yW = y + LeafB.getY() + coord.getY();
@@ -136,8 +118,7 @@ public class TreeGenerator
                 }
 
 
-                if ((world.getBlockState(pos.add(xW, yW, zW)) == Blocks.air.getDefaultState() || world.getBlockState(new BlockPos(xW, yW, zW)).getBlock() == tree.getLeavesFromCode(tree.getCode())))
-                {
+                if ((world.getBlockState(pos.add(xW, yW, zW)) == Blocks.air.getDefaultState() || world.getBlockState(new BlockPos(xW, yW, zW)).getBlock() == tree.getLeavesFromCode(tree.getCode()))) {
 
 
                     world.setBlockState(pos.add(xW, yW, zW), leaves);
@@ -147,14 +128,12 @@ public class TreeGenerator
         }
     }
 
-    private void setBlocksFromShape(World world, int x, int y, int z, InsPCoord coord, Shape skull, Shape wood)
-    {
+    private void setBlocksFromShape(World world, int x, int y, int z, InsPCoord coord, Shape skull, Shape wood) {
 
 
         IBlockState logs = tree.getBlocksFromCode(tree.getCode()).getDefaultState();
 
-        for (TreeBlock TB : skull.blocksList)
-        {
+        for (TreeBlock TB : skull.blocksList) {
 
             int xC = x + TB.getX() + coord.getX();
             int yC = y + TB.getY() + coord.getY();
@@ -163,18 +142,15 @@ public class TreeGenerator
             // this sets the skull blocks from the loaded shape.
 
             if (world.getBlockState(pos.add(xC, yC, zC)) == Blocks.air.getDefaultState() || world.getBlockState(pos.add(xC, yC, zC)) == tree.getBlocksFromCode(tree.getCode()).getDefaultState()
-                    || world.getBlockState(pos.add(xC, yC, zC)) == tree.getLeavesFromCode(tree.getCode()).getDefaultState() || world.getBlockState(pos.add(xC, yC, zC)).getBlock() == JCBlockRegistry.saplings[tree.getCode()])
-            {
+                    || world.getBlockState(pos.add(xC, yC, zC)) == tree.getLeavesFromCode(tree.getCode()).getDefaultState() || world.getBlockState(pos.add(xC, yC, zC)).getBlock() == JCBlockRegistry.saplings[tree.getCode()]) {
 
                 if (world.getBlockState(pos.add(xC, yC, zC)) == Blocks.air.getDefaultState() || world.getBlockState(pos.add(xC, yC, zC)) == tree.getLeavesFromCode(tree.getCode()).getDefaultState()
-                        || world.getBlockState(pos.add(xC, yC, zC)).getBlock() == JCBlockRegistry.saplings[tree.getCode()])
-                {
+                        || world.getBlockState(pos.add(xC, yC, zC)).getBlock() == JCBlockRegistry.saplings[tree.getCode()]) {
                     world.setBlockState(pos.add(xC, yC, zC), logs); // skull block
 
                 }
 
-                for (TreeBlock WoodB : wood.blocksList)
-                {
+                for (TreeBlock WoodB : wood.blocksList) {
 
                     int xW = x + TB.getX() + WoodB.getX() + coord.getX();
                     int yW = y + TB.getY() + WoodB.getY() + coord.getY();
@@ -182,17 +158,14 @@ public class TreeGenerator
 
                     int ageLevel = tree.getMaxAge() - (yW - y) / tree.getPenalty();
 
-                    if (WoodB.level < ageLevel && (world.getBlockState(pos.add(xW, yW, zW)) == Blocks.air.getDefaultState() || world.getBlockState(pos.add(xW, yW, zW)) == tree.getLeavesFromCode(tree.getCode()).getDefaultState()))
-                    {
+                    if (WoodB.level < ageLevel && (world.getBlockState(pos.add(xW, yW, zW)) == Blocks.air.getDefaultState() || world.getBlockState(pos.add(xW, yW, zW)) == tree.getLeavesFromCode(tree.getCode()).getDefaultState())) {
 
                         world.setBlockState(pos.add(xW, yW, zW), logs);
 
                     }
                 }
 
-            }
-            else
-            {
+            } else {
 
                 if (world.getBlockState(pos.add(xC, yC, zC)) != tree.getBlocksFromCode(tree.getCode()).getDefaultState())
                     break;

@@ -46,16 +46,16 @@ public class AnimationAICall extends AIAnimation
     {
         List<Entity> entities = EntityHelper.getEntitiesWithinDistance(animatingEntity, 50, 2);
 
-        for (Entity entity : entities)
-        {
-            if (entity instanceof EntityVelociraptor)
+            for (Entity entity : entities)
             {
-                if (random.nextDouble() < 0.001)
-                    return true;
-                else
-                    return false;
+                if (entity instanceof EntityVelociraptor)
+                {
+                    if(random.nextDouble() < 0.001)
+                        return true;
+                    else
+                        return false;
+                }
             }
-        }
         return false;
     }
 

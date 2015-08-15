@@ -28,7 +28,7 @@ public class JCFile
 
         this.playerData = JCPlayerData.getPlayerData(player);
 
-        if (parent != null)
+        if(parent != null)
         {
             parent.addChild(this);
         }
@@ -40,42 +40,14 @@ public class JCFile
         this.dir = dir;
     }
 
-    public static JCFile readFromNBT(NBTTagCompound nbt, EntityPlayer player, JCFile parent)
-    {
-        JCFile file = new JCFile(nbt.getString("Name"), parent, player, !nbt.hasKey("Data"));
-
-        if (file.dir)
-        {
-            NBTTagList childrenList = nbt.getTagList("Children", 10);
-
-            for (int i = 0; i < childrenList.tagCount(); i++)
-            {
-                NBTTagCompound childNBT = childrenList.getCompoundTagAt(i);
-
-                file.children.add(readFromNBT(childNBT, player, file));
-            }
-        }
-        else
-        {
-            file.setData(nbt.getCompoundTag("Data"));
-        }
-
-        return parent;
-    }
-
     public NBTTagCompound getData()
     {
         return data;
     }
 
-    public void setData(NBTTagCompound data)
-    {
-        this.data = data;
-    }
-
     public void addChild(JCFile file)
     {
-        if (this.children.contains(file))
+        if(this.children.contains(file))
         {
             this.children.remove(file);
         }
@@ -100,7 +72,7 @@ public class JCFile
 
     public void delete()
     {
-        if (parent != null)
+        if(parent != null)
         {
             parent.removeChild(this);
         }
@@ -118,6 +90,11 @@ public class JCFile
         return !isDirectory();
     }
 
+    public void setData(NBTTagCompound data)
+    {
+        this.data = data;
+    }
+
     public String getPath()
     {
         return (parent != null ? parent.getPath() + "/" : "") + name;
@@ -132,13 +109,13 @@ public class JCFile
     {
         nbt.setString("Name", name);
 
-        if (isDirectory())
+        if(isDirectory())
         {
             NBTTagList childrenList = new NBTTagList();
 
             for (JCFile child : children)
             {
-                if (!child.equals(this))
+                if(!child.equals(this))
                 {
                     NBTTagCompound childNBT = new NBTTagCompound();
                     child.writeToNBT(childNBT);
@@ -152,6 +129,29 @@ public class JCFile
         {
             nbt.setTag("Data", this.data);
         }
+    }
+
+    public static JCFile readFromNBT(NBTTagCompound nbt, EntityPlayer player, JCFile parent)
+    {
+        JCFile file = new JCFile(nbt.getString("Name"), parent, player, !nbt.hasKey("Data"));
+
+        if(file.dir)
+        {
+            NBTTagList childrenList = nbt.getTagList("Children", 10);
+
+            for (int i = 0; i < childrenList.tagCount(); i++)
+            {
+                NBTTagCompound childNBT = childrenList.getCompoundTagAt(i);
+
+                file.children.add(readFromNBT(childNBT, player, file));
+            }
+        }
+        else
+        {
+            file.setData(nbt.getCompoundTag("Data"));
+        }
+
+        return parent;
     }
 
     public String toString()

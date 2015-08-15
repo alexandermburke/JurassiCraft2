@@ -17,31 +17,6 @@ public class Target
     public int workState = 0;
     public boolean enableEvaluateTarget = true;
 
-    protected Target(World w)
-    {
-        this.world = w;
-    }
-
-    public Target(World w, BlockPos pos)
-    {
-        this(w);
-        this.pos = pos;
-        this.posBlockState = w.getBlockState(pos);
-        return;
-    }
-
-    public Target(World w, Entity entity)
-    {
-        this(w, entity, null);
-    }
-
-    public Target(World w, Entity entity, ItemStack heldItem)
-    {
-        this(w);
-        this.entity = entity;
-        this.entityHeldItem = heldItem;
-    }
-
     public BlockPos getRealTimePos()
     {
         if (this.pos != null)
@@ -50,6 +25,28 @@ public class Target
             return this.entity.getPosition();
 
         return null;
+    }
+
+    protected Target(World w)
+    {
+        this.world = w;
+    }
+    public Target(World w, BlockPos pos)
+    {
+        this(w);
+        this.pos = pos;
+        this.posBlockState = w.getBlockState(pos);
+        return;
+    }
+    public Target(World w, Entity entity)
+    {
+        this(w, entity, null);
+    }
+    public Target(World w, Entity entity, ItemStack heldItem)
+    {
+        this(w);
+        this.entity = entity;
+        this.entityHeldItem = heldItem;
     }
 
     public void activateNavigate(AINavigate navigate)

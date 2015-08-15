@@ -87,7 +87,7 @@ public class BlockJCLog extends BlockLog
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] { LOG_AXIS });
+        return new BlockState(this, new IProperty[]{LOG_AXIS});
     }
 
     protected ItemStack createStackedBlock(IBlockState state)

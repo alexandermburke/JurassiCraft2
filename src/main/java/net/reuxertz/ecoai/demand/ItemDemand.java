@@ -18,7 +18,6 @@ public class ItemDemand
         ns.stackSize = stackSize;
         this.stack = ns;
     }
-
     public ItemDemand(ItemStack stack)
     {
         this(stack, 0);
@@ -30,7 +29,7 @@ public class ItemDemand
             return;
 
         boolean addDemand = true;
-        for (IDemand d : this.demands)
+        for (IDemand d: this.demands)
             if (d.getClass().isInstance(demand))
                 addDemand = false;
 

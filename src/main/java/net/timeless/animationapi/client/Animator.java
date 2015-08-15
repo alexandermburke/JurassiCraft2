@@ -13,12 +13,7 @@ import java.util.HashMap;
 @SideOnly(Side.CLIENT)
 public class Animator
 {
-    public static final float PI = (float) Math.PI;
     private MowzieModelBase modelBase;
-    private int tempTick, prevTempTick;
-    private boolean correctAnim;
-    private IAnimatedEntity animEntity;
-    private HashMap<MowzieModelRenderer, Transform> transformMap, prevTransformMap;
 
     public Animator(MowzieModelBase model)
     {
@@ -153,4 +148,11 @@ public class Animator
             transformMap.clear();
         }
     }
+
+    private int tempTick, prevTempTick;
+    private boolean correctAnim;
+    private IAnimatedEntity animEntity;
+    private HashMap<MowzieModelRenderer, Transform> transformMap, prevTransformMap;
+
+    public static final float PI = (float) Math.PI;
 }

@@ -19,7 +19,7 @@ public class SlotStorage extends Slot
     @Override
     public boolean isItemValid(ItemStack stack)
     {
-        if (stored)
+        if(stored)
         {
             return stack.getItem() == JCItemRegistry.storage_disc && (stack.getTagCompound() != null && stack.getTagCompound().hasKey("Genetics"));
         }

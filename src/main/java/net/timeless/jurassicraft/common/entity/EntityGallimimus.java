@@ -8,11 +8,12 @@ import net.timeless.unilib.common.animation.ChainBuffer;
 
 public class EntityGallimimus extends EntityDinosaurDefensiveHerbivore implements IEntityAICreature, IHerbivore
 {
+    public ChainBuffer tailBuffer = new ChainBuffer(6);
+
     private static final String[] hurtSounds = new String[] { "gallimimus_hurt_1", "gallimimus_hurt_2" };
     private static final String[] livingSounds = new String[] { "gallimimus_living_1", "gallimimus_living_2" };
     private static final String[] deathSounds = new String[] { "gallimimus_death_1", "gallimimus_death_2" };
-    public ChainBuffer tailBuffer = new ChainBuffer(6);
-
+    
     public EntityGallimimus(World world)
     {
         super(world);

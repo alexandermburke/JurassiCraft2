@@ -20,10 +20,6 @@ import java.util.regex.Pattern;
 public class JCPlayerData implements IExtendedEntityProperties
 {
     public static final String identifier = "JurassiCraftPlayerData";
-    private Map<String, NBTTagCompound> appdata = new HashMap<>();
-    private List<App> openApps = new ArrayList<>();
-    private List<JCFile> rootFiles = new ArrayList<>();
-    private EntityPlayer player;
 
     public static JCPlayerData getPlayerData(EntityPlayer player)
     {
@@ -35,14 +31,16 @@ public class JCPlayerData implements IExtendedEntityProperties
         return JCPlayerDataClient.getPlayerData();
     }
 
-    private static void setPlayerDataClient(NBTTagCompound nbt)
-    {
-        JCPlayerDataClient.updatePlayerData(nbt);
-    }
+    private Map<String, NBTTagCompound> appdata = new HashMap<>();
+    private List<App> openApps = new ArrayList<>();
+
+    private List<JCFile> rootFiles = new ArrayList<>();
+
+    private EntityPlayer player;
 
     public static void setPlayerData(EntityPlayer player, NBTTagCompound nbt)
     {
-        if (FMLCommonHandler.instance().getEffectiveSide().isClient())
+        if(FMLCommonHandler.instance().getEffectiveSide().isClient())
         {
             setPlayerDataClient(nbt);
         }
@@ -50,6 +48,11 @@ public class JCPlayerData implements IExtendedEntityProperties
         {
             getPlayerData(player).loadNBTData(nbt);
         }
+    }
+
+    private static void setPlayerDataClient(NBTTagCompound nbt)
+    {
+        JCPlayerDataClient.updatePlayerData(nbt);
     }
 
     @Override
@@ -61,7 +64,7 @@ public class JCPlayerData implements IExtendedEntityProperties
 
         for (JCFile file : rootFiles)
         {
-            if (file != null)
+            if(file != null)
             {
                 NBTTagCompound fileNBT = new NBTTagCompound();
                 file.writeToNBT(fileNBT);
@@ -118,7 +121,7 @@ public class JCPlayerData implements IExtendedEntityProperties
 
     public void openApp(App app)
     {
-        if (appdata.containsKey(app.getName()))
+        if(appdata.containsKey(app.getName()))
             app.readAppFromNBT(appdata.get(app.getName()));
 
         app.init();
@@ -151,7 +154,7 @@ public class JCPlayerData implements IExtendedEntityProperties
     @Override
     public void init(Entity entity, World world)
     {
-        if (entity instanceof EntityPlayer)
+        if(entity instanceof EntityPlayer)
         {
             player = (EntityPlayer) entity;
         }
@@ -159,14 +162,14 @@ public class JCPlayerData implements IExtendedEntityProperties
 
     public JCFile getFileFromPath(String path)
     {
-        if (path.length() == 0)
+        if(path.length() == 0)
         {
             return null;
         }
 
         String[] pathSplit = path.split(Pattern.quote("/"));
 
-        if (pathSplit.length == 0)
+        if(pathSplit.length == 0)
         {
             pathSplit = new String[] { path };
         }
@@ -176,7 +179,7 @@ public class JCPlayerData implements IExtendedEntityProperties
 
     public List<JCFile> getFilesAtPath(String path)
     {
-        if (path == null || path.length() == 0)
+        if(path == null || path.length() == 0)
         {
             return rootFiles;
         }
@@ -184,7 +187,7 @@ public class JCPlayerData implements IExtendedEntityProperties
         {
             JCFile fileFromPath = getFileFromPath(path);
 
-            if (fileFromPath == null)
+            if(fileFromPath == null)
             {
                 return null;
             }
@@ -197,14 +200,14 @@ public class JCPlayerData implements IExtendedEntityProperties
 
     public JCFile traversePath(String[] path, int i, JCFile lastFile)
     {
-        if (i == path.length)
+        if(i == path.length)
         {
             return lastFile;
         }
 
         for (JCFile child : lastFile.getChildren())
         {
-            if (child.getName().equals(path[i]))
+            if(child.getName().equals(path[i]))
             {
                 return traversePath(path, i + 1, child);
             }
@@ -219,9 +222,9 @@ public class JCPlayerData implements IExtendedEntityProperties
 
         for (JCFile rFile : rootFiles)
         {
-            if (rFile != null)
+            if(rFile != null)
             {
-                if (rFile.getName().equals(file))
+                if(rFile.getName().equals(file))
                 {
                     jcFile = rFile;
 
@@ -230,7 +233,7 @@ public class JCPlayerData implements IExtendedEntityProperties
             }
         }
 
-        if (jcFile == null)
+        if(jcFile == null)
         {
             jcFile = new JCFile(file, null, player, dir);
             addRootFile(jcFile);
@@ -241,14 +244,14 @@ public class JCPlayerData implements IExtendedEntityProperties
 
     public void addRootFile(JCFile jcFile)
     {
-        if (jcFile.getParent() == null)
+        if(jcFile.getParent() == null)
         {
-            if (rootFiles.contains(jcFile))
+            if(rootFiles.contains(jcFile))
             {
                 rootFiles.remove(jcFile);
             }
 
-            if (jcFile != null)
+            if(jcFile != null)
             {
                 rootFiles.add(jcFile);
             }
@@ -257,7 +260,7 @@ public class JCPlayerData implements IExtendedEntityProperties
 
     public void remove(JCFile file)
     {
-        if (file.getParent() == null && rootFiles.contains(file))
+        if(file.getParent() == null && rootFiles.contains(file))
         {
             rootFiles.remove(file);
         }

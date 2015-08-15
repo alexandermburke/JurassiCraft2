@@ -9,16 +9,16 @@ public abstract class Action
     //Fields
     protected Target target;
 
-    //Constructor
-    public Action(EntityCreature entity, IDemand demand)
-    {
-
-    }
-
     //Modifiers
     public Target getTarget()
     {
         return this.target;
+    }
+
+    //Constructor
+    public Action(EntityCreature entity, IDemand demand)
+    {
+
     }
 
 }

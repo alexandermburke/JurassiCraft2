@@ -6,6 +6,5 @@ import net.timeless.jurassicraft.client.render.renderdef.RenderDinosaurDefinitio
 public interface IDinosaurRenderer
 {
     void setModel(ModelBase model);
-
     RenderDinosaurDefinition getRenderDef();
 }

@@ -6,8 +6,6 @@ import net.minecraft.entity.ai.EntityAIBase;
 public abstract class AIAnimation extends EntityAIBase
 {
 
-    private IAnimatedEntity animatedEntity;
-
     public AIAnimation(IAnimatedEntity entity)
     {
         animatedEntity = entity;
@@ -53,4 +51,6 @@ public abstract class AIAnimation extends EntityAIBase
     {
         AnimationAPI.sendAnimPacket(animatedEntity, 0);
     }
+
+    private IAnimatedEntity animatedEntity;
 }

@@ -54,10 +54,10 @@ public class AnimationVelociraptor implements IModelAnimator
         MowzieModelRenderer Hand_Right = model.getCube("Right hand");
         MowzieModelRenderer Hand_Left = model.getCube("Left hand");
 
-        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[] { Hand_Right, lowerArmRight, upperArmRight };
-        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[] { Hand_Left, lowerArmLeft, upperArmLeft };
-        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
-        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[] { waist, chest, shoulders, neck4, neck3, neck2, neck1, head };
+        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[]{Hand_Right, lowerArmRight, upperArmRight};
+        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[]{Hand_Left, lowerArmLeft, upperArmLeft};
+        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
+        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[]{waist, chest, shoulders, neck4, neck3, neck2, neck1, head};
 
 //        if (velociraptor.isCarcass()) //Death Animation
 //        {

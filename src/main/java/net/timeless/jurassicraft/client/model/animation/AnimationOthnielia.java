@@ -16,7 +16,7 @@ public class AnimationOthnielia implements IModelAnimator
     public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity e)
     {
         ModelDinosaur model = (ModelDinosaur) modelJson;
-        EntityOthnielia entity = (EntityOthnielia) e;
+		EntityOthnielia entity = (EntityOthnielia) e;
         Animator animator = model.animator;
     }
 }

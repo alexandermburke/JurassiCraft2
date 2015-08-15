@@ -29,21 +29,13 @@ public class TileDnaSynthesizer extends TileEntityLockable implements IUpdatePla
     private static final int[] slotsBottom = new int[] { 6, 5, 4, 3 }; //output
     private static final int[] slotsSides = new int[] {};
 
-    /**
-     * The ItemStacks that hold the items currently being used in the dna synthesizer
-     */
+    /** The ItemStacks that hold the items currently being used in the dna synthesizer */
     private ItemStack[] slots = new ItemStack[7];
 
     private int synthesizeTime;
     private int totalSynthesizeTime;
 
     private String customName;
-
-    @SideOnly(Side.CLIENT)
-    public static boolean isSynthesizing(IInventory inventory)
-    {
-        return inventory.getField(0) > 0;
-    }
 
     /**
      * Returns the number of slots in the inventory.
@@ -222,6 +214,12 @@ public class TileDnaSynthesizer extends TileEntityLockable implements IUpdatePla
     public boolean isSynthesizing()
     {
         return this.synthesizeTime > 0;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static boolean isSynthesizing(IInventory inventory)
+    {
+        return inventory.getField(0) > 0;
     }
 
     /**

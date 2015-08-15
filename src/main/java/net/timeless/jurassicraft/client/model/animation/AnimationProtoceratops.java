@@ -17,7 +17,7 @@ public class AnimationProtoceratops implements IModelAnimator
     public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity e)
     {
         ModelDinosaur model = (ModelDinosaur) modelJson;
-        EntityProtoceratops entity = (EntityProtoceratops) e;
+		EntityProtoceratops entity = (EntityProtoceratops) e;
         Animator animator = model.animator;
 
 //        f = entity.ticksExisted;

@@ -70,10 +70,10 @@ public class AnimationTyrannosaurusRex implements IModelAnimator
         MowzieModelRenderer rightCalf2 = model.getCube("Right Calf 2");
         MowzieModelRenderer rightFoot = model.getCube("Foot Right");
 
-        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
-        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[] { head, neck5, neck4, neck3, neck2, neck1, chest, stomach, waist };
-        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[] { handLeft, lowerArmLeft, upperArmLeft };
-        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[] { handRight, lowerArmRight, upperArmRight };
+        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
+        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[]{head, neck5, neck4, neck3, neck2, neck1, chest, stomach, waist};
+        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[]{handLeft, lowerArmLeft, upperArmLeft};
+        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[]{handRight, lowerArmRight, upperArmRight};
 
         model.faceTarget(stomach, 6.0F, rotationYaw, rotationPitch);
         model.faceTarget(chest, 6.0F, rotationYaw, rotationPitch);

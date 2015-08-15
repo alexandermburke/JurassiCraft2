@@ -29,7 +29,7 @@ public class ItemCage extends Item
     /**
      * allows items to add custom lines of information to the mouseover description
      *
-     * @param tooltip  All lines to display in the Item's tooltip. This is a List of Strings.
+     * @param tooltip All lines to display in the Item's tooltip. This is a List of Strings.
      * @param advanced Whether the setting "Advanced tooltips" is enabled
      */
     @SideOnly(Side.CLIENT)
@@ -38,11 +38,11 @@ public class ItemCage extends Item
         int caged = getCaged(stack);
         NBTTagCompound data = getData(stack);
 
-        if (caged != -1)
+        if(caged != -1)
         {
             tooltip.add(EnumChatFormatting.BLUE + StatCollector.translateToLocal("entity." + EntityList.classToStringMapping.get(EntityList.idToClassMapping.get(caged)) + ".name"));
 
-            if (data != null)
+            if(data != null)
             {
                 tooltip.add(EnumChatFormatting.RED + StatCollector.translateToLocal("gender." + (data.getBoolean("IsMale") ? "male" : "female") + ".name"));
             }
@@ -55,19 +55,18 @@ public class ItemCage extends Item
 
     /**
      * This is called when the item is used, before the block is activated.
-     *
-     * @param stack  The Item Stack
+     * @param stack The Item Stack
      * @param player The Player that used the item
-     * @param world  The Current World
-     * @param pos    Target position
-     * @param side   The side of the target hit
+     * @param world The Current World
+     * @param pos Target position
+     * @param side The side of the target hit
      * @return Return true to prevent any further processing.
      */
     public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         pos = pos.offset(side);
 
-        if (player.canPlayerEdit(pos, side, stack) && !world.isRemote)
+        if(player.canPlayerEdit(pos, side, stack) && !world.isRemote)
         {
             EntityCageSmall cage = new EntityCageSmall(world);
             cage.setEntity(getCaged(stack));
@@ -76,7 +75,7 @@ public class ItemCage extends Item
 
             world.spawnEntityInWorld(cage);
 
-            if (!player.capabilities.isCreativeMode)
+            if(!player.capabilities.isCreativeMode)
             {
                 stack.stackSize--;
             }
@@ -89,7 +88,7 @@ public class ItemCage extends Item
 
     private int getCaged(ItemStack stack)
     {
-        if (stack.getTagCompound() != null)
+        if(stack.getTagCompound() != null)
         {
             return stack.getTagCompound().getInteger("CagedID");
         }

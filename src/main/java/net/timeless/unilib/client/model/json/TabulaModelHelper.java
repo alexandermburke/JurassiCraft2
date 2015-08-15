@@ -8,29 +8,23 @@ import java.io.InputStreamReader;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-public class TabulaModelHelper
-{
+public class TabulaModelHelper {
 
     private static Gson gson = new Gson();
 
-    public static JsonTabulaModel parseModel(String path) throws Exception
-    {
+    public static JsonTabulaModel parseModel(String path) throws Exception {
 
-        if (!path.endsWith("\\.tbl"))
-        {
+        if (!path.endsWith("\\.tbl")) {
             path += ".tbl";
         }
 
-        try (ZipInputStream inputStream = new ZipInputStream(Unilib.class.getResourceAsStream(path)))
-        {
+        try (ZipInputStream inputStream = new ZipInputStream(Unilib.class.getResourceAsStream(path))) {
 
             ZipEntry entry;
 
-            while ((entry = inputStream.getNextEntry()) != null)
-            {
+            while ((entry = inputStream.getNextEntry()) != null) {
 
-                if (entry.getName().equals("model.json"))
-                {
+                if (entry.getName().equals("model.json")) {
 
                     JsonTabulaModel parseTabulaModel = parseModel(inputStream);
 
@@ -46,8 +40,7 @@ public class TabulaModelHelper
         return null;
     }
 
-    public static JsonTabulaModel parseModel(InputStream stream)
-    {
+    public static JsonTabulaModel parseModel(InputStream stream) {
         return gson.fromJson(new InputStreamReader(stream), JsonTabulaModel.class);
     }
 }

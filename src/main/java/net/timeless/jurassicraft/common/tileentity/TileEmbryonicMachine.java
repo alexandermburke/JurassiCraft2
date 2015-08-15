@@ -30,21 +30,13 @@ public class TileEmbryonicMachine extends TileEntityLockable implements IUpdateP
     private static final int[] slotsBottom = new int[] { 6, 5, 4, 3 }; //output
     private static final int[] slotsSides = new int[] {};
 
-    /**
-     * The ItemStacks that hold the items currently being used in the embryonic machine
-     */
+    /** The ItemStacks that hold the items currently being used in the embryonic machine */
     private ItemStack[] slots = new ItemStack[7];
 
     private int embryoTime;
     private int totalEmbryoTime;
 
     private String customName;
-
-    @SideOnly(Side.CLIENT)
-    public static boolean isInserting(IInventory inventory)
-    {
-        return inventory.getField(0) > 0;
-    }
 
     /**
      * Returns the number of slots in the inventory.
@@ -223,6 +215,12 @@ public class TileEmbryonicMachine extends TileEntityLockable implements IUpdateP
     public boolean isInserting()
     {
         return this.embryoTime > 0;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static boolean isInserting(IInventory inventory)
+    {
+        return inventory.getField(0) > 0;
     }
 
     /**

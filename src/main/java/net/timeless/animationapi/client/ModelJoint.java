@@ -17,8 +17,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ModelJoint extends ModelRenderer
 {
 
-    private ModelRenderer model;
-
     public ModelJoint(ModelBase base)
     {
         this(base, null);
@@ -90,4 +88,6 @@ public class ModelJoint extends ModelRenderer
     {
         return model;
     }
+
+    private ModelRenderer model;
 }

@@ -11,11 +11,19 @@ import net.reuxertz.ecoai.ai.AINavigate;
 
 public class EntityAICreature extends EntityCreature implements IEntityAICreature
 {
+    public boolean canBreatheUnderwater()
+    {
+        return IEntityAIAquaticCreature.class.isInstance(this);
+    }
+    public void setNavigator(PathNavigate pn)
+    {
+        this.navigator = pn;
+    }
+
     public EntityAICreature(World w)
     {
         this(w, true);
     }
-
     public EntityAICreature(World w, boolean initialize)
     {
         super(w);
@@ -32,7 +40,7 @@ public class EntityAICreature extends EntityCreature implements IEntityAICreatur
         }
     }
 
-    public static void ConstructAIEntity(EntityCreature entity) throws SecurityException,
+    public static void ConstructAIEntity(EntityCreature entity)throws SecurityException,
             NoSuchFieldException, ClassNotFoundException, IllegalArgumentException, IllegalAccessException
     {
         entity.tasks.taskEntries.clear();
@@ -45,7 +53,7 @@ public class EntityAICreature extends EntityCreature implements IEntityAICreatur
             else if (IEntityAISwimmingCreature.class.isInstance(entity))
             {
                 //((PathNavigateGround) entity.getNavigator()).func_179690_a(false);
-                ((IEntityAICreature) entity).setNavigator(new PathNavigateSwimmer(entity, entity.worldObj));
+                ((IEntityAICreature)entity).setNavigator(new PathNavigateSwimmer(entity, entity.worldObj));
             }
             else
                 ((PathNavigateGround) entity.getNavigator()).func_179690_a(true);
@@ -66,16 +74,6 @@ public class EntityAICreature extends EntityCreature implements IEntityAICreatur
         entity.tasks.addTask(3, aiNav);
 
         ai.setEnabled(true);
-    }
-
-    public boolean canBreatheUnderwater()
-    {
-        return IEntityAIAquaticCreature.class.isInstance(this);
-    }
-
-    public void setNavigator(PathNavigate pn)
-    {
-        this.navigator = pn;
     }
 
 }

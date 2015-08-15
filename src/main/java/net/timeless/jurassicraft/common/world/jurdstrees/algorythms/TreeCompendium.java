@@ -6,16 +6,14 @@ import net.timeless.jurassicraft.common.world.jurdstrees.algorythms.TreeBlock.Ro
 
 import java.util.ArrayList;
 
-public class TreeCompendium
-{
+public class TreeCompendium {
 
     public static ArrayList<Tree> TreeList = new ArrayList<Tree>();
 
     public static ArrayList<Shape> ShapeList = new ArrayList<Shape>();
 
 
-    public static void addShapesToCompendium()
-    {
+    public static void addShapesToCompendium() {
 
 
         Shape shape;
@@ -66,8 +64,7 @@ public class TreeCompendium
                     shape.addLog(k, i, j);
 
         for (int i = -1; i <= 1; i++)
-            for (int j = -1; j <= 1; j++)
-            {
+            for (int j = -1; j <= 1; j++) {
                 shape.addLog(i, 2, j);
                 // shape.addLog(i, -2, j);
                 shape.addLog(i, j, 2);
@@ -310,41 +307,37 @@ public class TreeCompendium
 
     }
 
-    public static void registerTrees()
-    {
+    public static void registerTrees() {
 
         Tree tree;
 
         tree = new Tree(2, 7, 3);
-        tree.addFeatureList(new int[] { 1, 1 }, FeatureType.Trunk);
-        tree.addFeatureList(new int[] { 3, 6, 7, 8, 9, 10 }, FeatureType.Branch);
-        tree.addFeatureList(new int[] { 5, 6 }, FeatureType.Fruit);
-        tree.addFeatureList(new int[] { 4, 4 }, FeatureType.leaves);
-        tree.addFeatureList(new int[] { 5, 5 }, FeatureType.TrunkLeaves);
-        tree.addFeatureList(new int[] { 2, 2 }, FeatureType.wood);
+        tree.addFeatureList(new int[]{1, 1}, FeatureType.Trunk);
+        tree.addFeatureList(new int[]{3, 6, 7, 8, 9, 10}, FeatureType.Branch);
+        tree.addFeatureList(new int[]{5, 6}, FeatureType.Fruit);
+        tree.addFeatureList(new int[]{4, 4}, FeatureType.leaves);
+        tree.addFeatureList(new int[]{5, 5}, FeatureType.TrunkLeaves);
+        tree.addFeatureList(new int[]{2, 2}, FeatureType.wood);
 
         TreeList.add(tree);
 
         tree = new Tree(1, 8, 4);
-        tree.addFeatureList(new int[] { 1, 1 }, FeatureType.Trunk);
-        tree.addFeatureList(new int[] { 11, 12, 13, 14, 15, 16, 17, 18 }, FeatureType.Branch);
-        tree.addFeatureList(new int[] { 5, 6 }, FeatureType.Fruit);
-        tree.addFeatureList(new int[] { 19, 19 }, FeatureType.leaves);
-        tree.addFeatureList(new int[] { 5, 5 }, FeatureType.TrunkLeaves);
-        tree.addFeatureList(new int[] { 2, 2 }, FeatureType.wood);
+        tree.addFeatureList(new int[]{1, 1}, FeatureType.Trunk);
+        tree.addFeatureList(new int[]{11, 12, 13, 14, 15, 16, 17, 18}, FeatureType.Branch);
+        tree.addFeatureList(new int[]{5, 6}, FeatureType.Fruit);
+        tree.addFeatureList(new int[]{19, 19}, FeatureType.leaves);
+        tree.addFeatureList(new int[]{5, 5}, FeatureType.TrunkLeaves);
+        tree.addFeatureList(new int[]{2, 2}, FeatureType.wood);
 
         TreeList.add(tree);
 
     }
 
-    public static Shape getShapeFromCode(int code)
-    {
+    public static Shape getShapeFromCode(int code) {
 
-        for (Shape shape : ShapeList)
-        {
+        for (Shape shape : ShapeList) {
 
-            if (shape.getCode() == code)
-            {
+            if (shape.getCode() == code) {
                 return shape;
             }
 
@@ -354,14 +347,11 @@ public class TreeCompendium
 
     }
 
-    public static Tree getTreeFromCode(int code)
-    {
+    public static Tree getTreeFromCode(int code) {
 
-        for (Tree tree : TreeList)
-        {
+        for (Tree tree : TreeList) {
 
-            if (tree.getCode() == code)
-            {
+            if (tree.getCode() == code) {
                 return tree.getBaseCopy();
             }
 
@@ -371,27 +361,21 @@ public class TreeCompendium
 
     }
 
-    public static Shape getRotatedShapeFromCode(int code, Rotation rotation)
-    {
+    public static Shape getRotatedShapeFromCode(int code, Rotation rotation) {
 
         Shape rotatedShape = new Shape(code);
 
-        for (Shape shape : ShapeList)
-        {
+        for (Shape shape : ShapeList) {
 
-            if (shape.getCode() == code)
-            {
+            if (shape.getCode() == code) {
 
-                for (TreeBlock block : shape.blocksList)
-                {
+                for (TreeBlock block : shape.blocksList) {
 
-                    if (block instanceof InsPoint)
-                    {
+                    if (block instanceof InsPoint) {
 
                         InsPoint point = (InsPoint) block;
 
-                        switch (rotation)
-                        {
+                        switch (rotation) {
 
                             case north:
                                 rotatedShape.addInsPointAskTrunkAndLeaves(point.getZ(), point.getY(), -point.getX(), point.getLevel(), Rotation.rotate90(point.rotation),
@@ -412,12 +396,9 @@ public class TreeCompendium
 
                         }
 
-                    }
-                    else
-                    {
+                    } else {
 
-                        switch (rotation)
-                        {
+                        switch (rotation) {
 
                             case north:
                                 rotatedShape.addLog(block.getZ(), block.getY(), -block.getX(), block.level);

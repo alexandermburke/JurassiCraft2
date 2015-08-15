@@ -6,10 +6,10 @@ import net.reuxertz.ecoapi.util.CounterObj;
 
 public class AIMetabolism extends AIBase
 {
-    public static final double joulesToFatGramRatio = 37000,
-            joulesToProteinGramRatio = 17000,
-            joulesToCarbGramRatio = 16000,
-            jouleCostPerGramDay = 100;
+    public static final double  joulesToFatGramRatio        =   37000,
+                                joulesToProteinGramRatio    =   17000,
+                                joulesToCarbGramRatio       =   16000,
+                                jouleCostPerGramDay         =   100;
 
     //6000kj per day
 
@@ -17,31 +17,27 @@ public class AIMetabolism extends AIBase
     protected double protMassKg, fatMassKg, boneMassKg, waterMassKg; //.1, .2, .1, .6
     protected long lastTime = -1;
     protected CounterObj timer;
+    public double totalMassKg()
+    {
+        return protMassKg + fatMassKg + boneMassKg + waterMassKg;
+    }
+    public double expectedMassKg()
+    {
+        return this.boneMassKg * 10;
+    }
+    public double percentThirst()
+    {
+        return 1 - (this.waterMassKg / (this.expectedMassKg() * .6));
+    }
+    public double percentHunger()
+    {
+        return 1 - ((this.fatMassKg + this.protMassKg) / (this.expectedMassKg() * .3));
+    }
 
     public AIMetabolism(EntityCreature entity)
     {
         super(entity);
         timer = new CounterObj(entity.worldObj.getWorldTime(), 200, 20);
-    }
-
-    public double totalMassKg()
-    {
-        return protMassKg + fatMassKg + boneMassKg + waterMassKg;
-    }
-
-    public double expectedMassKg()
-    {
-        return this.boneMassKg * 10;
-    }
-
-    public double percentThirst()
-    {
-        return 1 - (this.waterMassKg / (this.expectedMassKg() * .6));
-    }
-
-    public double percentHunger()
-    {
-        return 1 - ((this.fatMassKg + this.protMassKg) / (this.expectedMassKg() * .3));
     }
 
     @Override
@@ -50,7 +46,6 @@ public class AIMetabolism extends AIBase
         return this.entity().getEntityData();
 
     }
-
     @Override
     public void readFromEntityNbt()
     {
@@ -77,6 +72,7 @@ public class AIMetabolism extends AIBase
         }
         long delTime = this.entity.worldObj.getWorldTime() - this.lastTime;
         this.lastTime = this.entity.worldObj.getWorldTime();
+
 
 
     }

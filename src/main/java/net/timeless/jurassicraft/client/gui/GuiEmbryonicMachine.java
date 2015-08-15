@@ -14,9 +14,7 @@ import net.timeless.jurassicraft.common.container.ContainerEmbryonicMachine;
 public class GuiEmbryonicMachine extends GuiContainer
 {
     private static final ResourceLocation texture = new ResourceLocation("jurassicraft:textures/gui/embryonic_machine.png");
-    /**
-     * The player inventory bound to this GUI.
-     */
+    /** The player inventory bound to this GUI. */
     private final InventoryPlayer playerInventory;
     private IInventory embryonicMachine;
 

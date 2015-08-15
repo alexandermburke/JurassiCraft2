@@ -11,6 +11,11 @@ public class BaseEcologicalRoleCompound extends BaseEcologicalRole
     protected List<IEcologicalRole> roles = new ArrayList<IEcologicalRole>();
     protected String name;
 
+    public String getName()
+    {
+        return this.name;
+    }
+
     public BaseEcologicalRoleCompound(String name, List<IEcologicalRole> roles)
     {
         this.name = name;
@@ -33,21 +38,16 @@ public class BaseEcologicalRoleCompound extends BaseEcologicalRole
         }
     }
 
-    public String getName()
-    {
-        return this.name;
-    }
-
     public List<ItemStack> getFoodItems()
     {
         List<ItemStack> r = new ArrayList<ItemStack>();
 
-        for (IEcologicalRole role : roles)
+        for (IEcologicalRole role: roles)
         {
-            for (ItemStack i : role.getFoodItems())
+            for (ItemStack i: role.getFoodItems())
             {
                 boolean add = true;
-                for (ItemStack is : r)
+                for (ItemStack is: r)
                     if (BaseItem.itemsEqual(is, i))
                         add = false;
 

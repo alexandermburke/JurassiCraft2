@@ -32,21 +32,13 @@ public class TileFossilGrinder extends TileEntityLockable implements IUpdatePlay
     private static final int[] slotsBottom = new int[] { 6, 5, 4, 3, 2, 1 }; //output
     private static final int[] slotsSides = new int[] {};
 
-    /**
-     * The ItemStacks that hold the items currently being used in the fossil grinder
-     */
+    /** The ItemStacks that hold the items currently being used in the fossil grinder */
     private ItemStack[] slots = new ItemStack[7];
 
     private int grindTime;
     private int totalGrindTime;
 
     private String customName;
-
-    @SideOnly(Side.CLIENT)
-    public static boolean isGrinding(IInventory inventory)
-    {
-        return inventory.getField(0) > 0;
-    }
 
     /**
      * Returns the number of slots in the inventory.
@@ -225,6 +217,12 @@ public class TileFossilGrinder extends TileEntityLockable implements IUpdatePlay
     public boolean isGrinding()
     {
         return this.grindTime > 0;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static boolean isGrinding(IInventory inventory)
+    {
+        return inventory.getField(0) > 0;
     }
 
     /**
