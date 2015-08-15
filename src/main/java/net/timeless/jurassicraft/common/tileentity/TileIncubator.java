@@ -33,11 +33,13 @@ import java.util.List;
 
 public class TileIncubator extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
-    private static final int[] slotsTop = new int[] { 0, 1, 2, 3, 4 }; //eggs
-    private static final int[] slotsBottom = new int[] { 5 }; //ground
-    private static final int[] slotsSides = new int[] {};
+    private static final int[] slotsTop = new int[]{0, 1, 2, 3, 4}; //eggs
+    private static final int[] slotsBottom = new int[]{5}; //ground
+    private static final int[] slotsSides = new int[]{};
 
-    /** The ItemStacks that hold the items currently being used in the fossil grinder */
+    /**
+     * The ItemStacks that hold the items currently being used in the fossil grinder
+     */
     private ItemStack[] slots = new ItemStack[6];
 
     private String customName;
@@ -45,6 +47,12 @@ public class TileIncubator extends TileEntityLockable implements IUpdatePlayerLi
     private int[] incubateTime = new int[5];
     private int[] totalIncubateTime = new int[5];
     private int[] temperature = new int[5];
+
+    @SideOnly(Side.CLIENT)
+    public static boolean isIncubating(IInventory inventory, int index)
+    {
+        return inventory.getField(index) > 0;
+    }
 
     /**
      * Returns the number of slots in the inventory.
@@ -77,8 +85,7 @@ public class TileIncubator extends TileEntityLockable implements IUpdatePlayerLi
                 itemstack = this.slots[index];
                 this.slots[index] = null;
                 return itemstack;
-            }
-            else
+            } else
             {
                 itemstack = this.slots[index].splitStack(count);
 
@@ -89,8 +96,7 @@ public class TileIncubator extends TileEntityLockable implements IUpdatePlayerLi
 
                 return itemstack;
             }
-        }
-        else
+        } else
         {
             return null;
         }
@@ -107,8 +113,7 @@ public class TileIncubator extends TileEntityLockable implements IUpdatePlayerLi
             ItemStack itemstack = this.slots[index];
             this.slots[index] = null;
             return itemstack;
-        }
-        else
+        } else
         {
             return null;
         }
@@ -235,12 +240,6 @@ public class TileIncubator extends TileEntityLockable implements IUpdatePlayerLi
         return this.totalIncubateTime[index] > 0;
     }
 
-    @SideOnly(Side.CLIENT)
-    public static boolean isIncubating(IInventory inventory, int index)
-    {
-        return inventory.getField(index) > 0;
-    }
-
     /**
      * Updates the JList with a new model.
      */
@@ -259,8 +258,7 @@ public class TileIncubator extends TileEntityLockable implements IUpdatePlayerLi
                     {
                         this.incubateTime[i] = MathHelper.clamp_int(this.incubateTime[i] - 2, 0, this.totalIncubateTime[i]);
                     }
-                }
-                else
+                } else
                 {
                     if (this.canIncubate(i))
                     {
@@ -273,8 +271,7 @@ public class TileIncubator extends TileEntityLockable implements IUpdatePlayerLi
                             this.hatchEgg(i);
                             sync = true;
                         }
-                    }
-                    else if(this.incubateTime[i] != 0)
+                    } else if (this.incubateTime[i] != 0)
                     {
                         this.incubateTime[i] = 0;
                         sync = true;
@@ -285,8 +282,7 @@ public class TileIncubator extends TileEntityLockable implements IUpdatePlayerLi
                 {
                     sync = true;
                 }
-            }
-            else
+            } else
             {
                 if (this.canIncubate(i))
                 {
@@ -325,7 +321,7 @@ public class TileIncubator extends TileEntityLockable implements IUpdatePlayerLi
 
             Dinosaur dinoInEgg = JCEntityRegistry.getDinosaurById(egg.getMetadata());
 
-            if(dinoInEgg != null)
+            if (dinoInEgg != null)
             {
                 Class<? extends EntityDinosaur> dinoClass = dinoInEgg.getDinosaurClass();
 
@@ -348,7 +344,7 @@ public class TileIncubator extends TileEntityLockable implements IUpdatePlayerLi
 
                     for (EntityCageSmall cCage : cages)
                     {
-                        if(cCage.getEntity() == null)
+                        if (cCage.getEntity() == null)
                         {
                             cage = cCage;
                             break;
@@ -358,8 +354,7 @@ public class TileIncubator extends TileEntityLockable implements IUpdatePlayerLi
                     if (cage != null)
                     {
                         cage.setEntity(dino);
-                    }
-                    else
+                    } else
                     {
                         //TODO find valid spawn area
                         dino.setLocationAndAngles(blockX + 2, blockY + 0.5, blockZ + 2, MathHelper.wrapAngleTo180_float(worldObj.rand.nextFloat() * 360.0F), 0.0F);
@@ -371,12 +366,11 @@ public class TileIncubator extends TileEntityLockable implements IUpdatePlayerLi
 
                     slots[index].stackSize--;
 
-                    if(slots[index].stackSize <= 0)
+                    if (slots[index].stackSize <= 0)
                     {
                         slots[index] = null;
                     }
-                }
-                catch (Exception e)
+                } catch (Exception e)
                 {
                     e.printStackTrace();
                 }
@@ -453,15 +447,13 @@ public class TileIncubator extends TileEntityLockable implements IUpdatePlayerLi
 
     public int getField(int id)
     {
-        if(id < 5)
+        if (id < 5)
         {
             return incubateTime[id];
-        }
-        else if(id < 10)
+        } else if (id < 10)
         {
             return totalIncubateTime[id - 5];
-        }
-        else if(id < 15)
+        } else if (id < 15)
         {
             return temperature[id - 10];
         }
@@ -471,15 +463,13 @@ public class TileIncubator extends TileEntityLockable implements IUpdatePlayerLi
 
     public void setField(int id, int value)
     {
-        if(id < 5)
+        if (id < 5)
         {
             incubateTime[id] = value;
-        }
-        else if(id < 10)
+        } else if (id < 10)
         {
             totalIncubateTime[id - 5] = value;
-        }
-        else if(id < 15)
+        } else if (id < 15)
         {
             temperature[id - 10] = value;
         }

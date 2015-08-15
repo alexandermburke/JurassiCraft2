@@ -1,6 +1,6 @@
 {
-    "parent": "block/cube_all",
-    "textures": {
-        "all": "jurassicraft:blocks/embryo_calcification_machine"
-    }
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "jurassicraft:blocks/embryo_calcification_machine"
+  }
 }

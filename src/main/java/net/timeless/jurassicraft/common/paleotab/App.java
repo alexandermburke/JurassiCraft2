@@ -23,6 +23,7 @@ public abstract class App
     }
 
     public abstract void writeToNBT(NBTTagCompound nbt);
+
     public abstract void readFromNBT(NBTTagCompound nbt);
 
     public abstract void init();

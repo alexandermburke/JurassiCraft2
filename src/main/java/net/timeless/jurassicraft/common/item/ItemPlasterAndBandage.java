@@ -30,12 +30,10 @@ public class ItemPlasterAndBandage extends Item
         if (world.isRemote)
         {
             return true;
-        }
-        else if (!player.canPlayerEdit(pos.offset(side), side, stack))
+        } else if (!player.canPlayerEdit(pos.offset(side), side, stack))
         {
             return false;
-        }
-        else
+        } else
         {
             IBlockState state = world.getBlockState(pos);
 

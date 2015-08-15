@@ -35,13 +35,11 @@ public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
         if (this.isEntityInvulnerable(source))
         {
             return false;
-        }
-        else if (super.attackEntityFrom(source, amount))
+        } else if (super.attackEntityFrom(source, amount))
         {
             Entity entity = source.getEntity();
             return this.riddenByEntity != entity && this.ridingEntity != entity ? true : true;
-        }
-        else
+        } else
         {
             return false;
         }

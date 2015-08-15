@@ -43,7 +43,7 @@ public class GuiPaleoTab extends GuiScreen
      */
     public void onGuiClosed()
     {
-        if(focus != null)
+        if (focus != null)
         {
             JCPlayerDataClient.getPlayerData().closeApp(focus.getApp());
 //            JurassiCraft.networkManager.networkWrapper.sendToServer(new MessageSyncPaleoPad(mc.thePlayer));
@@ -56,7 +56,7 @@ public class GuiPaleoTab extends GuiScreen
         ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
         int scaledWidth = dimensions.getScaledWidth();
 
-        if(focus == null)
+        if (focus == null)
         {
             List<App> apps = AppRegistry.getApps();
 
@@ -65,7 +65,7 @@ public class GuiPaleoTab extends GuiScreen
                 int x = ((i % 6) * 55) + scaledWidth / 2 - 110;
                 int y = ((int) Math.floor((float) i / 6.0F) * 38) + 70;
 
-                if(mouseX > x && mouseY > y && mouseX < x + 32 && mouseY < y + 32)
+                if (mouseX > x && mouseY > y && mouseX < x + 32 && mouseY < y + 32)
                 {
                     App app = apps.get(i);
 
@@ -78,8 +78,7 @@ public class GuiPaleoTab extends GuiScreen
                     buttonList.addAll(focus.buttons);
                 }
             }
-        }
-        else
+        } else
         {
             focus.mouseClicked(mouseX, mouseY, this);
         }
@@ -105,14 +104,14 @@ public class GuiPaleoTab extends GuiScreen
 
         String hoursStr = "" + (int) hours % 24;
 
-        while(hoursStr.length() < 2)
+        while (hoursStr.length() < 2)
         {
             hoursStr = "0" + hoursStr;
         }
 
         String minutesStr = "" + (int) minutes % 60;
 
-        while(minutesStr.length() < 2)
+        while (minutesStr.length() < 2)
         {
             minutesStr = "0" + minutesStr;
         }
@@ -120,7 +119,7 @@ public class GuiPaleoTab extends GuiScreen
         drawCenteredScaledText(new AdvLang("paleotab.time.name").withProperty("hours", hoursStr).withProperty("minutes", minutesStr).build(), 115, -10, 1.0F, 0xFFFFFF);
         drawScaledRect(0, 0, 458, 2, 0.5F, 0x404040);
 
-        if(focus == null)
+        if (focus == null)
         {
             for (int i = 0; i < apps.size(); i++)
             {
@@ -138,8 +137,7 @@ public class GuiPaleoTab extends GuiScreen
             }
 
             drawScaledText(StatCollector.translateToLocal("paleotab.os.name"), 2, -10, 1.0F, 0xFFFFFF);
-        }
-        else
+        } else
         {
             drawScaledText(focus.getApp().getName(), 2, -10, 1.0F, 0xFFFFFF);
             focus.render(mouseX, mouseY, this);
@@ -169,10 +167,10 @@ public class GuiPaleoTab extends GuiScreen
         Tessellator tessellator = Tessellator.getInstance();
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
         worldrenderer.startDrawingQuads();
-        worldrenderer.addVertexWithUV((double)(x), (double)(y + height), (double)this.zLevel, (double)((float)(textureX) * f), (double)((float)(textureY + height) * f1));
-        worldrenderer.addVertexWithUV((double)(x + width), (double)(y + height), (double)this.zLevel, (double)((float)(textureX + width) * f), (double)((float)(textureY + height) * f1));
-        worldrenderer.addVertexWithUV((double)(x + width), (double)(y), (double)this.zLevel, (double)((float)(textureX + width) * f), (double)((float)(textureY) * f1));
-        worldrenderer.addVertexWithUV((double)(x), (double)(y), (double)this.zLevel, (double)((float)(textureX) * f), (double)((float)(textureY) * f1));
+        worldrenderer.addVertexWithUV((double) (x), (double) (y + height), (double) this.zLevel, (double) ((float) (textureX) * f), (double) ((float) (textureY + height) * f1));
+        worldrenderer.addVertexWithUV((double) (x + width), (double) (y + height), (double) this.zLevel, (double) ((float) (textureX + width) * f), (double) ((float) (textureY + height) * f1));
+        worldrenderer.addVertexWithUV((double) (x + width), (double) (y), (double) this.zLevel, (double) ((float) (textureX + width) * f), (double) ((float) (textureY) * f1));
+        worldrenderer.addVertexWithUV((double) (x), (double) (y), (double) this.zLevel, (double) ((float) (textureX) * f), (double) ((float) (textureY) * f1));
         tessellator.draw();
 
         GL11.glColor3f(1.0F, 1.0F, 1.0F);
@@ -198,9 +196,9 @@ public class GuiPaleoTab extends GuiScreen
 
         GL11.glDisable(GL11.GL_TEXTURE_2D);
 
-        float red = (float)(colour >> 16 & 255) / 255.0F;
-        float blue = (float)(colour >> 8 & 255) / 255.0F;
-        float green = (float)(colour & 255) / 255.0F;
+        float red = (float) (colour >> 16 & 255) / 255.0F;
+        float blue = (float) (colour >> 8 & 255) / 255.0F;
+        float green = (float) (colour & 255) / 255.0F;
 
         GL11.glColor3f(red, green, blue);
 
@@ -209,10 +207,10 @@ public class GuiPaleoTab extends GuiScreen
         Tessellator tessellator = Tessellator.getInstance();
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
         worldrenderer.startDrawingQuads();
-        worldrenderer.addVertexWithUV((double)(x), (double)(y + height), (double)this.zLevel, (double)(0), (double)((float)(height) * f1));
-        worldrenderer.addVertexWithUV((double)(x + width), (double)(y + height), (double)this.zLevel, (double)((float)(width) * f), (double)((float)( height) * f1));
-        worldrenderer.addVertexWithUV((double)(x + width), (double)(y), (double)this.zLevel, (double)((float)(width) * f), (double)((float) 0));
-        worldrenderer.addVertexWithUV((double)(x), (double)(y), (double)this.zLevel, (double)((float)0), (double)((float)0));
+        worldrenderer.addVertexWithUV((double) (x), (double) (y + height), (double) this.zLevel, (double) (0), (double) ((float) (height) * f1));
+        worldrenderer.addVertexWithUV((double) (x + width), (double) (y + height), (double) this.zLevel, (double) ((float) (width) * f), (double) ((float) (height) * f1));
+        worldrenderer.addVertexWithUV((double) (x + width), (double) (y), (double) this.zLevel, (double) ((float) (width) * f), (double) ((float) 0));
+        worldrenderer.addVertexWithUV((double) (x), (double) (y), (double) this.zLevel, (double) ((float) 0), (double) ((float) 0));
         tessellator.draw();
 
         GL11.glColor3f(1.0F, 1.0F, 1.0F);
@@ -269,7 +267,6 @@ public class GuiPaleoTab extends GuiScreen
 
         GL11.glPopMatrix();
     }
-
 
 
     @Override

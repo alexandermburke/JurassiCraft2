@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "normal": { "model": "jurassicraft:amber_ore" }
+  "variants": {
+    "normal": {
+      "model": "jurassicraft:amber_ore"
     }
+  }
 }

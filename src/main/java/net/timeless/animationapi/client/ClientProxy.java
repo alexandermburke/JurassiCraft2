@@ -14,6 +14,8 @@ import net.timeless.animationapi.CommonProxy;
 public class ClientProxy extends CommonProxy
 {
 
+    private Timer mcTimer;
+
     @Override
     public void initTimer()
     {
@@ -31,6 +33,4 @@ public class ClientProxy extends CommonProxy
     {
         return FMLClientHandler.instance().getWorldClient();
     }
-
-    private Timer mcTimer;
 }

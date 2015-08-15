@@ -23,8 +23,8 @@ public class EntityDinosaurProvokable extends EntityDinosaur
     }
 
     /**
-    * Sets the active target the Task system uses for tracking
-    */
+     * Sets the active target the Task system uses for tracking
+     */
     public void setAttackTarget(EntityLivingBase entity)
     {
         super.setAttackTarget(entity);
@@ -32,8 +32,7 @@ public class EntityDinosaurProvokable extends EntityDinosaur
         if (entity != null)
         {
             this.setAngry(true);
-        }
-        else
+        } else
         {
             this.setAngry(false);
         }
@@ -50,7 +49,7 @@ public class EntityDinosaurProvokable extends EntityDinosaur
 
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
-    */
+     */
     public void readEntityFromNBT(NBTTagCompound tagCompund)
     {
         super.readEntityFromNBT(tagCompund);
@@ -84,8 +83,7 @@ public class EntityDinosaurProvokable extends EntityDinosaur
         if (this.isEntityInvulnerable(source))
         {
             return false;
-        }
-        else
+        } else
         {
             float damage = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
 
@@ -123,8 +121,7 @@ public class EntityDinosaurProvokable extends EntityDinosaur
         if (angry)
         {
             this.dataWatcher.updateObject(16, Byte.valueOf((byte) (b0 | 2)));
-        }
-        else
+        } else
         {
             this.dataWatcher.updateObject(16, Byte.valueOf((byte) (b0 & -3)));
         }

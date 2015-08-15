@@ -19,15 +19,15 @@ public class DNA
         this(stack.getTagCompound().getInteger("DNAQuality"), stack.getTagCompound().getString("Genetics"));
     }
 
+    public static DNA readFromNBT(NBTTagCompound nbt)
+    {
+        return new DNA(nbt.getInteger("DNAQuality"), nbt.getString("Genetics"));
+    }
+
     public void writeToNBT(NBTTagCompound nbt)
     {
         nbt.setInteger("DNAQuality", quality);
         nbt.setString("Genetics", genetics.toString());
-    }
-
-    public static DNA readFromNBT(NBTTagCompound nbt)
-    {
-        return new DNA(nbt.getInteger("DNAQuality"), nbt.getString("Genetics"));
     }
 
     public String toString()

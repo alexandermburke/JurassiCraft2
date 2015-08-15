@@ -1,8 +1,19 @@
 {
-    "variants": {
-        "facing=north": { "model": "jurassicraft:embryo_calcification_machine" },
-        "facing=south": { "model": "jurassicraft:embryo_calcification_machine", "y": 180 },
-        "facing=west": { "model": "jurassicraft:embryo_calcification_machine", "y": 270 },
-        "facing=east": { "model": "jurassicraft:embryo_calcification_machine", "y": 90 }
+  "variants": {
+    "facing=north": {
+      "model": "jurassicraft:embryo_calcification_machine"
+    },
+    "facing=south": {
+      "model": "jurassicraft:embryo_calcification_machine",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "jurassicraft:embryo_calcification_machine",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "jurassicraft:embryo_calcification_machine",
+      "y": 90
     }
+  }
 }

@@ -131,8 +131,7 @@ public class ContainerCleaningStation extends Container
                 }
 
                 slot.onSlotChange(transferFrom, itemstack);
-            }
-            else if (index != 1 && index != 0)
+            } else if (index != 1 && index != 0)
             {
                 if (transferFrom.getItem() instanceof ItemEncasedFossil)
                 {
@@ -140,27 +139,23 @@ public class ContainerCleaningStation extends Container
                     {
                         return null;
                     }
-                }
-                else if (TileCleaningStation.isItemFuel(transferFrom))
+                } else if (TileCleaningStation.isItemFuel(transferFrom))
                 {
                     if (!this.mergeItemStack(transferFrom, 1, 2, false))
                     {
                         return null;
                     }
-                }
-                else if (index >= 3 && index < 30)
+                } else if (index >= 3 && index < 30)
                 {
                     if (!this.mergeItemStack(transferFrom, 30, 39, false))
                     {
                         return null;
                     }
-                }
-                else if (index >= 30 && index < 39 && !this.mergeItemStack(transferFrom, 3, 30, false))
+                } else if (index >= 30 && index < 39 && !this.mergeItemStack(transferFrom, 3, 30, false))
                 {
                     return null;
                 }
-            }
-            else if (!this.mergeItemStack(transferFrom, 3, 39, false))
+            } else if (!this.mergeItemStack(transferFrom, 3, 39, false))
             {
                 return null;
             }
@@ -168,8 +163,7 @@ public class ContainerCleaningStation extends Container
             if (transferFrom.stackSize == 0)
             {
                 slot.putStack((ItemStack) null);
-            }
-            else
+            } else
             {
                 slot.onSlotChanged();
             }

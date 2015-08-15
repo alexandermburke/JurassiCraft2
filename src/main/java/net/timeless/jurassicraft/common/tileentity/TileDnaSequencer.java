@@ -30,17 +30,25 @@ import java.util.Random;
 
 public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
-    private static final int[] slotsTop = new int[] { 0, 1 }; //input
-    private static final int[] slotsBottom = new int[] { 2, 3, 4 }; //output
-    private static final int[] slotsSides = new int[] {};
+    private static final int[] slotsTop = new int[]{0, 1}; //input
+    private static final int[] slotsBottom = new int[]{2, 3, 4}; //output
+    private static final int[] slotsSides = new int[]{};
 
-    /** The ItemStacks that hold the items currently being used in the dna sequencer */
+    /**
+     * The ItemStacks that hold the items currently being used in the dna sequencer
+     */
     private ItemStack[] slots = new ItemStack[5];
 
     private int sequenceTime;
     private int totalSequenceTime;
 
     private String customName;
+
+    @SideOnly(Side.CLIENT)
+    public static boolean isSequenceing(IInventory inventory)
+    {
+        return inventory.getField(0) > 0;
+    }
 
     /**
      * Returns the number of slots in the inventory.
@@ -73,8 +81,7 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
                 itemstack = this.slots[index];
                 this.slots[index] = null;
                 return itemstack;
-            }
-            else
+            } else
             {
                 itemstack = this.slots[index].splitStack(count);
 
@@ -85,8 +92,7 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
 
                 return itemstack;
             }
-        }
-        else
+        } else
         {
             return null;
         }
@@ -103,8 +109,7 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
             ItemStack itemstack = this.slots[index];
             this.slots[index] = null;
             return itemstack;
-        }
-        else
+        } else
         {
             return null;
         }
@@ -221,12 +226,6 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
         return this.sequenceTime > 0;
     }
 
-    @SideOnly(Side.CLIENT)
-    public static boolean isSequenceing(IInventory inventory)
-    {
-        return inventory.getField(0) > 0;
-    }
-
     /**
      * Updates the JList with a new model.
      */
@@ -243,8 +242,7 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
                 {
                     this.sequenceTime = MathHelper.clamp_int(this.sequenceTime - 2, 0, this.totalSequenceTime);
                 }
-            }
-            else
+            } else
             {
                 if (this.canSequence())
                 {
@@ -257,8 +255,7 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
                         this.sequenceItem();
                         sync = true;
                     }
-                }
-                else
+                } else
                 {
                     this.sequenceTime = 0;
                     sync = true;
@@ -269,8 +266,7 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
             {
                 sync = true;
             }
-        }
-        else
+        } else
         {
             if (this.canSequence())
             {
@@ -345,7 +341,7 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
 
             NBTTagCompound nbt = slots[1].getTagCompound();
 
-            if(nbt == null)
+            if (nbt == null)
             {
                 nbt = new NBTTagCompound();
             }
@@ -376,8 +372,7 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
                 if (this.slots[emptySlot] == null)
                 {
                     this.slots[emptySlot] = output;
-                }
-                else if (this.slots[emptySlot].getItem() == output.getItem() && ItemStack.areItemStackTagsEqual(this.slots[emptySlot], output))
+                } else if (this.slots[emptySlot].getItem() == output.getItem() && ItemStack.areItemStackTagsEqual(this.slots[emptySlot], output))
                 {
                     this.slots[emptySlot].stackSize += output.stackSize;
                 }

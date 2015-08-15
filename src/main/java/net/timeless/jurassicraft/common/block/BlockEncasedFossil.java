@@ -60,7 +60,7 @@ public class BlockEncasedFossil extends Block implements ISubBlocksBlock
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] { VARIANT });
+        return new BlockState(this, new IProperty[]{VARIANT});
     }
 
     protected ItemStack createStackedBlock(IBlockState state)

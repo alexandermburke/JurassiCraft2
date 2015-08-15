@@ -1,8 +1,17 @@
 {
-    "variants": {
-        "axis=y":  { "model": "jurassicraft:ginkgo_log" },
-        "axis=z":   { "model": "jurassicraft:ginkgo_log_side" },
-        "axis=x":   { "model": "jurassicraft:ginkgo_log_side", "y": 90 },
-        "axis=none": { "model": "jurassicraft:ginkgo_bark" }
+  "variants": {
+    "axis=y": {
+      "model": "jurassicraft:ginkgo_log"
+    },
+    "axis=z": {
+      "model": "jurassicraft:ginkgo_log_side"
+    },
+    "axis=x": {
+      "model": "jurassicraft:ginkgo_log_side",
+      "y": 90
+    },
+    "axis=none": {
+      "model": "jurassicraft:ginkgo_bark"
     }
+  }
 }

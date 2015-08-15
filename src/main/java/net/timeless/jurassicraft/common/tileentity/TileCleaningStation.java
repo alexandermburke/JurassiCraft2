@@ -28,23 +28,40 @@ import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 public class TileCleaningStation extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
-    private static final int[] slotsTop = new int[] { 0 };
-    private static final int[] slotsBottom = new int[] { 7, 6, 5, 4, 3, 2, 1 };
-    private static final int[] slotsSides = new int[] { 1 }; //0 = cleaning 1 = fuel 2 = output
+    private static final int[] slotsTop = new int[]{0};
+    private static final int[] slotsBottom = new int[]{7, 6, 5, 4, 3, 2, 1};
+    private static final int[] slotsSides = new int[]{1}; //0 = cleaning 1 = fuel 2 = output
 
-    /** The ItemStacks that hold the items currently being used in the cleaning station */
+    /**
+     * The ItemStacks that hold the items currently being used in the cleaning station
+     */
     private ItemStack[] slots = new ItemStack[8];
 
-    /** The number of ticks that the cleaning station will keep washing */
+    /**
+     * The number of ticks that the cleaning station will keep washing
+     */
     private int cleaningStationWaterTime;
 
-    /** The number of ticks that a fresh copy of the currently-washing item would keep the cleaning station washing for */
+    /**
+     * The number of ticks that a fresh copy of the currently-washing item would keep the cleaning station washing for
+     */
     private int currentItemWaterTime;
 
     private int cleanTime;
     private int totalCleanTime;
 
     private String customName;
+
+    @SideOnly(Side.CLIENT)
+    public static boolean isCleaning(IInventory inventory)
+    {
+        return inventory.getField(0) > 0;
+    }
+
+    public static boolean isItemFuel(ItemStack stack)
+    {
+        return stack != null ? stack.getItem() == Items.water_bucket : false;
+    }
 
     /**
      * Returns the number of slots in the inventory.
@@ -77,8 +94,7 @@ public class TileCleaningStation extends TileEntityLockable implements IUpdatePl
                 itemstack = this.slots[index];
                 this.slots[index] = null;
                 return itemstack;
-            }
-            else
+            } else
             {
                 itemstack = this.slots[index].splitStack(count);
 
@@ -89,8 +105,7 @@ public class TileCleaningStation extends TileEntityLockable implements IUpdatePl
 
                 return itemstack;
             }
-        }
-        else
+        } else
         {
             return null;
         }
@@ -107,8 +122,7 @@ public class TileCleaningStation extends TileEntityLockable implements IUpdatePl
             ItemStack itemstack = this.slots[index];
             this.slots[index] = null;
             return itemstack;
-        }
-        else
+        } else
         {
             return null;
         }
@@ -228,12 +242,6 @@ public class TileCleaningStation extends TileEntityLockable implements IUpdatePl
         return this.cleaningStationWaterTime > 0;
     }
 
-    @SideOnly(Side.CLIENT)
-    public static boolean isCleaning(IInventory inventory)
-    {
-        return inventory.getField(0) > 0;
-    }
-
     /**
      * Updates the JList with a new model.
      */
@@ -255,8 +263,7 @@ public class TileCleaningStation extends TileEntityLockable implements IUpdatePl
                 {
                     this.cleanTime = MathHelper.clamp_int(this.cleanTime - 2, 0, this.totalCleanTime);
                 }
-            }
-            else
+            } else
             {
                 if (!this.isCleaning() && this.canClean() && isItemFuel(slots[1]))
                 {
@@ -289,8 +296,7 @@ public class TileCleaningStation extends TileEntityLockable implements IUpdatePl
                         this.cleanItem();
                         sync = true;
                     }
-                }
-                else
+                } else
                 {
                     this.cleanTime = 0;
                     sync = true;
@@ -367,8 +373,7 @@ public class TileCleaningStation extends TileEntityLockable implements IUpdatePl
                 if (this.slots[emptySlot] == null)
                 {
                     this.slots[emptySlot] = fossil;
-                }
-                else if (this.slots[emptySlot].getItem() == fossil.getItem() && ItemStack.areItemStackTagsEqual(this.slots[emptySlot], fossil))
+                } else if (this.slots[emptySlot].getItem() == fossil.getItem() && ItemStack.areItemStackTagsEqual(this.slots[emptySlot], fossil))
                 {
                     this.slots[emptySlot].stackSize += fossil.stackSize;
                 }
@@ -379,11 +384,6 @@ public class TileCleaningStation extends TileEntityLockable implements IUpdatePl
                     this.slots[0] = null;
             }
         }
-    }
-
-    public static boolean isItemFuel(ItemStack stack)
-    {
-        return stack != null ? stack.getItem() == Items.water_bucket : false;
     }
 
     /**

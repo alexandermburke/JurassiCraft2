@@ -27,17 +27,25 @@ import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 public class TileEmbryoCalcificationMachine extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
-    private static final int[] slotsTop = new int[] { 0, 1 }; //input
-    private static final int[] slotsBottom = new int[] { 2 }; //output
-    private static final int[] slotsSides = new int[] {};
+    private static final int[] slotsTop = new int[]{0, 1}; //input
+    private static final int[] slotsBottom = new int[]{2}; //output
+    private static final int[] slotsSides = new int[]{};
 
-    /** The ItemStacks that hold the items currently being used in the dna sequencer */
+    /**
+     * The ItemStacks that hold the items currently being used in the dna sequencer
+     */
     private ItemStack[] slots = new ItemStack[3];
 
     private int calcifyTime;
     private int totalCalcifyTime;
 
     private String customName;
+
+    @SideOnly(Side.CLIENT)
+    public static boolean isCalcifying(IInventory inventory)
+    {
+        return inventory.getField(0) > 0;
+    }
 
     /**
      * Returns the number of slots in the inventory.
@@ -70,8 +78,7 @@ public class TileEmbryoCalcificationMachine extends TileEntityLockable implement
                 itemstack = this.slots[index];
                 this.slots[index] = null;
                 return itemstack;
-            }
-            else
+            } else
             {
                 itemstack = this.slots[index].splitStack(count);
 
@@ -82,8 +89,7 @@ public class TileEmbryoCalcificationMachine extends TileEntityLockable implement
 
                 return itemstack;
             }
-        }
-        else
+        } else
         {
             return null;
         }
@@ -100,8 +106,7 @@ public class TileEmbryoCalcificationMachine extends TileEntityLockable implement
             ItemStack itemstack = this.slots[index];
             this.slots[index] = null;
             return itemstack;
-        }
-        else
+        } else
         {
             return null;
         }
@@ -218,12 +223,6 @@ public class TileEmbryoCalcificationMachine extends TileEntityLockable implement
         return this.calcifyTime > 0;
     }
 
-    @SideOnly(Side.CLIENT)
-    public static boolean isCalcifying(IInventory inventory)
-    {
-        return inventory.getField(0) > 0;
-    }
-
     /**
      * Updates the JList with a new model.
      */
@@ -240,8 +239,7 @@ public class TileEmbryoCalcificationMachine extends TileEntityLockable implement
                 {
                     this.calcifyTime = MathHelper.clamp_int(this.calcifyTime - 2, 0, this.totalCalcifyTime);
                 }
-            }
-            else
+            } else
             {
                 if (this.canCalcify())
                 {
@@ -254,8 +252,7 @@ public class TileEmbryoCalcificationMachine extends TileEntityLockable implement
                         this.calcifyItem();
                         sync = true;
                     }
-                }
-                else
+                } else
                 {
                     this.calcifyTime = 0;
                     sync = true;
@@ -266,8 +263,7 @@ public class TileEmbryoCalcificationMachine extends TileEntityLockable implement
             {
                 sync = true;
             }
-        }
-        else
+        } else
         {
             if (this.canCalcify())
             {
@@ -319,8 +315,7 @@ public class TileEmbryoCalcificationMachine extends TileEntityLockable implement
             if (this.slots[2] == null)
             {
                 this.slots[2] = output;
-            }
-            else if (this.slots[2].getItem() == output.getItem() && ItemStack.areItemStackTagsEqual(this.slots[2], output))
+            } else if (this.slots[2].getItem() == output.getItem() && ItemStack.areItemStackTagsEqual(this.slots[2], output))
             {
                 this.slots[2].stackSize += output.stackSize;
             }

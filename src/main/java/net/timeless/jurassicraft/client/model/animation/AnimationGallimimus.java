@@ -69,12 +69,12 @@ public class AnimationGallimimus implements IModelAnimator
         MowzieModelRenderer handRight = model.getCube("Hand RIGHT");
         MowzieModelRenderer handLeft = model.getCube("Hand LEFT");
 
-        MowzieModelRenderer[] body = new MowzieModelRenderer[] { head, neck5, neck4, neck3, neck2, neck1, body1, body2, body3 };
+        MowzieModelRenderer[] body = new MowzieModelRenderer[]{head, neck5, neck4, neck3, neck2, neck1, body1, body2, body3};
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
 
-        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[] { handLeft, lowerArmLeft, upperArmLeft };
-        MowzieModelRenderer[] armRight = new MowzieModelRenderer[] { handRight, lowerArmRight, upperArmRight };
+        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[]{handLeft, lowerArmLeft, upperArmLeft};
+        MowzieModelRenderer[] armRight = new MowzieModelRenderer[]{handRight, lowerArmRight, upperArmRight};
 
         model.bob(body3, 1F * globalSpeed, globalHeight, false, f, f1);
         model.bob(leftThigh, 1F * globalSpeed, globalHeight, false, f, f1);

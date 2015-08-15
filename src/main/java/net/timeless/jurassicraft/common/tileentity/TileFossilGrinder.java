@@ -28,17 +28,25 @@ import java.util.Random;
 
 public class TileFossilGrinder extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
-    private static final int[] slotsTop = new int[] { 0 }; //input
-    private static final int[] slotsBottom = new int[] { 6, 5, 4, 3, 2, 1 }; //output
-    private static final int[] slotsSides = new int[] {};
+    private static final int[] slotsTop = new int[]{0}; //input
+    private static final int[] slotsBottom = new int[]{6, 5, 4, 3, 2, 1}; //output
+    private static final int[] slotsSides = new int[]{};
 
-    /** The ItemStacks that hold the items currently being used in the fossil grinder */
+    /**
+     * The ItemStacks that hold the items currently being used in the fossil grinder
+     */
     private ItemStack[] slots = new ItemStack[7];
 
     private int grindTime;
     private int totalGrindTime;
 
     private String customName;
+
+    @SideOnly(Side.CLIENT)
+    public static boolean isGrinding(IInventory inventory)
+    {
+        return inventory.getField(0) > 0;
+    }
 
     /**
      * Returns the number of slots in the inventory.
@@ -71,8 +79,7 @@ public class TileFossilGrinder extends TileEntityLockable implements IUpdatePlay
                 itemstack = this.slots[index];
                 this.slots[index] = null;
                 return itemstack;
-            }
-            else
+            } else
             {
                 itemstack = this.slots[index].splitStack(count);
 
@@ -83,8 +90,7 @@ public class TileFossilGrinder extends TileEntityLockable implements IUpdatePlay
 
                 return itemstack;
             }
-        }
-        else
+        } else
         {
             return null;
         }
@@ -101,8 +107,7 @@ public class TileFossilGrinder extends TileEntityLockable implements IUpdatePlay
             ItemStack itemstack = this.slots[index];
             this.slots[index] = null;
             return itemstack;
-        }
-        else
+        } else
         {
             return null;
         }
@@ -219,12 +224,6 @@ public class TileFossilGrinder extends TileEntityLockable implements IUpdatePlay
         return this.grindTime > 0;
     }
 
-    @SideOnly(Side.CLIENT)
-    public static boolean isGrinding(IInventory inventory)
-    {
-        return inventory.getField(0) > 0;
-    }
-
     /**
      * Updates the JList with a new model.
      */
@@ -241,8 +240,7 @@ public class TileFossilGrinder extends TileEntityLockable implements IUpdatePlay
                 {
                     this.grindTime = MathHelper.clamp_int(this.grindTime - 2, 0, this.totalGrindTime);
                 }
-            }
-            else
+            } else
             {
                 if (this.canGrind())
                 {
@@ -255,8 +253,7 @@ public class TileFossilGrinder extends TileEntityLockable implements IUpdatePlay
                         this.grindItem();
                         sync = true;
                     }
-                }
-                else
+                } else
                 {
                     this.grindTime = 0;
                     sync = true;
@@ -267,8 +264,7 @@ public class TileFossilGrinder extends TileEntityLockable implements IUpdatePlay
             {
                 sync = true;
             }
-        }
-        else
+        } else
         {
             if (this.canGrind())
             {
@@ -341,8 +337,7 @@ public class TileFossilGrinder extends TileEntityLockable implements IUpdatePlay
                 if (this.slots[emptySlot] == null)
                 {
                     this.slots[emptySlot] = output;
-                }
-                else if (this.slots[emptySlot].getItem() == output.getItem() && ItemStack.areItemStackTagsEqual(this.slots[emptySlot], output))
+                } else if (this.slots[emptySlot].getItem() == output.getItem() && ItemStack.areItemStackTagsEqual(this.slots[emptySlot], output))
                 {
                     this.slots[emptySlot].stackSize += output.stackSize;
                 }

@@ -20,6 +20,13 @@ import java.util.List;
 
 public class AIHunt extends AIModule
 {
+    public AIHunt(IDemand demand, AICore entity, AINavigate navigate, Target T)
+    {
+        super(demand, entity, navigate);
+
+        this.workTarget = T;
+    }
+
     public boolean evaluateTarget(Target t)
     {
         if (!t.enableEvaluateTarget)
@@ -37,6 +44,7 @@ public class AIHunt extends AIModule
         return t.entity != null && !t.entity.isDead && t.entityHeldItem != null && BaseItem.itemsEqual(((EntityPlayer) t.entity).getHeldItem(), t.entityHeldItem);
 
     }
+
     public Target nextNavigatePosition()
     {
         List<Entity> distEnts = EntityHelper.getEntitiesWithinDistance(this.getAgent(), 10, 10);
@@ -44,14 +52,14 @@ public class AIHunt extends AIModule
         {
             boolean strongerDino = false;
 
-            if(distEnt instanceof EntityDinosaur && getAgent() instanceof EntityDinosaur)
+            if (distEnt instanceof EntityDinosaur && getAgent() instanceof EntityDinosaur)
             {
                 EntityDinosaur agent = (EntityDinosaur) this.getAgent();
 
                 strongerDino = agent.isStronger((EntityDinosaur) distEnt);
             }
 
-            if(!strongerDino)
+            if (!strongerDino)
             {
                 boolean seek = false, heldItem = false;
                 Target t = null;
@@ -83,6 +91,7 @@ public class AIHunt extends AIModule
 
         return null;
     }
+
     public boolean doWorkContinue()
     {
         if (this.workTarget.entity instanceof EntityCreature)
@@ -90,7 +99,7 @@ public class AIHunt extends AIModule
 
         if (this.workTarget.entity instanceof EntityItem)
         {
-            EntityItem entityItem = (EntityItem)this.workTarget.entity;
+            EntityItem entityItem = (EntityItem) this.workTarget.entity;
             ItemStack r = this.agentAI.addToInventory(entityItem.getEntityItem());
 
             if (r == null || r.stackSize == 0)
@@ -103,12 +112,5 @@ public class AIHunt extends AIModule
         }
 
         return true;
-    }
-
-    public AIHunt(IDemand demand, AICore entity, AINavigate navigate, Target T)
-    {
-        super(demand, entity, navigate);
-
-        this.workTarget = T;
     }
 }

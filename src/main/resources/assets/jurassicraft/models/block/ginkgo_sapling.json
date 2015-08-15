@@ -1,6 +1,6 @@
 {
-    "parent": "block/cross",
-    "textures": {
-        "cross": "jurassicraft:blocks/sapling_ginkgo"
-    }
+  "parent": "block/cross",
+  "textures": {
+    "cross": "jurassicraft:blocks/sapling_ginkgo"
+  }
 }

@@ -44,8 +44,7 @@ public class RenderDefVelociraptor extends RenderDinosaurDefinition
             this.modelEcho = getDefaultTabulaModel(2);
             this.modelDelta = getDefaultTabulaModel(3);
             this.modelCharlie = getDefaultTabulaModel(4);
-        }
-        catch (Exception e)
+        } catch (Exception e)
         {
             e.printStackTrace();
         }

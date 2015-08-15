@@ -19,16 +19,11 @@ import org.apache.logging.log4j.Logger;
 @Mod(modid = JurassiCraft.modid, name = "JurassiCraft", version = "${version}")
 public class JurassiCraft
 {
+    public static final String modid = "jurassicraft";
     @SidedProxy(serverSide = "net.timeless.jurassicraft.common.proxy.CommonProxy", clientSide = "net.timeless.jurassicraft.client.proxy.ClientProxy")
     public static CommonProxy proxy;
-
-    public static final String modid = "jurassicraft";
-
     @Instance(JurassiCraft.modid)
     public static JurassiCraft instance;
-
-    private Logger logger;
-
     public static JCEntityRegistry entityRegistry = new JCEntityRegistry();
     public static JCCreativeTabs creativeTabRegistry = new JCCreativeTabs();
     public static JCItemRegistry itemRegistry = new JCItemRegistry();
@@ -36,6 +31,7 @@ public class JurassiCraft
     public static JCRecipeRegistry recipeRegistry = new JCRecipeRegistry();
     public static JCNetworkManager networkManager = new JCNetworkManager();
     public static AppRegistry appRegistry = new AppRegistry();
+    private Logger logger;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)

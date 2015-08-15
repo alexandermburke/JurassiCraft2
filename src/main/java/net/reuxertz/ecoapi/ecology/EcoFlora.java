@@ -19,6 +19,7 @@ public class EcoFlora
     private static HashMap<IBlockState, ItemStack> floraBlockDropRegistry = new HashMap<IBlockState, ItemStack>();
     private static HashMap<IBlockState, ItemStack> floraBlockSeedRegistry = new HashMap<IBlockState, ItemStack>();
     private static List<IBlockState> floraBlocksRequireUnderBlock = new ArrayList<IBlockState>();
+
     static
     {
         //Crops
@@ -72,6 +73,7 @@ public class EcoFlora
         //}
 
     }
+
     /*public static Block getFloraBlockDrop(ItemStack stack)
     {
         Set<ItemStack> stacks = floraBlockDropRegistry.keySet();
@@ -84,16 +86,17 @@ public class EcoFlora
     public static ItemStack getFloraBlockSeed(IBlockState b)
     {
         Set<IBlockState> blocks = floraBlockSeedRegistry.keySet();
-        for (IBlockState bi: blocks)
+        for (IBlockState bi : blocks)
             if (Block.isEqualTo(b.getBlock(), bi.getBlock()))
                 return floraBlockSeedRegistry.get(bi);
 
         return null;
     }
+
     public static ItemStack getFloraBlockDrop(IBlockState b)
     {
         Set<IBlockState> blocks = floraBlockDropRegistry.keySet();
-        for (IBlockState bi: blocks)
+        for (IBlockState bi : blocks)
             if (Block.isEqualTo(b.getBlock(), bi.getBlock()) && b.getBlock().getMetaFromState(b) == bi.getBlock().getMetaFromState(bi))
                 return floraBlockDropRegistry.get(bi);
 

@@ -16,13 +16,13 @@ public class DinosaurIndominus extends Dinosaur implements IHybrid
 
     public DinosaurIndominus()
     {
-        this.maleTextures = new String[] { getDinosaurTexture("") };
-        this.femaleTextures = new String[] { getDinosaurTexture("") };
+        this.maleTextures = new String[]{getDinosaurTexture("")};
+        this.femaleTextures = new String[]{getDinosaurTexture("")};
 
-        this.maleOverlayTextures = new String[] { getDinosaurTexture("detail") };
-        this.femaleOverlayTextures = new String[] { getDinosaurTexture("detail") };
+        this.maleOverlayTextures = new String[]{getDinosaurTexture("detail")};
+        this.femaleOverlayTextures = new String[]{getDinosaurTexture("detail")};
 
-        this.combo = new Dinosaur[] { JCEntityRegistry.tyrannosaurus, JCEntityRegistry.velociraptor, JCEntityRegistry.giganotosaurus, JCEntityRegistry.rugops, JCEntityRegistry.majungasaurus };
+        this.combo = new Dinosaur[]{JCEntityRegistry.tyrannosaurus, JCEntityRegistry.velociraptor, JCEntityRegistry.giganotosaurus, JCEntityRegistry.rugops, JCEntityRegistry.majungasaurus};
     }
 
     @Override

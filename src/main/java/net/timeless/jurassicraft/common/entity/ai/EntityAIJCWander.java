@@ -54,8 +54,7 @@ public class EntityAIJCWander extends EntityAIBase
         if (vec3 == null)
         {
             return false;
-        }
-        else
+        } else
         {
             this.xPosition = vec3.xCoord;
             this.yPosition = vec3.yCoord;

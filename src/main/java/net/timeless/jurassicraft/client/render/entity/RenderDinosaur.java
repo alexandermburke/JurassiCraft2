@@ -104,8 +104,7 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
                 time = 1 - time;
 
             GL11.glScalef(scale * (0.5F + time * 0.5F), scale * (1 + time * 0.5F), scale * (0.9F + time * 0.25F));
-        }
-        else if (name.equals("Notch") || name.equals("Jumbo"))
+        } else if (name.equals("Notch") || name.equals("Jumbo"))
             GL11.glScalef(scale * 2, scale * 2, scale * 2);
         else if (name.equals("jglrxavpok"))
             GL11.glScalef(scale, scale, scale * -1);

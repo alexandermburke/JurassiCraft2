@@ -112,8 +112,7 @@ public class BlockJCLog extends BlockLog
             try
             {
                 AXIS_LOOKUP[BlockLog.EnumAxis.X.ordinal()] = 1;
-            }
-            catch (NoSuchFieldError var3)
+            } catch (NoSuchFieldError var3)
             {
                 ;
             }
@@ -121,8 +120,7 @@ public class BlockJCLog extends BlockLog
             try
             {
                 AXIS_LOOKUP[BlockLog.EnumAxis.Z.ordinal()] = 2;
-            }
-            catch (NoSuchFieldError var2)
+            } catch (NoSuchFieldError var2)
             {
                 ;
             }
@@ -130,8 +128,7 @@ public class BlockJCLog extends BlockLog
             try
             {
                 AXIS_LOOKUP[BlockLog.EnumAxis.NONE.ordinal()] = 3;
-            }
-            catch (NoSuchFieldError var1)
+            } catch (NoSuchFieldError var1)
             {
                 ;
             }

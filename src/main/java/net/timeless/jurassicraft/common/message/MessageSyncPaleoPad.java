@@ -44,8 +44,7 @@ public class MessageSyncPaleoPad implements IMessage
             if (ctx.side.isClient())
             {
                 JCPlayerData.setPlayerData(null, packet.nbt);
-            }
-            else
+            } else
             {
                 EntityPlayerMP player = ctx.getServerHandler().playerEntity;
 

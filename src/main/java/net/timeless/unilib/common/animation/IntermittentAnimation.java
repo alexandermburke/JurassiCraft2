@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * @author RafaMv0
  * @author BobMowzie
- * TAKEN FROM LLIBRARY
+ *         TAKEN FROM LLIBRARY
  */
 public class IntermittentAnimation
 {
@@ -73,8 +73,7 @@ public class IntermittentAnimation
                 timerInterval = 0d;
                 runInterval = true;
             }
-        }
-        else
+        } else
         {
             if (timerInterval < intervalDuration)
                 timerInterval++;

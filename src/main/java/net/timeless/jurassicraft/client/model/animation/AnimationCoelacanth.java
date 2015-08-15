@@ -33,7 +33,7 @@ public class AnimationCoelacanth implements IModelAnimator
         MowzieModelRenderer leftFlipper = model.getCube("Left Front Flipper");
         MowzieModelRenderer rightFlipper = model.getCube("Right Front Flipper");
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail3, tail2, tail1, body3, body2, body1, neck, head };
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail3, tail2, tail1, body3, body2, body1, neck, head};
 
         //        f = entity.ticksExisted;
         //        f1 = 0.4f;

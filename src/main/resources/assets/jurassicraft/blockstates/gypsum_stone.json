@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "normal": { "model": "jurassicraft:gypsum_stone" }
+  "variants": {
+    "normal": {
+      "model": "jurassicraft:gypsum_stone"
     }
+  }
 }

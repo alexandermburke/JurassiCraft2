@@ -45,8 +45,7 @@ public class EntityDinosaurProvokableHerbivore extends EntityDinosaurProvokable
         if (p_70103_1_ == 10)
         {
             this.eatTimer = 40;
-        }
-        else
+        } else
         {
             super.handleHealthUpdate(p_70103_1_);
         }
@@ -57,8 +56,7 @@ public class EntityDinosaurProvokableHerbivore extends EntityDinosaurProvokable
         if (this.isChild())
         {
             this.setAge((int) (dinosaurAge + dinosaurAge * 0.05));
-        }
-        else
+        } else
         {
             this.setHealth((float) (this.getHealth() + this.getHealth() * 0.15));
         }

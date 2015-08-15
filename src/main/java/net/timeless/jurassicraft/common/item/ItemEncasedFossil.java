@@ -23,7 +23,7 @@ public class ItemEncasedFossil extends ItemBlock
     {
         Dinosaur dinosaur = ((BlockEncasedFossil) block).getDinosaur(stack.getMetadata());
 
-        if(dinosaur == null)
+        if (dinosaur == null)
         {
             dinosaur = JCEntityRegistry.getDinosaurById(0);
         }

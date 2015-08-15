@@ -1,6 +1,7 @@
 package net.timeless.jurassicraft.common.world.jurdstrees.algorythms;
 
-public class InsPCoord {
+public class InsPCoord
+{
 
     private int x, y, z;
     private int level;
@@ -11,7 +12,8 @@ public class InsPCoord {
     private int leaves;
     private int type;
 
-    public InsPCoord(int code, int type, int x, int y, int z, int level, int trunk, int built, int rotation, int leaves) {
+    public InsPCoord(int code, int type, int x, int y, int z, int level, int trunk, int built, int rotation, int leaves)
+    {
 
         this.code = code;
         this.level = level;
@@ -26,57 +28,71 @@ public class InsPCoord {
 
     }
 
-    public int getCode() {
+    public int getCode()
+    {
         return code;
     }
 
-    public int getX() {
+    public int getX()
+    {
         return x;
     }
 
-    public int getY() {
+    public int getY()
+    {
         return y;
     }
 
-    public int getZ() {
+    public int getZ()
+    {
         return z;
     }
 
-    public int getLevel() {
+    public int getLevel()
+    {
         return level;
     }
 
-    public int getTrunk() {
+    public int getTrunk()
+    {
         return trunk;
     }
 
-    public int getBuilt() {
+    public int getBuilt()
+    {
         return built;
     }
 
-    public void turnBuilt() {
+    public void turnBuilt()
+    {
         built = 1;
     }
 
-    public int getRotation() {
+    public int getRotation()
+    {
         return rotation;
     }
 
-    public int getLeaves() {
+    public int getLeaves()
+    {
         return leaves;
     }
 
-    public int getType() {
+    public int getType()
+    {
         return type;
     }
 
-    public enum InsPType {
+    public enum InsPType
+    {
 
         branch, trunk, root, leaves;
 
-        public static int getTypeIndex(InsPType type) {
+        public static int getTypeIndex(InsPType type)
+        {
 
-            switch (type) {
+            switch (type)
+            {
                 case trunk:
                     return 0;
                 case branch:

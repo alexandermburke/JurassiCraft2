@@ -1,5 +1,7 @@
 {
   "variants": {
-    "normal": { "model": "jurassicraft:calamites_planks" }
+    "normal": {
+      "model": "jurassicraft:calamites_planks"
+    }
   }
 }

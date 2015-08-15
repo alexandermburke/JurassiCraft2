@@ -1,9 +1,19 @@
 {
   "variants": {
-    "normal": { "model": "highlands:aspen_leaves" },
-    "check_decay=false,decayable=false": { "model": "jurassicraft:calamites_leaves" },
-    "check_decay=true,decayable=false": { "model": "jurassicraft:calamites_leaves" },
-    "check_decay=true,decayable=true": { "model": "jurassicraft:calamites_leaves" },
-    "check_decay=false,decayable=true": { "model": "jurassicraft:calamites_leaves" }
+    "normal": {
+      "model": "highlands:aspen_leaves"
+    },
+    "check_decay=false,decayable=false": {
+      "model": "jurassicraft:calamites_leaves"
+    },
+    "check_decay=true,decayable=false": {
+      "model": "jurassicraft:calamites_leaves"
+    },
+    "check_decay=true,decayable=true": {
+      "model": "jurassicraft:calamites_leaves"
+    },
+    "check_decay=false,decayable=true": {
+      "model": "jurassicraft:calamites_leaves"
+    }
   }
 }

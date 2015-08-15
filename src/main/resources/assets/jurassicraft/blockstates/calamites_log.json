@@ -1,8 +1,17 @@
 {
   "variants": {
-    "axis=y":  { "model": "jurassicraft:calamites_log" },
-    "axis=z":   { "model": "jurassicraft:calamites_log_side" },
-    "axis=x":   { "model": "jurassicraft:calamites_log_side", "y": 90 },
-    "axis=none": { "model": "jurassicraft:calamites_bark" }
+    "axis=y": {
+      "model": "jurassicraft:calamites_log"
+    },
+    "axis=z": {
+      "model": "jurassicraft:calamites_log_side"
+    },
+    "axis=x": {
+      "model": "jurassicraft:calamites_log_side",
+      "y": 90
+    },
+    "axis=none": {
+      "model": "jurassicraft:calamites_bark"
+    }
   }
 }

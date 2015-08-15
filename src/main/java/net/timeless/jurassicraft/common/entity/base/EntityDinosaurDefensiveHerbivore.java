@@ -51,8 +51,7 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
         if (p_70103_1_ == 10)
         {
             this.eatTimer = 40;
-        }
-        else
+        } else
         {
             super.handleHealthUpdate(p_70103_1_);
         }
@@ -75,13 +74,11 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
         if (this.isEntityInvulnerable(source))
         {
             return false;
-        }
-        else if (super.attackEntityFrom(source, amount))
+        } else if (super.attackEntityFrom(source, amount))
         {
             Entity entity = source.getEntity();
             return this.riddenByEntity != entity && this.ridingEntity != entity ? true : true;
-        }
-        else
+        } else
         {
             return false;
         }

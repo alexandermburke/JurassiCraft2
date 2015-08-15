@@ -23,8 +23,7 @@ public class RenderDefDimorphodon extends RenderDinosaurDefinition
         try
         {
             this.model = getDefaultTabulaModel();
-        }
-        catch (Exception e)
+        } catch (Exception e)
         {
             e.printStackTrace();
         }

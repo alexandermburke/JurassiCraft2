@@ -62,7 +62,7 @@ public class AnimationStegosaurus implements IModelAnimator
         MowzieModelRenderer handRight = model.getCube("FrontLeg FOOT Right");
         MowzieModelRenderer handLeft = model.getCube("FrontLeg FOOT Left");
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
 
         float scaleFactor = 0.5F;
         float height = 0.8F;

@@ -38,45 +38,6 @@ public abstract class BaseCrop extends BlockBush implements IGrowable
         this.disableStats();
     }
 
-    @Override
-    public boolean canPlaceBlockOn(Block ground)
-    {
-        return ground == Blocks.farmland || ground == Blocks.grass || ground == Blocks.dirt;
-    }
-
-    @Override
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
-    {
-        super.updateTick(worldIn, pos, state, rand);
-
-        if (worldIn.getLightFromNeighbors(pos.up()) >= 9)
-        {
-            int i = ((Integer)state.getValue(AGE)).intValue();
-
-            if (i < 7)
-            {
-                float f = getGrowthChance(this, worldIn, pos);
-
-                if (rand.nextInt((int)(25.0F / f) + 1) == 0)
-                {
-                    worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(i + 1)), 2);
-                }
-            }
-        }
-    }
-
-    public void grow(World worldIn, BlockPos pos, IBlockState state)
-    {
-        int i = ((Integer)state.getValue(AGE)).intValue() + MathHelper.getRandomIntegerInRange(worldIn.rand, 2, 5);
-
-        if (i > 7)
-        {
-            i = 7;
-        }
-
-        worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(i)), 2);
-    }
-
     public static float getGrowthChance(Block blockIn, World worldIn, BlockPos pos)
     {
         float f = 1.0F;
@@ -89,7 +50,7 @@ public abstract class BaseCrop extends BlockBush implements IGrowable
                 float f1 = 0.0F;
                 IBlockState iblockstate = worldIn.getBlockState(blockpos1.add(i, 0, j));
 
-                if (iblockstate.getBlock().canSustainPlant(worldIn, blockpos1.add(i, 0, j), net.minecraft.util.EnumFacing.UP, (net.minecraftforge.common.IPlantable)blockIn))
+                if (iblockstate.getBlock().canSustainPlant(worldIn, blockpos1.add(i, 0, j), net.minecraft.util.EnumFacing.UP, (net.minecraftforge.common.IPlantable) blockIn))
                 {
                     f1 = 1.0F;
 
@@ -118,8 +79,7 @@ public abstract class BaseCrop extends BlockBush implements IGrowable
         if (flag && flag1)
         {
             f /= 2.0F;
-        }
-        else
+        } else
         {
             boolean flag2 = blockIn == worldIn.getBlockState(blockpos4.north()).getBlock() || blockIn == worldIn.getBlockState(blockpos5.north()).getBlock() || blockIn == worldIn.getBlockState(blockpos5.south()).getBlock() || blockIn == worldIn.getBlockState(blockpos4.south()).getBlock();
 
@@ -133,16 +93,57 @@ public abstract class BaseCrop extends BlockBush implements IGrowable
     }
 
     @Override
+    public boolean canPlaceBlockOn(Block ground)
+    {
+        return ground == Blocks.farmland || ground == Blocks.grass || ground == Blocks.dirt;
+    }
+
+    @Override
+    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    {
+        super.updateTick(worldIn, pos, state, rand);
+
+        if (worldIn.getLightFromNeighbors(pos.up()) >= 9)
+        {
+            int i = ((Integer) state.getValue(AGE)).intValue();
+
+            if (i < 7)
+            {
+                float f = getGrowthChance(this, worldIn, pos);
+
+                if (rand.nextInt((int) (25.0F / f) + 1) == 0)
+                {
+                    worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(i + 1)), 2);
+                }
+            }
+        }
+    }
+
+    public void grow(World worldIn, BlockPos pos, IBlockState state)
+    {
+        int i = ((Integer) state.getValue(AGE)).intValue() + MathHelper.getRandomIntegerInRange(worldIn.rand, 2, 5);
+
+        if (i > 7)
+        {
+            i = 7;
+        }
+
+        worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(i)), 2);
+    }
+
+    @Override
     public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
     {
         return (worldIn.getLight(pos) >= 8 || worldIn.canSeeSky(pos)) && worldIn.getBlockState(pos.down()).getBlock().canSustainPlant(worldIn, pos.down(), net.minecraft.util.EnumFacing.UP, this);
     }
 
-    public Item getSeed(){
+    public Item getSeed()
+    {
         return seed;
     }
 
-    public Item getCrop(){
+    public Item getCrop()
+    {
         return crop;
     }
 
@@ -155,12 +156,12 @@ public abstract class BaseCrop extends BlockBush implements IGrowable
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return ((Integer)state.getValue(AGE)).intValue() == 7 ? this.getCrop() : this.getSeed();
+        return ((Integer) state.getValue(AGE)).intValue() == 7 ? this.getCrop() : this.getSeed();
     }
 
     public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient)
     {
-        return ((Integer)state.getValue(AGE)).intValue() < 7;
+        return ((Integer) state.getValue(AGE)).intValue() < 7;
     }
 
     public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state)
@@ -189,7 +190,7 @@ public abstract class BaseCrop extends BlockBush implements IGrowable
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((Integer)state.getValue(AGE)).intValue();
+        return ((Integer) state.getValue(AGE)).intValue();
     }
 
     @Override
@@ -202,8 +203,8 @@ public abstract class BaseCrop extends BlockBush implements IGrowable
     public java.util.List<ItemStack> getDrops(net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
         java.util.List<ItemStack> ret = super.getDrops(world, pos, state, fortune);
-        int age = ((Integer)state.getValue(AGE)).intValue();
-        Random rand = world instanceof World ? ((World)world).rand : new Random();
+        int age = ((Integer) state.getValue(AGE)).intValue();
+        Random rand = world instanceof World ? ((World) world).rand : new Random();
 
         if (age >= 7)
         {

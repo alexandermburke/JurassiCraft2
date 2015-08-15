@@ -44,7 +44,7 @@ public class AnimationDunkleosteus implements IModelAnimator
         MowzieModelRenderer body2 = model.getCube("Body Section 2");
         MowzieModelRenderer body3 = model.getCube("Body Section 3");
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1, body3, body2, head };
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1, body3, body2, head};
 
         head.rotationPointX -= -1 * f1 * Math.sin((f + 1) * 0.6);
         model.chainSwing(tail, 0.3F, 0.2F, 3.0D, f, f1);

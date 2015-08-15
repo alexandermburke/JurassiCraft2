@@ -64,7 +64,7 @@ public class AnimationCompsognathus implements IModelAnimator
         model.faceTarget(head, 2, rotationYaw, rotationPitch);
         model.faceTarget(neck1, 2, rotationYaw, rotationPitch);
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail5, tail4, tail3, tail2, tail1 };
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail5, tail4, tail3, tail2, tail1};
 
         ((EntityCompsognathus) entity).tailBuffer.applyChainSwingBuffer(tail);
 

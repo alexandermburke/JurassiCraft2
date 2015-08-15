@@ -8,10 +8,9 @@ import net.timeless.unilib.common.animation.ChainBuffer;
 
 public class EntityHerrerasaurus extends EntityDinosaurAggressive implements IEntityAICreature, ICarnivore
 {
+    private static final String[] deathSounds = new String[]{"herrerasaurus_death_1"};
+    private static final String[] livingSounds = new String[]{"herrerasaurus_living_1"};
     public ChainBuffer tailBuffer = new ChainBuffer(6);
-
-    private static final String[] deathSounds = new String[] { "herrerasaurus_death_1" };
-    private static final String[] livingSounds = new String[] { "herrerasaurus_living_1" };
 
     public EntityHerrerasaurus(World world)
     {

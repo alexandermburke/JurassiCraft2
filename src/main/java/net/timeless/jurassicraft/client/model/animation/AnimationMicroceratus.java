@@ -53,11 +53,11 @@ public class AnimationMicroceratus implements IModelAnimator
         MowzieModelRenderer handLeft = model.getCube("Arm Hand LEFT");
         MowzieModelRenderer handRight = model.getCube("Arm Hand RIGHT");
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail5, tail4, tail3, tail2, tail1 };
-        MowzieModelRenderer[] neck = new MowzieModelRenderer[] { head, neck2, neck1, body };
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail5, tail4, tail3, tail2, tail1};
+        MowzieModelRenderer[] neck = new MowzieModelRenderer[]{head, neck2, neck1, body};
 
-        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[] { handLeft, armMidLeft, armTopLeft };
-        MowzieModelRenderer[] armRight = new MowzieModelRenderer[] { handRight, armMidRight, armTopRight };
+        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[]{handLeft, armMidLeft, armTopLeft};
+        MowzieModelRenderer[] armRight = new MowzieModelRenderer[]{handRight, armMidRight, armTopRight};
 
 //        f = entity.ticksExisted;
 //        f1 = 0.5F;

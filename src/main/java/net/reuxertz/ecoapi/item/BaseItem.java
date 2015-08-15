@@ -15,6 +15,12 @@ import java.util.List;
 
 public abstract class BaseItem extends Item implements IItem
 {
+    public BaseItem()
+    {
+        this.setMaxStackSize(1);
+        this.setCreativeTab(CreativeTabs.tabMisc);
+    }
+
     public static boolean itemsEqual(ItemStack i1, ItemStack i2)
     {
         return (i1 == null && i2 == null) || (i1 != null && i2 != null && i1.getItem() == i2.getItem() && i1.getItemDamage() == i2.getItemDamage());
@@ -28,12 +34,6 @@ public abstract class BaseItem extends Item implements IItem
     public void interactBlock(ItemStack stack, PlayerInteractEvent e)
     {
 
-    }
-
-    public BaseItem()
-    {
-        this.setMaxStackSize(1);
-        this.setCreativeTab(CreativeTabs.tabMisc);
     }
 
     @SideOnly(Side.CLIENT)
@@ -50,8 +50,7 @@ public abstract class BaseItem extends Item implements IItem
                 else
                     tooltip.add(s);
             }
-        }
-        else
+        } else
             tooltip.add("Empty");
     }
 }
