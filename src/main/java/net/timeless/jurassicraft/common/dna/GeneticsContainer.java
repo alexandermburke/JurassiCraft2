@@ -5,28 +5,26 @@ public class GeneticsContainer
     private String genetics;
 
     private static final int DINOSAUR = 0; //Which dinosaur is this?
-    private static final int GENDER = 1; //Gender 0 = male, 1 = female
-    private static final int COLOR = 2; //Color offset
-    private static final int SCALE = 3; //Scale offset
-    private static final int CAUTIOUSNESS = 5; //How cautious is this dinosaur
-    private static final int AGRESSION = 6; //How agressive is this dinosaur
-    private static final int GENETIC_VARIATION = 4; //Skin + Model variants (Blue, Echo, Delta, Charlie)
-    private static final int LIFE_TIME = 7; //How long to live after adulthood
-    private static final int SPEED = 8; //Speed Modifier
-    private static final int ADULT_TIME = 9; //How long to become an adult
+    private static final int COLOR = 1; //Color offset
+    private static final int SCALE = 2; //Scale offset
+    private static final int CAUTIOUSNESS = 3; //How cautious is this dinosaur
+    private static final int AGRESSION = 4; //How agressive is this dinosaur
+    private static final int GENETIC_VARIATION = 5; //Skin + Model variants (Blue, Echo, Delta, Charlie)
+    private static final int LIFE_TIME = 6; //How long to live after adulthood
+    private static final int SPEED = 7; //Speed Modifier
+    private static final int ADULT_TIME = 8; //How long to become an adult
 
-    private static final int VAR_COUNT = 9;
+    private static final int VAR_COUNT = 8;
 
     public GeneticsContainer(String genetics)
     {
         this.genetics = genetics;
     }
 
-    public GeneticsContainer(int dinosaur, boolean gender, int colorOffset, int scaleOffset, int cautiousness, int agression, int geneticVariation, int adultTime, int lifeTime, int speed)
+    public GeneticsContainer(int dinosaur, int colorOffset, int scaleOffset, int cautiousness, int agression, int geneticVariation, int adultTime, int lifeTime, int speed)
     {
         genetics = defaultGeneticCode();
         set(DINOSAUR, dinosaur);
-        set(GENDER, gender ? 0 : 1);
         set(COLOR, colorOffset);
         set(SCALE, scaleOffset);
         set(CAUTIOUSNESS, cautiousness);
@@ -52,16 +50,6 @@ public class GeneticsContainer
     public int getDinosaur()
     {
         return get(DINOSAUR);
-    }
-
-    public boolean isMale()
-    {
-        return get(GENDER) == 0;
-    }
-
-    public boolean isFemale()
-    {
-        return !isMale();
     }
 
     public int getColorOffset()

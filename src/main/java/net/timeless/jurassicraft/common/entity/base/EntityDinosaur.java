@@ -42,6 +42,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
     public AIAnimation currentAnim = null;
 
+    private boolean isMale;
+
     public void setNavigator(PathNavigate pn)
     {
         this.navigator = pn;
@@ -55,6 +57,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         dinosaurAge = 0;
 
         genetics = GeneticsHelper.randomGenetics(rand, getDinosaur(), getDNAQuality());
+        isMale = rand.nextBoolean();
 
         animTick = 0;
         animID = 0;
@@ -191,6 +194,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 //        nbt.setBoolean("IsCarcass", isCarcass);
         nbt.setInteger("DNAQuality", quality);
         nbt.setString("Genetics", genetics.toString());
+        nbt.setBoolean("IsMale", isMale);
     }
 
     public void readFromNBT(NBTTagCompound nbt)
@@ -202,6 +206,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 //        isCarcass = nbt.getBoolean("IsCarcass");
         quality = nbt.getInteger("DNAQuality");
         genetics = new GeneticsContainer(nbt.getString("Genetics"));
+        isMale = nbt.getBoolean("IsMale");
 
         updateCreatureData();
         adjustHitbox();
@@ -214,6 +219,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         buffer.writeInt(dinosaurAge);
 //        buffer.writeBoolean(isCarcass);
         buffer.writeInt(quality);
+        buffer.writeBoolean(isMale);
         ByteBufUtils.writeUTF8String(buffer, genetics.toString());
     }
 
@@ -224,6 +230,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         dinosaurAge = additionalData.readInt();
 //        isCarcass = additionalData.readBoolean();
         quality = additionalData.readInt();
+        isMale = additionalData.readBoolean();
 
         genetics = new GeneticsContainer(ByteBufUtils.readUTF8String(additionalData));
 
@@ -377,7 +384,12 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
     public boolean isMale()
     {
-        return genetics.isMale();
+        return isMale;
+    }
+
+    public void setMale(boolean male)
+    {
+        this.isMale = male;
     }
 
     public int getScaleOffset()

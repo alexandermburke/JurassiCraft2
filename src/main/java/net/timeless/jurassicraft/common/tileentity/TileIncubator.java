@@ -340,6 +340,8 @@ public class TileIncubator extends TileEntityLockable implements IUpdatePlayerLi
                     dino.setDNAQuality(egg.getTagCompound().getInteger("DNAQuality"));
                     dino.setGenetics(egg.getTagCompound().getString("Genetics"));
 
+                    dino.setMale(temperature[index] > 50);
+
                     int blockX = pos.getX();
                     int blockY = pos.getY();
                     int blockZ = pos.getZ();
