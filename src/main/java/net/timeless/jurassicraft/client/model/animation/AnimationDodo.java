@@ -52,7 +52,7 @@ public class AnimationDodo implements IModelAnimator
         MowzieModelRenderer rightFoot = model.getCube("RightFeet");
 
         MowzieModelRenderer[] neckParts = new MowzieModelRenderer[] { head, neck7, neck6, neck5, neck4, neck3, neck2, neck1 };
-        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[] { bodyFront, body, bodyBack, tail};
+        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[] { bodyFront, body, bodyBack, tail };
 
 //        f = entity.ticksExisted;
 //        f1 = 0.25F;
@@ -73,7 +73,7 @@ public class AnimationDodo implements IModelAnimator
         model.walk(rightLegBase, globalSpeed * 0.5F, globalDegree * 1.0F, false, 0.0F, 0.0F, f, f1);
         model.walk(rightLeg2, globalSpeed * 0.5F, globalDegree * 0.5F, false, 0.0F, 0.0F, f, f1);
         model.walk(rightFoot, globalSpeed * 0.5F, globalDegree * 1.0F, false, 0.0F, 0.0F, f, f1);
-        
+
         model.walk(leftLegBase, globalSpeed * 0.5F, globalDegree * 1.0F, true, 0.0F, 0.0F, f, f1);
         model.walk(leftLeg2, globalSpeed * 0.5F, globalDegree * 0.5F, true, 0.0F, 0.0F, f, f1);
         model.walk(leftFoot, globalSpeed * 0.5F, globalDegree * 1.0F, true, 0.0F, 0.0F, f, f1);

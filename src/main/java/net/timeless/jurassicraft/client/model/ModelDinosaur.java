@@ -21,18 +21,18 @@ public class ModelDinosaur extends ModelJson
         this.animator = new Animator(this);
     }
 
+    public ModelDinosaur(JsonTabulaModel model, IModelAnimator animator)
+    {
+        super(model, animator);
+        this.animator = new Animator(this);
+    }
+
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
     {
         if (!Minecraft.getMinecraft().isGamePaused())
             animator.update((IAnimatedEntity) entity);
 
         super.setRotationAngles(limbSwing, limbSwingAmount, rotation, rotationYaw, rotationPitch, partialTicks, entity);
-    }
-
-    public ModelDinosaur(JsonTabulaModel model, IModelAnimator animator)
-    {
-        super(model, animator);
-        this.animator = new Animator(this);
     }
 
     public List<MowzieModelRenderer> getParts()

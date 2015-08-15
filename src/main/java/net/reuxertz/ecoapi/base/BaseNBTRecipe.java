@@ -14,6 +14,16 @@ public class BaseNBTRecipe implements IRecipe
     protected ShapelessRecipes shapelessRecipe;
     protected ShapedRecipes shapedRecipe;
 
+    public BaseNBTRecipe(IRecipe recipe)
+    {
+        this.recipe = recipe;
+
+        if (recipe instanceof ShapelessRecipes)
+            this.shapelessRecipe = (ShapelessRecipes) recipe;
+        if (recipe instanceof ShapedRecipes)
+            this.shapedRecipe = (ShapedRecipes) recipe;
+    }
+
     public ItemStack handleOutput(InventoryCrafting inv, ItemStack output)
     {
         return null;
@@ -57,15 +67,5 @@ public class BaseNBTRecipe implements IRecipe
     public ItemStack[] getRemainingItems(InventoryCrafting p_179532_1_)
     {
         return recipe.getRemainingItems(p_179532_1_);
-    }
-
-    public BaseNBTRecipe(IRecipe recipe)
-    {
-        this.recipe = recipe;
-
-        if (recipe instanceof ShapelessRecipes)
-            this.shapelessRecipe = (ShapelessRecipes) recipe;
-        if (recipe instanceof ShapedRecipes)
-            this.shapedRecipe = (ShapedRecipes) recipe;
     }
 }

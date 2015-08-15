@@ -20,13 +20,12 @@ public class GuiAppFileExplorer extends GuiApp
     private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_tab/apps/file_explorer.png");
 
     private boolean intro;
+    private boolean loading;
 
     public GuiAppFileExplorer(App app)
     {
         super(app);
     }
-
-    private boolean loading;
 
     @Override
     public void render(int mouseX, int mouseY, GuiPaleoTab gui)
@@ -35,7 +34,7 @@ public class GuiAppFileExplorer extends GuiApp
 
         AppFileExplorer app = (AppFileExplorer) getApp();
 
-        if(intro)
+        if (intro)
         {
             gui.drawScaledText("Hello " + mc.thePlayer.getName() + "! Welcome to " + app.getName() + "!", 4, 10, 1.0F, 0xFFFFFF);
             mc.getTextureManager().bindTexture(texture);
@@ -48,9 +47,9 @@ public class GuiAppFileExplorer extends GuiApp
 
             List<JCFile> filesAtPath = JCPlayerDataClient.getPlayerData().getFilesAtPath(path);
 
-            if(loading)
+            if (loading)
             {
-                if(filesAtPath != null)
+                if (filesAtPath != null)
                 {
                     loading = false;
                 }
@@ -65,12 +64,12 @@ public class GuiAppFileExplorer extends GuiApp
 
                 for (JCFile file : filesAtPath)
                 {
-                    if(file != null && file.getName().length() > 0 && y < 125)
+                    if (file != null && file.getName().length() > 0 && y < 125)
                     {
                         gui.drawBoxOutline(5, y, 207, 12, 1, 1.0F, 0x606060);
                         String name = file.getName();
 
-                        if(name.length() > 23)
+                        if (name.length() > 23)
                         {
                             name = name.substring(0, 23) + "...";
                         }
@@ -105,7 +104,7 @@ public class GuiAppFileExplorer extends GuiApp
         mouseX -= dimensions.getScaledWidth() / 2 - 115;
         mouseY -= 65;
 
-        if(intro)
+        if (intro)
         {
 
         }
@@ -117,19 +116,19 @@ public class GuiAppFileExplorer extends GuiApp
 
             List<JCFile> filesAtPath = JCPlayerDataClient.getPlayerData().getFilesAtPath(path);
 
-            if(filesAtPath != null)
+            if (filesAtPath != null)
             {
                 int y = 5;
 
                 for (JCFile file : filesAtPath)
                 {
-                    if(file != null && file.getName().length() > 0 && file.isDirectory() && y < 125)
+                    if (file != null && file.getName().length() > 0 && file.isDirectory() && y < 125)
                     {
-                        if(mouseX > 5 && mouseX < 212 && mouseY > y && mouseY < y + 12)
+                        if (mouseX > 5 && mouseX < 212 && mouseY > y && mouseY < y + 12)
                         {
                             app.setPath(file.getPath());
 
-                            if(!(path.equals(app.getPath())))
+                            if (!(path.equals(app.getPath())))
                             {
                                 request(app.getPath());
                             }
@@ -142,11 +141,11 @@ public class GuiAppFileExplorer extends GuiApp
                 }
             }
 
-            if(mouseX > 5 && mouseX < 70 && mouseY > 132 && mouseY < 144)
+            if (mouseX > 5 && mouseX < 70 && mouseY > 132 && mouseY < 144)
             {
                 String[] split = path.split(Pattern.quote("/"));
 
-                if(split.length > 1)
+                if (split.length > 1)
                 {
                     app.setPath(path.substring(0, path.lastIndexOf("/")));
                 }
@@ -155,7 +154,7 @@ public class GuiAppFileExplorer extends GuiApp
                     app.setPath("");
                 }
 
-                if(!(path.equals(app.getPath())))
+                if (!(path.equals(app.getPath())))
                 {
                     request(app.getPath());
                 }
@@ -173,7 +172,7 @@ public class GuiAppFileExplorer extends GuiApp
         JurassiCraft.networkManager.networkWrapper.sendToServer(new MessageRequestFile(path));
         JCPlayerData playerData = JCPlayerDataClient.getPlayerData();
 
-        if(path.length() == 0)
+        if (path.length() == 0)
         {
             playerData.clearRootFiles();
         }
@@ -190,7 +189,7 @@ public class GuiAppFileExplorer extends GuiApp
     {
         intro = !app.hasBeenPreviouslyOpened();
 
-        request(((AppFileExplorer)app).getPath());
+        request(((AppFileExplorer) app).getPath());
     }
 
     @Override

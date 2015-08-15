@@ -131,7 +131,7 @@ public class AnimationParasaurolophus implements IModelAnimator
 
         // Idle
         int ticksExisted = entity.ticksExisted;
-        
+
         model.walk(neck1, 0.1F, 0.07F, false, -1F, 0F, ticksExisted, 1F);
         model.walk(head, 0.1F, 0.07F, true, 0F, 0F, ticksExisted, 1F);
         model.walk(waist, 0.1F, 0.04F, false, 0F, 0F, ticksExisted, 1F);

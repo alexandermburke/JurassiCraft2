@@ -11,7 +11,7 @@ import org.lwjgl.opengl.GL11;
 
 /**
  * @author BobMowzie, gegy1000, FiskFille
- * TAKEN FROM LLIBRARY
+ *         TAKEN FROM LLIBRARY
  */
 @SideOnly(Side.CLIENT)
 public class MowzieModelRenderer extends ModelRenderer
@@ -31,12 +31,10 @@ public class MowzieModelRenderer extends ModelRenderer
     public float scaleX = 1.0F;
     public float scaleY = 1.0F;
     public float scaleZ = 1.0F;
-
-    private boolean compiled;
-    private int displayList;
-
     public ModelRenderer parent;
     public boolean hasInitPose;
+    private boolean compiled;
+    private int displayList;
 
     public MowzieModelRenderer(ModelBase modelBase, String name)
     {

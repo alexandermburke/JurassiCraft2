@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 /**
  * @author iChun
- * TAKEN FROM LLIBRARY
+ *         TAKEN FROM LLIBRARY
  */
 public class CubeGroup
 {

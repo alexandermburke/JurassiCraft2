@@ -14,7 +14,9 @@ import net.timeless.jurassicraft.common.container.ContainerEmbryoCalcificationMa
 public class GuiEmbryoCalcificationMachine extends GuiContainer
 {
     private static final ResourceLocation texture = new ResourceLocation("jurassicraft:textures/gui/embryo_calcification_machine.png");
-    /** The player inventory bound to this GUI. */
+    /**
+     * The player inventory bound to this GUI.
+     */
     private final InventoryPlayer playerInventory;
     private IInventory calcificationMachine;
 
@@ -50,13 +52,13 @@ public class GuiEmbryoCalcificationMachine extends GuiContainer
         int progress1 = this.getProgress(9);
         int progress2 = this.getProgress(20);
         this.drawTexturedModalRect(k + 67, l + 31, 176, 14, progress + 1, 16);
-       //Syringe Top
+        //Syringe Top
         this.drawTexturedModalRect(k + 38, l + 32, 177, 32, 9, progress1);
-       //Syringe Inside  
+        //Syringe Inside
         this.drawTexturedModalRect(k + 38, l + 38, 197, 38, 9, progress2);
-       //Clean up 
-        this.drawTexturedModalRect(k + 38, l + 32, 187, 32, 9, progress1-1);
- 
+        //Clean up
+        this.drawTexturedModalRect(k + 38, l + 32, 187, 32, 9, progress1 - 1);
+
     }
 
     private int getProgress(int scale)

@@ -37,10 +37,10 @@ public class RenderCageSmall extends Render
     public void doRender(EntityCageSmall cage, double x, double y, double z, float yaw, float partialTicks)
     {
         GlStateManager.pushMatrix();
-        GlStateManager.translate((float)x, (float)y + 1.5F, (float)z);
+        GlStateManager.translate((float) x, (float) y + 1.5F, (float) z);
         GlStateManager.rotate(180.0F - yaw, 0.0F, 1.0F, 0.0F);
 
-        if(cage.getEntity() != null)
+        if (cage.getEntity() != null)
         {
             Minecraft.getMinecraft().getRenderManager().renderEntityWithPosYaw(cage.getEntity(), 0.0D, -1.45D, 0.0D, 0.0F, 0.0F);
         }

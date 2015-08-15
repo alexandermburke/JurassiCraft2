@@ -17,7 +17,7 @@ public class AnimationTropeognathus implements IModelAnimator
     public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity e)
     {
         ModelDinosaur model = (ModelDinosaur) modelJson;
-		EntityTropeognathus entity = (EntityTropeognathus) e;
+        EntityTropeognathus entity = (EntityTropeognathus) e;
         Animator animator = model.animator;
 
         MowzieModelRenderer leftThigh = model.getCube("Left thigh");

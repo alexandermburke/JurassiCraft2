@@ -14,7 +14,9 @@ import net.timeless.jurassicraft.common.tileentity.TileCleaningStation;
 public class GuiCleaningStation extends GuiContainer
 {
     private static final ResourceLocation texture = new ResourceLocation("jurassicraft:textures/gui/cleaning_station.png");
-    /** The player inventory bound to this GUI. */
+    /**
+     * The player inventory bound to this GUI.
+     */
     private final InventoryPlayer playerInventory;
     private IInventory cleaningStation;
 

@@ -17,7 +17,7 @@ public class AnimationLeaellynasaura implements IModelAnimator
     public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity e)
     {
         ModelDinosaur model = (ModelDinosaur) modelJson;
-		EntityLeaellynasaura entity = (EntityLeaellynasaura) e;
+        EntityLeaellynasaura entity = (EntityLeaellynasaura) e;
         Animator animator = model.animator;
 
 //        f = entity.ticksExisted;

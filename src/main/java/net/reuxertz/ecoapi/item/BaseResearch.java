@@ -7,16 +7,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BaseResearch extends BaseItem
 {
-    @SideOnly(Side.CLIENT)
-    public boolean hasEffect(ItemStack par1ItemStack)
-    {
-        return true;
-    }
-
     public BaseResearch()
     {
         this.setMaxStackSize(64);
         setCreativeTab(CreativeTabs.tabMisc);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public boolean hasEffect(ItemStack par1ItemStack)
+    {
+        return true;
     }
 
 }

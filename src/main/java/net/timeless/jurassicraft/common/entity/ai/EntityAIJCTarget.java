@@ -18,22 +18,33 @@ import org.apache.commons.lang3.StringUtils;
 
 public abstract class EntityAIJCTarget extends EntityAIBase
 {
-    /** The entity that this task belongs to */
+    private static final String __OBFID = "CL_00001626";
+    /**
+     * The entity that this task belongs to
+     */
     protected final EntityDinosaur taskOwner;
-    /** If true, EntityAI targets must be able to be seen (cannot be blocked by walls) to be suitable targets. */
+    /**
+     * If true, EntityAI targets must be able to be seen (cannot be blocked by walls) to be suitable targets.
+     */
     protected boolean shouldCheckSight;
-    /** When true, only entities that can be reached with minimal effort will be targetted. */
+    protected Dinosaur dinosaur;
+    /**
+     * When true, only entities that can be reached with minimal effort will be targetted.
+     */
     private boolean nearbyOnly;
-    /** When nearbyOnly is true: 0 -> No target, but OK to search; 1 -> Nearby target found; 2 -> Target too far. */
+    /**
+     * When nearbyOnly is true: 0 -> No target, but OK to search; 1 -> Nearby target found; 2 -> Target too far.
+     */
     private int targetSearchStatus;
-    /** When nearbyOnly is true, this throttles target searching to avoid excessive pathfinding. */
+    /**
+     * When nearbyOnly is true, this throttles target searching to avoid excessive pathfinding.
+     */
     private int targetSearchDelay;
     /**
      * If  @shouldCheckSight is true, the number of ticks before the interuption of this AITastk when the entity does't
      * see the target
      */
     private int targetUnseenTicks;
-    private static final String __OBFID = "CL_00001626";
 
     public EntityAIJCTarget(EntityDinosaur p_i1669_1_, boolean p_i1669_2_)
     {
@@ -45,6 +56,57 @@ public abstract class EntityAIJCTarget extends EntityAIBase
         this.taskOwner = p_i1670_1_;
         this.shouldCheckSight = p_i1670_2_;
         this.nearbyOnly = p_i1670_3_;
+    }
+
+    public static boolean func_179445_a(EntityLiving p_179445_0_, EntityLivingBase p_179445_1_, boolean p_179445_2_, boolean p_179445_3_)
+    {
+        if (p_179445_1_ == null)
+        {
+            return false;
+        }
+        else if (p_179445_1_ == p_179445_0_)
+        {
+            return false;
+        }
+        else if (!p_179445_1_.isEntityAlive())
+        {
+            return false;
+        }
+        else if (!p_179445_0_.canAttackClass(p_179445_1_.getClass()))
+        {
+            return false;
+        }
+        else
+        {
+            Team team = p_179445_0_.getTeam();
+            Team team1 = p_179445_1_.getTeam();
+
+            if (team != null && team1 == team)
+            {
+                return false;
+            }
+            else
+            {
+                if (p_179445_0_ instanceof IEntityOwnable && StringUtils.isNotEmpty(((IEntityOwnable) p_179445_0_).getOwnerId()))
+                {
+                    if (p_179445_1_ instanceof IEntityOwnable && ((IEntityOwnable) p_179445_0_).getOwnerId().equals(((IEntityOwnable) p_179445_1_).getOwnerId()))
+                    {
+                        return false;
+                    }
+
+                    if (p_179445_1_ == ((IEntityOwnable) p_179445_0_).getOwner())
+                    {
+                        return false;
+                    }
+                }
+                else if (p_179445_1_ instanceof EntityPlayer && !p_179445_2_ && ((EntityPlayer) p_179445_1_).capabilities.disableDamage)
+                {
+                    return false;
+                }
+
+                return !p_179445_3_ || p_179445_0_.getEntitySenses().canSee(p_179445_1_);
+            }
+        }
     }
 
     /**
@@ -122,59 +184,6 @@ public abstract class EntityAIJCTarget extends EntityAIBase
     {
         this.taskOwner.setAttackTarget((EntityLivingBase) null);
     }
-
-    public static boolean func_179445_a(EntityLiving p_179445_0_, EntityLivingBase p_179445_1_, boolean p_179445_2_, boolean p_179445_3_)
-    {
-        if (p_179445_1_ == null)
-        {
-            return false;
-        }
-        else if (p_179445_1_ == p_179445_0_)
-        {
-            return false;
-        }
-        else if (!p_179445_1_.isEntityAlive())
-        {
-            return false;
-        }
-        else if (!p_179445_0_.canAttackClass(p_179445_1_.getClass()))
-        {
-            return false;
-        }
-        else
-        {
-            Team team = p_179445_0_.getTeam();
-            Team team1 = p_179445_1_.getTeam();
-
-            if (team != null && team1 == team)
-            {
-                return false;
-            }
-            else
-            {
-                if (p_179445_0_ instanceof IEntityOwnable && StringUtils.isNotEmpty(((IEntityOwnable) p_179445_0_).getOwnerId()))
-                {
-                    if (p_179445_1_ instanceof IEntityOwnable && ((IEntityOwnable) p_179445_0_).getOwnerId().equals(((IEntityOwnable) p_179445_1_).getOwnerId()))
-                    {
-                        return false;
-                    }
-
-                    if (p_179445_1_ == ((IEntityOwnable) p_179445_0_).getOwner())
-                    {
-                        return false;
-                    }
-                }
-                else if (p_179445_1_ instanceof EntityPlayer && !p_179445_2_ && ((EntityPlayer) p_179445_1_).capabilities.disableDamage)
-                {
-                    return false;
-                }
-
-                return !p_179445_3_ || p_179445_0_.getEntitySenses().canSee(p_179445_1_);
-            }
-        }
-    }
-
-    protected Dinosaur dinosaur;
 
     /**
      * A method used to see if an entity is a suitable target through a number of checks. Args : entity,

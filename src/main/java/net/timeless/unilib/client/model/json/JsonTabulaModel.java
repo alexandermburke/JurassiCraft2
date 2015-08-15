@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * @author Gegy1000
- * TAKEN FROM LLIBRARY
+ *         TAKEN FROM LLIBRARY
  */
 public class JsonTabulaModel
 {

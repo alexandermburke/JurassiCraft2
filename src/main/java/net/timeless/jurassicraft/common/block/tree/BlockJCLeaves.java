@@ -178,7 +178,7 @@ public class BlockJCLeaves extends BlockLeaves
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[]{CHECK_DECAY, DECAYABLE});
+        return new BlockState(this, new IProperty[] { CHECK_DECAY, DECAYABLE });
     }
 
     /**

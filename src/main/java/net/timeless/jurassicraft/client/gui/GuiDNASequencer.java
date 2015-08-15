@@ -14,7 +14,9 @@ import net.timeless.jurassicraft.common.container.ContainerDNASequencer;
 public class GuiDNASequencer extends GuiContainer
 {
     private static final ResourceLocation texture = new ResourceLocation("jurassicraft:textures/gui/dna_sequencer.png");
-    /** The player inventory bound to this GUI. */
+    /**
+     * The player inventory bound to this GUI.
+     */
     private final InventoryPlayer playerInventory;
     private IInventory dnaSequencer;
 

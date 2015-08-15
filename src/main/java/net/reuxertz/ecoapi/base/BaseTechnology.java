@@ -8,16 +8,16 @@ import net.reuxertz.ecoapi.item.BaseItem;
 
 public class BaseTechnology extends BaseItem
 {
-    @SideOnly(Side.CLIENT)
-    public boolean hasEffect(ItemStack par1ItemStack)
-    {
-        return true;
-    }
-
     public BaseTechnology()
     {
         this.setMaxStackSize(1);
         setCreativeTab(CreativeTabs.tabMisc);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public boolean hasEffect(ItemStack par1ItemStack)
+    {
+        return true;
     }
 
 }

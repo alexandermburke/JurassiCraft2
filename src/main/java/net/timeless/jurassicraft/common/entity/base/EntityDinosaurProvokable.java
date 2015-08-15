@@ -23,8 +23,8 @@ public class EntityDinosaurProvokable extends EntityDinosaur
     }
 
     /**
-    * Sets the active target the Task system uses for tracking
-    */
+     * Sets the active target the Task system uses for tracking
+     */
     public void setAttackTarget(EntityLivingBase entity)
     {
         super.setAttackTarget(entity);
@@ -50,7 +50,7 @@ public class EntityDinosaurProvokable extends EntityDinosaur
 
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
-    */
+     */
     public void readEntityFromNBT(NBTTagCompound tagCompund)
     {
         super.readEntityFromNBT(tagCompund);

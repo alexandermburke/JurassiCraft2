@@ -34,13 +34,21 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
     private static final int[] slotsBottom = new int[] { 2, 3, 4 }; //output
     private static final int[] slotsSides = new int[] {};
 
-    /** The ItemStacks that hold the items currently being used in the dna sequencer */
+    /**
+     * The ItemStacks that hold the items currently being used in the dna sequencer
+     */
     private ItemStack[] slots = new ItemStack[5];
 
     private int sequenceTime;
     private int totalSequenceTime;
 
     private String customName;
+
+    @SideOnly(Side.CLIENT)
+    public static boolean isSequenceing(IInventory inventory)
+    {
+        return inventory.getField(0) > 0;
+    }
 
     /**
      * Returns the number of slots in the inventory.
@@ -221,12 +229,6 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
         return this.sequenceTime > 0;
     }
 
-    @SideOnly(Side.CLIENT)
-    public static boolean isSequenceing(IInventory inventory)
-    {
-        return inventory.getField(0) > 0;
-    }
-
     /**
      * Updates the JList with a new model.
      */
@@ -345,7 +347,7 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
 
             NBTTagCompound nbt = slots[1].getTagCompound();
 
-            if(nbt == null)
+            if (nbt == null)
             {
                 nbt = new NBTTagCompound();
             }

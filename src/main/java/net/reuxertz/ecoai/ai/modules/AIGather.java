@@ -23,6 +23,11 @@ public class AIGather extends AIModule
 {
     protected int collectDistXZ = 6, collectDistY = 4, blockSearchPasses = 30;
 
+    public AIGather(IDemand demand, AICore entity, AINavigate navigate, Target t)
+    {
+        super(demand, entity, navigate, t);
+    }
+
     public boolean evaluateTarget(Target t)
     {
         if (!t.enableEvaluateTarget)
@@ -40,6 +45,7 @@ public class AIGather extends AIModule
         return t.entity != null && !t.entity.isDead && t.entityHeldItem != null && BaseItem.itemsEqual(((EntityPlayer) t.entity).getHeldItem(), t.entityHeldItem);
 
     }
+
     public Target nextNavigatePosition()
     {
         Target t = null;
@@ -72,7 +78,7 @@ public class AIGather extends AIModule
                 continue;
 
             if (this.demand.isItemDemanded(s) != null)
-                t =  new Target(this.agentAI.entity().worldObj, p);
+                t = new Target(this.agentAI.entity().worldObj, p);
         }
 
         if (t != null)
@@ -80,6 +86,7 @@ public class AIGather extends AIModule
 
         return null;
     }
+
     public boolean doWorkContinue()
     {
         if (this.getAgent().worldObj.isRemote)
@@ -98,7 +105,7 @@ public class AIGather extends AIModule
 
         if (this.workTarget.entity instanceof EntityItem)
         {
-            EntityItem entityItem = (EntityItem)this.workTarget.entity;
+            EntityItem entityItem = (EntityItem) this.workTarget.entity;
             ItemStack r = this.agentAI.addToInventory(entityItem.getEntityItem());
 
             if (r == null)
@@ -113,10 +120,5 @@ public class AIGather extends AIModule
         }
 
         return false;
-    }
-
-    public AIGather(IDemand demand, AICore entity, AINavigate navigate, Target t)
-    {
-        super(demand, entity, navigate, t);
     }
 }

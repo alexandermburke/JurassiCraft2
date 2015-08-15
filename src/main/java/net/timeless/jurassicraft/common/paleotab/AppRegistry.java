@@ -5,9 +5,9 @@ import java.util.List;
 
 public class AppRegistry
 {
-    private static List<App> registeredApps = new ArrayList<>();
     public static App dinopedia;
     public static App file_explorer;
+    private static List<App> registeredApps = new ArrayList<>();
 
     public static void registerApp(App app)
     {

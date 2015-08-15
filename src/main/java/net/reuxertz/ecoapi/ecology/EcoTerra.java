@@ -22,9 +22,9 @@ public class EcoTerra
     public static final Item.ToolMaterial toolMaterialSteel = EnumHelper.addToolMaterial("STEEL", 1, 131, 4.0F, 1, 26);
 
     //Armor Materials
-    public static ItemArmor.ArmorMaterial armorMaterialCopper = EnumHelper.addArmorMaterial("COPPER", "ecocraft:copper", 16, new int[]{2, 5, 4, 1}, 30);
-    public static ItemArmor.ArmorMaterial armorMaterialBronze = EnumHelper.addArmorMaterial("BRONZE", "ecocraft:bronze", 16, new int[]{2, 7, 5, 2}, 30);
-    public static ItemArmor.ArmorMaterial armorMaterialSteel = EnumHelper.addArmorMaterial("STEEL", "ecocraft:steel", 16, new int[]{3, 8, 6, 3}, 30);
+    public static ItemArmor.ArmorMaterial armorMaterialCopper = EnumHelper.addArmorMaterial("COPPER", "ecocraft:copper", 16, new int[] { 2, 5, 4, 1 }, 30);
+    public static ItemArmor.ArmorMaterial armorMaterialBronze = EnumHelper.addArmorMaterial("BRONZE", "ecocraft:bronze", 16, new int[] { 2, 7, 5, 2 }, 30);
+    public static ItemArmor.ArmorMaterial armorMaterialSteel = EnumHelper.addArmorMaterial("STEEL", "ecocraft:steel", 16, new int[] { 3, 8, 6, 3 }, 30);
 
     private static Random random = new Random();
 
@@ -40,10 +40,12 @@ public class EcoTerra
         if (!EcoTerra.earthDropBlocks.contains(b))
             EcoTerra.earthDropBlocks.add(b);
     }
+
     public static void registerItemAsEarthDrop(ItemStack is)
     {
         EcoTerra.registerItemAsEarthDrop(is, false);
     }
+
     public static void registerItemAsEarthDrop(ItemStack is, boolean override)
     {
         if (!override)
@@ -53,6 +55,7 @@ public class EcoTerra
 
         EcoTerra.earthDrops.add(is);
     }
+
     public static void handleRandomEarthDrops(BlockEvent.HarvestDropsEvent e)
     {
         Block broken = e.state.getBlock();

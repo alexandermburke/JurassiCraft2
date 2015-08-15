@@ -14,6 +14,20 @@ import net.timeless.jurassicraft.common.tileentity.*;
 
 public class JCGuiHandler implements IGuiHandler
 {
+    public static void openPaleoPad(EntityPlayer player)
+    {
+        if (player.worldObj.isRemote)
+            displayPaleoPadGUIClient();
+//        else
+//            JurassiCraft.networkManager.networkWrapper.sendTo(new MessageSyncPaleoPad(player), (EntityPlayerMP) player);
+    }
+
+    @SideOnly(Side.CLIENT)
+    private static void displayPaleoPadGUIClient()
+    {
+        Minecraft.getMinecraft().displayGuiScreen(new GuiPaleoTab());
+    }
+
     @Override
     public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z)
     {
@@ -94,19 +108,5 @@ public class JCGuiHandler implements IGuiHandler
         }
 
         return null;
-    }
-
-    public static void openPaleoPad(EntityPlayer player)
-    {
-        if (player.worldObj.isRemote)
-           displayPaleoPadGUIClient();
-//        else
-//            JurassiCraft.networkManager.networkWrapper.sendTo(new MessageSyncPaleoPad(player), (EntityPlayerMP) player);
-    }
-
-    @SideOnly(Side.CLIENT)
-    private static void displayPaleoPadGUIClient()
-    {
-        Minecraft.getMinecraft().displayGuiScreen(new GuiPaleoTab());
     }
 }

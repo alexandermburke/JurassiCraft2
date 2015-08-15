@@ -53,9 +53,9 @@ public class AnimationApatosaurus implements IModelAnimator
         MowzieModelRenderer front_right_foot = model.getCube("front right foot");
         MowzieModelRenderer front_left_foot = model.getCube("front left foot");
 
-        MowzieModelRenderer[] neckParts = new MowzieModelRenderer[]{head, neck6, neck5, neck4, neck3, neck2, neck1};
-        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{tail5, tail4, tail3};
-        MowzieModelRenderer[] tailParts2 = new MowzieModelRenderer[]{tail5, tail4, tail3, tail2, tail1};
+        MowzieModelRenderer[] neckParts = new MowzieModelRenderer[] { head, neck6, neck5, neck4, neck3, neck2, neck1 };
+        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[] { tail5, tail4, tail3 };
+        MowzieModelRenderer[] tailParts2 = new MowzieModelRenderer[] { tail5, tail4, tail3, tail2, tail1 };
 
         float scaleFactor = 0.5F;
         float height = 0.85F;

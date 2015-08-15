@@ -19,10 +19,10 @@ public class DinosaurVelociraptor extends Dinosaur
         this.maleTextures = new String[] { getDinosaurTexture("male") };
         this.femaleTextures = new String[] { getDinosaurTexture("female") };
 
-        this.blueTextures = new String[] { getDinosaurTexture("", 1)};
-        this.echoTextures = new String[] { getDinosaurTexture("", 2)};
-        this.deltaTextures = new String[] { getDinosaurTexture("", 3)};
-        this.charlieTextures = new String[] { getDinosaurTexture("", 4)};
+        this.blueTextures = new String[] { getDinosaurTexture("", 1) };
+        this.echoTextures = new String[] { getDinosaurTexture("", 2) };
+        this.deltaTextures = new String[] { getDinosaurTexture("", 3) };
+        this.charlieTextures = new String[] { getDinosaurTexture("", 4) };
 
     }
 

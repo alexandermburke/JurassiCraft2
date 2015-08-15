@@ -69,15 +69,15 @@ public class EntityCageSmall extends Entity
     {
         super.onUpdate();
 
-        if(worldObj.isRemote)
+        if (worldObj.isRemote)
         {
             int id = dataWatcher.getWatchableObjectInt(25);
 
-            if(id != -1)
+            if (id != -1)
             {
                 entity = (EntityDinosaur) EntityList.createEntityByID(id, worldObj);
 
-                if(entity != null)
+                if (entity != null)
                 {
                     entity.setMale(dataWatcher.getWatchableObjectInt(20) == 0);
                     entity.setAge(dataWatcher.getWatchableObjectInt(17));
@@ -91,14 +91,14 @@ public class EntityCageSmall extends Entity
             }
         }
 
-        if(entity != null)
+        if (entity != null)
         {
             entity.onUpdate();
         }
 
-        if(!worldObj.isRemote)
+        if (!worldObj.isRemote)
         {
-            if(entity != null)
+            if (entity != null)
             {
                 dataWatcher.updateObject(25, EntityList.getEntityID(entity));
                 dataWatcher.updateObject(17, entity.getDinosaurAge());
@@ -118,7 +118,7 @@ public class EntityCageSmall extends Entity
      */
     public boolean interactFirst(EntityPlayer playerIn)
     {
-        if(entity != null && !worldObj.isRemote)
+        if (entity != null && !worldObj.isRemote)
         {
             entity.setPosition(posX, posY, posZ);
             worldObj.spawnEntityInWorld(entity);
@@ -141,11 +141,11 @@ public class EntityCageSmall extends Entity
     {
         this.setDead();
 
-        if(!worldObj.isRemote)
+        if (!worldObj.isRemote)
         {
             ItemStack stack = new ItemStack(JCItemRegistry.cage_small);
 
-            if(entity != null)
+            if (entity != null)
             {
                 NBTTagCompound nbt = new NBTTagCompound();
 
@@ -165,7 +165,7 @@ public class EntityCageSmall extends Entity
     {
         int cagedId = tagCompund.getInteger("CagedID");
 
-        if(cagedId != -1)
+        if (cagedId != -1)
         {
             entity = (EntityDinosaur) EntityList.createEntityByID(cagedId, worldObj);
             entity.readFromNBT(tagCompund.getCompoundTag("Entity"));
@@ -175,7 +175,7 @@ public class EntityCageSmall extends Entity
     @Override
     protected void writeEntityToNBT(NBTTagCompound tagCompound)
     {
-        if(entity != null)
+        if (entity != null)
         {
             int entityId = EntityList.getEntityID(entity);
 
@@ -196,19 +196,9 @@ public class EntityCageSmall extends Entity
         this.entity = (EntityDinosaur) EntityList.createEntityByID(entity, worldObj);
     }
 
-    public void setEntity(Entity entity)
-    {
-        this.entity = (EntityDinosaur) entity;
-
-        NBTTagCompound nbt = new NBTTagCompound();
-        entity.writeToNBT(nbt);
-
-        setEntityData(nbt);
-    }
-
     public void setEntityData(NBTTagCompound entityData)
     {
-        if(entity != null)
+        if (entity != null)
         {
             entity.readFromNBT(entityData);
         }
@@ -217,5 +207,15 @@ public class EntityCageSmall extends Entity
     public Entity getEntity()
     {
         return entity;
+    }
+
+    public void setEntity(Entity entity)
+    {
+        this.entity = (EntityDinosaur) entity;
+
+        NBTTagCompound nbt = new NBTTagCompound();
+        entity.writeToNBT(nbt);
+
+        setEntityData(nbt);
     }
 }

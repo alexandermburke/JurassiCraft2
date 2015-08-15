@@ -154,6 +154,18 @@ public class RenderIndominusRex extends RenderLiving implements IDinosaurRendere
         return getEntityTexture((EntityDinosaur) entity);
     }
 
+    @Override
+    public void setModel(ModelBase model)
+    {
+        this.mainModel = model;
+    }
+
+    @Override
+    public RenderDinosaurDefinition getRenderDef()
+    {
+        return renderDef;
+    }
+
     @SideOnly(Side.CLIENT)
     public class LayerDinosaurFeatures implements LayerRenderer
     {
@@ -203,17 +215,5 @@ public class RenderIndominusRex extends RenderLiving implements IDinosaurRendere
         {
             this.render((EntityDinosaur) entity, p_177141_2_, p_177141_3_, p_177141_4_, p_177141_5_, p_177141_6_, p_177141_7_, p_177141_8_);
         }
-    }
-
-    @Override
-    public void setModel(ModelBase model)
-    {
-        this.mainModel = model;
-    }
-
-    @Override
-    public RenderDinosaurDefinition getRenderDef()
-    {
-        return renderDef;
     }
 }

@@ -43,169 +43,6 @@ public class AICore extends AIBase
     protected StateLife state;
     protected AIModule aiObject = null;
 
-    //Static Getters
-    public static AICore getCore(EntityCreature e)
-    {
-        return (AICore) AICore.getAi(e, AICore.class);
-    }
-    public static AINavigate getAiNavigate(EntityCreature e)
-    {
-        return (AINavigate) AICore.getAi(e, AINavigate.class);
-    }
-    public static Object getAi(EntityCreature e, Class AIClass)
-    {
-        for (int i = 0; i < e.tasks.taskEntries.size(); i++)
-        {
-            EntityAIBase t = ((EntityAITasks.EntityAITaskEntry) e.tasks.taskEntries.get(i)).action;
-            if (AIClass.isInstance(t))
-            {
-                return t;
-            }
-        }
-        return null;
-    }
-    public static List<EntityAIBase> getAllAI(EntityCreature e)
-    {
-        List<EntityAIBase> r = new ArrayList<EntityAIBase>();
-        for (int i = 0; i < e.tasks.taskEntries.size(); i++)
-        {
-            EntityAIBase t = ((EntityAITasks.EntityAITaskEntry) e.tasks.taskEntries.get(i)).action;
-            r.add(t);
-        }
-        return r;
-    }
-    public static StateLife getBioState(EntityCreature e)
-    {
-        return AICore.getCore(e).state;
-    }
-
-    //Getters
-    public StateLife getBioState()
-    {
-        return state;
-    }
-    public int getMaxInventorySize()
-    {
-        return maxInvSize;
-    }
-
-    //Inventory
-    protected ItemStack addToStack(ItemStack stackDest, ItemStack stackSrc)
-    {
-        if (!BaseItem.itemsEqual(stackDest, stackSrc))
-            return stackSrc;
-
-        if (stackDest.stackSize == stackDest.getMaxStackSize())
-            return stackSrc;
-
-        int spcRem = stackDest.getMaxStackSize() - stackDest.stackSize;
-
-        if (spcRem >= stackSrc.stackSize)
-        {
-            stackDest.stackSize += stackSrc.stackSize;
-            stackSrc.stackSize = 0;
-        }
-        if (spcRem < stackSrc.stackSize)
-        {
-            stackDest.stackSize = stackDest.getMaxStackSize();
-            stackSrc.stackSize -= spcRem;
-        }
-
-        if (stackSrc.stackSize == 0)
-            return null;
-        else
-            return stackSrc;
-    }
-    protected ItemStack removeFromStack(ItemStack stackRemAmt, ItemStack stackSrc)
-    {
-        if (!BaseItem.itemsEqual(stackRemAmt, stackSrc))
-            return stackRemAmt;
-
-        if (stackRemAmt.stackSize == stackSrc.getMaxStackSize() - stackSrc.stackSize)
-        {
-            stackRemAmt.stackSize = 0;
-            stackSrc.stackSize = stackSrc.getMaxStackSize();
-            return null;
-        }
-
-        if (stackRemAmt.stackSize > stackSrc.stackSize)
-        {
-            stackRemAmt.stackSize -= stackSrc.stackSize;
-            stackSrc.stackSize = 0;
-            return stackRemAmt;
-        }
-        if (stackRemAmt.stackSize < stackSrc.stackSize)
-        {
-            stackSrc.stackSize -= stackRemAmt.stackSize;
-            stackRemAmt.stackSize = 0;
-            return null;
-        }
-
-        if (stackRemAmt.stackSize == 0)
-            return null;
-        else
-            return stackRemAmt;
-    }
-    public ItemStack addToInventory(ItemStack stack)
-    {
-        if (stack == null || stack.stackSize == 0)
-            return null;
-
-        for (int i = 0; i < this.curInventory.size(); i++)
-            stack = this.addToStack(this.curInventory.get(i), stack);
-
-        if (stack != null && this.curInventory.size() < this.maxInvSize)
-        {
-            this.curInventory.add(stack);
-            return null;
-        }
-
-        return stack;
-    }
-    public ItemStack getFromInventory(ItemStack stack)
-    {
-        int ss = stack.stackSize;
-        ItemStack remainder = this.removeFromInventory(stack);
-
-        if (remainder == null)
-            return new ItemStack(remainder.getItem(), ss, remainder.getItemDamage());
-        else
-            return new ItemStack(remainder.getItem(), ss - remainder.stackSize, remainder.getItemDamage());
-    }
-    public ItemStack removeFromInventory(ItemStack stack)
-    {
-        if (stack == null || stack.stackSize == 0)
-            return null;
-
-        for (int i = 0; i < this.curInventory.size(); i++)
-        {
-            ItemStack src = this.curInventory.get(i);
-            stack = this.removeFromStack(stack, src);
-
-            if (src.stackSize == 0)
-                this.curInventory.set(i, null);
-            else
-                this.curInventory.set(i, src);
-
-            if (stack.stackSize == 0)
-                break;
-        }
-
-        if (stack.stackSize == 0)
-            return null;
-        else
-            return stack;
-    }
-    public int getInventoryCount(ItemStack stack)
-    {
-        int count = 0;
-        for (int i = 0; i < this.curInventory.size(); i++)
-            if (BaseItem.itemsEqual(stack, this.curInventory.get(i)))
-                count += this.curInventory.get(i).stackSize;
-
-        return 0;
-    }
-
     //Constructor
     public AICore(EntityCreature entity, List<Class> aiObjs)
     {
@@ -238,9 +75,183 @@ public class AICore extends AIBase
         state = new StateLife(entity);
         timer = new CounterObj(entity.worldObj.getWorldTime(), 80, 20);
     }
+
     public AICore(EntityCreature entity)
     {
         this(entity, null);
+    }
+
+    //Static Getters
+    public static AICore getCore(EntityCreature e)
+    {
+        return (AICore) AICore.getAi(e, AICore.class);
+    }
+
+    public static AINavigate getAiNavigate(EntityCreature e)
+    {
+        return (AINavigate) AICore.getAi(e, AINavigate.class);
+    }
+
+    public static Object getAi(EntityCreature e, Class AIClass)
+    {
+        for (int i = 0; i < e.tasks.taskEntries.size(); i++)
+        {
+            EntityAIBase t = ((EntityAITasks.EntityAITaskEntry) e.tasks.taskEntries.get(i)).action;
+            if (AIClass.isInstance(t))
+            {
+                return t;
+            }
+        }
+        return null;
+    }
+
+    public static List<EntityAIBase> getAllAI(EntityCreature e)
+    {
+        List<EntityAIBase> r = new ArrayList<EntityAIBase>();
+        for (int i = 0; i < e.tasks.taskEntries.size(); i++)
+        {
+            EntityAIBase t = ((EntityAITasks.EntityAITaskEntry) e.tasks.taskEntries.get(i)).action;
+            r.add(t);
+        }
+        return r;
+    }
+
+    public static StateLife getBioState(EntityCreature e)
+    {
+        return AICore.getCore(e).state;
+    }
+
+    //Getters
+    public StateLife getBioState()
+    {
+        return state;
+    }
+
+    public int getMaxInventorySize()
+    {
+        return maxInvSize;
+    }
+
+    //Inventory
+    protected ItemStack addToStack(ItemStack stackDest, ItemStack stackSrc)
+    {
+        if (!BaseItem.itemsEqual(stackDest, stackSrc))
+            return stackSrc;
+
+        if (stackDest.stackSize == stackDest.getMaxStackSize())
+            return stackSrc;
+
+        int spcRem = stackDest.getMaxStackSize() - stackDest.stackSize;
+
+        if (spcRem >= stackSrc.stackSize)
+        {
+            stackDest.stackSize += stackSrc.stackSize;
+            stackSrc.stackSize = 0;
+        }
+        if (spcRem < stackSrc.stackSize)
+        {
+            stackDest.stackSize = stackDest.getMaxStackSize();
+            stackSrc.stackSize -= spcRem;
+        }
+
+        if (stackSrc.stackSize == 0)
+            return null;
+        else
+            return stackSrc;
+    }
+
+    protected ItemStack removeFromStack(ItemStack stackRemAmt, ItemStack stackSrc)
+    {
+        if (!BaseItem.itemsEqual(stackRemAmt, stackSrc))
+            return stackRemAmt;
+
+        if (stackRemAmt.stackSize == stackSrc.getMaxStackSize() - stackSrc.stackSize)
+        {
+            stackRemAmt.stackSize = 0;
+            stackSrc.stackSize = stackSrc.getMaxStackSize();
+            return null;
+        }
+
+        if (stackRemAmt.stackSize > stackSrc.stackSize)
+        {
+            stackRemAmt.stackSize -= stackSrc.stackSize;
+            stackSrc.stackSize = 0;
+            return stackRemAmt;
+        }
+        if (stackRemAmt.stackSize < stackSrc.stackSize)
+        {
+            stackSrc.stackSize -= stackRemAmt.stackSize;
+            stackRemAmt.stackSize = 0;
+            return null;
+        }
+
+        if (stackRemAmt.stackSize == 0)
+            return null;
+        else
+            return stackRemAmt;
+    }
+
+    public ItemStack addToInventory(ItemStack stack)
+    {
+        if (stack == null || stack.stackSize == 0)
+            return null;
+
+        for (int i = 0; i < this.curInventory.size(); i++)
+            stack = this.addToStack(this.curInventory.get(i), stack);
+
+        if (stack != null && this.curInventory.size() < this.maxInvSize)
+        {
+            this.curInventory.add(stack);
+            return null;
+        }
+
+        return stack;
+    }
+
+    public ItemStack getFromInventory(ItemStack stack)
+    {
+        int ss = stack.stackSize;
+        ItemStack remainder = this.removeFromInventory(stack);
+
+        if (remainder == null)
+            return new ItemStack(remainder.getItem(), ss, remainder.getItemDamage());
+        else
+            return new ItemStack(remainder.getItem(), ss - remainder.stackSize, remainder.getItemDamage());
+    }
+
+    public ItemStack removeFromInventory(ItemStack stack)
+    {
+        if (stack == null || stack.stackSize == 0)
+            return null;
+
+        for (int i = 0; i < this.curInventory.size(); i++)
+        {
+            ItemStack src = this.curInventory.get(i);
+            stack = this.removeFromStack(stack, src);
+
+            if (src.stackSize == 0)
+                this.curInventory.set(i, null);
+            else
+                this.curInventory.set(i, src);
+
+            if (stack.stackSize == 0)
+                break;
+        }
+
+        if (stack.stackSize == 0)
+            return null;
+        else
+            return stack;
+    }
+
+    public int getInventoryCount(ItemStack stack)
+    {
+        int count = 0;
+        for (int i = 0; i < this.curInventory.size(); i++)
+            if (BaseItem.itemsEqual(stack, this.curInventory.get(i)))
+                count += this.curInventory.get(i).stackSize;
+
+        return 0;
     }
 
     //NBT
@@ -258,6 +269,7 @@ public class AICore extends AIBase
 
         return nbt;
     }
+
     @Override
     public void readFromEntityNbt()
     {
@@ -283,7 +295,7 @@ public class AICore extends AIBase
         //if ((aiNav != null) && (!aiNav.isEnabled()))
         //{
         //    //aiNav.setEnabled(true);
-            //aiNav.activateWander();
+        //aiNav.activateWander();
         //    aiNav.activateIdleWander(.05);
         //}
 
@@ -296,6 +308,7 @@ public class AICore extends AIBase
 
         //System.out.println("aiTick");
     }
+
     public void updateActions()
     {
 
@@ -321,7 +334,7 @@ public class AICore extends AIBase
             AIModule nai = null;//c.newInstance(curDemand, this, getAiNavigate(this.entity()), null);
 
             //Create AI Object instance based on avaialble classes using reflection
-            for (Class c: this.aiObjs)
+            for (Class c : this.aiObjs)
             {
                 Constructor[] cs = c.getConstructors();
                 Constructor ci = cs[0];
@@ -329,18 +342,23 @@ public class AICore extends AIBase
                 {
                     //if (ci.getParameterCount() == 4)
                     //{
-                        try
-                        {
-                            nai = (AIModule)ci.newInstance(curDemand, this, getAiNavigate(this.entity()), t);
-                            //break;
-                        }
-                        catch (InstantiationException x) {
-                            x.printStackTrace();
-                        } catch (InvocationTargetException x) {
-                            x.printStackTrace();
-                        } catch (IllegalAccessException x) {
-                            x.printStackTrace();
-                        }
+                    try
+                    {
+                        nai = (AIModule) ci.newInstance(curDemand, this, getAiNavigate(this.entity()), t);
+                        //break;
+                    }
+                    catch (InstantiationException x)
+                    {
+                        x.printStackTrace();
+                    }
+                    catch (InvocationTargetException x)
+                    {
+                        x.printStackTrace();
+                    }
+                    catch (IllegalAccessException x)
+                    {
+                        x.printStackTrace();
+                    }
                     //}
                 }
 
@@ -364,6 +382,7 @@ public class AICore extends AIBase
             AICore.getAiNavigate(this.entity).activateIdleWander(.05);
 
     }
+
     public void updateWants()
     {
         //HashMap<ItemDemand, ItemDemand> oldNewMap = new HashMap<ItemDemand, ItemDemand>();

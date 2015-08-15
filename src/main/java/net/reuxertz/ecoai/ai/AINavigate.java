@@ -9,22 +9,34 @@ import net.reuxertz.ecoapi.entity.IEntityAISwimmingCreature;
 
 public class AINavigate extends AIBase
 {
-    public enum NavState { Null, IdleWander, SearchWander }
-
     protected double speed, wanderDist = 15, wanderPower = 1.71, destinationBlockBuffer = 2.0, destinationEntityBuffer = 1.5;
     protected boolean finishOnArrival = false;
     protected Entity seekEntity = null;
     protected float sinkFactor = 1.0f;
     protected NavState navState = NavState.Null;
 
+    //Constructor
+    public AINavigate(EntityCreature e, double speed)
+    {
+        super(e);
+
+        //float ei = e.stepHeight;
+        //e.stepHeight = 1.0f * (float)(e.getBoundingBox().maxY - e.getBoundingBox().minY);
+        //..e.stepHeight = 1.2f;
+        this.speed = speed;
+        //this.setMutexBits(1);
+    }
+
     public boolean positionReached(boolean includeY)
     {
         return workPositionReached(includeY, destinationBlockBuffer) || this.seekEntityReached(includeY, destinationEntityBuffer);
     }
+
     public boolean workPositionReached(boolean includeY)
     {
         return this.workPositionReached(includeY, destinationBlockBuffer);
     }
+
     public boolean workPositionReached(boolean includeY, double dist)
     {
         if (this.getWorkingPosition() == null)
@@ -47,6 +59,7 @@ public class AINavigate extends AIBase
 
         return r2 <= r1;
     }
+
     public boolean seekEntityReached(boolean includeY, double dist)
     {
         if (this.seekEntity == null)
@@ -75,10 +88,12 @@ public class AINavigate extends AIBase
 
         return r2 <= r1;
     }
+
     public boolean seekEntityReached(boolean includeY)
     {
         return this.seekEntityReached(includeY, destinationEntityBuffer);
     }
+
     public double distance(BlockPos b1, BlockPos b2)
     {
         double x = b1.getX() - b2.getX();
@@ -89,18 +104,6 @@ public class AINavigate extends AIBase
         z = z * z;
 
         return Math.sqrt(x + y + z);
-    }
-
-    //Constructor
-    public AINavigate(EntityCreature e, double speed)
-    {
-        super(e);
-
-        //float ei = e.stepHeight;
-        //e.stepHeight = 1.0f * (float)(e.getBoundingBox().maxY - e.getBoundingBox().minY);
-        //..e.stepHeight = 1.2f;
-        this.speed = speed;
-        //this.setMutexBits(1);
     }
 
     //Functions
@@ -143,6 +146,7 @@ public class AINavigate extends AIBase
             }
         }
     }
+
     public boolean shouldExecute()
     {
         boolean b = super.shouldExecute();
@@ -169,6 +173,7 @@ public class AINavigate extends AIBase
 
         return true;
     }
+
     public boolean continueExecuting()
     {
         if (!super.continueExecuting())
@@ -188,6 +193,7 @@ public class AINavigate extends AIBase
         }
         return cont;
     }
+
     public void startExecuting()
     {
         if (this.seekEntity != null)
@@ -203,6 +209,7 @@ public class AINavigate extends AIBase
     {
         super.activateTask(workingPosition);
     }
+
     public void activateSeekEntityTask(Entity e)
     {
         super.activateTask(null);
@@ -220,7 +227,6 @@ public class AINavigate extends AIBase
         this.navState = NavState.Null;
     }
 
-
     public void activateWander()
     {
         this.activateTask(null);
@@ -232,5 +238,10 @@ public class AINavigate extends AIBase
         this.probRecursion = probNewWander;
         this.isRecursive = true;
         //this.navPos = null;
+    }
+
+    public enum NavState
+    {
+        Null, IdleWander, SearchWander
     }
 }

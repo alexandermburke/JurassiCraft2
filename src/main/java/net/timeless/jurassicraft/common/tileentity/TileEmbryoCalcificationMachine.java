@@ -31,13 +31,21 @@ public class TileEmbryoCalcificationMachine extends TileEntityLockable implement
     private static final int[] slotsBottom = new int[] { 2 }; //output
     private static final int[] slotsSides = new int[] {};
 
-    /** The ItemStacks that hold the items currently being used in the dna sequencer */
+    /**
+     * The ItemStacks that hold the items currently being used in the dna sequencer
+     */
     private ItemStack[] slots = new ItemStack[3];
 
     private int calcifyTime;
     private int totalCalcifyTime;
 
     private String customName;
+
+    @SideOnly(Side.CLIENT)
+    public static boolean isCalcifying(IInventory inventory)
+    {
+        return inventory.getField(0) > 0;
+    }
 
     /**
      * Returns the number of slots in the inventory.
@@ -216,12 +224,6 @@ public class TileEmbryoCalcificationMachine extends TileEntityLockable implement
     public boolean isCalcifying()
     {
         return this.calcifyTime > 0;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public static boolean isCalcifying(IInventory inventory)
-    {
-        return inventory.getField(0) > 0;
     }
 
     /**

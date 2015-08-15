@@ -18,7 +18,9 @@ import java.io.IOException;
 public class GuiIncubator extends GuiContainer
 {
     private static final ResourceLocation texture = new ResourceLocation("jurassicraft:textures/gui/incubator.png");
-    /** The player inventory bound to this GUI. */
+    /**
+     * The player inventory bound to this GUI.
+     */
     private final InventoryPlayer playerInventory;
     private IInventory incubator;
 
@@ -85,11 +87,11 @@ public class GuiIncubator extends GuiContainer
             x += k - 2;
             y += 18 + l;
 
-            if(mouseX > x && mouseY > y && mouseX < x + 21 && mouseY < y + 5)
+            if (mouseX > x && mouseY > y && mouseX < x + 21 && mouseY < y + 5)
             {
                 int temp = (mouseX - x + 1) * 4;
 
-                if(temp != incubator.getField(i + 10))
+                if (temp != incubator.getField(i + 10))
                 {
                     incubator.setField(i + 10, temp);
                     JurassiCraft.networkManager.networkWrapper.sendToServer(new MessageChangeTemperature(((TileEntity) incubator).getPos(), i, temp));

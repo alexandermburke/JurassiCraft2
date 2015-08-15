@@ -10,11 +10,13 @@ import java.util.Random;
 /**
  * Created by Jordi on 12/08/2015.
  */
-public class WorldGenCalamites extends WorldGenAbstractTree {
+public class WorldGenCalamites extends WorldGenAbstractTree
+{
 
     private int code;
 
-    public WorldGenCalamites(int code) {
+    public WorldGenCalamites(int code)
+    {
 
         super(true);
         this.code = code;
@@ -22,7 +24,8 @@ public class WorldGenCalamites extends WorldGenAbstractTree {
     }
 
     @Override
-    public boolean generate(World worldIn, Random random, BlockPos pos) {
+    public boolean generate(World worldIn, Random random, BlockPos pos)
+    {
 
 
         TreeGenerator generator = new TreeGenerator(code, worldIn, pos);

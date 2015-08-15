@@ -30,7 +30,7 @@ public class AIFarming extends AIGather
 
         if (this.workTarget.entity instanceof EntityItem)
         {
-            EntityItem entityItem = (EntityItem)this.workTarget.entity;
+            EntityItem entityItem = (EntityItem) this.workTarget.entity;
             ItemStack r = this.agentAI.addToInventory(entityItem.getEntityItem());
 
             if (r == null)
@@ -114,9 +114,9 @@ public class AIFarming extends AIGather
         Block blockBelow = stateBelow.getBlock();
         Block blockAbove = w.getBlockState(cropPos).getBlock();
 
-        boolean belowIsFarmable = BlockHelper.getBlockEquals(blockBelow, Arrays.asList(new Block[]{Blocks.farmland, Blocks.dirt, Blocks.grass}));//Block.isEqualTo(blockBelow, Blocks.farmland);
+        boolean belowIsFarmable = BlockHelper.getBlockEquals(blockBelow, Arrays.asList(new Block[] { Blocks.farmland, Blocks.dirt, Blocks.grass }));//Block.isEqualTo(blockBelow, Blocks.farmland);
         boolean aboveIsAcceptable = BlockHelper.getBlockEquals(blockAbove,
-                Arrays.asList(new Block[]{Blocks.air, Blocks.tallgrass, Blocks.double_plant,
+                Arrays.asList(new Block[] { Blocks.air, Blocks.tallgrass, Blocks.double_plant,
                         Blocks.red_flower, Blocks.yellow_flower, Blocks.brown_mushroom, Blocks.red_mushroom }));
         boolean isFertile = this.isBlockFertile(w, farmlandPos);
 

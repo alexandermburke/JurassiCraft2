@@ -2,11 +2,11 @@ package net.timeless.animationapi;
 
 public interface IAnimatedEntity
 {
-    void setAnimID(int id);
-
-    void setAnimTick(int tick);
-
     int getAnimID();
 
+    void setAnimID(int id);
+
     int getAnimTick();
+
+    void setAnimTick(int tick);
 }
