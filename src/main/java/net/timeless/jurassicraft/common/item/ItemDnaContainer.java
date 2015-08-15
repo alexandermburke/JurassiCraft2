@@ -5,8 +5,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
-import net.timeless.jurassicraft.common.dna.GeneticsContainer;
-import net.timeless.jurassicraft.common.dna.GeneticsHelper;
+import net.timeless.jurassicraft.common.genetics.GeneticsContainer;
+import net.timeless.jurassicraft.common.genetics.GeneticsHelper;
 import net.timeless.jurassicraft.common.lang.AdvLang;
 
 import java.util.List;

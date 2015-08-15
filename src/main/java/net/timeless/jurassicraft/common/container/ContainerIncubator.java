@@ -7,7 +7,6 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.timeless.jurassicraft.common.container.slot.SlotCustom;
-import net.timeless.jurassicraft.common.container.slot.SlotTestTube;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 import net.timeless.jurassicraft.common.tileentity.TileIncubator;
 

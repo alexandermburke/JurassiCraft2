@@ -3,7 +3,6 @@ package net.timeless.jurassicraft.common.container.slot;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.timeless.jurassicraft.common.item.ItemSoftTissue;
 import net.timeless.jurassicraft.common.item.ItemSyringe;
 
 public class SlotSyringe extends Slot

@@ -7,11 +7,9 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.timeless.jurassicraft.common.container.slot.SlotCustom;
-import net.timeless.jurassicraft.common.container.slot.SlotFossil;
 import net.timeless.jurassicraft.common.container.slot.SlotTestTube;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 import net.timeless.jurassicraft.common.tileentity.TileEmbryonicMachine;
-import net.timeless.jurassicraft.common.tileentity.TileFossilGrinder;
 
 public class ContainerEmbryonicMachine extends Container
 {

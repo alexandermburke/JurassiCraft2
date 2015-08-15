@@ -2,10 +2,8 @@ package net.timeless.jurassicraft.common.entity;
 
 import net.minecraft.world.World;
 import net.reuxertz.ecoapi.ecology.role.ICarnivore;
-import net.reuxertz.ecoapi.ecology.role.IHerbivore;
 import net.reuxertz.ecoapi.entity.IEntityAICreature;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
-import net.timeless.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbivore;
 import net.timeless.unilib.common.animation.ChainBuffer;
 
 public class EntityHerrerasaurus extends EntityDinosaurAggressive implements IEntityAICreature, ICarnivore

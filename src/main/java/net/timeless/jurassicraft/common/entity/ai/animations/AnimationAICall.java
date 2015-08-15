@@ -1,7 +1,6 @@
 package net.timeless.jurassicraft.common.entity.ai.animations;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.reuxertz.ecoapi.util.EntityHelper;
 import net.timeless.animationapi.AIAnimation;
 import net.timeless.animationapi.IAnimatedEntity;

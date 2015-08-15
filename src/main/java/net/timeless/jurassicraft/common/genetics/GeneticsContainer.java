@@ -1,4 +1,4 @@
-package net.timeless.jurassicraft.common.dna;
+package net.timeless.jurassicraft.common.genetics;
 
 public class GeneticsContainer
 {

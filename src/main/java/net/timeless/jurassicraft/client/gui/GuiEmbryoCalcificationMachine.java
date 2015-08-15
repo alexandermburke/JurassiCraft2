@@ -9,7 +9,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.common.container.ContainerEmbryoCalcificationMachine;
-import net.timeless.jurassicraft.common.container.ContainerFossilGrinder;
 
 @SideOnly(Side.CLIENT)
 public class GuiEmbryoCalcificationMachine extends GuiContainer

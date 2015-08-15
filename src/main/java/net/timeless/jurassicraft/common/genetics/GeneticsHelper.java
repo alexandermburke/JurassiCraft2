@@ -1,4 +1,4 @@
-package net.timeless.jurassicraft.common.dna;
+package net.timeless.jurassicraft.common.genetics;
 
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;

@@ -1,6 +1,5 @@
 package net.timeless.jurassicraft.common.dinosaur;
 
-import net.timeless.jurassicraft.common.entity.EntityDodo;
 import net.timeless.jurassicraft.common.entity.EntityLeptictidium;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.common.period.EnumTimePeriod;

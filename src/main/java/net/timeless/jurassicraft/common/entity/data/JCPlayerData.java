@@ -7,7 +7,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.timeless.jurassicraft.common.dna.DNA;
+import net.timeless.jurassicraft.common.genetics.DNA;
 import net.timeless.jurassicraft.common.paleotab.App;
 import net.timeless.jurassicraft.common.paleotab.JCFile;
 

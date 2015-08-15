@@ -1,12 +1,6 @@
 package net.timeless.jurassicraft.common.entity;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.ai.EntityAILeapAtTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.passive.EntityPig;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.timeless.animationapi.AnimationAPI;
 import net.timeless.jurassicraft.common.entity.ai.animations.AnimationAICall;

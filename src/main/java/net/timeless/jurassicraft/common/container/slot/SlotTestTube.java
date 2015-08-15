@@ -4,7 +4,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.timeless.jurassicraft.common.item.ItemDNA;
-import net.timeless.jurassicraft.common.item.ItemFossil;
 
 public class SlotTestTube extends Slot
 {

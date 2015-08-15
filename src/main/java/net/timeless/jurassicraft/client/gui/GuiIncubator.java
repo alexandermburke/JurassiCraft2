@@ -10,10 +10,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.container.ContainerIncubator;
-import net.timeless.jurassicraft.common.container.slot.SlotCustom;
-import net.timeless.jurassicraft.common.item.JCItemRegistry;
 import net.timeless.jurassicraft.common.message.MessageChangeTemperature;
-import net.timeless.jurassicraft.common.tileentity.TileIncubator;
 
 import java.io.IOException;
 

@@ -21,16 +21,9 @@ import net.minecraft.util.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
-import net.timeless.jurassicraft.common.container.ContainerDNASequencer;
 import net.timeless.jurassicraft.common.container.ContainerEmbryoCalcificationMachine;
-import net.timeless.jurassicraft.common.dna.DNA;
-import net.timeless.jurassicraft.common.dna.GeneticsHelper;
-import net.timeless.jurassicraft.common.entity.data.JCPlayerData;
 import net.timeless.jurassicraft.common.item.ItemSyringe;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
-
-import java.util.Random;
-import java.util.UUID;
 
 public class TileEmbryoCalcificationMachine extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {

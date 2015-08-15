@@ -1,6 +1,5 @@
 package net.timeless.jurassicraft.common.tileentity;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
@@ -23,17 +22,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
-import net.timeless.jurassicraft.common.container.ContainerFossilGrinder;
 import net.timeless.jurassicraft.common.container.ContainerIncubator;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.entity.item.EntityCageSmall;
 import net.timeless.jurassicraft.common.item.ItemDinosaurEgg;
-import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 import java.util.List;
-import java.util.Random;
 
 public class TileIncubator extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {

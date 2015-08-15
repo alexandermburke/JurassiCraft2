@@ -1,10 +1,5 @@
 package net.timeless.jurassicraft.common.entity;
 
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIPanic;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.reuxertz.ecoapi.ecology.role.IHerbivore;
 import net.reuxertz.ecoapi.entity.IEntityAICreature;

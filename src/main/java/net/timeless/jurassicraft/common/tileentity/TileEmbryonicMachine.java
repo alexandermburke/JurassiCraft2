@@ -21,13 +21,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.container.ContainerEmbryonicMachine;
-import net.timeless.jurassicraft.common.container.ContainerFossilGrinder;
 import net.timeless.jurassicraft.common.item.ItemDNA;
-import net.timeless.jurassicraft.common.item.ItemFossil;
-import net.timeless.jurassicraft.common.item.ItemSyringe;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
-
-import java.util.Random;
 
 public class TileEmbryonicMachine extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {

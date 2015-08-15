@@ -5,9 +5,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
+import net.timeless.jurassicraft.common.entity.EntityOthnielia;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
-import net.timeless.jurassicraft.common.entity.EntityOthnielia;
 
 @SideOnly(Side.CLIENT)
 public class AnimationOthnielia implements IModelAnimator

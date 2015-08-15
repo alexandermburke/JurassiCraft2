@@ -11,7 +11,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.common.tileentity.TileDNAExtractor;
-import net.timeless.jurassicraft.common.tileentity.TileIncubator;
 
 import java.util.Random;
 

@@ -21,15 +21,12 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.container.ContainerDNASequencer;
-import net.timeless.jurassicraft.common.dna.DNA;
-import net.timeless.jurassicraft.common.dna.GeneticsHelper;
-import net.timeless.jurassicraft.common.entity.data.JCPlayerData;
-import net.timeless.jurassicraft.common.item.ItemPaleoTab;
+import net.timeless.jurassicraft.common.genetics.DNA;
+import net.timeless.jurassicraft.common.genetics.GeneticsHelper;
 import net.timeless.jurassicraft.common.item.ItemSoftTissue;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 import java.util.Random;
-import java.util.UUID;
 
 public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {

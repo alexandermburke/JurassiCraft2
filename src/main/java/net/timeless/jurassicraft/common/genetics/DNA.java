@@ -1,8 +1,7 @@
-package net.timeless.jurassicraft.common.dna;
+package net.timeless.jurassicraft.common.genetics;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.timeless.jurassicraft.common.item.ItemSoftTissue;
 
 public class DNA
 {
