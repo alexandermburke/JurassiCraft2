@@ -88,7 +88,7 @@ public class GuiIncubator extends GuiContainer
             x += k - 2;
             y += 18 + l;
 
-            if(mouseX > x && mouseY > y && mouseX < x + 20 && mouseY < y + 5)
+            if(mouseX > x && mouseY > y && mouseX < x + 21 && mouseY < y + 5)
             {
                 int temp = (mouseX - x + 1) * 4;
 
