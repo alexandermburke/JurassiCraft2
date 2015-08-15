@@ -167,7 +167,7 @@ public class EntityCageSmall extends Entity
 
         if(cagedId != -1)
         {
-            Entity entity = EntityList.createEntityByID(cagedId, worldObj);
+            entity = (EntityDinosaur) EntityList.createEntityByID(cagedId, worldObj);
             entity.readFromNBT(tagCompund.getCompoundTag("Entity"));
         }
     }

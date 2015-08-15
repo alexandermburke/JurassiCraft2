@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
@@ -35,14 +36,20 @@ public class ItemCage extends Item
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced)
     {
         int caged = getCaged(stack);
+        NBTTagCompound data = getData(stack);
 
         if(caged != -1)
         {
-            tooltip.add(StatCollector.translateToLocal("entity." + EntityList.classToStringMapping.get(EntityList.idToClassMapping.get(caged))) + ".name");
+            tooltip.add(EnumChatFormatting.BLUE + StatCollector.translateToLocal("entity." + EntityList.classToStringMapping.get(EntityList.idToClassMapping.get(caged)) + ".name"));
+
+            if(data != null)
+            {
+                tooltip.add(EnumChatFormatting.RED + StatCollector.translateToLocal("gender." + (data.getBoolean("IsMale") ? "male" : "female") + ".name"));
+            }
         }
         else
         {
-            tooltip.add(StatCollector.translateToLocal("cage.empty.name"));
+            tooltip.add(EnumChatFormatting.RED + StatCollector.translateToLocal("cage.empty.name"));
         }
     }
 
