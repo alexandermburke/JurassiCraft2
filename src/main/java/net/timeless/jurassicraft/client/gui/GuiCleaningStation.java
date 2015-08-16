@@ -49,8 +49,8 @@ public class GuiCleaningStation extends GuiContainer
 
         if (TileCleaningStation.isCleaning(this.cleaningStation))
         {
-            progress = this.func_175382_i(13);
-            this.drawTexturedModalRect(k + 57, l + 37 + 12 - progress, 176, 12 - progress, 14, progress + 1);
+            progress = this.func_175382_i(51);
+            this.drawTexturedModalRect(k + 46, l + 18 + 51 - progress, 176,  81 - progress, 14, progress + 1);
         }
 
         progress = this.getProgress(24);
