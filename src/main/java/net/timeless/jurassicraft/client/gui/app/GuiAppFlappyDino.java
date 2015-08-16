@@ -48,7 +48,7 @@ public class GuiAppFlappyDino extends GuiApp
 
             motionY--;
 
-            if(y < 0)
+            if(y < 20)
             {
                 init();
             }
