@@ -303,7 +303,7 @@ public class TileIncubator extends TileEntityLockable implements IUpdatePlayerLi
 
     public int getStackIncubateTime(ItemStack stack)
     {
-        return 2048;
+        return 8000;
     }
 
     /**
