@@ -98,6 +98,11 @@ tile.ginkgo_planks.name=Ginkgo Planks
 tile.ginkgo_log.name=Ginkgo Log
 tile.ginkgo_leaves.name=Ginkgo Leaves
 
+tile.calamites_sapling.name=Calamites Sapling
+tile.calamites_leaves.name=Calamites Leaves
+tile.calamites_log.name=Calamites Log
+tile.calamites_planks.name=Calamites Planks
+
 //Containers ==================================================
 container.cleaning_station=Cleaning Station
 container.cleaning_station.cleanFossilButton=Clean Fossil

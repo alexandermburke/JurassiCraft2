@@ -124,7 +124,7 @@ public class GuiPaleoTab extends GuiScreen
         {
             for (int i = 0; i < apps.size(); i++)
             {
-                int x = (i % 6) * 55 + 5;
+                int x = (i % 4) * 50 + 5;
                 int y = (int) Math.floor((float) i / 6.0F) * 38;
 
                 App app = apps.get(i);
