@@ -2,12 +2,12 @@ package net.timeless.jurassicraft.common.paleotab;
 
 import net.minecraft.nbt.NBTTagCompound;
 
-public class AppDinoPedia extends App
+public class AppFlappyDino extends App
 {
     @Override
     public String getName()
     {
-        return "DinoPedia";
+        return "Flappy Dino";
     }
 
     @Override
@@ -19,20 +19,15 @@ public class AppDinoPedia extends App
     @Override
     public void writeToNBT(NBTTagCompound nbt)
     {
-        
     }
 
     @Override
     public void readFromNBT(NBTTagCompound nbt)
     {
-
     }
 
     @Override
     public void init()
     {
-
     }
-
-
 }
