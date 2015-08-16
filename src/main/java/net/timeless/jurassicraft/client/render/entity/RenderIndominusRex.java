@@ -27,15 +27,11 @@ public class RenderIndominusRex extends RenderLiving implements IDinosaurRendere
     public RenderDinosaurDefinition renderDef;
     public ResourceLocation[] maleTextures;
     public ResourceLocation[] femaleTextures;
-    public ResourceLocation[] maleOverlayTextures;
-    public ResourceLocation[] femaleOverlayTextures;
     public Random random;
 
     public RenderIndominusRex(RenderDinosaurDefinition renderDef)
     {
         super(Minecraft.getMinecraft().getRenderManager(), renderDef.getModel(0), renderDef.getShadowSize());
-
-        this.addLayer(new LayerDinosaurFeatures(this));
 
         this.dinosaur = renderDef.getDinosaur();
         this.random = new Random();
@@ -43,8 +39,6 @@ public class RenderIndominusRex extends RenderLiving implements IDinosaurRendere
 
         this.maleTextures = new ResourceLocation[dinosaur.getMaleTextures(0).length];
         this.femaleTextures = new ResourceLocation[dinosaur.getFemaleTextures(0).length];
-        this.maleOverlayTextures = new ResourceLocation[dinosaur.getMaleOverlayTextures(0).length];
-        this.femaleOverlayTextures = new ResourceLocation[dinosaur.getFemaleOverlayTextures(0).length];
 
         int i = 0;
 
@@ -59,22 +53,6 @@ public class RenderIndominusRex extends RenderLiving implements IDinosaurRendere
         for (String texture : dinosaur.getFemaleTextures(0))
         {
             this.femaleTextures[i] = new ResourceLocation(texture);
-            i++;
-        }
-
-        i = 0;
-
-        for (String texture : dinosaur.getMaleOverlayTextures(0))
-        {
-            this.maleOverlayTextures[i] = new ResourceLocation(texture);
-            i++;
-        }
-
-        i = 0;
-
-        for (String texture : dinosaur.getFemaleOverlayTextures(0))
-        {
-            this.femaleOverlayTextures[i] = new ResourceLocation(texture);
             i++;
         }
     }
@@ -154,56 +132,6 @@ public class RenderIndominusRex extends RenderLiving implements IDinosaurRendere
         return getEntityTexture((EntityDinosaur) entity);
     }
 
-    @SideOnly(Side.CLIENT)
-    public class LayerDinosaurFeatures implements LayerRenderer
-    {
-        private final RenderIndominusRex renderer;
-
-        public LayerDinosaurFeatures(RenderIndominusRex renderer)
-        {
-            this.renderer = renderer;
-        }
-
-        public void render(EntityDinosaur entity, float armSwing, float armSwingAmount, float p_177148_4_, float p_177148_5_, float p_177148_6_, float p_177148_7_, float partialTicks)
-        {
-            if (!entity.isInvisible())
-            {
-                int texture = entity.getTexture();
-
-                if (entity.isMale())
-                {
-                    if (texture > maleOverlayTextures.length)
-                        texture = maleOverlayTextures.length;
-
-                    this.renderer.bindTexture(maleOverlayTextures[texture]);
-                }
-                else
-                {
-                    if (texture > femaleOverlayTextures.length)
-                        texture = femaleOverlayTextures.length;
-
-                    this.renderer.bindTexture(femaleOverlayTextures[texture]);
-                }
-
-                GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-                GL11.glDisable(GL11.GL_BLEND);
-                GL11.glEnable(GL11.GL_ALPHA_TEST);
-
-                this.renderer.getMainModel().render(entity, armSwing, armSwingAmount, p_177148_5_, p_177148_6_, p_177148_7_, partialTicks);
-                this.renderer.func_177105_a(entity, p_177148_4_);
-            }
-        }
-
-        public boolean shouldCombineTextures()
-        {
-            return true;
-        }
-
-        public void doRenderLayer(EntityLivingBase entity, float p_177141_2_, float p_177141_3_, float p_177141_4_, float p_177141_5_, float p_177141_6_, float p_177141_7_, float p_177141_8_)
-        {
-            this.render((EntityDinosaur) entity, p_177141_2_, p_177141_3_, p_177141_4_, p_177141_5_, p_177141_6_, p_177141_7_, p_177141_8_);
-        }
-    }
 
     @Override
     public void setModel(ModelBase model)
