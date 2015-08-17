@@ -1,5 +1,5 @@
 {
-    "parent": "jurassicraft:block/fossil_block_2",
+    "parent": "jurassicraft:block/fossil_block_0",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],
