@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class AnimationAICall extends AIAnimation
 {
-    protected EntityDinosaur animatingEntity;
+    protected EntityVelociraptor animatingEntity;
     protected int duration;
     protected int id;
     private Random random = new Random();
@@ -21,7 +21,7 @@ public class AnimationAICall extends AIAnimation
     {
         super(entity);
         this.duration = duration;
-        animatingEntity = (EntityDinosaur) entity;
+        animatingEntity = (EntityVelociraptor) entity;
         this.id = id;
     }
 
@@ -52,6 +52,7 @@ public class AnimationAICall extends AIAnimation
             {
                 if (entity instanceof EntityVelociraptor)
                 {
+                    animatingEntity.playSound(animatingEntity.getCallSound(), animatingEntity.getSoundVolume() + 1.25F, animatingEntity.getSoundPitch());
                     return true;
                 }
             }

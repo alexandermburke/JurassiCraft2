@@ -23,9 +23,9 @@ public class EntityTyrannosaurus extends EntityDinosaurAggressive implements IAn
     {
         super(world);
 
-        tasks.addTask(2, new JCAutoAnimSoundBase(this, 75, 1, "jurassicraft:" + roarSounds[0]));
-        tasks.addTask(2, new JCAutoAnimSoundBase(this, 75, 2, "jurassicraft:" + roarSounds[0]));
-        tasks.addTask(2, new JCAutoAnimSoundBase(this, 75, 3, "jurassicraft:" + roarSounds[0]));
+        tasks.addTask(2, new JCAutoAnimSoundBase(this, 75, 1, "jurassicraft:" + roarSounds[0], 1.5F));
+        tasks.addTask(2, new JCAutoAnimSoundBase(this, 75, 2, "jurassicraft:" + roarSounds[0], 1.5F));
+        tasks.addTask(2, new JCAutoAnimSoundBase(this, 75, 3, "jurassicraft:" + roarSounds[0], 1.5F));
     }
 
     public String getLivingSound()

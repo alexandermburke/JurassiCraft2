@@ -39,6 +39,11 @@ public class EntityVelociraptor extends EntityDinosaurAggressive
         tasks.addTask(2, new AnimationAICall(this, 78, 30));
     }
 
+    public String getCallSound()
+    {
+        return randomSound(barkSounds);
+    }
+
     public String getLivingSound()
     {
         if (getAnimID() == 0)

@@ -10,14 +10,21 @@ public class JCAutoAnimSoundBase extends AIAnimation
     protected int duration;
     protected int id;
     protected String sound;
+    protected float volumeOffset;
 
-    public JCAutoAnimSoundBase(IAnimatedEntity entity, int duration, int id, String sound)
+    public JCAutoAnimSoundBase(IAnimatedEntity entity, int duration, int id, String sound, float volumeOffset)
     {
         super(entity);
         this.duration = duration;
         animatingEntity = (EntityDinosaur) entity;
         this.id = id;
         this.sound = sound;
+        this.volumeOffset = volumeOffset;
+    }
+
+    public JCAutoAnimSoundBase(IAnimatedEntity entity, int duration, int id, String sound)
+    {
+        this(entity, duration, id, sound, 0.0F);
     }
 
     @Override
@@ -40,7 +47,7 @@ public class JCAutoAnimSoundBase extends AIAnimation
     {
         super.startExecuting();
         animatingEntity.currentAnim = this;
-        animatingEntity.playSound(sound, animatingEntity.getSoundVolume(), animatingEntity.getSoundPitch());
+        animatingEntity.playSound(sound, animatingEntity.getSoundVolume() + volumeOffset, animatingEntity.getSoundPitch());
     }
 
     public void resetTask()
