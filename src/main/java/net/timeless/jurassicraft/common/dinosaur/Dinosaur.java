@@ -5,7 +5,7 @@ import net.timeless.jurassicraft.common.period.EnumTimePeriod;
 
 public abstract class Dinosaur implements Comparable<Dinosaur>
 {
-    public abstract String getName(int geneticVariant);
+    public abstract String getName();
 
     public abstract Class<? extends EntityDinosaur> getDinosaurClass();
 
@@ -45,16 +45,16 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
 
     public abstract int getMaximumAge();
 
-    public abstract String[] getMaleTextures(int geneticVariant);
+    public abstract String[] getMaleTextures();
 
-    public abstract String[] getFemaleTextures(int geneticVariant);
+    public abstract String[] getFemaleTextures();
 
-    public String[] getMaleOverlayTextures(int geneticVariant)
+    public String[] getMaleOverlayTextures()
     {
         return new String[0];
     }
 
-    public String[] getFemaleOverlayTextures(int geneticVariant)
+    public String[] getFemaleOverlayTextures()
     {
         return new String[0];
     }
@@ -69,9 +69,9 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
         return true;
     }
 
-    protected String getDinosaurTexture(String subtype, int geneticVariant)
+    protected String getDinosaurTexture(String subtype)
     {
-        String dinosaurName = getName(geneticVariant).toLowerCase().replaceAll(" ", "_");
+        String dinosaurName = getName().toLowerCase().replaceAll(" ", "_");
 
         String texture = "jurassicraft:textures/entities/" + dinosaurName + "/" + dinosaurName;
 
@@ -81,15 +81,10 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
         return texture + ".png";
     }
 
-    protected String getDinosaurTexture(String subtype)
-    {
-        return getDinosaurTexture(subtype, 0);
-    }
-
     @Override
     public int hashCode()
     {
-        return getName(0).hashCode();
+        return getName().hashCode();
     }
 
     protected int fromDays(int days)
@@ -100,7 +95,7 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
     @Override
     public int compareTo(Dinosaur dinosaur)
     {
-        return this.getName(0).compareTo(dinosaur.getName(0));
+        return this.getName().compareTo(dinosaur.getName());
     }
 
     public int getGeneticVariants()

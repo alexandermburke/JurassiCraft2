@@ -25,8 +25,8 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
     public Dinosaur dinosaur;
     public RenderDinosaurDefinition renderDef;
 
-    public ResourceLocation[][] maleTextures;
-    public ResourceLocation[][] femaleTextures;
+    public ResourceLocation[] maleTextures;
+    public ResourceLocation[] femaleTextures;
     public Random random;
 
     public RenderDinosaur(RenderDinosaurDefinition renderDef)
@@ -36,35 +36,29 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
         this.dinosaur = renderDef.getDinosaur();
         this.random = new Random();
         this.renderDef = renderDef;
+        this.maleTextures = new ResourceLocation[dinosaur.getMaleTextures().length];
+        this.femaleTextures = new ResourceLocation[dinosaur.getFemaleTextures().length];
 
-        this.maleTextures = new ResourceLocation[dinosaur.getGeneticVariants()][dinosaur.getMaleTextures(0).length]; //TODO
-        this.femaleTextures = new ResourceLocation[dinosaur.getGeneticVariants()][dinosaur.getFemaleTextures(0).length];
+        int i = 0;
 
-        for (int v = 0; v < dinosaur.getGeneticVariants(); v++)
+        for (String texture : dinosaur.getMaleTextures())
         {
-            int i = 0;
+            this.maleTextures[i] = new ResourceLocation(texture);
+            i++;
+        }
 
-            for (String texture : dinosaur.getMaleTextures(v))
-            {
-                this.maleTextures[v][i] = new ResourceLocation(texture);
-                i++;
-            }
+        i = 0;
 
-            i = 0;
-
-            for (String texture : dinosaur.getFemaleTextures(v))
-            {
-                this.femaleTextures[v][i] = new ResourceLocation(texture);
-                i++;
-            }
+        for (String texture : dinosaur.getFemaleTextures())
+        {
+            this.femaleTextures[i] = new ResourceLocation(texture);
+            i++;
         }
     }
 
     public void preRenderCallback(EntityLivingBase entity, float side)
     {
         EntityDinosaur entityDinosaur = (EntityDinosaur) entity;
-
-        int geneticVariant = entityDinosaur.getGeneticVariant();
 
         float scale = (float) entityDinosaur.transitionFromAge(renderDef.getBabyScaleAdjustment(), renderDef.getAdultScaleAdjustment());
 
@@ -83,7 +77,7 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
 
         shadowSize = scale * renderDef.getShadowSize();
 
-        GL11.glTranslatef(renderDef.getRenderXOffset(geneticVariant) * scale, renderDef.getRenderYOffset(geneticVariant) * scale, renderDef.getRenderZOffset(geneticVariant) * scale);
+        GL11.glTranslatef(renderDef.getRenderXOffset() * scale, renderDef.getRenderYOffset() * scale, renderDef.getRenderZOffset() * scale);
 
         String name = entity.getCustomNameTag();
 
@@ -115,7 +109,7 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
 
     public ResourceLocation getEntityTexture(EntityDinosaur entity)
     {
-        return entity.isMale() ? maleTextures[entity.getGeneticVariant()][entity.getTexture()] : femaleTextures[entity.getGeneticVariant()][entity.getTexture()];
+        return entity.isMale() ? maleTextures[entity.getTexture()] : femaleTextures[entity.getTexture()];
     }
 
     public ResourceLocation getEntityTexture(Entity entity)
