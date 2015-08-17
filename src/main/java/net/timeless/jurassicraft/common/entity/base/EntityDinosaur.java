@@ -399,4 +399,9 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     {
         return genetics.getColorOffset();
     }
+
+    public int getGeneticVariant()
+    {
+        return genetics.getGeneticVariation();
+    }
 }

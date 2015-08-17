@@ -9,18 +9,19 @@ public class GeneticsContainer
     private static final int SCALE = 2; //Scale offset
     private static final int CAUTIOUSNESS = 3; //How cautious is this dinosaur
     private static final int AGRESSION = 4; //How agressive is this dinosaur
-    private static final int LIFE_TIME = 5; //How long to live after adulthood
-    private static final int SPEED = 6; //Speed Modifier
-    private static final int ADULT_TIME = 7; //How long to become an adult
+    private static final int GENETIC_VARIATION = 5; //Skin + Model variants (Blue, Echo, Delta, Charlie)
+    private static final int LIFE_TIME = 6; //How long to live after adulthood
+    private static final int SPEED = 7; //Speed Modifier
+    private static final int ADULT_TIME = 8; //How long to become an adult
 
-    private static final int VAR_COUNT = 7;
+    private static final int VAR_COUNT = 8;
 
     public GeneticsContainer(String genetics)
     {
         this.genetics = genetics;
     }
 
-    public GeneticsContainer(int dinosaur, int colorOffset, int scaleOffset, int cautiousness, int agression, int adultTime, int lifeTime, int speed)
+    public GeneticsContainer(int dinosaur, int colorOffset, int scaleOffset, int cautiousness, int agression, int geneticVariation, int adultTime, int lifeTime, int speed)
     {
         genetics = defaultGeneticCode();
         set(DINOSAUR, dinosaur);
@@ -28,6 +29,7 @@ public class GeneticsContainer
         set(SCALE, scaleOffset);
         set(CAUTIOUSNESS, cautiousness);
         set(AGRESSION, agression);
+        set(GENETIC_VARIATION, geneticVariation);
         set(SPEED, speed);
         set(LIFE_TIME, lifeTime);
         set(ADULT_TIME, adultTime);
@@ -83,6 +85,11 @@ public class GeneticsContainer
     public int getAdultTime()
     {
         return get(ADULT_TIME);
+    }
+
+    public int getGeneticVariation()
+    {
+        return get(GENETIC_VARIATION);
     }
 
     public int get(int id)
