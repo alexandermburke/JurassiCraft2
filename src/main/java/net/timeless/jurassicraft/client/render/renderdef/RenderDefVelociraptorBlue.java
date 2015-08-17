@@ -10,16 +10,17 @@ import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 
 @SideOnly(Side.CLIENT)
-public class RenderDefVelociraptor extends RenderDinosaurDefinition
+public class RenderDefVelociraptorBlue extends RenderDinosaurDefinition
 {
-    private IModelAnimator animator;
     private ModelJson model;
 
-    public RenderDefVelociraptor()
-    {
-        super(JCEntityRegistry.velociraptor);
+    private IModelAnimator animator;
 
-        this.animator = new AnimationVelociraptor();
+    public RenderDefVelociraptorBlue()
+    {
+        super(JCEntityRegistry.velociraptor_blue);
+
+        this.animator = new AnimationBlue();
 
         try
         {

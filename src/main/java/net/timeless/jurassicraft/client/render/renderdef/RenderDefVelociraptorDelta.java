@@ -4,20 +4,20 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.client.model.animation.AnimationVelociraptor;
-import net.timeless.jurassicraft.client.model.animation.raptorsquad.AnimationBlue;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 
 @SideOnly(Side.CLIENT)
-public class RenderDefVelociraptor extends RenderDinosaurDefinition
+public class RenderDefVelociraptorDelta extends RenderDinosaurDefinition
 {
-    private IModelAnimator animator;
     private ModelJson model;
 
-    public RenderDefVelociraptor()
+    private IModelAnimator animator;
+
+    public RenderDefVelociraptorDelta()
     {
-        super(JCEntityRegistry.velociraptor);
+        super(JCEntityRegistry.velociraptor_delta);
 
         this.animator = new AnimationVelociraptor();
 

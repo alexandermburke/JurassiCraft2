@@ -90,6 +90,10 @@ public class JCRenderingRegistry
         registerRenderDef(new RenderDefTropeognathus());
         registerRenderDef(new RenderDefLeaellynasaura());
         registerRenderDef(new RenderDefHerrerasaurus());
+        registerRenderDef(new RenderDefVelociraptorBlue());
+        registerRenderDef(new RenderDefVelociraptorCharlie());
+        registerRenderDef(new RenderDefVelociraptorDelta());
+        registerRenderDef(new RenderDefVelociraptorEcho());
 
         GuiAppRegistry.register();
 

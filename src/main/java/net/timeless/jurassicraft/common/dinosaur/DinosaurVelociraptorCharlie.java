@@ -1,30 +1,30 @@
 package net.timeless.jurassicraft.common.dinosaur;
 
-import net.timeless.jurassicraft.common.entity.EntityVelociraptor;
+import net.timeless.jurassicraft.common.entity.EntityVelociraptorCharlie;
+import net.timeless.jurassicraft.common.entity.EntityVelociraptorDelta;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
+import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.period.EnumTimePeriod;
 
-public class DinosaurVelociraptor extends Dinosaur
+public class DinosaurVelociraptorCharlie extends Dinosaur implements IHybrid
 {
-    private String[] maleTextures;
-    private String[] femaleTextures;
+    private String[] textures;
 
-    public DinosaurVelociraptor()
+    public DinosaurVelociraptorCharlie()
     {
-        this.maleTextures = new String[] { getDinosaurTexture("male") };
-        this.femaleTextures = new String[] { getDinosaurTexture("female") };
+        this.textures = new String[] { getDinosaurTexture("")};
     }
 
     @Override
     public String getName(int geneticVariant)
     {
-        return "Velociraptor";
+        return "Charlie";
     }
 
     @Override
     public Class<? extends EntityDinosaur> getDinosaurClass()
     {
-        return EntityVelociraptor.class;
+        return EntityVelociraptorCharlie.class;
     }
 
     @Override
@@ -36,13 +36,13 @@ public class DinosaurVelociraptor extends Dinosaur
     @Override
     public int getEggPrimaryColor()
     {
-        return 0xB17041;
+        return 0x525637;
     }
 
     @Override
     public int getEggSecondaryColor()
     {
-        return 0x3B1505;
+        return 0x2C2F24;
     }
 
     @Override
@@ -107,13 +107,13 @@ public class DinosaurVelociraptor extends Dinosaur
     @Override
     public String[] getMaleTextures(int geneticVariant)
     {
-        return maleTextures;
+        return textures;
     }
 
     @Override
     public String[] getFemaleTextures(int geneticVariant)
     {
-        return femaleTextures;
+        return textures;
     }
 
     @Override
@@ -150,5 +150,11 @@ public class DinosaurVelociraptor extends Dinosaur
     public float getAdultSizeY()
     {
         return 1.8F;
+    }
+
+    @Override
+    public Dinosaur[] getCombination()
+    {
+        return new Dinosaur[] { JCEntityRegistry.velociraptor}; //TODO
     }
 }
