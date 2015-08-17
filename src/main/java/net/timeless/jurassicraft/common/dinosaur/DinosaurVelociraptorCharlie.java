@@ -3,6 +3,7 @@ package net.timeless.jurassicraft.common.dinosaur;
 import net.timeless.jurassicraft.common.entity.EntityVelociraptorCharlie;
 import net.timeless.jurassicraft.common.entity.EntityVelociraptorDelta;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
+import net.timeless.jurassicraft.common.entity.base.EnumGrowthStage;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.period.EnumTimePeriod;
 
@@ -105,13 +106,13 @@ public class DinosaurVelociraptorCharlie extends Dinosaur implements IHybrid
     }
 
     @Override
-    public String[] getMaleTextures(int geneticVariant)
+    public String[] getMaleTextures(int geneticVariant, EnumGrowthStage stage)
     {
         return textures;
     }
 
     @Override
-    public String[] getFemaleTextures(int geneticVariant)
+    public String[] getFemaleTextures(int geneticVariant, EnumGrowthStage stage)
     {
         return textures;
     }

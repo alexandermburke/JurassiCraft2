@@ -3,8 +3,8 @@ package net.timeless.jurassicraft.client.render.renderdef;
 import net.minecraft.client.model.ModelBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.jurassicraft.client.model.animation.AnimationVelociraptor;
 import net.timeless.jurassicraft.client.model.animation.raptorsquad.AnimationBlue;
+import net.timeless.jurassicraft.common.entity.base.EnumGrowthStage;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
@@ -33,7 +33,7 @@ public class RenderDefVelociraptorBlue extends RenderDinosaurDefinition
     }
 
     @Override
-    public ModelBase getModel(int geneticVariant)
+    public ModelBase getModel(int geneticVariant, EnumGrowthStage stage)
     {
         return model;
     }

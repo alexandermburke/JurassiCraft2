@@ -1,6 +1,7 @@
 package net.timeless.jurassicraft.common.dinosaur;
 
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
+import net.timeless.jurassicraft.common.entity.base.EnumGrowthStage;
 import net.timeless.jurassicraft.common.period.EnumTimePeriod;
 
 public abstract class Dinosaur implements Comparable<Dinosaur>
@@ -45,16 +46,16 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
 
     public abstract int getMaximumAge();
 
-    public abstract String[] getMaleTextures(int geneticVariant);
+    public abstract String[] getMaleTextures(int geneticVariant, EnumGrowthStage stage);
 
-    public abstract String[] getFemaleTextures(int geneticVariant);
+    public abstract String[] getFemaleTextures(int geneticVariant, EnumGrowthStage stage);
 
-    public String[] getMaleOverlayTextures(int geneticVariant)
+    public String[] getMaleOverlayTextures(int geneticVariant, EnumGrowthStage stage)
     {
         return new String[0];
     }
 
-    public String[] getFemaleOverlayTextures(int geneticVariant)
+    public String[] getFemaleOverlayTextures(int geneticVariant, EnumGrowthStage stage)
     {
         return new String[0];
     }

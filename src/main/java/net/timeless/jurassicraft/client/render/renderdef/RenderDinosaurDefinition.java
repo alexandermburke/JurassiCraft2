@@ -8,6 +8,7 @@ import net.timeless.jurassicraft.client.model.ModelDinosaur;
 import net.timeless.jurassicraft.client.render.entity.RenderDinosaur;
 import net.timeless.jurassicraft.client.render.entity.RenderDinosaurMultilayer;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
+import net.timeless.jurassicraft.common.entity.base.EnumGrowthStage;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
 
@@ -21,7 +22,7 @@ public abstract class RenderDinosaurDefinition
         this.dinosaur = dinosaur;
     }
 
-    public abstract ModelBase getModel(int geneticVariant);
+    public abstract ModelBase getModel(int geneticVariant, EnumGrowthStage stage);
 
     public IModelAnimator getModelAnimator(int geneticVariant)
     {
@@ -76,7 +77,7 @@ public abstract class RenderDinosaurDefinition
 
     public RenderLiving getRenderer(int geneticVariant)
     {
-        String[] maleOverlayTextures = dinosaur.getMaleOverlayTextures(geneticVariant);
+        String[] maleOverlayTextures = dinosaur.getMaleOverlayTextures(0, EnumGrowthStage.INFANT);
 
         if (maleOverlayTextures != null && maleOverlayTextures.length > 0)
             return new RenderDinosaurMultilayer(this);

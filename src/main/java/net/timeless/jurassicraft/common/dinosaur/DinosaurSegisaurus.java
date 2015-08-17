@@ -2,6 +2,7 @@ package net.timeless.jurassicraft.common.dinosaur;
 
 import net.timeless.jurassicraft.common.entity.EntitySegisaurus;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
+import net.timeless.jurassicraft.common.entity.base.EnumGrowthStage;
 import net.timeless.jurassicraft.common.period.EnumTimePeriod;
 
 public class DinosaurSegisaurus extends Dinosaur
@@ -114,25 +115,25 @@ public class DinosaurSegisaurus extends Dinosaur
     }
 
     @Override
-    public String[] getMaleTextures(int geneticVariant)
+    public String[] getMaleTextures(int geneticVariant, EnumGrowthStage stage)
     {
         return maleTextures;
     }
 
     @Override
-    public String[] getFemaleTextures(int geneticVariant)
+    public String[] getFemaleTextures(int geneticVariant, EnumGrowthStage stage)
     {
         return femaleTextures;
     }
 
     @Override
-    public String[] getMaleOverlayTextures(int geneticVariant)
+    public String[] getMaleOverlayTextures(int geneticVariant, EnumGrowthStage stage)
     {
         return maleOverlayTextures;
     }
 
     @Override
-    public String[] getFemaleOverlayTextures(int geneticVariant)
+    public String[] getFemaleOverlayTextures(int geneticVariant, EnumGrowthStage stage)
     {
         return femaleOverlayTextures;
     }

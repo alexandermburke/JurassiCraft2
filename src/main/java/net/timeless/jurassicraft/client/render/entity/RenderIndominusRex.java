@@ -16,6 +16,7 @@ import net.timeless.jurassicraft.client.render.renderdef.RenderDinosaurDefinitio
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.EntityIndominusRex;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
+import net.timeless.jurassicraft.common.entity.base.EnumGrowthStage;
 import org.lwjgl.opengl.GL11;
 
 import java.util.Random;
@@ -25,35 +26,38 @@ public class RenderIndominusRex extends RenderLiving implements IDinosaurRendere
 {
     public Dinosaur dinosaur;
     public RenderDinosaurDefinition renderDef;
-    public ResourceLocation[] maleTextures;
-    public ResourceLocation[] femaleTextures;
+    public ResourceLocation[][] maleTextures;
+    public ResourceLocation[][] femaleTextures;
     public Random random;
 
     public RenderIndominusRex(RenderDinosaurDefinition renderDef)
     {
-        super(Minecraft.getMinecraft().getRenderManager(), renderDef.getModel(0), renderDef.getShadowSize());
+        super(Minecraft.getMinecraft().getRenderManager(), renderDef.getModel(0, EnumGrowthStage.INFANT), renderDef.getShadowSize());
 
         this.dinosaur = renderDef.getDinosaur();
         this.random = new Random();
         this.renderDef = renderDef;
 
-        this.maleTextures = new ResourceLocation[dinosaur.getMaleTextures(0).length];
-        this.femaleTextures = new ResourceLocation[dinosaur.getFemaleTextures(0).length];
+        this.maleTextures = new ResourceLocation[dinosaur.getMaleTextures(0, EnumGrowthStage.INFANT).length][EnumGrowthStage.values().length];
+        this.femaleTextures = new ResourceLocation[dinosaur.getFemaleTextures(0, EnumGrowthStage.INFANT).length][EnumGrowthStage.values().length];
 
-        int i = 0;
-
-        for (String texture : dinosaur.getMaleTextures(0))
+        for (EnumGrowthStage stage : EnumGrowthStage.values())
         {
-            this.maleTextures[i] = new ResourceLocation(texture);
-            i++;
-        }
+            int i = 0;
 
-        i = 0;
+            for (String texture : dinosaur.getMaleTextures(0, stage))
+            {
+                this.maleTextures[i][stage.ordinal()] = new ResourceLocation(texture);
+                i++;
+            }
 
-        for (String texture : dinosaur.getFemaleTextures(0))
-        {
-            this.femaleTextures[i] = new ResourceLocation(texture);
-            i++;
+            i = 0;
+
+            for (String texture : dinosaur.getFemaleTextures(0, stage))
+            {
+                this.femaleTextures[i][stage.ordinal()] = new ResourceLocation(texture);
+                i++;
+            }
         }
     }
 
@@ -124,14 +128,13 @@ public class RenderIndominusRex extends RenderLiving implements IDinosaurRendere
 
     public ResourceLocation getEntityTexture(EntityDinosaur entity)
     {
-        return entity.isMale() ? maleTextures[entity.getTexture()] : femaleTextures[entity.getTexture()];
+        return entity.isMale() ? maleTextures[entity.getTexture()][entity.getGrowthStage().ordinal()] : femaleTextures[entity.getTexture()][entity.getGrowthStage().ordinal()];
     }
 
     public ResourceLocation getEntityTexture(Entity entity)
     {
         return getEntityTexture((EntityDinosaur) entity);
     }
-
 
     @Override
     public void setModel(ModelBase model)

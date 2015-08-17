@@ -404,4 +404,32 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     {
         return genetics.getGeneticVariation();
     }
+
+    public int getAgePercentage()
+    {
+        int age = getDinosaurAge();
+        return age != 0 ? age * 100 / getDinosaur().getMaximumAge() : 0;
+    }
+
+    public EnumGrowthStage getGrowthStage()
+    {
+        EnumGrowthStage stage = EnumGrowthStage.INFANT;
+
+        int percent = getAgePercentage();
+
+        if(percent > 75)
+        {
+            stage = EnumGrowthStage.MATURE;
+        }
+        else if(percent > 50)
+        {
+            stage = EnumGrowthStage.ADOLESCENT;
+        }
+        else if(percent > 25)
+        {
+            stage = EnumGrowthStage.JUVENILE;
+        }
+
+        return stage;
+    }
 }

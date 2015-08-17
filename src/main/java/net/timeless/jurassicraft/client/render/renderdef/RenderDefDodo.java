@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.client.model.animation.AnimationDodo;
+import net.timeless.jurassicraft.common.entity.base.EnumGrowthStage;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
@@ -31,7 +32,7 @@ public class RenderDefDodo extends RenderDinosaurDefinition
     }
 
     @Override
-    public ModelBase getModel(int geneticVariant)
+    public ModelBase getModel(int geneticVariant, EnumGrowthStage stage)
     {
         return model;
     }
