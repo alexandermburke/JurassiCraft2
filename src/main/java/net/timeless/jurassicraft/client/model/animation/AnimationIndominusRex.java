@@ -19,8 +19,8 @@ public class AnimationIndominusRex implements IModelAnimator
         ModelDinosaur model = (ModelDinosaur) modelJson;
         Animator animator = model.animator;
 
-        //        f = entity.ticksExisted;
-        //        f1 = 1F;
+//                f = entity.ticksExisted;
+//                f1 = 1F;
 
         float globalSpeed = 0.5F;
         float globalDegree = 0.4F;
@@ -43,6 +43,9 @@ public class AnimationIndominusRex implements IModelAnimator
         MowzieModelRenderer tail5 = model.getCube("Tail 5");
         MowzieModelRenderer tail6 = model.getCube("Tail 6");
         MowzieModelRenderer tail7 = model.getCube("Tail 7");
+
+        MowzieModelRenderer throat1 = model.getCube("Throat 1");
+        MowzieModelRenderer throat2 = model.getCube("Throat 2");
 
         MowzieModelRenderer bodyFront = model.getCube("Body Front");
         MowzieModelRenderer bodyMid = model.getCube("Body Mid");
@@ -80,8 +83,8 @@ public class AnimationIndominusRex implements IModelAnimator
         model.bob(leftThigh, globalSpeed * 1F, globalHeight * 1.0F, false, f, f1);
         model.bob(rightThigh, globalSpeed * 1F, globalHeight * 1.0F, false, f, f1);
 
-        model.chainWave(body, globalSpeed * 1F, globalHeight * 0.025F, 3, f, f1);
-        model.chainWave(tail, globalSpeed * 1F, -globalHeight * 0.025F, 2, f, f1);
+        model.chainWave(body, globalSpeed * 1F, globalHeight * 0.05F, 3, f, f1);
+        model.chainWave(tail, globalSpeed * 1F, -globalHeight * 0.05F, 2, f, f1);
         model.chainSwing(tail, globalSpeed * 0.5F, globalHeight * 0.025F, 2, f, f1);
 
         model.walk(leftThigh, 0.5F * globalSpeed, 0.8F * globalDegree, false, 0F, 0.4F, f, f1);
@@ -102,7 +105,7 @@ public class AnimationIndominusRex implements IModelAnimator
 
         int ticksExisted = entity.ticksExisted;
 
-        model.chainWave(tail, 0.1F, -0.05F, 2, ticksExisted, 1F);
+        model.chainWave(tail, 0.1F, -0.025F, 2, ticksExisted, 1F);
         model.chainWave(body, 0.1F, 0.03F, 5, ticksExisted, 1F);
         model.chainWave(armRight, -0.1F, 0.1F, 4, ticksExisted, 1F);
         model.chainWave(armLeft, -0.1F, 0.1F, 4, ticksExisted, 1F);
@@ -113,5 +116,49 @@ public class AnimationIndominusRex implements IModelAnimator
         model.faceTarget(neck1, 3.0F, rotationYaw, rotationPitch);
 
         ((EntityIndominusRex) entity).tailBuffer.applyChainSwingBuffer(tail);
+
+        animator.setAnim(1);
+        animator.startPhase(15);
+        animator.move(bodyRear, 0, -3, -5);
+        animator.move(rightThigh, 0, -3, -5);
+        animator.move(leftThigh, 0, -3, -5);
+        animator.rotate(bodyRear, -0.3F, 0, 0);
+        animator.rotate(head, 0.3F, 0, 0);
+        animator.rotate(rightThigh, 0.3F, 0, 0);
+        animator.rotate(rightCalf1, -0.4F, 0, 0);
+        animator.rotate(rightCalf2, 0.4F, 0, 0);
+        animator.rotate(rightFoot, -0.3F, 0, 0);
+        animator.rotate(leftThigh, -0.7F, 0, 0);
+        animator.rotate(leftCalf1, 0.7F, 0, 0);
+        animator.rotate(leftCalf2, -0.5F, 0, 0);
+        animator.rotate(leftFoot, 0.7F, 0, 0);
+        animator.endPhase();
+        animator.startPhase(10);
+        animator.move(bodyRear, 0, 3, -10);
+        animator.move(rightThigh, 0, 3, -10);
+        animator.move(leftThigh, 0, 3, -10);
+        animator.move(head, 0, 1, 2);
+        animator.move(lowerJaw, 0, 0, 1);
+        animator.rotate(bodyRear, 0.2F, 0, 0);
+        animator.rotate(neck1, 0.2F, 0, 0);
+        animator.rotate(neck2, 0.2F, 0, 0);
+        animator.rotate(neck3, -0.2F, 0, 0);
+        animator.rotate(neck4, -0.2F, 0, 0);
+        animator.move(throat1, 0, -0.5F, 0);
+        animator.move(throat2, 0, -1, 0);
+        animator.rotate(head, -0.5F, 0, 0);
+        animator.move(head, 0, 1, 0);
+        animator.rotate(lowerJaw, 0.9F, 0, 0);
+        animator.rotate(rightThigh, 0.6F, 0, 0);
+        animator.rotate(rightCalf1, 0.05F, 0, 0);
+        animator.rotate(rightCalf2, -0.3F, 0, 0);
+        animator.rotate(rightFoot, -0.3F, 0, 0);
+        animator.rotate(leftThigh, -0.3F, 0, 0);
+        animator.rotate(leftCalf1, 0.2F, 0, 0);
+        animator.rotate(leftCalf2, -0.2F, 0, 0);
+        animator.rotate(leftFoot, 0.3F, 0, 0);
+        animator.endPhase();
+        animator.setStationaryPhase(35);
+        animator.resetPhase(15);
     }
 }

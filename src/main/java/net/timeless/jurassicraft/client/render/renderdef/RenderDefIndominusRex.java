@@ -41,7 +41,7 @@ public class RenderDefIndominusRex extends RenderDinosaurDefinition
     @Override
     public float getBabyScaleAdjustment()
     {
-        return 0.3F;
+        return 0.4F;
     }
 
     @Override

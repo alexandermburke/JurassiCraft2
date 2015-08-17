@@ -8,6 +8,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.reuxertz.ecoapi.ecology.role.ICarnivore;
 import net.reuxertz.ecoapi.entity.IEntityAICreature;
+import net.timeless.animationapi.AnimationAPI;
+import net.timeless.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
+import net.timeless.jurassicraft.common.entity.ai.animations.JCAutoAnimSoundBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
 
@@ -21,6 +24,7 @@ public class EntityIndominusRex extends EntityDinosaurAggressive implements ICar
     public EntityIndominusRex(World world)
     {
         super(world);
+        tasks.addTask(2, new JCAutoAnimBase(this, 75, 1));
     }
 
     public void onUpdate()
@@ -28,6 +32,9 @@ public class EntityIndominusRex extends EntityDinosaurAggressive implements ICar
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
         this.changeSkinColor();
         super.onUpdate();
+
+        if (getAnimID() == 0)
+            AnimationAPI.sendAnimPacket(this, 1);
     }
 
     public boolean isCamouflaging()
