@@ -44,7 +44,7 @@ public class AnimationAICall extends AIAnimation
     @Override
     public boolean shouldAnimate()
     {
-        if (random.nextDouble() < 0.02)
+        if (random.nextDouble() < 0.005)
         {
             List<Entity> entities = EntityHelper.getEntitiesWithinDistance(animatingEntity, 50, 2);
 
