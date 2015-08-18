@@ -46,14 +46,18 @@ public class GuiDNASequencer extends GuiContainer
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 
-        int progress = this.getProgress(22);
-        this.drawTexturedModalRect(k + 87, l + 41, 176, 0, progress, 4);
+        for (int i = 0; i < 3; i++)
+        {
+            int progress = this.getProgress(22, i);
+            this.drawTexturedModalRect(k + 87, l + 22 + i * 20, 176, 0, progress, 4);
+        }
     }
 
-    private int getProgress(int scale)
+    private int getProgress(int scale, int index)
     {
-        int j = this.dnaSequencer.getField(0);
-        int k = this.dnaSequencer.getField(1);
+        int j = this.dnaSequencer.getField(index);
+        int k = this.dnaSequencer.getField(index + 3);
+
         return k != 0 && j != 0 ? j * scale / k : 0;
     }
 }

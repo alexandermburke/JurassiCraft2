@@ -30,15 +30,15 @@ import java.util.Random;
 
 public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
-    private static final int[] slotsTop = new int[] { 0, 1 }; //input
-    private static final int[] slotsBottom = new int[] { 2, 3, 4 }; //output
+    private static final int[] slotsTop = new int[] { 0, 1, 2, 3, 4, 5 }; //input
+    private static final int[] slotsBottom = new int[] { 6, 7, 8 }; //output
     private static final int[] slotsSides = new int[] {};
 
     /** The ItemStacks that hold the items currently being used in the dna sequencer */
-    private ItemStack[] slots = new ItemStack[5];
+    private ItemStack[] slots = new ItemStack[9];
 
-    private int sequenceTime;
-    private int totalSequenceTime;
+    private int[] sequenceTime = new int[3];
+    private int[] totalSequenceTime = new int[3];
 
     private String customName;
 
@@ -123,10 +123,11 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
             stack.stackSize = this.getInventoryStackLimit();
         }
 
-        if (index == 0 && !flag)
+        if (index < 6 && !flag)
         {
-            this.totalSequenceTime = this.getStackSequenceTime(stack);
-            this.sequenceTime = 0;
+            int i = (int) Math.floor(index / 2);
+            this.totalSequenceTime[i] = this.getStackSequenceTime(stack);
+            this.sequenceTime[i] = 0;
             worldObj.markBlockForUpdate(pos);
         }
     }
@@ -171,8 +172,11 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
             }
         }
 
-        this.sequenceTime = compound.getShort("SequenceTime");
-        this.totalSequenceTime = compound.getShort("SequenceTimeTotal");
+        for (int i = 0; i < 3; i++)
+        {
+            this.sequenceTime[i] = compound.getShort("SequenceTime" + i);
+            this.totalSequenceTime[i] = compound.getShort("SequenceTimeTotal" + i);
+        }
 
         if (compound.hasKey("CustomName", 8))
         {
@@ -183,8 +187,13 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
     public void writeToNBT(NBTTagCompound compound)
     {
         super.writeToNBT(compound);
-        compound.setShort("SequenceTime", (short) this.sequenceTime);
-        compound.setShort("SequenceTimeTotal", (short) this.totalSequenceTime);
+
+        for (int i = 0; i < 3; i++)
+        {
+            compound.setShort("SequenceTime" + i, (short) this.sequenceTime[i]);
+            compound.setShort("SequenceTimeTotal" + i, (short) this.totalSequenceTime[i]);
+        }
+
         NBTTagList itemList = new NBTTagList();
 
         for (int slot = 0; slot < this.slots.length; ++slot)
@@ -216,15 +225,15 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
         return 64;
     }
 
-    public boolean isSequenceing()
+    public boolean isSequencing(int index)
     {
-        return this.sequenceTime > 0;
+        return this.sequenceTime[index] > 0;
     }
 
     @SideOnly(Side.CLIENT)
-    public static boolean isSequenceing(IInventory inventory)
+    public static boolean isSequencing(IInventory inventory, int index)
     {
-        return inventory.getField(0) > 0;
+        return inventory.getField(index) > 0;
     }
 
     /**
@@ -232,55 +241,58 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
      */
     public void update()
     {
-        boolean flag = this.isSequenceing();
-        boolean sync = false;
-
-        if (!this.worldObj.isRemote)
+        for (int i = 0; i < 3; i++)
         {
-            if (!this.isSequenceing() && (this.slots[0] == null))
-            {
-                if (!this.isSequenceing() && this.sequenceTime > 0)
-                {
-                    this.sequenceTime = MathHelper.clamp_int(this.sequenceTime - 2, 0, this.totalSequenceTime);
-                }
-            }
-            else
-            {
-                if (this.canSequence())
-                {
-                    ++this.sequenceTime;
+            boolean flag = this.isSequencing(i);
+            boolean sync = false;
 
-                    if (this.sequenceTime == this.totalSequenceTime)
+            if (!this.worldObj.isRemote)
+            {
+                if (!this.isSequencing(i) && (this.slots[i * 2] == null))
+                {
+                    if (!this.isSequencing(i) && this.sequenceTime[i] > 0)
                     {
-                        this.sequenceTime = 0;
-                        this.totalSequenceTime = this.getStackSequenceTime(this.slots[0]);
-                        this.sequenceItem();
-                        sync = true;
+                        this.sequenceTime[i] = MathHelper.clamp_int(this.sequenceTime[i] - 2, 0, this.totalSequenceTime[i]);
                     }
                 }
                 else
                 {
-                    this.sequenceTime = 0;
+                    if (this.canSequence(i))
+                    {
+                        ++this.sequenceTime[i];
+
+                        if (this.sequenceTime[i] == this.totalSequenceTime[i])
+                        {
+                            this.sequenceTime[i] = 0;
+                            this.totalSequenceTime[i] = this.getStackSequenceTime(this.slots[i * 2]);
+                            this.sequenceItem(i);
+                            sync = true;
+                        }
+                    }
+                    else
+                    {
+                        this.sequenceTime[i] = 0;
+                        sync = true;
+                    }
+                }
+
+                if (flag != this.isSequencing(i))
+                {
                     sync = true;
                 }
             }
-
-            if (flag != this.isSequenceing())
+            else
             {
-                sync = true;
+                if (this.canSequence(i))
+                {
+                    ++this.sequenceTime[i];
+                }
             }
-        }
-        else
-        {
-            if (this.canSequence())
-            {
-                ++this.sequenceTime;
-            }
-        }
 
-        if (sync)
-        {
-            worldObj.markBlockForUpdate(pos);
+            if (sync)
+            {
+                worldObj.markBlockForUpdate(pos);
+            }
         }
     }
 
@@ -292,10 +304,12 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
     /**
      * Returns true if the dna sequencer can smelt an item, i.e. has a source item, destination stack isn't full, etc.
      */
-    private boolean canSequence()
+    private boolean canSequence(int index)
     {
-        ItemStack input = this.slots[0];
-        ItemStack storage = this.slots[1];
+        int tissue = index * 2;
+
+        ItemStack input = this.slots[tissue];
+        ItemStack storage = this.slots[tissue + 1];
 
         if (input != null && input.getItem() instanceof ItemSoftTissue)
         {
@@ -304,11 +318,8 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
                 ItemStack output = new ItemStack(JCItemRegistry.storage_disc, 1, input.getItemDamage());
                 output.setTagCompound(input.getTagCompound());
 
-                for (int i = 2; i < 5; i++)
-                {
-                    if (this.slots[i] == null || ItemStack.areItemsEqual(this.slots[i], output) && ItemStack.areItemStackTagsEqual(this.slots[i], output))
-                        return true;
-                }
+                if (this.slots[index + 6] == null || ItemStack.areItemsEqual(this.slots[index + 6], output) && ItemStack.areItemStackTagsEqual(this.slots[index + 6], output))
+                    return true;
             }
         }
 
@@ -318,11 +329,13 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
     /**
      * Turn one item from the dna sequencer source stack into the appropriate sequenceed item in the dna sequencer result stack
      */
-    public void sequenceItem()
+    public void sequenceItem(int index)
     {
-        if (this.canSequence())
+        if (this.canSequence(index))
         {
             Random rand = new Random();
+
+            int tissue = index * 2;
 
 //            EntityPlayer player = worldObj.getPlayerEntityByUUID(UUID.fromString(slots[1].getTagCompound().getString("LastOwner")));
 
@@ -343,54 +356,39 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
                 }
             }
 
-            NBTTagCompound nbt = slots[1].getTagCompound();
+            NBTTagCompound nbt = slots[tissue + 1].getTagCompound();
 
             if(nbt == null)
             {
                 nbt = new NBTTagCompound();
             }
 
-            DNA dna = new DNA(quality, GeneticsHelper.randomGenetics(rand, slots[0].getItemDamage(), quality).toString());
+            DNA dna = new DNA(quality, GeneticsHelper.randomGenetics(rand, slots[tissue].getItemDamage(), quality).toString());
             dna.writeToNBT(nbt);
 
-            ItemStack output = new ItemStack(JCItemRegistry.storage_disc, 1, slots[0].getItemDamage());
+            ItemStack output = new ItemStack(JCItemRegistry.storage_disc, 1, slots[tissue].getItemDamage());
             output.setItemDamage(dna.getContainer().getDinosaur());
             output.setTagCompound(nbt);
 
 //            JCPlayerData.getPlayerData(player).addSequencedDNA(new DNA(quality, GeneticsHelper.randomGenetics(rand, slots[0].getItemDamage(), quality).toString()));
 
-            int emptySlot = -1;
-
-            for (int i = 2; i < 5; i++)
+            if (this.slots[index + 6] == null)
             {
-                if (this.slots[i] == null || (ItemStack.areItemStackTagsEqual(this.slots[i], output) && this.slots[i].getItem() == output.getItem()))
-                {
-                    emptySlot = i;
-
-                    break;
-                }
+                this.slots[index + 6] = output;
+            }
+            else if (this.slots[index + 6].getItem() == output.getItem() && ItemStack.areItemStackTagsEqual(this.slots[index + 6], output))
+            {
+                this.slots[index + 6].stackSize += output.stackSize;
             }
 
-            if (emptySlot != -1)
-            {
-                if (this.slots[emptySlot] == null)
-                {
-                    this.slots[emptySlot] = output;
-                }
-                else if (this.slots[emptySlot].getItem() == output.getItem() && ItemStack.areItemStackTagsEqual(this.slots[emptySlot], output))
-                {
-                    this.slots[emptySlot].stackSize += output.stackSize;
-                }
+            this.slots[tissue].stackSize--;
+            this.slots[tissue + 1].stackSize--;
 
-                this.slots[0].stackSize--;
-                this.slots[1].stackSize--;
+            if (this.slots[tissue].stackSize <= 0)
+                this.slots[tissue] = null;
 
-                if (this.slots[0].stackSize <= 0)
-                    this.slots[0] = null;
-
-                if (this.slots[1].stackSize <= 0)
-                    this.slots[1] = null;
-            }
+            if (this.slots[tissue + 1].stackSize <= 0)
+                this.slots[tissue + 1] = null;
         }
     }
 
@@ -463,26 +461,27 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
 
     public int getField(int id)
     {
-        switch (id)
+        if(id < 3)
         {
-            case 0:
-                return this.sequenceTime;
-            case 1:
-                return this.totalSequenceTime;
-            default:
-                return 0;
+            return sequenceTime[id];
         }
+        else if(id < 6)
+        {
+            return totalSequenceTime[id - 3];
+        }
+
+        return 0;
     }
 
     public void setField(int id, int value)
     {
-        switch (id)
+        if(id < 3)
         {
-            case 0:
-                this.sequenceTime = value;
-                break;
-            case 1:
-                this.totalSequenceTime = value;
+            sequenceTime[id] = value;
+        }
+        else if(id < 6)
+        {
+            totalSequenceTime[id - 3] = value;
         }
     }
 

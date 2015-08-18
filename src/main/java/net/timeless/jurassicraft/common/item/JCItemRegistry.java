@@ -33,7 +33,7 @@ public class JCItemRegistry
 
     public static ItemEntityRemover entityRemover;
 
-    public static ItemBasic storage_disc;
+    public static ItemStorageDisc storage_disc;
     public static ItemBasic dna_base;
 
     public static ItemCage cage_small;
@@ -57,7 +57,7 @@ public class JCItemRegistry
         syringe = new ItemSyringe();
         empty_syringe = new ItemBasic("Empty Syringe", JCCreativeTabs.dna);
         entityRemover = new ItemEntityRemover();
-        storage_disc = new ItemBasic("Storage Disc", JCCreativeTabs.items);
+        storage_disc = new ItemStorageDisc();
         dna_base = new ItemBasic("DNA Base Material", JCCreativeTabs.items);
         cage_small = new ItemCage();
 

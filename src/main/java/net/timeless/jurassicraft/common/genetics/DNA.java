@@ -30,6 +30,11 @@ public class DNA
         return new DNA(nbt.getInteger("DNAQuality"), nbt.getString("Genetics"));
     }
 
+    public int getDNAQuality()
+    {
+        return quality;
+    }
+
     public String toString()
     {
         return genetics.toString();
