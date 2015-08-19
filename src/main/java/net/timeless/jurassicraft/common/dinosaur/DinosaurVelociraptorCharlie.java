@@ -1,7 +1,6 @@
 package net.timeless.jurassicraft.common.dinosaur;
 
 import net.timeless.jurassicraft.common.entity.EntityVelociraptorCharlie;
-import net.timeless.jurassicraft.common.entity.EntityVelociraptorDelta;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.common.entity.base.EnumGrowthStage;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;

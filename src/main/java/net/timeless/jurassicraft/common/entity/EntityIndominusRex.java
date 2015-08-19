@@ -10,7 +10,6 @@ import net.reuxertz.ecoapi.ecology.role.ICarnivore;
 import net.reuxertz.ecoapi.entity.IEntityAICreature;
 import net.timeless.animationapi.AnimationAPI;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
-import net.timeless.jurassicraft.common.entity.ai.animations.JCAutoAnimSoundBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
 

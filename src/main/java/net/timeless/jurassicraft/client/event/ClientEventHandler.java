@@ -6,7 +6,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.timeless.jurassicraft.client.render.entity.IDinosaurRenderer;
 import net.timeless.jurassicraft.client.render.entity.RenderIndominusRex;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
-import net.timeless.jurassicraft.common.entity.base.EnumGrowthStage;
 
 public class ClientEventHandler
 {
