@@ -48,6 +48,7 @@ public class JCBlockRegistry
     public static BlockDNAExtractor dna_extractor;
 
     public static BlockAmber amber_ore;
+    public static BlockIceShard ice_shard;
 
     public static Block gypsum_cobblestone;
     public static Block gypsum_stone;
@@ -75,6 +76,7 @@ public class JCBlockRegistry
         dna_combinator = new BlockDNACombinator();
 
         amber_ore = new BlockAmber();
+        ice_shard = new BlockIceShard();
 
         gypsum_stone = new BlockBasic(Material.rock, "Gypsum Stone").setDrop(gypsum_cobblestone).setHardness(1.0F);
         gypsum_cobblestone = new BlockBasic(Material.rock, "Gypsum Cobblestone").setHardness(1.0F);
@@ -103,6 +105,7 @@ public class JCBlockRegistry
         }
 
         registerBlock(amber_ore, "Amber Ore");
+        registerBlock(ice_shard, "Ice Shard");
 
         registerBlock(gypsum_stone, "Gypsum Stone");
         registerBlock(gypsum_cobblestone, "Gypsum Cobblestone");

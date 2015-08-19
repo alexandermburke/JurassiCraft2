@@ -81,6 +81,7 @@ item.sea_lamprey.name=Sea Lamprey
 tile.fossil_block.name={period} Fossil
 tile.encased_fossil.name=Encased {period} Fossil
 tile.amber_ore.name=Amber Ore
+tile.ice_shard.name=Ice Shard Ore
 
 tile.cleaning_station.name=Cleaning Station
 tile.fossil_grinder.name=Fossil Grinder
