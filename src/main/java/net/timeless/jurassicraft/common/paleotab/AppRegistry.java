@@ -15,7 +15,7 @@ public class AppRegistry
         registeredApps.add(app);
     }
 
-    public static void register()
+    public void register()
     {
         dinopedia = new AppDinoPedia();
         file_explorer = new AppFileExplorer();

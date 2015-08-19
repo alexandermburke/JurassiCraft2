@@ -9,6 +9,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.timeless.jurassicraft.JurassiCraft;
+import net.timeless.jurassicraft.common.achievements.JCAchievements;
 import net.timeless.jurassicraft.common.block.BlockEncasedFossil;
 import net.timeless.jurassicraft.common.block.BlockFossil;
 import net.timeless.jurassicraft.common.block.JCBlockRegistry;
@@ -52,10 +53,12 @@ public class ItemPlasterAndBandage extends Item
                 if (!player.capabilities.isCreativeMode)
                     stack.stackSize--;
 
+                player.addStat(JCAchievements.fossils, 1);
+
                 return true;
             }
-
-            return false;
         }
+
+        return false;
     }
 }

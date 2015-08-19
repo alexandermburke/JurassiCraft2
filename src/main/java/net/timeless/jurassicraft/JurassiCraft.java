@@ -6,6 +6,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.timeless.jurassicraft.common.achievements.JCAchievements;
 import net.timeless.jurassicraft.common.block.JCBlockRegistry;
 import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
@@ -38,6 +39,7 @@ public class JurassiCraft
     public static JCRecipeRegistry recipeRegistry = new JCRecipeRegistry();
     public static JCNetworkManager networkManager = new JCNetworkManager();
     public static AppRegistry appRegistry = new AppRegistry();
+    public static JCAchievements achievements = new JCAchievements();
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)

@@ -149,3 +149,16 @@ period.cambrian.name=Cambrian
 //PaleoTab ==================================================
 paleotab.os.name=PaleOS 1.0.0
 paleotab.time.name={hours}:{minutes}
+
+//Achievements ==============================================
+achievement.jurassicraft.mod=JurassiCraft!
+achievement.jurassicraft.mod.desc=Play with JurassiCraft!
+
+achievement.jurassicraft.paleontology=Paleontology
+achievement.jurassicraft.paleontology.desc=Craft some Plaster and Bandage
+
+achievement.jurassicraft.amber=Old Insects
+achievement.jurassicraft.amber.desc=Mine some Amber Ore and recieve Amber
+
+achievement.jurassicraft.fossils=Encased
+achievement.jurassicraft.fossils.desc=Encase a fossil with Plaster and Bandage

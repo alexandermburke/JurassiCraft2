@@ -11,7 +11,7 @@ public class JCNetworkManager
     public static SimpleNetworkWrapper networkWrapper;
     private static int packetId = 0;
 
-    public static void register()
+    public void register()
     {
         networkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel("jurassicraft");
 
