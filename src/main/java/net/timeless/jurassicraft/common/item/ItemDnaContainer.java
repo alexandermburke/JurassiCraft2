@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ItemDnaContainer extends Item
 {
-    public int getContainerDinosaur(ItemStack stack)
+    public int getContainerId(ItemStack stack)
     {
         return 0;
     }
@@ -49,7 +49,7 @@ public class ItemDnaContainer extends Item
 
         NBTTagCompound nbt = stack.getTagCompound();
 
-        GeneticsContainer genetics = GeneticsHelper.randomGenetics(player.worldObj.rand, getContainerDinosaur(stack), quality);
+        GeneticsContainer genetics = GeneticsHelper.randomGenetics(player.worldObj.rand, getContainerId(stack), quality);
 
         if (nbt == null)
         {

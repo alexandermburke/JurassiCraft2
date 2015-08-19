@@ -40,7 +40,7 @@ public class ItemDNA extends ItemDnaContainer
         return dinosaur;
     }
 
-    public int getContainerDinosaur(ItemStack stack)
+    public int getContainerId(ItemStack stack)
     {
         return JCEntityRegistry.getDinosaurId(getDinosaur(stack));
     }

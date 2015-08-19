@@ -17,13 +17,23 @@ public class JCCreativeTabs
     public static CreativeTabJurassiCraft plants;
     public static CreativeTabJurassiCraft fossils;
 
+    public static CreativeTabJurassiCraft bones;
+
     public void register()
     {
         items = new CreativeTabJurassiCraft("jurassicraft.items")
         {
+            public Item getTabIconItem()
+            {
+                return JCItemRegistry.amber;
+            }
+        };
+
+        bones = new CreativeTabJurassiCraft("jurassicraft.dino_bones")
+        {
             public int getIconItemDamage()
             {
-                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus);
+                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.velociraptor);
             }
 
             public Item getTabIconItem()
@@ -36,7 +46,7 @@ public class JCCreativeTabs
         {
             public int getIconItemDamage()
             {
-                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus);
+                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.velociraptor);
             }
 
             public Item getTabIconItem()
@@ -49,7 +59,7 @@ public class JCCreativeTabs
         {
             public int getIconItemDamage()
             {
-                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus);
+                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.velociraptor);
             }
 
             public Item getTabIconItem()
@@ -62,7 +72,7 @@ public class JCCreativeTabs
         {
             public int getIconItemDamage()
             {
-                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus);
+                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.velociraptor);
             }
 
             public Item getTabIconItem()
@@ -75,7 +85,7 @@ public class JCCreativeTabs
         {
             public int getIconItemDamage()
             {
-                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.tyrannosaurus);
+                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.velociraptor);
             }
 
             public Item getTabIconItem()
@@ -88,7 +98,7 @@ public class JCCreativeTabs
         {
             public Item getTabIconItem()
             {
-                return Item.getItemFromBlock(JCBlockRegistry.fossil_grinder);
+                return Item.getItemFromBlock(JCBlockRegistry.gypsum_bricks);
             }
         };
 
@@ -96,7 +106,7 @@ public class JCCreativeTabs
         {
             public Item getTabIconItem()
             {
-                return Item.getItemFromBlock(JCBlockRegistry.saplings[0]);
+                return Item.getItemFromBlock(JCBlockRegistry.small_royal_fern);
             }
         };
 
@@ -104,7 +114,7 @@ public class JCCreativeTabs
         {
             public Item getTabIconItem()
             {
-                return Item.getItemFromBlock(JCBlockRegistry.fossils.get(0));
+                return Item.getItemFromBlock(JCBlockRegistry.encased_fossils.get(0));
             }
         };
     }

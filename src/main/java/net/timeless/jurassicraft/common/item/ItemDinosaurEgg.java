@@ -35,7 +35,7 @@ public class ItemDinosaurEgg extends ItemDnaContainer
         return JCEntityRegistry.getDinosaurById(stack.getMetadata());
     }
 
-    public int getContainerDinosaur(ItemStack stack)
+    public int getContainerId(ItemStack stack)
     {
         return JCEntityRegistry.getDinosaurId(getDinosaur(stack));
     }

@@ -12,6 +12,7 @@ import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 import net.timeless.jurassicraft.common.message.JCNetworkManager;
 import net.timeless.jurassicraft.common.paleotab.AppRegistry;
+import net.timeless.jurassicraft.common.plant.JCPlantRegistry;
 import net.timeless.jurassicraft.common.proxy.CommonProxy;
 import net.timeless.jurassicraft.common.recipe.JCRecipeRegistry;
 import org.apache.logging.log4j.Logger;
@@ -30,6 +31,7 @@ public class JurassiCraft
     private Logger logger;
 
     public static JCEntityRegistry entityRegistry = new JCEntityRegistry();
+    public static JCPlantRegistry plantRegistry = new JCPlantRegistry();
     public static JCCreativeTabs creativeTabRegistry = new JCCreativeTabs();
     public static JCItemRegistry itemRegistry = new JCItemRegistry();
     public static JCBlockRegistry blockRegistry = new JCBlockRegistry();

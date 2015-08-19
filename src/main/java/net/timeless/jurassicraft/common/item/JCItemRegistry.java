@@ -24,7 +24,7 @@ public class JCItemRegistry
     public static ItemBluePrint blue_print;
     public static ItemJurassiCraftSign jc_sign;
 
-    public static ItemBasic amber;
+    public static ItemAmber amber;
     public static ItemBasic petri_dish;
     public static ItemBasic empty_test_tube;
 
@@ -37,6 +37,8 @@ public class JCItemRegistry
     public static ItemBasic dna_base;
 
     public static ItemCage cage_small;
+
+    public static ItemPlantDNA plant_dna;
 
     public void register()
     {
@@ -51,7 +53,7 @@ public class JCItemRegistry
         blue_print = new ItemBluePrint();
         jc_sign = new ItemJurassiCraftSign();
         soft_tissue = new ItemSoftTissue();
-        amber = new ItemBasic("Amber", JCCreativeTabs.items);
+        amber = new ItemAmber();
         petri_dish = new ItemBasic("Petri Dish", JCCreativeTabs.items);
         empty_test_tube = new ItemBasic("Empty Test Tube", JCCreativeTabs.dna);
         syringe = new ItemSyringe();
@@ -60,6 +62,7 @@ public class JCItemRegistry
         storage_disc = new ItemStorageDisc();
         dna_base = new ItemBasic("DNA Base Material", JCCreativeTabs.items);
         cage_small = new ItemCage();
+        plant_dna = new ItemPlantDNA();
 
         registerItem(blue_print, "Blue Print");
         registerItem(jc_sign, "JurassiCraft Sign");
@@ -75,6 +78,7 @@ public class JCItemRegistry
         registerItem(empty_test_tube, "Empty Test Tube");
         registerItem(syringe, "Syringe");
         registerItem(empty_syringe, "Empty Syringe");
+        registerItem(plant_dna, "Plant DNA");
 
         registerItem(dino_meat, "Dinosaur Meat");
         registerItem(dino_steak, "Dinosaur Steak");

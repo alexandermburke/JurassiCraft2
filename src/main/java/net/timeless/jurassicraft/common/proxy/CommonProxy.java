@@ -15,6 +15,7 @@ public class CommonProxy
     public void preInit()
     {
         JurassiCraft.entityRegistry.register();
+        JurassiCraft.plantRegistry.register();
         JurassiCraft.creativeTabRegistry.register();
         JurassiCraft.itemRegistry.register();
         JurassiCraft.blockRegistry.register();

@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-		"layer0": "jurassicraft:items/amber"
+		"layer0": "jurassicraft:items/amber_mosquito"
     },
     "display": {
         "thirdperson": {

@@ -29,6 +29,8 @@ import net.timeless.jurassicraft.common.entity.item.EntityBluePrint;
 import net.timeless.jurassicraft.common.entity.item.EntityCageSmall;
 import net.timeless.jurassicraft.common.entity.item.EntityJurassiCraftSign;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
+import net.timeless.jurassicraft.common.plant.JCPlantRegistry;
+import net.timeless.jurassicraft.common.plant.Plant;
 
 import java.util.Map;
 
@@ -51,6 +53,16 @@ public class JCRenderingRegistry
             ModelBakery.addVariantName(JCItemRegistry.soft_tissue, "jurassicraft:soft_tissue/soft_tissue_" + dinoName);
             ModelBakery.addVariantName(JCItemRegistry.syringe, "jurassicraft:syringe/syringe_" + dinoName);
         }
+
+        for (Plant plant : JCPlantRegistry.getPlants())
+        {
+            String name = plant.getName().toLowerCase().replaceAll(" ", "_");
+
+            ModelBakery.addVariantName(JCItemRegistry.plant_dna, "jurassicraft:dna/plants/dna_" + name);
+        }
+
+        ModelBakery.addVariantName(JCItemRegistry.amber, "jurassicraft:amber_aphid");
+        ModelBakery.addVariantName(JCItemRegistry.amber, "jurassicraft:amber_mosquito");
     }
 
     public void init()
@@ -128,6 +140,8 @@ public class JCRenderingRegistry
             this.registerBlockRenderer(modelMesher, JCBlockRegistry.woods[i], name + "_log", "inventory");
         }
 
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.small_royal_fern, "small_royal_fern", "inventory");
+
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.amber_ore, "amber_ore", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.cleaning_station, "cleaning_station", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.fossil_grinder, "fossil_grinder", "inventory");
@@ -169,6 +183,9 @@ public class JCRenderingRegistry
         this.registerItemRenderer(modelMesher, JCItemRegistry.storage_disc, "storage_disc", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.dna_base, "dna_base_material", "inventory");
 
+        this.registerItemRenderer(modelMesher, JCItemRegistry.amber, 0, "amber_mosquito", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.amber, 1, "amber_aphid", "inventory");
+
         int meta = 0;
 
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
@@ -182,6 +199,17 @@ public class JCRenderingRegistry
             this.registerItemRenderer(modelMesher, JCItemRegistry.dino_steak, meta, "meat/steak_" + dinoName, "inventory");
             this.registerItemRenderer(modelMesher, JCItemRegistry.soft_tissue, meta, "soft_tissue/soft_tissue_" + dinoName, "inventory");
             this.registerItemRenderer(modelMesher, JCItemRegistry.syringe, meta, "syringe/syringe_" + dinoName, "inventory");
+
+            meta++;
+        }
+
+        meta = 0;
+
+        for (Plant plant : JCPlantRegistry.getPlants())
+        {
+            String name = plant.getName().toLowerCase().replaceAll(" ", "_");
+
+            this.registerItemRenderer(modelMesher, JCItemRegistry.plant_dna, meta, "dna/plants/dna_" + name, "inventory");
 
             meta++;
         }

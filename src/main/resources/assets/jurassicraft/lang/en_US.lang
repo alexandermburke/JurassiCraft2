@@ -7,6 +7,7 @@ itemGroup.jurassicraft.dna=JurassiCraft DNA
 itemGroup.jurassicraft.foods=JurassiCraft Foodstuffs
 itemGroup.jurassicraft.plants=JurassiCraft Plants
 itemGroup.jurassicraft.fossils=JurassiCraft Fossils
+itemGroup.jurassicraft.dino_bones=JurassiCraft Bones
 
 //Entities ==================================================
 entity.velociraptor.name=Velociraptor
@@ -64,7 +65,7 @@ item.dna.name={dino} DNA
 item.jurassicraft_sign.name=JurassiCraft Sign
 item.blue_print.name={type} Blue Print
 item.soft_tissue.name={dino} Soft Tissue
-item.amber.name=Amber
+item.amber.name={stored} in Amber
 item.petri_dish.name=Petri Dish
 item.empty_test_tube.name=Empty Test Tube
 item.syringe.name={dino} Syringe
@@ -73,6 +74,7 @@ item.entity_remover.name=Entity Remover
 item.storage_disc.name=Storage Disc
 item.dna_base_material.name=DNA Nucleotides
 item.cage_small.name=Small Cage
+item.plant_dna.name={plant} DNA
 
 //Blocks ==================================================
 tile.fossil_block.name={period} Fossil
@@ -104,6 +106,9 @@ tile.calamites_leaves.name=Calamites Leaves
 tile.calamites_log.name=Calamites Log
 tile.calamites_planks.name=Calamites Planks
 
+//Plants =========================================
+tile.small_royal_fern.name=Small Royal Fern
+
 //Containers ==================================================
 container.cleaning_station=Cleaning Station
 container.cleaning_station.cleanFossilButton=Clean Fossil
@@ -124,6 +129,8 @@ lore.dinosaur.name=Dinosaur: {dino}
 cage.empty.name=Empty
 gender.male.name=Male
 gender.female.name=Female
+amber.mosquito.name=Mosquito
+amber.aphid.name=Aphid
 
 period.quaternary.name=Quaternary
 period.neogene.name=Neogene

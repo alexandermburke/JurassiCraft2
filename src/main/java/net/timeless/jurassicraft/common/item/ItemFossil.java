@@ -23,7 +23,7 @@ public class ItemFossil extends Item
         this.setUnlocalizedName("fossil_" + this.type);
         this.setHasSubtypes(true);
 
-        this.setCreativeTab(JCCreativeTabs.items);
+        this.setCreativeTab(JCCreativeTabs.bones);
     }
 
     @Override
