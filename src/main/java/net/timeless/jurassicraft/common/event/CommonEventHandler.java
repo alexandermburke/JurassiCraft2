@@ -1,13 +1,13 @@
 package net.timeless.jurassicraft.common.event;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
+import net.minecraft.item.Item;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.timeless.jurassicraft.common.achievements.JCAchievements;
+import net.timeless.jurassicraft.common.block.JCBlockRegistry;
 import net.timeless.jurassicraft.common.entity.data.JCPlayerData;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
@@ -44,9 +44,15 @@ public class CommonEventHandler
     @SubscribeEvent
     public void onCraft(PlayerEvent.ItemCraftedEvent event)
     {
-        if (event.crafting.getItem() == JCItemRegistry.plaster_and_bandage)
+        Item item = event.crafting.getItem();
+
+        if (item == JCItemRegistry.plaster_and_bandage)
         {
             event.player.addStat(JCAchievements.paleontology, 1);
+        }
+        else if(item == Item.getItemFromBlock(JCBlockRegistry.cleaning_station))
+        {
+            event.player.addStat(JCAchievements.cleaningStation, 1);
         }
     }
 
