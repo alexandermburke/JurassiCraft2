@@ -40,6 +40,8 @@ public class JCItemRegistry
 
     public static ItemPlantDNA plant_dna;
 
+    public static ItemBasic sea_lamprey;
+
     public void register()
     {
         plaster_and_bandage = new ItemPlasterAndBandage();
@@ -55,37 +57,39 @@ public class JCItemRegistry
         soft_tissue = new ItemSoftTissue();
         amber = new ItemAmber();
         petri_dish = new ItemBasic("Petri Dish", JCCreativeTabs.items);
-        empty_test_tube = new ItemBasic("Empty Test Tube", JCCreativeTabs.dna);
+        empty_test_tube = new ItemBasic("Empty Test Tube", JCCreativeTabs.items);
         syringe = new ItemSyringe();
-        empty_syringe = new ItemBasic("Empty Syringe", JCCreativeTabs.dna);
+        empty_syringe = new ItemBasic("Empty Syringe", JCCreativeTabs.items);
         entityRemover = new ItemEntityRemover();
         storage_disc = new ItemStorageDisc();
         dna_base = new ItemBasic("DNA Base Material", JCCreativeTabs.items);
         cage_small = new ItemCage();
         plant_dna = new ItemPlantDNA();
+        sea_lamprey = new ItemBasic("Sea Lamprey", JCCreativeTabs.items);
 
-        registerItem(blue_print, "Blue Print");
-        registerItem(jc_sign, "JurassiCraft Sign");
+        registerItem(amber, "Amber");
+        registerItem(sea_lamprey, "Sea Lamprey");
         registerItem(plaster_and_bandage, "Plaster And Bandage");
+        registerItem(empty_test_tube, "Empty Test Tube");
+        registerItem(empty_syringe, "Empty Syringe");
+        registerItem(storage_disc, "Storage Disc");
+        registerItem(dna_base, "DNA Base Material");
+        registerItem(petri_dish, "Petri Dish");
+        registerItem(blue_print, "Blue Print");
+        registerItem(cage_small, "Cage Small");
+//        registerItem(jc_sign, "JurassiCraft Sign");
         registerItem(spawn_egg, "Dino Spawn Egg");
         registerItem(skull, "Skull");
         registerItem(dna, "DNA");
         registerItem(egg, "Dino Egg");
         registerItem(paleo_tab, "Paleo Tab");
         registerItem(soft_tissue, "Soft Tissue");
-        registerItem(amber, "Amber");
-        registerItem(petri_dish, "Petri Dish");
-        registerItem(empty_test_tube, "Empty Test Tube");
         registerItem(syringe, "Syringe");
-        registerItem(empty_syringe, "Empty Syringe");
         registerItem(plant_dna, "Plant DNA");
 
         registerItem(dino_meat, "Dinosaur Meat");
         registerItem(dino_steak, "Dinosaur Steak");
         registerItem(entityRemover, "Entity Remover");
-        registerItem(storage_disc, "Storage Disc");
-        registerItem(dna_base, "DNA Base Material");
-        registerItem(cage_small, "Cage Small");
 
         for (int i = 0; i < JCEntityRegistry.getDinosaurs().size(); i++)
         {

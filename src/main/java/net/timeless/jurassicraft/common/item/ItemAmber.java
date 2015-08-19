@@ -18,6 +18,7 @@ public class ItemAmber extends Item
         super();
         this.setUnlocalizedName("amber");
         this.setCreativeTab(JCCreativeTabs.items);
+        this.setHasSubtypes(true);
     }
 
     public String getItemStackDisplayName(ItemStack stack)

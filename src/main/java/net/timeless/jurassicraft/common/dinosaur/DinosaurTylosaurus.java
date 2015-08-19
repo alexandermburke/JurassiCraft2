@@ -153,4 +153,10 @@ public class DinosaurTylosaurus extends Dinosaur
     {
         return 2.95F;
     }
+
+    @Override
+    public boolean isMarineAnimal()
+    {
+        return true;
+    }
 }

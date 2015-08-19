@@ -21,6 +21,7 @@ public class ItemSyringe extends ItemDnaContainer
         this.setUnlocalizedName("syringe");
 
         this.setCreativeTab(JCCreativeTabs.dna);
+        this.setHasSubtypes(true);
     }
 
     public String getItemStackDisplayName(ItemStack stack)

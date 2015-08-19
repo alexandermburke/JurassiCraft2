@@ -21,6 +21,7 @@ public class ItemDinosaurEgg extends ItemDnaContainer
         this.setUnlocalizedName("dino_egg");
 
         this.setCreativeTab(JCCreativeTabs.eggs);
+        this.setHasSubtypes(true);
     }
 
     public String getItemStackDisplayName(ItemStack stack)

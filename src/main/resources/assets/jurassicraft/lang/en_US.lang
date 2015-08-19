@@ -75,6 +75,7 @@ item.storage_disc.name=Storage Disc
 item.dna_base_material.name=DNA Nucleotides
 item.cage_small.name=Small Cage
 item.plant_dna.name={plant} DNA
+item.sea_lamprey.name=Sea Lamprey
 
 //Blocks ==================================================
 tile.fossil_block.name={period} Fossil

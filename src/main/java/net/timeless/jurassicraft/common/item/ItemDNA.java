@@ -21,6 +21,7 @@ public class ItemDNA extends ItemDnaContainer
         this.setUnlocalizedName("dna");
 
         this.setCreativeTab(JCCreativeTabs.dna);
+        this.setHasSubtypes(true);
     }
 
     public String getItemStackDisplayName(ItemStack stack)
