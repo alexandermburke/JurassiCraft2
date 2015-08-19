@@ -7,6 +7,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.timeless.jurassicraft.common.api.ISubBlocksBlock;
+import net.timeless.jurassicraft.common.block.plant.BlockSmallChainFern;
 import net.timeless.jurassicraft.common.block.plant.BlockSmallRoyalFern;
 import net.timeless.jurassicraft.common.block.tree.*;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
@@ -55,6 +56,7 @@ public class JCBlockRegistry
     public static Block dna_combinator;
 
     public static BlockSmallRoyalFern small_royal_fern;
+    public static BlockSmallChainFern small_chain_fern;
 
     public void register()
     {
@@ -79,8 +81,10 @@ public class JCBlockRegistry
         gypsum_bricks = new BlockBasic(Material.rock, "Gypsum Bricks").setHardness(1.0F);
 
         small_royal_fern = new BlockSmallRoyalFern();
+        small_chain_fern = new BlockSmallChainFern();
 
         registerBlock(small_royal_fern, "Small Royal Fern");
+        registerBlock(small_chain_fern, "Small Chain Fern");
 
         List<Dinosaur> dinosaurs = JCEntityRegistry.getDinosaurs();
 

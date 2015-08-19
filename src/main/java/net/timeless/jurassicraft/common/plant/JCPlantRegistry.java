@@ -8,10 +8,14 @@ public class JCPlantRegistry
     private static List<Plant> plants = new ArrayList<>();
 
     public static final Plant small_royal_fern = new PlantSmallRoyalFern();
+    public static final Plant calamites = new PlantCalamites();
+    public static final Plant small_chain_fern = new PlantSmallChainFern();
 
     public void register()
     {
         registerPlant(small_royal_fern);
+        registerPlant(calamites);
+        registerPlant(small_chain_fern);
     }
 
     public static Plant getPlantById(int id)

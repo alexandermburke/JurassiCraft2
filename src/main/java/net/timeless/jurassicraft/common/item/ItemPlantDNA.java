@@ -28,7 +28,7 @@ public class ItemPlantDNA extends ItemDnaContainer
     {
         String plantName = getPlant(stack).getName().toLowerCase().replaceAll(" ", "_");
 
-        return new AdvLang("item.plant_dna.name").withProperty("plant", "tile." + plantName + ".name").build();
+        return new AdvLang("item.plant_dna.name").withProperty("plant", "plants." + plantName + ".name").build();
     }
 
     public Plant getPlant(ItemStack stack)

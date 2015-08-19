@@ -3,7 +3,7 @@ package net.timeless.jurassicraft.common.plant;
 import net.minecraft.block.Block;
 import net.timeless.jurassicraft.common.block.JCBlockRegistry;
 
-public class PlantSmallRoyalFern extends Plant
+public class PlantSmallChainFern extends Plant
 {
     @Override
     public EnumPlantType getPlantType()
@@ -14,12 +14,12 @@ public class PlantSmallRoyalFern extends Plant
     @Override
     public String getName()
     {
-        return "Small Royal Fern";
+        return "Small Chain Fern";
     }
 
     @Override
     public Block getBlock()
     {
-        return JCBlockRegistry.small_royal_fern;
+        return JCBlockRegistry.small_chain_fern;
     }
 }

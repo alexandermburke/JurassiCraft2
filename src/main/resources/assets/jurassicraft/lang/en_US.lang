@@ -107,8 +107,13 @@ tile.calamites_leaves.name=Calamites Leaves
 tile.calamites_log.name=Calamites Log
 tile.calamites_planks.name=Calamites Planks
 
-//Plants =========================================
 tile.small_royal_fern.name=Small Royal Fern
+tile.small_chain_fern.name=Small Chain Fern
+
+//Plants =========================================
+plants.small_royal_fern.name=Small Royal Fern
+plants.calamites.name=Calamites
+plants.small_chain_fern.name=Small Chain Fern
 
 //Containers ==================================================
 container.cleaning_station=Cleaning Station
