@@ -42,6 +42,9 @@ public class JCItemRegistry
 
     public static ItemBasic sea_lamprey;
 
+    public static ItemBasic iron_blades;
+    public static ItemBasic iron_rod;
+
     public void register()
     {
         plaster_and_bandage = new ItemPlasterAndBandage();
@@ -66,6 +69,8 @@ public class JCItemRegistry
         cage_small = new ItemCage();
         plant_dna = new ItemPlantDNA();
         sea_lamprey = new ItemBasic("Sea Lamprey", JCCreativeTabs.items);
+        iron_blades = new ItemBasic("Iron Blades", JCCreativeTabs.items);
+        iron_rod = new ItemBasic("Iron Rod", JCCreativeTabs.items);
 
         registerItem(amber, "Amber");
         registerItem(sea_lamprey, "Sea Lamprey");
@@ -86,6 +91,8 @@ public class JCItemRegistry
         registerItem(soft_tissue, "Soft Tissue");
         registerItem(syringe, "Syringe");
         registerItem(plant_dna, "Plant DNA");
+        registerItem(iron_blades, "Iron Blades");
+        registerItem(iron_rod, "Iron Rod");
 
         registerItem(dino_meat, "Dinosaur Meat");
         registerItem(dino_steak, "Dinosaur Steak");

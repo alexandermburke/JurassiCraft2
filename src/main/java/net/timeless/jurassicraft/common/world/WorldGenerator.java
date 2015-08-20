@@ -57,7 +57,7 @@ public class WorldGenerator implements IWorldGenerator
             int randPosY = random.nextInt(64);
             int randPosZ = chunkZ + random.nextInt(16);
 
-            new WorldGenMinable(JCBlockRegistry.ice_shard.getDefaultState(), 3).generate(world, random, new BlockPos(randPosX, randPosY, randPosZ));
+            new WorldGenMinable(JCBlockRegistry.ice_shard.getDefaultState(), 1).generate(world, random, new BlockPos(randPosX, randPosY, randPosZ));
         }
 
         for (int i = 0; i < 2; i++)

@@ -54,6 +54,10 @@ public class CommonEventHandler
         {
             event.player.addStat(JCAchievements.cleaningStation, 1);
         }
+        else if(item == Item.getItemFromBlock(JCBlockRegistry.fossil_grinder))
+        {
+            event.player.addStat(JCAchievements.fossilGrinder, 1);
+        }
     }
 
 //    @SubscribeEvent

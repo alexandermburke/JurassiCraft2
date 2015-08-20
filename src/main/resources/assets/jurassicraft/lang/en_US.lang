@@ -76,6 +76,8 @@ item.dna_base_material.name=DNA Nucleotides
 item.cage_small.name=Small Cage
 item.plant_dna.name={plant} DNA
 item.sea_lamprey.name=Sea Lamprey
+item.iron_blades.name=Iron Blades
+item.iron_rod.name=Iron Rod
 
 //Blocks ==================================================
 tile.fossil_block.name={period} Fossil
@@ -171,3 +173,6 @@ achievement.jurassicraft.fossils.desc=Encase a fossil with Plaster and Bandage
 
 achievement.jurassicraft.cleaningStation=Clean!
 achievement.jurassicraft.cleaningStation.desc=Craft a Cleaning Station!
+
+achievement.jurassicraft.fossilGrinder=Grindin'
+achievement.jurassicraft.fossilGrinder.desc=Craft a Fossil Grinder!

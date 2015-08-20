@@ -1,6 +1,8 @@
 package net.timeless.jurassicraft.common.recipe;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.timeless.jurassicraft.common.block.JCBlockRegistry;
@@ -30,5 +32,48 @@ public class JCRecipeRegistry
 
             i++;
         }
+
+        GameRegistry.addSmelting(new ItemStack(JCBlockRegistry.gypsum_cobblestone), new ItemStack(JCBlockRegistry.gypsum_stone), 1.5F);
+
+        GameRegistry.addRecipe(new ItemStack(JCItemRegistry.iron_blades),
+                "I I",
+                " S ",
+                "I I",
+                'I', Items.iron_ingot, 'S', Items.stick);
+
+        GameRegistry.addRecipe(new ItemStack(JCItemRegistry.iron_rod),
+                "ISI",
+                "ISI",
+                "ISI",
+                'I', Items.iron_ingot, 'S', Items.stick);
+
+        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.fossil_grinder),
+                "lBl",
+                "rRr",
+                "IPI",
+                'I', Items.iron_ingot, 'R', JCItemRegistry.iron_rod, 'B', JCItemRegistry.iron_blades, 'r', Items.redstone, 'l', new ItemStack(Items.dye, 1, 4), 'P', Blocks.piston);
+
+        GameRegistry.addRecipe(new ItemStack(JCItemRegistry.plaster_and_bandage, 9),
+                "PPP",
+                "PWP",
+                "PPP",
+                'P', Items.paper, 'W', Blocks.wool);
+
+        GameRegistry.addRecipe(new ItemStack(JCItemRegistry.cage_small, 1),
+                "III",
+                "BBB",
+                "III",
+                'I', Items.iron_ingot, 'B', Blocks.iron_bars);
+
+        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.gypsum_bricks, 4),
+                "SS",
+                "SS",
+                'S', JCBlockRegistry.gypsum_stone);
+
+        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.cleaning_station),
+                "iii",
+                "RGR",
+                "IBI",
+                'i', Items.iron_ingot, 'B', Items.bucket, 'G', Blocks.glass_pane, 'R', Items.redstone, 'I', Blocks.iron_block);
     }
 }
