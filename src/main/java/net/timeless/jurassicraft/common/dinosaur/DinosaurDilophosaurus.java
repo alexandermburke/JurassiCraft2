@@ -39,13 +39,13 @@ public class DinosaurDilophosaurus extends Dinosaur
     @Override
     public int getEggPrimaryColor()
     {
-        return 0x47494D;
+        return 0x62702B;
     }
 
     @Override
     public int getEggSecondaryColor()
     {
-        return 0x0E1012;
+        return 0x26292A;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class DinosaurDilophosaurus extends Dinosaur
     @Override
     public double getBabySpeed()
     {
-        return 0.52;
+        return 0.42;
     }
 
     @Override
@@ -123,36 +123,36 @@ public class DinosaurDilophosaurus extends Dinosaur
     @Override
     public float getBabyEyeHeight()
     {
-        return 0.5F;
+        return 0.45F;
     }
 
     @Override
     public float getAdultEyeHeight()
     {
-        return 2.8F;
+        return 2.15F;
     }
 
     @Override
     public float getBabySizeX()
     {
-        return 0.4F;
+        return 0.3F;
     }
 
     @Override
     public float getBabySizeY()
     {
-        return 0.6F;
+        return 0.5F;
     }
 
     @Override
     public float getAdultSizeX()
     {
-        return 1.5F;
+        return 1.25F;
     }
 
     @Override
     public float getAdultSizeY()
     {
-        return 3.0F;
+        return 2.5F;
     }
 }
