@@ -50,6 +50,10 @@ public class JCGuiHandler implements IGuiHandler
             {
                 return new ContainerIncubator(player.inventory, tileEntity);
             }
+            else if (tileEntity instanceof TileDNAHybridizer && id == 7)
+            {
+                return new ContainerDNAHybridizer(player.inventory, tileEntity);
+            }
         }
 
         return null;
@@ -90,6 +94,10 @@ public class JCGuiHandler implements IGuiHandler
             else if (tileEntity instanceof TileIncubator && id == 6)
             {
                 return new GuiIncubator(player.inventory, (TileIncubator) tileEntity);
+            }
+            else if (tileEntity instanceof TileDNAHybridizer && id == 7)
+            {
+                return new GuiDNAHybridizer(player.inventory, (TileDNAHybridizer) tileEntity);
             }
         }
 

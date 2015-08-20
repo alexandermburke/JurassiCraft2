@@ -4,15 +4,15 @@ public class GeneticsContainer
 {
     private String genetics;
 
-    private static final int DINOSAUR = 0; //Which dinosaur is this?
-    private static final int COLOR = 1; //Color offset
-    private static final int SCALE = 2; //Scale offset
-    private static final int CAUTIOUSNESS = 3; //How cautious is this dinosaur
-    private static final int AGRESSION = 4; //How agressive is this dinosaur
-    private static final int GENETIC_VARIATION = 5; //Skin + Model variants (Blue, Echo, Delta, Charlie)
-    private static final int LIFE_TIME = 6; //How long to live after adulthood
-    private static final int SPEED = 7; //Speed Modifier
-    private static final int ADULT_TIME = 8; //How long to become an adult
+    public static final int DINOSAUR = 0; //Which dinosaur is this?
+    public static final int COLOR = 1; //Color offset
+    public static final int SCALE = 2; //Scale offset
+    public static final int CAUTIOUSNESS = 3; //How cautious is this dinosaur
+    public static final int AGRESSION = 4; //How agressive is this dinosaur
+    public static final int GENETIC_VARIATION = 5; //Skin + Model variants (Blue, Echo, Delta, Charlie)
+    public static final int LIFE_TIME = 6; //How long to live after adulthood
+    public static final int SPEED = 7; //Speed Modifier
+    public static final int ADULT_TIME = 8; //How long to become an adult
 
     private static final int VAR_COUNT = 8;
 

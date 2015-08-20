@@ -11,14 +11,16 @@ public class DinosaurIndominus extends Dinosaur implements IHybrid
     private String[] maleTextures;
     private String[] femaleTextures;
 
-    private Dinosaur[] combo;
+    private Class[] baseGenes;
+    private Class[] extraGenes;
 
     public DinosaurIndominus()
     {
         this.maleTextures = new String[] { getDinosaurTexture("") };
         this.femaleTextures = new String[] { getDinosaurTexture("") };
 
-        this.combo = new Dinosaur[] { JCEntityRegistry.tyrannosaurus, JCEntityRegistry.velociraptor, JCEntityRegistry.giganotosaurus, JCEntityRegistry.rugops, JCEntityRegistry.majungasaurus };
+        this.baseGenes = new Class[] { DinosaurTyrannosaurus.class, DinosaurVelociraptor.class };
+        this.extraGenes = new Class[] { DinosaurGiganotosaurus.class, DinosaurRugops.class, DinosaurMajungasaurus.class };
     }
 
     @Override
@@ -159,8 +161,14 @@ public class DinosaurIndominus extends Dinosaur implements IHybrid
     }
 
     @Override
-    public Dinosaur[] getCombination()
+    public Class[] getBaseGenes()
     {
-        return combo;
+        return baseGenes;
+    }
+
+    @Override
+    public Class[] getExtraGenes()
+    {
+        return extraGenes;
     }
 }

@@ -128,6 +128,7 @@ container.embryonic_machine=Embryonic Machine
 container.embryo_calcification_machine=Embryo Calcification Machine
 container.incubator=Incubator
 container.dna_extractor=DNA Extractor
+container.dna_hybridizer=DNA Hybridizer
 
 //Others ==================================================
 blue_print.blank.name=Blank

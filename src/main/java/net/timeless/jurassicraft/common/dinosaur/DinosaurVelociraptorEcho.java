@@ -153,8 +153,14 @@ public class DinosaurVelociraptorEcho extends Dinosaur implements IHybrid
     }
 
     @Override
-    public Dinosaur[] getCombination()
+    public Class[] getBaseGenes()
     {
-        return new Dinosaur[] { JCEntityRegistry.velociraptor}; //TODO
+        return new Class[] { DinosaurVelociraptor.class }; //TODO
+    }
+
+    @Override
+    public Class[] getExtraGenes()
+    {
+        return new Class[] { DinosaurVelociraptor.class };
     }
 }
