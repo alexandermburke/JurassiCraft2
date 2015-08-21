@@ -62,6 +62,8 @@ public class JCBlockRegistry
 
     public static BlockSmallRoyalFern small_royal_fern;
     public static BlockSmallChainFern small_chain_fern;
+    public static BlockCultivate cultivate_top;
+    public static BlockCultivate cultivate_bottom;
 
     public void register()
     {
@@ -78,6 +80,8 @@ public class JCBlockRegistry
         dna_extractor = new BlockDNAExtractor();
         dna_hybridizer = new BlockDNAHybridizer();
         dna_combinator = new BlockDNACombinator();
+        cultivate_bottom = new BlockCultivateBottom();
+        cultivate_top = new BlockCultivateTop();
 
         amber_ore = new BlockAmber();
         ice_shard = new BlockIceShard();
@@ -164,6 +168,9 @@ public class JCBlockRegistry
             Blocks.fire.setFireInfo(planks[i], 5, 20);
             Blocks.fire.setFireInfo(woods[i], 5, 5);
         }
+
+        registerBlockTileEntity(TileCultivate.class, cultivate_bottom, "Cultivate Bottom");
+        registerBlock(cultivate_top, "Cultivate Top");
 
         registerBlockTileEntity(TileCleaningStation.class, cleaning_station, "Cleaning Station");
         registerBlockTileEntity(TileFossilGrinder.class, fossil_grinder, "Fossil Grinder");

@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -59,6 +60,11 @@ public class JCRenderingRegistry
             String name = plant.getName().toLowerCase().replaceAll(" ", "_");
 
             ModelBakery.addVariantName(JCItemRegistry.plant_dna, "jurassicraft:dna/plants/dna_" + name);
+        }
+
+        for (EnumDyeColor color : EnumDyeColor.values())
+        {
+            ModelBakery.addVariantName(Item.getItemFromBlock(JCBlockRegistry.cultivate_bottom), "jurassicraft:cultivate/cultivate_bottom_" + color.getName().toLowerCase());
         }
 
         ModelBakery.addVariantName(JCItemRegistry.amber, "jurassicraft:amber_aphid");
@@ -140,11 +146,19 @@ public class JCRenderingRegistry
             this.registerBlockRenderer(modelMesher, JCBlockRegistry.woods[i], name + "_log", "inventory");
         }
 
+        for (EnumDyeColor color : EnumDyeColor.values())
+        {
+            this.registerBlockRenderer(modelMesher, JCBlockRegistry.cultivate_bottom, color.ordinal(), "cultivate/cultivate_bottom_" + color.getName().toLowerCase(), "inventory");
+        }
+
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.small_royal_fern, "small_royal_fern", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.small_chain_fern, "small_chain_fern", "inventory");
 
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.reinforced_stone, "reinforced_stone", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.reinforced_bricks, "reinforced_bricks", "inventory");
+
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.cultivate_bottom, "cultivate_bottom", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.cultivate_top, "cultivate_top", "inventory");
 
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.amber_ore, "amber_ore", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.ice_shard, "ice_shard", "inventory");

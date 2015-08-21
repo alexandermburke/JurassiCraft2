@@ -116,6 +116,8 @@ tile.small_chain_fern.name=Small Chain Fern
 tile.reinforced_stone.name=Reinforced Stone
 tile.reinforced_bricks.name=Reinforced Bricks
 
+tile.cultivate.name={color} Cultivator
+
 //Plants =========================================
 plants.small_royal_fern.name=Small Royal Fern
 plants.calamites.name=Calamites
@@ -145,6 +147,23 @@ gender.male.name=Male
 gender.female.name=Female
 amber.mosquito.name=Mosquito
 amber.aphid.name=Aphid
+
+color.red.name=Red
+color.orange.name=Orange
+color.yellow.name=Yellow
+color.green.name=Green
+color.lime.name=Lime
+color.blue.name=Blue
+color.light_blue.name=Light Blue
+color.purple.name=Purple
+color.pink.name=Pink
+color.magenta.name=Magenta
+color.white.name=White
+color.black.name=Black
+color.brown.name=Brown
+color.gray.name=Gray
+color.silver.name=Silver
+color.cyan.name=Cyan
 
 period.quaternary.name=Quaternary
 period.neogene.name=Neogene
