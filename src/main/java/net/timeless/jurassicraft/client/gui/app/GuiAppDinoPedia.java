@@ -4,11 +4,11 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.ResourceLocation;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.client.gui.GuiPaleoTab;
-import net.timeless.jurassicraft.common.paleotab.App;
+import net.timeless.jurassicraft.common.paleopad.App;
 
 public class GuiAppDinoPedia extends GuiApp
 {
-    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_tab/apps/dinopedia.png");
+    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_pad/apps/dinopedia.png");
 
     private boolean intro;
 

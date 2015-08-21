@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.entity.data.JCPlayerData;
-import net.timeless.jurassicraft.common.paleotab.JCFile;
+import net.timeless.jurassicraft.common.paleopad.JCFile;
 
 import java.util.ArrayList;
 import java.util.List;

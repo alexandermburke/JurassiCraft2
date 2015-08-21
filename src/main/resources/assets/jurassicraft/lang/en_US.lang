@@ -60,7 +60,7 @@ item.dino_egg.name={dino} Egg
 item.dino_spawn_egg.name=Spawn {dino}
 item.dinosaur_meat.name={dino} Meat
 item.dinosaur_steak.name={dino} Steak
-item.paleo_tab.name=Paleo Tab
+item.paleo_pad.name=Paleo Pad
 item.dna.name={dino} DNA
 item.jurassicraft_sign.name=JurassiCraft Sign
 item.blue_print.name={type} Blue Print
@@ -158,9 +158,9 @@ period.silurian.name=Silurian
 period.ordovician.name=Ordovician
 period.cambrian.name=Cambrian
 
-//PaleoTab ==================================================
-paleotab.os.name=PaleOS 1.0.0
-paleotab.time.name={hours}:{minutes}
+//PaleoPad ==================================================
+paleopad.os.name=PaleOS 1.0.0
+paleopad.time.name={hours}:{minutes}
 
 //Achievements ==============================================
 achievement.jurassicraft.mod=JurassiCraft!

@@ -12,13 +12,13 @@ import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.common.handler.JCGuiHandler;
 
-public class ItemPaleoTab extends Item
+public class ItemPaleoPad extends Item
 {
-    public ItemPaleoTab()
+    public ItemPaleoPad()
     {
         super();
 
-        this.setUnlocalizedName("paleo_tab");
+        this.setUnlocalizedName("paleo_pad");
         this.setMaxStackSize(1);
 
         this.setCreativeTab(JCCreativeTabs.items);

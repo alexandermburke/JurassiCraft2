@@ -8,16 +8,16 @@ import net.timeless.jurassicraft.client.gui.GuiPaleoTab;
 import net.timeless.jurassicraft.common.entity.data.JCPlayerData;
 import net.timeless.jurassicraft.common.entity.data.JCPlayerDataClient;
 import net.timeless.jurassicraft.common.message.MessageRequestFile;
-import net.timeless.jurassicraft.common.paleotab.App;
-import net.timeless.jurassicraft.common.paleotab.AppFileExplorer;
-import net.timeless.jurassicraft.common.paleotab.JCFile;
+import net.timeless.jurassicraft.common.paleopad.App;
+import net.timeless.jurassicraft.common.paleopad.AppFileExplorer;
+import net.timeless.jurassicraft.common.paleopad.JCFile;
 
 import java.util.List;
 import java.util.regex.Pattern;
 
 public class GuiAppFileExplorer extends GuiApp
 {
-    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_tab/apps/file_explorer.png");
+    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_pad/apps/file_explorer.png");
 
     private boolean intro;
 

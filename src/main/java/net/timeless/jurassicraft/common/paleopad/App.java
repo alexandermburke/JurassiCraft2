@@ -1,4 +1,4 @@
-package net.timeless.jurassicraft.common.paleotab;
+package net.timeless.jurassicraft.common.paleopad;
 
 import net.minecraft.nbt.NBTTagCompound;
 

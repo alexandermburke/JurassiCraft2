@@ -15,7 +15,7 @@ public class JCItemRegistry
 
     public static ItemDNA dna;
     public static ItemDinosaurEgg egg;
-    public static ItemPaleoTab paleo_tab;
+    public static ItemPaleoPad paleo_pad;
     public static ItemSoftTissue soft_tissue;
 
     public static ItemDinosaurMeat dino_meat;
@@ -52,7 +52,7 @@ public class JCItemRegistry
         skull = new ItemSkull();
         dna = new ItemDNA();
         egg = new ItemDinosaurEgg();
-        paleo_tab = new ItemPaleoTab();
+        paleo_pad = new ItemPaleoPad();
         dino_meat = new ItemDinosaurMeat();
         dino_steak = new ItemDinosaurSteak();
         blue_print = new ItemBluePrint();
@@ -87,7 +87,7 @@ public class JCItemRegistry
         registerItem(skull, "Skull");
         registerItem(dna, "DNA");
         registerItem(egg, "Dino Egg");
-        registerItem(paleo_tab, "Paleo Tab");
+        registerItem(paleo_pad, "Paleo Pad");
         registerItem(soft_tissue, "Soft Tissue");
         registerItem(syringe, "Syringe");
         registerItem(plant_dna, "Plant DNA");

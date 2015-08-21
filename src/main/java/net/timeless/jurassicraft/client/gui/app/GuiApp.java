@@ -8,7 +8,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.client.gui.GuiPaleoTab;
 import net.timeless.jurassicraft.common.entity.data.JCPlayerData;
-import net.timeless.jurassicraft.common.paleotab.App;
+import net.timeless.jurassicraft.common.paleopad.App;
 
 import java.util.List;
 

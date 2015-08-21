@@ -5,15 +5,15 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.ResourceLocation;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.client.gui.GuiPaleoTab;
-import net.timeless.jurassicraft.common.paleotab.App;
-import net.timeless.jurassicraft.common.paleotab.AppFlappyDino;
+import net.timeless.jurassicraft.common.paleopad.App;
+import net.timeless.jurassicraft.common.paleopad.AppFlappyDino;
 
 public class GuiAppFlappyDino extends GuiApp
 {
-    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_tab/apps/flappy_dino.png");
-    private static final ResourceLocation logo = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_tab/apps/background/flappy_dino.png");
-    private static final ResourceLocation pteranodon = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_tab/apps/background/flappy_dino_pteranodon.png");
-    private static final ResourceLocation character = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_tab/apps/background/flappy_dino_char.png");
+    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_pad/apps/flappy_dino.png");
+    private static final ResourceLocation logo = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_pad/apps/background/flappy_dino.png");
+    private static final ResourceLocation pteranodon = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_pad/apps/background/flappy_dino_pteranodon.png");
+    private static final ResourceLocation character = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_pad/apps/background/flappy_dino_char.png");
 
     private boolean mainScreen;
 

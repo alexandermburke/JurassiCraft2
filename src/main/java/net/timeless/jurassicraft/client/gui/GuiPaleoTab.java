@@ -15,8 +15,8 @@ import net.timeless.jurassicraft.client.gui.app.GuiApp;
 import net.timeless.jurassicraft.client.gui.app.GuiAppRegistry;
 import net.timeless.jurassicraft.common.entity.data.JCPlayerDataClient;
 import net.timeless.jurassicraft.common.lang.AdvLang;
-import net.timeless.jurassicraft.common.paleotab.App;
-import net.timeless.jurassicraft.common.paleotab.AppRegistry;
+import net.timeless.jurassicraft.common.paleopad.App;
+import net.timeless.jurassicraft.common.paleopad.AppRegistry;
 import org.lwjgl.opengl.GL11;
 
 import java.util.List;
@@ -24,7 +24,7 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public class GuiPaleoTab extends GuiScreen
 {
-    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_tab/paleo_tab.png");
+    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_pad/paleo_pad.png");
 
     private GuiApp focus;
 
@@ -117,7 +117,7 @@ public class GuiPaleoTab extends GuiScreen
             minutesStr = "0" + minutesStr;
         }
 
-        drawCenteredScaledText(new AdvLang("paleotab.time.name").withProperty("hours", hoursStr).withProperty("minutes", minutesStr).build(), 115, -10, 1.0F, 0xFFFFFF);
+        drawCenteredScaledText(new AdvLang("paleopad.time.name").withProperty("hours", hoursStr).withProperty("minutes", minutesStr).build(), 115, -10, 1.0F, 0xFFFFFF);
         drawScaledRect(0, 0, 458, 2, 0.5F, 0x404040);
 
         if(focus == null)
@@ -137,7 +137,7 @@ public class GuiPaleoTab extends GuiScreen
                 drawCenteredScaledText(app.getName(), x + 22, y + 39, 0.7F, 0xFFFFFF);
             }
 
-            drawScaledText(StatCollector.translateToLocal("paleotab.os.name"), 2, -10, 1.0F, 0xFFFFFF);
+            drawScaledText(StatCollector.translateToLocal("paleopad.os.name"), 2, -10, 1.0F, 0xFFFFFF);
         }
         else
         {

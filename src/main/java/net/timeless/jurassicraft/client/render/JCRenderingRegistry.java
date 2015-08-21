@@ -181,7 +181,7 @@ public class JCRenderingRegistry
         this.registerItemRenderer(modelMesher, JCItemRegistry.amber, "amber", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.plaster_and_bandage, "plaster_and_bandage", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.spawn_egg, "dino_spawn_egg", "inventory");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.paleo_tab, "paleo_tab", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.paleo_pad, "paleo_pad", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.blue_print, "blue_print", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.jc_sign, "jurassicraft_sign", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.empty_test_tube, "empty_test_tube", "inventory");
