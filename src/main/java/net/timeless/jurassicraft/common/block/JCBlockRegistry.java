@@ -82,7 +82,7 @@ public class JCBlockRegistry
         amber_ore = new BlockAmber();
         ice_shard = new BlockIceShard();
 
-        gypsum_stone = new BlockBasic(Material.rock, "Gypsum Stone").setDrop(gypsum_cobblestone).setHardness(1.5F).setResistance(10.0F);
+        gypsum_stone = new BlockGypsumStone().setHardness(1.5F).setResistance(10.0F);
         gypsum_cobblestone = new BlockBasic(Material.rock, "Gypsum Cobblestone").setHardness(1.5F).setResistance(10.0F);
         gypsum_bricks = new BlockBasic(Material.rock, "Gypsum Bricks").setHardness(1.5F).setResistance(10.0F);
         reinforced_stone = new BlockBasic(Material.rock, "Reinforced Stone").setHardness(2.0F).setResistance(15.0F);

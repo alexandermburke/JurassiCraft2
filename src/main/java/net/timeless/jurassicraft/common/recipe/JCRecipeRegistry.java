@@ -3,6 +3,7 @@ package net.timeless.jurassicraft.common.recipe;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.timeless.jurassicraft.common.block.JCBlockRegistry;
@@ -93,5 +94,33 @@ public class JCRecipeRegistry
                 "SS",
                 'S', JCBlockRegistry.reinforced_stone);
 
+        GameRegistry.addRecipe(new ItemStack(JCItemRegistry.empty_test_tube),
+                "I",
+                "G",
+                "G",
+                'G', Blocks.glass_pane, 'I', Items.iron_ingot);
+
+        GameRegistry.addRecipe(new ItemStack(JCItemRegistry.petri_dish),
+                "G G",
+                "GGG",
+                'G', Blocks.glass_pane);
+
+        GameRegistry.addRecipe(new ItemStack(JCItemRegistry.blue_print),
+                "BBB",
+                "BPB",
+                "BBB",
+                'B', new ItemStack(Items.dye, 1, 4), 'P', Items.paper);
+
+        GameRegistry.addRecipe(new ItemStack(JCItemRegistry.empty_syringe),
+                "  I",
+                "IG ",
+                "II ",
+                'G', Blocks.glass_pane, 'I', Items.iron_ingot);
+
+        GameRegistry.addRecipe(new ItemStack(JCItemRegistry.empty_syringe),
+                "I  ",
+                " GI",
+                " II",
+                'G', Blocks.glass_pane, 'I', Items.iron_ingot);
     }
 }
