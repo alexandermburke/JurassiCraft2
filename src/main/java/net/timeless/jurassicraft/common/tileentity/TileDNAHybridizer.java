@@ -370,7 +370,7 @@ public class TileDNAHybridizer extends TileEntityLockable implements IUpdatePlay
         {
             DNA data = DNA.readFromNBT(disc.getTagCompound());
 
-            return JCEntityRegistry.getDinosaurById(data.getContainer().getDinosaur());
+            return data.getDNAQuality() == 100 ? JCEntityRegistry.getDinosaurById(data.getContainer().getDinosaur()) : null;
         }
         else
         {
@@ -389,7 +389,6 @@ public class TileDNAHybridizer extends TileEntityLockable implements IUpdatePlay
 
             NBTTagCompound nbt = new NBTTagCompound();
 
-            //TODO do something about the quality? (Maybe you can only hybridize if all discs are 100%)
             int dinosaurId = JCEntityRegistry.getDinosaurId(hybrid);
 
             GeneticsContainer container = new GeneticsContainer(slots[0].getTagCompound().getString("Genetics"));

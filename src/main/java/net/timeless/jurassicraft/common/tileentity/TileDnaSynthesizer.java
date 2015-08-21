@@ -21,6 +21,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.container.ContainerDnaSynthesizer;
+import net.timeless.jurassicraft.common.genetics.DNA;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 public class TileDnaSynthesizer extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
@@ -281,7 +282,7 @@ public class TileDnaSynthesizer extends TileEntityLockable implements IUpdatePla
 
     public int getStackSynthesizeTime(ItemStack stack)
     {
-        return 200;
+        return 1000;
     }
 
     /**
@@ -295,13 +296,16 @@ public class TileDnaSynthesizer extends TileEntityLockable implements IUpdatePla
 
         if (storage != null && storage.getItem() == JCItemRegistry.storage_disc && testTube != null && testTube.getItem() == JCItemRegistry.empty_test_tube && baseMaterial != null && baseMaterial.getItem() == JCItemRegistry.dna_base && (storage.getTagCompound() != null && storage.getTagCompound().hasKey("Genetics")))
         {
-            ItemStack output = new ItemStack(JCItemRegistry.dna, 1, storage.getItemDamage());
-            output.setTagCompound(slots[0].getTagCompound());
-
-            for (int i = 3; i < 7; i++)
+            if (storage.getTagCompound().getInteger("DNAQuality") == 100)
             {
-                if (this.slots[i] == null || ItemStack.areItemsEqual(this.slots[i], output) && ItemStack.areItemStackTagsEqual(this.slots[i], output))
-                    return true;
+                ItemStack output = new ItemStack(JCItemRegistry.dna, 1, storage.getItemDamage());
+                output.setTagCompound(slots[0].getTagCompound());
+
+                for (int i = 3; i < 7; i++)
+                {
+                    if (this.slots[i] == null || ItemStack.areItemsEqual(this.slots[i], output) && ItemStack.areItemStackTagsEqual(this.slots[i], output))
+                        return true;
+                }
             }
         }
 
@@ -341,10 +345,13 @@ public class TileDnaSynthesizer extends TileEntityLockable implements IUpdatePla
                     this.slots[emptySlot].stackSize += output.stackSize;
                 }
 
-                this.slots[0].setItemDamage(0);
-                this.slots[0].setTagCompound(null);
+                this.slots[0].stackSize--;
+                this.slots[0].stackSize--;
                 this.slots[1].stackSize--;
                 this.slots[2].stackSize--;
+
+                if (this.slots[0].stackSize <= 0)
+                    this.slots[0] = null;
 
                 if (this.slots[1].stackSize <= 0)
                     this.slots[1] = null;

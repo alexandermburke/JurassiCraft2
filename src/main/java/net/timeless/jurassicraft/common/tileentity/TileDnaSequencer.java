@@ -298,7 +298,7 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
 
     public int getStackSequenceTime(ItemStack stack)
     {
-        return 200;
+        return 2000;
     }
 
     /**
@@ -341,15 +341,15 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
 
             int quality = rand.nextInt(25) + 1;
 
-            if (rand.nextInt(3) == 0)
+            if (rand.nextDouble() < 0.10)
             {
                 quality += 25;
 
-                if (rand.nextInt(3) == 0)
+                if (rand.nextDouble() < 0.10)
                 {
                     quality += 25;
 
-                    if (rand.nextInt(3) == 0)
+                    if (rand.nextDouble() < 0.10)
                     {
                         quality += 25;
                     }

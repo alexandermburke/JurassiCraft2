@@ -2,6 +2,7 @@ package net.timeless.jurassicraft.common.handler;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
@@ -54,6 +55,10 @@ public class JCGuiHandler implements IGuiHandler
             {
                 return new ContainerDNAHybridizer(player.inventory, tileEntity);
             }
+            else if (tileEntity instanceof TileDNACombinator && id == 8)
+            {
+                return new ContainerDNACombinator(player.inventory, (TileDNACombinator) tileEntity);
+            }
         }
 
         return null;
@@ -98,6 +103,10 @@ public class JCGuiHandler implements IGuiHandler
             else if (tileEntity instanceof TileDNAHybridizer && id == 7)
             {
                 return new GuiDNAHybridizer(player.inventory, (TileDNAHybridizer) tileEntity);
+            }
+            else if (tileEntity instanceof TileDNACombinator && id == 8)
+            {
+                return new GuiDNACombinator(player.inventory, (TileDNACombinator) tileEntity);
             }
         }
 
