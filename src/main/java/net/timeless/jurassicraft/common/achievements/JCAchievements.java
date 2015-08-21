@@ -12,6 +12,7 @@ public class JCAchievements
     public static JCAchievement amber;
     public static JCAchievement cleaningStation;
     public static JCAchievement fossilGrinder;
+    public static JCAchievement reinforcedStone;
 
     public static AchievementPage jurassicraftPage;
 
@@ -23,8 +24,9 @@ public class JCAchievements
         amber = new JCAchievement("amber", 2, -2, JCItemRegistry.amber, jurassicraft);
         cleaningStation = new JCAchievement("cleaningStation", -1, 2, JCBlockRegistry.cleaning_station, jurassicraft);
         fossilGrinder = new JCAchievement("fossilGrinder", -2, -1, JCBlockRegistry.fossil_grinder, jurassicraft);
+        reinforcedStone = new JCAchievement("reinforcedStone", 4, -1, JCBlockRegistry.reinforced_stone, jurassicraft);
 
-        jurassicraftPage = new AchievementPage("JurassiCraft", jurassicraft, paleontology, fossils, amber, cleaningStation, fossilGrinder);
+        jurassicraftPage = new AchievementPage("JurassiCraft", jurassicraft, paleontology, fossils, amber, cleaningStation, fossilGrinder, reinforcedStone);
 
         AchievementPage.registerAchievementPage(jurassicraftPage);
     }

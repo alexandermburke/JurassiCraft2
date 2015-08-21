@@ -58,6 +58,14 @@ public class CommonEventHandler
         {
             event.player.addStat(JCAchievements.fossilGrinder, 1);
         }
+        else if(item == Item.getItemFromBlock(JCBlockRegistry.reinforced_stone))
+        {
+            event.player.addStat(JCAchievements.reinforcedStone, 1);
+        }
+        else if(item == Item.getItemFromBlock(JCBlockRegistry.reinforced_bricks))
+        {
+            event.player.addStat(JCAchievements.reinforcedStone, 1);
+        }
     }
 
 //    @SubscribeEvent

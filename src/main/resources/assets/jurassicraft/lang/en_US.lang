@@ -113,6 +113,9 @@ tile.calamites_planks.name=Calamites Planks
 tile.small_royal_fern.name=Small Royal Fern
 tile.small_chain_fern.name=Small Chain Fern
 
+tile.reinforced_stone.name=Reinforced Stone
+tile.reinforced_bricks.name=Reinforced Bricks
+
 //Plants =========================================
 plants.small_royal_fern.name=Small Royal Fern
 plants.calamites.name=Calamites
@@ -177,3 +180,6 @@ achievement.jurassicraft.cleaningStation.desc=Craft a Cleaning Station!
 
 achievement.jurassicraft.fossilGrinder=Grindin'
 achievement.jurassicraft.fossilGrinder.desc=Craft a Fossil Grinder!
+
+achievement.jurassicraft.reinforcedStone=Safety First!
+achievement.jurassicraft.reinforcedStone.desc=Craft some reinforced stone blocks!

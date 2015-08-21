@@ -75,5 +75,23 @@ public class JCRecipeRegistry
                 "RGR",
                 "IBI",
                 'i', Items.iron_ingot, 'B', Items.bucket, 'G', Blocks.glass_pane, 'R', Items.redstone, 'I', Blocks.iron_block);
+
+        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.reinforced_stone, 8),
+                "PPP",
+                "PWP",
+                "PPP",
+                'P', Blocks.stone, 'W', Items.iron_ingot);
+
+        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.reinforced_bricks, 8),
+                "PPP",
+                "PWP",
+                "PPP",
+                'P', Blocks.stonebrick, 'W', Items.iron_ingot);
+
+        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.reinforced_bricks, 4),
+                "SS",
+                "SS",
+                'S', JCBlockRegistry.reinforced_stone);
+
     }
 }

@@ -1,6 +1,7 @@
 package net.timeless.jurassicraft.common.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockStone;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
@@ -56,6 +57,9 @@ public class JCBlockRegistry
     public static Block dna_hybridizer;
     public static Block dna_combinator;
 
+    public static Block reinforced_stone;
+    public static Block reinforced_bricks;
+
     public static BlockSmallRoyalFern small_royal_fern;
     public static BlockSmallChainFern small_chain_fern;
 
@@ -78,9 +82,11 @@ public class JCBlockRegistry
         amber_ore = new BlockAmber();
         ice_shard = new BlockIceShard();
 
-        gypsum_stone = new BlockBasic(Material.rock, "Gypsum Stone").setDrop(gypsum_cobblestone).setHardness(1.0F);
-        gypsum_cobblestone = new BlockBasic(Material.rock, "Gypsum Cobblestone").setHardness(1.0F);
-        gypsum_bricks = new BlockBasic(Material.rock, "Gypsum Bricks").setHardness(1.0F);
+        gypsum_stone = new BlockBasic(Material.rock, "Gypsum Stone").setDrop(gypsum_cobblestone).setHardness(1.5F).setResistance(10.0F);
+        gypsum_cobblestone = new BlockBasic(Material.rock, "Gypsum Cobblestone").setHardness(1.5F).setResistance(10.0F);
+        gypsum_bricks = new BlockBasic(Material.rock, "Gypsum Bricks").setHardness(1.5F).setResistance(10.0F);
+        reinforced_stone = new BlockBasic(Material.rock, "Reinforced Stone").setHardness(2.0F).setResistance(15.0F);
+        reinforced_bricks = new BlockBasic(Material.rock, "Reinforced Bricks").setHardness(2.0F).setResistance(15.0F);
 
         small_royal_fern = new BlockSmallRoyalFern();
         small_chain_fern = new BlockSmallChainFern();
@@ -110,6 +116,9 @@ public class JCBlockRegistry
         registerBlock(gypsum_stone, "Gypsum Stone");
         registerBlock(gypsum_cobblestone, "Gypsum Cobblestone");
         registerBlock(gypsum_bricks, "Gypsum Bricks");
+
+        registerBlock(reinforced_stone, "Reinforced Stone");
+        registerBlock(reinforced_bricks, "Reinforced Bricks");
 
         //initialize EnumType meta lookup
         EnumType.GINKGO.setMetaLookup();
