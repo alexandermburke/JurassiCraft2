@@ -61,7 +61,11 @@ public class JCGuiHandler implements IGuiHandler
             }
             else if (tileEntity instanceof TileDNAExtractor && id == 9)
             {
-                return new ContainerDNAExtractor(player.inventory, (TileDNAExtractor) tileEntity);
+                return new ContainerDNAExtractor(player.inventory, tileEntity);
+            }
+            else if (tileEntity instanceof TileCultivate && id == 10)
+            {
+                return new ContainerCultivate(player.inventory, tileEntity);
             }
         }
 
@@ -115,6 +119,17 @@ public class JCGuiHandler implements IGuiHandler
             else if (tileEntity instanceof TileDNAExtractor && id == 9)
             {
                 return new GuiDNAExtractor(player.inventory, (TileDNAExtractor) tileEntity);
+            }
+            else if (tileEntity instanceof TileCultivate && id == 10)
+            {
+                if(((TileCultivate) tileEntity).isCultivating())
+                {
+                    return new GuiCultivateProcess((TileCultivate) tileEntity);
+                }
+                else
+                {
+                    return new GuiCultivate(player.inventory, (TileCultivate) tileEntity);
+                }
             }
         }
 

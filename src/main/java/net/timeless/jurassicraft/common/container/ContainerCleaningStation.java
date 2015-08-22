@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.common.container.slot.SlotFossil;
-import net.timeless.jurassicraft.common.container.slot.SlotWashWater;
+import net.timeless.jurassicraft.common.container.slot.SlotWaterBucket;
 import net.timeless.jurassicraft.common.item.ItemEncasedFossil;
 import net.timeless.jurassicraft.common.tileentity.TileCleaningStation;
 
@@ -26,7 +26,7 @@ public class ContainerCleaningStation extends Container
     {
         this.tileCleaningStation = cleaningStation;
         this.addSlotToContainer(new Slot(cleaningStation, 0, 56, 17));
-        this.addSlotToContainer(new SlotWashWater(cleaningStation, 1, 56, 53));
+        this.addSlotToContainer(new SlotWaterBucket(cleaningStation, 1, 56, 53));
 
         int i;
 

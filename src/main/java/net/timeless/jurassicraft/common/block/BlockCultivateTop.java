@@ -2,11 +2,13 @@ package net.timeless.jurassicraft.common.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
@@ -31,6 +33,15 @@ public class BlockCultivateTop extends BlockCultivate
         return new ItemStack(item, 1, block.getDamageValue(world, pos));
     }
 
+    @Override
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
+    {
+        BlockPos add = pos.add(0, -1, 0);
+        IBlockState blockState = world.getBlockState(add);
+
+        return blockState.getBlock().onBlockActivated(world, add, blockState, player, side, hitX, hitY, hitZ);
+    }
+
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
     {
         BlockPos bottomBlock = pos.add(0, -1, 0);
@@ -44,6 +55,7 @@ public class BlockCultivateTop extends BlockCultivate
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
     {
         worldIn.setBlockState(pos.add(0, -1, 0), Blocks.air.getDefaultState());
+       dropItems(worldIn, pos);
 
         super.breakBlock(worldIn, pos, state);
     }

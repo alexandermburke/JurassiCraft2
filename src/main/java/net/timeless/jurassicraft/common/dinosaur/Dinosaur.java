@@ -113,4 +113,24 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
     {
         return false;
     }
+
+    public int getLipids()
+    {
+        return 1500;
+    }
+
+    public int getMinerals()
+    {
+        return 1500;
+    }
+
+    public int getVitamins()
+    {
+        return 1500;
+    }
+
+    public int getProximates() //TODO
+    {
+        return 1500;
+    }
 }

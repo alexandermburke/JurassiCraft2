@@ -9,9 +9,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.jurassicraft.common.container.slot.SlotFossil;
 import net.timeless.jurassicraft.common.container.slot.SlotStorage;
-import net.timeless.jurassicraft.common.container.slot.SlotWashWater;
 import net.timeless.jurassicraft.common.item.ItemEncasedFossil;
 import net.timeless.jurassicraft.common.tileentity.TileCleaningStation;
 

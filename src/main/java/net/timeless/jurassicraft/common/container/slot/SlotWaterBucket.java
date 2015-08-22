@@ -5,9 +5,9 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.timeless.jurassicraft.common.tileentity.TileCleaningStation;
 
-public class SlotWashWater extends Slot
+public class SlotWaterBucket extends Slot
 {
-    public SlotWashWater(IInventory inventoryIn, int slotIndex, int xPosition, int yPosition)
+    public SlotWaterBucket(IInventory inventoryIn, int slotIndex, int xPosition, int yPosition)
     {
         super(inventoryIn, slotIndex, xPosition, yPosition);
     }

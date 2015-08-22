@@ -136,6 +136,13 @@ container.dna_extractor=DNA Extractor
 container.dna_hybridizer=DNA Hybridizer
 container.dna_combinator=DNA Combinator
 container.cultivator=Cultivator
+container.cultivator.progress=Progress
+container.cultivator.cultivating=Cultivating
+container.close.name=Close
+cultivator.proximates.name=Proximates
+cultivator.minerals.name=Minerals
+cultivator.vitamins.name=Vitamins
+cultitator.lipids.name=Lipids
 
 //Others ==================================================
 blue_print.blank.name=Blank

@@ -1,7 +1,6 @@
 package net.timeless.jurassicraft.common.block;
 
 import net.minecraft.block.BlockContainer;
-import net.minecraft.block.BlockIce;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -9,11 +8,13 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -43,6 +44,21 @@ public class BlockCultivate extends BlockContainer implements ISubBlocksBlock
     public int damageDropped(IBlockState state)
     {
         return ((EnumDyeColor)state.getValue(COLOR)).getMetadata();
+    }
+
+    public void dropItems(World world, BlockPos pos)
+    {
+        if(world.getBlockState(pos).getBlock() == JCBlockRegistry.cultivate_top)
+        {
+            pos.add(0, -1, 0);
+        }
+
+        TileEntity tile = world.getTileEntity(pos);
+
+        if (tile instanceof TileCultivate)
+        {
+            InventoryHelper.dropInventoryItems(world, pos, (TileCultivate) tile);
+        }
     }
 
     /**
