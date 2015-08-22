@@ -49,7 +49,7 @@ public class GuiDNASequencer extends GuiContainer
         for (int i = 0; i < 3; i++)
         {
             int progress = this.getProgress(22, i);
-            this.drawTexturedModalRect(k + 87, l + 22 + i * 20, 176, 0, progress, 4);
+            this.drawTexturedModalRect(k + 87, l + 21  + i * 20, 176, 0, progress, 6);
         }
     }
 
