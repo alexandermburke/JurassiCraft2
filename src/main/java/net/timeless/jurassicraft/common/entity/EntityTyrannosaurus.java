@@ -47,7 +47,7 @@ public class EntityTyrannosaurus extends EntityDinosaurAggressive implements IAn
     {
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
         super.onUpdate();
-        if (getAnimID() == 0)
-            AnimationAPI.sendAnimPacket(this, 1);
+//        if (getAnimID() == 0)
+//            AnimationAPI.sendAnimPacket(this, 1);
     }
 }

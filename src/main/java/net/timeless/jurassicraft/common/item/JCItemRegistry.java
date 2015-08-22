@@ -96,7 +96,7 @@ public class JCItemRegistry
 
         registerItem(dino_meat, "Dinosaur Meat");
         registerItem(dino_steak, "Dinosaur Steak");
-        registerItem(entityRemover, "Entity Remover");
+//        registerItem(entityRemover, "Entity Remover");
 
         for (int i = 0; i < JCEntityRegistry.getDinosaurs().size(); i++)
         {

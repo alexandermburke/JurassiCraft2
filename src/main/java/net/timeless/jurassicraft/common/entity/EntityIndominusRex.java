@@ -32,8 +32,8 @@ public class EntityIndominusRex extends EntityDinosaurAggressive implements ICar
         this.changeSkinColor();
         super.onUpdate();
 
-        if (getAnimID() == 0)
-            AnimationAPI.sendAnimPacket(this, 1);
+//        if (getAnimID() == 0)
+//            AnimationAPI.sendAnimPacket(this, 1);
     }
 
     public boolean isCamouflaging()

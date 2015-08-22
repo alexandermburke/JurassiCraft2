@@ -122,5 +122,7 @@ public class JCRecipeRegistry
                 " GI",
                 " II",
                 'G', Blocks.glass_pane, 'I', Items.iron_ingot);
+
+        GameRegistry.addSmelting(new ItemStack(Items.potionitem, 1, 0), new ItemStack(JCItemRegistry.dna_base), 1.0F);
     }
 }
