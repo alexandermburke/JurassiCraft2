@@ -59,6 +59,10 @@ public class JCGuiHandler implements IGuiHandler
             {
                 return new ContainerDNACombinator(player.inventory, (TileDNACombinator) tileEntity);
             }
+            else if (tileEntity instanceof TileDNAExtractor && id == 9)
+            {
+                return new ContainerDNAExtractor(player.inventory, (TileDNAExtractor) tileEntity);
+            }
         }
 
         return null;
@@ -107,6 +111,10 @@ public class JCGuiHandler implements IGuiHandler
             else if (tileEntity instanceof TileDNACombinator && id == 8)
             {
                 return new GuiDNACombinator(player.inventory, (TileDNACombinator) tileEntity);
+            }
+            else if (tileEntity instanceof TileDNAExtractor && id == 9)
+            {
+                return new GuiDNAExtractor(player.inventory, (TileDNAExtractor) tileEntity);
             }
         }
 

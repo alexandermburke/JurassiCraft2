@@ -346,7 +346,6 @@ public class TileDnaSynthesizer extends TileEntityLockable implements IUpdatePla
                 }
 
                 this.slots[0].stackSize--;
-                this.slots[0].stackSize--;
                 this.slots[1].stackSize--;
                 this.slots[2].stackSize--;
 

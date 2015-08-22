@@ -135,6 +135,7 @@ container.incubator=Incubator
 container.dna_extractor=DNA Extractor
 container.dna_hybridizer=DNA Hybridizer
 container.dna_combinator=DNA Combinator
+container.cultivator=Cultivator
 
 //Others ==================================================
 blue_print.blank.name=Blank

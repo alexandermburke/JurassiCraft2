@@ -106,9 +106,6 @@ public class JCEntityRegistry
         registerEntity(EntityBluePrint.class, "Blueprint");
         registerEntity(EntityJurassiCraftSign.class, "JurassiCraft Sign");
         registerEntity(EntityCageSmall.class, "Small Dinosaur Cage");
-        // Always register a new dinosaur after last one in list, otherwise all
-        // items with metadata will be shifted by one (all dinosaurs will change
-        // form D:) (UNLESS it is before the release of JC2) I want to change the way IDs work so this will not be the case.
 
         for (Dinosaur dinosaur : dinosaurs)
             registerDinosaur(dinosaur);
@@ -168,6 +165,21 @@ public class JCEntityRegistry
     public static int getDinosaurId(Dinosaur dinosaur)
     {
         return dinosaurs.indexOf(dinosaur);
+    }
+
+    public static List<Dinosaur> getDinosaursFromAmber()
+    {
+        List<Dinosaur> amberDinos = new ArrayList<>();
+
+        for (Dinosaur dino : getRegisteredDinosaurs())
+        {
+            if(!dino.isMarineAnimal() && !(dino instanceof IHybrid)) //TODO Mammal
+            {
+                amberDinos.add(dino);
+            }
+        }
+
+        return amberDinos;
     }
 
     public static List<Dinosaur> getDinosaurs()
