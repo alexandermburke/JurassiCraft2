@@ -142,7 +142,7 @@ container.close.name=Close
 cultivator.proximates.name=Proximates
 cultivator.minerals.name=Minerals
 cultivator.vitamins.name=Vitamins
-cultitator.lipids.name=Lipids
+cultivator.lipids.name=Lipids
 
 //Others ==================================================
 blue_print.blank.name=Blank
