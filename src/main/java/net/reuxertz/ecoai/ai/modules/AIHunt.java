@@ -28,7 +28,7 @@ public class AIHunt extends AIModule
         if (t.pos != null)
             return Block.isEqualTo(t.world.getBlockState(t.pos).getBlock(), t.posBlockState.getBlock());
 
-        if (t.entity != null && t.entity == this.getAgent())
+        if (t.entity != null && (t.entity == this.getAgent() || t.entity.getClass() == this.getAgent().getClass()))
             return false;
 
         if (t.entity != null && !t.entity.isDead && t.entityHeldItem == null)
