@@ -103,7 +103,7 @@ public class DinosaurTropeognathus extends Dinosaur
     @Override
     public int getMaximumAge()
     {
-        return fromDays(45);
+        return fromDays(50);
     }
 
     @Override

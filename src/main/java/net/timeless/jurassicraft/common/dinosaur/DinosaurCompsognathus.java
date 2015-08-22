@@ -105,7 +105,7 @@ public class DinosaurCompsognathus extends Dinosaur
     @Override
     public int getMaximumAge()
     {
-        return fromDays(15);
+        return fromDays(20);
     }
 
     @Override

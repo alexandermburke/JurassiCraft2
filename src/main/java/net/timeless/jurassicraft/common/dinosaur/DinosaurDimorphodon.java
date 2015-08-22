@@ -103,7 +103,7 @@ public class DinosaurDimorphodon extends Dinosaur
     @Override
     public int getMaximumAge()
     {
-        return fromDays(20);
+        return fromDays(35);
     }
 
     @Override

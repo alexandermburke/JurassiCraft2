@@ -22,7 +22,7 @@ public class ItemGrowthSerum extends Item
         {
             EntityDinosaur dinosaur = (EntityDinosaur) target;
 
-            dinosaur.setAge(dinosaur.getDinosaurAge() + 1000);
+            dinosaur.setAge(dinosaur.getDinosaurAge() + 750);
 
             stack.stackSize--;
 

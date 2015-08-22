@@ -26,8 +26,8 @@ public class EntitySpinosaurus extends EntityDinosaurAggressive implements IEnti
     public void onUpdate()
     {
         super.onUpdate();
-        if(this.getAnimID() == 0)
-            AnimationAPI.sendAnimPacket(this, 1);
+//        if(this.getAnimID() == 0)
+//            AnimationAPI.sendAnimPacket(this, 1);
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 10, 4.0F, this);
     }
 
