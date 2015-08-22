@@ -3,7 +3,7 @@
         "color=white": { "model": "jurassicraft:cultivator/bottom/cultivate_bottom_white" },
         "color=orange": { "model": "jurassicraft:cultivator/bottom/cultivate_bottom_orange" },
 		"color=magenta": { "model": "jurassicraft:cultivator/bottom/cultivate_bottom_magenta" },
-		"color=lightBlue": { "model": "jurassicraft:cultivator/bottom/cultivate_bottom_light_blue" },
+		"color=light_blue": { "model": "jurassicraft:cultivator/bottom/cultivate_bottom_light_blue" },
 		"color=yellow": { "model": "jurassicraft:cultivator/bottom/cultivate_bottom_yellow" },
 		"color=lime": { "model": "jurassicraft:cultivator/bottom/cultivate_bottom_lime" },
 		"color=pink": { "model": "jurassicraft:cultivator/bottom/cultivate_bottom_pink" },

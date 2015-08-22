@@ -1,5 +1,6 @@
 package net.timeless.jurassicraft.common.block;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
@@ -18,7 +19,9 @@ public class BlockCultivateBottom extends BlockCultivate
     {
         BlockPos topBlock = pos.add(0, 1, 0);
 
-        if(worldIn.getBlockState(topBlock).getBlock() != JCBlockRegistry.cultivate_top)
+        Block block = worldIn.getBlockState(topBlock).getBlock();
+
+        if(block == Blocks.air)
         {
             worldIn.setBlockState(topBlock, JCBlockRegistry.cultivate_top.getDefaultState().withProperty(COLOR, state.getValue(COLOR)));
         }

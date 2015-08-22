@@ -10,6 +10,7 @@ import net.timeless.jurassicraft.common.entity.item.EntityCageSmall;
 import net.timeless.jurassicraft.common.entity.item.EntityJurassiCraftSign;
 import net.timeless.jurassicraft.common.period.EnumTimePeriod;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -172,6 +173,21 @@ public class JCEntityRegistry
     public static List<Dinosaur> getDinosaurs()
     {
         return dinosaurs;
+    }
+
+    public static List<Dinosaur> getRegisteredDinosaurs()
+    {
+        List<Dinosaur> reg = new ArrayList<>();
+
+        for (Dinosaur dino : dinosaurs)
+        {
+            if(dino.shouldRegister())
+            {
+                reg.add(dino);
+            }
+        }
+
+        return reg;
     }
 
     public static List<Dinosaur> getDinosaursFromPeriod(EnumTimePeriod period)
