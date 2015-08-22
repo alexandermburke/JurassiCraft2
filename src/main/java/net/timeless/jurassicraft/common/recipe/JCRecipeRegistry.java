@@ -66,6 +66,12 @@ public class JCRecipeRegistry
                 "III",
                 'I', Items.iron_ingot, 'B', Blocks.iron_bars);
 
+        GameRegistry.addRecipe(new ItemStack(JCItemRegistry.cage_small, 1, 1),
+                "III",
+                "GBG",
+                "III",
+                'I', Items.iron_ingot, 'G', Blocks.glass_pane, 'B', Items.water_bucket);
+
         GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.gypsum_bricks, 4),
                 "SS",
                 "SS",

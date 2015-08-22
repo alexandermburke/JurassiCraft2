@@ -69,6 +69,9 @@ public class JCRenderingRegistry
 
         ModelBakery.addVariantName(JCItemRegistry.amber, "jurassicraft:amber_aphid");
         ModelBakery.addVariantName(JCItemRegistry.amber, "jurassicraft:amber_mosquito");
+
+        ModelBakery.addVariantName(JCItemRegistry.cage_small, "jurassicraft:cage_small");
+        ModelBakery.addVariantName(JCItemRegistry.cage_small, "jurassicraft:cage_small_marine");
     }
 
     public void init()
@@ -190,7 +193,8 @@ public class JCRenderingRegistry
         // Items
         this.registerItemRenderer(modelMesher, JCItemRegistry.iron_rod, "iron_rod", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.iron_blades, "iron_blades", "inventory");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.cage_small, "cage_small", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.cage_small, 0, "cage_small", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.cage_small, 1, "cage_small_marine", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.petri_dish, "petri_dish", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.amber, "amber", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.plaster_and_bandage, "plaster_and_bandage", "inventory");

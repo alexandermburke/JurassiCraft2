@@ -1,5 +1,6 @@
 package net.timeless.jurassicraft.common.entity.item;
 
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
@@ -8,17 +9,25 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
-public class EntityCageSmall extends Entity
+public class EntityCageSmall extends Entity implements IEntityAdditionalSpawnData
 {
     private EntityDinosaur entity;
+    private boolean marine;
 
     public EntityCageSmall(World world)
     {
         super(world);
         this.setSize(1.0F, 1.0F);
+    }
+
+    public EntityCageSmall(World world, boolean marine)
+    {
+        this(world);
+        this.marine = marine;
     }
 
     /**
@@ -128,7 +137,7 @@ public class EntityCageSmall extends Entity
             entity.fallDistance = 0;
 
             this.setDead();
-            this.entityDropItem(new ItemStack(JCItemRegistry.cage_small), 0.5F);
+            this.entityDropItem(new ItemStack(JCItemRegistry.cage_small, 1, marine ? 1 : 0), 0.5F);
 
             entity = null;
         }
@@ -143,7 +152,7 @@ public class EntityCageSmall extends Entity
 
         if(!worldObj.isRemote)
         {
-            ItemStack stack = new ItemStack(JCItemRegistry.cage_small);
+            ItemStack stack = new ItemStack(JCItemRegistry.cage_small, 1, marine ? 1 : 0);
 
             if(entity != null)
             {
@@ -170,6 +179,8 @@ public class EntityCageSmall extends Entity
             entity = (EntityDinosaur) EntityList.createEntityByID(cagedId, worldObj);
             entity.readFromNBT(tagCompund.getCompoundTag("Entity"));
         }
+
+        marine = tagCompund.getBoolean("Marine");
     }
 
     @Override
@@ -189,6 +200,8 @@ public class EntityCageSmall extends Entity
         {
             tagCompound.setInteger("CagedID", -1);
         }
+
+        tagCompound.setBoolean("Marine", marine);
     }
 
     public void setEntity(int entity)
@@ -217,5 +230,22 @@ public class EntityCageSmall extends Entity
     public Entity getEntity()
     {
         return entity;
+    }
+
+    @Override
+    public void writeSpawnData(ByteBuf buffer)
+    {
+        buffer.writeBoolean(marine);
+    }
+
+    @Override
+    public void readSpawnData(ByteBuf additionalData)
+    {
+        marine = additionalData.readBoolean();
+    }
+
+    public boolean isMarine()
+    {
+        return marine;
     }
 }

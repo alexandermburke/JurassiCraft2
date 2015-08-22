@@ -1,5 +1,6 @@
 package net.timeless.jurassicraft.common.item;
 
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -23,7 +24,20 @@ public class ItemCage extends Item
     {
         super();
         this.setUnlocalizedName("cage_small");
+        this.setHasSubtypes(true);
         this.setCreativeTab(JCCreativeTabs.items);
+    }
+
+    /**
+     * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
+     *
+     * @param subItems The List of sub-items. This is a List of ItemStacks.
+     */
+    @SideOnly(Side.CLIENT)
+    public void getSubItems(Item itemIn, CreativeTabs tab, List subItems)
+    {
+        subItems.add(new ItemStack(itemIn, 1, 0));
+        subItems.add(new ItemStack(itemIn, 1, 1));
     }
 
     /**
@@ -68,7 +82,7 @@ public class ItemCage extends Item
 
         if(player.canPlayerEdit(pos, side, stack) && !world.isRemote)
         {
-            EntityCageSmall cage = new EntityCageSmall(world);
+            EntityCageSmall cage = new EntityCageSmall(world, stack.getMetadata() == 1);
             cage.setEntity(getCaged(stack));
             cage.setEntityData(getData(stack));
             cage.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);

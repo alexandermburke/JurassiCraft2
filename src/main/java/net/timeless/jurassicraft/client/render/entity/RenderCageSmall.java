@@ -9,10 +9,12 @@ import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.entity.item.EntityCageSmall;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
+import org.lwjgl.opengl.GL11;
 
 public class RenderCageSmall extends Render
 {
     private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/entities/cage_small/cage_small.png");
+    private static final ResourceLocation texture_marine = new ResourceLocation(JurassiCraft.modid, "textures/entities/cage_small/cage_small_marine.png");
     private ModelJson model;
 
     public RenderCageSmall()
@@ -50,7 +52,12 @@ public class RenderCageSmall extends Render
         GlStateManager.scale(1.0F / f4, 1.0F / f4, 1.0F / f4);
         this.bindEntityTexture(cage);
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glDisable(GL11.GL_ALPHA_TEST);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         this.model.render(cage, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glEnable(GL11.GL_ALPHA_TEST);
         GlStateManager.popMatrix();
         super.doRender(cage, x, y, z, yaw, partialTicks);
     }
@@ -58,6 +65,8 @@ public class RenderCageSmall extends Render
     @Override
     protected ResourceLocation getEntityTexture(Entity entity)
     {
-        return texture;
+        EntityCageSmall cage = (EntityCageSmall) entity;
+
+        return cage.isMarine() ? texture_marine : texture;
     }
 }

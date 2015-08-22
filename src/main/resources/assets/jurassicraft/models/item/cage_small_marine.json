@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-		"layer0": "jurassicraft:items/small_cage"
+		"layer0": "jurassicraft:items/cage_small_marine"
     },
     "display": {
         "thirdperson": {
