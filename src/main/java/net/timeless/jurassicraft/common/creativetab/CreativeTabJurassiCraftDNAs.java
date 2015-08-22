@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
@@ -14,7 +15,6 @@ public class CreativeTabJurassiCraftDNAs extends CreativeTabs
 {
     private int[] metas;
 
-    private long tick;
     private int item;
 
     public CreativeTabJurassiCraftDNAs(String label)
@@ -41,19 +41,7 @@ public class CreativeTabJurassiCraftDNAs extends CreativeTabs
     @SideOnly(Side.CLIENT)
     public ItemStack getIconItemStack()
     {
-        tick++;
-
-        if(tick % 64 == 0)
-        {
-            item++;
-
-            if(item >= metas.length)
-            {
-                item = 0;
-            }
-        }
-
-        return new ItemStack(getTabIconItem(), 1, metas[item]);
+        return new ItemStack(getTabIconItem(), 1, metas[((int) ((JurassiCraft.timer / 20) % metas.length))]);
     }
 
     @Override

@@ -1,7 +1,6 @@
 package net.timeless.jurassicraft.common.creativetab;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -12,13 +11,13 @@ import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
-public class CreativeTabJurassiCraftEggs extends CreativeTabs
+public class CreativeTabJurassiCraftFossils extends CreativeTabs
 {
     private int[] metas;
 
     private int item;
 
-    public CreativeTabJurassiCraftEggs(String label)
+    public CreativeTabJurassiCraftFossils(String label)
     {
         super(label);
         this.metas = new int[JCEntityRegistry.getRegisteredDinosaurs().size()];
@@ -48,7 +47,7 @@ public class CreativeTabJurassiCraftEggs extends CreativeTabs
     @Override
     public Item getTabIconItem()
     {
-        return JCItemRegistry.egg;
+        return JCItemRegistry.skull;
     }
 
     public void setTab(Block... blocks)

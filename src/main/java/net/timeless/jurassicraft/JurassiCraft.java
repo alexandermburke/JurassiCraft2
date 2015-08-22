@@ -28,6 +28,7 @@ public class JurassiCraft
 
     @Instance(JurassiCraft.modid)
     public static JurassiCraft instance;
+    public static long timer;
 
     private Logger logger;
 

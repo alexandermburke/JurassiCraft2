@@ -17,7 +17,7 @@ public class JCCreativeTabs
     public static CreativeTabJurassiCraft plants;
     public static CreativeTabJurassiCraft fossils;
 
-    public static CreativeTabJurassiCraft bones;
+    public static CreativeTabJurassiCraftFossils bones;
 
     public void register()
     {
@@ -29,18 +29,7 @@ public class JCCreativeTabs
             }
         };
 
-        bones = new CreativeTabJurassiCraft("jurassicraft.dino_bones")
-        {
-            public int getIconItemDamage()
-            {
-                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.velociraptor);
-            }
-
-            public Item getTabIconItem()
-            {
-                return JCItemRegistry.skull;
-            }
-        };
+        bones = new CreativeTabJurassiCraftFossils("jurassicraft.dino_bones");
 
         dna = new CreativeTabJurassiCraftDNAs("jurassicraft.dna");
 

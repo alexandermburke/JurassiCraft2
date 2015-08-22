@@ -3,12 +3,20 @@ package net.timeless.jurassicraft.client.event;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.client.render.entity.IDinosaurRenderer;
 import net.timeless.jurassicraft.client.render.entity.RenderIndominusRex;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 
 public class ClientEventHandler
 {
+    @SubscribeEvent
+    public void tick(TickEvent.ClientTickEvent event)
+    {
+        JurassiCraft.timer++;
+    }
+
     @SubscribeEvent
     public void preRender(RenderLivingEvent.Pre event)
     {
