@@ -12,8 +12,8 @@ public class JCCreativeTabs
 
     public static CreativeTabJurassiCraftDNAs dna;
     public static CreativeTabJurassiCraftEggs eggs;
-    public static CreativeTabJurassiCraft spawnEggs;
-    public static CreativeTabJurassiCraft foods;
+    public static CreativeTabJurassiCraftSpawnEggs spawnEggs;
+    public static CreativeTabJurassiCraftFoods foods;
     public static CreativeTabJurassiCraft plants;
     public static CreativeTabJurassiCraft fossils;
 
@@ -35,31 +35,9 @@ public class JCCreativeTabs
 
         eggs = new CreativeTabJurassiCraftEggs("jurassicraft.eggs");
 
-        spawnEggs = new CreativeTabJurassiCraft("jurassicraft.spawnEggs")
-        {
-            public int getIconItemDamage()
-            {
-                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.velociraptor);
-            }
+        spawnEggs = new CreativeTabJurassiCraftSpawnEggs("jurassicraft.spawnEggs");
 
-            public Item getTabIconItem()
-            {
-                return JCItemRegistry.spawn_egg;
-            }
-        };
-
-        foods = new CreativeTabJurassiCraft("jurassicraft.foods")
-        {
-            public int getIconItemDamage()
-            {
-                return JCEntityRegistry.getDinosaurId(JCEntityRegistry.velociraptor);
-            }
-
-            public Item getTabIconItem()
-            {
-                return JCItemRegistry.dino_meat;
-            }
-        };
+        foods = new CreativeTabJurassiCraftFoods("jurassicraft.foods");
 
         blocks = new CreativeTabJurassiCraft("jurassicraft.blocks")
         {
