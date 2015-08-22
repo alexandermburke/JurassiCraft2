@@ -78,6 +78,7 @@ item.plant_dna.name={plant} DNA
 item.sea_lamprey.name=Sea Lamprey
 item.iron_blades.name=Iron Blades
 item.iron_rod.name=Iron Rod
+item.growth_serum.name=Growth Serum
 
 //Blocks ==================================================
 tile.fossil_block.name={period} Fossil

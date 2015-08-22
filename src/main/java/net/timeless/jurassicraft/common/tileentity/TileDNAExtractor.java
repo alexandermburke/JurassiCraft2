@@ -300,7 +300,7 @@ public class TileDNAExtractor extends TileEntityLockable implements IUpdatePlaye
         ItemStack extraction = this.slots[0];
         ItemStack storage = this.slots[1];
 
-        if (storage != null && storage.getItem() == JCItemRegistry.storage_disc && extraction != null && (extraction.getItem() == JCItemRegistry.amber || extraction.getItem() == JCItemRegistry.sea_lamprey)&& (storage.getTagCompound() == null || !storage.getTagCompound().hasKey("Genetics")))
+        if (storage != null && storage.getItem() == JCItemRegistry.storage_disc && extraction != null && (extraction.getItem() == JCItemRegistry.amber || extraction.getItem() == JCItemRegistry.sea_lamprey) && (storage.getTagCompound() == null || !storage.getTagCompound().hasKey("Genetics")))
         {
             for (int i = 2; i < 6; i++)
             {

@@ -45,6 +45,8 @@ public class JCItemRegistry
     public static ItemBasic iron_blades;
     public static ItemBasic iron_rod;
 
+    public static ItemGrowthSerum growth_serum;
+
     public void register()
     {
         plaster_and_bandage = new ItemPlasterAndBandage();
@@ -71,12 +73,14 @@ public class JCItemRegistry
         sea_lamprey = new ItemBasic("Sea Lamprey", JCCreativeTabs.items);
         iron_blades = new ItemBasic("Iron Blades", JCCreativeTabs.items);
         iron_rod = new ItemBasic("Iron Rod", JCCreativeTabs.items);
+        growth_serum = new ItemGrowthSerum();
 
         registerItem(amber, "Amber");
         registerItem(sea_lamprey, "Sea Lamprey");
         registerItem(plaster_and_bandage, "Plaster And Bandage");
         registerItem(empty_test_tube, "Empty Test Tube");
         registerItem(empty_syringe, "Empty Syringe");
+        registerItem(growth_serum, "Growth Serum");
         registerItem(storage_disc, "Storage Disc");
         registerItem(dna_base, "DNA Base Material");
         registerItem(petri_dish, "Petri Dish");

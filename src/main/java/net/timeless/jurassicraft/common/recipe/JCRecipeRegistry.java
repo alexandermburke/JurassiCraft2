@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.timeless.jurassicraft.common.block.JCBlockRegistry;
@@ -130,5 +131,27 @@ public class JCRecipeRegistry
                 'G', Blocks.glass_pane, 'I', Items.iron_ingot);
 
         GameRegistry.addSmelting(new ItemStack(Items.potionitem, 1, 0), new ItemStack(JCItemRegistry.dna_base), 1.0F);
+
+        addGrowthSerumRecipe(Items.cooked_beef);
+        addGrowthSerumRecipe(Items.cooked_chicken);
+        addGrowthSerumRecipe(Items.cooked_fish);
+        addGrowthSerumRecipe(Items.cooked_mutton);
+        addGrowthSerumRecipe(Items.cooked_porkchop);
+        addGrowthSerumRecipe(Items.cooked_rabbit);
+
+        for (i = 0; i < JCEntityRegistry.getDinosaurs().size(); i++)
+        {
+            addGrowthSerumRecipe(new ItemStack(JCItemRegistry.dino_steak, 1, i));
+        }
+    }
+
+    private void addGrowthSerumRecipe(Item meat)
+    {
+        addGrowthSerumRecipe(new ItemStack(meat));
+    }
+
+    private void addGrowthSerumRecipe(ItemStack meat)
+    {
+        GameRegistry.addShapelessRecipe(new ItemStack(JCItemRegistry.growth_serum), Items.golden_carrot, JCItemRegistry.empty_syringe, Items.water_bucket, meat);
     }
 }
