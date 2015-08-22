@@ -7,6 +7,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.timeless.jurassicraft.common.container.slot.SlotCustom;
+import net.timeless.jurassicraft.common.container.slot.SlotDNAExtraction;
 import net.timeless.jurassicraft.common.container.slot.SlotStorage;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 import net.timeless.jurassicraft.common.tileentity.TileDNAExtractor;
@@ -19,7 +20,7 @@ public class ContainerDNAExtractor extends Container
     {
         this.extractor = (TileDNAExtractor) tileEntity;
         this.addSlotToContainer(new SlotStorage(extractor, 1, 55, 47, false));
-        this.addSlotToContainer(new SlotCustom(extractor, 0, 55, 26, JCItemRegistry.amber));
+        this.addSlotToContainer(new SlotDNAExtraction(extractor, 0, 55, 26));
         this.addSlotToContainer(new SlotStorage(extractor, 2, 108, 28, true));
         this.addSlotToContainer(new SlotStorage(extractor, 3, 126, 28, true));
         this.addSlotToContainer(new SlotStorage(extractor, 4, 108, 46, true));

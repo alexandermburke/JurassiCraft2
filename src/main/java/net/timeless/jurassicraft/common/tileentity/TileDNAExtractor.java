@@ -289,7 +289,7 @@ public class TileDNAExtractor extends TileEntityLockable implements IUpdatePlaye
 
     public int getStackExtractTime(ItemStack stack)
     {
-        return 1000;
+        return 2000;
     }
 
     /**
@@ -300,7 +300,7 @@ public class TileDNAExtractor extends TileEntityLockable implements IUpdatePlaye
         ItemStack extraction = this.slots[0];
         ItemStack storage = this.slots[1];
 
-        if (storage != null && storage.getItem() == JCItemRegistry.storage_disc && extraction != null && extraction.getItem() == JCItemRegistry.amber && (storage.getTagCompound() == null || !storage.getTagCompound().hasKey("Genetics")))
+        if (storage != null && storage.getItem() == JCItemRegistry.storage_disc && extraction != null && (extraction.getItem() == JCItemRegistry.amber || extraction.getItem() == JCItemRegistry.sea_lamprey)&& (storage.getTagCompound() == null || !storage.getTagCompound().hasKey("Genetics")))
         {
             for (int i = 2; i < 6; i++)
             {
@@ -321,13 +321,13 @@ public class TileDNAExtractor extends TileEntityLockable implements IUpdatePlaye
     {
         if (this.canExtract())
         {
-            if(slots[0].getItem() == JCItemRegistry.amber)
+            if(slots[0].getItem() == JCItemRegistry.amber || slots[0].getItem() == JCItemRegistry.sea_lamprey)
             {
                 if(slots[0].getItemDamage() == 0)
                 {
                     Random rand = worldObj.rand;
 
-                    List<Dinosaur> amberDinos = JCEntityRegistry.getDinosaursFromAmber();
+                    List<Dinosaur> amberDinos = slots[0].getItem() == JCItemRegistry.amber ? JCEntityRegistry.getDinosaursFromAmber() : JCEntityRegistry.getDinosaursFromSeaLampreys();
                     Dinosaur dino = amberDinos.get(rand.nextInt(amberDinos.size()));
 
                     int dinosaurId = JCEntityRegistry.getDinosaurId(dino);

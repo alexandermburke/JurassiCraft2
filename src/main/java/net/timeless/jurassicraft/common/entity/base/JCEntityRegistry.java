@@ -60,6 +60,21 @@ public class JCEntityRegistry
     public static final Dinosaur velociraptor_echo = new DinosaurVelociraptorEcho();
     public static final Dinosaur therizinosaurus = new DinosaurTherizinosaurus();
 
+    public static List<Dinosaur> getDinosaursFromSeaLampreys()
+    {
+        List<Dinosaur> marineDinos = new ArrayList<>();
+
+        for (Dinosaur dino : getRegisteredDinosaurs())
+        {
+            if(dino.isMarineAnimal() && !(dino instanceof IHybrid))
+            {
+                marineDinos.add(dino);
+            }
+        }
+
+        return marineDinos;
+    }
+
     public void register()
     {
         registerDinosaurType(velociraptor);
@@ -173,7 +188,7 @@ public class JCEntityRegistry
 
         for (Dinosaur dino : getRegisteredDinosaurs())
         {
-            if(!dino.isMarineAnimal() && !(dino instanceof IHybrid)) //TODO Mammal
+            if(!dino.isMarineAnimal() && !(dino instanceof IHybrid))
             {
                 amberDinos.add(dino);
             }
