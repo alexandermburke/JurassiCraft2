@@ -6,7 +6,7 @@ import net.reuxertz.ecoapi.entity.IEntityAICreature;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurProvokableHerbivore;
 import net.timeless.unilib.common.animation.ChainBuffer;
 
-public class EntityAnkylosaurus extends EntityDinosaurProvokableHerbivore implements IEntityAICreature, IHerbivore
+public class EntityAnkylosaurus extends EntityDinosaurProvokableHerbivore  //implements IEntityAICreature, IHerbivore
 {
     public ChainBuffer tailBuffer = new ChainBuffer(5);
 

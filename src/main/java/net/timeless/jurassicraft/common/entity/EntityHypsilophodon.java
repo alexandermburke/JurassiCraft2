@@ -7,7 +7,7 @@ import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbivore;
 import net.timeless.unilib.common.animation.ChainBuffer;
 
-public class EntityHypsilophodon extends EntityDinosaurDefensiveHerbivore implements IEntityAICreature, IHerbivore
+public class EntityHypsilophodon extends EntityDinosaurDefensiveHerbivore // implements IEntityAICreature, IHerbivore
 {
     public ChainBuffer tailBuffer = new ChainBuffer(6);
 

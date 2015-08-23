@@ -8,7 +8,7 @@ import net.timeless.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurFlyingAggressive;
 
-public class EntityPteranodon extends EntityDinosaurFlyingAggressive implements IEntityAIFlyingCreature, ICarnivore
+public class EntityPteranodon extends EntityDinosaurFlyingAggressive // implements IEntityAIFlyingCreature, ICarnivore
 {
     public EntityPteranodon(World world)
     {

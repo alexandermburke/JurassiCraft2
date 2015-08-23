@@ -15,7 +15,7 @@ import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
 import net.timeless.unilib.common.animation.ControlledAnimation;
 
-public class EntityVelociraptor extends EntityDinosaurAggressive implements ICarnivore, IEntityAICreature
+public class EntityVelociraptor extends EntityDinosaurAggressive  //implements ICarnivore, IEntityAICreature
 {
     public ChainBuffer tailBuffer = new ChainBuffer(6);
 

@@ -6,7 +6,7 @@ import net.reuxertz.ecoapi.entity.IEntityAISwimmingCreature;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurSwimmingAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
 
-public class EntityTylosaurus extends EntityDinosaurSwimmingAggressive implements IEntityAISwimmingCreature, ICarnivore
+public class EntityTylosaurus extends EntityDinosaurSwimmingAggressive // implements IEntityAISwimmingCreature, ICarnivore
 {
     public ChainBuffer tailBuffer = new ChainBuffer(9);
 

@@ -9,7 +9,7 @@ import net.reuxertz.ecoapi.entity.IEntityAICreature;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
 
-public class EntityRugops extends EntityDinosaurAggressive implements IEntityAICreature, ICarnivore
+public class EntityRugops extends EntityDinosaurAggressive  //implements IEntityAICreature, ICarnivore
 {
 	
     public ChainBuffer tailBuffer = new ChainBuffer(6);

@@ -13,7 +13,7 @@ import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
 
-public class EntityIndominusRex extends EntityDinosaurAggressive implements ICarnivore, IEntityAICreature
+public class EntityIndominusRex extends EntityDinosaurAggressive  //implements ICarnivore, IEntityAICreature
 {
     public ChainBuffer tailBuffer = new ChainBuffer(7);
 

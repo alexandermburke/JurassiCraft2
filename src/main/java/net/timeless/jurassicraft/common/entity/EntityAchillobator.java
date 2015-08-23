@@ -9,7 +9,7 @@ import net.reuxertz.ecoapi.entity.IEntityAICreature;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
 
-public class EntityAchillobator extends EntityDinosaurAggressive implements ICarnivore, IEntityAICreature
+public class EntityAchillobator extends EntityDinosaurAggressive  //implements ICarnivore, IEntityAICreature
 {
 
 	private static final Class[] targets = {EntityCompsognathus.class, EntityPlayer.class, EntityDilophosaurus.class, EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class, EntityHypsilophodon.class, EntitySegisaurus.class, EntityProtoceratops.class, EntityOthnielia.class, EntityMicroceratus.class};

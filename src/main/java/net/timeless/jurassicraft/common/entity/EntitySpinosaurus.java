@@ -11,7 +11,7 @@ import net.timeless.jurassicraft.common.entity.ai.animations.JCAutoAnimSoundBase
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
 
-public class EntitySpinosaurus extends EntityDinosaurAggressive implements IEntityAICreature, IOmnivore
+public class EntitySpinosaurus extends EntityDinosaurAggressive //  implements IEntityAICreature, IOmnivore
 {
     public ChainBuffer tailBuffer = new ChainBuffer(6);
 

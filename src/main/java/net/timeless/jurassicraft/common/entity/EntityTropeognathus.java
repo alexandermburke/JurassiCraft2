@@ -5,7 +5,7 @@ import net.reuxertz.ecoapi.ecology.role.ICarnivore;
 import net.reuxertz.ecoapi.entity.IEntityAIFlyingCreature;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurFlyingAggressive;
 
-public class EntityTropeognathus extends EntityDinosaurFlyingAggressive implements IEntityAIFlyingCreature, ICarnivore
+public class EntityTropeognathus extends EntityDinosaurFlyingAggressive // implements IEntityAIFlyingCreature, ICarnivore
 {
     public EntityTropeognathus(World world)
     {
