@@ -22,6 +22,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.container.ContainerEmbryoCalcificationMachine;
+import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
+import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.item.ItemSyringe;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
@@ -296,11 +298,16 @@ public class TileEmbryoCalcificationMachine extends TileEntityLockable implement
 
         if (input != null && input.getItem() instanceof ItemSyringe)
         {
-            ItemStack output = new ItemStack(JCItemRegistry.egg, 1, slots[0].getItemDamage());
-            output.setTagCompound(slots[0].getTagCompound());
+            Dinosaur dino = JCEntityRegistry.getDinosaurById(slots[0].getItemDamage());
 
-            if (egg != null && egg.getItem() instanceof ItemEgg)
-                return this.slots[2] == null || ItemStack.areItemsEqual(this.slots[2], output) && ItemStack.areItemStackTagsEqual(this.slots[2], output);
+            if(!(dino.isMammal() || dino.isMarineReptile()))
+            {
+                ItemStack output = new ItemStack(JCItemRegistry.egg, 1, slots[0].getItemDamage());
+                output.setTagCompound(slots[0].getTagCompound());
+
+                if (egg != null && egg.getItem() instanceof ItemEgg)
+                    return this.slots[2] == null || ItemStack.areItemsEqual(this.slots[2], output) && ItemStack.areItemStackTagsEqual(this.slots[2], output);
+            }
         }
 
         return false;

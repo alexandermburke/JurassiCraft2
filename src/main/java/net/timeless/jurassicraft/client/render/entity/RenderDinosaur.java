@@ -130,7 +130,7 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
     @Override
     protected float getDeathMaxRotation(EntityLivingBase entity)
     {
-        return 0.0F;
+        return 90.0F;
     }
 
     @Override

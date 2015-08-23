@@ -103,7 +103,7 @@ public class DinosaurTylosaurus extends Dinosaur
     @Override
     public int getMaximumAge()
     {
-        return fromDays(55);
+        return fromDays(60);
     }
 
     @Override
@@ -155,7 +155,7 @@ public class DinosaurTylosaurus extends Dinosaur
     }
 
     @Override
-    public boolean isMarineAnimal()
+    public boolean isMarineReptile()
     {
         return true;
     }

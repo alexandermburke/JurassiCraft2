@@ -147,5 +147,37 @@ public class AnimationPteranodon implements IModelAnimator
 //              model.chainWave(legRight, 0.3f, 0.2f, -3, f, f1);
 //              model.chainWave(tail, 0.3f, 0.2f, 1, f, f1);
 //              model.chainWave(neck, 0.3f, 0.4f, 4, f, f1);
+
+        //Twitch right
+        animator.setAnim(10);
+        animator.startPhase(3);
+        animator.rotate(head, 0, 0, 0.3f);
+        animator.move(head, 1, 0, 0);
+        animator.endPhase();
+        animator.setStationaryPhase(19);
+        animator.resetPhase(3);
+
+        //Twitch left
+        animator.setAnim(11);
+        animator.startPhase(3);
+        animator.rotate(head, 0, 0, -0.3f);
+        animator.move(head, -1, 0, 0);
+        animator.endPhase();
+        animator.setStationaryPhase(19);
+        animator.resetPhase(3);
+
+        //Call
+        animator.setAnim(12);
+        animator.startPhase(8);
+        animator.rotate(jaw, 0.3f, 0, 0);
+        animator.rotate(neck1, -0.15f, 0, 0);
+        animator.rotate(neck2, -0.15f, 0, 0);
+        animator.rotate(head, -0.15f, 0, 0);
+        animator.rotate(body2, -0.15f, 0, 0);
+        animator.move(body1, 0, 2, 0);
+        animator.endPhase();
+        animator.setStationaryPhase(20);
+        animator.resetPhase(6);
+
     }
 }

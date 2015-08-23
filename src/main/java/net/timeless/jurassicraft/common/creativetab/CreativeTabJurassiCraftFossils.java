@@ -1,6 +1,5 @@
 package net.timeless.jurassicraft.common.creativetab;
 
-import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -14,8 +13,6 @@ import net.timeless.jurassicraft.common.item.JCItemRegistry;
 public class CreativeTabJurassiCraftFossils extends CreativeTabs
 {
     private int[] metas;
-
-    private int item;
 
     public CreativeTabJurassiCraftFossils(String label)
     {
@@ -48,19 +45,5 @@ public class CreativeTabJurassiCraftFossils extends CreativeTabs
     public Item getTabIconItem()
     {
         return JCItemRegistry.skull;
-    }
-
-    public void setTab(Block... blocks)
-    {
-        for (Block block : blocks)
-            if (block != null)
-                block.setCreativeTab(this);
-    }
-
-    public void setTab(Item... items)
-    {
-        for (Item item : items)
-            if (item != null)
-                item.setCreativeTab(this);
     }
 }

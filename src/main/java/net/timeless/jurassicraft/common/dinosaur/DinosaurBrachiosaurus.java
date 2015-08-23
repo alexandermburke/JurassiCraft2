@@ -105,7 +105,7 @@ public class DinosaurBrachiosaurus extends Dinosaur
     @Override
     public int getMaximumAge()
     {
-        return fromDays(65);
+        return fromDays(85);
     }
 
     @Override
@@ -123,13 +123,13 @@ public class DinosaurBrachiosaurus extends Dinosaur
     @Override
     public float getBabyEyeHeight()
     {
-        return 1.9F;
+        return 2.2F;
     }
 
     @Override
     public float getAdultEyeHeight()
     {
-        return 14.8F;
+        return 18.4F;
     }
 
     @Override
@@ -141,7 +141,7 @@ public class DinosaurBrachiosaurus extends Dinosaur
     @Override
     public float getBabySizeY()
     {
-        return 2.1F;
+        return 1.5F;
     }
 
     @Override
@@ -153,6 +153,6 @@ public class DinosaurBrachiosaurus extends Dinosaur
     @Override
     public float getAdultSizeY()
     {
-        return 15.8F;
+        return 10.8F;
     }
 }

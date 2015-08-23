@@ -62,7 +62,7 @@ public class ItemDinosaurEgg extends ItemDnaContainer
 
         for (Dinosaur dino : dinosaurs)
         {
-            if (dino.shouldRegister())
+            if (dino.shouldRegister() && !(dino.isMarineReptile() || dino.isMammal()))
                 subtypes.add(new ItemStack(item, 1, ids.get(dino)));
         }
     }

@@ -105,7 +105,7 @@ public class DinosaurApatosaurus extends Dinosaur
     @Override
     public int getMaximumAge()
     {
-        return fromDays(65);
+        return fromDays(80);
     }
 
     @Override

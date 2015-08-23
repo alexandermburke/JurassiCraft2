@@ -157,7 +157,7 @@ public class DinosaurDunkleosteus extends Dinosaur
     }
 
     @Override
-    public boolean isMarineAnimal()
+    public boolean isMarineReptile()
     {
         return true;
     }

@@ -40,13 +40,13 @@ public class RenderDefBrachiosaurus extends RenderDinosaurDefinition
     @Override
     public float getAdultScaleAdjustment()
     {
-        return 2.0F;
+        return 2.5F;
     }
 
     @Override
     public float getBabyScaleAdjustment()
     {
-        return 0.25F;
+        return 0.3F;
     }
 
     @Override
