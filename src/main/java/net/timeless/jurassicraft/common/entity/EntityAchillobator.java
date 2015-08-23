@@ -1,5 +1,8 @@
 package net.timeless.jurassicraft.common.entity;
 
+import java.util.Random;
+
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.reuxertz.ecoapi.ecology.role.ICarnivore;
 import net.reuxertz.ecoapi.entity.IEntityAICreature;
@@ -8,11 +11,21 @@ import net.timeless.unilib.common.animation.ChainBuffer;
 
 public class EntityAchillobator extends EntityDinosaurAggressive implements ICarnivore, IEntityAICreature
 {
-    public ChainBuffer tailBuffer = new ChainBuffer(6);
+
+	private static final Class[] targets = {EntityCompsognathus.class, EntityPlayer.class, EntityDilophosaurus.class, EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class, EntityHypsilophodon.class, EntitySegisaurus.class, EntityProtoceratops.class, EntityOthnielia.class, EntityMicroceratus.class};
+	
+	public ChainBuffer tailBuffer = new ChainBuffer(6);
 
     public EntityAchillobator(World world)
     {
         super(world);
+        this.attackCreature(EntityPlayer.class, 1);
+        
+        for (int i = 0; i < targets.length; i++)
+        {
+            this.attackCreature(targets[i], new Random().nextInt(3)+1);
+        }
+
     }
 
     public void onUpdate()

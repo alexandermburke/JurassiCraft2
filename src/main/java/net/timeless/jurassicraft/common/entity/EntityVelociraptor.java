@@ -1,6 +1,9 @@
 package net.timeless.jurassicraft.common.entity;
 
+import java.util.Random;
+
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.reuxertz.ecoapi.ecology.role.ICarnivore;
 import net.reuxertz.ecoapi.entity.IEntityAICreature;
@@ -23,6 +26,8 @@ public class EntityVelociraptor extends EntityDinosaurAggressive implements ICar
     private static final String[] barkSounds = new String[]{"velociraptor_bark_1", "velociraptor_bark_2", "velociraptor_bark_3"};
     private static final String[] hissSounds = new String[]{"velociraptor_hiss_1", "velociraptor_hiss_2", "velociraptor_hiss_3"};
 
+    private static final Class[] targets = {EntityCompsognathus.class, EntityPlayer.class, EntityDilophosaurus.class, EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class, EntityHypsilophodon.class, EntitySegisaurus.class, EntityProtoceratops.class, EntityOthnielia.class, EntityMicroceratus.class};
+
     public ControlledAnimation dontLean = new ControlledAnimation(5);
     private int frame = this.ticksExisted;
 
@@ -39,6 +44,11 @@ public class EntityVelociraptor extends EntityDinosaurAggressive implements ICar
         tasks.addTask(2, new JCNonAutoAnimBase(this, 25, 11, 100)); //Head twitch left
         tasks.addTask(2, new JCNonAutoAnimBase(this, 45, 12, 150)); //Sniff
         tasks.addTask(2, new AnimationAICall(this, 78, 30));
+        
+        for (int i = 0; i < targets.length; i++)
+        {
+            this.attackCreature(targets[i], new Random().nextInt(3)+1);
+        }
     }
 
     public String getCallSound()

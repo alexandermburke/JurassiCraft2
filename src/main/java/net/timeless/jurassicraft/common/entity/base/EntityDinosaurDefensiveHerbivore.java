@@ -5,6 +5,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIEatGrass;
+import net.minecraft.entity.ai.EntityAIPanic;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
@@ -22,7 +23,7 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
     {
         super(world);
         this.tasks.addTask(5, this.entityAIEatGrass);
-
+        this.tasks.addTask(1, new EntityAIPanic(this, 1.25D));
     }
 
     protected void updateAITasks()

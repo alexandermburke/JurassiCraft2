@@ -1,5 +1,8 @@
 package net.timeless.jurassicraft.common.entity;
 
+import java.util.Random;
+
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.reuxertz.ecoapi.ecology.role.ICarnivore;
 import net.reuxertz.ecoapi.entity.IEntityAICreature;
@@ -13,9 +16,15 @@ public class EntityHerrerasaurus extends EntityDinosaurAggressive implements IEn
     private static final String[] deathSounds = new String[] { "herrerasaurus_death_1" };
     private static final String[] livingSounds = new String[] { "herrerasaurus_living_1" };
 
+	private static final Class[] targets = {EntityCompsognathus.class, EntityAnkylosaurus.class, EntityPlayer.class, EntityDilophosaurus.class, EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class, EntityLudodactylus.class, EntityHypsilophodon.class, EntityGallimimus.class, EntitySegisaurus.class, EntityProtoceratops.class, EntityParasaurolophus.class, EntityOthnielia.class, EntityMicroceratus.class, EntityTriceratops.class, EntityStegosaurus.class};
+
     public EntityHerrerasaurus(World world)
     {
         super(world);
+        for (int i = 0; i < targets.length; i++)
+        {
+            this.attackCreature(targets[i], new Random().nextInt(3)+1);
+        }
     }
 
     public String getLivingSound()

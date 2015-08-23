@@ -8,8 +8,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.reuxertz.ecoapi.ecology.role.ICarnivore;
 import net.reuxertz.ecoapi.entity.IEntityAICreature;
-import net.timeless.animationapi.AnimationAPI;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
+import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
 
@@ -24,6 +24,8 @@ public class EntityIndominusRex extends EntityDinosaurAggressive implements ICar
     {
         super(world);
         tasks.addTask(2, new JCAutoAnimBase(this, 75, 1));
+        this.attackCreature(EntityDinosaur.class, 0);
+        this.defendFromAttacker(EntityDinosaur.class, 0);
     }
 
     public void onUpdate()
