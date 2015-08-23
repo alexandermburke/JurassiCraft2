@@ -19,11 +19,8 @@ public class AnimationCompsognathus implements IModelAnimator
         ModelDinosaur model = (ModelDinosaur) modelJson;
         Animator animator = model.animator;
 
-        float globalSpeed = 1.0F;
-        float globalDegree = 0.4F;
-        float globalHeight = 1.0F;
-
         MowzieModelRenderer abdomen = model.getCube("abdomen");
+        MowzieModelRenderer upperBody = model.getCube("Upper body");
 
         MowzieModelRenderer head = model.getCube("Head");
 
@@ -61,10 +58,39 @@ public class AnimationCompsognathus implements IModelAnimator
         MowzieModelRenderer rightForeArm = model.getCube("Right forearm");
         MowzieModelRenderer rightHand = model.getCube("Right hand");
 
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail5, tail4, tail3, tail2, tail1 };
+        MowzieModelRenderer[] neck = new MowzieModelRenderer[] { head, neck7, neck6, neck5, neck4, neck3, neck2, neck1, upperBody };
+
+//        f = entity.ticksExisted;
+//        f1 = 0.4F;
+
+        float globalSpeed = 1.2F;
+        float globalDegree = 1.0F;
+        float globalHeight = 1.0F;
+
+        model.bob(abdomen, globalSpeed * 0.5F, globalHeight * 1.0F, false, f, f1);
+        model.bob(leftThigh, globalSpeed * 0.5F, globalHeight * 1.0F, false, f, f1);
+        model.bob(rightThigh, globalSpeed * 0.5F, globalHeight * 1.0F, false, f, f1);
+        model.chainWave(tail, globalSpeed * 0.5F, globalHeight * 0.125F, 2, f, f1);
+        model.chainWave(neck, globalSpeed * 0.5F, globalHeight * 0.0625F, -2, f, f1);
+
+        model.walk(leftThigh, 0.5F * globalSpeed, globalDegree * 0.7F, false, 3.14F, 0.2F, f, f1);
+        model.walk(leftMidLeg, 0.5F * globalSpeed, globalDegree * 0.6F, false, 1.5F, 0.3F, f, f1);
+        model.walk(leftShin, 0.5F * globalSpeed, globalDegree * 0.8F, false, -1F, -0.1F, f, f1);
+        model.walk(leftFoot, 0.5F * globalSpeed, globalDegree * 1.5F, true, -1F, 1F, f, f1);
+
+        model.walk(rightThigh, 0.5F * globalSpeed, globalDegree * 0.7F, true, 3.14F, 0.2F, f, f1);
+        model.walk(rightMidLeg, 0.5F * globalSpeed, globalDegree * 0.6F, true, 1.5F, 0.3F, f, f1);
+        model.walk(rightShin, 0.5F * globalSpeed, globalDegree * 0.8F, true, -1F, -0.1F, f, f1);
+        model.walk(rightFoot, 0.5F * globalSpeed, globalDegree * 1.5F, false, -1F, 1F, f, f1);
+
+        int ticksExisted = entity.ticksExisted;
+
+        model.chainWave(tail, 0.125F * globalSpeed, globalHeight * 0.125F, 2, ticksExisted, 0.25F);
+        model.chainWave(neck, 0.125F * globalSpeed, globalHeight * 0.125F, -2, ticksExisted, 0.25F);
+
         model.faceTarget(head, 2, rotationYaw, rotationPitch);
         model.faceTarget(neck1, 2, rotationYaw, rotationPitch);
-
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail5, tail4, tail3, tail2, tail1 };
 
         ((EntityCompsognathus) entity).tailBuffer.applyChainSwingBuffer(tail);
 

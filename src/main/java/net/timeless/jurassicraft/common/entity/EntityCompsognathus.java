@@ -23,8 +23,8 @@ public class EntityCompsognathus extends EntityDinosaurDefensiveHerbivore implem
     {
         super.onUpdate();
 
-        if (getAnimID() == 0)
-            AnimationAPI.sendAnimPacket(this, 13);
+//        if (getAnimID() == 0)
+//            AnimationAPI.sendAnimPacket(this, 13);
 
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
     }
