@@ -1,7 +1,5 @@
 package net.timeless.jurassicraft.common.creativetab;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,8 +14,6 @@ public class CreativeTabJurassiCraftEggs extends CreativeTabs
 {
     private int[] metas;
 
-    private int item;
-
     public CreativeTabJurassiCraftEggs(String label)
     {
         super(label);
@@ -28,7 +24,7 @@ public class CreativeTabJurassiCraftEggs extends CreativeTabs
 
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
         {
-            if(dino.shouldRegister())
+            if(dino.shouldRegister() && !(dino.isMammal() || dino.isMarineReptile()))
             {
                 metas[i] = id;
 
@@ -49,19 +45,5 @@ public class CreativeTabJurassiCraftEggs extends CreativeTabs
     public Item getTabIconItem()
     {
         return JCItemRegistry.egg;
-    }
-
-    public void setTab(Block... blocks)
-    {
-        for (Block block : blocks)
-            if (block != null)
-                block.setCreativeTab(this);
-    }
-
-    public void setTab(Item... items)
-    {
-        for (Item item : items)
-            if (item != null)
-                item.setCreativeTab(this);
     }
 }
