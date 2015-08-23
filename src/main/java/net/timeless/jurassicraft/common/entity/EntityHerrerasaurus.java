@@ -17,6 +17,7 @@ public class EntityHerrerasaurus extends EntityDinosaurAggressive  //implements 
     private static final String[] livingSounds = new String[] { "herrerasaurus_living_1" };
 
 	private static final Class[] targets = {EntityCompsognathus.class, EntityAnkylosaurus.class, EntityPlayer.class, EntityDilophosaurus.class, EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class, EntityLudodactylus.class, EntityHypsilophodon.class, EntityGallimimus.class, EntitySegisaurus.class, EntityProtoceratops.class, EntityParasaurolophus.class, EntityOthnielia.class, EntityMicroceratus.class, EntityTriceratops.class, EntityStegosaurus.class};
+	private static final Class[] deftargets = {EntityPlayer.class, EntityTyrannosaurus.class, EntityGiganotosaurus.class, EntitySpinosaurus.class}; 
 
     public EntityHerrerasaurus(World world)
     {
@@ -24,6 +25,10 @@ public class EntityHerrerasaurus extends EntityDinosaurAggressive  //implements 
         for (int i = 0; i < targets.length; i++)
         {
             this.attackCreature(targets[i], new Random().nextInt(3)+1);
+        }
+        for (int j = 0; j < targets.length; j++)
+        {
+            this.defendFromAttacker(deftargets[j], new Random().nextInt(3)+1);
         }
     }
 
