@@ -211,6 +211,6 @@ public class RenderDinosaurMultilayer extends RenderLiving implements IDinosaurR
     @Override
     protected float getDeathMaxRotation(EntityLivingBase entity)
     {
-        return 0.0F;
+        return 90.0F;
     }
 }
