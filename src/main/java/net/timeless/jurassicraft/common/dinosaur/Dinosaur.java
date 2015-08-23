@@ -109,7 +109,12 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
         return 1;
     }
 
-    public boolean isMarineAnimal()
+    public boolean isMarineReptile()
+    {
+        return false;
+    }
+
+    public boolean isMammal()
     {
         return false;
     }

@@ -103,7 +103,7 @@ public class DinosaurHerrerasaurus extends Dinosaur
     @Override
     public int getMaximumAge()
     {
-        return fromDays(50);
+        return fromDays(45);
     }
 
     @Override

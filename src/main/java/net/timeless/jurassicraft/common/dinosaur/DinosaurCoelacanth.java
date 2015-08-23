@@ -155,10 +155,4 @@ public class DinosaurCoelacanth extends Dinosaur
     {
         return 1.0F;
     }
-
-    @Override
-    public boolean isMarineAnimal()
-    {
-        return true;
-    }
 }
