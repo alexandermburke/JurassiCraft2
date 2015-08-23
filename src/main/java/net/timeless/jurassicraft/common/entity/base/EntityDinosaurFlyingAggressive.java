@@ -1,8 +1,10 @@
 package net.timeless.jurassicraft.common.entity.base;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityMoveHelper;
+import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
@@ -17,6 +19,7 @@ public class EntityDinosaurFlyingAggressive extends EntityDinosaurAggressive
         super(world);
         this.moveHelper = new EntityDinosaurFlyingAggressive.FlyingMoveHelper();
         this.tasks.addTask(5, new EntityDinosaurFlyingAggressive.AIRandomFly());
+        this.tasks.addTask(7, new EntityDinosaurFlyingAggressive.AILookAround());
     }
 
     public void fall(float distance, float damageMultiplier)
@@ -200,6 +203,47 @@ public class EntityDinosaurFlyingAggressive extends EntityDinosaurAggressive
             }
 
             return true;
+        }
+    }
+
+    class AILookAround extends EntityAIBase
+    {
+        private EntityDinosaurFlyingAggressive dino = EntityDinosaurFlyingAggressive.this;
+
+        public AILookAround()
+        {
+            this.setMutexBits(2);
+        }
+
+        /**
+         * Returns whether the EntityAIBase should begin execution.
+         */
+        public boolean shouldExecute()
+        {
+            return true;
+        }
+
+        /**
+         * Updates the task
+         */
+        public void updateTask()
+        {
+            if (this.dino.getAttackTarget() == null)
+            {
+                this.dino.renderYawOffset = this.dino.rotationYaw = -((float)Math.atan2(this.dino.motionX, this.dino.motionZ)) * 180.0F / (float)Math.PI;
+            }
+            else
+            {
+                EntityLivingBase attackTarget = this.dino.getAttackTarget();
+                double d0 = 64.0D;
+
+                if (attackTarget.getDistanceSqToEntity(this.dino) < d0 * d0)
+                {
+                    double diffX = attackTarget.posX - this.dino.posX;
+                    double diffZ = attackTarget.posZ - this.dino.posZ;
+                    this.dino.renderYawOffset = this.dino.rotationYaw = -((float)Math.atan2(diffX, diffZ)) * 180.0F / (float)Math.PI;
+                }
+            }
         }
     }
 }
