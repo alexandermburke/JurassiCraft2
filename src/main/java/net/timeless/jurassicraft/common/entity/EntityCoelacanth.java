@@ -5,7 +5,7 @@ import net.reuxertz.ecoapi.ecology.role.ICarnivore;
 import net.reuxertz.ecoapi.entity.IEntityAISwimmingCreature;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurSwimmingAggressive;
 
-public class EntityCoelacanth extends EntityDinosaurSwimmingAggressive implements IEntityAISwimmingCreature, ICarnivore
+public class EntityCoelacanth extends EntityDinosaurSwimmingAggressive //implements IEntityAISwimmingCreature, ICarnivore
 {
     public EntityCoelacanth(World world)
     {
