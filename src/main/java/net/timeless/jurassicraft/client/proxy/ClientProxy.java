@@ -56,23 +56,23 @@ public class ClientProxy extends CommonProxy
     {
         super.preInit();
 
-        boolean matchFound = false;
-
-        UUID id = Minecraft.getMinecraft().getSession().getProfile().getId();
-
-        for(String uuid : uuids)
-        {
-            if(id.toString().equalsIgnoreCase(uuid))
-            {
-                matchFound = true;
-                break;
-            }
-        }
-
-        if(!matchFound && !JurassiCraft.instance.isDebugging())
-        {
-            FMLCommonHandler.instance().exitJava(-1, false);
-        }
+//        boolean matchFound = false;
+//
+//        UUID id = Minecraft.getMinecraft().getSession().getProfile().getId();
+//
+//        for(String uuid : uuids)
+//        {
+//            if(id.toString().equalsIgnoreCase(uuid))
+//            {
+//                matchFound = true;
+//                break;
+//            }
+//        }
+//
+//        if(!matchFound && !JurassiCraft.instance.isDebugging())
+//        {
+//            FMLCommonHandler.instance().exitJava(-1, false);
+//        }
 
         ClientEventHandler eventHandler = new ClientEventHandler();
         FMLCommonHandler.instance().bus().register(eventHandler);
