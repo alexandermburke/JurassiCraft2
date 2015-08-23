@@ -50,7 +50,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive  //implements I
         {
             this.attackCreature(targets[i], new Random().nextInt(3)+1);
         }
-        for (int j = 0; j < targets.length; j++)
+        for (int j = 0; j < deftargets.length; j++)
         {
             this.defendFromAttacker(deftargets[j], new Random().nextInt(3)+1);
         }

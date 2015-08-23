@@ -320,7 +320,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     //NOTE: This adds an attack target. Class should be the entity class for the target, lower prio get executed earlier
     protected void attackCreature(Class entity, int prio)
     {
-        this.tasks.addTask(0, new EntityAIAttackOnCollide(this, entity, dinosaur.getAttackSpeed(), false));
+        this.tasks.addTask(0, new EntityAIAttackOnCollide(this, entity, 1.0F, false));
         this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, entity, false));
     }
 
