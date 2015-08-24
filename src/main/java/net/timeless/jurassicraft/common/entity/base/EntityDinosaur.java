@@ -4,6 +4,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -320,7 +321,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     //NOTE: This adds an attack target. Class should be the entity class for the target, lower prio get executed earlier
     protected void attackCreature(Class entity, int prio)
     {
-        this.tasks.addTask(0, new EntityAIAttackOnCollide(this, entity, 1.0F, false));
+        this.tasks.addTask(0, new EntityAIAttackOnCollide(this, entity, 1.5D, false));
+        this.tasks.addTask(1, new EntityAILeapAtTarget(this, 0.4F));
         this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, entity, false));
     }
 
