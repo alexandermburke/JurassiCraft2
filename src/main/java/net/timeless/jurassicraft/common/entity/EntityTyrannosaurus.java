@@ -9,6 +9,7 @@ import net.reuxertz.ecoapi.entity.IEntityAICreature;
 import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCAutoAnimSoundBase;
+import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimSoundBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
 
@@ -29,9 +30,9 @@ public class EntityTyrannosaurus extends EntityDinosaurAggressive implements IAn
     {
         super(world);
 
-        tasks.addTask(2, new JCAutoAnimSoundBase(this, 75, 1, "jurassicraft:" + roarSounds[0], 1.5F));
-        tasks.addTask(2, new JCAutoAnimSoundBase(this, 75, 2, "jurassicraft:" + roarSounds[0], 1.5F));
-        tasks.addTask(2, new JCAutoAnimSoundBase(this, 75, 3, "jurassicraft:" + roarSounds[0], 1.5F));
+        tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, 1, 750, "jurassicraft:" + roarSounds[0], 1.5F));
+        tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, 2, 750, "jurassicraft:" + roarSounds[0], 1.5F));
+        tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, 3, 750, "jurassicraft:" + roarSounds[0], 1.5F));
         
         for (int i = 0; i < targets.length; i++)
         {

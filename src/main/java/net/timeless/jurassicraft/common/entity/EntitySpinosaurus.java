@@ -8,6 +8,7 @@ import net.reuxertz.ecoapi.ecology.role.IOmnivore;
 import net.reuxertz.ecoapi.entity.IEntityAICreature;
 import net.timeless.animationapi.AnimationAPI;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCAutoAnimSoundBase;
+import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimSoundBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
 
@@ -28,7 +29,7 @@ public class EntitySpinosaurus extends EntityDinosaurAggressive //  implements I
         {
             this.attackCreature(targets[i], new Random().nextInt(3)+1);
         }
-        tasks.addTask(2, new JCAutoAnimSoundBase(this, 75, 1, "")); //Roar
+        tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, 1, 750, "jurassicraft:spinosaurus_hurt_1", 1.5F)); //Roar
     }
 
     public void onUpdate()
