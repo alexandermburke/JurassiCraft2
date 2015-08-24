@@ -11,11 +11,13 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.client.gui.app.GuiAppRegistry;
+import net.timeless.jurassicraft.client.render.block.SpecialRendererDNAExtractor;
 import net.timeless.jurassicraft.client.render.entity.RenderBluePrint;
 import net.timeless.jurassicraft.client.render.entity.RenderCageSmall;
 import net.timeless.jurassicraft.client.render.entity.RenderJurassiCraftSign;
@@ -32,6 +34,7 @@ import net.timeless.jurassicraft.common.entity.item.EntityJurassiCraftSign;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 import net.timeless.jurassicraft.common.plant.JCPlantRegistry;
 import net.timeless.jurassicraft.common.plant.Plant;
+import net.timeless.jurassicraft.common.tileentity.TileDNAExtractor;
 
 import java.util.Map;
 
@@ -72,6 +75,8 @@ public class JCRenderingRegistry
 
         ModelBakery.addVariantName(JCItemRegistry.cage_small, "jurassicraft:cage_small");
         ModelBakery.addVariantName(JCItemRegistry.cage_small, "jurassicraft:cage_small_marine");
+
+        ClientRegistry.bindTileEntitySpecialRenderer(TileDNAExtractor.class, new SpecialRendererDNAExtractor());
     }
 
     public void init()
