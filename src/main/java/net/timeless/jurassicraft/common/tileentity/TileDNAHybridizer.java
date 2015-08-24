@@ -323,6 +323,10 @@ public class TileDNAHybridizer extends TileEntityLockable implements IUpdatePlay
         Dinosaur extraGene3 = getDino(extraDNA3Disc);
         Dinosaur extraGene4 = getDino(extraDNA4Disc);
 
+        Dinosaur[] baseGenes = new Dinosaur[] { baseGene1, baseGene2 };
+
+        Dinosaur[] extraGenes = new Dinosaur[] { extraGene1, extraGene2, extraGene3, extraGene4 };
+
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
         {
             if(dino instanceof IHybrid)
@@ -340,17 +344,32 @@ public class TileDNAHybridizer extends TileEntityLockable implements IUpdatePlay
                 }
 
                 int count = 0;
+                boolean extra = false;
 
-                for (Class combo : dinoHybrid.getExtraGenes())
+                for (Dinosaur combo : extraGenes)
                 {
-                    if(combo.isInstance(extraGene1) || combo.isInstance(extraGene2) || combo.isInstance(extraGene3) || combo.isInstance(extraGene4))
+                    Class match = null;
+
+                    for (Class clazz : dinoHybrid.getExtraGenes())
+                    {
+                        if(clazz.isInstance(combo))
+                        {
+                            match = clazz;
+                        }
+                    }
+
+                    if(match != null && match.isInstance(combo))
                     {
                         count++;
+                    }
+                    else if(combo != null)
+                    {
+                        extra = true;
                     }
                 }
 
                 boolean hasBases = baseCount == dinoHybrid.getBaseGenes().length;
-                boolean hasExtras = count == dinoHybrid.getExtraGenes().length;
+                boolean hasExtras = !extra && count == dinoHybrid.getExtraGenes().length;
 
                 if(hasBases && hasExtras)
                 {

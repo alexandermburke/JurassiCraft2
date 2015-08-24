@@ -20,7 +20,7 @@ public class DinosaurIndominus extends Dinosaur implements IHybrid
         this.femaleTextures = new String[] { getDinosaurTexture("") };
 
         this.baseGenes = new Class[] { DinosaurTyrannosaurus.class, DinosaurVelociraptor.class };
-        this.extraGenes = new Class[] { DinosaurGiganotosaurus.class, DinosaurRugops.class, DinosaurMajungasaurus.class };
+        this.extraGenes = new Class[] { DinosaurGiganotosaurus.class, DinosaurRugops.class, DinosaurMajungasaurus.class, DinosaurCarnotaurus.class }; //TODO therizino
     }
 
     @Override
