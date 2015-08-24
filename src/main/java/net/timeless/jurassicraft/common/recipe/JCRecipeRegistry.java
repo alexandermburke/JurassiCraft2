@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.timeless.jurassicraft.common.block.JCBlockRegistry;
@@ -131,6 +130,36 @@ public class JCRecipeRegistry
                 'G', Blocks.glass_pane, 'I', Items.iron_ingot);
 
         GameRegistry.addSmelting(new ItemStack(Items.potionitem, 1, 0), new ItemStack(JCItemRegistry.dna_base), 1.0F);
+
+        GameRegistry.addRecipe(new ItemStack(JCItemRegistry.needle),
+                "GIG",
+                "GIG",
+                " I ",
+                'G', Blocks.glass_pane, 'I', Items.iron_ingot);
+
+        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.dna_extractor),
+                "III",
+                "INI",
+                "RSR",
+                'S', JCBlockRegistry.dna_sequencer, 'I', Items.iron_ingot, 'R', Items.redstone, 'N', JCItemRegistry.needle);
+
+        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.dna_sequencer),
+                "GLG",
+                "CTR",
+                "IBI",
+                'G', Items.gold_ingot, 'I', Blocks.iron_block, 'B', Blocks.redstone_block, 'T', Blocks.redstone_torch, 'L', new ItemStack(Items.dye, 1, 4), 'R', Items.repeater, 'C', Items.comparator);
+
+        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.dna_sequencer),
+                "GLG",
+                "RTC",
+                "IBI",
+                'G', Items.gold_ingot, 'I', Blocks.iron_block, 'B', Blocks.redstone_block, 'T', Blocks.redstone_torch, 'L', new ItemStack(Items.dye, 1, 4), 'R', Items.repeater, 'C', Items.comparator);
+
+        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.dna_synthesizer),
+                "GGG",
+                "RBR",
+                "ITI",
+                'G', Items.gold_ingot, 'I', Blocks.iron_block, 'T', Blocks.redstone_torch, 'B', Items.bucket, 'R', Items.redstone);
 
         addGrowthSerumRecipe(Items.cooked_beef);
         addGrowthSerumRecipe(Items.cooked_chicken);

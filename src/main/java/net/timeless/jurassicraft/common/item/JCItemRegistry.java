@@ -45,7 +45,11 @@ public class JCItemRegistry
     public static ItemBasic iron_blades;
     public static ItemBasic iron_rod;
 
+    public static ItemBasic needle;
+
     public static ItemGrowthSerum growth_serum;
+
+    //TODO more complex crafting components, eg circuit boards, ROM Drive
 
     public void register()
     {
@@ -74,6 +78,7 @@ public class JCItemRegistry
         iron_blades = new ItemBasic("Iron Blades", JCCreativeTabs.items);
         iron_rod = new ItemBasic("Iron Rod", JCCreativeTabs.items);
         growth_serum = new ItemGrowthSerum();
+        needle = new ItemBasic("Needle", JCCreativeTabs.items);
 
         registerItem(amber, "Amber");
         registerItem(sea_lamprey, "Sea Lamprey");
@@ -97,6 +102,7 @@ public class JCItemRegistry
         registerItem(plant_dna, "Plant DNA");
         registerItem(iron_blades, "Iron Blades");
         registerItem(iron_rod, "Iron Rod");
+        registerItem(needle, "Needle");
 
         registerItem(dino_meat, "Dinosaur Meat");
         registerItem(dino_steak, "Dinosaur Steak");
