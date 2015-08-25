@@ -80,7 +80,7 @@ public class AnimationRugops implements IModelAnimator
 
         // Body animations
         model.bob(leftThigh, 1F * globalSpeed, height, false, f, f1);
-        model.bob(waist, 1F * globalSpeed, height, false, f, f1);
+        model.bob(neck4, 1F * globalSpeed, height, false, f, f1);
         model.bob(rightThigh, 1F * globalSpeed, height, false, f, f1);
         leftThigh.rotationPointY -= -2 * f1 * Math.cos(f * 0.5 * globalSpeed);
         rightThigh.rotationPointY -= 2 * f1 * Math.cos(f * 0.5 * globalSpeed);
