@@ -93,8 +93,8 @@ public class RenderIndominusRex extends RenderLiving implements IDinosaurRendere
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glDisable(GL11.GL_ALPHA_TEST);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-            float[] color = iRex.getSkinColor();
-            GlStateManager.color(color[0], color[1], color[2], 0.7F);
+//            float[] color = iRex.getSkinColor();
+//            GlStateManager.color(color[0], color[1], color[2], 0.7F);
         }
 
         GlStateManager.translate(renderDef.getRenderXOffset(0) * scale, renderDef.getRenderYOffset(0) * scale, renderDef.getRenderZOffset(0) * scale);

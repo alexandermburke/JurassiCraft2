@@ -30,6 +30,7 @@ public class ClientProxy extends CommonProxy
         uuids.add("6e1f5ca8-bad8-4ee5-8114-c5dae4e83b22"); //Ceetron_
         uuids.add("a6888946-9303-45d9-8c9e-15f4b25aa283"); //tachyon_cyber
         uuids.add("a43845fa-b76e-42fe-803f-e2edf58c23a1"); //Zukulemto
+        uuids.add("37d86247-b864-4e8d-a1e1-21d97c41b602");
 
         //Team
         uuids.add("d0e40dd9-fda1-4dbf-a4fe-43d689f77fc6"); //Raptor20 (wysssy)
