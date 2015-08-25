@@ -2,23 +2,9 @@ package net.timeless.jurassicraft.common.tileentity;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.server.gui.IUpdatePlayerListBox;
-import net.minecraft.tileentity.TileEntityLockable;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.MathHelper;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.container.ContainerDNASequencer;
 import net.timeless.jurassicraft.common.genetics.DinoDNA;
@@ -28,290 +14,20 @@ import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 import java.util.Random;
 
-public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
+public class TileDnaSequencer extends TileMachineBase
 {
-    private static final int[] slotsTop = new int[]{0, 1, 2, 3, 4, 5}; //input
-    private static final int[] slotsBottom = new int[]{6, 7, 8}; //output
-    private static final int[] slotsSides = new int[]{};
+    private int[] inputs = new int[]{0, 1, 2, 3, 4, 5};
+    private int[] outputs = new int[]{6, 7, 8};
 
-    /**
-     * The ItemStacks that hold the items currently being used in the dna sequencer
-     */
     private ItemStack[] slots = new ItemStack[9];
 
-    private int[] sequenceTime = new int[3];
-    private int[] totalSequenceTime = new int[3];
-
-    private String customName;
-
-    /**
-     * Returns the number of slots in the inventory.
-     */
-    public int getSizeInventory()
+    @Override
+    protected boolean canProcess(int process)
     {
-        return this.slots.length;
-    }
+        int tissue = process * 2;
 
-    /**
-     * Returns the stack in slot i
-     */
-    public ItemStack getStackInSlot(int index)
-    {
-        return this.slots[index];
-    }
-
-    /**
-     * Removes from an inventory slot (first arg) up to a specified number (second arg) of items and returns them in a
-     * new stack.
-     */
-    public ItemStack decrStackSize(int index, int count)
-    {
-        if (this.slots[index] != null)
-        {
-            ItemStack itemstack;
-
-            if (this.slots[index].stackSize <= count)
-            {
-                itemstack = this.slots[index];
-                this.slots[index] = null;
-                return itemstack;
-            }
-            else
-            {
-                itemstack = this.slots[index].splitStack(count);
-
-                if (this.slots[index].stackSize == 0)
-                {
-                    this.slots[index] = null;
-                }
-
-                return itemstack;
-            }
-        }
-        else
-        {
-            return null;
-        }
-    }
-
-    /**
-     * When some containers are closed they call this on each slot, then drop whatever it returns as an EntityItem -
-     * like when you close a workbench GUI.
-     */
-    public ItemStack getStackInSlotOnClosing(int index)
-    {
-        if (this.slots[index] != null)
-        {
-            ItemStack itemstack = this.slots[index];
-            this.slots[index] = null;
-            return itemstack;
-        }
-        else
-        {
-            return null;
-        }
-    }
-
-    /**
-     * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
-     */
-    public void setInventorySlotContents(int index, ItemStack stack)
-    {
-        boolean flag = stack != null && stack.isItemEqual(this.slots[index]) && ItemStack.areItemStackTagsEqual(stack, this.slots[index]);
-        this.slots[index] = stack;
-
-        if (stack != null && stack.stackSize > this.getInventoryStackLimit())
-        {
-            stack.stackSize = this.getInventoryStackLimit();
-        }
-
-        if (index < 6 && !flag)
-        {
-            int i = (int) Math.floor(index / 2);
-            this.totalSequenceTime[i] = this.getStackSequenceTime(stack);
-            this.sequenceTime[i] = 0;
-            worldObj.markBlockForUpdate(pos);
-        }
-    }
-
-    /**
-     * Gets the name of this command sender (usually username, but possibly "Rcon")
-     */
-    public String getName()
-    {
-        return this.hasCustomName() ? this.customName : "container.dna_sequencer";
-    }
-
-    /**
-     * Returns true if this thing is named
-     */
-    public boolean hasCustomName()
-    {
-        return this.customName != null && this.customName.length() > 0;
-    }
-
-    public void setCustomInventoryName(String customName)
-    {
-        this.customName = customName;
-    }
-
-    public void readFromNBT(NBTTagCompound compound)
-    {
-        super.readFromNBT(compound);
-
-        NBTTagList itemList = compound.getTagList("Items", 10);
-        this.slots = new ItemStack[this.getSizeInventory()];
-
-        for (int i = 0; i < itemList.tagCount(); ++i)
-        {
-            NBTTagCompound item = itemList.getCompoundTagAt(i);
-
-            byte slot = item.getByte("Slot");
-
-            if (slot >= 0 && slot < this.slots.length)
-            {
-                this.slots[slot] = ItemStack.loadItemStackFromNBT(item);
-            }
-        }
-
-        for (int i = 0; i < 3; i++)
-        {
-            this.sequenceTime[i] = compound.getShort("SequenceTime" + i);
-            this.totalSequenceTime[i] = compound.getShort("SequenceTimeTotal" + i);
-        }
-
-        if (compound.hasKey("CustomName", 8))
-        {
-            this.customName = compound.getString("CustomName");
-        }
-    }
-
-    public void writeToNBT(NBTTagCompound compound)
-    {
-        super.writeToNBT(compound);
-
-        for (int i = 0; i < 3; i++)
-        {
-            compound.setShort("SequenceTime" + i, (short) this.sequenceTime[i]);
-            compound.setShort("SequenceTimeTotal" + i, (short) this.totalSequenceTime[i]);
-        }
-
-        NBTTagList itemList = new NBTTagList();
-
-        for (int slot = 0; slot < this.slots.length; ++slot)
-        {
-            if (this.slots[slot] != null)
-            {
-                NBTTagCompound itemTag = new NBTTagCompound();
-                itemTag.setByte("Slot", (byte) slot);
-
-                this.slots[slot].writeToNBT(itemTag);
-                itemList.appendTag(itemTag);
-            }
-        }
-
-        compound.setTag("Items", itemList);
-
-        if (this.hasCustomName())
-        {
-            compound.setString("CustomName", this.customName);
-        }
-    }
-
-    /**
-     * Returns the maximum stack size for a inventory slot. Seems to always be 64, possibly will be extended. *Isn't
-     * this more of a set than a get?*
-     */
-    public int getInventoryStackLimit()
-    {
-        return 64;
-    }
-
-    public boolean isSequencing(int index)
-    {
-        return this.sequenceTime[index] > 0;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public static boolean isSequencing(IInventory inventory, int index)
-    {
-        return inventory.getField(index) > 0;
-    }
-
-    /**
-     * Updates the JList with a new model.
-     */
-    public void update()
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            boolean flag = this.isSequencing(i);
-            boolean sync = false;
-
-            if (!this.worldObj.isRemote)
-            {
-                if (!this.isSequencing(i) && (this.slots[i * 2] == null))
-                {
-                    if (!this.isSequencing(i) && this.sequenceTime[i] > 0)
-                    {
-                        this.sequenceTime[i] = MathHelper.clamp_int(this.sequenceTime[i] - 2, 0, this.totalSequenceTime[i]);
-                    }
-                }
-                else
-                {
-                    if (this.canSequence(i))
-                    {
-                        ++this.sequenceTime[i];
-
-                        if (this.sequenceTime[i] == this.totalSequenceTime[i])
-                        {
-                            this.sequenceTime[i] = 0;
-                            this.totalSequenceTime[i] = this.getStackSequenceTime(this.slots[i * 2]);
-                            this.sequenceItem(i);
-                            sync = true;
-                        }
-                    }
-                    else
-                    {
-                        this.sequenceTime[i] = 0;
-                        sync = true;
-                    }
-                }
-
-                if (flag != this.isSequencing(i))
-                {
-                    sync = true;
-                }
-            }
-            else
-            {
-                if (this.canSequence(i))
-                {
-                    ++this.sequenceTime[i];
-                }
-            }
-
-            if (sync)
-            {
-                worldObj.markBlockForUpdate(pos);
-            }
-        }
-    }
-
-    public int getStackSequenceTime(ItemStack stack)
-    {
-        return 2000;
-    }
-
-    /**
-     * Returns true if the dna sequencer can smelt an item, i.e. has a source item, destination stack isn't full, etc.
-     */
-    private boolean canSequence(int index)
-    {
-        int tissue = index * 2;
-
-        ItemStack input = this.slots[tissue];
-        ItemStack storage = this.slots[tissue + 1];
+        ItemStack input = slots[tissue];
+        ItemStack storage = slots[tissue + 1];
 
         if (input != null && input.getItem() instanceof ItemSoftTissue)
         {
@@ -320,7 +36,7 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
                 ItemStack output = new ItemStack(JCItemRegistry.storage_disc, 1, input.getItemDamage());
                 output.setTagCompound(input.getTagCompound());
 
-                if (this.slots[index + 6] == null || ItemStack.areItemsEqual(this.slots[index + 6], output) && ItemStack.areItemStackTagsEqual(this.slots[index + 6], output))
+                if (slots[process + 6] == null || ItemStack.areItemsEqual(slots[process + 6], output) && ItemStack.areItemStackTagsEqual(slots[process + 6], output))
                     return true;
             }
         }
@@ -328,16 +44,14 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
         return false;
     }
 
-    /**
-     * Turn one item from the dna sequencer source stack into the appropriate sequenceed item in the dna sequencer result stack
-     */
-    public void sequenceItem(int index)
+    @Override
+    protected void processItem(int process)
     {
-        if (this.canSequence(index))
+        if (this.canProcess(process))
         {
             Random rand = new Random();
 
-            int tissue = index * 2;
+            int tissue = process * 2;
 
 //            EntityPlayer player = worldObj.getPlayerEntityByUUID(UUID.fromString(slots[1].getTagCompound().getString("LastOwner")));
 
@@ -374,144 +88,95 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
 
 //            JCPlayerData.getPlayerData(player).addSequencedDNA(new DinoDNA(quality, GeneticsHelper.randomGenetics(rand, slots[0].getItemDamage(), quality).toString()));
 
-            if (this.slots[index + 6] == null)
+            if (slots[process + 6] == null)
             {
-                this.slots[index + 6] = output;
+                slots[process + 6] = output;
             }
-            else if (this.slots[index + 6].getItem() == output.getItem() && ItemStack.areItemStackTagsEqual(this.slots[index + 6], output))
+            else if (this.slots[process + 6].getItem() == output.getItem() && ItemStack.areItemStackTagsEqual(slots[process + 6], output))
             {
-                this.slots[index + 6].stackSize += output.stackSize;
+                this.slots[process + 6].stackSize += output.stackSize;
             }
 
-            this.slots[tissue].stackSize--;
-            this.slots[tissue + 1].stackSize--;
+            slots[tissue].stackSize--;
+            slots[tissue + 1].stackSize--;
 
-            if (this.slots[tissue].stackSize <= 0)
-                this.slots[tissue] = null;
+            if (slots[tissue].stackSize <= 0)
+                slots[tissue] = null;
 
-            if (this.slots[tissue + 1].stackSize <= 0)
-                this.slots[tissue + 1] = null;
+            if (slots[tissue + 1].stackSize <= 0)
+                slots[tissue + 1] = null;
         }
     }
 
-    /**
-     * Do not make give this method the name canInteractWith because it clashes with Container
-     */
-    public boolean isUseableByPlayer(EntityPlayer player)
+    @Override
+    protected int getMainInput(int process)
     {
-        return this.worldObj.getTileEntity(this.pos) != this ? false : player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
+        return process * 2;
     }
 
-    public void openInventory(EntityPlayer player)
+    @Override
+    protected int getMainOutput(int process)
     {
+        return (process * 2) + 1;
     }
 
-    public void closeInventory(EntityPlayer player)
+    @Override
+    protected int getStackProcessTime(ItemStack stack)
     {
+        return 2000;
     }
 
-    /**
-     * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
-     */
-    public boolean isItemValidForSlot(int index, ItemStack stack)
+    @Override
+    protected int getProcessCount()
     {
-        return index == 2 ? false : true;
+        return 3;
     }
 
-    public int[] getSlotsForFace(EnumFacing side)
+    @Override
+    protected int[] getInputs()
     {
-        return side == EnumFacing.DOWN ? slotsBottom : (side == EnumFacing.UP ? slotsTop : slotsSides);
+        return inputs;
     }
 
-    /**
-     * Returns true if automation can insert the given item in the given slot from the given side. Args: slot, item,
-     * side
-     */
-    public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction)
+    @Override
+    protected int[] getOutputs()
     {
-        return this.isItemValidForSlot(index, itemStackIn);
+        return outputs;
     }
 
-    /**
-     * Returns true if automation can extract the given item in the given slot from the given side. Args: slot, item,
-     * side
-     */
-    public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction)
+    @Override
+    protected ItemStack[] getSlots()
     {
-        if (direction == EnumFacing.DOWN && index == 1)
-        {
-            Item item = stack.getItem();
-
-            if (item != Items.water_bucket && item != Items.bucket)
-            {
-                return false;
-            }
-        }
-
-        return true;
+        return slots;
     }
 
-    public String getGuiID()
+    @Override
+    protected void setSlots(ItemStack[] slots)
     {
-        return JurassiCraft.modid + ":dna_sequencer";
+        this.slots = slots;
     }
 
+    @Override
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
     {
         return new ContainerDNASequencer(playerInventory, this);
     }
 
-    public int getField(int id)
+    @Override
+    public String getGuiID()
     {
-        if (id < 3)
-        {
-            return sequenceTime[id];
-        }
-        else if (id < 6)
-        {
-            return totalSequenceTime[id - 3];
-        }
-
-        return 0;
-    }
-
-    public void setField(int id, int value)
-    {
-        if (id < 3)
-        {
-            sequenceTime[id] = value;
-        }
-        else if (id < 6)
-        {
-            totalSequenceTime[id - 3] = value;
-        }
-    }
-
-    public int getFieldCount()
-    {
-        return 2;
-    }
-
-    public void clear()
-    {
-        for (int i = 0; i < this.slots.length; ++i)
-        {
-            this.slots[i] = null;
-        }
+        return JurassiCraft.modid + ":dna_sequencer";
     }
 
     @Override
-    public Packet getDescriptionPacket()
+    public int getInventoryStackLimit()
     {
-        NBTTagCompound compound = new NBTTagCompound();
-        this.writeToNBT(compound);
-        return new S35PacketUpdateTileEntity(this.pos, this.getBlockMetadata(), compound);
+        return 64;
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet)
+    public String getName()
     {
-        NBTTagCompound compound = packet.getNbtCompound();
-        this.readFromNBT(compound);
+        return hasCustomName() ? customName : "container.dna_sequencer";
     }
 }

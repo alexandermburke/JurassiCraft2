@@ -1,8 +1,10 @@
 package net.timeless.jurassicraft.common.tileentity;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -402,6 +404,25 @@ public abstract class TileMachineBase extends TileEntityLockable implements IUpd
         {
             slots[i] = null;
         }
+    }
+
+    /**
+     * Returns true if automation can extract the given item in the given slot from the given side. Args: slot, item,
+     * side
+     */
+    public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) //TODO
+    {
+        if (direction == EnumFacing.DOWN && index == 1)
+        {
+            Item item = stack.getItem();
+
+            if (item != Items.water_bucket && item != Items.bucket)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     @Override
