@@ -22,7 +22,7 @@ public class MessageSendFile implements IMessage
 
     //Receive
     private String path;
-    private List<String> children = new ArrayList<>();
+    private List<String> children = new ArrayList<String>();
     private NBTTagCompound data;
     private boolean isFile;
 

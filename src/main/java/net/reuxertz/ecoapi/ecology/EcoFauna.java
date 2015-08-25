@@ -199,7 +199,7 @@ public class EcoFauna
 
     public static List<ItemStack> getDropItemsByItemClass(Class itemType)
     {
-        List<ItemStack> r = new ArrayList<>();//EcoFauna.classToDropRegistry.get(c);
+        List<ItemStack> r = new ArrayList<ItemStack>();//EcoFauna.classToDropRegistry.get(c);
         Collection<List<ItemStack>> v = EcoFauna.classToDropRegistry.values();
         for (int i = 0; v.iterator().hasNext(); i++)
         {

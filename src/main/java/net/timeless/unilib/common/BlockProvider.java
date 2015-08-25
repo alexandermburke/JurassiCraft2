@@ -4,8 +4,7 @@ import net.minecraft.block.Block;
 
 import java.util.Collection;
 
-public interface BlockProvider
-{
+public interface BlockProvider {
     Collection<Block> createBlocks();
 
     String getModID();

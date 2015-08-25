@@ -56,7 +56,7 @@ public class ItemDinosaurMeat extends ItemFood
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List subtypes)
     {
-        List<Dinosaur> dinosaurs = new ArrayList<>(JCEntityRegistry.getDinosaurs());
+        List<Dinosaur> dinosaurs = new ArrayList<Dinosaur>(JCEntityRegistry.getDinosaurs());
 
         Map<Dinosaur, Integer> ids = new HashMap<Dinosaur, Integer>();
 

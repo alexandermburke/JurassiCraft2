@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 /**
  * Container for Tabula animation components.
- *
+ * 
  * @author Gegy1000
- *         TAKEN FROM LLIBRARY
+ * TAKEN FROM LLIBRARY
  */
 public class AnimationComponent
 {

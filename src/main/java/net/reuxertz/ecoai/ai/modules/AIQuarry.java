@@ -27,7 +27,7 @@ public class AIQuarry extends AIFarming
     public static List<Block> ignoreBlocks = Arrays.asList(new Block[]{Blocks.air,
             Blocks.deadbush, Blocks.double_plant, Blocks.tallgrass, Blocks.red_flower, Blocks.yellow_flower});
 
-    protected List<BlockPos> workPos = new ArrayList<>();
+    protected List<BlockPos> workPos = new ArrayList<BlockPos>();
 
     public void nextWorkPos(BlockPos curPos, List<BlockPos> positions)
     {

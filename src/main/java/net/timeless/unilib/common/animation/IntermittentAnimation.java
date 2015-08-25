@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * @author RafaMv0
  * @author BobMowzie
- *         TAKEN FROM LLIBRARY
+ * TAKEN FROM LLIBRARY
  */
 public class IntermittentAnimation
 {

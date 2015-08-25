@@ -11,7 +11,7 @@ import org.lwjgl.opengl.GL11;
 
 /**
  * @author BobMowzie, gegy1000, FiskFille
- *         TAKEN FROM LLIBRARY
+ * TAKEN FROM LLIBRARY
  */
 @SideOnly(Side.CLIENT)
 public class MowzieModelRenderer extends ModelRenderer

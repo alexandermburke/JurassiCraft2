@@ -7,16 +7,13 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.Random;
 
-public abstract class StructureGenerator
-{
+public abstract class StructureGenerator {
 
     public static final List<EnumFacing> clockwiseFacings = Lists.newArrayList(EnumFacing.NORTH, EnumFacing.EAST, EnumFacing.SOUTH, EnumFacing.WEST);
 
-    public static EnumFacing getNextClockwise(EnumFacing facing)
-    {
+    public static EnumFacing getNextClockwise(EnumFacing facing) {
         int index = clockwiseFacings.indexOf(facing);
-        if (index < 0)
-        {
+        if(index < 0) {
             throw new IllegalArgumentException();
         }
         index++;

@@ -17,7 +17,7 @@ import java.util.List;
 public class JCEntityRegistry
 {
     private static List<Dinosaur> dinosaurs = Lists.newArrayList();
-    private static HashMap<EnumTimePeriod, List<Dinosaur>> dinosaursFromPeriod = new HashMap<>();
+    private static HashMap<EnumTimePeriod, List<Dinosaur>> dinosaursFromPeriod = new HashMap<EnumTimePeriod, List<Dinosaur>>();
 
     public static final Dinosaur dodo = new DinosaurDodo();
     public static final Dinosaur achillobator = new DinosaurAchillobator();
@@ -62,7 +62,7 @@ public class JCEntityRegistry
 
     public static List<Dinosaur> getDinosaursFromSeaLampreys()
     {
-        List<Dinosaur> marineDinos = new ArrayList<>();
+        List<Dinosaur> marineDinos = new ArrayList<Dinosaur>();
 
         for (Dinosaur dino : getRegisteredDinosaurs())
         {
@@ -184,7 +184,7 @@ public class JCEntityRegistry
 
     public static List<Dinosaur> getDinosaursFromAmber()
     {
-        List<Dinosaur> amberDinos = new ArrayList<>();
+        List<Dinosaur> amberDinos = new ArrayList<Dinosaur>();
 
         for (Dinosaur dino : getRegisteredDinosaurs())
         {
@@ -204,7 +204,7 @@ public class JCEntityRegistry
 
     public static List<Dinosaur> getRegisteredDinosaurs()
     {
-        List<Dinosaur> reg = new ArrayList<>();
+        List<Dinosaur> reg = new ArrayList<Dinosaur>();
 
         for (Dinosaur dino : dinosaurs)
         {
