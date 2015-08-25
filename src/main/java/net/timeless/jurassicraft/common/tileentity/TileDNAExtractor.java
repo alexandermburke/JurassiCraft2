@@ -322,55 +322,66 @@ public class TileDNAExtractor extends TileEntityLockable implements IUpdatePlaye
     {
         if (this.canExtract())
         {
-            if (slots[0].getItem() == JCItemRegistry.amber || slots[0].getItem() == JCItemRegistry.sea_lamprey)
+            Random rand = worldObj.rand;
+            List<Dinosaur> possibleDinos = null;
+
+            ItemStack input = slots[0];
+
+            if (input.getItem() == JCItemRegistry.amber)
             {
-                if (slots[0].getItemDamage() == 0)
+                if (input.getItemDamage() == 0)
                 {
-                    Random rand = worldObj.rand;
-
-                    List<Dinosaur> amberDinos = slots[0].getItem() == JCItemRegistry.amber ? JCEntityRegistry.getDinosaursFromAmber() : JCEntityRegistry.getDinosaursFromSeaLampreys();
-                    Dinosaur dino = amberDinos.get(rand.nextInt(amberDinos.size()));
-
-                    int dinosaurId = JCEntityRegistry.getDinosaurId(dino);
-
-                    ItemStack disc = new ItemStack(JCItemRegistry.storage_disc, 1, dinosaurId);
-
-                    int quality = rand.nextInt(50);
-
-                    if (rand.nextDouble() < 0.1)
-                    {
-                        quality += 50;
-                    }
-
-                    DNA dna = new DNA(quality, GeneticsHelper.randomGenetics(rand, dinosaurId, quality).toString());
-
-                    NBTTagCompound nbt = new NBTTagCompound();
-                    dna.writeToNBT(nbt);
-
-                    disc.setTagCompound(nbt);
-
-                    int empty = 0;
-
-                    for (int i = 2; i < 6; i++)
-                    {
-                        if (slots[i] == null)
-                        {
-                            empty = i;
-                            break;
-                        }
-                    }
-
-                    slots[empty] = disc;
-
-                    this.slots[0].stackSize--;
-                    this.slots[1].stackSize--;
-
-                    if (this.slots[0].stackSize <= 0)
-                        this.slots[0] = null;
-
-                    if (this.slots[1].stackSize <= 0)
-                        this.slots[1] = null;
+                    possibleDinos = JCEntityRegistry.getDinosaursFromAmber();
                 }
+            }
+            else if(input.getItem() == JCItemRegistry.sea_lamprey)
+            {
+                possibleDinos = JCEntityRegistry.getDinosaursFromSeaLampreys();
+            }
+
+            if(possibleDinos != null)
+            {
+                Dinosaur dino = possibleDinos.get(rand.nextInt(possibleDinos.size()));
+
+                int dinosaurId = JCEntityRegistry.getDinosaurId(dino);
+
+                ItemStack disc = new ItemStack(JCItemRegistry.storage_disc, 1, dinosaurId);
+
+                int quality = rand.nextInt(50);
+
+                if (rand.nextDouble() < 0.1)
+                {
+                    quality += 50;
+                }
+
+                DNA dna = new DNA(quality, GeneticsHelper.randomGenetics(rand, dinosaurId, quality).toString());
+
+                NBTTagCompound nbt = new NBTTagCompound();
+                dna.writeToNBT(nbt);
+
+                disc.setTagCompound(nbt);
+
+                int empty = 0;
+
+                for (int i = 2; i < 6; i++)
+                {
+                    if (slots[i] == null)
+                    {
+                        empty = i;
+                        break;
+                    }
+                }
+
+                slots[empty] = disc;
+
+                this.slots[0].stackSize--;
+                this.slots[1].stackSize--;
+
+                if (this.slots[0].stackSize <= 0)
+                    this.slots[0] = null;
+
+                if (this.slots[1].stackSize <= 0)
+                    this.slots[1] = null;
             }
         }
     }
