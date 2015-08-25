@@ -21,7 +21,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.container.ContainerDNASequencer;
-import net.timeless.jurassicraft.common.genetics.DNA;
+import net.timeless.jurassicraft.common.genetics.DinoDNA;
 import net.timeless.jurassicraft.common.genetics.GeneticsHelper;
 import net.timeless.jurassicraft.common.item.ItemSoftTissue;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
@@ -365,14 +365,14 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
                 nbt = new NBTTagCompound();
             }
 
-            DNA dna = new DNA(quality, GeneticsHelper.randomGenetics(rand, slots[tissue].getItemDamage(), quality).toString());
+            DinoDNA dna = new DinoDNA(quality, GeneticsHelper.randomGenetics(rand, slots[tissue].getItemDamage(), quality).toString());
             dna.writeToNBT(nbt);
 
             ItemStack output = new ItemStack(JCItemRegistry.storage_disc, 1, slots[tissue].getItemDamage());
             output.setItemDamage(dna.getContainer().getDinosaur());
             output.setTagCompound(nbt);
 
-//            JCPlayerData.getPlayerData(player).addSequencedDNA(new DNA(quality, GeneticsHelper.randomGenetics(rand, slots[0].getItemDamage(), quality).toString()));
+//            JCPlayerData.getPlayerData(player).addSequencedDNA(new DinoDNA(quality, GeneticsHelper.randomGenetics(rand, slots[0].getItemDamage(), quality).toString()));
 
             if (this.slots[index + 6] == null)
             {

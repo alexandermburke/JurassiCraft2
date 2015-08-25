@@ -10,9 +10,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
-import net.timeless.jurassicraft.common.genetics.DNA;
+import net.timeless.jurassicraft.common.genetics.DinoDNA;
 import net.timeless.jurassicraft.common.genetics.GeneticsContainer;
 import net.timeless.jurassicraft.common.lang.AdvLang;
+import net.timeless.jurassicraft.common.storagedisc.IStorageType;
+import net.timeless.jurassicraft.common.storagedisc.StorageTypeRegistry;
 
 import java.util.List;
 
@@ -38,26 +40,14 @@ public class ItemStorageDisc extends Item
 
         if (nbt != null)
         {
-            DNA data = DNA.readFromNBT(nbt);
-            GeneticsContainer container = data.getContainer();
+            String storageId = nbt.getString("StorageId");
+            IStorageType type = StorageTypeRegistry.getStorageType(storageId);
 
-            tooltip.add(EnumChatFormatting.DARK_AQUA + new AdvLang("lore.dinosaur.name").withProperty("dino", "entity." + JCEntityRegistry.getDinosaurById(container.getDinosaur()).getName(container.getGeneticVariation()).toLowerCase() + ".name").build());
-
-            int quality = data.getDNAQuality();
-
-            EnumChatFormatting colour;
-
-            if (quality > 75)
-                colour = EnumChatFormatting.GREEN;
-            else if (quality > 50)
-                colour = EnumChatFormatting.YELLOW;
-            else if (quality > 25)
-                colour = EnumChatFormatting.GOLD;
-            else
-                colour = EnumChatFormatting.RED;
-
-            tooltip.add(colour + new AdvLang("lore.dna_quality.name").withProperty("quality", quality + "").build());
-            tooltip.add(EnumChatFormatting.BLUE + new AdvLang("lore.genetic_code.name").withProperty("code", container.toString()).build());
+            if(type != null)
+            {
+                type.readFromNBT(nbt);
+                type.addInformation(stack, tooltip);
+            }
         }
         else
         {

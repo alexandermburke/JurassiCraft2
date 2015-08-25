@@ -16,6 +16,7 @@ import net.timeless.jurassicraft.common.paleopad.AppRegistry;
 import net.timeless.jurassicraft.common.plant.JCPlantRegistry;
 import net.timeless.jurassicraft.common.proxy.CommonProxy;
 import net.timeless.jurassicraft.common.recipe.JCRecipeRegistry;
+import net.timeless.jurassicraft.common.storagedisc.StorageTypeRegistry;
 import org.apache.logging.log4j.Logger;
 
 @Mod(modid = JurassiCraft.modid, name = "JurassiCraft", version = "${version}")
@@ -41,6 +42,7 @@ public class JurassiCraft
     public static JCNetworkManager networkManager = new JCNetworkManager();
     public static AppRegistry appRegistry = new AppRegistry();
     public static JCAchievements achievements = new JCAchievements();
+    public static StorageTypeRegistry storageTypeRegistry = new StorageTypeRegistry();
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)

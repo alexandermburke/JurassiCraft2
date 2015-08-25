@@ -23,7 +23,7 @@ import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.container.ContainerDNAExtractor;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
-import net.timeless.jurassicraft.common.genetics.DNA;
+import net.timeless.jurassicraft.common.genetics.DinoDNA;
 import net.timeless.jurassicraft.common.genetics.GeneticsHelper;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
@@ -354,7 +354,7 @@ public class TileDNAExtractor extends TileEntityLockable implements IUpdatePlaye
                     quality += 50;
                 }
 
-                DNA dna = new DNA(quality, GeneticsHelper.randomGenetics(rand, dinosaurId, quality).toString());
+                DinoDNA dna = new DinoDNA(quality, GeneticsHelper.randomGenetics(rand, dinosaurId, quality).toString());
 
                 NBTTagCompound nbt = new NBTTagCompound();
                 dna.writeToNBT(nbt);

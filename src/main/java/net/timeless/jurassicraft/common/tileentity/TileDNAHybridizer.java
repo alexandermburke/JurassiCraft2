@@ -24,7 +24,7 @@ import net.timeless.jurassicraft.common.container.ContainerFossilGrinder;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.dinosaur.IHybrid;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
-import net.timeless.jurassicraft.common.genetics.DNA;
+import net.timeless.jurassicraft.common.genetics.DinoDNA;
 import net.timeless.jurassicraft.common.genetics.GeneticsContainer;
 import net.timeless.jurassicraft.common.item.ItemStorageDisc;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
@@ -386,7 +386,7 @@ public class TileDNAHybridizer extends TileEntityLockable implements IUpdatePlay
     {
         if (disc != null)
         {
-            DNA data = DNA.readFromNBT(disc.getTagCompound());
+            DinoDNA data = DinoDNA.readFromNBT(disc.getTagCompound());
 
             return data.getDNAQuality() == 100 ? JCEntityRegistry.getDinosaurById(data.getContainer().getDinosaur()) : null;
         }
@@ -412,7 +412,7 @@ public class TileDNAHybridizer extends TileEntityLockable implements IUpdatePlay
             GeneticsContainer container = new GeneticsContainer(slots[0].getTagCompound().getString("Genetics"));
             container.set(GeneticsContainer.DINOSAUR, dinosaurId);
 
-            DNA dna = new DNA(100, container.toString());
+            DinoDNA dna = new DinoDNA(100, container.toString());
             dna.writeToNBT(nbt);
 
             ItemStack output = new ItemStack(JCItemRegistry.storage_disc, 1, dinosaurId);

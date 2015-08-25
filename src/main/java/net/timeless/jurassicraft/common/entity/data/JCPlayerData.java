@@ -7,7 +7,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.timeless.jurassicraft.common.genetics.DNA;
+import net.timeless.jurassicraft.common.genetics.DinoDNA;
 import net.timeless.jurassicraft.common.paleopad.App;
 import net.timeless.jurassicraft.common.paleopad.JCFile;
 
@@ -139,7 +139,7 @@ public class JCPlayerData implements IExtendedEntityProperties
         openApps.remove(app);
     }
 
-    public void addSequencedDNA(DNA dna)
+    public void addSequencedDNA(DinoDNA dna)
     {
         JCFile sequencedDNADir = getFile("Sequenced DNA", true);
 

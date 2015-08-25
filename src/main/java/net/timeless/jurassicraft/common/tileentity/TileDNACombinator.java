@@ -21,7 +21,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.container.ContainerDnaSynthesizer;
-import net.timeless.jurassicraft.common.genetics.DNA;
+import net.timeless.jurassicraft.common.genetics.DinoDNA;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 public class TileDNACombinator extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
@@ -312,8 +312,8 @@ public class TileDNACombinator extends TileEntityLockable implements IUpdatePlay
         {
             ItemStack output = new ItemStack(JCItemRegistry.storage_disc, 1, slots[0].getItemDamage());
 
-            DNA dna1 = DNA.readFromNBT(slots[0].getTagCompound());
-            DNA dna2 = DNA.readFromNBT(slots[1].getTagCompound());
+            DinoDNA dna1 = DinoDNA.readFromNBT(slots[0].getTagCompound());
+            DinoDNA dna2 = DinoDNA.readFromNBT(slots[1].getTagCompound());
 
             int newQuality = dna1.getDNAQuality() + dna2.getDNAQuality();
 
@@ -322,7 +322,7 @@ public class TileDNACombinator extends TileEntityLockable implements IUpdatePlay
                 newQuality = 100;
             }
 
-            DNA newDNA = new DNA(newQuality, dna1.toString());
+            DinoDNA newDNA = new DinoDNA(newQuality, dna1.toString());
 
             NBTTagCompound outputTag = new NBTTagCompound();
             newDNA.writeToNBT(outputTag);
