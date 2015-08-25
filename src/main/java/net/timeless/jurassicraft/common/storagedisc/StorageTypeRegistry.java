@@ -22,12 +22,12 @@ public class StorageTypeRegistry
     {
         try
         {
-            Class<? extends IStorageType> storageType = storageTypes.get(id);
-
-            if(storageType != null)
+            if(id == null || id.length() == 0)
             {
-                return storageType.newInstance();
+                id = "DinoDNA";
             }
+
+            return storageTypes.get(id).newInstance();
         }
         catch (InstantiationException e)
         {

@@ -22,8 +22,8 @@ public abstract class TileMachineBase extends TileEntityLockable implements IUpd
 {
     protected String customName;
 
-    private int[] processTime = new int[getProcessCount()];
-    private int[] totalProcessTime = new int[getProcessCount()];
+    protected int[] processTime = new int[getProcessCount()];
+    protected int[] totalProcessTime = new int[getProcessCount()];
 
     public void readFromNBT(NBTTagCompound compound)
     {
@@ -362,6 +362,30 @@ public abstract class TileMachineBase extends TileEntityLockable implements IUpd
     protected abstract ItemStack[] getSlots();
 
     protected abstract void setSlots(ItemStack[] slots);
+
+    public boolean hasOutputSlot(ItemStack output)
+    {
+        return getOutputSlot(output) != -1;
+    }
+
+    public int getOutputSlot(ItemStack output)
+    {
+        ItemStack[] slots = getSlots();
+
+        int[] outputs = getOutputs();
+
+        for (int i = 0; i < outputs.length; i++)
+        {
+            int slot = outputs[i];
+
+            if (slots[slot] == null || (ItemStack.areItemStackTagsEqual(slots[slot], output) && slots[slot].getItem() == output.getItem()))
+            {
+                return slot;
+            }
+        }
+
+        return -1;
+    }
 
     public int getField(int id)
     {

@@ -102,6 +102,7 @@ public class EntityCageSmall extends Entity implements IEntityAdditionalSpawnDat
 
         if (entity != null)
         {
+            entity.ticksExisted = this.ticksExisted;
             entity.onUpdate();
         }
 
@@ -135,6 +136,7 @@ public class EntityCageSmall extends Entity implements IEntityAdditionalSpawnDat
             entity.motionY = 0;
             entity.motionZ = 0;
             entity.fallDistance = 0;
+            entity.setHealth(entity.getMaxHealth());
 
             this.setDead();
             this.entityDropItem(new ItemStack(JCItemRegistry.cage_small, 1, marine ? 1 : 0), 0.5F);
