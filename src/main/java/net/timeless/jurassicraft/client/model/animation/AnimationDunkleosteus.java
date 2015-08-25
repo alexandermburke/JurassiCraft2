@@ -22,8 +22,8 @@ public class AnimationDunkleosteus implements IModelAnimator
         float globalDegree = 0.77F;
         float globalHeight = 2F;
 
-        f = entity.ticksExisted;
-        f1 = 1F;
+//        f = entity.ticksExisted;
+//        f1 = 1F;
 
         //tail
         MowzieModelRenderer tail1 = model.getCube("Tail Section 1");
