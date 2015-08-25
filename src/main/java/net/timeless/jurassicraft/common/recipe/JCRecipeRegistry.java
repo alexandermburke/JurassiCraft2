@@ -176,7 +176,7 @@ public class JCRecipeRegistry
                 "III",
                 'G', Blocks.glass_pane, 'I', Items.iron_ingot);
 
-        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.embryonic_machine),
+        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.embryo_calcification_machine),
                 "GIG",
                 "GSG",
                 "III",
