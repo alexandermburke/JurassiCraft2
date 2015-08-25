@@ -23,6 +23,7 @@ public class DinoDNA
     {
         nbt.setInteger("DNAQuality", quality);
         nbt.setString("Genetics", genetics.toString());
+        nbt.setString("StorageId", "DinoDNA");
     }
 
     public static DinoDNA fromStack(ItemStack stack)

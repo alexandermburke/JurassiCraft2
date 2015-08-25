@@ -23,6 +23,7 @@ public class PlantDNA
     public void writeToNBT(NBTTagCompound nbt)
     {
         nbt.setInteger("DNAQuality", quality);
+        nbt.setString("StorageId", "PlantDNA");
     }
 
     public static PlantDNA fromStack(ItemStack stack)
@@ -47,7 +48,7 @@ public class PlantDNA
 
     public void addInformation(ItemStack stack, List tooltip)
     {
-        tooltip.add(EnumChatFormatting.DARK_AQUA + new AdvLang("lore.plant.name").withProperty("plant", "plant." + JCPlantRegistry.getPlantById(plant).getName().toLowerCase() + ".name").build());
+        tooltip.add(EnumChatFormatting.DARK_AQUA + new AdvLang("lore.plant.name").withProperty("plant", "plantse." + JCPlantRegistry.getPlantById(plant).getName().toLowerCase().replaceAll(" ", "_") + ".name").build());
 
         EnumChatFormatting colour;
 
