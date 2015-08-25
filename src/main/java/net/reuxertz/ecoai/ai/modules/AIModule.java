@@ -10,12 +10,15 @@ import net.reuxertz.ecoapi.util.BlockPosHelper;
 
 public abstract class AIModule
 {
-    public enum WorkState { Init, Search, Move, Work }
+    public enum WorkState
+    {
+        Init, Search, Move, Work
+    }
 
     public static final int MaxTickWait = 400;
 
     //Fields
-    protected int[] timeMSDelays = new int[] { 0, 0, 0, 0 };
+    protected int[] timeMSDelays = new int[]{0, 0, 0, 0};
     protected float tickCount = 0, maxWorkDistance = 20, minWorkDistance = 2;
     protected boolean includeY = false, markDead = false, afterMaxKill = true, afterDoneKill = false;
     protected IDemand demand;
@@ -29,15 +32,18 @@ public abstract class AIModule
     {
         this.workTarget = target;
     }
+
     public void setState(WorkState state)
     {
         this.myState = state;
         this.tickCount = (Math.abs(this.timeMSDelays[state.ordinal()]) * -1) - (AICore.RND.nextInt(20) + 10);
     }
+
     public EntityCreature getAgent()
     {
         return this.agentAI.entity();
     }
+
     public boolean isDead()
     {
         return this.markDead;
@@ -48,17 +54,23 @@ public abstract class AIModule
     {
         return null;
     }
+
     public abstract Target nextNavigatePosition();
+
     public abstract boolean doWorkContinue();
+
     public abstract boolean evaluateTarget(Target t);
+
     public boolean isAtWorkPosition()
     {
         return BlockPosHelper.isWithinDistance(this.workTarget.getRealTimePos(), this.getAgent().getPosition(), this.minWorkDistance, !this.includeY);
     }
+
     public AIModule(IDemand demand, AICore entity, AINavigate navigate)
     {
         this(demand, entity, navigate, null);
     }
+
     public AIModule(IDemand demand, AICore entity, AINavigate navigate, Target t)
     {
         this.demand = demand;
@@ -185,6 +197,7 @@ public abstract class AIModule
     {
         this.clearState(null);
     }
+
     public void clearState(WorkState state)
     {
         if (state != null)

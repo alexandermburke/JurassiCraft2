@@ -8,7 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.timeless.jurassicraft.common.container.slot.SlotSyringe;
 import net.timeless.jurassicraft.common.container.slot.SlotWaterBucket;
-import net.timeless.jurassicraft.common.item.JCItemRegistry;
 import net.timeless.jurassicraft.common.tileentity.TileCultivate;
 
 public class ContainerCultivate extends Container

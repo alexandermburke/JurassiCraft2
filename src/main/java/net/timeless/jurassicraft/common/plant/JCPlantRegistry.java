@@ -38,7 +38,7 @@ public class JCPlantRegistry
 
     public void registerPlant(Plant plant)
     {
-        if(!plants.contains(plant))
+        if (!plants.contains(plant))
         {
             plants.add(plant);
         }

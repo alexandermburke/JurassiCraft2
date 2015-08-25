@@ -15,6 +15,7 @@ public class EntityAICreature extends EntityCreature implements IEntityAICreatur
     {
         return IEntityAIAquaticCreature.class.isInstance(this);
     }
+
     public void setNavigator(PathNavigate pn)
     {
         this.navigator = pn;
@@ -24,6 +25,7 @@ public class EntityAICreature extends EntityCreature implements IEntityAICreatur
     {
         this(w, true);
     }
+
     public EntityAICreature(World w, boolean initialize)
     {
         super(w);
@@ -40,7 +42,7 @@ public class EntityAICreature extends EntityCreature implements IEntityAICreatur
         }
     }
 
-    public static void ConstructAIEntity(EntityCreature entity)throws SecurityException,
+    public static void ConstructAIEntity(EntityCreature entity) throws SecurityException,
             NoSuchFieldException, ClassNotFoundException, IllegalArgumentException, IllegalAccessException
     {
         entity.tasks.taskEntries.clear();
@@ -53,7 +55,7 @@ public class EntityAICreature extends EntityCreature implements IEntityAICreatur
             else if (IEntityAISwimmingCreature.class.isInstance(entity))
             {
                 //((PathNavigateGround) entity.getNavigator()).func_179690_a(false);
-                ((IEntityAICreature)entity).setNavigator(new PathNavigateSwimmer(entity, entity.worldObj));
+                ((IEntityAICreature) entity).setNavigator(new PathNavigateSwimmer(entity, entity.worldObj));
             }
             else
                 ((PathNavigateGround) entity.getNavigator()).func_179690_a(true);

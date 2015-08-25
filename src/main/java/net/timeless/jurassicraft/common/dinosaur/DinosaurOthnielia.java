@@ -12,8 +12,8 @@ public class DinosaurOthnielia extends Dinosaur
 
     public DinosaurOthnielia()
     {
-        this.maleTextures = new String[] { getDinosaurTexture("male") };
-        this.femaleTextures = new String[] { getDinosaurTexture("female") };
+        this.maleTextures = new String[]{getDinosaurTexture("male")};
+        this.femaleTextures = new String[]{getDinosaurTexture("female")};
     }
 
     @Override

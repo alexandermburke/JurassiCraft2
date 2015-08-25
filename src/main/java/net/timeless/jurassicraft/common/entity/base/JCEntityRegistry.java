@@ -66,7 +66,7 @@ public class JCEntityRegistry
 
         for (Dinosaur dino : getRegisteredDinosaurs())
         {
-            if(dino.isMarineReptile() && !(dino instanceof IHybrid))
+            if (dino.isMarineReptile() && !(dino instanceof IHybrid))
             {
                 marineDinos.add(dino);
             }
@@ -146,7 +146,7 @@ public class JCEntityRegistry
     {
         dinosaurs.add(dinosaur);
 
-        if(!(dinosaur instanceof IHybrid) && dinosaur.shouldRegister())
+        if (!(dinosaur instanceof IHybrid) && dinosaur.shouldRegister())
         {
             EnumTimePeriod period = dinosaur.getPeriod();
 
@@ -188,7 +188,7 @@ public class JCEntityRegistry
 
         for (Dinosaur dino : getRegisteredDinosaurs())
         {
-            if(!dino.isMarineReptile() && !(dino instanceof IHybrid))
+            if (!dino.isMarineReptile() && !(dino instanceof IHybrid))
             {
                 amberDinos.add(dino);
             }
@@ -208,7 +208,7 @@ public class JCEntityRegistry
 
         for (Dinosaur dino : dinosaurs)
         {
-            if(dino.shouldRegister())
+            if (dino.shouldRegister())
             {
                 reg.add(dino);
             }

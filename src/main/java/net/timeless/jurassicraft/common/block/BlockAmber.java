@@ -30,9 +30,9 @@ public class BlockAmber extends Block
     /**
      * This returns a complete list of items dropped from this block.
      *
-     * @param world The current world
-     * @param pos Block position in world
-     * @param state Current state
+     * @param world   The current world
+     * @param pos     Block position in world
+     * @param state   Current state
      * @param fortune Breakers fortune level
      * @return A ArrayList containing all items this block drops
      */
@@ -40,7 +40,7 @@ public class BlockAmber extends Block
     {
         List<ItemStack> ret = new java.util.ArrayList<ItemStack>();
 
-        Random rand = world instanceof World ? ((World)world).rand : RANDOM;
+        Random rand = world instanceof World ? ((World) world).rand : RANDOM;
 
         int count = rand.nextInt(fortune + 2) - 1;
 
@@ -49,7 +49,7 @@ public class BlockAmber extends Block
             count = 0;
         }
 
-        for(int i = 0; i < count + 1; i++)
+        for (int i = 0; i < count + 1; i++)
         {
             Item item = JCItemRegistry.amber;
 

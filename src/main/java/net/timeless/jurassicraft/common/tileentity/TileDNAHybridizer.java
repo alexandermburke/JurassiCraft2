@@ -26,19 +26,18 @@ import net.timeless.jurassicraft.common.dinosaur.IHybrid;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.genetics.DNA;
 import net.timeless.jurassicraft.common.genetics.GeneticsContainer;
-import net.timeless.jurassicraft.common.genetics.GeneticsHelper;
 import net.timeless.jurassicraft.common.item.ItemStorageDisc;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
-import java.util.Random;
-
 public class TileDNAHybridizer extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
-    private static final int[] slotsTop = new int[] { 0, 1, 2, 3, 4, 5 }; //input
-    private static final int[] slotsBottom = new int[] { 6 }; //output
-    private static final int[] slotsSides = new int[] {};
+    private static final int[] slotsTop = new int[]{0, 1, 2, 3, 4, 5}; //input
+    private static final int[] slotsBottom = new int[]{6}; //output
+    private static final int[] slotsSides = new int[]{};
 
-    /** The ItemStacks that hold the items currently being used in the fossil grinder */
+    /**
+     * The ItemStacks that hold the items currently being used in the fossil grinder
+     */
     private ItemStack[] slots = new ItemStack[7];
 
     private int hybridizeTime;
@@ -323,13 +322,13 @@ public class TileDNAHybridizer extends TileEntityLockable implements IUpdatePlay
         Dinosaur extraGene3 = getDino(extraDNA3Disc);
         Dinosaur extraGene4 = getDino(extraDNA4Disc);
 
-        Dinosaur[] baseGenes = new Dinosaur[] { baseGene1, baseGene2 };
+        Dinosaur[] baseGenes = new Dinosaur[]{baseGene1, baseGene2};
 
-        Dinosaur[] extraGenes = new Dinosaur[] { extraGene1, extraGene2, extraGene3, extraGene4 };
+        Dinosaur[] extraGenes = new Dinosaur[]{extraGene1, extraGene2, extraGene3, extraGene4};
 
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
         {
-            if(dino instanceof IHybrid)
+            if (dino instanceof IHybrid)
             {
                 IHybrid dinoHybrid = (IHybrid) dino;
 
@@ -337,7 +336,7 @@ public class TileDNAHybridizer extends TileEntityLockable implements IUpdatePlay
 
                 for (Class combo : dinoHybrid.getBaseGenes())
                 {
-                    if(combo.isInstance(baseGene1) || combo.isInstance(baseGene2))
+                    if (combo.isInstance(baseGene1) || combo.isInstance(baseGene2))
                     {
                         baseCount++;
                     }
@@ -352,17 +351,17 @@ public class TileDNAHybridizer extends TileEntityLockable implements IUpdatePlay
 
                     for (Class clazz : dinoHybrid.getExtraGenes())
                     {
-                        if(clazz.isInstance(combo))
+                        if (clazz.isInstance(combo))
                         {
                             match = clazz;
                         }
                     }
 
-                    if(match != null && match.isInstance(combo))
+                    if (match != null && match.isInstance(combo))
                     {
                         count++;
                     }
-                    else if(combo != null)
+                    else if (combo != null)
                     {
                         extra = true;
                     }
@@ -371,7 +370,7 @@ public class TileDNAHybridizer extends TileEntityLockable implements IUpdatePlay
                 boolean hasBases = baseCount == dinoHybrid.getBaseGenes().length;
                 boolean hasExtras = !extra && count == dinoHybrid.getExtraGenes().length;
 
-                if(hasBases && hasExtras)
+                if (hasBases && hasExtras)
                 {
                     hybrid = dino;
 
@@ -385,7 +384,7 @@ public class TileDNAHybridizer extends TileEntityLockable implements IUpdatePlay
 
     private Dinosaur getDino(ItemStack disc)
     {
-        if(disc != null)
+        if (disc != null)
         {
             DNA data = DNA.readFromNBT(disc.getTagCompound());
 
@@ -431,11 +430,11 @@ public class TileDNAHybridizer extends TileEntityLockable implements IUpdatePlay
 
             for (int i = 0; i < 6; i++)
             {
-                if(slots[i] != null)
+                if (slots[i] != null)
                 {
                     slots[i].stackSize--;
 
-                    if(slots[i].stackSize <= 0)
+                    if (slots[i].stackSize <= 0)
                     {
                         slots[i] = null;
                     }

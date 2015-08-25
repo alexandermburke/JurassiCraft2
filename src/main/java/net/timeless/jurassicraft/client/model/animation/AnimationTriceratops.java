@@ -46,7 +46,7 @@ public class AnimationTriceratops implements IModelAnimator
         MowzieModelRenderer footRight = model.getCube("RearLeg Foot Right");
         MowzieModelRenderer jaw = model.getCube("Jaw LOWER");
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
 
 //        f = entity.ticksExisted;
 //        f1 = 0.5F;

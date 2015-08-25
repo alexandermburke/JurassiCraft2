@@ -48,10 +48,12 @@ public class AICore extends AIBase
     {
         return (AICore) AICore.getAi(e, AICore.class);
     }
+
     public static AINavigate getAiNavigate(EntityCreature e)
     {
         return (AINavigate) AICore.getAi(e, AINavigate.class);
     }
+
     public static Object getAi(EntityCreature e, Class AIClass)
     {
         for (int i = 0; i < e.tasks.taskEntries.size(); i++)
@@ -64,6 +66,7 @@ public class AICore extends AIBase
         }
         return null;
     }
+
     public static List<EntityAIBase> getAllAI(EntityCreature e)
     {
         List<EntityAIBase> r = new ArrayList<EntityAIBase>();
@@ -74,6 +77,7 @@ public class AICore extends AIBase
         }
         return r;
     }
+
     public static StateLife getBioState(EntityCreature e)
     {
         return AICore.getCore(e).state;
@@ -84,6 +88,7 @@ public class AICore extends AIBase
     {
         return state;
     }
+
     public int getMaxInventorySize()
     {
         return maxInvSize;
@@ -116,6 +121,7 @@ public class AICore extends AIBase
         else
             return stackSrc;
     }
+
     protected ItemStack removeFromStack(ItemStack stackRemAmt, ItemStack stackSrc)
     {
         if (!BaseItem.itemsEqual(stackRemAmt, stackSrc))
@@ -146,6 +152,7 @@ public class AICore extends AIBase
         else
             return stackRemAmt;
     }
+
     public ItemStack addToInventory(ItemStack stack)
     {
         if (stack == null || stack.stackSize == 0)
@@ -162,6 +169,7 @@ public class AICore extends AIBase
 
         return stack;
     }
+
     public ItemStack getFromInventory(ItemStack stack)
     {
         int ss = stack.stackSize;
@@ -172,6 +180,7 @@ public class AICore extends AIBase
         else
             return new ItemStack(remainder.getItem(), ss - remainder.stackSize, remainder.getItemDamage());
     }
+
     public ItemStack removeFromInventory(ItemStack stack)
     {
         if (stack == null || stack.stackSize == 0)
@@ -196,6 +205,7 @@ public class AICore extends AIBase
         else
             return stack;
     }
+
     public int getInventoryCount(ItemStack stack)
     {
         int count = 0;
@@ -238,6 +248,7 @@ public class AICore extends AIBase
         state = new StateLife(entity);
         timer = new CounterObj(entity.worldObj.getWorldTime(), 80, 20);
     }
+
     public AICore(EntityCreature entity)
     {
         this(entity, null);
@@ -258,6 +269,7 @@ public class AICore extends AIBase
 
         return nbt;
     }
+
     @Override
     public void readFromEntityNbt()
     {
@@ -283,7 +295,7 @@ public class AICore extends AIBase
         //if ((aiNav != null) && (!aiNav.isEnabled()))
         //{
         //    //aiNav.setEnabled(true);
-            //aiNav.activateWander();
+        //aiNav.activateWander();
         //    aiNav.activateIdleWander(.05);
         //}
 
@@ -296,6 +308,7 @@ public class AICore extends AIBase
 
         //System.out.println("aiTick");
     }
+
     public void updateActions()
     {
 
@@ -321,7 +334,7 @@ public class AICore extends AIBase
             AIModule nai = null;//c.newInstance(curDemand, this, getAiNavigate(this.entity()), null);
 
             //Create AI Object instance based on avaialble classes using reflection
-            for (Class c: this.aiObjs)
+            for (Class c : this.aiObjs)
             {
                 Constructor[] cs = c.getConstructors();
                 Constructor ci = cs[0];
@@ -329,18 +342,23 @@ public class AICore extends AIBase
                 {
                     //if (ci.getParameterCount() == 4)
                     //{
-                        try
-                        {
-                            nai = (AIModule)ci.newInstance(curDemand, this, getAiNavigate(this.entity()), t);
-                            //break;
-                        }
-                        catch (InstantiationException x) {
-                            x.printStackTrace();
-                        } catch (InvocationTargetException x) {
-                            x.printStackTrace();
-                        } catch (IllegalAccessException x) {
-                            x.printStackTrace();
-                        }
+                    try
+                    {
+                        nai = (AIModule) ci.newInstance(curDemand, this, getAiNavigate(this.entity()), t);
+                        //break;
+                    }
+                    catch (InstantiationException x)
+                    {
+                        x.printStackTrace();
+                    }
+                    catch (InvocationTargetException x)
+                    {
+                        x.printStackTrace();
+                    }
+                    catch (IllegalAccessException x)
+                    {
+                        x.printStackTrace();
+                    }
                     //}
                 }
 
@@ -364,6 +382,7 @@ public class AICore extends AIBase
             AICore.getAiNavigate(this.entity).activateIdleWander(.05);
 
     }
+
     public void updateWants()
     {
         //HashMap<ItemDemand, ItemDemand> oldNewMap = new HashMap<ItemDemand, ItemDemand>();

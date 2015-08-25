@@ -78,15 +78,15 @@ public class EntityCageSmall extends Entity implements IEntityAdditionalSpawnDat
     {
         super.onUpdate();
 
-        if(worldObj.isRemote)
+        if (worldObj.isRemote)
         {
             int id = dataWatcher.getWatchableObjectInt(25);
 
-            if(id != -1)
+            if (id != -1)
             {
                 entity = (EntityDinosaur) EntityList.createEntityByID(id, worldObj);
 
-                if(entity != null)
+                if (entity != null)
                 {
                     entity.setMale(dataWatcher.getWatchableObjectInt(20) == 0);
                     entity.setAge(dataWatcher.getWatchableObjectInt(17));
@@ -100,14 +100,14 @@ public class EntityCageSmall extends Entity implements IEntityAdditionalSpawnDat
             }
         }
 
-        if(entity != null)
+        if (entity != null)
         {
             entity.onUpdate();
         }
 
-        if(!worldObj.isRemote)
+        if (!worldObj.isRemote)
         {
-            if(entity != null)
+            if (entity != null)
             {
                 dataWatcher.updateObject(25, EntityList.getEntityID(entity));
                 dataWatcher.updateObject(17, entity.getDinosaurAge());
@@ -127,7 +127,7 @@ public class EntityCageSmall extends Entity implements IEntityAdditionalSpawnDat
      */
     public boolean interactFirst(EntityPlayer playerIn)
     {
-        if(entity != null && !worldObj.isRemote)
+        if (entity != null && !worldObj.isRemote)
         {
             entity.setPosition(posX, posY, posZ);
             worldObj.spawnEntityInWorld(entity);
@@ -150,11 +150,11 @@ public class EntityCageSmall extends Entity implements IEntityAdditionalSpawnDat
     {
         this.setDead();
 
-        if(!worldObj.isRemote)
+        if (!worldObj.isRemote)
         {
             ItemStack stack = new ItemStack(JCItemRegistry.cage_small, 1, marine ? 1 : 0);
 
-            if(entity != null)
+            if (entity != null)
             {
                 NBTTagCompound nbt = new NBTTagCompound();
 
@@ -174,7 +174,7 @@ public class EntityCageSmall extends Entity implements IEntityAdditionalSpawnDat
     {
         int cagedId = tagCompund.getInteger("CagedID");
 
-        if(cagedId != -1)
+        if (cagedId != -1)
         {
             entity = (EntityDinosaur) EntityList.createEntityByID(cagedId, worldObj);
             entity.readFromNBT(tagCompund.getCompoundTag("Entity"));
@@ -186,7 +186,7 @@ public class EntityCageSmall extends Entity implements IEntityAdditionalSpawnDat
     @Override
     protected void writeEntityToNBT(NBTTagCompound tagCompound)
     {
-        if(entity != null)
+        if (entity != null)
         {
             int entityId = EntityList.getEntityID(entity);
 
@@ -221,7 +221,7 @@ public class EntityCageSmall extends Entity implements IEntityAdditionalSpawnDat
 
     public void setEntityData(NBTTagCompound entityData)
     {
-        if(entity != null)
+        if (entity != null)
         {
             entity.readFromNBT(entityData);
         }

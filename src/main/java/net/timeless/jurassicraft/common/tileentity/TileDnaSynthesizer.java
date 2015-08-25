@@ -21,16 +21,17 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.container.ContainerDnaSynthesizer;
-import net.timeless.jurassicraft.common.genetics.DNA;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 public class TileDnaSynthesizer extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
-    private static final int[] slotsTop = new int[] { 0, 1, 2 }; //input
-    private static final int[] slotsBottom = new int[] { 6, 5, 4, 3 }; //output
-    private static final int[] slotsSides = new int[] {};
+    private static final int[] slotsTop = new int[]{0, 1, 2}; //input
+    private static final int[] slotsBottom = new int[]{6, 5, 4, 3}; //output
+    private static final int[] slotsSides = new int[]{};
 
-    /** The ItemStacks that hold the items currently being used in the dna synthesizer */
+    /**
+     * The ItemStacks that hold the items currently being used in the dna synthesizer
+     */
     private ItemStack[] slots = new ItemStack[7];
 
     private int synthesizeTime;

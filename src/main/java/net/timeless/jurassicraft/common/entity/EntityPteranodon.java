@@ -1,10 +1,6 @@
 package net.timeless.jurassicraft.common.entity;
 
 import net.minecraft.world.World;
-import net.reuxertz.ecoapi.ecology.role.ICarnivore;
-import net.reuxertz.ecoapi.entity.IEntityAIFlyingCreature;
-import net.timeless.animationapi.AnimationAPI;
-import net.timeless.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurFlyingAggressive;
 

@@ -35,7 +35,7 @@ public class GuiAppFlappyDino extends GuiApp
 
         gui.drawScaledRect(0, 0, 229, 150, 1.0F, 0x56FFF0);
 
-        if(System.currentTimeMillis() % 20 == 0)
+        if (System.currentTimeMillis() % 20 == 0)
         {
             x++;
 
@@ -48,13 +48,13 @@ public class GuiAppFlappyDino extends GuiApp
 
             motionY--;
 
-            if(y < 20)
+            if (y < 20)
             {
                 init();
             }
         }
 
-        if(mainScreen)
+        if (mainScreen)
         {
             mc.getTextureManager().bindTexture(logo);
             gui.drawScaledTexturedModalRect(5, 5, 0, 0, 128, 64, 128, 64, 1.0F);
@@ -87,9 +87,9 @@ public class GuiAppFlappyDino extends GuiApp
         mouseX -= dimensions.getScaledWidth() / 2 - 115;
         mouseY -= 65;
 
-        if(mainScreen)
+        if (mainScreen)
         {
-            if(mouseX > 90 && mouseX < 140 && mouseY > 100 && mouseY < 120)
+            if (mouseX > 90 && mouseX < 140 && mouseY > 100 && mouseY < 120)
             {
                 mainScreen = false;
             }

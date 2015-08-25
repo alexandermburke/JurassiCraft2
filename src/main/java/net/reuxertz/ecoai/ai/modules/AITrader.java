@@ -40,6 +40,7 @@ public class AITrader extends AIModule
         return t.entity != null && !t.entity.isDead && t.entityHeldItem != null && BaseItem.itemsEqual(((EntityPlayer) t.entity).getHeldItem(), t.entityHeldItem);
 
     }
+
     public Target nextNavigatePosition()
     {
         Target t = null;
@@ -72,7 +73,7 @@ public class AITrader extends AIModule
                 continue;
 
             if (this.demand.isItemDemanded(s) != null)
-                t =  new Target(this.agentAI.entity().worldObj, p);
+                t = new Target(this.agentAI.entity().worldObj, p);
         }
 
         if (t != null)
@@ -80,6 +81,7 @@ public class AITrader extends AIModule
 
         return null;
     }
+
     public boolean doWorkContinue()
     {
         if (this.getAgent().worldObj.isRemote)
@@ -98,7 +100,7 @@ public class AITrader extends AIModule
 
         if (this.workTarget.entity instanceof EntityItem)
         {
-            EntityItem entityItem = (EntityItem)this.workTarget.entity;
+            EntityItem entityItem = (EntityItem) this.workTarget.entity;
             ItemStack r = this.agentAI.addToInventory(entityItem.getEntityItem());
 
             if (r == null)

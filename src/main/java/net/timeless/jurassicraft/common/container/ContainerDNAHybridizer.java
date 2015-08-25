@@ -8,7 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.timeless.jurassicraft.common.container.slot.SlotStorage;
 import net.timeless.jurassicraft.common.tileentity.TileDNAHybridizer;
-import net.timeless.jurassicraft.common.tileentity.TileDnaSynthesizer;
 
 public class ContainerDNAHybridizer extends Container
 {

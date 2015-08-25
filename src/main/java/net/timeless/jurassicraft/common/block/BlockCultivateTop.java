@@ -11,7 +11,6 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 public class BlockCultivateTop extends BlockCultivate
 {
@@ -46,7 +45,7 @@ public class BlockCultivateTop extends BlockCultivate
     {
         BlockPos bottomBlock = pos.add(0, -1, 0);
 
-        if(worldIn.getBlockState(bottomBlock).getBlock() != JCBlockRegistry.cultivate_bottom)
+        if (worldIn.getBlockState(bottomBlock).getBlock() != JCBlockRegistry.cultivate_bottom)
         {
             worldIn.setBlockState(bottomBlock, JCBlockRegistry.cultivate_bottom.getDefaultState().withProperty(COLOR, state.getValue(COLOR)));
         }
@@ -55,7 +54,7 @@ public class BlockCultivateTop extends BlockCultivate
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
     {
         worldIn.setBlockState(pos.add(0, -1, 0), Blocks.air.getDefaultState());
-       dropItems(worldIn, pos);
+        dropItems(worldIn, pos);
 
         super.breakBlock(worldIn, pos, state);
     }

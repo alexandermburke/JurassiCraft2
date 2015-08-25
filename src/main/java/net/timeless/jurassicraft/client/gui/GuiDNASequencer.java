@@ -14,7 +14,9 @@ import net.timeless.jurassicraft.common.container.ContainerDNASequencer;
 public class GuiDNASequencer extends GuiContainer
 {
     private static final ResourceLocation texture = new ResourceLocation("jurassicraft:textures/gui/dna_sequencer.png");
-    /** The player inventory bound to this GUI. */
+    /**
+     * The player inventory bound to this GUI.
+     */
     private final InventoryPlayer playerInventory;
     private IInventory dnaSequencer;
 
@@ -49,7 +51,7 @@ public class GuiDNASequencer extends GuiContainer
         for (int i = 0; i < 3; i++)
         {
             int progress = this.getProgress(22, i);
-            this.drawTexturedModalRect(k + 87, l + 21  + i * 20, 176, 0, progress, 6);
+            this.drawTexturedModalRect(k + 87, l + 21 + i * 20, 176, 0, progress, 6);
         }
     }
 

@@ -19,6 +19,6 @@ public class EcoAPI
 
     public static void registerEcologicalRoleFoodItem(IEcologicalRole role, ItemStack stack)
     {
-         role.addFoodItem(stack);
+        role.addFoodItem(stack);
     }
 }

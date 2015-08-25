@@ -28,11 +28,13 @@ import java.util.Random;
 
 public class TileFossilGrinder extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
-    private static final int[] slotsTop = new int[] { 0 }; //input
-    private static final int[] slotsBottom = new int[] { 6, 5, 4, 3, 2, 1 }; //output
-    private static final int[] slotsSides = new int[] {};
+    private static final int[] slotsTop = new int[]{0}; //input
+    private static final int[] slotsBottom = new int[]{6, 5, 4, 3, 2, 1}; //output
+    private static final int[] slotsSides = new int[]{};
 
-    /** The ItemStacks that hold the items currently being used in the fossil grinder */
+    /**
+     * The ItemStacks that hold the items currently being used in the fossil grinder
+     */
     private ItemStack[] slots = new ItemStack[7];
 
     private int grindTime;

@@ -13,7 +13,6 @@ import net.minecraft.world.World;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
 import net.timeless.jurassicraft.common.tileentity.TileCultivate;
-import net.timeless.jurassicraft.common.tileentity.TileDNACombinator;
 
 public class BlockCultivateBottom extends BlockCultivate
 {
@@ -69,7 +68,7 @@ public class BlockCultivateBottom extends BlockCultivate
 
         Block block = worldIn.getBlockState(topBlock).getBlock();
 
-        if(block == Blocks.air)
+        if (block == Blocks.air)
         {
             worldIn.setBlockState(topBlock, JCBlockRegistry.cultivate_top.getDefaultState().withProperty(COLOR, state.getValue(COLOR)));
         }

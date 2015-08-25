@@ -1,8 +1,6 @@
 package net.timeless.jurassicraft.common.entity;
 
 import net.minecraft.world.World;
-import net.reuxertz.ecoapi.ecology.role.IHerbivore;
-import net.reuxertz.ecoapi.entity.IEntityAICreature;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurProvokableHerbivore;
 import net.timeless.unilib.common.animation.ChainBuffer;
 
@@ -10,10 +8,10 @@ public class EntityStegosaurus extends EntityDinosaurProvokableHerbivore  //impl
 {
     public ChainBuffer tailBuffer = new ChainBuffer(6);
 
-    private static final String[] hurtSounds = new String[] { "stegosaurus_hurt_1", "stegosaurus_hurt_2" };
-    private static final String[] livingSounds = new String[] { "stegosaurus_living_1", "stegosaurus_living_2" };
-    private static final String[] deathSounds = new String[] { "stegosaurus_death_1", "stegosaurus_death_2" };
-    
+    private static final String[] hurtSounds = new String[]{"stegosaurus_hurt_1", "stegosaurus_hurt_2"};
+    private static final String[] livingSounds = new String[]{"stegosaurus_living_1", "stegosaurus_living_2"};
+    private static final String[] deathSounds = new String[]{"stegosaurus_death_1", "stegosaurus_death_2"};
+
     public EntityStegosaurus(World world)
     {
         super(world);

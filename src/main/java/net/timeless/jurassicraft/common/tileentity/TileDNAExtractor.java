@@ -21,7 +21,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.container.ContainerDNAExtractor;
-import net.timeless.jurassicraft.common.container.ContainerDnaSynthesizer;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.genetics.DNA;
@@ -33,11 +32,13 @@ import java.util.Random;
 
 public class TileDNAExtractor extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
-    private static final int[] slotsTop = new int[] { 0, 1 }; //input
-    private static final int[] slotsBottom = new int[] { 2, 3, 4, 5 }; //output
-    private static final int[] slotsSides = new int[] {};
+    private static final int[] slotsTop = new int[]{0, 1}; //input
+    private static final int[] slotsBottom = new int[]{2, 3, 4, 5}; //output
+    private static final int[] slotsSides = new int[]{};
 
-    /** The ItemStacks that hold the items currently being used in the dna extractor */
+    /**
+     * The ItemStacks that hold the items currently being used in the dna extractor
+     */
     private ItemStack[] slots = new ItemStack[6];
 
     private int extractTime;
@@ -304,7 +305,7 @@ public class TileDNAExtractor extends TileEntityLockable implements IUpdatePlaye
         {
             for (int i = 2; i < 6; i++)
             {
-                if(slots[i] == null)
+                if (slots[i] == null)
                 {
                     return true;
                 }
@@ -321,9 +322,9 @@ public class TileDNAExtractor extends TileEntityLockable implements IUpdatePlaye
     {
         if (this.canExtract())
         {
-            if(slots[0].getItem() == JCItemRegistry.amber || slots[0].getItem() == JCItemRegistry.sea_lamprey)
+            if (slots[0].getItem() == JCItemRegistry.amber || slots[0].getItem() == JCItemRegistry.sea_lamprey)
             {
-                if(slots[0].getItemDamage() == 0)
+                if (slots[0].getItemDamage() == 0)
                 {
                     Random rand = worldObj.rand;
 
@@ -352,7 +353,7 @@ public class TileDNAExtractor extends TileEntityLockable implements IUpdatePlaye
 
                     for (int i = 2; i < 6; i++)
                     {
-                        if(slots[i] == null)
+                        if (slots[i] == null)
                         {
                             empty = i;
                             break;

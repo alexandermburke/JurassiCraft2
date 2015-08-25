@@ -20,7 +20,7 @@ public class ClientEventHandler
     @SubscribeEvent
     public void preRender(RenderLivingEvent.Pre event)
     {
-        if(event.entity instanceof EntityDinosaur && event.renderer instanceof IDinosaurRenderer)
+        if (event.entity instanceof EntityDinosaur && event.renderer instanceof IDinosaurRenderer)
         {
             IDinosaurRenderer dinoRenderer = (IDinosaurRenderer) event.renderer;
             EntityDinosaur dinosaur = (EntityDinosaur) event.entity;
@@ -32,7 +32,7 @@ public class ClientEventHandler
     @SubscribeEvent
     public void postRenderer(RenderLivingEvent.Post event)
     {
-        if(event.entity instanceof EntityDinosaur && event.renderer instanceof IDinosaurRenderer && !(event.renderer instanceof RenderIndominusRex))
+        if (event.entity instanceof EntityDinosaur && event.renderer instanceof IDinosaurRenderer && !(event.renderer instanceof RenderIndominusRex))
         {
             GlStateManager.color(1.0F, 1.0F, 1.0F);
         }

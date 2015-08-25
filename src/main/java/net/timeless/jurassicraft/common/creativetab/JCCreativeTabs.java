@@ -2,7 +2,6 @@ package net.timeless.jurassicraft.common.creativetab;
 
 import net.minecraft.item.Item;
 import net.timeless.jurassicraft.common.block.JCBlockRegistry;
-import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 public class JCCreativeTabs

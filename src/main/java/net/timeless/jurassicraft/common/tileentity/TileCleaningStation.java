@@ -28,17 +28,23 @@ import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 public class TileCleaningStation extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
-    private static final int[] slotsTop = new int[] { 0 };
-    private static final int[] slotsBottom = new int[] { 7, 6, 5, 4, 3, 2, 1 };
-    private static final int[] slotsSides = new int[] { 1 }; //0 = cleaning 1 = fuel 2 = output
+    private static final int[] slotsTop = new int[]{0};
+    private static final int[] slotsBottom = new int[]{7, 6, 5, 4, 3, 2, 1};
+    private static final int[] slotsSides = new int[]{1}; //0 = cleaning 1 = fuel 2 = output
 
-    /** The ItemStacks that hold the items currently being used in the cleaning station */
+    /**
+     * The ItemStacks that hold the items currently being used in the cleaning station
+     */
     private ItemStack[] slots = new ItemStack[8];
 
-    /** The number of ticks that the cleaning station will keep washing */
+    /**
+     * The number of ticks that the cleaning station will keep washing
+     */
     private int cleaningStationWaterTime;
 
-    /** The number of ticks that a fresh copy of the currently-washing item would keep the cleaning station washing for */
+    /**
+     * The number of ticks that a fresh copy of the currently-washing item would keep the cleaning station washing for
+     */
     private int currentItemWaterTime;
 
     private int cleanTime;

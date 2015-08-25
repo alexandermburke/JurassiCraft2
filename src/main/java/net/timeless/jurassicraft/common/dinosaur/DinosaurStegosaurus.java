@@ -12,8 +12,8 @@ public class DinosaurStegosaurus extends Dinosaur
 
     public DinosaurStegosaurus()
     {
-        this.maleTextures = new String[] { getDinosaurTexture("male") };
-        this.femaleTextures = new String[] { getDinosaurTexture("female") };
+        this.maleTextures = new String[]{getDinosaurTexture("male")};
+        this.femaleTextures = new String[]{getDinosaurTexture("female")};
     }
 
     public float getRenderYOffset()

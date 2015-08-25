@@ -26,7 +26,7 @@ public class ItemGrowthSerum extends Item
 
             stack.stackSize--;
 
-            if(!player.capabilities.isCreativeMode)
+            if (!player.capabilities.isCreativeMode)
             {
                 player.inventory.addItemStackToInventory(new ItemStack(JCItemRegistry.empty_syringe));
             }

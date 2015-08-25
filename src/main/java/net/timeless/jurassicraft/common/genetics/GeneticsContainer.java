@@ -96,7 +96,7 @@ public class GeneticsContainer
     {
         int charStart = id * 4;
 
-        if(charStart >= 0 && charStart + 3 < genetics.length())
+        if (charStart >= 0 && charStart + 3 < genetics.length())
         {
             return convert(genetics.charAt(charStart), genetics.charAt(charStart + 1), genetics.charAt(charStart + 2), genetics.charAt(charStart + 3));
         }
@@ -108,7 +108,7 @@ public class GeneticsContainer
     {
         int charStart = id * 4;
 
-        if(charStart >= 0 && charStart + 3 < genetics.length())
+        if (charStart >= 0 && charStart + 3 < genetics.length())
         {
             char[] chars = convert(value);
 
@@ -131,11 +131,11 @@ public class GeneticsContainer
 
         for (char c : chars)
         {
-            if(c == 'C')
+            if (c == 'C')
                 value += 1 * Math.pow(4, i);
-            else if(c == 'G')
+            else if (c == 'G')
                 value += 2 * Math.pow(4, i);
-            else if(c == 'T')
+            else if (c == 'T')
                 value += 3 * Math.pow(4, i);
 
             i++;
@@ -152,7 +152,7 @@ public class GeneticsContainer
 
         int index = 0;
 
-        while(next > 0)
+        while (next > 0)
         {
             int r = next % 4;
             next = (int) Math.floor(next / 4);

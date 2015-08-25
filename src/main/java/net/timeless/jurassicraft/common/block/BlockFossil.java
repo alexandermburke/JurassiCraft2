@@ -63,7 +63,7 @@ public class BlockFossil extends Block implements ISubBlocksBlock
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] { VARIANT });
+        return new BlockState(this, new IProperty[]{VARIANT});
     }
 
     protected ItemStack createStackedBlock(IBlockState state)
@@ -114,7 +114,6 @@ public class BlockFossil extends Block implements ISubBlocksBlock
      * Queries the harvest level of this item stack for the specified tool class,
      * Returns -1 if this tool is not of the specified type
      *
-     * @param stack This item stack instance
      * @return Harvest level, or -1 if not the specified tool type.
      */
     public int getHarvestLevel(IBlockState state)

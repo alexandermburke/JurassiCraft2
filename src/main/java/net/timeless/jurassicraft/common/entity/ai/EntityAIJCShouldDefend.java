@@ -11,7 +11,9 @@ import java.util.List;
 public class EntityAIJCShouldDefend extends EntityAIJCTarget
 {
     private boolean entityCallsForHelp;
-    /** Store the previous revengeTimer value */
+    /**
+     * Store the previous revengeTimer value
+     */
     private int revengeTimerOld;
     private final Class[] field_179447_c;
     private static final String __OBFID = "CL_00001619";

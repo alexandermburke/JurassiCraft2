@@ -27,11 +27,11 @@ public class SpecialRendererDNAExtractor extends TileEntitySpecialRenderer
 
         EnumFacing value = (EnumFacing) tileEntity.getWorld().getBlockState(tile.getPos()).getValue(BlockOriented.FACING);
 
-        if(value == EnumFacing.EAST)
+        if (value == EnumFacing.EAST)
         {
             value = EnumFacing.WEST;
         }
-        else if(value == EnumFacing.WEST)
+        else if (value == EnumFacing.WEST)
         {
             value = EnumFacing.EAST;
         }
@@ -46,19 +46,19 @@ public class SpecialRendererDNAExtractor extends TileEntitySpecialRenderer
 
         RenderItem renderItem = mc.getRenderItem();
 
-        if(extraction != null)
+        if (extraction != null)
         {
             renderItem.renderItem(extraction, renderItem.getItemModelMesher().getItemModel(extraction));
         }
 
         ItemStack disc = tile.getStackInSlot(1);
 
-        if(disc != null)
+        if (disc != null)
         {
             GlStateManager.translate(0, 0, -0.45);
             GlStateManager.rotate(15, 1, 0, 0);
 
-            if(tile.isExtracting())
+            if (tile.isExtracting())
             {
                 GlStateManager.rotate(mc.thePlayer.ticksExisted * 2 % 360, 0, 0, 1);
             }

@@ -36,9 +36,9 @@ import java.util.Random;
 
 public class TileCultivate extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
-    private static final int[] slotsTop = new int[] { 0, 1 }; //input (embryo + nutrients)
-    private static final int[] slotsBottom = new int[] { 4 }; //output
-    private static final int[] slotsSides = new int[] { 2, 3 }; //buckets
+    private static final int[] slotsTop = new int[]{0, 1}; //input (embryo + nutrients)
+    private static final int[] slotsBottom = new int[]{4}; //output
+    private static final int[] slotsSides = new int[]{2, 3}; //buckets
 
     private int waterLevel;
 
@@ -49,7 +49,9 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
 
     private int maxNutrients = 3000;
 
-    /** The ItemStacks that hold the items currently being used in the cultivator */
+    /**
+     * The ItemStacks that hold the items currently being used in the cultivator
+     */
     private ItemStack[] slots = new ItemStack[5];
 
     private int cultivateTime;
@@ -291,24 +293,24 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
                 }
             }
 
-            if(waterLevel < 3 && slots[2] != null && slots[2].getItem() == Items.water_bucket)
+            if (waterLevel < 3 && slots[2] != null && slots[2].getItem() == Items.water_bucket)
             {
-                if(slots[3] == null || slots[3].stackSize < 16)
+                if (slots[3] == null || slots[3].stackSize < 16)
                 {
                     slots[2].stackSize--;
 
-                    if(slots[2].stackSize <= 0)
+                    if (slots[2].stackSize <= 0)
                     {
                         slots[2] = null;
                     }
 
                     waterLevel++;
 
-                    if(slots[3] == null)
+                    if (slots[3] == null)
                     {
                         slots[3] = new ItemStack(Items.bucket);
                     }
-                    else if(slots[3].getItem() == Items.bucket)
+                    else if (slots[3].getItem() == Items.bucket)
                     {
                         slots[3].stackSize++;
                     }
@@ -317,7 +319,7 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
                 }
             }
 
-            if(slots[1] != null && JCFoodNutrients.FOODLIST.containsKey(slots[1].getItem()))
+            if (slots[1] != null && JCFoodNutrients.FOODLIST.containsKey(slots[1].getItem()))
             {
                 if ((proximates < maxNutrients) || (minerals < maxNutrients) || (vitamins < maxNutrients) || (lipids < maxNutrients))
                 {
@@ -411,7 +413,7 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
         {
             Dinosaur dino = JCEntityRegistry.getDinosaurById(slots[0].getItemDamage());
 
-            if(dino.isMarineReptile() && lipids >= dino.getLipids() && minerals >= dino.getMinerals() && proximates >= dino.getProximates() && vitamins >= dino.getVitamins()) //TODO mammal
+            if (dino.isMarineReptile() && lipids >= dino.getLipids() && minerals >= dino.getMinerals() && proximates >= dino.getProximates() && vitamins >= dino.getVitamins()) //TODO mammal
             {
                 return true;
             }
@@ -435,7 +437,7 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
             vitamins -= dinoInEgg.getVitamins();
             proximates -= dinoInEgg.getProximates();
 
-            if(dinoInEgg != null)
+            if (dinoInEgg != null)
             {
                 Class<? extends EntityDinosaur> dinoClass = dinoInEgg.getDinosaurClass();
 
@@ -456,7 +458,7 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
 
                     for (EntityCageSmall cCage : cages)
                     {
-                        if(cCage.getEntity() == null)
+                        if (cCage.getEntity() == null)
                         {
                             cage = cCage;
                             break;
@@ -479,7 +481,7 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
 
                     slots[0].stackSize--;
 
-                    if(slots[0].stackSize <= 0)
+                    if (slots[0].stackSize <= 0)
                     {
                         slots[0] = null;
                     }
@@ -644,7 +646,7 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
 
     public Dinosaur getDinosaur()
     {
-        if(slots[0] != null)
+        if (slots[0] != null)
         {
             return JCEntityRegistry.getDinosaurById(slots[0].getItemDamage());
         }

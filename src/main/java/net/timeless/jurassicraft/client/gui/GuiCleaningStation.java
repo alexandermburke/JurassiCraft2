@@ -14,7 +14,9 @@ import net.timeless.jurassicraft.common.tileentity.TileCleaningStation;
 public class GuiCleaningStation extends GuiContainer
 {
     private static final ResourceLocation texture = new ResourceLocation("jurassicraft:textures/gui/cleaning_station.png");
-    /** The player inventory bound to this GUI. */
+    /**
+     * The player inventory bound to this GUI.
+     */
     private final InventoryPlayer playerInventory;
     private IInventory cleaningStation;
 
@@ -50,7 +52,7 @@ public class GuiCleaningStation extends GuiContainer
         if (TileCleaningStation.isCleaning(this.cleaningStation))
         {
             progress = this.func_175382_i(51);
-            this.drawTexturedModalRect(k + 46, l + 18 + 51 - progress, 176,  81 - progress, 14, progress + 1);
+            this.drawTexturedModalRect(k + 46, l + 18 + 51 - progress, 176, 81 - progress, 14, progress + 1);
         }
 
         progress = this.getProgress(24);

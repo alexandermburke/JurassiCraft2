@@ -51,8 +51,14 @@ public abstract class GuiApp
         }
     }
 
-    public void keyPressed(int key){}
-    public void mouseClicked(int mouseX, int mouseY, GuiPaleoTab gui){}
+    public void keyPressed(int key)
+    {
+    }
+
+    public void mouseClicked(int mouseX, int mouseY, GuiPaleoTab gui)
+    {
+    }
+
     public abstract void actionPerformed(GuiButton button);
 
     public abstract void init();

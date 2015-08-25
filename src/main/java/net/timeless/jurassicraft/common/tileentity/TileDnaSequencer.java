@@ -30,11 +30,13 @@ import java.util.Random;
 
 public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
-    private static final int[] slotsTop = new int[] { 0, 1, 2, 3, 4, 5 }; //input
-    private static final int[] slotsBottom = new int[] { 6, 7, 8 }; //output
-    private static final int[] slotsSides = new int[] {};
+    private static final int[] slotsTop = new int[]{0, 1, 2, 3, 4, 5}; //input
+    private static final int[] slotsBottom = new int[]{6, 7, 8}; //output
+    private static final int[] slotsSides = new int[]{};
 
-    /** The ItemStacks that hold the items currently being used in the dna sequencer */
+    /**
+     * The ItemStacks that hold the items currently being used in the dna sequencer
+     */
     private ItemStack[] slots = new ItemStack[9];
 
     private int[] sequenceTime = new int[3];
@@ -358,7 +360,7 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
 
             NBTTagCompound nbt = slots[tissue + 1].getTagCompound();
 
-            if(nbt == null)
+            if (nbt == null)
             {
                 nbt = new NBTTagCompound();
             }
@@ -461,11 +463,11 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
 
     public int getField(int id)
     {
-        if(id < 3)
+        if (id < 3)
         {
             return sequenceTime[id];
         }
-        else if(id < 6)
+        else if (id < 6)
         {
             return totalSequenceTime[id - 3];
         }
@@ -475,11 +477,11 @@ public class TileDnaSequencer extends TileEntityLockable implements IUpdatePlaye
 
     public void setField(int id, int value)
     {
-        if(id < 3)
+        if (id < 3)
         {
             sequenceTime[id] = value;
         }
-        else if(id < 6)
+        else if (id < 6)
         {
             totalSequenceTime[id - 3] = value;
         }

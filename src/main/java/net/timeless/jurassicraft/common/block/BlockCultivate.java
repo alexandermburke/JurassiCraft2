@@ -43,12 +43,12 @@ public class BlockCultivate extends BlockContainer implements ISubBlocksBlock
      */
     public int damageDropped(IBlockState state)
     {
-        return ((EnumDyeColor)state.getValue(COLOR)).getMetadata();
+        return ((EnumDyeColor) state.getValue(COLOR)).getMetadata();
     }
 
     public void dropItems(World world, BlockPos pos)
     {
-        if(world.getBlockState(pos).getBlock() == JCBlockRegistry.cultivate_top)
+        if (world.getBlockState(pos).getBlock() == JCBlockRegistry.cultivate_top)
         {
             pos.add(0, -1, 0);
         }
@@ -93,7 +93,7 @@ public class BlockCultivate extends BlockContainer implements ISubBlocksBlock
      */
     public MapColor getMapColor(IBlockState state)
     {
-        return ((EnumDyeColor)state.getValue(COLOR)).getMapColor();
+        return ((EnumDyeColor) state.getValue(COLOR)).getMapColor();
     }
 
     /**
@@ -109,12 +109,12 @@ public class BlockCultivate extends BlockContainer implements ISubBlocksBlock
      */
     public int getMetaFromState(IBlockState state)
     {
-        return ((EnumDyeColor)state.getValue(COLOR)).getMetadata();
+        return ((EnumDyeColor) state.getValue(COLOR)).getMetadata();
     }
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {COLOR});
+        return new BlockState(this, new IProperty[]{COLOR});
     }
 
     @SideOnly(Side.CLIENT)

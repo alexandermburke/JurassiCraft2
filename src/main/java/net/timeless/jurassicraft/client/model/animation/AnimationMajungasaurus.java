@@ -66,12 +66,12 @@ public class AnimationMajungasaurus implements IModelAnimator
         MowzieModelRenderer handRight = model.getCube("Hand Right");
         MowzieModelRenderer handLeft = model.getCube("Hand LEFT");
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail1, tail2, tail3, tail4, tail5, tail6 };
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail1, tail2, tail3, tail4, tail5, tail6};
 
-        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[] { upperArmLeft, lowerArmLeft, handLeft };
-        MowzieModelRenderer[] armRight = new MowzieModelRenderer[] { upperArmRight, lowerArmRight, handRight };
+        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[]{upperArmLeft, lowerArmLeft, handLeft};
+        MowzieModelRenderer[] armRight = new MowzieModelRenderer[]{upperArmRight, lowerArmRight, handRight};
 
-        MowzieModelRenderer[] body = new MowzieModelRenderer[] { bodyRear, bodyMid, bodyFront, neck1, neck2, neck3, neck4, head };
+        MowzieModelRenderer[] body = new MowzieModelRenderer[]{bodyRear, bodyMid, bodyFront, neck1, neck2, neck3, neck4, head};
 
         float globalSpeed = 0.5F;
         float globalDegree = 0.4F;

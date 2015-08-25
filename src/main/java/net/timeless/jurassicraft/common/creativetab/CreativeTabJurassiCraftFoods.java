@@ -24,7 +24,7 @@ public class CreativeTabJurassiCraftFoods extends CreativeTabs
 
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
         {
-            if(dino.shouldRegister())
+            if (dino.shouldRegister())
             {
                 metas[i] = id;
 

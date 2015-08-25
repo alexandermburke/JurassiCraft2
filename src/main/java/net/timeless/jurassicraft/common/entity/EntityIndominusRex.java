@@ -6,8 +6,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.reuxertz.ecoapi.ecology.role.ICarnivore;
-import net.reuxertz.ecoapi.entity.IEntityAICreature;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
@@ -90,6 +88,6 @@ public class EntityIndominusRex extends EntityDinosaurAggressive  //implements I
     @SideOnly(Side.CLIENT)
     public float[] getSkinColor()
     {
-        return new float[] { this.skinColor[0] / 255.0F, this.skinColor[1] / 255.0F, this.skinColor[2] / 255.0F };
+        return new float[]{this.skinColor[0] / 255.0F, this.skinColor[1] / 255.0F, this.skinColor[2] / 255.0F};
     }
 }

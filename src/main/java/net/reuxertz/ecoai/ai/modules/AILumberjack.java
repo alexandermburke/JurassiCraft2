@@ -22,10 +22,11 @@ import java.util.List;
 
 public class AILumberjack extends AIFarming
 {
-    public static final List<Block> leafArray = Arrays.asList(new Block[] { Blocks.leaves, Blocks.leaves2 });
-    public static final List<Block> logArray = Arrays.asList(new Block[] { Blocks.log, Blocks.log2 });
-    public static final List<Block> endDirtArray = Arrays.asList(new Block[] { Blocks.dirt, Blocks.grass, Blocks.air });
+    public static final List<Block> leafArray = Arrays.asList(new Block[]{Blocks.leaves, Blocks.leaves2});
+    public static final List<Block> logArray = Arrays.asList(new Block[]{Blocks.log, Blocks.log2});
+    public static final List<Block> endDirtArray = Arrays.asList(new Block[]{Blocks.dirt, Blocks.grass, Blocks.air});
     public static final List<Block> totalArray = new ArrayList<Block>();
+
     static
     {
         totalArray.addAll(leafArray);
@@ -133,7 +134,7 @@ public class AILumberjack extends AIFarming
                                 break;
                             }
 
-                        if  (add)
+                        if (add)
                             positions.add(b);
                     }
 
@@ -195,6 +196,7 @@ public class AILumberjack extends AIFarming
 
         return t;
     }
+
     public Target nextNavigatePosition2()
     {
         Target t = null;
@@ -293,7 +295,7 @@ public class AILumberjack extends AIFarming
                         curBlock = nextBlock;
                     }
                     else*/
-                        break;
+                    break;
                 }
             }
 
@@ -315,6 +317,7 @@ public class AILumberjack extends AIFarming
 
         return t;
     }
+
     public boolean doWorkContinue()
     {
         if (this.workTarget.workState == 0)
@@ -329,15 +332,15 @@ public class AILumberjack extends AIFarming
 
             //if (this.workTarget.workState == 2)
             //{
-                this.nextWorkPos(this.workTarget.pos, this.workPos);
+            this.nextWorkPos(this.workTarget.pos, this.workPos);
 
-                if (this.workPos.size() > 0)
-                {
-                    this.workTarget.pos = this.workPos.get(0);
-                    this.workPos.remove(0);
-                    this.workTarget.workState = 0;
-                    return true;
-                }
+            if (this.workPos.size() > 0)
+            {
+                this.workTarget.pos = this.workPos.get(0);
+                this.workPos.remove(0);
+                this.workTarget.workState = 0;
+                return true;
+            }
             //}
         }
 

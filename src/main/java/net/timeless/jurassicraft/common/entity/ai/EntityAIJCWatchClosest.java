@@ -9,19 +9,27 @@ public class EntityAIJCWatchClosest extends EntityAIBase
 {
     protected EntityLiving theWatcher;
 
-    /** The closest entity which is being watched by this one. */
+    /**
+     * The closest entity which is being watched by this one.
+     */
     protected Entity closestEntity;
 
-    /** This is the Maximum distance that the AI will look for the Entity */
+    /**
+     * This is the Maximum distance that the AI will look for the Entity
+     */
     protected float maxDistanceForPlayer;
     private int lookTime;
     private float chance;
     protected Class watchedClass;
 
-    /** How fast to turn on the Y axis (yaw) */
+    /**
+     * How fast to turn on the Y axis (yaw)
+     */
     private float turnSpeedYaw;
 
-    /** How fast to turn on the X axis (pitch) */
+    /**
+     * How fast to turn on the X axis (pitch)
+     */
     private float turnSpeedPitch;
 
     public EntityAIJCWatchClosest(EntityLiving entity, Class watch, float maxDistance, float turnSpeedYaw, float turnSpeedPitch)

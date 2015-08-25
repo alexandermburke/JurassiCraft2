@@ -1,14 +1,14 @@
 package net.timeless.jurassicraft.common.entity.base;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.monster.EntityGuardian;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.pathfinding.PathNavigateSwimmer;
-import net.minecraft.util.*;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class EntityDinosaurSwimmingAggressive extends EntityDinosaurAggressive
@@ -134,8 +134,8 @@ public class EntityDinosaurSwimmingAggressive extends EntityDinosaurAggressive
         else if (this.onGround)
         {
             this.motionY += 0.5D;
-            this.motionX += (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 0.4F);
-            this.motionZ += (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 0.4F);
+            this.motionX += (double) ((this.rand.nextFloat() * 2.0F - 1.0F) * 0.4F);
+            this.motionZ += (double) ((this.rand.nextFloat() * 2.0F - 1.0F) * 0.4F);
             this.rotationYaw = this.rand.nextFloat() * 360.0F;
             this.onGround = false;
             this.isAirBorne = true;
@@ -208,22 +208,22 @@ public class EntityDinosaurSwimmingAggressive extends EntityDinosaurAggressive
                 double dist = xDist * xDist + yDist * yDist + zDist * zDist;
                 dist = (double) MathHelper.sqrt_double(dist);
                 yDist /= dist;
-                float f = (float)(Math.atan2(zDist, xDist) * 180.0D / Math.PI) - 90.0F;
+                float f = (float) (Math.atan2(zDist, xDist) * 180.0D / Math.PI) - 90.0F;
                 this.dino.rotationYaw = this.limitAngle(this.dino.rotationYaw, f, 30.0F);
                 this.dino.renderYawOffset = this.dino.rotationYaw;
-                float f1 = (float)(this.speed * this.dino.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue());
+                float f1 = (float) (this.speed * this.dino.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue());
                 this.dino.setAIMoveSpeed(this.dino.getAIMoveSpeed() + (f1 - this.dino.getAIMoveSpeed()) * 0.125F);
-                double d4 = Math.sin((double)(this.dino.ticksExisted + this.dino.getEntityId()) * 0.5D) * 0.05D;
-                double d5 = Math.cos((double)(this.dino.rotationYaw * (float)Math.PI / 180.0F));
-                double d6 = Math.sin((double)(this.dino.rotationYaw * (float)Math.PI / 180.0F));
+                double d4 = Math.sin((double) (this.dino.ticksExisted + this.dino.getEntityId()) * 0.5D) * 0.05D;
+                double d5 = Math.cos((double) (this.dino.rotationYaw * (float) Math.PI / 180.0F));
+                double d6 = Math.sin((double) (this.dino.rotationYaw * (float) Math.PI / 180.0F));
                 this.dino.motionX += d4 * d5;
                 this.dino.motionZ += d4 * d6;
-                d4 = Math.sin((double)(this.dino.ticksExisted + this.dino.getEntityId()) * 0.75D) * 0.05D;
+                d4 = Math.sin((double) (this.dino.ticksExisted + this.dino.getEntityId()) * 0.75D) * 0.05D;
                 this.dino.motionY += d4 * (d6 + d5) * 0.25D;
-                this.dino.motionY += (double)this.dino.getAIMoveSpeed() * yDist * 0.1D;
+                this.dino.motionY += (double) this.dino.getAIMoveSpeed() * yDist * 0.1D;
                 EntityLookHelper lookHelper = this.dino.getLookHelper();
                 double d7 = this.dino.posX + xDist / dist * 2.0D;
-                double d8 = (double)this.dino.getEyeHeight() + this.dino.posY + yDist / dist * 1.0D;
+                double d8 = (double) this.dino.getEyeHeight() + this.dino.posY + yDist / dist * 1.0D;
                 double d9 = this.dino.posZ + zDist / dist * 2.0D;
                 double d10 = lookHelper.func_180423_e();
                 double d11 = lookHelper.func_180422_f();

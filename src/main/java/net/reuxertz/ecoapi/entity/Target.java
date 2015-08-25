@@ -31,6 +31,7 @@ public class Target
     {
         this.world = w;
     }
+
     public Target(World w, BlockPos pos)
     {
         this(w);
@@ -38,10 +39,12 @@ public class Target
         this.posBlockState = w.getBlockState(pos);
         return;
     }
+
     public Target(World w, Entity entity)
     {
         this(w, entity, null);
     }
+
     public Target(World w, Entity entity, ItemStack heldItem)
     {
         this(w);

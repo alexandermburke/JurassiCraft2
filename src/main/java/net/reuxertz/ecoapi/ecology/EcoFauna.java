@@ -23,16 +23,17 @@ public class EcoFauna
 
     //Entity Resource Registry
     private static final HashMap<Class, List<ItemStack>> classToDropRegistry = Maps.newHashMap();
+
     static
     {        //Create primary classes
         IEcologicalRole roleCarnivore = EcoAPI.carnivore;
         IEcologicalRole roleHerbivore = EcoAPI.herbivore;
 
-        EcoAPI.registerEntityClassDropItems(EntityRabbit.class,     new ItemStack[]     { new ItemStack(Items.rabbit)   });
-        EcoAPI.registerEntityClassDropItems(EntityChicken.class,    new ItemStack[]     { new ItemStack(Items.chicken)  });
-        EcoAPI.registerEntityClassDropItems(EntitySheep.class,      new ItemStack[]     { new ItemStack(Items.mutton)   });
-        EcoAPI.registerEntityClassDropItems(EntityPig.class,        new ItemStack[]     { new ItemStack(Items.porkchop) });
-        EcoAPI.registerEntityClassDropItems(EntityCow.class,        new ItemStack[]     { new ItemStack(Items.beef)     });
+        EcoAPI.registerEntityClassDropItems(EntityRabbit.class, new ItemStack[]{new ItemStack(Items.rabbit)});
+        EcoAPI.registerEntityClassDropItems(EntityChicken.class, new ItemStack[]{new ItemStack(Items.chicken)});
+        EcoAPI.registerEntityClassDropItems(EntitySheep.class, new ItemStack[]{new ItemStack(Items.mutton)});
+        EcoAPI.registerEntityClassDropItems(EntityPig.class, new ItemStack[]{new ItemStack(Items.porkchop)});
+        EcoAPI.registerEntityClassDropItems(EntityCow.class, new ItemStack[]{new ItemStack(Items.beef)});
 
         roleCarnivore.addFoodItem(new ItemStack(Items.rabbit));
         roleCarnivore.addFoodItem(new ItemStack(Items.chicken));
@@ -43,7 +44,7 @@ public class EcoFauna
         List<IEcologicalRole> omnivoreSubRoles = new ArrayList<IEcologicalRole>();
         omnivoreSubRoles.add(roleCarnivore);
         omnivoreSubRoles.add(roleHerbivore);
-        BaseEcologicalRoleCompound roleOmnivore = new BaseEcologicalRoleCompound("omnivore",  omnivoreSubRoles);
+        BaseEcologicalRoleCompound roleOmnivore = new BaseEcologicalRoleCompound("omnivore", omnivoreSubRoles);
 
         //Add Primary Ecological Roles
         List<IEcologicalRole> r = Lists.newArrayList();
@@ -79,12 +80,13 @@ public class EcoFauna
     public static IEcologicalRole getRole(EntityCreature e)
     {
         Set k = EcoFauna.ecoClassRoleRegistry.keySet();
-        for (Object o: k)
-            if (((Class)o).isInstance(e))
+        for (Object o : k)
+            if (((Class) o).isInstance(e))
                 return EcoFauna.ecoClassRoleRegistry.get(o);
 
         return null;
     }
+
     public static List<Class> getDefaultAIObjs(EntityCreature e)
     {
         Set k = EcoFauna.ecoClassAIRegistry.keySet();
@@ -122,6 +124,7 @@ public class EcoFauna
 
         return r;
     }
+
     public static void registerEntityClassToRole(Class c, IEcologicalRole role)
     {
         if (role == null || c == null)
@@ -132,6 +135,7 @@ public class EcoFauna
 
         EcoFauna.ecoClassRoleRegistry.put(c, role);
     }
+
     public static void registerClassToAI(Class c, List<Class> objs)
     {
         if (objs == null || objs.size() == 0 || c == null)
@@ -181,7 +185,7 @@ public class EcoFauna
     {
         List<ItemStack> r = new ArrayList<ItemStack>();//EcoFauna.classToDropRegistry.get(c);
         Set<Class> s = EcoFauna.classToDropRegistry.keySet();
-        for (Class ci: s)
+        for (Class ci : s)
         {
             if (ci.isInstance(e))
                 r.addAll(EcoFauna.classToDropRegistry.get(ci));
@@ -192,6 +196,7 @@ public class EcoFauna
         else
             return null;
     }
+
     public static List<ItemStack> getDropItemsByItemClass(Class itemType)
     {
         List<ItemStack> r = new ArrayList<>();//EcoFauna.classToDropRegistry.get(c);
@@ -199,7 +204,7 @@ public class EcoFauna
         for (int i = 0; v.iterator().hasNext(); i++)
         {
             List<ItemStack> ci = v.iterator().next();
-            for (ItemStack is: ci)
+            for (ItemStack is : ci)
             {
                 if (itemType.isInstance(is.getItem()))
                     r.add(is);

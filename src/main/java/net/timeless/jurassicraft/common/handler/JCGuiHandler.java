@@ -2,7 +2,6 @@ package net.timeless.jurassicraft.common.handler;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
@@ -122,7 +121,7 @@ public class JCGuiHandler implements IGuiHandler
             }
             else if (tileEntity instanceof TileCultivate && id == 10)
             {
-                if(((TileCultivate) tileEntity).isCultivating())
+                if (((TileCultivate) tileEntity).isCultivating())
                 {
                     return new GuiCultivateProcess((TileCultivate) tileEntity);
                 }
@@ -139,7 +138,7 @@ public class JCGuiHandler implements IGuiHandler
     public static void openPaleoPad(EntityPlayer player)
     {
         if (player.worldObj.isRemote)
-           displayPaleoPadGUIClient();
+            displayPaleoPadGUIClient();
 //        else
 //            JurassiCraft.networkManager.networkWrapper.sendTo(new MessageSyncPaleoPad(player), (EntityPlayerMP) player);
     }

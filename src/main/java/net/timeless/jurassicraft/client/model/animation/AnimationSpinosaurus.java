@@ -89,11 +89,11 @@ public class AnimationSpinosaurus implements IModelAnimator
         MowzieModelRenderer throat1 = model.getCube("Neck Under 1");
         MowzieModelRenderer throat2 = model.getCube("Neck Under 2");
 
-        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[] { handRight, lowerArmRight, upperArmRight };
-        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[] { handLeft, lowerArmLeft, upperArmLeft };
-        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
-        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[] { head, neck1, neck2, neck3, neck4, neck5, shoulders, chest, waist };
-        MowzieModelRenderer[] bottomJaw = new MowzieModelRenderer[] { lowerJawFront, lowerJaw };
+        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[]{handRight, lowerArmRight, upperArmRight};
+        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[]{handLeft, lowerArmLeft, upperArmLeft};
+        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
+        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[]{head, neck1, neck2, neck3, neck4, neck5, shoulders, chest, waist};
+        MowzieModelRenderer[] bottomJaw = new MowzieModelRenderer[]{lowerJawFront, lowerJaw};
 
         // Body animations
         model.bob(waist, 1F * globalSpeed, height, false, f, f1);
@@ -182,5 +182,39 @@ public class AnimationSpinosaurus implements IModelAnimator
         animator.endPhase();
         animator.setStationaryPhase(35);
         animator.resetPhase(15);
+
+        // head rear back
+        animator.setAnim(29);
+        animator.startPhase(5);
+        animator.rotate(lowerJaw, 0.7F, 0, 0);
+        animator.rotate(waist, -0.1F, 0, 0);
+        animator.rotate(neck1, -0.1F, 0, 0);
+        animator.move(neck2, 0, 0, 1.2F);
+        animator.move(neck3, 0, 0, 0.2F);
+        animator.rotate(head, 0.3F, 0, 0);
+        animator.endPhase();
+
+//        animator.startPhase(5);
+//        animator.rotate(waist, 0.2F, 0, 0);
+//        animator.rotate(neck1, 0.3F, 0, 0);
+//        animator.rotate(neck4, -0.2F, 0, 0);
+//        animator.endPhase();
+//
+//        animator.startPhase(5);
+//        animator.rotate(neck1, 0.3F, 0, 0);
+//        animator.rotate(lowerJaw, 0, 0, 0);
+//        animator.endPhase();
+//
+//        animator.startPhase(5);
+//        animator.rotate(neck1, 0, 0, 0);
+//        animator.move(neck2, 0, 0, 0);
+//        animator.move(neck3, 0, 0, 0);
+//        animator.rotate(waist, 0.2F, 0, 0);
+//        animator.endPhase();
+//
+//        animator.startPhase(5);
+//        animator.rotate(head, 0.2F, 0, 0);
+//        animator.endPhase();
+        animator.resetPhase(20);
     }
 }

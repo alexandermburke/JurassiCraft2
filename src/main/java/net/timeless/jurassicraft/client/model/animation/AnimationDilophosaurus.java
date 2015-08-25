@@ -89,11 +89,11 @@ public class AnimationDilophosaurus implements IModelAnimator
         // MowzieModelRenderer upperJaw = model.getCube("upperjaw");
         // MowzieModelRenderer lowerJaw = model.getCube("down_jaw");
 
-        MowzieModelRenderer[] body = new MowzieModelRenderer[] { head, neck6, neck5, neck4, neck3, neck2, neck1, body1, body2, body3 };
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
+        MowzieModelRenderer[] body = new MowzieModelRenderer[]{head, neck6, neck5, neck4, neck3, neck2, neck1, body1, body2, body3};
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
 
-        MowzieModelRenderer[] armRight = new MowzieModelRenderer[] { handRight, lowerArmRight, upperArmRight };
-        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[] { handLeft, lowerArmLeft, upperArmLeft };
+        MowzieModelRenderer[] armRight = new MowzieModelRenderer[]{handRight, lowerArmRight, upperArmRight};
+        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[]{handLeft, lowerArmLeft, upperArmLeft};
 
         model.faceTarget(head, 5, rotationYaw, rotationPitch);
         model.faceTarget(neck1, 5, rotationYaw, rotationPitch);

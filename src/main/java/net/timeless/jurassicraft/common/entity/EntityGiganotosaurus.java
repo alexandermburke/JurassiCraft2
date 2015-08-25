@@ -1,13 +1,11 @@
 package net.timeless.jurassicraft.common.entity;
 
-import java.util.Random;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import net.reuxertz.ecoapi.ecology.role.ICarnivore;
-import net.reuxertz.ecoapi.entity.IEntityAICreature;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
+
+import java.util.Random;
 
 public class EntityGiganotosaurus extends EntityDinosaurAggressive // implements IEntityAICreature, ICarnivore
 {
@@ -21,7 +19,7 @@ public class EntityGiganotosaurus extends EntityDinosaurAggressive // implements
         super(world);
         for (int i = 0; i < targets.length; i++)
         {
-            this.attackCreature(targets[i], new Random().nextInt(3)+1);
+            this.attackCreature(targets[i], new Random().nextInt(3) + 1);
         }
     }
 

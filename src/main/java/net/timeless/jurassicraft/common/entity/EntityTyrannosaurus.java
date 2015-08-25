@@ -1,28 +1,24 @@
 package net.timeless.jurassicraft.common.entity;
 
-import java.util.Random;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import net.reuxertz.ecoapi.ecology.role.ICarnivore;
-import net.reuxertz.ecoapi.entity.IEntityAICreature;
-import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
-import net.timeless.jurassicraft.common.entity.ai.animations.JCAutoAnimSoundBase;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimSoundBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
+
+import java.util.Random;
 
 public class EntityTyrannosaurus extends EntityDinosaurAggressive implements IAnimatedEntity // , IEntityAICreature, ICarnivore
 {
     public ChainBuffer tailBuffer = new ChainBuffer(6);
 
-    private static final String[] hurtSounds = new String[] { "tyrannosaurus_hurt_1", "tyrannosaurus_hurt_2" };
-    private static final String[] livingSounds = new String[] { "tyrannosaurus_living_1", "tyrannosaurus_living_2", "tyrannosaurus_living_3", "tyrannosaurus_living_4", "tyrannosaurus_living_5", "tyrannosaurus_living_6" };
-    private static final String[] deathSounds = new String[] { "tyrannosaurus_death_1" };
-    private static final String[] roarSounds = new String[] { "tyrannosaurus_roar_1" };
-    private static final String[] breathSounds = new String[] { "tyrannosaurus_breath_1" };
-    
+    private static final String[] hurtSounds = new String[]{"tyrannosaurus_hurt_1", "tyrannosaurus_hurt_2"};
+    private static final String[] livingSounds = new String[]{"tyrannosaurus_living_1", "tyrannosaurus_living_2", "tyrannosaurus_living_3", "tyrannosaurus_living_4", "tyrannosaurus_living_5", "tyrannosaurus_living_6"};
+    private static final String[] deathSounds = new String[]{"tyrannosaurus_death_1"};
+    private static final String[] roarSounds = new String[]{"tyrannosaurus_roar_1"};
+    private static final String[] breathSounds = new String[]{"tyrannosaurus_breath_1"};
+
     private static final Class[] targets = {EntityCompsognathus.class, EntityAnkylosaurus.class, EntityPlayer.class, EntityDilophosaurus.class, EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class, EntityLudodactylus.class, EntityHypsilophodon.class, EntityGallimimus.class, EntitySegisaurus.class, EntityProtoceratops.class, EntityParasaurolophus.class, EntityOthnielia.class, EntityMicroceratus.class, EntityTriceratops.class, EntityStegosaurus.class, EntityBrachiosaurus.class, EntityApatosaurus.class, EntityRugops.class, EntityHerrerasaurus.class, EntityVelociraptor.class, EntityAchillobator.class, EntityCarnotaurus.class};
 
 
@@ -33,10 +29,10 @@ public class EntityTyrannosaurus extends EntityDinosaurAggressive implements IAn
         tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, 1, 750, "jurassicraft:" + roarSounds[0], 1.5F));
         tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, 2, 750, "jurassicraft:" + roarSounds[0], 1.5F));
         tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, 3, 750, "jurassicraft:" + roarSounds[0], 1.5F));
-        
+
         for (int i = 0; i < targets.length; i++)
         {
-            this.attackCreature(targets[i], new Random().nextInt(3)+1);
+            this.attackCreature(targets[i], new Random().nextInt(3) + 1);
         }
     }
 

@@ -9,7 +9,10 @@ import net.reuxertz.ecoapi.entity.IEntityAISwimmingCreature;
 
 public class AINavigate extends AIBase
 {
-    public enum NavState { Null, IdleWander, SearchWander }
+    public enum NavState
+    {
+        Null, IdleWander, SearchWander
+    }
 
     protected double speed, wanderDist = 15, wanderPower = 1.71, destinationBlockBuffer = 2.0, destinationEntityBuffer = 1.5;
     protected boolean finishOnArrival = false;
@@ -21,10 +24,12 @@ public class AINavigate extends AIBase
     {
         return workPositionReached(includeY, destinationBlockBuffer) || this.seekEntityReached(includeY, destinationEntityBuffer);
     }
+
     public boolean workPositionReached(boolean includeY)
     {
         return this.workPositionReached(includeY, destinationBlockBuffer);
     }
+
     public boolean workPositionReached(boolean includeY, double dist)
     {
         if (this.getWorkingPosition() == null)
@@ -47,6 +52,7 @@ public class AINavigate extends AIBase
 
         return r2 <= r1;
     }
+
     public boolean seekEntityReached(boolean includeY, double dist)
     {
         if (this.seekEntity == null)
@@ -75,10 +81,12 @@ public class AINavigate extends AIBase
 
         return r2 <= r1;
     }
+
     public boolean seekEntityReached(boolean includeY)
     {
         return this.seekEntityReached(includeY, destinationEntityBuffer);
     }
+
     public double distance(BlockPos b1, BlockPos b2)
     {
         double x = b1.getX() - b2.getX();
@@ -143,6 +151,7 @@ public class AINavigate extends AIBase
             }
         }
     }
+
     public boolean shouldExecute()
     {
         boolean b = super.shouldExecute();
@@ -169,6 +178,7 @@ public class AINavigate extends AIBase
 
         return true;
     }
+
     public boolean continueExecuting()
     {
         if (!super.continueExecuting())
@@ -188,6 +198,7 @@ public class AINavigate extends AIBase
         }
         return cont;
     }
+
     public void startExecuting()
     {
         if (this.seekEntity != null)
@@ -203,6 +214,7 @@ public class AINavigate extends AIBase
     {
         super.activateTask(workingPosition);
     }
+
     public void activateSeekEntityTask(Entity e)
     {
         super.activateTask(null);

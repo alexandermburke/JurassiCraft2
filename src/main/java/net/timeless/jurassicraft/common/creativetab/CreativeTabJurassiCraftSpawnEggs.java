@@ -24,7 +24,7 @@ public class CreativeTabJurassiCraftSpawnEggs extends CreativeTabs
 
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
         {
-            if(dino.shouldRegister())
+            if (dino.shouldRegister())
             {
                 metas[i] = id;
 

@@ -21,7 +21,10 @@ public enum EnumType implements IStringSerializable
         EnumType.META_LOOKUP[this.meta] = this;
     }
 
-    public static EnumType[] getMetaLookup() { return META_LOOKUP; }
+    public static EnumType[] getMetaLookup()
+    {
+        return META_LOOKUP;
+    }
 
     public int getMetadata()
     {

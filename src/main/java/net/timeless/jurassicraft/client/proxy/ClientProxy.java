@@ -7,13 +7,11 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.client.event.ClientEventHandler;
 import net.timeless.jurassicraft.client.render.JCRenderingRegistry;
 import net.timeless.jurassicraft.common.proxy.CommonProxy;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 @SideOnly(Side.CLIENT)
 public class ClientProxy extends CommonProxy

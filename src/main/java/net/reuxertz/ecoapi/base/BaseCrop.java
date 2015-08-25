@@ -51,13 +51,13 @@ public abstract class BaseCrop extends BlockBush implements IGrowable
 
         if (worldIn.getLightFromNeighbors(pos.up()) >= 9)
         {
-            int i = ((Integer)state.getValue(AGE)).intValue();
+            int i = ((Integer) state.getValue(AGE)).intValue();
 
             if (i < 7)
             {
                 float f = getGrowthChance(this, worldIn, pos);
 
-                if (rand.nextInt((int)(25.0F / f) + 1) == 0)
+                if (rand.nextInt((int) (25.0F / f) + 1) == 0)
                 {
                     worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(i + 1)), 2);
                 }
@@ -67,7 +67,7 @@ public abstract class BaseCrop extends BlockBush implements IGrowable
 
     public void grow(World worldIn, BlockPos pos, IBlockState state)
     {
-        int i = ((Integer)state.getValue(AGE)).intValue() + MathHelper.getRandomIntegerInRange(worldIn.rand, 2, 5);
+        int i = ((Integer) state.getValue(AGE)).intValue() + MathHelper.getRandomIntegerInRange(worldIn.rand, 2, 5);
 
         if (i > 7)
         {
@@ -89,7 +89,7 @@ public abstract class BaseCrop extends BlockBush implements IGrowable
                 float f1 = 0.0F;
                 IBlockState iblockstate = worldIn.getBlockState(blockpos1.add(i, 0, j));
 
-                if (iblockstate.getBlock().canSustainPlant(worldIn, blockpos1.add(i, 0, j), net.minecraft.util.EnumFacing.UP, (net.minecraftforge.common.IPlantable)blockIn))
+                if (iblockstate.getBlock().canSustainPlant(worldIn, blockpos1.add(i, 0, j), net.minecraft.util.EnumFacing.UP, (net.minecraftforge.common.IPlantable) blockIn))
                 {
                     f1 = 1.0F;
 
@@ -138,11 +138,13 @@ public abstract class BaseCrop extends BlockBush implements IGrowable
         return (worldIn.getLight(pos) >= 8 || worldIn.canSeeSky(pos)) && worldIn.getBlockState(pos.down()).getBlock().canSustainPlant(worldIn, pos.down(), net.minecraft.util.EnumFacing.UP, this);
     }
 
-    public Item getSeed(){
+    public Item getSeed()
+    {
         return seed;
     }
 
-    public Item getCrop(){
+    public Item getCrop()
+    {
         return crop;
     }
 
@@ -155,12 +157,12 @@ public abstract class BaseCrop extends BlockBush implements IGrowable
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return ((Integer)state.getValue(AGE)).intValue() == 7 ? this.getCrop() : this.getSeed();
+        return ((Integer) state.getValue(AGE)).intValue() == 7 ? this.getCrop() : this.getSeed();
     }
 
     public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient)
     {
-        return ((Integer)state.getValue(AGE)).intValue() < 7;
+        return ((Integer) state.getValue(AGE)).intValue() < 7;
     }
 
     public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state)
@@ -189,7 +191,7 @@ public abstract class BaseCrop extends BlockBush implements IGrowable
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((Integer)state.getValue(AGE)).intValue();
+        return ((Integer) state.getValue(AGE)).intValue();
     }
 
     @Override
@@ -202,8 +204,8 @@ public abstract class BaseCrop extends BlockBush implements IGrowable
     public java.util.List<ItemStack> getDrops(net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
         java.util.List<ItemStack> ret = super.getDrops(world, pos, state, fortune);
-        int age = ((Integer)state.getValue(AGE)).intValue();
-        Random rand = world instanceof World ? ((World)world).rand : new Random();
+        int age = ((Integer) state.getValue(AGE)).intValue();
+        Random rand = world instanceof World ? ((World) world).rand : new Random();
 
         if (age >= 7)
         {

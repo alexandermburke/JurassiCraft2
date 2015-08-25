@@ -26,11 +26,13 @@ import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 public class TileDNACombinator extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
-    private static final int[] slotsTop = new int[] { 0, 1 }; //input
-    private static final int[] slotsBottom = new int[] { 2 }; //output
-    private static final int[] slotsSides = new int[] {};
+    private static final int[] slotsTop = new int[]{0, 1}; //input
+    private static final int[] slotsBottom = new int[]{2}; //output
+    private static final int[] slotsSides = new int[]{};
 
-    /** The ItemStacks that hold the items currently being used in the dna combinator */
+    /**
+     * The ItemStacks that hold the items currently being used in the dna combinator
+     */
     private ItemStack[] slots = new ItemStack[3];
 
     private int combineTime;
@@ -292,7 +294,7 @@ public class TileDNACombinator extends TileEntityLockable implements IUpdatePlay
     {
         if (slots[0] != null && slots[0].getItem() == JCItemRegistry.storage_disc && slots[1] != null && slots[1].getItem() == JCItemRegistry.storage_disc)
         {
-            if(slots[0].getTagCompound() != null && slots[1].getTagCompound() != null && slots[2] == null && slots[0].getItemDamage() == slots[1].getItemDamage())
+            if (slots[0].getTagCompound() != null && slots[1].getTagCompound() != null && slots[2] == null && slots[0].getItemDamage() == slots[1].getItemDamage())
             {
                 return true;
             }
@@ -315,7 +317,7 @@ public class TileDNACombinator extends TileEntityLockable implements IUpdatePlay
 
             int newQuality = dna1.getDNAQuality() + dna2.getDNAQuality();
 
-            if(newQuality > 100)
+            if (newQuality > 100)
             {
                 newQuality = 100;
             }

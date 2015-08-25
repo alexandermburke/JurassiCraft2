@@ -3,7 +3,6 @@ package net.timeless.jurassicraft.common.dinosaur;
 import net.timeless.jurassicraft.common.entity.EntityIndominusRex;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.common.entity.base.EnumGrowthStage;
-import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.period.EnumTimePeriod;
 
 public class DinosaurIndominus extends Dinosaur implements IHybrid
@@ -16,11 +15,11 @@ public class DinosaurIndominus extends Dinosaur implements IHybrid
 
     public DinosaurIndominus()
     {
-        this.maleTextures = new String[] { getDinosaurTexture("") };
-        this.femaleTextures = new String[] { getDinosaurTexture("") };
+        this.maleTextures = new String[]{getDinosaurTexture("")};
+        this.femaleTextures = new String[]{getDinosaurTexture("")};
 
-        this.baseGenes = new Class[] { DinosaurTyrannosaurus.class, DinosaurVelociraptor.class };
-        this.extraGenes = new Class[] { DinosaurGiganotosaurus.class, DinosaurRugops.class, DinosaurMajungasaurus.class, DinosaurCarnotaurus.class }; //TODO therizino
+        this.baseGenes = new Class[]{DinosaurTyrannosaurus.class, DinosaurVelociraptor.class};
+        this.extraGenes = new Class[]{DinosaurGiganotosaurus.class, DinosaurRugops.class, DinosaurMajungasaurus.class, DinosaurCarnotaurus.class}; //TODO therizino
     }
 
     @Override

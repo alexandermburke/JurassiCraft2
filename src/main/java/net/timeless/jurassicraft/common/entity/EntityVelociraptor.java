@@ -1,12 +1,8 @@
 package net.timeless.jurassicraft.common.entity;
 
-import java.util.Random;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import net.reuxertz.ecoapi.ecology.role.ICarnivore;
-import net.reuxertz.ecoapi.entity.IEntityAICreature;
 import net.timeless.animationapi.AnimationAPI;
 import net.timeless.jurassicraft.common.entity.ai.animations.AnimationAICall;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
@@ -14,6 +10,8 @@ import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
 import net.timeless.unilib.common.animation.ControlledAnimation;
+
+import java.util.Random;
 
 public class EntityVelociraptor extends EntityDinosaurAggressive  //implements ICarnivore, IEntityAICreature
 {
@@ -27,7 +25,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive  //implements I
     private static final String[] hissSounds = new String[]{"velociraptor_hiss_1", "velociraptor_hiss_2", "velociraptor_hiss_3"};
 
     private static final Class[] targets = {EntityCompsognathus.class, EntityPlayer.class, EntityDilophosaurus.class, EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class, EntityHypsilophodon.class, EntitySegisaurus.class, EntityProtoceratops.class, EntityOthnielia.class, EntityMicroceratus.class};
-	private static final Class[] deftargets = {EntityPlayer.class, EntityTyrannosaurus.class, EntityGiganotosaurus.class, EntitySpinosaurus.class}; 
+    private static final Class[] deftargets = {EntityPlayer.class, EntityTyrannosaurus.class, EntityGiganotosaurus.class, EntitySpinosaurus.class};
 
     public ControlledAnimation dontLean = new ControlledAnimation(5);
     private int frame = this.ticksExisted;
@@ -45,14 +43,14 @@ public class EntityVelociraptor extends EntityDinosaurAggressive  //implements I
         tasks.addTask(2, new JCNonAutoAnimBase(this, 25, 11, 100)); //Head twitch left
         tasks.addTask(2, new JCNonAutoAnimBase(this, 45, 12, 150)); //Sniff
         tasks.addTask(2, new AnimationAICall(this, 78, 30));
-        
+
         for (int i = 0; i < targets.length; i++)
         {
-            this.attackCreature(targets[i], new Random().nextInt(3)+1);
+            this.attackCreature(targets[i], new Random().nextInt(3) + 1);
         }
         for (int j = 0; j < deftargets.length; j++)
         {
-            this.defendFromAttacker(deftargets[j], new Random().nextInt(3)+1);
+            this.defendFromAttacker(deftargets[j], new Random().nextInt(3) + 1);
         }
     }
 

@@ -18,15 +18,25 @@ import org.apache.commons.lang3.StringUtils;
 
 public abstract class EntityAIJCTarget extends EntityAIBase
 {
-    /** The entity that this task belongs to */
+    /**
+     * The entity that this task belongs to
+     */
     protected final EntityDinosaur taskOwner;
-    /** If true, EntityAI targets must be able to be seen (cannot be blocked by walls) to be suitable targets. */
+    /**
+     * If true, EntityAI targets must be able to be seen (cannot be blocked by walls) to be suitable targets.
+     */
     protected boolean shouldCheckSight;
-    /** When true, only entities that can be reached with minimal effort will be targetted. */
+    /**
+     * When true, only entities that can be reached with minimal effort will be targetted.
+     */
     private boolean nearbyOnly;
-    /** When nearbyOnly is true: 0 -> No target, but OK to search; 1 -> Nearby target found; 2 -> Target too far. */
+    /**
+     * When nearbyOnly is true: 0 -> No target, but OK to search; 1 -> Nearby target found; 2 -> Target too far.
+     */
     private int targetSearchStatus;
-    /** When nearbyOnly is true, this throttles target searching to avoid excessive pathfinding. */
+    /**
+     * When nearbyOnly is true, this throttles target searching to avoid excessive pathfinding.
+     */
     private int targetSearchDelay;
     /**
      * If  @shouldCheckSight is true, the number of ticks before the interuption of this AITastk when the entity does't

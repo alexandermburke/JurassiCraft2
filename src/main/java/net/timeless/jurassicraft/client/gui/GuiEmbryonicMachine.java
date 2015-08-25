@@ -14,7 +14,9 @@ import net.timeless.jurassicraft.common.container.ContainerEmbryonicMachine;
 public class GuiEmbryonicMachine extends GuiContainer
 {
     private static final ResourceLocation texture = new ResourceLocation("jurassicraft:textures/gui/embryonic_machine.png");
-    /** The player inventory bound to this GUI. */
+    /**
+     * The player inventory bound to this GUI.
+     */
     private final InventoryPlayer playerInventory;
     private IInventory embryonicMachine;
 
@@ -41,15 +43,14 @@ public class GuiEmbryonicMachine extends GuiContainer
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
     {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.getTextureManager().bindTexture(texture); 
+        this.mc.getTextureManager().bindTexture(texture);
         int k = (this.width - this.xSize) / 2;
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 
-        int progress = this.getProgress(17);        
+        int progress = this.getProgress(17);
         this.drawTexturedModalRect(k + 79, l + 34, 176, 14, progress + 1, 16);
 
-                
 
     }
 

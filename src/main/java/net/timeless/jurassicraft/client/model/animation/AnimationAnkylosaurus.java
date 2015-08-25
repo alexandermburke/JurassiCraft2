@@ -33,7 +33,7 @@ public class AnimationAnkylosaurus implements IModelAnimator
         MowzieModelRenderer tail4 = model.getCube("tail 4");
         MowzieModelRenderer tail5 = model.getCube("tail end");
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail5, tail4, tail3, tail2, tail1 };
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail5, tail4, tail3, tail2, tail1};
 
         MowzieModelRenderer legleftthigh = model.getCube("leg left 1");
         MowzieModelRenderer legleftcalf = model.getCube("leg left 2");

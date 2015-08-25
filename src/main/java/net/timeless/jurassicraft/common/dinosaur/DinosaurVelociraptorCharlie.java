@@ -3,7 +3,6 @@ package net.timeless.jurassicraft.common.dinosaur;
 import net.timeless.jurassicraft.common.entity.EntityVelociraptorCharlie;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.common.entity.base.EnumGrowthStage;
-import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.period.EnumTimePeriod;
 
 public class DinosaurVelociraptorCharlie extends Dinosaur implements IHybrid
@@ -12,7 +11,7 @@ public class DinosaurVelociraptorCharlie extends Dinosaur implements IHybrid
 
     public DinosaurVelociraptorCharlie()
     {
-        this.textures = new String[] { getDinosaurTexture("") };
+        this.textures = new String[]{getDinosaurTexture("")};
     }
 
     @Override
@@ -155,12 +154,12 @@ public class DinosaurVelociraptorCharlie extends Dinosaur implements IHybrid
     @Override
     public Class[] getBaseGenes()
     {
-        return new Class[] { DinosaurVelociraptor.class }; //TODO
+        return new Class[]{DinosaurVelociraptor.class}; //TODO
     }
 
     @Override
     public Class[] getExtraGenes()
     {
-        return new Class[] { DinosaurVelociraptor.class };
+        return new Class[]{DinosaurVelociraptor.class};
     }
 }

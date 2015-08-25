@@ -15,7 +15,7 @@ import java.util.Map;
 
 /**
  * @author gegy1000
- * TAKEN FROM LLIBRARY
+ *         TAKEN FROM LLIBRARY
  */
 @SideOnly(Side.CLIENT)
 public class ModelJson extends MowzieModelBase
@@ -79,7 +79,7 @@ public class ModelJson extends MowzieModelBase
 
     /**
      * Sets the model's various rotation angles. For bipeds, limbSwing and limbSwingAmount are used for animating the movement of arms and legs, where limbSwing represents the time(so that arms and legs swing back and forth) and limbSwingAmount represents how "far" arms and legs can swing at most.
-     * 
+     *
      * @see Entity
      * @since 0.1.0
      */

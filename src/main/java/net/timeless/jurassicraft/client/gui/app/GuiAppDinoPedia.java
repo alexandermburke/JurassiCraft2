@@ -22,7 +22,7 @@ public class GuiAppDinoPedia extends GuiApp
     {
         super.renderButtons(mouseX, mouseY, gui);
 
-        if(intro)
+        if (intro)
         {
             gui.drawScaledText("Hello " + mc.thePlayer.getName() + "! Welcome to " + app.getName() + "!", 4, 10, 1.0F, 0xFFFFFF);
             mc.getTextureManager().bindTexture(texture);

@@ -26,11 +26,13 @@ import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 public class TileEmbryonicMachine extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
-    private static final int[] slotsTop = new int[] { 0, 1, 2 }; //input
-    private static final int[] slotsBottom = new int[] { 6, 5, 4, 3 }; //output
-    private static final int[] slotsSides = new int[] {};
+    private static final int[] slotsTop = new int[]{0, 1, 2}; //input
+    private static final int[] slotsBottom = new int[]{6, 5, 4, 3}; //output
+    private static final int[] slotsSides = new int[]{};
 
-    /** The ItemStacks that hold the items currently being used in the embryonic machine */
+    /**
+     * The ItemStacks that hold the items currently being used in the embryonic machine
+     */
     private ItemStack[] slots = new ItemStack[7];
 
     private int embryoTime;

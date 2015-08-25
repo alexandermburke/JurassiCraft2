@@ -28,7 +28,7 @@ public class ItemStorageDisc extends Item
     /**
      * allows items to add custom lines of information to the mouseover description
      *
-     * @param tooltip All lines to display in the Item's tooltip. This is a List of Strings.
+     * @param tooltip  All lines to display in the Item's tooltip. This is a List of Strings.
      * @param advanced Whether the setting "Advanced tooltips" is enabled
      */
     @SideOnly(Side.CLIENT)
@@ -36,7 +36,7 @@ public class ItemStorageDisc extends Item
     {
         NBTTagCompound nbt = stack.getTagCompound();
 
-        if(nbt != null)
+        if (nbt != null)
         {
             DNA data = DNA.readFromNBT(nbt);
             GeneticsContainer container = data.getContainer();

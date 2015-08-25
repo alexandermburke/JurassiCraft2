@@ -62,7 +62,7 @@ public class AnimationAPI
 
     static
     {
-        fTimer = new String[] { "field_71428_T", "S", "timer" };
+        fTimer = new String[]{"field_71428_T", "S", "timer"};
     }
 
     public static CommonProxy getProxy()

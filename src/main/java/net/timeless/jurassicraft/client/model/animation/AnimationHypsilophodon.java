@@ -18,47 +18,47 @@ public class AnimationHypsilophodon implements IModelAnimator
     {
         ModelDinosaur model = (ModelDinosaur) modelJson;
         Animator animator = model.animator;
-        
+
         int ticksExisted = entity.ticksExisted;
-        
+
         float scaleFactor = 0.6F;
         float height = 12F * f1;
 
         MowzieModelRenderer upperlegright = model.getCube("Leg UPPER RIGHT");
         MowzieModelRenderer upperlegleft = model.getCube("Leg UPPER LEFT");
-        
+
         MowzieModelRenderer midlegright = model.getCube("Leg MIDDLE RIGHT");
         MowzieModelRenderer midlegleft = model.getCube("Leg MIDDLE LEFT");
-        
+
         MowzieModelRenderer lowerlegright = model.getCube("Leg LOWER RIGHT");
         MowzieModelRenderer lowerlegleft = model.getCube("Leg LOWER LEFT");
-        
+
         MowzieModelRenderer feetright = model.getCube("Foot RIGHT");
         MowzieModelRenderer feetleft = model.getCube("Foot LEFT");
-        
+
         MowzieModelRenderer head = model.getCube("Head ");
         MowzieModelRenderer neck = model.getCube("Neck BASE");
         MowzieModelRenderer neck2 = model.getCube("Neck 2");
         MowzieModelRenderer neck3 = model.getCube("Neck 3");
-        
+
         MowzieModelRenderer body2 = model.getCube("Body REAR");
         MowzieModelRenderer body1 = model.getCube("Body FRONT");
-        
+
         MowzieModelRenderer tail1 = model.getCube("Tail BASE");
         MowzieModelRenderer tail2 = model.getCube("Tail 2");
         MowzieModelRenderer tail3 = model.getCube("Tail 3");
         MowzieModelRenderer tail4 = model.getCube("Tail 4");
         MowzieModelRenderer tail5 = model.getCube("Tail 5");
         MowzieModelRenderer tail6 = model.getCube("Tail 6");
-        
+
         MowzieModelRenderer shoulderright = model.getCube("Arm UPPER RIGHT");
         MowzieModelRenderer shoulderleft = model.getCube("Arm UPPER LEFT");
-        
+
         MowzieModelRenderer armright = model.getCube("Arm MIDDLE RIGHT");
         MowzieModelRenderer armleft = model.getCube("Arm MIDDLE LEFT");
-        
-        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
-        
+
+        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
+
         model.bob(body2, 0.5F * scaleFactor, height, true, f, f1);
         model.bob(upperlegright, 0.5F * scaleFactor, height, true, f, f1);
         model.bob(upperlegleft, 0.5F * scaleFactor, height, true, f, f1);
@@ -81,7 +81,7 @@ public class AnimationHypsilophodon implements IModelAnimator
         model.walk(shoulderleft, 1 * scaleFactor, 0.3F, true, 1, 0.2F, f, f1);
         model.walk(armright, 1 * scaleFactor, 0.3F, false, 1, -0.2F, f, f1);
         model.walk(armleft, 1 * scaleFactor, 0.3F, false, 1, -0.2F, f, f1);
-        
+
         model.faceTarget(head, 1, rotationYaw, rotationPitch);
 
         // Idling
@@ -94,7 +94,7 @@ public class AnimationHypsilophodon implements IModelAnimator
         model.walk(shoulderleft, 0.2F, 0.1F, true, 0F, 0F, ticksExisted, 1F);
         model.walk(armright, 0.2F, 0.1F, false, 0F, 0F, ticksExisted, 1F);
         model.walk(armleft, 0.2F, 0.1F, false, 0F, 0F, ticksExisted, 1F);
-        
+
         model.chainWave(tailParts, 1F * scaleFactor, 0.15F, 2, f, f1);
 
         EntityHypsilophodon hysilophodon = (EntityHypsilophodon) entity;
@@ -170,7 +170,7 @@ public class AnimationHypsilophodon implements IModelAnimator
             animator.endPhase();
             animator.resetPhase(5);
         }
-        
+
         ((EntityHypsilophodon) entity).tailBuffer.applyChainSwingBuffer(tailParts);
     }
 }

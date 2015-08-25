@@ -71,7 +71,7 @@ public class AnimationParasaurolophus implements IModelAnimator
 
         MowzieModelRenderer jaw = model.getCube("Jaw");
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
 
         float scaleFactor = 0.6F;
         float height = 2F;
@@ -131,7 +131,7 @@ public class AnimationParasaurolophus implements IModelAnimator
 
         // Idle
         int ticksExisted = entity.ticksExisted;
-        
+
         model.walk(neck1, 0.1F, 0.07F, false, -1F, 0F, ticksExisted, 1F);
         model.walk(head, 0.1F, 0.07F, true, 0F, 0F, ticksExisted, 1F);
         model.walk(waist, 0.1F, 0.04F, false, 0F, 0F, ticksExisted, 1F);

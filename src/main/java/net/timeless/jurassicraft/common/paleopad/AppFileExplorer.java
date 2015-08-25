@@ -21,7 +21,7 @@ public class AppFileExplorer extends App
     @Override
     public void writeToNBT(NBTTagCompound nbt)
     {
-        if(path != null && path.length() != 0)
+        if (path != null && path.length() != 0)
         {
             nbt.setString("Path", path);
         }
@@ -32,7 +32,7 @@ public class AppFileExplorer extends App
     {
         path = nbt.getString("Path");
 
-        if(path == null)
+        if (path == null)
         {
             path = "";
         }

@@ -419,15 +419,15 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
         int percent = getAgePercentage();
 
-        if(percent > 75)
+        if (percent > 75)
         {
             stage = EnumGrowthStage.MATURE;
         }
-        else if(percent > 50)
+        else if (percent > 50)
         {
             stage = EnumGrowthStage.ADOLESCENT;
         }
-        else if(percent > 25)
+        else if (percent > 25)
         {
             stage = EnumGrowthStage.JUVENILE;
         }

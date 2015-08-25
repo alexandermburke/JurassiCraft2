@@ -29,11 +29,13 @@ import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 public class TileEmbryoCalcificationMachine extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
-    private static final int[] slotsTop = new int[] { 0, 1 }; //input
-    private static final int[] slotsBottom = new int[] { 2 }; //output
-    private static final int[] slotsSides = new int[] {};
+    private static final int[] slotsTop = new int[]{0, 1}; //input
+    private static final int[] slotsBottom = new int[]{2}; //output
+    private static final int[] slotsSides = new int[]{};
 
-    /** The ItemStacks that hold the items currently being used in the dna sequencer */
+    /**
+     * The ItemStacks that hold the items currently being used in the dna sequencer
+     */
     private ItemStack[] slots = new ItemStack[3];
 
     private int calcifyTime;
@@ -300,7 +302,7 @@ public class TileEmbryoCalcificationMachine extends TileEntityLockable implement
         {
             Dinosaur dino = JCEntityRegistry.getDinosaurById(slots[0].getItemDamage());
 
-            if(!(dino.isMammal() || dino.isMarineReptile()))
+            if (!(dino.isMammal() || dino.isMarineReptile()))
             {
                 ItemStack output = new ItemStack(JCItemRegistry.egg, 1, slots[0].getItemDamage());
                 output.setTagCompound(slots[0].getTagCompound());
