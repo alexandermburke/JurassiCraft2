@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.timeless.jurassicraft.common.api.ISubBlocksBlock;
 import net.timeless.jurassicraft.common.block.plant.BlockSmallChainFern;
+import net.timeless.jurassicraft.common.block.plant.BlockSmallCycad;
 import net.timeless.jurassicraft.common.block.plant.BlockSmallRoyalFern;
 import net.timeless.jurassicraft.common.block.tree.*;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
@@ -61,6 +62,8 @@ public class JCBlockRegistry
 
     public static BlockSmallRoyalFern small_royal_fern;
     public static BlockSmallChainFern small_chain_fern;
+    public static BlockSmallCycad small_cycad;
+
     public static BlockCultivate cultivate_top;
     public static BlockCultivate cultivate_bottom;
 
@@ -93,9 +96,11 @@ public class JCBlockRegistry
 
         small_royal_fern = new BlockSmallRoyalFern();
         small_chain_fern = new BlockSmallChainFern();
+        small_cycad = new BlockSmallCycad();
 
         registerBlock(small_royal_fern, "Small Royal Fern");
         registerBlock(small_chain_fern, "Small Chain Fern");
+        registerBlock(small_cycad, "Small Cycad");
 
         List<Dinosaur> dinosaurs = JCEntityRegistry.getDinosaurs();
 

@@ -2,6 +2,7 @@ package net.timeless.jurassicraft.common.entity;
 
 import net.minecraft.world.World;
 import net.timeless.animationapi.AnimationAPI;
+import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbivore;
 import net.timeless.unilib.common.animation.ChainBuffer;
 
@@ -12,6 +13,7 @@ public class EntityParasaurolophus extends EntityDinosaurDefensiveHerbivore  //i
     public EntityParasaurolophus(World world)
     {
         super(world);
+        tasks.addTask(2, new JCNonAutoAnimBase(this, 60, 1, 100)); //Call
     }
 
     public void onUpdate()
