@@ -22,6 +22,12 @@ public class TileDnaSequencer extends TileMachineBase
     private ItemStack[] slots = new ItemStack[9];
 
     @Override
+    protected int getProcess(int slot)
+    {
+        return (int) Math.floor(slot / 2);
+    }
+
+    @Override
     protected boolean canProcess(int process)
     {
         int tissue = process * 2;
@@ -88,23 +94,10 @@ public class TileDnaSequencer extends TileMachineBase
 
 //            JCPlayerData.getPlayerData(player).addSequencedDNA(new DinoDNA(quality, GeneticsHelper.randomGenetics(rand, slots[0].getItemDamage(), quality).toString()));
 
-            if (slots[process + 6] == null)
-            {
-                slots[process + 6] = output;
-            }
-            else if (this.slots[process + 6].getItem() == output.getItem() && ItemStack.areItemStackTagsEqual(slots[process + 6], output))
-            {
-                this.slots[process + 6].stackSize += output.stackSize;
-            }
+            mergeStack(process + 6, output);
 
-            slots[tissue].stackSize--;
-            slots[tissue + 1].stackSize--;
-
-            if (slots[tissue].stackSize <= 0)
-                slots[tissue] = null;
-
-            if (slots[tissue + 1].stackSize <= 0)
-                slots[tissue + 1] = null;
+            decreaseStackSize(tissue);
+            decreaseStackSize(tissue + 1);
         }
     }
 
@@ -166,12 +159,6 @@ public class TileDnaSequencer extends TileMachineBase
     public String getGuiID()
     {
         return JurassiCraft.modid + ":dna_sequencer";
-    }
-
-    @Override
-    public int getInventoryStackLimit()
-    {
-        return 64;
     }
 
     @Override

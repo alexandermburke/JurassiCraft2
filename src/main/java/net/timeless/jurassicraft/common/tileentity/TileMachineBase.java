@@ -171,9 +171,9 @@ public abstract class TileMachineBase extends TileEntityLockable implements IUpd
             stack.stackSize = this.getInventoryStackLimit();
         }
 
-        if (index < 6 && !flag)
+        if (index < getInputs().length && !flag)
         {
-            int i = (int) Math.floor(index / 2);
+            int i = getProcess(index);
             this.totalProcessTime[i] = this.getStackProcessTime(stack);
             this.processTime[i] = 0;
             worldObj.markBlockForUpdate(pos);
@@ -342,6 +342,8 @@ public abstract class TileMachineBase extends TileEntityLockable implements IUpd
         return this.isItemValidForSlot(index, itemStackIn);
     }
 
+    protected abstract int getProcess(int slot);
+
     protected abstract boolean canProcess(int process);
 
     protected abstract void processItem(int process);
@@ -423,6 +425,36 @@ public abstract class TileMachineBase extends TileEntityLockable implements IUpd
         }
 
         return true;
+    }
+
+    protected void mergeStack(int slot, ItemStack stack)
+    {
+        ItemStack[] slots = getSlots();
+
+        if (slots[slot] == null)
+        {
+            slots[slot] = stack;
+        }
+        else if (slots[slot].getItem() == stack.getItem() && ItemStack.areItemStackTagsEqual(slots[slot], stack))
+        {
+            slots[slot].stackSize += stack.stackSize;
+        }
+    }
+
+    protected void decreaseStackSize(int slot)
+    {
+        ItemStack[] slots = getSlots();
+
+        slots[slot].stackSize--;
+
+        if (slots[slot].stackSize <= 0)
+            slots[slot] = null;
+    }
+
+    @Override
+    public int getInventoryStackLimit()
+    {
+        return 64;
     }
 
     @Override
