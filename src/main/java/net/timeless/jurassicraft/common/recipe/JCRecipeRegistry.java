@@ -118,16 +118,16 @@ public class JCRecipeRegistry
                 'B', new ItemStack(Items.dye, 1, 4), 'P', Items.paper);
 
         GameRegistry.addRecipe(new ItemStack(JCItemRegistry.empty_syringe),
-                "  I",
+                "  N",
                 "IG ",
                 "II ",
-                'G', Blocks.glass_pane, 'I', Items.iron_ingot);
+                'G', Blocks.glass_pane, 'I', Items.iron_ingot, 'N', JCItemRegistry.needle);
 
         GameRegistry.addRecipe(new ItemStack(JCItemRegistry.empty_syringe),
-                "I  ",
+                "N  ",
                 " GI",
                 " II",
-                'G', Blocks.glass_pane, 'I', Items.iron_ingot);
+                'G', Blocks.glass_pane, 'I', Items.iron_ingot, 'N', JCItemRegistry.needle);
 
         GameRegistry.addSmelting(new ItemStack(Items.potionitem, 1, 0), new ItemStack(JCItemRegistry.dna_base), 1.0F);
 
@@ -160,6 +160,45 @@ public class JCRecipeRegistry
                 "RBR",
                 "ITI",
                 'G', Items.gold_ingot, 'I', Blocks.iron_block, 'T', Blocks.redstone_torch, 'B', Items.bucket, 'R', Items.redstone);
+
+        for (i = 0; i < 16; i++)
+        {
+            GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.cultivate_bottom, 1, i),
+                    "GGG",
+                    "GWG",
+                    "III",
+                    'G', new ItemStack(Blocks.stained_glass_pane, 1, i), 'W', Items.water_bucket, 'I', Items.iron_ingot);
+        }
+
+        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.embryonic_machine),
+                "GIG",
+                "GIG",
+                "III",
+                'G', Blocks.glass_pane, 'I', Items.iron_ingot);
+
+        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.embryonic_machine),
+                "GIG",
+                "GSG",
+                "III",
+                'G', Blocks.glass_pane, 'I', Items.iron_ingot, 'S', JCItemRegistry.needle);
+
+        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.incubator),
+                "GGG",
+                "RRR",
+                "III",
+                'I', Blocks.iron_block, 'R', Blocks.redstone_block, 'G', Blocks.glass);
+
+        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.dna_combinator),
+                "III",
+                "GRG",
+                "III",
+                'G', Blocks.glass, 'I', Items.iron_ingot, 'R', Blocks.redstone_block);
+
+        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.dna_hybridizer),
+                "IRI",
+                "GIG",
+                "IRI",
+                'G', Blocks.glass, 'I', Items.iron_ingot, 'R', Blocks.redstone_block);
 
         addGrowthSerumRecipe(Items.cooked_beef);
         addGrowthSerumRecipe(Items.cooked_chicken);
