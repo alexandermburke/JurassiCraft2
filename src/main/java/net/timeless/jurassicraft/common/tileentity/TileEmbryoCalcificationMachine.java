@@ -34,7 +34,7 @@ public class TileEmbryoCalcificationMachine extends TileMachineBase
         {
             Dinosaur dino = JCEntityRegistry.getDinosaurById(slots[0].getItemDamage());
 
-            if (!(dino.isMammal() || dino.isMarineReptile()))
+            if (!dino.isMammal())
             {
                 ItemStack output = new ItemStack(JCItemRegistry.egg, 1, slots[0].getItemDamage());
                 output.setTagCompound(slots[0].getTagCompound());

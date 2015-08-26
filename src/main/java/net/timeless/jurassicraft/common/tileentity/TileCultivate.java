@@ -413,7 +413,7 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
         {
             Dinosaur dino = JCEntityRegistry.getDinosaurById(slots[0].getItemDamage());
 
-            if (dino.isMarineReptile() && lipids >= dino.getLipids() && minerals >= dino.getMinerals() && proximates >= dino.getProximates() && vitamins >= dino.getVitamins()) //TODO mammal
+            if (dino.isMammal() && lipids >= dino.getLipids() && minerals >= dino.getMinerals() && proximates >= dino.getProximates() && vitamins >= dino.getVitamins())
             {
                 return true;
             }

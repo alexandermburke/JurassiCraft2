@@ -58,7 +58,7 @@ public class SpecialRendererDNAExtractor extends TileEntitySpecialRenderer
             GlStateManager.translate(0, 0, -0.45);
             GlStateManager.rotate(15, 1, 0, 0);
 
-            if (tile.isExtracting())
+            if (tile.isProcessing(0))
             {
                 GlStateManager.rotate(mc.thePlayer.ticksExisted * 2 % 360, 0, 0, 1);
             }
