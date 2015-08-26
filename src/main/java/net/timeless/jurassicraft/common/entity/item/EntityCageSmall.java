@@ -131,17 +131,21 @@ public class EntityCageSmall extends Entity implements IEntityAdditionalSpawnDat
         if (entity != null && !worldObj.isRemote)
         {
             entity.setPosition(posX, posY, posZ);
-            worldObj.spawnEntityInWorld(entity);
+            entity.prevPosX = prevPosX;
+            entity.prevPosY = prevPosY;
+            entity.prevPosZ = prevPosZ;
             entity.motionX = 0;
             entity.motionY = 0;
             entity.motionZ = 0;
             entity.fallDistance = 0;
             entity.setHealth(entity.getMaxHealth());
+            entity.deathTime = 0;
+            entity.hurtTime = 0;
+
+            worldObj.spawnEntityInWorld(entity);
 
             this.setDead();
             this.entityDropItem(new ItemStack(JCItemRegistry.cage_small, 1, marine ? 1 : 0), 0.5F);
-
-            entity = null;
         }
 
         return true;

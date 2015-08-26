@@ -23,6 +23,7 @@ public class PlantDNA
     public void writeToNBT(NBTTagCompound nbt)
     {
         nbt.setInteger("DNAQuality", quality);
+        nbt.setInteger("Plant", plant);
         nbt.setString("StorageId", "PlantDNA");
     }
 

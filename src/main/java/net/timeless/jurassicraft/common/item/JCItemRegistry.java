@@ -29,7 +29,7 @@ public class JCItemRegistry
     public static ItemBasic empty_test_tube;
 
     public static ItemSyringe syringe;
-    public static ItemBasic empty_syringe;
+    public static ItemEmptySyringe empty_syringe;
 
     public static ItemEntityRemover entityRemover;
 
@@ -48,6 +48,10 @@ public class JCItemRegistry
     public static ItemBasic needle;
 
     public static ItemGrowthSerum growth_serum;
+
+    public static ItemBasic plant_cells;
+    public static ItemPlantCallus plant_callus;
+    public static ItemBasic plant_cells_petri_dish;
 
     //TODO more complex crafting components, eg circuit boards, ROM Drive
 
@@ -68,7 +72,7 @@ public class JCItemRegistry
         petri_dish = new ItemBasic("Petri Dish", JCCreativeTabs.items);
         empty_test_tube = new ItemBasic("Empty Test Tube", JCCreativeTabs.items);
         syringe = new ItemSyringe();
-        empty_syringe = new ItemBasic("Empty Syringe", JCCreativeTabs.items);
+        empty_syringe = new ItemEmptySyringe();
         entityRemover = new ItemEntityRemover();
         storage_disc = new ItemStorageDisc();
         dna_base = new ItemBasic("DNA Base Material", JCCreativeTabs.items);
@@ -79,6 +83,9 @@ public class JCItemRegistry
         iron_rod = new ItemBasic("Iron Rod", JCCreativeTabs.items);
         growth_serum = new ItemGrowthSerum();
         needle = new ItemBasic("Needle", JCCreativeTabs.items);
+        plant_cells = new ItemBasic("Plant Cells", JCCreativeTabs.items);
+        plant_callus = new ItemPlantCallus();
+        plant_cells_petri_dish = new ItemBasic("Plant Cells Petri Dish", JCCreativeTabs.items);
 
         registerItem(amber, "Amber");
         registerItem(sea_lamprey, "Sea Lamprey");
@@ -89,6 +96,7 @@ public class JCItemRegistry
         registerItem(storage_disc, "Storage Disc");
         registerItem(dna_base, "DNA Base Material");
         registerItem(petri_dish, "Petri Dish");
+        registerItem(plant_cells_petri_dish, "Plant Cells Petri Dish");
         registerItem(blue_print, "Blue Print");
         registerItem(cage_small, "Cage Small");
 //        registerItem(jc_sign, "JurassiCraft Sign");
@@ -103,6 +111,8 @@ public class JCItemRegistry
         registerItem(iron_blades, "Iron Blades");
         registerItem(iron_rod, "Iron Rod");
         registerItem(needle, "Needle");
+        registerItem(plant_cells, "Plant Cells");
+        registerItem(plant_callus, "Plant Callus");
 
         registerItem(dino_meat, "Dinosaur Meat");
         registerItem(dino_steak, "Dinosaur Steak");

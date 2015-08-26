@@ -200,6 +200,8 @@ public class JCRecipeRegistry
                 "IRI",
                 'G', Blocks.glass, 'I', Items.iron_ingot, 'R', Blocks.redstone_block);
 
+        GameRegistry.addShapelessRecipe(new ItemStack(JCItemRegistry.plant_cells_petri_dish), JCItemRegistry.plant_cells, JCItemRegistry.petri_dish);
+
         addGrowthSerumRecipe(Items.cooked_beef);
         addGrowthSerumRecipe(Items.cooked_chicken);
         addGrowthSerumRecipe(Items.cooked_fish);
