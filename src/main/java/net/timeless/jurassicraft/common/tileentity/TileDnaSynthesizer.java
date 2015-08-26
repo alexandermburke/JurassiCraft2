@@ -28,15 +28,25 @@ public class TileDnaSynthesizer extends TileMachineBase
         ItemStack testTube = slots[1];
         ItemStack baseMaterial = slots[2];
 
-        if (storage != null && storage.getItem() == JCItemRegistry.storage_disc && testTube != null && testTube.getItem() == JCItemRegistry.empty_test_tube && baseMaterial != null && baseMaterial.getItem() == JCItemRegistry.dna_base && (storage.getTagCompound() != null && storage.getTagCompound().hasKey("Genetics")))
+        if (storage != null && storage.getItem() == JCItemRegistry.storage_disc && testTube != null && testTube.getItem() == JCItemRegistry.empty_test_tube && baseMaterial != null && baseMaterial.getItem() == JCItemRegistry.dna_base && (storage.getTagCompound() != null && storage.getTagCompound().hasKey("DNAQuality")))
         {
-            if (storage.getTagCompound().getInteger("DNAQuality") == 100)
-            {
-                ItemStack output = new ItemStack(JCItemRegistry.dna, 1, storage.getItemDamage());
-                output.setTagCompound(storage.getTagCompound());
+            ItemStack output = null;
 
-                return hasOutputSlot(output);
+            if(storage.getTagCompound().getString("StorageId") == "DinoDNA")
+            {
+                if (storage.getTagCompound().getInteger("DNAQuality") == 100)
+                {
+                    output = new ItemStack(JCItemRegistry.dna, 1, storage.getItemDamage());
+                    output.setTagCompound(storage.getTagCompound());
+                }
             }
+            else
+            {
+                output = new ItemStack(JCItemRegistry.plant_dna, 1, storage.getItemDamage());
+                output.setTagCompound(storage.getTagCompound());
+            }
+
+            return output != null && hasOutputSlot(output);
         }
 
         return false;
@@ -47,7 +57,7 @@ public class TileDnaSynthesizer extends TileMachineBase
     {
         if (this.canProcess(process))
         {
-            ItemStack output = new ItemStack(JCItemRegistry.dna, 1, slots[0].getItemDamage());
+            ItemStack output = new ItemStack(slots[0].getTagCompound().getString("StorageId") == "DinoDNA" ? JCItemRegistry.dna : JCItemRegistry.plant_dna, 1, slots[0].getItemDamage());
             output.setTagCompound(slots[0].getTagCompound());
 
             int emptySlot = getOutputSlot(output);

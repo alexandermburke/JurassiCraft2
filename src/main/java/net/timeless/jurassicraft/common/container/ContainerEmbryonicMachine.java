@@ -7,6 +7,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.timeless.jurassicraft.common.container.slot.SlotCustom;
+import net.timeless.jurassicraft.common.container.slot.SlotPetriDish;
 import net.timeless.jurassicraft.common.container.slot.SlotTestTube;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 import net.timeless.jurassicraft.common.tileentity.TileEmbryonicMachine;
@@ -19,7 +20,7 @@ public class ContainerEmbryonicMachine extends Container
     {
         this.embryonicMachine = (TileEmbryonicMachine) tileEntity;
         this.addSlotToContainer(new SlotTestTube(embryonicMachine, 0, 24, 49));
-        this.addSlotToContainer(new SlotCustom(embryonicMachine, 1, 50, 49, JCItemRegistry.petri_dish));
+        this.addSlotToContainer(new SlotPetriDish(embryonicMachine, 1, 50, 49));
         this.addSlotToContainer(new SlotCustom(embryonicMachine, 2, 50, 13, JCItemRegistry.empty_syringe));
 
         int i;

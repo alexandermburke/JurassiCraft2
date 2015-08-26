@@ -5,10 +5,11 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.timeless.jurassicraft.common.item.ItemDNA;
 import net.timeless.jurassicraft.common.item.ItemPlantDNA;
+import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
-public class SlotTestTube extends Slot
+public class SlotPetriDish extends Slot
 {
-    public SlotTestTube(IInventory inventory, int slotIndex, int xPosition, int yPosition)
+    public SlotPetriDish(IInventory inventory, int slotIndex, int xPosition, int yPosition)
     {
         super(inventory, slotIndex, xPosition, yPosition);
     }
@@ -16,6 +17,6 @@ public class SlotTestTube extends Slot
     @Override
     public boolean isItemValid(ItemStack stack)
     {
-        return stack.getItem() instanceof ItemDNA || stack.getItem() instanceof ItemPlantDNA;
+        return stack.getItem() == JCItemRegistry.plant_cells_petri_dish || stack.getItem() == JCItemRegistry.petri_dish;
     }
 }

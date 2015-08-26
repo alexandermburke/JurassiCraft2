@@ -141,6 +141,7 @@ public class EntityCageSmall extends Entity implements IEntityAdditionalSpawnDat
             entity.setHealth(entity.getMaxHealth());
             entity.deathTime = 0;
             entity.hurtTime = 0;
+            entity.ticksExisted = 0;
 
             worldObj.spawnEntityInWorld(entity);
 
