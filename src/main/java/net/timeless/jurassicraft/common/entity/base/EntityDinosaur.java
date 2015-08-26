@@ -6,6 +6,7 @@ import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -324,6 +325,13 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         this.tasks.addTask(0, new EntityAIAttackOnCollide(this, entity, 1.0D, false));
         this.tasks.addTask(1, new EntityAILeapAtTarget(this, 0.4F));
         this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, entity, false));
+    }
+
+
+    @Override
+    public boolean allowLeashing()
+    {
+        return !this.getLeashed() && (this.getDinosaurAge() <= 10);
     }
 
     //NOTE: This registers which attackers to defend from. Class should be the entity class for the attacker, lower prio get executed earlier (Should be based upon attacker's strength and health to decide whether to defend or flee)
