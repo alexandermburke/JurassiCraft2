@@ -331,7 +331,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     @Override
     public boolean allowLeashing()
     {
-        return !this.getLeashed() && (this.getDinosaurAge() <= 10);
+        return !this.getLeashed() && (this.getDinosaurAge() <= 7500);
     }
 
     //NOTE: This registers which attackers to defend from. Class should be the entity class for the attacker, lower prio get executed earlier (Should be based upon attacker's strength and health to decide whether to defend or flee)
