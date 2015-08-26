@@ -112,12 +112,12 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
     public boolean isMarineReptile()
     {
         return false;
-    }
+    } //TODO isMarineAnimal (only decides if can be found in sea lampreys)
 
     public boolean isMammal()
     {
         return false;
-    }
+    } //TODO
 
     public int getLipids()
     {
