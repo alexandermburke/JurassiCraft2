@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.container.ContainerEmbryonicMachine;
 import net.timeless.jurassicraft.common.item.ItemDNA;
+import net.timeless.jurassicraft.common.item.ItemPlantDNA;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 public class TileEmbryonicMachine extends TileMachineBase
@@ -25,12 +26,26 @@ public class TileEmbryonicMachine extends TileMachineBase
     @Override
     protected boolean canProcess(int process)
     {
-        if (slots[0] != null && slots[0].getItem() instanceof ItemDNA && slots[1] != null && slots[1].getItem() == JCItemRegistry.petri_dish && slots[2] != null && slots[2].getItem() == JCItemRegistry.empty_syringe)
-        {
-            ItemStack output = new ItemStack(JCItemRegistry.syringe, 1, slots[0].getItemDamage());
-            output.setTagCompound(slots[0].getTagCompound());
+        ItemStack dna = slots[0];
+        ItemStack petridish = slots[1];
+        ItemStack syringe = slots[2];
 
-            return hasOutputSlot(output);
+        if (dna != null && petridish != null && syringe != null && syringe.getItem() == JCItemRegistry.empty_syringe)
+        {
+            ItemStack output = null;
+
+            if(petridish.getItem() == JCItemRegistry.petri_dish && dna.getItem() instanceof ItemDNA)
+            {
+                output = new ItemStack(JCItemRegistry.syringe, 1, dna.getItemDamage());
+                output.setTagCompound(dna.getTagCompound());
+            }
+            else if(petridish.getItem() == JCItemRegistry.plant_cells_petri_dish && dna.getItem() instanceof ItemPlantDNA)
+            {
+                output = new ItemStack(JCItemRegistry.plant_callus, 1, dna.getItemDamage());
+                output.setTagCompound(dna.getTagCompound());
+            }
+
+            return output != null && hasOutputSlot(output);
         }
 
         return false;
@@ -41,7 +56,17 @@ public class TileEmbryonicMachine extends TileMachineBase
     {
         if (this.canProcess(process))
         {
-            ItemStack output = new ItemStack(JCItemRegistry.syringe, 1, slots[0].getItemDamage());
+            ItemStack output = null;
+
+            if(slots[0].getItem() instanceof ItemDNA && slots[1].getItem() == JCItemRegistry.petri_dish)
+            {
+                output = new ItemStack(JCItemRegistry.syringe, 1, slots[0].getItemDamage());
+            }
+            else if(slots[0].getItem() instanceof ItemPlantDNA && slots[1].getItem() == JCItemRegistry.plant_cells_petri_dish)
+            {
+                output = new ItemStack(JCItemRegistry.plant_callus, 1, slots[0].getItemDamage());
+            }
+
             output.setTagCompound(slots[0].getTagCompound());
 
             int emptySlot = getOutputSlot(output);

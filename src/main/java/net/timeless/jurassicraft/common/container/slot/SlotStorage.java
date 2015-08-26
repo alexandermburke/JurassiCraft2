@@ -21,11 +21,11 @@ public class SlotStorage extends Slot
     {
         if (stored)
         {
-            return stack.getItem() == JCItemRegistry.storage_disc && (stack.getTagCompound() != null && stack.getTagCompound().hasKey("Genetics"));
+            return stack.getItem() == JCItemRegistry.storage_disc && (stack.getTagCompound() != null && stack.getTagCompound().hasKey("DNAQuality"));
         }
         else
         {
-            return stack.getItem() == JCItemRegistry.storage_disc && (stack.getTagCompound() == null || !stack.getTagCompound().hasKey("Genetics"));
+            return stack.getItem() == JCItemRegistry.storage_disc && (stack.getTagCompound() == null || !stack.getTagCompound().hasKey("DNAQuality"));
         }
     }
 }
