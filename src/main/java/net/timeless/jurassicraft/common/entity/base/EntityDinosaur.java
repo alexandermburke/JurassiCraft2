@@ -6,7 +6,6 @@ import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -44,6 +43,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
     private boolean isMale;
 
+    @Override
     public void setNavigator(PathNavigate pn)
     {
         this.navigator = pn;
@@ -61,17 +61,21 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
         animTick = 0;
         animID = 0;
+        
+        ignoreFrustumCheck = true; // stops dino disappearing when hitbox goes off screen
 
         updateCreatureData();
         adjustHitbox();
     }
 
+    @Override
     public void entityInit()
     {
         super.entityInit();
         this.dataWatcher.addObject(25, 0);
     }
 
+    @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
@@ -111,11 +115,13 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         return (adult - baby) / maxAge * dinosaurAge + baby;
     }
 
+    @Override
     public float getSoundPitch()
     {
         return (float) transitionFromAge(1.5F, 1.0F);
     }
 
+    @Override
     public float getSoundVolume()
     {
         return (float) transitionFromAge(0.3F, 1.0F);
@@ -131,6 +137,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         return genetics;
     }
 
+    @Override
     public void onLivingUpdate()
     {
         super.onLivingUpdate();
@@ -148,6 +155,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         }
     }
 
+    @Override
     public void onUpdate()
     {
         super.onUpdate();
@@ -185,6 +193,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         return false;
     }
 
+    @Override
     public void writeToNBT(NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
@@ -197,6 +206,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         nbt.setBoolean("IsMale", isMale);
     }
 
+    @Override
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
@@ -253,6 +263,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         this.dinosaurAge = age;
     }
 
+    @Override
     public float getEyeHeight()
     {
         return (float) transitionFromAge(dinosaur.getBabyEyeHeight(), dinosaur.getAdultEyeHeight());
@@ -261,6 +272,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     /**
      * Drop 0-2 items of this living's type
      */
+    @Override
     protected void dropFewItems(boolean p_70628_1_, int looting)
     {
         int meatAmount = (int) (this.rand.nextInt(3) + ((width * height) / 4)) + looting;
@@ -304,6 +316,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 //        return isCarcass;
 //    }
 
+    @Override
     public boolean interact(EntityPlayer player)
     {
         ItemStack heldItem = player.getHeldItem();
