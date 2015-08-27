@@ -67,11 +67,14 @@ public class JCBlockRegistry
     public static BlockCultivate cultivate_top;
     public static BlockCultivate cultivate_bottom;
 
+    public static BlockCarnivoreFeeder carnivoreFeeder;
+
     public void register()
     {
         fossils = new ArrayList<BlockFossil>();
         encased_fossils = new ArrayList<BlockEncasedFossil>();
 
+        carnivoreFeeder = new BlockCarnivoreFeeder();
         cleaning_station = new BlockCleaningStation();
         fossil_grinder = new BlockFossilGrinder();
         dna_sequencer = new BlockDnaSequencer();
@@ -175,7 +178,7 @@ public class JCBlockRegistry
 
         registerBlockTileEntity(TileCultivate.class, cultivate_bottom, "Cultivate Bottom");
         registerBlock(cultivate_top, "Cultivate Top");
-
+        registerBlockTileEntity(TileCarnivoreFeeder.class, carnivoreFeeder, "Carnivore Feeder");
         registerBlockTileEntity(TileCleaningStation.class, cleaning_station, "Cleaning Station");
         registerBlockTileEntity(TileFossilGrinder.class, fossil_grinder, "Fossil Grinder");
         registerBlockTileEntity(TileDnaSequencer.class, dna_sequencer, "DNA Sequencer");
