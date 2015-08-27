@@ -8,6 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.container.ContainerDNACombinator;
 import net.timeless.jurassicraft.common.genetics.DinoDNA;
+import net.timeless.jurassicraft.common.genetics.PlantDNA;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 public class TileDNACombinator extends TileMachineBase
@@ -28,7 +29,7 @@ public class TileDNACombinator extends TileMachineBase
     {
         if (slots[0] != null && slots[0].getItem() == JCItemRegistry.storage_disc && slots[1] != null && slots[1].getItem() == JCItemRegistry.storage_disc)
         {
-            if (slots[0].getTagCompound() != null && slots[1].getTagCompound() != null && slots[2] == null && slots[0].getItemDamage() == slots[1].getItemDamage())
+            if (slots[0].getTagCompound() != null && slots[1].getTagCompound() != null && slots[2] == null && slots[0].getItemDamage() == slots[1].getItemDamage() && slots[0].getTagCompound().getString("StorageId") == slots[1].getTagCompound().getString("StorageId"))
             {
                 return true;
             }
@@ -44,21 +45,44 @@ public class TileDNACombinator extends TileMachineBase
         {
             ItemStack output = new ItemStack(JCItemRegistry.storage_disc, 1, slots[0].getItemDamage());
 
-            DinoDNA dna1 = DinoDNA.readFromNBT(slots[0].getTagCompound());
-            DinoDNA dna2 = DinoDNA.readFromNBT(slots[1].getTagCompound());
+            String storageId = slots[0].getTagCompound().getString("StorageId");
 
-            int newQuality = dna1.getDNAQuality() + dna2.getDNAQuality();
-
-            if (newQuality > 100)
+            if(storageId == "DinoDNA")
             {
-                newQuality = 100;
+                DinoDNA dna1 = DinoDNA.readFromNBT(slots[0].getTagCompound());
+                DinoDNA dna2 = DinoDNA.readFromNBT(slots[1].getTagCompound());
+
+                int newQuality = dna1.getDNAQuality() + dna2.getDNAQuality();
+
+                if (newQuality > 100)
+                {
+                    newQuality = 100;
+                }
+
+                DinoDNA newDNA = new DinoDNA(newQuality, dna1.toString());
+
+                NBTTagCompound outputTag = new NBTTagCompound();
+                newDNA.writeToNBT(outputTag);
+                output.setTagCompound(outputTag);
             }
+            else if(storageId == "PlantDNA")
+            {
+                PlantDNA dna1 = PlantDNA.readFromNBT(slots[0].getTagCompound());
+                PlantDNA dna2 = PlantDNA.readFromNBT(slots[1].getTagCompound());
 
-            DinoDNA newDNA = new DinoDNA(newQuality, dna1.toString());
+                int newQuality = dna1.getDNAQuality() + dna2.getDNAQuality();
 
-            NBTTagCompound outputTag = new NBTTagCompound();
-            newDNA.writeToNBT(outputTag);
-            output.setTagCompound(outputTag);
+                if (newQuality > 100)
+                {
+                    newQuality = 100;
+                }
+
+                PlantDNA newDNA = new PlantDNA(dna1.getPlant(), newQuality);
+
+                NBTTagCompound outputTag = new NBTTagCompound();
+                newDNA.writeToNBT(outputTag);
+                output.setTagCompound(outputTag);
+            }
 
             mergeStack(2, output);
 
