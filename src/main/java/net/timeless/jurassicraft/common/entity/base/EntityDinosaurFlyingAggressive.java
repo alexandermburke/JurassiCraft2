@@ -1,5 +1,7 @@
 package net.timeless.jurassicraft.common.entity.base;
 
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -8,8 +10,8 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
-import java.util.Random;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityDinosaurFlyingAggressive extends EntityDinosaurAggressive
 {
@@ -21,11 +23,13 @@ public class EntityDinosaurFlyingAggressive extends EntityDinosaurAggressive
         this.tasks.addTask(7, new EntityDinosaurFlyingAggressive.AILookAround());
     }
 
+    @Override
     public void fall(float distance, float damageMultiplier)
     {
         // TODO slow itself down when landing, if falling too fast, take damage
     }
 
+    @Override
     protected void func_180433_a(double p_180433_1_, boolean p_180433_3_, Block block, BlockPos pos)
     {
     }
@@ -33,6 +37,7 @@ public class EntityDinosaurFlyingAggressive extends EntityDinosaurAggressive
     /**
      * Moves the entity based on the specified heading.  Args: strafe, forward
      */
+    @Override
     public void moveEntityWithHeading(float strafe, float forward)
     {
         if (this.isInWater())
@@ -70,9 +75,9 @@ public class EntityDinosaurFlyingAggressive extends EntityDinosaurAggressive
             }
 
             this.moveEntity(this.motionX, this.motionY, this.motionZ);
-            this.motionX *= (double) f2;
-            this.motionY *= (double) f2;
-            this.motionZ *= (double) f2;
+            this.motionX *= f2;
+            this.motionY *= f2;
+            this.motionZ *= f2;
         }
 
         this.prevLimbSwingAmount = this.limbSwingAmount;
@@ -92,14 +97,26 @@ public class EntityDinosaurFlyingAggressive extends EntityDinosaurAggressive
     /**
      * returns true if this entity is by a ladder, false otherwise
      */
+    @Override
     public boolean isOnLadder()
     {
         return false;
     }
+    
+    /**
+     * Checks if the entity is in range to render by using the past in distance and comparing it to its average edge
+     * length * 64 * renderDistanceWeight Args: distance
+     */
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean isInRangeToRenderDist(double distance)
+    {
+        return true; // flying entities should be rendered even very far away
+    }
 
     class AIRandomFly extends EntityAIBase
     {
-        private EntityDinosaurFlyingAggressive dino = EntityDinosaurFlyingAggressive.this;
+        private final EntityDinosaurFlyingAggressive dino = EntityDinosaurFlyingAggressive.this;
 
         public AIRandomFly()
         {
@@ -109,6 +126,7 @@ public class EntityDinosaurFlyingAggressive extends EntityDinosaurAggressive
         /**
          * Returns whether the EntityAIBase should begin execution.
          */
+        @Override
         public boolean shouldExecute()
         {
             EntityMoveHelper moveHelper = this.dino.getMoveHelper();
@@ -130,6 +148,7 @@ public class EntityDinosaurFlyingAggressive extends EntityDinosaurAggressive
         /**
          * Returns whether an in-progress EntityAIBase should continue executing
          */
+        @Override
         public boolean continueExecuting()
         {
             return false;
@@ -138,19 +157,20 @@ public class EntityDinosaurFlyingAggressive extends EntityDinosaurAggressive
         /**
          * Execute a one shot task or start executing a continuous task
          */
+        @Override
         public void startExecuting()
         {
             Random random = this.dino.getRNG();
-            double d0 = this.dino.posX + (double) ((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
-            double d1 = this.dino.posY + (double) ((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
-            double d2 = this.dino.posZ + (double) ((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+            double d0 = this.dino.posX + (random.nextFloat() * 2.0F - 1.0F) * 16.0F;
+            double d1 = this.dino.posY + (random.nextFloat() * 2.0F - 1.0F) * 16.0F;
+            double d2 = this.dino.posZ + (random.nextFloat() * 2.0F - 1.0F) * 16.0F;
             this.dino.getMoveHelper().setMoveTo(d0, d1, d2, 1.0D);
         }
     }
 
     class FlyingMoveHelper extends EntityMoveHelper
     {
-        private EntityDinosaurFlyingAggressive dino = EntityDinosaurFlyingAggressive.this;
+        private final EntityDinosaurFlyingAggressive dino = EntityDinosaurFlyingAggressive.this;
         private int timer;
 
         public FlyingMoveHelper()
@@ -158,6 +178,7 @@ public class EntityDinosaurFlyingAggressive extends EntityDinosaurAggressive
             super(EntityDinosaurFlyingAggressive.this);
         }
 
+        @Override
         public void onUpdateMoveHelper()
         {
             if (this.update)
@@ -170,7 +191,7 @@ public class EntityDinosaurFlyingAggressive extends EntityDinosaurAggressive
                 if (this.timer-- <= 0)
                 {
                     this.timer += this.dino.getRNG().nextInt(5) + 2;
-                    dist = (double) MathHelper.sqrt_double(dist);
+                    dist = MathHelper.sqrt_double(dist);
 
                     if (this.canMoveTo(this.posX, this.posY, this.posZ, dist))
                     {
@@ -193,7 +214,7 @@ public class EntityDinosaurFlyingAggressive extends EntityDinosaurAggressive
             double d6 = (posZ - this.dino.posZ) / dist;
             AxisAlignedBB boudningBox = this.dino.getEntityBoundingBox();
 
-            for (int i = 1; (double) i < dist; ++i)
+            for (int i = 1; i < dist; ++i)
             {
                 boudningBox = boudningBox.offset(d4, d5, d6);
 
@@ -209,7 +230,7 @@ public class EntityDinosaurFlyingAggressive extends EntityDinosaurAggressive
 
     class AILookAround extends EntityAIBase
     {
-        private EntityDinosaurFlyingAggressive dino = EntityDinosaurFlyingAggressive.this;
+        private final EntityDinosaurFlyingAggressive dino = EntityDinosaurFlyingAggressive.this;
 
         public AILookAround()
         {
@@ -219,6 +240,7 @@ public class EntityDinosaurFlyingAggressive extends EntityDinosaurAggressive
         /**
          * Returns whether the EntityAIBase should begin execution.
          */
+        @Override
         public boolean shouldExecute()
         {
             return true;
@@ -227,6 +249,7 @@ public class EntityDinosaurFlyingAggressive extends EntityDinosaurAggressive
         /**
          * Updates the task
          */
+        @Override
         public void updateTask()
         {
             if (this.dino.getAttackTarget() == null)
