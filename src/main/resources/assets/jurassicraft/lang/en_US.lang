@@ -118,6 +118,8 @@ tile.calamites_planks.name=Calamites Planks
 tile.small_royal_fern.name=Small Royal Fern
 tile.small_chain_fern.name=Small Chain Fern
 tile.small_cycad.name=Small Cycad
+tile.bennettitalean_cycadeoidea.name=Bennettitalean Cycadeoidea
+tile.cry_pansy.name=Cry Pansy
 
 tile.reinforced_stone.name=Reinforced Stone
 tile.reinforced_bricks.name=Reinforced Bricks
@@ -129,6 +131,9 @@ plants.small_royal_fern.name=Small Royal Fern
 plants.calamites.name=Calamites
 plants.small_chain_fern.name=Small Chain Fern
 plants.small_cycad.name=Small Cycad
+plants.ginkgo.name=Ginkgo
+plants.bennettitalean_cycadeoidea.name=Bennettitalean Cycadeoidea
+plants.cry_pansy.name=Cry Pansy
 
 //Containers ==================================================
 container.cleaning_station=Cleaning Station
@@ -178,7 +183,7 @@ color.white.name=White
 color.black.name=Black
 color.brown.name=Brown
 color.gray.name=Gray
-color.silver.name=Silver
+color.silver.name=Light Gray
 color.cyan.name=Cyan
 
 period.quaternary.name=Quaternary

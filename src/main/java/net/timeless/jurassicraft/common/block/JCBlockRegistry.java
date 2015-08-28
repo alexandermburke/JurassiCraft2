@@ -7,9 +7,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.timeless.jurassicraft.common.api.ISubBlocksBlock;
-import net.timeless.jurassicraft.common.block.plant.BlockSmallChainFern;
-import net.timeless.jurassicraft.common.block.plant.BlockSmallCycad;
-import net.timeless.jurassicraft.common.block.plant.BlockSmallRoyalFern;
+import net.timeless.jurassicraft.common.block.plant.*;
 import net.timeless.jurassicraft.common.block.tree.*;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
@@ -68,6 +66,8 @@ public class JCBlockRegistry
     public static BlockCultivate cultivate_bottom;
 
     public static BlockCarnivoreFeeder carnivoreFeeder;
+    public static BlockBennettitaleanCycadeoidea bennettitalean_cycadeoidea;
+    public static BlockCryPansy cry_pansy;
 
     public void register()
     {
@@ -100,10 +100,14 @@ public class JCBlockRegistry
         small_royal_fern = new BlockSmallRoyalFern();
         small_chain_fern = new BlockSmallChainFern();
         small_cycad = new BlockSmallCycad();
+        bennettitalean_cycadeoidea = new BlockBennettitaleanCycadeoidea();
+        cry_pansy = new BlockCryPansy();
 
         registerBlock(small_royal_fern, "Small Royal Fern");
         registerBlock(small_chain_fern, "Small Chain Fern");
         registerBlock(small_cycad, "Small Cycad");
+        registerBlock(bennettitalean_cycadeoidea, "Bennettitalean Cycadeoidea");
+        registerBlock(cry_pansy, "Cry Pansy");
 
         List<Dinosaur> dinosaurs = JCEntityRegistry.getDinosaurs();
 

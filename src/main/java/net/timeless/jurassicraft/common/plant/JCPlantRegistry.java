@@ -11,6 +11,9 @@ public class JCPlantRegistry
     public static final Plant calamites = new PlantCalamites();
     public static final Plant small_chain_fern = new PlantSmallChainFern();
     public static final Plant small_cycad = new PlantSmallCycad();
+    public static final Plant ginkgo = new PlantGinkgo();
+    public static final Plant bennettitalean_cycadeoidea = new PlantBennettitaleanCycadeoidea();
+    public static final Plant cry_pansy = new PlantCryPansy();
 
     public void register()
     {
@@ -18,6 +21,9 @@ public class JCPlantRegistry
         registerPlant(calamites);
         registerPlant(small_chain_fern);
         registerPlant(small_cycad);
+        registerPlant(ginkgo);
+        registerPlant(bennettitalean_cycadeoidea);
+        registerPlant(cry_pansy);
     }
 
     public static Plant getPlantById(int id)
