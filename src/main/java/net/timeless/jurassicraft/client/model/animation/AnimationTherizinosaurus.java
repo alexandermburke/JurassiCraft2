@@ -19,7 +19,10 @@ public class AnimationTherizinosaurus implements IModelAnimator
         ModelDinosaur model = (ModelDinosaur) modelJson;
 		EntityTherizinosaurus entity = (EntityTherizinosaurus) e;
         Animator animator = model.animator;
-        
+
+        f = entity.ticksExisted;
+        f1 = 1.0F; //Makes entity always be walking (treat this as if this entity was running)
+
         MowzieModelRenderer rightThigh = model.getCube("Right Thigh");
         MowzieModelRenderer bodyhips = model.getCube("Body hips");
         MowzieModelRenderer leftThigh = model.getCube("Left Thigh");
@@ -103,7 +106,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
         MowzieModelRenderer LeftCalf2 = model.getCube("Left Calf 2");
         MowzieModelRenderer FootLeft = model.getCube("Foot Left");
 
-        MowzieModelRenderer[] neck = new MowzieModelRenderer[] { head, neck7, neck6, neck5, neck4, neck3, neck2, neck1 };
+        MowzieModelRenderer[] neck = new MowzieModelRenderer[] { head, neck7, neck6, neck5, neck4, neck3, neck2, neck1, bodyShoulders };
         MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail1, tail2, tail3, tail4, tail5, tail6 };
 //        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[] { leftArm4, leftArm3, leftArm2, leftArm1 };
 //        MowzieModelRenderer[] armRight = new MowzieModelRenderer[] { rightArm4, rightArm3, rightArm2, rightArm1 };
@@ -112,22 +115,30 @@ public class AnimationTherizinosaurus implements IModelAnimator
 
         int frame = entity.ticksExisted;
 
-        float globalSpeed = 0.05F;
-        float globalDegree = 0.06F;
-//        float globalHeight = 2F;
+        float globalSpeed = 1.0F;
+        float globalDegree = 1.0F;
+        float globalHeight = 0.5F; //globalHeight is used for everything but leg movement - globalDegree is used for only leg movement
 //        float frontOffset = -1.35f;
+
+        //The tail must always be up when the neck is down
 
         // DEBUG
         System.out.println(f);
-        model.chainWave(tail, globalSpeed, globalDegree/1.5F, 1, frame, 1);
-        model.chainWave(neck, globalSpeed, globalDegree*1.5F, 4, frame, 1);
-        model.walk(rightThigh, 0.28F, degToRad(40.0F), false, 0.0F, 0.0F, f, f1);
-        model.walk(leftThigh, 0.28F, degToRad(40.0F), true, 0.0F, 0.0F, f, f1);
+        model.chainWave(tail, globalSpeed * 0.125F, globalHeight * 0.0625F, 3, frame, 1);
+        model.chainWave(neck, globalSpeed * 0.125F, globalHeight * 0.0625F, -4, frame, 1);
+
+        model.bob(bodyhips, globalSpeed * 0.5F, globalHeight * 2.0F, false, f, f1);
+        model.chainWave(tail, globalSpeed * 0.5F, globalHeight * 0.125F, 3, f, f1);
+        model.chainWave(neck, globalSpeed * 0.5F, globalHeight * 0.125F, -4, f, f1);
+
+        //All leg parts need to move individually to make a more 'natural' walk animation.
+        model.walk(rightThigh, globalSpeed * 0.5F, globalDegree * degToRad(40.0F), false, 0.0F, 0.0F, f, f1);
+        model.walk(leftThigh, globalSpeed * 0.5F, globalDegree * degToRad(40.0F), true, 0.0F, 0.0F, f, f1);
 
     }
     
     private float degToRad(float degrees)
     {
-        return (float) (Math.PI / 180 * degrees);
+        return (float) Math.toRadians(degrees);
     }
 }
