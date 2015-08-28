@@ -15,6 +15,10 @@ public class EntityIndominusRex extends EntityDinosaurAggressive  //implements I
 {
     public ChainBuffer tailBuffer = new ChainBuffer(7);
 
+    private static final String[] hurtSounds = new String[]{"indominus_hurt_1"};
+    private static final String[] livingSounds = new String[]{"indominus_living_1"};
+    private static final String[] deathSounds = new String[]{"indominus_death_1"};
+
     private float[] newSkinColor = new float[3];
     private float[] skinColor = new float[3];
 
@@ -34,6 +38,21 @@ public class EntityIndominusRex extends EntityDinosaurAggressive  //implements I
 
 //        if (getAnimID() == 0)
 //            AnimationAPI.sendAnimPacket(this, 1);
+    }
+
+    public String getLivingSound()
+    {
+        return randomSound(livingSounds);
+    }
+
+    public String getHurtSound()
+    {
+        return randomSound(hurtSounds);
+    }
+
+    public String getDeathSound()
+    {
+        return randomSound(deathSounds);
     }
 
     public boolean isCamouflaging()

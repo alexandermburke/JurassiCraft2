@@ -209,6 +209,24 @@
             "dinosaurs/spinosaurus/spinosaurus_death_3"
         ]
     },
+	"indominus_living_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/indominus/indominus_living_1"
+        ]
+    },
+	"indominus_death_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/indominus/indominus_death_1"
+        ]
+    },
+	"indominus_hurt_1": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/indominus/indominus_hurt_1"
+        ]
+    },
 	"ankylosaurus_living_1": {
         "category": "hostile",
         "sounds": [

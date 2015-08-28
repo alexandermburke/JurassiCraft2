@@ -118,13 +118,13 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     @Override
     public float getSoundPitch()
     {
-        return (float) transitionFromAge(1.5F, 1.0F);
+        return (float) transitionFromAge(1.5F, 1.0F) + ((rand.nextFloat() - 0.5F) * 0.125F);
     }
 
     @Override
     public float getSoundVolume()
     {
-        return (float) transitionFromAge(0.3F, 1.0F);
+        return (float) transitionFromAge(0.3F, 1.0F) + ((rand.nextFloat() - 0.5F) * 0.125F);
     }
 
     public void setGenetics(String genetics)
