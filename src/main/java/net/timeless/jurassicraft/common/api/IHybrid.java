@@ -1,4 +1,4 @@
-package net.timeless.jurassicraft.common.dinosaur;
+package net.timeless.jurassicraft.common.api;
 
 public interface IHybrid
 {
