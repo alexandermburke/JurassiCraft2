@@ -335,6 +335,15 @@ public class TreeCompendium
 
         TreeList.add(tree);
 
+        tree = new Tree(0, 8, 4, 3, 3, 5);
+        tree.addFeatureList(new int[]{1, 1}, FeatureType.Trunk);
+        tree.addFeatureList(new int[]{11, 12, 13, 14, 15, 16, 17, 18}, FeatureType.Branch);
+        tree.addFeatureList(new int[]{5, 6}, FeatureType.Fruit);
+        tree.addFeatureList(new int[]{19, 19}, FeatureType.leaves);
+        tree.addFeatureList(new int[]{5, 5}, FeatureType.TrunkLeaves);
+        tree.addFeatureList(new int[]{2, 2}, FeatureType.wood);
+
+        TreeList.add(tree);
     }
 
     public static Shape getShapeFromCode(int code)

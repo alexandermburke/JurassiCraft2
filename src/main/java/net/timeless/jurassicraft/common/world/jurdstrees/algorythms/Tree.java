@@ -81,7 +81,7 @@ public class Tree
     public Tree getBaseCopy()
     {
 
-        Tree tree = new Tree(TreeCode, maxAge, maxBranchLevel);
+        Tree tree = new Tree(TreeCode, maxAge, maxBranchLevel, penaltyPerHeight, lowerBranchLevel, maxTrunkHeight);
 
         tree.addFeatureList(TrunkList, FeatureType.Trunk);
         tree.addFeatureList(BranchList, FeatureType.Branch);

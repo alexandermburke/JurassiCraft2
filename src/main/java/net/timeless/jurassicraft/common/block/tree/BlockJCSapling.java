@@ -15,8 +15,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
-import net.timeless.jurassicraft.common.world.gen.WorldGenGinkgo;
-import net.timeless.jurassicraft.common.world.jurdstrees.trees.WorldGenCalamites;
+import net.timeless.jurassicraft.common.world.jurdstrees.trees.*;
 
 import java.util.List;
 import java.util.Random;
@@ -67,7 +66,7 @@ public class BlockJCSapling extends BlockBush implements IGrowable
             {
 
                 case GINKGO:
-                    WorldGenGinkgo ginkgogen = new WorldGenGinkgo();
+                    WorldGenGinkgo ginkgogen = new WorldGenGinkgo(0);
                     ginkgogen.generate(worldIn, rand, pos);
                     break;
                 case CALAMITES:
