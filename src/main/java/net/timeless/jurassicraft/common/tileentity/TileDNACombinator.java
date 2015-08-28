@@ -29,7 +29,7 @@ public class TileDNACombinator extends TileMachineBase
     {
         if (slots[0] != null && slots[0].getItem() == JCItemRegistry.storage_disc && slots[1] != null && slots[1].getItem() == JCItemRegistry.storage_disc)
         {
-            if (slots[0].getTagCompound() != null && slots[1].getTagCompound() != null && slots[2] == null && slots[0].getItemDamage() == slots[1].getItemDamage() && slots[0].getTagCompound().getString("StorageId") == slots[1].getTagCompound().getString("StorageId"))
+            if (slots[0].getTagCompound() != null && slots[1].getTagCompound() != null && slots[2] == null && slots[0].getItemDamage() == slots[1].getItemDamage() && slots[0].getTagCompound().getString("StorageId").equals(slots[1].getTagCompound().getString("StorageId")))
             {
                 return true;
             }
@@ -47,7 +47,7 @@ public class TileDNACombinator extends TileMachineBase
 
             String storageId = slots[0].getTagCompound().getString("StorageId");
 
-            if(storageId == "DinoDNA")
+            if(storageId.equals("DinoDNA"))
             {
                 DinoDNA dna1 = DinoDNA.readFromNBT(slots[0].getTagCompound());
                 DinoDNA dna2 = DinoDNA.readFromNBT(slots[1].getTagCompound());
@@ -65,7 +65,7 @@ public class TileDNACombinator extends TileMachineBase
                 newDNA.writeToNBT(outputTag);
                 output.setTagCompound(outputTag);
             }
-            else if(storageId == "PlantDNA")
+            else if(storageId.equals("PlantDNA"))
             {
                 PlantDNA dna1 = PlantDNA.readFromNBT(slots[0].getTagCompound());
                 PlantDNA dna2 = PlantDNA.readFromNBT(slots[1].getTagCompound());
