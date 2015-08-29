@@ -143,7 +143,7 @@ public class DinosaurVelociraptorBlue extends Dinosaur implements IHybrid
     @Override
     public float getAdultSizeX()
     {
-        return 1.25F;
+        return 0.8F;
     }
 
     @Override
