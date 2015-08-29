@@ -121,6 +121,9 @@ public class EntityVelociraptor extends EntityDinosaurAggressive  //implements I
     {
         EntityVelociraptor[] pack;
         int directionInt = direction ? 1 : -1;
-        getNavigator().tryMoveToXYZ(target.posX + radius * Math.cos(directionInt * (ticksExisted + offset) * 0.5 * speed / radius), target.posY, target.posZ + radius * Math.sin(directionInt * (ticksExisted + offset) * 0.5 * speed / radius), speed);
+        if(getDistanceSqToEntity(target) > radius - 1)
+        {
+            getNavigator().tryMoveToXYZ(target.posX + radius * Math.cos(directionInt * (ticksExisted + offset) * 0.5 * speed / radius), target.posY, target.posZ + radius * Math.sin(directionInt * (ticksExisted + offset) * 0.5 * speed / radius), speed);
+        }
     }
 }
