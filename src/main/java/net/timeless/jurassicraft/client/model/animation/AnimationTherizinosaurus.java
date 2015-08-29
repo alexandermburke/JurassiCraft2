@@ -16,13 +16,23 @@ import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 @SideOnly(Side.CLIENT)
 public class AnimationTherizinosaurus implements IModelAnimator
 {
+    /*
+     * Change the following fields for your custom dinosaur
+     */
     protected static final Dinosaur theDinosaur = new DinosaurTherizinosaurus(); // do I need to get specific instance, I don't think so
 
-    protected int stepsInTween = 0;
-    protected int currentTweenStep = 0;
-    protected boolean finishedTween = false;
-    
-    protected final String[] partNameArray = new String[] {
+    // Tell the code where your tabula model assets are
+    // the first one must be your "default" pose (i.e one that is used at spawn time)
+    protected static final String[] modelAssetPaths = new String[] {
+            "/assets/jurassicraft/models/entities/therizinosaurus",
+            "/assets/jurassicraft/models/entities/therizinosaurus_pose1",
+            "/assets/jurassicraft/models/entities/therizinosaurus_pose2",
+            "/assets/jurassicraft/models/entities/therizinosaurus_pose3"
+    };
+
+    // Tell the code the names of all your tabula model parts
+    // NOTE: all the models must use exactly same number and names of parts
+    protected static final String[] partNameArray = new String[] {
         "Body main", "Body main 1", "Body hips", 
         "Right Thigh", "Right Calf 1", "Right Calf 2", "Foot Right",
         "Left Thigh", "Left Calf 1", "Left Calf 2", "Foot Left",
@@ -44,18 +54,30 @@ public class AnimationTherizinosaurus implements IModelAnimator
         "Left hand", "Arm left feathers", "Left finger 1", "LF1 mid", "LF1 end", 
         "Left finger 2", "LF1 end", "LF2 end", "Left finger 3", "LF3 mid", "LF3 mid"
     };
-    
-    protected int numParts = partNameArray.length;
 
-    // initialize models
-    protected ModelDinosaur modelDefault = getTabulaModel("/assets/jurassicraft/models/entities/therizinosaurus", 0); 
-    protected ModelDinosaur modelCurrent = getTabulaModel("/assets/jurassicraft/models/entities/therizinosaurus", 0);
-    protected ModelDinosaur modelTarget = getTabulaModel("/assets/jurassicraft/models/entities/therizinosaurus", 0);
+    /*
+     * Do NOT change any of the following field initializations
+     */
+    protected int targetModelIndex = 1; // 0 is default, so 1 is first custom pose
+    protected int stepsInTween = 0;
+    protected int currentTweenStep = 0;
+    protected boolean finishedTween = false;
 
-    // make instances to each custom pose here, simply by putting in patty to your tabula resource
-    protected ModelDinosaur modelPose1 = getTabulaModel("/assets/jurassicraft/models/entities/therizinosaurus_pose1", 0);
-    protected ModelDinosaur modelPose2 = getTabulaModel("/assets/jurassicraft/models/entities/therizinosaurus_pose2", 0);
-    protected ModelDinosaur modelPose3 = getTabulaModel("/assets/jurassicraft/models/entities/therizinosaurus_pose3", 0);
+    protected static int numParts = partNameArray.length;
+
+    // initialize non-static models
+    protected ModelDinosaur modelDefault = getTabulaModel(modelAssetPaths[0], 0); 
+    protected ModelDinosaur modelCurrent = getTabulaModel(modelAssetPaths[0], 0);
+    protected ModelDinosaur modelTarget = getTabulaModel(modelAssetPaths[0], 0);
+
+    // initialize custom models array
+    protected static ModelDinosaur[] modelArray = new ModelDinosaur[modelAssetPaths.length];
+    static {
+        for (int i = 0; i < modelAssetPaths.length; i++)
+        {
+            modelArray[i] = getTabulaModel(modelAssetPaths[i], 0);
+        }
+    };
 
     // initialize model renderer arrays
     protected MowzieModelRenderer[] passedInModelRendererArray = new MowzieModelRenderer[partNameArray.length];
@@ -63,17 +85,31 @@ public class AnimationTherizinosaurus implements IModelAnimator
     protected MowzieModelRenderer[] currentModelRendererArray = new MowzieModelRenderer[partNameArray.length];
     protected MowzieModelRenderer[] targetModelRendererArray = new MowzieModelRenderer[partNameArray.length];
 
-    // initialize custom model renderer arrays
-    protected MowzieModelRenderer[] pose1ModelRendererArray = new MowzieModelRenderer[partNameArray.length];
-    protected MowzieModelRenderer[] pose2ModelRendererArray = new MowzieModelRenderer[partNameArray.length];
-    protected MowzieModelRenderer[] pose3ModelRendererArray = new MowzieModelRenderer[partNameArray.length];
+    // initialize custom model renderer arrays (first index is model, second is part within model)
+    protected static MowzieModelRenderer[][] modelRendererArray = new MowzieModelRenderer[modelAssetPaths.length][partNameArray.length];
+    static {
+        for (int i = 0; i < modelAssetPaths.length; i++)
+        {
+            // DEBUG
+            if (partNameArray == null) System.out.println("Part name array is null");
+            if (modelRendererArray[i] == null) System.out.println("model renderer array element i is null");
+            if (modelRendererArray == null) System.out.println("model renderer array is null");
+            modelRendererArray[i] = new MowzieModelRenderer[partNameArray.length];
+            // fill in the model renderer arrays
+            for (int j = 0; j < numParts; j++) 
+            {
+                // fill in custom pose arrays
+                modelRendererArray[i][j] = modelArray[i].getCube(partNameArray[j]);
+            }
+        }
+    }
     
-    public ModelDinosaur getTabulaModel(String tabulaModel, int geneticVariant) 
+    public static ModelDinosaur getTabulaModel(String tabulaModel, int geneticVariant) 
     {
         // catch the exception so you can call method with implicit superconstructor
         try
         {
-            return new ModelDinosaur(TabulaModelHelper.parseModel(tabulaModel), this);
+            return new ModelDinosaur(TabulaModelHelper.parseModel(tabulaModel), null); // okay to use null for animator parameter as we get animator from passed-in model
         } catch (Exception e)
         {
             // TODO Auto-generated catch block
@@ -113,20 +149,17 @@ public class AnimationTherizinosaurus implements IModelAnimator
             }
             defaultModelRendererArray[i] = modelDefault.getCube(partNameArray[i]);
             currentModelRendererArray[i] = modelCurrent.getCube(partNameArray[i]);
-            targetModelRendererArray[i] = modelTarget.getCube(partNameArray[i]);
-
-            // fill in custom pose arrays
-            pose1ModelRendererArray[i] = modelPose1.getCube(partNameArray[i]);
-            pose2ModelRendererArray[i] = modelPose2.getCube(partNameArray[i]);
-            pose3ModelRendererArray[i] = modelPose3.getCube(partNameArray[i]);
         }
+        
+        // get target model renderer array from custom array
+        targetModelRendererArray = modelRendererArray[targetModelIndex];
         
         // set initial target model and steps to get there
         if (stepsInTween == 0) // hasn't been set yet
         {
             // DEBUG
             System.out.println("setting initial pose");
-            targetModelRendererArray = pose1ModelRendererArray;
+//            targetModelRendererArray = modelRendererArray[targetModelIndex];
             stepsInTween = 300;
         }
 
@@ -146,37 +179,114 @@ public class AnimationTherizinosaurus implements IModelAnimator
             finishedTween = false;
             
             // set next target
-            if (targetModelRendererArray == defaultModelRendererArray)
+            if (targetModelIndex == 0)
             {
                 // DEBUG
                 System.out.println("setting target pose to pose1");
-                targetModelRendererArray = pose1ModelRendererArray;
+                targetModelIndex = 1;
                 stepsInTween = slowDownFactor * 100;
             }
-            else if (targetModelRendererArray == pose1ModelRendererArray)
+            else if (targetModelIndex == 1)
             {
                 // DEBUG
                 System.out.println("setting target pose to pose2");
-                targetModelRendererArray = pose2ModelRendererArray;
+                targetModelIndex = 2;
                 stepsInTween = slowDownFactor * 100;
             }
-            else if (targetModelRendererArray == pose2ModelRendererArray)
+            else if (targetModelIndex == 2)
             {
                 // DEBUG
                 System.out.println("setting target pose to pose3");
-                targetModelRendererArray = pose3ModelRendererArray;
+                targetModelIndex = 3;
                 stepsInTween = slowDownFactor * 60;
             }
-            else if (targetModelRendererArray == pose3ModelRendererArray)
+            else if (targetModelIndex == 3)
             {
                 // DEBUG
                 System.out.println("setting target pose to default");
-                targetModelRendererArray = defaultModelRendererArray;
+                targetModelIndex = 0;
                 stepsInTween = slowDownFactor * 100;
             }
         }
+
+        // you can still add chain, walk, bob, etc in this method.
+        performMowzieAnimations(parModel, f, f1);
+    }
         
-//        int frame = entity.ticksExisted;
+    
+    protected void nextTween(MowzieModelRenderer[] parPassedInModelRendererArray)
+    {
+        if (currentTweenStep == stepsInTween)
+        {
+            parPassedInModelRendererArray = currentModelRendererArray;
+            finishedTween = true;
+            return;
+        }
+        
+        // tween the passed in model towards target pose
+        for (int i = 0; i < numParts; i++)
+        {
+            nextTweenRotations(parPassedInModelRendererArray, i);
+            nextTweenPositions(parPassedInModelRendererArray, i);
+            nextTweenOffsets(parPassedInModelRendererArray, i);
+        }
+        
+        currentTweenStep++;
+    }
+    
+    protected void nextTweenRotations(MowzieModelRenderer[] parPassedInModelRendererArray, int parTweenStep)
+    {
+        // tween the rotations
+        currentModelRendererArray[parTweenStep].rotateAngleX = parPassedInModelRendererArray[parTweenStep].rotateAngleX 
+                = currentModelRendererArray[parTweenStep].rotateAngleX + 
+                (targetModelRendererArray[parTweenStep].rotateAngleX - currentModelRendererArray[parTweenStep].rotateAngleX)
+                / (stepsInTween - currentTweenStep);
+        currentModelRendererArray[parTweenStep].rotateAngleY = parPassedInModelRendererArray[parTweenStep].rotateAngleY 
+                = currentModelRendererArray[parTweenStep].rotateAngleY + 
+                (targetModelRendererArray[parTweenStep].rotateAngleY - currentModelRendererArray[parTweenStep].rotateAngleY)
+                / (stepsInTween - currentTweenStep);
+        currentModelRendererArray[parTweenStep].rotateAngleZ = parPassedInModelRendererArray[parTweenStep].rotateAngleZ 
+                = currentModelRendererArray[parTweenStep].rotateAngleZ + 
+                (targetModelRendererArray[parTweenStep].rotateAngleZ - currentModelRendererArray[parTweenStep].rotateAngleZ)
+                / (stepsInTween - currentTweenStep);
+    }
+
+    protected void nextTweenPositions(MowzieModelRenderer[] parPassedInModelRendererArray, int parTweenStep)
+    {
+        // tween the positions
+        currentModelRendererArray[parTweenStep].rotationPointX = parPassedInModelRendererArray[parTweenStep].rotationPointX 
+                = currentModelRendererArray[parTweenStep].rotationPointX + 
+                (targetModelRendererArray[parTweenStep].rotationPointX - currentModelRendererArray[parTweenStep].rotationPointX)
+                / (stepsInTween - currentTweenStep);
+        currentModelRendererArray[parTweenStep].rotationPointY = parPassedInModelRendererArray[parTweenStep].rotationPointY 
+                = currentModelRendererArray[parTweenStep].rotationPointY + 
+                (targetModelRendererArray[parTweenStep].rotationPointY - currentModelRendererArray[parTweenStep].rotationPointY)
+                / (stepsInTween - currentTweenStep);
+        currentModelRendererArray[parTweenStep].rotationPointZ = parPassedInModelRendererArray[parTweenStep].rotationPointZ 
+                = currentModelRendererArray[parTweenStep].rotationPointZ + 
+                (targetModelRendererArray[parTweenStep].rotationPointZ - currentModelRendererArray[parTweenStep].rotationPointZ)
+                / (stepsInTween - currentTweenStep);
+    }
+
+    protected void nextTweenOffsets(MowzieModelRenderer[] parPassedInModelRendererArray, int parTweenStep)
+    {
+        // tween the offsets
+        currentModelRendererArray[parTweenStep].offsetX = parPassedInModelRendererArray[parTweenStep].offsetX 
+                = currentModelRendererArray[parTweenStep].offsetX + 
+                (targetModelRendererArray[parTweenStep].offsetX - currentModelRendererArray[parTweenStep].offsetX)
+                / (stepsInTween - currentTweenStep);
+        currentModelRendererArray[parTweenStep].offsetY = parPassedInModelRendererArray[parTweenStep].offsetY 
+                = currentModelRendererArray[parTweenStep].offsetY + 
+                (targetModelRendererArray[parTweenStep].offsetY - currentModelRendererArray[parTweenStep].offsetY)
+                / (stepsInTween - currentTweenStep);
+        currentModelRendererArray[parTweenStep].offsetZ = parPassedInModelRendererArray[parTweenStep].offsetZ 
+                = currentModelRendererArray[parTweenStep].offsetZ + 
+                (targetModelRendererArray[parTweenStep].offsetZ - currentModelRendererArray[parTweenStep].offsetZ)
+                / (stepsInTween - currentTweenStep);
+    }
+    
+    protected void performMowzieAnimations(ModelDinosaur parModel, float f, float f1)
+    {//        int frame = entity.ticksExisted;
 //
         float globalSpeed = 0.05F;
         float globalDegree = 0.06F;
@@ -272,84 +382,13 @@ public class AnimationTherizinosaurus implements IModelAnimator
         parModel.walk(lowerArmLeft, 0.28F, degToRad(80.0F), false, 0.0F, 0.0F, f, f1);
 
     }
-    
-    protected void nextTween(MowzieModelRenderer[] parPassedInModelRendererArray)
-    {
-        if (currentTweenStep == stepsInTween)
-        {
-            parPassedInModelRendererArray = currentModelRendererArray;
-            finishedTween = true;
-            return;
-        }
-        
-        // tween the passed in model towards target pose
-        for (int i = 0; i < numParts; i++)
-        {
-            nextTweenRotations(parPassedInModelRendererArray, i);
-            nextTweenPositions(parPassedInModelRendererArray, i);
-            nextTweenOffsets(parPassedInModelRendererArray, i);
-        }
-        
-        currentTweenStep++;
-    }
-    
-    protected void nextTweenRotations(MowzieModelRenderer[] parPassedInModelRendererArray, int parTweenStep)
-    {
-        // tween the rotations
-        currentModelRendererArray[parTweenStep].rotateAngleX = parPassedInModelRendererArray[parTweenStep].rotateAngleX 
-                = currentModelRendererArray[parTweenStep].rotateAngleX + 
-                (targetModelRendererArray[parTweenStep].rotateAngleX - currentModelRendererArray[parTweenStep].rotateAngleX)
-                / (stepsInTween - currentTweenStep);
-        currentModelRendererArray[parTweenStep].rotateAngleY = parPassedInModelRendererArray[parTweenStep].rotateAngleY 
-                = currentModelRendererArray[parTweenStep].rotateAngleY + 
-                (targetModelRendererArray[parTweenStep].rotateAngleY - currentModelRendererArray[parTweenStep].rotateAngleY)
-                / (stepsInTween - currentTweenStep);
-        currentModelRendererArray[parTweenStep].rotateAngleZ = parPassedInModelRendererArray[parTweenStep].rotateAngleZ 
-                = currentModelRendererArray[parTweenStep].rotateAngleZ + 
-                (targetModelRendererArray[parTweenStep].rotateAngleZ - currentModelRendererArray[parTweenStep].rotateAngleZ)
-                / (stepsInTween - currentTweenStep);
-    }
 
-    protected void nextTweenPositions(MowzieModelRenderer[] parPassedInModelRendererArray, int parTweenStep)
-    {
-        // tween the positions
-        currentModelRendererArray[parTweenStep].rotationPointX = parPassedInModelRendererArray[parTweenStep].rotationPointX 
-                = currentModelRendererArray[parTweenStep].rotationPointX + 
-                (targetModelRendererArray[parTweenStep].rotationPointX - currentModelRendererArray[parTweenStep].rotationPointX)
-                / (stepsInTween - currentTweenStep);
-        currentModelRendererArray[parTweenStep].rotationPointY = parPassedInModelRendererArray[parTweenStep].rotationPointY 
-                = currentModelRendererArray[parTweenStep].rotationPointY + 
-                (targetModelRendererArray[parTweenStep].rotationPointY - currentModelRendererArray[parTweenStep].rotationPointY)
-                / (stepsInTween - currentTweenStep);
-        currentModelRendererArray[parTweenStep].rotationPointZ = parPassedInModelRendererArray[parTweenStep].rotationPointZ 
-                = currentModelRendererArray[parTweenStep].rotationPointZ + 
-                (targetModelRendererArray[parTweenStep].rotationPointZ - currentModelRendererArray[parTweenStep].rotationPointZ)
-                / (stepsInTween - currentTweenStep);
-    }
-
-    protected void nextTweenOffsets(MowzieModelRenderer[] parPassedInModelRendererArray, int parTweenStep)
-    {
-        // tween the offsets
-        currentModelRendererArray[parTweenStep].offsetX = parPassedInModelRendererArray[parTweenStep].offsetX 
-                = currentModelRendererArray[parTweenStep].offsetX + 
-                (targetModelRendererArray[parTweenStep].offsetX - currentModelRendererArray[parTweenStep].offsetX)
-                / (stepsInTween - currentTweenStep);
-        currentModelRendererArray[parTweenStep].offsetY = parPassedInModelRendererArray[parTweenStep].offsetY 
-                = currentModelRendererArray[parTweenStep].offsetY + 
-                (targetModelRendererArray[parTweenStep].offsetY - currentModelRendererArray[parTweenStep].offsetY)
-                / (stepsInTween - currentTweenStep);
-        currentModelRendererArray[parTweenStep].offsetZ = parPassedInModelRendererArray[parTweenStep].offsetZ 
-                = currentModelRendererArray[parTweenStep].offsetZ + 
-                (targetModelRendererArray[parTweenStep].offsetZ - currentModelRendererArray[parTweenStep].offsetZ)
-                / (stepsInTween - currentTweenStep);
-    }
-
-    private float degToRad(float degrees)
+    protected float degToRad(float degrees)
     {
         return (float) (Math.PI / 180.0F * degrees);
     }
     
-    private float radToDeg(float rads)
+    protected float radToDeg(float rads)
     {
         return (float) (180.0F / Math.PI * rads);
     }
