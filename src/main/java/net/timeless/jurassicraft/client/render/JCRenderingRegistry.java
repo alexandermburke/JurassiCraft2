@@ -20,6 +20,7 @@ import net.timeless.jurassicraft.client.gui.app.GuiAppRegistry;
 import net.timeless.jurassicraft.client.render.block.SpecialRendererDNAExtractor;
 import net.timeless.jurassicraft.client.render.entity.RenderBluePrint;
 import net.timeless.jurassicraft.client.render.entity.RenderCageSmall;
+import net.timeless.jurassicraft.client.render.entity.RenderHelicopter;
 import net.timeless.jurassicraft.client.render.entity.RenderJurassiCraftSign;
 import net.timeless.jurassicraft.client.render.renderdef.*;
 import net.timeless.jurassicraft.common.block.BlockEncasedFossil;
@@ -35,6 +36,7 @@ import net.timeless.jurassicraft.common.item.JCItemRegistry;
 import net.timeless.jurassicraft.common.plant.JCPlantRegistry;
 import net.timeless.jurassicraft.common.plant.Plant;
 import net.timeless.jurassicraft.common.tileentity.TileDNAExtractor;
+import net.timeless.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 
 import java.util.Map;
 
@@ -197,6 +199,7 @@ public class JCRenderingRegistry
         RenderingRegistry.registerEntityRenderingHandler(EntityCageSmall.class, new RenderCageSmall());
         RenderingRegistry.registerEntityRenderingHandler(EntityBluePrint.class, new RenderBluePrint());
         RenderingRegistry.registerEntityRenderingHandler(EntityJurassiCraftSign.class, new RenderJurassiCraftSign());
+        RenderingRegistry.registerEntityRenderingHandler(EntityHelicopterBase.class, new RenderHelicopter());
 
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
         ItemModelMesher modelMesher = renderItem.getItemModelMesher();
