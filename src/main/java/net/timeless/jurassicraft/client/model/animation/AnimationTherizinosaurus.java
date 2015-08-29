@@ -47,17 +47,26 @@ public class AnimationTherizinosaurus implements IModelAnimator
     
     protected int numParts = partNameArray.length;
 
+    // initialize models
     protected ModelDinosaur modelDefault = getTabulaModel("/assets/jurassicraft/models/entities/therizinosaurus", 0); 
     protected ModelDinosaur modelCurrent = getTabulaModel("/assets/jurassicraft/models/entities/therizinosaurus", 0);
     protected ModelDinosaur modelTarget = getTabulaModel("/assets/jurassicraft/models/entities/therizinosaurus", 0);
-   
-    protected ModelDinosaur modelPose1 = getTabulaModel("/assets/jurassicraft/models/entities/therizinosaurus_pose1", 0);
 
+    // make instances to each custom pose here, simply by putting in patty to your tabula resource
+    protected ModelDinosaur modelPose1 = getTabulaModel("/assets/jurassicraft/models/entities/therizinosaurus_pose1", 0);
+    protected ModelDinosaur modelPose2 = getTabulaModel("/assets/jurassicraft/models/entities/therizinosaurus_pose2", 0);
+    protected ModelDinosaur modelPose3 = getTabulaModel("/assets/jurassicraft/models/entities/therizinosaurus_pose3", 0);
+
+    // initialize model renderer arrays
     protected MowzieModelRenderer[] passedInModelRendererArray = new MowzieModelRenderer[partNameArray.length];
     protected MowzieModelRenderer[] defaultModelRendererArray = new MowzieModelRenderer[partNameArray.length];
     protected MowzieModelRenderer[] currentModelRendererArray = new MowzieModelRenderer[partNameArray.length];
     protected MowzieModelRenderer[] targetModelRendererArray = new MowzieModelRenderer[partNameArray.length];
+
+    // initialize custom model renderer arrays
     protected MowzieModelRenderer[] pose1ModelRendererArray = new MowzieModelRenderer[partNameArray.length];
+    protected MowzieModelRenderer[] pose2ModelRendererArray = new MowzieModelRenderer[partNameArray.length];
+    protected MowzieModelRenderer[] pose3ModelRendererArray = new MowzieModelRenderer[partNameArray.length];
     
     public ModelDinosaur getTabulaModel(String tabulaModel, int geneticVariant) 
     {
@@ -89,7 +98,8 @@ public class AnimationTherizinosaurus implements IModelAnimator
         ModelDinosaur model = (ModelDinosaur) parModel;
         EntityTherizinosaurus entity = (EntityTherizinosaurus) parEntity;
         Animator animator = model.animator;
-            
+
+        // fill in the model renderer arrays
         for (int i = 0; i < numParts; i++) 
         {
             passedInModelRendererArray[i] = parModel.getCube(partNameArray[i]); 
@@ -102,15 +112,49 @@ public class AnimationTherizinosaurus implements IModelAnimator
             currentModelRendererArray[i] = modelCurrent.getCube(partNameArray[i]);
             targetModelRendererArray[i] = modelTarget.getCube(partNameArray[i]);
 
+            // fill in custom pose arrays
             pose1ModelRendererArray[i] = modelPose1.getCube(partNameArray[i]);
+            pose2ModelRendererArray[i] = modelPose2.getCube(partNameArray[i]);
+            pose3ModelRendererArray[i] = modelPose3.getCube(partNameArray[i]);
+        }
+        
+        // set initial target model and steps to get there
+        if (stepsInAnim == 0) // hasn't been set yet
+        {
+            // DEBUG
+            System.out.println("setting initial pose");
+            targetModelRendererArray = pose1ModelRendererArray;
+            stepsInAnim = 300;
         }
 
-        nextTween(passedInModelRendererArray, 300);
+        nextTween(passedInModelRendererArray);
         
+        // check for end of animation and set next target in sequence
         if (finishedAnim)
         {
             currentAnimStep = 0;
             finishedAnim = false;
+            // set next target
+            if (targetModelRendererArray == defaultModelRendererArray)
+            {
+                targetModelRendererArray = pose1ModelRendererArray;
+                stepsInAnim = 300;
+            }
+            else if (targetModelRendererArray == pose1ModelRendererArray)
+            {
+                targetModelRendererArray = pose2ModelRendererArray;
+                stepsInAnim = 300;
+            }
+            else if (targetModelRendererArray == pose2ModelRendererArray)
+            {
+                targetModelRendererArray = pose3ModelRendererArray;
+                stepsInAnim = 100;
+            }
+            else if (targetModelRendererArray == pose3ModelRendererArray)
+            {
+                targetModelRendererArray = defaultModelRendererArray;
+                stepsInAnim = 300;
+            }
         }
         
 //        int frame = entity.ticksExisted;
@@ -176,7 +220,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
 //      MowzieModelRenderer lowerJaw = model.getCube("Lower Jaw");
 //      MowzieModelRenderer upperJaw = model.getCube("Upper Jaw");
 //      MowzieModelRenderer bodyShoulders = model.getCube("Body shoulders");
-//      MowzieModelRenderer lowerArmRight = model.getCube("Lower Arm Right");
+      MowzieModelRenderer lowerArmRight = model.getCube("Lower Arm Right");
 //      MowzieModelRenderer LowerArmRight1 = model.getCube("Lower Arm Right_1");
 //      MowzieModelRenderer RightHand = model.getCube("Right hand");
 //      MowzieModelRenderer ArmRightFeathers = model.getCube("Arm right feathers");
@@ -189,7 +233,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
 //      MowzieModelRenderer RightFinger3 = model.getCube("Right finger 3");
 //      MowzieModelRenderer RF3mid = model.getCube("RF3 mid");
 //      MowzieModelRenderer RF3end = model.getCube("RF3 end");
-//      MowzieModelRenderer lowerArmLeft = model.getCube("Lower Arm LEFT");
+      MowzieModelRenderer lowerArmLeft = model.getCube("Lower Arm LEFT");
 //      MowzieModelRenderer LowerArmLeft1 = model.getCube("Lower Arm LEFT_1");
 //      MowzieModelRenderer Lefthand = model.getCube("Left hand");
 //      MowzieModelRenderer ArmLeftFeathers = model.getCube("Arm left feathers");
@@ -203,76 +247,33 @@ public class AnimationTherizinosaurus implements IModelAnimator
 //      MowzieModelRenderer leftFinger3Mid = model.getCube("LF3 mid");
 //      MowzieModelRenderer leftFinger3End = model.getCube("LF3 mid");
 
-//      MowzieModelRenderer[] neck = new MowzieModelRenderer[] { head, neck7, neck6, neck5, neck4, neck3, neck2, neck1 };
-//      MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail1, tail2, tail3, tail4, tail5, tail6 };
-//      MowzieModelRenderer[] leftFinger3Chain = new MowzieModelRenderer[] { leftFinger3, leftFinger3Mid, leftFinger3End };
-//      MowzieModelRenderer[] leftFinger2Chain = new MowzieModelRenderer[] { leftFinger2, leftFinger2Mid, leftFinger2End };
-//      MowzieModelRenderer[] leftFinger1Chain = new MowzieModelRenderer[] { leftFinger1, leftFinger1Mid, leftFinger1End };
-//      MowzieModelRenderer[] legRight = new MowzieModelRenderer[] { rightThigh, rightCalf, rightUpperFoot, rightFoot };
-
-//        // DEBUG
-//        System.out.println(f);
-//        model.chainWave(tail, globalSpeed, globalDegree/1.5F, 1, frame, 1);
-//        model.chainWave(neck, globalSpeed, globalDegree*1.5F, 4, frame, 1);
-//        float leftFingerInitAngle = leftFinger1.rotateAngleZ;
-//        model.chainFlap(leftFinger1Chain, globalSpeed, globalDegree*10.0F, 4, frame, 1);
-//        float leftFingerCurl = leftFinger1.rotateAngleZ - leftFingerInitAngle; 
-//        leftFinger2.rotateAngleZ += leftFingerCurl;
-//        leftFinger2Mid.rotateAngleZ += leftFingerCurl;
-//        leftFinger2End.rotateAngleZ += leftFingerCurl;
-//
-//        float initialAngleRad = rightThigh.rotateAngleX;
         model.walk(rightThigh, 0.28F, degToRad(40.0F), false, 0.0F, 0.0F, f, f1);
-//        float walkCyclePercent = (rightThigh.rotateAngleX-initialAngleRad)/degToRad(20.0F);
-//        // DEBUG
-//        System.out.println(radToDeg(rightThigh.rotateAngleX-initialAngleRad));
-//        rightCalf1.rotateAngleX += walkCyclePercent * degToRad(5.0F);
-//        rightCalf2.rotateAngleX += walkCyclePercent * degToRad(15.0F);
-//        rightFoot.rotateAngleX += walkCyclePercent * degToRad(30.0F);
-////        model.walk(rightCalf1, 0.28F, degToRad(20.0F), false, 0.0F, 0.0F, f, f1);
-////        model.walk(rightCalf2, 0.28F, degToRad(60.0F), false, 0.0F, 0.0F, f, f1);
-////        model.walk(rightFoot, 0.28F, degToRad(120.0F), true, 0.0F, 0.0F, f*2, f1);
         model.walk(leftThigh, 0.28F, degToRad(40.0F), true, 0.0F, 0.0F, f, f1);
-//        leftCalf1.rotateAngleX -= walkCyclePercent * degToRad(5.0F);
-//        leftCalf2.rotateAngleX -= walkCyclePercent * degToRad(15.0F);
-//        leftFoot.rotateAngleX -= walkCyclePercent * degToRad(30.0F);
-////        model.walk(leftCalf1, 0.28F, degToRad(20.0F), true, 0.0F, 0.0F, f, f1);
-////        model.walk(leftCalf2, 0.28F, degToRad(60.0F), true, 0.0F, 0.0F, f, f1);
-////        model.walk(leftFoot, 0.28F, degToRad(120.0F), false, 0.0F, 0.0F, f*2, f1);
-//        model.walk(lowerArmRight, 0.28F, degToRad(80.0F), true, 0.0F, 0.0F, f, f1);
-//        model.walk(lowerArmLeft, 0.28F, degToRad(80.0F), false, 0.0F, 0.0F, f, f1);
-//        bodyHips.rotateAngleZ += walkCyclePercent * degToRad(18.0F);
-//        bodyMain.rotateAngleZ -= walkCyclePercent * degToRad(9.0F);
-//        model.bob(bodyMain, globalSpeed, 1.0F, false, frame, f1);
-//        bodyShoulders.rotateAngleZ -= walkCyclePercent * degToRad(9.0F);
-//        model.flap(tail4FeathersR, globalSpeed*10, degToRad(30.0F), false, 0.0F, 0.0F, f, f1);
-//        model.flap(tail4FeathersL, globalSpeed*10, degToRad(30.0F), true, 0.0F, 0.0F, f, f1);
-//        model.flap(tail5FeathersR, globalSpeed*10, degToRad(30.0F), false, 0.0F, 0.0F, f, f1);
-//        model.flap(tail5FeathersL, globalSpeed*10, degToRad(30.0F), true, 0.0F, 0.0F, f, f1);
-//        model.flap(tail6FeathersR, globalSpeed*10, degToRad(30.0F), false, 0.0F, 0.0F, f, f1);
-//        model.flap(tail6FeathersL, globalSpeed*10, degToRad(30.0F), true, 0.0F, 0.0F, f, f1);
+        model.walk(lowerArmRight, 0.28F, degToRad(80.0F), true, 0.0F, 0.0F, f, f1);
+        model.walk(lowerArmLeft, 0.28F, degToRad(80.0F), false, 0.0F, 0.0F, f, f1);
 
     }
     
-    protected void nextTween(MowzieModelRenderer[] parPassedInModelRendererArray, int parAnimSteps)
+    protected void nextTween(MowzieModelRenderer[] parPassedInModelRendererArray)
     {
-        if (currentAnimStep == parAnimSteps)
+        if (currentAnimStep == stepsInAnim)
         {
             finishedAnim = true;
             return;
         }
         
+        // transform passed in model towards target pose
         for (int i = 0; i < numParts; i++)
         {
             currentModelRendererArray[i].rotateAngleX = parPassedInModelRendererArray[i].rotateAngleX 
-                    += (pose1ModelRendererArray[i].rotateAngleX - parPassedInModelRendererArray[i].rotateAngleX)
-                    * currentAnimStep / parAnimSteps;
+                    += (targetModelRendererArray[i].rotateAngleX - parPassedInModelRendererArray[i].rotateAngleX)
+                    * currentAnimStep / stepsInAnim;
             currentModelRendererArray[i].rotateAngleY = parPassedInModelRendererArray[i].rotateAngleY 
-                    = (pose1ModelRendererArray[i].rotateAngleY - currentModelRendererArray[i].rotateAngleY)
-                    * currentAnimStep / parAnimSteps;
+                    = (targetModelRendererArray[i].rotateAngleY - currentModelRendererArray[i].rotateAngleY)
+                    * currentAnimStep / stepsInAnim;
             currentModelRendererArray[i].rotateAngleZ = parPassedInModelRendererArray[i].rotateAngleZ 
-                    = (pose1ModelRendererArray[i].rotateAngleZ - currentModelRendererArray[i].rotateAngleZ)
-                    * currentAnimStep / parAnimSteps;
+                    = (targetModelRendererArray[i].rotateAngleZ - currentModelRendererArray[i].rotateAngleZ)
+                    * currentAnimStep / stepsInAnim;
         }
         
         currentAnimStep++;
