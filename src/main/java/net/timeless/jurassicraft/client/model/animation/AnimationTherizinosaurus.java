@@ -54,6 +54,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
     protected ModelDinosaur modelPose1 = getTabulaModel("/assets/jurassicraft/models/entities/therizinosaurus_pose1", 0);
 
     protected MowzieModelRenderer[] passedInModelRendererArray = new MowzieModelRenderer[partNameArray.length];
+    protected MowzieModelRenderer[] defaultModelRendererArray = new MowzieModelRenderer[partNameArray.length];
     protected MowzieModelRenderer[] currentModelRendererArray = new MowzieModelRenderer[partNameArray.length];
     protected MowzieModelRenderer[] targetModelRendererArray = new MowzieModelRenderer[partNameArray.length];
     protected MowzieModelRenderer[] pose1ModelRendererArray = new MowzieModelRenderer[partNameArray.length];
@@ -88,7 +89,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
         ModelDinosaur model = (ModelDinosaur) parModel;
         EntityTherizinosaurus entity = (EntityTherizinosaurus) parEntity;
         Animator animator = model.animator;
-               
+            
         for (int i = 0; i < numParts; i++) 
         {
             passedInModelRendererArray[i] = parModel.getCube(partNameArray[i]); 
@@ -97,29 +98,36 @@ public class AnimationTherizinosaurus implements IModelAnimator
             {
                 System.out.println(partNameArray[i]+" parsed as null");
             }
+            defaultModelRendererArray[i] = modelDefault.getCube(partNameArray[i]);
             currentModelRendererArray[i] = modelCurrent.getCube(partNameArray[i]);
             targetModelRendererArray[i] = modelTarget.getCube(partNameArray[i]);
 
             pose1ModelRendererArray[i] = modelPose1.getCube(partNameArray[i]);
         }
 
-        nextTween(passedInModelRendererArray, 60);
+        nextTween(passedInModelRendererArray, 300);
+        
+        if (finishedAnim)
+        {
+            currentAnimStep = 0;
+            finishedAnim = false;
+        }
         
 //        int frame = entity.ticksExisted;
 //
-//        float globalSpeed = 0.05F;
-//        float globalDegree = 0.06F;
-//        float globalHeight = 2F;
-//        float frontOffset = -1.35f;
+        float globalSpeed = 0.05F;
+        float globalDegree = 0.06F;
+        float globalHeight = 2F;
+        float frontOffset = -1.35f;
 
 //      MowzieModelRenderer bodyMain = model.getCube("Body main");
 //      MowzieModelRenderer bodyMain1 = model.getCube("Body main_1");
 //      MowzieModelRenderer bodyHips = model.getCube("Body hips");
-//      MowzieModelRenderer rightThigh = model.getCube("Right Thigh");
+      MowzieModelRenderer rightThigh = model.getCube("Right Thigh");
 //      MowzieModelRenderer rightCalf1 = model.getCube("Right Calf 1");
 //      MowzieModelRenderer rightCalf2 = model.getCube("Right Calf 2");
 //      MowzieModelRenderer rightFoot = model.getCube("Foot Right");
-//      MowzieModelRenderer leftThigh = model.getCube("Left Thigh");
+      MowzieModelRenderer leftThigh = model.getCube("Left Thigh");
 //      MowzieModelRenderer leftCalf1 = model.getCube("Left Calf 1");
 //      MowzieModelRenderer leftCalf2 = model.getCube("Left Calf 2");
 //      MowzieModelRenderer leftFoot = model.getCube("Foot Left");
@@ -214,7 +222,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
 //        leftFinger2End.rotateAngleZ += leftFingerCurl;
 //
 //        float initialAngleRad = rightThigh.rotateAngleX;
-//        model.walk(rightThigh, 0.28F, degToRad(40.0F), false, 0.0F, 0.0F, f, f1);
+        model.walk(rightThigh, 0.28F, degToRad(40.0F), false, 0.0F, 0.0F, f, f1);
 //        float walkCyclePercent = (rightThigh.rotateAngleX-initialAngleRad)/degToRad(20.0F);
 //        // DEBUG
 //        System.out.println(radToDeg(rightThigh.rotateAngleX-initialAngleRad));
@@ -224,7 +232,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
 ////        model.walk(rightCalf1, 0.28F, degToRad(20.0F), false, 0.0F, 0.0F, f, f1);
 ////        model.walk(rightCalf2, 0.28F, degToRad(60.0F), false, 0.0F, 0.0F, f, f1);
 ////        model.walk(rightFoot, 0.28F, degToRad(120.0F), true, 0.0F, 0.0F, f*2, f1);
-//        model.walk(leftThigh, 0.28F, degToRad(40.0F), true, 0.0F, 0.0F, f, f1);
+        model.walk(leftThigh, 0.28F, degToRad(40.0F), true, 0.0F, 0.0F, f, f1);
 //        leftCalf1.rotateAngleX -= walkCyclePercent * degToRad(5.0F);
 //        leftCalf2.rotateAngleX -= walkCyclePercent * degToRad(15.0F);
 //        leftFoot.rotateAngleX -= walkCyclePercent * degToRad(30.0F);
@@ -246,17 +254,28 @@ public class AnimationTherizinosaurus implements IModelAnimator
 
     }
     
-    private void nextTween(MowzieModelRenderer[] parPassedInModelRendererArray, int parAnimSteps)
+    protected void nextTween(MowzieModelRenderer[] parPassedInModelRendererArray, int parAnimSteps)
     {
+        if (currentAnimStep == parAnimSteps)
+        {
+            finishedAnim = true;
+            return;
+        }
+        
         for (int i = 0; i < numParts; i++)
         {
             currentModelRendererArray[i].rotateAngleX = parPassedInModelRendererArray[i].rotateAngleX 
-                    = pose1ModelRendererArray[i].rotateAngleX;
+                    += (pose1ModelRendererArray[i].rotateAngleX - parPassedInModelRendererArray[i].rotateAngleX)
+                    * currentAnimStep / parAnimSteps;
             currentModelRendererArray[i].rotateAngleY = parPassedInModelRendererArray[i].rotateAngleY 
-                    = pose1ModelRendererArray[i].rotateAngleY;
+                    = (pose1ModelRendererArray[i].rotateAngleY - currentModelRendererArray[i].rotateAngleY)
+                    * currentAnimStep / parAnimSteps;
             currentModelRendererArray[i].rotateAngleZ = parPassedInModelRendererArray[i].rotateAngleZ 
-                    = pose1ModelRendererArray[i].rotateAngleZ;
+                    = (pose1ModelRendererArray[i].rotateAngleZ - currentModelRendererArray[i].rotateAngleZ)
+                    * currentAnimStep / parAnimSteps;
         }
+        
+        currentAnimStep++;
         
     }
 
