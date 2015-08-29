@@ -22,6 +22,11 @@ public class BlockCultivateBottom extends BlockCultivate
         this.setCreativeTab(JCCreativeTabs.blocks);
     }
 
+    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+    {
+        return super.canPlaceBlockAt(worldIn, pos) && worldIn.isAirBlock(pos.up());
+    }
+
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
