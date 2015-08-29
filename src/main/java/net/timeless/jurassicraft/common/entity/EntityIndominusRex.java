@@ -43,7 +43,7 @@ public class EntityIndominusRex extends EntityDinosaurAggressive  //implements I
     @Override
     public float getSoundVolume()
     {
-        return (float) transitionFromAge(0.6F, 1.3F) + ((rand.nextFloat() - 0.5F) * 0.125F);
+        return (float) transitionFromAge(0.9F, 1.6F) + ((rand.nextFloat() - 0.5F) * 0.125F);
     }
 
     public String getLivingSound()
