@@ -13,6 +13,8 @@ import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.reuxertz.ecoapi.entity.EntityAICreature;
 import net.timeless.animationapi.AIAnimation;
 import net.timeless.animationapi.IAnimatedEntity;
@@ -73,6 +75,17 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     {
         super.entityInit();
         this.dataWatcher.addObject(25, 0);
+    }
+
+    /**
+     * Checks if the entity is in range to render by using the past in distance and comparing it to its average edge
+     * length * 64 * renderDistanceWeight Args: distance
+     */
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean isInRangeToRenderDist(double distance)
+    {
+        return true;
     }
 
     @Override
