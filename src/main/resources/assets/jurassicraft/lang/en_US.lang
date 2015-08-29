@@ -121,6 +121,8 @@ tile.small_cycad.name=Small Cycad
 tile.bennettitalean_cycadeoidea.name=Bennettitalean Cycadeoidea
 tile.cry_pansy.name=Cry Pansy
 tile.scaly_tree_fern.name=Scaly Tree Fern
+tile.cycad_zamites.name=Zamites
+tile.dicksonia.name=Dicksonia
 
 tile.reinforced_stone.name=Reinforced Stone
 tile.reinforced_bricks.name=Reinforced Bricks
@@ -136,6 +138,8 @@ plants.ginkgo.name=Ginkgo
 plants.bennettitalean_cycadeoidea.name=Bennettitalean Cycadeoidea
 plants.cry_pansy.name=Cry Pansy
 plants.scaly_tree_fern.name=Scaly Tree Fern
+plants.cycad_zamites.name=Zamites
+plants.dicksonia.name=Dicksonia
 
 //Containers ==================================================
 container.cleaning_station=Cleaning Station

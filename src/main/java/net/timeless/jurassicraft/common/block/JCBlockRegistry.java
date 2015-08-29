@@ -69,6 +69,8 @@ public class JCBlockRegistry
     public static BlockBennettitaleanCycadeoidea bennettitalean_cycadeoidea;
     public static BlockCryPansy cry_pansy;
     public static BlockScalyTreeFern scaly_tree_fern;
+    public static BlockCycadZamites cycad_zamites;
+    public static BlockDicksonia dicksonia;
 
     public void register()
     {
@@ -104,6 +106,8 @@ public class JCBlockRegistry
         bennettitalean_cycadeoidea = new BlockBennettitaleanCycadeoidea();
         cry_pansy = new BlockCryPansy();
         scaly_tree_fern = new BlockScalyTreeFern();
+        cycad_zamites = new BlockCycadZamites();
+        dicksonia = new BlockDicksonia();
 
         registerBlock(small_royal_fern, "Small Royal Fern");
         registerBlock(small_chain_fern, "Small Chain Fern");
@@ -111,6 +115,8 @@ public class JCBlockRegistry
         registerBlock(bennettitalean_cycadeoidea, "Bennettitalean Cycadeoidea");
         registerBlock(cry_pansy, "Cry Pansy");
         registerBlock(scaly_tree_fern, "Scaly Tree Fern");
+        registerBlock(cycad_zamites, "Cycad Zamites");
+        registerBlock(dicksonia, "Dicksonia");
 
         List<Dinosaur> dinosaurs = JCEntityRegistry.getDinosaurs();
 

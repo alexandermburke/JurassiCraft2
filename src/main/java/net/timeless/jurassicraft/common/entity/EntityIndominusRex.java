@@ -40,6 +40,12 @@ public class EntityIndominusRex extends EntityDinosaurAggressive  //implements I
 //            AnimationAPI.sendAnimPacket(this, 1);
     }
 
+    @Override
+    public float getSoundVolume()
+    {
+        return (float) transitionFromAge(0.6F, 1.3F) + ((rand.nextFloat() - 0.5F) * 0.125F);
+    }
+
     public String getLivingSound()
     {
         return randomSound(livingSounds);
