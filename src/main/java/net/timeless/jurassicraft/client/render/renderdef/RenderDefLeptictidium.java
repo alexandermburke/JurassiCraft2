@@ -46,7 +46,7 @@ public class RenderDefLeptictidium extends RenderDinosaurDefinition
     @Override
     public float getBabyScaleAdjustment()
     {
-        return 0.15F;
+        return 0.25F;
     }
 
     @Override
