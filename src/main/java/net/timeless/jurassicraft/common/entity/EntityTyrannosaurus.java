@@ -7,6 +7,7 @@ import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimSoundBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
+import net.timeless.unilib.common.animation.ControlledParam;
 
 import java.util.Random;
 
@@ -22,6 +23,10 @@ public class EntityTyrannosaurus extends EntityDinosaurAggressive implements IAn
 
     private static final Class[] targets = {EntityCompsognathus.class, EntityAnkylosaurus.class, EntityPlayer.class, EntityDilophosaurus.class, EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class, EntityLudodactylus.class, EntityHypsilophodon.class, EntityGallimimus.class, EntitySegisaurus.class, EntityProtoceratops.class, EntityParasaurolophus.class, EntityOthnielia.class, EntityMicroceratus.class, EntityTriceratops.class, EntityStegosaurus.class, EntityBrachiosaurus.class, EntityApatosaurus.class, EntityRugops.class, EntityHerrerasaurus.class, EntityVelociraptor.class, EntityAchillobator.class, EntityCarnotaurus.class};
 
+    private int stepCount = 0;
+
+    public ControlledParam roarCount = new ControlledParam(0F, 0F, 0.5F, 0F);
+    public ControlledParam roarTiltDegree = new ControlledParam(0F, 0F, 1F, 0F);
 
     public EntityTyrannosaurus(World world)
     {
@@ -56,6 +61,19 @@ public class EntityTyrannosaurus extends EntityDinosaurAggressive implements IAn
     {
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
         super.onUpdate();
+
+        this.roarCount.update();
+        this.roarTiltDegree.update();
+
+        /** Step Sound */
+        if (this.moveForward > 0 && this.stepCount <= 0)
+        {
+            this.playSound("jurassicraft:stomp", this.getSoundVolume() + 0.5F, this.getSoundPitch());
+            stepCount = 65;
+        }
+
+        this.stepCount -= this.moveForward * 9.5;
+
 //        if (getAnimID() == 0)
 //            AnimationAPI.sendAnimPacket(this, 1);
     }

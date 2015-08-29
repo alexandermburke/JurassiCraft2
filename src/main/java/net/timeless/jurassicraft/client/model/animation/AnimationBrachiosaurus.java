@@ -61,7 +61,7 @@ public class AnimationBrachiosaurus implements IModelAnimator
         MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{tail5, tail4, tail3};
         MowzieModelRenderer[] tailParts2 = new MowzieModelRenderer[]{tail5, tail4, tail3, tail2, tail1};
 
-        float globalSpeed = 0.5F;
+        float globalSpeed = 0.4F;
         float globalHeight = 0.5F;
         float globalDegree = 0.5F;
 

@@ -209,6 +209,15 @@
             "dinosaurs/spinosaurus/spinosaurus_death_3"
         ]
     },
+	 "stomp": {
+        "category": "hostile",
+        "sounds": [
+            "stomp_1",
+            "stomp_2",
+            "stomp_3",
+            "stomp_4"
+        ]
+    },
 	"pteranodon_living_1": {
         "category": "hostile",
         "sounds": [
