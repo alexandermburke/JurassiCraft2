@@ -1,8 +1,6 @@
 package net.timeless.jurassicraft.common.block;
 
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,14 +16,11 @@ import net.timeless.jurassicraft.common.tileentity.TileCarnivoreFeeder;
 
 import java.util.Random;
 
-public class BlockCarnivoreFeeder extends BlockOriented implements ITileEntityProvider
+public class BlockCarnivoreFeeder extends BlockOriented
 {
-
-    public static final PropertyDirection facing = PropertyDirection.create("FACING", EnumFacing.Plane.HORIZONTAL);
-
     public BlockCarnivoreFeeder()
     {
-        super(Material.rock);
+        super(Material.iron);
         setCreativeTab(JCCreativeTabs.blocks);
         setUnlocalizedName("carnivore_feeder");
     }
@@ -33,7 +28,7 @@ public class BlockCarnivoreFeeder extends BlockOriented implements ITileEntityPr
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(JCBlockRegistry.carnivoreFeeder);
+        return Item.getItemFromBlock(JCBlockRegistry.carnivore_feeder);
     }
 
     @Override
