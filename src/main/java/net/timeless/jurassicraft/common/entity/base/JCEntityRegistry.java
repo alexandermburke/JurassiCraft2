@@ -10,6 +10,8 @@ import net.timeless.jurassicraft.common.entity.item.EntityBluePrint;
 import net.timeless.jurassicraft.common.entity.item.EntityCageSmall;
 import net.timeless.jurassicraft.common.entity.item.EntityJurassiCraftSign;
 import net.timeless.jurassicraft.common.period.EnumTimePeriod;
+import net.timeless.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
+import net.timeless.jurassicraft.common.vehicles.helicopter.HelicopterSeat;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -122,6 +124,9 @@ public class JCEntityRegistry
         registerEntity(EntityBluePrint.class, "Blueprint");
         registerEntity(EntityJurassiCraftSign.class, "JurassiCraft Sign");
         registerEntity(EntityCageSmall.class, "Small Dinosaur Cage");
+
+        registerEntity(EntityHelicopterBase.class, "Helicopter base");
+        registerEntity(HelicopterSeat.class, "Helicopter seat Do not spawn please, like really don't");
 
         for (Dinosaur dinosaur : dinosaurs)
             registerDinosaur(dinosaur);

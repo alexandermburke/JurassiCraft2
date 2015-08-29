@@ -11,6 +11,8 @@ public class EntityBrachiosaurus extends EntityDinosaurDefensiveHerbivore  //imp
     private static final String[] hurtSounds = new String[]{"brachiosaurus_hurt_1", "brachiosaurus_hurt_2"};
     private static final String[] deathSounds = new String[]{"brachiosaurus_death_1", "brachiosaurus_death_2"};
 
+    private int stepCount = 0;
+
     public ChainBuffer tailBuffer = new ChainBuffer(5);
 
     public EntityBrachiosaurus(World world)
@@ -22,6 +24,15 @@ public class EntityBrachiosaurus extends EntityDinosaurDefensiveHerbivore  //imp
     {
         super.onUpdate();
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
+
+        /** Step Sound */
+        if (this.moveForward > 0 && this.stepCount <= 0)
+        {
+            this.playSound("jurassicraft:stomp", this.getSoundVolume() + 0.5F, this.getSoundPitch());
+            stepCount = 50;
+        }
+
+        this.stepCount -= this.moveForward * 9.5;
     }
 
     public String getLivingSound()

@@ -102,17 +102,6 @@ public class EntityDinosaurFlyingAggressive extends EntityDinosaurAggressive
     {
         return false;
     }
-    
-    /**
-     * Checks if the entity is in range to render by using the past in distance and comparing it to its average edge
-     * length * 64 * renderDistanceWeight Args: distance
-     */
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean isInRangeToRenderDist(double distance)
-    {
-        return true; // flying entities should be rendered even very far away
-    }
 
     class AIRandomFly extends EntityAIBase
     {

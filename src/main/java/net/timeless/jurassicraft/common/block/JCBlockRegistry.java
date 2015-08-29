@@ -65,16 +65,19 @@ public class JCBlockRegistry
     public static BlockCultivate cultivate_top;
     public static BlockCultivate cultivate_bottom;
 
-    public static BlockCarnivoreFeeder carnivoreFeeder;
+    public static BlockCarnivoreFeeder carnivore_feeder;
     public static BlockBennettitaleanCycadeoidea bennettitalean_cycadeoidea;
     public static BlockCryPansy cry_pansy;
+    public static BlockScalyTreeFern scaly_tree_fern;
+    public static BlockCycadZamites cycad_zamites;
+    public static BlockDicksonia dicksonia;
 
     public void register()
     {
         fossils = new ArrayList<BlockFossil>();
         encased_fossils = new ArrayList<BlockEncasedFossil>();
 
-        carnivoreFeeder = new BlockCarnivoreFeeder();
+        carnivore_feeder = new BlockCarnivoreFeeder();
         cleaning_station = new BlockCleaningStation();
         fossil_grinder = new BlockFossilGrinder();
         dna_sequencer = new BlockDnaSequencer();
@@ -102,12 +105,18 @@ public class JCBlockRegistry
         small_cycad = new BlockSmallCycad();
         bennettitalean_cycadeoidea = new BlockBennettitaleanCycadeoidea();
         cry_pansy = new BlockCryPansy();
+        scaly_tree_fern = new BlockScalyTreeFern();
+        cycad_zamites = new BlockCycadZamites();
+        dicksonia = new BlockDicksonia();
 
         registerBlock(small_royal_fern, "Small Royal Fern");
         registerBlock(small_chain_fern, "Small Chain Fern");
         registerBlock(small_cycad, "Small Cycad");
         registerBlock(bennettitalean_cycadeoidea, "Bennettitalean Cycadeoidea");
         registerBlock(cry_pansy, "Cry Pansy");
+        registerBlock(scaly_tree_fern, "Scaly Tree Fern");
+        registerBlock(cycad_zamites, "Cycad Zamites");
+        registerBlock(dicksonia, "Dicksonia");
 
         List<Dinosaur> dinosaurs = JCEntityRegistry.getDinosaurs();
 
@@ -182,7 +191,7 @@ public class JCBlockRegistry
 
         registerBlockTileEntity(TileCultivate.class, cultivate_bottom, "Cultivate Bottom");
         registerBlock(cultivate_top, "Cultivate Top");
-        registerBlockTileEntity(TileCarnivoreFeeder.class, carnivoreFeeder, "Carnivore Feeder");
+        registerBlockTileEntity(TileCarnivoreFeeder.class, carnivore_feeder, "Carnivore Feeder");
         registerBlockTileEntity(TileCleaningStation.class, cleaning_station, "Cleaning Station");
         registerBlockTileEntity(TileFossilGrinder.class, fossil_grinder, "Fossil Grinder");
         registerBlockTileEntity(TileDnaSequencer.class, dna_sequencer, "DNA Sequencer");

@@ -66,6 +66,10 @@ public class JCGuiHandler implements IGuiHandler
             {
                 return new ContainerCultivate(player.inventory, tileEntity);
             }
+            else if (tileEntity instanceof TileCarnivoreFeeder && id == 11)
+            {
+                return new ContainerCarnivoreFeeder();
+            }
         }
 
         return null;

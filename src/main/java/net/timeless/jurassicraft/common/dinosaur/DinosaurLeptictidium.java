@@ -49,19 +49,19 @@ public class DinosaurLeptictidium extends Dinosaur
     @Override
     public double getBabyHealth()
     {
-        return 16;
+        return 8;
     }
 
     @Override
     public double getAdultHealth()
     {
-        return 5;
+        return 18;
     }
 
     @Override
     public double getBabySpeed()
     {
-        return 0.11;
+        return 0.42;
     }
 
     @Override
@@ -73,7 +73,7 @@ public class DinosaurLeptictidium extends Dinosaur
     @Override
     public double getAdultSpeed()
     {
-        return 0.10;
+        return 0.38;
     }
 
     @Override
@@ -103,7 +103,7 @@ public class DinosaurLeptictidium extends Dinosaur
     @Override
     public int getMaximumAge()
     {
-        return fromDays(20);
+        return fromDays(25);
     }
 
     @Override
@@ -121,7 +121,7 @@ public class DinosaurLeptictidium extends Dinosaur
     @Override
     public float getBabyEyeHeight()
     {
-        return 0.16F;
+        return 0.21F;
     }
 
     @Override
@@ -133,13 +133,13 @@ public class DinosaurLeptictidium extends Dinosaur
     @Override
     public float getBabySizeX()
     {
-        return 0.15F;
+        return 0.2F;
     }
 
     @Override
     public float getBabySizeY()
     {
-        return 0.2F;
+        return 0.25F;
     }
 
     @Override
@@ -155,8 +155,8 @@ public class DinosaurLeptictidium extends Dinosaur
     }
 
     @Override
-    public boolean shouldRegister()
+    public boolean isMammal()
     {
-        return false;
+        return true;
     }
 }

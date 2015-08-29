@@ -52,6 +52,7 @@ public class JCItemRegistry
     public static ItemBasic plant_cells;
     public static ItemPlantCallus plant_callus;
     public static ItemBasic plant_cells_petri_dish;
+    public static ItemHelicopter helicopter_spawner;
 
     //TODO more complex crafting components, eg circuit boards, ROM Drive
 
@@ -87,6 +88,8 @@ public class JCItemRegistry
         plant_callus = new ItemPlantCallus();
         plant_cells_petri_dish = new ItemBasic("Plant Cells Petri Dish", JCCreativeTabs.items);
 
+        helicopter_spawner = new ItemHelicopter();
+
         registerItem(amber, "Amber");
         registerItem(sea_lamprey, "Sea Lamprey");
         registerItem(plaster_and_bandage, "Plaster And Bandage");
@@ -116,6 +119,8 @@ public class JCItemRegistry
 
         registerItem(dino_meat, "Dinosaur Meat");
         registerItem(dino_steak, "Dinosaur Steak");
+
+        registerItem(helicopter_spawner, "Helicopter");
 //        registerItem(entityRemover, "Entity Remover");
 
         for (int i = 0; i < JCEntityRegistry.getDinosaurs().size(); i++)

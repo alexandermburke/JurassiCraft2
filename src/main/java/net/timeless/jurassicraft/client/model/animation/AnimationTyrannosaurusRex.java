@@ -231,6 +231,11 @@ public class AnimationTyrannosaurusRex implements IModelAnimator
         animator.endPhase();
         animator.setStationaryPhase(2);
         animator.resetPhase(8);
+
+        EntityTyrannosaurus trex = (EntityTyrannosaurus) entity;
+
+        head.rotateAngleZ += Math.cos(entity.ticksExisted / 3) * trex.roarTiltDegree.value / 3;
+        lowerJaw.rotateAngleX += Math.cos(entity.ticksExisted) * trex.roarTiltDegree.value / 7;
     }
 }
 
