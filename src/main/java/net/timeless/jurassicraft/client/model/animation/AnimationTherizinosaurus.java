@@ -138,22 +138,22 @@ public class AnimationTherizinosaurus implements IModelAnimator
             if (targetModelRendererArray == defaultModelRendererArray)
             {
                 targetModelRendererArray = pose1ModelRendererArray;
-                stepsInAnim = 300;
+                stepsInAnim = 100;
             }
             else if (targetModelRendererArray == pose1ModelRendererArray)
             {
                 targetModelRendererArray = pose2ModelRendererArray;
-                stepsInAnim = 300;
+                stepsInAnim = 100;
             }
             else if (targetModelRendererArray == pose2ModelRendererArray)
             {
                 targetModelRendererArray = pose3ModelRendererArray;
-                stepsInAnim = 100;
+                stepsInAnim = 60;
             }
             else if (targetModelRendererArray == pose3ModelRendererArray)
             {
                 targetModelRendererArray = defaultModelRendererArray;
-                stepsInAnim = 300;
+                stepsInAnim = 100;
             }
         }
         
@@ -266,14 +266,17 @@ public class AnimationTherizinosaurus implements IModelAnimator
         for (int i = 0; i < numParts; i++)
         {
             currentModelRendererArray[i].rotateAngleX = parPassedInModelRendererArray[i].rotateAngleX 
-                    += (targetModelRendererArray[i].rotateAngleX - parPassedInModelRendererArray[i].rotateAngleX)
-                    * currentAnimStep / stepsInAnim;
+                    = currentModelRendererArray[i].rotateAngleX + 
+                    (targetModelRendererArray[i].rotateAngleX - currentModelRendererArray[i].rotateAngleX)
+                    / (stepsInAnim - currentAnimStep);
             currentModelRendererArray[i].rotateAngleY = parPassedInModelRendererArray[i].rotateAngleY 
-                    = (targetModelRendererArray[i].rotateAngleY - currentModelRendererArray[i].rotateAngleY)
-                    * currentAnimStep / stepsInAnim;
+                    = currentModelRendererArray[i].rotateAngleY + 
+                    (targetModelRendererArray[i].rotateAngleY - currentModelRendererArray[i].rotateAngleY)
+                    / (stepsInAnim - currentAnimStep);
             currentModelRendererArray[i].rotateAngleZ = parPassedInModelRendererArray[i].rotateAngleZ 
-                    = (targetModelRendererArray[i].rotateAngleZ - currentModelRendererArray[i].rotateAngleZ)
-                    * currentAnimStep / stepsInAnim;
+                    = currentModelRendererArray[i].rotateAngleZ + 
+                    (targetModelRendererArray[i].rotateAngleZ - currentModelRendererArray[i].rotateAngleZ)
+                    / (stepsInAnim - currentAnimStep);
         }
         
         currentAnimStep++;
