@@ -280,16 +280,16 @@ public class AnimationTherizinosaurus implements IModelAnimator
     protected void nextTweenOffsets(MowzieModelRenderer[] parPassedInModelRendererArray, int partPartIndex)
     {
         parPassedInModelRendererArray[partPartIndex].offsetX =
-                currentPositionsArray[partPartIndex][0] + 
-                (targetModelRendererArray[partPartIndex].offsetX - currentPositionsArray[partPartIndex][0])
+                currentOffsetsArray[partPartIndex][0] + 
+                (targetModelRendererArray[partPartIndex].offsetX - currentOffsetsArray[partPartIndex][0])
                 / (stepsInTween - currentTweenStep);
         parPassedInModelRendererArray[partPartIndex].offsetY =
-                currentPositionsArray[partPartIndex][1] + 
-                (targetModelRendererArray[partPartIndex].offsetY - currentPositionsArray[partPartIndex][1])
+                currentOffsetsArray[partPartIndex][1] + 
+                (targetModelRendererArray[partPartIndex].offsetY - currentOffsetsArray[partPartIndex][1])
                 / (stepsInTween - currentTweenStep);
         parPassedInModelRendererArray[partPartIndex].offsetZ =
-                currentPositionsArray[partPartIndex][2] + 
-                (targetModelRendererArray[partPartIndex].offsetZ - currentPositionsArray[partPartIndex][2])
+                currentOffsetsArray[partPartIndex][2] + 
+                (targetModelRendererArray[partPartIndex].offsetZ - currentOffsetsArray[partPartIndex][2])
                 / (stepsInTween - currentTweenStep);
     }
     
