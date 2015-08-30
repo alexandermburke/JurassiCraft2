@@ -159,4 +159,10 @@ public class DinosaurLeptictidium extends Dinosaur
     {
         return true;
     }
+
+    @Override
+    public boolean shouldRegister()
+    {
+        return false;
+    }
 }

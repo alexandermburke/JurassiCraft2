@@ -1,6 +1,10 @@
 package net.timeless.jurassicraft.common.entity;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAILeapAtTarget;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.ai.EntityAIOpenDoor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.timeless.animationapi.AnimationAPI;
@@ -35,6 +39,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive  //implements I
         super(world);
 
         tasks.addTask(2, new JCAutoAnimBase(this, 25, 1)); //Call
+        this.tasks.addTask(4, new EntityAIOpenDoor(this, true));
 
         //        tasks.addTask(2, new JCAutoAnimBase(this, 25, 2)); //Attack
         //        tasks.addTask(2, new JCAutoAnimBase(this, 25, 3)); //Die
@@ -53,6 +58,15 @@ public class EntityVelociraptor extends EntityDinosaurAggressive  //implements I
             this.defendFromAttacker(deftargets[j], new Random().nextInt(3) + 1);
         }
     }
+
+    //NOTE: This adds an attack target. Class should be the entity class for the target, lower prio get executed earlier
+    protected void attackCreature(Class entity, int prio)
+    {
+        this.tasks.addTask(0, new EntityAIAttackOnCollide(this, entity, 1.0D, false));
+        this.tasks.addTask(1, new EntityAILeapAtTarget(this, 0.5F));
+        this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, entity, false));
+    }
+
 
     public String getCallSound()
     {
@@ -95,7 +109,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive  //implements I
 //            AnimationAPI.sendAnimPacket(this, 30);
 
         if (getAttackTarget() != null)
-            circleEntity(getAttackTarget(), 7, 0.3f, true, 0);
+            circleEntity(getAttackTarget(), 7, 1.0f, true, 0);
 
         if (getAnimID() == 12 || getAnimID() == 1)
             dontLean.decreaseTimer();
@@ -107,6 +121,9 @@ public class EntityVelociraptor extends EntityDinosaurAggressive  //implements I
     {
         EntityVelociraptor[] pack;
         int directionInt = direction ? 1 : -1;
-        getNavigator().tryMoveToXYZ(target.posX + radius * Math.cos(directionInt * (frame + offset) * 0.5 * speed / radius), target.posY, target.posZ + radius * Math.sin(directionInt * (frame + offset) * 0.5 * speed / radius), speed);
+        if(getDistanceSqToEntity(target) > radius - 1)
+        {
+            getNavigator().tryMoveToXYZ(target.posX + radius * Math.cos(directionInt * (ticksExisted + offset) * 0.5 * speed / radius), target.posY, target.posZ + radius * Math.sin(directionInt * (ticksExisted + offset) * 0.5 * speed / radius), speed);
+        }
     }
 }
