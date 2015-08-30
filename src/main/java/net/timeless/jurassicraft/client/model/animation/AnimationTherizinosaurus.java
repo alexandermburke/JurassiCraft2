@@ -80,7 +80,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
     protected static int numParts = partNameArray.length;
 
     // initialize non-static models
-    protected ModelDinosaur modelDefault = getTabulaModel(modelAssetPaths[0], 0); 
+//    protected ModelDinosaur modelDefault = getTabulaModel(modelAssetPaths[0], 0); 
 //    protected ModelDinosaur modelCurrent = getTabulaModel(modelAssetPaths[0], 0);
     protected ModelDinosaur modelTarget = getTabulaModel(modelAssetPaths[0], 0);
 
@@ -95,7 +95,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
 
     // initialize model renderer arrays
     protected MowzieModelRenderer[] passedInModelRendererArray = new MowzieModelRenderer[numParts];
-    protected MowzieModelRenderer[] defaultModelRendererArray = new MowzieModelRenderer[numParts];
+//    protected MowzieModelRenderer[] defaultModelRendererArray = new MowzieModelRenderer[numParts];
 //    protected MowzieModelRenderer[] currentModelRendererArray = new MowzieModelRenderer[numParts];
     protected MowzieModelRenderer[] targetModelRendererArray = new MowzieModelRenderer[numParts];
 
@@ -158,58 +158,48 @@ public class AnimationTherizinosaurus implements IModelAnimator
     {
         Animator animator = parModel.animator;
         
-        // fill in the non-static model renderer arrays
-        for (int i = 0; i < numParts; i++) 
-        {
-            passedInModelRendererArray[i] = parModel.getCube(partNameArray[i]); 
-            // DEBUG
-            if (passedInModelRendererArray[i] == null) 
-            {
-                System.out.println(partNameArray[i]+" parsed as null");
-            }
-            defaultModelRendererArray[i] = modelDefault.getCube(partNameArray[i]);
-//            currentModelRendererArray[i] = modelCurrent.getCube(partNameArray[i]);
-        }
+        convertPassedInModelToModelRendererArray(parModel);
         
-        // initialize current pose arrays
+        // initialize current pose arrays if first tick
         if (isFirstTick)
         {
             isFirstTick = false;
-            copyModelRendererArrayToCurrent(defaultModelRendererArray);
+            copyModelRendererArrayToCurrent(passedInModelRendererArray);
         }
         
-        // get target model renderer array from custom array
-        targetModelIndex = animationSequence[currentSequenceStep][0];
-        targetModelRendererArray = modelRendererArray[targetModelIndex];
-        stepsInTween = animationSequence[currentSequenceStep][1];
-
         nextTween(passedInModelRendererArray);
 
         // check for end of animation and set next target in sequence
         if (finishedTween)
         {
-            // DEBUG
-            System.out.println("finished tween");
- 
-            // increment current sequence step
-            currentSequenceStep++;
-            // check if finished sequence
-            if (currentSequenceStep >= animationSequence.length)
-            {
-                currentSequenceStep = 0;
-            }
-            // DEBUG
-            System.out.println("Next pose is sequence step = "+currentSequenceStep);
-            
-            // reset tween step
-            currentTweenStep = 0;
-            finishedTween = false;
+            handleFinishedTween();
         }
 
         // you can still add chain, walk, bob, etc in this method.
         performMowzieAnimations(parModel, f, f1);
     }
-        
+
+    protected void convertPassedInModelToModelRendererArray(ModelDinosaur parModel)
+    {
+        for (int i = 0; i < numParts; i++) 
+        {
+            passedInModelRendererArray[i] = parModel.getCube(partNameArray[i]); 
+
+            // DEBUG
+            if (passedInModelRendererArray[i] == null) 
+            {
+                System.out.println(partNameArray[i]+" parsed as null");
+            }
+        }
+    }
+
+    protected void setNextTween()
+    {
+        targetModelIndex = animationSequence[currentSequenceStep][0];
+        targetModelRendererArray = modelRendererArray[targetModelIndex];
+        stepsInTween = animationSequence[currentSequenceStep][1];
+        currentTweenStep = 0;
+    }
     
     protected void nextTween(MowzieModelRenderer[] parPassedInModelRendererArray)
     {
@@ -221,7 +211,10 @@ public class AnimationTherizinosaurus implements IModelAnimator
             finishedTween = true;
             return;
         }
-        
+
+//        // DEBUG
+//        System.out.println("stepsInTween - currentTweenStep = "+(stepsInTween - currentTweenStep));
+
         // tween the passed in model towards target pose
         for (int i = 0; i < numParts; i++)
         {
@@ -293,6 +286,25 @@ public class AnimationTherizinosaurus implements IModelAnimator
                 / (stepsInTween - currentTweenStep);
     }
     
+    protected void handleFinishedTween()
+    {
+        // DEBUG
+        System.out.println("finished tween");
+
+        // increment current sequence step
+        currentSequenceStep++;
+        // check if finished sequence
+        if (currentSequenceStep >= animationSequence.length)
+        {
+            currentSequenceStep = 0;
+        }
+        // DEBUG
+        System.out.println("Next pose is sequence step = "+currentSequenceStep);
+
+        finishedTween = false;
+        setNextTween();
+    }
+       
     protected void performMowzieAnimations(ModelDinosaur parModel, float f, float f1)
     {//        int frame = entity.ticksExisted;
 //
