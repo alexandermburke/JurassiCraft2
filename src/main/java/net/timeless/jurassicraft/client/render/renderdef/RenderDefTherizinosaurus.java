@@ -3,19 +3,16 @@ package net.timeless.jurassicraft.client.render.renderdef;
 import net.minecraft.client.model.ModelBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.jurassicraft.client.model.ModelDinosaur;
 import net.timeless.jurassicraft.client.model.animation.AnimationTherizinosaurus;
-import net.timeless.jurassicraft.client.model.animation.ModelDinosaurJabelar;
 import net.timeless.jurassicraft.common.entity.base.EnumGrowthStage;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
-import net.timeless.unilib.client.model.json.TabulaModelHelper;
 
 @SideOnly(Side.CLIENT)
 public class RenderDefTherizinosaurus extends RenderDinosaurDefinition
 {
-    private final IModelAnimator animator;
+    private IModelAnimator animator;
     private ModelJson model;
 
     public RenderDefTherizinosaurus()
@@ -69,11 +66,4 @@ public class RenderDefTherizinosaurus extends RenderDinosaurDefinition
     {
         return animator;
     }
-    
-    @Override
-    public ModelDinosaur getTabulaModel(String tabulaModel, int geneticVariant) throws Exception
-    {
-        return new ModelDinosaurJabelar(TabulaModelHelper.parseModel(tabulaModel), getModelAnimator(geneticVariant));
-    }
-
 }
