@@ -27,7 +27,12 @@ public class AnimationTherizinosaurus implements IModelAnimator
             "/assets/jurassicraft/models/entities/therizinosaurus",
             "/assets/jurassicraft/models/entities/therizinosaurus_pose1",
             "/assets/jurassicraft/models/entities/therizinosaurus_pose2",
-            "/assets/jurassicraft/models/entities/therizinosaurus_pose3"
+            "/assets/jurassicraft/models/entities/therizinosaurus_pose3",
+            "/assets/jurassicraft/models/entities/therizinosaurus_pose4",
+            "/assets/jurassicraft/models/entities/therizinosaurus_pose5",
+            "/assets/jurassicraft/models/entities/therizinosaurus_pose6",
+            "/assets/jurassicraft/models/entities/therizinosaurus_pose7",
+            "/assets/jurassicraft/models/entities/therizinosaurus_pose8"
     };
 
     // Tell the code the names of all your tabula model parts
@@ -62,10 +67,12 @@ public class AnimationTherizinosaurus implements IModelAnimator
      * Second element is the number of ticks it should take to tween to that pose
      */
     protected static int[][] animationSequence = new int[][] {
-        {1, 300},
-        {2, 300},
-        {3, 300},
-        {0, 100}        
+        {0, 500}, {1, 100}, {1, 80}, {0, 100}, // look left
+        {0, 200}, {4, 100}, {4, 40}, {0, 100}, // look right
+        {0, 500}, {2, 100}, {0, 20}, {2, 20}, {0, 20}, {2, 20}, {0, 20}, // head bob
+        {0, 580}, {7, 40}, {8, 20}, {7, 20}, {8, 20}, {7, 20}, {8, 20}, // flapping "dance"
+        {7, 20}, {8, 20}, {7, 20}, {8, 20}, {7, 20}, {8, 20}, {7, 20}, {8, 20}, 
+        {7, 20}, {8, 20}, {7, 20}, {8, 20}, {7, 20}, {8, 20}, {7, 20}, {0, 100}        
         };
             
     /*
@@ -152,13 +159,13 @@ public class AnimationTherizinosaurus implements IModelAnimator
      */
     protected void setRotationAngles(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityTherizinosaurus parEntity)    
     {
-        performJabelarAnimations(parModel, f, f1);
+        performJabelarAnimations(parModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, parEntity);
 
         // you can still add chain, walk, bob, etc.
-        performMowzieAnimations(parModel, f, f1);
+        performMowzieAnimations(parModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, parEntity);
     }
 
-    protected void performJabelarAnimations(ModelDinosaur parModel, float f, float f1)
+    protected void performJabelarAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityTherizinosaurus parEntity)
     {
         convertPassedInModelToModelRendererArray(parModel);
         
@@ -172,15 +179,121 @@ public class AnimationTherizinosaurus implements IModelAnimator
         
         performNextTweenStep(passedInModelRendererArray);
         
-        // DEBUG
-        System.out.println("the rotation of neck = "+radToDeg(passedInModelRendererArray[partIndexFromName("neck 1")].rotateAngleX));
-
         // check for end of animation and set next target in sequence
         if (finishedTween)
         {
             handleFinishedTween();
         }
     }
+       
+    protected void performMowzieAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityTherizinosaurus parEntity)
+    {
+        Animator animator = parModel.animator;
+
+        MowzieModelRenderer rightThigh = parModel.getCube("Right Thigh");
+        MowzieModelRenderer bodyhips = parModel.getCube("Body hips");
+        MowzieModelRenderer leftThigh = parModel.getCube("Left Thigh");
+        MowzieModelRenderer rightCalf1 = parModel.getCube("Right Calf 1");
+        MowzieModelRenderer rightCalf2 = parModel.getCube("Right Calf 2");
+        MowzieModelRenderer footRight = parModel.getCube("Foot Right");
+        MowzieModelRenderer tail1 = parModel.getCube("Tail 1");
+        MowzieModelRenderer bodyMain = parModel.getCube("Body main");
+        MowzieModelRenderer tail2 = parModel.getCube("Tail 2");
+        MowzieModelRenderer tail3 = parModel.getCube("Tail 3");
+        MowzieModelRenderer tail2Feathers = parModel.getCube("Tail 2 feathers");
+        MowzieModelRenderer tail4 = parModel.getCube("Tail 4");
+        MowzieModelRenderer tail3Feathers = parModel.getCube("Tail 3 feathers");
+        MowzieModelRenderer tail5 = parModel.getCube("Tail 5");
+        MowzieModelRenderer tail4Feathers = parModel.getCube("Tail 4 feathers");
+        MowzieModelRenderer tail6 = parModel.getCube("Tail 6");
+        MowzieModelRenderer tail5Feathers = parModel.getCube("Tail 5 feathers");
+        MowzieModelRenderer tail6Feathers = parModel.getCube("Tail 6 feathers");
+        MowzieModelRenderer tail6FeathersR = parModel.getCube("Tail 6 feathers r");
+        MowzieModelRenderer tail6FeathersL = parModel.getCube("Tail 6 feathers l");
+        MowzieModelRenderer tail5FeathersR = parModel.getCube("Tail 5 feathers r");
+        MowzieModelRenderer tail5FeathersL = parModel.getCube("Tail 5 feathers l");
+        MowzieModelRenderer tail4FeathersR = parModel.getCube("Tail 4 feathers r");
+        MowzieModelRenderer tail4FeathersL = parModel.getCube("Tail 4 feathers l");
+        MowzieModelRenderer tail3FeathersR = parModel.getCube("Tail 3 feathers r");
+        MowzieModelRenderer tail3FeathersL = parModel.getCube("Tail 3 feathers l");
+        MowzieModelRenderer bodyShoulders = parModel.getCube("Body shoulders");
+        MowzieModelRenderer bodyMain1 = parModel.getCube("Body main_1");
+        MowzieModelRenderer neckBase = parModel.getCube("Neck base");
+        MowzieModelRenderer lowerArmRight = parModel.getCube("Lower Arm Right");
+        MowzieModelRenderer lowerArmLeft = parModel.getCube("Lower Arm LEFT");
+        MowzieModelRenderer neck1 = parModel.getCube("Neck 1");
+        MowzieModelRenderer neck2 = parModel.getCube("Neck 2");
+        MowzieModelRenderer neck3 = parModel.getCube("Neck 3");
+        MowzieModelRenderer neck4 = parModel.getCube("Neck 4");
+        MowzieModelRenderer neck5 = parModel.getCube("Neck 5");
+        MowzieModelRenderer neck4feathers = parModel.getCube("Neck 4 feathers");
+        MowzieModelRenderer neck6 = parModel.getCube("Neck 6");
+        MowzieModelRenderer neck5Feathers = parModel.getCube("Neck 5 feathers");
+        MowzieModelRenderer neck7 = parModel.getCube("Neck 7");
+        MowzieModelRenderer neck6Feathers = parModel.getCube("Neck 6 feathers");
+        MowzieModelRenderer head = parModel.getCube("Head");
+        MowzieModelRenderer neck7Feathers = parModel.getCube("Neck 7 feathers");
+        MowzieModelRenderer snout = parModel.getCube("Snout");
+        MowzieModelRenderer lowerJaw = parModel.getCube("Lower Jaw");
+        MowzieModelRenderer snoutRoof = parModel.getCube("Snout roof");
+        MowzieModelRenderer upperJaw = parModel.getCube("Upper Jaw");
+        MowzieModelRenderer neck7FeathersR = parModel.getCube("Neck 7 feathers r");
+        MowzieModelRenderer neck7FeathersL = parModel.getCube("Neck 7 feathers l");
+        MowzieModelRenderer neck6FeathersR = parModel.getCube("Neck 6 feathers r");
+        MowzieModelRenderer neck6FeathersL = parModel.getCube("Neck 6 feathers l");
+        MowzieModelRenderer neck5FeathersR = parModel.getCube("Neck 5 feathers r");
+        MowzieModelRenderer neck5FeathersL = parModel.getCube("Neck 5 feathers l");
+        MowzieModelRenderer neck4FeathersR = parModel.getCube("Neck 4 feathers r");
+        MowzieModelRenderer neck4FeathersL = parModel.getCube("Neck 4 feathers l");
+        MowzieModelRenderer LowerArmRight1 = parModel.getCube("Lower Arm Right_1");
+        MowzieModelRenderer RightHand = parModel.getCube("Right hand");
+        MowzieModelRenderer ArmRightFeathers = parModel.getCube("Arm right feathers");
+        MowzieModelRenderer RightFinger1 = parModel.getCube("Right finger 1");
+        MowzieModelRenderer RightFinger2 = parModel.getCube("Right finger 2");
+        MowzieModelRenderer RighFinger3 = parModel.getCube("Right finger 3");
+        MowzieModelRenderer RF1mid = parModel.getCube("RF1 mid");
+        MowzieModelRenderer RF1end = parModel.getCube("RF1 end");
+        MowzieModelRenderer RF2mid = parModel.getCube("RF2 mid");
+        MowzieModelRenderer RF2end = parModel.getCube("RF2 end");
+        MowzieModelRenderer RF3mid = parModel.getCube("RF3 mid");
+        MowzieModelRenderer RF3end = parModel.getCube("RF3 end");
+        MowzieModelRenderer LowerArmLEFT_1 = parModel.getCube("Lower Arm LEFT_1");
+        MowzieModelRenderer Lefthand = parModel.getCube("Left hand");
+        MowzieModelRenderer ArmLeftFeathers = parModel.getCube("Arm left feathers");
+        MowzieModelRenderer Leftfinger1 = parModel.getCube("Left finger 1");
+        MowzieModelRenderer Leftfinger2 = parModel.getCube("Left finger 2");
+        MowzieModelRenderer Leftfinger3 = parModel.getCube("Left finger 3");
+        MowzieModelRenderer LF1mid = parModel.getCube("LF1 mid");
+        MowzieModelRenderer LF1end = parModel.getCube("LF1 end");
+        MowzieModelRenderer LF2mid = parModel.getCube("LF1 end");
+        MowzieModelRenderer LF2end = parModel.getCube("LF2 end");
+        MowzieModelRenderer LF3mid = parModel.getCube("LF3 mid");
+        MowzieModelRenderer LF3end = parModel.getCube("LF3 mid");
+        MowzieModelRenderer LeftCalf1 = parModel.getCube("Left Calf 1");
+        MowzieModelRenderer LeftCalf2 = parModel.getCube("Left Calf 2");
+        MowzieModelRenderer FootLeft = parModel.getCube("Foot Left");
+
+        MowzieModelRenderer[] neck = new MowzieModelRenderer[] { head, neck7, neck6, neck5, neck4, neck3, neck2, neck1, bodyShoulders };
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail1, tail2, tail3, tail4, tail5, tail6 };
+
+        int frame = parEntity.ticksExisted;
+
+        float globalSpeed = 0.05F;
+        float globalDegree = 0.06F;
+//        float globalHeight = 2F;
+//        float frontOffset = -1.35f;
+
+        //The tail must always be up when the neck is down
+
+        parModel.chainWave(tail, globalSpeed, globalDegree/1.5F, 1, frame, 1);
+        parModel.chainWave(neck, globalSpeed, globalDegree*1.5F, 4, frame, 1);
+        parModel.walk(rightThigh, 0.28F, degToRad(40.0F), false, 0.0F, 0.0F, f, f1);
+        parModel.walk(leftThigh, 0.28F, degToRad(40.0F), true, 0.0F, 0.0F, f, f1);
+    }
+    
+    /*
+     * You should not need to modify anything below this point
+     */
     
     protected void convertPassedInModelToModelRendererArray(ModelDinosaur parModel)
     {
@@ -235,13 +348,6 @@ public class AnimationTherizinosaurus implements IModelAnimator
                 currentRotationArray[parPartIndex][2] + 
                 (targetModelRendererArray[parPartIndex].rotateAngleZ - currentRotationArray[parPartIndex][2])
                 / (stepsInTween - currentTweenStep);
-        // DEBUG
-        if (parPartIndex == partIndexFromName("neck 1"))
-        {
-            System.out.println("previous current value = "+radToDeg(currentRotationArray[parPartIndex][0])+", difference to target = "+ 
-                    radToDeg((targetModelRendererArray[parPartIndex].rotateAngleX - currentRotationArray[parPartIndex][0]))+", remaining tween steps = "+
-                    (stepsInTween - currentTweenStep));
-        }
     }
 
     /*
@@ -307,107 +413,6 @@ public class AnimationTherizinosaurus implements IModelAnimator
         targetModelRendererArray = modelRendererArray[targetModelIndex];
         stepsInTween = animationSequence[currentSequenceStep][1];
         currentTweenStep = 0;
-    }
-       
-    protected void performMowzieAnimations(ModelDinosaur parModel, float f, float f1)
-    {
-        Animator animator = parModel.animator;
-
-        //        int frame = entity.ticksExisted;
-//
-        float globalSpeed = 0.05F;
-        float globalDegree = 0.06F;
-        float globalHeight = 2F;
-        float frontOffset = -1.35f;
-
-//      MowzieModelRenderer bodyMain = model.getCube("Body main");
-//      MowzieModelRenderer bodyMain1 = model.getCube("Body main_1");
-//      MowzieModelRenderer bodyHips = model.getCube("Body hips");
-      MowzieModelRenderer rightThigh = parModel.getCube("Right Thigh");
-//      MowzieModelRenderer rightCalf1 = model.getCube("Right Calf 1");
-//      MowzieModelRenderer rightCalf2 = model.getCube("Right Calf 2");
-//      MowzieModelRenderer rightFoot = model.getCube("Foot Right");
-      MowzieModelRenderer leftThigh = parModel.getCube("Left Thigh");
-//      MowzieModelRenderer leftCalf1 = model.getCube("Left Calf 1");
-//      MowzieModelRenderer leftCalf2 = model.getCube("Left Calf 2");
-//      MowzieModelRenderer leftFoot = model.getCube("Foot Left");
-//      MowzieModelRenderer tail1 = model.getCube("Tail 1");
-//      MowzieModelRenderer tail2 = model.getCube("Tail 2");
-//      MowzieModelRenderer tail2Feathers = model.getCube("Tail 2 feathers");
-//      MowzieModelRenderer tail3 = model.getCube("Tail 3");
-//      MowzieModelRenderer tail3Feathers = model.getCube("Tail 3 feathers");
-//      MowzieModelRenderer tail3FeathersR = model.getCube("Tail 3 feathers r");
-//      MowzieModelRenderer tail3FeathersL = model.getCube("Tail 3 feathers l");
-//      MowzieModelRenderer tail4 = model.getCube("Tail 4");
-//      MowzieModelRenderer tail4Feathers = model.getCube("Tail 4 feathers");
-//      MowzieModelRenderer tail4FeathersR = model.getCube("Tail 4 feathers r");
-//      MowzieModelRenderer tail4FeathersL = model.getCube("Tail 4 feathers l");
-//      MowzieModelRenderer tail5 = model.getCube("Tail 5");
-//      MowzieModelRenderer tail5Feathers = model.getCube("Tail 5 feathers");
-//      MowzieModelRenderer tail5FeathersR = model.getCube("Tail 5 feathers r");
-//      MowzieModelRenderer tail5FeathersL = model.getCube("Tail 5 feathers l");
-//      MowzieModelRenderer tail6 = model.getCube("Tail 6");
-//      MowzieModelRenderer tail6Feathers = model.getCube("Tail 6 feathers");
-//      MowzieModelRenderer tail6FeathersR = model.getCube("Tail 6 feathers r");
-//      MowzieModelRenderer tail6FeathersL = model.getCube("Tail 6 feathers l");
-//      MowzieModelRenderer neckBase = model.getCube("Neck base");
-//      MowzieModelRenderer neck1 = model.getCube("Neck 1");
-//      MowzieModelRenderer neck2 = model.getCube("Neck 2");
-//      MowzieModelRenderer neck3 = model.getCube("Neck 3");
-//      MowzieModelRenderer neck4 = model.getCube("Neck 4");
-//      MowzieModelRenderer neck4feathers = model.getCube("Neck 4 feathers");
-//      MowzieModelRenderer neck4FeathersR = model.getCube("Neck 4 feathers r");
-//      MowzieModelRenderer neck4FeathersL = model.getCube("Neck 4 feathers l");
-//      MowzieModelRenderer neck5 = model.getCube("Neck 5");
-//      MowzieModelRenderer neck5Feathers = model.getCube("Neck 5 feathers");
-//      MowzieModelRenderer neck5FeathersR = model.getCube("Neck 5 feathers r");
-//      MowzieModelRenderer neck5FeathersL = model.getCube("Neck 5 feathers l");
-//      MowzieModelRenderer neck6 = model.getCube("Neck 6");
-//      MowzieModelRenderer neck6Feathers = model.getCube("Neck 6 feathers");
-//      MowzieModelRenderer neck6FeathersR = model.getCube("Neck 6 feathers r");
-//      MowzieModelRenderer neck6FeathersL = model.getCube("Neck 6 feathers l");
-//      MowzieModelRenderer neck7 = model.getCube("Neck 7");
-//      MowzieModelRenderer neck7Feathers = model.getCube("Neck 7 feathers");
-//      MowzieModelRenderer neck7FeathersR = model.getCube("Neck 7 feathers r");
-//      MowzieModelRenderer neck7FeathersL = model.getCube("Neck 7 feathers l");
-//      MowzieModelRenderer head = model.getCube("Head");
-//      MowzieModelRenderer snout = model.getCube("Snout");
-//      MowzieModelRenderer snoutRoof = model.getCube("Snout roof");
-//      MowzieModelRenderer lowerJaw = model.getCube("Lower Jaw");
-//      MowzieModelRenderer upperJaw = model.getCube("Upper Jaw");
-//      MowzieModelRenderer bodyShoulders = model.getCube("Body shoulders");
-      MowzieModelRenderer lowerArmRight = parModel.getCube("Lower Arm Right");
-//      MowzieModelRenderer LowerArmRight1 = model.getCube("Lower Arm Right_1");
-//      MowzieModelRenderer RightHand = model.getCube("Right hand");
-//      MowzieModelRenderer ArmRightFeathers = model.getCube("Arm right feathers");
-//      MowzieModelRenderer RightFinger1 = model.getCube("Right finger 1");
-//      MowzieModelRenderer RF1mid = model.getCube("RF1 mid");
-//      MowzieModelRenderer RF1end = model.getCube("RF1 end");
-//      MowzieModelRenderer RightFinger2 = model.getCube("Right finger 2");
-//      MowzieModelRenderer RF2mid = model.getCube("RF2 mid");
-//      MowzieModelRenderer RF2end = model.getCube("RF2 end");
-//      MowzieModelRenderer RightFinger3 = model.getCube("Right finger 3");
-//      MowzieModelRenderer RF3mid = model.getCube("RF3 mid");
-//      MowzieModelRenderer RF3end = model.getCube("RF3 end");
-      MowzieModelRenderer lowerArmLeft = parModel.getCube("Lower Arm LEFT");
-//      MowzieModelRenderer LowerArmLeft1 = model.getCube("Lower Arm LEFT_1");
-//      MowzieModelRenderer Lefthand = model.getCube("Left hand");
-//      MowzieModelRenderer ArmLeftFeathers = model.getCube("Arm left feathers");
-//      MowzieModelRenderer leftFinger1 = model.getCube("Left finger 1");
-//      MowzieModelRenderer leftFinger1Mid = model.getCube("LF1 mid");
-//      MowzieModelRenderer leftFinger1End = model.getCube("LF1 end");
-//      MowzieModelRenderer leftFinger2 = model.getCube("Left finger 2");
-//      MowzieModelRenderer leftFinger2Mid = model.getCube("LF1 end");
-//      MowzieModelRenderer leftFinger2End = model.getCube("LF2 end");
-//      MowzieModelRenderer leftFinger3 = model.getCube("Left finger 3");
-//      MowzieModelRenderer leftFinger3Mid = model.getCube("LF3 mid");
-//      MowzieModelRenderer leftFinger3End = model.getCube("LF3 mid");
-
-        parModel.walk(rightThigh, 0.28F, degToRad(40.0F), false, 0.0F, 0.0F, f, f1);
-        parModel.walk(leftThigh, 0.28F, degToRad(40.0F), true, 0.0F, 0.0F, f, f1);
-        parModel.walk(lowerArmRight, 0.28F, degToRad(80.0F), true, 0.0F, 0.0F, f, f1);
-        parModel.walk(lowerArmLeft, 0.28F, degToRad(80.0F), false, 0.0F, 0.0F, f, f1);
-
     }
 
     public static ModelDinosaur getTabulaModel(String tabulaModel, int geneticVariant) 
