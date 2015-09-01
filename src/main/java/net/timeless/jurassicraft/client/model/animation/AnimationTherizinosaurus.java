@@ -32,7 +32,8 @@ public class AnimationTherizinosaurus implements IModelAnimator
             "/assets/jurassicraft/models/entities/therizinosaurus_pose5",
             "/assets/jurassicraft/models/entities/therizinosaurus_pose6",
             "/assets/jurassicraft/models/entities/therizinosaurus_pose7",
-            "/assets/jurassicraft/models/entities/therizinosaurus_pose8"
+            "/assets/jurassicraft/models/entities/therizinosaurus_pose8",
+            "/assets/jurassicraft/models/entities/therizinosaurus_pose9"
     };
 
     // Tell the code the names of all your tabula model parts
@@ -192,7 +193,6 @@ public class AnimationTherizinosaurus implements IModelAnimator
 
         MowzieModelRenderer rightThigh = parModel.getCube("Right Thigh");
         MowzieModelRenderer bodyhips = parModel.getCube("Body hips");
-        MowzieModelRenderer leftThigh = parModel.getCube("Left Thigh");
         MowzieModelRenderer rightCalf1 = parModel.getCube("Right Calf 1");
         MowzieModelRenderer rightCalf2 = parModel.getCube("Right Calf 2");
         MowzieModelRenderer footRight = parModel.getCube("Foot Right");
@@ -217,10 +217,8 @@ public class AnimationTherizinosaurus implements IModelAnimator
         MowzieModelRenderer tail3FeathersR = parModel.getCube("Tail 3 feathers r");
         MowzieModelRenderer tail3FeathersL = parModel.getCube("Tail 3 feathers l");
         MowzieModelRenderer bodyShoulders = parModel.getCube("Body shoulders");
-        MowzieModelRenderer bodyMain1 = parModel.getCube("Body main_1");
+        MowzieModelRenderer bodyMain1 = parModel.getCube("Body main 1");
         MowzieModelRenderer neckBase = parModel.getCube("Neck base");
-        MowzieModelRenderer lowerArmRight = parModel.getCube("Lower Arm Right");
-        MowzieModelRenderer lowerArmLeft = parModel.getCube("Lower Arm LEFT");
         MowzieModelRenderer neck1 = parModel.getCube("Neck 1");
         MowzieModelRenderer neck2 = parModel.getCube("Neck 2");
         MowzieModelRenderer neck3 = parModel.getCube("Neck 3");
@@ -245,36 +243,41 @@ public class AnimationTherizinosaurus implements IModelAnimator
         MowzieModelRenderer neck5FeathersL = parModel.getCube("Neck 5 feathers l");
         MowzieModelRenderer neck4FeathersR = parModel.getCube("Neck 4 feathers r");
         MowzieModelRenderer neck4FeathersL = parModel.getCube("Neck 4 feathers l");
-        MowzieModelRenderer LowerArmRight1 = parModel.getCube("Lower Arm Right_1");
-        MowzieModelRenderer RightHand = parModel.getCube("Right hand");
-        MowzieModelRenderer ArmRightFeathers = parModel.getCube("Arm right feathers");
-        MowzieModelRenderer RightFinger1 = parModel.getCube("Right finger 1");
-        MowzieModelRenderer RightFinger2 = parModel.getCube("Right finger 2");
-        MowzieModelRenderer RighFinger3 = parModel.getCube("Right finger 3");
-        MowzieModelRenderer RF1mid = parModel.getCube("RF1 mid");
-        MowzieModelRenderer RF1end = parModel.getCube("RF1 end");
-        MowzieModelRenderer RF2mid = parModel.getCube("RF2 mid");
-        MowzieModelRenderer RF2end = parModel.getCube("RF2 end");
-        MowzieModelRenderer RF3mid = parModel.getCube("RF3 mid");
-        MowzieModelRenderer RF3end = parModel.getCube("RF3 end");
-        MowzieModelRenderer LowerArmLEFT_1 = parModel.getCube("Lower Arm LEFT_1");
-        MowzieModelRenderer Lefthand = parModel.getCube("Left hand");
-        MowzieModelRenderer ArmLeftFeathers = parModel.getCube("Arm left feathers");
-        MowzieModelRenderer Leftfinger1 = parModel.getCube("Left finger 1");
-        MowzieModelRenderer Leftfinger2 = parModel.getCube("Left finger 2");
-        MowzieModelRenderer Leftfinger3 = parModel.getCube("Left finger 3");
-        MowzieModelRenderer LF1mid = parModel.getCube("LF1 mid");
-        MowzieModelRenderer LF1end = parModel.getCube("LF1 end");
-        MowzieModelRenderer LF2mid = parModel.getCube("LF1 end");
-        MowzieModelRenderer LF2end = parModel.getCube("LF2 end");
-        MowzieModelRenderer LF3mid = parModel.getCube("LF3 mid");
-        MowzieModelRenderer LF3end = parModel.getCube("LF3 mid");
-        MowzieModelRenderer LeftCalf1 = parModel.getCube("Left Calf 1");
-        MowzieModelRenderer LeftCalf2 = parModel.getCube("Left Calf 2");
-        MowzieModelRenderer FootLeft = parModel.getCube("Foot Left");
+        MowzieModelRenderer lowerArmRight = parModel.getCube("Lower Arm Right");
+        MowzieModelRenderer lowerArmRight1 = parModel.getCube("Lower Arm Right 1");
+        MowzieModelRenderer rightHand = parModel.getCube("Right hand");
+        MowzieModelRenderer armRightFeathers = parModel.getCube("Arm right feathers");
+        MowzieModelRenderer rightFinger1 = parModel.getCube("Right finger 1");
+        MowzieModelRenderer rightFinger2 = parModel.getCube("Right finger 2");
+        MowzieModelRenderer righFinger3 = parModel.getCube("Right finger 3");
+        MowzieModelRenderer rF1mid = parModel.getCube("RF1 mid");
+        MowzieModelRenderer rF1end = parModel.getCube("RF1 end");
+        MowzieModelRenderer rF2mid = parModel.getCube("RF2 mid");
+        MowzieModelRenderer rF2end = parModel.getCube("RF2 end");
+        MowzieModelRenderer rF3mid = parModel.getCube("RF3 mid");
+        MowzieModelRenderer rF3end = parModel.getCube("RF3 end");
+        MowzieModelRenderer lowerArmLeft = parModel.getCube("Lower Arm LEFT");
+        MowzieModelRenderer lowerArmLeft1 = parModel.getCube("Lower Arm LEFT 1");
+        MowzieModelRenderer leftHand = parModel.getCube("Left hand");
+        MowzieModelRenderer armLeftFeathers = parModel.getCube("Arm left feathers");
+        MowzieModelRenderer leftfinger1 = parModel.getCube("Left finger 1");
+        MowzieModelRenderer leftfinger2 = parModel.getCube("Left finger 2");
+        MowzieModelRenderer leftfinger3 = parModel.getCube("Left finger 3");
+        MowzieModelRenderer lF1mid = parModel.getCube("LF1 mid");
+        MowzieModelRenderer lF1end = parModel.getCube("LF1 end");
+        MowzieModelRenderer lF2mid = parModel.getCube("LF1 end");
+        MowzieModelRenderer lF2end = parModel.getCube("LF2 end");
+        MowzieModelRenderer lF3mid = parModel.getCube("LF3 mid");
+        MowzieModelRenderer lF3end = parModel.getCube("LF3 mid");
+        MowzieModelRenderer leftThigh = parModel.getCube("Left Thigh");
+        MowzieModelRenderer leftCalf1 = parModel.getCube("Left Calf 1");
+        MowzieModelRenderer leftCalf2 = parModel.getCube("Left Calf 2");
+        MowzieModelRenderer footLeft = parModel.getCube("Foot Left");
 
-        MowzieModelRenderer[] neck = new MowzieModelRenderer[] { head, neck7, neck6, neck5, neck4, neck3, neck2, neck1, bodyShoulders };
+        MowzieModelRenderer[] neck = new MowzieModelRenderer[] { head, neck7, neck6, neck5, neck4, neck3, neck2, neck1, neckBase, bodyShoulders };
         MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail1, tail2, tail3, tail4, tail5, tail6 };
+        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[] { lowerArmLeft, lowerArmLeft1, leftHand};
+        MowzieModelRenderer[] armRight = new MowzieModelRenderer[] { lowerArmRight, lowerArmRight1, rightHand };
 
         int frame = parEntity.ticksExisted;
 
@@ -284,11 +287,38 @@ public class AnimationTherizinosaurus implements IModelAnimator
 //        float frontOffset = -1.35f;
 
         //The tail must always be up when the neck is down
+        float speed = 0.75F;
+        float height = 2F * f1;
 
-        parModel.chainWave(tail, globalSpeed, globalDegree/1.5F, 1, frame, 1);
-        parModel.chainWave(neck, globalSpeed, globalDegree*1.5F, 4, frame, 1);
-        parModel.walk(rightThigh, 0.28F, degToRad(40.0F), false, 0.0F, 0.0F, f, f1);
-        parModel.walk(leftThigh, 0.28F, degToRad(40.0F), true, 0.0F, 0.0F, f, f1);
+        parModel.bob(bodyhips, 1F * speed, height, false, f, f1);
+        parModel.bob(leftThigh, 1F * speed, height, false, f, f1);
+        parModel.bob(rightThigh, 1F * speed, height, false, f, f1);
+        parModel.walk(bodyShoulders, 1F * speed, 0.2F, true, 1, 0, f, f1);
+        parModel.walk(bodyMain1, 1F * speed, 0.2F, false, 0.5F, 0, f, f1);
+
+        parModel.walk(leftThigh, 0.5F * speed, 0.7F, false, 3.14F, 0.2F, f, f1);
+        parModel.walk(leftCalf1, 0.5F * speed, 0.6F, false, 1.5F, 0.3F, f, f1);
+        parModel.walk(leftCalf2, 0.5F * speed, 0.8F, false, -1F, -0.1F, f, f1);
+        parModel.walk(footLeft, 0.5F * speed, 1.5F, true, -1F, 1F, f, f1);
+
+        parModel.walk(rightThigh, 0.5F * speed, 0.7F, true, 3.14F, 0.2F, f, f1);
+        parModel.walk(rightCalf1, 0.5F * speed, 0.6F, true, 1.5F, 0.3F, f, f1);
+        parModel.walk(rightCalf2, 0.5F * speed, 0.8F, true, -1F, -0.1F, f, f1);
+        parModel.walk(footRight, 0.5F * speed, 1.5F, false, -1F, 1F, f, f1);
+
+        parModel.chainSwing(tail, 0.5F * speed, -0.1F, 2, f, f1);
+        parModel.chainWave(tail, 1F * speed, -0.1F, 2.5F, f, f1);
+//        parModel.chainWave(bodyParts, 1F * speed, -0.1F, 4, f, f1);
+
+        parModel.chainWave(armRight, 1F * speed, -0.3F, 4, f, f1);
+        parModel.chainWave(armLeft, 1F * speed, -0.3F, 4, f, f1);
+
+        // Idling
+        parModel.chainWave(tail, 0.1F, 0.05F, 2, frame, 1F);
+//        parModel.chainWave(bodyParts, 0.1F, -0.03F, 5, frame, 1F);
+//        parModel.chainWave(rightArmParts, 0.1F, -0.1F, 4, frame, 1F);
+//        parModel.chainWave(leftArmParts, 0.1F, -0.1F, 4, frame, 1F);
+
     }
     
     /*
