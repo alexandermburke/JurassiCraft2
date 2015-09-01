@@ -25,15 +25,15 @@ public class AnimationTherizinosaurus implements IModelAnimator
     // the first one must be your "default" pose (i.e one that is used at spawn time)
     protected static final String[] modelAssetPaths = new String[] {
             "/assets/jurassicraft/models/entities/therizinosaurus",
-            "/assets/jurassicraft/models/entities/therizinosaurus_pose1",
-            "/assets/jurassicraft/models/entities/therizinosaurus_pose2",
-            "/assets/jurassicraft/models/entities/therizinosaurus_pose3",
-            "/assets/jurassicraft/models/entities/therizinosaurus_pose4",
-            "/assets/jurassicraft/models/entities/therizinosaurus_pose5",
-            "/assets/jurassicraft/models/entities/therizinosaurus_pose6",
-            "/assets/jurassicraft/models/entities/therizinosaurus_pose7",
-            "/assets/jurassicraft/models/entities/therizinosaurus_pose8",
-            "/assets/jurassicraft/models/entities/therizinosaurus_pose9"
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_pose1",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_pose2",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_pose3",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_pose4",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_pose5",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_pose6",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_pose7",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_pose8",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_pose9"
     };
 
     // Tell the code the names of all your tabula model parts
@@ -70,16 +70,18 @@ public class AnimationTherizinosaurus implements IModelAnimator
     protected static int[][] animationSequence = new int[][] {
         {0, 500}, {1, 100}, {1, 80}, {0, 100}, // look left
         {0, 200}, {4, 100}, {4, 40}, {0, 100}, // look right
-        {0, 500}, {2, 100}, {0, 20}, {2, 20}, {0, 20}, {2, 20}, {0, 20}, // head bob
-        {0, 580}, {7, 40}, {8, 20}, {7, 20}, {8, 20}, {7, 20}, {8, 20}, // flapping "dance"
-        {7, 20}, {8, 20}, {7, 20}, {8, 20}, {7, 20}, {8, 20}, {7, 20}, {8, 20}, 
-        {7, 20}, {8, 20}, {7, 20}, {8, 20}, {7, 20}, {8, 20}, {7, 20}, {0, 100}        
+        {0, 500}, {2, 100}, {2, 20}, {0, 50}, // head bob
+        {0, 580}, {9, 40}, {0, 20}, {9, 20}, {0, 20}, {9, 20}, {0, 20}, // flapping "dance"
+        {9, 20}, {0, 20}, {9, 20}, {0, 20}, {9, 20}, {0, 20}, {9, 20}, {0, 20}, 
+        {9, 20}, {0, 20}, {9, 20}, {0, 20}, {9, 20}, {0, 20}, {9, 20}, {0, 100},    
+        {0, 500}, {2, 100}, {2, 20}, {0, 50}, // head bob
         };
             
     /*
      * Do NOT change any of the following field initializations
      */
     protected int currentSequenceStep = 0;
+    protected int currentSequenceStepModifier = 0; // this is used to desync entities of same type
     protected int targetModelIndex = 1; // 0 is default, so 1 is first custom pose
     protected int stepsInTween = 0;
     protected int currentTweenStep = 0;
@@ -159,7 +161,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
      * in the field initializations at the top of this class' code
      */
     protected void setRotationAngles(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityTherizinosaurus parEntity)    
-    {
+    {        
         performJabelarAnimations(parModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, parEntity);
 
         // you can still add chain, walk, bob, etc.
@@ -168,6 +170,11 @@ public class AnimationTherizinosaurus implements IModelAnimator
 
     protected void performJabelarAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityTherizinosaurus parEntity)
     {
+        // used to make sure entities aren't perfectly sync'ed
+        currentSequenceStepModifier = parEntity.getEntityId()%animationSequence.length;
+        // DEBUG
+        System.out.println("Current sequence step modifier = "+currentSequenceStepModifier);
+
         convertPassedInModelToModelRendererArray(parModel);
         
         // initialize current pose arrays if first tick
@@ -338,7 +345,25 @@ public class AnimationTherizinosaurus implements IModelAnimator
             }
         }
     }
-    
+
+    protected void setNextTween()
+    {
+        if (currentSequenceStepModifier + currentSequenceStep < animationSequence.length)
+        {
+            targetModelIndex = animationSequence[currentSequenceStep+currentSequenceStepModifier][0];
+            targetModelRendererArray = modelRendererArray[targetModelIndex];
+            stepsInTween = animationSequence[currentSequenceStep+currentSequenceStepModifier][1];
+            currentTweenStep = 0;
+        }
+        else
+        {
+            targetModelIndex = animationSequence[currentSequenceStep+currentSequenceStepModifier-animationSequence.length][0];
+            targetModelRendererArray = modelRendererArray[targetModelIndex];
+            stepsInTween = animationSequence[currentSequenceStep+currentSequenceStepModifier-animationSequence.length][1];
+            currentTweenStep = 0;
+        }
+    }
+   
     protected void performNextTweenStep(MowzieModelRenderer[] parPassedInModelRendererArray)
     {
         // tween the passed in model towards target pose
@@ -435,14 +460,6 @@ public class AnimationTherizinosaurus implements IModelAnimator
 
         finishedTween = false;
         setNextTween();
-    }
-
-    protected void setNextTween()
-    {
-        targetModelIndex = animationSequence[currentSequenceStep][0];
-        targetModelRendererArray = modelRendererArray[targetModelIndex];
-        stepsInTween = animationSequence[currentSequenceStep][1];
-        currentTweenStep = 0;
     }
 
     public static ModelDinosaur getTabulaModel(String tabulaModel, int geneticVariant) 
