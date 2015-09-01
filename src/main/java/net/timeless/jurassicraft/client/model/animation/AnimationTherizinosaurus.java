@@ -323,8 +323,10 @@ public class AnimationTherizinosaurus implements IModelAnimator
         // Idling
         parModel.chainWave(tail, 0.1F, 0.05F, 2, frame, 1F);
 //        parModel.chainWave(bodyParts, 0.1F, -0.03F, 5, frame, 1F);
-//        parModel.chainWave(rightArmParts, 0.1F, -0.1F, 4, frame, 1F);
-//        parModel.chainWave(leftArmParts, 0.1F, -0.1F, 4, frame, 1F);
+        parModel.chainWave(armRight, 0.1F, -0.1F, 4, frame, 1F);
+        parModel.chainWave(armLeft, 0.1F, -0.1F, 4, frame, 1F);
+        
+        parEntity.tailBuffer.applyChainSwingBuffer(tail);
 
     }
     
@@ -348,20 +350,10 @@ public class AnimationTherizinosaurus implements IModelAnimator
 
     protected void setNextTween()
     {
-        if (currentSequenceStepModifier + currentSequenceStep < animationSequence.length)
-        {
-            targetModelIndex = animationSequence[currentSequenceStep+currentSequenceStepModifier][0];
-            targetModelRendererArray = modelRendererArray[targetModelIndex];
-            stepsInTween = animationSequence[currentSequenceStep+currentSequenceStepModifier][1];
-            currentTweenStep = 0;
-        }
-        else
-        {
-            targetModelIndex = animationSequence[currentSequenceStep+currentSequenceStepModifier-animationSequence.length][0];
-            targetModelRendererArray = modelRendererArray[targetModelIndex];
-            stepsInTween = animationSequence[currentSequenceStep+currentSequenceStepModifier-animationSequence.length][1];
-            currentTweenStep = 0;
-        }
+        targetModelIndex = animationSequence[currentSequenceStep][0];
+        targetModelRendererArray = modelRendererArray[targetModelIndex];
+        stepsInTween = animationSequence[currentSequenceStep][1];
+        currentTweenStep = 0;
     }
    
     protected void performNextTweenStep(MowzieModelRenderer[] parPassedInModelRendererArray)
