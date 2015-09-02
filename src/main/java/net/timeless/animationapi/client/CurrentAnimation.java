@@ -32,31 +32,33 @@ public class CurrentAnimation
      */
     public CurrentAnimation setNumStepsInSequence(int parNumStepsInSequence)
     {
+        // DEBUG
+        System.out.println("Setting number of sequence steps to "+parNumStepsInSequence);
         numStepsInSequence = parNumStepsInSequence;
         return this;
     }
     
-    public CurrentAnimation setRandomSequenceStepModifier(int parNumStepsInSequence)
+    public CurrentAnimation setRandomSequenceStepModifier()
     {
-        if (parNumStepsInSequence < 1) return this;
+        if (numStepsInSequence < 1) return this;
         
-        currentSequenceStepModifier = ((int)Math.floor(Math.random()*parNumStepsInSequence));
+        currentSequenceStepModifier = ((int)Math.floor(Math.random()*numStepsInSequence));
         return this;
     }
     
     // boolean returned indicates if sequence was finished
-    public boolean incrementSequenceStep(int parNumStepsInSequence)
+    public boolean incrementSequenceStep()
     {
         // increment current sequence step
         currentSequenceStep++;
         // check if finished sequence
-        if (currentSequenceStep >= parNumStepsInSequence)
+        if (currentSequenceStep >= numStepsInSequence)
         {
             currentSequenceStep = 0;
             return true;
         }
-        // DEBUG
-        System.out.println("Next pose is sequence step = "+currentSequenceStep);
+//        // DEBUG
+//        System.out.println("Next pose is sequence step = "+currentSequenceStep);
         return false;
     }
     
@@ -76,6 +78,7 @@ public class CurrentAnimation
     // this getter method includes any sequence step modifier
     public int getSequenceStep(int parNumStepsInSequence)
     {
-        return (currentSequenceStep + currentSequenceStepModifier)%parNumStepsInSequence;
+        return currentSequenceStep;
+//        return (currentSequenceStep + currentSequenceStepModifier)%parNumStepsInSequence;
     }
 }
