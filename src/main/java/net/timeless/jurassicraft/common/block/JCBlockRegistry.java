@@ -241,7 +241,7 @@ public class JCBlockRegistry
 
     public int getMetadata(int id)
     {
-        return id % 16;
+        return id % 15;
     }
 
     public int getMetadata(Dinosaur dinosaur)

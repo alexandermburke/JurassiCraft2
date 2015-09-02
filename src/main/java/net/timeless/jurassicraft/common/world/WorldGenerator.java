@@ -37,7 +37,6 @@ public class WorldGenerator implements IWorldGenerator
             List<Dinosaur> dinos = JCEntityRegistry.getDinosaursFromPeriod(period);
 
             //FIXME offset by one? sometimes you can get a Jurassic Fossil when at the moment it is hard-coded to Cretaceous (Also allows hybrids to be found)
-
             Dinosaur dinosaur = dinos.get(random.nextInt(dinos.size()));
             int meta = JurassiCraft.blockRegistry.getMetadata(dinosaur);
 
