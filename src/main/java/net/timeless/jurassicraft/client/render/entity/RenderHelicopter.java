@@ -4,12 +4,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.entity.item.EntityCageSmall;
 import net.timeless.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
+import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 import org.lwjgl.opengl.GL11;
 
 public class RenderHelicopter extends Render
@@ -36,7 +38,7 @@ public class RenderHelicopter extends Render
         this.doRender((EntityHelicopterBase) entity, x, y, z, p_76986_8_, partialTicks);
     }
 
-    public void doRender(EntityHelicopterBase cage, double x, double y, double z, float yaw, float partialTicks)
+    public void doRender(EntityHelicopterBase helicopter, double x, double y, double z, float yaw, float partialTicks)
     {
         GlStateManager.pushMatrix();
         GlStateManager.translate((float) x, (float) y + 1.5F, (float) z);
@@ -45,16 +47,24 @@ public class RenderHelicopter extends Render
         float f4 = 1f;
         GlStateManager.scale(f4, f4, f4);
         GlStateManager.scale(1.0F / f4, 1.0F / f4, 1.0F / f4);
-        this.bindEntityTexture(cage);
+        this.bindEntityTexture(helicopter);
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glDisable(GL11.GL_ALPHA_TEST);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        this.model.render(cage, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+        MowzieModelRenderer rotationCube = model.getCube("rotorbase_rotatehere");
+        rotationCube.rotateAngleY += helicopter.getEnginePower()*10f;
+        this.model.render(helicopter, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
         GL11.glDisable(GL11.GL_BLEND);
         GL11.glEnable(GL11.GL_ALPHA_TEST);
         GlStateManager.popMatrix();
-        super.doRender(cage, x, y, z, yaw, partialTicks);
+        super.doRender(helicopter, x, y, z, yaw, partialTicks);
+    }
+
+    public void preRenderCallback(EntityLivingBase entity, float side)
+    {
+        EntityHelicopterBase helicopter = (EntityHelicopterBase)entity;
+
     }
 
     @Override

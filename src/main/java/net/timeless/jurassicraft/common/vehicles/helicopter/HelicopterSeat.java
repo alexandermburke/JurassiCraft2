@@ -1,15 +1,15 @@
 package net.timeless.jurassicraft.common.vehicles.helicopter;
 
 import com.google.common.base.Predicate;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 import static com.google.common.base.Preconditions.*;
@@ -17,9 +17,9 @@ import static com.google.common.base.Preconditions.*;
 /**
  * Entity representing a seat inside the helicopter. Should NOT be spawned inside the world, the {@link EntityHelicopterBase Helicopter Entity} handles that for you.
  */
-public class HelicopterSeat extends Entity
+public class HelicopterSeat extends Entity implements IEntityAdditionalSpawnData
 {
-    private UUID parentUUID;
+    private UUID parentID;
     private float relX;
     private float relY;
     private float relZ;
@@ -31,6 +31,7 @@ public class HelicopterSeat extends Entity
         super(worldIn);
         setEntityBoundingBox(AxisAlignedBB.fromBounds(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY));
         noClip = true;
+        parentID = UUID.randomUUID();
     }
 
     public HelicopterSeat(float relX, float relY, float relZ, int index, EntityHelicopterBase parent)
@@ -42,15 +43,13 @@ public class HelicopterSeat extends Entity
         this.relZ = relZ;
         this.index = index;
         this.parent = checkNotNull(parent, "parent");
-        parentUUID = checkNotNull(parent.getUniqueID(), "parent.getUniqueID()");
-        dataWatcher.updateObject(20, parentUUID.toString());
+        parentID = parent.getHeliID();
         noClip = true;
     }
 
     @Override
     protected void entityInit()
     {
-        dataWatcher.addObject(20, "null");
         width = 0f;
         height = 0f;
     }
@@ -62,13 +61,9 @@ public class HelicopterSeat extends Entity
         motionY = 0f;
         motionZ = 0f;
         super.onEntityUpdate();
-        if(parentUUID == null)
-        {
-            parentUUID = UUID.fromString(dataWatcher.getWatchableObjectString(20));
-        }
         if(parent == null) // we are in this state right after reloading a map
         {
-            parent = getParentFromUUID(parentUUID);
+            parent = getParentFromID(worldObj, parentID);
         }
         if(parent != null)
         {
@@ -87,6 +82,10 @@ public class HelicopterSeat extends Entity
                 kill();
             }
         }
+        else
+        {
+            System.out.println("no parent :c "+parentID);
+        }
     }
 
     @Override
@@ -98,11 +97,10 @@ public class HelicopterSeat extends Entity
 
         index = tagCompound.getInteger("index");
 
-        parentUUID = UUID.fromString(tagCompound.getString("parent"));
-        dataWatcher.updateObject(20, parentUUID.toString());
+        parentID = UUID.fromString(tagCompound.getString("heliID"));
     }
 
-    private EntityHelicopterBase getParentFromUUID(final UUID uuid)
+    public static EntityHelicopterBase getParentFromID(World worldObj, final UUID id)
     {
         List list = worldObj.getEntities(EntityHelicopterBase.class, new Predicate()
         {
@@ -112,7 +110,7 @@ public class HelicopterSeat extends Entity
                 if(input instanceof EntityHelicopterBase)
                 {
                     EntityHelicopterBase helicopter = (EntityHelicopterBase)input;
-                    return helicopter.getUniqueID().equals(uuid);
+                    return helicopter.getHeliID().equals(id);
                 }
                 return false;
             }
@@ -131,7 +129,7 @@ public class HelicopterSeat extends Entity
 
         tagCompound.setInteger("index", index);
 
-        tagCompound.setString("parent", parentUUID.toString());
+        tagCompound.setString("heliID", parentID.toString());
     }
 
     public float getRelX()
@@ -172,4 +170,22 @@ public class HelicopterSeat extends Entity
         return 0f;
     }
 
+    public void setParentID(UUID parentID)
+    {
+        this.parentID = parentID;
+    }
+
+    @Override
+    public void writeSpawnData(ByteBuf buffer)
+    {
+        ByteBufUtils.writeUTF8String(buffer, parentID.toString());
+        System.out.println(">> sending "+parentID.toString());
+    }
+
+    @Override
+    public void readSpawnData(ByteBuf additionalData)
+    {
+        parentID = UUID.fromString(ByteBufUtils.readUTF8String(additionalData));
+        System.out.println(">> received "+parentID);
+    }
 }

@@ -1,5 +1,7 @@
 package net.timeless.jurassicraft.common.vehicles.helicopter;
 
+import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,23 +11,38 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.jurassicraft.JurassiCraft;
+import net.timeless.jurassicraft.common.entity.data.JCPlayerData;
+import net.timeless.jurassicraft.common.message.JCNetworkManager;
+import net.timeless.jurassicraft.common.message.MessageHelicopterEngine;
 
 import javax.vecmath.Vector2f;
+import java.util.UUID;
 
 /**
  * Base entity for the helicopter, also holds the {@link HelicopterSeat Seat} entities and updates/handles them.
  */
-public class EntityHelicopterBase extends EntityLivingBase
+public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdditionalSpawnData
 {
+    private UUID heliID;
     public HelicopterSeat[] seats;
+    public static final int ENGINE_RUNNING = 20;
     public static final int PILOT_SEAT = 0;
     public static final int LEFT_BACK_SEAT = 1;
     public static final int RIGHT_BACK_SEAT = 2;
+    public static final float MAX_POWER = 40f;
     private float roll;
+    private boolean engineRunning;
+    private float enginePower;
 
     public EntityHelicopterBase(World worldIn)
     {
         super(worldIn);
+        heliID = UUID.randomUUID();
         double w = 3f; // width in blocks
         double h = 3.1f; // height in blocks
         double d = 8f; // depth in blocks
@@ -65,12 +82,14 @@ public class EntityHelicopterBase extends EntityLivingBase
     protected void entityInit()
     {
         super.entityInit();
+        dataWatcher.addObject(ENGINE_RUNNING, (byte)0);
     }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound tagCompound)
     {
         super.readEntityFromNBT(tagCompound);
+        heliID = UUID.fromString(tagCompound.getString("heliID"));
     }
 
     @Override
@@ -107,6 +126,7 @@ public class EntityHelicopterBase extends EntityLivingBase
     public void writeEntityToNBT(NBTTagCompound tagCompound)
     {
         super.writeEntityToNBT(tagCompound);
+        tagCompound.setString("heliID", heliID.toString());
     }
 
     @Override
@@ -119,23 +139,80 @@ public class EntityHelicopterBase extends EntityLivingBase
         {
             if(seat == null)
                 continue;
+            seat.setParentID(heliID);
             seat.parent = this;
         }
 
         if(seats[PILOT_SEAT] != null)
         {
             Entity riderEntity = seats[PILOT_SEAT].riddenByEntity;
+            boolean runEngine = false;
             if(riderEntity != null) // There is a pilot!
             {
-                EntityLivingBase rider = (EntityLivingBase)riderEntity;
-                float forward = rider.moveForward;
-                float strafe = rider.moveStrafing;
-                Vector2f v = new Vector2f(forward, strafe);
-                v.normalize();
-                this.rotationYaw = rider.rotationYaw;
-                this.roll = rider.rotationPitch;
+                EntityPlayer rider = (EntityPlayer)riderEntity;
+                if(worldObj.isRemote) // We are on client
+                {
+                    runEngine = handleClientRunning(rider);
+                    if(isPilotThisClient(rider)) {
+                        updateEngine(runEngine);
+                        engineRunning = runEngine;
+                    }
+                }
+            }
+            else
+            {
+                runEngine = false;
+                System.out.println("no rider, resetting");
+                updateEngine(runEngine);
+            }
+            if(engineRunning) {
+                enginePower++;
+                if(enginePower >= MAX_POWER) {
+                    // We can fly \o/
+                    // ♪ Fly on the wings of code! ♪
+                    enginePower = MAX_POWER;
+                }
+            } else {
+                enginePower--;
+                if(enginePower < 0f) {
+                    enginePower = 0f;
+                }
             }
         }
+    }
+
+    public void updateEngine(boolean engineState) {
+        if(worldObj.isRemote) {
+            JCNetworkManager.networkWrapper.sendToServer(new MessageHelicopterEngine(heliID, engineState));
+        } else {
+            JCNetworkManager.networkWrapper.sendToAll(new MessageHelicopterEngine(heliID, engineState));
+        }
+    }
+
+    /**
+     * Checks if the current pilot is the player using this client
+     * @param pilot
+     *              The pilot
+     * @return
+     *          True if Client's player's UUID is equal to pilot
+     */
+    @SideOnly(Side.CLIENT)
+    private boolean isPilotThisClient(EntityPlayer pilot)
+    {
+        return pilot.getUniqueID().equals(Minecraft.getMinecraft().thePlayer.getUniqueID());
+    }
+
+    @SideOnly(Side.CLIENT)
+    private boolean handleClientRunning(EntityPlayer rider)
+    {
+        if(isPilotThisClient(rider))
+        {
+            if(Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown())
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -220,5 +297,37 @@ public class EntityHelicopterBase extends EntityLivingBase
     public void setRoll(float roll)
     {
         this.roll = roll;
+    }
+
+    public UUID getHeliID()
+    {
+        return heliID;
+    }
+
+    @Override
+    public void writeSpawnData(ByteBuf buffer)
+    {
+        ByteBufUtils.writeUTF8String(buffer, heliID.toString());
+    }
+
+    @Override
+    public void readSpawnData(ByteBuf additionalData)
+    {
+        heliID = UUID.fromString(ByteBufUtils.readUTF8String(additionalData));
+    }
+
+    public boolean isEngineRunning()
+    {
+        return engineRunning;
+    }
+
+    public void setEngineRunning(boolean engineRunning)
+    {
+        this.engineRunning = engineRunning;
+    }
+
+    public float getEnginePower()
+    {
+        return enginePower;
     }
 }

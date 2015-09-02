@@ -20,6 +20,7 @@ import java.util.regex.Pattern;
 public class JCPlayerData implements IExtendedEntityProperties
 {
     public static final String identifier = "JurassiCraftPlayerData";
+    private boolean pressingSpace;
 
     public static JCPlayerData getPlayerData(EntityPlayer player)
     {
