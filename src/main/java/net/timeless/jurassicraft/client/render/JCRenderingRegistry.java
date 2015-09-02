@@ -123,6 +123,7 @@ public class JCRenderingRegistry
         registerRenderDef(new RenderDefVelociraptorDelta());
         registerRenderDef(new RenderDefVelociraptorEcho());
         registerRenderDef(new RenderDefTherizinosaurus());
+        registerRenderDef(new RenderDefMegapiranha());
 
         GuiAppRegistry.register();
 
