@@ -20,6 +20,19 @@ public class AnimationHelicopter implements IModelAnimator
         EntityHelicopterBase helicopter = (EntityHelicopterBase) entity;
 
         MowzieModelRenderer rotor = model.getCube("rotorbase_rotatehere");
-        rotor.rotateAngleY += helicopter.getEnginePower()*10f;
+        MowzieModelRenderer tailrotor = model.getCube("tailrotor_rotatehere");
+        //rotor.rotateAngleY += helicopter.getEnginePower()*partialTicks;
+        float time = helicopter.getEnginePower()/EntityHelicopterBase.MAX_POWER;
+        rotor.rotateAngleY = easeInCubic(time, rotor.rotateAngleY, helicopter.getEnginePower()*partialTicks, 1f);
+        rotor.rotateAngleY %= 360f;
+
+        tailrotor.rotateAngleX = easeInCubic(time, tailrotor.rotateAngleX, helicopter.getEnginePower()*partialTicks, 1f);
+        tailrotor.rotateAngleX %= 360f;
+        // Be sure that this works only with the lastest version of Unilib!
+    }
+
+    private float easeInCubic(float time, float startValue, float change, float duration) {
+        time /= duration;
+        return change*time*time*time + startValue;
     }
 }

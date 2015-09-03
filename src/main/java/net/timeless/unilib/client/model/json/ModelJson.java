@@ -2,10 +2,11 @@ package net.timeless.unilib.client.model.json;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import net.timeless.unilib.client.model.json.*;
 import net.timeless.unilib.client.model.tools.MowzieModelBase;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 import org.lwjgl.opengl.GL11;
@@ -33,6 +34,8 @@ public class ModelJson extends MowzieModelBase
 
     private int animationLength;
 
+    private boolean resetsEachFrame;
+
     public ModelJson(JsonTabulaModel model)
     {
         tabulaModel = model;
@@ -51,6 +54,8 @@ public class ModelJson extends MowzieModelBase
         {
             cubeGroup(g);
         }
+
+        resetsEachFrame = true;
 
         setInitPose();
     }
@@ -79,8 +84,8 @@ public class ModelJson extends MowzieModelBase
 
     /**
      * Sets the model's various rotation angles. For bipeds, limbSwing and limbSwingAmount are used for animating the movement of arms and legs, where limbSwing represents the time(so that arms and legs swing back and forth) and limbSwingAmount represents how "far" arms and legs can swing at most.
-     * 
-     * @see Entity
+     *
+     * @see net.minecraft.entity.Entity
      * @since 0.1.0
      */
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
@@ -89,7 +94,8 @@ public class ModelJson extends MowzieModelBase
 
         if (!Minecraft.getMinecraft().isGamePaused())
         {
-            this.setToInitPose();
+            if(resetsEachFrame)
+                this.setToInitPose();
 
             if (playingAnimation != null)
             {
@@ -234,5 +240,15 @@ public class ModelJson extends MowzieModelBase
     public boolean isAnimationInProgress()
     {
         return playingAnimation != null;
+    }
+
+    public boolean resetsEachFrame()
+    {
+        return resetsEachFrame;
+    }
+
+    public void setResetEachFrame(boolean resetsEachFrame)
+    {
+        this.resetsEachFrame = resetsEachFrame;
     }
 }

@@ -133,6 +133,7 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     public void onLivingUpdate()
     {
         super.onLivingUpdate();
+        fallDistance = 0f;
         ignoreFrustumCheck = true; // always draws the entity
         // Update seats positions
         for(HelicopterSeat seat : seats)
@@ -162,7 +163,6 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
             else
             {
                 runEngine = false;
-                System.out.println("no rider, resetting");
                 updateEngine(runEngine);
             }
             if(engineRunning) {
@@ -170,6 +170,7 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
                 if(enginePower >= MAX_POWER) {
                     // We can fly \o/
                     // ♪ Fly on the wings of code! ♪
+                    motionY+=0.125f;
                     enginePower = MAX_POWER;
                 }
             } else {

@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
+import java.util.ConcurrentModificationException;
 import java.util.List;
 import java.util.UUID;
 
@@ -179,13 +180,17 @@ public class HelicopterSeat extends Entity implements IEntityAdditionalSpawnData
     public void writeSpawnData(ByteBuf buffer)
     {
         ByteBufUtils.writeUTF8String(buffer, parentID.toString());
-        System.out.println(">> sending "+parentID.toString());
+        buffer.writeFloat(relX);
+        buffer.writeFloat(relY);
+        buffer.writeFloat(relZ);
     }
 
     @Override
     public void readSpawnData(ByteBuf additionalData)
     {
         parentID = UUID.fromString(ByteBufUtils.readUTF8String(additionalData));
-        System.out.println(">> received "+parentID);
+        relX = additionalData.readFloat();
+        relY = additionalData.readFloat();
+        relZ = additionalData.readFloat();
     }
 }
