@@ -87,6 +87,41 @@ public class AnimationTherizinosaurus implements IModelAnimator
     
     // maps each entity with its current animation 
     protected HashMap<Integer, CurrentAnimation> currentAnimation = new HashMap<Integer, CurrentAnimation>();
+    
+    // maps each entity with its current pose model renderer array rotations, positions, and offsets
+    protected HashMap<Integer, CurrentPoseArray> currentPose = new HashMap<Integer, CurrentPoseArray>();
+
+    class CurrentPoseArray
+    {
+        protected float[][] currentRotationArray ;
+        protected float[][] currentPositionArray ;
+        protected float[][] currentOffsetArray ;
+        
+        public CurrentPoseArray(int parNumParts)
+        {
+            currentRotationArray = new float[parNumParts][3];
+            currentPositionArray = new float[parNumParts][3];
+            currentOffsetArray = new float[parNumParts][3];
+        }
+
+        public void copyModelRendererArrayToCurrent(MowzieModelRenderer[] parModelRendererArray)
+        {
+            for (int i = 0; i < parModelRendererArray.length; i++)
+            {
+                currentRotationArray[i][0] = parModelRendererArray[i].rotateAngleX;
+                currentRotationArray[i][1] = parModelRendererArray[i].rotateAngleY;
+                currentRotationArray[i][2] = parModelRendererArray[i].rotateAngleZ;
+                currentPositionArray[i][0] = parModelRendererArray[i].rotationPointX;
+                currentPositionArray[i][1] = parModelRendererArray[i].rotationPointY;
+                currentPositionArray[i][2] = parModelRendererArray[i].rotationPointZ;
+                currentOffsetArray[i][0] = parModelRendererArray[i].offsetX;
+                currentOffsetArray[i][1] = parModelRendererArray[i].offsetY;
+                currentOffsetArray[i][2] = parModelRendererArray[i].offsetZ;
+            }           
+        }
+    }
+    
+    protected HashMap<Integer, MowzieModelRenderer[]> targetPose = new HashMap<Integer, MowzieModelRenderer[]>();
 
     protected static int numParts = partNameArray.length;
 
@@ -104,12 +139,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
 
     // initialize model renderer arrays
     protected MowzieModelRenderer[] passedInModelRendererArray = new MowzieModelRenderer[numParts];
-    protected MowzieModelRenderer[] targetModelRendererArray = new MowzieModelRenderer[numParts];
-
-    // initialize current pose tracking arrays
-    protected float[][] currentRotationArray = new float[numParts][3];
-    protected float[][] currentPositionArray = new float[numParts][3];
-    protected float[][] currentOffsetArray = new float[numParts][3];
+//    protected MowzieModelRenderer[] targetModelRendererArray = new MowzieModelRenderer[numParts];
 
     // initialize custom model renderer arrays (first index is model, second is part within model)
     protected static MowzieModelRenderer[][] modelRendererArray = new MowzieModelRenderer[modelAssetPaths.length][numParts];
@@ -165,6 +195,8 @@ public class AnimationTherizinosaurus implements IModelAnimator
                     parEntity.getEntityId(), 
                     (new CurrentAnimation()).setNumStepsInSequence(animationSequence.length)
             );
+            currentPose.put(parEntity.getEntityId(), new CurrentPoseArray(numParts));
+            targetPose.put(parEntity.getEntityId(), passedInModelRendererArray);
         }
     }
        
@@ -316,7 +348,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
         if (isFirstTick)
         {
             isFirstTick = false;
-            copyModelRendererArrayToCurrent(passedInModelRendererArray);
+            currentPose.get(parEntity.getEntityId()).copyModelRendererArrayToCurrent(passedInModelRendererArray);
             setNextTween(parEntity);
         }
         
@@ -343,30 +375,15 @@ public class AnimationTherizinosaurus implements IModelAnimator
         }
     }
 
-    protected void copyModelRendererArrayToCurrent(MowzieModelRenderer[] parModelRendererArray)
-    {
-        for (int i = 0; i < parModelRendererArray.length; i++)
-        {
-            currentRotationArray[i][0] = parModelRendererArray[i].rotateAngleX;
-            currentRotationArray[i][1] = parModelRendererArray[i].rotateAngleY;
-            currentRotationArray[i][2] = parModelRendererArray[i].rotateAngleZ;
-            currentPositionArray[i][0] = parModelRendererArray[i].rotationPointX;
-            currentPositionArray[i][1] = parModelRendererArray[i].rotationPointY;
-            currentPositionArray[i][2] = parModelRendererArray[i].rotationPointZ;
-            currentOffsetArray[i][0] = parModelRendererArray[i].offsetX;
-            currentOffsetArray[i][1] = parModelRendererArray[i].offsetY;
-            currentOffsetArray[i][2] = parModelRendererArray[i].offsetZ;
-        }
-        
-    }
-
     protected void setNextTween(EntityDinosaur parEntity)
     {
         currentAnimation.get(parEntity.getEntityId()).targetModelIndex = 
-                animationSequence[currentAnimation.get(parEntity.getEntityId()).getSequenceStep(animationSequence.length)][0];
-        targetModelRendererArray = modelRendererArray[currentAnimation.get(parEntity.getEntityId()).targetModelIndex];
-        currentAnimation.get(parEntity.getEntityId()).stepsInTween = animationSequence[currentAnimation.get(parEntity.getEntityId()).getSequenceStep(animationSequence.length)][1];
+                animationSequence[currentAnimation.get(parEntity.getEntityId()).getSequenceStep()][0];
+        targetPose.put(parEntity.getEntityId(), modelRendererArray[currentAnimation.get(parEntity.getEntityId()).targetModelIndex]);
+        currentAnimation.get(parEntity.getEntityId()).stepsInTween = animationSequence[currentAnimation.get(parEntity.getEntityId()).getSequenceStep()][1];
         currentAnimation.get(parEntity.getEntityId()).currentTweenStep = 0;
+        // DEBUG
+        System.out.println("set next tween for entity id = "+parEntity.getEntityId()+" steps in tween = "+currentAnimation.get(parEntity.getEntityId()).stepsInTween);
     }
    
     protected void performNextTweenStep(EntityDinosaur parEntity, MowzieModelRenderer[] parPassedInModelRendererArray)
@@ -380,7 +397,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
         }
         
         // update current position tracking arrays
-        copyModelRendererArrayToCurrent(parPassedInModelRendererArray);
+        currentPose.get(parEntity.getEntityId()).copyModelRendererArrayToCurrent(parPassedInModelRendererArray);
         
         currentAnimation.get(parEntity.getEntityId()).incrementTweenStep();        
     }
@@ -391,16 +408,16 @@ public class AnimationTherizinosaurus implements IModelAnimator
     protected void nextTweenRotations(EntityDinosaur parEntity, MowzieModelRenderer[] parPassedInModelRendererArray, int parPartIndex)
     {
         parPassedInModelRendererArray[parPartIndex].rotateAngleX =
-                currentRotationArray[parPartIndex][0] + 
-                (targetModelRendererArray[parPartIndex].rotateAngleX - currentRotationArray[parPartIndex][0])
+                currentPose.get(parEntity.getEntityId()).currentRotationArray[parPartIndex][0] + 
+                (targetPose.get(parEntity.getEntityId())[parPartIndex].rotateAngleX - currentPose.get(parEntity.getEntityId()).currentRotationArray[parPartIndex][0])
                 / (currentAnimation.get(parEntity.getEntityId()).stepsInTween - currentAnimation.get(parEntity.getEntityId()).currentTweenStep);
         parPassedInModelRendererArray[parPartIndex].rotateAngleY =
-                currentRotationArray[parPartIndex][1] + 
-                (targetModelRendererArray[parPartIndex].rotateAngleY - currentRotationArray[parPartIndex][1])
+                currentPose.get(parEntity.getEntityId()).currentRotationArray[parPartIndex][1] + 
+                (targetPose.get(parEntity.getEntityId())[parPartIndex].rotateAngleY - currentPose.get(parEntity.getEntityId()).currentRotationArray[parPartIndex][1])
                 / (currentAnimation.get(parEntity.getEntityId()).stepsInTween - currentAnimation.get(parEntity.getEntityId()).currentTweenStep);
         parPassedInModelRendererArray[parPartIndex].rotateAngleZ =
-                currentRotationArray[parPartIndex][2] + 
-                (targetModelRendererArray[parPartIndex].rotateAngleZ - currentRotationArray[parPartIndex][2])
+                currentPose.get(parEntity.getEntityId()).currentRotationArray[parPartIndex][2] + 
+                (targetPose.get(parEntity.getEntityId())[parPartIndex].rotateAngleZ - currentPose.get(parEntity.getEntityId()).currentRotationArray[parPartIndex][2])
                 / (currentAnimation.get(parEntity.getEntityId()).stepsInTween - currentAnimation.get(parEntity.getEntityId()).currentTweenStep);
     }
 
@@ -410,16 +427,16 @@ public class AnimationTherizinosaurus implements IModelAnimator
     protected void nextTweenPositions(EntityDinosaur parEntity, MowzieModelRenderer[] parPassedInModelRendererArray, int parPartIndex)
     {
         parPassedInModelRendererArray[parPartIndex].rotationPointX =
-                currentPositionArray[parPartIndex][0] + 
-                (targetModelRendererArray[parPartIndex].rotationPointX - currentPositionArray[parPartIndex][0])
+                currentPose.get(parEntity.getEntityId()).currentPositionArray[parPartIndex][0] + 
+                (targetPose.get(parEntity.getEntityId())[parPartIndex].rotationPointX - currentPose.get(parEntity.getEntityId()).currentPositionArray[parPartIndex][0])
                 / (currentAnimation.get(parEntity.getEntityId()).stepsInTween - currentAnimation.get(parEntity.getEntityId()).currentTweenStep);
         parPassedInModelRendererArray[parPartIndex].rotationPointY =
-                currentPositionArray[parPartIndex][1] + 
-                (targetModelRendererArray[parPartIndex].rotationPointY - currentPositionArray[parPartIndex][1])
+                currentPose.get(parEntity.getEntityId()).currentPositionArray[parPartIndex][1] + 
+                (targetPose.get(parEntity.getEntityId())[parPartIndex].rotationPointY - currentPose.get(parEntity.getEntityId()).currentPositionArray[parPartIndex][1])
                 / (currentAnimation.get(parEntity.getEntityId()).stepsInTween - currentAnimation.get(parEntity.getEntityId()).currentTweenStep);
         parPassedInModelRendererArray[parPartIndex].rotationPointZ = 
-                currentPositionArray[parPartIndex][2] + 
-                (targetModelRendererArray[parPartIndex].rotationPointZ - currentPositionArray[parPartIndex][2])
+                currentPose.get(parEntity.getEntityId()).currentPositionArray[parPartIndex][2] + 
+                (targetPose.get(parEntity.getEntityId())[parPartIndex].rotationPointZ - currentPose.get(parEntity.getEntityId()).currentPositionArray[parPartIndex][2])
                 / (currentAnimation.get(parEntity.getEntityId()).stepsInTween - currentAnimation.get(parEntity.getEntityId()).currentTweenStep);
     }
 
@@ -429,16 +446,16 @@ public class AnimationTherizinosaurus implements IModelAnimator
     protected void nextTweenOffsets(EntityDinosaur parEntity, MowzieModelRenderer[] parPassedInModelRendererArray, int partPartIndex)
     {
         parPassedInModelRendererArray[partPartIndex].offsetX =
-                currentOffsetArray[partPartIndex][0] + 
-                (targetModelRendererArray[partPartIndex].offsetX - currentOffsetArray[partPartIndex][0])
+                currentPose.get(parEntity.getEntityId()).currentOffsetArray[partPartIndex][0] + 
+                (targetPose.get(parEntity.getEntityId())[partPartIndex].offsetX - currentPose.get(parEntity.getEntityId()).currentOffsetArray[partPartIndex][0])
                 / (currentAnimation.get(parEntity.getEntityId()).stepsInTween - currentAnimation.get(parEntity.getEntityId()).currentTweenStep);
         parPassedInModelRendererArray[partPartIndex].offsetY =
-                currentOffsetArray[partPartIndex][1] + 
-                (targetModelRendererArray[partPartIndex].offsetY - currentOffsetArray[partPartIndex][1])
+                currentPose.get(parEntity.getEntityId()).currentOffsetArray[partPartIndex][1] + 
+                (targetPose.get(parEntity.getEntityId())[partPartIndex].offsetY - currentPose.get(parEntity.getEntityId()).currentOffsetArray[partPartIndex][1])
                 / (currentAnimation.get(parEntity.getEntityId()).stepsInTween - currentAnimation.get(parEntity.getEntityId()).currentTweenStep);
         parPassedInModelRendererArray[partPartIndex].offsetZ =
-                currentOffsetArray[partPartIndex][2] + 
-                (targetModelRendererArray[partPartIndex].offsetZ - currentOffsetArray[partPartIndex][2])
+                currentPose.get(parEntity.getEntityId()).currentOffsetArray[partPartIndex][2] + 
+                (targetPose.get(parEntity.getEntityId())[partPartIndex].offsetZ - currentPose.get(parEntity.getEntityId()).currentOffsetArray[partPartIndex][2])
                 / (currentAnimation.get(parEntity.getEntityId()).stepsInTween - currentAnimation.get(parEntity.getEntityId()).currentTweenStep);
     }
     

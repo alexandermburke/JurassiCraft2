@@ -1,5 +1,6 @@
 package net.timeless.animationapi.client;
 
+
 /**
  * @author jabelar
  *
@@ -76,9 +77,9 @@ public class CurrentAnimation
     }
     
     // this getter method includes any sequence step modifier
-    public int getSequenceStep(int parNumStepsInSequence)
+    public int getSequenceStep()
     {
         return currentSequenceStep;
-//        return (currentSequenceStep + currentSequenceStepModifier)%parNumStepsInSequence;
+//        return (currentSequenceStep + currentSequenceStepModifier)%numStepsInSequence;
     }
 }
