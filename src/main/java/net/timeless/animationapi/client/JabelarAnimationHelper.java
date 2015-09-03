@@ -1,5 +1,7 @@
 package net.timeless.animationapi.client;
 
+import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+
 
 /**
  * @author jabelar
@@ -7,8 +9,14 @@ package net.timeless.animationapi.client;
  * This class is used to hold per-entity animation variables for use with
  * Jabelar's animation tweening system.
  */
-public class CurrentAnimation
+public class JabelarAnimationHelper
 {
+    protected int numParts;
+    
+    public float[][] rotationArray ;
+    public float[][] positionArray ;
+    public float[][] offsetArray ;
+
     protected int currentSequenceStep;
     protected int currentSequenceStepModifier; // this is used to desync entities of same type
     public int numStepsInSequence;
@@ -17,8 +25,14 @@ public class CurrentAnimation
     public int currentTweenStep;
     public boolean finishedTween = false;
     
-    public CurrentAnimation()
+    public MowzieModelRenderer[] targetPose;
+    
+    public JabelarAnimationHelper(int parNumParts)
     {
+        numParts = parNumParts;
+        rotationArray = new float[numParts][3];
+        positionArray = new float[numParts][3];
+        offsetArray = new float[numParts][3];
         currentSequenceStep = 0;
         currentSequenceStepModifier = 0; // this is used to desync entities of same type
         numStepsInSequence = 1;
@@ -31,7 +45,7 @@ public class CurrentAnimation
     /*
      * Chainable methods
      */
-    public CurrentAnimation setNumStepsInSequence(int parNumStepsInSequence)
+    public JabelarAnimationHelper setNumStepsInSequence(int parNumStepsInSequence)
     {
         // DEBUG
         System.out.println("Setting number of sequence steps to "+parNumStepsInSequence);
@@ -39,7 +53,7 @@ public class CurrentAnimation
         return this;
     }
     
-    public CurrentAnimation setRandomSequenceStepModifier()
+    public JabelarAnimationHelper setRandomSequenceStepModifier()
     {
         if (numStepsInSequence < 1) return this;
         
@@ -81,5 +95,21 @@ public class CurrentAnimation
     {
         return currentSequenceStep;
 //        return (currentSequenceStep + currentSequenceStepModifier)%numStepsInSequence;
+    }
+
+    public void copyModelRendererArrayToCurrent(MowzieModelRenderer[] parModelRendererArray)
+    {
+        for (int i = 0; i < parModelRendererArray.length; i++)
+        {
+            rotationArray[i][0] = parModelRendererArray[i].rotateAngleX;
+            rotationArray[i][1] = parModelRendererArray[i].rotateAngleY;
+            rotationArray[i][2] = parModelRendererArray[i].rotateAngleZ;
+            positionArray[i][0] = parModelRendererArray[i].rotationPointX;
+            positionArray[i][1] = parModelRendererArray[i].rotationPointY;
+            positionArray[i][2] = parModelRendererArray[i].rotationPointZ;
+            offsetArray[i][0] = parModelRendererArray[i].offsetX;
+            offsetArray[i][1] = parModelRendererArray[i].offsetY;
+            offsetArray[i][2] = parModelRendererArray[i].offsetZ;
+        }           
     }
 }

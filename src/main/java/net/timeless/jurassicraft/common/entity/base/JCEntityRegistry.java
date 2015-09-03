@@ -1,11 +1,54 @@
 package net.timeless.jurassicraft.common.entity.base;
 
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.api.IHybrid;
-import net.timeless.jurassicraft.common.dinosaur.*;
+import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurAchillobator;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurAnkylosaurus;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurApatosaurus;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurBrachiosaurus;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurCarnotaurus;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurCoelacanth;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurCompsognathus;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurDilophosaurus;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurDimorphodon;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurDodo;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurDunkleosteus;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurGallimimus;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurGiganotosaurus;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurHerrerasaurus;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurHypsilophodon;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurIndominus;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurLeaellynasaura;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurLeptictidium;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurLudodactylus;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurMajungasaurus;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurMicroceratus;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurOthnielia;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurOviraptor;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurParasaurolophus;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurProtoceratops;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurPteranodon;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurRugops;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurSegisaurus;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurSpinosaurus;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurStegosaurus;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurTherizinosaurus;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurTriceratops;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurTropeognathus;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurTylosaurus;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurTyrannosaurus;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurVelociraptor;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurVelociraptorBlue;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurVelociraptorCharlie;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurVelociraptorDelta;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurVelociraptorEcho;
 import net.timeless.jurassicraft.common.entity.item.EntityBluePrint;
 import net.timeless.jurassicraft.common.entity.item.EntityCageSmall;
 import net.timeless.jurassicraft.common.entity.item.EntityJurassiCraftSign;
@@ -13,9 +56,7 @@ import net.timeless.jurassicraft.common.period.EnumTimePeriod;
 import net.timeless.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 import net.timeless.jurassicraft.common.vehicles.helicopter.HelicopterSeat;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import com.google.common.collect.Lists;
 
 public class JCEntityRegistry
 {
@@ -62,7 +103,7 @@ public class JCEntityRegistry
     public static final Dinosaur velociraptor_charlie = new DinosaurVelociraptorCharlie();
     public static final Dinosaur velociraptor_echo = new DinosaurVelociraptorEcho();
     public static final Dinosaur therizinosaurus = new DinosaurTherizinosaurus();
-    public static final Dinosaur megapiranha = new DinosaurMegapiranha();
+//    public static final Dinosaur megapiranha = new DinosaurMegapiranha();
 
     public static List<Dinosaur> getDinosaursFromSeaLampreys()
     {
@@ -121,7 +162,7 @@ public class JCEntityRegistry
         registerDinosaurType(velociraptor_delta);
         registerDinosaurType(velociraptor_echo);
         registerDinosaurType(therizinosaurus);
-        registerDinosaurType(megapiranha);
+//        registerDinosaurType(megapiranha);
 
         registerEntity(EntityBluePrint.class, "Blueprint");
         registerEntity(EntityJurassiCraftSign.class, "JurassiCraft Sign");

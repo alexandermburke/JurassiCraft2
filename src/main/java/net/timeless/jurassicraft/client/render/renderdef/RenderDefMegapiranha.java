@@ -9,12 +9,12 @@ import net.timeless.unilib.client.model.json.ModelJson;
 
 public class RenderDefMegapiranha extends RenderDinosaurDefinition
 {
-    private IModelAnimator animator;
+    private final IModelAnimator animator;
     private ModelJson model;
 
     public RenderDefMegapiranha()
     {
-        super(JCEntityRegistry.megapiranha);
+        super(JCEntityRegistry.achillobator);
 
         this.animator = new AnimationMegapiranha();
 
