@@ -8,17 +8,16 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.client.model.animation.vehicle.AnimationHelicopter;
-import net.timeless.jurassicraft.common.entity.item.EntityCageSmall;
 import net.timeless.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
-import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 import org.lwjgl.opengl.GL11;
 
 public class RenderHelicopter extends Render
 {
     private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/entities/helicopter/ranger_helicopter_texture.png");
-    private ModelJson model;
+    private ModelJson minigunfulModel;
+    private ModelJson minigunlessModel;
 
     public RenderHelicopter()
     {
@@ -26,8 +25,11 @@ public class RenderHelicopter extends Render
 
         try
         {
-            model = new ModelJson(TabulaModelHelper.parseModel("/assets/jurassicraft/models/entities/helicopter/ranger_helicopter"), new AnimationHelicopter());
-            model.setResetEachFrame(false);
+            minigunlessModel = new ModelJson(TabulaModelHelper.parseModel("/assets/jurassicraft/models/entities/helicopter/ranger_helicopter"), new AnimationHelicopter());
+            minigunlessModel.setResetEachFrame(false);
+
+            minigunfulModel = new ModelJson(TabulaModelHelper.parseModel("/assets/jurassicraft/models/entities/helicopter/ranger_helicopter_minigun"), new AnimationHelicopter());
+            minigunfulModel.setResetEachFrame(false);
         }
         catch (Exception e)
         {
@@ -45,6 +47,8 @@ public class RenderHelicopter extends Render
         GlStateManager.pushMatrix();
         GlStateManager.translate((float) x, (float) y + 1.5F, (float) z);
         GlStateManager.rotate(180.0F - yaw, 0.0F, 1.0F, 0.0F);
+        GlStateManager.rotate(helicopter.rotationPitch, 1.0F, 0.0F, 0.0F);
+        GlStateManager.rotate(helicopter.getRoll(), 0.0F, 0.0F, 1.0F);
 
         float f4 = 1f;
         GlStateManager.scale(f4, f4, f4);
@@ -54,17 +58,18 @@ public class RenderHelicopter extends Render
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glDisable(GL11.GL_ALPHA_TEST);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        this.model.render(helicopter, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+        if(helicopter.hasMinigun())
+        {
+            this.minigunfulModel.render(helicopter, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+        }
+        else
+        {
+            this.minigunlessModel.render(helicopter, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+        }
         GL11.glDisable(GL11.GL_BLEND);
         GL11.glEnable(GL11.GL_ALPHA_TEST);
         GlStateManager.popMatrix();
         super.doRender(helicopter, x, y, z, yaw, partialTicks);
-    }
-
-    public void preRenderCallback(EntityLivingBase entity, float side)
-    {
-        EntityHelicopterBase helicopter = (EntityHelicopterBase)entity;
-
     }
 
     @Override

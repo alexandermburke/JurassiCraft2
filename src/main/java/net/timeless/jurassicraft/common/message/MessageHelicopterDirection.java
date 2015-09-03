@@ -1,50 +1,57 @@
 package net.timeless.jurassicraft.common.message;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
-import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.timeless.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
-import net.timeless.jurassicraft.common.vehicles.helicopter.HelicopterSeat;
+import net.timeless.unilib.utils.MutableVec3;
 
-import java.util.UUID;
+import javax.vecmath.Vector3f;
 
-public class MessageHelicopterEngine implements IMessage
+public class MessageHelicopterDirection implements IMessage
 {
     private int heliID;
-    private boolean engineState;
+    private MutableVec3 direction;
 
-    public MessageHelicopterEngine() {}
+    public MessageHelicopterDirection()
+    {
+        direction = new MutableVec3(0,0,0);
+    }
 
-    public MessageHelicopterEngine(int heliID, boolean engineState)
+    public MessageHelicopterDirection(int heliID, MutableVec3 direction)
     {
         this.heliID = heliID;
-        this.engineState = engineState;
+        this.direction = direction;
     }
 
     @Override
     public void fromBytes(ByteBuf buf)
     {
         heliID = buf.readInt();
-        engineState = buf.readBoolean();
+        double x = buf.readDouble();
+        double y = buf.readDouble();
+        double z = buf.readDouble();
+        direction.set(x, y, z);
     }
 
     @Override
     public void toBytes(ByteBuf buf)
     {
         buf.writeInt(heliID);
-        buf.writeBoolean(engineState);
+        buf.writeDouble(direction.xCoord);
+        buf.writeDouble(direction.yCoord);
+        buf.writeDouble(direction.zCoord);
     }
 
-    public static class Handler implements IMessageHandler<MessageHelicopterEngine, IMessage>
+    public static class Handler implements IMessageHandler<MessageHelicopterDirection, IMessage>
     {
         @Override
-        public IMessage onMessage(MessageHelicopterEngine packet, MessageContext ctx)
+        public IMessage onMessage(MessageHelicopterDirection packet, MessageContext ctx)
         {
             World world = null;
             if(ctx.side == Side.CLIENT)
@@ -57,7 +64,7 @@ public class MessageHelicopterEngine implements IMessage
             }
             EntityHelicopterBase helicopter = (EntityHelicopterBase) world.getEntityByID(packet.heliID);
             if(helicopter != null)
-                helicopter.setEngineRunning(packet.engineState);
+                helicopter.setDirection(packet.direction);
             return null;
         }
     }
