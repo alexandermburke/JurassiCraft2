@@ -14,7 +14,6 @@ import net.timeless.jurassicraft.common.entity.EntityTherizinosaurus;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
-import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 
 @SideOnly(Side.CLIENT)
@@ -81,54 +80,8 @@ public class AnimationTherizinosaurus implements IModelAnimator
         {0, 500}, {2, 100}, {2, 20}, {0, 50}, // head bob
         };
             
-    /*
-     * Do NOT change any of the following field initializations
-     */
-
-    protected static int numParts = partNameArray.length;
-
     // maps each entity with its current animation 
     protected HashMap<Integer, CurrentAnimation> currentAnimation = new HashMap<Integer, CurrentAnimation>();
-    
-    protected HashMap<Integer, MowzieModelRenderer[]> targetPose = new HashMap<Integer, MowzieModelRenderer[]>();
-
-    protected CurrentAnimation theAnimation;
-    protected MowzieModelRenderer[] theTargetPose;
-
-    // initialize non-static models
-    protected ModelDinosaur modelTarget = getTabulaModel(modelAssetPathArray[0], 0);
-
-    // initialize custom models array
-    protected static ModelDinosaur[] modelArray = new ModelDinosaur[modelAssetPathArray.length];
-    static {
-        for (int i = 0; i < modelAssetPathArray.length; i++)
-        {
-            modelArray[i] = getTabulaModel(modelAssetPathArray[i], 0);
-        }
-    };
-
-    // initialize model renderer arrays
-    protected MowzieModelRenderer[] passedInModelRendererArray = new MowzieModelRenderer[numParts];
-//    protected MowzieModelRenderer[] targetModelRendererArray = new MowzieModelRenderer[numParts];
-
-    // initialize custom model renderer arrays (first index is model, second is part within model)
-    protected static MowzieModelRenderer[][] modelRendererArray = new MowzieModelRenderer[modelAssetPathArray.length][numParts];
-    static {
-        for (int i = 0; i < modelAssetPathArray.length; i++)
-        {
-            // DEBUG
-            if (partNameArray == null) System.out.println("Part name array is null");
-            if (modelRendererArray[i] == null) System.out.println("model renderer array element i is null");
-            if (modelRendererArray == null) System.out.println("model renderer array is null");
-            modelRendererArray[i] = new MowzieModelRenderer[numParts];
-            // fill in the model renderer arrays
-            for (int j = 0; j < numParts; j++) 
-            {
-                // fill in custom pose arrays
-                modelRendererArray[i][j] = modelArray[i].getCube(partNameArray[j]);
-            }
-        }
-    }
 
     // need boolean to indicate first tick run because need to copy between static and instance fields
     protected boolean isFirstTick = true;
@@ -146,207 +99,23 @@ public class AnimationTherizinosaurus implements IModelAnimator
      */
     protected void setRotationAngles(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityTherizinosaurus parEntity)    
     {
-        updateCurrentAnimationIfNewEntity(parEntity);
+        updateCurrentAnimationIfNewEntity(parModel, parEntity);
 
-        theAnimation = currentAnimation.get(parEntity.getEntityId());
-        theTargetPose = targetPose.get(parEntity.getEntityId());
-
-        performJabelarAnimations(parModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, parEntity);
+        currentAnimation.get(parEntity.getEntityId()).performJabelarAnimations(parModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, parEntity);
 
         // you can still add chain, walk, bob, etc.
         performMowzieAnimations(parModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, parEntity);
     }
     
-    protected void updateCurrentAnimationIfNewEntity(EntityDinosaur parEntity)
+    protected void updateCurrentAnimationIfNewEntity(ModelDinosaur parModel, EntityDinosaur parEntity)
     {
         // add entry to hashmap if new entity
         if (!currentAnimation.containsKey(parEntity.getEntityId()))
         {
             // DEBUG
             System.out.println("Adding entity to hashmap with id = "+parEntity.getEntityId());
-            currentAnimation.put(parEntity.getEntityId(), (new CurrentAnimation(modelAssetPathArray, partNameArray, animationSequenceArray)).setNumStepsInSequence(animationSequenceArray.length));
-            targetPose.put(parEntity.getEntityId(), passedInModelRendererArray);
+            currentAnimation.put(parEntity.getEntityId(), (new CurrentAnimation(parModel, modelAssetPathArray, partNameArray, animationSequenceArray)).setNumStepsInSequence(animationSequenceArray.length));
         }
-    }
-    
-    /*
-     * You should not need to modify anything below this point
-     */
-
-    protected void performJabelarAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityTherizinosaurus parEntity)
-    {
-        convertPassedInModelToModelRendererArray(parModel);
-        
-        // initialize current pose arrays if first tick
-        if (parEntity.ticksExisted <= 10)
-        {
-            theAnimation.copyModelRendererArrayToCurrent(passedInModelRendererArray);
-            setNextTween(parEntity);
-        }
-        
-        performNextTweenStep(parEntity, passedInModelRendererArray);
-        
-        // check for end of animation and set next target in sequence
-        if (theAnimation.finishedTween) 
-        {
-            handleFinishedTween(parEntity);
-        }
-    }
-    
-    protected void convertPassedInModelToModelRendererArray(ModelDinosaur parModel)
-    {
-        for (int i = 0; i < numParts; i++) 
-        {
-            passedInModelRendererArray[i] = parModel.getCube(partNameArray[i]); 
-
-            // DEBUG
-            if (passedInModelRendererArray[i] == null) 
-            {
-                System.out.println(partNameArray[i]+" parsed as null");
-            }
-        }
-    }
-
-    protected void setNextTween(EntityDinosaur parEntity)
-    {              
-        theAnimation.targetModelIndex = 
-                animationSequenceArray[theAnimation.getSequenceStep()][0];
-        targetPose.put(parEntity.getEntityId(), modelRendererArray[theAnimation.targetModelIndex]);
-        theAnimation.stepsInTween = animationSequenceArray[theAnimation.getSequenceStep()][1];
-        theAnimation.currentTweenStep = 0;
-//        // DEBUG
-//        System.out.println("set next tween for entity id = "+parEntity.getEntityId()+" steps in tween = "+currentAnimation.get(parEntity.getEntityId()).stepsInTween);
-    }
-   
-    protected void performNextTweenStep(EntityDinosaur parEntity, MowzieModelRenderer[] parPassedInModelRendererArray)
-    {
-        // tween the passed in model towards target pose
-        for (int i = 0; i < numParts; i++)
-        {
-            nextTweenRotations(parEntity, parPassedInModelRendererArray, i);
-            nextTweenPositions(parEntity, parPassedInModelRendererArray, i);
-            nextTweenOffsets(parEntity, parPassedInModelRendererArray, i);       
-        }
-        
-        // update current position tracking arrays
-        theAnimation.copyModelRendererArrayToCurrent(parPassedInModelRendererArray);
-        
-        theAnimation.incrementTweenStep();        
-    }
-
-    /*
-     * Linear tween of the rotateAngles between current angles and target angles
-     */
-    protected void nextTweenRotations(EntityDinosaur parEntity, MowzieModelRenderer[] parPassedInModelRendererArray, int parPartIndex)
-    {
-        parPassedInModelRendererArray[parPartIndex].rotateAngleX =
-                theAnimation.rotationArray[parPartIndex][0] + 
-                (theTargetPose[parPartIndex].rotateAngleX - theAnimation.rotationArray[parPartIndex][0])
-                / (theAnimation.stepsInTween - theAnimation.currentTweenStep);
-        parPassedInModelRendererArray[parPartIndex].rotateAngleY =
-                theAnimation.rotationArray[parPartIndex][1] + 
-                (theTargetPose[parPartIndex].rotateAngleY - theAnimation.rotationArray[parPartIndex][1])
-                / (theAnimation.stepsInTween - theAnimation.currentTweenStep);
-        parPassedInModelRendererArray[parPartIndex].rotateAngleZ =
-                theAnimation.rotationArray[parPartIndex][2] + 
-                (theTargetPose[parPartIndex].rotateAngleZ - theAnimation.rotationArray[parPartIndex][2])
-                / (theAnimation.stepsInTween - theAnimation.currentTweenStep);
-    }
-
-    /*
-     * Linear tween of the rotatePoints between current positions and target positions
-     */
-    protected void nextTweenPositions(EntityDinosaur parEntity, MowzieModelRenderer[] parPassedInModelRendererArray, int parPartIndex)
-    {
-        parPassedInModelRendererArray[parPartIndex].rotationPointX =
-                theAnimation.positionArray[parPartIndex][0] + 
-                (theTargetPose[parPartIndex].rotationPointX - theAnimation.positionArray[parPartIndex][0])
-                / (theAnimation.stepsInTween - theAnimation.currentTweenStep);
-        parPassedInModelRendererArray[parPartIndex].rotationPointY =
-                theAnimation.positionArray[parPartIndex][1] + 
-                (theTargetPose[parPartIndex].rotationPointY - theAnimation.positionArray[parPartIndex][1])
-                / (theAnimation.stepsInTween - theAnimation.currentTweenStep);
-        parPassedInModelRendererArray[parPartIndex].rotationPointZ = 
-                theAnimation.positionArray[parPartIndex][2] + 
-                (theTargetPose[parPartIndex].rotationPointZ - theAnimation.positionArray[parPartIndex][2])
-                / (theAnimation.stepsInTween - theAnimation.currentTweenStep);
-    }
-
-    /*
-     * Linear tween of the offsets between current offsets and target offsets
-     */
-    protected void nextTweenOffsets(EntityDinosaur parEntity, MowzieModelRenderer[] parPassedInModelRendererArray, int partPartIndex)
-    {
-        parPassedInModelRendererArray[partPartIndex].offsetX =
-                theAnimation.offsetArray[partPartIndex][0] + 
-                (theTargetPose[partPartIndex].offsetX - theAnimation.offsetArray[partPartIndex][0])
-                / (theAnimation.stepsInTween - theAnimation.currentTweenStep);
-        parPassedInModelRendererArray[partPartIndex].offsetY =
-                theAnimation.offsetArray[partPartIndex][1] + 
-                (targetPose.get(parEntity.getEntityId())[partPartIndex].offsetY - theAnimation.offsetArray[partPartIndex][1])
-                / (theAnimation.stepsInTween - theAnimation.currentTweenStep);
-        parPassedInModelRendererArray[partPartIndex].offsetZ =
-                theAnimation.offsetArray[partPartIndex][2] + 
-                (targetPose.get(parEntity.getEntityId())[partPartIndex].offsetZ - theAnimation.offsetArray[partPartIndex][2])
-                / (theAnimation.stepsInTween - theAnimation.currentTweenStep);
-    }
-    
-    protected void handleFinishedTween(EntityDinosaur parEntity)
-    {
-//        // DEBUG
-//        System.out.println("finished tween");
-        
-        theAnimation.incrementSequenceStep();
-
-        theAnimation.finishedTween = false;
-        setNextTween(parEntity);
-    }
-
-    public static ModelDinosaur getTabulaModel(String tabulaModel, int geneticVariant) 
-    {
-        // catch the exception so you can call method with implicit superconstructor
-        try
-        {
-            return new ModelDinosaur(TabulaModelHelper.parseModel(tabulaModel), null); // okay to use null for animator parameter as we get animator from passed-in model
-        } catch (Exception e)
-        {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public ModelDinosaur getTabulaModel(String tabulaModel)
-    {
-        return getTabulaModel(tabulaModel, 0);
-    }
-
-    public Dinosaur getDinosaur()
-    {
-        return theDinosaur;
-    }
-
-    protected float degToRad(float degrees)
-    {
-        return (float) (Math.PI / 180.0F * degrees);
-    }
-    
-    protected float radToDeg(float rads)
-    {
-        return (float) (180.0F / Math.PI * rads);
-    }
-    
-    protected int partIndexFromName(String parName)
-    {
-        int theIndex = -1;
-        for (int i = 0; i < partNameArray.length; i++)
-        {
-            if (partNameArray[i].toLowerCase().equals(parName.toLowerCase()))
-            {
-                theIndex = i;
-            }
-        }
-        return theIndex;
     }
     
  protected void performMowzieAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityTherizinosaurus parEntity)
@@ -484,4 +253,11 @@ public class AnimationTherizinosaurus implements IModelAnimator
      parEntity.tailBuffer.applyChainSwingBuffer(tail);
 
      }
+ 
+
+     public Dinosaur getDinosaur()
+     {
+         return theDinosaur;
+     }
+
 }
