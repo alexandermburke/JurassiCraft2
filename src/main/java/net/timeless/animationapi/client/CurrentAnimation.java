@@ -50,6 +50,7 @@ public class CurrentAnimation
         modelTarget = getTabulaModel(modelAssetPathArray[0], 0);
         
         numParts = parPartNameArray.length;
+        setNumStepsInSequence(animationSequenceArray.length);
         
         passedInModelRendererArray = new MowzieModelRenderer[numParts];
         convertPassedInModelToModelRendererArray(parModel);
@@ -81,6 +82,8 @@ public class CurrentAnimation
         rotationArray = new float[numParts][3];
         positionArray = new float[numParts][3];
         offsetArray = new float[numParts][3];
+        copyModelRendererArrayToCurrent(passedInModelRendererArray);
+        
         currentSequenceStep = 0;
         currentSequenceStepModifier = 0; // this is used to desync entities of same type
         numStepsInSequence = 1;
@@ -174,6 +177,9 @@ public class CurrentAnimation
      */
     protected void nextTweenRotations(EntityDinosaur parEntity, MowzieModelRenderer[] parPassedInModelRendererArray, int parPartIndex)
     {
+        // DEBUG
+        System.out.println("For entity ID = "+parEntity.getEntityId()+" current rotation = "+rotationArray[parPartIndex][0]);
+    
         parPassedInModelRendererArray[parPartIndex].rotateAngleX =
                 rotationArray[parPartIndex][0] + 
                 (targetPose[parPartIndex].rotateAngleX - rotationArray[parPartIndex][0])
