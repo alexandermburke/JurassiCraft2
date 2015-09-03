@@ -261,13 +261,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
         {
             nextTweenRotations(parEntity, parPassedInModelRendererArray, i);
             nextTweenPositions(parEntity, parPassedInModelRendererArray, i);
-            nextTweenOffsets(parEntity, parPassedInModelRendererArray, i);
-            // DEBUG
-            if (i == this.partIndexFromName("neck 4"))
-            {
-                System.out.println("Entity ID "+parEntity.getEntityId()+" has neck 4 (part index = "+i+" rotateAngleY = "+parPassedInModelRendererArray[i].rotateAngleY);
-            }
-       
+            nextTweenOffsets(parEntity, parPassedInModelRendererArray, i);       
         }
         
         // update current position tracking arrays
@@ -281,16 +275,6 @@ public class AnimationTherizinosaurus implements IModelAnimator
      */
     protected void nextTweenRotations(EntityDinosaur parEntity, MowzieModelRenderer[] parPassedInModelRendererArray, int parPartIndex)
     {
-        // DEBUG
-        if (theCurrentPose == null)
-        {
-            System.out.println("it's null for some reason");
-        }
-        if ((theAnimation.stepsInTween - theAnimation.currentTweenStep) <= 0.0F)
-        {
-            System.out.println("Divde by zero!");
-        }
-        System.out.println("theCP.rotationArray = "+theCurrentPose.rotationArray[parPartIndex][0]+" theTP.rotateAngleX = "+theTargetPose[parPartIndex].rotateAngleX);
         parPassedInModelRendererArray[parPartIndex].rotateAngleX =
                 theCurrentPose.rotationArray[parPartIndex][0] + 
                 (theTargetPose[parPartIndex].rotateAngleX - theCurrentPose.rotationArray[parPartIndex][0])
