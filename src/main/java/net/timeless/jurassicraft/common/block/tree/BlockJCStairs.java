@@ -50,6 +50,7 @@ public class BlockJCStairs extends Block
         this.setHardness(this.modelBlock.getBlockHardness(null, null));
         this.setResistance((this.modelBlock.getExplosionResistance(null) * 5.0F) / 3.0F);
         this.setStepSound(this.modelBlock.stepSound);
+        this.setHarvestLevel(this.modelBlock.getHarvestTool(this.modelState), this.modelBlock.getHarvestLevel(this.modelState));
         this.setLightOpacity(255);
         this.setCreativeTab(JCCreativeTabs.plants);
         this.setUnlocalizedName(name.toLowerCase().replaceAll(" ", "_") + "_stairs");

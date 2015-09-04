@@ -1,5 +1,6 @@
 package net.timeless.jurassicraft.common.block.tree;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -11,21 +12,22 @@ import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
 
 public abstract class BlockJCSlab extends BlockSlab
 {
-    public static final PropertyBool SEAMLESS = PropertyBool.create("seamless");
-
     public BlockJCSlab(IBlockState state)
     {
         super(state.getBlock().getMaterial());
         IBlockState iblockstate = this.blockState.getBaseState();
 
-        if (this.isDouble())
-        {
-            iblockstate = iblockstate.withProperty(SEAMLESS, Boolean.valueOf(false));
-        }
-        else
+        if (!this.isDouble())
         {
             iblockstate = iblockstate.withProperty(HALF, BlockSlab.EnumBlockHalf.BOTTOM);
         }
+
+        Block block = state.getBlock();
+
+        this.setHardness(block.getBlockHardness(null, null));
+        this.setResistance((block.getExplosionResistance(null) * 5.0F) / 3.0F);
+        this.setStepSound(block.stepSound);
+        this.setHarvestLevel(block.getHarvestTool(state), block.getHarvestLevel(state));
 
         this.setDefaultState(iblockstate);
         this.setCreativeTab(JCCreativeTabs.plants);
@@ -70,11 +72,7 @@ public abstract class BlockJCSlab extends BlockSlab
     {
         IBlockState state = this.getDefaultState();
 
-        if (this.isDouble())
-        {
-            state = state.withProperty(SEAMLESS, Boolean.valueOf((meta & 8) != 0));
-        }
-        else
+        if (!this.isDouble())
         {
             state = state.withProperty(HALF, (meta & 8) == 0 ? BlockSlab.EnumBlockHalf.BOTTOM : BlockSlab.EnumBlockHalf.TOP);
         }
@@ -89,14 +87,7 @@ public abstract class BlockJCSlab extends BlockSlab
     {
         int i = 0;
 
-        if (this.isDouble())
-        {
-            if (((Boolean)state.getValue(SEAMLESS)).booleanValue())
-            {
-                i |= 8;
-            }
-        }
-        else if (state.getValue(HALF) == BlockSlab.EnumBlockHalf.TOP)
+        if (!this.isDouble())
         {
             i |= 8;
         }
@@ -106,7 +97,7 @@ public abstract class BlockJCSlab extends BlockSlab
 
     protected BlockState createBlockState()
     {
-        return this.isDouble() ? new BlockState(this, new IProperty[] {SEAMLESS}): new BlockState(this, new IProperty[] {HALF});
+        return new BlockState(this, new IProperty[] {HALF});
     }
 
     /**

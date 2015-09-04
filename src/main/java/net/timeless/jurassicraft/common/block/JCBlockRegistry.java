@@ -1,9 +1,11 @@
 package net.timeless.jurassicraft.common.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.fml.common.registry.GameData;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.timeless.jurassicraft.common.api.ISubBlocksBlock;
@@ -11,6 +13,7 @@ import net.timeless.jurassicraft.common.block.plant.*;
 import net.timeless.jurassicraft.common.block.tree.*;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
+import net.timeless.jurassicraft.common.item.ItemJCSlab;
 import net.timeless.jurassicraft.common.tileentity.*;
 import net.timeless.jurassicraft.common.world.jurdstrees.algorythms.TreeCompendium;
 
@@ -175,15 +178,15 @@ public class JCBlockRegistry
             saplings[i] = new BlockJCSapling(type, typeName);
             stairs[i] = new BlockJCStairs(typeName, planks[i].getDefaultState());
             slabs[i] = new BlockJCSlabHalf(typeName, planks[i].getDefaultState());
-            doubleSlabs[i] = new BlockJCSlabDouble(typeName, planks[i].getDefaultState());
+            doubleSlabs[i] = new BlockJCSlabDouble(typeName, slabs[i], planks[i].getDefaultState());
 
             GameRegistry.registerBlock(planks[i], typeName + "_planks");
             GameRegistry.registerBlock(woods[i], typeName + "_log");
             GameRegistry.registerBlock(leaves[i], typeName + "_leaves");
             GameRegistry.registerBlock(saplings[i], typeName + "_sapling");
             GameRegistry.registerBlock(stairs[i], typeName + "_stairs");
-            GameRegistry.registerBlock(slabs[i], typeName + "_slab");
-            GameRegistry.registerBlock(doubleSlabs[i], typeName + "_double_slab");
+            GameRegistry.registerBlock(slabs[i], ItemJCSlab.class, typeName + "_slab", new Object[] { slabs[i], doubleSlabs[i] });
+            GameRegistry.registerBlock(doubleSlabs[i], ItemJCSlab.class, typeName + "_double_slab", new Object[] { slabs[i], doubleSlabs[i] });
 
             OreDictionary.registerOre("logWood", woods[i]);
             OreDictionary.registerOre("plankWood", planks[i]);
@@ -193,7 +196,7 @@ public class JCBlockRegistry
             Blocks.fire.setFireInfo(leaves[i], 30, 60);
             Blocks.fire.setFireInfo(planks[i], 5, 20);
             Blocks.fire.setFireInfo(woods[i], 5, 5);
-            //TODO stairs & slabs
+            //TODO stairs & slabs fireinfo and oredict
         }
 
         registerBlockTileEntity(TileCultivate.class, cultivate_bottom, "Cultivate Bottom");
