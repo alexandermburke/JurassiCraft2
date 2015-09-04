@@ -78,8 +78,34 @@ public class AnimationTherizinosaurus implements IModelAnimator
         {9, 20}, {0, 20}, {9, 20}, {0, 20}, {9, 20}, {0, 20}, {9, 20}, {0, 20}, 
         {9, 20}, {0, 20}, {9, 20}, {0, 20}, {9, 20}, {0, 20}, {9, 20}, {0, 100},    
         {0, 500}, {2, 100}, {2, 20}, {0, 50}, // head bob
-        };
-            
+    };
+
+    protected static int[][] sequenceLookLeft = new int[][] {
+        {0, 500}, {1, 100}, {1, 80}, {0, 100}
+    };
+    
+    protected static int[][] sequenceLookRight = new int[][] {
+        {0, 200}, {4, 100}, {4, 40}, {0, 100}
+    };
+
+    protected static int[][] sequenceHeadBob = new int[][] {
+        {0, 500}, {2, 100}, {2, 20}, {0, 50}
+    };
+    
+    protected static int[][] sequenceFlapping = new int[][] {
+        {0, 580}, {9, 40}, {0, 20}, {9, 20}, {0, 20}, {9, 20}, {0, 20},
+        {9, 20}, {0, 20}, {9, 20}, {0, 20}, {9, 20}, {0, 20}, {9, 20}, {0, 20}, 
+        {9, 20}, {0, 20}, {9, 20}, {0, 20}, {9, 20}, {0, 20}, {9, 20}, {0, 100}
+    };
+
+    protected static int[][][] arrayOfSequences = new int[][][] {
+    	sequenceLookLeft,
+    	sequenceLookRight,
+    	sequenceHeadBob,
+    	sequenceFlapping,
+    	sequenceHeadBob
+    };
+
     // maps each entity with its current animation 
     protected HashMap<Integer, JabelarAnimationHelper> currentAnimation = new HashMap<Integer, JabelarAnimationHelper>();
 
@@ -114,7 +140,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
         {
             // DEBUG
             System.out.println("Adding entity to hashmap with id = "+parEntity.getEntityId());
-            currentAnimation.put(parEntity.getEntityId(), (new JabelarAnimationHelper(parModel, modelAssetPathArray, partNameArray, animationSequenceArray, true, true)));
+            currentAnimation.put(parEntity.getEntityId(), (new JabelarAnimationHelper(parModel, modelAssetPathArray, partNameArray, arrayOfSequences, true, true)));
         }
     }
     
