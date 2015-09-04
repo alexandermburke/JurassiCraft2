@@ -174,11 +174,16 @@ public class JCBlockRegistry
             leaves[i] = new BlockJCLeaves(type, typeName);
             saplings[i] = new BlockJCSapling(type, typeName);
             stairs[i] = new BlockJCStairs(typeName, planks[i].getDefaultState());
+            slabs[i] = new BlockJCSlabHalf(typeName, planks[i].getDefaultState());
+            doubleSlabs[i] = new BlockJCSlabDouble(typeName, planks[i].getDefaultState());
+
             GameRegistry.registerBlock(planks[i], typeName + "_planks");
             GameRegistry.registerBlock(woods[i], typeName + "_log");
             GameRegistry.registerBlock(leaves[i], typeName + "_leaves");
             GameRegistry.registerBlock(saplings[i], typeName + "_sapling");
             GameRegistry.registerBlock(stairs[i], typeName + "_stairs");
+            GameRegistry.registerBlock(slabs[i], typeName + "_slab");
+            GameRegistry.registerBlock(doubleSlabs[i], typeName + "_double_slab");
 
             OreDictionary.registerOre("logWood", woods[i]);
             OreDictionary.registerOre("plankWood", planks[i]);
@@ -188,7 +193,7 @@ public class JCBlockRegistry
             Blocks.fire.setFireInfo(leaves[i], 30, 60);
             Blocks.fire.setFireInfo(planks[i], 5, 20);
             Blocks.fire.setFireInfo(woods[i], 5, 5);
-            //TODO stairs
+            //TODO stairs & slabs
         }
 
         registerBlockTileEntity(TileCultivate.class, cultivate_bottom, "Cultivate Bottom");

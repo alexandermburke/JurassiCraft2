@@ -156,6 +156,8 @@ public class JCRenderingRegistry
             this.registerBlockRenderer(modelMesher, JCBlockRegistry.planks[i], name + "_planks", "inventory");
             this.registerBlockRenderer(modelMesher, JCBlockRegistry.woods[i], name + "_log", "inventory");
             this.registerBlockRenderer(modelMesher, JCBlockRegistry.stairs[i], name + "_stairs", "inventory");
+            this.registerBlockRenderer(modelMesher, JCBlockRegistry.slabs[i], name + "_slab", "inventory");
+            this.registerBlockRenderer(modelMesher, JCBlockRegistry.doubleSlabs[i], name + "_double_sab", "inventory");
         }
 
         for (EnumDyeColor color : EnumDyeColor.values())
