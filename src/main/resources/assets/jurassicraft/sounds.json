@@ -260,6 +260,18 @@
             "dinosaurs/indominus/indominus_hurt_1"
         ]
     },
+	"indominus_roar": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/indominus/indominus_roar"
+        ]
+    },
+	"indominus_breath": {
+        "category": "hostile",
+        "sounds": [
+            "dinosaurs/indominus/indominus_breath"
+        ]
+    },
 	"ankylosaurus_living_1": {
         "category": "hostile",
         "sounds": [
