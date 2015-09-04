@@ -6,7 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.Animator;
-import net.timeless.animationapi.client.CurrentAnimation;
+import net.timeless.animationapi.client.JabelarAnimationHelper;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.dinosaur.DinosaurTherizinosaurus;
@@ -81,7 +81,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
         };
             
     // maps each entity with its current animation 
-    protected HashMap<Integer, CurrentAnimation> currentAnimation = new HashMap<Integer, CurrentAnimation>();
+    protected HashMap<Integer, JabelarAnimationHelper> currentAnimation = new HashMap<Integer, JabelarAnimationHelper>();
 
     // need boolean to indicate first tick run because need to copy between static and instance fields
     protected boolean isFirstTick = true;
@@ -114,7 +114,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
         {
             // DEBUG
             System.out.println("Adding entity to hashmap with id = "+parEntity.getEntityId());
-            currentAnimation.put(parEntity.getEntityId(), (new CurrentAnimation(parModel, modelAssetPathArray, partNameArray, animationSequenceArray)));
+            currentAnimation.put(parEntity.getEntityId(), (new JabelarAnimationHelper(parModel, modelAssetPathArray, partNameArray, animationSequenceArray)));
         }
     }
     

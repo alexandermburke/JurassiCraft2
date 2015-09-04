@@ -13,7 +13,7 @@ import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
  * This class is used to hold per-entity animation variables for use with
  * Jabelar's animation tweening system.
  */
-public class CurrentAnimation
+public class JabelarAnimationHelper
 {
     protected String[] modelAssetPathArray;
     protected String[] partNameArray;
@@ -40,7 +40,7 @@ public class CurrentAnimation
     public int currentTweenStep;
     public boolean finishedTween = false;
     
-    public CurrentAnimation(ModelDinosaur parModel, String[] parAssetPathArray, String[] parPartNameArray, int[][] parAnimSequenceArray)
+    public JabelarAnimationHelper(ModelDinosaur parModel, String[] parAssetPathArray, String[] parPartNameArray, int[][] parAnimSequenceArray)
     {
         // transfer static animation info to instance
         modelAssetPathArray = parAssetPathArray;
@@ -82,13 +82,21 @@ public class CurrentAnimation
         rotationArray = new float[numParts][3];
         positionArray = new float[numParts][3];
         offsetArray = new float[numParts][3];
+        for (int i = 0; i < numParts; i++)
+        {
+        	for (int j = 0; j < 3; j++)
+        	{
+        		rotationArray[i][j] = 0.0F;
+        		positionArray[i][j] = 0.0F;
+        		offsetArray[i][j] = 0.0F;
+        	}
+        }
         copyModelRendererArrayToCurrent(passedInModelRendererArray);
         
         currentSequenceStep = 0;
-        currentSequenceStepModifier = 0; // this is used to desync entities of same type
-        numStepsInSequence = 1;
-        targetModelIndex = 1; // 0 is default, so 1 is first custom pose
-        stepsInTween = 0;
+        targetModelIndex = animationSequenceArray[currentSequenceStep][0]; 
+        numStepsInSequence = animationSequenceArray.length;
+        stepsInTween = animationSequenceArray[currentSequenceStep][1];
         currentTweenStep = 0;
         finishedTween = false;
 
@@ -118,6 +126,8 @@ public class CurrentAnimation
         // initialize current pose arrays if first tick
         if (parEntity.ticksExisted <= 10)
         {
+        	// DEBUG
+        	System.out.println("Initializing current model array for new enitity with passed in value like "+passedInModelRendererArray[0].rotateAngleX);
             copyModelRendererArrayToCurrent(passedInModelRendererArray);
             setNextTween(parEntity);
         }
@@ -177,8 +187,11 @@ public class CurrentAnimation
      */
     protected void nextTweenRotations(EntityDinosaur parEntity, MowzieModelRenderer[] parPassedInModelRendererArray, int parPartIndex)
     {
-        // DEBUG
-        System.out.println("For entity ID = "+parEntity.getEntityId()+" current rotation = "+rotationArray[parPartIndex][0]);
+//        // DEBUG
+//    	if (parPartIndex == partIndexFromName("Neck 4"))
+//    	{
+//    		System.out.println("For entity ID = "+parEntity.getEntityId()+" current rotation = "+rotationArray[parPartIndex][0]);
+//    	}
     
         parPassedInModelRendererArray[parPartIndex].rotateAngleX =
                 rotationArray[parPartIndex][0] + 
@@ -234,10 +247,10 @@ public class CurrentAnimation
     
     protected void handleFinishedTween(EntityDinosaur parEntity)
     {
-//        // DEBUG
-//        System.out.println("finished tween");
-        
         incrementSequenceStep();
+        
+        // DEBUG
+        System.out.println("finished tween, next sequence step = "+currentSequenceStep);
 
         finishedTween = false;
         setNextTween(parEntity);
@@ -288,7 +301,7 @@ public class CurrentAnimation
     /*
      * Chainable methods
      */
-    public CurrentAnimation setNumStepsInSequence(int parNumStepsInSequence)
+    public JabelarAnimationHelper setNumStepsInSequence(int parNumStepsInSequence)
     {
         // DEBUG
         System.out.println("Setting number of sequence steps to "+parNumStepsInSequence);
@@ -296,7 +309,7 @@ public class CurrentAnimation
         return this;
     }
     
-    public CurrentAnimation setRandomSequenceStepModifier()
+    public JabelarAnimationHelper setRandomSequenceStepModifier()
     {
         if (numStepsInSequence < 1) return this;
         
