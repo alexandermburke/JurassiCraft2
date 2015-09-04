@@ -141,7 +141,7 @@ public class JabelarAnimationHelper
             setNextTween(parEntity);
         }
         
-        performNextTweenStep(parEntity, passedInModelRendererArray);
+        performNextTweenStep(parEntity, passedInModelRendererArray, true);
         
         // check for end of animation and set next target in sequence
         if (finishedTween) 
@@ -175,14 +175,23 @@ public class JabelarAnimationHelper
 //        System.out.println("set next tween for entity id = "+parEntity.getEntityId()+" steps in tween = "+currentAnimation.get(parEntity.getEntityId()).stepsInTween);
     }
    
-    protected void performNextTweenStep(EntityDinosaur parEntity, MowzieModelRenderer[] parPassedInModelRendererArray)
+    protected void performNextTweenStep(EntityDinosaur parEntity, MowzieModelRenderer[] parPassedInModelRendererArray, boolean parInertial)
     {
         // tween the passed in model towards target pose
         for (int i = 0; i < numParts; i++)
         {
-            nextTweenRotations(parEntity, parPassedInModelRendererArray, i);
-            nextTweenPositions(parEntity, parPassedInModelRendererArray, i);
-            nextTweenOffsets(parEntity, parPassedInModelRendererArray, i);       
+            if (parInertial)
+            {
+                nextInertialTweenRotations(parEntity, parPassedInModelRendererArray, i);
+                nextInertialTweenPositions(parEntity, parPassedInModelRendererArray, i);
+                nextInertialTweenOffsets(parEntity, parPassedInModelRendererArray, i);  
+            }
+            else
+            {
+                nextTweenRotations(parEntity, parPassedInModelRendererArray, i);
+                nextTweenPositions(parEntity, parPassedInModelRendererArray, i);
+                nextTweenOffsets(parEntity, parPassedInModelRendererArray, i);  
+            }
         }
         
         // update current position tracking arrays
@@ -250,6 +259,100 @@ public class JabelarAnimationHelper
                 / (stepsInTween - currentTweenStep);
         parPassedInModelRendererArray[partPartIndex].offsetZ =
                 offsetArray[partPartIndex][2] + 
+                (targetPose[partPartIndex].offsetZ - offsetArray[partPartIndex][2])
+                / (stepsInTween - currentTweenStep);
+    }
+    /*
+     * Inertial tween of the rotateAngles between current angles and target angles
+     */
+    protected void nextInertialTweenRotations(EntityDinosaur parEntity, MowzieModelRenderer[] parPassedInModelRendererArray, int parPartIndex)
+    {
+//        // DEBUG
+//      if (parPartIndex == partIndexFromName("Neck 4"))
+//      {
+//          System.out.println("For entity ID = "+parEntity.getEntityId()+" current rotation = "+rotationArray[parPartIndex][0]);
+//      }
+        
+        float inertialFactor = 1.0F;
+        if ((currentTweenStep < (stepsInTween * 0.25F)) && (currentTweenStep >= (stepsInTween - stepsInTween * 0.25F)))
+        {
+            inertialFactor = 0.5F;
+        }
+        else
+        {
+            inertialFactor = 1.5F;
+        }
+    
+        parPassedInModelRendererArray[parPartIndex].rotateAngleX =
+                rotationArray[parPartIndex][0] + inertialFactor *
+                (targetPose[parPartIndex].rotateAngleX - rotationArray[parPartIndex][0])
+                / (stepsInTween - currentTweenStep);
+        parPassedInModelRendererArray[parPartIndex].rotateAngleY =
+                rotationArray[parPartIndex][1] + inertialFactor *
+                (targetPose[parPartIndex].rotateAngleY - rotationArray[parPartIndex][1])
+                / (stepsInTween - currentTweenStep);
+        parPassedInModelRendererArray[parPartIndex].rotateAngleZ =
+                rotationArray[parPartIndex][2] + inertialFactor *
+                (targetPose[parPartIndex].rotateAngleZ - rotationArray[parPartIndex][2])
+                / (stepsInTween - currentTweenStep);
+    }
+
+    /*
+     * Inertial tween of the rotatePoints between current positions and target positions
+     */
+    protected void nextInertialTweenPositions(EntityDinosaur parEntity, MowzieModelRenderer[] parPassedInModelRendererArray, int parPartIndex)
+    {
+        
+        float inertialFactor = 1.0F;
+        if ((currentTweenStep < (stepsInTween * 0.25F)) && (currentTweenStep >= (stepsInTween - stepsInTween * 0.25F)))
+        {
+            inertialFactor = 0.5F;
+        }
+        else
+        {
+            inertialFactor = 1.5F;
+        }
+        
+        parPassedInModelRendererArray[parPartIndex].rotationPointX =
+                positionArray[parPartIndex][0] + inertialFactor *
+                (targetPose[parPartIndex].rotationPointX - positionArray[parPartIndex][0])
+                / (stepsInTween - currentTweenStep);
+        parPassedInModelRendererArray[parPartIndex].rotationPointY =
+                positionArray[parPartIndex][1] + inertialFactor *
+                (targetPose[parPartIndex].rotationPointY - positionArray[parPartIndex][1])
+                / (stepsInTween - currentTweenStep);
+        parPassedInModelRendererArray[parPartIndex].rotationPointZ = 
+                positionArray[parPartIndex][2] + inertialFactor *
+                (targetPose[parPartIndex].rotationPointZ - positionArray[parPartIndex][2])
+                / (stepsInTween - currentTweenStep);
+    }
+
+    /*
+     * Inertial tween of the offsets between current offsets and target offsets
+     */
+    protected void nextInertialTweenOffsets(EntityDinosaur parEntity, MowzieModelRenderer[] parPassedInModelRendererArray, int partPartIndex)
+    {
+        
+        float inertialFactor = 1.0F;
+        if ((currentTweenStep < (stepsInTween * 0.25F)) && (currentTweenStep >= (stepsInTween - stepsInTween * 0.25F)))
+        {
+            inertialFactor = 0.5F;
+        }
+        else
+        {
+            inertialFactor = 1.5F;
+        }
+
+        parPassedInModelRendererArray[partPartIndex].offsetX =
+                offsetArray[partPartIndex][0] + inertialFactor *
+                (targetPose[partPartIndex].offsetX - offsetArray[partPartIndex][0])
+                / (stepsInTween - currentTweenStep);
+        parPassedInModelRendererArray[partPartIndex].offsetY =
+                offsetArray[partPartIndex][1] + inertialFactor *
+                (targetPose[partPartIndex].offsetY - offsetArray[partPartIndex][1])
+                / (stepsInTween - currentTweenStep);
+        parPassedInModelRendererArray[partPartIndex].offsetZ =
+                offsetArray[partPartIndex][2] + inertialFactor *
                 (targetPose[partPartIndex].offsetZ - offsetArray[partPartIndex][2])
                 / (stepsInTween - currentTweenStep);
     }
