@@ -123,7 +123,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
      Animator animator = parModel.animator;
 
      MowzieModelRenderer rightThigh = parModel.getCube("Right Thigh");
-     MowzieModelRenderer bodyhips = parModel.getCube("Body hips");
+     MowzieModelRenderer bodyHips = parModel.getCube("Body hips");
      MowzieModelRenderer rightCalf1 = parModel.getCube("Right Calf 1");
      MowzieModelRenderer rightCalf2 = parModel.getCube("Right Calf 2");
      MowzieModelRenderer footRight = parModel.getCube("Foot Right");
@@ -219,9 +219,15 @@ public class AnimationTherizinosaurus implements IModelAnimator
 
      //The tail must always be up when the neck is down
      float speed = 0.75F;
-     float height = 2F * f1;
+     float height = 3F;
 
-     parModel.bob(bodyhips, 1F * speed, height, false, f, f1);
+     parModel.bob(bodyHips, 1F * speed, height, false, f, f1);
+     parModel.flap(bodyHips, 0.5F*speed, 0.5F, false, 0, 0, f, f1);
+     parModel.flap(bodyMain, 0.5F*speed, 0.1F, true, 0, 0, f, f1);
+     parModel.flap(bodyShoulders, 0.5F*speed, 0.4F, true, 0, 0, f, f1);
+     parModel.flap(tail1, 0.5F*speed, 0.2F, true, 0, 0, f, f1);
+     parModel.flap(tail3, 0.5F*speed, 0.2F, true, 0, 0, f, f1);
+     parModel.flap(tail5, 0.5F*speed, 0.1F, true, 0, 0, f, f1);
      parModel.bob(leftThigh, 1F * speed, height, false, f, f1);
      parModel.bob(rightThigh, 1F * speed, height, false, f, f1);
      parModel.walk(bodyShoulders, 1F * speed, 0.2F, true, 1, 0, f, f1);
@@ -237,15 +243,18 @@ public class AnimationTherizinosaurus implements IModelAnimator
      parModel.walk(rightCalf2, 0.5F * speed, 0.8F, true, -1F, -0.1F, f, f1);
      parModel.walk(footRight, 0.5F * speed, 1.5F, false, -1F, 1F, f, f1);
 
-     parModel.chainSwing(tail, 0.5F * speed, -0.1F, 2, f, f1);
-     parModel.chainWave(tail, 1F * speed, -0.1F, 2.5F, f, f1);
+     parModel.chainSwing(tail, 0.5F * speed, -0.02F, 2, f, f1);
+     parModel.chainWave(tail, 1F * speed, -0.02F, 2.5F, f, f1);
+     parModel.chainSwing(neck, 0.5F * speed, 0.02F, 2, f, f1);
+     parModel.chainWave(neck, 1F * speed, 0.02F, 2.5F, f, f1);
 //     parModel.chainWave(bodyParts, 1F * speed, -0.1F, 4, f, f1);
 
      parModel.chainWave(armRight, 1F * speed, -0.3F, 4, f, f1);
      parModel.chainWave(armLeft, 1F * speed, -0.3F, 4, f, f1);
 
      // Idling
-     parModel.chainWave(tail, 0.1F, 0.05F, 2, frame, 1F);
+     parModel.chainWave(tail, 0.1F, 0.02F, 2, frame, 1F);
+     parModel.chainWave(neck, 0.1F, 0.03F, 2, frame, 1F);
 //     parModel.chainWave(bodyParts, 0.1F, -0.03F, 5, frame, 1F);
      parModel.chainWave(armRight, 0.1F, -0.1F, 4, frame, 1F);
      parModel.chainWave(armLeft, 0.1F, -0.1F, 4, frame, 1F);
