@@ -34,7 +34,7 @@ public class JabelarAnimationHelper
     protected int numParts;
     protected int currentSequence; // which sequence
     protected int currentPose;
-    public int numTweensInSequence;
+    public int numPosesInSequence;
     public int targetModelIndex; 
     public int numTicksInTween;
     public int currentTickInTween;
@@ -53,7 +53,7 @@ public class JabelarAnimationHelper
         
         numParts = parPartNameArray.length;
         currentSequence = 0;
-        setNumTweensInSequence(arrayOfSequences[currentSequence].length);
+        setNumPosesInSequence(arrayOfSequences[currentSequence].length);
         
         passedInModelRendererArray = new MowzieModelRenderer[numParts];
         convertPassedInModelToModelRendererArray(parModel);
@@ -98,14 +98,14 @@ public class JabelarAnimationHelper
  
         if (parRandomInitialSequence)
         {
-            setRandomSequenceStep();
+            setRandomSequence();
         }
         else
         {
             currentPose = 0;
         }
         targetModelIndex = arrayOfSequences[currentSequence][currentPose][0]; 
-        numTweensInSequence = arrayOfSequences[currentSequence].length;
+        numPosesInSequence = arrayOfSequences[currentSequence].length;
         numTicksInTween = arrayOfSequences[currentSequence][currentPose][1];
         currentTickInTween = 0;
         finishedPose = false;
@@ -168,9 +168,9 @@ public class JabelarAnimationHelper
     protected void setNextPose(EntityDinosaur parEntity)
     {              
         targetModelIndex = 
-        		arrayOfSequences[currentSequence][getSequenceStep()][0];
+        		arrayOfSequences[currentSequence][getCurrentPose()][0];
         targetPose = modelRendererArray[targetModelIndex];
-        numTicksInTween = arrayOfSequences[currentSequence][getSequenceStep()][1];
+        numTicksInTween = arrayOfSequences[currentSequence][getCurrentPose()][1];
         currentTickInTween = 0;
 //        // DEBUG
 //        System.out.println("set next tween for entity id = "+parEntity.getEntityId()+" steps in tween = "+currentAnimation.get(parEntity.getEntityId()).stepsInTween);
@@ -366,19 +366,62 @@ public class JabelarAnimationHelper
         finishedPose = false;
         
         setNextPose(parEntity);
+    }    
+    
+    // boolean returned indicates if tween was finished
+    public boolean incrementTweenTick()
+    {
+        currentTickInTween++;
+//      // DEBUG
+//      System.out.println("current tween step = "+currentTweenStep);
+        if (currentTickInTween >= numTicksInTween)
+        {
+            finishedPose = true;
+        }
+        return finishedPose;
+    }
+    
+    // boolean returned indicates if sequence was finished
+    public boolean incrementCurrentPose()
+    {       
+        // increment current sequence step
+        currentPose++;
+        // check if finished sequence
+        if (currentPose >= numPosesInSequence)
+        {
+            currentPose = 0;
+            return true;
+        }
+//        // DEBUG
+//        System.out.println("Next pose is sequence step = "+currentSequenceStep);
+        return false;
     }
 
     protected void setNextSequence()
     {
-    	currentSequence++;
-    	
-    	if (currentSequence >= arrayOfSequences.length)
+    	if (randomSequence)
     	{
-    		currentSequence = 0;
+    		currentSequence = ((int) Math.floor(Math.random() * arrayOfSequences.length));
+    	}
+    	else
+    	{
+	    	currentSequence++;
+	    	
+	    	if (currentSequence >= arrayOfSequences.length)
+	    	{
+	    		currentSequence = 0;
+	    	}
     	}
     	
     	// DEBUG
     	System.out.println("Next sequence = "+currentSequence);
+    }
+    
+    // this getter method includes any sequence step modifier
+    public int getCurrentPose()
+    {
+        return currentPose;
+//        return (currentSequenceStep + currentSequenceStepModifier)%numStepsInSequence;
     }
     
     public static ModelDinosaur getTabulaModel(String tabulaModel, int geneticVariant) 
@@ -426,52 +469,16 @@ public class JabelarAnimationHelper
     /*
      * Chainable methods
      */
-    public JabelarAnimationHelper setNumTweensInSequence(int parNumStepsInSequence)
+    public JabelarAnimationHelper setNumPosesInSequence(int parNumPosesInSequence)
     {
         // DEBUG
-        System.out.println("Setting number of sequence steps to "+parNumStepsInSequence);
-        numTweensInSequence = parNumStepsInSequence;
+        System.out.println("Setting number of sequence steps to "+parNumPosesInSequence);
+        numPosesInSequence = parNumPosesInSequence;
         return this;
     }
     
-    public void setRandomSequenceStep()
+    public void setRandomSequence()
     {
-        currentPose = ((int)Math.floor(Math.random()*numTweensInSequence));
-    }
-    
-    // boolean returned indicates if sequence was finished
-    public boolean incrementCurrentPose()
-    {       
-        // increment current sequence step
-        currentPose++;
-        // check if finished sequence
-        if (currentPose >= numTweensInSequence)
-        {
-            currentPose = 0;
-            return true;
-        }
-//        // DEBUG
-//        System.out.println("Next pose is sequence step = "+currentSequenceStep);
-        return false;
-    }
-    
-    // boolean returned indicates if tween was finished
-    public boolean incrementTweenTick()
-    {
-        currentTickInTween++;
-//      // DEBUG
-//      System.out.println("current tween step = "+currentTweenStep);
-        if (currentTickInTween >= numTicksInTween)
-        {
-            finishedPose = true;
-        }
-        return finishedPose;
-    }
-    
-    // this getter method includes any sequence step modifier
-    public int getSequenceStep()
-    {
-        return currentPose;
-//        return (currentSequenceStep + currentSequenceStepModifier)%numStepsInSequence;
+        currentPose = ((int)Math.floor(Math.random()*arrayOfSequences.length));
     }
 }
