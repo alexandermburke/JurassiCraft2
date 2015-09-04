@@ -34,23 +34,25 @@ public class JabelarAnimationHelper
     protected int numParts;
     protected int currentSequenceStep;
     protected int currentSequenceStepModifier; // this is used to desync entities of same type
-    public int numStepsInSequence;
+    public int numSequenceSteps;
     public int targetModelIndex; 
     public int stepsInTween;
     public int currentTweenStep;
     public boolean finishedTween = false;
+    protected boolean randomSequence = false;
     
-    public JabelarAnimationHelper(ModelDinosaur parModel, String[] parAssetPathArray, String[] parPartNameArray, int[][] parAnimSequenceArray)
+    public JabelarAnimationHelper(ModelDinosaur parModel, String[] parAssetPathArray, String[] parPartNameArray, int[][] parAnimSequenceArray, boolean parRandomInitialSequence, boolean parRandomSequence)
     {
         // transfer static animation info to instance
         modelAssetPathArray = parAssetPathArray;
         partNameArray = parPartNameArray;
         animationSequenceArray = parAnimSequenceArray;
+        randomSequence = parRandomSequence;
 
         modelTarget = getTabulaModel(modelAssetPathArray[0], 0);
         
         numParts = parPartNameArray.length;
-        setNumStepsInSequence(animationSequenceArray.length);
+        setNumSequenceSteps(animationSequenceArray.length);
         
         passedInModelRendererArray = new MowzieModelRenderer[numParts];
         convertPassedInModelToModelRendererArray(parModel);
@@ -92,10 +94,17 @@ public class JabelarAnimationHelper
         	}
         }
         copyModelRendererArrayToCurrent(passedInModelRendererArray);
-        
-        currentSequenceStep = 0;
+ 
+        if (parRandomInitialSequence)
+        {
+            setRandomSequenceStep();
+        }
+        else
+        {
+            currentSequenceStep = 0;
+        }
         targetModelIndex = animationSequenceArray[currentSequenceStep][0]; 
-        numStepsInSequence = animationSequenceArray.length;
+        numSequenceSteps = animationSequenceArray.length;
         stepsInTween = animationSequenceArray[currentSequenceStep][1];
         currentTweenStep = 0;
         finishedTween = false;
@@ -301,29 +310,26 @@ public class JabelarAnimationHelper
     /*
      * Chainable methods
      */
-    public JabelarAnimationHelper setNumStepsInSequence(int parNumStepsInSequence)
+    public JabelarAnimationHelper setNumSequenceSteps(int parNumStepsInSequence)
     {
         // DEBUG
         System.out.println("Setting number of sequence steps to "+parNumStepsInSequence);
-        numStepsInSequence = parNumStepsInSequence;
+        numSequenceSteps = parNumStepsInSequence;
         return this;
     }
     
-    public JabelarAnimationHelper setRandomSequenceStepModifier()
+    public void setRandomSequenceStep()
     {
-        if (numStepsInSequence < 1) return this;
-        
-        currentSequenceStepModifier = ((int)Math.floor(Math.random()*numStepsInSequence));
-        return this;
+        currentSequenceStep = ((int)Math.floor(Math.random()*numSequenceSteps));
     }
     
     // boolean returned indicates if sequence was finished
     public boolean incrementSequenceStep()
-    {
+    {       
         // increment current sequence step
         currentSequenceStep++;
         // check if finished sequence
-        if (currentSequenceStep >= numStepsInSequence)
+        if (currentSequenceStep >= numSequenceSteps)
         {
             currentSequenceStep = 0;
             return true;
