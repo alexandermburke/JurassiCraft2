@@ -109,11 +109,13 @@ tile.ginkgo_sapling.name=Ginkgo Sapling
 tile.ginkgo_planks.name=Ginkgo Planks
 tile.ginkgo_log.name=Ginkgo Log
 tile.ginkgo_leaves.name=Ginkgo Leaves
+tile.ginkgo_stairs.name=Ginkgo Stairs
 
 tile.calamites_sapling.name=Calamites Sapling
 tile.calamites_leaves.name=Calamites Leaves
 tile.calamites_log.name=Calamites Log
 tile.calamites_planks.name=Calamites Planks
+tile.calamites_stairs.name=Calamites Stairs
 
 tile.small_royal_fern.name=Small Royal Fern
 tile.small_chain_fern.name=Small Chain Fern

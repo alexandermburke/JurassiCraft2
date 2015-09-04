@@ -30,6 +30,18 @@ public class JCRecipeRegistry
         for (Block block : JCBlockRegistry.planks)
         {
             GameRegistry.addShapelessRecipe(new ItemStack(block, 4), JCBlockRegistry.woods[i]);
+            
+            GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.stairs[i], 4),
+                    "w  ",
+                    "ww ",
+                    "www",
+                    'w', block);
+
+            GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.stairs[i], 4),
+                    "  w",
+                    " ww",
+                    "www",
+                    'w', block);
 
             i++;
         }
