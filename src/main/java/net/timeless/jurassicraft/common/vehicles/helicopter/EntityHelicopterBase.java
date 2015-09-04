@@ -11,6 +11,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
@@ -18,9 +19,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.entity.data.JCPlayerData;
 import net.timeless.jurassicraft.common.message.JCNetworkManager;
+import net.timeless.jurassicraft.common.message.MessageHelicopterDirection;
 import net.timeless.jurassicraft.common.message.MessageHelicopterEngine;
+import net.timeless.unilib.utils.MutableVec3;
 
 import javax.vecmath.Vector2f;
+import javax.vecmath.Vector3f;
 import java.util.UUID;
 
 /**
@@ -34,10 +38,13 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     public static final int PILOT_SEAT = 0;
     public static final int LEFT_BACK_SEAT = 1;
     public static final int RIGHT_BACK_SEAT = 2;
-    public static final float MAX_POWER = 40f;
+    public static final float MAX_POWER = 80f;
+    public static final float REQUIRED_POWER = MAX_POWER/2f;
     private float roll;
     private boolean engineRunning;
     private float enginePower;
+    private boolean hasMinigun;
+    private MutableVec3 direction;
 
     public EntityHelicopterBase(World worldIn)
     {
@@ -48,6 +55,7 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
         double d = 8f; // depth in blocks
         setBox(0, 0, 0, w, h, d);
         seats = new HelicopterSeat[3];
+        direction = new MutableVec3(0,1,0);
     }
 
     /**
@@ -157,6 +165,10 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
                     if(isPilotThisClient(rider)) {
                         updateEngine(runEngine);
                         engineRunning = runEngine;
+                        if(engineRunning && enginePower >= REQUIRED_POWER)
+                            direction = drive(direction);
+                        else
+                            direction.set(0,1,0);
                     }
                 }
             }
@@ -164,29 +176,102 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
             {
                 runEngine = false;
                 updateEngine(runEngine);
+                direction.set(0,1f,0);
             }
-            if(engineRunning) {
+            rotationYaw -= direction.xCoord*1.25f;
+            roll = (float) (direction.xCoord * 20f);
+            rotationPitch = (float) -(direction.zCoord*40f);
+            updateDirection(direction);
+            if(engineRunning)
+            {
                 enginePower++;
-                if(enginePower >= MAX_POWER) {
+                if(enginePower >= REQUIRED_POWER)
+                {
                     // We can fly \o/
                     // ♪ Fly on the wings of code! ♪
-                    motionY+=0.125f;
+                    MutableVec3 localDir = new MutableVec3(direction.xCoord, direction.yCoord, direction.zCoord*8f);
+                    localDir = localDir.rotateYaw((float) Math.toRadians(-rotationYaw));
+                    final float gravityCancellation = 0.08f;
+                    final float speedY = gravityCancellation+0.005f;
+                    double my = speedY * localDir.yCoord;
+                    if(my < gravityCancellation) {
+                        my = gravityCancellation;
+                    }
+                    motionY += my;
+                    motionX = localDir.xCoord/10f;
+                    motionZ = localDir.zCoord/10f;
+                }
+                if(enginePower >= MAX_POWER)
+                {
                     enginePower = MAX_POWER;
                 }
-            } else {
-                enginePower--;
-                if(enginePower < 0f) {
+            }
+            else
+            {
+                if(enginePower >= REQUIRED_POWER)
+                {
+                    enginePower-=0.5f;
+                }
+                else
+                {
+                    enginePower--;
+                }
+                if(enginePower < 0f)
+                {
                     enginePower = 0f;
                 }
             }
         }
     }
 
+    private void updateDirection(MutableVec3 direction)
+    {
+        if(worldObj.isRemote)
+        {
+            JCNetworkManager.networkWrapper.sendToServer(new MessageHelicopterDirection(getEntityId(), direction));
+        }
+        else
+        {
+            JCNetworkManager.networkWrapper.sendToAll(new MessageHelicopterDirection(getEntityId(), direction));
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    private MutableVec3 drive(MutableVec3 direction)
+    {
+        if(Minecraft.getMinecraft().gameSettings.keyBindForward.isKeyDown())
+        {
+            direction.addVector(0, 0, 1f);
+        }
+
+        if(Minecraft.getMinecraft().gameSettings.keyBindBack.isKeyDown())
+        {
+            direction.addVector(0, 0, -1f);
+        }
+
+        if(Minecraft.getMinecraft().gameSettings.keyBindLeft.isKeyDown())
+        {
+            direction.addVector(1f,0,0);
+        }
+
+        if(Minecraft.getMinecraft().gameSettings.keyBindRight.isKeyDown())
+        {
+            direction.addVector(-1f,0,0);
+        }
+
+        direction.addVector(0, 1, 0);
+
+        return direction.normalize();
+    }
+
     public void updateEngine(boolean engineState) {
-        if(worldObj.isRemote) {
-            JCNetworkManager.networkWrapper.sendToServer(new MessageHelicopterEngine(heliID, engineState));
-        } else {
-            JCNetworkManager.networkWrapper.sendToAll(new MessageHelicopterEngine(heliID, engineState));
+        if(worldObj.isRemote)
+        {
+            JCNetworkManager.networkWrapper.sendToServer(new MessageHelicopterEngine(getEntityId(), engineState));
+        }
+        else
+        {
+            JCNetworkManager.networkWrapper.sendToAll(new MessageHelicopterEngine(getEntityId(), engineState));
         }
     }
 
@@ -309,12 +394,14 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     public void writeSpawnData(ByteBuf buffer)
     {
         ByteBufUtils.writeUTF8String(buffer, heliID.toString());
+        buffer.writeBoolean(hasMinigun);
     }
 
     @Override
     public void readSpawnData(ByteBuf additionalData)
     {
         heliID = UUID.fromString(ByteBufUtils.readUTF8String(additionalData));
+        hasMinigun = additionalData.readBoolean();
     }
 
     public boolean isEngineRunning()
@@ -330,5 +417,14 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     public float getEnginePower()
     {
         return enginePower;
+    }
+
+    public boolean hasMinigun() {
+        return hasMinigun;
+    }
+
+    public void setDirection(MutableVec3 direction)
+    {
+        this.direction.set(direction);
     }
 }
