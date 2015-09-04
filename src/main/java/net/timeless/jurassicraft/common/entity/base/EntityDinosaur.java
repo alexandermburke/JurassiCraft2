@@ -128,6 +128,11 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         return (adult - baby) / maxAge * dinosaurAge + baby;
     }
 
+    public int getTalkInterval()
+    {
+        return 200;
+    }
+
     @Override
     public float getSoundPitch()
     {

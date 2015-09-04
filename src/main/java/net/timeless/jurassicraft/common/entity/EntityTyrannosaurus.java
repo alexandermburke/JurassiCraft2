@@ -44,7 +44,7 @@ public class EntityTyrannosaurus extends EntityDinosaurAggressive implements IAn
 
     public String getLivingSound()
     {
-        return randomSound(breathSounds);
+        return randomSound(livingSounds);
     }
 
     public String getHurtSound()
@@ -64,6 +64,9 @@ public class EntityTyrannosaurus extends EntityDinosaurAggressive implements IAn
 
         this.roarCount.update();
         this.roarTiltDegree.update();
+
+        if (this.ticksExisted % 62 == 0)
+            this.playSound(randomSound(breathSounds), this.getSoundVolume(), this.getSoundPitch());
 
         /** Step Sound */
         if (this.moveForward > 0 && this.stepCount <= 0)

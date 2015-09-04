@@ -7,6 +7,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
+import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
+import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimSoundBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
@@ -18,24 +20,46 @@ public class EntityIndominusRex extends EntityDinosaurAggressive  //implements I
     private static final String[] hurtSounds = new String[]{"indominus_hurt_1"};
     private static final String[] livingSounds = new String[]{"indominus_living_1"};
     private static final String[] deathSounds = new String[]{"indominus_death_1"};
+    private static final String[] breathSounds = new String[]{"indominus_breath"};
 
+    @SideOnly(Side.CLIENT)
     private float[] newSkinColor = new float[3];
+
+    @SideOnly(Side.CLIENT)
     private float[] skinColor = new float[3];
+
+    private int stepCount = 0;
 
     public EntityIndominusRex(World world)
     {
         super(world);
-        tasks.addTask(2, new JCAutoAnimBase(this, 75, 1));
+        tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, 1, 750, breathSounds[0], 1.5F));
         this.attackCreature(EntityDinosaur.class, 0);
         this.defendFromAttacker(EntityDinosaur.class, 0);
     }
 
     public void onUpdate()
     {
-        this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
-        //this.changeSkinColor();
         super.onUpdate();
 
+        this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
+
+        if (this.ticksExisted % 62 == 0)
+            this.playSound(randomSound(breathSounds), this.getSoundVolume(), this.getSoundPitch());
+
+        /** Step Sound */
+        if (this.moveForward > 0 && this.stepCount <= 0)
+        {
+            this.playSound("jurassicraft:stomp", this.getSoundVolume() + 0.5F, this.getSoundPitch());
+            stepCount = 65;
+        }
+
+        this.stepCount -= this.moveForward * 9.5;
+
+        if(worldObj.isRemote)
+        {
+            changeSkinColor();
+        }
 //        if (getAnimID() == 0)
 //            AnimationAPI.sendAnimPacket(this, 1);
     }
