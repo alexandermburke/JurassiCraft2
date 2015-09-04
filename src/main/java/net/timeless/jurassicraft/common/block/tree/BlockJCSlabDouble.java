@@ -7,6 +7,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
 
 import java.util.Random;
 
@@ -19,6 +20,7 @@ public class BlockJCSlabDouble extends BlockJCSlab
         super(state);
         this.setUnlocalizedName(name + "_double_slab");
         this.singleSlab = slab;
+        this.setCreativeTab(JCCreativeTabs.plants);
     }
 
     public Item getItemDropped(IBlockState state, Random rand, int fortune)

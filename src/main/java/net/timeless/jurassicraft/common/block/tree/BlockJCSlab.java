@@ -30,7 +30,6 @@ public abstract class BlockJCSlab extends BlockSlab
         this.setHarvestLevel(block.getHarvestTool(state), block.getHarvestLevel(state));
 
         this.setDefaultState(iblockstate);
-        this.setCreativeTab(JCCreativeTabs.plants);
     }
 
 //    /**
