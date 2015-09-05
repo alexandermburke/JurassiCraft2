@@ -65,6 +65,10 @@ public class AnimationTherizinosaurus implements IModelAnimator
      * modelAssetPaths array above),
      * Second element is the number of ticks it should take to tween to that pose
      */
+    protected static int[][] sequenceIdle = new int[][] {
+        {0, 200}
+    };
+
     protected static int[][] sequenceLookLeft = new int[][] {
         {1, 100}, {1, 80}, {0, 100}
     };
@@ -90,16 +94,13 @@ public class AnimationTherizinosaurus implements IModelAnimator
         {4, 10}, {3, 10}, {4, 10}, {3, 10}, {4, 10}, {3, 10}, {4, 10}, {3, 10}, 
         {4, 10}, {3, 10}, {4, 10}, {3, 10}, {4, 10}, {3, 10}, {4, 10}, {0, 100}
     };
-
-    protected static int[][] sequenceIdle = new int[][] {
-        {0, 200}
-    };
     
     protected static int[][] sequenceLongIdle = new int[][] {
         {0, 800}
     };
     
     protected static int[][][] arrayOfSequences = new int[][][] {
+        sequenceIdle,
     	sequenceFlapping,
         sequenceLookLeft,
         sequenceLookRight,
@@ -182,7 +183,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
         {
             // DEBUG
             System.out.println("Adding entity to hashmap with id = "+parEntity.getEntityId());
-            animationInstanceToEntityMap.put(parEntity.getEntityId(), (new JabelarAnimationHelper(parModel, modelAssetPathArray, partNameArray, arrayOfSequences, true, true)));
+            animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(parEntity, parModel, modelAssetPathArray, partNameArray, arrayOfSequences, true, true,10));
         }
     }
     
