@@ -50,43 +50,43 @@ public class DinosaurMegapiranha extends Dinosaur
     @Override
     public double getBabyHealth()
     {
-        return 20;
+        return 10;
     }
 
     @Override
     public double getAdultHealth()
     {
-        return 95;
+        return 30;
     }
 
     @Override
     public double getBabySpeed()
     {
-        return 4.8;
+        return 0.46;
     }
 
     @Override
     public double getAttackSpeed()
     {
-        return 0.17;
+        return 0.40;
     }
 
     @Override
     public double getAdultSpeed()
     {
-        return 3.8;
+        return 0.80;
     }
 
     @Override
     public double getBabyStrength()
     {
-        return 6;
+        return 2;
     }
 
     @Override
     public double getAdultStrength()
     {
-        return 36;
+        return 6;
     }
 
     @Override
@@ -104,7 +104,7 @@ public class DinosaurMegapiranha extends Dinosaur
     @Override
     public int getMaximumAge()
     {
-        return fromDays(60);
+        return fromDays(30);
     }
 
     @Override
@@ -134,13 +134,13 @@ public class DinosaurMegapiranha extends Dinosaur
     @Override
     public float getBabySizeX()
     {
-        return 0.25F;
+        return 0.15F;
     }
 
     @Override
     public float getBabySizeY()
     {
-        return 0.25F;
+        return 0.15F;
     }
 
     @Override
@@ -152,7 +152,7 @@ public class DinosaurMegapiranha extends Dinosaur
     @Override
     public float getAdultSizeY()
     {
-        return 0.5F;
+        return 0.7F;
     }
 
     @Override
