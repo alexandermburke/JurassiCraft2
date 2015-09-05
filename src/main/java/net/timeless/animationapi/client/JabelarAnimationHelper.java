@@ -145,8 +145,8 @@ public class JabelarAnimationHelper
 	    // initialize current pose arrays if first tick
 	    if (parEntity.ticksExisted <= 10)
 	    {
-	    	// DEBUG
-	    	System.out.println("Initializing current model array for new enitity with passed in value like "+passedInModelRendererArray[0].rotateAngleX);
+//	    	// DEBUG
+//	    	System.out.println("Initializing current model array for new enitity with passed in value like "+passedInModelRendererArray[0].rotateAngleX);
 	        copyModelRendererArrayToCurrent(passedInModelRendererArray);
 	        setNextPose(parEntity);
 	    }
@@ -345,8 +345,8 @@ public class JabelarAnimationHelper
         	setNextSequence();
         }
         
-        // DEBUG
-        System.out.println("finished tween, next pose = "+currentPose);
+//        // DEBUG
+//        System.out.println("finished tween, next pose = "+currentPose);
 
         finishedPose = false;
         
@@ -384,8 +384,6 @@ public class JabelarAnimationHelper
 
     protected void setNextSequence()
     {
-        // DEBUG
-        System.out.println("arrayOfSequences.length = "+arrayOfSequences.length);
     	if (randomSequence)
     	{
     		currentSequence = ((int) Math.floor(Math.random() * arrayOfSequences.length));

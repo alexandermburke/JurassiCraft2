@@ -66,28 +66,86 @@ public class AnimationTherizinosaurus implements IModelAnimator
      * Second element is the number of ticks it should take to tween to that pose
      */
     protected static int[][] sequenceLookLeft = new int[][] {
-        {0, 500}, {1, 100}, {1, 80}, {0, 100}
+        {1, 100}, {1, 80}, {0, 100}
+    };
+    
+    protected static int[][] sequenceGlanceLeft = new int[][] {
+        {1, 40}, {0, 40}
     };
     
     protected static int[][] sequenceLookRight = new int[][] {
-        {0, 200}, {2, 100}, {2, 80}, {0, 100}
+        {2, 100}, {2, 80}, {0, 100}
+    };
+    
+    protected static int[][] sequenceGlanceRight = new int[][] {
+        {2, 40}, {0, 40}
     };
     
     protected static int[][] sequenceRearing = new int[][] {
-        {0, 200}, {3, 100}, {3, 80}, {0, 100}
+        {3, 100}, {3, 80}, {0, 100}
     };
     
     protected static int[][] sequenceFlapping = new int[][] {
-        {0, 200}, {4, 40}, {3, 20}, {4, 20}, {3, 20}, {3, 20}, {3, 20},
-        {4, 20}, {3, 20}, {4, 20}, {3, 20}, {4, 20}, {3, 20}, {4, 20}, {3, 20}, 
-        {4, 20}, {3, 20}, {4, 20}, {3, 20}, {4, 20}, {3, 20}, {4, 20}, {0, 100}
+        {4, 10}, {3, 10}, {4, 10}, {3, 10}, {4, 10}, {3, 10},
+        {4, 10}, {3, 10}, {4, 10}, {3, 10}, {4, 10}, {3, 10}, {4, 10}, {3, 10}, 
+        {4, 10}, {3, 10}, {4, 10}, {3, 10}, {4, 10}, {3, 10}, {4, 10}, {0, 100}
     };
 
+    protected static int[][] sequenceIdle = new int[][] {
+        {0, 200}
+    };
+    
+    protected static int[][] sequenceLongIdle = new int[][] {
+        {0, 800}
+    };
+    
     protected static int[][][] arrayOfSequences = new int[][][] {
-    	sequenceLookLeft,
-    	sequenceLookRight,
+    	sequenceFlapping,
+        sequenceLookLeft,
+        sequenceLookRight,
+    	sequenceGlanceLeft,
+    	sequenceGlanceRight,
     	sequenceRearing,
-    	sequenceFlapping
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+    	sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle,
+        sequenceIdle
     };
 
     // maps each entity with its current animation 
