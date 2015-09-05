@@ -7,7 +7,11 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.world.World;
 import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
 
 public abstract class BlockJCSlab extends BlockSlab
@@ -32,21 +36,24 @@ public abstract class BlockJCSlab extends BlockSlab
         this.setDefaultState(iblockstate);
     }
 
-//    /**
-//     * Get the Item that this Block should drop when harvested.
-//     *
-//     * @param fortune the level of the Fortune enchantment on the player's tool
-//     */
-//    public Item getItemDropped(IBlockState state, Random rand, int fortune)
-//    {
-//        return Item.getItemFromBlock(Blocks.stone_slab);
-//    }
-//
-//    @SideOnly(Side.CLIENT)
-//    public Item getItem(World worldIn, BlockPos pos)
-//    {
-//        return Item.getItemFromBlock(Blocks.stone_slab);
-//    }
+    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    {
+        IBlockState iblockstate = super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(HALF, BlockSlab.EnumBlockHalf.BOTTOM);
+
+        if(!isDouble())
+        {
+            if((facing == EnumFacing.UP || (double)hitY <= 0.5D) && facing != EnumFacing.DOWN)
+            {
+                return iblockstate;
+            }
+            else
+            {
+                return iblockstate.withProperty(HALF, BlockSlab.EnumBlockHalf.TOP);
+            }
+        }
+
+        return iblockstate;
+    }
 
     @Override
     public String getUnlocalizedName(int meta)
@@ -73,7 +80,7 @@ public abstract class BlockJCSlab extends BlockSlab
 
         if (!this.isDouble())
         {
-            state = state.withProperty(HALF, (meta & 8) == 0 ? BlockSlab.EnumBlockHalf.BOTTOM : BlockSlab.EnumBlockHalf.TOP);
+            state = state.withProperty(HALF, meta == 0 ? BlockSlab.EnumBlockHalf.BOTTOM : BlockSlab.EnumBlockHalf.TOP);
         }
 
         return state;
@@ -84,14 +91,7 @@ public abstract class BlockJCSlab extends BlockSlab
      */
     public int getMetaFromState(IBlockState state)
     {
-        int i = 0;
-
-        if (!this.isDouble())
-        {
-            i |= 8;
-        }
-
-        return i;
+        return state.getValue(HALF) == BlockSlab.EnumBlockHalf.BOTTOM ? 0 : 1;
     }
 
     protected BlockState createBlockState()
