@@ -7,7 +7,6 @@ import net.timeless.jurassicraft.common.period.EnumTimePeriod;
 
 public class DinosaurMegapiranha extends Dinosaur
 {
-
     private String[] maleTextures;
     private String[] femaleTextures;
 
@@ -32,19 +31,19 @@ public class DinosaurMegapiranha extends Dinosaur
     @Override
     public EnumTimePeriod getPeriod()
     {
-        return EnumTimePeriod.CRETACEOUS;
+        return EnumTimePeriod.CRETACEOUS; //TODO LATE MIOCENE
     }
 
     @Override
     public int getEggPrimaryColor()
     {
-        return 0x187D75;
+        return 0x17100B;
     }
 
     @Override
     public int getEggSecondaryColor()
     {
-        return 0x15544F;
+        return 0x645C54;
     }
 
     @Override
