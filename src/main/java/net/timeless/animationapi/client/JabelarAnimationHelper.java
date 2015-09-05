@@ -19,113 +19,99 @@ public class JabelarAnimationHelper
     protected String[] partNameArray;
     protected int[][][] arrayOfSequences;
     
-    protected ModelDinosaur modelTarget;
-
-    protected ModelDinosaur[] modelArray; 
-
-    protected MowzieModelRenderer[][] modelRendererArray;
+    protected MowzieModelRenderer[][] posesArray;
     protected MowzieModelRenderer[] passedInModelRendererArray;
-    protected MowzieModelRenderer[] targetPose;
+    protected MowzieModelRenderer[] nextPose;
 
-    public float[][] rotationArray ;
-    public float[][] positionArray ;
-    public float[][] offsetArray ;
+    public float[][] currentRotationArray ;
+    public float[][] currentPositionArray ;
+    public float[][] currentOffsetArray ;
 
     protected int numParts;
-    protected int currentSequence; // which sequence
-    protected int currentPose;
+    protected int currentSequence; 
     public int numPosesInSequence;
-    public int targetModelIndex; 
+    protected boolean randomSequence = false;
+    protected int currentPose;
     public int numTicksInTween;
     public int currentTickInTween;
     public boolean finishedPose = false;
-    protected boolean randomSequence = false;
-    
+        
     public JabelarAnimationHelper(ModelDinosaur parModel, String[] parAssetPathArray, String[] parPartNameArray, int[][][] parArrayOfSequences, boolean parRandomInitialSequence, boolean parRandomSequence)
     {
-        // transfer static animation info to instance
+        // transfer static animation info from constructor parameters to instance
         modelAssetPathArray = parAssetPathArray;
         partNameArray = parPartNameArray;
         arrayOfSequences = parArrayOfSequences;
         randomSequence = parRandomSequence;
-
-        modelTarget = getTabulaModel(modelAssetPathArray[0], 0);
         
         numParts = parPartNameArray.length;
-        currentSequence = 0;
-        setNumPosesInSequence(arrayOfSequences[currentSequence].length);
-        
-        passedInModelRendererArray = new MowzieModelRenderer[numParts];
-        convertPassedInModelToModelRendererArray(parModel);
 
-        // initialize custom models array
-        modelArray = new ModelDinosaur[modelAssetPathArray.length];
-        for (int i = 0; i < modelAssetPathArray.length; i++)
+        // initialize custom poseArray (first index is model, second is part within model)
+        posesArray = new MowzieModelRenderer[modelAssetPathArray.length][numParts];
+        for (int modelIndex = 0; modelIndex < modelAssetPathArray.length; modelIndex++)
         {
-            modelArray[i] = getTabulaModel(modelAssetPathArray[i], 0);
-        }
-
-        // initialize custom model renderer arrays (first index is model, second is part within model)
-        modelRendererArray = new MowzieModelRenderer[modelAssetPathArray.length][numParts];
-        for (int i = 0; i < modelAssetPathArray.length; i++)
-        {
-            // DEBUG
-            if (partNameArray == null) System.out.println("Part name array is null");
-            if (modelRendererArray[i] == null) System.out.println("model renderer array element i is null");
-            if (modelRendererArray == null) System.out.println("model renderer array is null");
-            modelRendererArray[i] = new MowzieModelRenderer[numParts];
-            // fill in the model renderer arrays
-            for (int j = 0; j < numParts; j++) 
+            posesArray[modelIndex] = new MowzieModelRenderer[numParts];
+            for (int partIndex = 0; partIndex < numParts; partIndex++) 
             {
-                // fill in custom pose arrays
-                modelRendererArray[i][j] = modelArray[i].getCube(partNameArray[j]);
+                // DEBUG
+                System.out.println("attempting to load part "+partIndex+" from pose "+modelIndex);
+                posesArray[modelIndex][partIndex] = getTabulaModel(modelAssetPathArray[modelIndex], 0).getCube(partNameArray[partIndex]);
             }
         }
         
-        rotationArray = new float[numParts][3];
-        positionArray = new float[numParts][3];
-        offsetArray = new float[numParts][3];
-        for (int i = 0; i < numParts; i++)
-        {
-        	for (int j = 0; j < 3; j++)
-        	{
-        		rotationArray[i][j] = 0.0F;
-        		positionArray[i][j] = 0.0F;
-        		offsetArray[i][j] = 0.0F;
-        	}
-        }
-        copyModelRendererArrayToCurrent(passedInModelRendererArray);
- 
+        // initialize sequence index
         if (parRandomInitialSequence)
         {
             setRandomSequence();
         }
         else
         {
-            currentPose = 0;
+            currentSequence = 0;
         }
-        targetModelIndex = arrayOfSequences[currentSequence][currentPose][0]; 
         numPosesInSequence = arrayOfSequences[currentSequence].length;
+
+        // initialize next pose
+        nextPose = posesArray[arrayOfSequences[currentSequence][currentPose][0]];
+        
+        // initialize tween index
         numTicksInTween = arrayOfSequences[currentSequence][currentPose][1];
         currentTickInTween = 0;
         finishedPose = false;
 
-        targetPose = modelRendererArray[targetModelIndex];
+        // copy passed in model into a model renderer array
+        // NOTE: this is the array you will actually animate
+        passedInModelRendererArray = convertPassedInModelToModelRendererArray(parModel);
+
+        // initialize arrays that are used to remember the current actual positions
+        currentRotationArray = new float[numParts][3];
+        currentPositionArray = new float[numParts][3];
+        currentOffsetArray = new float[numParts][3];
+        for (int partIndex = 0; partIndex < numParts; partIndex++)
+        {
+        	for (int axis = 0; axis < 3; axis++) // X, Y, and Z
+        	{
+        		currentRotationArray[partIndex][axis] = 0.0F;
+        		currentPositionArray[partIndex][axis] = 0.0F;
+        		currentOffsetArray[partIndex][axis] = 0.0F;
+        	}
+        }
+        copyModelRendererArrayToCurrent(passedInModelRendererArray);
+
     }
     
     public void copyModelRendererArrayToCurrent(MowzieModelRenderer[] parModelRendererArray)
     {
         for (int i = 0; i < numParts; i++)
         {
-            rotationArray[i][0] = parModelRendererArray[i].rotateAngleX;
-            rotationArray[i][1] = parModelRendererArray[i].rotateAngleY;
-            rotationArray[i][2] = parModelRendererArray[i].rotateAngleZ;
-            positionArray[i][0] = parModelRendererArray[i].rotationPointX;
-            positionArray[i][1] = parModelRendererArray[i].rotationPointY;
-            positionArray[i][2] = parModelRendererArray[i].rotationPointZ;
-            offsetArray[i][0] = parModelRendererArray[i].offsetX;
-            offsetArray[i][1] = parModelRendererArray[i].offsetY;
-            offsetArray[i][2] = parModelRendererArray[i].offsetZ;
+            currentRotationArray[i][0] = parModelRendererArray[i].rotateAngleX;
+            currentRotationArray[i][1] = parModelRendererArray[i].rotateAngleY;
+            currentRotationArray[i][2] = parModelRendererArray[i].rotateAngleZ;
+            currentPositionArray[i][0] = parModelRendererArray[i].rotationPointX;
+            currentPositionArray[i][1] = parModelRendererArray[i].rotationPointY;
+            currentPositionArray[i][2] = parModelRendererArray[i].rotationPointZ;
+            currentOffsetArray[i][0] = parModelRendererArray[i].offsetX;
+            currentOffsetArray[i][1] = parModelRendererArray[i].offsetY;
+            currentOffsetArray[i][2] = parModelRendererArray[i].offsetZ;
         }           
     }
     
@@ -138,18 +124,20 @@ public class JabelarAnimationHelper
         performNextTweenTick(parEntity, passedInModelRendererArray, true);
     }
     
-    protected void convertPassedInModelToModelRendererArray(ModelDinosaur parModel)
+    protected MowzieModelRenderer[] convertPassedInModelToModelRendererArray(ModelDinosaur parModel)
     {
+        MowzieModelRenderer[] modelRendererArray = new MowzieModelRenderer[numParts];
         for (int i = 0; i < numParts; i++) 
         {
-            passedInModelRendererArray[i] = parModel.getCube(partNameArray[i]); 
+            modelRendererArray[i] = parModel.getCube(partNameArray[i]); 
 
             // DEBUG
-            if (passedInModelRendererArray[i] == null) 
+            if (modelRendererArray[i] == null) 
             {
                 System.out.println(partNameArray[i]+" parsed as null");
             }
         }
+        return modelRendererArray;
     }
     
     protected void initIfNeeded(EntityDinosaur parEntity, MowzieModelRenderer[] passedInModelRendererArray)
@@ -164,12 +152,9 @@ public class JabelarAnimationHelper
 	    }
     }
 
-
     protected void setNextPose(EntityDinosaur parEntity)
     {              
-        targetModelIndex = 
-        		arrayOfSequences[currentSequence][getCurrentPose()][0];
-        targetPose = modelRendererArray[targetModelIndex];
+        nextPose = posesArray[arrayOfSequences[currentSequence][getCurrentPose()][0]];
         numTicksInTween = arrayOfSequences[currentSequence][getCurrentPose()][1];
         currentTickInTween = 0;
 //        // DEBUG
@@ -214,16 +199,16 @@ public class JabelarAnimationHelper
     protected void nextTweenRotations(EntityDinosaur parEntity, MowzieModelRenderer[] parPassedInModelRendererArray, int parPartIndex)
     {  
         parPassedInModelRendererArray[parPartIndex].rotateAngleX =
-                rotationArray[parPartIndex][0] + 
-                (targetPose[parPartIndex].rotateAngleX - rotationArray[parPartIndex][0])
+                currentRotationArray[parPartIndex][0] + 
+                (nextPose[parPartIndex].rotateAngleX - currentRotationArray[parPartIndex][0])
                 / (numTicksInTween - currentTickInTween);
         parPassedInModelRendererArray[parPartIndex].rotateAngleY =
-                rotationArray[parPartIndex][1] + 
-                (targetPose[parPartIndex].rotateAngleY - rotationArray[parPartIndex][1])
+                currentRotationArray[parPartIndex][1] + 
+                (nextPose[parPartIndex].rotateAngleY - currentRotationArray[parPartIndex][1])
                 / (numTicksInTween - currentTickInTween);
         parPassedInModelRendererArray[parPartIndex].rotateAngleZ =
-                rotationArray[parPartIndex][2] + 
-                (targetPose[parPartIndex].rotateAngleZ - rotationArray[parPartIndex][2])
+                currentRotationArray[parPartIndex][2] + 
+                (nextPose[parPartIndex].rotateAngleZ - currentRotationArray[parPartIndex][2])
                 / (numTicksInTween - currentTickInTween);
     }
 
@@ -233,16 +218,16 @@ public class JabelarAnimationHelper
     protected void nextTweenPositions(EntityDinosaur parEntity, MowzieModelRenderer[] parPassedInModelRendererArray, int parPartIndex)
     {
         parPassedInModelRendererArray[parPartIndex].rotationPointX =
-                positionArray[parPartIndex][0] + 
-                (targetPose[parPartIndex].rotationPointX - positionArray[parPartIndex][0])
+                currentPositionArray[parPartIndex][0] + 
+                (nextPose[parPartIndex].rotationPointX - currentPositionArray[parPartIndex][0])
                 / (numTicksInTween - currentTickInTween);
         parPassedInModelRendererArray[parPartIndex].rotationPointY =
-                positionArray[parPartIndex][1] + 
-                (targetPose[parPartIndex].rotationPointY - positionArray[parPartIndex][1])
+                currentPositionArray[parPartIndex][1] + 
+                (nextPose[parPartIndex].rotationPointY - currentPositionArray[parPartIndex][1])
                 / (numTicksInTween - currentTickInTween);
         parPassedInModelRendererArray[parPartIndex].rotationPointZ = 
-                positionArray[parPartIndex][2] + 
-                (targetPose[parPartIndex].rotationPointZ - positionArray[parPartIndex][2])
+                currentPositionArray[parPartIndex][2] + 
+                (nextPose[parPartIndex].rotationPointZ - currentPositionArray[parPartIndex][2])
                 / (numTicksInTween - currentTickInTween);
     }
 
@@ -252,16 +237,16 @@ public class JabelarAnimationHelper
     protected void nextTweenOffsets(EntityDinosaur parEntity, MowzieModelRenderer[] parPassedInModelRendererArray, int partPartIndex)
     {
         parPassedInModelRendererArray[partPartIndex].offsetX =
-                offsetArray[partPartIndex][0] + 
-                (targetPose[partPartIndex].offsetX - offsetArray[partPartIndex][0])
+                currentOffsetArray[partPartIndex][0] + 
+                (nextPose[partPartIndex].offsetX - currentOffsetArray[partPartIndex][0])
                 / (numTicksInTween - currentTickInTween);
         parPassedInModelRendererArray[partPartIndex].offsetY =
-                offsetArray[partPartIndex][1] + 
-                (targetPose[partPartIndex].offsetY - offsetArray[partPartIndex][1])
+                currentOffsetArray[partPartIndex][1] + 
+                (nextPose[partPartIndex].offsetY - currentOffsetArray[partPartIndex][1])
                 / (numTicksInTween - currentTickInTween);
         parPassedInModelRendererArray[partPartIndex].offsetZ =
-                offsetArray[partPartIndex][2] + 
-                (targetPose[partPartIndex].offsetZ - offsetArray[partPartIndex][2])
+                currentOffsetArray[partPartIndex][2] + 
+                (nextPose[partPartIndex].offsetZ - currentOffsetArray[partPartIndex][2])
                 / (numTicksInTween - currentTickInTween);
     }
     /*
@@ -280,16 +265,16 @@ public class JabelarAnimationHelper
         }
     
         parPassedInModelRendererArray[parPartIndex].rotateAngleX =
-                rotationArray[parPartIndex][0] + inertialFactor *
-                (targetPose[parPartIndex].rotateAngleX - rotationArray[parPartIndex][0])
+                currentRotationArray[parPartIndex][0] + inertialFactor *
+                (nextPose[parPartIndex].rotateAngleX - currentRotationArray[parPartIndex][0])
                 / (numTicksInTween - currentTickInTween);
         parPassedInModelRendererArray[parPartIndex].rotateAngleY =
-                rotationArray[parPartIndex][1] + inertialFactor *
-                (targetPose[parPartIndex].rotateAngleY - rotationArray[parPartIndex][1])
+                currentRotationArray[parPartIndex][1] + inertialFactor *
+                (nextPose[parPartIndex].rotateAngleY - currentRotationArray[parPartIndex][1])
                 / (numTicksInTween - currentTickInTween);
         parPassedInModelRendererArray[parPartIndex].rotateAngleZ =
-                rotationArray[parPartIndex][2] + inertialFactor *
-                (targetPose[parPartIndex].rotateAngleZ - rotationArray[parPartIndex][2])
+                currentRotationArray[parPartIndex][2] + inertialFactor *
+                (nextPose[parPartIndex].rotateAngleZ - currentRotationArray[parPartIndex][2])
                 / (numTicksInTween - currentTickInTween);
     }
 
@@ -310,16 +295,16 @@ public class JabelarAnimationHelper
         }
         
         parPassedInModelRendererArray[parPartIndex].rotationPointX =
-                positionArray[parPartIndex][0] + inertialFactor *
-                (targetPose[parPartIndex].rotationPointX - positionArray[parPartIndex][0])
+                currentPositionArray[parPartIndex][0] + inertialFactor *
+                (nextPose[parPartIndex].rotationPointX - currentPositionArray[parPartIndex][0])
                 / (numTicksInTween - currentTickInTween);
         parPassedInModelRendererArray[parPartIndex].rotationPointY =
-                positionArray[parPartIndex][1] + inertialFactor *
-                (targetPose[parPartIndex].rotationPointY - positionArray[parPartIndex][1])
+                currentPositionArray[parPartIndex][1] + inertialFactor *
+                (nextPose[parPartIndex].rotationPointY - currentPositionArray[parPartIndex][1])
                 / (numTicksInTween - currentTickInTween);
         parPassedInModelRendererArray[parPartIndex].rotationPointZ = 
-                positionArray[parPartIndex][2] + inertialFactor *
-                (targetPose[parPartIndex].rotationPointZ - positionArray[parPartIndex][2])
+                currentPositionArray[parPartIndex][2] + inertialFactor *
+                (nextPose[parPartIndex].rotationPointZ - currentPositionArray[parPartIndex][2])
                 / (numTicksInTween - currentTickInTween);
     }
 
@@ -340,16 +325,16 @@ public class JabelarAnimationHelper
         }
 
         parPassedInModelRendererArray[partPartIndex].offsetX =
-                offsetArray[partPartIndex][0] + inertialFactor *
-                (targetPose[partPartIndex].offsetX - offsetArray[partPartIndex][0])
+                currentOffsetArray[partPartIndex][0] + inertialFactor *
+                (nextPose[partPartIndex].offsetX - currentOffsetArray[partPartIndex][0])
                 / (numTicksInTween - currentTickInTween);
         parPassedInModelRendererArray[partPartIndex].offsetY =
-                offsetArray[partPartIndex][1] + inertialFactor *
-                (targetPose[partPartIndex].offsetY - offsetArray[partPartIndex][1])
+                currentOffsetArray[partPartIndex][1] + inertialFactor *
+                (nextPose[partPartIndex].offsetY - currentOffsetArray[partPartIndex][1])
                 / (numTicksInTween - currentTickInTween);
         parPassedInModelRendererArray[partPartIndex].offsetZ =
-                offsetArray[partPartIndex][2] + inertialFactor *
-                (targetPose[partPartIndex].offsetZ - offsetArray[partPartIndex][2])
+                currentOffsetArray[partPartIndex][2] + inertialFactor *
+                (nextPose[partPartIndex].offsetZ - currentOffsetArray[partPartIndex][2])
                 / (numTicksInTween - currentTickInTween);
     }
     
@@ -399,6 +384,8 @@ public class JabelarAnimationHelper
 
     protected void setNextSequence()
     {
+        // DEBUG
+        System.out.println("arrayOfSequences.length = "+arrayOfSequences.length);
     	if (randomSequence)
     	{
     		currentSequence = ((int) Math.floor(Math.random() * arrayOfSequences.length));
@@ -412,6 +399,8 @@ public class JabelarAnimationHelper
 	    		currentSequence = 0;
 	    	}
     	}
+    	
+    	numPosesInSequence = arrayOfSequences[currentSequence].length;
     	
     	// DEBUG
     	System.out.println("Next sequence = "+currentSequence);
@@ -466,15 +455,11 @@ public class JabelarAnimationHelper
         return theIndex;
     }
 
-    /*
-     * Chainable methods
-     */
-    public JabelarAnimationHelper setNumPosesInSequence(int parNumPosesInSequence)
+    public void setNumPosesInSequence(int parNumPosesInSequence)
     {
         // DEBUG
-        System.out.println("Setting number of sequence steps to "+parNumPosesInSequence);
+        System.out.println("Setting number of poses in sequence "+parNumPosesInSequence);
         numPosesInSequence = parNumPosesInSequence;
-        return this;
     }
     
     public void setRandomSequence()

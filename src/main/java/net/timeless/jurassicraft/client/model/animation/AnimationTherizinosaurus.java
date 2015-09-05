@@ -27,16 +27,11 @@ public class AnimationTherizinosaurus implements IModelAnimator
     // Tell the code where your tabula model assets are
     // the first one must be your "default" pose (i.e one that is used at spawn time)
     protected static final String[] modelAssetPathArray = new String[] {
-            "/assets/jurassicraft/models/entities/therizinosaurus",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_pose1",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_pose2",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_pose3",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_pose4",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_pose5",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_pose6",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_pose7",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_pose8",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_pose9"
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_default",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_look_left",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_look_right",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_rearing",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_flap",
     };
 
     // Tell the code the names of all your tabula model parts
@@ -70,44 +65,33 @@ public class AnimationTherizinosaurus implements IModelAnimator
      * modelAssetPaths array above),
      * Second element is the number of ticks it should take to tween to that pose
      */
-    protected static int[][] animationSequenceArray = new int[][] {
-        {0, 500}, {1, 100}, {1, 80}, {0, 100}, // look left
-        {0, 200}, {4, 100}, {4, 40}, {0, 100}, // look right
-        {0, 500}, {2, 100}, {2, 20}, {0, 50}, // head bob
-        {0, 580}, {9, 40}, {0, 20}, {9, 20}, {0, 20}, {9, 20}, {0, 20}, // flapping "dance"
-        {9, 20}, {0, 20}, {9, 20}, {0, 20}, {9, 20}, {0, 20}, {9, 20}, {0, 20}, 
-        {9, 20}, {0, 20}, {9, 20}, {0, 20}, {9, 20}, {0, 20}, {9, 20}, {0, 100},    
-        {0, 500}, {2, 100}, {2, 20}, {0, 50}, // head bob
-    };
-
     protected static int[][] sequenceLookLeft = new int[][] {
         {0, 500}, {1, 100}, {1, 80}, {0, 100}
     };
     
     protected static int[][] sequenceLookRight = new int[][] {
-        {0, 200}, {4, 100}, {4, 40}, {0, 100}
+        {0, 200}, {2, 100}, {2, 80}, {0, 100}
     };
-
-    protected static int[][] sequenceHeadBob = new int[][] {
-        {0, 500}, {2, 100}, {2, 20}, {0, 50}
+    
+    protected static int[][] sequenceRearing = new int[][] {
+        {0, 200}, {3, 100}, {3, 80}, {0, 100}
     };
     
     protected static int[][] sequenceFlapping = new int[][] {
-        {0, 580}, {9, 40}, {0, 20}, {9, 20}, {0, 20}, {9, 20}, {0, 20},
-        {9, 20}, {0, 20}, {9, 20}, {0, 20}, {9, 20}, {0, 20}, {9, 20}, {0, 20}, 
-        {9, 20}, {0, 20}, {9, 20}, {0, 20}, {9, 20}, {0, 20}, {9, 20}, {0, 100}
+        {0, 200}, {4, 40}, {3, 20}, {4, 20}, {3, 20}, {3, 20}, {3, 20},
+        {4, 20}, {3, 20}, {4, 20}, {3, 20}, {4, 20}, {3, 20}, {4, 20}, {3, 20}, 
+        {4, 20}, {3, 20}, {4, 20}, {3, 20}, {4, 20}, {3, 20}, {4, 20}, {0, 100}
     };
 
     protected static int[][][] arrayOfSequences = new int[][][] {
     	sequenceLookLeft,
     	sequenceLookRight,
-    	sequenceHeadBob,
-    	sequenceFlapping,
-    	sequenceHeadBob
+    	sequenceRearing,
+    	sequenceFlapping
     };
 
     // maps each entity with its current animation 
-    protected HashMap<Integer, JabelarAnimationHelper> currentAnimation = new HashMap<Integer, JabelarAnimationHelper>();
+    protected HashMap<Integer, JabelarAnimationHelper> animationInstanceToEntityMap = new HashMap<Integer, JabelarAnimationHelper>();
 
     // need boolean to indicate first tick run because need to copy between static and instance fields
     protected boolean isFirstTick = true;
@@ -127,7 +111,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
     {
         updateCurrentAnimationIfNewEntity(parModel, parEntity);
 
-        currentAnimation.get(parEntity.getEntityId()).performJabelarAnimations(parModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, parEntity);
+        animationInstanceToEntityMap.get(parEntity.getEntityId()).performJabelarAnimations(parModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, parEntity);
 
         // you can still add chain, walk, bob, etc.
         performMowzieAnimations(parModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, parEntity);
@@ -136,11 +120,11 @@ public class AnimationTherizinosaurus implements IModelAnimator
     protected void updateCurrentAnimationIfNewEntity(ModelDinosaur parModel, EntityDinosaur parEntity)
     {
         // add entry to hashmap if new entity
-        if (!currentAnimation.containsKey(parEntity.getEntityId()))
+        if (!animationInstanceToEntityMap.containsKey(parEntity.getEntityId()))
         {
             // DEBUG
             System.out.println("Adding entity to hashmap with id = "+parEntity.getEntityId());
-            currentAnimation.put(parEntity.getEntityId(), (new JabelarAnimationHelper(parModel, modelAssetPathArray, partNameArray, arrayOfSequences, true, true)));
+            animationInstanceToEntityMap.put(parEntity.getEntityId(), (new JabelarAnimationHelper(parModel, modelAssetPathArray, partNameArray, arrayOfSequences, true, true)));
         }
     }
     
