@@ -17,7 +17,7 @@ public class JabelarAnimationHelper
 {
     protected String[] modelAssetPathArray;
     protected String[] partNameArray;
-    protected int[][] animationSequenceArray;
+    protected int[][][] arrayOfSequences;
     
     protected ModelDinosaur modelTarget;
 
@@ -32,27 +32,28 @@ public class JabelarAnimationHelper
     public float[][] offsetArray ;
 
     protected int numParts;
-    protected int currentSequenceStep;
-    protected int currentSequenceStepModifier; // this is used to desync entities of same type
-    public int numSequenceSteps;
+    protected int currentSequence; // which sequence
+    protected int currentPose;
+    public int numPosesInSequence;
     public int targetModelIndex; 
-    public int stepsInTween;
-    public int currentTweenStep;
-    public boolean finishedTween = false;
+    public int numTicksInTween;
+    public int currentTickInTween;
+    public boolean finishedPose = false;
     protected boolean randomSequence = false;
     
-    public JabelarAnimationHelper(ModelDinosaur parModel, String[] parAssetPathArray, String[] parPartNameArray, int[][] parAnimSequenceArray, boolean parRandomInitialSequence, boolean parRandomSequence)
+    public JabelarAnimationHelper(ModelDinosaur parModel, String[] parAssetPathArray, String[] parPartNameArray, int[][][] parArrayOfSequences, boolean parRandomInitialSequence, boolean parRandomSequence)
     {
         // transfer static animation info to instance
         modelAssetPathArray = parAssetPathArray;
         partNameArray = parPartNameArray;
-        animationSequenceArray = parAnimSequenceArray;
+        arrayOfSequences = parArrayOfSequences;
         randomSequence = parRandomSequence;
 
         modelTarget = getTabulaModel(modelAssetPathArray[0], 0);
         
         numParts = parPartNameArray.length;
-        setNumSequenceSteps(animationSequenceArray.length);
+        currentSequence = 0;
+        setNumPosesInSequence(arrayOfSequences[currentSequence].length);
         
         passedInModelRendererArray = new MowzieModelRenderer[numParts];
         convertPassedInModelToModelRendererArray(parModel);
@@ -97,17 +98,17 @@ public class JabelarAnimationHelper
  
         if (parRandomInitialSequence)
         {
-            setRandomSequenceStep();
+            setRandomSequence();
         }
         else
         {
-            currentSequenceStep = 0;
+            currentPose = 0;
         }
-        targetModelIndex = animationSequenceArray[currentSequenceStep][0]; 
-        numSequenceSteps = animationSequenceArray.length;
-        stepsInTween = animationSequenceArray[currentSequenceStep][1];
-        currentTweenStep = 0;
-        finishedTween = false;
+        targetModelIndex = arrayOfSequences[currentSequence][currentPose][0]; 
+        numPosesInSequence = arrayOfSequences[currentSequence].length;
+        numTicksInTween = arrayOfSequences[currentSequence][currentPose][1];
+        currentTickInTween = 0;
+        finishedPose = false;
 
         targetPose = modelRendererArray[targetModelIndex];
     }
@@ -132,22 +133,9 @@ public class JabelarAnimationHelper
     {
         convertPassedInModelToModelRendererArray(parModel);
         
-        // initialize current pose arrays if first tick
-        if (parEntity.ticksExisted <= 10)
-        {
-        	// DEBUG
-        	System.out.println("Initializing current model array for new enitity with passed in value like "+passedInModelRendererArray[0].rotateAngleX);
-            copyModelRendererArrayToCurrent(passedInModelRendererArray);
-            setNextTween(parEntity);
-        }
+        initIfNeeded(parEntity, passedInModelRendererArray);
         
-        performNextTweenStep(parEntity, passedInModelRendererArray, true);
-        
-        // check for end of animation and set next target in sequence
-        if (finishedTween) 
-        {
-            handleFinishedTween(parEntity);
-        }
+        performNextTweenTick(parEntity, passedInModelRendererArray, true);
     }
     
     protected void convertPassedInModelToModelRendererArray(ModelDinosaur parModel)
@@ -163,19 +151,32 @@ public class JabelarAnimationHelper
             }
         }
     }
+    
+    protected void initIfNeeded(EntityDinosaur parEntity, MowzieModelRenderer[] passedInModelRendererArray)
+    {
+	    // initialize current pose arrays if first tick
+	    if (parEntity.ticksExisted <= 10)
+	    {
+	    	// DEBUG
+	    	System.out.println("Initializing current model array for new enitity with passed in value like "+passedInModelRendererArray[0].rotateAngleX);
+	        copyModelRendererArrayToCurrent(passedInModelRendererArray);
+	        setNextPose(parEntity);
+	    }
+    }
 
-    protected void setNextTween(EntityDinosaur parEntity)
+
+    protected void setNextPose(EntityDinosaur parEntity)
     {              
         targetModelIndex = 
-                animationSequenceArray[getSequenceStep()][0];
+        		arrayOfSequences[currentSequence][getCurrentPose()][0];
         targetPose = modelRendererArray[targetModelIndex];
-        stepsInTween = animationSequenceArray[getSequenceStep()][1];
-        currentTweenStep = 0;
+        numTicksInTween = arrayOfSequences[currentSequence][getCurrentPose()][1];
+        currentTickInTween = 0;
 //        // DEBUG
 //        System.out.println("set next tween for entity id = "+parEntity.getEntityId()+" steps in tween = "+currentAnimation.get(parEntity.getEntityId()).stepsInTween);
     }
    
-    protected void performNextTweenStep(EntityDinosaur parEntity, MowzieModelRenderer[] parPassedInModelRendererArray, boolean parInertial)
+    protected void performNextTweenTick(EntityDinosaur parEntity, MowzieModelRenderer[] parPassedInModelRendererArray, boolean parInertial)
     {
         // tween the passed in model towards target pose
         for (int i = 0; i < numParts; i++)
@@ -197,32 +198,33 @@ public class JabelarAnimationHelper
         // update current position tracking arrays
         copyModelRendererArrayToCurrent(parPassedInModelRendererArray);
         
-        incrementTweenStep();        
+        incrementTweenTick(); 
+               
+        // check for end of animation and set next pose in sequence
+        if (finishedPose) 
+        {
+            handleFinishedPose(parEntity);
+        }
+
     }
 
     /*
      * Linear tween of the rotateAngles between current angles and target angles
      */
     protected void nextTweenRotations(EntityDinosaur parEntity, MowzieModelRenderer[] parPassedInModelRendererArray, int parPartIndex)
-    {
-//        // DEBUG
-//    	if (parPartIndex == partIndexFromName("Neck 4"))
-//    	{
-//    		System.out.println("For entity ID = "+parEntity.getEntityId()+" current rotation = "+rotationArray[parPartIndex][0]);
-//    	}
-    
+    {  
         parPassedInModelRendererArray[parPartIndex].rotateAngleX =
                 rotationArray[parPartIndex][0] + 
                 (targetPose[parPartIndex].rotateAngleX - rotationArray[parPartIndex][0])
-                / (stepsInTween - currentTweenStep);
+                / (numTicksInTween - currentTickInTween);
         parPassedInModelRendererArray[parPartIndex].rotateAngleY =
                 rotationArray[parPartIndex][1] + 
                 (targetPose[parPartIndex].rotateAngleY - rotationArray[parPartIndex][1])
-                / (stepsInTween - currentTweenStep);
+                / (numTicksInTween - currentTickInTween);
         parPassedInModelRendererArray[parPartIndex].rotateAngleZ =
                 rotationArray[parPartIndex][2] + 
                 (targetPose[parPartIndex].rotateAngleZ - rotationArray[parPartIndex][2])
-                / (stepsInTween - currentTweenStep);
+                / (numTicksInTween - currentTickInTween);
     }
 
     /*
@@ -233,15 +235,15 @@ public class JabelarAnimationHelper
         parPassedInModelRendererArray[parPartIndex].rotationPointX =
                 positionArray[parPartIndex][0] + 
                 (targetPose[parPartIndex].rotationPointX - positionArray[parPartIndex][0])
-                / (stepsInTween - currentTweenStep);
+                / (numTicksInTween - currentTickInTween);
         parPassedInModelRendererArray[parPartIndex].rotationPointY =
                 positionArray[parPartIndex][1] + 
                 (targetPose[parPartIndex].rotationPointY - positionArray[parPartIndex][1])
-                / (stepsInTween - currentTweenStep);
+                / (numTicksInTween - currentTickInTween);
         parPassedInModelRendererArray[parPartIndex].rotationPointZ = 
                 positionArray[parPartIndex][2] + 
                 (targetPose[parPartIndex].rotationPointZ - positionArray[parPartIndex][2])
-                / (stepsInTween - currentTweenStep);
+                / (numTicksInTween - currentTickInTween);
     }
 
     /*
@@ -252,29 +254,23 @@ public class JabelarAnimationHelper
         parPassedInModelRendererArray[partPartIndex].offsetX =
                 offsetArray[partPartIndex][0] + 
                 (targetPose[partPartIndex].offsetX - offsetArray[partPartIndex][0])
-                / (stepsInTween - currentTweenStep);
+                / (numTicksInTween - currentTickInTween);
         parPassedInModelRendererArray[partPartIndex].offsetY =
                 offsetArray[partPartIndex][1] + 
                 (targetPose[partPartIndex].offsetY - offsetArray[partPartIndex][1])
-                / (stepsInTween - currentTweenStep);
+                / (numTicksInTween - currentTickInTween);
         parPassedInModelRendererArray[partPartIndex].offsetZ =
                 offsetArray[partPartIndex][2] + 
                 (targetPose[partPartIndex].offsetZ - offsetArray[partPartIndex][2])
-                / (stepsInTween - currentTweenStep);
+                / (numTicksInTween - currentTickInTween);
     }
     /*
      * Inertial tween of the rotateAngles between current angles and target angles
      */
     protected void nextInertialTweenRotations(EntityDinosaur parEntity, MowzieModelRenderer[] parPassedInModelRendererArray, int parPartIndex)
-    {
-//        // DEBUG
-//      if (parPartIndex == partIndexFromName("Neck 4"))
-//      {
-//          System.out.println("For entity ID = "+parEntity.getEntityId()+" current rotation = "+rotationArray[parPartIndex][0]);
-//      }
-        
+    {      
         float inertialFactor = 1.0F;
-        if ((currentTweenStep < (stepsInTween * 0.25F)) && (currentTweenStep >= (stepsInTween - stepsInTween * 0.25F)))
+        if ((currentTickInTween < (numTicksInTween * 0.25F)) && (currentTickInTween >= (numTicksInTween - numTicksInTween * 0.25F)))
         {
             inertialFactor = 0.5F;
         }
@@ -286,15 +282,15 @@ public class JabelarAnimationHelper
         parPassedInModelRendererArray[parPartIndex].rotateAngleX =
                 rotationArray[parPartIndex][0] + inertialFactor *
                 (targetPose[parPartIndex].rotateAngleX - rotationArray[parPartIndex][0])
-                / (stepsInTween - currentTweenStep);
+                / (numTicksInTween - currentTickInTween);
         parPassedInModelRendererArray[parPartIndex].rotateAngleY =
                 rotationArray[parPartIndex][1] + inertialFactor *
                 (targetPose[parPartIndex].rotateAngleY - rotationArray[parPartIndex][1])
-                / (stepsInTween - currentTweenStep);
+                / (numTicksInTween - currentTickInTween);
         parPassedInModelRendererArray[parPartIndex].rotateAngleZ =
                 rotationArray[parPartIndex][2] + inertialFactor *
                 (targetPose[parPartIndex].rotateAngleZ - rotationArray[parPartIndex][2])
-                / (stepsInTween - currentTweenStep);
+                / (numTicksInTween - currentTickInTween);
     }
 
     /*
@@ -304,7 +300,7 @@ public class JabelarAnimationHelper
     {
         
         float inertialFactor = 1.0F;
-        if ((currentTweenStep < (stepsInTween * 0.25F)) && (currentTweenStep >= (stepsInTween - stepsInTween * 0.25F)))
+        if ((currentTickInTween < (numTicksInTween * 0.25F)) && (currentTickInTween >= (numTicksInTween - numTicksInTween * 0.25F)))
         {
             inertialFactor = 0.5F;
         }
@@ -316,15 +312,15 @@ public class JabelarAnimationHelper
         parPassedInModelRendererArray[parPartIndex].rotationPointX =
                 positionArray[parPartIndex][0] + inertialFactor *
                 (targetPose[parPartIndex].rotationPointX - positionArray[parPartIndex][0])
-                / (stepsInTween - currentTweenStep);
+                / (numTicksInTween - currentTickInTween);
         parPassedInModelRendererArray[parPartIndex].rotationPointY =
                 positionArray[parPartIndex][1] + inertialFactor *
                 (targetPose[parPartIndex].rotationPointY - positionArray[parPartIndex][1])
-                / (stepsInTween - currentTweenStep);
+                / (numTicksInTween - currentTickInTween);
         parPassedInModelRendererArray[parPartIndex].rotationPointZ = 
                 positionArray[parPartIndex][2] + inertialFactor *
                 (targetPose[parPartIndex].rotationPointZ - positionArray[parPartIndex][2])
-                / (stepsInTween - currentTweenStep);
+                / (numTicksInTween - currentTickInTween);
     }
 
     /*
@@ -334,7 +330,7 @@ public class JabelarAnimationHelper
     {
         
         float inertialFactor = 1.0F;
-        if ((currentTweenStep < (stepsInTween * 0.25F)) && (currentTweenStep >= (stepsInTween - stepsInTween * 0.25F)))
+        if ((currentTickInTween < (numTicksInTween * 0.25F)) && (currentTickInTween >= (numTicksInTween - numTicksInTween * 0.25F)))
         {
             inertialFactor = 0.5F;
         }
@@ -346,28 +342,88 @@ public class JabelarAnimationHelper
         parPassedInModelRendererArray[partPartIndex].offsetX =
                 offsetArray[partPartIndex][0] + inertialFactor *
                 (targetPose[partPartIndex].offsetX - offsetArray[partPartIndex][0])
-                / (stepsInTween - currentTweenStep);
+                / (numTicksInTween - currentTickInTween);
         parPassedInModelRendererArray[partPartIndex].offsetY =
                 offsetArray[partPartIndex][1] + inertialFactor *
                 (targetPose[partPartIndex].offsetY - offsetArray[partPartIndex][1])
-                / (stepsInTween - currentTweenStep);
+                / (numTicksInTween - currentTickInTween);
         parPassedInModelRendererArray[partPartIndex].offsetZ =
                 offsetArray[partPartIndex][2] + inertialFactor *
                 (targetPose[partPartIndex].offsetZ - offsetArray[partPartIndex][2])
-                / (stepsInTween - currentTweenStep);
+                / (numTicksInTween - currentTickInTween);
     }
     
-    protected void handleFinishedTween(EntityDinosaur parEntity)
+    protected void handleFinishedPose(EntityDinosaur parEntity)
     {
-        incrementSequenceStep();
+        if(incrementCurrentPose()) // increments pose and returns true if finished sequence
+        {
+        	setNextSequence();
+        }
         
         // DEBUG
-        System.out.println("finished tween, next sequence step = "+currentSequenceStep);
+        System.out.println("finished tween, next pose = "+currentPose);
 
-        finishedTween = false;
-        setNextTween(parEntity);
+        finishedPose = false;
+        
+        setNextPose(parEntity);
+    }    
+    
+    // boolean returned indicates if tween was finished
+    public boolean incrementTweenTick()
+    {
+        currentTickInTween++;
+//      // DEBUG
+//      System.out.println("current tween step = "+currentTweenStep);
+        if (currentTickInTween >= numTicksInTween)
+        {
+            finishedPose = true;
+        }
+        return finishedPose;
+    }
+    
+    // boolean returned indicates if sequence was finished
+    public boolean incrementCurrentPose()
+    {       
+        // increment current sequence step
+        currentPose++;
+        // check if finished sequence
+        if (currentPose >= numPosesInSequence)
+        {
+            currentPose = 0;
+            return true;
+        }
+//        // DEBUG
+//        System.out.println("Next pose is sequence step = "+currentSequenceStep);
+        return false;
     }
 
+    protected void setNextSequence()
+    {
+    	if (randomSequence)
+    	{
+    		currentSequence = ((int) Math.floor(Math.random() * arrayOfSequences.length));
+    	}
+    	else
+    	{
+	    	currentSequence++;
+	    	
+	    	if (currentSequence >= arrayOfSequences.length)
+	    	{
+	    		currentSequence = 0;
+	    	}
+    	}
+    	
+    	// DEBUG
+    	System.out.println("Next sequence = "+currentSequence);
+    }
+    
+    // this getter method includes any sequence step modifier
+    public int getCurrentPose()
+    {
+        return currentPose;
+//        return (currentSequenceStep + currentSequenceStepModifier)%numStepsInSequence;
+    }
+    
     public static ModelDinosaur getTabulaModel(String tabulaModel, int geneticVariant) 
     {
         // catch the exception so you can call method with implicit superconstructor
@@ -413,52 +469,16 @@ public class JabelarAnimationHelper
     /*
      * Chainable methods
      */
-    public JabelarAnimationHelper setNumSequenceSteps(int parNumStepsInSequence)
+    public JabelarAnimationHelper setNumPosesInSequence(int parNumPosesInSequence)
     {
         // DEBUG
-        System.out.println("Setting number of sequence steps to "+parNumStepsInSequence);
-        numSequenceSteps = parNumStepsInSequence;
+        System.out.println("Setting number of sequence steps to "+parNumPosesInSequence);
+        numPosesInSequence = parNumPosesInSequence;
         return this;
     }
     
-    public void setRandomSequenceStep()
+    public void setRandomSequence()
     {
-        currentSequenceStep = ((int)Math.floor(Math.random()*numSequenceSteps));
-    }
-    
-    // boolean returned indicates if sequence was finished
-    public boolean incrementSequenceStep()
-    {       
-        // increment current sequence step
-        currentSequenceStep++;
-        // check if finished sequence
-        if (currentSequenceStep >= numSequenceSteps)
-        {
-            currentSequenceStep = 0;
-            return true;
-        }
-//        // DEBUG
-//        System.out.println("Next pose is sequence step = "+currentSequenceStep);
-        return false;
-    }
-    
-    // boolean returned indicates if tween was finished
-    public boolean incrementTweenStep()
-    {
-        currentTweenStep++;
-//      // DEBUG
-//      System.out.println("current tween step = "+currentTweenStep);
-        if (currentTweenStep >= stepsInTween)
-        {
-            finishedTween = true;
-        }
-        return finishedTween;
-    }
-    
-    // this getter method includes any sequence step modifier
-    public int getSequenceStep()
-    {
-        return currentSequenceStep;
-//        return (currentSequenceStep + currentSequenceStepModifier)%numStepsInSequence;
+        currentPose = ((int)Math.floor(Math.random()*arrayOfSequences.length));
     }
 }
