@@ -225,11 +225,11 @@ public class EntityDinosaurSwimmingAggressive extends EntityDinosaurAggressive
                 double d7 = this.dino.posX + xDist / dist * 2.0D;
                 double d8 = (double) this.dino.getEyeHeight() + this.dino.posY + yDist / dist * 1.0D;
                 double d9 = this.dino.posZ + zDist / dist * 2.0D;
-                double d10 = lookHelper.func_180423_e();
-                double d11 = lookHelper.func_180422_f();
-                double d12 = lookHelper.func_180421_g();
+                double d10 = lookHelper.getLookPosX();
+                double d11 = lookHelper.getLookPosY();
+                double d12 = lookHelper.getLookPosZ();
 
-                if (!lookHelper.func_180424_b())
+                if (!lookHelper.getIsLooking())
                 {
                     d10 = d7;
                     d11 = d8;

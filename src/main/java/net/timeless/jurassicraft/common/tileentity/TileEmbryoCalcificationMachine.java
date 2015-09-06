@@ -120,9 +120,14 @@ public class TileEmbryoCalcificationMachine extends TileMachineBase
         return JurassiCraft.modid + ":embryo_calcification_machine";
     }
 
-    @Override
     public String getName()
     {
         return hasCustomName() ? customName : "container.embryo_calcification_machine";
+    }
+
+    @Override
+    public String getCommandSenderName()
+    {
+        return null;
     }
 }

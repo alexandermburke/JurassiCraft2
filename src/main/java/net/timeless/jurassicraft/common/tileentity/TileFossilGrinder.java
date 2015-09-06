@@ -128,9 +128,14 @@ public class TileFossilGrinder extends TileMachineBase
         return JurassiCraft.modid + ":fossil_grinder";
     }
 
-    @Override
     public String getName()
     {
         return hasCustomName() ? customName : "container.fossil_grinder";
+    }
+
+    @Override
+    public String getCommandSenderName()
+    {
+        return null;
     }
 }

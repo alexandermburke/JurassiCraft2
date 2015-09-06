@@ -30,7 +30,7 @@ public class EntityDinosaurFlyingAggressive extends EntityDinosaurAggressive
     }
 
     @Override
-    protected void func_180433_a(double p_180433_1_, boolean p_180433_3_, Block block, BlockPos pos)
+    protected void updateFallState(double y, boolean onGroundIn, Block blockIn, BlockPos pos)
     {
     }
 
@@ -126,9 +126,9 @@ public class EntityDinosaurFlyingAggressive extends EntityDinosaurAggressive
             }
             else
             {
-                double d0 = moveHelper.func_179917_d() - this.dino.posX;
-                double d1 = moveHelper.func_179919_e() - this.dino.posY;
-                double d2 = moveHelper.func_179918_f() - this.dino.posZ;
+                double d0 = moveHelper.getX() - this.dino.posX;
+                double d1 = moveHelper.getY() - this.dino.posY;
+                double d2 = moveHelper.getZ() - this.dino.posZ;
                 double d3 = d0 * d0 + d1 * d1 + d2 * d2;
                 return d3 < 1.0D || d3 > 3600.0D;
             }

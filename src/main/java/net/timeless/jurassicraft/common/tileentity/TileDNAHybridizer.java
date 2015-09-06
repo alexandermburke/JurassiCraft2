@@ -142,6 +142,12 @@ public class TileDNAHybridizer extends TileEntityLockable implements IUpdatePlay
         return this.hasCustomName() ? this.customName : "container.dna_hybridizer";
     }
 
+    @Override
+    public String getCommandSenderName()
+    {
+        return null;
+    }
+
     /**
      * Returns true if this thing is named
      */

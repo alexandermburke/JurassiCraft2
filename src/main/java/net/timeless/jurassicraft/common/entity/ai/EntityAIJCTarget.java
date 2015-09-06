@@ -196,7 +196,7 @@ public abstract class EntityAIJCTarget extends EntityAIBase
         {
             return false;
         }
-        else if (!this.taskOwner.func_180485_d(new BlockPos(entity)))
+        else if (!this.taskOwner.isWithinHomeDistanceFromPosition(new BlockPos(entity)))
         {
             return false;
         }

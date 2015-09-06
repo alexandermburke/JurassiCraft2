@@ -151,9 +151,14 @@ public class TileDNACombinator extends TileMachineBase
         return JurassiCraft.modid + ":dna_combinator";
     }
 
-    @Override
     public String getName()
     {
         return hasCustomName() ? customName : "container.dna_combinator";
+    }
+
+    @Override
+    public String getCommandSenderName()
+    {
+        return null;
     }
 }

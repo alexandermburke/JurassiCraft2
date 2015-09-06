@@ -194,9 +194,14 @@ public class TileDNAExtractor extends TileMachineBase
         return JurassiCraft.modid + ":dna_extractor";
     }
 
-    @Override
     public String getName()
     {
         return hasCustomName() ? customName : "container.dna_extractor";
+    }
+
+    @Override
+    public String getCommandSenderName()
+    {
+        return null;
     }
 }

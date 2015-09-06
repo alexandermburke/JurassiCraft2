@@ -149,6 +149,12 @@ public class TileCleaningStation extends TileEntityLockable implements IUpdatePl
         return this.hasCustomName() ? this.customName : "container.cleaning_station";
     }
 
+    @Override
+    public String getCommandSenderName()
+    {
+        return null;
+    }
+
     /**
      * Returns true if this thing is named
      */

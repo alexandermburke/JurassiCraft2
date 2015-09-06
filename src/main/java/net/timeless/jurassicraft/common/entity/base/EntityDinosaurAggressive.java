@@ -69,7 +69,7 @@ public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
                 this.motionZ *= 0.6D;
             }
 
-            this.func_174815_a(this, entity);
+            this.applyEnchantments(this, entity);
         }
 
         return attacked;
@@ -95,7 +95,7 @@ public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(transitionFromAge(dinosaur.getBabyStrength(), dinosaur.getAdultStrength()));
     }
 
-    protected boolean func_146066_aG()
+    protected boolean canDropLoot()
     {
         return true;
     }

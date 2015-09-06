@@ -99,7 +99,7 @@ public class EntityDinosaurProvokable extends EntityDinosaur
 
         if (flag)
         {
-            this.func_174815_a(this, entity);
+            this.applyEnchantments(this, entity);
         }
 
         return flag;

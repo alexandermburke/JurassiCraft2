@@ -188,7 +188,6 @@ public class TileIncubator extends TileMachineBase
         return JurassiCraft.modid + ":incubator";
     }
 
-    @Override
     public String getName()
     {
         return hasCustomName() ? customName : "container.incubator";
@@ -226,5 +225,11 @@ public class TileIncubator extends TileMachineBase
         {
             temperature[id - 10] = value;
         }
+    }
+
+    @Override
+    public String getCommandSenderName()
+    {
+        return null;
     }
 }
