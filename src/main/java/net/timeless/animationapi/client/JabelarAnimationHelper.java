@@ -91,8 +91,6 @@ public class JabelarAnimationHelper
             posesArray[modelIndex] = new MowzieModelRenderer[numParts];
             for (int partIndex = 0; partIndex < numParts; partIndex++) 
             {
-                // DEBUG
-                System.out.println("attempting to load part "+partIndex+" from pose "+modelIndex+" of sequence "+currentSequence);
                 posesArray[modelIndex][partIndex] = getTabulaModel(modelAssetPathArray[modelIndex], 0).getCube(partNameArray[partIndex]);
             }
         }
@@ -183,7 +181,7 @@ public class JabelarAnimationHelper
 	    if (parEntity.ticksExisted <= 10)
 	    {
 //	    	// DEBUG
-//	    	System.out.println("Initializing current model array for new enitity with passed in value like "+passedInModelRendererArray[0].rotateAngleX);
+//	    	System.out.println("Initializing current model array for new entity with passed in value like "+passedInModelRendererArray[0].rotateAngleX);
 	        copyModelRendererArrayToCurrent();
 	        setNextPose();
 	    }
@@ -191,13 +189,12 @@ public class JabelarAnimationHelper
 
     private void setNextPose()
     {  
-        // DEBUG
-        System.out.println("Setting next pose, current sequence "+currentSequence+" pose "+currentPose);
+//        // DEBUG
+//        System.out.println("current sequence "+currentSequence+" out of "+arrayOfSequences.length+
+//                " and current pose "+currentPose+" out of "+arrayOfSequences[currentSequence].length);
         nextPose = posesArray[arrayOfSequences[currentSequence][currentPose][0]];
         numTicksInTween = arrayOfSequences[currentSequence][currentPose][1];
         currentTickInTween = 0;
-//        // DEBUG
-//        System.out.println("set next tween for entity id = "+parEntity.getEntityId()+" steps in tween = "+currentAnimation.get(parEntity.getEntityId()).stepsInTween);
     }
    
     private void performNextTweenTick(boolean parInertial)
@@ -455,6 +452,11 @@ public class JabelarAnimationHelper
 //        return (currentSequenceStep + currentSequenceStepModifier)%numStepsInSequence;
     }
     
+    public void setRandomSequence()
+    {
+        currentSequence = theEntity.getRNG().nextInt(numSequencesInArray);
+    }
+    
     public static ModelDinosaur getTabulaModel(String tabulaModel, int geneticVariant) 
     {
         // catch the exception so you can call method with implicit superconstructor
@@ -505,10 +507,5 @@ public class JabelarAnimationHelper
         // DEBUG
         System.out.println("Setting number of poses in sequence "+parNumPosesInSequence);
         numPosesInSequence = parNumPosesInSequence;
-    }
-    
-    public void setRandomSequence()
-    {
-        currentPose = theEntity.getRNG().nextInt(numSequencesInArray);
     }
 }

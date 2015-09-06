@@ -102,51 +102,22 @@ public class AnimationTherizinosaurus implements IModelAnimator
     protected static int[][][] arrayOfSequences = new int[][][] {
         sequenceIdle,
     	sequenceFlapping,
+    	sequenceRearing,
         sequenceLookLeft,
         sequenceLookRight,
-    	sequenceGlanceLeft,
-    	sequenceGlanceRight,
-    	sequenceRearing,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-    	sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle,
-        sequenceIdle
+        sequenceRearing,
+        sequenceLookLeft,
+        sequenceLookRight,
+        sequenceRearing,
+        sequenceLookLeft,
+        sequenceLookRight,
+        sequenceRearing,
+        sequenceLookLeft,
+        sequenceLookRight,
+        sequenceRearing,
+        sequenceLookLeft,
+        sequenceLookRight,
+    	sequenceRearing
     };
 
     // maps each entity with its current animation 
@@ -281,8 +252,6 @@ public class AnimationTherizinosaurus implements IModelAnimator
 
      int frame = parEntity.ticksExisted;
 
-     float globalSpeed = 0.05F;
-     float globalDegree = 0.06F;
 //     float globalHeight = 2F;
 //     float frontOffset = -1.35f;
 
@@ -315,7 +284,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
      parModel.chainSwing(tail, 0.5F * speed, -0.02F, 2, f, f1);
      parModel.chainWave(tail, 1F * speed, -0.02F, 2.5F, f, f1);
      parModel.chainSwing(neck, 0.5F * speed, 0.02F, 2, f, f1);
-     parModel.chainWave(neck, 1F * speed, 0.02F, 2.5F, f, f1);
+     parModel.chainWave(neck, 1.0F * speed, 0.02F, 0.5F, f, f1);
 //     parModel.chainWave(bodyParts, 1F * speed, -0.1F, 4, f, f1);
 
      parModel.chainWave(armRight, 1F * speed, -0.3F, 4, f, f1);
@@ -323,12 +292,12 @@ public class AnimationTherizinosaurus implements IModelAnimator
 
      // Idling
      parModel.chainWave(tail, 0.1F, 0.02F, 2, frame, 1F);
-     parModel.chainWave(neck, 0.1F, 0.03F, 2, frame, 1F);
+     parModel.chainWave(neck, 0.1F, 0.02F, 2, frame, 1F);
 //     parModel.chainWave(bodyParts, 0.1F, -0.03F, 5, frame, 1F);
      parModel.chainWave(armRight, 0.1F, -0.1F, 4, frame, 1F);
      parModel.chainWave(armLeft, 0.1F, -0.1F, 4, frame, 1F);
      
-     parEntity.tailBuffer.applyChainSwingBuffer(tail);
+//     parEntity.tailBuffer.applyChainSwingBuffer(tail);
 
      }
  
