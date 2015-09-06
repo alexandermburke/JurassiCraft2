@@ -128,7 +128,7 @@ public class RenderBluePrint extends Render
         int i = MathHelper.floor_double(p_77008_1_.posX);
         int j = MathHelper.floor_double(p_77008_1_.posY + (double) (p_77008_3_ / 16.0F));
         int k = MathHelper.floor_double(p_77008_1_.posZ);
-        EnumFacing enumfacing = p_77008_1_.field_174860_b;
+        EnumFacing enumfacing = p_77008_1_.facingDirection;
 
         if (enumfacing == EnumFacing.NORTH)
         {

@@ -3,6 +3,8 @@ package net.timeless.jurassicraft.common.entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.timeless.animationapi.IAnimatedEntity;
+import net.timeless.jurassicraft.common.entity.ai.animations.AnimationAIBite;
+import net.timeless.jurassicraft.common.entity.ai.animations.AnimationAIEating;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimSoundBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
@@ -34,7 +36,7 @@ public class EntityTyrannosaurus extends EntityDinosaurAggressive implements IAn
 
         tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, 1, 750, "jurassicraft:" + roarSounds[0], 1.5F));
         tasks.addTask(2, new JCNonAutoAnimBase(this, 75, 2, 750));
-        tasks.addTask(2, new JCNonAutoAnimBase(this, 75, 3, 750));
+        tasks.addTask(2, new AnimationAIEating(this, 20, true, 3));
 
         for (int i = 0; i < targets.length; i++)
         {

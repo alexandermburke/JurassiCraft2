@@ -140,8 +140,13 @@ public class TileCarnivoreFeeder extends TileEntityLockable implements IUpdatePl
 
     }
 
-    @Override
     public String getName()
+    {
+        return null;
+    }
+
+    @Override
+    public String getCommandSenderName()
     {
         return null;
     }

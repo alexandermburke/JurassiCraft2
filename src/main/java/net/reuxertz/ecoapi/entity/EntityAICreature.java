@@ -51,17 +51,17 @@ public class EntityAICreature extends EntityCreature implements IEntityAICreatur
         if (IEntityAICreature.class.isInstance(entity))
         {
             if (IEntityAIFlyingCreature.class.isInstance(entity))
-                ((PathNavigateGround) entity.getNavigator()).func_179690_a(true);
+                ((PathNavigateGround) entity.getNavigator()).setCanSwim(true);
             else if (IEntityAISwimmingCreature.class.isInstance(entity))
             {
                 //((PathNavigateGround) entity.getNavigator()).func_179690_a(false);
                 ((IEntityAICreature) entity).setNavigator(new PathNavigateSwimmer(entity, entity.worldObj));
             }
             else
-                ((PathNavigateGround) entity.getNavigator()).func_179690_a(true);
+                ((PathNavigateGround) entity.getNavigator()).setCanSwim(true);
         }
         else
-            ((PathNavigateGround) entity.getNavigator()).func_179690_a(true);
+            ((PathNavigateGround) entity.getNavigator()).setCanSwim(true);
         //agentAI.tasks.addTask(1, new EntityAISwimming(agentAI));
 
 

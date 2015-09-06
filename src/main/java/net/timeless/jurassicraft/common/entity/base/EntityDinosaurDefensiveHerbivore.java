@@ -110,7 +110,7 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
                 this.motionZ *= 0.6D;
             }
 
-            this.func_174815_a(this, entity);
+            this.applyEnchantments(this, entity);
         }
 
         return attacked;

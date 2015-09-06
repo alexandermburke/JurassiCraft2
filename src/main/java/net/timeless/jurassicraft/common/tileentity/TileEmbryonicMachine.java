@@ -142,9 +142,14 @@ public class TileEmbryonicMachine extends TileMachineBase
         return JurassiCraft.modid + ":embryonic_machine";
     }
 
-    @Override
     public String getName()
     {
         return hasCustomName() ? customName : "container.embryonic_machine";
+    }
+
+    @Override
+    public String getCommandSenderName()
+    {
+        return null;
     }
 }

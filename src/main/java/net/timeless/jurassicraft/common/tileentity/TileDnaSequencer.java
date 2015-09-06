@@ -161,9 +161,14 @@ public class TileDnaSequencer extends TileMachineBase
         return JurassiCraft.modid + ":dna_sequencer";
     }
 
-    @Override
     public String getName()
     {
         return hasCustomName() ? customName : "container.dna_sequencer";
+    }
+
+    @Override
+    public String getCommandSenderName()
+    {
+        return null;
     }
 }

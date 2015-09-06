@@ -133,9 +133,14 @@ public class TileDnaSynthesizer extends TileMachineBase
         return JurassiCraft.modid + ":dna_synthesizer";
     }
 
-    @Override
     public String getName()
     {
         return hasCustomName() ? customName : "container.dna_synthesizer";
+    }
+
+    @Override
+    public String getCommandSenderName()
+    {
+        return null;
     }
 }

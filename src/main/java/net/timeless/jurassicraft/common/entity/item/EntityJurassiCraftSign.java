@@ -166,7 +166,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
     }
 
     @SideOnly(Side.CLIENT)
-    public void func_180426_a(double p_180426_1_, double p_180426_3_, double p_180426_5_, float p_180426_7_, float p_180426_8_, int p_180426_9_, boolean p_180426_10_)
+    public void setPositionAndRotation2(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean p_180426_10_)
     {
     }
 
@@ -174,8 +174,8 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
     public void writeSpawnData(ByteBuf buffer)
     {
         ByteBufUtils.writeUTF8String(buffer, signType.title);
-        buffer.writeLong(func_174857_n().toLong());
-        buffer.writeByte(field_174860_b.getHorizontalIndex());
+        buffer.writeLong(getHangingPosition().toLong());
+        buffer.writeByte(facingDirection.getHorizontalIndex());
     }
 
     @Override

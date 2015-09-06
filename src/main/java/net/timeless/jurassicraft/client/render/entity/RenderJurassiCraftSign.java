@@ -127,7 +127,7 @@ public class RenderJurassiCraftSign extends Render
         int i = MathHelper.floor_double(sign.posX);
         int j = MathHelper.floor_double(sign.posY + (double) (p_77008_3_ / 16.0F));
         int k = MathHelper.floor_double(sign.posZ);
-        EnumFacing enumfacing = sign.field_174860_b;
+        EnumFacing enumfacing = sign.facingDirection;
 
         if (enumfacing == EnumFacing.NORTH)
         {

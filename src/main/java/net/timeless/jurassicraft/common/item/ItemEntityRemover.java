@@ -28,7 +28,7 @@ public class ItemEntityRemover extends Item
 
             if (player.worldObj.isRemote)
             {
-                player.addChatMessage(new ChatComponentText("You removed a " + creature.getName() + " from the world."));
+                player.addChatMessage(new ChatComponentText("You removed a " + creature.getDisplayName() + " from the world."));
             }
 
             return true;
