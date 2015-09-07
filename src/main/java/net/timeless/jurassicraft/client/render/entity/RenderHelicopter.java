@@ -6,6 +6,8 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.client.model.animation.vehicle.AnimationHelicopter;
 import net.timeless.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
@@ -13,6 +15,7 @@ import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import org.lwjgl.opengl.GL11;
 
+@SideOnly(Side.CLIENT)
 public class RenderHelicopter extends Render
 {
     private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/entities/helicopter/ranger_helicopter_texture.png");

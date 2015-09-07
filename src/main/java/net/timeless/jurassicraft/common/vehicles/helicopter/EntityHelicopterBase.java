@@ -259,12 +259,14 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
             direction.addVector(-1f,0,0);
         }
 
-        direction.addVector(0, 1, 0);
+        if(!Minecraft.getMinecraft().gameSettings.keyBindUseItem.isKeyDown())
+            direction.addVector(0, 1, 0);
 
         return direction.normalize();
     }
 
-    public void updateEngine(boolean engineState) {
+    public void updateEngine(boolean engineState)
+    {
         if(worldObj.isRemote)
         {
             JCNetworkManager.networkWrapper.sendToServer(new MessageHelicopterEngine(getEntityId(), engineState));

@@ -2,6 +2,8 @@ package net.timeless.jurassicraft.client.model;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.unilib.client.model.json.IModelAnimator;
@@ -11,6 +13,7 @@ import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 
 import java.util.List;
 
+@SideOnly(Side.CLIENT)
 public class ModelDinosaur extends ModelJson
 {
     public Animator animator;

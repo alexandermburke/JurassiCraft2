@@ -7,6 +7,8 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.*;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.common.BaseMod;
 import net.timeless.unilib.common.BlockProvider;
 import net.timeless.unilib.common.ItemProvider;
@@ -73,6 +75,12 @@ public class Unilib extends BaseMod {
             if(!isAllowed) {
                 return;
             }
+            Side currentSide = FMLCommonHandler.instance().getEffectiveSide();
+            if((info.getName().toLowerCase().contains("client") && currentSide != Side.CLIENT)
+                    || (info.getName().toLowerCase().contains("server") && currentSide != Side.SERVER)) {
+                System.out.println(">> "+info.getName().toLowerCase());
+                return;
+            }
             Class<?> clazz = Class.forName(info.getName(), false, getClass().getClassLoader());
             Object instance = null;
             if(clazz.isAnnotationPresent(Mod.class)) { // Find the mod instance
@@ -86,6 +94,12 @@ public class Unilib extends BaseMod {
                             break;
                         }
                     }
+                }
+            }
+            if(clazz.isAnnotationPresent(SideOnly.class)) {
+                Side side = clazz.getAnnotation(SideOnly.class).value();
+                if(!side.equals(FMLCommonHandler.instance().getSide())) { // We are on the wrong side for loading
+                    return;
                 }
             }
             if(instance == null) {
