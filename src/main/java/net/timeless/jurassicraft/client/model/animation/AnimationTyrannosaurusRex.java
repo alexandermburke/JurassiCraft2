@@ -1,11 +1,17 @@
 package net.timeless.jurassicraft.client.model.animation;
 
+import java.util.HashMap;
+
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.Animator;
+import net.timeless.animationapi.client.JabelarAnimationHelper;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
+import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
+import net.timeless.jurassicraft.common.dinosaur.DinosaurTherizinosaurus;
 import net.timeless.jurassicraft.common.entity.EntityTyrannosaurus;
+import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
@@ -13,11 +19,108 @@ import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 @SideOnly(Side.CLIENT)
 public class AnimationTyrannosaurusRex implements IModelAnimator
 {
+    /*
+     * Change the following fields for your custom dinosaur
+     */
+    protected static final Dinosaur theDinosaur = new DinosaurTherizinosaurus(); // do I need to get specific instance, I don't think so
+
+    // Tell the code where your tabula model assets are
+    // the first one must be your "default" pose (i.e one that is used at spawn time)
+    protected static final String[] modelAssetPathArray = new String[] {
+            "/assets/jurassicraft/models/entities/tyrannosaurus/tyrannosaurus_default",
+            "/assets/jurassicraft/models/entities/tyrannosaurus/tyrannosaurus_look_left",
+            "/assets/jurassicraft/models/entities/tyrannosaurus/tyrannosaurus_look_right",
+            "/assets/jurassicraft/models/entities/tyrannosaurus/tyrannosaurus_rearing_1",
+            "/assets/jurassicraft/models/entities/tyrannosaurus/tyrannosaurus_rearing_2"
+    };
+
+    // Tell the code the names of all your tabula model parts
+    // NOTE: all the models must use exactly same number and names of parts
+    protected static final String[] partNameArray = new String[] {
+        "Body 2", "Body 3", "Head", "Body 1","Neck 1", "Neck 2", "Neck 3", "Neck 4", "Neck 5",
+        "Tail 1", "Tail 2", "Tail 3", "Tail 4", "Tail 5", "Tail 6", "Throat 1", "Throat 2", "Throat 3",
+        "Lower Jaw", "Hand Left", "Lower Arm Left", "Upper Arm Left", "Hand Right", "Lower Arm Right", "Upper Arm Right",
+        "Left Thigh", "Right Thigh", "Left Calf 1", "Left Calf 2","Foot Left", "Right Calf 1","Right Calf 2", "Foot Right"
+   };
+
+    /* 
+     * Define your animation sequence here
+     * First element is target pose model index (i.e. order of model assets listed in
+     * modelAssetPaths array above),
+     * Second element is the number of ticks it should take to tween to that pose
+     */
+    protected static int[][] sequenceIdle = new int[][] {
+        {0, 200}
+    };
+
+    protected static int[][] sequenceLookLeft = new int[][] {
+        {1, 100}, {1, 80}, {0, 100}, {0, 200}
+    };
+    
+    protected static int[][] sequenceLookRight = new int[][] {
+        {2, 100}, {2, 80}, {0, 100}, {0, 200}
+    };
+    
+    protected static int[][] sequenceSniffing = new int[][] {
+        {3, 40}, {4, 100}, {4, 80}, {0, 100}, {0, 200}
+    };
+
+    /*
+     * The first element in this array must be the "default" (idle) animation sequence,
+     * for other sequences, if you have random sequence enabled, you can make a sequence more
+     * likely to happen by including it multiple times in the array.
+     */
+    protected static int[][][] arrayOfSequences = new int[][][] {
+        sequenceIdle,
+        sequenceSniffing,
+        sequenceLookLeft,
+        sequenceLookRight,
+        sequenceLookLeft,
+        sequenceLookRight,
+        sequenceLookLeft,
+        sequenceLookRight,
+        sequenceLookLeft,
+        sequenceLookRight,
+    };
+
+    // maps each entity with its current animation 
+    protected HashMap<Integer, JabelarAnimationHelper> animationInstanceToEntityMap = new HashMap<Integer, JabelarAnimationHelper>();
+
+    // cast model and entity to JurassiCraft2 classes
     @Override
-    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
+    public void setRotationAngles(ModelJson parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity parEntity)
     {
-        ModelDinosaur model = (ModelDinosaur) modelJson;
-        Animator animator = model.animator;
+        setRotationAngles((ModelDinosaur)parModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, (EntityTyrannosaurus)parEntity);
+    }
+
+    /*
+     * You should NOT change anything in this method! Models and tween sequences are defined
+     * in the field initializations at the top of this class' code
+     */
+    protected void setRotationAngles(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityTyrannosaurus parEntity)    
+    {
+        updateCurrentAnimationIfNewEntity(parModel, parEntity);
+
+        animationInstanceToEntityMap.get(parEntity.getEntityId()).performJabelarAnimations(parModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, parEntity);
+
+        // you can still add chain, walk, bob, etc.
+        performMowzieAnimations(parModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, parEntity);
+    }
+    
+    protected void updateCurrentAnimationIfNewEntity(ModelDinosaur parModel, EntityDinosaur parEntity)
+    {
+        // add entry to hashmap if new entity
+        if (!animationInstanceToEntityMap.containsKey(parEntity.getEntityId()))
+        {
+            // DEBUG
+            System.out.println("Adding entity to hashmap with id = "+parEntity.getEntityId());
+            animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(parEntity, parModel, modelAssetPathArray, partNameArray, arrayOfSequences, true, true,30));
+        }
+    }
+    
+ protected void performMowzieAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityTyrannosaurus parEntity)
+ {
+       Animator animator = parModel.animator;
         // f = entity.ticksExisted;
         // f1 = (float) Math.cos(f/20)*0.25F + 0.5F;
         // f1 = 0.5F;
@@ -27,168 +130,168 @@ public class AnimationTyrannosaurusRex implements IModelAnimator
         float globalDegree = 0.5F;
         float height = 1.0F;
 
-        MowzieModelRenderer stomach = model.getCube("Body 2");
-        MowzieModelRenderer chest = model.getCube("Body 3");
-        MowzieModelRenderer head = model.getCube("Head");
-        MowzieModelRenderer waist = model.getCube("Body 1");
+        MowzieModelRenderer stomach = parModel.getCube("Body 2");
+        MowzieModelRenderer chest = parModel.getCube("Body 3");
+        MowzieModelRenderer head = parModel.getCube("Head");
+        MowzieModelRenderer waist = parModel.getCube("Body 1");
 
-        MowzieModelRenderer neck1 = model.getCube("Neck 1");
-        MowzieModelRenderer neck2 = model.getCube("Neck 2");
-        MowzieModelRenderer neck3 = model.getCube("Neck 3");
-        MowzieModelRenderer neck4 = model.getCube("Neck 4");
-        MowzieModelRenderer neck5 = model.getCube("Neck 5");
+        MowzieModelRenderer neck1 = parModel.getCube("Neck 1");
+        MowzieModelRenderer neck2 = parModel.getCube("Neck 2");
+        MowzieModelRenderer neck3 = parModel.getCube("Neck 3");
+        MowzieModelRenderer neck4 = parModel.getCube("Neck 4");
+        MowzieModelRenderer neck5 = parModel.getCube("Neck 5");
 
-        MowzieModelRenderer tail1 = model.getCube("Tail 1");
-        MowzieModelRenderer tail2 = model.getCube("Tail 2");
-        MowzieModelRenderer tail3 = model.getCube("Tail 3");
-        MowzieModelRenderer tail4 = model.getCube("Tail 4");
-        MowzieModelRenderer tail5 = model.getCube("Tail 5");
-        MowzieModelRenderer tail6 = model.getCube("Tail 6");
+        MowzieModelRenderer tail1 = parModel.getCube("Tail 1");
+        MowzieModelRenderer tail2 = parModel.getCube("Tail 2");
+        MowzieModelRenderer tail3 = parModel.getCube("Tail 3");
+        MowzieModelRenderer tail4 = parModel.getCube("Tail 4");
+        MowzieModelRenderer tail5 = parModel.getCube("Tail 5");
+        MowzieModelRenderer tail6 = parModel.getCube("Tail 6");
 
-        MowzieModelRenderer throat1 = model.getCube("Throat 1");
-        MowzieModelRenderer throat2 = model.getCube("Throat 2");
-        MowzieModelRenderer throat3 = model.getCube("Throat 3");
+        MowzieModelRenderer throat1 = parModel.getCube("Throat 1");
+        MowzieModelRenderer throat2 = parModel.getCube("Throat 2");
+        MowzieModelRenderer throat3 = parModel.getCube("Throat 3");
 
-        MowzieModelRenderer lowerJaw = model.getCube("Lower Jaw");
+        MowzieModelRenderer lowerJaw = parModel.getCube("Lower Jaw");
 
-        MowzieModelRenderer handLeft = model.getCube("Hand Left");
-        MowzieModelRenderer lowerArmLeft = model.getCube("Lower Arm Left");
-        MowzieModelRenderer upperArmLeft = model.getCube("Upper Arm Left");
+        MowzieModelRenderer handLeft = parModel.getCube("Hand Left");
+        MowzieModelRenderer lowerArmLeft = parModel.getCube("Lower Arm Left");
+        MowzieModelRenderer upperArmLeft = parModel.getCube("Upper Arm Left");
 
-        MowzieModelRenderer handRight = model.getCube("Hand Right");
-        MowzieModelRenderer lowerArmRight = model.getCube("Lower Arm Right");
-        MowzieModelRenderer upperArmRight = model.getCube("Upper Arm Right");
+        MowzieModelRenderer handRight = parModel.getCube("Hand Right");
+        MowzieModelRenderer lowerArmRight = parModel.getCube("Lower Arm Right");
+        MowzieModelRenderer upperArmRight = parModel.getCube("Upper Arm Right");
 
-        MowzieModelRenderer leftThigh = model.getCube("Left Thigh");
-        MowzieModelRenderer rightThigh = model.getCube("Right Thigh");
+        MowzieModelRenderer leftThigh = parModel.getCube("Left Thigh");
+        MowzieModelRenderer rightThigh = parModel.getCube("Right Thigh");
 
-        MowzieModelRenderer leftCalf1 = model.getCube("Left Calf 1");
-        MowzieModelRenderer leftCalf2 = model.getCube("Left Calf 2");
-        MowzieModelRenderer leftFoot = model.getCube("Foot Left");
+        MowzieModelRenderer leftCalf1 = parModel.getCube("Left Calf 1");
+        MowzieModelRenderer leftCalf2 = parModel.getCube("Left Calf 2");
+        MowzieModelRenderer leftFoot = parModel.getCube("Foot Left");
 
-        MowzieModelRenderer rightCalf1 = model.getCube("Right Calf 1");
-        MowzieModelRenderer rightCalf2 = model.getCube("Right Calf 2");
-        MowzieModelRenderer rightFoot = model.getCube("Foot Right");
+        MowzieModelRenderer rightCalf1 = parModel.getCube("Right Calf 1");
+        MowzieModelRenderer rightCalf2 = parModel.getCube("Right Calf 2");
+        MowzieModelRenderer rightFoot = parModel.getCube("Foot Right");
 
         MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
         MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[]{head, neck5, neck4, neck3, neck2, neck1, chest, stomach, waist};
         MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[]{handLeft, lowerArmLeft, upperArmLeft};
         MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[]{handRight, lowerArmRight, upperArmRight};
 
-        model.faceTarget(stomach, 6.0F, rotationYaw, rotationPitch);
-        model.faceTarget(chest, 6.0F, rotationYaw, rotationPitch);
-        model.faceTarget(head, 3.0F, rotationYaw, rotationPitch);
-        model.faceTarget(neck1, 3.0F, rotationYaw, rotationPitch);
+        parModel.faceTarget(stomach, 6.0F, rotationYaw, rotationPitch);
+        parModel.faceTarget(chest, 6.0F, rotationYaw, rotationPitch);
+        parModel.faceTarget(head, 3.0F, rotationYaw, rotationPitch);
+        parModel.faceTarget(neck1, 3.0F, rotationYaw, rotationPitch);
 
-        model.bob(waist, 1F * globalSpeed, height, false, f, f1);
-        model.bob(leftThigh, 1F * globalSpeed, height, false, f, f1);
-        model.bob(rightThigh, 1F * globalSpeed, height, false, f, f1);
+        parModel.bob(waist, 1F * globalSpeed, height, false, f, f1);
+        parModel.bob(leftThigh, 1F * globalSpeed, height, false, f, f1);
+        parModel.bob(rightThigh, 1F * globalSpeed, height, false, f, f1);
         leftThigh.rotationPointY -= -2 * f1 * Math.cos(f * 0.5 * globalSpeed);
         rightThigh.rotationPointY -= 2 * f1 * Math.cos(f * 0.5 * globalSpeed);
-        model.walk(neck1, 1F * globalSpeed, 0.15F, false, 0F, 0.2F, f, f1);
-        model.walk(head, 1F * globalSpeed, 0.15F, true, 0F, -0.2F, f, f1);
+        parModel.walk(neck1, 1F * globalSpeed, 0.15F, false, 0F, 0.2F, f, f1);
+        parModel.walk(head, 1F * globalSpeed, 0.15F, true, 0F, -0.2F, f, f1);
 
-        model.walk(leftThigh, 0.5F * globalSpeed, 0.8F * globalDegree, false, 0F, 0.4F, f, f1);
-        model.walk(leftCalf1, 0.5F * globalSpeed, 1F * globalDegree, true, 1F, 0.4F, f, f1);
-        model.walk(leftCalf2, 0.5F * globalSpeed, 1F * globalDegree, false, 0F, 0F, f, f1);
-        model.walk(leftFoot, 0.5F * globalSpeed, 1.5F * globalDegree, true, 0.5F, 0.3F, f, f1);
+        parModel.walk(leftThigh, 0.5F * globalSpeed, 0.8F * globalDegree, false, 0F, 0.4F, f, f1);
+        parModel.walk(leftCalf1, 0.5F * globalSpeed, 1F * globalDegree, true, 1F, 0.4F, f, f1);
+        parModel.walk(leftCalf2, 0.5F * globalSpeed, 1F * globalDegree, false, 0F, 0F, f, f1);
+        parModel.walk(leftFoot, 0.5F * globalSpeed, 1.5F * globalDegree, true, 0.5F, 0.3F, f, f1);
 
-        model.walk(rightThigh, 0.5F * globalSpeed, 0.8F * globalDegree, true, 0F, 0.4F, f, f1);
-        model.walk(rightCalf1, 0.5F * globalSpeed, 1F * globalDegree, false, 1F, 0.4F, f, f1);
-        model.walk(rightCalf2, 0.5F * globalSpeed, 1F * globalDegree, true, 0F, 0F, f, f1);
-        model.walk(rightFoot, 0.5F * globalSpeed, 1.5F * globalDegree, false, 0.5F, 0.3F, f, f1);
+        parModel.walk(rightThigh, 0.5F * globalSpeed, 0.8F * globalDegree, true, 0F, 0.4F, f, f1);
+        parModel.walk(rightCalf1, 0.5F * globalSpeed, 1F * globalDegree, false, 1F, 0.4F, f, f1);
+        parModel.walk(rightCalf2, 0.5F * globalSpeed, 1F * globalDegree, true, 0F, 0F, f, f1);
+        parModel.walk(rightFoot, 0.5F * globalSpeed, 1.5F * globalDegree, false, 0.5F, 0.3F, f, f1);
 
-        model.chainWave(tailParts, 1F * globalSpeed, 0.05F, 2, f, f1);
-        model.chainWave(bodyParts, 1F * globalSpeed, 0.05F, 3, f, f1);
-        model.chainWave(leftArmParts, 1F * globalSpeed, 0.2F, 1, f, f1);
-        model.chainWave(rightArmParts, 1F * globalSpeed, 0.2F, 1, f, f1);
+        parModel.chainWave(tailParts, 1F * globalSpeed, 0.05F, 2, f, f1);
+        parModel.chainWave(bodyParts, 1F * globalSpeed, 0.05F, 3, f, f1);
+        parModel.chainWave(leftArmParts, 1F * globalSpeed, 0.2F, 1, f, f1);
+        parModel.chainWave(rightArmParts, 1F * globalSpeed, 0.2F, 1, f, f1);
 
         // Idling
-        model.chainWave(bodyParts, 0.1F, -0.03F, 3, entity.ticksExisted, 1.0F);
-        model.chainWave(rightArmParts, -0.1F, 0.2F, 4, entity.ticksExisted, 1.0F);
-        model.chainWave(leftArmParts, -0.1F, 0.2F, 4, entity.ticksExisted, 1.0F);
+        parModel.chainWave(bodyParts, 0.1F, -0.03F, 3, parEntity.ticksExisted, 1.0F);
+        parModel.chainWave(rightArmParts, -0.1F, 0.2F, 4, parEntity.ticksExisted, 1.0F);
+        parModel.chainWave(leftArmParts, -0.1F, 0.2F, 4, parEntity.ticksExisted, 1.0F);
 
-        model.chainSwing(tailParts, 0.1F, 0.05F - (0.05F), 1, entity.ticksExisted, 1.0F - 0.6F);
-        model.chainWave(tailParts, 0.1F, -0.1F, 2, entity.ticksExisted, 1.0F - 0.6F);
+        parModel.chainSwing(tailParts, 0.1F, 0.05F - (0.05F), 1, parEntity.ticksExisted, 1.0F - 0.6F);
+        parModel.chainWave(tailParts, 0.1F, -0.1F, 2, parEntity.ticksExisted, 1.0F - 0.6F);
 
-        ((EntityTyrannosaurus) entity).tailBuffer.applyChainSwingBuffer(tailParts);
-
-        animator.setAnim(1);
-        animator.startPhase(15);
-        animator.move(waist, 0, -3, -5);
-        animator.move(rightThigh, 0, -3, -5);
-        animator.move(leftThigh, 0, -3, -5);
-        animator.rotate(waist, -0.3F, 0, 0);
-        animator.rotate(head, 0.3F, 0, 0);
-        animator.rotate(rightThigh, 0.3F, 0, 0);
-        animator.rotate(rightCalf1, -0.4F, 0, 0);
-        animator.rotate(rightCalf2, 0.4F, 0, 0);
-        animator.rotate(rightFoot, -0.3F, 0, 0);
-        animator.rotate(leftThigh, -0.7F, 0, 0);
-        animator.rotate(leftCalf1, 0.7F, 0, 0);
-        animator.rotate(leftCalf2, -0.5F, 0, 0);
-        animator.rotate(leftFoot, 0.7F, 0, 0);
-        animator.endPhase();
-        animator.startPhase(10);
-        animator.move(waist, 0, 3, -10);
-        animator.move(rightThigh, 0, 3, -10);
-        animator.move(leftThigh, 0, 3, -10);
-        animator.move(head, 0, 1, 2);
-        animator.move(lowerJaw, 0, 0, 1);
-        animator.rotate(waist, 0.2F, 0, 0);
-        animator.rotate(neck1, 0.2F, 0, 0);
-        animator.rotate(neck2, 0.2F, 0, 0);
-        animator.rotate(neck3, -0.2F, 0, 0);
-        animator.rotate(neck4, -0.1F, 0, 0);
-        animator.rotate(neck5, -0.1F, 0, 0);
-        animator.move(neck5, 0, 0, 1);
-        animator.move(throat1, 0, -0.5F, 0);
-        animator.move(throat2, 0, -1, 0);
-        animator.move(throat3, 0, -1, 0);
-        animator.rotate(head, -0.5F, 0, 0);
-        animator.move(head, 0, 1, 0);
-        animator.rotate(lowerJaw, 0.9F, 0, 0);
-        animator.rotate(rightThigh, 0.6F, 0, 0);
-        animator.rotate(rightCalf1, 0.05F, 0, 0);
-        animator.rotate(rightCalf2, -0.3F, 0, 0);
-        animator.rotate(rightFoot, -0.3F, 0, 0);
-        animator.rotate(leftThigh, -0.3F, 0, 0);
-        animator.rotate(leftCalf1, 0.2F, 0, 0);
-        animator.rotate(leftCalf2, -0.2F, 0, 0);
-        animator.rotate(leftFoot, 0.3F, 0, 0);
-        animator.endPhase();
-        animator.setStationaryPhase(35);
-        animator.resetPhase(15);
-
-        animator.setAnim(2);
-        animator.startPhase(15);
-        animator.rotate(waist, -0.2F, 0, 0);
-        animator.rotate(stomach, -0.1F, 0, 0);
-        animator.rotate(chest, 0.1F, 0, 0);
-        animator.rotate(neck1, -0.1F, 0, 0);
-        animator.rotate(neck2, -0.1F, 0, 0);
-        animator.rotate(neck3, 0.1F, 0, 0);
-        animator.rotate(neck4, 0.1F, 0, 0);
-        animator.rotate(neck5, 0.1F, 0, 0);
-        animator.rotate(head, 0.3F, 0, 0);
-        animator.endPhase();
-        animator.startPhase(10);
-        animator.rotate(waist, 0.1F, 0, 0);
-        animator.rotate(neck1, 0.2F, 0, 0);
-        animator.rotate(neck2, 0.2F, 0, 0);
-        animator.rotate(neck3, 0.1F, 0, 0);
-        animator.rotate(neck4, -0.2F, 0, 0);
-        animator.rotate(neck5, -0.2F, 0, 0);
-        animator.move(throat1, 0, 0, 0);
-        animator.move(throat2, 0, -1, -3.5F);
-        animator.move(throat3, 0, -1.5F, 0);
-        animator.rotate(head, -0.4F, 0, 0);
-        animator.move(head, 0, 1, 2F);
-        animator.rotate(lowerJaw, 0.8F, 0, 0);
-        animator.endPhase();
-        animator.setStationaryPhase(35);
-        animator.resetPhase(15);
-
+//        parEntity.tailBuffer.applyChainSwingBuffer(tailParts);
+//
+//        animator.setAnim(1);
+//        animator.startPhase(15);
+//        animator.move(waist, 0, -3, -5);
+//        animator.move(rightThigh, 0, -3, -5);
+//        animator.move(leftThigh, 0, -3, -5);
+//        animator.rotate(waist, -0.3F, 0, 0);
+//        animator.rotate(head, 0.3F, 0, 0);
+//        animator.rotate(rightThigh, 0.3F, 0, 0);
+//        animator.rotate(rightCalf1, -0.4F, 0, 0);
+//        animator.rotate(rightCalf2, 0.4F, 0, 0);
+//        animator.rotate(rightFoot, -0.3F, 0, 0);
+//        animator.rotate(leftThigh, -0.7F, 0, 0);
+//        animator.rotate(leftCalf1, 0.7F, 0, 0);
+//        animator.rotate(leftCalf2, -0.5F, 0, 0);
+//        animator.rotate(leftFoot, 0.7F, 0, 0);
+//        animator.endPhase();
+//        animator.startPhase(10);
+//        animator.move(waist, 0, 3, -10);
+//        animator.move(rightThigh, 0, 3, -10);
+//        animator.move(leftThigh, 0, 3, -10);
+//        animator.move(head, 0, 1, 2);
+//        animator.move(lowerJaw, 0, 0, 1);
+//        animator.rotate(waist, 0.2F, 0, 0);
+//        animator.rotate(neck1, 0.2F, 0, 0);
+//        animator.rotate(neck2, 0.2F, 0, 0);
+//        animator.rotate(neck3, -0.2F, 0, 0);
+//        animator.rotate(neck4, -0.1F, 0, 0);
+//        animator.rotate(neck5, -0.1F, 0, 0);
+//        animator.move(neck5, 0, 0, 1);
+//        animator.move(throat1, 0, -0.5F, 0);
+//        animator.move(throat2, 0, -1, 0);
+//        animator.move(throat3, 0, -1, 0);
+//        animator.rotate(head, -0.5F, 0, 0);
+//        animator.move(head, 0, 1, 0);
+//        animator.rotate(lowerJaw, 0.9F, 0, 0);
+//        animator.rotate(rightThigh, 0.6F, 0, 0);
+//        animator.rotate(rightCalf1, 0.05F, 0, 0);
+//        animator.rotate(rightCalf2, -0.3F, 0, 0);
+//        animator.rotate(rightFoot, -0.3F, 0, 0);
+//        animator.rotate(leftThigh, -0.3F, 0, 0);
+//        animator.rotate(leftCalf1, 0.2F, 0, 0);
+//        animator.rotate(leftCalf2, -0.2F, 0, 0);
+//        animator.rotate(leftFoot, 0.3F, 0, 0);
+//        animator.endPhase();
+//        animator.setStationaryPhase(35);
+//        animator.resetPhase(15);
+//
+//        animator.setAnim(2);
+//        animator.startPhase(15);
+//        animator.rotate(waist, -0.2F, 0, 0);
+//        animator.rotate(stomach, -0.1F, 0, 0);
+//        animator.rotate(chest, 0.1F, 0, 0);
+//        animator.rotate(neck1, -0.1F, 0, 0);
+//        animator.rotate(neck2, -0.1F, 0, 0);
+//        animator.rotate(neck3, 0.1F, 0, 0);
+//        animator.rotate(neck4, 0.1F, 0, 0);
+//        animator.rotate(neck5, 0.1F, 0, 0);
+//        animator.rotate(head, 0.3F, 0, 0);
+//        animator.endPhase();
+//        animator.startPhase(10);
+//        animator.rotate(waist, 0.1F, 0, 0);
+//        animator.rotate(neck1, 0.2F, 0, 0);
+//        animator.rotate(neck2, 0.2F, 0, 0);
+//        animator.rotate(neck3, 0.1F, 0, 0);
+//        animator.rotate(neck4, -0.2F, 0, 0);
+//        animator.rotate(neck5, -0.2F, 0, 0);
+//        animator.move(throat1, 0, 0, 0);
+//        animator.move(throat2, 0, -1, -3.5F);
+//        animator.move(throat3, 0, -1.5F, 0);
+//        animator.rotate(head, -0.4F, 0, 0);
+//        animator.move(head, 0, 1, 2F);
+//        animator.rotate(lowerJaw, 0.8F, 0, 0);
+//        animator.endPhase();
+//        animator.setStationaryPhase(35);
+//        animator.resetPhase(15);
+//
 //        if (entity.getAnimationId() == JurassiCraftAnimationIDs.EATING.animID())
 //        {
 //            float shakeProgress = ((EntityTyrannosaurus) entity).shakePrey.getAnimationProgressSinSqrt();
@@ -209,33 +312,33 @@ public class AnimationTyrannosaurusRex implements IModelAnimator
 //            animator.setStationaryPhase(3);
 //            animator.resetPhase(10);
 //        }
-
-        animator.setAnim(3);
-        animator.startPhase(6);
-        animator.rotate(neck1, -0.1F, -0.2F, 0);
-        animator.rotate(head, -0.2F, -0.3F, 0);
-        animator.rotate(waist, -0.1F, -0.2F, 0);
-        animator.rotate(lowerJaw, 1F, 0, 0);
-        animator.endPhase();
-        animator.setStationaryPhase(1);
-        animator.startPhase(3);
-        animator.rotate(neck1, 0.2F, 0.1F, 0);
-        animator.rotate(neck2, 0.2F, 0.1F, 0);
-        animator.rotate(neck3, 0.1F, 0.1F, 0);
-        animator.rotate(neck4, -0.2F, 0.1F, 0);
-        animator.rotate(neck5, -0.2F, 0.1F, 0);
-        animator.move(throat2, 0, 0, -2.7F);
-        animator.move(throat3, 0, 0, 1.5F);
-        animator.rotate(head, -0.2F, 0.4F, 0);
-        animator.rotate(waist, 0.2F, 0.2F, 0);
-        animator.endPhase();
-        animator.setStationaryPhase(2);
-        animator.resetPhase(8);
-
-        EntityTyrannosaurus trex = (EntityTyrannosaurus) entity;
-
-        head.rotateAngleZ += Math.cos(entity.ticksExisted / 3) * trex.roarTiltDegree.value / 3;
-        lowerJaw.rotateAngleX += Math.cos(entity.ticksExisted) * trex.roarTiltDegree.value / 7;
+//
+//        animator.setAnim(3);
+//        animator.startPhase(6);
+//        animator.rotate(neck1, -0.1F, -0.2F, 0);
+//        animator.rotate(head, -0.2F, -0.3F, 0);
+//        animator.rotate(waist, -0.1F, -0.2F, 0);
+//        animator.rotate(lowerJaw, 1F, 0, 0);
+//        animator.endPhase();
+//        animator.setStationaryPhase(1);
+//        animator.startPhase(3);
+//        animator.rotate(neck1, 0.2F, 0.1F, 0);
+//        animator.rotate(neck2, 0.2F, 0.1F, 0);
+//        animator.rotate(neck3, 0.1F, 0.1F, 0);
+//        animator.rotate(neck4, -0.2F, 0.1F, 0);
+//        animator.rotate(neck5, -0.2F, 0.1F, 0);
+//        animator.move(throat2, 0, 0, -2.7F);
+//        animator.move(throat3, 0, 0, 1.5F);
+//        animator.rotate(head, -0.2F, 0.4F, 0);
+//        animator.rotate(waist, 0.2F, 0.2F, 0);
+//        animator.endPhase();
+//        animator.setStationaryPhase(2);
+//        animator.resetPhase(8);
+//
+//        EntityTyrannosaurus trex = parEntity;
+//
+//        head.rotateAngleZ += Math.cos(parEntity.ticksExisted / 3) * trex.roarTiltDegree.value / 3;
+//        lowerJaw.rotateAngleX += Math.cos(parEntity.ticksExisted) * trex.roarTiltDegree.value / 7;
     }
 }
 

@@ -1,6 +1,7 @@
 package net.timeless.jurassicraft.client.model.animation;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
@@ -85,11 +86,11 @@ public class AnimationTherizinosaurus implements IModelAnimator
         {2, 40}, {0, 40}
     };
     
-    protected static int[][] sequenceRearing = new int[][] {
+    protected static int[][] sequenceHissing = new int[][] {
         {3, 100}, {3, 80}, {0, 100}
     };
     
-    protected static int[][] sequenceFlapping = new int[][] {
+    protected static int[][] sequenceMating = new int[][] {
         {4, 10}, {3, 10}, {4, 10}, {3, 10}, {4, 10}, {3, 10},
         {4, 10}, {3, 10}, {4, 10}, {3, 10}, {4, 10}, {3, 10}, {4, 10}, {3, 10}, 
         {4, 10}, {3, 10}, {4, 10}, {3, 10}, {4, 10}, {3, 10}, {4, 10}, {0, 100}
@@ -99,32 +100,35 @@ public class AnimationTherizinosaurus implements IModelAnimator
         {0, 800}
     };
     
+
+    /*
+     * The first element in this array must be the "default" (idle) animation sequence,
+     * for other sequences, if you have random sequence enabled, you can make a sequence more
+     * likely to happen by including it multiple times in the array.
+     */
     protected static int[][][] arrayOfSequences = new int[][][] {
         sequenceIdle,
-    	sequenceFlapping,
-    	sequenceRearing,
+    	sequenceMating,
+    	sequenceHissing,
         sequenceLookLeft,
         sequenceLookRight,
-        sequenceRearing,
+        sequenceHissing,
         sequenceLookLeft,
         sequenceLookRight,
-        sequenceRearing,
+        sequenceHissing,
         sequenceLookLeft,
         sequenceLookRight,
-        sequenceRearing,
+        sequenceHissing,
         sequenceLookLeft,
         sequenceLookRight,
-        sequenceRearing,
+        sequenceHissing,
         sequenceLookLeft,
         sequenceLookRight,
-    	sequenceRearing
+    	sequenceHissing
     };
 
     // maps each entity with its current animation 
-    protected HashMap<Integer, JabelarAnimationHelper> animationInstanceToEntityMap = new HashMap<Integer, JabelarAnimationHelper>();
-
-    // need boolean to indicate first tick run because need to copy between static and instance fields
-    protected boolean isFirstTick = true;
+    protected HashMap<UUID, JabelarAnimationHelper> animationInstanceToEntityMap = new HashMap<UUID, JabelarAnimationHelper>();
     
     // cast model and entity to JurassiCraft2 classes
     @Override
@@ -141,7 +145,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
     {
         updateCurrentAnimationIfNewEntity(parModel, parEntity);
 
-        animationInstanceToEntityMap.get(parEntity.getEntityId()).performJabelarAnimations(parModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, parEntity);
+        animationInstanceToEntityMap.get(parEntity.getUniqueID()).performJabelarAnimations(parModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, parEntity);
 
         // you can still add chain, walk, bob, etc.
         performMowzieAnimations(parModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, parEntity);
@@ -150,11 +154,11 @@ public class AnimationTherizinosaurus implements IModelAnimator
     protected void updateCurrentAnimationIfNewEntity(ModelDinosaur parModel, EntityDinosaur parEntity)
     {
         // add entry to hashmap if new entity
-        if (!animationInstanceToEntityMap.containsKey(parEntity.getEntityId()))
+        if (!animationInstanceToEntityMap.containsKey(parEntity.getUniqueID()))
         {
             // DEBUG
             System.out.println("Adding entity to hashmap with id = "+parEntity.getEntityId());
-            animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(parEntity, parModel, modelAssetPathArray, partNameArray, arrayOfSequences, true, true,10));
+            animationInstanceToEntityMap.put(parEntity.getUniqueID(), new JabelarAnimationHelper(parEntity, parModel, modelAssetPathArray, partNameArray, arrayOfSequences, true, true,10));
         }
     }
     

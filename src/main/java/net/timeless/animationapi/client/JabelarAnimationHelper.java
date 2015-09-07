@@ -1,7 +1,6 @@
 package net.timeless.animationapi.client;
 
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
-import net.timeless.jurassicraft.common.entity.EntityTherizinosaurus;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
@@ -61,7 +60,7 @@ public class JabelarAnimationHelper
         System.out.println("Finished JabelarAnimation constructor");
     }
     
-    public void performJabelarAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityTherizinosaurus parEntity)
+    public void performJabelarAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
     {
         passedInModelRendererArray = convertPassedInModelToModelRendererArray(parModel);
         initIfNeeded(parEntity);
@@ -189,12 +188,13 @@ public class JabelarAnimationHelper
 
     private void setNextPose()
     {  
-//        // DEBUG
-//        System.out.println("current sequence "+currentSequence+" out of "+arrayOfSequences.length+
-//                " and current pose "+currentPose+" out of "+arrayOfSequences[currentSequence].length);
         nextPose = posesArray[arrayOfSequences[currentSequence][currentPose][0]];
         numTicksInTween = arrayOfSequences[currentSequence][currentPose][1];
         currentTickInTween = 0;
+        // DEBUG
+        System.out.println("current sequence "+currentSequence+" out of "+arrayOfSequences.length+
+                " and current pose "+currentPose+" out of "+arrayOfSequences[currentSequence].length
+                +" with "+numTicksInTween+" ticks in tween");
     }
    
     private void performNextTweenTick(boolean parInertial)
@@ -391,12 +391,12 @@ public class JabelarAnimationHelper
     public boolean incrementTweenTick()
     {
         currentTickInTween++;
-//      // DEBUG
-//      System.out.println("current tween step = "+currentTweenStep);
         if (currentTickInTween >= numTicksInTween)
         {
             finishedPose = true;
         }
+        // DEBUG
+        System.out.println("current tween step = "+currentTickInTween);
         return finishedPose;
     }
     
