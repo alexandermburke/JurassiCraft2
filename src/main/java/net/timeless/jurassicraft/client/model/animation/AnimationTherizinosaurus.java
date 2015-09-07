@@ -41,7 +41,11 @@ public class AnimationTherizinosaurus implements IModelAnimator
             "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_eating_4b",
             "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_eating_5",
             "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_eating_6",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_eating_6b"
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_eating_6b",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_drinking_1",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_drinking_2",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_drinking_3",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_drinking_4"
     };
 
     // Tell the code the names of all your tabula model parts
@@ -112,6 +116,13 @@ public class AnimationTherizinosaurus implements IModelAnimator
         {11, 80}, {0, 80}, {0, 200}
     };
     
+    private static int[][] sequenceDrinking = new int[][] {
+        {14, 100}, {15, 40}, {15, 40}, {16, 20}, {17, 40}, {17, 100}, 
+        {14, 60}, {15, 40}, {15, 40}, {16, 20}, {17, 40}, {17, 100}, 
+        {14, 60}, {15, 40}, {15, 40}, {16, 20}, {17, 40}, {17, 100}, 
+        {0, 100}
+    };
+    
     protected static int[][] sequenceLongIdle = new int[][] {
         {0, 800}
     };
@@ -124,30 +135,35 @@ public class AnimationTherizinosaurus implements IModelAnimator
      */
     protected static int[][][] arrayOfSequences = new int[][][] {
         sequenceIdle,
-    	sequenceMating,
-    	sequenceEating, 
-    	sequenceHissing,
-        sequenceLookLeft,
-        sequenceLookRight,
-        sequenceEating, 
-        sequenceHissing,
-        sequenceLookLeft,
-        sequenceLookRight,
-        sequenceEating, 
-        sequenceHissing,
-        sequenceLookLeft,
-        sequenceLookRight,
-        sequenceEating, 
-        sequenceHissing,
-        sequenceLookLeft,
-        sequenceLookRight,
-        sequenceEating, 
-        sequenceHissing,
-        sequenceLookLeft,
-        sequenceLookRight,
-        sequenceEating, 
-    	sequenceHissing
+        sequenceDrinking
     };
+
+//    protected static int[][][] arrayOfSequences = new int[][][] {
+//        sequenceIdle,
+//    	sequenceMating,
+//    	sequenceEating, 
+//    	sequenceHissing,
+//        sequenceLookLeft,
+//        sequenceLookRight,
+//        sequenceEating, 
+//        sequenceHissing,
+//        sequenceLookLeft,
+//        sequenceLookRight,
+//        sequenceEating, 
+//        sequenceHissing,
+//        sequenceLookLeft,
+//        sequenceLookRight,
+//        sequenceEating, 
+//        sequenceHissing,
+//        sequenceLookLeft,
+//        sequenceLookRight,
+//        sequenceEating, 
+//        sequenceHissing,
+//        sequenceLookLeft,
+//        sequenceLookRight,
+//        sequenceEating, 
+//    	sequenceHissing
+//    };
 
     // maps each entity with its current animation 
     protected HashMap<UUID, JabelarAnimationHelper> animationInstanceToEntityMap = new HashMap<UUID, JabelarAnimationHelper>();
