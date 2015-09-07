@@ -1,18 +1,21 @@
 package net.timeless.unilib.client.model.json;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import net.timeless.unilib.client.model.json.*;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.tools.MowzieModelBase;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+
 import org.lwjgl.opengl.GL11;
 
-import java.util.ArrayList;
-import java.util.Map;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 /**
  * @author gegy1000
@@ -21,10 +24,10 @@ import java.util.Map;
 @SideOnly(Side.CLIENT)
 public class ModelJson extends MowzieModelBase
 {
-    private JsonTabulaModel tabulaModel;
-    private Map<MowzieModelRenderer, MowzieModelRenderer> childParentMap = Maps.newHashMap();
-    private Map<String, MowzieModelRenderer> nameMap = Maps.newHashMap();
-    private Map<String, MowzieModelRenderer> identifierMap = Maps.newHashMap();
+    private final JsonTabulaModel tabulaModel;
+    private final Map<MowzieModelRenderer, MowzieModelRenderer> childParentMap = Maps.newHashMap();
+    private final Map<String, MowzieModelRenderer> nameMap = Maps.newHashMap();
+    private final Map<String, MowzieModelRenderer> identifierMap = Maps.newHashMap();
     private IModelAnimator animator;
 
     private ArrayList<Animation> animations = Lists.newArrayList();
@@ -66,6 +69,7 @@ public class ModelJson extends MowzieModelBase
         this.animator = animator;
     }
 
+    @Override
     public void render(Entity entity, float limbSwing, float limbSwingAmount, float rotation, float rotationYaw, float rotationPitch, float partialTicks)
     {
         this.setRotationAngles(limbSwing, limbSwingAmount, rotation, rotationYaw, rotationPitch, partialTicks, entity);
@@ -88,6 +92,7 @@ public class ModelJson extends MowzieModelBase
      * @see net.minecraft.entity.Entity
      * @since 0.1.0
      */
+    @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
     {
         super.setRotationAngles(limbSwing, limbSwingAmount, rotation, rotationYaw, rotationPitch, partialTicks, entity);
@@ -235,6 +240,22 @@ public class ModelJson extends MowzieModelBase
     public MowzieModelRenderer getCube(String name)
     {
         return nameMap.get(name);
+    }
+    
+    public String[] getCubeNamesArray()
+    {
+        String[] cubeNamesArray = new String[nameMap.size()];
+        int index = 0;
+        
+        Set<String> keySet = nameMap.keySet();
+        Iterator iterator = keySet.iterator();
+        while (iterator.hasNext())
+        {
+            cubeNamesArray[index] = (String) iterator.next();
+            index++;
+        }
+
+        return cubeNamesArray;
     }
 
     public boolean isAnimationInProgress()

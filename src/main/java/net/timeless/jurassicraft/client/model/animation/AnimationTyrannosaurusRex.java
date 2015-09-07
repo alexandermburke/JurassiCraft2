@@ -34,15 +34,6 @@ public class AnimationTyrannosaurusRex implements IModelAnimator
             "/assets/jurassicraft/models/entities/tyrannosaurus/tyrannosaurus_rearing_2"
     };
 
-    // Tell the code the names of all your tabula model parts
-    // NOTE: all the models must use exactly same number and names of parts
-    protected static final String[] partNameArray = new String[] {
-        "Body 2", "Body 3", "Head", "Body 1","Neck 1", "Neck 2", "Neck 3", "Neck 4", "Neck 5",
-        "Tail 1", "Tail 2", "Tail 3", "Tail 4", "Tail 5", "Tail 6", "Throat 1", "Throat 2", "Throat 3",
-        "Lower Jaw", "Hand Left", "Lower Arm Left", "Upper Arm Left", "Hand Right", "Lower Arm Right", "Upper Arm Right",
-        "Left Thigh", "Right Thigh", "Left Calf 1", "Left Calf 2","Foot Left", "Right Calf 1","Right Calf 2", "Foot Right"
-   };
-
     /* 
      * Define your animation sequence here
      * First element is target pose model index (i.e. order of model assets listed in
@@ -114,7 +105,7 @@ public class AnimationTyrannosaurusRex implements IModelAnimator
         {
             // DEBUG
             System.out.println("Adding entity to hashmap with id = "+parEntity.getEntityId());
-            animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(parEntity, parModel, modelAssetPathArray, partNameArray, arrayOfSequences, true, true,30));
+            animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(parEntity, parModel, modelAssetPathArray, arrayOfSequences, true, true,30));
         }
     }
     

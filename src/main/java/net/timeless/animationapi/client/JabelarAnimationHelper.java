@@ -40,18 +40,25 @@ public class JabelarAnimationHelper
     private boolean finishedPose = false;
         
     public JabelarAnimationHelper(EntityDinosaur parEntity, ModelDinosaur parModel, String[] parAssetPathArray, 
-            String[] parPartNameArray, int[][][] parArrayOfSequences, boolean parRandomInitialSequence, 
+            int[][][] parArrayOfSequences, boolean parRandomInitialSequence, 
             boolean parShouldRandomizeSequence, int parChanceNotIdle)
     {
         // transfer static animation info from constructor parameters to instance
         theEntity = parEntity;
         modelAssetPathArray = parAssetPathArray;
-        partNameArray = parPartNameArray;
+//        partNameArray = parPartNameArray;
+        partNameArray = parModel.getCubeNamesArray();
+        // DEBUG
+        for (int i = 0; i<partNameArray.length; i++)
+        {
+            System.out.println("model parts are "+partNameArray[i]);
+        }
+        numParts = partNameArray.length;
+
         arrayOfSequences = parArrayOfSequences;
         shouldRandomizeSequence = parShouldRandomizeSequence;
         chanceNotIdle = parChanceNotIdle;
          
-        numParts = parPartNameArray.length;
         numSequencesInArray = arrayOfSequences.length;
 
         init(parModel, parRandomInitialSequence);
@@ -395,8 +402,8 @@ public class JabelarAnimationHelper
         {
             finishedPose = true;
         }
-        // DEBUG
-        System.out.println("current tween step = "+currentTickInTween);
+//        // DEBUG
+//        System.out.println("current tween step = "+currentTickInTween);
         return finishedPose;
     }
     

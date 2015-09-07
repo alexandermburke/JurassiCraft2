@@ -54,31 +54,6 @@ public class AnimationTherizinosaurus implements IModelAnimator
             "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_calling_4"
     };
 
-    // Tell the code the names of all your tabula model parts
-    // NOTE: all the models must use exactly same number and names of parts
-    protected static final String[] partNameArray = new String[] {
-        "Body main", "Body main 1", "Body hips", 
-        "Right Thigh", "Right Calf 1", "Right Calf 2", "Foot Right",
-        "Left Thigh", "Left Calf 1", "Left Calf 2", "Foot Left",
-        "Tail 1", "Tail 2", "Tail 2 feathers", 
-        "Tail 3", "Tail 3 feathers", "Tail 3 feathers r", "Tail 3 feathers l",
-        "Tail 4", "Tail 4 feathers", "Tail 4 feathers r", "Tail 4 feathers l",
-        "Tail 5", "Tail 5 feathers", "Tail 5 feathers r", "Tail 5 feathers l",
-        "Tail 6", "Tail 6 feathers", "Tail 6 feathers r", "Tail 6 feathers l",
-        "Neck base", "Neck 1", "Neck 2", "Neck 3", 
-        "Neck 4", "Neck 4 feathers", "Neck 4 feathers r", "Neck 4 feathers l",
-        "Neck 5", "Neck 5 feathers", "Neck 5 feathers r", "Neck 5 feathers l",
-        "Neck 6", "Neck 6 feathers", "Neck 6 feathers r", "Neck 6 feathers l",
-        "Neck 7", "Neck 7 feathers", "Neck 7 feathers r", "Neck 7 feathers l",
-        "Head", "Snout", "Snout roof", "Lower Jaw", "Upper Jaw", 
-        "Body shoulders", "Lower Arm Right", "Lower Arm Right 1",
-        "Right hand", "Arm right feathers", "Right finger 1", "RF1 mid", "RF1 end", 
-        "Right finger 2", "RF2 mid", "RF2 end", "Right finger 3", "RF3 mid", "RF3 end",
-        "Lower Arm LEFT", "Lower Arm LEFT 1", 
-        "Left hand", "Arm left feathers", "Left finger 1", "LF1 mid", "LF1 end", 
-        "Left finger 2", "LF1 end", "LF2 end", "Left finger 3", "LF3 mid", "LF3 mid"
-    };
-
     /* 
      * Define your animation sequence here
      * First element is target pose model index (i.e. order of model assets listed in
@@ -231,7 +206,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
         {
             // DEBUG
             System.out.println("Adding entity to hashmap with id = "+parEntity.getEntityId());
-            animationInstanceToEntityMap.put(parEntity.getUniqueID(), new JabelarAnimationHelper(parEntity, parModel, modelAssetPathArray, partNameArray, arrayOfSequences, true, true,10));
+            animationInstanceToEntityMap.put(parEntity.getUniqueID(), new JabelarAnimationHelper(parEntity, parModel, modelAssetPathArray, arrayOfSequences, true, true,10));
         }
     }
     
