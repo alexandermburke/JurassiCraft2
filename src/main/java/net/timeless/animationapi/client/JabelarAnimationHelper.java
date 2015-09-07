@@ -488,7 +488,10 @@ public class JabelarAnimationHelper
     {
         return (float) (180.0F / Math.PI * rads);
     }
-    
+
+    /*
+     * useful when debugging errors in the name array
+     */
     private int partIndexFromName(String parName)
     {
         int theIndex = -1;
@@ -500,12 +503,5 @@ public class JabelarAnimationHelper
             }
         }
         return theIndex;
-    }
-
-    public void setNumPosesInSequence(int parNumPosesInSequence)
-    {
-        // DEBUG
-        System.out.println("Setting number of poses in sequence "+parNumPosesInSequence);
-        numPosesInSequence = parNumPosesInSequence;
     }
 }

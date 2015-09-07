@@ -33,6 +33,15 @@ public class AnimationTherizinosaurus implements IModelAnimator
             "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_look_right",
             "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_rearing",
             "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_flap",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_eating_1",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_eating_1b",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_eating_2",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_eating_3",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_eating_4",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_eating_4b",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_eating_5",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_eating_6",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_eating_6b"
     };
 
     // Tell the code the names of all your tabula model parts
@@ -96,6 +105,13 @@ public class AnimationTherizinosaurus implements IModelAnimator
         {4, 10}, {3, 10}, {4, 10}, {3, 10}, {4, 10}, {3, 10}, {4, 10}, {0, 100}
     };
     
+    private static int[][] sequenceEating = new int[][] {
+        {5, 100}, {6, 40}, {5, 40}, {6, 40}, {5, 40}, {6, 40}, {5, 40},
+        {7, 80}, {8, 80}, {9, 100}, {10, 40}, {9, 40}, {10, 40}, {9, 40}, {10, 40}, {9, 40}, {10, 40},
+        {8, 80}, {11, 160}, {12, 100}, {13, 40}, {12, 40}, {13, 40}, {12, 40}, {13, 40}, {12, 40}, {13, 40},
+        {11, 80}, {0, 80}, {0, 200}
+    };
+    
     protected static int[][] sequenceLongIdle = new int[][] {
         {0, 800}
     };
@@ -109,21 +125,27 @@ public class AnimationTherizinosaurus implements IModelAnimator
     protected static int[][][] arrayOfSequences = new int[][][] {
         sequenceIdle,
     	sequenceMating,
+    	sequenceEating, 
     	sequenceHissing,
         sequenceLookLeft,
         sequenceLookRight,
+        sequenceEating, 
         sequenceHissing,
         sequenceLookLeft,
         sequenceLookRight,
+        sequenceEating, 
         sequenceHissing,
         sequenceLookLeft,
         sequenceLookRight,
+        sequenceEating, 
         sequenceHissing,
         sequenceLookLeft,
         sequenceLookRight,
+        sequenceEating, 
         sequenceHissing,
         sequenceLookLeft,
         sequenceLookRight,
+        sequenceEating, 
     	sequenceHissing
     };
 
