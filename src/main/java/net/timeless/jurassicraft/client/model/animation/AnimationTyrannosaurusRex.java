@@ -105,7 +105,7 @@ public class AnimationTyrannosaurusRex implements IModelAnimator
         {
             // DEBUG
             System.out.println("Adding entity to hashmap with id = "+parEntity.getEntityId());
-            animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(parEntity, parModel, modelAssetPathArray, arrayOfSequences, true, true,30));
+            animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(parEntity, parModel, modelAssetPathArray, arrayOfSequences, true, true,30, true, 1.0F));
         }
     }
     

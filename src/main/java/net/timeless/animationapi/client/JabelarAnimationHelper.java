@@ -17,7 +17,7 @@ public class JabelarAnimationHelper
     private final EntityDinosaur theEntity;
     
     private final String[] modelAssetPathArray;
-    private final String[] partNameArray;
+    private String[] partNameArray;
     private final int[][][] arrayOfSequences;
     
     private MowzieModelRenderer[][] posesArray;
@@ -28,7 +28,7 @@ public class JabelarAnimationHelper
     private float[][] currentPositionArray ;
     private float[][] currentOffsetArray ;
 
-    private final int numParts;
+    private int numParts;
     private final int numSequencesInArray;
     private int currentSequence; 
     private boolean shouldRandomizeSequence = false;
@@ -38,26 +38,24 @@ public class JabelarAnimationHelper
     private int numTicksInTween;
     private int currentTickInTween;
     private boolean finishedPose = false;
+    
+    private final boolean inertialTweens;
+    private final float baseInertiaFactor;
         
     public JabelarAnimationHelper(EntityDinosaur parEntity, ModelDinosaur parModel, String[] parAssetPathArray, 
             int[][][] parArrayOfSequences, boolean parRandomInitialSequence, 
-            boolean parShouldRandomizeSequence, int parChanceNotIdle)
+            boolean parShouldRandomizeSequence, int parChanceNotIdle, boolean parInertialTweens, float parInertiaFactor)
     {
         // transfer static animation info from constructor parameters to instance
         theEntity = parEntity;
         modelAssetPathArray = parAssetPathArray;
-//        partNameArray = parPartNameArray;
-        partNameArray = parModel.getCubeNamesArray();
-        // DEBUG
-        for (int i = 0; i<partNameArray.length; i++)
-        {
-            System.out.println("model parts are "+partNameArray[i]);
-        }
-        numParts = partNameArray.length;
 
         arrayOfSequences = parArrayOfSequences;
         shouldRandomizeSequence = parShouldRandomizeSequence;
         chanceNotIdle = parChanceNotIdle;
+        
+        inertialTweens = parInertialTweens;
+        baseInertiaFactor = parInertiaFactor;
          
         numSequencesInArray = arrayOfSequences.length;
 
@@ -76,6 +74,7 @@ public class JabelarAnimationHelper
     
     private void init(ModelDinosaur parModel, boolean parRandomInitialSequence)
     {
+        initPartNameArray(parModel);
         initCustomPoseArray();
         initSequence(parRandomInitialSequence);
         initPose(); // sets the target pose based on sequence
@@ -86,6 +85,13 @@ public class JabelarAnimationHelper
         passedInModelRendererArray = convertPassedInModelToModelRendererArray(parModel);
 
         initCurrentPoseArrays();
+    }
+    
+    // read all the cube names from the ModelJson
+    public void initPartNameArray(ModelDinosaur parModel)
+    {
+        partNameArray = parModel.getCubeNamesArray();
+        numParts = partNameArray.length;
     }
     
     // initialize custom poseArray (first index is model, second is part within model)
@@ -209,18 +215,11 @@ public class JabelarAnimationHelper
         // tween the passed in model towards target pose
         for (int i = 0; i < numParts; i++)
         {
-            if (parInertial)
-            {
-                nextInertialTweenRotations(i);
-                nextInertialTweenPositions(i);
-                nextInertialTweenOffsets(i);  
-            }
-            else
-            {
-                nextTweenRotations(i);
-                nextTweenPositions(i);
-                nextTweenOffsets(i);  
-            }
+            float inertiaFactor = calculateInertiaFactor();
+            
+            nextTweenRotations(i, inertiaFactor);
+            nextTweenPositions(i, inertiaFactor);
+            nextTweenOffsets(i, inertiaFactor);  
         }
         
         // update current position tracking arrays
@@ -233,151 +232,82 @@ public class JabelarAnimationHelper
         {
             handleFinishedPose();
         }
-
     }
-
-    /*
-     * Linear tween of the rotateAngles between current angles and target angles
-     */
-    private void nextTweenRotations(int parPartIndex)
-    {  
-        passedInModelRendererArray[parPartIndex].rotateAngleX =
-                currentRotationArray[parPartIndex][0] + 
-                (nextPose[parPartIndex].rotateAngleX - currentRotationArray[parPartIndex][0])
-                / (numTicksInTween - currentTickInTween);
-        passedInModelRendererArray[parPartIndex].rotateAngleY =
-                currentRotationArray[parPartIndex][1] + 
-                (nextPose[parPartIndex].rotateAngleY - currentRotationArray[parPartIndex][1])
-                / (numTicksInTween - currentTickInTween);
-        passedInModelRendererArray[parPartIndex].rotateAngleZ =
-                currentRotationArray[parPartIndex][2] + 
-                (nextPose[parPartIndex].rotateAngleZ - currentRotationArray[parPartIndex][2])
-                / (numTicksInTween - currentTickInTween);
-    }
-
-    /*
-     * Linear tween of the rotatePoints between current positions and target positions
-     */
-    private void nextTweenPositions(int parPartIndex)
-    {
-        passedInModelRendererArray[parPartIndex].rotationPointX =
-                currentPositionArray[parPartIndex][0] + 
-                (nextPose[parPartIndex].rotationPointX - currentPositionArray[parPartIndex][0])
-                / (numTicksInTween - currentTickInTween);
-        passedInModelRendererArray[parPartIndex].rotationPointY =
-                currentPositionArray[parPartIndex][1] + 
-                (nextPose[parPartIndex].rotationPointY - currentPositionArray[parPartIndex][1])
-                / (numTicksInTween - currentTickInTween);
-        passedInModelRendererArray[parPartIndex].rotationPointZ = 
-                currentPositionArray[parPartIndex][2] + 
-                (nextPose[parPartIndex].rotationPointZ - currentPositionArray[parPartIndex][2])
-                / (numTicksInTween - currentTickInTween);
-    }
-
-    /*
-     * Linear tween of the offsets between current offsets and target offsets
-     */
-    private void nextTweenOffsets(int partPartIndex)
-    {
-        passedInModelRendererArray[partPartIndex].offsetX =
-                currentOffsetArray[partPartIndex][0] + 
-                (nextPose[partPartIndex].offsetX - currentOffsetArray[partPartIndex][0])
-                / (numTicksInTween - currentTickInTween);
-        passedInModelRendererArray[partPartIndex].offsetY =
-                currentOffsetArray[partPartIndex][1] + 
-                
-                (nextPose[partPartIndex].offsetY - currentOffsetArray[partPartIndex][1])
-                / (numTicksInTween - currentTickInTween);
-        passedInModelRendererArray[partPartIndex].offsetZ =
-                currentOffsetArray[partPartIndex][2] + 
-                (nextPose[partPartIndex].offsetZ - currentOffsetArray[partPartIndex][2])
-                / (numTicksInTween - currentTickInTween);
-    }
-    /*
-     * Inertial tween of the rotateAngles between current angles and target angles
-     */
-    private void nextInertialTweenRotations(int parPartIndex)
-    {      
-        float inertialFactor = 1.0F;
-        if ((currentTickInTween < (numTicksInTween * 0.25F)) && (currentTickInTween >= (numTicksInTween - numTicksInTween * 0.25F)))
-        {
-            inertialFactor = 0.5F;
-        }
-        else
-        {
-            inertialFactor = 1.5F;
-        }
     
+    private float calculateInertiaFactor()
+    {
+        float inertiaFactor = baseInertiaFactor;
+        if (inertialTweens)
+        {
+            if ((currentTickInTween < (numTicksInTween * 0.25F)) && (currentTickInTween >= (numTicksInTween - numTicksInTween * 0.25F)))
+            {
+                inertiaFactor *= 0.5F;
+            }
+            else
+            {
+                inertiaFactor *= 1.5F;
+            }
+        }
+        
+        return inertiaFactor;
+    }
+
+    /*
+     * Tween of the rotateAngles between current angles and target angles.
+     * The tween is linear if inertialTweens = false
+     */
+    private void nextTweenRotations(int parPartIndex, float inertiaFactor)
+    {        
         passedInModelRendererArray[parPartIndex].rotateAngleX =
-                currentRotationArray[parPartIndex][0] + inertialFactor *
+                currentRotationArray[parPartIndex][0] + inertiaFactor *
                 (nextPose[parPartIndex].rotateAngleX - currentRotationArray[parPartIndex][0])
                 / (numTicksInTween - currentTickInTween);
         passedInModelRendererArray[parPartIndex].rotateAngleY =
-                currentRotationArray[parPartIndex][1] + inertialFactor *
+                currentRotationArray[parPartIndex][1] + inertiaFactor *
                 (nextPose[parPartIndex].rotateAngleY - currentRotationArray[parPartIndex][1])
                 / (numTicksInTween - currentTickInTween);
         passedInModelRendererArray[parPartIndex].rotateAngleZ =
-                currentRotationArray[parPartIndex][2] + inertialFactor *
+                currentRotationArray[parPartIndex][2] + inertiaFactor *
                 (nextPose[parPartIndex].rotateAngleZ - currentRotationArray[parPartIndex][2])
                 / (numTicksInTween - currentTickInTween);
     }
 
     /*
-     * Inertial tween of the rotatePoints between current positions and target positions
+     * Tween of the rotatePoints between current positions and target positions.
+     * The tween is linear if inertialTweens is false.
      */
-    private void nextInertialTweenPositions(int parPartIndex)
-    {
-        
-        float inertialFactor = 1.0F;
-        if ((currentTickInTween < (numTicksInTween * 0.25F)) && (currentTickInTween >= (numTicksInTween - numTicksInTween * 0.25F)))
-        {
-            inertialFactor = 0.5F;
-        }
-        else
-        {
-            inertialFactor = 1.5F;
-        }
-        
+    private void nextTweenPositions(int parPartIndex, float inertiaFactor)
+    {        
         passedInModelRendererArray[parPartIndex].rotationPointX =
-                currentPositionArray[parPartIndex][0] + inertialFactor *
+                currentPositionArray[parPartIndex][0] + inertiaFactor *
                 (nextPose[parPartIndex].rotationPointX - currentPositionArray[parPartIndex][0])
                 / (numTicksInTween - currentTickInTween);
         passedInModelRendererArray[parPartIndex].rotationPointY =
-                currentPositionArray[parPartIndex][1] + inertialFactor *
+                currentPositionArray[parPartIndex][1] + inertiaFactor *
                 (nextPose[parPartIndex].rotationPointY - currentPositionArray[parPartIndex][1])
                 / (numTicksInTween - currentTickInTween);
         passedInModelRendererArray[parPartIndex].rotationPointZ = 
-                currentPositionArray[parPartIndex][2] + inertialFactor *
+                currentPositionArray[parPartIndex][2] + inertiaFactor *
                 (nextPose[parPartIndex].rotationPointZ - currentPositionArray[parPartIndex][2])
                 / (numTicksInTween - currentTickInTween);
     }
 
     /*
-     * Inertial tween of the offsets between current offsets and target offsets
+     * Tween of the offsets between current offsets and target offsets.
+     * The tween is linear if inertialTweens is false.
      */
-    private void nextInertialTweenOffsets(int partPartIndex)
-    {
-        
-        float inertialFactor = 1.0F;
-        if ((currentTickInTween < (numTicksInTween * 0.25F)) && (currentTickInTween >= (numTicksInTween - numTicksInTween * 0.25F)))
-        {
-            inertialFactor = 0.5F;
-        }
-        else
-        {
-            inertialFactor = 1.5F;
-        }
-
+    private void nextTweenOffsets(int partPartIndex, float inertiaFactor)
+    {        
         passedInModelRendererArray[partPartIndex].offsetX =
-                currentOffsetArray[partPartIndex][0] + inertialFactor *
+                currentOffsetArray[partPartIndex][0] + inertiaFactor *
                 (nextPose[partPartIndex].offsetX - currentOffsetArray[partPartIndex][0])
                 / (numTicksInTween - currentTickInTween);
         passedInModelRendererArray[partPartIndex].offsetY =
-                currentOffsetArray[partPartIndex][1] + inertialFactor *
+                currentOffsetArray[partPartIndex][1] + inertiaFactor *
                 (nextPose[partPartIndex].offsetY - currentOffsetArray[partPartIndex][1])
                 / (numTicksInTween - currentTickInTween);
         passedInModelRendererArray[partPartIndex].offsetZ =
-                currentOffsetArray[partPartIndex][2] + inertialFactor *
+                currentOffsetArray[partPartIndex][2] + inertiaFactor *
                 (nextPose[partPartIndex].offsetZ - currentOffsetArray[partPartIndex][2])
                 / (numTicksInTween - currentTickInTween);
     }
