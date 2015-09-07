@@ -47,7 +47,11 @@ public class AnimationTherizinosaurus implements IModelAnimator
             "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_drinking_3",
             "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_drinking_4",
             "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_resting",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_sleeping"
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_sleeping",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_calling_1",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_calling_2",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_calling_3",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_calling_4"
     };
 
     // Tell the code the names of all your tabula model parts
@@ -133,6 +137,10 @@ public class AnimationTherizinosaurus implements IModelAnimator
         {18, 100}, {19, 80}, {19, 800}, {18, 40}, {0, 200}
     };
     
+    protected static int[][] sequenceCalling = new int[][] {
+        {20, 100}, {21, 60}, {21, 40}, {22, 40}, {23, 80}, {21, 40}, {0, 200}  
+    };
+    
     protected static int[][] sequenceLongIdle = new int[][] {
         {0, 800}
     };
@@ -145,11 +153,12 @@ public class AnimationTherizinosaurus implements IModelAnimator
      */
 //    protected static int[][][] arrayOfSequences = new int[][][] {
 //        sequenceIdle,
-//        sequenceSleeping
+//        sequenceCalling
 //    };
 
     protected static int[][][] arrayOfSequences = new int[][][] {
         sequenceIdle,
+        sequenceCalling,
     	sequenceMating,
     	sequenceDrinking,
     	sequenceResting,
@@ -158,6 +167,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
     	sequenceHissing,
         sequenceLookLeft,
         sequenceLookRight,
+        sequenceCalling,
         sequenceDrinking,
         sequenceResting,
         sequenceSleeping,
@@ -165,6 +175,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
         sequenceHissing,
         sequenceLookLeft,
         sequenceLookRight,
+        sequenceCalling,
         sequenceDrinking,
         sequenceResting,
         sequenceSleeping,
@@ -172,6 +183,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
         sequenceHissing,
         sequenceLookLeft,
         sequenceLookRight,
+        sequenceCalling,
         sequenceDrinking,
         sequenceResting,
         sequenceSleeping,
@@ -179,11 +191,13 @@ public class AnimationTherizinosaurus implements IModelAnimator
         sequenceHissing,
         sequenceLookLeft,
         sequenceLookRight,
+        sequenceCalling,
         sequenceDrinking,
         sequenceResting,
         sequenceSleeping,
         sequenceEating, 
         sequenceHissing,
+        sequenceCalling
     };
 
     // maps each entity with its current animation 
