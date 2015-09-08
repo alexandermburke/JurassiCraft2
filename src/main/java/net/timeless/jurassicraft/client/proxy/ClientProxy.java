@@ -9,8 +9,6 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.client.event.ClientEventHandler;
-import net.timeless.jurassicraft.client.model.animation.AnimationTherizinosaurus;
-import net.timeless.jurassicraft.client.model.animation.AnimationTyrannosaurusRex;
 import net.timeless.jurassicraft.client.render.JCRenderingRegistry;
 import net.timeless.jurassicraft.common.proxy.CommonProxy;
 
@@ -98,17 +96,6 @@ public class ClientProxy extends CommonProxy
         super.postInit();
 
         renderingRegistry.postInit();
-        
-        loadJabelarModelAssets();
-    }
-    
-    private void loadJabelarModelAssets()
-    {
-    	// DEBUG
-    	System.out.println("Loading Tabula Model Assets");
-    	
-    	AnimationTherizinosaurus.loadTabulaModelAssets();
-    	AnimationTyrannosaurusRex.loadTabulaModelAssets();
     }
 
     @Override

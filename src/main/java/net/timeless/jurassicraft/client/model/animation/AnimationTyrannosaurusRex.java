@@ -10,7 +10,6 @@ import net.timeless.animationapi.client.JabelarAnimationHelper;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.dinosaur.DinosaurTherizinosaurus;
-import net.timeless.jurassicraft.common.entity.EntityTyrannosaurus;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
@@ -74,17 +73,15 @@ public class AnimationTyrannosaurusRex implements IModelAnimator
         sequenceLookRight,
     };
 
-    // maps each entity with its current animation 
+    // maps each entity id with its current animation 
     protected HashMap<Integer, JabelarAnimationHelper> animationInstanceToEntityMap = new HashMap<Integer, JabelarAnimationHelper>();
 
     private static MowzieModelRenderer[][] arrayOfPoses;
     
     private static int numParts;
 
-    /*
-     * Must call this during client proxy post-init or else assets won't be loaded!
-     */
-    public static void loadTabulaModelAssets()
+    // load tabula models once per game during implicit constructor static initialization
+    static
     {
     	String[] partNameArray = JabelarAnimationHelper.getTabulaModel(modelAssetPathArray[0], 0).getCubeNamesArray();
         numParts = partNameArray.length;        
@@ -103,41 +100,29 @@ public class AnimationTyrannosaurusRex implements IModelAnimator
         }
     }
 
-    // cast model and entity to JurassiCraft2 classes
     @Override
     public void setRotationAngles(ModelJson parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity parEntity)
     {
-        setRotationAngles((ModelDinosaur)parModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, (EntityTyrannosaurus)parEntity);
-    }
-
-    /*
-     * You should NOT change anything in this method! Models and tween sequences are defined
-     * in the field initializations at the top of this class' code
-     */
-    protected void setRotationAngles(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityTyrannosaurus parEntity)    
-    {
-        updateCurrentAnimationIfNewEntity(parModel, parEntity);
-
-        animationInstanceToEntityMap.get(parEntity.getEntityId()).performJabelarAnimations(parModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, parEntity);
-
-        // you can still add chain, walk, bob, etc.
-        performMowzieAnimations(parModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, parEntity);
-    }
-    
-    protected void updateCurrentAnimationIfNewEntity(ModelDinosaur parModel, EntityDinosaur parEntity)
-    {
+    	ModelDinosaur theModel = (ModelDinosaur)parModel;
+    	EntityDinosaur theEntity= (EntityDinosaur)parEntity;
+    	
         // add entry to hashmap if new entity
         if (!animationInstanceToEntityMap.containsKey(parEntity.getEntityId()))
         {
             // DEBUG
             System.out.println("Adding entity to hashmap with id = "+parEntity.getEntityId());
-            animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(parEntity, parModel, numParts, arrayOfPoses, arrayOfSequences, true, true,30, true, 1.0F));
+            animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(theEntity, theModel, numParts, arrayOfPoses, arrayOfSequences, true, true,30, true, 1.0F));
         }
+
+        animationInstanceToEntityMap.get(theEntity.getEntityId()).performJabelarAnimations(theModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, theEntity);
+
+        // you can still add chain, walk, bob, etc.
+        performMowzieAnimations(theModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, theEntity);
     }
     
- protected void performMowzieAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityTyrannosaurus parEntity)
- {
-       Animator animator = parModel.animator;
+    private void performMowzieAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
+    {
+    	Animator animator = parModel.animator;
         // f = entity.ticksExisted;
         // f1 = (float) Math.cos(f/20)*0.25F + 0.5F;
         // f1 = 0.5F;

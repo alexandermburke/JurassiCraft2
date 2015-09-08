@@ -1,7 +1,6 @@
 package net.timeless.jurassicraft.client.model.animation;
 
 import java.util.HashMap;
-import java.util.UUID;
 
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
@@ -10,7 +9,6 @@ import net.timeless.animationapi.client.JabelarAnimationHelper;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.dinosaur.DinosaurTherizinosaurus;
-import net.timeless.jurassicraft.common.entity.EntityTherizinosaurus;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
@@ -174,68 +172,54 @@ public class AnimationTherizinosaurus implements IModelAnimator
         sequenceCalling
     };
 
-    // maps each entity with its current animation 
-    protected HashMap<UUID, JabelarAnimationHelper> animationInstanceToEntityMap = new HashMap<UUID, JabelarAnimationHelper>();
+    // maps each entity id with its current animation 
+    protected HashMap<Integer, JabelarAnimationHelper> animationInstanceToEntityMap = new HashMap<Integer, JabelarAnimationHelper>();
 
-    private static MowzieModelRenderer[][] poseArray;
+    private static MowzieModelRenderer[][] arrayOfPoses;
     
     private static int numParts;
 
-    /*
-     * Must call this during client proxy post-init or else assets won't be loaded!
-     */
-    public static void loadTabulaModelAssets()
+    // load tabula models once per game during implicit constructor static initialization
+    static
     {
     	String[] partNameArray = JabelarAnimationHelper.getTabulaModel(modelAssetPathArray[0], 0).getCubeNamesArray();
         numParts = partNameArray.length;        
         
-        poseArray = new MowzieModelRenderer[modelAssetPathArray.length][numParts];
+        arrayOfPoses = new MowzieModelRenderer[modelAssetPathArray.length][numParts];
         
         for (int modelIndex = 0; modelIndex < modelAssetPathArray.length; modelIndex++)
         {
-            poseArray[modelIndex] = new MowzieModelRenderer[numParts];
+            arrayOfPoses[modelIndex] = new MowzieModelRenderer[numParts];
             ModelDinosaur theModel = JabelarAnimationHelper.getTabulaModel(modelAssetPathArray[modelIndex], 0);
             
             for (int partIndex = 0; partIndex < numParts; partIndex++) 
             {
-                poseArray[modelIndex][partIndex] = theModel.getCube(partNameArray[partIndex]);
+                arrayOfPoses[modelIndex][partIndex] = theModel.getCube(partNameArray[partIndex]);
             }
         }
     }
-    
-    // cast model and entity to JurassiCraft2 classes
+
     @Override
     public void setRotationAngles(ModelJson parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity parEntity)
     {
-        setRotationAngles((ModelDinosaur)parModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, (EntityTherizinosaurus)parEntity);
-    }
-
-    /*
-     * You should NOT change anything in this method! Models and tween sequences are defined
-     * in the field initializations at the top of this class' code
-     */
-    protected void setRotationAngles(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityTherizinosaurus parEntity)    
-    {
-        updateCurrentAnimationIfNewEntity(parModel, parEntity);
-
-        animationInstanceToEntityMap.get(parEntity.getUniqueID()).performJabelarAnimations(parModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, parEntity);
-
-        // you can still add chain, walk, bob, etc.
-        performMowzieAnimations(parModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, parEntity);
-    }
-    
-    protected void updateCurrentAnimationIfNewEntity(ModelDinosaur parModel, EntityDinosaur parEntity)
-    {
+    	ModelDinosaur theModel = (ModelDinosaur)parModel;
+    	EntityDinosaur theEntity= (EntityDinosaur)parEntity;
+    	
         // add entry to hashmap if new entity
-        if (!animationInstanceToEntityMap.containsKey(parEntity.getUniqueID()))
+        if (!animationInstanceToEntityMap.containsKey(parEntity.getEntityId()))
         {
             // DEBUG
             System.out.println("Adding entity to hashmap with id = "+parEntity.getEntityId());
-            animationInstanceToEntityMap.put(parEntity.getUniqueID(), new JabelarAnimationHelper(parEntity, parModel, numParts, poseArray, arrayOfSequences, true, true,10, true, 1.0F));
+            animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(theEntity, theModel, numParts, arrayOfPoses, arrayOfSequences, true, true,30, true, 1.0F));
         }
+
+        animationInstanceToEntityMap.get(theEntity.getEntityId()).performJabelarAnimations(theModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, theEntity);
+
+        // you can still add chain, walk, bob, etc.
+        performMowzieAnimations(theModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, theEntity);
     }
     
- protected void performMowzieAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityTherizinosaurus parEntity)
+ protected void performMowzieAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
  {
 //     Animator animator = parModel.animator;
 
