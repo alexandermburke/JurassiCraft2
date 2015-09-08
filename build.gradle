@@ -38,7 +38,7 @@ dependencies {
 
 minecraft {
     version = "1.8-11.14.3.1450"
-    runDir = "../run/assets"
+    runDir = "minecraft"
     replace '${version}', project.version
     mappings = "snapshot_20150903"
 }
