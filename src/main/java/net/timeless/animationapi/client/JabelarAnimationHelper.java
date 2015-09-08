@@ -17,7 +17,7 @@ public class JabelarAnimationHelper
     private final EntityDinosaur theEntity;
     
     private final String[] modelAssetPathArray;
-    private String[] partNameArray;
+//    private String[] partNameArray;
     private final int[][][] arrayOfSequences;
     
     private MowzieModelRenderer[][] posesArray;
@@ -66,22 +66,21 @@ public class JabelarAnimationHelper
     
     public void performJabelarAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
     {
-//        // DEBUG
-//        long startTime = System.nanoTime();
+        // DEBUG
+        long startTime = System.nanoTime();
 
         passedInModelRendererArray = convertPassedInModelToModelRendererArray(parModel);
         performNextTweenTick();
         
-//        // DEBUG
-//        long endTime = System.nanoTime();
-//
-//        System.out.println("jabelar animation took "+(endTime - startTime)+" nanosecs");  
+        // DEBUG
+        long endTime = System.nanoTime();
+
+        System.out.println("jabelar animation took "+(endTime - startTime)+" nanosecs");  
     }
     
     private void init(ModelDinosaur parModel, boolean parRandomInitialSequence)
     {
-        initPartNameArray(parModel);
-        initCustomPoseArray();
+        initCustomPoseArray(parModel);
         initSequence(parRandomInitialSequence);
         initPose(); // sets the target pose based on sequence
         initTween();
@@ -93,16 +92,13 @@ public class JabelarAnimationHelper
         initCurrentPoseArrays();
     }
     
-    // read all the cube names from the ModelJson
-    public void initPartNameArray(ModelDinosaur parModel)
-    {
-        partNameArray = parModel.getCubeNamesArray();
-        numParts = partNameArray.length;
-    }
-    
+     
     // initialize custom poseArray (first index is model, second is part within model)
-    private void initCustomPoseArray()
+    private void initCustomPoseArray(ModelDinosaur parModel)
     {
+    	String[] partNameArray = parModel.getCubeNamesArray();
+        numParts = partNameArray.length;
+    	
         posesArray = new MowzieModelRenderer[modelAssetPathArray.length][numParts];
         
         for (int modelIndex = 0; modelIndex < modelAssetPathArray.length; modelIndex++)
@@ -182,6 +178,8 @@ public class JabelarAnimationHelper
     private MowzieModelRenderer[] convertPassedInModelToModelRendererArray(ModelDinosaur parModel)
     {
         MowzieModelRenderer[] modelRendererArray = new MowzieModelRenderer[numParts];
+        String[] partNameArray = parModel.getCubeNamesArray();
+        
         for (int i = 0; i < numParts; i++) 
         {
             modelRendererArray[i] = parModel.getCube(partNameArray[i]); 
@@ -200,10 +198,10 @@ public class JabelarAnimationHelper
         nextPose = posesArray[arrayOfSequences[currentSequence][currentPose][0]];
         numTicksInTween = arrayOfSequences[currentSequence][currentPose][1];
         currentTickInTween = 0;
-//        // DEBUG
-//        System.out.println("current sequence "+currentSequence+" out of "+arrayOfSequences.length+
-//                " and current pose "+currentPose+" out of "+arrayOfSequences[currentSequence].length
-//                +" with "+numTicksInTween+" ticks in tween");
+        // DEBUG
+        System.out.println("current sequence "+currentSequence+" out of "+arrayOfSequences.length+
+                " and current pose "+currentPose+" out of "+arrayOfSequences[currentSequence].length
+                +" with "+numTicksInTween+" ticks in tween");
     }
    
     private void performNextTweenTick()
@@ -423,21 +421,5 @@ public class JabelarAnimationHelper
     private float radToDeg(float rads)
     {
         return (float) (180.0F / Math.PI * rads);
-    }
-
-    /*
-     * useful when debugging errors in the name array
-     */
-    private int partIndexFromName(String parName)
-    {
-        int theIndex = -1;
-        for (int i = 0; i < partNameArray.length; i++)
-        {
-            if (partNameArray[i].toLowerCase().equals(parName.toLowerCase()))
-            {
-                theIndex = i;
-            }
-        }
-        return theIndex;
     }
 }

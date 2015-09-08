@@ -176,6 +176,11 @@ public class AnimationTherizinosaurus implements IModelAnimator
 
     // maps each entity with its current animation 
     protected HashMap<UUID, JabelarAnimationHelper> animationInstanceToEntityMap = new HashMap<UUID, JabelarAnimationHelper>();
+
+//    public static void loadModelResources()
+//    {
+//    	JabelarAnimationHelper.init()
+//    }
     
     // cast model and entity to JurassiCraft2 classes
     @Override
