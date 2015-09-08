@@ -19,6 +19,8 @@ import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 @SideOnly(Side.CLIENT)
 public class AnimationTherizinosaurus implements IModelAnimator
 {
+    protected static final JabelarAnimationHelper animationHelper;
+ 
     /*
      * Change the following fields for your custom dinosaur
      */
@@ -176,6 +178,14 @@ public class AnimationTherizinosaurus implements IModelAnimator
 
     // maps each entity with its current animation 
     protected HashMap<UUID, JabelarAnimationHelper> animationInstanceToEntityMap = new HashMap<UUID, JabelarAnimationHelper>();
+
+    /*
+     * This must be called from the client proxy post-init!
+     */
+    public static void loadModelAssets()
+    {
+        JabelarAnimationHelper.loadModelAssets(new ModelTherizinosaurus());
+    }
     
     // cast model and entity to JurassiCraft2 classes
     @Override
