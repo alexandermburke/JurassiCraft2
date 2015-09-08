@@ -77,6 +77,32 @@ public class AnimationTyrannosaurusRex implements IModelAnimator
     // maps each entity with its current animation 
     protected HashMap<Integer, JabelarAnimationHelper> animationInstanceToEntityMap = new HashMap<Integer, JabelarAnimationHelper>();
 
+    private static MowzieModelRenderer[][] arrayOfPoses;
+    
+    private static int numParts;
+
+    /*
+     * Must call this during client proxy post-init or else assets won't be loaded!
+     */
+    public static void loadTabulaModelAssets()
+    {
+    	String[] partNameArray = JabelarAnimationHelper.getTabulaModel(modelAssetPathArray[0], 0).getCubeNamesArray();
+        numParts = partNameArray.length;        
+        
+        arrayOfPoses = new MowzieModelRenderer[modelAssetPathArray.length][numParts];
+        
+        for (int modelIndex = 0; modelIndex < modelAssetPathArray.length; modelIndex++)
+        {
+            arrayOfPoses[modelIndex] = new MowzieModelRenderer[numParts];
+            ModelDinosaur theModel = JabelarAnimationHelper.getTabulaModel(modelAssetPathArray[modelIndex], 0);
+            
+            for (int partIndex = 0; partIndex < numParts; partIndex++) 
+            {
+                arrayOfPoses[modelIndex][partIndex] = theModel.getCube(partNameArray[partIndex]);
+            }
+        }
+    }
+
     // cast model and entity to JurassiCraft2 classes
     @Override
     public void setRotationAngles(ModelJson parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity parEntity)
@@ -105,7 +131,7 @@ public class AnimationTyrannosaurusRex implements IModelAnimator
         {
             // DEBUG
             System.out.println("Adding entity to hashmap with id = "+parEntity.getEntityId());
-            animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(parEntity, parModel, modelAssetPathArray, arrayOfSequences, true, true,30, true, 1.0F));
+            animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(parEntity, parModel, numParts, arrayOfPoses, arrayOfSequences, true, true,30, true, 1.0F));
         }
     }
     

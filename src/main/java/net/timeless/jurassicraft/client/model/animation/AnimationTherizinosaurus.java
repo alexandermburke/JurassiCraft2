@@ -177,10 +177,31 @@ public class AnimationTherizinosaurus implements IModelAnimator
     // maps each entity with its current animation 
     protected HashMap<UUID, JabelarAnimationHelper> animationInstanceToEntityMap = new HashMap<UUID, JabelarAnimationHelper>();
 
-//    public static void loadModelResources()
-//    {
-//    	JabelarAnimationHelper.init()
-//    }
+    private static MowzieModelRenderer[][] poseArray;
+    
+    private static int numParts;
+
+    /*
+     * Must call this during client proxy post-init or else assets won't be loaded!
+     */
+    public static void loadTabulaModelAssets()
+    {
+    	String[] partNameArray = JabelarAnimationHelper.getTabulaModel(modelAssetPathArray[0], 0).getCubeNamesArray();
+        numParts = partNameArray.length;        
+        
+        poseArray = new MowzieModelRenderer[modelAssetPathArray.length][numParts];
+        
+        for (int modelIndex = 0; modelIndex < modelAssetPathArray.length; modelIndex++)
+        {
+            poseArray[modelIndex] = new MowzieModelRenderer[numParts];
+            ModelDinosaur theModel = JabelarAnimationHelper.getTabulaModel(modelAssetPathArray[modelIndex], 0);
+            
+            for (int partIndex = 0; partIndex < numParts; partIndex++) 
+            {
+                poseArray[modelIndex][partIndex] = theModel.getCube(partNameArray[partIndex]);
+            }
+        }
+    }
     
     // cast model and entity to JurassiCraft2 classes
     @Override
@@ -210,7 +231,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
         {
             // DEBUG
             System.out.println("Adding entity to hashmap with id = "+parEntity.getEntityId());
-            animationInstanceToEntityMap.put(parEntity.getUniqueID(), new JabelarAnimationHelper(parEntity, parModel, modelAssetPathArray, arrayOfSequences, true, true,10, true, 1.0F));
+            animationInstanceToEntityMap.put(parEntity.getUniqueID(), new JabelarAnimationHelper(parEntity, parModel, numParts, poseArray, arrayOfSequences, true, true,10, true, 1.0F));
         }
     }
     

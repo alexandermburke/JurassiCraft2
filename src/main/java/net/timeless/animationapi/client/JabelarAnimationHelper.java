@@ -16,11 +16,11 @@ public class JabelarAnimationHelper
 {
     private final EntityDinosaur theEntity;
     
-    private final String[] modelAssetPathArray;
+//    private static String[] modelAssetPathArray;
 //    private String[] partNameArray;
     private final int[][][] arrayOfSequences;
     
-    private MowzieModelRenderer[][] posesArray;
+    private final MowzieModelRenderer[][] arrayOfPoses;
     private MowzieModelRenderer[] passedInModelRendererArray;
     private MowzieModelRenderer[] nextPose;
 
@@ -28,7 +28,7 @@ public class JabelarAnimationHelper
     private float[][] currentPositionArray ;
     private float[][] currentOffsetArray ;
 
-    private int numParts;
+    private static int numParts;
     private final int numSequencesInArray;
     private int currentSequence; 
     private boolean shouldRandomizeSequence = false;
@@ -41,18 +41,20 @@ public class JabelarAnimationHelper
     private final boolean inertialTweens;
     private final float baseInertiaFactor;
         
-    public JabelarAnimationHelper(EntityDinosaur parEntity, ModelDinosaur parModel, String[] parAssetPathArray, 
+    public JabelarAnimationHelper(
+    		EntityDinosaur parEntity, 
+    		ModelDinosaur parModel, int parNumParts,
+    		MowzieModelRenderer[][] parArrayOfPoses,
             int[][][] parArrayOfSequences, boolean parRandomInitialSequence, 
             boolean parShouldRandomizeSequence, int parChanceNotIdle, boolean parInertialTweens, float parInertiaFactor)
     {
         // transfer static animation info from constructor parameters to instance
         theEntity = parEntity;
-        modelAssetPathArray = parAssetPathArray;
-
+        numParts = parNumParts;
+        arrayOfPoses = parArrayOfPoses;
         arrayOfSequences = parArrayOfSequences;
         shouldRandomizeSequence = parShouldRandomizeSequence;
         chanceNotIdle = parChanceNotIdle;
-        
         inertialTweens = parInertialTweens;
         baseInertiaFactor = parInertiaFactor;
          
@@ -66,21 +68,20 @@ public class JabelarAnimationHelper
     
     public void performJabelarAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
     {
-        // DEBUG
-        long startTime = System.nanoTime();
-
+//        // DEBUG
+//        long startTime = System.nanoTime();
+//
         passedInModelRendererArray = convertPassedInModelToModelRendererArray(parModel);
         performNextTweenTick();
-        
-        // DEBUG
-        long endTime = System.nanoTime();
-
-        System.out.println("jabelar animation took "+(endTime - startTime)+" nanosecs");  
+//        
+//        // DEBUG
+//        long endTime = System.nanoTime();
+//
+//        System.out.println("jabelar animation took "+(endTime - startTime)+" nanosecs");  
     }
     
     private void init(ModelDinosaur parModel, boolean parRandomInitialSequence)
     {
-        initCustomPoseArray(parModel);
         initSequence(parRandomInitialSequence);
         initPose(); // sets the target pose based on sequence
         initTween();
@@ -92,26 +93,6 @@ public class JabelarAnimationHelper
         initCurrentPoseArrays();
     }
     
-     
-    // initialize custom poseArray (first index is model, second is part within model)
-    private void initCustomPoseArray(ModelDinosaur parModel)
-    {
-    	String[] partNameArray = parModel.getCubeNamesArray();
-        numParts = partNameArray.length;
-    	
-        posesArray = new MowzieModelRenderer[modelAssetPathArray.length][numParts];
-        
-        for (int modelIndex = 0; modelIndex < modelAssetPathArray.length; modelIndex++)
-        {
-            posesArray[modelIndex] = new MowzieModelRenderer[numParts];
-            ModelDinosaur theModel = getTabulaModel(modelAssetPathArray[modelIndex], 0);
-            
-            for (int partIndex = 0; partIndex < numParts; partIndex++) 
-            {
-                posesArray[modelIndex][partIndex] = theModel.getCube(partNameArray[partIndex]);
-            }
-        }
-     }
     
     private void initSequence(boolean parRandomInitialSequence)
     {
@@ -131,7 +112,7 @@ public class JabelarAnimationHelper
 
         // initialize first pose
         currentPose = 0;
-        nextPose = posesArray[arrayOfSequences[currentSequence][currentPose][0]];
+        nextPose = arrayOfPoses[arrayOfSequences[currentSequence][currentPose][0]];
     }
     
     private void initTween()
@@ -183,19 +164,14 @@ public class JabelarAnimationHelper
         for (int i = 0; i < numParts; i++) 
         {
             modelRendererArray[i] = parModel.getCube(partNameArray[i]); 
-
-            // DEBUG
-            if (modelRendererArray[i] == null) 
-            {
-                System.out.println(partNameArray[i]+" parsed as null");
-            }
         }
+        
         return modelRendererArray;
     }
  
     private void setNextPose()
     {  
-        nextPose = posesArray[arrayOfSequences[currentSequence][currentPose][0]];
+        nextPose = arrayOfPoses[arrayOfSequences[currentSequence][currentPose][0]];
         numTicksInTween = arrayOfSequences[currentSequence][currentPose][1];
         currentTickInTween = 0;
         // DEBUG
