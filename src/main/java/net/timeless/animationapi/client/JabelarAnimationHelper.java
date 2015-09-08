@@ -16,11 +16,11 @@ public class JabelarAnimationHelper
 {
     private final EntityDinosaur theEntity;
     
-    private static String[] modelAssetPathArray;
-    private static String[] partNameArray;
+    private final String[] modelAssetPathArray;
+    private String[] partNameArray;
     private final int[][][] arrayOfSequences;
     
-    private static MowzieModelRenderer[][] posesArray;
+    private MowzieModelRenderer[][] posesArray;
     private MowzieModelRenderer[] passedInModelRendererArray;
     private MowzieModelRenderer[] nextPose;
 
@@ -28,7 +28,7 @@ public class JabelarAnimationHelper
     private float[][] currentPositionArray ;
     private float[][] currentOffsetArray ;
 
-    private static int numParts;
+    private int numParts;
     private final int numSequencesInArray;
     private int currentSequence; 
     private boolean shouldRandomizeSequence = false;
@@ -40,26 +40,6 @@ public class JabelarAnimationHelper
     
     private final boolean inertialTweens;
     private final float baseInertiaFactor;
-    
-    // initialize custom poseArray (first index is model, second is part within model)
-    public static void loadModelAssets(ModelDinosaur parModel)
-    {
-        partNameArray = parModel.getCubeNamesArray();
-        numParts = partNameArray.length;
-
-        posesArray = new MowzieModelRenderer[modelAssetPathArray.length][numParts];
-        
-        for (int modelIndex = 0; modelIndex < modelAssetPathArray.length; modelIndex++)
-        {
-            posesArray[modelIndex] = new MowzieModelRenderer[numParts];
-            ModelDinosaur theModel = getTabulaModel(modelAssetPathArray[modelIndex], 0);
-            
-            for (int partIndex = 0; partIndex < numParts; partIndex++) 
-            {
-                posesArray[modelIndex][partIndex] = theModel.getCube(partNameArray[partIndex]);
-            }
-        }
-     }
         
     public JabelarAnimationHelper(EntityDinosaur parEntity, ModelDinosaur parModel, String[] parAssetPathArray, 
             int[][][] parArrayOfSequences, boolean parRandomInitialSequence, 
@@ -100,8 +80,8 @@ public class JabelarAnimationHelper
     
     private void init(ModelDinosaur parModel, boolean parRandomInitialSequence)
     {
-//        initPartNameArray(parModel);
-//        loadModelAssets();
+        initPartNameArray(parModel);
+        initCustomPoseArray();
         initSequence(parRandomInitialSequence);
         initPose(); // sets the target pose based on sequence
         initTween();
@@ -112,6 +92,30 @@ public class JabelarAnimationHelper
 
         initCurrentPoseArrays();
     }
+    
+    // read all the cube names from the ModelJson
+    public void initPartNameArray(ModelDinosaur parModel)
+    {
+        partNameArray = parModel.getCubeNamesArray();
+        numParts = partNameArray.length;
+    }
+    
+    // initialize custom poseArray (first index is model, second is part within model)
+    private void initCustomPoseArray()
+    {
+        posesArray = new MowzieModelRenderer[modelAssetPathArray.length][numParts];
+        
+        for (int modelIndex = 0; modelIndex < modelAssetPathArray.length; modelIndex++)
+        {
+            posesArray[modelIndex] = new MowzieModelRenderer[numParts];
+            ModelDinosaur theModel = getTabulaModel(modelAssetPathArray[modelIndex], 0);
+            
+            for (int partIndex = 0; partIndex < numParts; partIndex++) 
+            {
+                posesArray[modelIndex][partIndex] = theModel.getCube(partNameArray[partIndex]);
+            }
+        }
+     }
     
     private void initSequence(boolean parRandomInitialSequence)
     {
