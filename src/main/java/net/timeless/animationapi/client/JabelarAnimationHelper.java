@@ -37,7 +37,6 @@ public class JabelarAnimationHelper
     private int currentPose;
     private int numTicksInTween;
     private int currentTickInTween;
-    private boolean finishedPose = false;
     
     private final boolean inertialTweens;
     private final float baseInertiaFactor;
@@ -69,7 +68,7 @@ public class JabelarAnimationHelper
     {
         passedInModelRendererArray = convertPassedInModelToModelRendererArray(parModel);
         initIfNeeded(parEntity);
-        performNextTweenTick(true);
+        performNextTweenTick();
     }
     
     private void init(ModelDinosaur parModel, boolean parRandomInitialSequence)
@@ -133,7 +132,6 @@ public class JabelarAnimationHelper
     {
         numTicksInTween = arrayOfSequences[currentSequence][currentPose][1];
         currentTickInTween = 0;
-        finishedPose = false;
     }
     
     private void initCurrentPoseArrays()
@@ -152,10 +150,10 @@ public class JabelarAnimationHelper
             }
         }
         
-        copyModelRendererArrayToCurrent();
+        copyTweenToCurrent();
     }
     
-    private void copyModelRendererArrayToCurrent()
+    private void copyTweenToCurrent()
     {
         for (int i = 0; i < numParts; i++)
         {
@@ -194,7 +192,7 @@ public class JabelarAnimationHelper
 	    {
 //	    	// DEBUG
 //	    	System.out.println("Initializing current model array for new entity with passed in value like "+passedInModelRendererArray[0].rotateAngleX);
-	        copyModelRendererArrayToCurrent();
+	        copyTweenToCurrent();
 	        setNextPose();
 	    }
     }
@@ -204,33 +202,33 @@ public class JabelarAnimationHelper
         nextPose = posesArray[arrayOfSequences[currentSequence][currentPose][0]];
         numTicksInTween = arrayOfSequences[currentSequence][currentPose][1];
         currentTickInTween = 0;
-        // DEBUG
-        System.out.println("current sequence "+currentSequence+" out of "+arrayOfSequences.length+
-                " and current pose "+currentPose+" out of "+arrayOfSequences[currentSequence].length
-                +" with "+numTicksInTween+" ticks in tween");
+//        // DEBUG
+//        System.out.println("current sequence "+currentSequence+" out of "+arrayOfSequences.length+
+//                " and current pose "+currentPose+" out of "+arrayOfSequences[currentSequence].length
+//                +" with "+numTicksInTween+" ticks in tween");
     }
    
-    private void performNextTweenTick(boolean parInertial)
+    private void performNextTweenTick()
     {
-        // tween the passed in model towards target pose
-        for (int i = 0; i < numParts; i++)
-        {
-            float inertiaFactor = calculateInertiaFactor();
-            
-            nextTweenRotations(i, inertiaFactor);
-            nextTweenPositions(i, inertiaFactor);
-            nextTweenOffsets(i, inertiaFactor);  
-        }
-        
-        // update current position tracking arrays
-        copyModelRendererArrayToCurrent();
-        
-        incrementTweenTick(); 
-               
-        // check for end of animation and set next pose in sequence
-        if (finishedPose) 
+        // update the passed in model
+        tween();
+        copyTweenToCurrent();
+
+        if (incrementTweenTick()) // increments tween tick and returns true if finished pose 
         {
             handleFinishedPose();
+        }
+    }
+    
+    private void tween()
+    {
+        float inertiaFactor = calculateInertiaFactor();
+        
+        for (int partIndex = 0; partIndex < numParts; partIndex++)
+        {
+            nextTweenRotations(partIndex, inertiaFactor);
+            nextTweenPositions(partIndex, inertiaFactor);
+            nextTweenOffsets(partIndex, inertiaFactor);  
         }
     }
     
@@ -261,15 +259,15 @@ public class JabelarAnimationHelper
         passedInModelRendererArray[parPartIndex].rotateAngleX =
                 currentRotationArray[parPartIndex][0] + inertiaFactor *
                 (nextPose[parPartIndex].rotateAngleX - currentRotationArray[parPartIndex][0])
-                / (numTicksInTween - currentTickInTween);
+                / ticksRemaining();
         passedInModelRendererArray[parPartIndex].rotateAngleY =
                 currentRotationArray[parPartIndex][1] + inertiaFactor *
                 (nextPose[parPartIndex].rotateAngleY - currentRotationArray[parPartIndex][1])
-                / (numTicksInTween - currentTickInTween);
+                / ticksRemaining();
         passedInModelRendererArray[parPartIndex].rotateAngleZ =
                 currentRotationArray[parPartIndex][2] + inertiaFactor *
                 (nextPose[parPartIndex].rotateAngleZ - currentRotationArray[parPartIndex][2])
-                / (numTicksInTween - currentTickInTween);
+                / ticksRemaining();
     }
 
     /*
@@ -281,15 +279,15 @@ public class JabelarAnimationHelper
         passedInModelRendererArray[parPartIndex].rotationPointX =
                 currentPositionArray[parPartIndex][0] + inertiaFactor *
                 (nextPose[parPartIndex].rotationPointX - currentPositionArray[parPartIndex][0])
-                / (numTicksInTween - currentTickInTween);
+                / ticksRemaining();
         passedInModelRendererArray[parPartIndex].rotationPointY =
                 currentPositionArray[parPartIndex][1] + inertiaFactor *
                 (nextPose[parPartIndex].rotationPointY - currentPositionArray[parPartIndex][1])
-                / (numTicksInTween - currentTickInTween);
+                / ticksRemaining();
         passedInModelRendererArray[parPartIndex].rotationPointZ = 
                 currentPositionArray[parPartIndex][2] + inertiaFactor *
                 (nextPose[parPartIndex].rotationPointZ - currentPositionArray[parPartIndex][2])
-                / (numTicksInTween - currentTickInTween);
+                / ticksRemaining();
     }
 
     /*
@@ -301,15 +299,20 @@ public class JabelarAnimationHelper
         passedInModelRendererArray[partPartIndex].offsetX =
                 currentOffsetArray[partPartIndex][0] + inertiaFactor *
                 (nextPose[partPartIndex].offsetX - currentOffsetArray[partPartIndex][0])
-                / (numTicksInTween - currentTickInTween);
+                / ticksRemaining();
         passedInModelRendererArray[partPartIndex].offsetY =
                 currentOffsetArray[partPartIndex][1] + inertiaFactor *
                 (nextPose[partPartIndex].offsetY - currentOffsetArray[partPartIndex][1])
-                / (numTicksInTween - currentTickInTween);
+                / ticksRemaining();
         passedInModelRendererArray[partPartIndex].offsetZ =
                 currentOffsetArray[partPartIndex][2] + inertiaFactor *
                 (nextPose[partPartIndex].offsetZ - currentOffsetArray[partPartIndex][2])
-                / (numTicksInTween - currentTickInTween);
+                / ticksRemaining();
+    }
+    
+    private int ticksRemaining()
+    {
+        return (numTicksInTween - currentTickInTween);
     }
     
     private void handleFinishedPose()
@@ -318,8 +321,6 @@ public class JabelarAnimationHelper
         {
         	setNextSequence();
         }
-
-        finishedPose = false;
         
         setNextPose();
     }    
@@ -330,11 +331,11 @@ public class JabelarAnimationHelper
         currentTickInTween++;
         if (currentTickInTween >= numTicksInTween)
         {
-            finishedPose = true;
+            return true;
         }
 //        // DEBUG
 //        System.out.println("current tween step = "+currentTickInTween);
-        return finishedPose;
+        return false;
     }
     
     // boolean returned indicates if sequence was finished
@@ -386,7 +387,6 @@ public class JabelarAnimationHelper
     public int getCurrentPose()
     {
         return currentPose;
-//        return (currentSequenceStep + currentSequenceStepModifier)%numStepsInSequence;
     }
     
     public void setRandomSequence()
