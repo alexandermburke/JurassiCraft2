@@ -59,16 +59,23 @@ public class JabelarAnimationHelper
         numSequencesInArray = arrayOfSequences.length;
 
         init(parModel, parRandomInitialSequence);
-                
+
         // DEBUG
         System.out.println("Finished JabelarAnimation constructor");
     }
     
     public void performJabelarAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
     {
+//        // DEBUG
+//        long startTime = System.nanoTime();
+
         passedInModelRendererArray = convertPassedInModelToModelRendererArray(parModel);
-        initIfNeeded(parEntity);
         performNextTweenTick();
+        
+//        // DEBUG
+//        long endTime = System.nanoTime();
+//
+//        System.out.println("jabelar animation took "+(endTime - startTime)+" nanosecs");  
     }
     
     private void init(ModelDinosaur parModel, boolean parRandomInitialSequence)
@@ -97,15 +104,18 @@ public class JabelarAnimationHelper
     private void initCustomPoseArray()
     {
         posesArray = new MowzieModelRenderer[modelAssetPathArray.length][numParts];
+        
         for (int modelIndex = 0; modelIndex < modelAssetPathArray.length; modelIndex++)
         {
             posesArray[modelIndex] = new MowzieModelRenderer[numParts];
+            ModelDinosaur theModel = getTabulaModel(modelAssetPathArray[modelIndex], 0);
+            
             for (int partIndex = 0; partIndex < numParts; partIndex++) 
             {
-                posesArray[modelIndex][partIndex] = getTabulaModel(modelAssetPathArray[modelIndex], 0).getCube(partNameArray[partIndex]);
+                posesArray[modelIndex][partIndex] = theModel.getCube(partNameArray[partIndex]);
             }
         }
-    }
+     }
     
     private void initSequence(boolean parRandomInitialSequence)
     {
@@ -184,19 +194,7 @@ public class JabelarAnimationHelper
         }
         return modelRendererArray;
     }
-    
-    private void initIfNeeded(EntityDinosaur parEntity)
-    {
-	    // initialize current pose arrays if first tick
-	    if (parEntity.ticksExisted <= 10)
-	    {
-//	    	// DEBUG
-//	    	System.out.println("Initializing current model array for new entity with passed in value like "+passedInModelRendererArray[0].rotateAngleX);
-	        copyTweenToCurrent();
-	        setNextPose();
-	    }
-    }
-
+ 
     private void setNextPose()
     {  
         nextPose = posesArray[arrayOfSequences[currentSequence][currentPose][0]];
@@ -405,6 +403,7 @@ public class JabelarAnimationHelper
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+                
         return null;
     }
 

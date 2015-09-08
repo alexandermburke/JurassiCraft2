@@ -6,7 +6,6 @@ import java.util.UUID;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.animationapi.client.Animator;
 import net.timeless.animationapi.client.JabelarAnimationHelper;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
@@ -212,7 +211,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
     
  protected void performMowzieAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityTherizinosaurus parEntity)
  {
-     Animator animator = parModel.animator;
+//     Animator animator = parModel.animator;
 
      MowzieModelRenderer rightThigh = parModel.getCube("Right Thigh");
      MowzieModelRenderer bodyHips = parModel.getCube("Body hips");
