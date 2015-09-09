@@ -46,7 +46,8 @@ public class JabelarAnimationHelper
     		ModelDinosaur parModel, int parNumParts,
     		MowzieModelRenderer[][] parArrayOfPoses,
             int[][][] parArrayOfSequences, boolean parRandomInitialSequence, 
-            boolean parShouldRandomizeSequence, int parChanceNotIdle, boolean parInertialTweens, float parInertiaFactor)
+            boolean parShouldRandomizeSequence, int parChanceNotIdle, 
+            boolean parInertialTweens, float parInertiaFactor)
     {
         // transfer static animation info from constructor parameters to instance
         theEntity = parEntity;
@@ -68,16 +69,8 @@ public class JabelarAnimationHelper
     
     public void performJabelarAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
     {
-//        // DEBUG
-//        long startTime = System.nanoTime();
-//
         passedInModelRendererArray = convertPassedInModelToModelRendererArray(parModel);
         performNextTweenTick();
-//        
-//        // DEBUG
-//        long endTime = System.nanoTime();
-//
-//        System.out.println("jabelar animation took "+(endTime - startTime)+" nanosecs");  
     }
     
     private void init(ModelDinosaur parModel, boolean parRandomInitialSequence)
@@ -332,7 +325,7 @@ public class JabelarAnimationHelper
     	{
     		if (theEntity.getRNG().nextInt(100) < chanceNotIdle)
     		{
-    		    setRandomSequence();
+    		    setRandomSpecialSequence();
     		}
     		else
     		{
@@ -360,10 +353,17 @@ public class JabelarAnimationHelper
     {
         return currentPose;
     }
-    
+ 
+    // this sets random sequence from any possible, including default idle sequence
     public void setRandomSequence()
     {
         currentSequence = theEntity.getRNG().nextInt(numSequencesInArray);
+    }
+
+    // this sets random sequence that cannot be the default idle sequence
+    public void setRandomSpecialSequence()
+    {
+        currentSequence = theEntity.getRNG().nextInt(numSequencesInArray-1)+1;
     }
     
     public static ModelDinosaur getTabulaModel(String tabulaModel, int geneticVariant) 

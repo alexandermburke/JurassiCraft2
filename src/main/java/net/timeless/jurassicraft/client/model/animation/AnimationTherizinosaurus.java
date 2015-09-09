@@ -48,7 +48,12 @@ public class AnimationTherizinosaurus implements IModelAnimator
             "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_calling_1",
             "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_calling_2",
             "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_calling_3",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_calling_4"
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_calling_4",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_attacking_1",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_attacking_2",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_attacking_3",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_sniffing_1",
+            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_sniffing_2"
     };
 
     /* 
@@ -113,11 +118,18 @@ public class AnimationTherizinosaurus implements IModelAnimator
         {20, 100}, {21, 60}, {21, 40}, {22, 40}, {23, 80}, {21, 40}, {0, 200}  
     };
     
+    protected static int[][] sequenceAttacking = new int[][] {
+        {24, 100}, {25, 60}, {26, 20}, {25, 60}, {26, 20}, {0, 200}
+    };
+    
+    protected static int[][] sequenceSniffing = new int[][] {
+        {28, 100}, {27, 20}, {28, 20}, {27, 20}, {28, 20}, {0, 200}
+    };
+    
     protected static int[][] sequenceLongIdle = new int[][] {
         {0, 800}
     };
     
-
     /*
      * The first element in this array must be the "default" (idle) animation sequence,
      * for other sequences, if you have random sequence enabled, you can make a sequence more
@@ -125,7 +137,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
      */
 //    protected static int[][][] arrayOfSequences = new int[][][] {
 //        sequenceIdle,
-//        sequenceCalling
+//        sequenceSniffing
 //    };
 
     protected static int[][][] arrayOfSequences = new int[][][] {
@@ -139,37 +151,8 @@ public class AnimationTherizinosaurus implements IModelAnimator
     	sequenceHissing,
         sequenceLookLeft,
         sequenceLookRight,
-        sequenceCalling,
-        sequenceDrinking,
-        sequenceResting,
-        sequenceSleeping,
-        sequenceEating, 
-        sequenceHissing,
-        sequenceLookLeft,
-        sequenceLookRight,
-        sequenceCalling,
-        sequenceDrinking,
-        sequenceResting,
-        sequenceSleeping,
-        sequenceEating, 
-        sequenceHissing,
-        sequenceLookLeft,
-        sequenceLookRight,
-        sequenceCalling,
-        sequenceDrinking,
-        sequenceResting,
-        sequenceSleeping,
-        sequenceEating, 
-        sequenceHissing,
-        sequenceLookLeft,
-        sequenceLookRight,
-        sequenceCalling,
-        sequenceDrinking,
-        sequenceResting,
-        sequenceSleeping,
-        sequenceEating, 
-        sequenceHissing,
-        sequenceCalling
+        sequenceSniffing,
+        sequenceAttacking
     };
 
     // maps each entity id with its current animation 
@@ -210,7 +193,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
         {
             // DEBUG
             System.out.println("Adding entity to hashmap with id = "+parEntity.getEntityId());
-            animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(theEntity, theModel, numParts, arrayOfPoses, arrayOfSequences, true, true,30, true, 1.0F));
+            animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(theEntity, theModel, numParts, arrayOfPoses, arrayOfSequences, true, true,10, true, 1.0F));
         }
 
         animationInstanceToEntityMap.get(theEntity.getEntityId()).performJabelarAnimations(theModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, theEntity);
