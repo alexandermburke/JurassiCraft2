@@ -138,9 +138,8 @@ public class TileDnaSynthesizer extends TileMachineBase
         return hasCustomName() ? customName : "container.dna_synthesizer";
     }
 
-    @Override
-    public String getCommandSenderName()
+    public String getCommandSenderName() //Forge Version compatibility, keep both getName and getCommandSenderName
     {
-        return null;
+        return getName();
     }
 }

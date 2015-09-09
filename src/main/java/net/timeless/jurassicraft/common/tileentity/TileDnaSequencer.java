@@ -166,9 +166,8 @@ public class TileDnaSequencer extends TileMachineBase
         return hasCustomName() ? customName : "container.dna_sequencer";
     }
 
-    @Override
-    public String getCommandSenderName()
+    public String getCommandSenderName() //Forge Version compatibility, keep both getName and getCommandSenderName
     {
-        return null;
+        return getName();
     }
 }

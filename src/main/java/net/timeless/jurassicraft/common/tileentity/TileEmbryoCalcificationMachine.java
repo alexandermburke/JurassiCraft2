@@ -125,9 +125,8 @@ public class TileEmbryoCalcificationMachine extends TileMachineBase
         return hasCustomName() ? customName : "container.embryo_calcification_machine";
     }
 
-    @Override
-    public String getCommandSenderName()
+    public String getCommandSenderName() //Forge Version compatibility, keep both getName and getCommandSenderName
     {
-        return null;
+        return getName();
     }
 }

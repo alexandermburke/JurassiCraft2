@@ -133,9 +133,8 @@ public class TileFossilGrinder extends TileMachineBase
         return hasCustomName() ? customName : "container.fossil_grinder";
     }
 
-    @Override
-    public String getCommandSenderName()
+    public String getCommandSenderName() //Forge Version compatibility, keep both getName and getCommandSenderName
     {
-        return null;
+        return getName();
     }
 }

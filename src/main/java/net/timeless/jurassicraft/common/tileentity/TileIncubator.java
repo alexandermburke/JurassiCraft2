@@ -227,9 +227,8 @@ public class TileIncubator extends TileMachineBase
         }
     }
 
-    @Override
-    public String getCommandSenderName()
+    public String getCommandSenderName() //Forge Version compatibility, keep both getName and getCommandSenderName
     {
-        return null;
+        return getName();
     }
 }
