@@ -37,7 +37,7 @@ public class GuiAppFileExplorer extends GuiApp
 
         if (intro)
         {
-            gui.drawScaledText("Hello " + mc.thePlayer.getDisplayName() + "! Welcome to " + app.getName() + "!", 4, 10, 1.0F, 0xFFFFFF);
+            gui.drawScaledText("Hello " + mc.thePlayer.getDisplayName().getFormattedText() + "! Welcome to " + app.getName() + "!", 4, 10, 1.0F, 0xFFFFFF);
             mc.getTextureManager().bindTexture(texture);
             gui.drawScaledTexturedModalRect(1, 20, 0, 0, 32, 32, 32, 32, 1.0F);
             gui.drawScaledText("Using " + app.getName() + " you can browse all your files!", 34, 29, 0.7F, 0xFFFFFF);

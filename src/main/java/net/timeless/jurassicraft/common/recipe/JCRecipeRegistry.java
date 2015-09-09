@@ -1,15 +1,20 @@
 package net.timeless.jurassicraft.common.recipe;
 
+import com.google.common.collect.Maps;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.timeless.jurassicraft.common.block.JCBlockRegistry;
+import net.timeless.jurassicraft.common.dinopedia.DinoPediaRegistry;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
+
+import java.util.HashMap;
 
 public class JCRecipeRegistry
 {
@@ -31,19 +36,19 @@ public class JCRecipeRegistry
         {
             GameRegistry.addShapelessRecipe(new ItemStack(block, 4), JCBlockRegistry.woods[i]);
 
-            GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.stairs[i], 4),
+            addRecipe(new ItemStack(JCBlockRegistry.stairs[i], 4),
                     "w  ",
                     "ww ",
                     "www",
                     'w', block);
 
-            GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.stairs[i], 4),
+            addRecipe(new ItemStack(JCBlockRegistry.stairs[i], 4),
                     "  w",
                     " ww",
                     "www",
                     'w', block);
 
-            GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.slabs[i], 6),
+            addRecipe(new ItemStack(JCBlockRegistry.slabs[i], 6),
                     "www",
                     'w', block);
 
@@ -52,94 +57,94 @@ public class JCRecipeRegistry
 
         GameRegistry.addSmelting(new ItemStack(JCBlockRegistry.gypsum_cobblestone), new ItemStack(JCBlockRegistry.gypsum_stone), 1.5F);
 
-        GameRegistry.addRecipe(new ItemStack(JCItemRegistry.iron_blades),
+        addRecipe(new ItemStack(JCItemRegistry.iron_blades),
                 "I I",
                 " S ",
                 "I I",
                 'I', Items.iron_ingot, 'S', Items.stick);
 
-        GameRegistry.addRecipe(new ItemStack(JCItemRegistry.iron_rod),
+        addRecipe(new ItemStack(JCItemRegistry.iron_rod),
                 "ISI",
                 "ISI",
                 "ISI",
                 'I', Items.iron_ingot, 'S', Items.stick);
 
-        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.fossil_grinder),
+        addRecipe(new ItemStack(JCBlockRegistry.fossil_grinder),
                 "lBl",
                 "rRr",
                 "IPI",
                 'I', Items.iron_ingot, 'R', JCItemRegistry.iron_rod, 'B', JCItemRegistry.iron_blades, 'r', Items.redstone, 'l', new ItemStack(Items.dye, 1, 4), 'P', Blocks.piston);
 
-        GameRegistry.addRecipe(new ItemStack(JCItemRegistry.plaster_and_bandage, 9),
+        addRecipe(new ItemStack(JCItemRegistry.plaster_and_bandage, 9),
                 "PPP",
                 "PWP",
                 "PPP",
                 'P', Items.paper, 'W', Blocks.wool);
 
-        GameRegistry.addRecipe(new ItemStack(JCItemRegistry.cage_small, 1),
+        addRecipe(new ItemStack(JCItemRegistry.cage_small, 1),
                 "III",
                 "BBB",
                 "III",
                 'I', Items.iron_ingot, 'B', Blocks.iron_bars);
 
-        GameRegistry.addRecipe(new ItemStack(JCItemRegistry.cage_small, 1, 1),
+        addRecipe(new ItemStack(JCItemRegistry.cage_small, 1, 1),
                 "III",
                 "GBG",
                 "III",
                 'I', Items.iron_ingot, 'G', Blocks.glass_pane, 'B', Items.water_bucket);
 
-        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.gypsum_bricks, 4),
+        addRecipe(new ItemStack(JCBlockRegistry.gypsum_bricks, 4),
                 "SS",
                 "SS",
                 'S', JCBlockRegistry.gypsum_stone);
 
-        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.cleaning_station),
+        addRecipe(new ItemStack(JCBlockRegistry.cleaning_station),
                 "iii",
                 "RGR",
                 "IBI",
                 'i', Items.iron_ingot, 'B', Items.bucket, 'G', Blocks.glass_pane, 'R', Items.redstone, 'I', Blocks.iron_block);
 
-        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.reinforced_stone, 8),
+        addRecipe(new ItemStack(JCBlockRegistry.reinforced_stone, 8),
                 "PPP",
                 "PWP",
                 "PPP",
                 'P', Blocks.stone, 'W', Items.iron_ingot);
 
-        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.reinforced_bricks, 8),
+        addRecipe(new ItemStack(JCBlockRegistry.reinforced_bricks, 8),
                 "PPP",
                 "PWP",
                 "PPP",
                 'P', Blocks.stonebrick, 'W', Items.iron_ingot);
 
-        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.reinforced_bricks, 4),
+        addRecipe(new ItemStack(JCBlockRegistry.reinforced_bricks, 4),
                 "SS",
                 "SS",
                 'S', JCBlockRegistry.reinforced_stone);
 
-        GameRegistry.addRecipe(new ItemStack(JCItemRegistry.empty_test_tube),
+        addRecipe(new ItemStack(JCItemRegistry.empty_test_tube),
                 "I",
                 "G",
                 "G",
                 'G', Blocks.glass_pane, 'I', Items.iron_ingot);
 
-        GameRegistry.addRecipe(new ItemStack(JCItemRegistry.petri_dish),
+        addRecipe(new ItemStack(JCItemRegistry.petri_dish),
                 "G G",
                 "GGG",
                 'G', Blocks.glass_pane);
 
-        GameRegistry.addRecipe(new ItemStack(JCItemRegistry.blue_print),
+        addRecipe(new ItemStack(JCItemRegistry.blue_print),
                 "BBB",
                 "BPB",
                 "BBB",
                 'B', new ItemStack(Items.dye, 1, 4), 'P', Items.paper);
 
-        GameRegistry.addRecipe(new ItemStack(JCItemRegistry.empty_syringe),
+        addRecipe(new ItemStack(JCItemRegistry.empty_syringe),
                 "  N",
                 "IG ",
                 "II ",
                 'G', Blocks.glass_pane, 'I', Items.iron_ingot, 'N', JCItemRegistry.needle);
 
-        GameRegistry.addRecipe(new ItemStack(JCItemRegistry.empty_syringe),
+        addRecipe(new ItemStack(JCItemRegistry.empty_syringe),
                 "N  ",
                 " GI",
                 " II",
@@ -147,31 +152,31 @@ public class JCRecipeRegistry
 
         GameRegistry.addSmelting(new ItemStack(Items.potionitem, 1, 0), new ItemStack(JCItemRegistry.dna_base), 1.0F);
 
-        GameRegistry.addRecipe(new ItemStack(JCItemRegistry.needle),
+        addRecipe(new ItemStack(JCItemRegistry.needle),
                 "GIG",
                 "GIG",
                 " I ",
                 'G', Blocks.glass_pane, 'I', Items.iron_ingot);
 
-        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.dna_extractor),
+        addRecipe(new ItemStack(JCBlockRegistry.dna_extractor),
                 "III",
                 "INI",
                 "RSR",
                 'S', JCBlockRegistry.dna_sequencer, 'I', Items.iron_ingot, 'R', Items.redstone, 'N', JCItemRegistry.needle);
 
-        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.dna_sequencer),
+        addRecipe(new ItemStack(JCBlockRegistry.dna_sequencer),
                 "GLG",
                 "CTR",
                 "IBI",
                 'G', Items.gold_ingot, 'I', Blocks.iron_block, 'B', Blocks.redstone_block, 'T', Blocks.redstone_torch, 'L', new ItemStack(Items.dye, 1, 4), 'R', Items.repeater, 'C', Items.comparator);
 
-        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.dna_sequencer),
+        addRecipe(new ItemStack(JCBlockRegistry.dna_sequencer),
                 "GLG",
                 "RTC",
                 "IBI",
                 'G', Items.gold_ingot, 'I', Blocks.iron_block, 'B', Blocks.redstone_block, 'T', Blocks.redstone_torch, 'L', new ItemStack(Items.dye, 1, 4), 'R', Items.repeater, 'C', Items.comparator);
 
-        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.dna_synthesizer),
+        addRecipe(new ItemStack(JCBlockRegistry.dna_synthesizer),
                 "GGG",
                 "RBR",
                 "ITI",
@@ -179,38 +184,38 @@ public class JCRecipeRegistry
 
         for (i = 0; i < 16; i++)
         {
-            GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.cultivate_bottom, 1, i),
+            addRecipe(new ItemStack(JCBlockRegistry.cultivate_bottom, 1, i),
                     "GGG",
                     "GWG",
                     "III",
                     'G', new ItemStack(Blocks.stained_glass_pane, 1, i), 'W', Items.water_bucket, 'I', Items.iron_ingot);
         }
 
-        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.embryonic_machine),
+        addRecipe(new ItemStack(JCBlockRegistry.embryonic_machine),
                 "GIG",
                 "GIG",
                 "III",
                 'G', Blocks.glass_pane, 'I', Items.iron_ingot);
 
-        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.embryo_calcification_machine),
+        addRecipe(new ItemStack(JCBlockRegistry.embryo_calcification_machine),
                 "GIG",
                 "GSG",
                 "III",
                 'G', Blocks.glass_pane, 'I', Items.iron_ingot, 'S', JCItemRegistry.needle);
 
-        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.incubator),
+        addRecipe(new ItemStack(JCBlockRegistry.incubator),
                 "GGG",
                 "RRR",
                 "III",
                 'I', Blocks.iron_block, 'R', Blocks.redstone_block, 'G', Blocks.glass);
 
-        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.dna_combinator),
+        addRecipe(new ItemStack(JCBlockRegistry.dna_combinator),
                 "III",
                 "GRG",
                 "III",
                 'G', Blocks.glass, 'I', Items.iron_ingot, 'R', Blocks.redstone_block);
 
-        GameRegistry.addRecipe(new ItemStack(JCBlockRegistry.dna_hybridizer),
+        addRecipe(new ItemStack(JCBlockRegistry.dna_hybridizer),
                 "IRI",
                 "GIG",
                 "IRI",
@@ -229,6 +234,86 @@ public class JCRecipeRegistry
         {
             addGrowthSerumRecipe(new ItemStack(JCItemRegistry.dino_steak, 1, i));
         }
+    }
+
+    private void addRecipe(ItemStack stack, Object... pars)
+    {
+        GameRegistry.addRecipe(stack, pars);
+
+        getShapedRecipe(stack, pars);
+        DinoPediaRegistry.addItemRecipe(stack, getShapedRecipe(stack, pars));
+    }
+
+    private ShapedRecipes getShapedRecipe(ItemStack stack, Object[] pars)
+    {
+        String s = "";
+        int i = 0;
+        int j = 0;
+        int k = 0;
+
+        if (pars[i] instanceof String[])
+        {
+            String[] astring = (String[])pars[i++];
+
+            for (int l = 0; l < astring.length; ++l)
+            {
+                String s1 = astring[l];
+                ++k;
+                j = s1.length();
+                s = s + s1;
+            }
+        }
+        else
+        {
+            while (pars[i] instanceof String)
+            {
+                String s2 = (String)pars[i++];
+                ++k;
+                j = s2.length();
+                s = s + s2;
+            }
+        }
+
+        HashMap hashmap;
+
+        for (hashmap = Maps.newHashMap(); i < pars.length; i += 2)
+        {
+            Character character = (Character)pars[i];
+            ItemStack characterStack = null;
+
+            if (pars[i + 1] instanceof Item)
+            {
+                characterStack = new ItemStack((Item)pars[i + 1]);
+            }
+            else if (pars[i + 1] instanceof Block)
+            {
+                characterStack = new ItemStack((Block)pars[i + 1], 1, 32767);
+            }
+            else if (pars[i + 1] instanceof ItemStack)
+            {
+                characterStack = (ItemStack)pars[i + 1];
+            }
+
+            hashmap.put(character, characterStack);
+        }
+
+        ItemStack[] inputs = new ItemStack[j * k];
+
+        for (int i1 = 0; i1 < j * k; ++i1)
+        {
+            char character = s.charAt(i1);
+
+            if (hashmap.containsKey(Character.valueOf(character)))
+            {
+                inputs[i1] = ((ItemStack)hashmap.get(Character.valueOf(character))).copy();
+            }
+            else
+            {
+                inputs[i1] = null;
+            }
+        }
+
+        return new ShapedRecipes(j, k, inputs, stack);
     }
 
     private void addGrowthSerumRecipe(Item meat)
