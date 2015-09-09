@@ -24,38 +24,53 @@ public class AnimationTherizinosaurus implements IModelAnimator
 
     // Tell the code where your tabula model assets are
     // the first one must be your "default" pose (i.e one that is used at spawn time)
+    protected static final String modelAssetPath = "/assets/jurassicraft/models/entities/therizinosaurus/";
     protected static final String[] modelAssetPathArray = new String[] {
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_default",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_look_left",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_look_right",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_rearing",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_flap",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_eating_1",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_eating_1b",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_eating_2",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_eating_3",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_eating_4",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_eating_4b",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_eating_5",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_eating_6",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_eating_6b",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_drinking_1",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_drinking_2",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_drinking_3",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_drinking_4",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_resting",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_sleeping",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_calling_1",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_calling_2",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_calling_3",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_calling_4",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_attacking_1",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_attacking_2",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_attacking_3",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_sniffing_1",
-            "/assets/jurassicraft/models/entities/therizinosaurus/therizinosaurus_sniffing_2"
+            "therizinosaurus_default",
+            "therizinosaurus_head_cock_left",
+            "therizinosaurus_head_cock_right",
+            "therizinosaurus_hissing",
+            "therizinosaurus_mating",
+            "therizinosaurus_eating_1",
+            "therizinosaurus_eating_1b",
+            "therizinosaurus_eating_2",
+            "therizinosaurus_eating_3",
+            "therizinosaurus_eating_4",
+            "therizinosaurus_eating_4b",
+            "therizinosaurus_eating_5",
+            "therizinosaurus_eating_6",
+            "therizinosaurus_eating_6b",
+            "therizinosaurus_drinking_1",
+            "therizinosaurus_drinking_2",
+            "therizinosaurus_drinking_3",
+            "therizinosaurus_drinking_4",
+            "therizinosaurus_resting",
+            "therizinosaurus_sleeping",
+            "therizinosaurus_calling_1",
+            "therizinosaurus_calling_2",
+            "therizinosaurus_calling_3",
+            "therizinosaurus_calling_4",
+            "therizinosaurus_attacking_1",
+            "therizinosaurus_attacking_2",
+            "therizinosaurus_attacking_3",
+            "therizinosaurus_sniffing_1",
+            "therizinosaurus_sniffing_2"
     };
 
+    private static int getPoseID(String parPose)
+    {
+        int index = -1;
+        for (int assetPathIndex = 0; assetPathIndex < modelAssetPathArray.length; assetPathIndex++)
+        {
+            if (modelAssetPathArray[assetPathIndex].contains(parPose.toLowerCase()))
+            {
+                index = assetPathIndex;
+                break;
+            }
+        }
+        return index;
+    }
+    
     /* 
      * Define your animation sequence here
      * First element is target pose model index (i.e. order of model assets listed in
@@ -63,71 +78,59 @@ public class AnimationTherizinosaurus implements IModelAnimator
      * Second element is the number of ticks it should take to tween to that pose
      */
     protected static int[][] sequenceIdle = new int[][] {
-        {0, 200}
+        {getPoseID("default"), 200}
     };
 
-    protected static int[][] sequenceLookLeft = new int[][] {
-        {1, 100}, {1, 80}, {0, 100}
+    protected static int[][] sequenceHeadCockLeft = new int[][] {
+        {getPoseID("head_cock_left"), 100}, {getPoseID("head_cock_left"), 80}, {getPoseID("default"), 100}
     };
     
-    protected static int[][] sequenceGlanceLeft = new int[][] {
-        {1, 40}, {0, 40}
-    };
-    
-    protected static int[][] sequenceLookRight = new int[][] {
-        {2, 100}, {2, 80}, {0, 100}
-    };
-    
-    protected static int[][] sequenceGlanceRight = new int[][] {
-        {2, 40}, {0, 40}
+    protected static int[][] sequenceHeadCockRight = new int[][] {
+        {getPoseID("head_cock_right"), 100}, {getPoseID("head_cock_right"), 80}, {getPoseID("default"), 100}
     };
     
     protected static int[][] sequenceHissing = new int[][] {
-        {3, 100}, {3, 80}, {0, 100}
+        {getPoseID("hissing"), 100}, {getPoseID("hissing"), 80}, {getPoseID("default"), 100}
     };
     
     protected static int[][] sequenceMating = new int[][] {
-        {4, 10}, {3, 10}, {4, 10}, {3, 10}, {4, 10}, {3, 10},
-        {4, 10}, {3, 10}, {4, 10}, {3, 10}, {4, 10}, {3, 10}, {4, 10}, {3, 10}, 
-        {4, 10}, {3, 10}, {4, 10}, {3, 10}, {4, 10}, {3, 10}, {4, 10}, {0, 100}
+        {4, 10}, {getPoseID("hissing"), 10}, {4, 10}, {getPoseID("hissing"), 10}, {4, 10}, {getPoseID("hissing"), 10},
+        {4, 10}, {getPoseID("hissing"), 10}, {4, 10}, {getPoseID("hissing"), 10}, {4, 10}, {getPoseID("hissing"), 10}, {4, 10}, {getPoseID("hissing"), 10}, 
+        {4, 10}, {getPoseID("hissing"), 10}, {4, 10}, {getPoseID("hissing"), 10}, {4, 10}, {getPoseID("hissing"), 10}, {4, 10}, {getPoseID("default"), 100}
     };
     
     private static int[][] sequenceEating = new int[][] {
         {5, 100}, {6, 40}, {5, 40}, {6, 40}, {5, 40}, {6, 40}, {5, 40},
         {7, 80}, {8, 80}, {9, 100}, {10, 40}, {9, 40}, {10, 40}, {9, 40}, {10, 40}, {9, 40}, {10, 40},
         {8, 80}, {11, 160}, {12, 100}, {13, 40}, {12, 40}, {13, 40}, {12, 40}, {13, 40}, {12, 40}, {13, 40},
-        {11, 80}, {0, 80}, {0, 200}
+        {11, 80}, {getPoseID("default"), 80}, {getPoseID("default"), 200}
     };
     
     private static int[][] sequenceDrinking = new int[][] {
         {14, 100}, {15, 40}, {15, 40}, {16, 20}, {17, 40}, {17, 100}, 
         {14, 60}, {15, 40}, {15, 40}, {16, 20}, {17, 40}, {17, 100}, 
         {14, 60}, {15, 40}, {15, 40}, {16, 20}, {17, 40}, {17, 100}, 
-        {0, 100}
+        {getPoseID("default"), 100}
     };
     
     protected static int[][] sequenceResting = new int[][] {
-        {18, 100}, {18, 800}, {0, 200}
+        {18, 100}, {18, 800}, {getPoseID("default"), 200}
     };
     
     protected static int[][] sequenceSleeping = new int[][] {
-        {18, 100}, {19, 80}, {19, 800}, {18, 40}, {0, 200}
+        {18, 100}, {19, 80}, {19, 800}, {18, 40}, {getPoseID("default"), 200}
     };
     
     protected static int[][] sequenceCalling = new int[][] {
-        {20, 100}, {21, 60}, {21, 40}, {22, 40}, {23, 80}, {21, 40}, {0, 200}  
+        {20, 100}, {21, 60}, {21, 40}, {22, 40}, {23, 80}, {21, 40}, {getPoseID("default"), 200}  
     };
     
     protected static int[][] sequenceAttacking = new int[][] {
-        {24, 100}, {25, 60}, {26, 20}, {25, 60}, {26, 20}, {0, 200}
+        {24, 100}, {25, 60}, {26, 20}, {25, 60}, {26, 20}, {getPoseID("default"), 200}
     };
     
     protected static int[][] sequenceSniffing = new int[][] {
-        {28, 100}, {27, 20}, {28, 20}, {27, 20}, {28, 20}, {0, 200}
-    };
-    
-    protected static int[][] sequenceLongIdle = new int[][] {
-        {0, 800}
+        {28, 100}, {27, 20}, {28, 20}, {27, 20}, {28, 20}, {getPoseID("default"), 200}
     };
     
     /*
@@ -137,7 +140,8 @@ public class AnimationTherizinosaurus implements IModelAnimator
      */
 //    protected static int[][][] arrayOfSequences = new int[][][] {
 //        sequenceIdle,
-//        sequenceSniffing
+//        sequenceHeadCockLeft,
+//        sequenceHeadCockRight
 //    };
 
     protected static int[][][] arrayOfSequences = new int[][][] {
@@ -149,8 +153,8 @@ public class AnimationTherizinosaurus implements IModelAnimator
     	sequenceSleeping,
     	sequenceEating, 
     	sequenceHissing,
-        sequenceLookLeft,
-        sequenceLookRight,
+        sequenceHeadCockLeft,
+        sequenceHeadCockRight,
         sequenceSniffing,
         sequenceAttacking
     };
@@ -165,7 +169,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
     // load tabula models once per game during implicit constructor static initialization
     static
     {
-    	String[] partNameArray = JabelarAnimationHelper.getTabulaModel(modelAssetPathArray[0], 0).getCubeNamesArray();
+    	String[] partNameArray = JabelarAnimationHelper.getTabulaModel(modelAssetPath+modelAssetPathArray[0], 0).getCubeNamesArray();
         numParts = partNameArray.length;        
         
         arrayOfPoses = new MowzieModelRenderer[modelAssetPathArray.length][numParts];
@@ -173,7 +177,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
         for (int modelIndex = 0; modelIndex < modelAssetPathArray.length; modelIndex++)
         {
             arrayOfPoses[modelIndex] = new MowzieModelRenderer[numParts];
-            ModelDinosaur theModel = JabelarAnimationHelper.getTabulaModel(modelAssetPathArray[modelIndex], 0);
+            ModelDinosaur theModel = JabelarAnimationHelper.getTabulaModel(modelAssetPath+modelAssetPathArray[modelIndex], 0);
             
             for (int partIndex = 0; partIndex < numParts; partIndex++) 
             {
@@ -193,7 +197,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
         {
             // DEBUG
             System.out.println("Adding entity to hashmap with id = "+parEntity.getEntityId());
-            animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(theEntity, theModel, numParts, arrayOfPoses, arrayOfSequences, true, true,10, true, 1.0F));
+            animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(theEntity, theModel, numParts, arrayOfPoses, arrayOfSequences, true, true,20, true, 1.0F));
         }
 
         animationInstanceToEntityMap.get(theEntity.getEntityId()).performJabelarAnimations(theModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, theEntity);
