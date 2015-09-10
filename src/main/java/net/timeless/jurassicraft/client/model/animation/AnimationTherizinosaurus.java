@@ -94,43 +94,55 @@ public class AnimationTherizinosaurus implements IModelAnimator
     };
     
     protected static int[][] sequenceMating = new int[][] {
-        {4, 10}, {getPoseID("hissing"), 10}, {4, 10}, {getPoseID("hissing"), 10}, {4, 10}, {getPoseID("hissing"), 10},
-        {4, 10}, {getPoseID("hissing"), 10}, {4, 10}, {getPoseID("hissing"), 10}, {4, 10}, {getPoseID("hissing"), 10}, {4, 10}, {getPoseID("hissing"), 10}, 
-        {4, 10}, {getPoseID("hissing"), 10}, {4, 10}, {getPoseID("hissing"), 10}, {4, 10}, {getPoseID("hissing"), 10}, {4, 10}, {getPoseID("default"), 100}
+        {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10},
+        {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, 
+        {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("default"), 100}
     };
     
     private static int[][] sequenceEating = new int[][] {
-        {5, 100}, {6, 40}, {5, 40}, {6, 40}, {5, 40}, {6, 40}, {5, 40},
-        {7, 80}, {8, 80}, {9, 100}, {10, 40}, {9, 40}, {10, 40}, {9, 40}, {10, 40}, {9, 40}, {10, 40},
-        {8, 80}, {11, 160}, {12, 100}, {13, 40}, {12, 40}, {13, 40}, {12, 40}, {13, 40}, {12, 40}, {13, 40},
-        {11, 80}, {getPoseID("default"), 80}, {getPoseID("default"), 200}
+    	{getPoseID("eating_1"), 100}, {getPoseID("eating_1b"), 40}, {getPoseID("eating_1"), 40}, 
+    	{getPoseID("eating_1b"), 40}, {getPoseID("eating_1"), 40}, {getPoseID("eating_1b"), 40}, 
+    	{getPoseID("eating_1"), 40}, {getPoseID("eating_2"), 80}, {getPoseID("eating_3"), 80}, 
+    	{getPoseID("eating_4"), 100}, {getPoseID("eating_4b"), 40}, {getPoseID("eating_4"), 40}, 
+    	{getPoseID("eating_4b"), 40}, {getPoseID("eating_4"), 40}, {getPoseID("eating_4b"), 40}, 
+    	{getPoseID("eating_4"), 40}, {getPoseID("eating_4b"), 40}, {getPoseID("eating_3"), 80}, 
+    	{getPoseID("eating_5"), 160}, {getPoseID("eating_6"), 100}, {getPoseID("eating_6b"), 40}, 
+    	{getPoseID("eating_6"), 40}, {getPoseID("eating_6b"), 40}, {getPoseID("eating_6"), 40}, 
+    	{getPoseID("eating_6b"), 40}, {getPoseID("eating_6"), 40}, {getPoseID("eating_6b"), 40},
+        {getPoseID("eating_5"), 80}, {getPoseID("default"), 80}, {getPoseID("default"), 200}
     };
     
     private static int[][] sequenceDrinking = new int[][] {
-        {14, 100}, {15, 40}, {15, 40}, {16, 20}, {17, 40}, {17, 100}, 
-        {14, 60}, {15, 40}, {15, 40}, {16, 20}, {17, 40}, {17, 100}, 
-        {14, 60}, {15, 40}, {15, 40}, {16, 20}, {17, 40}, {17, 100}, 
+        {getPoseID("drinking_1"), 100}, {getPoseID("drinking_2"), 40}, {getPoseID("drinking_2"), 40}, 
+        {getPoseID("drinking_3"), 20}, {getPoseID("drinking_4"), 40}, {getPoseID("drinking_4"), 100}, 
+        {getPoseID("drinking_1"), 60}, {getPoseID("drinking_2"), 40}, {getPoseID("drinking_2"), 40}, 
+        {getPoseID("drinking_3"), 20}, {getPoseID("drinking_4"), 40}, {getPoseID("drinking_4"), 100}, 
+        {getPoseID("drinking_1"), 60}, {getPoseID("drinking_2"), 40}, {getPoseID("drinking_2"), 40}, 
+        {getPoseID("drinking_3"), 20}, {getPoseID("drinking_4"), 40}, {getPoseID("drinking_4"), 100}, 
         {getPoseID("default"), 100}
     };
     
     protected static int[][] sequenceResting = new int[][] {
-        {18, 100}, {18, 800}, {getPoseID("default"), 200}
+        {getPoseID("resting"), 100}, {getPoseID("resting"), 800}, {getPoseID("default"), 200}
     };
     
     protected static int[][] sequenceSleeping = new int[][] {
-        {18, 100}, {19, 80}, {19, 800}, {18, 40}, {getPoseID("default"), 200}
+        {getPoseID("resting"), 100}, {19, 80}, {19, 800}, {getPoseID("resting"), 40}, {getPoseID("default"), 200}
     };
     
     protected static int[][] sequenceCalling = new int[][] {
-        {20, 100}, {21, 60}, {21, 40}, {22, 40}, {23, 80}, {21, 40}, {getPoseID("default"), 200}  
+        {getPoseID("calling_1"), 100}, {getPoseID("calling_2"), 60}, {getPoseID("calling_2"), 40}, {getPoseID("calling_3"), 40}, 
+        {23, 80}, {getPoseID("calling_2"), 40}, {getPoseID("default"), 200}  
     };
     
     protected static int[][] sequenceAttacking = new int[][] {
-        {24, 100}, {25, 60}, {26, 20}, {25, 60}, {26, 20}, {getPoseID("default"), 200}
+        {getPoseID("attacking_1"), 100}, {getPoseID("attacking_2"), 60}, {getPoseID("attacking_3"), 20}, 
+        {getPoseID("attacking_2"), 60}, {getPoseID("attacking_3"), 20}, {getPoseID("default"), 200}
     };
     
     protected static int[][] sequenceSniffing = new int[][] {
-        {28, 100}, {27, 20}, {28, 20}, {27, 20}, {28, 20}, {getPoseID("default"), 200}
+        {getPoseID("sniffing_1"), 100}, {getPoseID("sniffing_2"), 20}, {getPoseID("sniffing_1"), 20}, 
+        {getPoseID("sniffing_2"), 20}, {getPoseID("sniffing_1"), 20}, {getPoseID("default"), 200}
     };
     
     /*
