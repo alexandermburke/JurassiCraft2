@@ -20,10 +20,14 @@ import net.timeless.animationapi.AIAnimation;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
+import net.timeless.jurassicraft.common.disease.Disease;
 import net.timeless.jurassicraft.common.genetics.GeneticsContainer;
 import net.timeless.jurassicraft.common.genetics.GeneticsHelper;
 import net.timeless.jurassicraft.common.item.ItemBluePrint;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class EntityDinosaur extends EntityAICreature implements IEntityAdditionalSpawnData, IAnimatedEntity
 {
@@ -31,6 +35,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     protected int randTexture;
 
     protected int dinosaurAge;
+
+    protected Set<Disease> diseases = new HashSet<Disease>();
 
 //    private boolean isCarcass;
 
@@ -472,5 +478,15 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         }
 
         return stage;
+    }
+
+    public Set<Disease> getDiseases()
+    {
+        return diseases;
+    }
+
+    public void addDisease(Disease disease)
+    {
+        diseases.add(disease);
     }
 }
