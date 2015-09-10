@@ -218,7 +218,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
             animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(theEntity, theModel, numParts, arrayOfPoses, arrayOfSequences, true, true,20, true, 1.0F));
         }
 
-        animationInstanceToEntityMap.get(theEntity.getEntityId()).performJabelarAnimations(theModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, theEntity);
+        animationInstanceToEntityMap.get(theEntity.getEntityId()).performJabelarAnimations(theModel);
 
         // you can still add chain, walk, bob, etc.
         performMowzieAnimations(theModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, theEntity);

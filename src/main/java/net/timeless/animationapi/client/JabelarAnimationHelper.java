@@ -65,7 +65,7 @@ public class JabelarAnimationHelper
         System.out.println("Finished JabelarAnimation constructor");
     }
     
-    public void performJabelarAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
+    public void performJabelarAnimations(ModelDinosaur parModel)
     {
         passedInModelRendererArray = convertPassedInModelToModelRendererArray(parModel);
         if (theEntity.getAnimID() != currentSequence)
@@ -326,7 +326,14 @@ public class JabelarAnimationHelper
         // TODO
         // Should control here which animations are interruptible, in which priority
         // I.e. could reject certain changes depending on what current animation is playing
-        currentSequence = parSequenceIndex;
+    	if (currentSequence == parSequenceIndex) // finished sequence but no new sequence set
+    	{
+    		currentSequence = AnimID.IDLE;
+    	}
+    	else
+    	{
+    		currentSequence = parSequenceIndex;
+    	}
         numPosesInSequence = arrayOfSequences[currentSequence].length;
         currentPose = 0;
         currentTickInTween = 0;
