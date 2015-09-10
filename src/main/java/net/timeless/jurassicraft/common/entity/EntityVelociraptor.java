@@ -1,5 +1,7 @@
 package net.timeless.jurassicraft.common.entity;
 
+import java.util.Random;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
@@ -8,14 +10,13 @@ import net.minecraft.entity.ai.EntityAIOpenDoor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.timeless.animationapi.AnimationAPI;
+import net.timeless.animationapi.client.AnimID;
 import net.timeless.jurassicraft.common.entity.ai.animations.AnimationAICall;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
 import net.timeless.unilib.common.animation.ControlledAnimation;
-
-import java.util.Random;
 
 public class EntityVelociraptor extends EntityDinosaurAggressive  //implements ICarnivore, IEntityAICreature
 {
@@ -32,7 +33,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive  //implements I
     private static final Class[] deftargets = {EntityPlayer.class, EntityTyrannosaurus.class, EntityGiganotosaurus.class, EntitySpinosaurus.class};
 
     public ControlledAnimation dontLean = new ControlledAnimation(5);
-    private int frame = this.ticksExisted;
+    private final int frame = this.ticksExisted;
 
     public EntityVelociraptor(World world)
     {
@@ -60,6 +61,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive  //implements I
     }
 
     //NOTE: This adds an attack target. Class should be the entity class for the target, lower prio get executed earlier
+    @Override
     protected void attackCreature(Class entity, int prio)
     {
         this.tasks.addTask(0, new EntityAIAttackOnCollide(this, entity, 1.0D, false));
@@ -73,40 +75,41 @@ public class EntityVelociraptor extends EntityDinosaurAggressive  //implements I
         return randomSound(barkSounds);
     }
 
+    @Override
     public String getLivingSound()
     {
-        if (getAnimID() == 0)
+        if (getAnimID() == AnimID.IDLE)
         {
-            AnimationAPI.sendAnimPacket(this, 1);
+            AnimationAPI.sendAnimPacket(this, AnimID.CALLING);
             return randomSound(livingSounds);
         }
 
         return null;
     }
 
+    @Override
     public String getHurtSound()
     {
-        if (getAnimID() == 0)
+        if (getAnimID() == AnimID.IDLE)
         {
-            AnimationAPI.sendAnimPacket(this, 1);
+            AnimationAPI.sendAnimPacket(this, AnimID.INJURED);
             return randomSound(hurtSounds);
         }
 
         return null;
     }
 
+    @Override
     public String getDeathSound()
     {
         return randomSound(deathSounds);
     }
 
+    @Override
     public void onUpdate()
     {
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
         super.onUpdate();
-
-//        if(getAnimID() == 0)
-//            AnimationAPI.sendAnimPacket(this, 30);
 
         if (getAttackTarget() != null)
             circleEntity(getAttackTarget(), 7, 1.0f, true, 0);

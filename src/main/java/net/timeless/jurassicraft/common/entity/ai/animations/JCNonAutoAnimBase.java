@@ -2,6 +2,7 @@ package net.timeless.jurassicraft.common.entity.ai.animations;
 
 import net.timeless.animationapi.AIAnimation;
 import net.timeless.animationapi.IAnimatedEntity;
+import net.timeless.animationapi.client.AnimID;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 
 /**
@@ -29,11 +30,13 @@ public class JCNonAutoAnimBase extends AIAnimation
         return id;
     }
 
+    @Override
     public boolean isAutomatic()
     {
         return false;
     }
 
+    @Override
     public int getDuration()
     {
         return duration;
@@ -42,15 +45,17 @@ public class JCNonAutoAnimBase extends AIAnimation
     @Override
     public boolean shouldExecute()
     {
-        return animatingEntity.getAnimID() == 0 && animatingEntity.getRNG().nextInt(chance) == 0;
+        return animatingEntity.getAnimID() == AnimID.IDLE && animatingEntity.getRNG().nextInt(chance) == 0;
     }
 
+    @Override
     public void startExecuting()
     {
         super.startExecuting();
         animatingEntity.currentAnim = this;
     }
 
+    @Override
     public void resetTask()
     {
         super.resetTask();

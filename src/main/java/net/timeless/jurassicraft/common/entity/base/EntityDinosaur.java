@@ -1,6 +1,10 @@
 package net.timeless.jurassicraft.common.entity.base;
 
 import io.netty.buffer.ByteBuf;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -18,6 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.reuxertz.ecoapi.entity.EntityAICreature;
 import net.timeless.animationapi.AIAnimation;
 import net.timeless.animationapi.IAnimatedEntity;
+import net.timeless.animationapi.client.AnimID;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.disease.Disease;
@@ -25,9 +30,6 @@ import net.timeless.jurassicraft.common.genetics.GeneticsContainer;
 import net.timeless.jurassicraft.common.genetics.GeneticsHelper;
 import net.timeless.jurassicraft.common.item.ItemBluePrint;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class EntityDinosaur extends EntityAICreature implements IEntityAdditionalSpawnData, IAnimatedEntity
 {
@@ -134,6 +136,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         return (adult - baby) / maxAge * dinosaurAge + baby;
     }
 
+    @Override
     public int getTalkInterval()
     {
         return 200;
@@ -192,7 +195,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 //        {
 //            isCarcass = dataWatcher.getWatchableObjectInt(25) == 1;
 //        }
-        if (getAnimID() != 0)
+        if (getAnimID() != AnimID.IDLE)
             animTick++;
     }
 

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.animationapi.client.AnimID;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.animationapi.client.JabelarAnimationHelper;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
@@ -54,15 +55,29 @@ public class AnimationSpinosaurus implements IModelAnimator
      * modelAssetPaths array above),
      * Second element is the number of ticks it should take to tween to that pose
      */
-    protected static int[][] sequenceIdle = new int[][] {
-        {getPoseID("default"), 200}
-    };
-
-    protected static int[][] sequenceRoar = new int[][] {
-        {getPoseID("roaring_1"), 100}, {getPoseID("roaring_2"), 80}, 
-        {getPoseID("roaring_3"), 80}, {getPoseID("roaring_3"), 180}, 
-        {getPoseID("default"), 100}
-    };
+   protected static int[][][] arrayOfSequences = new int[AnimID.NUM_IDS][][];
+   static {
+       arrayOfSequences[AnimID.IDLE] = new int[][] {
+           {getPoseID("default"), 200}
+       };
+       
+       arrayOfSequences[AnimID.ROARING] = new int[][] {
+           {getPoseID("roaring_1"), 100}, {getPoseID("roaring_2"), 80}, 
+           {getPoseID("roaring_3"), 80}, {getPoseID("roaring_3"), 180}, 
+           {getPoseID("default"), 100}
+       };
+   }
+   
+//   
+//   protected static int[][] sequenceIdle = new int[][] {
+//        {getPoseID("default"), 200}
+//    };
+//
+//    protected static int[][] sequenceRoar = new int[][] {
+//        {getPoseID("roaring_1"), 100}, {getPoseID("roaring_2"), 80}, 
+//        {getPoseID("roaring_3"), 80}, {getPoseID("roaring_3"), 180}, 
+//        {getPoseID("default"), 100}
+//    };
     
     /*
      * The first element in this array must be the "default" (idle) animation sequence,
@@ -74,11 +89,11 @@ public class AnimationSpinosaurus implements IModelAnimator
 //        sequenceHeadCockLeft,
 //        sequenceHeadCockRight
 //    };
-
-    protected static int[][][] arrayOfSequences = new int[][][] {
-        sequenceIdle,
-        sequenceRoar
-    };
+//
+//    protected static int[][][] arrayOfSequences = new int[][][] {
+//        sequenceIdle,
+//        sequenceRoar
+//    };
 
     // maps each entity id with its current animation 
     protected HashMap<Integer, JabelarAnimationHelper> animationInstanceToEntityMap = new HashMap<Integer, JabelarAnimationHelper>();
@@ -327,6 +342,6 @@ public class AnimationSpinosaurus implements IModelAnimator
 //        animator.startPhase(5);
 //        animator.rotate(head, 0.2F, 0, 0);
 //        animator.endPhase();
-        animator.resetPhase(20);
+//        animator.resetPhase(20);
     }
 }

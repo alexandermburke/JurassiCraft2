@@ -2,13 +2,14 @@ package net.timeless.jurassicraft.common.entity.ai.animations;
 
 import net.minecraft.entity.ai.EntityAIBase;
 import net.timeless.animationapi.AnimationAPI;
+import net.timeless.animationapi.client.AnimID;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 
 public class AnimationAIEating extends EntityAIBase
 {
-    private EntityDinosaur creature;
-    private boolean shouldAnimate;
-    private int animationID;
+    private final EntityDinosaur creature;
+    private final boolean shouldAnimate;
+    private final int animationID;
     private int duration;
     private int timer;
 
@@ -31,30 +32,35 @@ public class AnimationAIEating extends EntityAIBase
         this.timer = 0;
     }
 
+    @Override
     public boolean shouldExecute()
     {
         return this.creature.isEating();
     }
 
+    @Override
     public void startExecuting()
     {
         this.timer = this.duration;
 
 
-        if (this.shouldAnimate && this.creature.getAnimID() == 0)
+        if (this.shouldAnimate && this.creature.getAnimID() == AnimID.IDLE)
             AnimationAPI.sendAnimPacket(this.creature, this.animationID);
     }
 
+    @Override
     public void updateTask()
     {
         this.timer--;
     }
 
+    @Override
     public boolean continueExecuting()
     {
         return this.timer >= 0 && this.creature.riddenByEntity == null;
     }
 
+    @Override
     public void resetTask()
     {
         this.creature.setEating(false);

@@ -47,8 +47,6 @@ public class PacketAnim implements IMessage
             if (entity != null && packet.animID != -1)
             {
                 entity.setAnimID(packet.animID);
-                if (packet.animID == 0)
-                    entity.setAnimTick(0);
             }
             return null;
         }

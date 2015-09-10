@@ -2,6 +2,7 @@ package net.timeless.animationapi;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
+import net.timeless.animationapi.client.AnimID;
 
 public abstract class AIAnimation extends EntityAIBase
 {
@@ -28,6 +29,7 @@ public abstract class AIAnimation extends EntityAIBase
         return false;
     }
 
+    @Override
     public boolean shouldExecute()
     {
         if (isAutomatic())
@@ -35,6 +37,7 @@ public abstract class AIAnimation extends EntityAIBase
         return shouldAnimate();
     }
 
+    @Override
     public void startExecuting()
     {
         if (!isAutomatic())
@@ -42,15 +45,17 @@ public abstract class AIAnimation extends EntityAIBase
         animatedEntity.setAnimTick(0);
     }
 
+    @Override
     public boolean continueExecuting()
     {
         return animatedEntity.getAnimTick() < getDuration();
     }
 
+    @Override
     public void resetTask()
     {
-        AnimationAPI.sendAnimPacket(animatedEntity, 0);
+        AnimationAPI.sendAnimPacket(animatedEntity, AnimID.IDLE);
     }
 
-    private IAnimatedEntity animatedEntity;
+    private final IAnimatedEntity animatedEntity;
 }

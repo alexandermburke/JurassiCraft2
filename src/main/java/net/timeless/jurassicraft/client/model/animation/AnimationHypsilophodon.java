@@ -3,6 +3,7 @@ package net.timeless.jurassicraft.client.model.animation;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.animationapi.client.AnimID;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
 import net.timeless.jurassicraft.common.entity.EntityHypsilophodon;
@@ -99,9 +100,9 @@ public class AnimationHypsilophodon implements IModelAnimator
 
         EntityHypsilophodon hysilophodon = (EntityHypsilophodon) entity;
 
-        if (hysilophodon.getAnimID() == EntityHypsilophodon.SCRATCH)
+        if (hysilophodon.getAnimID() == AnimID.SCRATCHING)
         {
-            animator.setAnim(EntityHypsilophodon.SCRATCH);
+            animator.setAnim(AnimID.SCRATCHING);
             animator.startPhase(5);
             animator.rotate(neck, 0.9F, -0.4F, 0);
             animator.rotate(head, -0.8F, -0.25F, 0.7F);

@@ -1,12 +1,13 @@
 package net.timeless.jurassicraft.common.entity;
 
+import java.util.Random;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.timeless.animationapi.client.AnimID;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimSoundBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
-
-import java.util.Random;
 
 public class EntitySpinosaurus extends EntityDinosaurAggressive //  implements IEntityAICreature, IOmnivore
 {
@@ -27,9 +28,10 @@ public class EntitySpinosaurus extends EntityDinosaurAggressive //  implements I
         {
             this.attackCreature(targets[i], new Random().nextInt(3) + 1);
         }
-        tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, 1, 750, "jurassicraft:spinosaurus_hurt_1", 1.5F)); //Roar
+        tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, AnimID.ROARING, 750, "jurassicraft:spinosaurus_hurt_1", 1.5F)); //Roar
     }
 
+    @Override
     public void onUpdate()
     {
         super.onUpdate();
@@ -48,16 +50,19 @@ public class EntitySpinosaurus extends EntityDinosaurAggressive //  implements I
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 10, 4.0F, this);
     }
 
+    @Override
     public String getLivingSound()
     {
         return randomSound(livingSounds);
     }
 
+    @Override
     public String getHurtSound()
     {
         return randomSound(hurtSounds);
     }
 
+    @Override
     public String getDeathSound()
     {
         return randomSound(deathSounds);

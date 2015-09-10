@@ -16,8 +16,6 @@ public class JabelarAnimationHelper
 {
     private final EntityDinosaur theEntity;
     
-//    private static String[] modelAssetPathArray;
-//    private String[] partNameArray;
     private final int[][][] arrayOfSequences;
     
     private final MowzieModelRenderer[][] arrayOfPoses;
@@ -70,6 +68,10 @@ public class JabelarAnimationHelper
     public void performJabelarAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
     {
         passedInModelRendererArray = convertPassedInModelToModelRendererArray(parModel);
+        if (theEntity.getAnimID() != currentSequence)
+        {
+            setNextSequence(theEntity.getAnimID());
+        }
         performNextTweenTick();
     }
     
@@ -95,7 +97,7 @@ public class JabelarAnimationHelper
         }
         else
         {
-            currentSequence = 0;
+            currentSequence = theEntity.getAnimID();
         }
     }
     
@@ -284,7 +286,7 @@ public class JabelarAnimationHelper
     {
         if(incrementCurrentPose()) // increments pose and returns true if finished sequence
         {
-        	setNextSequence();
+        	setNextSequence(theEntity.getAnimID());
         }
         
         setNextPose();
@@ -319,6 +321,17 @@ public class JabelarAnimationHelper
         return false;
     }
 
+    public void setNextSequence(int parSequenceIndex)
+    {
+        // TODO
+        // Should control here which animations are interruptible, in which priority
+        // I.e. could reject certain changes depending on what current animation is playing
+        currentSequence = parSequenceIndex;
+        numPosesInSequence = arrayOfSequences[currentSequence].length;
+        currentPose = 0;
+        currentTickInTween = 0;
+    }
+    
     private void setNextSequence()
     {
     	if (shouldRandomizeSequence)

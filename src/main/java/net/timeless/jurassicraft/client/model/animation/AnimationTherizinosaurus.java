@@ -5,6 +5,7 @@ import java.util.HashMap;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.animationapi.client.AnimID;
 import net.timeless.animationapi.client.JabelarAnimationHelper;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
@@ -25,7 +26,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
     // Tell the code where your tabula model assets are
     // the first one must be your "default" pose (i.e one that is used at spawn time)
     protected static final String modelAssetPath = "/assets/jurassicraft/models/entities/therizinosaurus/";
-    protected static final String[] modelAssetPathArray = new String[] {
+    protected static final String[] modelAssetFileNameArray = new String[] {
             "therizinosaurus_default",
             "therizinosaurus_head_cock_left",
             "therizinosaurus_head_cock_right",
@@ -60,9 +61,9 @@ public class AnimationTherizinosaurus implements IModelAnimator
     private static int getPoseID(String parPose)
     {
         int index = -1;
-        for (int assetPathIndex = 0; assetPathIndex < modelAssetPathArray.length; assetPathIndex++)
+        for (int assetPathIndex = 0; assetPathIndex < modelAssetFileNameArray.length; assetPathIndex++)
         {
-            if (modelAssetPathArray[assetPathIndex].contains(parPose.toLowerCase()))
+            if (modelAssetFileNameArray[assetPathIndex].contains(parPose.toLowerCase()))
             {
                 index = assetPathIndex;
                 break;
@@ -77,73 +78,78 @@ public class AnimationTherizinosaurus implements IModelAnimator
      * modelAssetPaths array above),
      * Second element is the number of ticks it should take to tween to that pose
      */
-    protected static int[][] sequenceIdle = new int[][] {
-        {getPoseID("default"), 200}
-    };
-
-    protected static int[][] sequenceHeadCockLeft = new int[][] {
-        {getPoseID("head_cock_left"), 100}, {getPoseID("head_cock_left"), 80}, {getPoseID("default"), 100}
-    };
+    protected static int[][][] arrayOfSequences = new int[AnimID.NUM_IDS][][];
+    static
+    {
+        arrayOfSequences[AnimID.IDLE] = new int[][] {
+            {getPoseID("default"), 200}
+        };
     
-    protected static int[][] sequenceHeadCockRight = new int[][] {
-        {getPoseID("head_cock_right"), 100}, {getPoseID("head_cock_right"), 80}, {getPoseID("default"), 100}
-    };
+        arrayOfSequences[AnimID.LOOKING_LEFT] = new int[][] {
+            {getPoseID("head_cock_left"), 100}, {getPoseID("head_cock_left"), 80}, {getPoseID("default"), 100}
+        };
+        
+        arrayOfSequences[AnimID.LOOKING_RIGHT] = new int[][] {
+            {getPoseID("head_cock_right"), 100}, {getPoseID("head_cock_right"), 80}, {getPoseID("default"), 100}
+        };
+        
+        arrayOfSequences[AnimID.HISSING] = new int[][] {
+            {getPoseID("hissing"), 100}, {getPoseID("hissing"), 80}, {getPoseID("default"), 100}
+        };
+        
+        arrayOfSequences[AnimID.MATING] = new int[][] {
+            {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10},
+            {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, 
+            {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("default"), 100}
+        };
+        
+        arrayOfSequences[AnimID.EATING] = new int[][] {
+        	{getPoseID("eating_1"), 100}, {getPoseID("eating_1b"), 40}, {getPoseID("eating_1"), 40}, 
+        	{getPoseID("eating_1b"), 40}, {getPoseID("eating_1"), 40}, {getPoseID("eating_1b"), 40}, 
+        	{getPoseID("eating_1"), 40}, {getPoseID("eating_2"), 80}, {getPoseID("eating_3"), 80}, 
+        	{getPoseID("eating_4"), 100}, {getPoseID("eating_4b"), 40}, {getPoseID("eating_4"), 40}, 
+        	{getPoseID("eating_4b"), 40}, {getPoseID("eating_4"), 40}, {getPoseID("eating_4b"), 40}, 
+        	{getPoseID("eating_4"), 40}, {getPoseID("eating_4b"), 40}, {getPoseID("eating_3"), 80}, 
+        	{getPoseID("eating_5"), 160}, {getPoseID("eating_6"), 100}, {getPoseID("eating_6b"), 40}, 
+        	{getPoseID("eating_6"), 40}, {getPoseID("eating_6b"), 40}, {getPoseID("eating_6"), 40}, 
+        	{getPoseID("eating_6b"), 40}, {getPoseID("eating_6"), 40}, {getPoseID("eating_6b"), 40},
+            {getPoseID("eating_5"), 80}, {getPoseID("default"), 80}, {getPoseID("default"), 200}
+        };
+        
+        arrayOfSequences[AnimID.DRINKING]= new int[][] {
+            {getPoseID("drinking_1"), 100}, {getPoseID("drinking_2"), 40}, {getPoseID("drinking_2"), 40}, 
+            {getPoseID("drinking_3"), 20}, {getPoseID("drinking_4"), 40}, {getPoseID("drinking_4"), 100}, 
+            {getPoseID("drinking_1"), 60}, {getPoseID("drinking_2"), 40}, {getPoseID("drinking_2"), 40}, 
+            {getPoseID("drinking_3"), 20}, {getPoseID("drinking_4"), 40}, {getPoseID("drinking_4"), 100}, 
+            {getPoseID("drinking_1"), 60}, {getPoseID("drinking_2"), 40}, {getPoseID("drinking_2"), 40}, 
+            {getPoseID("drinking_3"), 20}, {getPoseID("drinking_4"), 40}, {getPoseID("drinking_4"), 100}, 
+            {getPoseID("default"), 100}
+        };
+        
+        arrayOfSequences[AnimID.RESTING]= new int[][] {
+            {getPoseID("resting"), 100}, {getPoseID("resting"), 800}, {getPoseID("default"), 200}
+        };
+        
+        arrayOfSequences[AnimID.SLEEPING] = new int[][] {
+            {getPoseID("resting"), 100}, {getPoseID("sleeping"), 80}, {getPoseID("sleeping"), 800}, {getPoseID("resting"), 40}, {getPoseID("default"), 200}
+        };
+        
+        arrayOfSequences[AnimID.CALLING] = new int[][] {
+            {getPoseID("calling_1"), 100}, {getPoseID("calling_2"), 60}, {getPoseID("calling_2"), 40}, {getPoseID("calling_3"), 40}, 
+            {23, 80}, {getPoseID("calling_2"), 40}, {getPoseID("default"), 200}  
+        };
+        
+        arrayOfSequences[AnimID.ATTACKING] = new int[][] {
+            {getPoseID("attacking_1"), 100}, {getPoseID("attacking_2"), 60}, {getPoseID("attacking_3"), 20}, 
+            {getPoseID("attacking_2"), 60}, {getPoseID("attacking_3"), 20}, {getPoseID("default"), 200}
+        };
+        
+        arrayOfSequences[AnimID.SNIFFING] = new int[][] {
+            {getPoseID("sniffing_1"), 100}, {getPoseID("sniffing_2"), 20}, {getPoseID("sniffing_1"), 20}, 
+            {getPoseID("sniffing_2"), 20}, {getPoseID("sniffing_1"), 20}, {getPoseID("default"), 200}
+        };
     
-    protected static int[][] sequenceHissing = new int[][] {
-        {getPoseID("hissing"), 100}, {getPoseID("hissing"), 80}, {getPoseID("default"), 100}
-    };
-    
-    protected static int[][] sequenceMating = new int[][] {
-        {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10},
-        {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, 
-        {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("default"), 100}
-    };
-    
-    private static int[][] sequenceEating = new int[][] {
-    	{getPoseID("eating_1"), 100}, {getPoseID("eating_1b"), 40}, {getPoseID("eating_1"), 40}, 
-    	{getPoseID("eating_1b"), 40}, {getPoseID("eating_1"), 40}, {getPoseID("eating_1b"), 40}, 
-    	{getPoseID("eating_1"), 40}, {getPoseID("eating_2"), 80}, {getPoseID("eating_3"), 80}, 
-    	{getPoseID("eating_4"), 100}, {getPoseID("eating_4b"), 40}, {getPoseID("eating_4"), 40}, 
-    	{getPoseID("eating_4b"), 40}, {getPoseID("eating_4"), 40}, {getPoseID("eating_4b"), 40}, 
-    	{getPoseID("eating_4"), 40}, {getPoseID("eating_4b"), 40}, {getPoseID("eating_3"), 80}, 
-    	{getPoseID("eating_5"), 160}, {getPoseID("eating_6"), 100}, {getPoseID("eating_6b"), 40}, 
-    	{getPoseID("eating_6"), 40}, {getPoseID("eating_6b"), 40}, {getPoseID("eating_6"), 40}, 
-    	{getPoseID("eating_6b"), 40}, {getPoseID("eating_6"), 40}, {getPoseID("eating_6b"), 40},
-        {getPoseID("eating_5"), 80}, {getPoseID("default"), 80}, {getPoseID("default"), 200}
-    };
-    
-    private static int[][] sequenceDrinking = new int[][] {
-        {getPoseID("drinking_1"), 100}, {getPoseID("drinking_2"), 40}, {getPoseID("drinking_2"), 40}, 
-        {getPoseID("drinking_3"), 20}, {getPoseID("drinking_4"), 40}, {getPoseID("drinking_4"), 100}, 
-        {getPoseID("drinking_1"), 60}, {getPoseID("drinking_2"), 40}, {getPoseID("drinking_2"), 40}, 
-        {getPoseID("drinking_3"), 20}, {getPoseID("drinking_4"), 40}, {getPoseID("drinking_4"), 100}, 
-        {getPoseID("drinking_1"), 60}, {getPoseID("drinking_2"), 40}, {getPoseID("drinking_2"), 40}, 
-        {getPoseID("drinking_3"), 20}, {getPoseID("drinking_4"), 40}, {getPoseID("drinking_4"), 100}, 
-        {getPoseID("default"), 100}
-    };
-    
-    protected static int[][] sequenceResting = new int[][] {
-        {getPoseID("resting"), 100}, {getPoseID("resting"), 800}, {getPoseID("default"), 200}
-    };
-    
-    protected static int[][] sequenceSleeping = new int[][] {
-        {getPoseID("resting"), 100}, {19, 80}, {19, 800}, {getPoseID("resting"), 40}, {getPoseID("default"), 200}
-    };
-    
-    protected static int[][] sequenceCalling = new int[][] {
-        {getPoseID("calling_1"), 100}, {getPoseID("calling_2"), 60}, {getPoseID("calling_2"), 40}, {getPoseID("calling_3"), 40}, 
-        {23, 80}, {getPoseID("calling_2"), 40}, {getPoseID("default"), 200}  
-    };
-    
-    protected static int[][] sequenceAttacking = new int[][] {
-        {getPoseID("attacking_1"), 100}, {getPoseID("attacking_2"), 60}, {getPoseID("attacking_3"), 20}, 
-        {getPoseID("attacking_2"), 60}, {getPoseID("attacking_3"), 20}, {getPoseID("default"), 200}
-    };
-    
-    protected static int[][] sequenceSniffing = new int[][] {
-        {getPoseID("sniffing_1"), 100}, {getPoseID("sniffing_2"), 20}, {getPoseID("sniffing_1"), 20}, 
-        {getPoseID("sniffing_2"), 20}, {getPoseID("sniffing_1"), 20}, {getPoseID("default"), 200}
-    };
+    }
     
     /*
      * The first element in this array must be the "default" (idle) animation sequence,
@@ -156,20 +162,20 @@ public class AnimationTherizinosaurus implements IModelAnimator
 //        sequenceHeadCockRight
 //    };
 
-    protected static int[][][] arrayOfSequences = new int[][][] {
-        sequenceIdle,
-        sequenceCalling,
-    	sequenceMating,
-    	sequenceDrinking,
-    	sequenceResting,
-    	sequenceSleeping,
-    	sequenceEating, 
-    	sequenceHissing,
-        sequenceHeadCockLeft,
-        sequenceHeadCockRight,
-        sequenceSniffing,
-        sequenceAttacking
-    };
+//    protected static int[][][] arrayOfSequences = new int[][][] {
+//        sequenceIdle,
+//        sequenceCalling,
+//    	sequenceMating,
+//    	sequenceDrinking,
+//    	sequenceResting,
+//    	sequenceSleeping,
+//    	sequenceEating, 
+//    	sequenceHissing,
+//        sequenceHeadCockLeft,
+//        sequenceHeadCockRight,
+//        sequenceSniffing,
+//        sequenceAttacking
+//    };
 
     // maps each entity id with its current animation 
     protected HashMap<Integer, JabelarAnimationHelper> animationInstanceToEntityMap = new HashMap<Integer, JabelarAnimationHelper>();
@@ -181,15 +187,15 @@ public class AnimationTherizinosaurus implements IModelAnimator
     // load tabula models once per game during implicit constructor static initialization
     static
     {
-    	String[] partNameArray = JabelarAnimationHelper.getTabulaModel(modelAssetPath+modelAssetPathArray[0], 0).getCubeNamesArray();
+    	String[] partNameArray = JabelarAnimationHelper.getTabulaModel(modelAssetPath+modelAssetFileNameArray[0], 0).getCubeNamesArray();
         numParts = partNameArray.length;        
         
-        arrayOfPoses = new MowzieModelRenderer[modelAssetPathArray.length][numParts];
+        arrayOfPoses = new MowzieModelRenderer[modelAssetFileNameArray.length][numParts];
         
-        for (int modelIndex = 0; modelIndex < modelAssetPathArray.length; modelIndex++)
+        for (int modelIndex = 0; modelIndex < modelAssetFileNameArray.length; modelIndex++)
         {
             arrayOfPoses[modelIndex] = new MowzieModelRenderer[numParts];
-            ModelDinosaur theModel = JabelarAnimationHelper.getTabulaModel(modelAssetPath+modelAssetPathArray[modelIndex], 0);
+            ModelDinosaur theModel = JabelarAnimationHelper.getTabulaModel(modelAssetPath+modelAssetFileNameArray[modelIndex], 0);
             
             for (int partIndex = 0; partIndex < numParts; partIndex++) 
             {

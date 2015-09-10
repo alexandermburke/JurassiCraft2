@@ -1,6 +1,7 @@
 package net.timeless.jurassicraft.common.entity.ai.animations;
 
 import net.timeless.animationapi.IAnimatedEntity;
+import net.timeless.animationapi.client.AnimID;
 
 public class JCBegAnimation extends JCNonAutoAnimBase
 {
@@ -13,7 +14,7 @@ public class JCBegAnimation extends JCNonAutoAnimBase
     @Override
     public boolean shouldExecute()
     {
-        return animatingEntity.getAnimID() == 0 && animatingEntity.getRNG().nextInt(chance) == 0;
+        return animatingEntity.getAnimID() == AnimID.IDLE && animatingEntity.getRNG().nextInt(chance) == 0;
     }
 
     @Override
