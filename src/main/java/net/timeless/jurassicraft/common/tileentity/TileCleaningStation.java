@@ -152,7 +152,7 @@ public class TileCleaningStation extends TileEntityLockable implements IUpdatePl
     @Override
     public String getCommandSenderName()
     {
-        return null;
+        return getName();
     }
 
     /**
