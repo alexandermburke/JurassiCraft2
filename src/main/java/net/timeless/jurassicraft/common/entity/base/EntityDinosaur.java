@@ -37,6 +37,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     protected int randTexture;
 
     protected int dinosaurAge;
+    protected int prevAge;
 
     protected Set<Disease> diseases = new HashSet<Disease>();
 
@@ -71,7 +72,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
         animTick = 0;
         animID = 0;
-        
+
         ignoreFrustumCheck = true; // stops dino disappearing when hitbox goes off screen
 
         updateCreatureData();
@@ -83,6 +84,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     {
         super.entityInit();
         this.dataWatcher.addObject(25, 0);
+        this.dataWatcher.addObject(26, 0);
     }
 
     /**
@@ -117,7 +119,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
 //        adjustHitbox();
 
-        this.heal((float) (newHealth - this.getHealth()));
+        this.heal((float) (newHealth - lastDamage));
     }
 
     private void adjustHitbox()
@@ -169,6 +171,11 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     {
         super.onLivingUpdate();
 
+        if(firstUpdate)
+        {
+            updateCreatureData();
+        }
+
         adjustHitbox();
 
         if (ticksExisted % 32 == 0)
@@ -186,6 +193,26 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     public void onUpdate()
     {
         super.onUpdate();
+
+        if(!worldObj.isRemote)
+        {
+            if(prevAge != dinosaurAge)
+            {
+                this.dataWatcher.updateObject(26, dinosaurAge);
+                this.prevAge = dinosaurAge;
+            }
+        }
+        else
+        {
+            int age = this.dataWatcher.getWatchableObjectInt(26);
+
+            if(age != dinosaurAge)
+            {
+                this.updateCreatureData();
+                this.adjustHitbox();
+                this.dinosaurAge = age;
+            }
+        }
 
 //        if (!worldObj.isRemote)
 //        {
