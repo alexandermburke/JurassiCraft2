@@ -64,9 +64,9 @@ public class AnimationCompsognathus implements IModelAnimator
 //        f = entity.ticksExisted;
 //        f1 = 0.4F;
 
-        float globalSpeed = 1.2F;
-        float globalDegree = 1.0F;
-        float globalHeight = 1.0F;
+        float globalSpeed = 1.8F;
+        float globalDegree = 1.5F;
+        float globalHeight = 0.45F;
 
         model.bob(abdomen, globalSpeed * 0.5F, globalHeight * 1.0F, false, f, f1);
         model.bob(leftThigh, globalSpeed * 0.5F, globalHeight * 1.0F, false, f, f1);
