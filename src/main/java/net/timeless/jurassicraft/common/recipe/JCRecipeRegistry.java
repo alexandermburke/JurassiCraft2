@@ -1,6 +1,7 @@
 package net.timeless.jurassicraft.common.recipe;
 
-import com.google.common.collect.Maps;
+import java.util.HashMap;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -9,12 +10,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.timeless.jurassicraft.common.block.JCBlockRegistry;
-import net.timeless.jurassicraft.common.dinopedia.DinoPediaRegistry;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
-import java.util.HashMap;
+import com.google.common.collect.Maps;
 
 public class JCRecipeRegistry
 {
@@ -241,7 +241,7 @@ public class JCRecipeRegistry
         GameRegistry.addRecipe(stack, pars);
 
         getShapedRecipe(stack, pars);
-        DinoPediaRegistry.addItemRecipe(stack, getShapedRecipe(stack, pars));
+//        DinoPediaRegistry.addItemRecipe(stack, getShapedRecipe(stack, pars));
     }
 
     private ShapedRecipes getShapedRecipe(ItemStack stack, Object[] pars)

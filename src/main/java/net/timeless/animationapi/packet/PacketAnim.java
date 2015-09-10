@@ -19,6 +19,8 @@ public class PacketAnim implements IMessage
 
     public PacketAnim(byte anim, int entity)
     {
+    	// DEBUG
+    	System.out.println("constructing PacketAnim");
         animID = anim;
         entityID = entity;
     }
@@ -42,6 +44,9 @@ public class PacketAnim implements IMessage
         @Override
         public IMessage onMessage(PacketAnim packet, MessageContext ctx)
         {
+        	// DEBUG
+        	System.out.println("received PacketAnim packet");
+        	
             World world = AnimationAPI.getProxy().getWorldClient();
             IAnimatedEntity entity = (IAnimatedEntity) world.getEntityByID(packet.entityID);
             if (entity != null && packet.animID != -1)

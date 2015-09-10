@@ -10,13 +10,13 @@ import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 
 public class AnimationAIBite extends AIAnimation
 {
-    private EntityDinosaur entityBiting;
+    private final EntityDinosaur entityBiting;
     private EntityLivingBase entityTarget;
-    private int duration;
+    private final int duration;
     private boolean eat;
     protected int id;
 
-    public AnimationAIBite(EntityDinosaur dino, int duration, int id)
+    public AnimationAIBite(EntityDinosaur dino, int duration)
     {
         super(dino);
         this.entityBiting = dino;
@@ -32,23 +32,27 @@ public class AnimationAIBite extends AIAnimation
         return id;
     }
 
-    public boolean isAutomatic()
+    @Override
+	public boolean isAutomatic()
     {
         return true;
     }
 
-    public int getDuration()
+    @Override
+	public int getDuration()
     {
         return this.duration;
     }
 
-    public void startExecuting()
+    @Override
+	public void startExecuting()
     {
         super.startExecuting();
         this.entityTarget = this.entityBiting.getAttackTarget();
     }
 
-    public void updateTask()
+    @Override
+	public void updateTask()
     {
         if (this.entityTarget != null)
         {
@@ -75,7 +79,8 @@ public class AnimationAIBite extends AIAnimation
         return (double) ((int) (100 * this.entityBiting.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue())) / 100;
     }
 
-    public void resetTask()
+    @Override
+	public void resetTask()
     {
         /** Eating animations, should not use super.resetTask, or the eating animation ID will be replaced */
 //        if (eat && this.entityTarget instanceof EntityGallimimus && entityTarget.ridingEntity == null)

@@ -1,17 +1,16 @@
 package net.timeless.jurassicraft.common.entity;
 
+import java.util.Random;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.timeless.animationapi.IAnimatedEntity;
-import net.timeless.jurassicraft.common.entity.ai.animations.AnimationAIBite;
 import net.timeless.jurassicraft.common.entity.ai.animations.AnimationAIEating;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimSoundBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
 import net.timeless.unilib.common.animation.ControlledParam;
-
-import java.util.Random;
 
 public class EntityTyrannosaurus extends EntityDinosaurAggressive implements IAnimatedEntity // , IEntityAICreature, ICarnivore
 {
@@ -36,7 +35,7 @@ public class EntityTyrannosaurus extends EntityDinosaurAggressive implements IAn
 
         tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, 1, 750, "jurassicraft:" + roarSounds[0], 1.5F));
         tasks.addTask(2, new JCNonAutoAnimBase(this, 75, 2, 750));
-        tasks.addTask(2, new AnimationAIEating(this, 20, true, 3));
+        tasks.addTask(2, new AnimationAIEating(this, 20, true));
 
         for (int i = 0; i < targets.length; i++)
         {
@@ -44,22 +43,26 @@ public class EntityTyrannosaurus extends EntityDinosaurAggressive implements IAn
         }
     }
 
-    public String getLivingSound()
+    @Override
+	public String getLivingSound()
     {
         return randomSound(livingSounds);
     }
 
-    public String getHurtSound()
+    @Override
+	public String getHurtSound()
     {
         return randomSound(hurtSounds);
     }
 
-    public String getDeathSound()
+    @Override
+	public String getDeathSound()
     {
         return randomSound(deathSounds);
     }
 
-    public void onUpdate()
+    @Override
+	public void onUpdate()
     {
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
         super.onUpdate();

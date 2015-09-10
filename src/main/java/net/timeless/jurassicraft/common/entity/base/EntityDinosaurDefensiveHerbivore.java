@@ -12,11 +12,13 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.animationapi.AnimationAPI;
+import net.timeless.animationapi.client.AnimID;
 
 public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements IMob
 {
 
-    private EntityAIEatGrass entityAIEatGrass = new EntityAIEatGrass(this);
+    private final EntityAIEatGrass entityAIEatGrass = new EntityAIEatGrass(this);
     private int eatTimer;
 
     public EntityDinosaurDefensiveHerbivore(World world)
@@ -26,7 +28,8 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
         this.tasks.addTask(1, new EntityAIPanic(this, 1.25D));
     }
 
-    protected void updateAITasks()
+    @Override
+	protected void updateAITasks()
     {
         super.updateAITasks();
         this.eatTimer = this.entityAIEatGrass.getEatingGrassTimer();
@@ -36,7 +39,8 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
      * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
      * use this to react to sunlight and start to burn.
      */
-    public void onLivingUpdate()
+    @Override
+	public void onLivingUpdate()
     {
         super.onLivingUpdate();
         if (this.worldObj.isRemote)
@@ -46,7 +50,8 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
         this.updateArmSwingProgress();
     }
 
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public void handleHealthUpdate(byte p_70103_1_)
     {
         if (p_70103_1_ == 10)
@@ -59,7 +64,8 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
         }
     }
 
-    public void eatGrassBonus()
+    @Override
+	public void eatGrassBonus()
     {
         if (this.isChild())
         {
@@ -71,7 +77,8 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
     /**
      * Called when the entity is attacked.
      */
-    public boolean attackEntityFrom(DamageSource source, float amount)
+    @Override
+	public boolean attackEntityFrom(DamageSource source, float amount)
     {
         if (this.isEntityInvulnerable(source))
         {
@@ -88,8 +95,11 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
         }
     }
 
-    public boolean attackEntityAsMob(Entity entity)
+    @Override
+	public boolean attackEntityAsMob(Entity entity)
     {
+    	AnimationAPI.sendAnimPacket(this, AnimID.ATTACKING);
+    	
         float damage = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
         int knockback = 0;
 
@@ -105,7 +115,7 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
         {
             if (knockback > 0)
             {
-                entity.addVelocity((double) (-MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F) * (float) knockback * 0.5F), 0.1D, (double) (MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F) * (float) knockback * 0.5F));
+                entity.addVelocity(-MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F) * knockback * 0.5F, 0.1D, MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F) * knockback * 0.5F);
                 this.motionX *= 0.6D;
                 this.motionZ *= 0.6D;
             }
@@ -116,13 +126,15 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
         return attacked;
     }
 
-    protected void applyEntityAttributes()
+    @Override
+	protected void applyEntityAttributes()
     {
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
         super.applyEntityAttributes();
     }
 
-    public void updateCreatureData()
+    @Override
+	public void updateCreatureData()
     {
         super.updateCreatureData();
 

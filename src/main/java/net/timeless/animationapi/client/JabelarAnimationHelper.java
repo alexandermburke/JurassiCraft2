@@ -321,11 +321,12 @@ public class JabelarAnimationHelper
         return false;
     }
 
-    public void setNextSequence(int parSequenceIndex)
+    private void setNextSequence(int parSequenceIndex)
     {
         // TODO
         // Should control here which animations are interruptible, in which priority
         // I.e. could reject certain changes depending on what current animation is playing
+    	
     	if (currentSequence == parSequenceIndex) // finished sequence but no new sequence set
     	{
     		currentSequence = AnimID.IDLE;
@@ -334,6 +335,13 @@ public class JabelarAnimationHelper
     	{
     		currentSequence = parSequenceIndex;
     	}
+    	
+    	// handle case where animation sequence isn't available
+    	if (arrayOfSequences[currentSequence] == null)
+    	{
+    		currentSequence = AnimID.IDLE;
+    	}
+    	
         numPosesInSequence = arrayOfSequences[currentSequence].length;
         currentPose = 0;
         currentTickInTween = 0;

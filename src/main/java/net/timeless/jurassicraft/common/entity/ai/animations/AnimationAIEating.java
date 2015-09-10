@@ -1,7 +1,6 @@
 package net.timeless.jurassicraft.common.entity.ai.animations;
 
 import net.minecraft.entity.ai.EntityAIBase;
-import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.client.AnimID;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 
@@ -9,16 +8,15 @@ public class AnimationAIEating extends EntityAIBase
 {
     private final EntityDinosaur creature;
     private final boolean shouldAnimate;
-    private final int animationID;
     private int duration;
     private int timer;
 
     public AnimationAIEating(EntityDinosaur creature, int duration)
     {
-        this(creature, duration, false, 0);
+        this(creature, duration, false);
     }
 
-    public AnimationAIEating(EntityDinosaur creature, int duration, boolean shouldAnimate, int animationID)
+    public AnimationAIEating(EntityDinosaur creature, int duration, boolean shouldAnimate)
     {
         this.creature = creature;
 
@@ -28,7 +26,6 @@ public class AnimationAIEating extends EntityAIBase
             this.duration = 10;
 
         this.shouldAnimate = shouldAnimate;
-        this.animationID = animationID;
         this.timer = 0;
     }
 
@@ -45,7 +42,7 @@ public class AnimationAIEating extends EntityAIBase
 
 
         if (this.shouldAnimate && this.creature.getAnimID() == AnimID.IDLE)
-            AnimationAPI.sendAnimPacket(this.creature, this.animationID);
+            creature.setAnimID(AnimID.EATING);
     }
 
     @Override

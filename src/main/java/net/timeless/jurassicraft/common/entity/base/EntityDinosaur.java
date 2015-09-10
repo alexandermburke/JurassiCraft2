@@ -14,6 +14,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNavigate;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
@@ -21,6 +22,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.reuxertz.ecoapi.entity.EntityAICreature;
 import net.timeless.animationapi.AIAnimation;
+import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.AnimID;
 import net.timeless.jurassicraft.JurassiCraft;
@@ -419,9 +421,17 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     }
 
     @Override
-    public void setAnimID(int id)
+    public void setAnimID(int parAnimID)
     {
-        this.animID = id;
+    	if (parAnimID != animID) // only process changes
+    	{
+     	    animID = parAnimID;
+     	    
+     	    if (!this.worldObj.isRemote) // only send packet from server side
+        	{
+        	    	AnimationAPI.sendAnimPacket(this, animID);
+            }      		
+    	}
     }
 
     @Override
@@ -518,5 +528,12 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     public void addDisease(Disease disease)
     {
         diseases.add(disease);
+    }
+    
+    @Override
+	public void onDeath(DamageSource parDamageSource)
+    {
+    	AnimationAPI.sendAnimPacket(this, AnimID.INJURED);
+    	super.onDeath(parDamageSource);
     }
 }
