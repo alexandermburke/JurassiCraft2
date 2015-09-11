@@ -1,12 +1,14 @@
 package net.timeless.animationapi.packet;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
+import net.timeless.jurassicraft.JurassiCraft;
 
 public class PacketAnim implements IMessage
 {
@@ -42,17 +44,26 @@ public class PacketAnim implements IMessage
     public static class Handler implements IMessageHandler<PacketAnim, IMessage>
     {
         @Override
-        public IMessage onMessage(PacketAnim packet, MessageContext ctx)
+        public IMessage onMessage(final PacketAnim packet, MessageContext ctx)
         {
-        	// DEBUG
-        	System.out.println("received PacketAnim packet");
-        	
-            World world = AnimationAPI.getProxy().getWorldClient();
-            IAnimatedEntity entity = (IAnimatedEntity) world.getEntityByID(packet.entityID);
-            if (entity != null && packet.animID != -1)
+            final EntityPlayerMP thePlayer = (EntityPlayerMP) JurassiCraft.proxy.getPlayerEntityFromContext(ctx);
+            thePlayer.getServerForPlayer().addScheduledTask(new Runnable() 
             {
-                entity.setAnimID(packet.animID);
-            }
+                @Override
+                public void run() 
+                {        	
+                    // DEBUG
+                	System.out.println("received PacketAnim packet");
+                	
+                    World world = AnimationAPI.getProxy().getWorldClient();
+                    IAnimatedEntity entity = (IAnimatedEntity) world.getEntityByID(packet.entityID);
+                    if (entity != null && packet.animID != -1)
+                    {
+                        entity.setAnimID(packet.animID);
+                    }
+                }
+            });
+
             return null;
         }
     }
