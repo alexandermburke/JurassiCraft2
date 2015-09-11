@@ -1,4 +1,5 @@
 {
+	"forge_marker": 1, 
     "variants": {
         "half=bottom": { "model": "jurassicraft:ginkgo_planks" },
         "half=top": { "model": "jurassicraft:ginkgo_planks" }

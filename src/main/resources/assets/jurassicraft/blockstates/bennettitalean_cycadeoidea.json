@@ -1,5 +1,6 @@
 {
-  "variants": {
+	"forge_marker": 1, 
+	"variants": {
     "normal": { "model": "jurassicraft:bennettitalean_cycadeoidea" }
   }
 }
