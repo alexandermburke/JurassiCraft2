@@ -77,8 +77,6 @@ public class JCRenderingRegistry
 
         ModelBakery.addVariantName(JCItemRegistry.cage_small, "jurassicraft:cage_small");
         ModelBakery.addVariantName(JCItemRegistry.cage_small, "jurassicraft:cage_small_marine");
-
-        ClientRegistry.bindTileEntitySpecialRenderer(TileDNAExtractor.class, new SpecialRendererDNAExtractor());
     }
 
     public void init()
@@ -204,6 +202,8 @@ public class JCRenderingRegistry
         RenderingRegistry.registerEntityRenderingHandler(EntityBluePrint.class, new RenderBluePrint());
         RenderingRegistry.registerEntityRenderingHandler(EntityJurassiCraftSign.class, new RenderJurassiCraftSign());
         RenderingRegistry.registerEntityRenderingHandler(EntityHelicopterBase.class, new RenderHelicopter());
+
+        ClientRegistry.bindTileEntitySpecialRenderer(TileDNAExtractor.class, new SpecialRendererDNAExtractor());
 
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
         ItemModelMesher modelMesher = renderItem.getItemModelMesher();
