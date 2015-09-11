@@ -329,6 +329,8 @@ public class JabelarAnimationHelper
     	
     	if (currentSequence == parSequenceIndex) // finished sequence but no new sequence set
     	{
+    		// DEBUG
+    		System.out.println("Reverting to idle sequence");
     		currentSequence = AnimID.IDLE;
     	}
     	else

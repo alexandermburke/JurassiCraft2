@@ -20,7 +20,7 @@ public class EntityTherizinosaurus extends EntityDinosaurDefensiveHerbivore // i
     {
         tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
         
-        if (!worldObj.isRemote && getRNG().nextInt(1000) < 50)
+        if (!worldObj.isRemote && getRNG().nextInt(10000) < 50)
         {
         	AnimationAPI.sendAnimPacket(this, AnimID.MATING);
         }
