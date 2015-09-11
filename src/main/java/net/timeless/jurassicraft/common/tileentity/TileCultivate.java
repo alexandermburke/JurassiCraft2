@@ -159,7 +159,7 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
     @Override
     public String getCommandSenderName()
     {
-        return null;
+        return getName();
     }
 
     /**
