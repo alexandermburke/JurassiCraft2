@@ -56,6 +56,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
     private boolean isMale;
 
+    private int growthSpeedOffset;
+
     @Override
     public void setNavigator(PathNavigate pn)
     {
@@ -87,6 +89,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         super.entityInit();
         this.dataWatcher.addObject(25, 0);
         this.dataWatcher.addObject(26, 0);
+        this.dataWatcher.addObject(27, 0);
     }
 
     /**
@@ -180,13 +183,23 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
         adjustHitbox();
 
-        if (ticksExisted % 32 == 0)
+        if (ticksExisted % 8 == 0)
         {
-            this.dinosaurAge++;
+            this.dinosaurAge += Math.min(growthSpeedOffset, 960) + 1;
 
             if (dinosaurAge % 20 == 0)
             {
                 updateCreatureData();
+            }
+
+            if(growthSpeedOffset > 0)
+            {
+                growthSpeedOffset -= 10;
+
+                if(growthSpeedOffset < 0)
+                {
+                    growthSpeedOffset = 0;
+                }
             }
         }
     }
@@ -203,6 +216,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
                 this.dataWatcher.updateObject(26, dinosaurAge);
                 this.prevAge = dinosaurAge;
             }
+
+            this.dataWatcher.updateObject(27, growthSpeedOffset);
         }
         else
         {
@@ -214,6 +229,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
                 this.adjustHitbox();
                 this.dinosaurAge = age;
             }
+
+            this.growthSpeedOffset = this.dataWatcher.getWatchableObjectInt(27);
         }
 
 //        if (!worldObj.isRemote)
@@ -230,7 +247,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
     public int getDaysExisted()
     {
-        return (dinosaurAge * 32) / 24000;
+        return (int) Math.floor((dinosaurAge * 8.0F) / 24000.0F);
     }
 
     public void setFullyGrown()
@@ -260,6 +277,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         nbt.setInteger("DNAQuality", quality);
         nbt.setString("Genetics", genetics.toString());
         nbt.setBoolean("IsMale", isMale);
+        nbt.setInteger("GrowthSpeedOffset", growthSpeedOffset);
     }
 
     @Override
@@ -273,6 +291,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         quality = nbt.getInteger("DNAQuality");
         genetics = new GeneticsContainer(nbt.getString("Genetics"));
         isMale = nbt.getBoolean("IsMale");
+        growthSpeedOffset = nbt.getInteger("GrowthSpeedOffset");
 
         updateCreatureData();
         adjustHitbox();
@@ -286,6 +305,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 //        buffer.writeBoolean(isCarcass);
         buffer.writeInt(quality);
         buffer.writeBoolean(isMale);
+        buffer.writeInt(growthSpeedOffset);
         ByteBufUtils.writeUTF8String(buffer, genetics.toString());
     }
 
@@ -297,6 +317,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 //        isCarcass = additionalData.readBoolean();
         quality = additionalData.readInt();
         isMale = additionalData.readBoolean();
+        growthSpeedOffset = additionalData.readInt();
 
         genetics = new GeneticsContainer(ByteBufUtils.readUTF8String(additionalData));
 
@@ -423,15 +444,15 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     @Override
     public void setAnimID(int parAnimID)
     {
-    	if (parAnimID != animID) // only process changes
-    	{
-     	    animID = parAnimID;
-     	    
-     	    if (!this.worldObj.isRemote) // only send packet from server side
-        	{
-        	    	AnimationAPI.sendAnimPacket(this, animID);
-            }      		
-    	}
+        if (parAnimID != animID) // only process changes
+        {
+            animID = parAnimID;
+
+            if (!this.worldObj.isRemote) // only send packet from server side
+            {
+                AnimationAPI.sendAnimPacket(this, animID);
+            }
+        }
     }
 
     @Override
@@ -529,11 +550,16 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     {
         diseases.add(disease);
     }
-    
+
     @Override
-	public void onDeath(DamageSource parDamageSource)
+    public void onDeath(DamageSource parDamageSource)
     {
-    	AnimationAPI.sendAnimPacket(this, AnimID.INJURED);
-    	super.onDeath(parDamageSource);
+        AnimationAPI.sendAnimPacket(this, AnimID.INJURED);
+        super.onDeath(parDamageSource);
+    }
+
+    public void increaseGrowthSpeed()
+    {
+        growthSpeedOffset += 240;
     }
 }

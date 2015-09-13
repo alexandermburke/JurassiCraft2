@@ -95,7 +95,7 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
 
     protected int fromDays(int days)
     {
-        return (days * 24000) / 32;
+        return (days * 24000) / 8;
     }
 
     @Override
