@@ -15,6 +15,10 @@ public class RenderDefVelociraptor extends RenderDinosaurDefinition
     private IModelAnimator animator;
     private ModelJson model;
 
+    private ModelJson infant;
+    private ModelJson juvenile;
+    private ModelJson adolescent;
+
     public RenderDefVelociraptor()
     {
         super(JCEntityRegistry.velociraptor);
@@ -23,7 +27,12 @@ public class RenderDefVelociraptor extends RenderDinosaurDefinition
 
         try
         {
-            this.model = getDefaultTabulaModel();
+            String texture = "/assets/jurassicraft/models/entities/velociraptor/" + getDinosaur().getName(0).toLowerCase().replaceAll(" ", "_");
+
+            this.model = getTabulaModel(texture, 0);
+            this.infant = getTabulaModel(texture + "_infant", 0);
+            this.juvenile = getTabulaModel(texture + "_juvenile", 0);
+            this.adolescent = getTabulaModel(texture + "_adolescent", 0);
         }
         catch (Exception e)
         {
@@ -34,7 +43,17 @@ public class RenderDefVelociraptor extends RenderDinosaurDefinition
     @Override
     public ModelBase getModel(int geneticVariant, EnumGrowthStage stage)
     {
-        return model;
+        switch (stage)
+        {
+            case INFANT:
+                return infant;
+            case JUVENILE:
+                return juvenile;
+            case ADOLESCENT:
+                return adolescent;
+            default:
+                return model;
+        }
     }
 
     @Override

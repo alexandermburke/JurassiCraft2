@@ -10,10 +10,28 @@ public class DinosaurVelociraptor extends Dinosaur
     private String[] maleTextures;
     private String[] femaleTextures;
 
+    private String[] maleTexturesInfant;
+    private String[] femaleTexturesInfant;
+
+    private String[] maleTexturesJuvenile;
+    private String[] femaleTexturesJuvenile;
+
+    private String[] maleTexturesAdolescent;
+    private String[] femaleTexturesAdolescent;
+
     public DinosaurVelociraptor()
     {
         this.maleTextures = new String[]{getDinosaurTexture("male")};
         this.femaleTextures = new String[]{getDinosaurTexture("female")};
+
+        this.maleTexturesInfant = new String[]{getDinosaurTexture("male_infant")};
+        this.femaleTexturesInfant = new String[]{getDinosaurTexture("female_infant")};
+
+        this.maleTexturesJuvenile = new String[]{getDinosaurTexture("male_juvenile")};
+        this.femaleTexturesJuvenile = new String[]{getDinosaurTexture("female_juvenile")};
+
+        this.maleTexturesAdolescent = new String[]{getDinosaurTexture("male_adolescent")};
+        this.femaleTexturesAdolescent = new String[]{getDinosaurTexture("female_adolescent")};
     }
 
     @Override
@@ -108,13 +126,33 @@ public class DinosaurVelociraptor extends Dinosaur
     @Override
     public String[] getMaleTextures(int geneticVariant, EnumGrowthStage stage)
     {
-        return maleTextures;
+        switch (stage)
+        {
+            case INFANT:
+                return maleTexturesInfant;
+            case JUVENILE:
+                return maleTexturesJuvenile;
+            case ADOLESCENT:
+                return maleTexturesAdolescent;
+            default:
+                return maleTextures;
+        }
     }
 
     @Override
     public String[] getFemaleTextures(int geneticVariant, EnumGrowthStage stage)
     {
-        return femaleTextures;
+        switch (stage)
+        {
+            case INFANT:
+                return femaleTexturesInfant;
+            case JUVENILE:
+                return femaleTexturesJuvenile;
+            case ADOLESCENT:
+                return femaleTexturesAdolescent;
+            default:
+                return femaleTextures;
+        }
     }
 
     @Override
