@@ -169,10 +169,11 @@ public class JabelarAnimationHelper
         nextPose = arrayOfPoses[arrayOfSequences[currentSequence][currentPose][0]];
         numTicksInTween = arrayOfSequences[currentSequence][currentPose][1];
         currentTickInTween = 0;
-        // DEBUG
-        System.out.println("current sequence "+currentSequence+" out of "+arrayOfSequences.length+
-                " and current pose "+currentPose+" out of "+arrayOfSequences[currentSequence].length
-                +" with "+numTicksInTween+" ticks in tween");
+
+//        // DEBUG
+//        System.out.println("current sequence "+currentSequence+" out of "+arrayOfSequences.length+
+//                " and current pose "+currentPose+" out of "+arrayOfSequences[currentSequence].length
+//                +" with "+numTicksInTween+" ticks in tween");
     }
    
     private void performNextTweenTick()
@@ -327,7 +328,7 @@ public class JabelarAnimationHelper
         // Should control here which animations are interruptible, in which priority
         // I.e. could reject certain changes depending on what current animation is playing
     	
-    	if (currentSequence == parSequenceIndex) // finished sequence but no new sequence set
+    	if (currentSequence != AnimID.IDLE && currentSequence == parSequenceIndex) // finished sequence but no new sequence set
     	{
     		// DEBUG
     		System.out.println("Reverting to idle sequence");
@@ -349,36 +350,6 @@ public class JabelarAnimationHelper
         currentTickInTween = 0;
     }
     
-    private void setNextSequence()
-    {
-    	if (shouldRandomizeSequence)
-    	{
-    		if (theEntity.getRNG().nextInt(100) < chanceNotIdle)
-    		{
-    		    setRandomSpecialSequence();
-    		}
-    		else
-    		{
-    		   currentSequence = 0;
-    		}
-    	}
-    	else
-    	{
-	    	currentSequence++;
-	    	
-	    	if (currentSequence >= numSequencesInArray)
-	    	{
-	    		currentSequence = 0;
-	    	}
-    	}
-    	
-    	numPosesInSequence = arrayOfSequences[currentSequence].length;
-    	
-//    	// DEBUG
-//    	System.out.println("Next sequence = "+currentSequence);
-    }
-    
-    // this getter method includes any sequence step modifier
     public int getCurrentPose()
     {
         return currentPose;
@@ -414,18 +385,5 @@ public class JabelarAnimationHelper
     public ModelDinosaur getTabulaModel(String tabulaModel)
     {
         return getTabulaModel(tabulaModel, 0);
-    }
-
-    /*
-     * Utility functions
-     */
-    private float degToRad(float degrees)
-    {
-        return (float) (Math.PI / 180.0F * degrees);
-    }
-    
-    private float radToDeg(float rads)
-    {
-        return (float) (180.0F / Math.PI * rads);
     }
 }

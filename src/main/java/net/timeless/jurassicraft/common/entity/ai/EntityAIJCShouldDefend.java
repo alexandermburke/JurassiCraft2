@@ -1,22 +1,21 @@
 package net.timeless.jurassicraft.common.entity.ai;
 
+import java.util.Iterator;
+import java.util.List;
+
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.AxisAlignedBB;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 
-import java.util.Iterator;
-import java.util.List;
-
 public class EntityAIJCShouldDefend extends EntityAIJCTarget
 {
-    private boolean entityCallsForHelp;
+    private final boolean entityCallsForHelp;
     /**
      * Store the previous revengeTimer value
      */
     private int revengeTimerOld;
     private final Class[] field_179447_c;
-    private static final String __OBFID = "CL_00001619";
 
     public EntityAIJCShouldDefend(EntityDinosaur p_i45885_1_, boolean p_i45885_2_, Class... p_i45885_3_)
     {
@@ -29,6 +28,7 @@ public class EntityAIJCShouldDefend extends EntityAIJCTarget
     /**
      * Returns whether the EntityAIBase should begin execution.
      */
+    @Override
     public boolean shouldExecute()
     {
         int i = this.taskOwner.getRevengeTimer();
@@ -38,6 +38,7 @@ public class EntityAIJCShouldDefend extends EntityAIJCTarget
     /**
      * Execute a one shot task or start executing a continuous task
      */
+    @Override
     public void startExecuting()
     {
         this.taskOwner.setAttackTarget(this.taskOwner.getAITarget());

@@ -14,6 +14,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
+
 import org.apache.commons.lang3.StringUtils;
 
 public abstract class EntityAIJCTarget extends EntityAIBase
@@ -29,7 +30,7 @@ public abstract class EntityAIJCTarget extends EntityAIBase
     /**
      * When true, only entities that can be reached with minimal effort will be targetted.
      */
-    private boolean nearbyOnly;
+    private final boolean nearbyOnly;
     /**
      * When nearbyOnly is true: 0 -> No target, but OK to search; 1 -> Nearby target found; 2 -> Target too far.
      */
@@ -43,7 +44,6 @@ public abstract class EntityAIJCTarget extends EntityAIBase
      * see the target
      */
     private int targetUnseenTicks;
-    private static final String __OBFID = "CL_00001626";
 
     public EntityAIJCTarget(EntityDinosaur p_i1669_1_, boolean p_i1669_2_)
     {
@@ -60,6 +60,7 @@ public abstract class EntityAIJCTarget extends EntityAIBase
     /**
      * Returns whether an in-progress EntityAIBase should continue executing
      */
+    @Override
     public boolean continueExecuting()
     {
         EntityLivingBase entitylivingbase = this.taskOwner.getAttackTarget();
@@ -118,6 +119,7 @@ public abstract class EntityAIJCTarget extends EntityAIBase
     /**
      * Execute a one shot task or start executing a continuous task
      */
+    @Override
     public void startExecuting()
     {
         this.targetSearchStatus = 0;
@@ -128,6 +130,7 @@ public abstract class EntityAIJCTarget extends EntityAIBase
     /**
      * Resets the task
      */
+    @Override
     public void resetTask()
     {
         this.taskOwner.setAttackTarget((EntityLivingBase) null);
@@ -261,7 +264,7 @@ public abstract class EntityAIJCTarget extends EntityAIBase
             {
                 int i = pathpoint.xCoord - MathHelper.floor_double(p_75295_1_.posX);
                 int j = pathpoint.zCoord - MathHelper.floor_double(p_75295_1_.posZ);
-                return (double) (i * i + j * j) <= 2.25D;
+                return i * i + j * j <= 2.25D;
             }
         }
     }

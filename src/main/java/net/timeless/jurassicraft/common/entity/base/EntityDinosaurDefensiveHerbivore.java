@@ -4,8 +4,6 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIEatGrass;
-import net.minecraft.entity.ai.EntityAIPanic;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
@@ -14,25 +12,28 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.client.AnimID;
+import net.timeless.jurassicraft.common.entity.ai.EntityAIJCEatGrass;
+import net.timeless.jurassicraft.common.entity.ai.EntityAIJCPanic;
 
 public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements IMob
 {
 
-    private final EntityAIEatGrass entityAIEatGrass = new EntityAIEatGrass(this);
+    private final EntityAIJCEatGrass entityAIEatGrass = new EntityAIJCEatGrass(this);
+    private final EntityAIJCPanic entityAIPanic = new EntityAIJCPanic(this, 1.25D);
     private int eatTimer;
 
     public EntityDinosaurDefensiveHerbivore(World world)
     {
         super(world);
-        this.tasks.addTask(5, this.entityAIEatGrass);
-        this.tasks.addTask(1, new EntityAIPanic(this, 1.25D));
+        tasks.addTask(5, entityAIEatGrass);
+        tasks.addTask(1, entityAIPanic);
     }
 
     @Override
 	protected void updateAITasks()
     {
         super.updateAITasks();
-        this.eatTimer = this.entityAIEatGrass.getEatingGrassTimer();
+        eatTimer = entityAIEatGrass.getEatingGrassTimer();
     }
 
     /**
@@ -43,11 +44,11 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
 	public void onLivingUpdate()
     {
         super.onLivingUpdate();
-        if (this.worldObj.isRemote)
+        if (worldObj.isRemote)
         {
-            this.eatTimer = Math.max(0, this.eatTimer - 1);
+            eatTimer = Math.max(0, eatTimer - 1);
         }
-        this.updateArmSwingProgress();
+        updateArmSwingProgress();
     }
 
     @Override
@@ -56,7 +57,7 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
     {
         if (p_70103_1_ == 10)
         {
-            this.eatTimer = 40;
+            eatTimer = 40;
         }
         else
         {
@@ -67,11 +68,11 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
     @Override
 	public void eatGrassBonus()
     {
-        if (this.isChild())
+        if (isChild())
         {
-            this.setAge((int) (dinosaurAge + dinosaurAge * 0.05));
+            setAge((int) (dinosaurAge + dinosaurAge * 0.05));
         }
-        this.setHealth((float) (this.getHealth() + this.getHealth() * 0.15));
+        setHealth((float) (getHealth() + getHealth() * 0.15));
     }
 
     /**
@@ -80,14 +81,14 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
     @Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
     {
-        if (this.isEntityInvulnerable(source))
+        if (isEntityInvulnerable(source))
         {
             return false;
         }
         else if (super.attackEntityFrom(source, amount))
         {
             Entity entity = source.getEntity();
-            return this.riddenByEntity != entity && this.ridingEntity != entity ? true : true;
+            return riddenByEntity != entity && ridingEntity != entity ? true : true;
         }
         else
         {
@@ -100,12 +101,12 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
     {
     	AnimationAPI.sendAnimPacket(this, AnimID.ATTACKING);
     	
-        float damage = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
+        float damage = (float) getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
         int knockback = 0;
 
         if (entity instanceof EntityLivingBase)
         {
-            damage += EnchantmentHelper.func_152377_a(this.getHeldItem(), ((EntityLivingBase) entity).getCreatureAttribute());
+            damage += EnchantmentHelper.func_152377_a(getHeldItem(), ((EntityLivingBase) entity).getCreatureAttribute());
             knockback += EnchantmentHelper.getKnockbackModifier(this);
         }
 
@@ -115,12 +116,12 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
         {
             if (knockback > 0)
             {
-                entity.addVelocity(-MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F) * knockback * 0.5F, 0.1D, MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F) * knockback * 0.5F);
-                this.motionX *= 0.6D;
-                this.motionZ *= 0.6D;
+                entity.addVelocity(-MathHelper.sin(rotationYaw * (float) Math.PI / 180.0F) * knockback * 0.5F, 0.1D, MathHelper.cos(rotationYaw * (float) Math.PI / 180.0F) * knockback * 0.5F);
+                motionX *= 0.6D;
+                motionZ *= 0.6D;
             }
 
-            this.applyEnchantments(this, entity);
+            applyEnchantments(this, entity);
         }
 
         return attacked;
@@ -129,7 +130,7 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
     @Override
 	protected void applyEntityAttributes()
     {
-        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
+        getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
         super.applyEntityAttributes();
     }
 
@@ -138,7 +139,7 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
     {
         super.updateCreatureData();
 
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(transitionFromAge(dinosaur.getBabyStrength(), dinosaur.getAdultStrength()));
+        getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(transitionFromAge(dinosaur.getBabyStrength(), dinosaur.getAdultStrength()));
     }
 
     protected boolean func_146066_aG()
