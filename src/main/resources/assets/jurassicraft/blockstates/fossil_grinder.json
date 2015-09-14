@@ -1,5 +1,4 @@
 {
-	"forge_marker": 1, 
     "variants": {
         "facing=north": { "model": "jurassicraft:fossil_grinder" },
         "facing=south": { "model": "jurassicraft:fossil_grinder", "y": 180 },

@@ -1,5 +1,4 @@
 {
-	"forge_marker": 1, 
     "variants": {
         "facing=north": { "model": "jurassicraft:embryo_calcification_machine" },
         "facing=south": { "model": "jurassicraft:embryo_calcification_machine", "y": 180 },

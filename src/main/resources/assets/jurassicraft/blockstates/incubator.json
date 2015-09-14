@@ -1,5 +1,4 @@
 {
-	"forge_marker": 1, 
     "variants": {
         "facing=north": { "model": "jurassicraft:incubator" },
         "facing=south": { "model": "jurassicraft:incubator", "y": 180 },

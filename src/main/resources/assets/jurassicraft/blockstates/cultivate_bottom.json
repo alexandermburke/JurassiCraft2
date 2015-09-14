@@ -1,5 +1,4 @@
 {
-	"forge_marker": 1, 
     "variants": {
         "color=white": { "model": "jurassicraft:cultivator/bottom/cultivate_bottom_white" },
         "color=orange": { "model": "jurassicraft:cultivator/bottom/cultivate_bottom_orange" },

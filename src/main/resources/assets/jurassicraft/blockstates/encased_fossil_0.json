@@ -1,5 +1,4 @@
 {
-	"forge_marker": 1, 
     "variants": {
         "variant=0": { "model": "jurassicraft:encased_fossil_0" },
 		"variant=1": { "model": "jurassicraft:encased_fossil_0" },

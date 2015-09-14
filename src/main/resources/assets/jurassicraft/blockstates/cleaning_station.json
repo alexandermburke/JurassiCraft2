@@ -1,5 +1,4 @@
 {
-	"forge_marker": 1, 
     "variants": {
         "facing=north": { "model": "jurassicraft:cleaning_station", "y": 180 },
         "facing=south": { "model": "jurassicraft:cleaning_station" },

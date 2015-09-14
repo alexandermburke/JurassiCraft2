@@ -1,5 +1,4 @@
 {
-	"forge_marker": 1, 
     "variants": {
         "half=bottom": { "model": "jurassicraft:half_slab_calamites" },
         "half=top": { "model": "jurassicraft:upper_slab_calamites" }

@@ -1,5 +1,4 @@
 {
-	"forge_marker": 1, 
     "variants": {
         "half=lower": { "model": "jurassicraft:cycad_zamites_bottom" },
         "half=upper": { "model": "jurassicraft:cycad_zamites_top" }

@@ -1,5 +1,4 @@
 {
-	"forge_marker": 1, 
     "variants": {
         "facing=north": { "model": "jurassicraft:dna_sequencer" },
         "facing=south": { "model": "jurassicraft:dna_sequencer", "y": 180 },
