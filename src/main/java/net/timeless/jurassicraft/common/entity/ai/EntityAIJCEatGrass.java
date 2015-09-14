@@ -78,10 +78,6 @@ public class EntityAIJCEatGrass extends EntityAIBase
         eatingGrassTimer = 40;
         entityWorld.setEntityState(grassEaterEntity, (byte)10);
         grassEaterEntity.getNavigator().clearPathEntity();
-        if (grassEaterEntity instanceof IAnimatedEntity)
-        {
-            AnimationAPI.sendAnimPacket((IAnimatedEntity) grassEaterEntity, AnimID.EATING);
-        }
         
         // DEBUG
         System.out.println("Starting eating AI for entity "+grassEaterEntity.getEntityId());
@@ -119,6 +115,12 @@ public class EntityAIJCEatGrass extends EntityAIBase
     @Override
     public void updateTask()
     {
+        if (((IAnimatedEntity)grassEaterEntity).getAnimID() != AnimID.EATING
+                && grassEaterEntity instanceof IAnimatedEntity)
+        {
+            AnimationAPI.sendAnimPacket((IAnimatedEntity) grassEaterEntity, AnimID.EATING);
+        }
+        
         eatingGrassTimer = Math.max(0, eatingGrassTimer - 1);
 
         if (eatingGrassTimer == 4)

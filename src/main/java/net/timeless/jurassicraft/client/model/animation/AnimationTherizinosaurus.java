@@ -8,8 +8,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.AnimID;
 import net.timeless.animationapi.client.JabelarAnimationHelper;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
-import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
-import net.timeless.jurassicraft.common.dinosaur.DinosaurTherizinosaurus;
+import net.timeless.jurassicraft.client.model.animation.animinfo.AnimInfo;
+import net.timeless.jurassicraft.client.model.animation.animinfo.AnimInfoTherizinosaurus;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
@@ -21,8 +21,8 @@ public class AnimationTherizinosaurus implements IModelAnimator
     /*
      * Change the following fields for your custom dinosaur
      */
-    protected static final Dinosaur theDinosaur = new DinosaurTherizinosaurus(); // do I need to get specific instance, I don't think so
-
+    protected static final AnimInfo animInfo = new AnimInfoTherizinosaurus();
+    
     // Tell the code where your tabula model assets are
     // the first one must be your "default" pose (i.e one that is used at spawn time)
     protected static final String modelAssetPath = "/assets/jurassicraft/models/entities/therizinosaurus/";
@@ -151,43 +151,16 @@ public class AnimationTherizinosaurus implements IModelAnimator
     
     }
     
-    /*
-     * The first element in this array must be the "default" (idle) animation sequence,
-     * for other sequences, if you have random sequence enabled, you can make a sequence more
-     * likely to happen by including it multiple times in the array.
-     */
-//    protected static int[][][] arrayOfSequences = new int[][][] {
-//        sequenceIdle,
-//        sequenceHeadCockLeft,
-//        sequenceHeadCockRight
-//    };
-
-//    protected static int[][][] arrayOfSequences = new int[][][] {
-//        sequenceIdle,
-//        sequenceCalling,
-//    	sequenceMating,
-//    	sequenceDrinking,
-//    	sequenceResting,
-//    	sequenceSleeping,
-//    	sequenceEating, 
-//    	sequenceHissing,
-//        sequenceHeadCockLeft,
-//        sequenceHeadCockRight,
-//        sequenceSniffing,
-//        sequenceAttacking
-//    };
-
     // maps each entity id with its current animation 
     protected HashMap<Integer, JabelarAnimationHelper> animationInstanceToEntityMap = new HashMap<Integer, JabelarAnimationHelper>();
 
     private static MowzieModelRenderer[][] arrayOfPoses;
     
     private static int numParts;
-
-    // load tabula models once per game during implicit constructor static initialization
-    static
+    
+    public AnimationTherizinosaurus()
     {
-    	String[] partNameArray = JabelarAnimationHelper.getTabulaModel(modelAssetPath+modelAssetFileNameArray[0], 0).getCubeNamesArray();
+        String[] partNameArray = JabelarAnimationHelper.getTabulaModel(modelAssetPath+modelAssetFileNameArray[0], 0).getCubeNamesArray();
         numParts = partNameArray.length;        
         
         arrayOfPoses = new MowzieModelRenderer[modelAssetFileNameArray.length][numParts];
@@ -366,11 +339,4 @@ public class AnimationTherizinosaurus implements IModelAnimator
 //     parEntity.tailBuffer.applyChainSwingBuffer(tail);
 
      }
- 
-
-     public Dinosaur getDinosaur()
-     {
-         return theDinosaur;
-     }
-
 }
