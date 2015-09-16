@@ -8,7 +8,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.AnimID;
 import net.timeless.animationapi.client.JabelarAnimationHelper;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
+import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
+import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
@@ -19,9 +21,10 @@ public class AnimationTherizinosaurus implements IModelAnimator
     /*
      * Change the following fields for your custom dinosaur
      */
-    
+	protected static Dinosaur theDinosaur = JCEntityRegistry.therizinosaurus;
+	    
     // Tell the code where your tabula model assets are
-	protected static final String dinoName = "therizinosaurus"; // this should match name of your resource package and files
+	protected static final String dinoName = theDinosaur.getName(0).toLowerCase(); // this should match name of your resource package and files
     protected static final String modelAssetPath = "/assets/jurassicraft/models/entities/"+dinoName+"/";
     protected static final String[] modelAssetFileNameArray = new String[] {
             "idle",
