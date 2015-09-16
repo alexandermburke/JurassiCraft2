@@ -8,8 +8,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.AnimID;
 import net.timeless.animationapi.client.JabelarAnimationHelper;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
-import net.timeless.jurassicraft.client.model.animation.animinfo.AnimInfo;
-import net.timeless.jurassicraft.client.model.animation.animinfo.AnimInfoTherizinosaurus;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
@@ -21,7 +19,6 @@ public class AnimationTherizinosaurus implements IModelAnimator
     /*
      * Change the following fields for your custom dinosaur
      */
-    protected static final AnimInfo animInfo = new AnimInfoTherizinosaurus();
     
     // Tell the code where your tabula model assets are
     // the first one must be your "default" pose (i.e one that is used at spawn time)

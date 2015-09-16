@@ -5,6 +5,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
+import net.timeless.jurassicraft.common.entity.EntityDimorphodon;
+import net.timeless.jurassicraft.common.entity.EntityPteranodon;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
@@ -13,9 +15,10 @@ import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 public class AnimationPteranodon implements IModelAnimator
 {
     @Override
-    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
+    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity e)
     {
         ModelDinosaur model = (ModelDinosaur) modelJson;
+        EntityPteranodon entity = (EntityPteranodon) e;
         Animator animator = model.animator;
 
         MowzieModelRenderer leftThigh = model.getCube("Left thigh");
@@ -56,11 +59,10 @@ public class AnimationPteranodon implements IModelAnimator
         f = entity.ticksExisted;
         f1 = 1.0f;
 
-        float globalSpeed = 0.45F;
+        float globalSpeed = 0.5F;
         float globalDegree = 2F;
         float globalHeight = 2F;
         float frontOffset = -1.35f;
-
 
 //        model.bob(body1, 1 * globalSpeed, 1 * globalHeight, false, f, f1);
 //        model.bob(leftThigh, 1 * globalSpeed, 1 * globalHeight, false, f, f1);
@@ -103,6 +105,7 @@ public class AnimationPteranodon implements IModelAnimator
         leftArm1.rotationPointZ -= 1 * Math.cos(frame * 0.08);
         rightArm1.rotationPointZ -= 1 * Math.cos(frame * 0.08);
 
+        //Flying
         body1.rotateAngleX += 0.3;
         neck1.rotateAngleX -= 0.1;
         leftThigh.rotateAngleX += 0.8;
@@ -135,11 +138,11 @@ public class AnimationPteranodon implements IModelAnimator
         model.walk(neck1, 0.3f, 0.2f, false, 1, 0.2f, f, f1);
         model.walk(head, 0.3f, 0.2f, true, 1, -0.4f, f, f1);
 
-        model.chainFlap(wingLeft, 0.1f, 0.6f, 2, f, f1);
+        model.chainFlap(wingLeft, 0.3f, 0.8f, 2, f, f1);
         model.walk(leftArm1, 0.3f, 0.6f, false, -1f, -0.2f, f, f1);
         model.walk(leftArm2, 0.3f, 1.2f, true, -1f, 0, f, f1);
         model.walk(leftArm3, 0.3f, 0.7f, false, -1f, 0.2f, f, f1);
-        model.chainFlap(wingRight, 0.1f, -0.6f, 2, f, f1);
+        model.chainFlap(wingRight, 0.3f, -0.8f, 2, f, f1);
         model.walk(rightArm1, 0.3f, 0.6f, false, -1f, -0.2f, f, f1);
         model.walk(rightArm2, 0.3f, 1.2f, true, -1f, 0, f, f1);
         model.walk(rightArm3, 0.3f, 0.7f, false, -1f, 0.2f, f, f1);
