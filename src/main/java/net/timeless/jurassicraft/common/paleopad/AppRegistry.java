@@ -9,8 +9,9 @@ public class AppRegistry
     public static App dinopedia;
     public static App file_explorer;
     public static App flappy_dino;
+    public static App minimap;
 
-    public static void registerApp(App app)
+    public void registerApp(App app)
     {
         registeredApps.add(app);
     }
@@ -20,10 +21,12 @@ public class AppRegistry
         dinopedia = new AppDinoPedia();
         file_explorer = new AppFileExplorer();
         flappy_dino = new AppFlappyDino();
+        minimap = new AppMinimap();
 
         registerApp(dinopedia);
         registerApp(file_explorer);
         registerApp(flappy_dino);
+        registerApp(minimap);
     }
 
     public static List<App> getApps()

@@ -58,6 +58,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
     private int growthSpeedOffset;
 
+    private boolean hasTracker;
+
     @Override
     public void setNavigator(PathNavigate pn)
     {
@@ -81,6 +83,16 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
         updateCreatureData();
         adjustHitbox();
+    }
+
+    public boolean hasTracker()
+    {
+        return hasTracker;
+    }
+
+    public void setHasTracker(boolean hasTracker)
+    {
+        this.hasTracker = hasTracker;
     }
 
     @Override
@@ -272,12 +284,13 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         super.writeToNBT(nbt);
 
         nbt.setInteger("Texture", randTexture);
-        nbt.setDouble("Dinosaur Age", dinosaurAge);
+        nbt.setDouble("DinosaurAge", dinosaurAge);
 //        nbt.setBoolean("IsCarcass", isCarcass);
         nbt.setInteger("DNAQuality", quality);
         nbt.setString("Genetics", genetics.toString());
         nbt.setBoolean("IsMale", isMale);
         nbt.setInteger("GrowthSpeedOffset", growthSpeedOffset);
+        nbt.setBoolean("HasTracker", hasTracker);
     }
 
     @Override
@@ -286,12 +299,13 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         super.readFromNBT(nbt);
 
         randTexture = nbt.getInteger("Texture");
-        dinosaurAge = nbt.getInteger("Dinosaur Age");
+        dinosaurAge = nbt.getInteger("DinosaurAge");
 //        isCarcass = nbt.getBoolean("IsCarcass");
         quality = nbt.getInteger("DNAQuality");
         genetics = new GeneticsContainer(nbt.getString("Genetics"));
         isMale = nbt.getBoolean("IsMale");
         growthSpeedOffset = nbt.getInteger("GrowthSpeedOffset");
+        hasTracker = nbt.getBoolean("HasTracker");
 
         updateCreatureData();
         adjustHitbox();
@@ -305,6 +319,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 //        buffer.writeBoolean(isCarcass);
         buffer.writeInt(quality);
         buffer.writeBoolean(isMale);
+        buffer.writeBoolean(hasTracker);
         buffer.writeInt(growthSpeedOffset);
         ByteBufUtils.writeUTF8String(buffer, genetics.toString());
     }
@@ -317,6 +332,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 //        isCarcass = additionalData.readBoolean();
         quality = additionalData.readInt();
         isMale = additionalData.readBoolean();
+        hasTracker = additionalData.readBoolean();
         growthSpeedOffset = additionalData.readInt();
 
         genetics = new GeneticsContainer(ByteBufUtils.readUTF8String(additionalData));

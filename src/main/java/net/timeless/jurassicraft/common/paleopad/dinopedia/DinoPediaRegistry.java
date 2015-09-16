@@ -1,4 +1,4 @@
-package net.timeless.jurassicraft.common.dinopedia;
+package net.timeless.jurassicraft.common.paleopad.dinopedia;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
