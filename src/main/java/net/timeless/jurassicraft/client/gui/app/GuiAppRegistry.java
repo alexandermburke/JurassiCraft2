@@ -23,6 +23,7 @@ public class GuiAppRegistry
         registerApp(new GuiAppDinoPedia(AppRegistry.dinopedia));
         registerApp(new GuiAppFileExplorer(AppRegistry.file_explorer));
         registerApp(new GuiAppFlappyDino(AppRegistry.flappy_dino));
+        registerApp(new GuiAppMinimap(AppRegistry.minimap));
     }
 
     public static GuiApp getGui(App app)
