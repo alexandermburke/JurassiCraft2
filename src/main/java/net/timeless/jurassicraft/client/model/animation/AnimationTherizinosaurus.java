@@ -163,7 +163,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
                 {getPoseID("pouncing_3"), 40}, {getPoseID("pouncing_2"), 40}, // twitch tail
                 {getPoseID("pouncing_4"), 40}, {getPoseID("pouncing_5"), 40},
                 {getPoseID("pouncing_6"), 40}, {getPoseID("pouncing_7"), 80},
-                {getPoseID("pouncing_8"), 0}, {getPoseID("pouncing_8"), 20}, {getPoseID("pouncing_9"), 60}, // strike with head
+                {getPoseID("pouncing_8"), 40}, {getPoseID("pouncing_8"), 20}, {getPoseID("pouncing_9"), 60}, // strike with head
                 {getPoseID("default"), 40}
         };
         

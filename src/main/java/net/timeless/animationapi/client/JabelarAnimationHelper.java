@@ -98,6 +98,12 @@ public class JabelarAnimationHelper
     private void initTween()
     {
         numTicksInTween = arrayOfSequences[currentSequence][currentPose][1];
+        // filter out illegal values in array
+        if (numTicksInTween < 1)
+        {
+        	System.err.println("Array of sequences has sequence with num ticks illegal value (< 1)");
+        	numTicksInTween = 1;
+        }
         currentTickInTween = 0;
     }
     
@@ -155,10 +161,10 @@ public class JabelarAnimationHelper
         numTicksInTween = arrayOfSequences[currentSequence][currentPose][1];
         currentTickInTween = 0;
 
-//        // DEBUG
-//        System.out.println("current sequence "+currentSequence+" out of "+arrayOfSequences.length+
-//                " and current pose "+currentPose+" out of "+arrayOfSequences[currentSequence].length
-//                +" with "+numTicksInTween+" ticks in tween");
+        // DEBUG
+        System.out.println("current sequence for entity ID "+theEntity.getEntityId()+" is "+currentSequence+" out of "+arrayOfSequences.length+
+                " and current pose "+currentPose+" out of "+arrayOfSequences[currentSequence].length
+                +" with "+numTicksInTween+" ticks in tween");
     }
    
     private void performNextTweenTick()
