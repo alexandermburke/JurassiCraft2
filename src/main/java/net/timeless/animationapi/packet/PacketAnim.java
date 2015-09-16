@@ -46,24 +46,20 @@ public class PacketAnim implements IMessage
         @Override
         public IMessage onMessage(final PacketAnim packet, MessageContext ctx)
         {
-        	final EntityPlayer thePlayer = JurassiCraft.proxy.getPlayerEntityFromContext(ctx);
+        	final EntityPlayer player = JurassiCraft.proxy.getPlayerEntityFromContext(ctx);
+
         	Minecraft.getMinecraft().addScheduledTask(new Runnable() 
             {
                 @Override
                 public void run() 
                 {        	
-                	
-//                    World world = AnimationAPI.getProxy().getWorldClient();
-                	World world = thePlayer.worldObj;
+                	World world = player.worldObj;
                 	EntityDinosaur entity = (EntityDinosaur) world.getEntityByID(packet.entityID);
+
                     if (entity != null && packet.animID != -1)
                     {
                         entity.setAnimID(packet.animID);
                     }
-                    
-                    // DEBUG
-                	System.out.println("received PacketAnim packet for entity id "+entity.getEntityId()+" to anim ID = "+packet.animID);
-
                 }
             });
 
