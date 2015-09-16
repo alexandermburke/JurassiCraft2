@@ -21,47 +21,47 @@ public class AnimationTherizinosaurus implements IModelAnimator
      */
     
     // Tell the code where your tabula model assets are
-    // the first one must be your "default" pose (i.e one that is used at spawn time)
-    protected static final String modelAssetPath = "/assets/jurassicraft/models/entities/therizinosaurus/";
+	protected static final String dinoName = "therizinosaurus"; // this should match name of your resource package and files
+    protected static final String modelAssetPath = "/assets/jurassicraft/models/entities/"+dinoName+"/";
     protected static final String[] modelAssetFileNameArray = new String[] {
-            "therizinosaurus_default",
-            "therizinosaurus_head_cock_left",
-            "therizinosaurus_head_cock_right",
-            "therizinosaurus_hissing",
-            "therizinosaurus_mating",
-            "therizinosaurus_eating_1",
-            "therizinosaurus_eating_1b",
-            "therizinosaurus_eating_2",
-            "therizinosaurus_eating_3",
-            "therizinosaurus_eating_4",
-            "therizinosaurus_eating_4b",
-            "therizinosaurus_eating_5",
-            "therizinosaurus_eating_6",
-            "therizinosaurus_eating_6b",
-            "therizinosaurus_drinking_1",
-            "therizinosaurus_drinking_2",
-            "therizinosaurus_drinking_3",
-            "therizinosaurus_drinking_4",
-            "therizinosaurus_resting",
-            "therizinosaurus_sleeping",
-            "therizinosaurus_calling_1",
-            "therizinosaurus_calling_2",
-            "therizinosaurus_calling_3",
-            "therizinosaurus_calling_4",
-            "therizinosaurus_attacking_1",
-            "therizinosaurus_attacking_2",
-            "therizinosaurus_attacking_3",
-            "therizinosaurus_sniffing_1",
-            "therizinosaurus_sniffing_2",
-            "therizinosaurus_pouncing_1",
-            "therizinosaurus_pouncing_2",
-            "therizinosaurus_pouncing_3",
-            "therizinosaurus_pouncing_4",
-            "therizinosaurus_pouncing_5",
-            "therizinosaurus_pouncing_6",
-            "therizinosaurus_pouncing_7",
-            "therizinosaurus_pouncing_8",
-            "therizinosaurus_pouncing_9"
+            "idle",
+            "head_cock_left",
+            "head_cock_right",
+            "hissing",
+            "mating",
+            "eating_1",
+            "eating_1b",
+            "eating_2",
+            "eating_3",
+            "eating_4",
+            "eating_4b",
+            "eating_5",
+            "eating_6",
+            "eating_6b",
+            "drinking_1",
+            "drinking_2",
+            "drinking_3",
+            "drinking_4",
+            "resting",
+            "sleeping",
+            "calling_1",
+            "calling_2",
+            "calling_3",
+            "calling_4",
+            "attacking_1",
+            "attacking_2",
+            "attacking_3",
+            "sniffing_1",
+            "sniffing_2",
+            "pouncing_1",
+            "pouncing_2",
+            "pouncing_3",
+            "pouncing_4",
+            "pouncing_5",
+            "pouncing_6",
+            "pouncing_7",
+            "pouncing_8",
+            "pouncing_9"
     };
 
     private static int getPoseID(String parPose)
@@ -95,25 +95,25 @@ public class AnimationTherizinosaurus implements IModelAnimator
     static
     {
         arrayOfSequences[AnimID.IDLE] = new int[][] {
-            {getPoseID("default"), 200}
+            {getPoseID("idle"), 200}
         };
     
         arrayOfSequences[AnimID.LOOKING_LEFT] = new int[][] {
-            {getPoseID("head_cock_left"), 100}, {getPoseID("head_cock_left"), 80}, {getPoseID("default"), 100}
+            {getPoseID("head_cock_left"), 100}, {getPoseID("head_cock_left"), 80}, {getPoseID("idle"), 100}
         };
         
         arrayOfSequences[AnimID.LOOKING_RIGHT] = new int[][] {
-            {getPoseID("head_cock_right"), 100}, {getPoseID("head_cock_right"), 80}, {getPoseID("default"), 100}
+            {getPoseID("head_cock_right"), 100}, {getPoseID("head_cock_right"), 80}, {getPoseID("idle"), 100}
         };
         
         arrayOfSequences[AnimID.HISSING] = new int[][] {
-            {getPoseID("hissing"), 100}, {getPoseID("hissing"), 80}, {getPoseID("default"), 100}
+            {getPoseID("hissing"), 100}, {getPoseID("hissing"), 80}, {getPoseID("idle"), 100}
         };
         
         arrayOfSequences[AnimID.MATING] = new int[][] {
             {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10},
             {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, 
-            {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("default"), 100}
+            {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("idle"), 100}
         };
         
         arrayOfSequences[AnimID.EATING] = new int[][] {
@@ -126,7 +126,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
         	{getPoseID("eating_5"), 160}, {getPoseID("eating_6"), 100}, {getPoseID("eating_6b"), 40}, 
         	{getPoseID("eating_6"), 40}, {getPoseID("eating_6b"), 40}, {getPoseID("eating_6"), 40}, 
         	{getPoseID("eating_6b"), 40}, {getPoseID("eating_6"), 40}, {getPoseID("eating_6b"), 40},
-            {getPoseID("eating_5"), 80}, {getPoseID("default"), 80}, {getPoseID("default"), 200}
+            {getPoseID("eating_5"), 80}, {getPoseID("idle"), 80}, {getPoseID("idle"), 200}
         };
         
         arrayOfSequences[AnimID.DRINKING]= new int[][] {
@@ -136,25 +136,25 @@ public class AnimationTherizinosaurus implements IModelAnimator
             {getPoseID("drinking_3"), 20}, {getPoseID("drinking_4"), 40}, {getPoseID("drinking_4"), 100}, 
             {getPoseID("drinking_1"), 60}, {getPoseID("drinking_2"), 40}, {getPoseID("drinking_2"), 40}, 
             {getPoseID("drinking_3"), 20}, {getPoseID("drinking_4"), 40}, {getPoseID("drinking_4"), 100}, 
-            {getPoseID("default"), 100}
+            {getPoseID("idle"), 100}
         };
         
         arrayOfSequences[AnimID.RESTING]= new int[][] {
-            {getPoseID("resting"), 100}, {getPoseID("resting"), 800}, {getPoseID("default"), 200}
+            {getPoseID("resting"), 100}, {getPoseID("resting"), 800}, {getPoseID("idle"), 200}
         };
         
         arrayOfSequences[AnimID.SLEEPING] = new int[][] {
-            {getPoseID("resting"), 100}, {getPoseID("sleeping"), 80}, {getPoseID("sleeping"), 800}, {getPoseID("resting"), 40}, {getPoseID("default"), 200}
+            {getPoseID("resting"), 100}, {getPoseID("sleeping"), 80}, {getPoseID("sleeping"), 800}, {getPoseID("resting"), 40}, {getPoseID("idle"), 200}
         };
         
         arrayOfSequences[AnimID.CALLING] = new int[][] {
             {getPoseID("calling_1"), 100}, {getPoseID("calling_2"), 60}, {getPoseID("calling_2"), 40}, {getPoseID("calling_3"), 40}, 
-            {23, 80}, {getPoseID("calling_2"), 40}, {getPoseID("default"), 200}  
+            {23, 80}, {getPoseID("calling_2"), 40}, {getPoseID("idle"), 200}  
         };
         
 //        arrayOfSequences[AnimID.ATTACKING] = new int[][] {
 //            {getPoseID("attacking_1"), 100}, {getPoseID("attacking_2"), 60}, {getPoseID("attacking_3"), 20}, 
-//            {getPoseID("attacking_2"), 60}, {getPoseID("attacking_3"), 20}, {getPoseID("default"), 200}
+//            {getPoseID("attacking_2"), 60}, {getPoseID("attacking_3"), 20}, {getPoseID("idle"), 200}
 //        };
 
         arrayOfSequences[AnimID.ATTACKING]= new int[][] {
@@ -164,12 +164,12 @@ public class AnimationTherizinosaurus implements IModelAnimator
                 {getPoseID("pouncing_4"), 40}, {getPoseID("pouncing_5"), 40},
                 {getPoseID("pouncing_6"), 40}, {getPoseID("pouncing_7"), 80},
                 {getPoseID("pouncing_8"), 40}, {getPoseID("pouncing_8"), 20}, {getPoseID("pouncing_9"), 60}, // strike with head
-                {getPoseID("default"), 40}
+                {getPoseID("idle"), 40}
         };
         
         arrayOfSequences[AnimID.SNIFFING] = new int[][] {
             {getPoseID("sniffing_1"), 100}, {getPoseID("sniffing_2"), 20}, {getPoseID("sniffing_1"), 20}, 
-            {getPoseID("sniffing_2"), 20}, {getPoseID("sniffing_1"), 20}, {getPoseID("default"), 200}
+            {getPoseID("sniffing_2"), 20}, {getPoseID("sniffing_1"), 20}, {getPoseID("idle"), 200}
         };
     
     }
@@ -183,7 +183,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
     
     public AnimationTherizinosaurus()
     {
-        String[] partNameArray = JabelarAnimationHelper.getTabulaModel(modelAssetPath+modelAssetFileNameArray[0], 0).getCubeNamesArray();
+        String[] partNameArray = JabelarAnimationHelper.getTabulaModel(modelAssetPath+dinoName+"_"+modelAssetFileNameArray[0], 0).getCubeNamesArray();
         numParts = partNameArray.length;        
         
         arrayOfPoses = new MowzieModelRenderer[modelAssetFileNameArray.length][numParts];
@@ -191,7 +191,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
         for (int modelIndex = 0; modelIndex < modelAssetFileNameArray.length; modelIndex++)
         {
             arrayOfPoses[modelIndex] = new MowzieModelRenderer[numParts];
-            ModelDinosaur theModel = JabelarAnimationHelper.getTabulaModel(modelAssetPath+modelAssetFileNameArray[modelIndex], 0);
+            ModelDinosaur theModel = JabelarAnimationHelper.getTabulaModel(modelAssetPath+dinoName+"_"+modelAssetFileNameArray[modelIndex], 0);
             
             for (int partIndex = 0; partIndex < numParts; partIndex++) 
             {
