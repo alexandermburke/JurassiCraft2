@@ -23,7 +23,6 @@ public class EcoFauna
 
     //Entity Resource Registry
     private static final HashMap<Class, List<ItemStack>> classToDropRegistry = Maps.newHashMap();
-
     static
     {        //Create primary classes
         IEcologicalRole roleCarnivore = EcoAPI.carnivore;
@@ -35,16 +34,10 @@ public class EcoFauna
         EcoAPI.registerEntityClassDropItems(EntityPig.class, new ItemStack[]{new ItemStack(Items.porkchop)});
         EcoAPI.registerEntityClassDropItems(EntityCow.class, new ItemStack[]{new ItemStack(Items.beef)});
 
-        roleCarnivore.addFoodItem(new ItemStack(Items.rabbit));
-        roleCarnivore.addFoodItem(new ItemStack(Items.chicken));
-        roleCarnivore.addFoodItem(new ItemStack(Items.mutton));
-        roleCarnivore.addFoodItem(new ItemStack(Items.porkchop));
-        roleCarnivore.addFoodItem(new ItemStack(Items.beef));
-
         List<IEcologicalRole> omnivoreSubRoles = new ArrayList<IEcologicalRole>();
         omnivoreSubRoles.add(roleCarnivore);
         omnivoreSubRoles.add(roleHerbivore);
-        BaseEcologicalRoleCompound roleOmnivore = new BaseEcologicalRoleCompound("omnivore", omnivoreSubRoles);
+        BaseEcologicalRoleCompound roleOmnivore = new BaseEcologicalRoleCompound("omnivore",  omnivoreSubRoles);
 
         //Add Primary Ecological Roles
         List<IEcologicalRole> r = Lists.newArrayList();
@@ -69,10 +62,8 @@ public class EcoFauna
         List<Class> omn = new ArrayList<Class>();
         omn.add(AIHunt.class);
         omn.add(AIGather.class);
-
         EcoFauna.registerClassToAI(IOmnivore.class, omn);
-        EcoFauna.registerClassToAI(ICarnivore.class, carn);
-        EcoFauna.registerClassToAI(IHerbivore.class, herb);
+
         //EcoFauna.registerClassToAI(EntityHuman.class, Arrays.asList(AILumberjack.class));
     }
 
@@ -80,18 +71,17 @@ public class EcoFauna
     public static IEcologicalRole getRole(EntityCreature e)
     {
         Set k = EcoFauna.ecoClassRoleRegistry.keySet();
-        for (Object o : k)
-            if (((Class) o).isInstance(e))
+        for (Object o: k)
+            if (((Class)o).isInstance(e))
                 return EcoFauna.ecoClassRoleRegistry.get(o);
 
         return null;
     }
-
     public static List<Class> getDefaultAIObjs(EntityCreature e)
     {
         Set k = EcoFauna.ecoClassAIRegistry.keySet();
         List<Class> r = new ArrayList<Class>();
-        boolean allowInterface = false;
+        boolean allowInterface = true;
         while (true)
         {
             for (Object o : k)
@@ -103,11 +93,10 @@ public class EcoFauna
                     if (c.isInterface() && c.isInstance(e))
                         r.addAll(EcoFauna.ecoClassAIRegistry.get(o));
                 }
-                else
-                {
-                    if (!c.isInterface() && c.isInstance(e))
-                        r.addAll(EcoFauna.ecoClassAIRegistry.get(o));
-                }
+
+                if (!c.isInterface() && c.isInstance(e))
+                    r.addAll(EcoFauna.ecoClassAIRegistry.get(o));
+
             }
 
             if (!allowInterface)
@@ -124,7 +113,6 @@ public class EcoFauna
 
         return r;
     }
-
     public static void registerEntityClassToRole(Class c, IEcologicalRole role)
     {
         if (role == null || c == null)
@@ -135,7 +123,6 @@ public class EcoFauna
 
         EcoFauna.ecoClassRoleRegistry.put(c, role);
     }
-
     public static void registerClassToAI(Class c, List<Class> objs)
     {
         if (objs == null || objs.size() == 0 || c == null)
@@ -185,7 +172,7 @@ public class EcoFauna
     {
         List<ItemStack> r = new ArrayList<ItemStack>();//EcoFauna.classToDropRegistry.get(c);
         Set<Class> s = EcoFauna.classToDropRegistry.keySet();
-        for (Class ci : s)
+        for (Class ci: s)
         {
             if (ci.isInstance(e))
                 r.addAll(EcoFauna.classToDropRegistry.get(ci));
@@ -196,7 +183,6 @@ public class EcoFauna
         else
             return null;
     }
-
     public static List<ItemStack> getDropItemsByItemClass(Class itemType)
     {
         List<ItemStack> r = new ArrayList<ItemStack>();//EcoFauna.classToDropRegistry.get(c);
@@ -204,7 +190,7 @@ public class EcoFauna
         for (int i = 0; v.iterator().hasNext(); i++)
         {
             List<ItemStack> ci = v.iterator().next();
-            for (ItemStack is : ci)
+            for (ItemStack is: ci)
             {
                 if (itemType.isInstance(is.getItem()))
                     r.add(is);

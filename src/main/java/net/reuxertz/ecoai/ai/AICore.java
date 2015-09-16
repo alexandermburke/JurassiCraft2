@@ -7,14 +7,12 @@ import net.minecraft.entity.ai.EntityAITasks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.reuxertz.ecoai.ai.modules.AIModule;
 import net.reuxertz.ecoai.demand.DemandHunger;
 import net.reuxertz.ecoai.demand.IDemand;
 import net.reuxertz.ecoai.demand.ItemDemand;
 import net.reuxertz.ecoai.state.StateLife;
 import net.reuxertz.ecoapi.ecology.EcoFauna;
 import net.reuxertz.ecoapi.ecology.role.IEcologicalRole;
-import net.reuxertz.ecoapi.entity.Target;
 import net.reuxertz.ecoapi.item.BaseItem;
 import net.reuxertz.ecoapi.util.CounterObj;
 import net.reuxertz.ecoapi.util.IdObject;
@@ -23,12 +21,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class AICore extends AIBase
 {
-    public static Random RND = new Random();
-
     //Operation Fields
     protected CounterObj timer;
 
@@ -39,21 +34,20 @@ public class AICore extends AIBase
     protected List<ItemStack> curInventory = Lists.newArrayList();
     protected List<ItemDemand> curItemDemands = Lists.newArrayList();
     protected List<IDemand> curDemands = Lists.newArrayList();
-    protected List<Class> aiObjs = new ArrayList<Class>();
+    protected List<Class> aiObjClasses = new ArrayList<Class>();
     protected StateLife state;
-    protected AIModule aiObject = null;
+
+    protected Action currentAction = null;
 
     //Static Getters
     public static AICore getCore(EntityCreature e)
     {
         return (AICore) AICore.getAi(e, AICore.class);
     }
-
     public static AINavigate getAiNavigate(EntityCreature e)
     {
         return (AINavigate) AICore.getAi(e, AINavigate.class);
     }
-
     public static Object getAi(EntityCreature e, Class AIClass)
     {
         for (int i = 0; i < e.tasks.taskEntries.size(); i++)
@@ -66,7 +60,6 @@ public class AICore extends AIBase
         }
         return null;
     }
-
     public static List<EntityAIBase> getAllAI(EntityCreature e)
     {
         List<EntityAIBase> r = new ArrayList<EntityAIBase>();
@@ -77,7 +70,6 @@ public class AICore extends AIBase
         }
         return r;
     }
-
     public static StateLife getBioState(EntityCreature e)
     {
         return AICore.getCore(e).state;
@@ -88,7 +80,6 @@ public class AICore extends AIBase
     {
         return state;
     }
-
     public int getMaxInventorySize()
     {
         return maxInvSize;
@@ -121,7 +112,6 @@ public class AICore extends AIBase
         else
             return stackSrc;
     }
-
     protected ItemStack removeFromStack(ItemStack stackRemAmt, ItemStack stackSrc)
     {
         if (!BaseItem.itemsEqual(stackRemAmt, stackSrc))
@@ -152,7 +142,6 @@ public class AICore extends AIBase
         else
             return stackRemAmt;
     }
-
     public ItemStack addToInventory(ItemStack stack)
     {
         if (stack == null || stack.stackSize == 0)
@@ -169,7 +158,6 @@ public class AICore extends AIBase
 
         return stack;
     }
-
     public ItemStack getFromInventory(ItemStack stack)
     {
         int ss = stack.stackSize;
@@ -180,7 +168,6 @@ public class AICore extends AIBase
         else
             return new ItemStack(remainder.getItem(), ss - remainder.stackSize, remainder.getItemDamage());
     }
-
     public ItemStack removeFromInventory(ItemStack stack)
     {
         if (stack == null || stack.stackSize == 0)
@@ -205,7 +192,6 @@ public class AICore extends AIBase
         else
             return stack;
     }
-
     public int getInventoryCount(ItemStack stack)
     {
         int count = 0;
@@ -224,10 +210,10 @@ public class AICore extends AIBase
         if (entity.worldObj.isRemote)
             return;
 
-        if (aiObjs != null)
-            this.aiObjs = aiObjs;
+        if (aiObjs != null && aiObjs.size() > 0)
+            this.aiObjClasses = aiObjs;
         else
-            this.aiObjs = EcoFauna.getDefaultAIObjs(entity);
+            this.aiObjClasses = EcoFauna.getDefaultAIObjs(entity);
         this.role = EcoFauna.getRole(entity);
 
         if (role != null)
@@ -248,7 +234,6 @@ public class AICore extends AIBase
         state = new StateLife(entity);
         timer = new CounterObj(entity.worldObj.getWorldTime(), 80, 20);
     }
-
     public AICore(EntityCreature entity)
     {
         this(entity, null);
@@ -269,7 +254,6 @@ public class AICore extends AIBase
 
         return nbt;
     }
-
     @Override
     public void readFromEntityNbt()
     {
@@ -295,7 +279,7 @@ public class AICore extends AIBase
         //if ((aiNav != null) && (!aiNav.isEnabled()))
         //{
         //    //aiNav.setEnabled(true);
-        //aiNav.activateWander();
+            //aiNav.activateWander();
         //    aiNav.activateIdleWander(.05);
         //}
 
@@ -308,68 +292,57 @@ public class AICore extends AIBase
 
         //System.out.println("aiTick");
     }
-
     public void updateActions()
     {
 
-        if (aiObject != null)
+        if (this.currentAction != null)
         {
-            if (!aiObject.isDead())
+            if (!this.currentAction.aiModule.isDead())
             {
-                aiObject.update();
+                this.currentAction.aiModule.update();
                 return;
             }
             else
-                aiObject = null;
+                this.currentAction = null;
             //if (!aiObject.getWorkCompleted())
             //else
             //    aiObject.setWorkCompleted(false);
         }
 
-        List<AIModule> nobjs = new ArrayList<AIModule>();
+        List<Action> nobjs = new ArrayList<Action>();
         for (IDemand curDemand : this.curDemands)
         {
             boolean seek = false, heldItem = false;
-            Target t = null;
             AIModule nai = null;//c.newInstance(curDemand, this, getAiNavigate(this.entity()), null);
 
             //Create AI Object instance based on avaialble classes using reflection
-            for (Class c : this.aiObjs)
+            for (Class c: this.aiObjClasses)
             {
                 Constructor[] cs = c.getConstructors();
                 Constructor ci = cs[0];
-                //for (Constructor ci: cs)
+
+                try
                 {
-                    //if (ci.getParameterCount() == 4)
-                    //{
-                    try
-                    {
-                        nai = (AIModule) ci.newInstance(curDemand, this, getAiNavigate(this.entity()), t);
-                        //break;
-                    }
-                    catch (InstantiationException x)
-                    {
-                        x.printStackTrace();
-                    }
-                    catch (InvocationTargetException x)
-                    {
-                        x.printStackTrace();
-                    }
-                    catch (IllegalAccessException x)
-                    {
-                        x.printStackTrace();
-                    }
-                    //}
+                    nai = (AIModule)ci.newInstance(curDemand, this, getAiNavigate(this.entity()), null);
+                    //break;
+                }
+                catch (InstantiationException x) {
+                    x.printStackTrace();
+                } catch (InvocationTargetException x) {
+                    x.printStackTrace();
+                } catch (IllegalAccessException x) {
+                    x.printStackTrace();
                 }
 
-                //AIHunt ai = new AIHunt(curDemand, this, getAiNavigate(this.entity()), null);
-                t = nai.nextNavigatePosition();
+                List<Target> t = nai.nextNavigatePositions();
 
-                if (t != null)
+                //TODO: Choose between Targets
+                if (t.size() > 0)
                 {
                     //this.aiObject = nai;
-                    nai.setTarget(t);
-                    nobjs.add(nai);
+                    nai.setTarget(t.get(0));
+                    Action na = new Action(this.entity, this, nai, curDemand, t.get(0));
+                    nobjs.add(na);
 
                     //return;
                 }
@@ -377,12 +350,11 @@ public class AICore extends AIBase
         }
 
         if (nobjs.size() > 0)
-            this.aiObject = nobjs.get(0);
-        else if (!AICore.getAiNavigate(this.entity).isEnabled())
-            AICore.getAiNavigate(this.entity).activateIdleWander(.05);
+            this.currentAction = nobjs.get(0);
+        //else if (!AICore.getAiNavigate(this.entity).isEnabled())
+            //AICore.getAiNavigate(this.entity).activateIdleWander(.05);
 
     }
-
     public void updateWants()
     {
         //HashMap<ItemDemand, ItemDemand> oldNewMap = new HashMap<ItemDemand, ItemDemand>();
@@ -391,11 +363,11 @@ public class AICore extends AIBase
         for (ItemDemand itemDemand : this.curItemDemands)
         {
             //oldNewMap.put(itemDemand, new ItemDemand(itemDemand.stack));
-            ItemDemand nd = new ItemDemand(itemDemand.stack);
+            ItemDemand nd = new ItemDemand(null, itemDemand.stack, 0);
             for (IDemand demand : this.curDemands)
             {
                 if (demand.isItemDemanded(itemDemand.stack) != null)
-                    nd.addDemand(demand, itemDemand.stack, demand.wantedDemandCount(itemDemand.stack));
+                    itemDemand.addDemand(demand, itemDemand.stack, demand.wantedDemandCount(itemDemand.stack));
             }
 
             if (nd.wantSize > 0)

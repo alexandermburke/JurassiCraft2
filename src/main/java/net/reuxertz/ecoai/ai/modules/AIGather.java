@@ -9,14 +9,16 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.reuxertz.ecoai.ai.AICore;
+import net.reuxertz.ecoai.ai.AIModule;
 import net.reuxertz.ecoai.ai.AINavigate;
+import net.reuxertz.ecoai.ai.Target;
 import net.reuxertz.ecoai.demand.IDemand;
 import net.reuxertz.ecoapi.ecology.EcoFlora;
-import net.reuxertz.ecoapi.entity.Target;
 import net.reuxertz.ecoapi.item.BaseItem;
 import net.reuxertz.ecoapi.util.BlockPosHelper;
 import net.reuxertz.ecoapi.util.EntityHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AIGather extends AIModule
@@ -40,19 +42,19 @@ public class AIGather extends AIModule
         return t.entity != null && !t.entity.isDead && t.entityHeldItem != null && BaseItem.itemsEqual(((EntityPlayer) t.entity).getHeldItem(), t.entityHeldItem);
 
     }
-
-    public Target nextNavigatePosition()
+    public List<Target> nextNavigatePositions()
     {
         Target t = null;
 
+        List<Target> nts = new ArrayList<Target>();
         List<Entity> distEnts = EntityHelper.getEntitiesWithinDistance(this.getAgent(), this.collectDistXZ, this.collectDistY);
         for (Entity distEnt : distEnts)
         {
-            //Is Entity Item
-            if (EntityItem.class.isInstance(distEnt) && ((this.demand.isItemDemanded(((EntityItem) distEnt).getEntityItem()) != null)))// ||
-                //this.demand.isEntityDemanded(distEnt) != null))
-                t = new Target(this.getAgent().worldObj, distEnt);
-            //seek = true;
+                //Is Entity Item
+                if (EntityItem.class.isInstance(distEnt) && ((this.demand.isItemDemanded(((EntityItem) distEnt).getEntityItem()) != null)))// ||
+                    //this.demand.isEntityDemanded(distEnt) != null))
+                    nts.add(new Target(this.getAgent().worldObj, distEnt));
+                //seek = true;
 
             //return t;
         }
@@ -67,21 +69,23 @@ public class AIGather extends AIModule
                 continue;
 
             //Block b2 = EcoFlora.getFloraBlockDrop(new ItemStack(Item.getItemFromBlock(b)));
-            ItemStack s = EcoFlora.getFloraBlockDrop(b);
+            List<ItemStack> s = EcoFlora.getFloraBlockDrops(b);
 
             if (s == null)
                 continue;
 
-            if (this.demand.isItemDemanded(s) != null)
-                t = new Target(this.agentAI.entity().worldObj, p);
+            for (ItemStack stack: s)
+            {
+                if (this.demand.isItemDemanded(stack) != null)
+                    nts.add(new Target(this.agentAI.entity().worldObj, p, stack));
+            }
         }
 
-        if (t != null)
-            return t;
+        if (nts != null)
+            return nts;
 
         return null;
     }
-
     public boolean doWorkContinue()
     {
         if (this.getAgent().worldObj.isRemote)
@@ -100,7 +104,7 @@ public class AIGather extends AIModule
 
         if (this.workTarget.entity instanceof EntityItem)
         {
-            EntityItem entityItem = (EntityItem) this.workTarget.entity;
+            EntityItem entityItem = (EntityItem)this.workTarget.entity;
             ItemStack r = this.agentAI.addToInventory(entityItem.getEntityItem());
 
             if (r == null)

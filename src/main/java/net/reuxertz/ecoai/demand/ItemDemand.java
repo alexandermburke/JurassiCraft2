@@ -12,16 +12,15 @@ public class ItemDemand
     public ItemStack stack;
     public int wantSize = 0;
 
-    public ItemDemand(ItemStack stack, int stackSize)
+    public ItemDemand(IDemand demand, ItemStack stack, int stackSize)
     {
         ItemStack ns = stack.copy();
         ns.stackSize = stackSize;
         this.stack = ns;
-    }
+        this.wantSize = stackSize;
 
-    public ItemDemand(ItemStack stack)
-    {
-        this(stack, 0);
+        if (demand != null)
+            this.demands.add(demand);
     }
 
     public void addDemand(IDemand demand, ItemStack stackType, int stackSize)
@@ -30,7 +29,7 @@ public class ItemDemand
             return;
 
         boolean addDemand = true;
-        for (IDemand d : this.demands)
+        for (IDemand d: this.demands)
             if (d.getClass().isInstance(demand))
                 addDemand = false;
 

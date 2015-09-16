@@ -12,11 +12,12 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.reuxertz.ecoai.ai.AICore;
 import net.reuxertz.ecoai.ai.AINavigate;
+import net.reuxertz.ecoai.ai.Target;
 import net.reuxertz.ecoai.demand.IDemand;
-import net.reuxertz.ecoapi.entity.Target;
 import net.reuxertz.ecoapi.util.BlockHelper;
 import net.reuxertz.ecoapi.util.BlockPosHelper;
 import net.reuxertz.ecoapi.util.EntityHelper;
+import net.reuxertz.ecocraft.common.EcoCraft;
 import scala.actors.threadpool.Arrays;
 
 import java.util.ArrayList;
@@ -24,16 +25,16 @@ import java.util.List;
 
 public class AIQuarry extends AIFarming
 {
-    public static List<Block> ignoreBlocks = Arrays.asList(new Block[]{Blocks.air,
+    public static List<Block> ignoreBlocks = Arrays.asList(new Block[] { Blocks.air,
             Blocks.deadbush, Blocks.double_plant, Blocks.tallgrass, Blocks.red_flower, Blocks.yellow_flower});
 
     protected List<BlockPos> workPos = new ArrayList<BlockPos>();
 
     public void nextWorkPos(BlockPos curPos, List<BlockPos> positions)
     {
-        int dx = (AICore.RND.nextInt(1) * 2) - 1;
-        int dy = (AICore.RND.nextInt(1) * 2) - 1;
-        int dz = (AICore.RND.nextInt(1) * 2) - 1;
+        int dx = (EcoCraft.RND.nextInt(1) * 2) - 1;
+        int dy = (EcoCraft.RND.nextInt(1) * 2) - 1;
+        int dz = (EcoCraft.RND.nextInt(1) * 2) - 1;
 
         int sx = curPos.getX() - dx, ex = curPos.getX() + dx;
         int sy = curPos.getY() - dy, ey = curPos.getY() + dy;
@@ -51,7 +52,7 @@ public class AIQuarry extends AIFarming
                     if (!this.isPositionValid(this.getAgent().worldObj, b))
                         continue;
 
-                    //if (BlockHelper.getBlockEquals(this.getAgent().worldObj.getBlockState(new BlockPos(x, y, z)).getBlock(), totalArray))
+                    //if (BlockHelper.getBlockEquals(this.getAgent().worldObj.getBlockState(new BlockPos(x, y, z)).getFillBlock(), totalArray))
                     {
                         boolean add = true;
                         for (int i = 0; i < positions.size(); i++)
@@ -63,13 +64,12 @@ public class AIQuarry extends AIFarming
                             }
                         }
 
-                        if (add)
+                        if  (add)
                             positions.add(b);
                     }
 
                 }
     }
-
     public boolean isPositionValid(World w, BlockPos curPos)
     {
         IBlockState curBlock = w.getBlockState(curPos);
@@ -134,7 +134,7 @@ public class AIQuarry extends AIFarming
                 continue;
 
             if (this.demand.isItemDemanded(s) != null)
-                t = new Target(this.agentAI.entity().worldObj, p);
+                t =  new Target(this.agentAI.entity().worldObj, p);
 
             //return t;
         }
@@ -144,7 +144,6 @@ public class AIQuarry extends AIFarming
 
         return null;
     }
-
     public boolean doWorkContinue()
     {
         if (this.getAgent().worldObj.isRemote)

@@ -2,26 +2,22 @@ package net.reuxertz.ecoapi.util;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
-import net.reuxertz.ecoai.ai.AICore;
+import net.reuxertz.ecocraft.common.EcoCraft;
 
 import java.util.List;
 
 public class BlockPosHelper
 {
-    public enum BlockPosConditions
-    {
-        ExcludeY, IncludeYPositiveOnly
-    }
+    public enum BlockPosConditions { ExcludeY, IncludeYPositiveOnly }
 
     public static BlockPos getRandomPos(BlockPos p, int dXZ, int dY)
     {
-        return new BlockPos(p.getX() + AICore.RND.nextInt(dXZ * 2) - dXZ, p.getY() + AICore.RND.nextInt(dY * 2) - dY, p.getZ() + AICore.RND.nextInt(dXZ * 2) - dXZ);
+        return new BlockPos(p.getX() + EcoCraft.RND.nextInt(dXZ * 2) - dXZ, p.getY() + EcoCraft.RND.nextInt(dY * 2) - dY, p.getZ() + EcoCraft.RND.nextInt(dXZ * 2) - dXZ);
     }
-
     public static BlockPos getRandomPos(BlockPos p, int dXZ, int dY, BlockPosConditions bpc)
     {
         if (bpc == BlockPosConditions.IncludeYPositiveOnly)
-            return new BlockPos(p.getX() + AICore.RND.nextInt(dXZ * 2) - dXZ, p.getY() + AICore.RND.nextInt(dY), p.getZ() + AICore.RND.nextInt(dXZ * 2) - dXZ);
+            return new BlockPos(p.getX() + EcoCraft.RND.nextInt(dXZ * 2) - dXZ, p.getY() + EcoCraft.RND.nextInt(dY), p.getZ() + EcoCraft.RND.nextInt(dXZ * 2) - dXZ);
 
         return BlockPosHelper.getRandomPos(p, dXZ, dY);
 
@@ -31,21 +27,28 @@ public class BlockPosHelper
     {
         return (p1.getX() == p2.getX() && p1.getY() == p2.getY() && p1.getZ() == p2.getZ());
     }
-
+    public static boolean blocksAreEqual(BlockPos p1, NBTTagCompound nbt, String name)
+    {
+        BlockPos p2 = BlockPosHelper.readBlockPosFromNbt(nbt, name);
+        return BlockPosHelper.blocksAreEqual(p1, p2);
+    }
     public static boolean blocksAreEqual(BlockPos p1, List<BlockPos> bps)
     {
-        for (BlockPos bp : bps)
+        for (BlockPos bp: bps)
             if (BlockPosHelper.blocksAreEqual(bp, p1))
                 return false;
 
         return true;
     }
-
     public static String getBlockPosString(BlockPos p)
     {
-        return "" + p.getX() + "," + p.getY() + ", " + p.getZ();
+        return "" + p.getX() + ", " + p.getY() + ", " + p.getZ();
     }
 
+    public static boolean hasKey(NBTTagCompound nbt, String name)
+    {
+        return nbt.hasKey(name + "X");
+    }
     public static BlockPos readBlockPosFromNbt(NBTTagCompound nbt, String name)
     {
         int x = nbt.getInteger(name + "X");
@@ -54,14 +57,12 @@ public class BlockPosHelper
 
         return new BlockPos(x, y, z);
     }
-
     public static void writeBlockPosToNbt(NBTTagCompound nbt, String name, BlockPos pos)
     {
         nbt.setInteger(name + "X", pos.getX());
         nbt.setInteger(name + "Y", pos.getY());
         nbt.setInteger(name + "Z", pos.getZ());
     }
-
     public static boolean isWithinDistance(BlockPos pi, BlockPos pd, double dist)
     {
         double dx = pi.getX() - pd.getX();
@@ -71,7 +72,6 @@ public class BlockPosHelper
         return dx * dx + dy * dy + dz * dz <= dist * dist;
 
     }
-
     public static boolean isWithinDistance(BlockPos pi, BlockPos pd, double dist, boolean excludeY)
     {
         double dx = pi.getX() - pd.getX();
@@ -84,7 +84,6 @@ public class BlockPosHelper
         return dx * dx + dy * dy + dz * dz <= dist * dist;
 
     }
-
     public static boolean isWithinDistance(BlockPos pi, double pdx, double pdy, double pdz, double dist, boolean excludeY)
     {
         double dx = pi.getX() - pdx;
@@ -97,7 +96,6 @@ public class BlockPosHelper
         return dx * dx + dy * dy + dz * dz <= dist * dist;
 
     }
-
     public static boolean isWithinDistance(double x1, double y1, double z1, double x2, double y2, double z2, double dist, boolean excludeY)
     {
         double dx = x1 - x2;
@@ -119,7 +117,6 @@ public class BlockPosHelper
 
         return Math.sqrt(dx * dx + dy * dy + dz * dz);
     }
-
     public static double distance(double p1x, double p1y, double p1z, int p2x, int p2y, int p2z)
     {
         double dx = p1x - p2x;
@@ -128,7 +125,6 @@ public class BlockPosHelper
 
         return Math.sqrt(dx * dx + dy * dy + dz * dz);
     }
-
     public static double distance(int p1x, int p1y, int p1z, int p2x, int p2y, int p2z)
     {
         double dx = p1x - p2x;

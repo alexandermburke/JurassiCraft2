@@ -15,7 +15,7 @@ public abstract class BaseEcologicalRole implements IEcologicalRole
 
     public void addFoodItem(ItemStack foodItem)
     {
-        for (ItemStack is : foodItems)
+        for (ItemStack is: foodItems)
         {
             if (ItemStack.areItemsEqual(is, foodItem))
             {
