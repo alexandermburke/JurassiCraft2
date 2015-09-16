@@ -2,15 +2,12 @@ package net.reuxertz.ecoai.ai;
 
 import net.minecraft.entity.EntityCreature;
 import net.reuxertz.ecoai.demand.IDemand;
+import net.reuxertz.ecoapi.entity.Target;
 
-public class Action
+public abstract class Action
 {
     //Fields
     protected Target target;
-    protected EntityCreature entity;
-    protected AICore aiCore;
-    protected AIModule aiModule;
-    protected IDemand demand;
 
     //Modifiers
     public Target getTarget()
@@ -19,13 +16,9 @@ public class Action
     }
 
     //Constructor
-    public Action(EntityCreature entity, AICore ai, AIModule module, IDemand demand, Target t)
+    public Action(EntityCreature entity, IDemand demand)
     {
-        this.entity = entity;
-        this.aiCore = ai;
-        this.aiModule = module;
-        this.demand = demand;
-        this.target = t;
+
     }
 
 }

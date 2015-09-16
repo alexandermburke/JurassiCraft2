@@ -3,14 +3,18 @@ package net.reuxertz.ecoai.ai;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.RandomPositionGenerator;
+import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.util.BlockPos;
-import net.reuxertz.ecocraft.common.EcoCraft;
+import net.reuxertz.ecoapi.entity.IEntityAISwimmingCreature;
 
 public class AINavigate extends AIBase
 {
-    public enum NavState { Null, IdleWander, SearchWander }
+    public enum NavState
+    {
+        Null, IdleWander, SearchWander
+    }
 
-    protected double speed, wanderDist = 7, wanderPower = 1.71, destinationBlockBuffer = 2.0, destinationEntityBuffer = 1.5;
+    protected double speed, wanderDist = 15, wanderPower = 1.71, destinationBlockBuffer = 2.0, destinationEntityBuffer = 1.5;
     protected boolean finishOnArrival = false;
     protected Entity seekEntity = null;
     protected float sinkFactor = 1.0f;
@@ -20,6 +24,12 @@ public class AINavigate extends AIBase
     {
         return workPositionReached(includeY, destinationBlockBuffer) || this.seekEntityReached(includeY, destinationEntityBuffer);
     }
+
+    public boolean workPositionReached(boolean includeY)
+    {
+        return this.workPositionReached(includeY, destinationBlockBuffer);
+    }
+
     public boolean workPositionReached(boolean includeY, double dist)
     {
         if (this.getWorkingPosition() == null)
@@ -42,6 +52,7 @@ public class AINavigate extends AIBase
 
         return r2 <= r1;
     }
+
     public boolean seekEntityReached(boolean includeY, double dist)
     {
         if (this.seekEntity == null)
@@ -70,6 +81,12 @@ public class AINavigate extends AIBase
 
         return r2 <= r1;
     }
+
+    public boolean seekEntityReached(boolean includeY)
+    {
+        return this.seekEntityReached(includeY, destinationEntityBuffer);
+    }
+
     public double distance(BlockPos b1, BlockPos b2)
     {
         double x = b1.getX() - b2.getX();
@@ -97,12 +114,52 @@ public class AINavigate extends AIBase
     //Functions
     public void updateTask()
     {
+
+        if (IEntityAISwimmingCreature.class.isInstance(this.entity()))
+        {
+            int getNextY = 0;
+            PathEntity pe = this.entity.getNavigator().getPath();
+
+            if (pe == null)
+                return;
+
+            int j = 0, dy = 0;
+            for (int i = pe.getCurrentPathIndex(); i < pe.getCurrentPathLength(); i++)
+            {
+                if (pe.getPathPointFromIndex(i).yCoord > this.entity.posY + dy)
+                    dy++;
+                if (pe.getPathPointFromIndex(i).yCoord < this.entity.posY + dy)
+                    dy--;
+
+
+                if (j > 5)
+                    break;
+                else
+                    j++;
+            }
+
+            if (dy > 0)
+            {
+                this.entity.jumpMovementFactor = 1.0f;
+                this.entity.getJumpHelper().setJumping();
+
+                //if (this.entity.motionY <= 0)
+                this.entity.posY += 1.1;
+                this.entity.motionY += 1.1;
+                //else
+                //    this.entity.motionY *= 1.1;
+            }
+        }
     }
+
     public boolean shouldExecute()
     {
         boolean b = super.shouldExecute();
 
         if (!b)
+            return false;
+
+        if(entity.getLeashed())
             return false;
 
         if (this.seekEntity != null)
@@ -112,17 +169,19 @@ public class AINavigate extends AIBase
         }
         if (this.getWorkingPosition() == null)
         {
-            if (this.isRecursive && EcoCraft.RND.nextDouble() > this.probRecursion)
+            if (this.isRecursive && AICore.RND.nextDouble() > this.probRecursion)
                 return false;
 
             BlockPos bp;
             bp = new BlockPos(RandomPositionGenerator.findRandomTarget(this.entity(), (int) this.wanderDist, 7));
+
             this.setWorkingPosition(new BlockPos(bp));
             return true;
         }
 
         return true;
     }
+
     public boolean continueExecuting()
     {
         if (!super.continueExecuting())
@@ -142,6 +201,7 @@ public class AINavigate extends AIBase
         }
         return cont;
     }
+
     public void startExecuting()
     {
         if (this.seekEntity != null)
@@ -157,6 +217,7 @@ public class AINavigate extends AIBase
     {
         super.activateTask(workingPosition);
     }
+
     public void activateSeekEntityTask(Entity e)
     {
         super.activateTask(null);

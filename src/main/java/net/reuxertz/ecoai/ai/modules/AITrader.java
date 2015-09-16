@@ -19,7 +19,7 @@ import net.reuxertz.ecoapi.util.EntityHelper;
 
 import java.util.List;
 
-public class AIGather extends AIModule
+public class AITrader extends AIModule
 {
     protected int collectDistXZ = 6, collectDistY = 4, blockSearchPasses = 30;
 
@@ -117,7 +117,7 @@ public class AIGather extends AIModule
         return false;
     }
 
-    public AIGather(IDemand demand, AICore entity, AINavigate navigate, Target t)
+    public AITrader(IDemand demand, AICore entity, AINavigate navigate, Target t)
     {
         super(demand, entity, navigate, t);
     }

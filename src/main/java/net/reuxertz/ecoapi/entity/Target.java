@@ -1,10 +1,11 @@
-package net.reuxertz.ecoai.ai;
+package net.reuxertz.ecoapi.entity;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
+import net.reuxertz.ecoai.ai.AINavigate;
 
 public class Target
 {
@@ -12,7 +13,7 @@ public class Target
     public BlockPos pos;
     public IBlockState posBlockState;
     public Entity entity;
-    public ItemStack entityHeldItem, targetStack;
+    public ItemStack entityHeldItem;
     public int workState = 0;
     public boolean enableEvaluateTarget = true;
 
@@ -30,27 +31,25 @@ public class Target
     {
         this.world = w;
     }
+
     public Target(World w, BlockPos pos)
-    {
-        this(w, pos, null);
-    }
-    public Target(World w, BlockPos pos, ItemStack stack)
     {
         this(w);
         this.pos = pos;
         this.posBlockState = w.getBlockState(pos);
-        this.targetStack = stack;
+        return;
     }
+
     public Target(World w, Entity entity)
     {
         this(w, entity, null);
     }
+
     public Target(World w, Entity entity, ItemStack heldItem)
     {
         this(w);
         this.entity = entity;
         this.entityHeldItem = heldItem;
-        this.targetStack = heldItem;
     }
 
     public void activateNavigate(AINavigate navigate)

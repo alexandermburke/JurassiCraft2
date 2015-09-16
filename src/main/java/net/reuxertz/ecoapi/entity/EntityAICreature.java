@@ -15,6 +15,7 @@ public class EntityAICreature extends EntityCreature implements IEntityAICreatur
     {
         return IEntityAIAquaticCreature.class.isInstance(this);
     }
+
     public void setNavigator(PathNavigate pn)
     {
         this.navigator = pn;
@@ -24,6 +25,7 @@ public class EntityAICreature extends EntityCreature implements IEntityAICreatur
     {
         this(w, true);
     }
+
     public EntityAICreature(World w, boolean initialize)
     {
         super(w);
@@ -40,7 +42,7 @@ public class EntityAICreature extends EntityCreature implements IEntityAICreatur
         }
     }
 
-    public static void ConstructAIEntity(EntityCreature entity)throws SecurityException,
+    public static void ConstructAIEntity(EntityCreature entity) throws SecurityException,
             NoSuchFieldException, ClassNotFoundException, IllegalArgumentException, IllegalAccessException
     {
         entity.tasks.taskEntries.clear();
@@ -49,27 +51,26 @@ public class EntityAICreature extends EntityCreature implements IEntityAICreatur
         if (IEntityAICreature.class.isInstance(entity))
         {
             if (IEntityAIFlyingCreature.class.isInstance(entity))
-                ((PathNavigateGround) entity.getNavigator()).func_179690_a(true);
-            else if (IEntityAIAquaticCreature.class.isInstance(entity))
+                ((PathNavigateGround) entity.getNavigator()).setCanSwim(true);
+            else if (IEntityAISwimmingCreature.class.isInstance(entity))
             {
                 //((PathNavigateGround) entity.getNavigator()).func_179690_a(false);
-                ((IEntityAICreature)entity).setNavigator(new PathNavigateSwimmer(entity, entity.worldObj));
+                ((IEntityAICreature) entity).setNavigator(new PathNavigateSwimmer(entity, entity.worldObj));
             }
             else
-                ((PathNavigateGround) entity.getNavigator()).func_179690_a(true);
+                ((PathNavigateGround) entity.getNavigator()).setCanSwim(true);
         }
         else
-            ((PathNavigateGround) entity.getNavigator()).func_179690_a(true);
+            ((PathNavigateGround) entity.getNavigator()).setCanSwim(true);
         //agentAI.tasks.addTask(1, new EntityAISwimming(agentAI));
 
 
         //agentAI.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.3f);
         entity.getNavigator().setSpeed(1);
         AIMetabolism aiMet = new AIMetabolism(entity);
-        AINavigate aiNav = new AINavigate(entity, .333);
+        AINavigate aiNav = new AINavigate(entity, .666);
         AICore ai = new AICore(entity);
 
-        //entity.tasks.addTask(0, new EntityAISwimming(entity));
         entity.tasks.addTask(1, aiMet);
         entity.tasks.addTask(2, ai);
         entity.tasks.addTask(3, aiNav);

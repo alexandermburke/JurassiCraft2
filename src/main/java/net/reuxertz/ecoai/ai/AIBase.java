@@ -18,26 +18,32 @@ public abstract class AIBase extends EntityAIBase
     {
         return this.entity;
     }
+
     public boolean isEnabled()
     {
         return this.isEnabled;
     }
+
     public void setEnabled(boolean enabled)
     {
         this.isEnabled = enabled;
     }
+
     public boolean isFinished()
     {
         return this.isFinished;
     }
+
     public void setFinished(boolean b)
     {
         this.isFinished = b;
     }
+
     public BlockPos getWorkingPosition()
     {
         return this.workingPosition;
     }
+
     public void setWorkingPosition(BlockPos p)
     {
         if (p == null)
@@ -57,6 +63,7 @@ public abstract class AIBase extends EntityAIBase
     {
         return this.entity.getEntityData();
     }
+
     public void readFromEntityNbt()
     {
     }

@@ -1,21 +1,24 @@
-package net.reuxertz.ecoai.ai;
+package net.reuxertz.ecoai.ai.modules;
 
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.item.ItemStack;
+import net.reuxertz.ecoai.ai.AICore;
+import net.reuxertz.ecoai.ai.AINavigate;
 import net.reuxertz.ecoai.demand.IDemand;
+import net.reuxertz.ecoapi.entity.Target;
 import net.reuxertz.ecoapi.util.BlockPosHelper;
-import net.reuxertz.ecocraft.common.EcoCraft;
-
-import java.util.List;
 
 public abstract class AIModule
 {
-    public enum WorkState { Init, Search, Move, Work, PostWork }
+    public enum WorkState
+    {
+        Init, Search, Move, Work
+    }
 
     public static final int MaxTickWait = 400;
 
     //Fields
-    protected int[] timeMSDelays = new int[] { 0, 0, 0, 0, 0 };
+    protected int[] timeMSDelays = new int[]{0, 0, 0, 0};
     protected float tickCount = 0, maxWorkDistance = 20, minWorkDistance = 2;
     protected boolean includeY = false, markDead = false, afterMaxKill = true, afterDoneKill = false;
     protected IDemand demand;
@@ -29,15 +32,18 @@ public abstract class AIModule
     {
         this.workTarget = target;
     }
+
     public void setState(WorkState state)
     {
         this.myState = state;
-        this.tickCount = (Math.abs(this.timeMSDelays[state.ordinal()]) * -1) - (EcoCraft.RND.nextInt(20) + 10);
+        this.tickCount = (Math.abs(this.timeMSDelays[state.ordinal()]) * -1) - (AICore.RND.nextInt(20) + 10);
     }
+
     public EntityCreature getAgent()
     {
         return this.agentAI.entity();
     }
+
     public boolean isDead()
     {
         return this.markDead;
@@ -48,28 +54,30 @@ public abstract class AIModule
     {
         return null;
     }
-    public abstract List<Target> nextNavigatePositions();
+
+    public abstract Target nextNavigatePosition();
+
     public abstract boolean doWorkContinue();
-    public boolean doPostWorkContinue()
-    {
-        return false;
-    }
+
     public abstract boolean evaluateTarget(Target t);
+
     public boolean isAtWorkPosition()
     {
         return BlockPosHelper.isWithinDistance(this.workTarget.getRealTimePos(), this.getAgent().getPosition(), this.minWorkDistance, !this.includeY);
     }
+
     public AIModule(IDemand demand, AICore entity, AINavigate navigate)
     {
         this(demand, entity, navigate, null);
     }
+
     public AIModule(IDemand demand, AICore entity, AINavigate navigate, Target t)
     {
         this.demand = demand;
         this.agentAI = entity;
         this.navigate = navigate;
         this.workTarget = t;
-        this.tickCount = EcoCraft.RND.nextInt(20) * -1;
+        this.tickCount = AICore.RND.nextInt(20) * -1;
     }
 
     //Functions
@@ -104,12 +112,10 @@ public abstract class AIModule
         //If searching
         if (this.myState == WorkState.Search)
         {
-            //TODO: Choose best target in module
             Target nbp = null;
-            List<Target> npbs = this.nextNavigatePositions();
-            if (this.workTarget == null && npbs.size() > 0)
-                nbp = npbs.get(0);
-            else if (this.workTarget != null && this.evaluateTarget(this.workTarget))
+            if (this.workTarget == null)
+                nbp = this.nextNavigatePosition();
+            else if (this.evaluateTarget(this.workTarget))
                 nbp = this.workTarget;
             else
                 this.workTarget = null;
@@ -175,18 +181,6 @@ public abstract class AIModule
                 return;
             }
 
-            this.setState(WorkState.PostWork);
-            return;
-        }
-
-        if (this.myState == WorkState.PostWork)
-        {
-            if (this.doPostWorkContinue())
-            {
-                this.setState(WorkState.PostWork);
-                return;
-            }
-
             if (this.afterDoneKill)
             {
                 this.markDead = true;
@@ -203,6 +197,7 @@ public abstract class AIModule
     {
         this.clearState(null);
     }
+
     public void clearState(WorkState state)
     {
         if (state != null)

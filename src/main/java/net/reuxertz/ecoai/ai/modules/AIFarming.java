@@ -9,12 +9,11 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.reuxertz.ecoai.ai.AICore;
 import net.reuxertz.ecoai.ai.AINavigate;
-import net.reuxertz.ecoai.ai.Target;
 import net.reuxertz.ecoai.demand.IDemand;
 import net.reuxertz.ecoapi.ecology.EcoFlora;
+import net.reuxertz.ecoapi.entity.Target;
 import net.reuxertz.ecoapi.util.BlockHelper;
 import net.reuxertz.ecoapi.util.BlockPosHelper;
-import net.reuxertz.ecocraft.common.EcoCraft;
 import scala.actors.threadpool.Arrays;
 
 public class AIFarming extends AIGather
@@ -31,7 +30,7 @@ public class AIFarming extends AIGather
 
         if (this.workTarget.entity instanceof EntityItem)
         {
-            EntityItem entityItem = (EntityItem)this.workTarget.entity;
+            EntityItem entityItem = (EntityItem) this.workTarget.entity;
             ItemStack r = this.agentAI.addToInventory(entityItem.getEntityItem());
 
             if (r == null)
@@ -88,9 +87,9 @@ public class AIFarming extends AIGather
 
                 boolean isFarmland = true;
                 if (replantOverride)
-                    isFarmland = this.isValidFarmland(this.getAgent().worldObj, posBelow);//Block.isEqualTo(blockBelow.getFillBlock(), Blocks.farmland);// && blockBelow.getFillBlock().getMetaFromState(blockBelow) == 1;
+                    isFarmland = this.isValidFarmland(this.getAgent().worldObj, posBelow);//Block.isEqualTo(blockBelow.getBlock(), Blocks.farmland);// && blockBelow.getBlock().getMetaFromState(blockBelow) == 1;
 
-                //this.workTarget.posBlockState.getFillBlock().getMetaFromState(
+                //this.workTarget.posBlockState.getBlock().getMetaFromState(
                 //        this.getAgent().worldObj.getBlockState(new BlockPos(this.workTarget.pos.getX(), this.workTarget.pos.getY() - 1, this.workTarget.pos.getZ()))) == 1;
 
                 ItemStack seedInv = this.agentAI.getFromInventory(new ItemStack(seeds.getItem(), 1, seeds.getItemDamage()));
@@ -118,7 +117,7 @@ public class AIFarming extends AIGather
         boolean belowIsFarmable = BlockHelper.getBlockEquals(blockBelow, Arrays.asList(new Block[]{Blocks.farmland, Blocks.dirt, Blocks.grass}));//Block.isEqualTo(blockBelow, Blocks.farmland);
         boolean aboveIsAcceptable = BlockHelper.getBlockEquals(blockAbove,
                 Arrays.asList(new Block[]{Blocks.air, Blocks.tallgrass, Blocks.double_plant,
-                        Blocks.red_flower, Blocks.yellow_flower, Blocks.brown_mushroom, Blocks.red_mushroom }));
+                        Blocks.red_flower, Blocks.yellow_flower, Blocks.brown_mushroom, Blocks.red_mushroom}));
         boolean isFertile = this.isBlockFertile(w, farmlandPos);
 
         return belowIsFarmable && isFertile && aboveIsAcceptable;
@@ -128,9 +127,9 @@ public class AIFarming extends AIGather
     protected boolean isBlockFertile(World w, BlockPos farmlandPos)
     {
         //center.add(0, -1, 0);
-        int dx = (EcoCraft.RND.nextInt(1) * 2) - 1;
-        int dy = (EcoCraft.RND.nextInt(1) * 2) - 1;
-        int dz = (EcoCraft.RND.nextInt(1) * 2) - 1;
+        int dx = (AICore.RND.nextInt(1) * 2) - 1;
+        int dy = (AICore.RND.nextInt(1) * 2) - 1;
+        int dz = (AICore.RND.nextInt(1) * 2) - 1;
 
         int size = 2;
         int sx = farmlandPos.getX() - (dx * size), ex = farmlandPos.getX() + (dx * size);
@@ -153,9 +152,9 @@ public class AIFarming extends AIGather
     protected BlockPos findNewFarmland(World w, BlockPos farmlandPos)
     {
         //center.add(0, -1, 0);
-        int dx = (EcoCraft.RND.nextInt(1) * 2) - 1;
-        int dy = (EcoCraft.RND.nextInt(1) * 2) - 1;
-        int dz = (EcoCraft.RND.nextInt(1) * 2) - 1;
+        int dx = (AICore.RND.nextInt(1) * 2) - 1;
+        int dy = (AICore.RND.nextInt(1) * 2) - 1;
+        int dz = (AICore.RND.nextInt(1) * 2) - 1;
 
         int sx = farmlandPos.getX() - dx, ex = farmlandPos.getX() + dx;
         int sy = farmlandPos.getY() - dy, ey = farmlandPos.getY() + dy;
@@ -172,8 +171,8 @@ public class AIFarming extends AIGather
 
                     /*BlockPos posBelow = new BlockPos(x, y, z);
                     BlockPos posAbove = new BlockPos(x, y + 1, z);
-                    Block blockBelow = w.getBlockState(posBelow).getFillBlock();
-                    Block blockAbove = w.getBlockState(posAbove).getFillBlock();
+                    Block blockBelow = w.getBlockState(posBelow).getBlock();
+                    Block blockAbove = w.getBlockState(posAbove).getBlock();
 
                     boolean belowIsFarmable = BlockHelper.getBlockEquals(blockBelow, Arrays.asList(new Block[]{Blocks.farmland, Blocks.dirt, Blocks.grass}));//Block.isEqualTo(blockBelow, Blocks.farmland);
                     boolean aboveIsAcceptable = BlockHelper.getBlockEquals(blockAbove,

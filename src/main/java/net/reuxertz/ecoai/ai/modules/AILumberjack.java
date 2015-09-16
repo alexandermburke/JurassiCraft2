@@ -10,12 +10,11 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.reuxertz.ecoai.ai.AICore;
 import net.reuxertz.ecoai.ai.AINavigate;
-import net.reuxertz.ecoai.ai.Target;
 import net.reuxertz.ecoai.demand.IDemand;
+import net.reuxertz.ecoapi.entity.Target;
 import net.reuxertz.ecoapi.util.BlockHelper;
 import net.reuxertz.ecoapi.util.BlockPosHelper;
 import net.reuxertz.ecoapi.util.EntityHelper;
-import net.reuxertz.ecocraft.common.EcoCraft;
 import scala.actors.threadpool.Arrays;
 
 import java.util.ArrayList;
@@ -23,10 +22,11 @@ import java.util.List;
 
 public class AILumberjack extends AIFarming
 {
-    public static final List<Block> leafArray = Arrays.asList(new Block[] { Blocks.leaves, Blocks.leaves2 });
-    public static final List<Block> logArray = Arrays.asList(new Block[] { Blocks.log, Blocks.log2 });
-    public static final List<Block> endDirtArray = Arrays.asList(new Block[] { Blocks.dirt, Blocks.grass, Blocks.air });
+    public static final List<Block> leafArray = Arrays.asList(new Block[]{Blocks.leaves, Blocks.leaves2});
+    public static final List<Block> logArray = Arrays.asList(new Block[]{Blocks.log, Blocks.log2});
+    public static final List<Block> endDirtArray = Arrays.asList(new Block[]{Blocks.dirt, Blocks.grass, Blocks.air});
     public static final List<Block> totalArray = new ArrayList<Block>();
+
     static
     {
         totalArray.addAll(leafArray);
@@ -107,9 +107,9 @@ public class AILumberjack extends AIFarming
 
     public void nextWorkPos(BlockPos curPos, List<BlockPos> positions)
     {
-        int dx = (EcoCraft.RND.nextInt(1) * 2) - 1;
-        int dy = (EcoCraft.RND.nextInt(1) * 2) - 1;
-        int dz = (EcoCraft.RND.nextInt(1) * 2) - 1;
+        int dx = (AICore.RND.nextInt(1) * 2) - 1;
+        int dy = (AICore.RND.nextInt(1) * 2) - 1;
+        int dz = (AICore.RND.nextInt(1) * 2) - 1;
 
         int sx = curPos.getX() - dx, ex = curPos.getX() + dx;
         int sy = curPos.getY() - dy, ey = curPos.getY() + dy;
@@ -134,7 +134,7 @@ public class AILumberjack extends AIFarming
                                 break;
                             }
 
-                        if  (add)
+                        if (add)
                             positions.add(b);
                     }
 
@@ -196,6 +196,7 @@ public class AILumberjack extends AIFarming
 
         return t;
     }
+
     public Target nextNavigatePosition2()
     {
         Target t = null;
@@ -294,7 +295,7 @@ public class AILumberjack extends AIFarming
                         curBlock = nextBlock;
                     }
                     else*/
-                        break;
+                    break;
                 }
             }
 
@@ -316,6 +317,7 @@ public class AILumberjack extends AIFarming
 
         return t;
     }
+
     public boolean doWorkContinue()
     {
         if (this.workTarget.workState == 0)
@@ -330,15 +332,15 @@ public class AILumberjack extends AIFarming
 
             //if (this.workTarget.workState == 2)
             //{
-                this.nextWorkPos(this.workTarget.pos, this.workPos);
+            this.nextWorkPos(this.workTarget.pos, this.workPos);
 
-                if (this.workPos.size() > 0)
-                {
-                    this.workTarget.pos = this.workPos.get(0);
-                    this.workPos.remove(0);
-                    this.workTarget.workState = 0;
-                    return true;
-                }
+            if (this.workPos.size() > 0)
+            {
+                this.workTarget.pos = this.workPos.get(0);
+                this.workPos.remove(0);
+                this.workTarget.workState = 0;
+                return true;
+            }
             //}
         }
 
