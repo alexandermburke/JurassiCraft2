@@ -52,18 +52,34 @@ public class AnimationTherizinosaurus implements IModelAnimator
             "therizinosaurus_attacking_2",
             "therizinosaurus_attacking_3",
             "therizinosaurus_sniffing_1",
-            "therizinosaurus_sniffing_2"
+            "therizinosaurus_sniffing_2",
+            "therizinosaurus_pouncing_1",
+            "therizinosaurus_pouncing_2",
+            "therizinosaurus_pouncing_3",
+            "therizinosaurus_pouncing_4",
+            "therizinosaurus_pouncing_5",
+            "therizinosaurus_pouncing_6",
+            "therizinosaurus_pouncing_7",
+            "therizinosaurus_pouncing_8",
+            "therizinosaurus_pouncing_9"
     };
 
     private static int getPoseID(String parPose)
     {
         int index = -1;
-        for (int assetPathIndex = 0; assetPathIndex < modelAssetFileNameArray.length; assetPathIndex++)
+        if (modelAssetFileNameArray == null)
         {
-            if (modelAssetFileNameArray[assetPathIndex].contains(parPose.toLowerCase()))
+            System.err.println("Trying to get animation pose from null model array");
+        }
+        else
+        {
+            for (int assetPathIndex = 0; assetPathIndex < modelAssetFileNameArray.length; assetPathIndex++)
             {
-                index = assetPathIndex;
-                break;
+                if (modelAssetFileNameArray[assetPathIndex].contains(parPose.toLowerCase()))
+                {
+                    index = assetPathIndex;
+                    break;
+                }
             }
         }
         return index;
@@ -136,9 +152,19 @@ public class AnimationTherizinosaurus implements IModelAnimator
             {23, 80}, {getPoseID("calling_2"), 40}, {getPoseID("default"), 200}  
         };
         
-        arrayOfSequences[AnimID.ATTACKING] = new int[][] {
-            {getPoseID("attacking_1"), 100}, {getPoseID("attacking_2"), 60}, {getPoseID("attacking_3"), 20}, 
-            {getPoseID("attacking_2"), 60}, {getPoseID("attacking_3"), 20}, {getPoseID("default"), 200}
+//        arrayOfSequences[AnimID.ATTACKING] = new int[][] {
+//            {getPoseID("attacking_1"), 100}, {getPoseID("attacking_2"), 60}, {getPoseID("attacking_3"), 20}, 
+//            {getPoseID("attacking_2"), 60}, {getPoseID("attacking_3"), 20}, {getPoseID("default"), 200}
+//        };
+
+        arrayOfSequences[AnimID.ATTACKING]= new int[][] {
+                {getPoseID("pouncing_1"), 40}, {getPoseID("pouncing_2"), 20}, // crouch
+                {getPoseID("pouncing_3"), 40}, {getPoseID("pouncing_2"), 40}, // twitch tail
+                {getPoseID("pouncing_3"), 40}, {getPoseID("pouncing_2"), 40}, // twitch tail
+                {getPoseID("pouncing_4"), 40}, {getPoseID("pouncing_5"), 40},
+                {getPoseID("pouncing_6"), 40}, {getPoseID("pouncing_7"), 80},
+                {getPoseID("pouncing_8"), 0}, {getPoseID("pouncing_8"), 20}, {getPoseID("pouncing_9"), 60}, // strike with head
+                {getPoseID("default"), 40}
         };
         
         arrayOfSequences[AnimID.SNIFFING] = new int[][] {
@@ -169,6 +195,10 @@ public class AnimationTherizinosaurus implements IModelAnimator
             
             for (int partIndex = 0; partIndex < numParts; partIndex++) 
             {
+                if (theModel.getCube(partNameArray[partIndex]) == null)
+                {
+                    System.err.println("Could not retrieve cube "+partNameArray[partIndex]+" ("+partIndex+") from the model "+modelAssetFileNameArray[modelIndex]);
+                }
                 arrayOfPoses[modelIndex][partIndex] = theModel.getCube(partNameArray[partIndex]);
             }
         }
@@ -185,7 +215,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
         {
             // DEBUG
             System.out.println("Adding entity to hashmap with id = "+parEntity.getEntityId());
-            animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(theEntity, theModel, numParts, arrayOfPoses, arrayOfSequences, true, true,20, true, 1.0F));
+            animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(theEntity, theModel, numParts, arrayOfPoses, arrayOfSequences, true, true, 1.0F));
         }
 
         animationInstanceToEntityMap.get(theEntity.getEntityId()).performJabelarAnimations(theModel);

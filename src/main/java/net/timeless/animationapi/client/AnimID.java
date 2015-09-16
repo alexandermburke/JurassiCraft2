@@ -6,7 +6,7 @@ package net.timeless.animationapi.client;
  */
 public class AnimID
 {
-    public static final int NUM_IDS = 20;
+    public static final int NUM_IDS = 18;
     
     // named according to the Trello task list of animations
     /*

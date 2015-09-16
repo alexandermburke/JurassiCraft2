@@ -46,10 +46,11 @@ public class AnimationAPI
 
     public static void sendAnimPacket(IAnimatedEntity entity, int animID)
     {
-        if (isEffectiveClient())
-            return;
         entity.setAnimID(animID);
-        wrapper.sendToAll(new PacketAnim((byte) animID, ((Entity) entity).getEntityId()));
+        if (!isEffectiveClient())
+        {
+            wrapper.sendToAll(new PacketAnim((byte) animID, ((Entity) entity).getEntityId()));
+        }
     }
 
     @Mod.Instance("AnimationAPI")

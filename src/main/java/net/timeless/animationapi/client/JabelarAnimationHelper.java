@@ -1,5 +1,7 @@
 package net.timeless.animationapi.client;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
@@ -12,6 +14,7 @@ import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
  * This class is used to hold per-entity animation variables for use with
  * Jabelar's animation tweening system.
  */
+@SideOnly(Side.CLIENT)
 public class JabelarAnimationHelper
 {
     private final EntityDinosaur theEntity;
@@ -29,8 +32,6 @@ public class JabelarAnimationHelper
     private static int numParts;
     private final int numSequencesInArray;
     private int currentSequence; 
-    private boolean shouldRandomizeSequence = false;
-    private int chanceNotIdle = 0;
     private int numPosesInSequence;
     private int currentPose;
     private int numTicksInTween;
@@ -43,8 +44,7 @@ public class JabelarAnimationHelper
     		EntityDinosaur parEntity, 
     		ModelDinosaur parModel, int parNumParts,
     		MowzieModelRenderer[][] parArrayOfPoses,
-            int[][][] parArrayOfSequences, boolean parRandomInitialSequence, 
-            boolean parShouldRandomizeSequence, int parChanceNotIdle, 
+            int[][][] parArrayOfSequences, boolean parShouldRandomizeSequence, 
             boolean parInertialTweens, float parInertiaFactor)
     {
         // transfer static animation info from constructor parameters to instance
@@ -52,14 +52,12 @@ public class JabelarAnimationHelper
         numParts = parNumParts;
         arrayOfPoses = parArrayOfPoses;
         arrayOfSequences = parArrayOfSequences;
-        shouldRandomizeSequence = parShouldRandomizeSequence;
-        chanceNotIdle = parChanceNotIdle;
         inertialTweens = parInertialTweens;
         baseInertiaFactor = parInertiaFactor;
          
         numSequencesInArray = arrayOfSequences.length;
 
-        init(parModel, parRandomInitialSequence);
+        init(parModel);
 
         // DEBUG
         System.out.println("Finished JabelarAnimation constructor");
@@ -75,9 +73,9 @@ public class JabelarAnimationHelper
         performNextTweenTick();
     }
     
-    private void init(ModelDinosaur parModel, boolean parRandomInitialSequence)
+    private void init(ModelDinosaur parModel)
     {
-        initSequence(parRandomInitialSequence);
+        currentSequence = theEntity.getAnimID();
         initPose(); // sets the target pose based on sequence
         initTween();
         
@@ -87,20 +85,7 @@ public class JabelarAnimationHelper
 
         initCurrentPoseArrays();
     }
-    
-    
-    private void initSequence(boolean parRandomInitialSequence)
-    {
-        if (parRandomInitialSequence)
-        {
-            setRandomSequence();
-        }
-        else
-        {
-            currentSequence = theEntity.getAnimID();
-        }
-    }
-    
+        
     private void initPose()
     {
         numPosesInSequence = arrayOfSequences[currentSequence].length;
@@ -194,9 +179,24 @@ public class JabelarAnimationHelper
         
         for (int partIndex = 0; partIndex < numParts; partIndex++)
         {
-            nextTweenRotations(partIndex, inertiaFactor);
-            nextTweenPositions(partIndex, inertiaFactor);
-            nextTweenOffsets(partIndex, inertiaFactor);  
+            if (nextPose == null)
+            {
+                System.err.println("Trying to tween to a null next pose array");
+            }
+            else if (nextPose[partIndex] == null)
+            {
+                System.err.println("The part index "+partIndex+" in next pose is null");
+            }
+            else if (currentRotationArray == null)
+            {
+                System.err.println("Trying to tween from a null current rotation array");
+            }
+            else
+            {
+                nextTweenRotations(partIndex, inertiaFactor);
+                nextTweenPositions(partIndex, inertiaFactor);
+                nextTweenOffsets(partIndex, inertiaFactor);  
+            }
         }
     }
     
@@ -223,7 +223,7 @@ public class JabelarAnimationHelper
      * The tween is linear if inertialTweens = false
      */
     private void nextTweenRotations(int parPartIndex, float inertiaFactor)
-    {        
+    {   
         passedInModelRendererArray[parPartIndex].rotateAngleX =
                 currentRotationArray[parPartIndex][0] + inertiaFactor *
                 (nextPose[parPartIndex].rotateAngleX - currentRotationArray[parPartIndex][0])
@@ -333,6 +333,7 @@ public class JabelarAnimationHelper
     		// DEBUG
     		System.out.println("Reverting to idle sequence");
     		currentSequence = AnimID.IDLE;
+    		theEntity.setAnimID(AnimID.IDLE);
     	}
     	else
     	{
@@ -343,11 +344,13 @@ public class JabelarAnimationHelper
     	if (arrayOfSequences[currentSequence] == null)
     	{
     		currentSequence = AnimID.IDLE;
+            theEntity.setAnimID(AnimID.IDLE);
     	}
     	
         numPosesInSequence = arrayOfSequences[currentSequence].length;
         currentPose = 0;
         currentTickInTween = 0;
+        
     }
     
     public int getCurrentPose()
@@ -375,7 +378,7 @@ public class JabelarAnimationHelper
             return new ModelDinosaur(TabulaModelHelper.parseModel(tabulaModel), null); // okay to use null for animator parameter as we get animator from passed-in model
         } catch (Exception e)
         {
-            // TODO Auto-generated catch block
+            System.err.println("Could not load Tabula mode = "+tabulaModel);
             e.printStackTrace();
         }
                 
