@@ -9,8 +9,8 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIOpenDoor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.client.AnimID;
-import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.entity.ai.animations.AnimationAICall;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
@@ -80,7 +80,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive  //implements I
     {
         if (getAnimID() == AnimID.IDLE)
         {
-        	JurassiCraft.proxy.sendAnimPacket(this, AnimID.CALLING);
+            AnimationAPI.sendAnimPacket(this, AnimID.CALLING);
             return randomSound(livingSounds);
         }
 
@@ -92,7 +92,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive  //implements I
     {
         if (getAnimID() == AnimID.IDLE)
         {
-            JurassiCraft.proxy.sendAnimPacket(this, AnimID.INJURED);
+            AnimationAPI.sendAnimPacket(this, AnimID.INJURED);
             return randomSound(hurtSounds);
         }
 

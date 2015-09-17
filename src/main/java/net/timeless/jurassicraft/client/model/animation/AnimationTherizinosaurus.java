@@ -3,8 +3,6 @@ package net.timeless.jurassicraft.client.model.animation;
 import java.util.HashMap;
 
 import net.minecraft.entity.Entity;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.AnimID;
 import net.timeless.animationapi.client.JabelarAnimationHelper;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
@@ -15,7 +13,6 @@ import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 
-@SideOnly(Side.CLIENT)
 public class AnimationTherizinosaurus implements IModelAnimator
 {
     /*
@@ -98,7 +95,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
     static
     {
         arrayOfSequences[AnimID.IDLE] = new int[][] {
-            {getPoseID("idle"), 200}
+            {getPoseID("idle"), 1} // for idle sequence good to set to duration 1 to allow maximum interruptibility
         };
     
         arrayOfSequences[AnimID.LOOKING_LEFT] = new int[][] {

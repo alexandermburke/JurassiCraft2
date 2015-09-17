@@ -22,6 +22,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.reuxertz.ecoapi.entity.EntityAICreature;
 import net.timeless.animationapi.AIAnimation;
+import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.AnimID;
 import net.timeless.jurassicraft.JurassiCraft;
@@ -459,14 +460,11 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     @Override
     public void setAnimID(int parAnimID)
     {
+        // DEBUG
+        System.out.println("Setting anim id for entity "+getEntityId()+" to "+parAnimID);
         if (parAnimID != animID) // only process changes
         {
             animID = parAnimID;
-
-            if (!this.worldObj.isRemote) // only send packet from server side
-            {
-            	JurassiCraft.proxy.sendAnimPacket(this, animID);
-            }
         }
     }
 
@@ -569,7 +567,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     @Override
     public void onDeath(DamageSource parDamageSource)
     {
-    	JurassiCraft.proxy.sendAnimPacket(this, AnimID.INJURED);
+        AnimationAPI.sendAnimPacket(this, AnimID.INJURED);
         super.onDeath(parDamageSource);
     }
 

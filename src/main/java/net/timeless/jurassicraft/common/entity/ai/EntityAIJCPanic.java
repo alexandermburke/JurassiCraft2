@@ -4,9 +4,9 @@ import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.util.Vec3;
+import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.AnimID;
-import net.timeless.jurassicraft.JurassiCraft;
 
 public class EntityAIJCPanic extends EntityAIBase
 {
@@ -60,7 +60,7 @@ public class EntityAIJCPanic extends EntityAIBase
         theEntityCreature.getNavigator().tryMoveToXYZ(randPosX, randPosY, randPosZ, speed);
         if (theEntityCreature instanceof IAnimatedEntity)
         {
-        	JurassiCraft.proxy.sendAnimPacket((IAnimatedEntity) theEntityCreature, AnimID.HISSING);
+            AnimationAPI.sendAnimPacket((IAnimatedEntity) theEntityCreature, AnimID.HISSING);
         }
         
         // DEBUG

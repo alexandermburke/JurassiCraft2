@@ -21,6 +21,9 @@ public class PacketAnim implements IMessage
 
     public PacketAnim(byte anim, int entity)
     {
+        // DEBUG
+        System.out.println("Constructing PacketAnim");
+        
         animID = anim;
         entityID = entity;
     }
@@ -44,7 +47,10 @@ public class PacketAnim implements IMessage
         @Override
         public IMessage onMessage(final PacketAnim packet, MessageContext ctx)
         {
-        	final EntityPlayer player = JurassiCraft.proxy.getPlayerEntityFromContext(ctx);
+            // DEBUG
+            System.out.println("PacketAnim received for entity "+packet.entityID+" and animation ID "+packet.animID);
+
+            final EntityPlayer player = JurassiCraft.proxy.getPlayerEntityFromContext(ctx);
 
         	Minecraft.getMinecraft().addScheduledTask(new Runnable() 
             {
@@ -59,8 +65,6 @@ public class PacketAnim implements IMessage
                         entity.setAnimID(packet.animID);
                     }
                     
-                    // DEBUG
-                    System.out.println("PacketAnim received for entity "+packet.entityID+" and animation ID "+packet.animID);
                 }
             });
 

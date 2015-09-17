@@ -2,7 +2,6 @@ package net.timeless.animationapi.client;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
@@ -67,10 +66,10 @@ public class JabelarAnimationHelper
     public void performJabelarAnimations(ModelDinosaur parModel)
     {
         passedInModelRendererArray = convertPassedInModelToModelRendererArray(parModel);
-        if (theEntity.getAnimID() != currentSequence)
-        {
-            setNextSequence(theEntity.getAnimID());
-        }
+//        if (theEntity.getAnimID() != currentSequence)
+//        {
+//            setNextSequence(theEntity.getAnimID());
+//        }
         performNextTweenTick();
     }
     
@@ -163,7 +162,7 @@ public class JabelarAnimationHelper
         currentTickInTween = 0;
 
         // DEBUG
-        System.out.println("current sequence for entity ID "+theEntity.getEntityId()+" is "+currentSequence+" out of "+arrayOfSequences.length+
+        if (currentSequence != AnimID.IDLE) System.out.println("current sequence for entity ID "+theEntity.getEntityId()+" is "+currentSequence+" out of "+arrayOfSequences.length+
                 " and current pose "+currentPose+" out of "+arrayOfSequences[currentSequence].length
                 +" with "+numTicksInTween+" ticks in tween");
     }
@@ -356,10 +355,7 @@ public class JabelarAnimationHelper
     	
         numPosesInSequence = arrayOfSequences[currentSequence].length;
         currentPose = 0;
-        currentTickInTween = 0;
-        
-        JurassiCraft.proxy.sendAnimFinishedPacket(theEntity, currentSequence);
-        
+        currentTickInTween = 0;     
     }
     
     public int getCurrentPose()

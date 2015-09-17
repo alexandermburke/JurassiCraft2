@@ -3,16 +3,12 @@ package net.timeless.jurassicraft.client.proxy;
 import java.util.ArrayList;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.animationapi.AnimationAPI;
-import net.timeless.animationapi.IAnimatedEntity;
-import net.timeless.animationapi.packet.PacketFinishedAnim;
 import net.timeless.jurassicraft.client.event.ClientEventHandler;
 import net.timeless.jurassicraft.client.render.JCRenderingRegistry;
 import net.timeless.jurassicraft.common.proxy.CommonProxy;
@@ -122,18 +118,4 @@ public class ClientProxy extends CommonProxy
         // Solution is to double-check side before returning the player:
         return (ctx.side.isClient() ? Minecraft.getMinecraft().thePlayer : super.getPlayerEntityFromContext(ctx));
     }
-    
-    @Override
- 	public void sendAnimPacket(IAnimatedEntity parEntity, int parAnimID) 
-    {
-     	parEntity.setAnimID(parAnimID);
-    }
-
-    @Override
- 	public void sendAnimFinishedPacket(IAnimatedEntity parEntity, int parAnimID) 
-    {
-     	parEntity.setAnimID(parAnimID);
-        AnimationAPI.wrapper.sendToAll(new PacketFinishedAnim((byte)parAnimID, ((Entity) parEntity).getEntityId()));		
-    }
-
 }

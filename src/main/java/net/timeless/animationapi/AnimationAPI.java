@@ -11,7 +11,6 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.timeless.animationapi.packet.PacketAnim;
-import net.timeless.animationapi.packet.PacketFinishedAnim;
 
 @Mod(modid = "JCAnimationAPI", name = "JurassiCraft AnimationAPI", version = "1.2.5")
 public class AnimationAPI
@@ -26,8 +25,8 @@ public class AnimationAPI
     public void init(FMLInitializationEvent e)
     {
         wrapper = NetworkRegistry.INSTANCE.newSimpleChannel("AnimAPI");
-        wrapper.registerMessage(PacketAnim.Handler.class, PacketAnim.class, 0, Side.CLIENT);
-        wrapper.registerMessage(PacketFinishedAnim.Handler.class, PacketFinishedAnim.class, 0, Side.SERVER);
+        int discriminator = 0;
+        wrapper.registerMessage(PacketAnim.Handler.class, PacketAnim.class, discriminator++, Side.CLIENT);
     }
 
     @Mod.EventHandler
@@ -48,9 +47,12 @@ public class AnimationAPI
 
     public static void sendAnimPacket(IAnimatedEntity entity, int animID)
     {
-        entity.setAnimID(animID);
-        if (!isEffectiveClient())
+//        entity.setAnimID(animID);
+        if (((Entity)entity).worldObj.isRemote)
         {
+            // DEBUG
+            System.out.println("sending Anim Packet for entity "+((Entity)entity).getEntityId());
+
             wrapper.sendToAll(new PacketAnim((byte) animID, ((Entity) entity).getEntityId()));
         }
     }

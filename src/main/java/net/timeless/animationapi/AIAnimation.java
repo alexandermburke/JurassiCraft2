@@ -3,7 +3,6 @@ package net.timeless.animationapi;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.timeless.animationapi.client.AnimID;
-import net.timeless.jurassicraft.JurassiCraft;
 
 public abstract class AIAnimation extends EntityAIBase
 {
@@ -42,7 +41,7 @@ public abstract class AIAnimation extends EntityAIBase
     public void startExecuting()
     {
         if (!isAutomatic())
-        	JurassiCraft.proxy.sendAnimPacket(animatedEntity, getAnimID());
+        	AnimationAPI.sendAnimPacket(animatedEntity, getAnimID());
         animatedEntity.setAnimTick(0);
     }
 
@@ -55,7 +54,7 @@ public abstract class AIAnimation extends EntityAIBase
     @Override
     public void resetTask()
     {
-    	JurassiCraft.proxy.sendAnimPacket(animatedEntity, AnimID.IDLE);
+        AnimationAPI.sendAnimPacket(animatedEntity, AnimID.IDLE);
     }
 
     private final IAnimatedEntity animatedEntity;
