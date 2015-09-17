@@ -95,6 +95,8 @@ public class GuiAppMinimap extends GuiApp
                 renderY = 0;
 
                 renderChunkY++;
+
+                gui.drawBoxOutline(renderChunkX * 16 + 89, renderChunkY * 16 - 5, 16, 16, 1, 1.0F, 0x606060);
             }
 
             renderChunkY = 0;
