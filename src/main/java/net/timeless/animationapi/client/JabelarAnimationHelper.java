@@ -268,19 +268,19 @@ public class JabelarAnimationHelper
      * Tween of the offsets between current offsets and target offsets.
      * The tween is linear if inertialTweens is false.
      */
-    private void nextTweenOffsets(int partPartIndex, float inertiaFactor)
+    private void nextTweenOffsets(int parPartIndex, float inertiaFactor)
     {        
-        passedInModelRendererArray[partPartIndex].offsetX =
-                currentOffsetArray[partPartIndex][0] + inertiaFactor *
-                (nextPose[partPartIndex].offsetX - currentOffsetArray[partPartIndex][0])
+        passedInModelRendererArray[parPartIndex].offsetX =
+                currentOffsetArray[parPartIndex][0] + inertiaFactor *
+                (nextPose[parPartIndex].offsetX - currentOffsetArray[parPartIndex][0])
                 / ticksRemaining();
-        passedInModelRendererArray[partPartIndex].offsetY =
-                currentOffsetArray[partPartIndex][1] + inertiaFactor *
-                (nextPose[partPartIndex].offsetY - currentOffsetArray[partPartIndex][1])
+        passedInModelRendererArray[parPartIndex].offsetY =
+                currentOffsetArray[parPartIndex][1] + inertiaFactor *
+                (nextPose[parPartIndex].offsetY - currentOffsetArray[parPartIndex][1])
                 / ticksRemaining();
-        passedInModelRendererArray[partPartIndex].offsetZ =
-                currentOffsetArray[partPartIndex][2] + inertiaFactor *
-                (nextPose[partPartIndex].offsetZ - currentOffsetArray[partPartIndex][2])
+        passedInModelRendererArray[parPartIndex].offsetZ =
+                currentOffsetArray[parPartIndex][2] + inertiaFactor *
+                (nextPose[parPartIndex].offsetZ - currentOffsetArray[parPartIndex][2])
                 / ticksRemaining();
     }
     

@@ -19,11 +19,8 @@ public class EntityTherizinosaurus extends EntityDinosaurDefensiveHerbivore // i
     public void onUpdate()
     {
         tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
-//        // DEBUG
-//        System.out.println("onUpdate for entity "+getEntityId()+" which has anim id = "+getAnimID());
-        if (ticksExisted%200 == 0)
+        if (ticksExisted%20 == 0)
         {
-        	System.out.println("Changing the animation");
         	AnimationAPI.sendAnimPacket(this, AnimID.ATTACKING);
         }
         super.onUpdate();
