@@ -20,6 +20,7 @@ import net.timeless.jurassicraft.client.gui.GuiPaleoTab;
 import net.timeless.jurassicraft.common.paleopad.App;
 import net.timeless.jurassicraft.common.paleopad.AppFlappyDino;
 import net.timeless.jurassicraft.common.paleopad.AppMinimap;
+import org.lwjgl.opengl.GL11;
 
 import java.util.Iterator;
 
@@ -63,6 +64,10 @@ public class GuiAppMinimap extends GuiApp
 
                 if(!chunk.isEmpty())
                 {
+                    int shadowY = 0;
+                    int shadowX = 0;
+                    int shadowZ = 0;
+
                     for (int x = 0; x < 16; x++)
                     {
                         for (int z = 0; z < 16; z++)
@@ -81,7 +86,22 @@ public class GuiAppMinimap extends GuiApp
 
                             MapColor color = block.getMapColor(blockState);
 
-                            gui.drawScaledRect(renderX + (renderChunkX * 16) + 90, renderY + (renderChunkY * 16) + 12, 1, 1, 1.0F, color.colorValue);
+                            int rgb = 0xFFFFFF;
+
+                            if(shadowX == blockX && shadowZ == blockX - 1 && blockY < shadowY)
+                            {
+                                int dark = 245;
+
+                                rgb = dark;
+                                rgb = (rgb << 8) + dark;
+                                rgb = (rgb << 8) + dark;
+                            }
+
+                            shadowX = blockX;
+                            shadowY = blockY;
+                            shadowZ = blockZ;
+
+                            gui.drawScaledRect(renderX + (renderChunkX * 16) + 90, renderY + (renderChunkY * 16) + 15, 1, 1, 1.0F, color.colorValue/**(color.colorValue & rgb) >> 1)**/);
 
                             renderY++;
                         }
@@ -96,7 +116,7 @@ public class GuiAppMinimap extends GuiApp
 
                 renderChunkY++;
 
-                gui.drawBoxOutline(renderChunkX * 16 + 89, renderChunkY * 16 - 5, 16, 16, 1, 1.0F, 0x606060);
+                gui.drawBoxOutline(renderChunkX * 16 + 89, renderChunkY * 16 - 2, 16, 16, 1, 1.0F, 0x606060);
             }
 
             renderChunkY = 0;
