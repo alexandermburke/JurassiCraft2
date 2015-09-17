@@ -14,6 +14,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec4b;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.client.gui.GuiPaleoTab;
 import net.timeless.jurassicraft.common.paleopad.App;
@@ -41,36 +42,63 @@ public class GuiAppMinimap extends GuiApp
         EntityPlayer player = mc.thePlayer;
         World world = mc.theWorld;
 
+        gui.drawScaledText("Loc: " + (int) player.posX + " " + (int) player.posY + " " + (int) player.posZ, 2, 3, 1.0F, 0xFFFFFF);
+
         int playerX = (int) player.posX;
         int playerZ = (int) player.posZ;
 
         int playerChunkX = playerX >> 4;
         int playerChunkZ = playerZ >> 4;
 
-        for (int chunkX = playerChunkX - 2; chunkX < playerChunkX + 2; chunkX++)
+        int renderX = 0;
+        int renderY = 0;
+        int renderChunkX = 0;
+        int renderChunkY = 0;
+
+        for (int chunkX = playerChunkX - 4; chunkX < playerChunkX + 4; chunkX++)
         {
-            for (int chunkZ = playerChunkZ - 2; chunkZ < playerChunkZ + 2; chunkZ++)
+            for (int chunkZ = playerChunkZ - 4; chunkZ < playerChunkZ + 4; chunkZ++)
             {
-                if(!world.getChunkFromChunkCoords(chunkX, chunkZ).isEmpty())
+                Chunk chunk = world.getChunkFromChunkCoords(chunkX, chunkZ);
+
+                if(!chunk.isEmpty())
                 {
                     for (int x = 0; x < 16; x++)
                     {
                         for (int z = 0; z < 16; z++)
                         {
                             int blockX = x + (chunkX * 16);
+                            int blockY = chunk.getHeightValue(x, z);
                             int blockZ = z + (chunkZ * 16);
 
-                            //todo chunk.getheightvalue
-                            IBlockState blockState = world.getBlockState(world.getTopSolidOrLiquidBlock(new BlockPos(blockX, 0, blockZ)));
+                            if(world.isAirBlock(new BlockPos(blockX, blockY, blockZ)))
+                            {
+                                blockY--;
+                            }
+
+                            IBlockState blockState = world.getBlockState(new BlockPos(blockX, blockY, blockZ));
                             Block block = blockState.getBlock();
 
                             MapColor color = block.getMapColor(blockState);
 
-                            gui.drawScaledRect(blockX, blockZ, 1, 1, 1.0F, color.colorValue);
+                            gui.drawScaledRect(renderX + (renderChunkX * 16) + 90, renderY + (renderChunkY * 16) + 12, 1, 1, 1.0F, color.colorValue);
+
+                            renderY++;
                         }
+
+                        renderY = 0;
+                        renderX++;
                     }
                 }
+
+                renderX = 0;
+                renderY = 0;
+
+                renderChunkY++;
             }
+
+            renderChunkY = 0;
+            renderChunkX++;
         }
     }
 

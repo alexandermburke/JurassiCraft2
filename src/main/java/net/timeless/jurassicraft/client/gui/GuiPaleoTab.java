@@ -199,8 +199,8 @@ public class GuiPaleoTab extends GuiScreen
         GL11.glDisable(GL11.GL_TEXTURE_2D);
 
         float red = (float) (colour >> 16 & 255) / 255.0F;
-        float blue = (float) (colour >> 8 & 255) / 255.0F;
-        float green = (float) (colour & 255) / 255.0F;
+        float green = (float) (colour >> 8 & 255) / 255.0F;
+        float blue = (float) (colour & 255) / 255.0F;
 
         GL11.glColor3f(red, green, blue);
 
