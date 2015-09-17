@@ -4,9 +4,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.AnimID;
+import net.timeless.jurassicraft.JurassiCraft;
 
 public class EntityAIJCWatchClosest extends EntityAIBase
 {
@@ -109,7 +109,7 @@ public class EntityAIJCWatchClosest extends EntityAIBase
         this.lookTime = 40 + this.theWatcher.getRNG().nextInt(40);
         if (theWatcher instanceof IAnimatedEntity)
         {
-            AnimationAPI.sendAnimPacket((IAnimatedEntity) theWatcher, AnimID.SNIFFING);
+        	JurassiCraft.proxy.sendAnimPacket((IAnimatedEntity) theWatcher, AnimID.SNIFFING);
         }
     }
 

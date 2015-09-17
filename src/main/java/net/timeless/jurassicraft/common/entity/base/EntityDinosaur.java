@@ -22,7 +22,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.reuxertz.ecoapi.entity.EntityAICreature;
 import net.timeless.animationapi.AIAnimation;
-import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.AnimID;
 import net.timeless.jurassicraft.JurassiCraft;
@@ -77,7 +76,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         isMale = rand.nextBoolean();
 
         animTick = 0;
-        animID = 0;
+        setAnimID(AnimID.IDLE);
 
         ignoreFrustumCheck = true; // stops dino disappearing when hitbox goes off screen
 
@@ -466,7 +465,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
             if (!this.worldObj.isRemote) // only send packet from server side
             {
-                AnimationAPI.sendAnimPacket(this, animID);
+            	JurassiCraft.proxy.sendAnimPacket(this, animID);
             }
         }
     }
@@ -570,7 +569,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     @Override
     public void onDeath(DamageSource parDamageSource)
     {
-        AnimationAPI.sendAnimPacket(this, AnimID.INJURED);
+    	JurassiCraft.proxy.sendAnimPacket(this, AnimID.INJURED);
         super.onDeath(parDamageSource);
     }
 

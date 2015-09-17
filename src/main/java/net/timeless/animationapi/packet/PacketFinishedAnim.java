@@ -1,8 +1,7 @@
 package net.timeless.animationapi.packet;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -10,16 +9,16 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 
-public class PacketAnim implements IMessage
+public class PacketFinishedAnim implements IMessage
 {
     private byte animID;
     private int entityID;
 
-    public PacketAnim()
+    public PacketFinishedAnim()
     {
     }
 
-    public PacketAnim(byte anim, int entity)
+    public PacketFinishedAnim(byte anim, int entity)
     {
         animID = anim;
         entityID = entity;
@@ -39,14 +38,14 @@ public class PacketAnim implements IMessage
         entityID = buffer.readInt();
     }
 
-    public static class Handler implements IMessageHandler<PacketAnim, IMessage>
+    public static class Handler implements IMessageHandler<PacketFinishedAnim, IMessage>
     {
         @Override
-        public IMessage onMessage(final PacketAnim packet, MessageContext ctx)
+        public IMessage onMessage(final PacketFinishedAnim packet, MessageContext ctx)
         {
-        	final EntityPlayer player = JurassiCraft.proxy.getPlayerEntityFromContext(ctx);
+        	final EntityPlayerMP player = (EntityPlayerMP) JurassiCraft.proxy.getPlayerEntityFromContext(ctx);
 
-        	Minecraft.getMinecraft().addScheduledTask(new Runnable() 
+        	player.getServerForPlayer().addScheduledTask(new Runnable() 
             {
                 @Override
                 public void run() 
@@ -60,7 +59,7 @@ public class PacketAnim implements IMessage
                     }
                     
                     // DEBUG
-                    System.out.println("PacketAnim received for entity "+packet.entityID+" and animation ID "+packet.animID);
+                    System.out.println("PacketFinishedAnim received for entity "+packet.entityID+" and animation ID "+packet.animID);
                 }
             });
 

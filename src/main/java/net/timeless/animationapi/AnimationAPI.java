@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.timeless.animationapi.packet.PacketAnim;
+import net.timeless.animationapi.packet.PacketFinishedAnim;
 
 @Mod(modid = "JCAnimationAPI", name = "JurassiCraft AnimationAPI", version = "1.2.5")
 public class AnimationAPI
@@ -26,6 +27,7 @@ public class AnimationAPI
     {
         wrapper = NetworkRegistry.INSTANCE.newSimpleChannel("AnimAPI");
         wrapper.registerMessage(PacketAnim.Handler.class, PacketAnim.class, 0, Side.CLIENT);
+        wrapper.registerMessage(PacketFinishedAnim.Handler.class, PacketFinishedAnim.class, 0, Side.SERVER);
     }
 
     @Mod.EventHandler

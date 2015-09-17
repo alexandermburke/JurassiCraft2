@@ -2,6 +2,7 @@ package net.timeless.animationapi.client;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
@@ -356,6 +357,8 @@ public class JabelarAnimationHelper
         numPosesInSequence = arrayOfSequences[currentSequence].length;
         currentPose = 0;
         currentTickInTween = 0;
+        
+        JurassiCraft.proxy.sendAnimFinishedPacket(theEntity, currentSequence);
         
     }
     

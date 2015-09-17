@@ -10,8 +10,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.client.AnimID;
+import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.entity.ai.EntityAIJCEatGrass;
 import net.timeless.jurassicraft.common.entity.ai.EntityAIJCPanic;
 
@@ -99,7 +99,7 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
     @Override
 	public boolean attackEntityAsMob(Entity entity)
     {
-    	AnimationAPI.sendAnimPacket(this, AnimID.ATTACKING);
+    	JurassiCraft.proxy.sendAnimPacket(this, AnimID.ATTACKING);
     	
         float damage = (float) getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
         int knockback = 0;

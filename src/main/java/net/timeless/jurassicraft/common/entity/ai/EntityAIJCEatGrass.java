@@ -24,9 +24,9 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.AnimID;
+import net.timeless.jurassicraft.JurassiCraft;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
@@ -118,7 +118,7 @@ public class EntityAIJCEatGrass extends EntityAIBase
         if (((IAnimatedEntity)grassEaterEntity).getAnimID() != AnimID.EATING
                 && grassEaterEntity instanceof IAnimatedEntity)
         {
-            AnimationAPI.sendAnimPacket((IAnimatedEntity) grassEaterEntity, AnimID.EATING);
+        	JurassiCraft.proxy.sendAnimPacket((IAnimatedEntity) grassEaterEntity, AnimID.EATING);
         }
         
         eatingGrassTimer = Math.max(0, eatingGrassTimer - 1);
