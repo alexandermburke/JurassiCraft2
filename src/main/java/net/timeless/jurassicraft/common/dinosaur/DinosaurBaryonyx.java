@@ -153,4 +153,10 @@ public class DinosaurBaryonyx extends Dinosaur
     {
         return 2.95F;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 36;
+    }
 }

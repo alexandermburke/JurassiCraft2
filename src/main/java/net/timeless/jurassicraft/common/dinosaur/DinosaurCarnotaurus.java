@@ -155,4 +155,10 @@ public class DinosaurCarnotaurus extends Dinosaur
     {
         return 2.8F;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 36;
+    }
 }

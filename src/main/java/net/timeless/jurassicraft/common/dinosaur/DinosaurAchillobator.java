@@ -79,6 +79,12 @@ public class DinosaurAchillobator extends Dinosaur
     }
 
     @Override
+    public int getStorage()
+    {
+        return 27;
+    }
+
+    @Override
     public double getAdultSpeed()
     {
         return 0.80;

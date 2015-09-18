@@ -155,4 +155,10 @@ public class DinosaurBrachiosaurus extends Dinosaur
     {
         return 10.8F;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 54;
+    }
 }

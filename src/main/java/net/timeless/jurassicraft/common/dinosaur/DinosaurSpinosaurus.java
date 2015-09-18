@@ -172,4 +172,10 @@ public class DinosaurSpinosaurus extends Dinosaur
     {
         return 4.8F;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 54;
+    }
 }

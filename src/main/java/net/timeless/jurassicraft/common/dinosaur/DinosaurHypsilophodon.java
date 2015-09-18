@@ -155,4 +155,10 @@ public class DinosaurHypsilophodon extends Dinosaur
     {
         return 0.85F;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 9;
+    }
 }

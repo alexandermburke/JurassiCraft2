@@ -165,4 +165,10 @@ public class DinosaurLeptictidium extends Dinosaur
     {
         return false;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 9;
+    }
 }

@@ -160,4 +160,10 @@ public class DinosaurStegosaurus extends Dinosaur
     {
         return 4.8F;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 36;
+    }
 }

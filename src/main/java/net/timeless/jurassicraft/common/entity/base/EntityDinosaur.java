@@ -17,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.pathfinding.PathNavigate;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
@@ -63,7 +64,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
     private boolean hasTracker;
 
-    private ItemStack[] inventory = new ItemStack[36];
+    private ItemStack[] inventory = new ItemStack[54];
 
     @Override
     public void setNavigator(PathNavigate pn)
@@ -478,7 +479,28 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     {
         if(player.isSneaking())
         {
-            player.displayGUIChest(this); //TODO too young to hold items, getSizeInventory on dinosaur class
+            if(getAgePercentage() > 75)
+            {
+                player.displayGUIChest(this);
+            }
+            else
+            {
+                if(worldObj.isRemote)
+                {
+                    String msg;
+
+                    if(hasCustomName())
+                    {
+                        msg = getCustomNameTag();
+                    }
+                    else
+                    {
+                        msg = "This " + getCommandSenderName();
+                    }
+
+                    player.addChatComponentMessage(new ChatComponentText(msg + " is not old enough to hold items!"));
+                }
+            }
         }
         else
         {
@@ -650,7 +672,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     @Override
     public int getSizeInventory()
     {
-        return inventory.length;
+        return dinosaur.getStorage();
     }
 
     @Override

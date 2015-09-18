@@ -163,4 +163,10 @@ public class DinosaurVelociraptorBlue extends Dinosaur implements IHybrid
     {
         return new Class[]{DinosaurVelociraptor.class};
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 27;
+    }
 }

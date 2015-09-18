@@ -155,4 +155,10 @@ public class DinosaurApatosaurus extends Dinosaur
     {
         return 6.8F;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 54;
+    }
 }

@@ -155,4 +155,10 @@ public class DinosaurParasaurolophus extends Dinosaur
     {
         return 3.5F;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 36;
+    }
 }

@@ -190,4 +190,10 @@ public class DinosaurVelociraptor extends Dinosaur
     {
         return 1.8F;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 27;
+    }
 }

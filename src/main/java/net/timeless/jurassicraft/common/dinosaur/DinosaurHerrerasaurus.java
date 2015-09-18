@@ -153,4 +153,10 @@ public class DinosaurHerrerasaurus extends Dinosaur
     {
         return 2.55F;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 36;
+    }
 }

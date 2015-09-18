@@ -161,4 +161,10 @@ public class DinosaurDunkleosteus extends Dinosaur
     {
         return true;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 27;
+    }
 }

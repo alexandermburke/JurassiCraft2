@@ -153,4 +153,10 @@ public class DinosaurTropeognathus extends Dinosaur
     {
         return 1.55F;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 27;
+    }
 }
