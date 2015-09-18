@@ -478,7 +478,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     {
         if(player.isSneaking())
         {
-            player.displayGUIChest(this);
+            player.displayGUIChest(this); //TODO too young to hold items, getSizeInventory on dinosaur class
         }
         else
         {
