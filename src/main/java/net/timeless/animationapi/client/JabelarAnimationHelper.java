@@ -377,13 +377,13 @@ public class JabelarAnimationHelper
     
     public static ModelDinosaur getTabulaModel(String tabulaModel, int geneticVariant) 
     {
-        // catch the exception so you can call method with implicit superconstructor
+        // catch the exception so you can call method without further catching
         try
         {
             return new ModelDinosaur(TabulaModelHelper.parseModel(tabulaModel), null); // okay to use null for animator parameter as we get animator from passed-in model
         } catch (Exception e)
         {
-            System.err.println("Could not load Tabula mode = "+tabulaModel);
+            System.err.println("Could not load Tabula model = "+tabulaModel);
             e.printStackTrace();
         }
                 

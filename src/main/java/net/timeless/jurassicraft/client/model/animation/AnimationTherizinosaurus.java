@@ -219,6 +219,12 @@ public class AnimationTherizinosaurus implements IModelAnimator
         }
 
         animationInstanceToEntityMap.get(theEntity.getEntityId()).performJabelarAnimations(theModel);
+        
+        // DEBUG
+        MowzieModelRenderer bodyHips = parModel.getCube("Body hips");
+        MowzieModelRenderer bodyMain = parModel.getCube("Body main");
+        System.out.println("Body hips has offsets "+bodyHips.offsetX+", "+bodyHips.offsetY+", "+bodyHips.offsetZ
+        		+"body main has offsets "+bodyMain.offsetX+", "+bodyMain.offsetY+", "+bodyMain.offsetZ);
 
         // you can still add chain, walk, bob, etc.
         performMowzieAnimations(theModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, theEntity);
