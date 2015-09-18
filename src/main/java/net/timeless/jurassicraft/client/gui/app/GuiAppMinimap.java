@@ -64,9 +64,9 @@ public class GuiAppMinimap extends GuiApp
 
                 if(!chunk.isEmpty())
                 {
-                    int shadowY = 0;
-                    int shadowX = 0;
-                    int shadowZ = 0;
+//                    int shadowY = 0;
+//                    int shadowX = 0;
+//                    int shadowZ = 0;
 
                     for (int x = 0; x < 16; x++)
                     {
@@ -86,22 +86,30 @@ public class GuiAppMinimap extends GuiApp
 
                             MapColor color = block.getMapColor(blockState);
 
-                            int rgb = 0xFFFFFF;
+                            int rgb = color.colorValue;
 
-                            if(shadowX == blockX && shadowZ == blockX - 1 && blockY < shadowY)
-                            {
-                                int dark = 245;
+//                            if(shadowX == blockX && shadowZ == blockZ - 1 && blockY < shadowY)
+//                            {
+//                            int red = (rgb >> 16) & 255;
+//                            int green = (rgb >> 8) & 255;
+//                            int blue = rgb & 255;
+//
+//                            float dark = -((float) (blockY - 64)) / 255.0F;
+//
+//                            red *= dark;
+//                            green *= dark;
+//                            blue *= dark;
+//
+//                            rgb = red;
+//                            rgb = (rgb << 8) + green;
+//                            rgb = (rgb << 8) + blue;
+//                            }
+//
+//                            shadowX = blockX;
+//                            shadowY = blockY;
+//                            shadowZ = blockZ;
 
-                                rgb = dark;
-                                rgb = (rgb << 8) + dark;
-                                rgb = (rgb << 8) + dark;
-                            }
-
-                            shadowX = blockX;
-                            shadowY = blockY;
-                            shadowZ = blockZ;
-
-                            gui.drawScaledRect(renderX + (renderChunkX * 16) + 90, renderY + (renderChunkY * 16) + 15, 1, 1, 1.0F, color.colorValue/**(color.colorValue & rgb) >> 1)**/);
+                            gui.drawScaledRect(renderX + (renderChunkX * 16) + 90, renderY + (renderChunkY * 16) + 15, 1, 1, 1.0F, rgb/**(color.colorValue & rgb) >> 1)**/);
 
                             renderY++;
                         }
