@@ -61,7 +61,8 @@ public class AnimationTherizinosaurus implements IModelAnimator
             "pouncing_6",
             "pouncing_7",
             "pouncing_8",
-            "pouncing_9"
+            "pouncing_9",
+            "crouching_1"
     };
 
     private static int getPoseID(String parPose)
@@ -75,12 +76,16 @@ public class AnimationTherizinosaurus implements IModelAnimator
         {
             for (int assetPathIndex = 0; assetPathIndex < modelAssetFileNameArray.length; assetPathIndex++)
             {
-                if (modelAssetFileNameArray[assetPathIndex].contains(parPose.toLowerCase()))
+                if (modelAssetFileNameArray[assetPathIndex].equals(parPose.toLowerCase()))
                 {
                     index = assetPathIndex;
                     break;
                 }
             }
+        }
+        if (index < 0)
+        {
+            System.err.println("Could not find tabula model asset "+parPose.toLowerCase());
         }
         return index;
     }
@@ -157,15 +162,18 @@ public class AnimationTherizinosaurus implements IModelAnimator
 //            {getPoseID("attacking_2"), 60}, {getPoseID("attacking_3"), 20}, {getPoseID("idle"), 200}
 //        };
 
-        arrayOfSequences[AnimID.ATTACKING]= new int[][] {
-                {getPoseID("pouncing_1"), 40}, {getPoseID("pouncing_2"), 20}, // crouch
-                {getPoseID("pouncing_3"), 40}, {getPoseID("pouncing_2"), 40}, // twitch tail
-                {getPoseID("pouncing_3"), 40}, {getPoseID("pouncing_2"), 40}, // twitch tail
-                {getPoseID("pouncing_4"), 40}, {getPoseID("pouncing_5"), 40},
-                {getPoseID("pouncing_6"), 40}, {getPoseID("pouncing_7"), 80},
-                {getPoseID("pouncing_8"), 40}, {getPoseID("pouncing_8"), 20}, {getPoseID("pouncing_9"), 60}, // strike with head
-                {getPoseID("idle"), 40}
-        };
+        arrayOfSequences[AnimID.ATTACKING] = new int[][] {
+                {getPoseID("crouching_1"), 40}, {getPoseID("crouching_1"), 800}, {getPoseID("idle"), 200}
+            };
+//        arrayOfSequences[AnimID.ATTACKING]= new int[][] {
+//                {getPoseID("pouncing_1"), 40}, {getPoseID("pouncing_2"), 20}, // crouch
+//                {getPoseID("pouncing_3"), 40}, {getPoseID("pouncing_2"), 40}, // twitch tail
+//                {getPoseID("pouncing_3"), 40}, {getPoseID("pouncing_2"), 40}, // twitch tail
+//                {getPoseID("pouncing_4"), 40}, {getPoseID("pouncing_5"), 40},
+//                {getPoseID("pouncing_6"), 40}, {getPoseID("pouncing_7"), 80},
+//                {getPoseID("pouncing_8"), 40}, {getPoseID("pouncing_8"), 20}, {getPoseID("pouncing_9"), 60}, // strike with head
+//                {getPoseID("idle"), 40}
+//        };
         
         arrayOfSequences[AnimID.SNIFFING] = new int[][] {
             {getPoseID("sniffing_1"), 100}, {getPoseID("sniffing_2"), 20}, {getPoseID("sniffing_1"), 20}, 
@@ -223,8 +231,8 @@ public class AnimationTherizinosaurus implements IModelAnimator
         // DEBUG
         MowzieModelRenderer bodyHips = parModel.getCube("Body hips");
         MowzieModelRenderer bodyMain = parModel.getCube("Body main");
-        System.out.println("Body hips has offsets "+bodyHips.offsetX+", "+bodyHips.offsetY+", "+bodyHips.offsetZ
-        		+"body main has offsets "+bodyMain.offsetX+", "+bodyMain.offsetY+", "+bodyMain.offsetZ);
+        System.out.println("Body hips has rotations "+bodyHips.rotateAngleX+", "+bodyHips.rotateAngleY+", "+bodyHips.rotateAngleZ
+        		+", body main has rotations "+bodyMain.rotateAngleX+", "+bodyMain.rotateAngleY+", "+bodyMain.rotateAngleZ);
 
         // you can still add chain, walk, bob, etc.
         performMowzieAnimations(theModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, theEntity);

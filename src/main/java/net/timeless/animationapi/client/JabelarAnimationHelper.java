@@ -29,6 +29,10 @@ public class JabelarAnimationHelper
     private float[][] currentPositionArray ;
     private float[][] currentOffsetArray ;
 
+    private float[][] lastRotationArray ;
+    private float[][] lastPositionArray ;
+    private float[][] lastOffsetArray ;
+
     private static int numParts;
     private final int numSequencesInArray;
     private int currentSequence; 
@@ -84,6 +88,7 @@ public class JabelarAnimationHelper
         passedInModelRendererArray = convertPassedInModelToModelRendererArray(parModel);
 
         initCurrentPoseArrays();
+        copyCurrentToLast();
     }
         
     private void initPose()
@@ -142,6 +147,13 @@ public class JabelarAnimationHelper
         }           
     }
     
+    private void copyCurrentToLast()
+    {  
+        lastRotationArray = currentRotationArray;
+        lastPositionArray = currentPositionArray;
+        lastOffsetArray = currentOffsetArray;
+    }
+    
     private MowzieModelRenderer[] convertPassedInModelToModelRendererArray(ModelDinosaur parModel)
     {
         MowzieModelRenderer[] modelRendererArray = new MowzieModelRenderer[numParts];
@@ -157,6 +169,7 @@ public class JabelarAnimationHelper
  
     private void setNextPose()
     {  
+        copyCurrentToLast();
         nextPose = arrayOfPoses[arrayOfSequences[currentSequence][currentPose][0]];
         numTicksInTween = arrayOfSequences[currentSequence][currentPose][1];
         currentTickInTween = 0;
@@ -243,6 +256,21 @@ public class JabelarAnimationHelper
                 (nextPose[parPartIndex].rotateAngleZ - currentRotationArray[parPartIndex][2])
                 / ticksRemaining();
     }
+//    private void nextTweenRotations(int parPartIndex, float inertiaFactor)
+//    {   
+//        passedInModelRendererArray[parPartIndex].rotateAngleX =
+//                currentRotationArray[parPartIndex][0] + inertiaFactor *
+//                (nextPose[parPartIndex].rotateAngleX - lastRotationArray[parPartIndex][0])
+//                / numTicksInTween;
+//        passedInModelRendererArray[parPartIndex].rotateAngleY =
+//                currentRotationArray[parPartIndex][1] + inertiaFactor *
+//                (nextPose[parPartIndex].rotateAngleY - lastRotationArray[parPartIndex][1])
+//                / numTicksInTween;
+//        passedInModelRendererArray[parPartIndex].rotateAngleZ =
+//                currentRotationArray[parPartIndex][2] + inertiaFactor *
+//                (nextPose[parPartIndex].rotateAngleZ - lastRotationArray[parPartIndex][2])
+//                / numTicksInTween;
+//    }
 
     /*
      * Tween of the rotatePoints between current positions and target positions.
