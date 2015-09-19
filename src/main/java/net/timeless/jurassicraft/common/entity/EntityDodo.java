@@ -2,6 +2,7 @@ package net.timeless.jurassicraft.common.entity;
 
 import net.minecraft.world.World;
 import net.timeless.animationapi.AnimationAPI;
+import net.timeless.jurassicraft.common.entity.ai.EntityAIFindPlant;
 import net.timeless.jurassicraft.common.entity.ai.animations.AnimationAIEating;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
@@ -17,6 +18,7 @@ public class EntityDodo extends EntityDinosaur // implements IEntityAICreature, 
     {
         super(world);
         tasks.addTask(2, new JCNonAutoAnimBase(this, 18, 1, 750));
+        tasks.addTask(1, new EntityAIFindPlant(this));
     }
 
     public String getLivingSound()
