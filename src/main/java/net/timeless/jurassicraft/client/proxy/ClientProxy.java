@@ -49,8 +49,6 @@ public class ClientProxy extends CommonProxy
 
 //        uuids.add("487a286b-25a6-44d0-aaa0-f6b87fee6bfb"); //BobMowzie (Josh)
 //        uuids.add("40e85e42-21f6-46b6-b5b3-6aeb07f3e3fd"); //iLexiconn (Lex)
-
-        //TODO CarrotJet + Kash
     }
 
     @Override

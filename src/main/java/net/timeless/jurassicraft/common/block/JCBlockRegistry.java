@@ -192,11 +192,15 @@ public class JCBlockRegistry
             OreDictionary.registerOre("plankWood", planks[i]);
             OreDictionary.registerOre("treeLeaves", leaves[i]);
             OreDictionary.registerOre("treeSapling", saplings[i]);
+            OreDictionary.registerOre("slabWood", slabs[i]);
+            OreDictionary.registerOre("stairkWood", stairs[i]);
 
             Blocks.fire.setFireInfo(leaves[i], 30, 60);
             Blocks.fire.setFireInfo(planks[i], 5, 20);
             Blocks.fire.setFireInfo(woods[i], 5, 5);
-            //TODO stairs & slabs fireinfo and oredict
+            Blocks.fire.setFireInfo(doubleSlabs[i], 5, 20);
+            Blocks.fire.setFireInfo(slabs[i], 5, 20);
+            Blocks.fire.setFireInfo(stairs[i], 5, 20);
         }
 
         registerBlockTileEntity(TileCultivate.class, cultivate_bottom, "Cultivate Bottom");
