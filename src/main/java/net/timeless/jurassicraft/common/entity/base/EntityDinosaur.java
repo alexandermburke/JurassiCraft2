@@ -146,12 +146,12 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
     public void setWater(double water)
     {
-        this.water = water;
+        this.water = Math.min(water, 24000);
     }
 
     public void setEnergy(double energy)
     {
-        this.energy = energy;
+        this.energy = Math.min(energy, 24000);
     }
 
     @Override
