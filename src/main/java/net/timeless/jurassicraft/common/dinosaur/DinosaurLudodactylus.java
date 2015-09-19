@@ -153,4 +153,10 @@ public class DinosaurLudodactylus extends Dinosaur
     {
         return 1.35F;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 18;
+    }
 }

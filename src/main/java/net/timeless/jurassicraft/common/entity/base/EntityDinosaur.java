@@ -10,10 +10,14 @@ import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.pathfinding.PathNavigate;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
@@ -33,7 +37,7 @@ import net.timeless.jurassicraft.common.genetics.GeneticsHelper;
 import net.timeless.jurassicraft.common.item.ItemBluePrint;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
-public class EntityDinosaur extends EntityAICreature implements IEntityAdditionalSpawnData, IAnimatedEntity
+public class EntityDinosaur extends EntityAICreature implements IEntityAdditionalSpawnData, IAnimatedEntity, IInventory
 {
     protected Dinosaur dinosaur;
     protected int randTexture;
@@ -59,6 +63,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     private int growthSpeedOffset;
 
     private boolean hasTracker;
+
+    private ItemStack[] inventory = new ItemStack[54];
 
     @Override
     public void setNavigator(PathNavigate pn)
@@ -291,6 +297,21 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         nbt.setBoolean("IsMale", isMale);
         nbt.setInteger("GrowthSpeedOffset", growthSpeedOffset);
         nbt.setBoolean("HasTracker", hasTracker);
+
+        NBTTagList nbttaglist = new NBTTagList();
+
+        for (int i = 0; i < this.inventory.length; ++i)
+        {
+            if (this.inventory[i] != null)
+            {
+                NBTTagCompound slotTag = new NBTTagCompound();
+                slotTag.setByte("Slot", (byte)i);
+                this.inventory[i].writeToNBT(slotTag);
+                nbttaglist.appendTag(slotTag);
+            }
+        }
+
+        nbt.setTag("Items", nbttaglist);
     }
 
     @Override
@@ -306,6 +327,20 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         isMale = nbt.getBoolean("IsMale");
         growthSpeedOffset = nbt.getInteger("GrowthSpeedOffset");
         hasTracker = nbt.getBoolean("HasTracker");
+
+        NBTTagList nbttaglist = nbt.getTagList("Items", 10);
+        this.inventory = new ItemStack[this.getSizeInventory()];
+
+        for (int i = 0; i < nbttaglist.tagCount(); ++i)
+        {
+            NBTTagCompound slotTag = nbttaglist.getCompoundTagAt(i);
+            int j = slotTag.getByte("Slot") & 255;
+
+            if (j >= 0 && j < this.inventory.length)
+            {
+                this.inventory[j] = ItemStack.loadItemStackFromNBT(slotTag);
+            }
+        }
 
         updateCreatureData();
         adjustHitbox();
@@ -377,6 +412,36 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
             else
                 dropStackWithQuality(new ItemStack(JCItemRegistry.dino_meat, 1, JCEntityRegistry.getDinosaurId(dinosaur)));
         }
+
+        for (int i = 0; i < this.getSizeInventory(); ++i)
+        {
+            ItemStack itemstack = this.getStackInSlot(i);
+
+            if (itemstack != null)
+            {
+                float f = this.rand.nextFloat() * 0.8F + 0.1F;
+                float f1 = this.rand.nextFloat() * 0.8F + 0.1F;
+                float f2 = this.rand.nextFloat() * 0.8F + 0.1F;
+
+                while (itemstack.stackSize > 0)
+                {
+                    int j = this.rand.nextInt(21) + 10;
+
+                    if (j > itemstack.stackSize)
+                    {
+                        j = itemstack.stackSize;
+                    }
+
+                    itemstack.stackSize -= j;
+                    EntityItem entityitem = new EntityItem(this.worldObj, this.posX + (double)f, this.posY + (double)f1, this.posZ + (double)f2, new ItemStack(itemstack.getItem(), j, itemstack.getItemDamage()));
+                    float f3 = 0.05F;
+                    entityitem.motionX = (double)((float)this.rand.nextGaussian() * f3);
+                    entityitem.motionY = (double)((float)this.rand.nextGaussian() * f3 + 0.2F);
+                    entityitem.motionZ = (double)((float)this.rand.nextGaussian() * f3);
+                    this.worldObj.spawnEntityInWorld(entityitem);
+                }
+            }
+        }
     }
 
     private void dropStackWithQuality(ItemStack stack)
@@ -412,13 +477,41 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     @Override
     public boolean interact(EntityPlayer player)
     {
-        ItemStack heldItem = player.getHeldItem();
-
-        if (heldItem != null)
+        if(player.isSneaking())
         {
-            if (heldItem.getItem() instanceof ItemBluePrint)
+            if(getAgePercentage() > 75)
             {
-                ((ItemBluePrint) heldItem.getItem()).setDinosaur(heldItem, JCEntityRegistry.getDinosaurId(getDinosaur()));
+                player.displayGUIChest(this);
+            }
+            else
+            {
+                if(worldObj.isRemote)
+                {
+                    String msg;
+
+                    if(hasCustomName())
+                    {
+                        msg = getCustomNameTag();
+                    }
+                    else
+                    {
+                        msg = "This " + getCommandSenderName();
+                    }
+
+                    player.addChatComponentMessage(new ChatComponentText(msg + " is not old enough to hold items!"));
+                }
+            }
+        }
+        else
+        {
+            ItemStack heldItem = player.getHeldItem();
+
+            if (heldItem != null)
+            {
+                if (heldItem.getItem() instanceof ItemBluePrint)
+                {
+                    ((ItemBluePrint) heldItem.getItem()).setDinosaur(heldItem, JCEntityRegistry.getDinosaurId(getDinosaur()));
+                }
             }
         }
 
@@ -574,5 +667,128 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     public void increaseGrowthSpeed()
     {
         growthSpeedOffset += 240;
+    }
+
+    @Override
+    public int getSizeInventory()
+    {
+        return dinosaur.getStorage();
+    }
+
+    @Override
+    public ItemStack getStackInSlot(int index)
+    {
+        return inventory[index];
+    }
+
+    @Override
+    public ItemStack decrStackSize(int index, int count)
+    {
+        if (this.inventory[index] != null)
+        {
+            ItemStack itemstack;
+
+            if (this.inventory[index].stackSize <= count)
+            {
+                itemstack = this.inventory[index];
+                this.inventory[index] = null;
+                return itemstack;
+            }
+            else
+            {
+                itemstack = this.inventory[index].splitStack(count);
+
+                if (this.inventory[index].stackSize == 0)
+                {
+                    this.inventory[index] = null;
+                }
+
+                return itemstack;
+            }
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    @Override
+    public ItemStack getStackInSlotOnClosing(int index)
+    {
+        if (this.inventory[index] != null)
+        {
+            ItemStack itemstack = this.inventory[index];
+            this.inventory[index] = null;
+            return itemstack;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    @Override
+    public void setInventorySlotContents(int index, ItemStack stack)
+    {
+        this.inventory[index] = stack;
+
+        if (stack != null && stack.stackSize > this.getInventoryStackLimit())
+        {
+            stack.stackSize = this.getInventoryStackLimit();
+        }
+    }
+
+    @Override
+    public int getInventoryStackLimit()
+    {
+        return 64;
+    }
+
+    @Override
+    public void markDirty() {}
+
+    @Override
+    public boolean isUseableByPlayer(EntityPlayer player)
+    {
+        return this.isDead ? false : player.getDistanceSqToEntity(this) <= 64.0D;
+    }
+
+    @Override
+    public void openInventory(EntityPlayer player) {}
+
+    @Override
+    public void closeInventory(EntityPlayer player) {}
+
+    @Override
+    public boolean isItemValidForSlot(int index, ItemStack stack)
+    {
+        return true;
+    }
+
+    @Override
+    public int getField(int id)
+    {
+        return 0;
+    }
+
+    @Override
+    public void setField(int id, int value)
+    {
+
+    }
+
+    @Override
+    public int getFieldCount()
+    {
+        return 0;
+    }
+
+    @Override
+    public void clear()
+    {
+        for (int i = 0; i < getSizeInventory(); i++)
+        {
+            inventory[i] = null;
+        }
     }
 }

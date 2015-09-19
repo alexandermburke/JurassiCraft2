@@ -153,4 +153,10 @@ public class DinosaurTherizinosaurus extends Dinosaur
     {
         return 5.95F;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 36;
+    }
 }

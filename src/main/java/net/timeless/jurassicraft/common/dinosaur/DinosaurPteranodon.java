@@ -155,4 +155,10 @@ public class DinosaurPteranodon extends Dinosaur
     {
         return 1.8F;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 27;
+    }
 }

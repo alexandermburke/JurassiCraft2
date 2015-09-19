@@ -155,4 +155,10 @@ public class DinosaurGallimimus extends Dinosaur
     {
         return 3.25F;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 27;
+    }
 }

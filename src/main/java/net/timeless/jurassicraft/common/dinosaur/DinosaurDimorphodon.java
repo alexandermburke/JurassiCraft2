@@ -153,4 +153,10 @@ public class DinosaurDimorphodon extends Dinosaur
     {
         return 0.75F;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 9;
+    }
 }

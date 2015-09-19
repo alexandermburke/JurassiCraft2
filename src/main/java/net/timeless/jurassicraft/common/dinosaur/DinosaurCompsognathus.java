@@ -155,4 +155,10 @@ public class DinosaurCompsognathus extends Dinosaur
     {
         return 0.55F;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 9;
+    }
 }

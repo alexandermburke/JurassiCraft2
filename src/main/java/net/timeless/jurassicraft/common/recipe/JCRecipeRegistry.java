@@ -15,6 +15,7 @@ import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 import com.google.common.collect.Maps;
+import net.timeless.jurassicraft.common.paleopad.dinopedia.DinoPediaRegistry;
 
 public class JCRecipeRegistry
 {
@@ -241,7 +242,7 @@ public class JCRecipeRegistry
         GameRegistry.addRecipe(stack, pars);
 
         getShapedRecipe(stack, pars);
-//        DinoPediaRegistry.addItemRecipe(stack, getShapedRecipe(stack, pars));
+        DinoPediaRegistry.addItemRecipe(stack, getShapedRecipe(stack, pars));
     }
 
     private ShapedRecipes getShapedRecipe(ItemStack stack, Object[] pars)

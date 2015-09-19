@@ -155,4 +155,10 @@ public class DinosaurMajungasaurus extends Dinosaur
     {
         return 3.0F;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 36;
+    }
 }

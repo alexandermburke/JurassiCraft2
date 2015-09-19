@@ -155,4 +155,10 @@ public class DinosaurAnkylosaurus extends Dinosaur
     {
         return 3F;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 27;
+    }
 }

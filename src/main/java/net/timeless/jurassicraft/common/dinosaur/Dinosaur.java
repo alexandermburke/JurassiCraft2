@@ -138,4 +138,6 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
     {
         return 1500;
     }
+
+    public abstract int getStorage();
 }

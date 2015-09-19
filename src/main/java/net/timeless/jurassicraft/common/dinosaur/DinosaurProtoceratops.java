@@ -153,4 +153,10 @@ public class DinosaurProtoceratops extends Dinosaur
     {
         return 1.25F;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 27;
+    }
 }

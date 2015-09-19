@@ -161,4 +161,10 @@ public class DinosaurCoelacanth extends Dinosaur
     {
         return true;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 18;
+    }
 }

@@ -169,4 +169,10 @@ public class DinosaurTyrannosaurus extends Dinosaur
     {
         return 4F;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 54;
+    }
 }

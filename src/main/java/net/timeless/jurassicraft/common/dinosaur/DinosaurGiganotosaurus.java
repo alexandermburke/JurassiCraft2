@@ -155,4 +155,10 @@ public class DinosaurGiganotosaurus extends Dinosaur
     {
         return 5.8F;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 54;
+    }
 }

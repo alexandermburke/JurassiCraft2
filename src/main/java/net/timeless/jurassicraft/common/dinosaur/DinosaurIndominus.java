@@ -171,4 +171,10 @@ public class DinosaurIndominus extends Dinosaur implements IHybrid
     {
         return extraGenes;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 54;
+    }
 }

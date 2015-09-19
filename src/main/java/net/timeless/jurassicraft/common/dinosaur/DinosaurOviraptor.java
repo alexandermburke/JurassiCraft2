@@ -159,4 +159,10 @@ public class DinosaurOviraptor extends Dinosaur
     {
         return false;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 9;
+    }
 }

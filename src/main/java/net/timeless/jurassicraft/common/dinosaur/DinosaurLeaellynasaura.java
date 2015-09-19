@@ -153,4 +153,10 @@ public class DinosaurLeaellynasaura extends Dinosaur
     {
         return 0.95F;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 9;
+    }
 }

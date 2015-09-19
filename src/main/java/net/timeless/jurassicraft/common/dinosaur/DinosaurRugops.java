@@ -154,4 +154,10 @@ public class DinosaurRugops extends Dinosaur
     {
         return 2.6F;
     }
+
+    @Override
+    public int getStorage()
+    {
+        return 36;
+    }
 }
