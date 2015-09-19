@@ -4,6 +4,7 @@ import net.minecraft.entity.ai.EntityAIEatGrass;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.jurassicraft.common.entity.ai.EntityAIFindPlant;
 
 public class EntityDinosaurProvokableHerbivore extends EntityDinosaurProvokable
 {
@@ -14,7 +15,8 @@ public class EntityDinosaurProvokableHerbivore extends EntityDinosaurProvokable
     public EntityDinosaurProvokableHerbivore(World world)
     {
         super(world);
-        this.tasks.addTask(5, this.entityAIEatGrass);
+//        this.tasks.addTask(5, this.entityAIEatGrass);
+        tasks.addTask(1, new EntityAIFindPlant(this));
 
     }
 

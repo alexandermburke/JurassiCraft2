@@ -12,6 +12,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.client.AnimID;
+import net.timeless.jurassicraft.common.entity.ai.EntityAIFindPlant;
 import net.timeless.jurassicraft.common.entity.ai.EntityAIJCEatGrass;
 import net.timeless.jurassicraft.common.entity.ai.EntityAIJCPanic;
 
@@ -25,8 +26,9 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
     public EntityDinosaurDefensiveHerbivore(World world)
     {
         super(world);
-        tasks.addTask(5, entityAIEatGrass);
+//        tasks.addTask(5, entityAIEatGrass);
         tasks.addTask(1, entityAIPanic);
+        tasks.addTask(1, new EntityAIFindPlant(this));
     }
 
     @Override

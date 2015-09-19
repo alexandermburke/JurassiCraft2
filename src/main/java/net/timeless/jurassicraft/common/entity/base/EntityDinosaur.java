@@ -32,6 +32,7 @@ import net.timeless.animationapi.client.AnimID;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.disease.Disease;
+import net.timeless.jurassicraft.common.entity.ai.EntityAIFindPlant;
 import net.timeless.jurassicraft.common.entity.ai.EntityAIMetabolism;
 import net.timeless.jurassicraft.common.genetics.GeneticsContainer;
 import net.timeless.jurassicraft.common.genetics.GeneticsHelper;
@@ -81,8 +82,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         super(world);
         //tasks.addTask(0, new EntityAISwimming(this));
 
-        energy = 24000;
-        water = 24000;
+        energy = 12000;
+        water = 12000;
         tasks.addTask(0, new EntityAIMetabolism(this));
 
         dinosaurAge = 0;
