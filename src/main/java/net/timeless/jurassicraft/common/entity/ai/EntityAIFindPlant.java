@@ -26,7 +26,7 @@ public class EntityAIFindPlant extends EntityAIBase
     {
         double energy = dinosaur.getEnergy();
 
-        if(energy > 0)
+        if(energy > 0 && dinosaur.ticksExisted % 8 == 0)
         {
             if(dinosaur.getRNG().nextInt((int) energy) < (energy / 4))
             {
