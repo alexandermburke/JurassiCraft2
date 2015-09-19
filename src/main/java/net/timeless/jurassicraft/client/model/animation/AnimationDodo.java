@@ -3,6 +3,7 @@ package net.timeless.jurassicraft.client.model.animation;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.animationapi.client.AnimID;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
 import net.timeless.unilib.client.model.json.IModelAnimator;
@@ -86,7 +87,7 @@ public class AnimationDodo implements IModelAnimator
         model.chainWave(neckParts, globalSpeed * 0.125F, globalHeight * 0.05F, 3, ticksExisted, 1.0F);
         model.chainWave(bodyParts, globalSpeed * 0.125F, globalHeight * 0.05F, 3, ticksExisted, 1.0F);
 
-        animator.setAnim(1);
+        animator.setAnim(AnimID.EATING);
         animator.startPhase(7);
         animator.rotate(head, -0.3f, 0, 0);
         animator.rotate(body, 0.35f, 0, 0);

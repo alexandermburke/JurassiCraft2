@@ -124,9 +124,9 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     {
         energy--;
 
-        if(energy < 0)
+        if(energy <= 0)
         {
-            setDead();
+            this.attackEntityFrom(DamageSource.outOfWorld, Float.MAX_VALUE);
         }
     }
 
@@ -243,6 +243,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         if (ticksExisted % 8 == 0)
         {
             this.dinosaurAge += Math.min(growthSpeedOffset, 960) + 1;
+            this.energy -= (Math.min(growthSpeedOffset, 960) + 1) * 0.2;
 
             if (dinosaurAge % 20 == 0)
             {

@@ -5,6 +5,9 @@ import net.minecraft.block.BlockBush;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
+import net.timeless.animationapi.AnimationAPI;
+import net.timeless.animationapi.IAnimatedEntity;
+import net.timeless.animationapi.client.AnimID;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 
 public class EntityAIFindPlant extends EntityAIBase
@@ -21,59 +24,64 @@ public class EntityAIFindPlant extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        if(dinosaur.getEnergy() < 22000)
+        double energy = dinosaur.getEnergy();
+
+        if(energy > 0)
         {
-            int posX = (int) dinosaur.posX;
-            int posY = (int) dinosaur.posY;
-            int posZ = (int) dinosaur.posZ;
-
-            int closestDist = Integer.MAX_VALUE;
-            int closestX = 0;
-            int closestY = 0;
-            int closestZ = 0;
-
-            boolean found = false;
-
-            World world = dinosaur.worldObj;
-
-            for (int x = posX - 10; x < posX + 10; x++)
+            if(dinosaur.getRNG().nextInt((int) energy) < (energy / 4))
             {
-                for (int y = posY - 10; y < posY + 10; y++)
+                int posX = (int) dinosaur.posX;
+                int posY = (int) dinosaur.posY;
+                int posZ = (int) dinosaur.posZ;
+
+                int closestDist = Integer.MAX_VALUE;
+                int closestX = 0;
+                int closestY = 0;
+                int closestZ = 0;
+
+                boolean found = false;
+
+                World world = dinosaur.worldObj;
+
+                for (int x = posX - 16; x < posX + 16; x++)
                 {
-                    for (int z = posZ - 10; z < posZ + 10; z++)
+                    for (int y = posY - 16; y < posY + 16; y++)
                     {
-                        Block block = world.getBlockState(new BlockPos(x, y, z)).getBlock();
-
-                        if(block instanceof BlockBush)
+                        for (int z = posZ - 16; z < posZ + 16; z++)
                         {
-                            int diffX = posX - x;
-                            int diffY = posY - y;
-                            int diffZ = posZ - z;
+                            Block block = world.getBlockState(new BlockPos(x, y, z)).getBlock();
 
-                            int dist = (diffX * diffX) + (diffY * diffY) + (diffZ * diffZ);
-
-                            if(dist < closestDist)
+                            if(block instanceof BlockBush)
                             {
-                                closestDist = dist;
-                                closestX = x;
-                                closestY = y;
-                                closestZ = z;
+                                int diffX = posX - x;
+                                int diffY = posY - y;
+                                int diffZ = posZ - z;
 
-                                found = true;
+                                int dist = (diffX * diffX) + (diffY * diffY) + (diffZ * diffZ);
+
+                                if(dist < closestDist)
+                                {
+                                    closestDist = dist;
+                                    closestX = x;
+                                    closestY = y;
+                                    closestZ = z;
+
+                                    found = true;
+                                }
                             }
                         }
                     }
                 }
-            }
 
-            if(found)
-            {
-                this.x = closestX;
-                this.y = closestY;
-                this.z = closestZ;
-                dinosaur.getNavigator().tryMoveToXYZ(x, y, z, 1.0);
+                if(found)
+                {
+                    this.x = closestX;
+                    this.y = closestY;
+                    this.z = closestZ;
+                    dinosaur.getNavigator().tryMoveToXYZ(x, y, z, 1.0);
 
-                return true;
+                    return true;
+                }
             }
         }
 
@@ -85,6 +93,11 @@ public class EntityAIFindPlant extends EntityAIBase
     {
         if((dinosaur.getDistanceSq(x, y, z) / 16) <= dinosaur.width)
         {
+            if (dinosaur.getAnimID() != AnimID.EATING)
+            {
+                AnimationAPI.sendAnimPacket(dinosaur, AnimID.EATING);
+            }
+
             if (dinosaur.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing"))
             {
                 dinosaur.worldObj.destroyBlock(new BlockPos(x, y, z), false);
