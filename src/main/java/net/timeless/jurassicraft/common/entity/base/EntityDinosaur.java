@@ -32,6 +32,7 @@ import net.timeless.animationapi.client.AnimID;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.disease.Disease;
+import net.timeless.jurassicraft.common.entity.ai.EntityAIMetabolism;
 import net.timeless.jurassicraft.common.genetics.GeneticsContainer;
 import net.timeless.jurassicraft.common.genetics.GeneticsHelper;
 import net.timeless.jurassicraft.common.item.ItemBluePrint;
@@ -66,6 +67,9 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
     private ItemStack[] inventory = new ItemStack[54];
 
+    private double energy;
+    private double water;
+
     @Override
     public void setNavigator(PathNavigate pn)
     {
@@ -76,6 +80,10 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     {
         super(world);
         //tasks.addTask(0, new EntityAISwimming(this));
+
+        energy = 24000;
+        water = 24000;
+        tasks.addTask(0, new EntityAIMetabolism(this));
 
         dinosaurAge = 0;
 
@@ -99,6 +107,36 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     public void setHasTracker(boolean hasTracker)
     {
         this.hasTracker = hasTracker;
+    }
+
+    public double getWater()
+    {
+        return water;
+    }
+
+    public double getEnergy()
+    {
+        return energy;
+    }
+
+    public void decreaseEnergy()
+    {
+        energy--;
+
+        if(energy < 0)
+        {
+            setDead();
+        }
+    }
+
+    public void setWater(double water)
+    {
+        this.water = water;
+    }
+
+    public void setEnergy(double energy)
+    {
+        this.energy = energy;
     }
 
     @Override
@@ -297,6 +335,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         nbt.setBoolean("IsMale", isMale);
         nbt.setInteger("GrowthSpeedOffset", growthSpeedOffset);
         nbt.setBoolean("HasTracker", hasTracker);
+        nbt.setDouble("Energy", energy);
+        nbt.setDouble("Water", water);
 
         NBTTagList nbttaglist = new NBTTagList();
 
@@ -327,6 +367,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         isMale = nbt.getBoolean("IsMale");
         growthSpeedOffset = nbt.getInteger("GrowthSpeedOffset");
         hasTracker = nbt.getBoolean("HasTracker");
+        energy = nbt.getDouble("Energy");
+        water = nbt.getDouble("Water");
 
         NBTTagList nbttaglist = nbt.getTagList("Items", 10);
         this.inventory = new ItemStack[this.getSizeInventory()];
@@ -356,6 +398,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         buffer.writeBoolean(isMale);
         buffer.writeBoolean(hasTracker);
         buffer.writeInt(growthSpeedOffset);
+        buffer.writeDouble(energy);
+        buffer.writeDouble(water);
         ByteBufUtils.writeUTF8String(buffer, genetics.toString());
     }
 
@@ -369,6 +413,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         isMale = additionalData.readBoolean();
         hasTracker = additionalData.readBoolean();
         growthSpeedOffset = additionalData.readInt();
+        energy = additionalData.readDouble();
+        water = additionalData.readDouble();
 
         genetics = new GeneticsContainer(ByteBufUtils.readUTF8String(additionalData));
 
