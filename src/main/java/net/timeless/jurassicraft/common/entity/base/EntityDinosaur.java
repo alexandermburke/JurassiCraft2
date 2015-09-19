@@ -6,10 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILeapAtTarget;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -32,6 +29,7 @@ import net.timeless.animationapi.client.AnimID;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.disease.Disease;
+import net.timeless.jurassicraft.common.entity.ai.EntityAIDrink;
 import net.timeless.jurassicraft.common.entity.ai.EntityAIFindPlant;
 import net.timeless.jurassicraft.common.entity.ai.EntityAIMetabolism;
 import net.timeless.jurassicraft.common.genetics.GeneticsContainer;
@@ -80,11 +78,17 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     public EntityDinosaur(World world)
     {
         super(world);
-        //tasks.addTask(0, new EntityAISwimming(this));
 
         energy = 12000;
         water = 12000;
+
+        if(!dinosaur.isMarineAnimal())
+        {
+            tasks.addTask(0, new EntityAISwimming(this));
+        }
+
         tasks.addTask(0, new EntityAIMetabolism(this));
+        tasks.addTask(1, new EntityAIDrink(this));
 
         dinosaurAge = 0;
 
@@ -125,6 +129,16 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         energy--;
 
         if(energy <= 0)
+        {
+            this.attackEntityFrom(DamageSource.outOfWorld, Float.MAX_VALUE);
+        }
+    }
+
+    public void decreaseWater()
+    {
+        water--;
+
+        if(water <= 0)
         {
             this.attackEntityFrom(DamageSource.outOfWorld, Float.MAX_VALUE);
         }
@@ -243,7 +257,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         if (ticksExisted % 8 == 0)
         {
             this.dinosaurAge += Math.min(growthSpeedOffset, 960) + 1;
-            this.energy -= (Math.min(growthSpeedOffset, 960) + 1) * 0.2;
+            this.energy -= (Math.min(growthSpeedOffset, 960) + 1) * 0.1;
 
             if (dinosaurAge % 20 == 0)
             {

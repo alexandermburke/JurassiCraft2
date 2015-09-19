@@ -22,5 +22,6 @@ public class EntityAIMetabolism extends EntityAIBase
     public void updateTask()
     {
         dinosaur.decreaseEnergy();
+        dinosaur.decreaseWater();
     }
 }
