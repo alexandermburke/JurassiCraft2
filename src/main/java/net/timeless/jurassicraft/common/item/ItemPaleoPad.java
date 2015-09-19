@@ -45,7 +45,7 @@ public class ItemPaleoPad extends Item
 
             if (player.worldObj.isRemote)
             {
-                player.addChatMessage(new ChatComponentText("Days Existed: " + dino.getDaysExisted())); //TODO view entity
+                player.addChatMessage(new ChatComponentText("Days Existed: " + dino.getDaysExisted())); //TODO view entity (size / screensize)
             }
 
             return true;
