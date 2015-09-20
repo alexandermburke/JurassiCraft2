@@ -160,7 +160,12 @@ public class GuiAppMinimap extends GuiApp
                                 GL11.glColor3f(red, green, blue);
 
                                 mc.getTextureManager().bindTexture(GuiAppMinimap.entity);
-                                gui.drawScaledTexturedModalRect(((int) dino.posX & 15) + (renderChunkX * 16) + 90, ((int) dino.posZ & 15) + (renderChunkY * 16) + 15, 0, 0, 16, 16, 16, 16, 0.6F);
+                                int entityRenderX = ((int) dino.posX & 15) + (renderChunkX * 16) + 90;
+                                int entityRenderY = ((int) dino.posZ & 15) + (renderChunkY * 16) + 15;
+
+                                gui.drawScaledTexturedModalRect(entityRenderX, entityRenderY, 0, 0, 16, 16, 16, 16, 0.6F);
+
+                                gui.drawCenteredScaledText((int) dino.posX + " " + (int) dino.posY + " " + (int) dino.posZ, entityRenderX + 5, entityRenderY + 8, 0.3F, 0xFFFFFF);
                             }
                         }
                     }
@@ -172,6 +177,10 @@ public class GuiAppMinimap extends GuiApp
             renderChunkY = 0;
             renderChunkX++;
         }
+
+        mc.getTextureManager().bindTexture(GuiAppMinimap.entity);
+
+        gui.drawScaledTexturedModalRect(155, 88, 0, 0, 16, 16, 16, 16, 0.6F);
     }
 
     @Override
