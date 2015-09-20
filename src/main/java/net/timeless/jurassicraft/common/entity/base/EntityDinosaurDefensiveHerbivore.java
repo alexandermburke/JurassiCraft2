@@ -18,10 +18,7 @@ import net.timeless.jurassicraft.common.entity.ai.EntityAIJCPanic;
 
 public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements IMob
 {
-
-    private final EntityAIJCEatGrass entityAIEatGrass = new EntityAIJCEatGrass(this);
     private final EntityAIJCPanic entityAIPanic = new EntityAIJCPanic(this, 1.25D);
-    private int eatTimer;
 
     public EntityDinosaurDefensiveHerbivore(World world)
     {
@@ -29,13 +26,6 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
 //        tasks.addTask(5, entityAIEatGrass);
         tasks.addTask(1, entityAIPanic);
         tasks.addTask(1, new EntityAIFindPlant(this));
-    }
-
-    @Override
-	protected void updateAITasks()
-    {
-        super.updateAITasks();
-        eatTimer = entityAIEatGrass.getEatingGrassTimer();
     }
 
     /**
@@ -46,35 +36,7 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
 	public void onLivingUpdate()
     {
         super.onLivingUpdate();
-        if (worldObj.isRemote)
-        {
-            eatTimer = Math.max(0, eatTimer - 1);
-        }
         updateArmSwingProgress();
-    }
-
-    @Override
-	@SideOnly(Side.CLIENT)
-    public void handleHealthUpdate(byte p_70103_1_)
-    {
-        if (p_70103_1_ == 10)
-        {
-            eatTimer = 40;
-        }
-        else
-        {
-            super.handleHealthUpdate(p_70103_1_);
-        }
-    }
-
-    @Override
-	public void eatGrassBonus()
-    {
-        if (isChild())
-        {
-            setAge((int) (dinosaurAge + dinosaurAge * 0.05));
-        }
-        setHealth((float) (getHealth() + getHealth() * 0.15));
     }
 
     /**
@@ -142,10 +104,5 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
         super.updateCreatureData();
 
         getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(transitionFromAge(dinosaur.getBabyStrength(), dinosaur.getAdultStrength()));
-    }
-
-    protected boolean func_146066_aG()
-    {
-        return true;
     }
 }
