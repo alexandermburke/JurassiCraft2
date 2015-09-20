@@ -104,5 +104,7 @@ public class AnimationBaryonyx implements IModelAnimator
         model.chainWave(rightArmParts, 0.1F, -0.1F, 4, ticksExisted, 1.0F);
         model.chainWave(leftArmParts, 0.1F, -0.1F, 4, ticksExisted, 1.0F);
         model.chainSwing(tailParts, 0.1F, -0.1F, 3, ticksExisted, 1.0F);
+
+        entity.tailBuffer.applyChainSwingBuffer(tailParts);
     }
 }
