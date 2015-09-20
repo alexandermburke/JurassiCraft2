@@ -4,29 +4,27 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.MapItemRenderer;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Vec4b;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.client.gui.GuiPaleoTab;
+import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
+import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.common.paleopad.App;
-import net.timeless.jurassicraft.common.paleopad.AppFlappyDino;
 import net.timeless.jurassicraft.common.paleopad.AppMinimap;
 import org.lwjgl.opengl.GL11;
-
-import java.util.Iterator;
 
 public class GuiAppMinimap extends GuiApp
 {
     private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_pad/apps/minimap.png");
+
+    private static final ResourceLocation entity = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_pad/apps/background/entity.png");
 
     public GuiAppMinimap(App app)
     {
@@ -125,6 +123,50 @@ public class GuiAppMinimap extends GuiApp
                 renderChunkY++;
 
                 gui.drawBoxOutline(renderChunkX * 16 + 89, renderChunkY * 16 - 2, 16, 16, 1, 1.0F, 0x606060);
+            }
+
+            renderChunkY = 0;
+            renderChunkX++;
+        }
+
+        renderChunkX = 0;
+        renderChunkY = 0;
+
+        for (int chunkX = playerChunkX - 4; chunkX < playerChunkX + 4; chunkX++)
+        {
+            for (int chunkZ = playerChunkZ - 4; chunkZ < playerChunkZ + 4; chunkZ++)
+            {
+                Chunk chunk = world.getChunkFromChunkCoords(chunkX, chunkZ);
+
+                if (!chunk.isEmpty())
+                {
+                    for (Object e : world.getEntitiesWithinAABBExcludingEntity(player, AxisAlignedBB.fromBounds(chunkX * 16, 0, chunkZ * 16, (chunkX * 16) + 16, 256, (chunkZ * 16) + 16)))
+                    {
+                        Entity entity = (Entity) e;
+
+                        if(entity instanceof EntityDinosaur)
+                        {
+                            EntityDinosaur dino = (EntityDinosaur) entity;
+
+                            if(dino.hasTracker())
+                            {
+                                Dinosaur dinosaur = dino.getDinosaur();
+                                int colour = dinosaur.getEggPrimaryColor();
+
+                                float red = (float) (colour >> 16 & 255) / 255.0F;
+                                float green = (float) (colour >> 8 & 255) / 255.0F;
+                                float blue = (float) (colour & 255) / 255.0F;
+
+                                GL11.glColor3f(red, green, blue);
+
+                                mc.getTextureManager().bindTexture(GuiAppMinimap.entity);
+                                gui.drawScaledTexturedModalRect(((int) dino.posX & 15) + (renderChunkX * 16) + 90, ((int) dino.posZ & 15) + (renderChunkY * 16) + 15, 0, 0, 16, 16, 16, 16, 0.6F);
+                            }
+                        }
+                    }
+                }
+
+                renderChunkY++;
             }
 
             renderChunkY = 0;

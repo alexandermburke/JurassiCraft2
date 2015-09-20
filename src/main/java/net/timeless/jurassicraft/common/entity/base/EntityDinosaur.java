@@ -62,12 +62,12 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
     private int growthSpeedOffset;
 
-    private boolean hasTracker;
-
     private ItemStack[] inventory = new ItemStack[54];
 
     private double energy;
     private double water;
+
+    private boolean hasTracker;
 
     @Override
     public void setNavigator(PathNavigate pn)
@@ -109,9 +109,21 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         return hasTracker;
     }
 
-    public void setHasTracker(boolean hasTracker)
+    public boolean checkForTracker()
     {
-        this.hasTracker = hasTracker;
+        for (int i = 0; i < getSizeInventory(); i++)
+        {
+            ItemStack stack = getStackInSlot(i);
+
+            if(stack != null && stack.getItem() == JCItemRegistry.tracker)
+            {
+                hasTracker = true;
+                return true;
+            }
+        }
+
+        hasTracker = false;
+        return false;
     }
 
     public double getWater()
@@ -161,6 +173,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         this.dataWatcher.addObject(25, 0);
         this.dataWatcher.addObject(26, 0);
         this.dataWatcher.addObject(27, 0);
+        this.dataWatcher.addObject(28, 0);
     }
 
     /**
@@ -290,6 +303,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
             }
 
             this.dataWatcher.updateObject(27, growthSpeedOffset);
+
+            this.dataWatcher.updateObject(28, hasTracker ? 1 : 0);
         }
         else
         {
@@ -303,6 +318,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
             }
 
             this.growthSpeedOffset = this.dataWatcher.getWatchableObjectInt(27);
+
+            this.hasTracker = this.dataWatcher.getWatchableObjectInt(28) == 1;
         }
 
 //        if (!worldObj.isRemote)
@@ -350,7 +367,6 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         nbt.setString("Genetics", genetics.toString());
         nbt.setBoolean("IsMale", isMale);
         nbt.setInteger("GrowthSpeedOffset", growthSpeedOffset);
-        nbt.setBoolean("HasTracker", hasTracker);
         nbt.setDouble("Energy", energy);
         nbt.setDouble("Water", water);
 
@@ -382,7 +398,6 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         genetics = new GeneticsContainer(nbt.getString("Genetics"));
         isMale = nbt.getBoolean("IsMale");
         growthSpeedOffset = nbt.getInteger("GrowthSpeedOffset");
-        hasTracker = nbt.getBoolean("HasTracker");
         energy = nbt.getDouble("Energy");
         water = nbt.getDouble("Water");
 
@@ -396,7 +411,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
             if (j >= 0 && j < this.inventory.length)
             {
-                this.inventory[j] = ItemStack.loadItemStackFromNBT(slotTag);
+                this.setInventorySlotContents(j, ItemStack.loadItemStackFromNBT(slotTag));
             }
         }
 
@@ -412,7 +427,6 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 //        buffer.writeBoolean(isCarcass);
         buffer.writeInt(quality);
         buffer.writeBoolean(isMale);
-        buffer.writeBoolean(hasTracker);
         buffer.writeInt(growthSpeedOffset);
         buffer.writeDouble(energy);
         buffer.writeDouble(water);
@@ -427,7 +441,6 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 //        isCarcass = additionalData.readBoolean();
         quality = additionalData.readInt();
         isMale = additionalData.readBoolean();
-        hasTracker = additionalData.readBoolean();
         growthSpeedOffset = additionalData.readInt();
         energy = additionalData.readDouble();
         water = additionalData.readDouble();
@@ -753,7 +766,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
             if (this.inventory[index].stackSize <= count)
             {
                 itemstack = this.inventory[index];
-                this.inventory[index] = null;
+                this.setInventorySlotContents(index, null);
                 return itemstack;
             }
             else
@@ -762,7 +775,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
                 if (this.inventory[index].stackSize == 0)
                 {
-                    this.inventory[index] = null;
+                    this.setInventorySlotContents(index, null);
                 }
 
                 return itemstack;
@@ -780,7 +793,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         if (this.inventory[index] != null)
         {
             ItemStack itemstack = this.inventory[index];
-            this.inventory[index] = null;
+            this.setInventorySlotContents(index, null);
             return itemstack;
         }
         else
@@ -793,6 +806,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     public void setInventorySlotContents(int index, ItemStack stack)
     {
         this.inventory[index] = stack;
+
+        checkForTracker();
 
         if (stack != null && stack.stackSize > this.getInventoryStackLimit())
         {
@@ -850,7 +865,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     {
         for (int i = 0; i < getSizeInventory(); i++)
         {
-            inventory[i] = null;
+            this.setInventorySlotContents(i, null);
         }
     }
 }
