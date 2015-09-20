@@ -7,6 +7,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.timeless.animationapi.client.AnimID;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 
@@ -23,7 +24,7 @@ public class PacketAnim implements IMessage
     {
         // DEBUG
         System.out.println("Constructing PacketAnim");
-        
+
         animID = anim;
         entityID = entity;
     }
@@ -48,23 +49,24 @@ public class PacketAnim implements IMessage
         public IMessage onMessage(final PacketAnim packet, MessageContext ctx)
         {
             // DEBUG
-            System.out.println("PacketAnim received for entity "+packet.entityID+" and animation ID "+packet.animID);
+            System.out.println("PacketAnim received for entity " + packet.entityID + " and animation ID "
+                    + packet.animID);
 
             final EntityPlayer player = JurassiCraft.proxy.getPlayerEntityFromContext(ctx);
 
-        	Minecraft.getMinecraft().addScheduledTask(new Runnable() 
+            Minecraft.getMinecraft().addScheduledTask(new Runnable()
             {
                 @Override
-                public void run() 
-                {        	
-                	World world = player.worldObj;
-                	EntityDinosaur entity = (EntityDinosaur) world.getEntityByID(packet.entityID);
+                public void run()
+                {
+                    World world = player.worldObj;
+                    EntityDinosaur entity = (EntityDinosaur) world.getEntityByID(packet.entityID);
 
                     if (entity != null && packet.animID != -1)
                     {
-                        entity.setAnimID(packet.animID);
+                        entity.setAnimID(AnimID.values()[packet.animID]);
                     }
-                    
+
                 }
             });
 

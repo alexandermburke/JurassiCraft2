@@ -6,7 +6,6 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.timeless.animationapi.AnimationAPI;
-import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.AnimID;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 
@@ -26,9 +25,9 @@ public class EntityAIFindPlant extends EntityAIBase
     {
         double energy = dinosaur.getEnergy();
 
-        if(energy > 0 && dinosaur.ticksExisted % 8 == 0)
+        if (energy > 0 && dinosaur.ticksExisted % 8 == 0)
         {
-            if(dinosaur.getRNG().nextInt((int) energy) < (energy / 4))
+            if (dinosaur.getRNG().nextInt((int) energy) < (energy / 4))
             {
                 int posX = (int) dinosaur.posX;
                 int posY = (int) dinosaur.posY;
@@ -51,7 +50,7 @@ public class EntityAIFindPlant extends EntityAIBase
                         {
                             Block block = world.getBlockState(new BlockPos(x, y, z)).getBlock();
 
-                            if(block instanceof BlockBush)
+                            if (block instanceof BlockBush)
                             {
                                 int diffX = posX - x;
                                 int diffY = posY - y;
@@ -59,7 +58,7 @@ public class EntityAIFindPlant extends EntityAIBase
 
                                 int dist = (diffX * diffX) + (diffY * diffY) + (diffZ * diffZ);
 
-                                if(dist < closestDist)
+                                if (dist < closestDist)
                                 {
                                     closestDist = dist;
                                     closestX = x;
@@ -73,7 +72,7 @@ public class EntityAIFindPlant extends EntityAIBase
                     }
                 }
 
-                if(found)
+                if (found)
                 {
                     this.x = closestX;
                     this.y = closestY;
@@ -91,7 +90,7 @@ public class EntityAIFindPlant extends EntityAIBase
     @Override
     public void updateTask()
     {
-        if((dinosaur.getDistanceSq(x, y, z) / 16) <= dinosaur.width)
+        if ((dinosaur.getDistanceSq(x, y, z) / 16) <= dinosaur.width)
         {
             if (dinosaur.getAnimID() != AnimID.EATING)
             {
@@ -110,6 +109,7 @@ public class EntityAIFindPlant extends EntityAIBase
     /**
      * Returns whether an in-progress EntityAIBase should continue executing
      */
+    @Override
     public boolean continueExecuting()
     {
         return !this.dinosaur.getNavigator().noPath();

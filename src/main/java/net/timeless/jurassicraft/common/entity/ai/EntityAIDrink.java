@@ -1,7 +1,6 @@
 package net.timeless.jurassicraft.common.entity.ai;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockBush;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
@@ -26,9 +25,9 @@ public class EntityAIDrink extends EntityAIBase
     {
         double water = dinosaur.getWater();
 
-        if(water > 0 && dinosaur.ticksExisted % 8 == 0)
+        if (water > 0 && dinosaur.ticksExisted % 8 == 0)
         {
-            if(dinosaur.getRNG().nextInt((int) water) < (water / 4))
+            if (dinosaur.getRNG().nextInt((int) water) < (water / 4))
             {
                 int posX = (int) dinosaur.posX;
                 int posY = (int) dinosaur.posY;
@@ -51,7 +50,7 @@ public class EntityAIDrink extends EntityAIBase
                         {
                             Block block = world.getBlockState(new BlockPos(x, y, z)).getBlock();
 
-                            if(block == Blocks.water)
+                            if (block == Blocks.water)
                             {
                                 int diffX = posX - x;
                                 int diffY = posY - y;
@@ -59,7 +58,7 @@ public class EntityAIDrink extends EntityAIBase
 
                                 int dist = (diffX * diffX) + (diffY * diffY) + (diffZ * diffZ);
 
-                                if(dist < closestDist)
+                                if (dist < closestDist)
                                 {
                                     closestDist = dist;
                                     closestX = x;
@@ -73,7 +72,7 @@ public class EntityAIDrink extends EntityAIBase
                     }
                 }
 
-                if(found)
+                if (found)
                 {
                     this.x = closestX;
                     this.y = closestY;
@@ -91,7 +90,7 @@ public class EntityAIDrink extends EntityAIBase
     @Override
     public void updateTask()
     {
-        if((dinosaur.getDistanceSq(x, y, z) / 16) <= dinosaur.width)
+        if ((dinosaur.getDistanceSq(x, y, z) / 16) <= dinosaur.width)
         {
             if (dinosaur.getAnimID() != AnimID.DRINKING)
             {
@@ -105,6 +104,7 @@ public class EntityAIDrink extends EntityAIBase
     /**
      * Returns whether an in-progress EntityAIBase should continue executing
      */
+    @Override
     public boolean continueExecuting()
     {
         return !this.dinosaur.getNavigator().noPath();

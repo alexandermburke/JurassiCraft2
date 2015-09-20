@@ -6,21 +6,20 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
-import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
+import net.timeless.animationapi.client.AnimID;
 import net.timeless.jurassicraft.common.entity.ai.animations.JCNonAutoAnimSoundBase;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
 
-public class EntityIndominusRex extends EntityDinosaurAggressive  //implements ICarnivore, IEntityAICreature
+public class EntityIndominusRex extends EntityDinosaurAggressive // implements ICarnivore, IEntityAICreature
 {
     public ChainBuffer tailBuffer = new ChainBuffer(7);
 
-    private static final String[] hurtSounds = new String[]{"indominus_hurt_1"};
-    private static final String[] livingSounds = new String[]{"indominus_living_1"};
-    private static final String[] deathSounds = new String[]{"indominus_death_1"};
-    private static final String[] breathSounds = new String[]{"indominus_breath"};
+    private static final String[] hurtSounds = new String[] { "indominus_hurt_1" };
+    private static final String[] livingSounds = new String[] { "indominus_living_1" };
+    private static final String[] deathSounds = new String[] { "indominus_death_1" };
+    private static final String[] breathSounds = new String[] { "indominus_breath" };
 
     @SideOnly(Side.CLIENT)
     private float[] newSkinColor = new float[3];
@@ -33,11 +32,12 @@ public class EntityIndominusRex extends EntityDinosaurAggressive  //implements I
     public EntityIndominusRex(World world)
     {
         super(world);
-        tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, 1, 750, breathSounds[0], 1.5F));
+        tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, AnimID.IDLE, 750, breathSounds[0], 1.5F));
         this.attackCreature(EntityDinosaur.class, 0);
         this.defendFromAttacker(EntityDinosaur.class, 0);
     }
 
+    @Override
     public void onUpdate()
     {
         super.onUpdate();
@@ -56,12 +56,12 @@ public class EntityIndominusRex extends EntityDinosaurAggressive  //implements I
 
         this.stepCount -= this.moveForward * 9.5;
 
-        if(worldObj.isRemote)
+        if (worldObj.isRemote)
         {
             changeSkinColor();
         }
-//        if (getAnimID() == 0)
-//            AnimationAPI.sendAnimPacket(this, 1);
+        // if (getAnimID() == 0)
+        // AnimationAPI.sendAnimPacket(this, 1);
     }
 
     @Override
@@ -70,16 +70,19 @@ public class EntityIndominusRex extends EntityDinosaurAggressive  //implements I
         return (float) transitionFromAge(0.9F, 1.6F) + ((rand.nextFloat() - 0.5F) * 0.125F);
     }
 
+    @Override
     public String getLivingSound()
     {
         return randomSound(livingSounds);
     }
 
+    @Override
     public String getHurtSound()
     {
         return randomSound(hurtSounds);
     }
 
+    @Override
     public String getDeathSound()
     {
         return randomSound(deathSounds);
@@ -137,6 +140,6 @@ public class EntityIndominusRex extends EntityDinosaurAggressive  //implements I
     @SideOnly(Side.CLIENT)
     public float[] getSkinColor()
     {
-        return new float[]{this.skinColor[0] / 255.0F, this.skinColor[1] / 255.0F, this.skinColor[2] / 255.0F};
+        return new float[] { this.skinColor[0] / 255.0F, this.skinColor[1] / 255.0F, this.skinColor[2] / 255.0F };
     }
 }

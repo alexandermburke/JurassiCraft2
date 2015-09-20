@@ -18,19 +18,26 @@ import net.timeless.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
 import net.timeless.unilib.common.animation.ControlledAnimation;
 
-public class EntityVelociraptor extends EntityDinosaurAggressive  //implements ICarnivore, IEntityAICreature
+public class EntityVelociraptor extends EntityDinosaurAggressive // implements ICarnivore, IEntityAICreature
 {
     public ChainBuffer tailBuffer = new ChainBuffer(6);
 
-    private static final String[] hurtSounds = new String[]{"velociraptor_hurt_1"};
-    private static final String[] livingSounds = new String[]{"velociraptor_living_1", "velociraptor_living_2", "velociraptor_living_3"};
-    private static final String[] deathSounds = new String[]{"velociraptor_death_1"};
-    private static final String[] callSounds = new String[]{"velociraptor_call_1", "velociraptor_call_2", "velociraptor_call_3"};
-    private static final String[] barkSounds = new String[]{"velociraptor_bark_1", "velociraptor_bark_2", "velociraptor_bark_3"};
-    private static final String[] hissSounds = new String[]{"velociraptor_hiss_1", "velociraptor_hiss_2", "velociraptor_hiss_3"};
+    private static final String[] hurtSounds = new String[] { "velociraptor_hurt_1" };
+    private static final String[] livingSounds = new String[] { "velociraptor_living_1", "velociraptor_living_2",
+            "velociraptor_living_3" };
+    private static final String[] deathSounds = new String[] { "velociraptor_death_1" };
+    private static final String[] callSounds = new String[] { "velociraptor_call_1", "velociraptor_call_2",
+            "velociraptor_call_3" };
+    private static final String[] barkSounds = new String[] { "velociraptor_bark_1", "velociraptor_bark_2",
+            "velociraptor_bark_3" };
+    private static final String[] hissSounds = new String[] { "velociraptor_hiss_1", "velociraptor_hiss_2",
+            "velociraptor_hiss_3" };
 
-    private static final Class[] targets = {EntityCompsognathus.class, EntityPlayer.class, EntityDilophosaurus.class, EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class, EntityHypsilophodon.class, EntitySegisaurus.class, EntityProtoceratops.class, EntityOthnielia.class, EntityMicroceratus.class};
-    private static final Class[] deftargets = {EntityPlayer.class, EntityTyrannosaurus.class, EntityGiganotosaurus.class, EntitySpinosaurus.class};
+    private static final Class[] targets = { EntityCompsognathus.class, EntityPlayer.class, EntityDilophosaurus.class,
+            EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class, EntityHypsilophodon.class,
+            EntitySegisaurus.class, EntityProtoceratops.class, EntityOthnielia.class, EntityMicroceratus.class };
+    private static final Class[] deftargets = { EntityPlayer.class, EntityTyrannosaurus.class,
+            EntityGiganotosaurus.class, EntitySpinosaurus.class };
 
     public ControlledAnimation dontLean = new ControlledAnimation(5);
     private final int frame = this.ticksExisted;
@@ -39,16 +46,16 @@ public class EntityVelociraptor extends EntityDinosaurAggressive  //implements I
     {
         super(world);
 
-        tasks.addTask(2, new JCAutoAnimBase(this, 25, 1)); //Call
+        tasks.addTask(2, new JCAutoAnimBase(this, 25, AnimID.IDLE)); // Call
         this.tasks.addTask(4, new EntityAIOpenDoor(this, true));
 
-        //        tasks.addTask(2, new JCAutoAnimBase(this, 25, 2)); //Attack
-        //        tasks.addTask(2, new JCAutoAnimBase(this, 25, 3)); //Die
-        //        tasks.addTask(2, new JCAutoAnimBase(this, 6, 4)); //Hurt
-        tasks.addTask(2, new JCNonAutoAnimBase(this, 25, 10, 100)); //Head twitch right
-        tasks.addTask(2, new JCNonAutoAnimBase(this, 25, 11, 100)); //Head twitch left
-        tasks.addTask(2, new JCNonAutoAnimBase(this, 45, 12, 150)); //Sniff
-        tasks.addTask(2, new AnimationAICall(this, 78, 30));
+        // tasks.addTask(2, new JCAutoAnimBase(this, 25, 2)); //Attack
+        // tasks.addTask(2, new JCAutoAnimBase(this, 25, 3)); //Die
+        // tasks.addTask(2, new JCAutoAnimBase(this, 6, 4)); //Hurt
+        tasks.addTask(2, new JCNonAutoAnimBase(this, 25, AnimID.LOOKING_RIGHT, 100)); // Head twitch right
+        tasks.addTask(2, new JCNonAutoAnimBase(this, 25, AnimID.LOOKING_LEFT, 100)); // Head twitch left
+        tasks.addTask(2, new JCNonAutoAnimBase(this, 45, AnimID.SNIFFING, 150)); // Sniff
+        tasks.addTask(2, new AnimationAICall(this, 78, AnimID.CALLING));
 
         for (int i = 0; i < targets.length; i++)
         {
@@ -60,7 +67,8 @@ public class EntityVelociraptor extends EntityDinosaurAggressive  //implements I
         }
     }
 
-    //NOTE: This adds an attack target. Class should be the entity class for the target, lower prio get executed earlier
+    // NOTE: This adds an attack target. Class should be the entity class for the target, lower prio get executed
+    // earlier
     @Override
     protected void attackCreature(Class entity, int prio)
     {
@@ -68,7 +76,6 @@ public class EntityVelociraptor extends EntityDinosaurAggressive  //implements I
         this.tasks.addTask(1, new EntityAILeapAtTarget(this, 0.5F));
         this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, entity, false));
     }
-
 
     public String getCallSound()
     {
@@ -114,7 +121,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive  //implements I
         if (getAttackTarget() != null)
             circleEntity(getAttackTarget(), 7, 1.0f, true, 0);
 
-        if (getAnimID() == 12 || getAnimID() == 1)
+        if (getAnimID() == AnimID.RESTING || getAnimID() == AnimID.ATTACKING)
             dontLean.decreaseTimer();
         else
             dontLean.increaseTimer();
@@ -124,9 +131,17 @@ public class EntityVelociraptor extends EntityDinosaurAggressive  //implements I
     {
         EntityVelociraptor[] pack;
         int directionInt = direction ? 1 : -1;
-        if(getDistanceSqToEntity(target) > radius - 1)
+        if (getDistanceSqToEntity(target) > radius - 1)
         {
-            getNavigator().tryMoveToXYZ(target.posX + radius * Math.cos(directionInt * (ticksExisted + offset) * 0.5 * speed / radius), target.posY, target.posZ + radius * Math.sin(directionInt * (ticksExisted + offset) * 0.5 * speed / radius), speed);
+            getNavigator().tryMoveToXYZ(target.posX
+                                                + radius
+                                                * Math.cos(directionInt * (ticksExisted + offset) * 0.5 * speed
+                                                        / radius),
+                                        target.posY,
+                                        target.posZ
+                                                + radius
+                                                * Math.sin(directionInt * (ticksExisted + offset) * 0.5 * speed
+                                                        / radius), speed);
         }
     }
 }

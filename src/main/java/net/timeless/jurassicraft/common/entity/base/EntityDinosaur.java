@@ -6,7 +6,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.*;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAILeapAtTarget;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -30,7 +34,6 @@ import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.disease.Disease;
 import net.timeless.jurassicraft.common.entity.ai.EntityAIDrink;
-import net.timeless.jurassicraft.common.entity.ai.EntityAIFindPlant;
 import net.timeless.jurassicraft.common.entity.ai.EntityAIMetabolism;
 import net.timeless.jurassicraft.common.genetics.GeneticsContainer;
 import net.timeless.jurassicraft.common.genetics.GeneticsHelper;
@@ -47,12 +50,12 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
     protected Set<Disease> diseases = new HashSet<Disease>();
 
-//    private boolean isCarcass;
+    // private boolean isCarcass;
 
     private int quality;
 
     private int animTick;
-    private int animID;
+    private AnimID animID;
 
     private GeneticsContainer genetics;
 
@@ -82,7 +85,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         energy = 12000;
         water = 12000;
 
-        if(!dinosaur.isMarineAnimal())
+        if (!dinosaur.isMarineAnimal())
         {
             tasks.addTask(0, new EntityAISwimming(this));
         }
@@ -115,7 +118,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         {
             ItemStack stack = getStackInSlot(i);
 
-            if(stack != null && stack.getItem() == JCItemRegistry.tracker)
+            if (stack != null && stack.getItem() == JCItemRegistry.tracker)
             {
                 hasTracker = true;
                 return true;
@@ -140,7 +143,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     {
         energy--;
 
-        if(energy <= 0)
+        if (energy <= 0)
         {
             this.attackEntityFrom(DamageSource.outOfWorld, Float.MAX_VALUE);
         }
@@ -150,7 +153,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     {
         water--;
 
-        if(water <= 0)
+        if (water <= 0)
         {
             this.attackEntityFrom(DamageSource.outOfWorld, Float.MAX_VALUE);
         }
@@ -203,17 +206,21 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         double newHealth = transitionFromAge(dinosaur.getBabyHealth(), dinosaur.getAdultHealth());
 
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(newHealth);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(transitionFromAge(dinosaur.getBabySpeed(), dinosaur.getAdultSpeed()));
-        this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(transitionFromAge(dinosaur.getBabyKnockback(), dinosaur.getAdultKnockback()));
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(transitionFromAge(dinosaur
+                                                                                            .getBabySpeed(), dinosaur
+                                                                                            .getAdultSpeed()));
+        this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance)
+                .setBaseValue(transitionFromAge(dinosaur.getBabyKnockback(), dinosaur.getAdultKnockback()));
 
-//        adjustHitbox();
+        // adjustHitbox();
 
         this.heal((float) (newHealth - lastDamage));
     }
 
     private void adjustHitbox()
     {
-        this.setSize((float) transitionFromAge(dinosaur.getBabySizeX(), dinosaur.getAdultSizeX()), (float) transitionFromAge(dinosaur.getBabySizeY(), dinosaur.getAdultSizeY()));
+        this.setSize((float) transitionFromAge(dinosaur.getBabySizeX(), dinosaur.getAdultSizeX()),
+                     (float) transitionFromAge(dinosaur.getBabySizeY(), dinosaur.getAdultSizeY()));
     }
 
     public double transitionFromAge(double baby, double adult)
@@ -260,7 +267,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     {
         super.onLivingUpdate();
 
-        if(firstUpdate)
+        if (firstUpdate)
         {
             updateCreatureData();
         }
@@ -277,11 +284,11 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
                 updateCreatureData();
             }
 
-            if(growthSpeedOffset > 0)
+            if (growthSpeedOffset > 0)
             {
                 growthSpeedOffset -= 10;
 
-                if(growthSpeedOffset < 0)
+                if (growthSpeedOffset < 0)
                 {
                     growthSpeedOffset = 0;
                 }
@@ -294,9 +301,9 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     {
         super.onUpdate();
 
-        if(!worldObj.isRemote)
+        if (!worldObj.isRemote)
         {
-            if(prevAge != dinosaurAge)
+            if (prevAge != dinosaurAge)
             {
                 this.dataWatcher.updateObject(26, dinosaurAge);
                 this.prevAge = dinosaurAge;
@@ -305,12 +312,11 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
             this.dataWatcher.updateObject(27, growthSpeedOffset);
 
             this.dataWatcher.updateObject(28, hasTracker ? 1 : 0);
-        }
-        else
+        } else
         {
             int age = this.dataWatcher.getWatchableObjectInt(26);
 
-            if(age != dinosaurAge)
+            if (age != dinosaurAge)
             {
                 this.updateCreatureData();
                 this.adjustHitbox();
@@ -322,14 +328,14 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
             this.hasTracker = this.dataWatcher.getWatchableObjectInt(28) == 1;
         }
 
-//        if (!worldObj.isRemote)
-//        {
-//            dataWatcher.updateObject(25, isCarcass ? 1 : 0);
-//        }
-//        else
-//        {
-//            isCarcass = dataWatcher.getWatchableObjectInt(25) == 1;
-//        }
+        // if (!worldObj.isRemote)
+        // {
+        // dataWatcher.updateObject(25, isCarcass ? 1 : 0);
+        // }
+        // else
+        // {
+        // isCarcass = dataWatcher.getWatchableObjectInt(25) == 1;
+        // }
         if (getAnimID() != AnimID.IDLE)
             animTick++;
     }
@@ -362,7 +368,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
         nbt.setInteger("Texture", randTexture);
         nbt.setDouble("DinosaurAge", dinosaurAge);
-//        nbt.setBoolean("IsCarcass", isCarcass);
+        // nbt.setBoolean("IsCarcass", isCarcass);
         nbt.setInteger("DNAQuality", quality);
         nbt.setString("Genetics", genetics.toString());
         nbt.setBoolean("IsMale", isMale);
@@ -377,7 +383,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
             if (this.inventory[i] != null)
             {
                 NBTTagCompound slotTag = new NBTTagCompound();
-                slotTag.setByte("Slot", (byte)i);
+                slotTag.setByte("Slot", (byte) i);
                 this.inventory[i].writeToNBT(slotTag);
                 nbttaglist.appendTag(slotTag);
             }
@@ -393,7 +399,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
         randTexture = nbt.getInteger("Texture");
         dinosaurAge = nbt.getInteger("DinosaurAge");
-//        isCarcass = nbt.getBoolean("IsCarcass");
+        // isCarcass = nbt.getBoolean("IsCarcass");
         quality = nbt.getInteger("DNAQuality");
         genetics = new GeneticsContainer(nbt.getString("Genetics"));
         isMale = nbt.getBoolean("IsMale");
@@ -424,7 +430,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     {
         buffer.writeInt(randTexture);
         buffer.writeInt(dinosaurAge);
-//        buffer.writeBoolean(isCarcass);
+        // buffer.writeBoolean(isCarcass);
         buffer.writeInt(quality);
         buffer.writeBoolean(isMale);
         buffer.writeInt(growthSpeedOffset);
@@ -438,7 +444,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     {
         randTexture = additionalData.readInt();
         dinosaurAge = additionalData.readInt();
-//        isCarcass = additionalData.readBoolean();
+        // isCarcass = additionalData.readBoolean();
         quality = additionalData.readInt();
         isMale = additionalData.readBoolean();
         growthSpeedOffset = additionalData.readInt();
@@ -483,9 +489,11 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         for (int i = 0; i < meatAmount; ++i)
         {
             if (this.isBurning())
-                dropStackWithQuality(new ItemStack(JCItemRegistry.dino_steak, 1, JCEntityRegistry.getDinosaurId(dinosaur)));
+                dropStackWithQuality(new ItemStack(JCItemRegistry.dino_steak, 1,
+                        JCEntityRegistry.getDinosaurId(dinosaur)));
             else
-                dropStackWithQuality(new ItemStack(JCItemRegistry.dino_meat, 1, JCEntityRegistry.getDinosaurId(dinosaur)));
+                dropStackWithQuality(new ItemStack(JCItemRegistry.dino_meat, 1,
+                        JCEntityRegistry.getDinosaurId(dinosaur)));
         }
 
         for (int i = 0; i < this.getSizeInventory(); ++i)
@@ -508,11 +516,12 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
                     }
 
                     itemstack.stackSize -= j;
-                    EntityItem entityitem = new EntityItem(this.worldObj, this.posX + (double)f, this.posY + (double)f1, this.posZ + (double)f2, new ItemStack(itemstack.getItem(), j, itemstack.getItemDamage()));
+                    EntityItem entityitem = new EntityItem(this.worldObj, this.posX + f, this.posY + f1,
+                            this.posZ + f2, new ItemStack(itemstack.getItem(), j, itemstack.getItemDamage()));
                     float f3 = 0.05F;
-                    entityitem.motionX = (double)((float)this.rand.nextGaussian() * f3);
-                    entityitem.motionY = (double)((float)this.rand.nextGaussian() * f3 + 0.2F);
-                    entityitem.motionZ = (double)((float)this.rand.nextGaussian() * f3);
+                    entityitem.motionX = (float) this.rand.nextGaussian() * f3;
+                    entityitem.motionY = (float) this.rand.nextGaussian() * f3 + 0.2F;
+                    entityitem.motionZ = (float) this.rand.nextGaussian() * f3;
                     this.worldObj.spawnEntityInWorld(entityitem);
                 }
             }
@@ -529,46 +538,44 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         entityDropItem(stack, 0.0F);
     }
 
-//    public void setCarcass(boolean carcass)
-//    {
-//        this.isCarcass = carcass;
-//
-//        if (isCarcass)
-//        {
-//            String s = this.getDeathSound();
-//
-//            if (s != null)
-//            {
-//                this.playSound(s, this.getSoundVolume(), (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-//            }
-//        }
-//    }
-//
-//    public boolean isCarcass()
-//    {
-//        return isCarcass;
-//    }
+    // public void setCarcass(boolean carcass)
+    // {
+    // this.isCarcass = carcass;
+    //
+    // if (isCarcass)
+    // {
+    // String s = this.getDeathSound();
+    //
+    // if (s != null)
+    // {
+    // this.playSound(s, this.getSoundVolume(), (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+    // }
+    // }
+    // }
+    //
+    // public boolean isCarcass()
+    // {
+    // return isCarcass;
+    // }
 
     @Override
     public boolean interact(EntityPlayer player)
     {
-        if(player.isSneaking())
+        if (player.isSneaking())
         {
-            if(getAgePercentage() > 75)
+            if (getAgePercentage() > 75)
             {
                 player.displayGUIChest(this);
-            }
-            else
+            } else
             {
-                if(worldObj.isRemote)
+                if (worldObj.isRemote)
                 {
                     String msg;
 
-                    if(hasCustomName())
+                    if (hasCustomName())
                     {
                         msg = getCustomNameTag();
-                    }
-                    else
+                    } else
                     {
                         msg = "This " + getCommandSenderName();
                     }
@@ -576,8 +583,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
                     player.addChatComponentMessage(new ChatComponentText(msg + " is not old enough to hold items!"));
                 }
             }
-        }
-        else
+        } else
         {
             ItemStack heldItem = player.getHeldItem();
 
@@ -585,7 +591,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
             {
                 if (heldItem.getItem() instanceof ItemBluePrint)
                 {
-                    ((ItemBluePrint) heldItem.getItem()).setDinosaur(heldItem, JCEntityRegistry.getDinosaurId(getDinosaur()));
+                    ((ItemBluePrint) heldItem.getItem()).setDinosaur(heldItem,
+                                                                     JCEntityRegistry.getDinosaurId(getDinosaur()));
                 }
             }
         }
@@ -593,7 +600,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         return false;
     }
 
-    //NOTE: This adds an attack target. Class should be the entity class for the target, lower prio get executed earlier
+    // NOTE: This adds an attack target. Class should be the entity class for the target, lower prio get executed
+    // earlier
     protected void attackCreature(Class entity, int prio)
     {
         this.tasks.addTask(0, new EntityAIAttackOnCollide(this, entity, 1.0D, false));
@@ -601,17 +609,18 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, entity, false));
     }
 
-
     @Override
     public boolean allowLeashing()
     {
         return !this.getLeashed() && (this.getDinosaurAge() <= 7500);
     }
 
-    //NOTE: This registers which attackers to defend from. Class should be the entity class for the attacker, lower prio get executed earlier (Should be based upon attacker's strength and health to decide whether to defend or flee)
+    // NOTE: This registers which attackers to defend from. Class should be the entity class for the attacker, lower
+    // prio get executed earlier (Should be based upon attacker's strength and health to decide whether to defend or
+    // flee)
     protected void defendFromAttacker(Class entity, int prio)
     {
-        //this.targetTasks.addTask(prio, new EntityAIJCShouldDefend(this, true, entity));
+        // this.targetTasks.addTask(prio, new EntityAIJCShouldDefend(this, true, entity));
         this.targetTasks.addTask(prio, new EntityAIHurtByTarget(this, true, entity));
     }
 
@@ -626,10 +635,10 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     }
 
     @Override
-    public void setAnimID(int parAnimID)
+    public void setAnimID(AnimID parAnimID)
     {
         // DEBUG
-        System.out.println("Setting anim id for entity "+getEntityId()+" to "+parAnimID);
+        System.out.println("Setting anim id for entity " + getEntityId() + " to " + parAnimID);
         if (parAnimID != animID) // only process changes
         {
             animID = parAnimID;
@@ -643,7 +652,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     }
 
     @Override
-    public int getAnimID()
+    public AnimID getAnimID()
     {
         return animID;
     }
@@ -666,7 +675,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
     public boolean isStronger(EntityDinosaur dinosaur)
     {
-        return this.getHealth() * (float) this.getAttackDamage() < dinosaur.getHealth() * (float) dinosaur.getAttackDamage();
+        return this.getHealth() * (float) this.getAttackDamage() < dinosaur.getHealth()
+                * (float) dinosaur.getAttackDamage();
     }
 
     public boolean isMale()
@@ -709,12 +719,10 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         if (percent > 75)
         {
             stage = EnumGrowthStage.MATURE;
-        }
-        else if (percent > 50)
+        } else if (percent > 50)
         {
             stage = EnumGrowthStage.ADOLESCENT;
-        }
-        else if (percent > 25)
+        } else if (percent > 25)
         {
             stage = EnumGrowthStage.JUVENILE;
         }
@@ -768,8 +776,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
                 itemstack = this.inventory[index];
                 this.setInventorySlotContents(index, null);
                 return itemstack;
-            }
-            else
+            } else
             {
                 itemstack = this.inventory[index].splitStack(count);
 
@@ -780,8 +787,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
                 return itemstack;
             }
-        }
-        else
+        } else
         {
             return null;
         }
@@ -795,8 +801,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
             ItemStack itemstack = this.inventory[index];
             this.setInventorySlotContents(index, null);
             return itemstack;
-        }
-        else
+        } else
         {
             return null;
         }
@@ -822,7 +827,9 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     }
 
     @Override
-    public void markDirty() {}
+    public void markDirty()
+    {
+    }
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer player)
@@ -831,10 +838,14 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
     }
 
     @Override
-    public void openInventory(EntityPlayer player) {}
+    public void openInventory(EntityPlayer player)
+    {
+    }
 
     @Override
-    public void closeInventory(EntityPlayer player) {}
+    public void closeInventory(EntityPlayer player)
+    {
+    }
 
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack)

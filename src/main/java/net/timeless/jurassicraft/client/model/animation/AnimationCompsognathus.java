@@ -3,6 +3,7 @@ package net.timeless.jurassicraft.client.model.animation;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.animationapi.client.AnimID;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
 import net.timeless.jurassicraft.common.entity.EntityCompsognathus;
@@ -14,7 +15,8 @@ import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 public class AnimationCompsognathus implements IModelAnimator
 {
     @Override
-    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
+    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw,
+                                  float rotationPitch, float partialTicks, Entity entity)
     {
         ModelDinosaur model = (ModelDinosaur) modelJson;
         Animator animator = model.animator;
@@ -58,11 +60,12 @@ public class AnimationCompsognathus implements IModelAnimator
         MowzieModelRenderer rightForeArm = model.getCube("Right forearm");
         MowzieModelRenderer rightHand = model.getCube("Right hand");
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail5, tail4, tail3, tail2, tail1};
-        MowzieModelRenderer[] neck = new MowzieModelRenderer[]{head, neck7, neck6, neck5, neck4, neck3, neck2, neck1, upperBody};
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail5, tail4, tail3, tail2, tail1 };
+        MowzieModelRenderer[] neck = new MowzieModelRenderer[] { head, neck7, neck6, neck5, neck4, neck3, neck2, neck1,
+                upperBody };
 
-//        f = entity.ticksExisted;
-//        f1 = 0.4F;
+        // f = entity.ticksExisted;
+        // f1 = 0.4F;
 
         float globalSpeed = 1.8F;
         float globalDegree = 1.5F;
@@ -94,10 +97,10 @@ public class AnimationCompsognathus implements IModelAnimator
 
         ((EntityCompsognathus) entity).tailBuffer.applyChainSwingBuffer(tail);
 
-        //beg animation
+        // beg animation
         // 60 ticks
         // Squat phase
-        animator.setAnim(13);
+        animator.setAnim(AnimID.FLYING);
         animator.startPhase(5);
         animator.rotate(leftThigh, -0.3F, 0, 0);
         animator.move(leftThigh, 0, 3F, 0);

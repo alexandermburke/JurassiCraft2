@@ -1,22 +1,23 @@
 package net.timeless.jurassicraft.common.entity.ai.animations;
 
+import java.util.List;
+import java.util.Random;
+
 import net.minecraft.entity.Entity;
 import net.reuxertz.ecoapi.util.EntityHelper;
 import net.timeless.animationapi.AIAnimation;
 import net.timeless.animationapi.IAnimatedEntity;
+import net.timeless.animationapi.client.AnimID;
 import net.timeless.jurassicraft.common.entity.EntityVelociraptor;
-
-import java.util.List;
-import java.util.Random;
 
 public class AnimationAICall extends AIAnimation
 {
     protected EntityVelociraptor animatingEntity;
     protected int duration;
-    protected int id;
+    protected AnimID id;
     private Random random = new Random();
 
-    public AnimationAICall(IAnimatedEntity entity, int duration, int id)
+    public AnimationAICall(IAnimatedEntity entity, int duration, AnimID id)
     {
         super(entity);
         this.duration = duration;
@@ -25,16 +26,18 @@ public class AnimationAICall extends AIAnimation
     }
 
     @Override
-    public int getAnimID()
+    public AnimID getAnimID()
     {
         return id;
     }
 
+    @Override
     public boolean isAutomatic()
     {
         return false;
     }
 
+    @Override
     public int getDuration()
     {
         return duration;
@@ -51,7 +54,8 @@ public class AnimationAICall extends AIAnimation
             {
                 if (entity instanceof EntityVelociraptor)
                 {
-                    animatingEntity.playSound(animatingEntity.getCallSound(), animatingEntity.getSoundVolume() + 1.25F, animatingEntity.getSoundPitch());
+                    animatingEntity.playSound(animatingEntity.getCallSound(), animatingEntity.getSoundVolume() + 1.25F,
+                                              animatingEntity.getSoundPitch());
                     return true;
                 }
             }
@@ -60,6 +64,7 @@ public class AnimationAICall extends AIAnimation
         return false;
     }
 
+    @Override
     public void startExecuting()
     {
         super.startExecuting();
@@ -67,6 +72,7 @@ public class AnimationAICall extends AIAnimation
         animatingEntity.getNavigator().clearPathEntity();
     }
 
+    @Override
     public void resetTask()
     {
         super.resetTask();

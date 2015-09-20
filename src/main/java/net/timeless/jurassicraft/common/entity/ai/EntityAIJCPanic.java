@@ -32,16 +32,14 @@ public class EntityAIJCPanic extends EntityAIBase
         if (theEntityCreature.getAITarget() == null && !theEntityCreature.isBurning())
         {
             return false;
-        }
-        else
+        } else
         {
             Vec3 vec3 = RandomPositionGenerator.findRandomTarget(theEntityCreature, 5, 4);
 
             if (vec3 == null)
             {
                 return false;
-            }
-            else
+            } else
             {
                 randPosX = vec3.xCoord;
                 randPosY = vec3.yCoord;
@@ -62,9 +60,9 @@ public class EntityAIJCPanic extends EntityAIBase
         {
             AnimationAPI.sendAnimPacket((IAnimatedEntity) theEntityCreature, AnimID.HISSING);
         }
-        
+
         // DEBUG
-        System.out.println("Starting panic AI for entity "+theEntityCreature.getEntityId());
+        System.out.println("Starting panic AI for entity " + theEntityCreature.getEntityId());
 
     }
 

@@ -3,9 +3,9 @@ package net.timeless.jurassicraft.client.model.animation;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.animationapi.client.AnimID;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
-import net.timeless.jurassicraft.common.entity.EntityDimorphodon;
 import net.timeless.jurassicraft.common.entity.EntityPteranodon;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
@@ -15,7 +15,8 @@ import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 public class AnimationPteranodon implements IModelAnimator
 {
     @Override
-    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity e)
+    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw,
+                                  float rotationPitch, float partialTicks, Entity e)
     {
         ModelDinosaur model = (ModelDinosaur) modelJson;
         EntityPteranodon entity = (EntityPteranodon) e;
@@ -49,12 +50,12 @@ public class AnimationPteranodon implements IModelAnimator
         MowzieModelRenderer rightArm3 = model.getCube("Right Arm 3");
         MowzieModelRenderer rightArm4 = model.getCube("Right Arm 4");
 
-        MowzieModelRenderer[] neck = new MowzieModelRenderer[]{head, neck3, neck2, neck1};
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail1, tail2, tail3};
-        MowzieModelRenderer[] wingLeft = new MowzieModelRenderer[]{leftArm4, leftArm3, leftArm2, leftArm1};
-        MowzieModelRenderer[] wingRight = new MowzieModelRenderer[]{rightArm4, rightArm3, rightArm2, rightArm1};
-        MowzieModelRenderer[] legLeft = new MowzieModelRenderer[]{leftThigh, leftCalf, leftUpperFoot, leftFoot};
-        MowzieModelRenderer[] legRight = new MowzieModelRenderer[]{rightThigh, rightCalf, rightUpperFoot, rightFoot};
+        MowzieModelRenderer[] neck = new MowzieModelRenderer[] { head, neck3, neck2, neck1 };
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail1, tail2, tail3 };
+        MowzieModelRenderer[] wingLeft = new MowzieModelRenderer[] { leftArm4, leftArm3, leftArm2, leftArm1 };
+        MowzieModelRenderer[] wingRight = new MowzieModelRenderer[] { rightArm4, rightArm3, rightArm2, rightArm1 };
+        MowzieModelRenderer[] legLeft = new MowzieModelRenderer[] { leftThigh, leftCalf, leftUpperFoot, leftFoot };
+        MowzieModelRenderer[] legRight = new MowzieModelRenderer[] { rightThigh, rightCalf, rightUpperFoot, rightFoot };
 
         f = entity.ticksExisted;
         f1 = 1.0f;
@@ -64,32 +65,32 @@ public class AnimationPteranodon implements IModelAnimator
         float globalHeight = 2F;
         float frontOffset = -1.35f;
 
-//        model.bob(body1, 1 * globalSpeed, 1 * globalHeight, false, f, f1);
-//        model.bob(leftThigh, 1 * globalSpeed, 1 * globalHeight, false, f, f1);
-//        model.bob(rightThigh, 1 * globalSpeed, 1 * globalHeight, false, f, f1);
-//        model.walk(body1, 1 * globalSpeed, -0.08f * globalHeight, false, 0, 0.1f, f, f1);
-//        model.walk(leftArm1, 1 * globalSpeed, -0.08f * globalHeight, true, 0, 0, f, f1);
-//        model.walk(rightArm1, 1 * globalSpeed, -0.08f * globalHeight, true, 0, 0, f, f1);
-//        model.chainWave(neck, 1 * globalSpeed, -0.15f * globalHeight, 4, f, f1);
-//        model.chainWave(tail, 1 * globalSpeed, 0.1f * globalHeight, 1, f, f1);
-//
-//        model.walk(leftThigh, 0.5F * globalSpeed, 0.7F * globalDegree, false, 3.14F, 0.2F, f, f1);
-//        model.walk(leftCalf, 0.5F * globalSpeed, 0.6F * globalDegree, false, 1.5F, 0.3F, f, f1);
-//        model.walk(leftUpperFoot, 0.5F * globalSpeed, 0.8F * globalDegree, false, -2F, -0.4F, f, f1);
-//        model.walk(leftFoot, 0.5F * globalSpeed, 1.5F * globalDegree, true, -2F, 2.3F, f, f1);
-//
-//        model.walk(rightThigh, 0.5F * globalSpeed, 0.7F * globalDegree, true, 3.14F, 0.2F, f, f1);
-//        model.walk(rightCalf, 0.5F * globalSpeed, 0.6F * globalDegree, true, 1.5F, 0.3F, f, f1);
-//        model.walk(rightUpperFoot, 0.5F * globalSpeed, 0.8F * globalDegree, true, -2F, -0.4F, f, f1);
-//        model.walk(rightFoot, 0.5F * globalSpeed, 1.5F * globalDegree, false, -2F, 2.3F, f, f1);
-//
-//        model.walk(leftArm1, 0.5F * globalSpeed, 0.5F * globalDegree, true, -3.14F + frontOffset, 0.5F, f, f1);
-//        model.walk(leftArm2, 0.5F * globalSpeed, 0.4F * globalDegree, true, -1.5F + frontOffset, -0.3F, f, f1);
-//        model.walk(leftArm3, 0.5F * globalSpeed, 0.7F * globalDegree, true, 2F + frontOffset, 0.4F, f, f1);
-//
-//        model.walk(rightArm1, 0.5F * globalSpeed, 0.5F * globalDegree, false, -3.14F + frontOffset, 0.5F, f, f1);
-//        model.walk(rightArm2, 0.5F * globalSpeed, 0.4F * globalDegree, false, -1.5F + frontOffset, -0.3F, f, f1);
-//        model.walk(rightArm3, 0.5F * globalSpeed, 0.7F * globalDegree, false, 2F + frontOffset, 0.4F, f, f1);
+        // model.bob(body1, 1 * globalSpeed, 1 * globalHeight, false, f, f1);
+        // model.bob(leftThigh, 1 * globalSpeed, 1 * globalHeight, false, f, f1);
+        // model.bob(rightThigh, 1 * globalSpeed, 1 * globalHeight, false, f, f1);
+        // model.walk(body1, 1 * globalSpeed, -0.08f * globalHeight, false, 0, 0.1f, f, f1);
+        // model.walk(leftArm1, 1 * globalSpeed, -0.08f * globalHeight, true, 0, 0, f, f1);
+        // model.walk(rightArm1, 1 * globalSpeed, -0.08f * globalHeight, true, 0, 0, f, f1);
+        // model.chainWave(neck, 1 * globalSpeed, -0.15f * globalHeight, 4, f, f1);
+        // model.chainWave(tail, 1 * globalSpeed, 0.1f * globalHeight, 1, f, f1);
+        //
+        // model.walk(leftThigh, 0.5F * globalSpeed, 0.7F * globalDegree, false, 3.14F, 0.2F, f, f1);
+        // model.walk(leftCalf, 0.5F * globalSpeed, 0.6F * globalDegree, false, 1.5F, 0.3F, f, f1);
+        // model.walk(leftUpperFoot, 0.5F * globalSpeed, 0.8F * globalDegree, false, -2F, -0.4F, f, f1);
+        // model.walk(leftFoot, 0.5F * globalSpeed, 1.5F * globalDegree, true, -2F, 2.3F, f, f1);
+        //
+        // model.walk(rightThigh, 0.5F * globalSpeed, 0.7F * globalDegree, true, 3.14F, 0.2F, f, f1);
+        // model.walk(rightCalf, 0.5F * globalSpeed, 0.6F * globalDegree, true, 1.5F, 0.3F, f, f1);
+        // model.walk(rightUpperFoot, 0.5F * globalSpeed, 0.8F * globalDegree, true, -2F, -0.4F, f, f1);
+        // model.walk(rightFoot, 0.5F * globalSpeed, 1.5F * globalDegree, false, -2F, 2.3F, f, f1);
+        //
+        // model.walk(leftArm1, 0.5F * globalSpeed, 0.5F * globalDegree, true, -3.14F + frontOffset, 0.5F, f, f1);
+        // model.walk(leftArm2, 0.5F * globalSpeed, 0.4F * globalDegree, true, -1.5F + frontOffset, -0.3F, f, f1);
+        // model.walk(leftArm3, 0.5F * globalSpeed, 0.7F * globalDegree, true, 2F + frontOffset, 0.4F, f, f1);
+        //
+        // model.walk(rightArm1, 0.5F * globalSpeed, 0.5F * globalDegree, false, -3.14F + frontOffset, 0.5F, f, f1);
+        // model.walk(rightArm2, 0.5F * globalSpeed, 0.4F * globalDegree, false, -1.5F + frontOffset, -0.3F, f, f1);
+        // model.walk(rightArm3, 0.5F * globalSpeed, 0.7F * globalDegree, false, 2F + frontOffset, 0.4F, f, f1);
 
         int frame = entity.ticksExisted;
         model.walk(body1, 0.08f, -0.05f, false, 0, 0, frame, 1);
@@ -105,7 +106,7 @@ public class AnimationPteranodon implements IModelAnimator
         leftArm1.rotationPointZ -= 1 * Math.cos(frame * 0.08);
         rightArm1.rotationPointZ -= 1 * Math.cos(frame * 0.08);
 
-        //Flying
+        // Flying
         body1.rotateAngleX += 0.3;
         neck1.rotateAngleX -= 0.1;
         leftThigh.rotateAngleX += 0.8;
@@ -151,8 +152,8 @@ public class AnimationPteranodon implements IModelAnimator
         model.chainWave(tail, 0.3f, 0.2f, 1, f, f1);
         model.chainWave(neck, 0.3f, 0.4f, 4, f, f1);
 
-        //Twitch right
-        animator.setAnim(10);
+        // Twitch right
+        animator.setAnim(AnimID.LOOKING_RIGHT);
         animator.startPhase(3);
         animator.rotate(head, 0, 0, 0.3f);
         animator.move(head, 1, 0, 0);
@@ -160,8 +161,8 @@ public class AnimationPteranodon implements IModelAnimator
         animator.setStationaryPhase(19);
         animator.resetPhase(3);
 
-        //Twitch left
-        animator.setAnim(11);
+        // Twitch left
+        animator.setAnim(AnimID.LOOKING_LEFT);
         animator.startPhase(3);
         animator.rotate(head, 0, 0, -0.3f);
         animator.move(head, -1, 0, 0);
@@ -169,8 +170,8 @@ public class AnimationPteranodon implements IModelAnimator
         animator.setStationaryPhase(19);
         animator.resetPhase(3);
 
-        //Call
-        animator.setAnim(12);
+        // Call
+        animator.setAnim(AnimID.CALLING);
         animator.startPhase(8);
         animator.rotate(jaw, 0.3f, 0, 0);
         animator.rotate(neck1, -0.15f, 0, 0);

@@ -1,5 +1,7 @@
 package net.timeless.animationapi.client;
 
+import java.util.HashMap;
+
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -7,8 +9,6 @@ import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.unilib.client.model.tools.MowzieModelBase;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
-
-import java.util.HashMap;
 
 @SideOnly(Side.CLIENT)
 public class Animator
@@ -37,10 +37,10 @@ public class Animator
         transformMap.clear();
         prevTransformMap.clear();
 
-//        modelBase.setToInitPose();
+        // modelBase.setToInitPose();
     }
 
-    public boolean setAnim(int animID)
+    public boolean setAnim(AnimID animID)
     {
         tempTick = prevTempTick = 0;
         correctAnim = animEntity.getAnimID() == animID;
@@ -112,10 +112,10 @@ public class Animator
                     box.rotationPointY += transform.offsetY;
                     box.rotationPointZ += transform.offsetZ;
                 }
-            }
-            else
+            } else
             {
-                float tick = (animTick - prevTempTick + AnimationAPI.getProxy().getPartialTick()) / (tempTick - prevTempTick);
+                float tick = (animTick - prevTempTick + AnimationAPI.getProxy().getPartialTick())
+                        / (tempTick - prevTempTick);
                 float inc = MathHelper.sin(tick * PI / 2F), dec = 1F - inc;
 
                 for (MowzieModelRenderer box : prevTransformMap.keySet())
