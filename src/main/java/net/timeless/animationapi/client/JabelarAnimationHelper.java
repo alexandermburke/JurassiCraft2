@@ -1,6 +1,7 @@
 package net.timeless.animationapi.client;
 
 import java.util.EnumMap;
+import java.util.Map;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -20,7 +21,7 @@ public class JabelarAnimationHelper
     private final EntityDinosaur theEntity;
 
 //    private final int[][][] arrayOfSequences;
-    private EnumMap<AnimID, int[][]> mapOfSequences = new EnumMap<AnimID, int[][]>(AnimID.class);
+    private Map<AnimID, int[][]> mapOfSequences = new EnumMap<AnimID, int[][]>(AnimID.class);
 
     private final MowzieModelRenderer[][] arrayOfPoses;
     private MowzieModelRenderer[] passedInModelRendererArray;
@@ -40,9 +41,19 @@ public class JabelarAnimationHelper
 
     private final boolean inertialTweens;
     private final float baseInertiaFactor;
-
+    /**
+     *
+     * @param parEntity the entity to animate from
+     * @param parModel the model to animate
+     * @param parNumParts
+     * @param parArrayOfPoses for each pose(-index) an array of posed Renderers
+     * @param parMapOfSequences maps from an {@link AnimID} to the sequence of (pose-index, tween-length)
+     * @param parShouldRandomizeSequence
+     * @param parInertialTweens
+     * @param parInertiaFactor
+     */
     public JabelarAnimationHelper(EntityDinosaur parEntity, ModelDinosaur parModel, int parNumParts,
-                                  MowzieModelRenderer[][] parArrayOfPoses, EnumMap parMapOfSequences,
+                                  MowzieModelRenderer[][] parArrayOfPoses, Map<AnimID, int[][]> parMapOfSequences,
                                   boolean parShouldRandomizeSequence, boolean parInertialTweens, float parInertiaFactor)
     {
         // transfer static animation info from constructor parameters to instance
@@ -293,9 +304,7 @@ public class JabelarAnimationHelper
     {
         currentTickInTween++;
         if (currentTickInTween >= numTicksInTween)
-        {
             return true;
-        }
         // // DEBUG
         // System.out.println("current tween step = "+currentTickInTween);
         return false;
@@ -322,7 +331,7 @@ public class JabelarAnimationHelper
         // TODO
         // Should control here which animations are interruptible, in which priority
         // I.e. could reject certain changes depending on what current animation is playing
-        
+
         // handle case where animation sequence isn't available
         if (mapOfSequences.get(parSequenceIndex) == null)
         {
@@ -336,7 +345,7 @@ public class JabelarAnimationHelper
             System.out.println("Reverting to idle sequence");
             currentSequence = AnimID.IDLE;
             theEntity.setAnimID(AnimID.IDLE);
-        } 
+        }
         else
         {
             currentSequence = parSequenceIndex;
