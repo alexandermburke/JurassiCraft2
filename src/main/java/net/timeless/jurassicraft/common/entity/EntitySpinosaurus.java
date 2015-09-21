@@ -14,8 +14,7 @@ public class EntitySpinosaurus extends EntityDinosaurAggressive // implements IE
     public ChainBuffer tailBuffer = new ChainBuffer(6);
 
     private static final String[] hurtSounds = new String[]{"spinosaurus_hurt_1"};
-    private static final String[] livingSounds = new String[]{"spinosaurus_living_1", "spinosaurus_living_2",
-            "spinosaurus_living_3", "spinosaurus_living_4"};
+    private static final String[] livingSounds = new String[]{"spinosaurus_living_1", "spinosaurus_living_2", "spinosaurus_living_3", "spinosaurus_living_4"};
     private static final String[] deathSounds = new String[]{"spinosaurus_death_1", "spinosaurus_death_2"};
 
     private static final Class[] targets = {EntityCompsognathus.class, EntityAnkylosaurus.class, EntityPlayer.class,
@@ -31,12 +30,13 @@ public class EntitySpinosaurus extends EntityDinosaurAggressive // implements IE
     public EntitySpinosaurus(World world)
     {
         super(world);
+
         for (int i = 0; i < targets.length; i++)
         {
             this.attackCreature(targets[i], new Random().nextInt(3) + 1);
         }
-        tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, AnimID.INJURED, 750, "jurassicraft:spinosaurus_hurt_1",
-                1.5F));
+
+        tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, AnimID.INJURED, 750, "jurassicraft:spinosaurus_hurt_1", 1.5F));
     }
 
     @Override

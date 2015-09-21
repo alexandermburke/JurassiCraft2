@@ -23,19 +23,16 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
     public ChainBuffer tailBuffer = new ChainBuffer(6);
 
     private static final String[] hurtSounds = new String[]{"velociraptor_hurt_1"};
-    private static final String[] livingSounds = new String[]{"velociraptor_living_1", "velociraptor_living_2",
-            "velociraptor_living_3"};
+    private static final String[] livingSounds = new String[]{"velociraptor_living_1", "velociraptor_living_2", "velociraptor_living_3"};
     private static final String[] deathSounds = new String[]{"velociraptor_death_1"};
-    private static final String[] callSounds = new String[]{"velociraptor_call_1", "velociraptor_call_2",
-            "velociraptor_call_3"};
-    private static final String[] barkSounds = new String[]{"velociraptor_bark_1", "velociraptor_bark_2",
-            "velociraptor_bark_3"};
-    private static final String[] hissSounds = new String[]{"velociraptor_hiss_1", "velociraptor_hiss_2",
-            "velociraptor_hiss_3"};
+    private static final String[] callSounds = new String[]{"velociraptor_call_1", "velociraptor_call_2", "velociraptor_call_3"};
+    private static final String[] barkSounds = new String[]{"velociraptor_bark_1", "velociraptor_bark_2", "velociraptor_bark_3"};
+    private static final String[] hissSounds = new String[]{"velociraptor_hiss_1", "velociraptor_hiss_2", "velociraptor_hiss_3"};
 
     private static final Class[] targets = {EntityCompsognathus.class, EntityPlayer.class, EntityDilophosaurus.class,
             EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class, EntityHypsilophodon.class,
             EntitySegisaurus.class, EntityProtoceratops.class, EntityOthnielia.class, EntityMicroceratus.class};
+
     private static final Class[] deftargets = {EntityPlayer.class, EntityTyrannosaurus.class,
             EntityGiganotosaurus.class, EntitySpinosaurus.class};
 
@@ -61,6 +58,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
         {
             this.attackCreature(targets[i], new Random().nextInt(3) + 1);
         }
+
         for (int j = 0; j < deftargets.length; j++)
         {
             this.defendFromAttacker(deftargets[j], new Random().nextInt(3) + 1);
@@ -131,17 +129,10 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
     {
         EntityVelociraptor[] pack;
         int directionInt = direction ? 1 : -1;
+        
         if (getDistanceSqToEntity(target) > radius - 1)
         {
-            getNavigator().tryMoveToXYZ(target.posX
-                            + radius
-                            * Math.cos(directionInt * (ticksExisted + offset) * 0.5 * speed
-                            / radius),
-                    target.posY,
-                    target.posZ
-                            + radius
-                            * Math.sin(directionInt * (ticksExisted + offset) * 0.5 * speed
-                            / radius), speed);
+            getNavigator().tryMoveToXYZ(target.posX + radius * Math.cos(directionInt * (ticksExisted + offset) * 0.5 * speed / radius), target.posY, target.posZ + radius * Math.sin(directionInt * (ticksExisted + offset) * 0.5 * speed / radius), speed);
         }
     }
 }

@@ -12,14 +12,12 @@ import net.minecraft.world.World;
 
 public class EntityDinosaurProvokable extends EntityDinosaur
 {
-
     public EntityDinosaurProvokable(World world)
     {
         super(world);
         this.tasks.addTask(3, new EntityAILeapAtTarget(this, 0.4F));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true, new Class[0]));
         this.tasks.addTask(4, new EntityAIAttackOnCollide(this, 1.0D, true));
-
     }
 
     /**
@@ -64,6 +62,7 @@ public class EntityDinosaurProvokable extends EntityDinosaur
     public void onLivingUpdate()
     {
         super.onLivingUpdate();
+
         if (!this.worldObj.isRemote && this.getAttackTarget() == null && this.isAngry())
         {
             this.setAngry(false);
