@@ -15,8 +15,7 @@ import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 public class AnimationHypsilophodon implements IModelAnimator
 {
     @Override
-    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw,
-                                  float rotationPitch, float partialTicks, Entity entity)
+    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
     {
         ModelDinosaur model = (ModelDinosaur) modelJson;
         Animator animator = model.animator;
@@ -59,7 +58,7 @@ public class AnimationHypsilophodon implements IModelAnimator
         MowzieModelRenderer armright = model.getCube("Arm MIDDLE RIGHT");
         MowzieModelRenderer armleft = model.getCube("Arm MIDDLE LEFT");
 
-        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
+        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
 
         model.bob(body2, 0.5F * scaleFactor, height, true, f, f1);
         model.bob(upperlegright, 0.5F * scaleFactor, height, true, f, f1);

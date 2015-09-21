@@ -1,11 +1,9 @@
 package net.timeless.jurassicraft.common.block;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.fml.common.registry.GameData;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.timeless.jurassicraft.common.api.ISubBlocksBlock;
@@ -185,8 +183,8 @@ public class JCBlockRegistry
             GameRegistry.registerBlock(leaves[i], typeName + "_leaves");
             GameRegistry.registerBlock(saplings[i], typeName + "_sapling");
             GameRegistry.registerBlock(stairs[i], typeName + "_stairs");
-            GameRegistry.registerBlock(slabs[i], ItemJCSlab.class, typeName + "_slab", new Object[] { slabs[i], doubleSlabs[i] });
-            GameRegistry.registerBlock(doubleSlabs[i], ItemJCSlab.class, typeName + "_double_slab", new Object[] { slabs[i], doubleSlabs[i] });
+            GameRegistry.registerBlock(slabs[i], ItemJCSlab.class, typeName + "_slab", new Object[]{slabs[i], doubleSlabs[i]});
+            GameRegistry.registerBlock(doubleSlabs[i], ItemJCSlab.class, typeName + "_double_slab", new Object[]{slabs[i], doubleSlabs[i]});
 
             OreDictionary.registerOre("logWood", woods[i]);
             OreDictionary.registerOre("plankWood", planks[i]);

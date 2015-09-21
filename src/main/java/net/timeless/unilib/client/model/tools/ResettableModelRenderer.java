@@ -8,7 +8,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * @author RafaMv0
  * @author BobMowzie
- * TAKEN FROM LLIBRARY
+ *         TAKEN FROM LLIBRARY
  */
 @SideOnly(Side.CLIENT)
 public class ResettableModelRenderer extends ModelRenderer

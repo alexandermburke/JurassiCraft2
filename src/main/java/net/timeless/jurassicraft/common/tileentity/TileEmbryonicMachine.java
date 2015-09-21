@@ -34,12 +34,12 @@ public class TileEmbryonicMachine extends TileMachineBase
         {
             ItemStack output = null;
 
-            if(petridish.getItem() == JCItemRegistry.petri_dish && dna.getItem() instanceof ItemDNA)
+            if (petridish.getItem() == JCItemRegistry.petri_dish && dna.getItem() instanceof ItemDNA)
             {
                 output = new ItemStack(JCItemRegistry.syringe, 1, dna.getItemDamage());
                 output.setTagCompound(dna.getTagCompound());
             }
-            else if(petridish.getItem() == JCItemRegistry.plant_cells_petri_dish && dna.getItem() instanceof ItemPlantDNA)
+            else if (petridish.getItem() == JCItemRegistry.plant_cells_petri_dish && dna.getItem() instanceof ItemPlantDNA)
             {
                 output = new ItemStack(JCItemRegistry.plant_callus, 1, dna.getItemDamage());
                 output.setTagCompound(dna.getTagCompound());
@@ -58,11 +58,11 @@ public class TileEmbryonicMachine extends TileMachineBase
         {
             ItemStack output = null;
 
-            if(slots[0].getItem() instanceof ItemDNA && slots[1].getItem() == JCItemRegistry.petri_dish)
+            if (slots[0].getItem() instanceof ItemDNA && slots[1].getItem() == JCItemRegistry.petri_dish)
             {
                 output = new ItemStack(JCItemRegistry.syringe, 1, slots[0].getItemDamage());
             }
-            else if(slots[0].getItem() instanceof ItemPlantDNA && slots[1].getItem() == JCItemRegistry.plant_cells_petri_dish)
+            else if (slots[0].getItem() instanceof ItemPlantDNA && slots[1].getItem() == JCItemRegistry.plant_cells_petri_dish)
             {
                 output = new ItemStack(JCItemRegistry.plant_callus, 1, slots[0].getItemDamage());
             }

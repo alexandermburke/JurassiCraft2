@@ -194,13 +194,16 @@ public class JabelarAnimationHelper
             if (nextPose == null)
             {
                 System.err.println("Trying to tween to a null next pose array");
-            } else if (nextPose[partIndex] == null)
+            }
+            else if (nextPose[partIndex] == null)
             {
                 System.err.println("The part index " + partIndex + " in next pose is null");
-            } else if (currentRotationArray == null)
+            }
+            else if (currentRotationArray == null)
             {
                 System.err.println("Trying to tween from a null current rotation array");
-            } else
+            }
+            else
             {
                 nextTweenRotations(partIndex, inertiaFactor);
                 nextTweenPositions(partIndex, inertiaFactor);
@@ -218,7 +221,8 @@ public class JabelarAnimationHelper
                     && (currentTickInTween >= (numTicksInTween - numTicksInTween * 0.25F)))
             {
                 inertiaFactor *= 0.5F;
-            } else
+            }
+            else
             {
                 inertiaFactor *= 1.5F;
             }
@@ -320,13 +324,25 @@ public class JabelarAnimationHelper
         // I.e. could reject certain changes depending on what current animation is playing
         
 
+<<<<<<< HEAD
         // handle case where animation sequence isn't available
         if (mapOfSequences.get(parSequenceIndex) == null)
+=======
+        if (currentSequence != AnimID.IDLE_ && currentSequence == parSequenceIndex) // finished sequence but no new
+        // sequence set
+>>>>>>> a0b1ca30bc01c4bfe7691941ed06e1ef1ba0474c
         {
             // DEBUG
             System.out.println("Warning, requested an anim id that doesn't have animatino sequence in map");
             currentSequence = AnimID.IDLE;
             theEntity.setAnimID(AnimID.IDLE);
+<<<<<<< HEAD
+=======
+        }
+        else
+        {
+            currentSequence = parSequenceIndex;
+>>>>>>> a0b1ca30bc01c4bfe7691941ed06e1ef1ba0474c
         }
         else if (currentSequence != AnimID.IDLE && currentSequence == parSequenceIndex) // finished sequence but no new sequence set
         {
@@ -356,9 +372,10 @@ public class JabelarAnimationHelper
         try
         {
             return new ModelDinosaur(TabulaModelHelper.parseModel(tabulaModel), null); // okay to use null for animator
-                                                                                       // parameter as we get animator
-                                                                                       // from passed-in model
-        } catch (Exception e)
+            // parameter as we get animator
+            // from passed-in model
+        }
+        catch (Exception e)
         {
             System.err.println("Could not load Tabula model = " + tabulaModel);
             e.printStackTrace();

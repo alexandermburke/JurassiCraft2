@@ -46,11 +46,13 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
         if (isEntityInvulnerable(source))
         {
             return false;
-        } else if (super.attackEntityFrom(source, amount))
+        }
+        else if (super.attackEntityFrom(source, amount))
         {
             Entity entity = source.getEntity();
             return riddenByEntity != entity && ridingEntity != entity ? true : true;
-        } else
+        }
+        else
         {
             return false;
         }
@@ -66,8 +68,7 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
 
         if (entity instanceof EntityLivingBase)
         {
-            damage += EnchantmentHelper
-                    .func_152377_a(getHeldItem(), ((EntityLivingBase) entity).getCreatureAttribute());
+            damage += EnchantmentHelper.func_152377_a(getHeldItem(), ((EntityLivingBase) entity).getCreatureAttribute());
             knockback += EnchantmentHelper.getKnockbackModifier(this);
         }
 
@@ -77,8 +78,7 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
         {
             if (knockback > 0)
             {
-                entity.addVelocity(-MathHelper.sin(rotationYaw * (float) Math.PI / 180.0F) * knockback * 0.5F, 0.1D,
-                                   MathHelper.cos(rotationYaw * (float) Math.PI / 180.0F) * knockback * 0.5F);
+                entity.addVelocity(-MathHelper.sin(rotationYaw * (float) Math.PI / 180.0F) * knockback * 0.5F, 0.1D, MathHelper.cos(rotationYaw * (float) Math.PI / 180.0F) * knockback * 0.5F);
                 motionX *= 0.6D;
                 motionZ *= 0.6D;
             }
@@ -101,8 +101,6 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
     {
         super.updateCreatureData();
 
-        getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(transitionFromAge(dinosaur
-                                                                                      .getBabyStrength(), dinosaur
-                                                                                      .getAdultStrength()));
+        getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(transitionFromAge(dinosaur.getBabyStrength(), dinosaur.getAdultStrength()));
     }
 }

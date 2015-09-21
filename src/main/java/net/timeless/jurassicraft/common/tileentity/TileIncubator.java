@@ -118,7 +118,7 @@ public class TileIncubator extends TileMachineBase
                         worldObj.spawnEntityInWorld(dino);
                     }
 
-                     decreaseStackSize(process);
+                    decreaseStackSize(process);
                 }
                 catch (Exception e)
                 {

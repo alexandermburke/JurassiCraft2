@@ -1,12 +1,7 @@
 package net.timeless.jurassicraft.client.gui.app;
 
 import com.google.common.base.Predicate;
-import com.google.common.collect.HashMultiset;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Multisets;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockDirt;
-import net.minecraft.block.BlockStone;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiButton;
@@ -14,13 +9,12 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemMap;
-import net.minecraft.util.*;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.ClassInheritanceMultiMap;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.storage.MapData;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.client.gui.GuiPaleoTab;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
@@ -73,7 +67,7 @@ public class GuiAppMinimap extends GuiApp
             {
                 Chunk chunk = world.getChunkFromChunkCoords(chunkX, chunkZ);
 
-                if(!chunk.isEmpty())
+                if (!chunk.isEmpty())
                 {
 //                    int shadowY = 0;
 //                    int shadowX = 0;
@@ -87,7 +81,7 @@ public class GuiAppMinimap extends GuiApp
                             int blockY = chunk.getHeightValue(x, z);
                             int blockZ = z + (chunkZ * 16);
 
-                            if(world.isAirBlock(new BlockPos(blockX, blockY, blockZ)))
+                            if (world.isAirBlock(new BlockPos(blockX, blockY, blockZ)))
                             {
                                 blockY--;
                             }
@@ -157,11 +151,11 @@ public class GuiAppMinimap extends GuiApp
                     {
                         Entity entity = (Entity) e;
 
-                        if(entity instanceof EntityDinosaur)
+                        if (entity instanceof EntityDinosaur)
                         {
                             EntityDinosaur dino = (EntityDinosaur) entity;
 
-                            if(dino.hasTracker())
+                            if (dino.hasTracker())
                             {
                                 Dinosaur dinosaur = dino.getDinosaur();
                                 int colour = dinosaur.getEggPrimaryColor();
@@ -184,7 +178,7 @@ public class GuiAppMinimap extends GuiApp
                                 gui.drawCenteredScaledText(dinoX + " " + (int) dino.posY + " " + dinoZ, entityRenderX + 5, entityRenderY + 8, 0.3F, 0xFFFFFF);
                             }
                         }
-                        else if(player == entity)
+                        else if (player == entity)
                         {
                             mc.getTextureManager().bindTexture(GuiAppMinimap.entity);
 
@@ -220,7 +214,7 @@ public class GuiAppMinimap extends GuiApp
 
             while (iterator.hasNext())
             {
-                Entity entity = (Entity)iterator.next();
+                Entity entity = (Entity) iterator.next();
 
                 if (entity != exclude && (predicate == null || predicate.apply(entity)))
                 {

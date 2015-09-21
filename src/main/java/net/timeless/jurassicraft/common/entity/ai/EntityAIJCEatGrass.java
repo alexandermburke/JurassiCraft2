@@ -13,6 +13,8 @@
 
 package net.timeless.jurassicraft.common.entity.ai;
 
+import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTallGrass;
 import net.minecraft.block.state.IBlockState;
@@ -26,21 +28,23 @@ import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.AnimID;
 
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
-
 /**
  * @author jabelar
  */
 public class EntityAIJCEatGrass extends EntityAIBase
 {
-    private static final Predicate<IBlockState> field_179505_b = BlockStateHelper.forBlock(Blocks.tallgrass)
-            .where(BlockTallGrass.TYPE, Predicates.equalTo(BlockTallGrass.EnumType.GRASS));
-    /** The entity owner of this AITask */
+    private static final Predicate<IBlockState> field_179505_b = BlockStateHelper.forBlock(Blocks.tallgrass).where(BlockTallGrass.TYPE, Predicates.equalTo(BlockTallGrass.EnumType.GRASS));
+    /**
+     * The entity owner of this AITask
+     */
     private final EntityLiving grassEaterEntity;
-    /** The world the grass eater entity is eating from */
+    /**
+     * The world the grass eater entity is eating from
+     */
     private final World entityWorld;
-    /** Number of ticks since the entity started to eat grass */
+    /**
+     * Number of ticks since the entity started to eat grass
+     */
     int eatingGrassTimer;
 
     public EntityAIJCEatGrass(EntityLiving grassEaterEntityIn)
@@ -59,11 +63,11 @@ public class EntityAIJCEatGrass extends EntityAIBase
         if (grassEaterEntity.getRNG().nextInt(grassEaterEntity.isChild() ? 50 : 1000) != 0)
         {
             return false;
-        } else
+        }
+        else
         {
             BlockPos blockpos = new BlockPos(grassEaterEntity.posX, grassEaterEntity.posY, grassEaterEntity.posZ);
-            return field_179505_b.apply(entityWorld.getBlockState(blockpos)) ? true : entityWorld
-                    .getBlockState(blockpos.down()).getBlock() == Blocks.grass;
+            return field_179505_b.apply(entityWorld.getBlockState(blockpos)) ? true : entityWorld.getBlockState(blockpos.down()).getBlock() == Blocks.grass;
         }
     }
 
@@ -133,7 +137,8 @@ public class EntityAIJCEatGrass extends EntityAIBase
                 }
 
                 grassEaterEntity.eatGrassBonus();
-            } else
+            }
+            else
             {
                 BlockPos blockpos1 = blockpos.down();
 

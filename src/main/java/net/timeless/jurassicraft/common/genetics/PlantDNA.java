@@ -5,7 +5,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.timeless.jurassicraft.common.lang.AdvLang;
 import net.timeless.jurassicraft.common.plant.JCPlantRegistry;
-import net.timeless.jurassicraft.common.plant.Plant;
 
 import java.util.List;
 

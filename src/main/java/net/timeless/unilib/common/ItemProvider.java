@@ -4,7 +4,8 @@ import net.minecraft.item.Item;
 
 import java.util.Collection;
 
-public interface ItemProvider {
+public interface ItemProvider
+{
     Collection<Item> createItems();
 
     String getModID();

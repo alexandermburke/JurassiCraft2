@@ -2,9 +2,7 @@ package net.timeless.jurassicraft.common.block.tree;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -12,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
-import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
 
 public abstract class BlockJCSlab extends BlockSlab
 {
@@ -40,9 +37,9 @@ public abstract class BlockJCSlab extends BlockSlab
     {
         IBlockState iblockstate = super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(HALF, BlockSlab.EnumBlockHalf.BOTTOM);
 
-        if(!isDouble())
+        if (!isDouble())
         {
-            if((facing == EnumFacing.UP || (double)hitY <= 0.5D) && facing != EnumFacing.DOWN)
+            if ((facing == EnumFacing.UP || (double) hitY <= 0.5D) && facing != EnumFacing.DOWN)
             {
                 return iblockstate;
             }
@@ -96,7 +93,7 @@ public abstract class BlockJCSlab extends BlockSlab
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {HALF});
+        return new BlockState(this, new IProperty[]{HALF});
     }
 
     /**

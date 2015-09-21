@@ -72,13 +72,13 @@ public class GuiAppDinoPedia extends GuiApp
         {
             ItemStack stack = items.get(i);
 
-            if(stack != null && i >= scroll && i < 7 + scroll)
+            if (stack != null && i >= scroll && i < 7 + scroll)
             {
                 GlStateManager.pushMatrix();
 
                 int renderY = (i - scroll) * 18 + 10;
 
-                if(app.getSelectedItem() == i)
+                if (app.getSelectedItem() == i)
                 {
                     gui.drawBoxOutline(4, renderY + 8, 18, 18, 1, 1.0F, 0x606060);
                 }
@@ -90,7 +90,7 @@ public class GuiAppDinoPedia extends GuiApp
                 render.renderItemAndEffectIntoGUI(stack, 5, renderY);
                 render.zLevel = 0.0F;
 
-                if(app.getSelectedItem() == i)
+                if (app.getSelectedItem() == i)
                 {
                     GlStateManager.translate(70, 10, 0);
 
@@ -168,7 +168,7 @@ public class GuiAppDinoPedia extends GuiApp
                 {
                     int y = (i - scroll) * 18 + 10;
 
-                    if(mouseX > 0 && mouseX < 22 && mouseY > y && mouseY < y + 18)
+                    if (mouseX > 0 && mouseX < 22 && mouseY > y && mouseY < y + 18)
                     {
                         app.setSelectedItem(i);
 

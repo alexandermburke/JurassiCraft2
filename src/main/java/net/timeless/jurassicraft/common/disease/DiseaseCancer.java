@@ -1,6 +1,7 @@
 package net.timeless.jurassicraft.common.disease;
 
-public class DiseaseCancer extends Disease {
+public class DiseaseCancer extends Disease
+{
 
     public DiseaseCancer()
     {
@@ -9,7 +10,8 @@ public class DiseaseCancer extends Disease {
     }
 
     @Override
-    public void affects() {
+    public void affects()
+    {
 
     }
 }

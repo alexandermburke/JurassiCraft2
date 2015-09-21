@@ -2,11 +2,7 @@ package net.timeless.jurassicraft.common.storagedisc;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumChatFormatting;
-import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.genetics.DinoDNA;
-import net.timeless.jurassicraft.common.genetics.GeneticsContainer;
-import net.timeless.jurassicraft.common.lang.AdvLang;
 
 import java.util.List;
 

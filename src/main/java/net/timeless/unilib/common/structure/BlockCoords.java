@@ -2,33 +2,41 @@ package net.timeless.unilib.common.structure;
 
 import net.minecraft.util.BlockPos;
 
-public class BlockCoords {
+public class BlockCoords
+{
     public int x;
     public int y;
     public int z;
 
-    public BlockCoords() {
+    public BlockCoords()
+    {
 
     }
 
-    public BlockCoords(int x, int y, int z) {
+    public BlockCoords(int x, int y, int z)
+    {
         this.x = x;
         this.y = y;
         this.z = z;
     }
 
-    public boolean equals(Object o) {
-        if(o instanceof BlockCoords) {
-            BlockCoords coords = (BlockCoords)o;
+    public boolean equals(Object o)
+    {
+        if (o instanceof BlockCoords)
+        {
+            BlockCoords coords = (BlockCoords) o;
             return coords.x == x && coords.y == y && coords.z == z;
-        } else if(o instanceof BlockPos) {
-            BlockPos pos = (BlockPos)o;
+        }
+        else if (o instanceof BlockPos)
+        {
+            BlockPos pos = (BlockPos) o;
             return pos.getX() == x && pos.getY() == y && pos.getZ() == z;
         }
         return false;
     }
 
-    public int hashCode() {
+    public int hashCode()
+    {
         final int BASE = 17;
         final int MULTIPLIER = 31;
 

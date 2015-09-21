@@ -1,19 +1,14 @@
 package net.timeless.jurassicraft.common.message;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
-import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
-import net.timeless.jurassicraft.common.vehicles.helicopter.HelicopterSeat;
-
-import java.util.UUID;
 
 public class MessageHelicopterEngine implements IMessage
 {
@@ -48,7 +43,7 @@ public class MessageHelicopterEngine implements IMessage
         public IMessage onMessage(MessageHelicopterEngine packet, MessageContext ctx)
         {
             World world = null;
-            if(ctx.side == Side.CLIENT)
+            if (ctx.side == Side.CLIENT)
             {
                 world = getClientWorld();
             }
@@ -57,7 +52,7 @@ public class MessageHelicopterEngine implements IMessage
                 world = ctx.getServerHandler().playerEntity.worldObj;
             }
             EntityHelicopterBase helicopter = (EntityHelicopterBase) world.getEntityByID(packet.heliID);
-            if(helicopter != null)
+            if (helicopter != null)
                 helicopter.setEngineRunning(packet.engineState);
             return null;
         }

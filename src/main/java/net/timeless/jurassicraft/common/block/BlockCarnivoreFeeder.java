@@ -48,7 +48,7 @@ public class BlockCarnivoreFeeder extends BlockOriented
     @Override
     public boolean onBlockActivated(World world, BlockPos blockPos, IBlockState blockState, EntityPlayer player, EnumFacing enumFacing, float hitX, float hitY, float hitZ)
     {
-        if(!world.isRemote)
+        if (!world.isRemote)
         {
             player.openGui(JurassiCraft.instance, 11, world, blockPos.getX(), blockPos.getY(), blockPos.getZ());
         }

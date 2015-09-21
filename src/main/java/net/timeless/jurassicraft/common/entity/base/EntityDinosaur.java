@@ -1,16 +1,8 @@
 package net.timeless.jurassicraft.common.entity.base;
 
 import io.netty.buffer.ByteBuf;
-
-import java.util.HashSet;
-import java.util.Set;
-
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILeapAtTarget;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -39,6 +31,9 @@ import net.timeless.jurassicraft.common.genetics.GeneticsContainer;
 import net.timeless.jurassicraft.common.genetics.GeneticsHelper;
 import net.timeless.jurassicraft.common.item.ItemBluePrint;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class EntityDinosaur extends EntityAICreature implements IEntityAdditionalSpawnData, IAnimatedEntity, IInventory
 {
@@ -206,11 +201,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         double newHealth = transitionFromAge(dinosaur.getBabyHealth(), dinosaur.getAdultHealth());
 
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(newHealth);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(transitionFromAge(dinosaur
-                                                                                            .getBabySpeed(), dinosaur
-                                                                                            .getAdultSpeed()));
-        this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance)
-                .setBaseValue(transitionFromAge(dinosaur.getBabyKnockback(), dinosaur.getAdultKnockback()));
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(transitionFromAge(dinosaur.getBabySpeed(), dinosaur.getAdultSpeed()));
+        this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(transitionFromAge(dinosaur.getBabyKnockback(), dinosaur.getAdultKnockback()));
 
         // adjustHitbox();
 
@@ -219,8 +211,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
     private void adjustHitbox()
     {
-        this.setSize((float) transitionFromAge(dinosaur.getBabySizeX(), dinosaur.getAdultSizeX()),
-                     (float) transitionFromAge(dinosaur.getBabySizeY(), dinosaur.getAdultSizeY()));
+        this.setSize((float) transitionFromAge(dinosaur.getBabySizeX(), dinosaur.getAdultSizeX()), (float) transitionFromAge(dinosaur.getBabySizeY(), dinosaur.getAdultSizeY()));
     }
 
     public double transitionFromAge(double baby, double adult)
@@ -312,7 +303,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
             this.dataWatcher.updateObject(27, growthSpeedOffset);
 
             this.dataWatcher.updateObject(28, hasTracker ? 1 : 0);
-        } else
+        }
+        else
         {
             int age = this.dataWatcher.getWatchableObjectInt(26);
 
@@ -489,11 +481,9 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         for (int i = 0; i < meatAmount; ++i)
         {
             if (this.isBurning())
-                dropStackWithQuality(new ItemStack(JCItemRegistry.dino_steak, 1,
-                        JCEntityRegistry.getDinosaurId(dinosaur)));
+                dropStackWithQuality(new ItemStack(JCItemRegistry.dino_steak, 1, JCEntityRegistry.getDinosaurId(dinosaur)));
             else
-                dropStackWithQuality(new ItemStack(JCItemRegistry.dino_meat, 1,
-                        JCEntityRegistry.getDinosaurId(dinosaur)));
+                dropStackWithQuality(new ItemStack(JCItemRegistry.dino_meat, 1, JCEntityRegistry.getDinosaurId(dinosaur)));
         }
 
         for (int i = 0; i < this.getSizeInventory(); ++i)
@@ -516,8 +506,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
                     }
 
                     itemstack.stackSize -= j;
-                    EntityItem entityitem = new EntityItem(this.worldObj, this.posX + f, this.posY + f1,
-                            this.posZ + f2, new ItemStack(itemstack.getItem(), j, itemstack.getItemDamage()));
+                    EntityItem entityitem = new EntityItem(this.worldObj, this.posX + f, this.posY + f1, this.posZ + f2, new ItemStack(itemstack.getItem(), j, itemstack.getItemDamage()));
                     float f3 = 0.05F;
                     entityitem.motionX = (float) this.rand.nextGaussian() * f3;
                     entityitem.motionY = (float) this.rand.nextGaussian() * f3 + 0.2F;
@@ -566,7 +555,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
             if (getAgePercentage() > 75)
             {
                 player.displayGUIChest(this);
-            } else
+            }
+            else
             {
                 if (worldObj.isRemote)
                 {
@@ -575,7 +565,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
                     if (hasCustomName())
                     {
                         msg = getCustomNameTag();
-                    } else
+                    }
+                    else
                     {
                         msg = "This " + getCommandSenderName();
                     }
@@ -583,7 +574,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
                     player.addChatComponentMessage(new ChatComponentText(msg + " is not old enough to hold items!"));
                 }
             }
-        } else
+        }
+        else
         {
             ItemStack heldItem = player.getHeldItem();
 
@@ -591,8 +583,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
             {
                 if (heldItem.getItem() instanceof ItemBluePrint)
                 {
-                    ((ItemBluePrint) heldItem.getItem()).setDinosaur(heldItem,
-                                                                     JCEntityRegistry.getDinosaurId(getDinosaur()));
+                    ((ItemBluePrint) heldItem.getItem()).setDinosaur(heldItem, JCEntityRegistry.getDinosaurId(getDinosaur()));
                 }
             }
         }
@@ -675,8 +666,7 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
     public boolean isStronger(EntityDinosaur dinosaur)
     {
-        return this.getHealth() * (float) this.getAttackDamage() < dinosaur.getHealth()
-                * (float) dinosaur.getAttackDamage();
+        return this.getHealth() * (float) this.getAttackDamage() < dinosaur.getHealth() * (float) dinosaur.getAttackDamage();
     }
 
     public boolean isMale()
@@ -719,10 +709,12 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
         if (percent > 75)
         {
             stage = EnumGrowthStage.MATURE;
-        } else if (percent > 50)
+        }
+        else if (percent > 50)
         {
             stage = EnumGrowthStage.ADOLESCENT;
-        } else if (percent > 25)
+        }
+        else if (percent > 25)
         {
             stage = EnumGrowthStage.JUVENILE;
         }
@@ -776,7 +768,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
                 itemstack = this.inventory[index];
                 this.setInventorySlotContents(index, null);
                 return itemstack;
-            } else
+            }
+            else
             {
                 itemstack = this.inventory[index].splitStack(count);
 
@@ -787,7 +780,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
                 return itemstack;
             }
-        } else
+        }
+        else
         {
             return null;
         }
@@ -801,7 +795,8 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
             ItemStack itemstack = this.inventory[index];
             this.setInventorySlotContents(index, null);
             return itemstack;
-        } else
+        }
+        else
         {
             return null;
         }

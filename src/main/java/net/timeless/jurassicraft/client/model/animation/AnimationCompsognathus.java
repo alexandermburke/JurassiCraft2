@@ -15,8 +15,7 @@ import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 public class AnimationCompsognathus implements IModelAnimator
 {
     @Override
-    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw,
-                                  float rotationPitch, float partialTicks, Entity entity)
+    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
     {
         ModelDinosaur model = (ModelDinosaur) modelJson;
         Animator animator = model.animator;
@@ -60,9 +59,8 @@ public class AnimationCompsognathus implements IModelAnimator
         MowzieModelRenderer rightForeArm = model.getCube("Right forearm");
         MowzieModelRenderer rightHand = model.getCube("Right hand");
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail5, tail4, tail3, tail2, tail1 };
-        MowzieModelRenderer[] neck = new MowzieModelRenderer[] { head, neck7, neck6, neck5, neck4, neck3, neck2, neck1,
-                upperBody };
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail5, tail4, tail3, tail2, tail1};
+        MowzieModelRenderer[] neck = new MowzieModelRenderer[]{head, neck7, neck6, neck5, neck4, neck3, neck2, neck1, upperBody};
 
         // f = entity.ticksExisted;
         // f1 = 0.4F;

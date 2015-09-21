@@ -22,7 +22,7 @@ public class StorageTypeRegistry
     {
         try
         {
-            if(id == null || id.length() == 0)
+            if (id == null || id.length() == 0)
             {
                 id = "DinoDNA";
             }

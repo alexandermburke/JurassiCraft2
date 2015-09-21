@@ -13,8 +13,8 @@ import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 public class TileDNACombinator extends TileMachineBase
 {
-    private int[] inputs = new int[]{ 0, 1 };
-    private int[] outputs = new int[]{ 2 };
+    private int[] inputs = new int[]{0, 1};
+    private int[] outputs = new int[]{2};
 
     private ItemStack[] slots = new ItemStack[3];
 
@@ -47,7 +47,7 @@ public class TileDNACombinator extends TileMachineBase
 
             String storageId = slots[0].getTagCompound().getString("StorageId");
 
-            if(storageId.equals("DinoDNA"))
+            if (storageId.equals("DinoDNA"))
             {
                 DinoDNA dna1 = DinoDNA.readFromNBT(slots[0].getTagCompound());
                 DinoDNA dna2 = DinoDNA.readFromNBT(slots[1].getTagCompound());
@@ -65,7 +65,7 @@ public class TileDNACombinator extends TileMachineBase
                 newDNA.writeToNBT(outputTag);
                 output.setTagCompound(outputTag);
             }
-            else if(storageId.equals("PlantDNA"))
+            else if (storageId.equals("PlantDNA"))
             {
                 PlantDNA dna1 = PlantDNA.readFromNBT(slots[0].getTagCompound());
                 PlantDNA dna2 = PlantDNA.readFromNBT(slots[1].getTagCompound());

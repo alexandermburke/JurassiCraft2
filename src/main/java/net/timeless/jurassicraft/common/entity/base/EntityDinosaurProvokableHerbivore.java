@@ -1,8 +1,6 @@
 package net.timeless.jurassicraft.common.entity.base;
 
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.common.entity.ai.EntityAIFindPlant;
 
 public class EntityDinosaurProvokableHerbivore extends EntityDinosaurProvokable

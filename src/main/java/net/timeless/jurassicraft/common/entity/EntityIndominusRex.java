@@ -16,10 +16,10 @@ public class EntityIndominusRex extends EntityDinosaurAggressive // implements I
 {
     public ChainBuffer tailBuffer = new ChainBuffer(7);
 
-    private static final String[] hurtSounds = new String[] { "indominus_hurt_1" };
-    private static final String[] livingSounds = new String[] { "indominus_living_1" };
-    private static final String[] deathSounds = new String[] { "indominus_death_1" };
-    private static final String[] breathSounds = new String[] { "indominus_breath" };
+    private static final String[] hurtSounds = new String[]{"indominus_hurt_1"};
+    private static final String[] livingSounds = new String[]{"indominus_living_1"};
+    private static final String[] deathSounds = new String[]{"indominus_death_1"};
+    private static final String[] breathSounds = new String[]{"indominus_breath"};
 
     @SideOnly(Side.CLIENT)
     private float[] newSkinColor = new float[3];
@@ -140,6 +140,6 @@ public class EntityIndominusRex extends EntityDinosaurAggressive // implements I
     @SideOnly(Side.CLIENT)
     public float[] getSkinColor()
     {
-        return new float[] { this.skinColor[0] / 255.0F, this.skinColor[1] / 255.0F, this.skinColor[2] / 255.0F };
+        return new float[]{this.skinColor[0] / 255.0F, this.skinColor[1] / 255.0F, this.skinColor[2] / 255.0F};
     }
 }

@@ -35,8 +35,7 @@ public class EntityAIJCWatchClosest extends EntityAIBase
      */
     private final float turnSpeedPitch;
 
-    public EntityAIJCWatchClosest(EntityLiving entity, Class watch, float maxDistance, float turnSpeedYaw,
-                                  float turnSpeedPitch)
+    public EntityAIJCWatchClosest(EntityLiving entity, Class watch, float maxDistance, float turnSpeedYaw, float turnSpeedPitch)
     {
         this.theWatcher = entity;
         this.watchedClass = watch;
@@ -49,8 +48,7 @@ public class EntityAIJCWatchClosest extends EntityAIBase
         this.setMutexBits(2);
     }
 
-    public EntityAIJCWatchClosest(EntityLiving entity, Class watch, float maxDistance, float chance,
-                                  float turnSpeedYaw, float turnSpeedPitch)
+    public EntityAIJCWatchClosest(EntityLiving entity, Class watch, float maxDistance, float chance, float turnSpeedYaw, float turnSpeedPitch)
     {
         this.theWatcher = entity;
         this.watchedClass = watch;
@@ -72,7 +70,8 @@ public class EntityAIJCWatchClosest extends EntityAIBase
         if (this.theWatcher.getRNG().nextFloat() >= this.chance)
         {
             return false;
-        } else
+        }
+        else
         {
             if (this.theWatcher.getAttackTarget() != null)
             {
@@ -81,15 +80,11 @@ public class EntityAIJCWatchClosest extends EntityAIBase
 
             if (this.watchedClass == EntityPlayer.class)
             {
-                this.closestEntity = this.theWatcher.worldObj.getClosestPlayerToEntity(this.theWatcher,
-                                                                                       this.maxDistanceForPlayer);
-            } else
+                this.closestEntity = this.theWatcher.worldObj.getClosestPlayerToEntity(this.theWatcher, this.maxDistanceForPlayer);
+            }
+            else
             {
-                this.closestEntity = this.theWatcher.worldObj
-                        .findNearestEntityWithinAABB(this.watchedClass,
-                                                     this.theWatcher.getEntityBoundingBox()
-                                                             .expand(this.maxDistanceForPlayer, 3.0D,
-                                                                     this.maxDistanceForPlayer), this.theWatcher);
+                this.closestEntity = this.theWatcher.worldObj.findNearestEntityWithinAABB(this.watchedClass, this.theWatcher.getEntityBoundingBox().expand(this.maxDistanceForPlayer, 3.0D, this.maxDistanceForPlayer), this.theWatcher);
             }
 
             return this.closestEntity != null;
@@ -102,9 +97,7 @@ public class EntityAIJCWatchClosest extends EntityAIBase
     @Override
     public boolean continueExecuting()
     {
-        return !this.closestEntity.isEntityAlive() ? false
-                : (this.theWatcher.getDistanceSqToEntity(this.closestEntity) > this.maxDistanceForPlayer
-                        * this.maxDistanceForPlayer ? false : this.lookTime > 0);
+        return !this.closestEntity.isEntityAlive() ? false : (this.theWatcher.getDistanceSqToEntity(this.closestEntity) > this.maxDistanceForPlayer * this.maxDistanceForPlayer ? false : this.lookTime > 0);
     }
 
     /**
@@ -114,6 +107,7 @@ public class EntityAIJCWatchClosest extends EntityAIBase
     public void startExecuting()
     {
         this.lookTime = 40 + this.theWatcher.getRNG().nextInt(40);
+
         if (theWatcher instanceof IAnimatedEntity)
         {
             AnimationAPI.sendAnimPacket((IAnimatedEntity) theWatcher, AnimID.SNIFFING);
@@ -135,9 +129,7 @@ public class EntityAIJCWatchClosest extends EntityAIBase
     @Override
     public void updateTask()
     {
-        this.theWatcher.getLookHelper().setLookPosition(this.closestEntity.posX,
-                                                        this.closestEntity.posY + this.closestEntity.getEyeHeight(),
-                                                        this.closestEntity.posZ, turnSpeedYaw, turnSpeedPitch);
+        this.theWatcher.getLookHelper().setLookPosition(this.closestEntity.posX, this.closestEntity.posY + this.closestEntity.getEyeHeight(), this.closestEntity.posZ, turnSpeedYaw, turnSpeedPitch);
         --this.lookTime;
     }
 }

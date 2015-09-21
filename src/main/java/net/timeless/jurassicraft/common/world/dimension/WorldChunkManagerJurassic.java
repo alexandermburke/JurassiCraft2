@@ -2,10 +2,7 @@ package net.timeless.jurassicraft.common.world.dimension;
 
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeCache;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;
-import net.minecraft.world.gen.layer.GenLayer;
-import net.timeless.jurassicraft.common.world.dimension.layer.GenLayerJurassic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +30,8 @@ public class WorldChunkManagerJurassic extends WorldChunkManager
     }
 
     @Override
-    public void cleanupCache() {
+    public void cleanupCache()
+    {
         this.biomeCache.cleanupCache();
     }
 }
