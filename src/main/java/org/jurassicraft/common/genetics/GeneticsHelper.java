@@ -1,0 +1,24 @@
+package org.jurassicraft.common.genetics;
+
+import org.jurassicraft.common.dinosaur.Dinosaur;
+import org.jurassicraft.common.entity.base.JCEntityRegistry;
+
+import java.util.Random;
+
+public class GeneticsHelper
+{
+    public static GeneticsContainer randomGenetics(Random rand, Dinosaur dinosaur, int quality)
+    {
+        return randomGenetics(rand, JCEntityRegistry.getDinosaurId(dinosaur), quality);
+    }
+
+    public static GeneticsContainer randomGenetics(Random rand, int dinosaur, int quality)
+    {
+        return new GeneticsContainer(dinosaur, rand(rand, 4, quality), rand(rand, 2, quality), rand(rand, 4, quality), rand(rand, 4, quality), 0, 0, 0, 0);
+    }
+
+    private static int rand(Random rand, int range, int quality)
+    {
+        return rand.nextInt(range) + ((100 - quality) / 10);
+    }
+}

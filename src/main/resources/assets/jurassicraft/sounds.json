@@ -17,12 +17,6 @@
             "dinosaurs/triceratops/triceratops_living_3"
         ]
     },
-	"triceratops_living_4": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/triceratops/triceratops_living_4"
-        ]
-    },
 	"triceratops_death_1": {
         "category": "hostile",
         "sounds": [
@@ -362,42 +356,6 @@
             "dinosaurs/velociraptor/velociraptor_bark_3"
         ]
     },
-	"velociraptor_call_1": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/velociraptor/velociraptor_call_1"
-        ]
-    },
-	"velociraptor_call_2": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/velociraptor/velociraptor_call_2"
-        ]
-    },
-	"velociraptor_call_3": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/velociraptor/velociraptor_call_3"
-        ]
-    },
-	"velociraptor_hiss_1": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/velociraptor/velociraptor_hiss_1"
-        ]
-    },
-	"velociraptor_hiss_2": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/velociraptor/velociraptor_hiss_2"
-        ]
-    },
-	"velociraptor_hiss_3": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/velociraptor/velociraptor_hiss_3"
-        ]
-    },
 	"velociraptor_death_1": {
         "category": "hostile",
         "sounds": [
@@ -426,42 +384,6 @@
         "category": "hostile",
         "sounds": [
             "dinosaurs/tyrannosaurus_rex/tyrannosaurus_hurt_2"
-        ]
-    },
-	"tyrannosaurus_living_1": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/tyrannosaurus_rex/tyrannosaurus_living_1"
-        ]
-    },
-	"tyrannosaurus_living_2": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/tyrannosaurus_rex/tyrannosaurus_living_2"
-        ]
-    },
-	"tyrannosaurus_living_3": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/tyrannosaurus_rex/tyrannosaurus_living_3"
-        ]
-    },
-	"tyrannosaurus_living_4": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/tyrannosaurus_rex/tyrannosaurus_living_4"
-        ]
-    },
-	"tyrannosaurus_living_5": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/tyrannosaurus_rex/tyrannosaurus_living_5"
-        ]
-    },
-	"tyrannosaurus_living_6": {
-        "category": "hostile",
-        "sounds": [
-            "dinosaurs/tyrannosaurus_rex/tyrannosaurus_living_6"
         ]
     },
 	"tyrannosaurus_roar_1": {
