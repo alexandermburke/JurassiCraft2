@@ -25,9 +25,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
     private static final String[] hurtSounds = new String[]{"velociraptor_hurt_1"};
     private static final String[] livingSounds = new String[]{"velociraptor_living_1", "velociraptor_living_2", "velociraptor_living_3"};
     private static final String[] deathSounds = new String[]{"velociraptor_death_1"};
-    private static final String[] callSounds = new String[]{"velociraptor_call_1", "velociraptor_call_2", "velociraptor_call_3"};
     private static final String[] barkSounds = new String[]{"velociraptor_bark_1", "velociraptor_bark_2", "velociraptor_bark_3"};
-    private static final String[] hissSounds = new String[]{"velociraptor_hiss_1", "velociraptor_hiss_2", "velociraptor_hiss_3"};
 
     private static final Class[] targets = {EntityCompsognathus.class, EntityPlayer.class, EntityDilophosaurus.class,
             EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class, EntityHypsilophodon.class,
