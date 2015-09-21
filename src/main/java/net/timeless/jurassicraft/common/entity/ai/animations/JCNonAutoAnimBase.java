@@ -12,10 +12,10 @@ public class JCNonAutoAnimBase extends AIAnimation
 {
     protected EntityDinosaur animatingEntity;
     protected int duration;
-    protected int id;
+    protected AnimID id;
     protected int chance;
 
-    public JCNonAutoAnimBase(IAnimatedEntity entity, int duration, int id, int chance)
+    public JCNonAutoAnimBase(IAnimatedEntity entity, int duration, AnimID id, int chance)
     {
         super(entity);
         this.duration = duration;
@@ -25,7 +25,7 @@ public class JCNonAutoAnimBase extends AIAnimation
     }
 
     @Override
-    public int getAnimID()
+    public AnimID getAnimID()
     {
         return id;
     }

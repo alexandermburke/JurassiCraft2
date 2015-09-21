@@ -1,23 +1,21 @@
 /**
-    Copyright (C) 2015 by jabelar
-
-    This file is part of jabelar's Minecraft Forge modding examples; as such,
-    you can redistribute it and/or modify it under the terms of the GNU
-    General Public License as published by the Free Software Foundation,
-    either version 3 of the License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-    GNU General Public License for more details.
-
-    For a copy of the GNU General Public License see <http://www.gnu.org/licenses/>.
-*/
+ * Copyright (C) 2015 by jabelar
+ * This file is part of jabelar's Minecraft Forge modding examples; as such,
+ * you can redistribute it and/or modify it under the terms of the GNU
+ * General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * For a copy of the GNU General Public License see <http://www.gnu.org/licenses/>.
+ */
 
 package net.timeless.jurassicraft.common.entity.ai;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTallGrass;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockStateHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -33,11 +31,11 @@ import com.google.common.base.Predicates;
 
 /**
  * @author jabelar
- *
  */
 public class EntityAIJCEatGrass extends EntityAIBase
 {
-    private static final Predicate field_179505_b = BlockStateHelper.forBlock(Blocks.tallgrass).where(BlockTallGrass.TYPE, Predicates.equalTo(BlockTallGrass.EnumType.GRASS));
+    private static final Predicate<IBlockState> field_179505_b = BlockStateHelper.forBlock(Blocks.tallgrass)
+            .where(BlockTallGrass.TYPE, Predicates.equalTo(BlockTallGrass.EnumType.GRASS));
     /** The entity owner of this AITask */
     private final EntityLiving grassEaterEntity;
     /** The world the grass eater entity is eating from */
@@ -61,11 +59,11 @@ public class EntityAIJCEatGrass extends EntityAIBase
         if (grassEaterEntity.getRNG().nextInt(grassEaterEntity.isChild() ? 50 : 1000) != 0)
         {
             return false;
-        }
-        else
+        } else
         {
             BlockPos blockpos = new BlockPos(grassEaterEntity.posX, grassEaterEntity.posY, grassEaterEntity.posZ);
-            return field_179505_b.apply(entityWorld.getBlockState(blockpos)) ? true : entityWorld.getBlockState(blockpos.down()).getBlock() == Blocks.grass;
+            return field_179505_b.apply(entityWorld.getBlockState(blockpos)) ? true : entityWorld
+                    .getBlockState(blockpos.down()).getBlock() == Blocks.grass;
         }
     }
 
@@ -76,11 +74,11 @@ public class EntityAIJCEatGrass extends EntityAIBase
     public void startExecuting()
     {
         eatingGrassTimer = 40;
-        entityWorld.setEntityState(grassEaterEntity, (byte)10);
+        entityWorld.setEntityState(grassEaterEntity, (byte) 10);
         grassEaterEntity.getNavigator().clearPathEntity();
-        
+
         // DEBUG
-        System.out.println("Starting eating AI for entity "+grassEaterEntity.getEntityId());
+        System.out.println("Starting eating AI for entity " + grassEaterEntity.getEntityId());
     }
 
     /**
@@ -115,12 +113,12 @@ public class EntityAIJCEatGrass extends EntityAIBase
     @Override
     public void updateTask()
     {
-        if (((IAnimatedEntity)grassEaterEntity).getAnimID() != AnimID.EATING
+        if (((IAnimatedEntity) grassEaterEntity).getAnimID() != AnimID.EATING
                 && grassEaterEntity instanceof IAnimatedEntity)
         {
             AnimationAPI.sendAnimPacket((IAnimatedEntity) grassEaterEntity, AnimID.EATING);
         }
-        
+
         eatingGrassTimer = Math.max(0, eatingGrassTimer - 1);
 
         if (eatingGrassTimer == 4)
@@ -135,8 +133,7 @@ public class EntityAIJCEatGrass extends EntityAIBase
                 }
 
                 grassEaterEntity.eatGrassBonus();
-            }
-            else
+            } else
             {
                 BlockPos blockpos1 = blockpos.down();
 

@@ -43,19 +43,19 @@ public class AnimationTyrannosaurusRex implements IModelAnimator
     protected static int[][][] arrayOfSequences = new int[AnimID.NUM_IDS][][];
     static
     {
-        arrayOfSequences[AnimID.IDLE] = new int[][] {
+        arrayOfSequences[AnimID.IDLE_] = new int[][] {
             {0, 200}
         };
 
-        arrayOfSequences[AnimID.LOOKING_LEFT] = new int[][] {
+        arrayOfSequences[AnimID.LOOKING_LEFT_] = new int[][] {
             {1, 100}, {1, 80}, {0, 100}, {0, 200}
         };
         
-        arrayOfSequences[AnimID.LOOKING_RIGHT] = new int[][] {
+        arrayOfSequences[AnimID.LOOKING_RIGHT_] = new int[][] {
             {2, 100}, {2, 80}, {0, 100}, {0, 200}
         };
         
-        arrayOfSequences[AnimID.SNIFFING] = new int[][] {
+        arrayOfSequences[AnimID.SNIFFING_] = new int[][] {
             {3, 40}, {4, 100}, {4, 80}, {0, 100}, {0, 200}
         };
     }

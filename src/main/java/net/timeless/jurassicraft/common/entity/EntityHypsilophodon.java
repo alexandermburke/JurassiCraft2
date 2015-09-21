@@ -10,13 +10,14 @@ public class EntityHypsilophodon extends EntityDinosaurDefensiveHerbivore // imp
 {
     public ChainBuffer tailBuffer = new ChainBuffer(6);
 
-    private static final String[] hurtSounds = new String[]{"hypsilophodon_hurt_1", "hypsilophodon_hurt_2"};
-    private static final String[] livingSounds = new String[]{"hypsilophodon_living_1", "hypsilophodon_living_2", "hypsilophodon_living_3", "hypsilophodon_living_4"};
+    private static final String[] hurtSounds = new String[] { "hypsilophodon_hurt_1", "hypsilophodon_hurt_2" };
+    private static final String[] livingSounds = new String[] { "hypsilophodon_living_1", "hypsilophodon_living_2",
+            "hypsilophodon_living_3", "hypsilophodon_living_4" };
 
     public EntityHypsilophodon(World world)
     {
         super(world);
-        tasks.addTask(2, new JCNonAutoAnimBase(this, 35, AnimID.SCRATCHING, 60)); //Scratch Animation
+        tasks.addTask(2, new JCNonAutoAnimBase(this, 35, AnimID.SCRATCHING, 60)); // Scratch Animation
     }
 
     @Override

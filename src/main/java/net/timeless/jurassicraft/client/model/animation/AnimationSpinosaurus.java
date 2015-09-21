@@ -57,11 +57,11 @@ public class AnimationSpinosaurus implements IModelAnimator
      */
    protected static int[][][] arrayOfSequences = new int[AnimID.NUM_IDS][][];
    static {
-       arrayOfSequences[AnimID.IDLE] = new int[][] {
+       arrayOfSequences[AnimID.IDLE_] = new int[][] {
            {getPoseID("default"), 200}
        };
        
-       arrayOfSequences[AnimID.ROARING] = new int[][] {
+       arrayOfSequences[AnimID.ROARING_] = new int[][] {
            {getPoseID("roaring_1"), 100}, {getPoseID("roaring_2"), 80}, 
            {getPoseID("roaring_3"), 80}, {getPoseID("roaring_3"), 180}, 
            {getPoseID("default"), 100}

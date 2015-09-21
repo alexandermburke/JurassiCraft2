@@ -6,7 +6,7 @@ import net.timeless.animationapi.client.AnimID;
 public class JCBegAnimation extends JCNonAutoAnimBase
 {
 
-    public JCBegAnimation(IAnimatedEntity entity, int duration, int id, int chance)
+    public JCBegAnimation(IAnimatedEntity entity, int duration, AnimID id, int chance)
     {
         super(entity, duration, id, chance);
     }

@@ -1,21 +1,21 @@
 package net.timeless.unilib;
 
-import com.google.common.collect.Lists;
-import com.google.common.reflect.ClassPath;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraftforge.fml.common.*;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.unilib.common.BaseMod;
-import net.timeless.unilib.common.BlockProvider;
-import net.timeless.unilib.common.ItemProvider;
+        import com.google.common.collect.Lists;
+        import com.google.common.reflect.ClassPath;
+        import net.minecraft.block.Block;
+        import net.minecraft.item.Item;
+        import net.minecraftforge.fml.common.*;
+        import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+        import net.minecraftforge.fml.common.registry.GameRegistry;
+        import net.minecraftforge.fml.relauncher.Side;
+        import net.minecraftforge.fml.relauncher.SideOnly;
+        import net.timeless.unilib.common.BaseMod;
+        import net.timeless.unilib.common.BlockProvider;
+        import net.timeless.unilib.common.ItemProvider;
 
-import java.io.IOException;
-import java.util.Collection;
-import java.util.List;
+        import java.io.IOException;
+        import java.util.Collection;
+        import java.util.List;
 
 @Mod(modid = "net/timeless/unilib", name = "Unilib", version = "${unilib_version}")
 public class Unilib extends BaseMod {
@@ -25,6 +25,7 @@ public class Unilib extends BaseMod {
         super.preInitMod(evt);
         logger.info("Loading Unilib "+ Unilib.getVersion());
         logger.info("Loading content handlers...");
+        /*
         try {
             // Get the FML mod controller in order to change the current container later
             LoadController controller = ObfuscationReflectionHelper.getPrivateValue(Loader.class, Loader.instance(), 16);
@@ -60,7 +61,7 @@ public class Unilib extends BaseMod {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     private void handleClass(ClassPath.ClassInfo info, LoadController controller, ModContainer container, List<String> forbiddenPackages) {

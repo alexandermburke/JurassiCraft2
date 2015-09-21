@@ -12,12 +12,13 @@ public class JCNonAutoAnimSoundBase extends AIAnimation
 {
     protected EntityDinosaur animatingEntity;
     protected int duration;
-    protected int id;
+    protected AnimID id;
     protected int chance;
     protected String sound;
     protected float volumeOffset;
 
-    public JCNonAutoAnimSoundBase(IAnimatedEntity entity, int duration, int id, int chance, String sound, float volumeOffset)
+    public JCNonAutoAnimSoundBase(IAnimatedEntity entity, int duration, AnimID id, int chance, String sound,
+                                  float volumeOffset)
     {
         super(entity);
         this.duration = duration;
@@ -29,7 +30,7 @@ public class JCNonAutoAnimSoundBase extends AIAnimation
     }
 
     @Override
-    public int getAnimID()
+    public AnimID getAnimID()
     {
         return id;
     }
@@ -57,7 +58,8 @@ public class JCNonAutoAnimSoundBase extends AIAnimation
     {
         super.startExecuting();
         animatingEntity.currentAnim = this;
-        animatingEntity.playSound(sound, animatingEntity.getSoundVolume() + volumeOffset, animatingEntity.getSoundPitch());
+        animatingEntity.playSound(sound, animatingEntity.getSoundVolume() + volumeOffset,
+                                  animatingEntity.getSoundPitch());
     }
 
     @Override

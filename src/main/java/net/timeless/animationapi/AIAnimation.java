@@ -13,7 +13,7 @@ public abstract class AIAnimation extends EntityAIBase
         setMutexBits(7);
     }
 
-    public abstract int getAnimID();
+    public abstract AnimID getAnimID();
 
     public <T extends EntityLiving> T getEntity()
     {
@@ -41,7 +41,7 @@ public abstract class AIAnimation extends EntityAIBase
     public void startExecuting()
     {
         if (!isAutomatic())
-        	AnimationAPI.sendAnimPacket(animatedEntity, getAnimID());
+            AnimationAPI.sendAnimPacket(animatedEntity, getAnimID());
         animatedEntity.setAnimTick(0);
     }
 

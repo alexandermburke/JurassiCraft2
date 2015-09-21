@@ -96,5 +96,7 @@ public class AnimationOthnielia implements IModelAnimator
         model.walk(lowerArmLeft, 0.2F, 0.1F, false, 0F, 0F, ticksExisted, 1F);
 
         model.chainWave(tailParts, 1F * speed, 0.15F, 2, f, f1);
+
+        entity.tailBuffer.applyChainSwingBuffer(tailParts);
     }
 }

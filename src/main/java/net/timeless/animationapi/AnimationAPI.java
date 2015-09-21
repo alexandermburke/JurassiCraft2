@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
+import net.timeless.animationapi.client.AnimID;
 import net.timeless.animationapi.packet.PacketAnim;
 
 @Mod(modid = "JCAnimationAPI", name = "JurassiCraft AnimationAPI", version = "1.2.5")
@@ -45,21 +46,22 @@ public class AnimationAPI
         return FMLCommonHandler.instance().getEffectiveSide().isClient();
     }
 
-    public static void sendAnimPacket(IAnimatedEntity entity, int animID)
+    public static void sendAnimPacket(IAnimatedEntity entity, AnimID animID)
     {
-//        entity.setAnimID(animID);
-        if (((Entity)entity).worldObj.isRemote)
+        // entity.setAnimID(animID);
+        if (((Entity) entity).worldObj.isRemote)
         {
             // DEBUG
-            System.out.println("sending Anim Packet for entity "+((Entity)entity).getEntityId());
+            System.out.println("sending Anim Packet for entity " + ((Entity) entity).getEntityId());
 
-            wrapper.sendToAll(new PacketAnim((byte) animID, ((Entity) entity).getEntityId()));
+            wrapper.sendToAll(new PacketAnim((byte) animID.ordinal(), ((Entity) entity).getEntityId()));
         }
     }
 
     @Mod.Instance("AnimationAPI")
     public static AnimationAPI instance;
-    @SidedProxy(clientSide = "net.timeless.animationapi.client.ClientProxy", serverSide = "net.timeless.animationapi.CommonProxy")
+    @SidedProxy(clientSide = "net.timeless.animationapi.client.ClientProxy",
+                serverSide = "net.timeless.animationapi.CommonProxy")
     public static CommonProxy proxy;
     public static SimpleNetworkWrapper wrapper;
 
@@ -67,7 +69,7 @@ public class AnimationAPI
 
     static
     {
-        fTimer = new String[]{"field_71428_T", "S", "timer"};
+        fTimer = new String[] { "field_71428_T", "S", "timer" };
     }
 
     public static CommonProxy getProxy()

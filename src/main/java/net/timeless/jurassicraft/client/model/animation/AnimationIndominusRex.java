@@ -3,6 +3,7 @@ package net.timeless.jurassicraft.client.model.animation;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.animationapi.client.AnimID;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
 import net.timeless.jurassicraft.common.entity.EntityIndominusRex;
@@ -14,13 +15,14 @@ import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 public class AnimationIndominusRex implements IModelAnimator
 {
     @Override
-    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
+    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw,
+                                  float rotationPitch, float partialTicks, Entity entity)
     {
         ModelDinosaur model = (ModelDinosaur) modelJson;
         Animator animator = model.animator;
 
-//                f = entity.ticksExisted;
-//                f1 = 1F;
+        // f = entity.ticksExisted;
+        // f1 = 1F;
 
         float globalSpeed = 0.5F;
         float globalDegree = 0.4F;
@@ -72,11 +74,12 @@ public class AnimationIndominusRex implements IModelAnimator
         MowzieModelRenderer handLeft = model.getCube("Hand LEFT");
         MowzieModelRenderer handRight = model.getCube("Hand RIGHT");
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail7, tail6, tail5, tail4, tail3, tail2, tail1};
-        MowzieModelRenderer[] body = new MowzieModelRenderer[]{head, neck4, neck3, neck2, neck1, bodyFront, bodyMid, bodyRear};
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail7, tail6, tail5, tail4, tail3, tail2, tail1 };
+        MowzieModelRenderer[] body = new MowzieModelRenderer[] { head, neck4, neck3, neck2, neck1, bodyFront, bodyMid,
+                bodyRear };
 
-        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[]{handLeft, lowerArmLeft, upperArmLeft};
-        MowzieModelRenderer[] armRight = new MowzieModelRenderer[]{handRight, lowerArmRight, upperArmRight};
+        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[] { handLeft, lowerArmLeft, upperArmLeft };
+        MowzieModelRenderer[] armRight = new MowzieModelRenderer[] { handRight, lowerArmRight, upperArmRight };
 
         model.bob(bodyRear, globalSpeed * 1F, globalHeight * 1.0F, false, f, f1);
 
@@ -117,7 +120,7 @@ public class AnimationIndominusRex implements IModelAnimator
 
         ((EntityIndominusRex) entity).tailBuffer.applyChainSwingBuffer(tail);
 
-        animator.setAnim(1);
+        animator.setAnim(AnimID.IDLE);
         animator.startPhase(15);
         animator.move(bodyRear, 0, -3, -5);
         animator.move(rightThigh, 0, -3, -5);

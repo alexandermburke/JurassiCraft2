@@ -40,7 +40,6 @@ public class AnimationAIEating extends EntityAIBase
     {
         this.timer = this.duration;
 
-
         if (this.shouldAnimate && this.creature.getAnimID() == AnimID.IDLE)
             creature.setAnimID(AnimID.EATING);
     }

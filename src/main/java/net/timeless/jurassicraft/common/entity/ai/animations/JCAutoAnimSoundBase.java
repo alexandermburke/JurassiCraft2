@@ -2,17 +2,18 @@ package net.timeless.jurassicraft.common.entity.ai.animations;
 
 import net.timeless.animationapi.AIAnimation;
 import net.timeless.animationapi.IAnimatedEntity;
+import net.timeless.animationapi.client.AnimID;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 
 public class JCAutoAnimSoundBase extends AIAnimation
 {
     protected EntityDinosaur animatingEntity;
     protected int duration;
-    protected int id;
+    protected AnimID id;
     protected String sound;
     protected float volumeOffset;
 
-    public JCAutoAnimSoundBase(IAnimatedEntity entity, int duration, int id, String sound, float volumeOffset)
+    public JCAutoAnimSoundBase(IAnimatedEntity entity, int duration, AnimID id, String sound, float volumeOffset)
     {
         super(entity);
         this.duration = duration;
@@ -22,34 +23,39 @@ public class JCAutoAnimSoundBase extends AIAnimation
         this.volumeOffset = volumeOffset;
     }
 
-    public JCAutoAnimSoundBase(IAnimatedEntity entity, int duration, int id, String sound)
+    public JCAutoAnimSoundBase(IAnimatedEntity entity, int duration, AnimID id, String sound)
     {
         this(entity, duration, id, sound, 0.0F);
     }
 
     @Override
-    public int getAnimID()
+    public AnimID getAnimID()
     {
         return id;
     }
 
+    @Override
     public boolean isAutomatic()
     {
         return true;
     }
 
+    @Override
     public int getDuration()
     {
         return duration;
     }
 
+    @Override
     public void startExecuting()
     {
         super.startExecuting();
         animatingEntity.currentAnim = this;
-        animatingEntity.playSound(sound, animatingEntity.getSoundVolume() + volumeOffset, animatingEntity.getSoundPitch());
+        animatingEntity.playSound(sound, animatingEntity.getSoundVolume() + volumeOffset,
+                                  animatingEntity.getSoundPitch());
     }
 
+    @Override
     public void resetTask()
     {
         super.resetTask();

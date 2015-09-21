@@ -3,6 +3,7 @@ package net.timeless.jurassicraft.client.model.animation;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.animationapi.client.AnimID;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
 import net.timeless.jurassicraft.common.entity.EntityParasaurolophus;
@@ -14,18 +15,19 @@ import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 public class AnimationParasaurolophus implements IModelAnimator
 {
     @Override
-    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
+    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw,
+                                  float rotationPitch, float partialTicks, Entity entity)
     {
         ModelDinosaur model = (ModelDinosaur) modelJson;
         Animator animator = model.animator;
 
-//        float globalSpeed = 1.0F;
-//        float height = 1.2F;
-//        float globalDegree = 0.4F;
-//        float globalHeight = 1.0F;
+        // float globalSpeed = 1.0F;
+        // float height = 1.2F;
+        // float globalDegree = 0.4F;
+        // float globalHeight = 1.0F;
 
-        //f = entity.ticksExisted;
-        //f1 = 1F;
+        // f = entity.ticksExisted;
+        // f1 = 1F;
 
         MowzieModelRenderer head = model.getCube("Head");
 
@@ -71,7 +73,7 @@ public class AnimationParasaurolophus implements IModelAnimator
 
         MowzieModelRenderer jaw = model.getCube("Jaw");
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
 
         float scaleFactor = 0.6F;
         float height = 2F;
@@ -146,7 +148,7 @@ public class AnimationParasaurolophus implements IModelAnimator
 
         ((EntityParasaurolophus) entity).tailBuffer.applyChainSwingBuffer(tail);
 
-        animator.setAnim(1);
+        animator.setAnim(AnimID.CALLING);
         animator.startPhase(15);
         animator.rotate(waist, 0.3F, 0, 0);
         animator.rotate(shoulders, 0.1F, 0, 0);

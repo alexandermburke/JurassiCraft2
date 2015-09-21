@@ -1,6 +1,7 @@
 package net.timeless.jurassicraft.client.model.animation.raptorsquad;
 
 import net.minecraft.entity.Entity;
+import net.timeless.animationapi.client.AnimID;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
 import net.timeless.jurassicraft.common.entity.EntityVelociraptor;
@@ -11,7 +12,8 @@ import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 public class AnimationBlue implements IModelAnimator
 {
     @Override
-    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
+    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw,
+                                  float rotationPitch, float partialTicks, Entity entity)
     {
         ModelDinosaur model = (ModelDinosaur) modelJson;
         Animator animator = model.animator;
@@ -51,17 +53,18 @@ public class AnimationBlue implements IModelAnimator
         MowzieModelRenderer Hand_Right = model.getCube("Right hand");
         MowzieModelRenderer Hand_Left = model.getCube("Left hand");
 
-        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[]{Hand_Right, lowerArmRight, upperArmRight};
-        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[]{Hand_Left, lowerArmLeft, upperArmLeft};
-        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
-        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[]{waist, chest, shoulders, neck4, neck3, neck2, neck1, head};
+        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[] { Hand_Right, lowerArmRight, upperArmRight };
+        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[] { Hand_Left, lowerArmLeft, upperArmLeft };
+        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
+        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[] { waist, chest, shoulders, neck4, neck3, neck2,
+                neck1, head };
 
-//        if (velociraptor.isCarcass()) //Death Animation
-//        {
-//            model.walk(head, 1.0F, 0.5F, false, 0, 0, velociraptor.hurtTime, 1.0F);
-//        }
-//        else
-//        {
+        // if (velociraptor.isCarcass()) //Death Animation
+        // {
+        // model.walk(head, 1.0F, 0.5F, false, 0, 0, velociraptor.hurtTime, 1.0F);
+        // }
+        // else
+        // {
         int frame = velociraptor.ticksExisted;
 
         // f = entity.ticksExisted;
@@ -212,8 +215,8 @@ public class AnimationBlue implements IModelAnimator
 
         velociraptor.tailBuffer.applyChainSwingBuffer(tailParts);
 
-        //Call
-        animator.setAnim(1);
+        // Call
+        animator.setAnim(AnimID.ATTACKING);
         animator.startPhase(2);
         animator.rotate(shoulders, -0.3f, 0, 0);
         animator.move(shoulders, 0, 0.5f, 0.2f);
@@ -246,8 +249,8 @@ public class AnimationBlue implements IModelAnimator
         animator.setStationaryPhase(10);
         animator.resetPhase(8);
 
-        //Twitch right
-        animator.setAnim(10);
+        // Twitch right
+        animator.setAnim(AnimID.MATING);
         animator.startPhase(3);
         animator.rotate(head, 0, 0, 0.3f);
         animator.move(head, 1, 0, 0);
@@ -255,8 +258,8 @@ public class AnimationBlue implements IModelAnimator
         animator.setStationaryPhase(19);
         animator.resetPhase(3);
 
-        //Twitch left
-        animator.setAnim(11);
+        // Twitch left
+        animator.setAnim(AnimID.SLEEPING);
         animator.startPhase(3);
         animator.rotate(head, 0, 0, -0.3f);
         animator.move(head, -1, 0, 0);
@@ -264,8 +267,8 @@ public class AnimationBlue implements IModelAnimator
         animator.setStationaryPhase(19);
         animator.resetPhase(3);
 
-        //Look and sniff
-        animator.setAnim(12);
+        // Look and sniff
+        animator.setAnim(AnimID.RESTING);
         animator.startPhase(8);
         animator.rotate(shoulders, 0.5f, 0.1f, 0);
         animator.move(shoulders, 0, -1, -0.5f);
@@ -391,6 +394,6 @@ public class AnimationBlue implements IModelAnimator
         animator.setStationaryPhase(5);
 
         animator.resetPhase(8);
-//        }
+        // }
     }
 }

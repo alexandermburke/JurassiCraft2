@@ -76,22 +76,22 @@ public class EntityDinosaurProvokable extends EntityDinosaur
         this.dataWatcher.addObject(16, new Byte((byte) 0));
     }
 
-    /**
-     * Called when the entity is attacked.
-     */
-    public boolean attackEntityFrom(DamageSource source, float amount)
-    {
-        if (this.isEntityInvulnerable(source))
-        {
-            return false;
-        }
-        else
-        {
-            float damage = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
-
-            return super.attackEntityFrom(source, damage);
-        }
-    }
+//    /**
+//     * Called when the entity is attacked.
+//     */
+//    public boolean attackEntityFrom(DamageSource source, float amount)
+//    {
+//        if (this.isEntityInvulnerable(source))
+//        {
+//            return false;
+//        }
+//        else
+//        {
+//            float damage = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
+//
+//            return super.attackEntityFrom(source, damage);
+//        }
+//    }
 
     public boolean attackEntityAsMob(Entity entity)
     {

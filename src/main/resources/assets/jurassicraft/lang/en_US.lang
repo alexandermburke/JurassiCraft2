@@ -86,6 +86,7 @@ item.needle.name=Needle
 item.plant_cells.name=Plant Cells
 item.plant_cells_petri_dish.name=Plant Cells in Petri Dish
 item.plant_callus.name={plant} Plant Callus
+item.tracker.name=Dinosaur Tracking Implant
 
 //Blocks ==================================================
 tile.fossil_block.name={period} Fossil

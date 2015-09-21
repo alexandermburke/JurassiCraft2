@@ -108,5 +108,7 @@ public class AnimationSegisaurus implements IModelAnimator
         model.chainWave(bodyParts, 0.1F, -0.03F, 5, entity.ticksExisted, 1F);
         model.chainWave(rightArmParts, 0.1F, -0.1F, 4, entity.ticksExisted, 1F);
         model.chainWave(leftArmParts, 0.1F, -0.1F, 4, entity.ticksExisted, 1F);
+
+        entity.tailBuffer.applyChainSwingBuffer(tailParts);
     }
 }

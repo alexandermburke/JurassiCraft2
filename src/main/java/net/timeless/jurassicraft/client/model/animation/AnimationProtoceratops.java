@@ -98,5 +98,7 @@ public class AnimationProtoceratops implements IModelAnimator
 
         model.faceTarget(head, 2, rotationYaw, rotationPitch);
         model.faceTarget(neck1, 2, rotationYaw, rotationPitch);
+
+        entity.tailBuffer.applyChainSwingBuffer(tail);
     }
 }
