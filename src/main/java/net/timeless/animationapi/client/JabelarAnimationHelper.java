@@ -4,8 +4,8 @@ import java.util.EnumMap;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.jurassicraft.client.model.ModelDinosaur;
-import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
+import org.jurassicraft.client.model.ModelDinosaur;
+import org.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 
