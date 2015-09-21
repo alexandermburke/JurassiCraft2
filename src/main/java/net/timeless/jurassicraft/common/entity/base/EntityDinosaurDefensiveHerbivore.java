@@ -16,13 +16,14 @@ import net.timeless.jurassicraft.common.entity.ai.EntityAIJCPanic;
 public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements IMob
 {
     private final EntityAIJCPanic entityAIPanic = new EntityAIJCPanic(this, 1.25D);
+    private final EntityAIFindPlant entityAIFindPlant = new EntityAIFindPlant(this);
 
     public EntityDinosaurDefensiveHerbivore(World world)
     {
         super(world);
         // tasks.addTask(5, entityAIEatGrass);
         tasks.addTask(1, entityAIPanic);
-        tasks.addTask(1, new EntityAIFindPlant(this));
+        tasks.addTask(2, entityAIFindPlant);
     }
 
     /**

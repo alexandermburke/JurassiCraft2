@@ -1,5 +1,6 @@
 package net.timeless.jurassicraft.client.model.animation;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 
 import net.minecraft.entity.Entity;
@@ -55,17 +56,18 @@ public class AnimationSpinosaurus implements IModelAnimator
      * modelAssetPaths array above),
      * Second element is the number of ticks it should take to tween to that pose
      */
-   protected static int[][][] arrayOfSequences = new int[AnimID.NUM_IDS][][];
+   protected static EnumMap<AnimID, int[][]> mapOfSequences = new EnumMap<AnimID, int[][]>(AnimID.class);
+
    static {
-       arrayOfSequences[AnimID.IDLE_] = new int[][] {
-           {getPoseID("default"), 200}
-       };
+       mapOfSequences.put(AnimID.IDLE, new int[][] {
+               {getPoseID("default"), 20}
+           });
        
-       arrayOfSequences[AnimID.ROARING_] = new int[][] {
-           {getPoseID("roaring_1"), 100}, {getPoseID("roaring_2"), 80}, 
-           {getPoseID("roaring_3"), 80}, {getPoseID("roaring_3"), 180}, 
-           {getPoseID("default"), 100}
-       };
+       mapOfSequences.put(AnimID.ROARING, new int[][] {
+               {getPoseID("roaring_1"), 100}, {getPoseID("roaring_2"), 80}, 
+               {getPoseID("roaring_3"), 80}, {getPoseID("roaring_3"), 180}, 
+               {getPoseID("default"), 100}
+           });
    }
    
 //   
@@ -133,7 +135,7 @@ public class AnimationSpinosaurus implements IModelAnimator
         {
             // DEBUG
             System.out.println("Adding entity to hashmap with id = "+parEntity.getEntityId());
-            animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(theEntity, theModel, numParts, arrayOfPoses, arrayOfSequences, true, true, 1.0F));
+            animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(theEntity, theModel, numParts, arrayOfPoses, mapOfSequences, true, true, 1.0F));
         }
 
         animationInstanceToEntityMap.get(theEntity.getEntityId()).performJabelarAnimations(theModel);

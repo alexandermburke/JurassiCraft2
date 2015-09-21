@@ -13,14 +13,14 @@ import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 
 public class PacketAnim implements IMessage
 {
-    private byte animID;
+    private int animID;
     private int entityID;
 
     public PacketAnim()
     {
     }
 
-    public PacketAnim(byte anim, int entity)
+    public PacketAnim(int anim, int entity)
     {
         // DEBUG
         System.out.println("Constructing PacketAnim");
@@ -29,17 +29,26 @@ public class PacketAnim implements IMessage
         entityID = entity;
     }
 
+    public PacketAnim(AnimID anim, int entity)
+    {
+        // DEBUG
+        System.out.println("Constructing PacketAnim");
+
+        animID = anim.ordinal();
+        entityID = entity;
+    }
+
     @Override
     public void toBytes(ByteBuf buffer)
     {
-        buffer.writeByte(animID);
+        buffer.writeInt(animID);
         buffer.writeInt(entityID);
     }
 
     @Override
     public void fromBytes(ByteBuf buffer)
     {
-        animID = buffer.readByte();
+        animID = buffer.readInt();
         entityID = buffer.readInt();
     }
 

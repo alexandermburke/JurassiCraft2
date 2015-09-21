@@ -92,10 +92,7 @@ public class EntityAIFindPlant extends EntityAIBase
     {
         if ((dinosaur.getDistanceSq(x, y, z) / 16) <= dinosaur.width)
         {
-            if (dinosaur.getAnimID() != AnimID.EATING)
-            {
-                AnimationAPI.sendAnimPacket(dinosaur, AnimID.EATING);
-            }
+            AnimationAPI.sendAnimPacket(dinosaur, AnimID.EATING);
 
             if (dinosaur.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing"))
             {

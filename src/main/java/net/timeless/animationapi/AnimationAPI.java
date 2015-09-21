@@ -48,13 +48,13 @@ public class AnimationAPI
 
     public static void sendAnimPacket(IAnimatedEntity entity, AnimID animID)
     {
-        // entity.setAnimID(animID);
-        if (((Entity) entity).worldObj.isRemote)
+        entity.setAnimID(animID);
+        if (!((Entity) entity).worldObj.isRemote)
         {
             // DEBUG
             System.out.println("sending Anim Packet for entity " + ((Entity) entity).getEntityId());
 
-            wrapper.sendToAll(new PacketAnim((byte) animID.ordinal(), ((Entity) entity).getEntityId()));
+            wrapper.sendToAll(new PacketAnim(animID, ((Entity) entity).getEntityId()));
         }
     }
 

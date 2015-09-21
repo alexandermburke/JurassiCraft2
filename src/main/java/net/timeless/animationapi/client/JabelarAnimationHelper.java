@@ -1,5 +1,7 @@
 package net.timeless.animationapi.client;
 
+import java.util.EnumMap;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
@@ -17,7 +19,8 @@ public class JabelarAnimationHelper
 {
     private final EntityDinosaur theEntity;
 
-    private final int[][][] arrayOfSequences;
+//    private final int[][][] arrayOfSequences;
+    private EnumMap<AnimID, int[][]> mapOfSequences = new EnumMap<AnimID, int[][]>(AnimID.class);
 
     private final MowzieModelRenderer[][] arrayOfPoses;
     private MowzieModelRenderer[] passedInModelRendererArray;
@@ -27,13 +30,9 @@ public class JabelarAnimationHelper
     private float[][] currentPositionArray;
     private float[][] currentOffsetArray;
 
-    private float[][] lastRotationArray;
-    private float[][] lastPositionArray;
-    private float[][] lastOffsetArray;
-
     private static int numParts;
-    private final int numSequencesInArray;
-    private int currentSequence;
+//    private int currentSequence;
+    private AnimID currentSequence;
     private int numPosesInSequence;
     private int currentPose;
     private int numTicksInTween;
@@ -43,18 +42,16 @@ public class JabelarAnimationHelper
     private final float baseInertiaFactor;
 
     public JabelarAnimationHelper(EntityDinosaur parEntity, ModelDinosaur parModel, int parNumParts,
-                                  MowzieModelRenderer[][] parArrayOfPoses, int[][][] parArrayOfSequences,
+                                  MowzieModelRenderer[][] parArrayOfPoses, EnumMap parMapOfSequences,
                                   boolean parShouldRandomizeSequence, boolean parInertialTweens, float parInertiaFactor)
     {
         // transfer static animation info from constructor parameters to instance
         theEntity = parEntity;
         numParts = parNumParts;
         arrayOfPoses = parArrayOfPoses;
-        arrayOfSequences = parArrayOfSequences;
+        mapOfSequences = parMapOfSequences;
         inertialTweens = parInertialTweens;
         baseInertiaFactor = parInertiaFactor;
-
-        numSequencesInArray = arrayOfSequences.length;
 
         init(parModel);
 
@@ -74,7 +71,7 @@ public class JabelarAnimationHelper
 
     private void init(ModelDinosaur parModel)
     {
-        currentSequence = theEntity.getAnimID().ordinal();
+        currentSequence = theEntity.getAnimID();
         initPose(); // sets the target pose based on sequence
         initTween();
 
@@ -83,21 +80,27 @@ public class JabelarAnimationHelper
         passedInModelRendererArray = convertPassedInModelToModelRendererArray(parModel);
 
         initCurrentPoseArrays();
-        copyCurrentToLast();
     }
 
     private void initPose()
     {
-        numPosesInSequence = arrayOfSequences[currentSequence].length;
+        // DEBUG
+        if (mapOfSequences.get(currentSequence) == null)
+        {
+            System.out.println("handling case where map doesn't have entry for anim ID = "+currentSequence.toString());
+            currentSequence = AnimID.IDLE;
+            theEntity.setAnimID(currentSequence);
+        }
+        numPosesInSequence = mapOfSequences.get(currentSequence).length; // arrayOfSequences[currentSequence].length;
 
         // initialize first pose
         currentPose = 0;
-        nextPose = arrayOfPoses[arrayOfSequences[currentSequence][currentPose][0]];
+        nextPose = arrayOfPoses[mapOfSequences.get(currentSequence)[currentPose][0]];
     }
 
     private void initTween()
     {
-        numTicksInTween = arrayOfSequences[currentSequence][currentPose][1];
+        numTicksInTween = mapOfSequences.get(currentSequence)[currentPose][1];
         // filter out illegal values in array
         if (numTicksInTween < 1)
         {
@@ -142,17 +145,12 @@ public class JabelarAnimationHelper
         }
     }
 
-    private void copyCurrentToLast()
-    {
-        lastRotationArray = currentRotationArray;
-        lastPositionArray = currentPositionArray;
-        lastOffsetArray = currentOffsetArray;
-    }
-
     private MowzieModelRenderer[] convertPassedInModelToModelRendererArray(ModelDinosaur parModel)
     {
-        MowzieModelRenderer[] modelRendererArray = new MowzieModelRenderer[numParts];
         String[] partNameArray = parModel.getCubeNamesArray();
+        numParts = partNameArray.length;
+
+        MowzieModelRenderer[] modelRendererArray = new MowzieModelRenderer[numParts];
 
         for (int i = 0; i < numParts; i++)
         {
@@ -164,16 +162,15 @@ public class JabelarAnimationHelper
 
     private void setNextPose()
     {
-        copyCurrentToLast();
-        nextPose = arrayOfPoses[arrayOfSequences[currentSequence][currentPose][0]];
-        numTicksInTween = arrayOfSequences[currentSequence][currentPose][1];
+        nextPose = arrayOfPoses[mapOfSequences.get(currentSequence)[currentPose][0]];
+        numTicksInTween = mapOfSequences.get(currentSequence)[currentPose][1];
         currentTickInTween = 0;
 
-        // DEBUG
-        if (currentSequence != AnimID.IDLE_)
-            System.out.println("current sequence for entity ID " + theEntity.getEntityId() + " is " + currentSequence
-                    + " out of " + arrayOfSequences.length + " and current pose " + currentPose + " out of "
-                    + arrayOfSequences[currentSequence].length + " with " + numTicksInTween + " ticks in tween");
+//        // DEBUG
+//        if (currentSequence != AnimID.IDLE)
+//            System.out.println("current sequence for entity ID " + theEntity.getEntityId() + " is " + currentSequence
+//                    + " out of " + mapOfSequences.size() + " and current pose " + currentPose + " out of "
+//                    + mapOfSequences.get(currentSequence).length + " with " + numTicksInTween + " ticks in tween");
     }
 
     private void performNextTweenTick()
@@ -244,22 +241,6 @@ public class JabelarAnimationHelper
                 * (nextPose[parPartIndex].rotateAngleZ - currentRotationArray[parPartIndex][2]) / ticksRemaining();
     }
 
-    // private void nextTweenRotations(int parPartIndex, float inertiaFactor)
-    // {
-    // passedInModelRendererArray[parPartIndex].rotateAngleX =
-    // currentRotationArray[parPartIndex][0] + inertiaFactor *
-    // (nextPose[parPartIndex].rotateAngleX - lastRotationArray[parPartIndex][0])
-    // / numTicksInTween;
-    // passedInModelRendererArray[parPartIndex].rotateAngleY =
-    // currentRotationArray[parPartIndex][1] + inertiaFactor *
-    // (nextPose[parPartIndex].rotateAngleY - lastRotationArray[parPartIndex][1])
-    // / numTicksInTween;
-    // passedInModelRendererArray[parPartIndex].rotateAngleZ =
-    // currentRotationArray[parPartIndex][2] + inertiaFactor *
-    // (nextPose[parPartIndex].rotateAngleZ - lastRotationArray[parPartIndex][2])
-    // / numTicksInTween;
-    // }
-
     /*
      * Tween of the rotatePoints between current positions and target positions.
      * The tween is linear if inertialTweens is false.
@@ -297,7 +278,7 @@ public class JabelarAnimationHelper
     {
         if (incrementCurrentPose()) // increments pose and returns true if finished sequence
         {
-            setNextSequence(theEntity.getAnimID().ordinal());
+            setNextSequence(theEntity.getAnimID());
         }
 
         setNextPose();
@@ -332,32 +313,34 @@ public class JabelarAnimationHelper
         return false;
     }
 
-    private void setNextSequence(int parSequenceIndex)
+    private void setNextSequence(AnimID parSequenceIndex)
     {
         // TODO
         // Should control here which animations are interruptible, in which priority
         // I.e. could reject certain changes depending on what current animation is playing
+        
 
-        if (currentSequence != AnimID.IDLE_ && currentSequence == parSequenceIndex) // finished sequence but no new
-                                                                                   // sequence set
+        // handle case where animation sequence isn't available
+        if (mapOfSequences.get(parSequenceIndex) == null)
+        {
+            // DEBUG
+            System.out.println("Warning, requested an anim id that doesn't have animatino sequence in map");
+            currentSequence = AnimID.IDLE;
+            theEntity.setAnimID(AnimID.IDLE);
+        }
+        else if (currentSequence != AnimID.IDLE && currentSequence == parSequenceIndex) // finished sequence but no new sequence set
         {
             // DEBUG
             System.out.println("Reverting to idle sequence");
-            currentSequence = AnimID.IDLE_;
+            currentSequence = AnimID.IDLE;
             theEntity.setAnimID(AnimID.IDLE);
-        } else
+        } 
+        else
         {
             currentSequence = parSequenceIndex;
         }
 
-        // handle case where animation sequence isn't available
-        if (arrayOfSequences[currentSequence] == null)
-        {
-            currentSequence = AnimID.IDLE_;
-            theEntity.setAnimID(AnimID.IDLE);
-        }
-
-        numPosesInSequence = arrayOfSequences[currentSequence].length;
+        numPosesInSequence = mapOfSequences.get(currentSequence).length;
         currentPose = 0;
         currentTickInTween = 0;
     }
@@ -365,18 +348,6 @@ public class JabelarAnimationHelper
     public int getCurrentPose()
     {
         return currentPose;
-    }
-
-    // this sets random sequence from any possible, including default idle sequence
-    public void setRandomSequence()
-    {
-        currentSequence = theEntity.getRNG().nextInt(numSequencesInArray);
-    }
-
-    // this sets random sequence that cannot be the default idle sequence
-    public void setRandomSpecialSequence()
-    {
-        currentSequence = theEntity.getRNG().nextInt(numSequencesInArray - 1) + 1;
     }
 
     public static ModelDinosaur getTabulaModel(String tabulaModel, int geneticVariant)
