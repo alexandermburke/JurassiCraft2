@@ -62,7 +62,13 @@ public class AnimationTherizinosaurus implements IModelAnimator
             "pouncing_7",
             "pouncing_8",
             "pouncing_9",
-            "crouching_1"
+            "crouching_1",
+            "crouching_2",
+            "crouching_3",
+            "crouching_4",
+            "crouching_5",
+            "crouching_6",
+            "crouching_7"
     };
 
     private static int getPoseID(String parPose)
@@ -157,29 +163,22 @@ public class AnimationTherizinosaurus implements IModelAnimator
             {23, 80}, {getPoseID("calling_2"), 40}, {getPoseID("idle"), 200}  
         };
         
-//        arrayOfSequences[AnimID.ATTACKING] = new int[][] {
-//            {getPoseID("attacking_1"), 100}, {getPoseID("attacking_2"), 60}, {getPoseID("attacking_3"), 20}, 
-//            {getPoseID("attacking_2"), 60}, {getPoseID("attacking_3"), 20}, {getPoseID("idle"), 200}
-//        };
-
-        arrayOfSequences[AnimID.ATTACKING] = new int[][] {
-                {getPoseID("crouching_1"), 40}, {getPoseID("crouching_1"), 800}, {getPoseID("idle"), 200}
-            };
-//        arrayOfSequences[AnimID.ATTACKING]= new int[][] {
-//                {getPoseID("pouncing_1"), 40}, {getPoseID("pouncing_2"), 20}, // crouch
-//                {getPoseID("pouncing_3"), 40}, {getPoseID("pouncing_2"), 40}, // twitch tail
-//                {getPoseID("pouncing_3"), 40}, {getPoseID("pouncing_2"), 40}, // twitch tail
-//                {getPoseID("pouncing_4"), 40}, {getPoseID("pouncing_5"), 40},
-//                {getPoseID("pouncing_6"), 40}, {getPoseID("pouncing_7"), 80},
-//                {getPoseID("pouncing_8"), 40}, {getPoseID("pouncing_8"), 20}, {getPoseID("pouncing_9"), 60}, // strike with head
-//                {getPoseID("idle"), 40}
-//        };
         
         arrayOfSequences[AnimID.SNIFFING] = new int[][] {
             {getPoseID("sniffing_1"), 100}, {getPoseID("sniffing_2"), 20}, {getPoseID("sniffing_1"), 20}, 
             {getPoseID("sniffing_2"), 20}, {getPoseID("sniffing_1"), 20}, {getPoseID("idle"), 200}
         };
-    
+        
+        arrayOfSequences[AnimID.ATTACKING] = new int[][] {
+                {getPoseID("crouching_1"), 40}, // crouch down
+                {getPoseID("crouching_2"), 20}, {getPoseID("crouching_3"), 20}, // twitch tail
+                {getPoseID("crouching_2"), 20}, {getPoseID("crouching_3"), 20}, // twitch tail
+                {getPoseID("crouching_2"), 20}, {getPoseID("crouching_3"), 20}, // twitch tail
+                {getPoseID("crouching_2"), 20}, {getPoseID("crouching_3"), 20}, // twitch tail
+                {getPoseID("crouching_4"), 40}, {getPoseID("crouching_5"), 60}, // rise up
+                {getPoseID("crouching_6"), 40}, {getPoseID("crouching_7"), 40}, // strike
+                {getPoseID("idle"), 60} // return to idle
+        };    
     }
     
     // maps each entity id with its current animation 
