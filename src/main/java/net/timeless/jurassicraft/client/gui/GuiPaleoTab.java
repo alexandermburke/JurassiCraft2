@@ -26,7 +26,7 @@ public class GuiPaleoTab extends GuiScreen
 {
     private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_pad/paleo_pad.png");
 
-    private GuiApp focus;
+    public GuiApp focus;
 
     public GuiPaleoTab()
     {

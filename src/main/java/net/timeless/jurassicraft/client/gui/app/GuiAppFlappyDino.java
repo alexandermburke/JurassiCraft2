@@ -35,25 +35,6 @@ public class GuiAppFlappyDino extends GuiApp
 
         gui.drawScaledRect(0, 0, 229, 150, 1.0F, 0x56FFF0);
 
-        if (System.currentTimeMillis() % 20 == 0)
-        {
-            x++;
-
-            if (y > 140)
-            {
-                y = 140;
-            }
-
-            y += motionY;
-
-            motionY--;
-
-            if (y < 20)
-            {
-                init();
-            }
-        }
-
         if (mainScreen)
         {
             mc.getTextureManager().bindTexture(logo);
@@ -107,6 +88,25 @@ public class GuiAppFlappyDino extends GuiApp
         y = 150;
         motionY = 0;
         mainScreen = true;
+    }
+
+    public void update()
+    {
+        x++;
+
+        if (y > 140)
+        {
+            y = 140;
+        }
+
+        y += motionY;
+
+        motionY--;
+
+        if (y < 20)
+        {
+            init();
+        }
     }
 
     @Override

@@ -69,4 +69,8 @@ public abstract class GuiApp
     {
         return app;
     }
+
+    public void update()
+    {
+    }
 }
