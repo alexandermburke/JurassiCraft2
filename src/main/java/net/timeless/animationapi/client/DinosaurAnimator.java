@@ -160,7 +160,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
         JabelarAnimationHelper render = entityIDToAnimation.get(id);
         if(render == null) {
             int cubes = models.length > 0 ? models[0].length : 0;
-            render = new JabelarAnimationHelper(entity, model, cubes, models, animations, false, true, 1.0f);
+            render = new JabelarAnimationHelper(entity, model, cubes, models, animations, true, 1.0f); 
             entityIDToAnimation.put(id, render);
         }
         return render;

@@ -48,13 +48,12 @@ public class JabelarAnimationHelper
      * @param parNumParts
      * @param parArrayOfPoses for each pose(-index) an array of posed Renderers
      * @param parMapOfSequences maps from an {@link AnimID} to the sequence of (pose-index, tween-length)
-     * @param parShouldRandomizeSequence
      * @param parInertialTweens
      * @param parInertiaFactor
      */
     public JabelarAnimationHelper(EntityDinosaur parEntity, ModelDinosaur parModel, int parNumParts,
                                   MowzieModelRenderer[][] parArrayOfPoses, Map<AnimID, int[][]> parMapOfSequences,
-                                  boolean parShouldRandomizeSequence, boolean parInertialTweens, float parInertiaFactor)
+                                  boolean parInertialTweens, float parInertiaFactor)
     {
         // transfer static animation info from constructor parameters to instance
         theEntity = parEntity;
@@ -73,6 +72,8 @@ public class JabelarAnimationHelper
     public void performJabelarAnimations(ModelDinosaur parModel)
     {
         passedInModelRendererArray = convertPassedInModelToModelRendererArray(parModel);
+        // TODO
+        // Make sequences interruptible (should be the case anyway).
         // if (theEntity.getAnimID() != currentSequence)
         // {
         // setNextSequence(theEntity.getAnimID());

@@ -230,7 +230,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
         {
             // DEBUG
             System.out.println("Adding entity to hashmap with id = "+parEntity.getEntityId());
-            animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(theEntity, theModel, numParts, arrayOfPoses, mapOfSequences, true, true, 1.0F));
+            animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(theEntity, theModel, numParts, arrayOfPoses, mapOfSequences, true, 1.0F));
         }
 
         animationInstanceToEntityMap.get(theEntity.getEntityId()).performJabelarAnimations(theModel);
