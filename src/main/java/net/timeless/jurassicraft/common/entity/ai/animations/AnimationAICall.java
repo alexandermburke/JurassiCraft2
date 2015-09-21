@@ -1,7 +1,7 @@
 package net.timeless.jurassicraft.common.entity.ai.animations;
 
 import net.minecraft.entity.Entity;
-import net.reuxertz.ecoapi.util.EntityHelper;
+import net.minecraft.util.AxisAlignedBB;
 import net.timeless.animationapi.AIAnimation;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.AnimID;
@@ -48,7 +48,7 @@ public class AnimationAICall extends AIAnimation
     {
         if (random.nextDouble() < 0.003)
         {
-            List<Entity> entities = EntityHelper.getEntitiesWithinDistance(animatingEntity, 50, 2);
+            List<Entity> entities = getEntitiesWithinDistance(animatingEntity, 50, 2);
 
             for (Entity entity : entities)
             {
@@ -61,6 +61,11 @@ public class AnimationAICall extends AIAnimation
         }
 
         return false;
+    }
+
+    public List<Entity> getEntitiesWithinDistance(Entity e, double xz, double y)
+    {
+        return e.worldObj.getEntitiesWithinAABBExcludingEntity(e, AxisAlignedBB.fromBounds(e.posX - xz, e.posY - y, e.posZ - xz, e.posX + xz, e.posY + y, e.posZ + xz));
     }
 
     @Override

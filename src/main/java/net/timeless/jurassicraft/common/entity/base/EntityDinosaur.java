@@ -1,6 +1,7 @@
 package net.timeless.jurassicraft.common.entity.base;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.item.EntityItem;
@@ -17,7 +18,6 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.reuxertz.ecoapi.entity.EntityAICreature;
 import net.timeless.animationapi.AIAnimation;
 import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
@@ -35,7 +35,7 @@ import net.timeless.jurassicraft.common.item.JCItemRegistry;
 import java.util.HashSet;
 import java.util.Set;
 
-public class EntityDinosaur extends EntityAICreature implements IEntityAdditionalSpawnData, IAnimatedEntity, IInventory
+public class EntityDinosaur extends EntityCreature implements IEntityAdditionalSpawnData, IAnimatedEntity, IInventory
 {
     protected Dinosaur dinosaur;
     protected int randTexture;
@@ -67,11 +67,10 @@ public class EntityDinosaur extends EntityAICreature implements IEntityAdditiona
 
     private boolean hasTracker;
 
-    @Override
-    public void setNavigator(PathNavigate pn)
-    {
-        this.navigator = pn;
-    }
+//    public void setNavigator(PathNavigate pn)
+//    {
+//        this.navigator = pn;
+//    }
 
     public EntityDinosaur(World world)
     {
