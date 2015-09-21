@@ -323,26 +323,12 @@ public class JabelarAnimationHelper
         // Should control here which animations are interruptible, in which priority
         // I.e. could reject certain changes depending on what current animation is playing
         
-
-<<<<<<< HEAD
         // handle case where animation sequence isn't available
         if (mapOfSequences.get(parSequenceIndex) == null)
-=======
-        if (currentSequence != AnimID.IDLE_ && currentSequence == parSequenceIndex) // finished sequence but no new
-        // sequence set
->>>>>>> a0b1ca30bc01c4bfe7691941ed06e1ef1ba0474c
         {
-            // DEBUG
-            System.out.println("Warning, requested an anim id that doesn't have animatino sequence in map");
+            System.err.println("Requested an anim id "+parSequenceIndex.toString()+" that doesn't have animatino sequence in map for entity "+theEntity.getEntityId());
             currentSequence = AnimID.IDLE;
             theEntity.setAnimID(AnimID.IDLE);
-<<<<<<< HEAD
-=======
-        }
-        else
-        {
-            currentSequence = parSequenceIndex;
->>>>>>> a0b1ca30bc01c4bfe7691941ed06e1ef1ba0474c
         }
         else if (currentSequence != AnimID.IDLE && currentSequence == parSequenceIndex) // finished sequence but no new sequence set
         {

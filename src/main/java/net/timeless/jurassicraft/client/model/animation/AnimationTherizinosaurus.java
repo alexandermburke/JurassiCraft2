@@ -1,5 +1,8 @@
 package net.timeless.jurassicraft.client.model.animation;
 
+import java.util.EnumMap;
+import java.util.HashMap;
+
 import net.minecraft.entity.Entity;
 import net.timeless.animationapi.client.AnimID;
 import net.timeless.animationapi.client.JabelarAnimationHelper;
@@ -10,9 +13,6 @@ import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
-
-import java.util.EnumMap;
-import java.util.HashMap;
 
 public class AnimationTherizinosaurus implements IModelAnimator
 {
@@ -107,7 +107,6 @@ public class AnimationTherizinosaurus implements IModelAnimator
 
     static
     {
-<<<<<<< HEAD
         mapOfSequences.put(AnimID.IDLE, new int[][] {
             {getPoseID("idle"), 20}
             });
@@ -116,60 +115,14 @@ public class AnimationTherizinosaurus implements IModelAnimator
                 {getPoseID("head_cock_left"), 100}, {getPoseID("head_cock_left"), 80}, {getPoseID("idle"), 100}
             });
 
-        mapOfSequences.put(AnimID.LOOKING_RIGHT, new int[][] {
-=======
-        arrayOfSequences[AnimID.IDLE_] = new int[][]{
-                {getPoseID("idle"), 20} // for idle sequence good to set to duration 1 to allow maximum interruptibility
-        };
-
         mapOfSequences.put(AnimID.IDLE, new int[][]{
-                {getPoseID("idle"), 20}
-        });
-
-        arrayOfSequences[AnimID.LOOKING_LEFT_] = new int[][]{
-                {getPoseID("head_cock_left"), 100}, {getPoseID("head_cock_left"), 80}, {getPoseID("idle"), 100}
-        };
-
-        mapOfSequences.put(AnimID.IDLE, new int[][]{
-                {getPoseID("head_cock_left"), 100}, {getPoseID("head_cock_left"), 80}, {getPoseID("idle"), 100}
-        });
-
-        arrayOfSequences[AnimID.LOOKING_RIGHT_] = new int[][]{
-                {getPoseID("head_cock_right"), 100}, {getPoseID("head_cock_right"), 80}, {getPoseID("idle"), 100}
-        };
-
-        mapOfSequences.put(AnimID.IDLE, new int[][]{
->>>>>>> a0b1ca30bc01c4bfe7691941ed06e1ef1ba0474c
                 {getPoseID("head_cock_right"), 100}, {getPoseID("head_cock_right"), 80}, {getPoseID("idle"), 100}
         });
 
-<<<<<<< HEAD
-        mapOfSequences.put(AnimID.HISSING, new int[][] {
-=======
-        arrayOfSequences[AnimID.HISSING_] = new int[][]{
-                {getPoseID("hissing"), 100}, {getPoseID("hissing"), 80}, {getPoseID("idle"), 100}
-        };
-
-        mapOfSequences.put(AnimID.IDLE, new int[][]{
->>>>>>> a0b1ca30bc01c4bfe7691941ed06e1ef1ba0474c
-                {getPoseID("head_cock_right"), 100}, {getPoseID("head_cock_right"), 80}, {getPoseID("idle"), 100}
-        });
-
-<<<<<<< HEAD
-        mapOfSequences.put(AnimID.MATING, new int[][] {
-=======
-        arrayOfSequences[AnimID.MATING_] = new int[][]{
+        mapOfSequences.put(AnimID.MATING, new int[][]{
                 {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10},
                 {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10},
                 {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("idle"), 100}
-        };
-
-        mapOfSequences.put(AnimID.IDLE, new int[][]{
->>>>>>> a0b1ca30bc01c4bfe7691941ed06e1ef1ba0474c
-                {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10},
-                {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10},
-                {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("idle"), 100}
-<<<<<<< HEAD
             });
 
         mapOfSequences.put(AnimID.EATING, new int[][] {
@@ -192,69 +145,12 @@ public class AnimationTherizinosaurus implements IModelAnimator
                 {getPoseID("drinking_3"), 20}, {getPoseID("drinking_4"), 40}, {getPoseID("drinking_4"), 100}, 
                 {getPoseID("drinking_1"), 60}, {getPoseID("drinking_2"), 40}, {getPoseID("drinking_2"), 40}, 
                 {getPoseID("drinking_3"), 20}, {getPoseID("drinking_4"), 40}, {getPoseID("drinking_4"), 100}, 
-=======
         });
 
-        arrayOfSequences[AnimID.EATING_] = new int[][]{
-                {getPoseID("eating_1"), 100}, {getPoseID("eating_1b"), 40}, {getPoseID("eating_1"), 40},
-                {getPoseID("eating_1b"), 40}, {getPoseID("eating_1"), 40}, {getPoseID("eating_1b"), 40},
-                {getPoseID("eating_1"), 40}, {getPoseID("eating_2"), 80}, {getPoseID("eating_3"), 80},
-                {getPoseID("eating_4"), 100}, {getPoseID("eating_4b"), 40}, {getPoseID("eating_4"), 40},
-                {getPoseID("eating_4b"), 40}, {getPoseID("eating_4"), 40}, {getPoseID("eating_4b"), 40},
-                {getPoseID("eating_4"), 40}, {getPoseID("eating_4b"), 40}, {getPoseID("eating_3"), 80},
-                {getPoseID("eating_5"), 160}, {getPoseID("eating_6"), 100}, {getPoseID("eating_6b"), 40},
-                {getPoseID("eating_6"), 40}, {getPoseID("eating_6b"), 40}, {getPoseID("eating_6"), 40},
-                {getPoseID("eating_6b"), 40}, {getPoseID("eating_6"), 40}, {getPoseID("eating_6b"), 40},
-                {getPoseID("eating_5"), 80}, {getPoseID("idle"), 80}, {getPoseID("idle"), 200}
-        };
-
-        mapOfSequences.put(AnimID.IDLE, new int[][]{
-                {getPoseID("eating_1"), 100}, {getPoseID("eating_1b"), 40}, {getPoseID("eating_1"), 40},
-                {getPoseID("eating_1b"), 40}, {getPoseID("eating_1"), 40}, {getPoseID("eating_1b"), 40},
-                {getPoseID("eating_1"), 40}, {getPoseID("eating_2"), 80}, {getPoseID("eating_3"), 80},
-                {getPoseID("eating_4"), 100}, {getPoseID("eating_4b"), 40}, {getPoseID("eating_4"), 40},
-                {getPoseID("eating_4b"), 40}, {getPoseID("eating_4"), 40}, {getPoseID("eating_4b"), 40},
-                {getPoseID("eating_4"), 40}, {getPoseID("eating_4b"), 40}, {getPoseID("eating_3"), 80},
-                {getPoseID("eating_5"), 160}, {getPoseID("eating_6"), 100}, {getPoseID("eating_6b"), 40},
-                {getPoseID("eating_6"), 40}, {getPoseID("eating_6b"), 40}, {getPoseID("eating_6"), 40},
-                {getPoseID("eating_6b"), 40}, {getPoseID("eating_6"), 40}, {getPoseID("eating_6b"), 40},
-                {getPoseID("eating_5"), 80}, {getPoseID("idle"), 80}, {getPoseID("idle"), 200}
-        });
-
-        arrayOfSequences[AnimID.DRINKING_] = new int[][]{
-                {getPoseID("drinking_1"), 100}, {getPoseID("drinking_2"), 40}, {getPoseID("drinking_2"), 40},
-                {getPoseID("drinking_3"), 20}, {getPoseID("drinking_4"), 40}, {getPoseID("drinking_4"), 100},
-                {getPoseID("drinking_1"), 60}, {getPoseID("drinking_2"), 40}, {getPoseID("drinking_2"), 40},
-                {getPoseID("drinking_3"), 20}, {getPoseID("drinking_4"), 40}, {getPoseID("drinking_4"), 100},
-                {getPoseID("drinking_1"), 60}, {getPoseID("drinking_2"), 40}, {getPoseID("drinking_2"), 40},
-                {getPoseID("drinking_3"), 20}, {getPoseID("drinking_4"), 40}, {getPoseID("drinking_4"), 100},
-                {getPoseID("idle"), 100}
-        };
-
-        mapOfSequences.put(AnimID.IDLE, new int[][]{
-                {getPoseID("drinking_1"), 100}, {getPoseID("drinking_2"), 40}, {getPoseID("drinking_2"), 40},
-                {getPoseID("drinking_3"), 20}, {getPoseID("drinking_4"), 40}, {getPoseID("drinking_4"), 100},
-                {getPoseID("drinking_1"), 60}, {getPoseID("drinking_2"), 40}, {getPoseID("drinking_2"), 40},
-                {getPoseID("drinking_3"), 20}, {getPoseID("drinking_4"), 40}, {getPoseID("drinking_4"), 100},
-                {getPoseID("drinking_1"), 60}, {getPoseID("drinking_2"), 40}, {getPoseID("drinking_2"), 40},
-                {getPoseID("drinking_3"), 20}, {getPoseID("drinking_4"), 40}, {getPoseID("drinking_4"), 100},
->>>>>>> a0b1ca30bc01c4bfe7691941ed06e1ef1ba0474c
-                {getPoseID("idle"), 100}
-        });
-
-<<<<<<< HEAD
-        mapOfSequences.put(AnimID.RESTING, new int[][] {
-=======
-        arrayOfSequences[AnimID.RESTING_] = new int[][]{
-                {getPoseID("resting"), 100}, {getPoseID("resting"), 800}, {getPoseID("idle"), 200}
-        };
-
-        mapOfSequences.put(AnimID.IDLE, new int[][]{
->>>>>>> a0b1ca30bc01c4bfe7691941ed06e1ef1ba0474c
+        mapOfSequences.put(AnimID.RESTING, new int[][]{
                 {getPoseID("resting"), 100}, {getPoseID("resting"), 800}, {getPoseID("idle"), 200}
         });
 
-<<<<<<< HEAD
         mapOfSequences.put(AnimID.SLEEPING, new int[][] {
                 {getPoseID("resting"), 100}, {getPoseID("sleeping"), 80}, {getPoseID("sleeping"), 800}, {getPoseID("resting"), 40}, {getPoseID("idle"), 200}
             });
@@ -266,52 +162,9 @@ public class AnimationTherizinosaurus implements IModelAnimator
 
         mapOfSequences.put(AnimID.SNIFFING, new int[][] {
                 {getPoseID("sniffing_1"), 100}, {getPoseID("sniffing_2"), 20}, {getPoseID("sniffing_1"), 20}, 
-=======
-        arrayOfSequences[AnimID.SLEEPING_] = new int[][]{
-                {getPoseID("resting"), 100}, {getPoseID("sleeping"), 80}, {getPoseID("sleeping"), 800}, {getPoseID("resting"), 40}, {getPoseID("idle"), 200}
-        };
-
-        mapOfSequences.put(AnimID.IDLE, new int[][]{
-                {getPoseID("resting"), 100}, {getPoseID("sleeping"), 80}, {getPoseID("sleeping"), 800}, {getPoseID("resting"), 40}, {getPoseID("idle"), 200}
         });
 
-        arrayOfSequences[AnimID.CALLING_] = new int[][]{
-                {getPoseID("calling_1"), 100}, {getPoseID("calling_2"), 60}, {getPoseID("calling_2"), 40}, {getPoseID("calling_3"), 40},
-                {23, 80}, {getPoseID("calling_2"), 40}, {getPoseID("idle"), 200}
-        };
-
-        mapOfSequences.put(AnimID.IDLE, new int[][]{
-                {getPoseID("calling_1"), 100}, {getPoseID("calling_2"), 60}, {getPoseID("calling_2"), 40}, {getPoseID("calling_3"), 40},
-                {23, 80}, {getPoseID("calling_2"), 40}, {getPoseID("idle"), 200}
-        });
-
-        arrayOfSequences[AnimID.SNIFFING_] = new int[][]{
-                {getPoseID("sniffing_1"), 100}, {getPoseID("sniffing_2"), 20}, {getPoseID("sniffing_1"), 20},
-                {getPoseID("sniffing_2"), 20}, {getPoseID("sniffing_1"), 20}, {getPoseID("idle"), 200}
-        };
-
-        mapOfSequences.put(AnimID.IDLE, new int[][]{
-                {getPoseID("sniffing_1"), 100}, {getPoseID("sniffing_2"), 20}, {getPoseID("sniffing_1"), 20},
->>>>>>> a0b1ca30bc01c4bfe7691941ed06e1ef1ba0474c
-                {getPoseID("sniffing_2"), 20}, {getPoseID("sniffing_1"), 20}, {getPoseID("idle"), 200}
-        });
-
-<<<<<<< HEAD
-        mapOfSequences.put(AnimID.ATTACKING, new int[][] {
-=======
-        arrayOfSequences[AnimID.ATTACKING_] = new int[][]{
-                {getPoseID("crouching_1"), 40}, // crouch down
-                {getPoseID("crouching_2"), 20}, {getPoseID("crouching_3"), 20}, // twitch tail
-                {getPoseID("crouching_2"), 20}, {getPoseID("crouching_3"), 20}, // twitch tail
-                {getPoseID("crouching_2"), 20}, {getPoseID("crouching_3"), 20}, // twitch tail
-                {getPoseID("crouching_2"), 20}, {getPoseID("crouching_3"), 20}, // twitch tail
-                {getPoseID("crouching_4"), 40}, {getPoseID("crouching_5"), 60}, // rise up
-                {getPoseID("crouching_6"), 40}, {getPoseID("crouching_7"), 40}, // strike
-                {getPoseID("idle"), 60} // return to idle
-        };
-
-        mapOfSequences.put(AnimID.IDLE, new int[][]{
->>>>>>> a0b1ca30bc01c4bfe7691941ed06e1ef1ba0474c
+        mapOfSequences.put(AnimID.ATTACKING, new int[][]{
                 {getPoseID("crouching_1"), 40}, // crouch down
                 {getPoseID("crouching_2"), 20}, {getPoseID("crouching_3"), 20}, // twitch tail
                 {getPoseID("crouching_2"), 20}, {getPoseID("crouching_3"), 20}, // twitch tail
@@ -363,27 +216,12 @@ public class AnimationTherizinosaurus implements IModelAnimator
         if (!animationInstanceToEntityMap.containsKey(parEntity.getEntityId()))
         {
             // DEBUG
-<<<<<<< HEAD
             System.out.println("Adding entity to hashmap with id = "+parEntity.getEntityId());
             animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(theEntity, theModel, numParts, arrayOfPoses, mapOfSequences, true, true, 1.0F));
         }
 
         animationInstanceToEntityMap.get(theEntity.getEntityId()).performJabelarAnimations(theModel);
-        
-=======
-            System.out.println("Adding entity to hashmap with id = " + parEntity.getEntityId());
-            animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(theEntity, theModel, numParts, arrayOfPoses, arrayOfSequences, true, true, 1.0F));
-        }
 
-        animationInstanceToEntityMap.get(theEntity.getEntityId()).performJabelarAnimations(theModel);
-
-        // DEBUG
-        MowzieModelRenderer bodyHips = parModel.getCube("Body hips");
-        MowzieModelRenderer bodyMain = parModel.getCube("Body main");
-        System.out.println("Body hips has rotations " + bodyHips.rotateAngleX + ", " + bodyHips.rotateAngleY + ", " + bodyHips.rotateAngleZ
-                + ", body main has rotations " + bodyMain.rotateAngleX + ", " + bodyMain.rotateAngleY + ", " + bodyMain.rotateAngleZ);
-
->>>>>>> a0b1ca30bc01c4bfe7691941ed06e1ef1ba0474c
         // you can still add chain, walk, bob, etc.
         performMowzieAnimations(theModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, theEntity);
     }

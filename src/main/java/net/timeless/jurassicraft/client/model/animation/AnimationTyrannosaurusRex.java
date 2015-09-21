@@ -1,11 +1,8 @@
 package net.timeless.jurassicraft.client.model.animation;
 
-<<<<<<< HEAD
 import java.util.EnumMap;
 import java.util.HashMap;
 
-=======
->>>>>>> a0b1ca30bc01c4bfe7691941ed06e1ef1ba0474c
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -19,8 +16,6 @@ import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
-
-import java.util.HashMap;
 
 @SideOnly(Side.CLIENT)
 public class AnimationTyrannosaurusRex implements IModelAnimator
@@ -46,7 +41,6 @@ public class AnimationTyrannosaurusRex implements IModelAnimator
      * modelAssetPaths array above),
      * Second element is the number of ticks it should take to tween to that pose
      */
-<<<<<<< HEAD
     protected static EnumMap<AnimID, int[][]> mapOfSequences = new EnumMap<AnimID, int[][]>(AnimID.class);
     
     static
@@ -58,28 +52,6 @@ public class AnimationTyrannosaurusRex implements IModelAnimator
         mapOfSequences.put(AnimID.LOOKING_LEFT, new int[][] {
                 {1, 100}, {1, 80}, {0, 100}, {0, 200}
             });
-=======
-    protected static int[][][] arrayOfSequences = new int[AnimID.NUM_IDS][][];
-
-    static
-    {
-        arrayOfSequences[AnimID.IDLE_] = new int[][]{
-                {0, 200}
-        };
-
-        arrayOfSequences[AnimID.LOOKING_LEFT_] = new int[][]{
-                {1, 100}, {1, 80}, {0, 100}, {0, 200}
-        };
-
-        arrayOfSequences[AnimID.LOOKING_RIGHT_] = new int[][]{
-                {2, 100}, {2, 80}, {0, 100}, {0, 200}
-        };
-
-        arrayOfSequences[AnimID.SNIFFING_] = new int[][]{
-                {3, 40}, {4, 100}, {4, 80}, {0, 100}, {0, 200}
-        };
-    }
->>>>>>> a0b1ca30bc01c4bfe7691941ed06e1ef1ba0474c
 
         mapOfSequences.put(AnimID.LOOKING_RIGHT, new int[][] {
                 {2, 100}, {2, 80}, {0, 100}, {0, 200}
@@ -127,13 +99,8 @@ public class AnimationTyrannosaurusRex implements IModelAnimator
         if (!animationInstanceToEntityMap.containsKey(parEntity.getEntityId()))
         {
             // DEBUG
-<<<<<<< HEAD
             System.out.println("Adding entity to hashmap with id = "+parEntity.getEntityId());
             animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(theEntity, theModel, numParts, arrayOfPoses, mapOfSequences, true, true, 1.0F));
-=======
-            System.out.println("Adding entity to hashmap with id = " + parEntity.getEntityId());
-            animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(theEntity, theModel, numParts, arrayOfPoses, arrayOfSequences, true, true, 1.0F));
->>>>>>> a0b1ca30bc01c4bfe7691941ed06e1ef1ba0474c
         }
 
         animationInstanceToEntityMap.get(theEntity.getEntityId()).performJabelarAnimations(theModel);

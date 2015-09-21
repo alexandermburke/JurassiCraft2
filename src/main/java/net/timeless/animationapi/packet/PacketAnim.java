@@ -22,8 +22,8 @@ public class PacketAnim implements IMessage
 
     public PacketAnim(int anim, int entity)
     {
-        // DEBUG
-        System.out.println("Constructing PacketAnim");
+//        // DEBUG
+//        System.out.println("Constructing PacketAnim");
 
         animID = anim;
         entityID = entity;
@@ -31,8 +31,8 @@ public class PacketAnim implements IMessage
 
     public PacketAnim(AnimID anim, int entity)
     {
-        // DEBUG
-        System.out.println("Constructing PacketAnim");
+//        // DEBUG
+//        System.out.println("Constructing PacketAnim");
 
         animID = anim.ordinal();
         entityID = entity;
