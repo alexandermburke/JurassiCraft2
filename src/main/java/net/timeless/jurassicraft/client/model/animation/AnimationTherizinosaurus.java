@@ -105,29 +105,29 @@ public class AnimationTherizinosaurus implements IModelAnimator
     protected static int[][][] arrayOfSequences = new int[AnimID.NUM_IDS][][];
     static
     {
-        arrayOfSequences[AnimID.IDLE] = new int[][] {
+        arrayOfSequences[AnimID.IDLE_] = new int[][] {
             {getPoseID("idle"), 1} // for idle sequence good to set to duration 1 to allow maximum interruptibility
         };
     
-        arrayOfSequences[AnimID.LOOKING_LEFT] = new int[][] {
+        arrayOfSequences[AnimID.LOOKING_LEFT_] = new int[][] {
             {getPoseID("head_cock_left"), 100}, {getPoseID("head_cock_left"), 80}, {getPoseID("idle"), 100}
         };
         
-        arrayOfSequences[AnimID.LOOKING_RIGHT] = new int[][] {
+        arrayOfSequences[AnimID.LOOKING_RIGHT_] = new int[][] {
             {getPoseID("head_cock_right"), 100}, {getPoseID("head_cock_right"), 80}, {getPoseID("idle"), 100}
         };
         
-        arrayOfSequences[AnimID.HISSING] = new int[][] {
+        arrayOfSequences[AnimID.HISSING_] = new int[][] {
             {getPoseID("hissing"), 100}, {getPoseID("hissing"), 80}, {getPoseID("idle"), 100}
         };
         
-        arrayOfSequences[AnimID.MATING] = new int[][] {
+        arrayOfSequences[AnimID.MATING_] = new int[][] {
             {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10},
             {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, 
             {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("idle"), 100}
         };
         
-        arrayOfSequences[AnimID.EATING] = new int[][] {
+        arrayOfSequences[AnimID.EATING_] = new int[][] {
         	{getPoseID("eating_1"), 100}, {getPoseID("eating_1b"), 40}, {getPoseID("eating_1"), 40}, 
         	{getPoseID("eating_1b"), 40}, {getPoseID("eating_1"), 40}, {getPoseID("eating_1b"), 40}, 
         	{getPoseID("eating_1"), 40}, {getPoseID("eating_2"), 80}, {getPoseID("eating_3"), 80}, 
@@ -140,7 +140,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
             {getPoseID("eating_5"), 80}, {getPoseID("idle"), 80}, {getPoseID("idle"), 200}
         };
         
-        arrayOfSequences[AnimID.DRINKING]= new int[][] {
+        arrayOfSequences[AnimID.DRINKING_]= new int[][] {
             {getPoseID("drinking_1"), 100}, {getPoseID("drinking_2"), 40}, {getPoseID("drinking_2"), 40}, 
             {getPoseID("drinking_3"), 20}, {getPoseID("drinking_4"), 40}, {getPoseID("drinking_4"), 100}, 
             {getPoseID("drinking_1"), 60}, {getPoseID("drinking_2"), 40}, {getPoseID("drinking_2"), 40}, 
@@ -150,26 +150,26 @@ public class AnimationTherizinosaurus implements IModelAnimator
             {getPoseID("idle"), 100}
         };
         
-        arrayOfSequences[AnimID.RESTING]= new int[][] {
+        arrayOfSequences[AnimID.RESTING_]= new int[][] {
             {getPoseID("resting"), 100}, {getPoseID("resting"), 800}, {getPoseID("idle"), 200}
         };
         
-        arrayOfSequences[AnimID.SLEEPING] = new int[][] {
+        arrayOfSequences[AnimID.SLEEPING_] = new int[][] {
             {getPoseID("resting"), 100}, {getPoseID("sleeping"), 80}, {getPoseID("sleeping"), 800}, {getPoseID("resting"), 40}, {getPoseID("idle"), 200}
         };
         
-        arrayOfSequences[AnimID.CALLING] = new int[][] {
+        arrayOfSequences[AnimID.CALLING_] = new int[][] {
             {getPoseID("calling_1"), 100}, {getPoseID("calling_2"), 60}, {getPoseID("calling_2"), 40}, {getPoseID("calling_3"), 40}, 
             {23, 80}, {getPoseID("calling_2"), 40}, {getPoseID("idle"), 200}  
         };
         
         
-        arrayOfSequences[AnimID.SNIFFING] = new int[][] {
+        arrayOfSequences[AnimID.SNIFFING_] = new int[][] {
             {getPoseID("sniffing_1"), 100}, {getPoseID("sniffing_2"), 20}, {getPoseID("sniffing_1"), 20}, 
             {getPoseID("sniffing_2"), 20}, {getPoseID("sniffing_1"), 20}, {getPoseID("idle"), 200}
         };
         
-        arrayOfSequences[AnimID.ATTACKING] = new int[][] {
+        arrayOfSequences[AnimID.ATTACKING_] = new int[][] {
                 {getPoseID("crouching_1"), 40}, // crouch down
                 {getPoseID("crouching_2"), 20}, {getPoseID("crouching_3"), 20}, // twitch tail
                 {getPoseID("crouching_2"), 20}, {getPoseID("crouching_3"), 20}, // twitch tail
