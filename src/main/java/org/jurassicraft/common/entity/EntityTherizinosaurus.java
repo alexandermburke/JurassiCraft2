@@ -1,8 +1,11 @@
 package org.jurassicraft.common.entity;
 
 import net.minecraft.world.World;
-import org.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbivore;
+import net.timeless.animationapi.AnimationAPI;
+import net.timeless.animationapi.client.AnimID;
 import net.timeless.unilib.common.animation.ChainBuffer;
+
+import org.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbivore;
 
 public class EntityTherizinosaurus extends EntityDinosaurDefensiveHerbivore // implements IEntityAICreature, IHerbivore
 {
@@ -17,10 +20,10 @@ public class EntityTherizinosaurus extends EntityDinosaurDefensiveHerbivore // i
     public void onUpdate()
     {
         tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
-//        // DEBUG
-//        {
-//            AnimationAPI.sendAnimPacket(this, AnimID.ATTACKING);
-//        }
+        // DEBUG
+        {
+            AnimationAPI.sendAnimPacket(this, AnimID.DYING);
+        }
         super.onUpdate();
     }
 }

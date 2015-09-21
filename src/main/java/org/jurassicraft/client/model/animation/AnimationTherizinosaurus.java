@@ -70,7 +70,11 @@ public class AnimationTherizinosaurus implements IModelAnimator
             "crouching_4",
             "crouching_5",
             "crouching_6",
-            "crouching_7"
+            "crouching_7",
+            "dying_1",
+            "dying_2",
+            "dying_3",
+            "dying_4",
     };
 
     private static int getPoseID(String parPose)
@@ -174,6 +178,14 @@ public class AnimationTherizinosaurus implements IModelAnimator
                 {getPoseID("crouching_4"), 40}, {getPoseID("crouching_5"), 60}, // rise up
                 {getPoseID("crouching_6"), 40}, {getPoseID("crouching_7"), 40}, // strike
                 {getPoseID("idle"), 60} // return to idle
+        });
+        
+        mapOfSequences.put(AnimID.DYING, new int[][] {
+        		{getPoseID("dying_1"), 60}, {getPoseID("idle"), 60}, // wobble
+        		{getPoseID("dying_1"), 60}, {getPoseID("dying_2"), 40}, // start to fall
+        		{getPoseID("dying_2"), 20}, {getPoseID("dying_3"), 40}, // drop
+        		{getPoseID("dying_4"), 60}, {getPoseID("dying_4"), 600} // final lay to rest (assumes that entity will disappear before animation is finished
+        		
         });
     }
 
