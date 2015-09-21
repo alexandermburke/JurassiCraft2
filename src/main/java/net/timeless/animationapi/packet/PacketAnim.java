@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.timeless.animationapi.client.AnimID;
+
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 
@@ -22,8 +23,7 @@ public class PacketAnim implements IMessage
 
     public PacketAnim(int anim, int entity)
     {
-//        // DEBUG
-//        System.out.println("Constructing PacketAnim");
+//        JurassiCraft.instance.getLogger().debug("Constructing PacketAnim");
 
         animID = anim;
         entityID = entity;
@@ -31,8 +31,7 @@ public class PacketAnim implements IMessage
 
     public PacketAnim(AnimID anim, int entity)
     {
-//        // DEBUG
-//        System.out.println("Constructing PacketAnim");
+//        JurassiCraft.instance.getLogger().debug("Constructing PacketAnim");
 
         animID = anim.ordinal();
         entityID = entity;
@@ -57,8 +56,7 @@ public class PacketAnim implements IMessage
         @Override
         public IMessage onMessage(final PacketAnim packet, MessageContext ctx)
         {
-            // DEBUG
-            System.out.println("PacketAnim received for entity " + packet.entityID + " and animation ID "
+        	JurassiCraft.instance.getLogger().debug("PacketAnim received for entity " + packet.entityID + " and animation ID "
                     + packet.animID);
 
             final EntityPlayer player = JurassiCraft.proxy.getPlayerEntityFromContext(ctx);

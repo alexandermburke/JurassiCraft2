@@ -10,6 +10,7 @@ import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 
+import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
@@ -228,8 +229,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
         // add entry to hashmap if new entity
         if (!animationInstanceToEntityMap.containsKey(parEntity.getEntityId()))
         {
-            // DEBUG
-            System.out.println("Adding entity to hashmap with id = "+parEntity.getEntityId());
+        	JurassiCraft.instance.getLogger().debug("Adding entity to hashmap with id = "+parEntity.getEntityId());
             animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(theEntity, theModel, numParts, arrayOfPoses, mapOfSequences, true, 1.0F));
         }
 

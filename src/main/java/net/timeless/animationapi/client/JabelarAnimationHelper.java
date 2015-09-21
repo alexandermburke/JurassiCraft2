@@ -8,6 +8,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 
+import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 
@@ -65,8 +66,7 @@ public class JabelarAnimationHelper
 
         init(parModel);
 
-        // DEBUG
-        System.out.println("Finished JabelarAnimation constructor");
+        JurassiCraft.instance.getLogger().debug("Finished JabelarAnimation constructor");
     }
 
     public void performJabelarAnimations(ModelDinosaur parModel)
@@ -96,13 +96,6 @@ public class JabelarAnimationHelper
 
     private void initPose()
     {
-        // DEBUG
-        if (mapOfSequences.get(currentSequence) == null)
-        {
-            System.out.println("handling case where map doesn't have entry for anim ID = "+currentSequence.toString());
-            currentSequence = AnimID.IDLE;
-            theEntity.setAnimID(currentSequence);
-        }
         numPosesInSequence = mapOfSequences.get(currentSequence).length; // arrayOfSequences[currentSequence].length;
 
         // initialize first pose
@@ -179,7 +172,7 @@ public class JabelarAnimationHelper
 
 //        // DEBUG
 //        if (currentSequence != AnimID.IDLE)
-//            System.out.println("current sequence for entity ID " + theEntity.getEntityId() + " is " + currentSequence
+//            JurassiCraft.instance.getLogger().debug("current sequence for entity ID " + theEntity.getEntityId() + " is " + currentSequence
 //                    + " out of " + mapOfSequences.size() + " and current pose " + currentPose + " out of "
 //                    + mapOfSequences.get(currentSequence).length + " with " + numTicksInTween + " ticks in tween");
     }
@@ -305,8 +298,7 @@ public class JabelarAnimationHelper
         currentTickInTween++;
         if (currentTickInTween >= numTicksInTween)
             return true;
-        // // DEBUG
-        // System.out.println("current tween step = "+currentTickInTween);
+        // JurassiCraft.instance.getLogger().debug("current tween step = "+currentTickInTween);
         return false;
     }
 
@@ -321,8 +313,8 @@ public class JabelarAnimationHelper
             currentPose = 0;
             return true;
         }
-        // // DEBUG
-        // System.out.println("Next pose is sequence step = "+currentSequenceStep);
+        
+        // JurassiCraft.instance.getLogger().debug("Next pose is sequence step = "+currentSequenceStep);
         return false;
     }
 
@@ -341,8 +333,7 @@ public class JabelarAnimationHelper
         }
         else if (currentSequence != AnimID.IDLE && currentSequence == parSequenceIndex) // finished sequence but no new sequence set
         {
-            // DEBUG
-            System.out.println("Reverting to idle sequence");
+        	JurassiCraft.instance.getLogger().debug("Reverting to idle sequence");
             currentSequence = AnimID.IDLE;
             theEntity.setAnimID(AnimID.IDLE);
         }
