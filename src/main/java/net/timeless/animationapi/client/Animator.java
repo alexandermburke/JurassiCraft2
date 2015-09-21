@@ -1,7 +1,5 @@
 package net.timeless.animationapi.client;
 
-import java.util.HashMap;
-
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -9,6 +7,8 @@ import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.unilib.client.model.tools.MowzieModelBase;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+
+import java.util.HashMap;
 
 @SideOnly(Side.CLIENT)
 public class Animator
@@ -112,7 +112,8 @@ public class Animator
                     box.rotationPointY += transform.offsetY;
                     box.rotationPointZ += transform.offsetZ;
                 }
-            } else
+            }
+            else
             {
                 float tick = (animTick - prevTempTick + AnimationAPI.getProxy().getPartialTick())
                         / (tempTick - prevTempTick);

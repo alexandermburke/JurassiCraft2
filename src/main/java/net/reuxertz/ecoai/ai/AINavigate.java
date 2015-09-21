@@ -159,7 +159,7 @@ public class AINavigate extends AIBase
         if (!b)
             return false;
 
-        if(entity.getLeashed())
+        if (entity.getLeashed())
             return false;
 
         if (this.seekEntity != null)

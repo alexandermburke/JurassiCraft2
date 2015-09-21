@@ -7,11 +7,17 @@ import net.minecraft.util.MathHelper;
  */
 public class MutableVec3
 {
-    /** X coordinate of Vec3D */
+    /**
+     * X coordinate of Vec3D
+     */
     public double xCoord;
-    /** Y coordinate of Vec3D */
+    /**
+     * Y coordinate of Vec3D
+     */
     public double yCoord;
-    /** Z coordinate of Vec3D */
+    /**
+     * Z coordinate of Vec3D
+     */
     public double zCoord;
     private static final String __OBFID = "CL_00000612";
 
@@ -51,9 +57,9 @@ public class MutableVec3
     public MutableVec3 normalize()
     {
         double d0 = (double) MathHelper.sqrt_double(this.xCoord * this.xCoord + this.yCoord * this.yCoord + this.zCoord * this.zCoord);
-        if(d0 < 1.0E-4D)
+        if (d0 < 1.0E-4D)
         {
-            set(0,0,0);
+            set(0, 0, 0);
         }
         else
         {
@@ -120,7 +126,7 @@ public class MutableVec3
         double d0 = vec.xCoord - this.xCoord;
         double d1 = vec.yCoord - this.yCoord;
         double d2 = vec.zCoord - this.zCoord;
-        return (double)MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
+        return (double) MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
     }
 
     /**
@@ -139,7 +145,7 @@ public class MutableVec3
      */
     public double lengthVector()
     {
-        return (double)MathHelper.sqrt_double(this.xCoord * this.xCoord + this.yCoord * this.yCoord + this.zCoord * this.zCoord);
+        return (double) MathHelper.sqrt_double(this.xCoord * this.xCoord + this.yCoord * this.yCoord + this.zCoord * this.zCoord);
     }
 
     /**
@@ -215,8 +221,8 @@ public class MutableVec3
         float f1 = MathHelper.cos(pitch);
         float f2 = MathHelper.sin(pitch);
         double d0 = this.xCoord;
-        double d1 = this.yCoord * (double)f1 + this.zCoord * (double)f2;
-        double d2 = this.zCoord * (double)f1 - this.yCoord * (double)f2;
+        double d1 = this.yCoord * (double) f1 + this.zCoord * (double) f2;
+        double d2 = this.zCoord * (double) f1 - this.yCoord * (double) f2;
         return set(d0, d1, d2);
     }
 
@@ -224,9 +230,9 @@ public class MutableVec3
     {
         float f1 = MathHelper.cos(yaw);
         float f2 = MathHelper.sin(yaw);
-        double d0 = this.xCoord * (double)f1 + this.zCoord * (double)f2;
+        double d0 = this.xCoord * (double) f1 + this.zCoord * (double) f2;
         double d1 = this.yCoord;
-        double d2 = this.zCoord * (double)f1 - this.xCoord * (double)f2;
+        double d2 = this.zCoord * (double) f1 - this.xCoord * (double) f2;
         return set(d0, d1, d2);
     }
 }

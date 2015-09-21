@@ -61,7 +61,7 @@ public class AnimationAPI
     @Mod.Instance("AnimationAPI")
     public static AnimationAPI instance;
     @SidedProxy(clientSide = "net.timeless.animationapi.client.ClientProxy",
-                serverSide = "net.timeless.animationapi.CommonProxy")
+            serverSide = "net.timeless.animationapi.CommonProxy")
     public static CommonProxy proxy;
     public static SimpleNetworkWrapper wrapper;
 
@@ -69,7 +69,7 @@ public class AnimationAPI
 
     static
     {
-        fTimer = new String[] { "field_71428_T", "S", "timer" };
+        fTimer = new String[]{"field_71428_T", "S", "timer"};
     }
 
     public static CommonProxy getProxy()

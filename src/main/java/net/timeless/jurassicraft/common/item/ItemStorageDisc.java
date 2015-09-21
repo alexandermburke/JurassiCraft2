@@ -9,10 +9,6 @@ import net.minecraft.util.StatCollector;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
-import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
-import net.timeless.jurassicraft.common.genetics.DinoDNA;
-import net.timeless.jurassicraft.common.genetics.GeneticsContainer;
-import net.timeless.jurassicraft.common.lang.AdvLang;
 import net.timeless.jurassicraft.common.storagedisc.IStorageType;
 import net.timeless.jurassicraft.common.storagedisc.StorageTypeRegistry;
 
@@ -43,7 +39,7 @@ public class ItemStorageDisc extends Item
             String storageId = nbt.getString("StorageId");
             IStorageType type = StorageTypeRegistry.getStorageType(storageId);
 
-            if(type != null)
+            if (type != null)
             {
                 type.readFromNBT(nbt);
                 type.addInformation(stack, tooltip);

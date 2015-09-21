@@ -62,7 +62,7 @@ public class TileDNAExtractor extends TileMachineBase
 
             ItemStack disc = null;
 
-            if(input.getItemDamage() == 0)
+            if (input.getItemDamage() == 0)
             {
                 List<Dinosaur> possibleDinos = null;
 
@@ -73,12 +73,12 @@ public class TileDNAExtractor extends TileMachineBase
                         possibleDinos = JCEntityRegistry.getDinosaursFromAmber();
                     }
                 }
-                else if(input.getItem() == JCItemRegistry.sea_lamprey)
+                else if (input.getItem() == JCItemRegistry.sea_lamprey)
                 {
                     possibleDinos = JCEntityRegistry.getDinosaursFromSeaLampreys();
                 }
 
-                if(possibleDinos != null)
+                if (possibleDinos != null)
                 {
                     Dinosaur dino = possibleDinos.get(rand.nextInt(possibleDinos.size()));
 
@@ -101,7 +101,7 @@ public class TileDNAExtractor extends TileMachineBase
                     disc.setTagCompound(nbt);
                 }
             }
-            else if(input.getItem() == JCItemRegistry.amber && input.getItemDamage() == 1)
+            else if (input.getItem() == JCItemRegistry.amber && input.getItemDamage() == 1)
             {
                 List<Plant> possiblePlants = JCPlantRegistry.getPlants();
                 Plant plant = possiblePlants.get(rand.nextInt(possiblePlants.size()));

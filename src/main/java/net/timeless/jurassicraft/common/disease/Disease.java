@@ -1,6 +1,7 @@
 package net.timeless.jurassicraft.common.disease;
 
-public abstract class Disease {
+public abstract class Disease
+{
 
     // name of the disease (Cancer etc...)
     private String name;
@@ -32,7 +33,7 @@ public abstract class Disease {
 
     public int getWorse(int level)
     {
-       return this.level + level;
+        return this.level + level;
     }
 
     public boolean isTerminal()
@@ -47,10 +48,10 @@ public abstract class Disease {
 
     public boolean setTerminal()
     {
-        if(getLevel() == 5)
+        if (getLevel() == 5)
             return true;
         else
-           return false;
+            return false;
     }
 
     public abstract void affects();

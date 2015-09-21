@@ -186,7 +186,7 @@ public abstract class TileMachineBase extends TileEntityLockable implements IUpd
 
         for (int i = 0; i < inputs.length; i++)
         {
-            if(inputs[i] == slot)
+            if (inputs[i] == slot)
             {
                 return true;
             }
@@ -201,7 +201,7 @@ public abstract class TileMachineBase extends TileEntityLockable implements IUpd
 
         for (int i = 0; i < outputs.length; i++)
         {
-            if(outputs[i] == slot)
+            if (outputs[i] == slot)
             {
                 return true;
             }
@@ -357,6 +357,7 @@ public abstract class TileMachineBase extends TileEntityLockable implements IUpd
     protected abstract int getProcessCount();
 
     protected abstract int[] getInputs();
+
     protected abstract int[] getOutputs();
 
     protected abstract ItemStack[] getSlots();

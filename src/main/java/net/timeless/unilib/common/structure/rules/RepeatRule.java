@@ -5,26 +5,31 @@ import net.timeless.unilib.common.structure.BlockCoords;
 
 import java.util.Random;
 
-public abstract class RepeatRule {
+public abstract class RepeatRule
+{
     private int spacingX;
     private int spacingY;
     private int spacingZ;
 
-    public void setSpacing(int spacingX, int spacingY, int spacingZ) {
+    public void setSpacing(int spacingX, int spacingY, int spacingZ)
+    {
         this.spacingX = spacingX;
         this.spacingY = spacingY;
         this.spacingZ = spacingZ;
     }
 
-    public int getSpacingX() {
+    public int getSpacingX()
+    {
         return spacingX;
     }
 
-    public int getSpacingY() {
+    public int getSpacingY()
+    {
         return spacingY;
     }
 
-    public int getSpacingZ() {
+    public int getSpacingZ()
+    {
         return spacingZ;
     }
 
@@ -34,7 +39,8 @@ public abstract class RepeatRule {
 
     public abstract void reset(World world, Random random, BlockCoords pos);
 
-    public void init(World world, Random random, BlockCoords pos) {
+    public void init(World world, Random random, BlockCoords pos)
+    {
         reset(world, random, pos);
     }
 }

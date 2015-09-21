@@ -5,9 +5,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
+import net.timeless.jurassicraft.common.entity.EntityCearadactylus;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
-import net.timeless.jurassicraft.common.entity.EntityCearadactylus;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 
 @SideOnly(Side.CLIENT)
@@ -17,7 +17,7 @@ public class AnimationCearadactylus implements IModelAnimator
     public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity e)
     {
         ModelDinosaur model = (ModelDinosaur) modelJson;
-		EntityCearadactylus entity = (EntityCearadactylus) e;
+        EntityCearadactylus entity = (EntityCearadactylus) e;
         Animator animator = model.animator;
 
         MowzieModelRenderer leftThigh = model.getCube("Left thigh");

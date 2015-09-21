@@ -1,25 +1,23 @@
 package net.timeless.unilib.client.model.json;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.tools.MowzieModelBase;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
-
 import org.lwjgl.opengl.GL11;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author gegy1000
- * TAKEN FROM LLIBRARY
+ *         TAKEN FROM LLIBRARY
  */
 @SideOnly(Side.CLIENT)
 public class ModelJson extends MowzieModelBase
@@ -99,7 +97,7 @@ public class ModelJson extends MowzieModelBase
 
         if (!Minecraft.getMinecraft().isGamePaused())
         {
-            if(resetsEachFrame)
+            if (resetsEachFrame)
                 this.setToInitPose();
 
             if (playingAnimation != null)
@@ -241,12 +239,12 @@ public class ModelJson extends MowzieModelBase
     {
         return nameMap.get(name);
     }
-    
+
     public String[] getCubeNamesArray()
     {
         String[] cubeNamesArray = new String[nameMap.size()];
         int index = 0;
-        
+
         Set<String> keySet = nameMap.keySet();
         Iterator iterator = keySet.iterator();
         while (iterator.hasNext())

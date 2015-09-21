@@ -51,8 +51,7 @@ public class JCAutoAnimSoundBase extends AIAnimation
     {
         super.startExecuting();
         animatingEntity.currentAnim = this;
-        animatingEntity.playSound(sound, animatingEntity.getSoundVolume() + volumeOffset,
-                                  animatingEntity.getSoundPitch());
+        animatingEntity.playSound(sound, animatingEntity.getSoundVolume() + volumeOffset, animatingEntity.getSoundPitch());
     }
 
     @Override

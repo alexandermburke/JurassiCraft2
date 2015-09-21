@@ -27,7 +27,7 @@ public class DinoPediaRegistry
 
         for (Map.Entry<IRecipe, ItemStack> entry : recipes.entrySet())
         {
-            if(ItemStack.areItemStacksEqual(entry.getValue(), stack))
+            if (ItemStack.areItemStacksEqual(entry.getValue(), stack))
             {
                 recipesForItem.add(entry.getKey());
             }

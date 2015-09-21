@@ -1,7 +1,6 @@
 package net.timeless.jurassicraft.common.message;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -12,8 +11,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 import net.timeless.unilib.utils.MutableVec3;
 
-import javax.vecmath.Vector3f;
-
 public class MessageHelicopterDirection implements IMessage
 {
     private int heliID;
@@ -21,7 +18,7 @@ public class MessageHelicopterDirection implements IMessage
 
     public MessageHelicopterDirection()
     {
-        direction = new MutableVec3(0,0,0);
+        direction = new MutableVec3(0, 0, 0);
     }
 
     public MessageHelicopterDirection(int heliID, MutableVec3 direction)
@@ -55,7 +52,7 @@ public class MessageHelicopterDirection implements IMessage
         public IMessage onMessage(MessageHelicopterDirection packet, MessageContext ctx)
         {
             World world = null;
-            if(ctx.side == Side.CLIENT)
+            if (ctx.side == Side.CLIENT)
             {
                 world = getClientWorld();
             }
@@ -64,7 +61,7 @@ public class MessageHelicopterDirection implements IMessage
                 world = ctx.getServerHandler().playerEntity.worldObj;
             }
             EntityHelicopterBase helicopter = (EntityHelicopterBase) world.getEntityByID(packet.heliID);
-            if(helicopter != null)
+            if (helicopter != null)
                 helicopter.setDirection(packet.direction);
             return null;
         }

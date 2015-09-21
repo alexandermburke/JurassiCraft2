@@ -1,12 +1,12 @@
 package net.timeless.jurassicraft.common.entity.ai;
 
-import java.util.Iterator;
-import java.util.List;
-
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.AxisAlignedBB;
 import net.timeless.jurassicraft.common.entity.base.EntityDinosaur;
+
+import java.util.Iterator;
+import java.util.List;
 
 public class EntityAIJCShouldDefend extends EntityAIJCTarget
 {

@@ -9,11 +9,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
-import java.util.ConcurrentModificationException;
 import java.util.List;
 import java.util.UUID;
 
-import static com.google.common.base.Preconditions.*;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Entity representing a seat inside the helicopter. Should NOT be spawned inside the world, the {@link EntityHelicopterBase Helicopter Entity} handles that for you.
@@ -38,7 +37,7 @@ public class HelicopterSeat extends Entity implements IEntityAdditionalSpawnData
     public HelicopterSeat(float relX, float relY, float relZ, int index, EntityHelicopterBase parent)
     {
         super(parent.getEntityWorld());
-        setEntityBoundingBox(AxisAlignedBB.fromBounds(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY,Double.NEGATIVE_INFINITY,Double.NEGATIVE_INFINITY,Double.NEGATIVE_INFINITY,Double.NEGATIVE_INFINITY));
+        setEntityBoundingBox(AxisAlignedBB.fromBounds(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY));
         this.relX = relX;
         this.relY = relY;
         this.relZ = relZ;
@@ -62,11 +61,11 @@ public class HelicopterSeat extends Entity implements IEntityAdditionalSpawnData
         motionY = 0f;
         motionZ = 0f;
         super.onEntityUpdate();
-        if(parent == null) // we are in this state right after reloading a map
+        if (parent == null) // we are in this state right after reloading a map
         {
             parent = getParentFromID(worldObj, parentID);
         }
-        if(parent != null)
+        if (parent != null)
         {
             parent.seats[index] = this;
 
@@ -78,14 +77,14 @@ public class HelicopterSeat extends Entity implements IEntityAdditionalSpawnData
             this.posX = parent.posX + nx;
             this.posY = parent.posY + getRelY();
             this.posZ = parent.posZ + nz;
-            if(parent.isDead)
+            if (parent.isDead)
             {
                 kill();
             }
         }
         else
         {
-            System.out.println("no parent :c "+parentID);
+            System.out.println("no parent :c " + parentID);
         }
     }
 
@@ -108,15 +107,15 @@ public class HelicopterSeat extends Entity implements IEntityAdditionalSpawnData
             @Override
             public boolean apply(Object input)
             {
-                if(input instanceof EntityHelicopterBase)
+                if (input instanceof EntityHelicopterBase)
                 {
-                    EntityHelicopterBase helicopter = (EntityHelicopterBase)input;
+                    EntityHelicopterBase helicopter = (EntityHelicopterBase) input;
                     return helicopter.getHeliID().equals(id);
                 }
                 return false;
             }
         });
-        if(list.isEmpty())
+        if (list.isEmpty())
             return null;
         return (EntityHelicopterBase) list.get(0);
     }

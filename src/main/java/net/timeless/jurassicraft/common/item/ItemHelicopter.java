@@ -31,13 +31,13 @@ public class ItemHelicopter extends Item
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        if(worldIn.isRemote)
+        if (worldIn.isRemote)
             return true;
         EntityHelicopterBase helicopter = new EntityHelicopterBase(worldIn);
-        helicopter.setPosition(pos.getX()+hitX, pos.getY()+hitY, pos.getZ()+hitZ);
+        helicopter.setPosition(pos.getX() + hitX, pos.getY() + hitY, pos.getZ() + hitZ);
         worldIn.spawnEntityInWorld(helicopter);
 
-        HelicopterSeat pilotSeat = new HelicopterSeat(0f,0f,1.3f, EntityHelicopterBase.PILOT_SEAT, helicopter);
+        HelicopterSeat pilotSeat = new HelicopterSeat(0f, 0f, 1.3f, EntityHelicopterBase.PILOT_SEAT, helicopter);
         helicopter.seats[EntityHelicopterBase.PILOT_SEAT] = pilotSeat;
 
         pilotSeat.setPosition(helicopter.posX, helicopter.posY, helicopter.posZ);

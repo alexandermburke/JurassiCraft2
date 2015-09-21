@@ -50,11 +50,11 @@ public class CommonProxy
     {
         return null;
     }
-    
+
     /**
      * Returns a side-appropriate EntityPlayer for use during message handling
      */
-    public EntityPlayer getPlayerEntityFromContext(MessageContext ctx) 
+    public EntityPlayer getPlayerEntityFromContext(MessageContext ctx)
     {
         return ctx.getServerHandler().playerEntity;
     }

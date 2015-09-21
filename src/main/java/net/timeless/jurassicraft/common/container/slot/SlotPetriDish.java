@@ -3,8 +3,6 @@ package net.timeless.jurassicraft.common.container.slot;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.timeless.jurassicraft.common.item.ItemDNA;
-import net.timeless.jurassicraft.common.item.ItemPlantDNA;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 public class SlotPetriDish extends Slot

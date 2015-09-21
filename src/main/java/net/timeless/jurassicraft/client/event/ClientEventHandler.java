@@ -21,13 +21,13 @@ public class ClientEventHandler
     {
         JurassiCraft.timer++;
 
-        if(mc.currentScreen instanceof GuiPaleoTab)
+        if (mc.currentScreen instanceof GuiPaleoTab)
         {
             GuiPaleoTab tab = (GuiPaleoTab) mc.currentScreen;
 
             GuiApp focus = tab.focus;
 
-            if(focus != null)
+            if (focus != null)
             {
                 focus.update();
             }

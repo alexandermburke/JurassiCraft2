@@ -24,7 +24,7 @@ public class SpecialRendererDNAExtractor extends TileEntitySpecialRenderer
 
         IBlockState blockState = tileEntity.getWorld().getBlockState(tile.getPos());
 
-        if(blockState.getBlock() == JCBlockRegistry.dna_extractor)
+        if (blockState.getBlock() == JCBlockRegistry.dna_extractor)
         {
             GlStateManager.pushMatrix();
             mc.getTextureManager().bindTexture(TextureMap.locationBlocksTexture);

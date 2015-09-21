@@ -1,7 +1,6 @@
 package net.timeless.jurassicraft.client.proxy;
 
-import java.util.ArrayList;
-
+import com.google.common.collect.Lists;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
@@ -13,7 +12,7 @@ import net.timeless.jurassicraft.client.event.ClientEventHandler;
 import net.timeless.jurassicraft.client.render.JCRenderingRegistry;
 import net.timeless.jurassicraft.common.proxy.CommonProxy;
 
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 
 @SideOnly(Side.CLIENT)
 public class ClientProxy extends CommonProxy
@@ -102,12 +101,12 @@ public class ClientProxy extends CommonProxy
     {
         return Minecraft.getMinecraft().thePlayer;
     }
-    
+
     /**
      * Returns a side-appropriate EntityPlayer for use during message handling
      */
     @Override
-    public EntityPlayer getPlayerEntityFromContext(MessageContext ctx) 
+    public EntityPlayer getPlayerEntityFromContext(MessageContext ctx)
     {
         // Note that if you simply return 'Minecraft.getMinecraft().thePlayer',
         // your packets will not work because you will be getting a client

@@ -1,29 +1,29 @@
 package net.timeless.unilib;
 
-        import com.google.common.collect.Lists;
-        import com.google.common.reflect.ClassPath;
-        import net.minecraft.block.Block;
-        import net.minecraft.item.Item;
-        import net.minecraftforge.fml.common.*;
-        import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-        import net.minecraftforge.fml.common.registry.GameRegistry;
-        import net.minecraftforge.fml.relauncher.Side;
-        import net.minecraftforge.fml.relauncher.SideOnly;
-        import net.timeless.unilib.common.BaseMod;
-        import net.timeless.unilib.common.BlockProvider;
-        import net.timeless.unilib.common.ItemProvider;
+import com.google.common.reflect.ClassPath;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraftforge.fml.common.*;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.unilib.common.BaseMod;
+import net.timeless.unilib.common.BlockProvider;
+import net.timeless.unilib.common.ItemProvider;
 
-        import java.io.IOException;
-        import java.util.Collection;
-        import java.util.List;
+import java.util.Collection;
+import java.util.List;
 
 @Mod(modid = "net/timeless/unilib", name = "Unilib", version = "${unilib_version}")
-public class Unilib extends BaseMod {
+public class Unilib extends BaseMod
+{
 
     @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent evt) {
+    public void preInit(FMLPreInitializationEvent evt)
+    {
         super.preInitMod(evt);
-        logger.info("Loading Unilib "+ Unilib.getVersion());
+        logger.info("Loading Unilib " + Unilib.getVersion());
         logger.info("Loading content handlers...");
         /*
         try {
@@ -64,89 +64,114 @@ public class Unilib extends BaseMod {
         }*/
     }
 
-    private void handleClass(ClassPath.ClassInfo info, LoadController controller, ModContainer container, List<String> forbiddenPackages) {
-        try {
+    private void handleClass(ClassPath.ClassInfo info, LoadController controller, ModContainer container, List<String> forbiddenPackages)
+    {
+        try
+        {
             boolean isAllowed = true;
-            for(String s : forbiddenPackages) { // Checks the full class name against the forbidden packages' list
-                if(info.getName().startsWith(s)) {
+            for (String s : forbiddenPackages)
+            { // Checks the full class name against the forbidden packages' list
+                if (info.getName().startsWith(s))
+                {
                     isAllowed = false;
                     break;
                 }
             }
-            if(!isAllowed) {
+            if (!isAllowed)
+            {
                 return;
             }
             Side currentSide = FMLCommonHandler.instance().getEffectiveSide();
-            if((info.getName().toLowerCase().contains("client") && currentSide != Side.CLIENT)
-                    || (info.getName().toLowerCase().contains("server") && currentSide != Side.SERVER)) {
-                System.out.println(">> "+info.getName().toLowerCase());
+            if ((info.getName().toLowerCase().contains("client") && currentSide != Side.CLIENT)
+                    || (info.getName().toLowerCase().contains("server") && currentSide != Side.SERVER))
+            {
+                System.out.println(">> " + info.getName().toLowerCase());
                 return;
             }
             Class<?> clazz = Class.forName(info.getName(), false, getClass().getClassLoader());
             Object instance = null;
-            if(clazz.isAnnotationPresent(Mod.class)) { // Find the mod instance
+            if (clazz.isAnnotationPresent(Mod.class))
+            { // Find the mod instance
                 Mod mod = clazz.getAnnotation(Mod.class);
                 List<ModContainer> list = Loader.instance().getModList();
-                for(ModContainer c : list) {
+                for (ModContainer c : list)
+                {
                     Object modInstance = c.getMod();
-                    if(modInstance != null) {
-                        if (modInstance.getClass() == clazz) {
+                    if (modInstance != null)
+                    {
+                        if (modInstance.getClass() == clazz)
+                        {
                             instance = modInstance;
                             break;
                         }
                     }
                 }
             }
-            if(clazz.isAnnotationPresent(SideOnly.class)) {
+            if (clazz.isAnnotationPresent(SideOnly.class))
+            {
                 Side side = clazz.getAnnotation(SideOnly.class).value();
-                if(!side.equals(FMLCommonHandler.instance().getSide())) { // We are on the wrong side for loading
+                if (!side.equals(FMLCommonHandler.instance().getSide()))
+                { // We are on the wrong side for loading
                     return;
                 }
             }
-            if(instance == null) {
-                try {
+            if (instance == null)
+            {
+                try
+                {
                     instance = clazz.newInstance();
 
-                } catch(Exception e) {
+                }
+                catch (Exception e)
+                {
                     return; // Shhhhh, nothing happened here...
                 }
             }
             ModMetadata metadata = new ModMetadata();
             ModContainer modContainer = new DummyModContainer(metadata); // Mod container used to change the modid of registred items and blocks
             Class<?>[] interfaces = clazz.getInterfaces();
-            for (Class<?> in : interfaces) { // Search for possible providers, such as BlockProvider or ItemProvider
+            for (Class<?> in : interfaces)
+            { // Search for possible providers, such as BlockProvider or ItemProvider
                 setContainer(modContainer, controller);
-                if (in == BlockProvider.class) {
-                    BlockProvider provider = ((BlockProvider)instance);
+                if (in == BlockProvider.class)
+                {
+                    BlockProvider provider = ((BlockProvider) instance);
                     logger.info("Found block provider: " + clazz.getName());
                     Collection<Block> blocks = provider.createBlocks();
                     metadata.modId = provider.getModID();
-                    for(Block b : blocks) {
+                    for (Block b : blocks)
+                    {
                         GameRegistry.registerBlock(b, b.getUnlocalizedName().replaceFirst("tile\\.", ""));
                     }
-                } else if (in == ItemProvider.class) {
-                    ItemProvider provider = ((ItemProvider)instance);
+                }
+                else if (in == ItemProvider.class)
+                {
+                    ItemProvider provider = ((ItemProvider) instance);
                     logger.info("Found item provider: " + clazz.getName());
                     Collection<Item> items = provider.createItems();
                     metadata.modId = provider.getModID();
-                    for(Item i : items) {
+                    for (Item i : items)
+                    {
                         GameRegistry.registerItem(i, i.getUnlocalizedName().replaceFirst("item\\.", ""));
                     }
                 }
                 setContainer(container, controller);
             }
         }
-        catch (Exception e) {
+        catch (Exception e)
+        {
             logger.error(e);
             // Shhh, nothing but dreams now
         }
     }
 
-    private void setContainer(ModContainer container, LoadController controller) {
+    private void setContainer(ModContainer container, LoadController controller)
+    {
         ObfuscationReflectionHelper.setPrivateValue(LoadController.class, controller, container, 7);
     }
 
-    public static String getVersion() {
+    public static String getVersion()
+    {
         return "${unilib_version}";
     }
 }

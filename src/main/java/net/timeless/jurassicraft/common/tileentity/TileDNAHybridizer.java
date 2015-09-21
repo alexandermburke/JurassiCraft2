@@ -7,21 +7,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.timeless.jurassicraft.JurassiCraft;
 import net.timeless.jurassicraft.common.api.IHybrid;
-import net.timeless.jurassicraft.common.container.ContainerDNAExtractor;
 import net.timeless.jurassicraft.common.container.ContainerDNAHybridizer;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.genetics.DinoDNA;
 import net.timeless.jurassicraft.common.genetics.GeneticsContainer;
-import net.timeless.jurassicraft.common.genetics.GeneticsHelper;
-import net.timeless.jurassicraft.common.genetics.PlantDNA;
 import net.timeless.jurassicraft.common.item.ItemStorageDisc;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
-import net.timeless.jurassicraft.common.plant.JCPlantRegistry;
-import net.timeless.jurassicraft.common.plant.Plant;
-
-import java.util.List;
-import java.util.Random;
 
 public class TileDNAHybridizer extends TileMachineBase
 {

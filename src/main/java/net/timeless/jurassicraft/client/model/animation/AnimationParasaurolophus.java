@@ -15,8 +15,7 @@ import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 public class AnimationParasaurolophus implements IModelAnimator
 {
     @Override
-    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw,
-                                  float rotationPitch, float partialTicks, Entity entity)
+    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
     {
         ModelDinosaur model = (ModelDinosaur) modelJson;
         Animator animator = model.animator;
@@ -73,7 +72,7 @@ public class AnimationParasaurolophus implements IModelAnimator
 
         MowzieModelRenderer jaw = model.getCube("Jaw");
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
 
         float scaleFactor = 0.6F;
         float height = 2F;

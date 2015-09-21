@@ -10,7 +10,7 @@ import net.timeless.jurassicraft.common.item.JCItemRegistry;
 
 public class TileDnaSynthesizer extends TileMachineBase
 {
-    private int[] inputs = new int[]{0, 1 ,2};
+    private int[] inputs = new int[]{0, 1, 2};
     private int[] outputs = new int[]{3, 4, 5, 6};
 
     private ItemStack[] slots = new ItemStack[7];

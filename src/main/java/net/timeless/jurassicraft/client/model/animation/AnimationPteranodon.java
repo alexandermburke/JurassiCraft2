@@ -15,8 +15,7 @@ import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 public class AnimationPteranodon implements IModelAnimator
 {
     @Override
-    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw,
-                                  float rotationPitch, float partialTicks, Entity e)
+    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity e)
     {
         ModelDinosaur model = (ModelDinosaur) modelJson;
         EntityPteranodon entity = (EntityPteranodon) e;
@@ -50,12 +49,12 @@ public class AnimationPteranodon implements IModelAnimator
         MowzieModelRenderer rightArm3 = model.getCube("Right Arm 3");
         MowzieModelRenderer rightArm4 = model.getCube("Right Arm 4");
 
-        MowzieModelRenderer[] neck = new MowzieModelRenderer[] { head, neck3, neck2, neck1 };
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail1, tail2, tail3 };
-        MowzieModelRenderer[] wingLeft = new MowzieModelRenderer[] { leftArm4, leftArm3, leftArm2, leftArm1 };
-        MowzieModelRenderer[] wingRight = new MowzieModelRenderer[] { rightArm4, rightArm3, rightArm2, rightArm1 };
-        MowzieModelRenderer[] legLeft = new MowzieModelRenderer[] { leftThigh, leftCalf, leftUpperFoot, leftFoot };
-        MowzieModelRenderer[] legRight = new MowzieModelRenderer[] { rightThigh, rightCalf, rightUpperFoot, rightFoot };
+        MowzieModelRenderer[] neck = new MowzieModelRenderer[]{head, neck3, neck2, neck1};
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail1, tail2, tail3};
+        MowzieModelRenderer[] wingLeft = new MowzieModelRenderer[]{leftArm4, leftArm3, leftArm2, leftArm1};
+        MowzieModelRenderer[] wingRight = new MowzieModelRenderer[]{rightArm4, rightArm3, rightArm2, rightArm1};
+        MowzieModelRenderer[] legLeft = new MowzieModelRenderer[]{leftThigh, leftCalf, leftUpperFoot, leftFoot};
+        MowzieModelRenderer[] legRight = new MowzieModelRenderer[]{rightThigh, rightCalf, rightUpperFoot, rightFoot};
 
         f = entity.ticksExisted;
         f1 = 1.0f;

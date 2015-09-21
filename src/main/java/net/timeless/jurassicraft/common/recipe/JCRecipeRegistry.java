@@ -1,7 +1,6 @@
 package net.timeless.jurassicraft.common.recipe;
 
-import java.util.HashMap;
-
+import com.google.common.collect.Maps;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -13,9 +12,9 @@ import net.timeless.jurassicraft.common.block.JCBlockRegistry;
 import net.timeless.jurassicraft.common.dinosaur.Dinosaur;
 import net.timeless.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.jurassicraft.common.item.JCItemRegistry;
-
-import com.google.common.collect.Maps;
 import net.timeless.jurassicraft.common.paleopad.dinopedia.DinoPediaRegistry;
+
+import java.util.HashMap;
 
 public class JCRecipeRegistry
 {
@@ -254,7 +253,7 @@ public class JCRecipeRegistry
 
         if (pars[i] instanceof String[])
         {
-            String[] astring = (String[])pars[i++];
+            String[] astring = (String[]) pars[i++];
 
             for (int l = 0; l < astring.length; ++l)
             {
@@ -268,7 +267,7 @@ public class JCRecipeRegistry
         {
             while (pars[i] instanceof String)
             {
-                String s2 = (String)pars[i++];
+                String s2 = (String) pars[i++];
                 ++k;
                 j = s2.length();
                 s = s + s2;
@@ -279,20 +278,20 @@ public class JCRecipeRegistry
 
         for (hashmap = Maps.newHashMap(); i < pars.length; i += 2)
         {
-            Character character = (Character)pars[i];
+            Character character = (Character) pars[i];
             ItemStack characterStack = null;
 
             if (pars[i + 1] instanceof Item)
             {
-                characterStack = new ItemStack((Item)pars[i + 1]);
+                characterStack = new ItemStack((Item) pars[i + 1]);
             }
             else if (pars[i + 1] instanceof Block)
             {
-                characterStack = new ItemStack((Block)pars[i + 1], 1, 32767);
+                characterStack = new ItemStack((Block) pars[i + 1], 1, 32767);
             }
             else if (pars[i + 1] instanceof ItemStack)
             {
-                characterStack = (ItemStack)pars[i + 1];
+                characterStack = (ItemStack) pars[i + 1];
             }
 
             hashmap.put(character, characterStack);
@@ -306,7 +305,7 @@ public class JCRecipeRegistry
 
             if (hashmap.containsKey(Character.valueOf(character)))
             {
-                inputs[i1] = ((ItemStack)hashmap.get(Character.valueOf(character))).copy();
+                inputs[i1] = ((ItemStack) hashmap.get(Character.valueOf(character))).copy();
             }
             else
             {

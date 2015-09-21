@@ -197,13 +197,16 @@ public class JabelarAnimationHelper
             if (nextPose == null)
             {
                 System.err.println("Trying to tween to a null next pose array");
-            } else if (nextPose[partIndex] == null)
+            }
+            else if (nextPose[partIndex] == null)
             {
                 System.err.println("The part index " + partIndex + " in next pose is null");
-            } else if (currentRotationArray == null)
+            }
+            else if (currentRotationArray == null)
             {
                 System.err.println("Trying to tween from a null current rotation array");
-            } else
+            }
+            else
             {
                 nextTweenRotations(partIndex, inertiaFactor);
                 nextTweenPositions(partIndex, inertiaFactor);
@@ -221,7 +224,8 @@ public class JabelarAnimationHelper
                     && (currentTickInTween >= (numTicksInTween - numTicksInTween * 0.25F)))
             {
                 inertiaFactor *= 0.5F;
-            } else
+            }
+            else
             {
                 inertiaFactor *= 1.5F;
             }
@@ -339,13 +343,14 @@ public class JabelarAnimationHelper
         // I.e. could reject certain changes depending on what current animation is playing
 
         if (currentSequence != AnimID.IDLE_ && currentSequence == parSequenceIndex) // finished sequence but no new
-                                                                                   // sequence set
+        // sequence set
         {
             // DEBUG
             System.out.println("Reverting to idle sequence");
             currentSequence = AnimID.IDLE_;
             theEntity.setAnimID(AnimID.IDLE);
-        } else
+        }
+        else
         {
             currentSequence = parSequenceIndex;
         }
@@ -385,9 +390,10 @@ public class JabelarAnimationHelper
         try
         {
             return new ModelDinosaur(TabulaModelHelper.parseModel(tabulaModel), null); // okay to use null for animator
-                                                                                       // parameter as we get animator
-                                                                                       // from passed-in model
-        } catch (Exception e)
+            // parameter as we get animator
+            // from passed-in model
+        }
+        catch (Exception e)
         {
             System.err.println("Could not load Tabula model = " + tabulaModel);
             e.printStackTrace();

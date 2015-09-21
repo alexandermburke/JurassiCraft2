@@ -6,7 +6,7 @@ import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 
 /**
  * @author RafaMv0
- * TAKEN FROM LLIBRARY
+ *         TAKEN FROM LLIBRARY
  */
 public class ChainBuffer
 {

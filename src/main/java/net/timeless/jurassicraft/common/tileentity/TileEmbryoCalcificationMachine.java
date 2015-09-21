@@ -56,7 +56,7 @@ public class TileEmbryoCalcificationMachine extends TileMachineBase
 
             mergeStack(2, output);
             decreaseStackSize(0);
-            decreaseStackSize(1 );
+            decreaseStackSize(1);
         }
     }
 

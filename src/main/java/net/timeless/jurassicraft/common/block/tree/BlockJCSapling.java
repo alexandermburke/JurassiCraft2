@@ -15,7 +15,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.jurassicraft.common.creativetab.JCCreativeTabs;
-import net.timeless.jurassicraft.common.world.jurdstrees.trees.*;
+import net.timeless.jurassicraft.common.world.jurdstrees.trees.WorldGenCalamites;
+import net.timeless.jurassicraft.common.world.jurdstrees.trees.WorldGenGinkgo;
 
 import java.util.List;
 import java.util.Random;

@@ -3,7 +3,6 @@ package net.timeless.jurassicraft.client.model.animation;
 import net.minecraft.entity.Entity;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.jurassicraft.client.model.ModelDinosaur;
-import net.timeless.jurassicraft.common.entity.EntityMajungasaurus;
 import net.timeless.jurassicraft.common.entity.EntityMegapiranha;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;

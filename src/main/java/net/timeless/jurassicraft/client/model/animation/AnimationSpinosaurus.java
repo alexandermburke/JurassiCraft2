@@ -1,7 +1,5 @@
 package net.timeless.jurassicraft.client.model.animation;
 
-import java.util.HashMap;
-
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -17,6 +15,8 @@ import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 
+import java.util.HashMap;
+
 @SideOnly(Side.CLIENT)
 public class AnimationSpinosaurus implements IModelAnimator
 {
@@ -28,7 +28,7 @@ public class AnimationSpinosaurus implements IModelAnimator
     // Tell the code where your tabula model assets are
     // the first one must be your "default" pose (i.e one that is used at spawn time)
     protected static final String modelAssetPath = "/assets/jurassicraft/models/entities/spinosaurus/";
-    protected static final String[] modelAssetPathArray = new String[] {
+    protected static final String[] modelAssetPathArray = new String[]{
             "spinosaurus_default",
             "spinosaurus_roaring_1",
             "spinosaurus_roaring_2",
@@ -48,26 +48,28 @@ public class AnimationSpinosaurus implements IModelAnimator
         }
         return index;
     }
-    
+
     /* 
      * Define your animation sequence here
      * First element is target pose model index (i.e. order of model assets listed in
      * modelAssetPaths array above),
      * Second element is the number of ticks it should take to tween to that pose
      */
-   protected static int[][][] arrayOfSequences = new int[AnimID.NUM_IDS][][];
-   static {
-       arrayOfSequences[AnimID.IDLE_] = new int[][] {
-           {getPoseID("default"), 200}
-       };
-       
-       arrayOfSequences[AnimID.ROARING_] = new int[][] {
-           {getPoseID("roaring_1"), 100}, {getPoseID("roaring_2"), 80}, 
-           {getPoseID("roaring_3"), 80}, {getPoseID("roaring_3"), 180}, 
-           {getPoseID("default"), 100}
-       };
-   }
-   
+    protected static int[][][] arrayOfSequences = new int[AnimID.NUM_IDS][][];
+
+    static
+    {
+        arrayOfSequences[AnimID.IDLE_] = new int[][]{
+                {getPoseID("default"), 200}
+        };
+
+        arrayOfSequences[AnimID.ROARING_] = new int[][]{
+                {getPoseID("roaring_1"), 100}, {getPoseID("roaring_2"), 80},
+                {getPoseID("roaring_3"), 80}, {getPoseID("roaring_3"), 180},
+                {getPoseID("default"), 100}
+        };
+    }
+
 //   
 //   protected static int[][] sequenceIdle = new int[][] {
 //        {getPoseID("default"), 200}
@@ -99,23 +101,23 @@ public class AnimationSpinosaurus implements IModelAnimator
     protected HashMap<Integer, JabelarAnimationHelper> animationInstanceToEntityMap = new HashMap<Integer, JabelarAnimationHelper>();
 
     private static MowzieModelRenderer[][] arrayOfPoses;
-    
+
     private static int numParts;
 
     // load tabula models once per game during implicit constructor static initialization
     static
     {
-        String[] partNameArray = JabelarAnimationHelper.getTabulaModel(modelAssetPath+modelAssetPathArray[0], 0).getCubeNamesArray();
-        numParts = partNameArray.length;        
-        
+        String[] partNameArray = JabelarAnimationHelper.getTabulaModel(modelAssetPath + modelAssetPathArray[0], 0).getCubeNamesArray();
+        numParts = partNameArray.length;
+
         arrayOfPoses = new MowzieModelRenderer[modelAssetPathArray.length][numParts];
-        
+
         for (int modelIndex = 0; modelIndex < modelAssetPathArray.length; modelIndex++)
         {
             arrayOfPoses[modelIndex] = new MowzieModelRenderer[numParts];
-            ModelDinosaur theModel = JabelarAnimationHelper.getTabulaModel(modelAssetPath+modelAssetPathArray[modelIndex], 0);
-            
-            for (int partIndex = 0; partIndex < numParts; partIndex++) 
+            ModelDinosaur theModel = JabelarAnimationHelper.getTabulaModel(modelAssetPath + modelAssetPathArray[modelIndex], 0);
+
+            for (int partIndex = 0; partIndex < numParts; partIndex++)
             {
                 arrayOfPoses[modelIndex][partIndex] = theModel.getCube(partNameArray[partIndex]);
             }
@@ -125,14 +127,14 @@ public class AnimationSpinosaurus implements IModelAnimator
     @Override
     public void setRotationAngles(ModelJson parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity parEntity)
     {
-        ModelDinosaur theModel = (ModelDinosaur)parModel;
-        EntityDinosaur theEntity= (EntityDinosaur)parEntity;
-        
+        ModelDinosaur theModel = (ModelDinosaur) parModel;
+        EntityDinosaur theEntity = (EntityDinosaur) parEntity;
+
         // add entry to hashmap if new entity
         if (!animationInstanceToEntityMap.containsKey(parEntity.getEntityId()))
         {
             // DEBUG
-            System.out.println("Adding entity to hashmap with id = "+parEntity.getEntityId());
+            System.out.println("Adding entity to hashmap with id = " + parEntity.getEntityId());
             animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(theEntity, theModel, numParts, arrayOfPoses, arrayOfSequences, true, true, 1.0F));
         }
 
@@ -141,9 +143,9 @@ public class AnimationSpinosaurus implements IModelAnimator
         // you can still add chain, walk, bob, etc.
         performMowzieAnimations(theModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, theEntity);
     }
-    
- protected void performMowzieAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
- {
+
+    protected void performMowzieAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
+    {
         Animator animator = parModel.animator;
 
         float globalSpeed = 0.45F;

@@ -7,7 +7,7 @@ import net.timeless.unilib.common.animation.ChainBuffer;
 public class EntityOthnielia extends EntityDinosaurDefensiveHerbivore  //implements IEntityAICreature, IHerbivore
 {
     public ChainBuffer tailBuffer = new ChainBuffer(6);
-    
+
     public EntityOthnielia(World world)
     {
         super(world);

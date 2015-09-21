@@ -4,11 +4,11 @@ import net.minecraft.entity.Entity;
 
 /**
  * Interface for animating Tabula models.
- * <p>
+ * <p/>
  * This can be used for Living animations.
- * 
+ *
  * @author Gegy1000
- * TAKEN FROM LLIBRARY
+ *         TAKEN FROM LLIBRARY
  */
 public interface IModelAnimator
 {
