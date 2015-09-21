@@ -6,14 +6,13 @@ import java.util.HashMap;
 import net.minecraft.entity.Entity;
 import net.timeless.animationapi.client.AnimID;
 import net.timeless.animationapi.client.JabelarAnimationHelper;
-import net.timeless.unilib.client.model.json.IModelAnimator;
-import net.timeless.unilib.client.model.json.ModelJson;
-import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
-
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.JCEntityRegistry;
+import net.timeless.unilib.client.model.json.IModelAnimator;
+import net.timeless.unilib.client.model.json.ModelJson;
+import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 
 public class AnimationTherizinosaurus implements IModelAnimator
 {
@@ -116,7 +115,7 @@ public class AnimationTherizinosaurus implements IModelAnimator
                 {getPoseID("head_cock_left"), 100}, {getPoseID("head_cock_left"), 80}, {getPoseID("idle"), 100}
             });
 
-        mapOfSequences.put(AnimID.LOOKING_RIGHT, new int[][]{
+        mapOfSequences.put(AnimID.IDLE, new int[][]{
                 {getPoseID("head_cock_right"), 100}, {getPoseID("head_cock_right"), 80}, {getPoseID("idle"), 100}
         });
 

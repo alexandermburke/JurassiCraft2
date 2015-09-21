@@ -4,11 +4,10 @@ import java.util.EnumMap;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.unilib.client.model.json.TabulaModelHelper;
-import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
-
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+import net.timeless.unilib.client.model.json.TabulaModelHelper;
+import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 
 /**
  * @author jabelar
@@ -20,6 +19,7 @@ public class JabelarAnimationHelper
 {
     private final EntityDinosaur theEntity;
 
+//    private final int[][][] arrayOfSequences;
     private EnumMap<AnimID, int[][]> mapOfSequences = new EnumMap<AnimID, int[][]>(AnimID.class);
 
     private final MowzieModelRenderer[][] arrayOfPoses;
@@ -30,8 +30,8 @@ public class JabelarAnimationHelper
     private float[][] currentPositionArray;
     private float[][] currentOffsetArray;
 
-    private final int numParts;
-
+    private static int numParts;
+//    private int currentSequence;
     private AnimID currentSequence;
     private int numPosesInSequence;
     private int currentPose;
@@ -148,6 +148,7 @@ public class JabelarAnimationHelper
     private MowzieModelRenderer[] convertPassedInModelToModelRendererArray(ModelDinosaur parModel)
     {
         String[] partNameArray = parModel.getCubeNamesArray();
+        numParts = partNameArray.length;
 
         MowzieModelRenderer[] modelRendererArray = new MowzieModelRenderer[numParts];
 
