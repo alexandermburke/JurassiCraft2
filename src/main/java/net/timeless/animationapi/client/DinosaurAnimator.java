@@ -175,5 +175,10 @@ public abstract class DinosaurAnimator implements IModelAnimator
 
         JabelarAnimationHelper render = forEntity(theEntity, theModel);
         render.performJabelarAnimations(theModel);
+        performMowzieAnimations(theModel, limbSwing, limbSwingAmount, rotation, rotationYaw, rotationPitch, partialTicks, theEntity);
+    }
+    
+    protected void performMowzieAnimations(ModelDinosaur parModel, float parLimbSwing, float parLimbSwingAmount, float parRotation, float parRotationYaw, float parRotationPitch, float parPartialTicks, EntityDinosaur parEntity)
+    {
     }
 }
