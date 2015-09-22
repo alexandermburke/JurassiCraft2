@@ -180,7 +180,6 @@ public abstract class DinosaurAnimator implements IModelAnimator
             render = new JabelarAnimationHelper(entity, model, cubes, models, animations, true, 1.0f);
             entityIDToAnimation.put(id, render);
         }
-        JurassiCraft.instance.getLogger().debug("DEBUG MESSAGE I SCREEEAM AT THE TOP OF MY ASCII!!!!");
         return render;
     }
 
