@@ -1,13 +1,13 @@
 package net.timeless.unilib.client.model.json;
 
-import com.google.gson.Gson;
-import net.timeless.unilib.Unilib;
-
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+
+import net.timeless.unilib.Unilib;
+
+import com.google.gson.Gson;
 
 public class TabulaModelHelper
 {
@@ -22,11 +22,12 @@ public class TabulaModelHelper
             path += ".tbl";
         }
 
-        ZipInputStream inputStream = new ZipInputStream(Unilib.class.getResourceAsStream(path));
-        try
+
+        try(ZipInputStream inputStream = new ZipInputStream(Unilib.class.getResourceAsStream(path)))
         {
 
             ZipEntry entry;
+            JsonTabulaModel parseTabulaModel = null;
 
             while ((entry = inputStream.getNextEntry()) != null)
             {
@@ -34,26 +35,14 @@ public class TabulaModelHelper
                 if (entry.getName().equals("model.json"))
                 {
 
-                    JsonTabulaModel parseTabulaModel = parseModel(inputStream);
+                    parseTabulaModel = parseModel(inputStream);
+                    break;
 
-                    inputStream.close();
-
-                    return parseTabulaModel;
                 }
             }
-
-            inputStream.close();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-        finally
-        {
-            inputStream.close();
+            return parseTabulaModel;
         }
 
-        return null;
     }
 
     public static JsonTabulaModel parseModel(InputStream stream)

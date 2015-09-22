@@ -3,11 +3,12 @@ package org.jurassicraft.client.render.renderdef;
 import net.minecraft.client.model.ModelBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.jurassicraft.client.model.animation.AnimationTherizinosaurus;
-import org.jurassicraft.common.entity.base.EnumGrowthStage;
-import org.jurassicraft.common.entity.base.JCEntityRegistry;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
+
+import org.jurassicraft.client.model.animation.AnimationTherizinosaurusJSON;
+import org.jurassicraft.common.entity.base.EnumGrowthStage;
+import org.jurassicraft.common.entity.base.JCEntityRegistry;
 
 @SideOnly(Side.CLIENT)
 public class RenderDefTherizinosaurus extends RenderDinosaurDefinition
@@ -19,7 +20,7 @@ public class RenderDefTherizinosaurus extends RenderDinosaurDefinition
     {
         super(JCEntityRegistry.therizinosaurus);
 
-        this.animator = new AnimationTherizinosaurus();
+        this.animator = new AnimationTherizinosaurusJSON();
 
         try
         {

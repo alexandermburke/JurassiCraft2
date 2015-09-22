@@ -1,6 +1,5 @@
 package net.timeless.animationapi.client;
 
-import java.util.EnumMap;
 import java.util.Map;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -22,7 +21,7 @@ public class JabelarAnimationHelper
 {
     private final EntityDinosaur theEntity;
 
-    private Map<AnimID, int[][]> mapOfSequences = new EnumMap<AnimID, int[][]>(AnimID.class);
+    private final Map<AnimID, int[][]> mapOfSequences;
 
     private final MowzieModelRenderer[][] arrayOfPoses;
     private MowzieModelRenderer[] passedInModelRendererArray;
@@ -311,7 +310,7 @@ public class JabelarAnimationHelper
             currentPose = 0;
             return true;
         }
-        
+
         // JurassiCraft.instance.getLogger().debug("Next pose is sequence step = "+currentSequenceStep);
         return false;
     }

@@ -11,12 +11,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.DinosaurAnimator.AnimationsDTO.PoseDTO;
+import net.timeless.unilib.Unilib;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
@@ -44,6 +43,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
          * Maps an {@link AnimID} as a string to the list of sequential poses
          */
         public Map<String, PoseDTO[]> poses;
+        public int version;
 
         public static class PoseDTO
         {
@@ -61,6 +61,14 @@ public abstract class DinosaurAnimator implements IModelAnimator
 
     private static final Gson GSON = new Gson();
 
+    public static EnumMap<AnimID, int[][]> newEmptyMap() {
+        EnumMap<AnimID, int[][]> map = new EnumMap<>(AnimID.class);
+        for(AnimID id : AnimID.values()) {
+            map.put(id, new int[0][2]);
+        }
+        return map;
+    }
+
     private MowzieModelRenderer[][] models;
     private Map<AnimID, int[][]> animations;
     protected Map<Integer, JabelarAnimationHelper> entityIDToAnimation = new HashMap<Integer, JabelarAnimationHelper>();
@@ -70,27 +78,28 @@ public abstract class DinosaurAnimator implements IModelAnimator
      * @param dino
      * @throws IOException
      */
-    public DinosaurAnimator(Dinosaur dino) throws IOException
+    public DinosaurAnimator(Dinosaur dino)
     {
         String name = dino.getName(0).toLowerCase(); // this should match name of your resource package and files
-        String dinoDir = new StringBuilder("/assets/jurassicraft/models/entities/").append(name).append("/").toString();
-        ResourceLocation dinoDefinition = new ResourceLocation(new StringBuilder(dinoDir).append(name).append(".json").toString());
-        try(Reader reader = new InputStreamReader(Minecraft.getMinecraft().getResourceManager()
-                                                  .getResource(dinoDefinition).getInputStream())) {
+        String dinoDir = "/assets/jurassicraft/models/entities/" + name + "/";
+        String dinoDefinition = dinoDir + name + ".json";
+        this.models = new MowzieModelRenderer[0][]; // Pre-init with an empty map and no models
+        this.animations = newEmptyMap();
+        try(Reader reader = new InputStreamReader(Unilib.class.getResourceAsStream(dinoDefinition)))
+        {
             AnimationsDTO rawAnimations = GSON.fromJson(reader, AnimationsDTO.class);
             URI dinoDirURI = new URI(dinoDir);
             Pair<MowzieModelRenderer[][], Map<AnimID, int[][]>> posings = getPosedModels(dinoDirURI, rawAnimations);
             this.models = posings.first();
             this.animations = posings.second();
-        } catch (URISyntaxException e)
+        }
+        catch (URISyntaxException e)
         {
             JurassiCraft.instance.getLogger().fatal("Invalid URI: " + dinoDir, e);
-            this.models = new MowzieModelRenderer[0][]; // An empty map and no models
-            this.animations = new EnumMap<>(AnimID.class);
-        } catch (IllegalArgumentException iae) {
-            JurassiCraft.instance.getLogger().fatal("Failed to parse the dinosaur animation file", iae);
-            this.models = new MowzieModelRenderer[0][];
-            this.animations = new EnumMap<>(AnimID.class);
+        }
+        catch (IllegalArgumentException | IOException iae)
+        {
+            JurassiCraft.instance.getLogger().fatal("Failed to parse the dinosaur animation file" + dinoDefinition, iae);
         }
 
     }
@@ -118,16 +127,21 @@ public abstract class DinosaurAnimator implements IModelAnimator
         }
 
         MowzieModelRenderer[][] posedCubes = new MowzieModelRenderer[posedModelResources.size()][];
-        Map<AnimID, int[][]> animationSequences = new EnumMap<>(AnimID.class);
+        Map<AnimID, int[][]> animationSequences = newEmptyMap();
         if(posedModelResources.size() == 0)
             return Pair.of(posedCubes, animationSequences);
         // find all names we need
-        String[] cubeNameArray = JabelarAnimationHelper.getTabulaModel(posedModelResources.get(0), 0).getCubeNamesArray();
+        ModelDinosaur mainModel = JabelarAnimationHelper.getTabulaModel(posedModelResources.get(0), 0);
+        if(mainModel == null)
+            throw new IllegalArgumentException("Couldn't load the model from " + posedModelResources.get(0));
+        String[] cubeNameArray = mainModel.getCubeNamesArray();
         int numParts = cubeNameArray.length;
         // load the models from the resource files
         for(int i = 0; i < posedModelResources.size(); i++) {
             String resource = posedModelResources.get(i);
             ModelDinosaur theModel = JabelarAnimationHelper.getTabulaModel(resource, 0);
+            if(theModel == null)
+                throw new IllegalArgumentException("Couldn't load the model from " + resource);
             MowzieModelRenderer[] cubes = new MowzieModelRenderer[numParts];
             for (int partIndex = 0; partIndex < numParts; partIndex++)
             {
@@ -163,24 +177,32 @@ public abstract class DinosaurAnimator implements IModelAnimator
         JabelarAnimationHelper render = entityIDToAnimation.get(id);
         if(render == null) {
             int cubes = models.length > 0 ? models[0].length : 0;
-            render = new JabelarAnimationHelper(entity, model, cubes, models, animations, true, 1.0f); 
+            render = new JabelarAnimationHelper(entity, model, cubes, models, animations, true, 1.0f);
             entityIDToAnimation.put(id, render);
         }
+        JurassiCraft.instance.getLogger().debug("DEBUG MESSAGE I SCREEEAM AT THE TOP OF MY ASCII!!!!");
         return render;
     }
 
     @Override
-    public void setRotationAngles(ModelJson model, float limbSwing, float limbSwingAmount, float rotation,
+    public final void setRotationAngles(ModelJson model, float limbSwing, float limbSwingAmount, float rotation,
                                   float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
     {
         ModelDinosaur theModel = (ModelDinosaur) model;
         EntityDinosaur theEntity = (EntityDinosaur) entity;
 
-        JabelarAnimationHelper render = forEntity(theEntity, theModel);
-        render.performJabelarAnimations(theModel);
-        performMowzieAnimations(theModel, limbSwing, limbSwingAmount, rotation, rotationYaw, rotationPitch, partialTicks, theEntity);
+        setRotationAngles(theModel, limbSwing, limbSwingAmount, rotation, rotationYaw, rotationPitch, partialTicks, theEntity);
+}
+
+    protected void setRotationAngles(ModelDinosaur model, float limbSwing, float limbSwingAmount, float rotation,
+                                  float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur entity)
+    {
+        JabelarAnimationHelper render = forEntity(entity, model);
+        render.performJabelarAnimations(model);
+        performMowzieAnimations(model, limbSwing, limbSwingAmount, rotation, rotationYaw, rotationPitch, partialTicks, entity);
+
     }
-    
+
     protected void performMowzieAnimations(ModelDinosaur parModel, float parLimbSwing, float parLimbSwingAmount, float parRotation, float parRotationYaw, float parRotationPitch, float parPartialTicks, EntityDinosaur parEntity)
     {
     }

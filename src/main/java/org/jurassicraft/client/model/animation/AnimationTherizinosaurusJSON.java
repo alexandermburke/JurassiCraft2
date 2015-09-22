@@ -1,7 +1,5 @@
 package org.jurassicraft.client.model.animation;
 
-import java.io.IOException;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.DinosaurAnimator;
@@ -16,7 +14,7 @@ import org.jurassicraft.common.entity.base.EntityDinosaur;
 public class AnimationTherizinosaurusJSON extends DinosaurAnimator
 {
 
-    public AnimationTherizinosaurusJSON() throws IOException
+    public AnimationTherizinosaurusJSON()
     {
         super(new DinosaurTherizinosaurus());
     }
