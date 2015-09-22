@@ -1,0 +1,24 @@
+{
+    "ATTACK": [
+        {"pose": "crouching_1.tbl","time": 40},
+        {"pose": "crouching_2.tbl", "time": 20}, {"pose": "crouching_3.tbl", "time": 20},
+        {"pose": "crouching_2.tbl", "time": 20}, {"pose": "crouching_3.tbl", "time": 20},
+        {"pose": "crouching_2.tbl", "time": 20}, {"pose": "crouching_3.tbl", "time": 20},
+        {"pose": "crouching_2.tbl", "time": 20}, {"pose": "crouching_3.tbl", "time": 20},
+        {"pose": "crouching_4.tbl", "time": 40}, {"pose": "crouching_5.tbl", "time": 60},
+        {"pose": "crouching_6.tbl", "time": 40}, {"pose": "crouching_7.tbl", "time": 40},
+        {"pose": "idle.tbl","time": 60}
+    ],
+    "EATING": [
+        {"pose": "eating_1.tbl", "time": 100}, {"pose": "eating_1b.tbl", "time": 40}, {"pose": "eating_1.tbl", "time": 40}, 
+        {"pose": "eating_1b.tbl", "time": 40}, {"pose": "eating_1.tbl", "time": 40}, {"pose": "eating_1b.tbl", "time": 40}, 
+        {"pose": "eating_1.tbl", "time": 40}, {"pose": "eating_2.tbl", "time": 80}, {"pose": "eating_3.tbl", "time": 80}, 
+        {"pose": "eating_4.tbl", "time": 100}, {"pose": "eating_4b.tbl", "time": 40}, {"pose": "eating_4.tbl", "time": 40}, 
+        {"pose": "eating_4b.tbl", "time": 40}, {"pose": "eating_4.tbl", "time": 40}, {"pose": "eating_4b.tbl", "time": 40}, 
+        {"pose": "eating_4.tbl", "time": 40}, {"pose": "eating_4b.tbl", "time": 40}, {"pose": "eating_3.tbl", "time": 80}, 
+        {"pose": "eating_5.tbl", "time": 160}, {"pose": "eating_6.tbl", "time": 100}, {"pose": "eating_6b.tbl", "time": 40}, 
+        {"pose": "eating_6.tbl", "time": 40}, {"pose": "eating_6b.tbl", "time": 40}, {"pose": "eating_6.tbl", "time": 40}, 
+        {"pose": "eating_6b.tbl", "time": 40}, {"pose": "eating_6.tbl", "time": 40}, {"pose": "eating_6b.tbl", "time": 40}, 
+        {"pose": "eating_5.tbl", "time": 80}, {"pose": "idle.tbl", "time": 80}, {"pose": "idle.tbl", "time": 200}
+    ] 
+}

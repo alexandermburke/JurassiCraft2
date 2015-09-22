@@ -14,6 +14,8 @@ import java.util.Map;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.DinosaurAnimator.AnimationsDTO.PoseDTO;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
@@ -27,6 +29,7 @@ import org.jurassicraft.common.entity.base.EntityDinosaur;
 import com.google.gson.Gson;
 import com.mojang.realmsclient.util.Pair;
 
+@SideOnly(Side.CLIENT)
 public abstract class DinosaurAnimator implements IModelAnimator
 {
     /**
