@@ -559,7 +559,7 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
 
     public String getGuiID()
     {
-        return JurassiCraft.modid + ":cultivator";
+        return JurassiCraft.MODID + ":cultivator";
     }
 
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)

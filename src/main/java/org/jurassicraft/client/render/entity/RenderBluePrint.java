@@ -20,7 +20,7 @@ import org.lwjgl.opengl.GL11;
 @SideOnly(Side.CLIENT)
 public class RenderBluePrint extends Render
 {
-    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/blueprints/blueprints.png");
+    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.MODID, "textures/blueprints/blueprints.png");
 
     public RenderBluePrint()
     {

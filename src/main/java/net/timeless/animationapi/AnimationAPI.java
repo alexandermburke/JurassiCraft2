@@ -13,6 +13,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.timeless.animationapi.client.AnimID;
 import net.timeless.animationapi.packet.PacketAnim;
 
+import org.jurassicraft.JurassiCraft;
+
 @Mod(modid = "JCAnimationAPI", name = "JurassiCraft AnimationAPI", version = "1.2.5")
 public class AnimationAPI
 {
@@ -51,8 +53,7 @@ public class AnimationAPI
         entity.setAnimID(animID);
         if (!((Entity) entity).worldObj.isRemote)
         {
-            // DEBUG
-            System.out.println("sending Anim Packet for entity " + ((Entity) entity).getEntityId());
+            JurassiCraft.instance.getLogger().debug("sending Anim Packet for entity " + ((Entity) entity).getEntityId());
 
             wrapper.sendToAll(new PacketAnim(animID, ((Entity) entity).getEntityId()));
         }

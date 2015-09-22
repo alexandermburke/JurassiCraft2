@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 
 public class GuiAppFileExplorer extends GuiApp
 {
-    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_pad/apps/file_explorer.png");
+    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/apps/file_explorer.png");
 
     private boolean intro;
 

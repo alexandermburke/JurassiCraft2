@@ -72,12 +72,11 @@ public class JabelarAnimationHelper
     public void performJabelarAnimations(ModelDinosaur parModel)
     {
         passedInModelRendererArray = convertPassedInModelToModelRendererArray(parModel);
-        // TODO
-        // Make sequences interruptible (should be the case anyway).
-        // if (theEntity.getAnimID() != currentSequence)
-        // {
-        // setNextSequence(theEntity.getAnimID());
-        // }
+        // Allow interruption of the animation if it is a new animation and not currently dying
+        if (theEntity.getAnimID() != currentSequence && theEntity.getAnimID() != AnimID.DYING)
+        {
+            setNextSequence(theEntity.getAnimID());
+        }
         performNextTweenTick();
     }
 
@@ -170,7 +169,6 @@ public class JabelarAnimationHelper
         numTicksInTween = mapOfSequences.get(currentSequence)[currentPose][1];
         currentTickInTween = 0;
 
-//        // DEBUG
 //        if (currentSequence != AnimID.IDLE)
 //            JurassiCraft.instance.getLogger().debug("current sequence for entity ID " + theEntity.getEntityId() + " is " + currentSequence
 //                    + " out of " + mapOfSequences.size() + " and current pose " + currentPose + " out of "

@@ -20,8 +20,8 @@ public class GuiCultivate extends GuiContainer
      */
     private final InventoryPlayer playerInventory;
 
-    private static final ResourceLocation gui = new ResourceLocation(JurassiCraft.modid, "textures/gui/cultivator.png");
-    private static final ResourceLocation nutrients = new ResourceLocation(JurassiCraft.modid, "textures/gui/cultivator_nutrients.png");
+    private static final ResourceLocation gui = new ResourceLocation(JurassiCraft.MODID, "textures/gui/cultivator.png");
+    private static final ResourceLocation nutrients = new ResourceLocation(JurassiCraft.MODID, "textures/gui/cultivator_nutrients.png");
 
     public GuiCultivate(InventoryPlayer inventoryPlayer, TileCultivate entity)
     {

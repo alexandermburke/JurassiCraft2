@@ -457,7 +457,7 @@ public class TileCleaningStation extends TileEntityLockable implements IUpdatePl
 
     public String getGuiID()
     {
-        return JurassiCraft.modid + ":cleaning_station";
+        return JurassiCraft.MODID + ":cleaning_station";
     }
 
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)

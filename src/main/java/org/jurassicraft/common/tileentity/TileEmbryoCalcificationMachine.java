@@ -117,7 +117,7 @@ public class TileEmbryoCalcificationMachine extends TileMachineBase
     @Override
     public String getGuiID()
     {
-        return JurassiCraft.modid + ":embryo_calcification_machine";
+        return JurassiCraft.MODID + ":embryo_calcification_machine";
     }
 
     public String getName()

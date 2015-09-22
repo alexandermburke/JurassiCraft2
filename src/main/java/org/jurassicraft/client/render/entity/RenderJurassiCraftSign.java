@@ -19,7 +19,7 @@ import org.jurassicraft.common.entity.item.EntityJurassiCraftSign;
 @SideOnly(Side.CLIENT)
 public class RenderJurassiCraftSign extends Render
 {
-    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/entities/gentle_giants/gentle_giants.png");
+    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.MODID, "textures/entities/gentle_giants/gentle_giants.png");
 
     public RenderJurassiCraftSign()
     {

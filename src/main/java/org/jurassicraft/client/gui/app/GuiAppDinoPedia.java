@@ -21,7 +21,7 @@ import java.util.List;
 
 public class GuiAppDinoPedia extends GuiApp
 {
-    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_pad/apps/dinopedia.png");
+    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/apps/dinopedia.png");
 
     private final RenderItem render = Minecraft.getMinecraft().getRenderItem();
 

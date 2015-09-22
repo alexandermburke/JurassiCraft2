@@ -139,7 +139,7 @@ public class TileEmbryonicMachine extends TileMachineBase
     @Override
     public String getGuiID()
     {
-        return JurassiCraft.modid + ":embryonic_machine";
+        return JurassiCraft.MODID + ":embryonic_machine";
     }
 
     public String getName()

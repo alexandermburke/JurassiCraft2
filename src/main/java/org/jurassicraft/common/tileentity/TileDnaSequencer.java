@@ -158,7 +158,7 @@ public class TileDnaSequencer extends TileMachineBase
     @Override
     public String getGuiID()
     {
-        return JurassiCraft.modid + ":dna_sequencer";
+        return JurassiCraft.MODID + ":dna_sequencer";
     }
 
     public String getName()

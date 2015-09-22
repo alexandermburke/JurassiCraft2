@@ -191,7 +191,7 @@ public class TileDNAExtractor extends TileMachineBase
     @Override
     public String getGuiID()
     {
-        return JurassiCraft.modid + ":dna_extractor";
+        return JurassiCraft.MODID + ":dna_extractor";
     }
 
     public String getName()

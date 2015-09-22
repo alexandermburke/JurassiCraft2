@@ -217,7 +217,7 @@ public class TileDNAHybridizer extends TileMachineBase
     @Override
     public String getGuiID()
     {
-        return JurassiCraft.modid + ":dna_hybridizer";
+        return JurassiCraft.MODID + ":dna_hybridizer";
     }
 
     public String getName()

@@ -148,7 +148,7 @@ public class TileDNACombinator extends TileMachineBase
     @Override
     public String getGuiID()
     {
-        return JurassiCraft.modid + ":dna_combinator";
+        return JurassiCraft.MODID + ":dna_combinator";
     }
 
     public String getName()

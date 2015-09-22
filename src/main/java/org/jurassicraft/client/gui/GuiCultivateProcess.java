@@ -19,7 +19,7 @@ public class GuiCultivateProcess extends GuiScreen
     private int guiLeft;
     private int guiTop;
 
-    private ResourceLocation gui = new ResourceLocation(JurassiCraft.modid, "textures/gui/cultivator_progress.png");
+    private ResourceLocation gui = new ResourceLocation(JurassiCraft.MODID, "textures/gui/cultivator_progress.png");
 
     public GuiCultivateProcess(TileCultivate entity)
     {

@@ -29,9 +29,9 @@ import java.util.List;
 
 public class GuiAppMinimap extends GuiApp
 {
-    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_pad/apps/minimap.png");
+    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/apps/minimap.png");
 
-    private static final ResourceLocation entity = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_pad/apps/background/entity.png");
+    private static final ResourceLocation entity = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/apps/background/entity.png");
 
     public GuiAppMinimap(App app)
     {

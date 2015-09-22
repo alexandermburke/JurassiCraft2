@@ -185,7 +185,7 @@ public class TileIncubator extends TileMachineBase
     @Override
     public String getGuiID()
     {
-        return JurassiCraft.modid + ":incubator";
+        return JurassiCraft.MODID + ":incubator";
     }
 
     public String getName()

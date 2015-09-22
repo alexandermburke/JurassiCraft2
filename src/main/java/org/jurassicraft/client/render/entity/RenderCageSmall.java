@@ -13,8 +13,8 @@ import org.lwjgl.opengl.GL11;
 
 public class RenderCageSmall extends Render
 {
-    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/entities/cage_small/cage_small.png");
-    private static final ResourceLocation texture_marine = new ResourceLocation(JurassiCraft.modid, "textures/entities/cage_small/cage_small_marine.png");
+    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.MODID, "textures/entities/cage_small/cage_small.png");
+    private static final ResourceLocation texture_marine = new ResourceLocation(JurassiCraft.MODID, "textures/entities/cage_small/cage_small_marine.png");
     private ModelJson model;
 
     public RenderCageSmall()

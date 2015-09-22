@@ -17,7 +17,7 @@ import org.lwjgl.opengl.GL11;
 @SideOnly(Side.CLIENT)
 public class RenderHelicopter extends Render
 {
-    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/entities/helicopter/ranger_helicopter_texture.png");
+    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.MODID, "textures/entities/helicopter/ranger_helicopter_texture.png");
     private ModelJson minigunfulModel;
     private ModelJson minigunlessModel;
 

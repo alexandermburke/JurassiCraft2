@@ -6,6 +6,8 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+
+import org.apache.logging.log4j.Logger;
 import org.jurassicraft.common.achievements.JCAchievements;
 import org.jurassicraft.common.block.JCBlockRegistry;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
@@ -17,17 +19,16 @@ import org.jurassicraft.common.plant.JCPlantRegistry;
 import org.jurassicraft.common.proxy.CommonProxy;
 import org.jurassicraft.common.recipe.JCRecipeRegistry;
 import org.jurassicraft.common.storagedisc.StorageTypeRegistry;
-import org.apache.logging.log4j.Logger;
 
-@Mod(modid = JurassiCraft.modid, name = "JurassiCraft", version = "${version}")
+@Mod(modid = JurassiCraft.MODID, name = "JurassiCraft", version = "${version}")
 public class JurassiCraft
 {
     @SidedProxy(serverSide = "org.jurassicraft.common.proxy.CommonProxy", clientSide = "org.jurassicraft.client.proxy.ClientProxy")
     public static CommonProxy proxy;
 
-    public static final String modid = "jurassicraft";
+    public static final String MODID = "jurassicraft";
 
-    @Instance(JurassiCraft.modid)
+    @Instance(JurassiCraft.MODID)
     public static JurassiCraft instance;
     public static long timer;
 

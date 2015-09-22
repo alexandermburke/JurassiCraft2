@@ -130,7 +130,7 @@ public class TileDnaSynthesizer extends TileMachineBase
     @Override
     public String getGuiID()
     {
-        return JurassiCraft.modid + ":dna_synthesizer";
+        return JurassiCraft.MODID + ":dna_synthesizer";
     }
 
     public String getName()

@@ -125,7 +125,7 @@ public class TileFossilGrinder extends TileMachineBase
     @Override
     public String getGuiID()
     {
-        return JurassiCraft.modid + ":fossil_grinder";
+        return JurassiCraft.MODID + ":fossil_grinder";
     }
 
     public String getName()

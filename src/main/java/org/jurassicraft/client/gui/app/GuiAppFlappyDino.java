@@ -10,10 +10,10 @@ import org.jurassicraft.common.paleopad.AppFlappyDino;
 
 public class GuiAppFlappyDino extends GuiApp
 {
-    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_pad/apps/flappy_dino.png");
-    private static final ResourceLocation logo = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_pad/apps/background/flappy_dino.png");
-    private static final ResourceLocation pteranodon = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_pad/apps/background/flappy_dino_pteranodon.png");
-    private static final ResourceLocation character = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_pad/apps/background/flappy_dino_char.png");
+    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/apps/flappy_dino.png");
+    private static final ResourceLocation logo = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/apps/background/flappy_dino.png");
+    private static final ResourceLocation pteranodon = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/apps/background/flappy_dino_pteranodon.png");
+    private static final ResourceLocation character = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/apps/background/flappy_dino_char.png");
 
     private boolean mainScreen;
 

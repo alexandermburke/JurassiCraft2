@@ -1,9 +1,17 @@
 package org.jurassicraft.common.entity.base;
 
 import io.netty.buffer.ByteBuf;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.*;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAILeapAtTarget;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -21,6 +29,7 @@ import net.timeless.animationapi.AIAnimation;
 import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.AnimID;
+
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.disease.Disease;
@@ -30,9 +39,6 @@ import org.jurassicraft.common.genetics.GeneticsContainer;
 import org.jurassicraft.common.genetics.GeneticsHelper;
 import org.jurassicraft.common.item.ItemBluePrint;
 import org.jurassicraft.common.item.JCItemRegistry;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class EntityDinosaur extends EntityCreature implements IEntityAdditionalSpawnData, IAnimatedEntity, IInventory
 {
@@ -626,8 +632,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     @Override
     public void setAnimID(AnimID parAnimID)
     {
-        // DEBUG
-        System.out.println("Setting anim id for entity " + getEntityId() + " to " + parAnimID);
+        JurassiCraft.instance.getLogger().debug("Setting anim id for entity " + getEntityId() + " to " + parAnimID);
+
         if (parAnimID != animID) // only process changes
         {
             animID = parAnimID;
@@ -654,7 +660,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
 
     protected String randomSound(String... sounds)
     {
-        return JurassiCraft.modid + ":" + sounds[rand.nextInt(sounds.length)];
+        return JurassiCraft.MODID + ":" + sounds[rand.nextInt(sounds.length)];
     }
 
     public double getAttackDamage()

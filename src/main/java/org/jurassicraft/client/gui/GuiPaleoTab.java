@@ -24,7 +24,7 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public class GuiPaleoTab extends GuiScreen
 {
-    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.modid, "textures/gui/paleo_pad/paleo_pad.png");
+    private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/paleo_pad.png");
 
     public GuiApp focus;
 

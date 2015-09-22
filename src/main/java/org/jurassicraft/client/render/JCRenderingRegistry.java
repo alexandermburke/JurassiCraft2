@@ -277,7 +277,7 @@ public class JCRenderingRegistry
             @Override
             public ModelResourceLocation getModelLocation(ItemStack stack)
             {
-                return new ModelResourceLocation(JurassiCraft.modid + ":" + path, type);
+                return new ModelResourceLocation(JurassiCraft.MODID + ":" + path, type);
             }
         });
     }
@@ -287,7 +287,7 @@ public class JCRenderingRegistry
      */
     public void registerItemRenderer(ItemModelMesher itemModelMesher, Item item, int meta, String path, String type)
     {
-        itemModelMesher.register(item, meta, new ModelResourceLocation(JurassiCraft.modid + ":" + path, type));
+        itemModelMesher.register(item, meta, new ModelResourceLocation(JurassiCraft.MODID + ":" + path, type));
     }
 
     /**
@@ -295,7 +295,7 @@ public class JCRenderingRegistry
      */
     public void registerBlockRenderer(ItemModelMesher itemModelMesher, Block block, int meta, String path, String type)
     {
-        itemModelMesher.register(Item.getItemFromBlock(block), meta, new ModelResourceLocation(JurassiCraft.modid + ":" + path, type));
+        itemModelMesher.register(Item.getItemFromBlock(block), meta, new ModelResourceLocation(JurassiCraft.MODID + ":" + path, type));
     }
 
     /**
@@ -308,7 +308,7 @@ public class JCRenderingRegistry
             @Override
             public ModelResourceLocation getModelLocation(ItemStack stack)
             {
-                return new ModelResourceLocation(JurassiCraft.modid + ":" + path, type);
+                return new ModelResourceLocation(JurassiCraft.MODID + ":" + path, type);
             }
         });
     }
