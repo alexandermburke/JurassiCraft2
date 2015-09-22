@@ -182,10 +182,10 @@ public class AnimationTherizinosaurus implements IModelAnimator
         });
         
         mapOfSequences.put(AnimID.DYING, new int[][] {
-        		{getPoseID("dying_1"), 60}, {getPoseID("idle"), 60}, // wobble
-        		{getPoseID("dying_1"), 60}, {getPoseID("dying_2"), 40}, // start to fall
-        		{getPoseID("dying_2"), 20}, {getPoseID("dying_3"), 40}, // drop
-        		{getPoseID("dying_4"), 60}, {getPoseID("dying_4"), 600} // final lay to rest (assumes that entity will disappear before animation is finished
+                {getPoseID("dying_1"), 60}, // wobble
+        		{getPoseID("dying_2"), 100}, // start to fall
+        		{getPoseID("dying_3"), 120}, // drop
+        		{getPoseID("dying_4"), 100}, {getPoseID("dying_4"), 600} // final lay to rest (assumes that entity will disappear before animation is finished
         		
         });
     }
