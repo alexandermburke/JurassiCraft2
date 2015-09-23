@@ -5,7 +5,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 
-import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.dinosaur.DinosaurTherizinosaurus;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
@@ -22,8 +21,6 @@ public class AnimationTherizinosaurus extends DinosaurAnimator
     @Override
     protected void performMowzieAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
     {
-        JurassiCraft.instance.getLogger().debug("Performing mowzie animations for entity "+parEntity.getEntityId());
-
         MowzieModelRenderer rightThigh = parModel.getCube("Right Thigh");
         MowzieModelRenderer bodyHips = parModel.getCube("Body hips");
         MowzieModelRenderer rightCalf1 = parModel.getCube("Right Calf 1");

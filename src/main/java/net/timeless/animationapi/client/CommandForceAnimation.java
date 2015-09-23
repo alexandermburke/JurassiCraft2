@@ -17,103 +17,182 @@
 package net.timeless.animationapi.client;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
+import net.minecraft.command.CommandException;
+import net.minecraft.command.CommandResultStats.Type;
+import net.minecraft.command.EntityNotFoundException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.command.PlayerSelector;
+import net.minecraft.command.WrongUsageException;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.IChatComponent;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.timeless.animationapi.AnimationAPI;
 
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 
+import com.google.common.collect.Lists;
+
 /**
  * @author jabelar
  *
  */
 public class CommandForceAnimation  implements ICommand
-{ 
-    private final List aliases;
-  
-    protected EntityDinosaur theClosestDinosaur = null; 
-  
-    public CommandForceAnimation() 
-    { 
-        aliases = new ArrayList(); 
-        aliases.add("animate"); 
-        aliases.add("anim"); 
-    } 
-  
-    @Override 
+{
+    /**
+     * A proxy sender that can always execute the "@" (selection) command.
+     *
+     * @author WorldSEnder
+     *
+     */
+    private static class ProxySender implements ICommandSender
+    {
+        private ICommandSender original;
+
+        public ProxySender(ICommandSender proxy)
+        {
+            this.original = Objects.requireNonNull(proxy);
+        }
+
+        @Override
+        public void addChatMessage(IChatComponent component)
+        {
+            original.addChatMessage(component);
+        }
+
+        @Override
+        public boolean canCommandSenderUseCommand(int permLevel, String commandName)
+        {
+            if(commandName.equals("@"))
+                return true;
+            return original.canCommandSenderUseCommand(permLevel, commandName);
+        }
+
+        @Override
+        public Entity getCommandSenderEntity()
+        {
+            return original.getCommandSenderEntity();
+        }
+
+        @Override
+        public String getCommandSenderName()
+        {
+            return original.getCommandSenderName();
+        }
+
+        @Override
+        public IChatComponent getDisplayName()
+        {
+            return original.getDisplayName();
+        }
+
+        @Override
+        public World getEntityWorld()
+        {
+            return original.getEntityWorld();
+        }
+
+        @Override
+        public BlockPos getPosition()
+        {
+            return original.getPosition();
+        }
+
+        @Override
+        public Vec3 getPositionVector()
+        {
+            return original.getPositionVector();
+        }
+
+        @Override
+        public boolean sendCommandFeedback()
+        {
+            return original.sendCommandFeedback();
+        }
+
+        @Override
+        public void setCommandStat(Type type, int amount)
+        {
+            original.setCommandStat(type, amount);
+        }
+    }
+
+    private final List<String> aliases;
+
+    public CommandForceAnimation()
+    {
+        aliases = new ArrayList<>();
+        aliases.add("animate");
+        aliases.add("anim");
+    }
+
+    @Override
     public int compareTo(Object o)
-    { 
-        return 0; 
-    } 
+    {
+        return 0;
+    }
 
-    @Override 
-    public String getCommandName() 
-    { 
-        return "animate"; 
-    } 
+    @Override
+    public String getCommandName()
+    {
+        return "animate";
+    }
 
-    @Override         
-    public String getCommandUsage(ICommandSender parSender) 
-    { 
-        return "animate <text>"; 
-    } 
+    @Override
+    public String getCommandUsage(ICommandSender parSender)
+    {
+        return "animate <AnimID> [<entitySelector>]";
+    }
 
-    @Override 
-    public List getCommandAliases() 
-    { 
+    @Override
+    public List getCommandAliases()
+    {
         return this.aliases;
-    } 
+    }
 
-    @Override 
-    public void processCommand(ICommandSender parSender, String[] argString)
-    { 
-        World theWorld = parSender.getEntityWorld(); 
-    
-        if (theWorld.isRemote) 
-        { 
-            JurassiCraft.instance.getLogger().info("Not processing on Client side"); 
-        } 
-        else 
-        { 
-            JurassiCraft.instance.getLogger().info("Processing on Server side"); 
-            if(argString.length == 0) 
-            { 
-                parSender.addChatMessage(new ChatComponentText("Invalid argument")); 
-                return; 
-            } 
-    
-            getClosestDinosaur(parSender);
-            if (theClosestDinosaur == null)
-            {
-                parSender.addChatMessage(new ChatComponentText("No IAnimatedEntity to animate"));
-            }
-            else
-            {
-                parSender.addChatMessage(new ChatComponentText("Animating entity "+theClosestDinosaur.getEntityId()+" with animation type "+argString[0]  
-                        + "]")); 
-                setDinoAnimation(parSender, argString[0]);
-            }
-       } 
-    } 
+    @Override
+    public void processCommand(ICommandSender parSender, String[] argString) throws CommandException
+    {
+        World theWorld = parSender.getEntityWorld();
 
-    @Override 
-    public boolean canCommandSenderUseCommand(ICommandSender var1) 
-    { 
+        if (theWorld.isRemote)
+        {
+            JurassiCraft.instance.getLogger().debug("Not processing on Client side");
+        }
+        else
+        {
+            JurassiCraft.instance.getLogger().debug("Processing on Server side");
+            if(argString.length < 1)
+                throw new WrongUsageException("Missing the animation to set");
+            String entitySelector = argString.length < 2 ? "@e[c=1]" : argString[1];
+            List<EntityDinosaur> dinos = PlayerSelector.matchEntities(new ProxySender(parSender),
+                                                                      entitySelector, EntityDinosaur.class);
+            if (dinos == null || dinos.size() == 0)
+                throw new EntityNotFoundException("No IAnimatedEntity to animate");
+            for(EntityDinosaur entity : dinos) {
+                setDinoAnimation(parSender, entity, argString[0]);
+                parSender.addChatMessage(new ChatComponentText("Animating entity " + entity.getEntityId()
+                                                               + " with animation type " + argString[0]));
+            }
+       }
+    }
+
+    @Override
+    public boolean canCommandSenderUseCommand(ICommandSender var1)
+    {
         return true;
-    } 
+    }
 
-    @Override 
-    public boolean isUsernameIndex(String[] var1, int var2) 
-    { 
+    @Override
+    public boolean isUsernameIndex(String[] var1, int var2)
+    {
         return false;
     }
 
@@ -121,96 +200,27 @@ public class CommandForceAnimation  implements ICommand
     public List addTabCompletionOptions(ICommandSender sender, String[] args,
             BlockPos pos)
     {
+        if(args.length == 1) {
+            List<String> animations = Lists.newArrayList();
+            String current = args[0].toLowerCase();
+            for(AnimID animation : AnimID.values()) {
+                if(animation.name().toLowerCase().startsWith(current)) {
+                    animations.add(animation.name());
+                }
+            }
+            return animations;
+        }
         return null;
     }
-    
-    private void getClosestDinosaur(ICommandSender sender)
-    {
-        EntityPlayer thePlayer = (EntityPlayer)sender;
-        Iterator iterator = thePlayer.worldObj.loadedEntityList.iterator();
 
-        while (iterator.hasNext())
-        {
-            Entity theEntity = (Entity)iterator.next();
-            if (theEntity instanceof EntityDinosaur)
-            {
-                EntityDinosaur theDinosaur = (EntityDinosaur)theEntity;
-                if ((theClosestDinosaur == null) || 
-                        (thePlayer.getDistanceSqToEntity(theDinosaur) < thePlayer.getDistanceSqToEntity(theClosestDinosaur)))
-                {
-                    theClosestDinosaur = theDinosaur;
-                }                    
-            }
-        }
-        return;
-    }
-    
-    private void setDinoAnimation(ICommandSender parSender, String parAnimType)
+    private static void setDinoAnimation(ICommandSender parSender, EntityDinosaur entity, String parAnimType)
+            throws CommandException
     {
-        switch (parAnimType.toUpperCase()) {
-        case "IDLE":
-            AnimationAPI.sendAnimPacket(theClosestDinosaur, AnimID.IDLE);
-            break;
-        case "ATTACKING":
-            AnimationAPI.sendAnimPacket(theClosestDinosaur, AnimID.ATTACKING);
-            break;
-        case "INJURED":
-            AnimationAPI.sendAnimPacket(theClosestDinosaur, AnimID.INJURED);
-            break;
-        case "HEAD_COCKING":
-            AnimationAPI.sendAnimPacket(theClosestDinosaur, AnimID.HEAD_COCKING);
-            break;
-        case "CALLING":
-            AnimationAPI.sendAnimPacket(theClosestDinosaur, AnimID.CALLING);
-            break;
-        case "HISSING":
-            AnimationAPI.sendAnimPacket(theClosestDinosaur, AnimID.HISSING);
-            break;
-        case "POUNCING":
-            AnimationAPI.sendAnimPacket(theClosestDinosaur, AnimID.POUNCING);
-            break;
-        case "SNIFFING":
-            AnimationAPI.sendAnimPacket(theClosestDinosaur, AnimID.SNIFFING);
-            break;
-        case "EATING":
-            AnimationAPI.sendAnimPacket(theClosestDinosaur, AnimID.EATING);
-            break;
-        case "DRINKING":
-            AnimationAPI.sendAnimPacket(theClosestDinosaur, AnimID.DRINKING);
-            break;
-        case "MATING":
-            AnimationAPI.sendAnimPacket(theClosestDinosaur, AnimID.MATING);
-            break;
-        case "SLEEPING":
-            AnimationAPI.sendAnimPacket(theClosestDinosaur, AnimID.SLEEPING);
-            break;
-        case "RESTING":
-            AnimationAPI.sendAnimPacket(theClosestDinosaur, AnimID.RESTING);
-            break;
-        case "FLYING":
-            AnimationAPI.sendAnimPacket(theClosestDinosaur, AnimID.FLYING);
-            break;
-        case "ROARING":
-            AnimationAPI.sendAnimPacket(theClosestDinosaur, AnimID.ROARING);
-            break;
-        case "SCRATCHING":
-            AnimationAPI.sendAnimPacket(theClosestDinosaur, AnimID.SCRATCHING);
-            break;
-        case "LOOKING_LEFT":
-            AnimationAPI.sendAnimPacket(theClosestDinosaur, AnimID.LOOKING_LEFT);
-            break;
-        case "LOOKING_RIGHT":
-            AnimationAPI.sendAnimPacket(theClosestDinosaur, AnimID.LOOKING_RIGHT);
-            break;
-        case "BEGGING":
-            AnimationAPI.sendAnimPacket(theClosestDinosaur, AnimID.BEGGING);
-            break;
-        case "DYING":
-            AnimationAPI.sendAnimPacket(theClosestDinosaur, AnimID.DYING);
-            break;
-        default:
-            parSender.addChatMessage(new ChatComponentText("Not a valid animation type"));
-            break;
+        try {
+            AnimID animation = AnimID.valueOf(parAnimType.toUpperCase());
+            AnimationAPI.sendAnimPacket(entity, animation);
+        } catch (IllegalArgumentException iae) {
+            throw new CommandException(parAnimType + " is not a valid animation.");
         }
     }
 }
