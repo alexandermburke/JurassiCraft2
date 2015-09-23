@@ -21,17 +21,9 @@ public class PacketAnim implements IMessage
     {
     }
 
-    public PacketAnim(int parAnimID, int parEntityID)
-    {
-//        JurassiCraft.instance.getLogger().debug("Constructing PacketAnim");
-
-        animID = parAnimID;
-        entityID = parEntityID;
-    }
-
     public PacketAnim(AnimID parAnimID, int parEntityID)
     {
-        JurassiCraft.instance.getLogger().info("Constructing PacketAnim for entity "+parEntityID+" with animation id "+parAnimID);
+        JurassiCraft.instance.getLogger().debug("Constructing PacketAnim for entity "+parEntityID+" with animation id "+parAnimID);
 
         animID = parAnimID.ordinal();
         entityID = parEntityID;
@@ -57,21 +49,23 @@ public class PacketAnim implements IMessage
         public IMessage onMessage(final PacketAnim packet, MessageContext ctx)
         {
         	JurassiCraft.instance.getLogger().info("PacketAnim received for entity " + packet.entityID + " and animation ID "
-                    + packet.animID);
+                    + AnimID.values()[packet.animID]);
 
             final EntityPlayer player = JurassiCraft.proxy.getPlayerEntityFromContext(ctx);
 
             Minecraft.getMinecraft().addScheduledTask(new Runnable()
             {
+                private AnimID amimation = AnimID.values()[packet.animID];
+
                 @Override
                 public void run()
                 {
                     World world = player.worldObj;
                     EntityDinosaur entity = (EntityDinosaur) world.getEntityByID(packet.entityID);
 
-                    if (entity != null && packet.animID != -1)
+                    if (entity != null)
                     {
-                        entity.setAnimID(AnimID.values()[packet.animID]);
+                        entity.setAnimID(this.amimation);
                     }
 
                 }
