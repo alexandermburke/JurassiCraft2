@@ -63,7 +63,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
     private static final Gson GSON = new Gson();
 
     public static EnumMap<AnimID, int[][]> newEmptyMap() {
-        EnumMap<AnimID, int[][]> map = new EnumMap<>(AnimID.class);
+        EnumMap<AnimID, int[][]> map = new EnumMap<AnimID, int[][]>(AnimID.class);
         return map;
     }
 
@@ -114,7 +114,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
                 || anims.poses.get(AnimID.IDLE.name()).length == 0)
             throw new IllegalArgumentException("Animation files must define at least one pose for the IDLE animation");
         // Collect all needed resources
-        List<String> posedModelResources = new ArrayList<>();
+        List<String> posedModelResources = new ArrayList<String>();
         for(PoseDTO[] poses : anims.poses.values()) {
             if(poses == null)
             {
@@ -201,7 +201,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
         EntityDinosaur theEntity = (EntityDinosaur) entity;
 
         setRotationAngles(theModel, limbSwing, limbSwingAmount, rotation, rotationYaw, rotationPitch, partialTicks, theEntity);
-}
+    }
 
     protected void setRotationAngles(ModelDinosaur model, float limbSwing, float limbSwingAmount, float rotation,
                                   float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur entity)

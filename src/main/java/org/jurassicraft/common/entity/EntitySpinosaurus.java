@@ -1,13 +1,14 @@
 package org.jurassicraft.common.entity;
 
+import java.util.Random;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.timeless.animationapi.client.AnimID;
-import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimSoundBase;
-import org.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import net.timeless.unilib.common.animation.ChainBuffer;
 
-import java.util.Random;
+import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimSoundBase;
+import org.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 
 public class EntitySpinosaurus extends EntityDinosaurAggressive // implements IEntityAICreature, IOmnivore
 {
@@ -56,6 +57,12 @@ public class EntitySpinosaurus extends EntityDinosaurAggressive // implements IE
         // if(this.getAnimID() == 0)
         // AnimationAPI.sendAnimPacket(this, 1);
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 10, 4.0F, this);
+
+//        // DEBUG
+//        if (this.getRNG().nextInt(1000) <= 10)
+//        {
+//            AnimationAPI.sendAnimPacket(this, AnimID.ROARING);
+//        }
     }
 
     @Override

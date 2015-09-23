@@ -21,7 +21,7 @@ public class EntityTherizinosaurus extends EntityDinosaurDefensiveHerbivore // i
 //        // DEBUG
 //        if (this.getRNG().nextInt(1000) <= 10)
 //        {
-//            AnimationAPI.sendAnimPacket(this, AnimID.DYING);
+//            AnimationAPI.sendAnimPacket(this, AnimID.ATTACKING);
 //        }
         super.onUpdate();
     }

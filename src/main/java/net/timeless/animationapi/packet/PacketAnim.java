@@ -21,20 +21,20 @@ public class PacketAnim implements IMessage
     {
     }
 
-    public PacketAnim(int anim, int entity)
+    public PacketAnim(int parAnimID, int parEntityID)
     {
 //        JurassiCraft.instance.getLogger().debug("Constructing PacketAnim");
 
-        animID = anim;
-        entityID = entity;
+        animID = parAnimID;
+        entityID = parEntityID;
     }
 
-    public PacketAnim(AnimID anim, int entity)
+    public PacketAnim(AnimID parAnimID, int parEntityID)
     {
-//        JurassiCraft.instance.getLogger().debug("Constructing PacketAnim");
+        JurassiCraft.instance.getLogger().info("Constructing PacketAnim for entity "+parEntityID+" with animation id "+parAnimID);
 
-        animID = anim.ordinal();
-        entityID = entity;
+        animID = parAnimID.ordinal();
+        entityID = parEntityID;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class PacketAnim implements IMessage
         @Override
         public IMessage onMessage(final PacketAnim packet, MessageContext ctx)
         {
-        	JurassiCraft.instance.getLogger().debug("PacketAnim received for entity " + packet.entityID + " and animation ID "
+        	JurassiCraft.instance.getLogger().info("PacketAnim received for entity " + packet.entityID + " and animation ID "
                     + packet.animID);
 
             final EntityPlayer player = JurassiCraft.proxy.getPlayerEntityFromContext(ctx);

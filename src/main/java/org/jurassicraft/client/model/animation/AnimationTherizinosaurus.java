@@ -1,247 +1,28 @@
 package org.jurassicraft.client.model.animation;
 
-import java.util.EnumMap;
-import java.util.HashMap;
-
-import net.minecraft.entity.Entity;
-import net.timeless.animationapi.client.AnimID;
-import net.timeless.animationapi.client.JabelarAnimationHelper;
-import net.timeless.unilib.client.model.json.IModelAnimator;
-import net.timeless.unilib.client.model.json.ModelJson;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
-import org.jurassicraft.common.dinosaur.Dinosaur;
+import org.jurassicraft.common.dinosaur.DinosaurTherizinosaurus;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
-import org.jurassicraft.common.entity.base.JCEntityRegistry;
 
-public class AnimationTherizinosaurus implements IModelAnimator
+@SideOnly(Side.CLIENT)
+public class AnimationTherizinosaurus extends DinosaurAnimator
 {
-    /*
-     * Change the following fields for your custom dinosaur
-     */
-    protected static Dinosaur theDinosaur = JCEntityRegistry.therizinosaurus;
-
-    // Tell the code where your tabula model assets are
-    protected static final String dinoName = theDinosaur.getName(0).toLowerCase(); // this should match name of your resource package and files
-    protected static final String modelAssetPath = "/assets/jurassicraft/models/entities/" + dinoName + "/";
-    protected static final String[] modelAssetFileNameArray = new String[]{
-            "idle",
-            "head_cock_left",
-            "head_cock_right",
-            "hissing",
-            "mating",
-            "eating_1",
-            "eating_1b",
-            "eating_2",
-            "eating_3",
-            "eating_4",
-            "eating_4b",
-            "eating_5",
-            "eating_6",
-            "eating_6b",
-            "drinking_1",
-            "drinking_2",
-            "drinking_3",
-            "drinking_4",
-            "resting",
-            "sleeping",
-            "calling_1",
-            "calling_2",
-            "calling_3",
-            "calling_4",
-            "attacking_1",
-            "attacking_2",
-            "attacking_3",
-            "sniffing_1",
-            "sniffing_2",
-            "pouncing_1",
-            "pouncing_2",
-            "pouncing_3",
-            "pouncing_4",
-            "pouncing_5",
-            "pouncing_6",
-            "pouncing_7",
-            "pouncing_8",
-            "pouncing_9",
-            "crouching_1",
-            "crouching_2",
-            "crouching_3",
-            "crouching_4",
-            "crouching_5",
-            "crouching_6",
-            "crouching_7",
-            "dying_1",
-            "dying_2",
-            "dying_3",
-            "dying_4",
-    };
-
-    private static int getPoseID(String parPose)
-    {
-        int index = -1;
-        if (modelAssetFileNameArray == null)
-        {
-            System.err.println("Trying to get animation pose from null model array");
-        }
-        else
-        {
-            for (int assetPathIndex = 0; assetPathIndex < modelAssetFileNameArray.length; assetPathIndex++)
-            {
-                if (modelAssetFileNameArray[assetPathIndex].equals(parPose.toLowerCase()))
-                {
-                    index = assetPathIndex;
-                    break;
-                }
-            }
-        }
-        if (index < 0)
-        {
-            System.err.println("Could not find tabula model asset " + parPose.toLowerCase());
-        }
-        return index;
-    }
-
-    /* 
-     * Define your animation sequence here
-     * First element is target pose model index (i.e. order of model assets listed in
-     * modelAssetPaths array above),
-     * Second element is the number of ticks it should take to tween to that pose
-     */
-    protected static EnumMap<AnimID, int[][]> mapOfSequences = new EnumMap<AnimID, int[][]>(AnimID.class);
-
-    static
-    {
-        mapOfSequences.put(AnimID.IDLE, new int[][] {
-            {getPoseID("idle"), 20}
-            });
-        
-        mapOfSequences.put(AnimID.LOOKING_LEFT, new int[][] {
-                {getPoseID("head_cock_left"), 100}, {getPoseID("head_cock_left"), 80}, {getPoseID("idle"), 100}
-            });
-
-        mapOfSequences.put(AnimID.LOOKING_RIGHT, new int[][]{
-                {getPoseID("head_cock_right"), 100}, {getPoseID("head_cock_right"), 80}, {getPoseID("idle"), 100}
-        });
-
-        mapOfSequences.put(AnimID.MATING, new int[][]{
-                {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10},
-                {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10},
-                {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("hissing"), 10}, {getPoseID("mating"), 10}, {getPoseID("idle"), 100}
-            });
-
-        mapOfSequences.put(AnimID.EATING, new int[][] {
-                {getPoseID("eating_1"), 100}, {getPoseID("eating_1b"), 40}, {getPoseID("eating_1"), 40}, 
-                {getPoseID("eating_1b"), 40}, {getPoseID("eating_1"), 40}, {getPoseID("eating_1b"), 40}, 
-                {getPoseID("eating_1"), 40}, {getPoseID("eating_2"), 80}, {getPoseID("eating_3"), 80}, 
-                {getPoseID("eating_4"), 100}, {getPoseID("eating_4b"), 40}, {getPoseID("eating_4"), 40}, 
-                {getPoseID("eating_4b"), 40}, {getPoseID("eating_4"), 40}, {getPoseID("eating_4b"), 40}, 
-                {getPoseID("eating_4"), 40}, {getPoseID("eating_4b"), 40}, {getPoseID("eating_3"), 80}, 
-                {getPoseID("eating_5"), 160}, {getPoseID("eating_6"), 100}, {getPoseID("eating_6b"), 40}, 
-                {getPoseID("eating_6"), 40}, {getPoseID("eating_6b"), 40}, {getPoseID("eating_6"), 40}, 
-                {getPoseID("eating_6b"), 40}, {getPoseID("eating_6"), 40}, {getPoseID("eating_6b"), 40},
-                {getPoseID("eating_5"), 80}, {getPoseID("idle"), 80}, {getPoseID("idle"), 200}
-            });
-
-        mapOfSequences.put(AnimID.DRINKING, new int[][] {
-                {getPoseID("drinking_1"), 100}, {getPoseID("drinking_2"), 40}, {getPoseID("drinking_2"), 40}, 
-                {getPoseID("drinking_3"), 20}, {getPoseID("drinking_4"), 40}, {getPoseID("drinking_4"), 100}, 
-                {getPoseID("drinking_1"), 60}, {getPoseID("drinking_2"), 40}, {getPoseID("drinking_2"), 40}, 
-                {getPoseID("drinking_3"), 20}, {getPoseID("drinking_4"), 40}, {getPoseID("drinking_4"), 100}, 
-                {getPoseID("drinking_1"), 60}, {getPoseID("drinking_2"), 40}, {getPoseID("drinking_2"), 40}, 
-                {getPoseID("drinking_3"), 20}, {getPoseID("drinking_4"), 40}, {getPoseID("drinking_4"), 100}, 
-        });
-
-        mapOfSequences.put(AnimID.RESTING, new int[][]{
-                {getPoseID("resting"), 100}, {getPoseID("resting"), 800}, {getPoseID("idle"), 200}
-        });
-
-        mapOfSequences.put(AnimID.SLEEPING, new int[][] {
-                {getPoseID("resting"), 100}, {getPoseID("sleeping"), 80}, {getPoseID("sleeping"), 800}, {getPoseID("resting"), 40}, {getPoseID("idle"), 200}
-            });
-        
-        mapOfSequences.put(AnimID.CALLING, new int[][] {
-                {getPoseID("calling_1"), 100}, {getPoseID("calling_2"), 60}, {getPoseID("calling_2"), 40}, {getPoseID("calling_3"), 40}, 
-                {23, 80}, {getPoseID("calling_2"), 40}, {getPoseID("idle"), 200}  
-            });
-
-        mapOfSequences.put(AnimID.SNIFFING, new int[][] {
-                {getPoseID("sniffing_1"), 100}, {getPoseID("sniffing_2"), 20}, {getPoseID("sniffing_1"), 20}, 
-        });
-
-        mapOfSequences.put(AnimID.ATTACKING, new int[][]{
-                {getPoseID("crouching_1"), 40}, // crouch down
-                {getPoseID("crouching_2"), 20}, {getPoseID("crouching_3"), 20}, // twitch tail
-                {getPoseID("crouching_2"), 20}, {getPoseID("crouching_3"), 20}, // twitch tail
-                {getPoseID("crouching_2"), 20}, {getPoseID("crouching_3"), 20}, // twitch tail
-                {getPoseID("crouching_2"), 20}, {getPoseID("crouching_3"), 20}, // twitch tail
-                {getPoseID("crouching_4"), 40}, {getPoseID("crouching_5"), 60}, // rise up
-                {getPoseID("crouching_6"), 40}, {getPoseID("crouching_7"), 40}, // strike
-                {getPoseID("idle"), 60} // return to idle
-        });
-        
-        mapOfSequences.put(AnimID.DYING, new int[][] {
-                {getPoseID("dying_1"), 60}, // wobble
-        		{getPoseID("dying_2"), 100}, // start to fall
-        		{getPoseID("dying_3"), 120}, // drop
-        		{getPoseID("dying_4"), 100}, {getPoseID("dying_4"), 600} // final lay to rest (assumes that entity will disappear before animation is finished
-        		
-        });
-    }
-
-    // maps each entity id with its current animation 
-    protected HashMap<Integer, JabelarAnimationHelper> animationInstanceToEntityMap = new HashMap<Integer, JabelarAnimationHelper>();
-
-    private static MowzieModelRenderer[][] arrayOfPoses;
-
-    private static int numParts;
 
     public AnimationTherizinosaurus()
     {
-        String[] partNameArray = JabelarAnimationHelper.getTabulaModel(modelAssetPath + dinoName + "_" + modelAssetFileNameArray[0], 0).getCubeNamesArray();
-        numParts = partNameArray.length;
-
-        arrayOfPoses = new MowzieModelRenderer[modelAssetFileNameArray.length][numParts];
-
-        for (int modelIndex = 0; modelIndex < modelAssetFileNameArray.length; modelIndex++)
-        {
-            arrayOfPoses[modelIndex] = new MowzieModelRenderer[numParts];
-            ModelDinosaur theModel = JabelarAnimationHelper.getTabulaModel(modelAssetPath + dinoName + "_" + modelAssetFileNameArray[modelIndex], 0);
-
-            for (int partIndex = 0; partIndex < numParts; partIndex++)
-            {
-                if (theModel.getCube(partNameArray[partIndex]) == null)
-                {
-                    System.err.println("Could not retrieve cube " + partNameArray[partIndex] + " (" + partIndex + ") from the model " + modelAssetFileNameArray[modelIndex]);
-                }
-                arrayOfPoses[modelIndex][partIndex] = theModel.getCube(partNameArray[partIndex]);
-            }
-        }
+        super(new DinosaurTherizinosaurus());
     }
 
     @Override
-    public void setRotationAngles(ModelJson parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity parEntity)
-    {
-        ModelDinosaur theModel = (ModelDinosaur) parModel;
-        EntityDinosaur theEntity = (EntityDinosaur) parEntity;
-
-        // add entry to hashmap if new entity
-        if (!animationInstanceToEntityMap.containsKey(parEntity.getEntityId()))
-        {
-        	JurassiCraft.instance.getLogger().debug("Adding entity to hashmap with id = "+parEntity.getEntityId());
-            animationInstanceToEntityMap.put(parEntity.getEntityId(), new JabelarAnimationHelper(theEntity, theModel, numParts, arrayOfPoses, mapOfSequences, true, 1.0F));
-        }
-
-        animationInstanceToEntityMap.get(theEntity.getEntityId()).performJabelarAnimations(theModel);
-
-        // you can still add chain, walk, bob, etc.
-        performMowzieAnimations(theModel, f, f1, rotation, rotationYaw, rotationPitch, partialTicks, theEntity);
-    }
-
     protected void performMowzieAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
     {
-//     Animator animator = parModel.animator;
+        JurassiCraft.instance.getLogger().debug("Performing mowzie animations for entity "+parEntity.getEntityId());
 
         MowzieModelRenderer rightThigh = parModel.getCube("Right Thigh");
         MowzieModelRenderer bodyHips = parModel.getCube("Body hips");

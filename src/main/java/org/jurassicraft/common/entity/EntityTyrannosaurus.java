@@ -1,17 +1,18 @@
 package org.jurassicraft.common.entity;
 
+import java.util.Random;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.AnimID;
+import net.timeless.unilib.common.animation.ChainBuffer;
+import net.timeless.unilib.common.animation.ControlledParam;
+
 import org.jurassicraft.common.entity.ai.animations.AnimationAIEating;
 import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
 import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimSoundBase;
 import org.jurassicraft.common.entity.base.EntityDinosaurAggressive;
-import net.timeless.unilib.common.animation.ChainBuffer;
-import net.timeless.unilib.common.animation.ControlledParam;
-
-import java.util.Random;
 
 public class EntityTyrannosaurus extends EntityDinosaurAggressive implements IAnimatedEntity // , IEntityAICreature,
         // ICarnivore
@@ -89,7 +90,10 @@ public class EntityTyrannosaurus extends EntityDinosaurAggressive implements IAn
 
         this.stepCount -= this.moveForward * 9.5;
 
-        // if (getAnimID() == 0)
-        // AnimationAPI.sendAnimPacket(this, 1);
+//      // DEBUG
+//      if (this.getRNG().nextInt(1000) <= 10)
+//      {
+//          AnimationAPI.sendAnimPacket(this, AnimID.LOOKING_LEFT);
+//      }
     }
 }

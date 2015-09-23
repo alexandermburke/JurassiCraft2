@@ -13,8 +13,6 @@
 
 package org.jurassicraft.common.entity.ai;
 
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTallGrass;
 import net.minecraft.block.state.IBlockState;
@@ -27,6 +25,9 @@ import net.minecraft.world.World;
 import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.AnimID;
+
+import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
 
 /**
  * @author jabelar
@@ -81,8 +82,9 @@ public class EntityAIJCEatGrass extends EntityAIBase
         entityWorld.setEntityState(grassEaterEntity, (byte) 10);
         grassEaterEntity.getNavigator().clearPathEntity();
 
-        // DEBUG
-        System.out.println("Starting eating AI for entity " + grassEaterEntity.getEntityId());
+        AnimationAPI.sendAnimPacket((IAnimatedEntity) grassEaterEntity, AnimID.EATING);
+
+//        JurassiCraft.instance.getLogger().info("Starting eating AI for entity " + grassEaterEntity.getEntityId());
     }
 
     /**
@@ -117,12 +119,6 @@ public class EntityAIJCEatGrass extends EntityAIBase
     @Override
     public void updateTask()
     {
-        if (((IAnimatedEntity) grassEaterEntity).getAnimID() != AnimID.EATING
-                && grassEaterEntity instanceof IAnimatedEntity)
-        {
-            AnimationAPI.sendAnimPacket((IAnimatedEntity) grassEaterEntity, AnimID.EATING);
-        }
-
         eatingGrassTimer = Math.max(0, eatingGrassTimer - 1);
 
         if (eatingGrassTimer == 4)

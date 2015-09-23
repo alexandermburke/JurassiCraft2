@@ -7,10 +7,12 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.timeless.animationapi.client.AnimID;
+import net.timeless.animationapi.client.CommandForceAnimation;
 import net.timeless.animationapi.packet.PacketAnim;
 
 import org.jurassicraft.JurassiCraft;
@@ -36,6 +38,14 @@ public class AnimationAPI
     public void postInit(FMLPostInitializationEvent e)
     {
         proxy.initTimer();
+    }
+    
+    @Mod.EventHandler
+    public void serverLoad(FMLServerStartingEvent event)
+    {
+        // register server commands
+
+        event.registerServerCommand(new CommandForceAnimation());
     }
 
     public static boolean isClient()
