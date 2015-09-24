@@ -1,5 +1,7 @@
 package org.jurassicraft.common.entity;
 
+import java.util.Random;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
@@ -9,14 +11,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.client.AnimID;
+import net.timeless.unilib.common.animation.ChainBuffer;
+import net.timeless.unilib.common.animation.ControlledAnimation;
+
 import org.jurassicraft.common.entity.ai.animations.AnimationAICall;
 import org.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
 import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
 import org.jurassicraft.common.entity.base.EntityDinosaurAggressive;
-import net.timeless.unilib.common.animation.ChainBuffer;
-import net.timeless.unilib.common.animation.ControlledAnimation;
-
-import java.util.Random;
 
 public class EntityVelociraptor extends EntityDinosaurAggressive // implements ICarnivore, IEntityAICreature
 {
@@ -83,7 +84,6 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
     {
         if (getAnimID() == AnimID.IDLE)
         {
-            AnimationAPI.sendAnimPacket(this, AnimID.CALLING);
             return randomSound(livingSounds);
         }
 

@@ -1,26 +1,32 @@
 package org.jurassicraft.client.model.animation;
 
-import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.AnimID;
 import net.timeless.animationapi.client.Animator;
-import org.jurassicraft.client.model.ModelDinosaur;
-import org.jurassicraft.common.entity.EntityVelociraptor;
-import net.timeless.unilib.client.model.json.IModelAnimator;
-import net.timeless.unilib.client.model.json.ModelJson;
+import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 
+import org.jurassicraft.client.model.ModelDinosaur;
+import org.jurassicraft.common.dinosaur.DinosaurVelociraptor;
+import org.jurassicraft.common.entity.EntityVelociraptor;
+import org.jurassicraft.common.entity.base.EntityDinosaur;
+
 @SideOnly(Side.CLIENT)
-public class AnimationVelociraptor implements IModelAnimator
+public class AnimationVelociraptor extends DinosaurAnimator
 {
-    @Override
-    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
+    public AnimationVelociraptor()
     {
-        ModelDinosaur model = (ModelDinosaur) modelJson;
+        super(new DinosaurVelociraptor());
+    }
+
+    @Override
+    protected void performMowzieAnimations(ModelDinosaur parModel, float parLimbSwing, float parLimbSwingAmount, float parRotation, float parRotationYaw, float parRotationPitch, float parPartialTicks, EntityDinosaur parEntity)
+    {
+        ModelDinosaur model = parModel;
         Animator animator = model.animator;
 
-        EntityVelociraptor velociraptor = (EntityVelociraptor) entity;
+        EntityVelociraptor velociraptor = (EntityVelociraptor) parEntity;
 
         MowzieModelRenderer waist = model.getCube("body3");
         MowzieModelRenderer chest = model.getCube("body2");
@@ -79,48 +85,48 @@ public class AnimationVelociraptor implements IModelAnimator
         // && raptor.getAnimationTick() >= 6)
         // limbSwingAmount = 0;
         float speed = 0.75F;
-        float height = 2F * f1;
+        float height = 2F * parLimbSwingAmount;
 
         float dontLeanProgress = velociraptor.dontLean.getAnimationProgressSinSqrt();
 
-        model.bob(waist, 1F * speed, height, false, f, f1);
-        model.bob(leftThigh, 1F * speed, height, false, f, f1);
-        model.bob(rightThigh, 1F * speed, height, false, f, f1);
-        model.walk(shoulders, 1F * speed, 0.2F, true, 1, 0, f, f1);
-        model.walk(chest, 1F * speed, 0.2F, false, 0.5F, 0, f, f1);
+        model.bob(waist, 1F * speed, height, false, parLimbSwing, parLimbSwingAmount);
+        model.bob(leftThigh, 1F * speed, height, false, parLimbSwing, parLimbSwingAmount);
+        model.bob(rightThigh, 1F * speed, height, false, parLimbSwing, parLimbSwingAmount);
+        model.walk(shoulders, 1F * speed, 0.2F, true, 1, 0, parLimbSwing, parLimbSwingAmount);
+        model.walk(chest, 1F * speed, 0.2F, false, 0.5F, 0, parLimbSwing, parLimbSwingAmount);
 
-        model.walk(leftThigh, 0.5F * speed, 0.7F, false, 3.14F, 0.2F, f, f1);
-        model.walk(leftShin, 0.5F * speed, 0.6F, false, 1.5F, 0.3F, f, f1);
-        model.walk(leftUpperFoot, 0.5F * speed, 0.8F, false, -1F, -0.1F, f, f1);
-        model.walk(leftFoot, 0.5F * speed, 1.5F, true, -1F, 1F, f, f1);
+        model.walk(leftThigh, 0.5F * speed, 0.7F, false, 3.14F, 0.2F, parLimbSwing, parLimbSwingAmount);
+        model.walk(leftShin, 0.5F * speed, 0.6F, false, 1.5F, 0.3F, parLimbSwing, parLimbSwingAmount);
+        model.walk(leftUpperFoot, 0.5F * speed, 0.8F, false, -1F, -0.1F, parLimbSwing, parLimbSwingAmount);
+        model.walk(leftFoot, 0.5F * speed, 1.5F, true, -1F, 1F, parLimbSwing, parLimbSwingAmount);
 
-        model.walk(rightThigh, 0.5F * speed, 0.7F, true, 3.14F, 0.2F, f, f1);
-        model.walk(rightShin, 0.5F * speed, 0.6F, true, 1.5F, 0.3F, f, f1);
-        model.walk(rightUpperFoot, 0.5F * speed, 0.8F, true, -1F, -0.1F, f, f1);
-        model.walk(rightFoot, 0.5F * speed, 1.5F, false, -1F, 1F, f, f1);
+        model.walk(rightThigh, 0.5F * speed, 0.7F, true, 3.14F, 0.2F, parLimbSwing, parLimbSwingAmount);
+        model.walk(rightShin, 0.5F * speed, 0.6F, true, 1.5F, 0.3F, parLimbSwing, parLimbSwingAmount);
+        model.walk(rightUpperFoot, 0.5F * speed, 0.8F, true, -1F, -0.1F, parLimbSwing, parLimbSwingAmount);
+        model.walk(rightFoot, 0.5F * speed, 1.5F, false, -1F, 1F, parLimbSwing, parLimbSwingAmount);
 
-        shoulders.rotationPointY -= 0.5 * f1 * dontLeanProgress;
-        shoulders.rotationPointZ -= 0.5 * f1 * dontLeanProgress;
-        shoulders.rotateAngleX += 0.6 * f1 * dontLeanProgress;
-        chest.rotateAngleX += 0.1 * f1 * dontLeanProgress;
-        neck1.rotateAngleX += 0.1 * f1 * dontLeanProgress;
-        neck2.rotateAngleX += 0.1 * f1 * dontLeanProgress;
-        neck3.rotateAngleX -= 0.2 * f1 * dontLeanProgress;
-        neck4.rotateAngleX -= 0.2 * f1 * dontLeanProgress;
-        head.rotateAngleX -= 0.3 * f1 * dontLeanProgress;
+        shoulders.rotationPointY -= 0.5 * parLimbSwingAmount * dontLeanProgress;
+        shoulders.rotationPointZ -= 0.5 * parLimbSwingAmount * dontLeanProgress;
+        shoulders.rotateAngleX += 0.6 * parLimbSwingAmount * dontLeanProgress;
+        chest.rotateAngleX += 0.1 * parLimbSwingAmount * dontLeanProgress;
+        neck1.rotateAngleX += 0.1 * parLimbSwingAmount * dontLeanProgress;
+        neck2.rotateAngleX += 0.1 * parLimbSwingAmount * dontLeanProgress;
+        neck3.rotateAngleX -= 0.2 * parLimbSwingAmount * dontLeanProgress;
+        neck4.rotateAngleX -= 0.2 * parLimbSwingAmount * dontLeanProgress;
+        head.rotateAngleX -= 0.3 * parLimbSwingAmount * dontLeanProgress;
 
-        model.chainSwing(tailParts, 0.5F * speed, -0.1F, 2, f, f1);
-        model.chainWave(tailParts, 1F * speed, -0.1F, 2.5F, f, f1);
-        model.chainWave(bodyParts, 1F * speed, -0.1F, 4, f, f1);
+        model.chainSwing(tailParts, 0.5F * speed, -0.1F, 2, parLimbSwing, parLimbSwingAmount);
+        model.chainWave(tailParts, 1F * speed, -0.1F, 2.5F, parLimbSwing, parLimbSwingAmount);
+        model.chainWave(bodyParts, 1F * speed, -0.1F, 4, parLimbSwing, parLimbSwingAmount);
 
-        model.chainWave(rightArmParts, 1F * speed, -0.3F, 4, f, f1);
-        model.chainWave(leftArmParts, 1F * speed, -0.3F, 4, f, f1);
+        model.chainWave(rightArmParts, 1F * speed, -0.3F, 4, parLimbSwing, parLimbSwingAmount);
+        model.chainWave(leftArmParts, 1F * speed, -0.3F, 4, parLimbSwing, parLimbSwingAmount);
 
         // Idling
-        model.chainWave(tailParts, 0.1F, 0.05F, 2, entity.ticksExisted, 1F);
-        model.chainWave(bodyParts, 0.1F, -0.03F, 5, entity.ticksExisted, 1F);
-        model.chainWave(rightArmParts, 0.1F, -0.1F, 4, entity.ticksExisted, 1F);
-        model.chainWave(leftArmParts, 0.1F, -0.1F, 4, entity.ticksExisted, 1F);
+        model.chainWave(tailParts, 0.1F, 0.05F, 2, parEntity.ticksExisted, 1F);
+        model.chainWave(bodyParts, 0.1F, -0.03F, 5, parEntity.ticksExisted, 1F);
+        model.chainWave(rightArmParts, 0.1F, -0.1F, 4, parEntity.ticksExisted, 1F);
+        model.chainWave(leftArmParts, 0.1F, -0.1F, 4, parEntity.ticksExisted, 1F);
 
         // float sittingProgress =
         // raptor.sittingProgress.getAnimationProgressSin();
@@ -211,13 +217,13 @@ public class AnimationVelociraptor implements IModelAnimator
         // else
         // {
 
-        model.faceTarget(head, 2, rotationYaw, rotationPitch);
-        model.faceTarget(neck1, 2, rotationYaw, rotationPitch);
+        model.faceTarget(head, 2, parRotationYaw, parRotationPitch);
+        model.faceTarget(neck1, 2, parRotationYaw, parRotationPitch);
 
         velociraptor.tailBuffer.applyChainSwingBuffer(tailParts);
 
         // Call
-        animator.setAnim(AnimID.ATTACKING);
+        animator.setAnim(AnimID.CALLING);
         animator.startPhase(2);
         animator.rotate(shoulders, -0.3f, 0, 0);
         animator.move(shoulders, 0, 0.5f, 0.2f);

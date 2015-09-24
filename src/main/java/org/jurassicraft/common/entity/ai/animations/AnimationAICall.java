@@ -1,21 +1,23 @@
 package org.jurassicraft.common.entity.ai.animations;
 
+import java.util.List;
+import java.util.Random;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.util.AxisAlignedBB;
 import net.timeless.animationapi.AIAnimation;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.AnimID;
-import org.jurassicraft.common.entity.EntityVelociraptor;
 
-import java.util.List;
-import java.util.Random;
+import org.jurassicraft.JurassiCraft;
+import org.jurassicraft.common.entity.EntityVelociraptor;
 
 public class AnimationAICall extends AIAnimation
 {
     protected EntityVelociraptor animatingEntity;
     protected int duration;
     protected AnimID id;
-    private Random random = new Random();
+    private final Random random = new Random();
 
     public AnimationAICall(IAnimatedEntity entity, int duration, AnimID id)
     {
@@ -55,6 +57,7 @@ public class AnimationAICall extends AIAnimation
                 if (entity instanceof EntityVelociraptor)
                 {
                     animatingEntity.playSound(animatingEntity.getCallSound(), animatingEntity.getSoundVolume() + 1.25F, animatingEntity.getSoundPitch());
+                    JurassiCraft.instance.getLogger().info("AI is starting for calling");
                     return true;
                 }
             }

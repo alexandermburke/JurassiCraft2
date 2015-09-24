@@ -81,7 +81,8 @@ public class JabelarAnimationHelper
 
     private void init(ModelDinosaur parModel)
     {
-        currentSequence = theEntity.getAnimID();
+        setNextSequence(theEntity.getAnimID());
+        JurassiCraft.instance.getLogger().info("Initializing to animation sequence = "+theEntity.getAnimTick());
         initPose(); // sets the target pose based on sequence
         initTween();
 
@@ -94,7 +95,7 @@ public class JabelarAnimationHelper
 
     private void initPose()
     {
-        numPosesInSequence = mapOfSequences.get(currentSequence).length; // arrayOfSequences[currentSequence].length;
+        numPosesInSequence = mapOfSequences.get(currentSequence).length;    
 
         // initialize first pose
         currentPose = 0;
@@ -194,15 +195,15 @@ public class JabelarAnimationHelper
         {
             if (nextPose == null)
             {
-                System.err.println("Trying to tween to a null next pose array");
+                JurassiCraft.instance.getLogger().error("Trying to tween to a null next pose array");
             }
             else if (nextPose[partIndex] == null)
             {
-                System.err.println("The part index " + partIndex + " in next pose is null");
+                JurassiCraft.instance.getLogger().error("The part index " + partIndex + " in next pose is null");
             }
             else if (currentRotationArray == null)
             {
-                System.err.println("Trying to tween from a null current rotation array");
+                JurassiCraft.instance.getLogger().error("Trying to tween from a null current rotation array");
             }
             else
             {
@@ -324,7 +325,7 @@ public class JabelarAnimationHelper
         // handle case where animation sequence isn't available
         if (mapOfSequences.get(parSequenceIndex) == null)
         {
-            System.err.println("Requested an anim id "+parSequenceIndex.toString()+" that doesn't have animatino sequence in map for entity "+theEntity.getEntityId());
+            JurassiCraft.instance.getLogger().error("Requested an anim id "+parSequenceIndex.toString()+" that doesn't have animation sequence in map for entity "+theEntity.getEntityId());
             currentSequence = AnimID.IDLE;
             theEntity.setAnimID(AnimID.IDLE);
         }
@@ -360,8 +361,7 @@ public class JabelarAnimationHelper
         }
         catch (Exception e)
         {
-            System.err.println("Could not load Tabula model = " + tabulaModel);
-            e.printStackTrace();
+            JurassiCraft.instance.getLogger().error("Could not load Tabula model = " + tabulaModel);
         }
 
         return null;

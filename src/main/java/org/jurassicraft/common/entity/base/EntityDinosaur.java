@@ -128,6 +128,13 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         return false;
     }
 
+    @Override
+    public void playLivingSound()
+    {
+        AnimationAPI.sendAnimPacket(this, animID);
+        super.playLivingSound();
+    }
+    
     public double getWater()
     {
         return water;
