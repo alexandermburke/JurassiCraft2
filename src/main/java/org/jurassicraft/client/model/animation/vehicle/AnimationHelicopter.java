@@ -3,10 +3,10 @@ package org.jurassicraft.client.model.animation.vehicle;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 
 @SideOnly(Side.CLIENT)
 public class AnimationHelicopter implements IModelAnimator

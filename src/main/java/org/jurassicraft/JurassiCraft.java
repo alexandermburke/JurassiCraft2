@@ -6,7 +6,6 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-
 import org.apache.logging.log4j.Logger;
 import org.jurassicraft.common.achievements.JCAchievements;
 import org.jurassicraft.common.block.JCBlockRegistry;

@@ -3,11 +3,11 @@ package org.jurassicraft.client.render.renderdef;
 import net.minecraft.client.model.ModelBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.unilib.client.model.json.IModelAnimator;
+import net.timeless.unilib.client.model.json.ModelJson;
 import org.jurassicraft.client.model.animation.AnimationCompsognathus;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
 import org.jurassicraft.common.entity.base.JCEntityRegistry;
-import net.timeless.unilib.client.model.json.IModelAnimator;
-import net.timeless.unilib.client.model.json.ModelJson;
 
 @SideOnly(Side.CLIENT)
 public class RenderDefCompsognathus extends RenderDinosaurDefinition

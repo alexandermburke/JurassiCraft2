@@ -5,10 +5,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.AnimID;
 import net.timeless.animationapi.client.Animator;
-import org.jurassicraft.client.model.ModelDinosaur;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+import org.jurassicraft.client.model.ModelDinosaur;
 
 @SideOnly(Side.CLIENT)
 public class AnimationDodo implements IModelAnimator
