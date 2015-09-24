@@ -47,14 +47,13 @@ public class PacketAnim implements IMessage
         @Override
         public IMessage onMessage(final PacketAnim packet, MessageContext ctx)
         {
-            JurassiCraft.instance.getLogger().info("PacketAnim received for entity " + packet.entityID + " and animation ID "
-                    + AnimID.values()[packet.animID]);
+            JurassiCraft.instance.getLogger().info("PacketAnim received for entity " + packet.entityID + " and animation ID " + AnimID.values()[packet.animID]);
 
             final EntityPlayer player = JurassiCraft.proxy.getPlayerEntityFromContext(ctx);
 
             Minecraft.getMinecraft().addScheduledTask(new Runnable()
             {
-                private AnimID amimation = AnimID.values()[packet.animID];
+                private AnimID animation = AnimID.values()[packet.animID];
 
                 @Override
                 public void run()
@@ -64,7 +63,7 @@ public class PacketAnim implements IMessage
 
                     if (entity != null)
                     {
-                        entity.setAnimID(this.amimation);
+                        entity.setAnimID(this.animation);
                     }
 
                 }
