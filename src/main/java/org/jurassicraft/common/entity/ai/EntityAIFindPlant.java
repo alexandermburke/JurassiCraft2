@@ -25,7 +25,7 @@ public class EntityAIFindPlant extends EntityAIBase
     {
         double energy = dinosaur.getEnergy();
 
-        if (energy > 0 && dinosaur.ticksExisted % 8 == 0)
+        if (((int) energy) > 0 && dinosaur.ticksExisted % 8 == 0)
         {
             if (dinosaur.getRNG().nextInt((int) energy) < (energy / 4))
             {
@@ -109,6 +109,6 @@ public class EntityAIFindPlant extends EntityAIBase
     @Override
     public boolean continueExecuting()
     {
-        return !this.dinosaur.getNavigator().noPath();
+        return !this.dinosaur.getNavigator().noPath() && dinosaur.worldObj.getBlockState(new BlockPos(x, y, z)).getBlock() instanceof BlockBush;
     }
 }

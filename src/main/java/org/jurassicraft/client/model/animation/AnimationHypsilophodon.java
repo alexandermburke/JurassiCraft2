@@ -22,7 +22,7 @@ public class AnimationHypsilophodon implements IModelAnimator
 
         int ticksExisted = entity.ticksExisted;
 
-        float scaleFactor = 0.6F;
+        float scaleFactor = 0.5F;
         float height = 12F * f1;
 
         MowzieModelRenderer upperlegright = model.getCube("Leg UPPER RIGHT");

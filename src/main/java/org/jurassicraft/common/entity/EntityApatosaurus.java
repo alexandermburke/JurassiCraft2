@@ -23,7 +23,7 @@ public class EntityApatosaurus extends EntityDinosaurDefensiveHerbivore // imple
         /** Step Sound */
         if (this.moveForward > 0 && this.stepCount <= 0)
         {
-            this.playSound("jurassicraft:stomp", this.getSoundVolume() + 0.5F, this.getSoundPitch());
+            this.playSound("jurassicraft:stomp", (float) transitionFromAge(0.1F, 1.0F), this.getSoundPitch());
             stepCount = 65;
         }
 

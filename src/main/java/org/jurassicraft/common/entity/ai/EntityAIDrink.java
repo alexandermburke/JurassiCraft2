@@ -1,6 +1,7 @@
 package org.jurassicraft.common.entity.ai;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
@@ -25,7 +26,7 @@ public class EntityAIDrink extends EntityAIBase
     {
         double water = dinosaur.getWater();
 
-        if (water > 0 && dinosaur.ticksExisted % 8 == 0)
+        if (((int) water) > 0 && dinosaur.ticksExisted % 8 == 0)
         {
             if (dinosaur.getRNG().nextInt((int) water) < (water / 4))
             {
@@ -107,6 +108,6 @@ public class EntityAIDrink extends EntityAIBase
     @Override
     public boolean continueExecuting()
     {
-        return !this.dinosaur.getNavigator().noPath();
+        return !this.dinosaur.getNavigator().noPath() && dinosaur.worldObj.getBlockState(new BlockPos(x, y, z)).getBlock() == Blocks.water;
     }
 }

@@ -62,7 +62,7 @@ public class AnimationMicroceratus implements IModelAnimator
 //        f = entity.ticksExisted;
 //        f1 = 0.5F;
 
-        float globalSpeed = 0.5F;
+        float globalSpeed = 0.8F;
         float globalDegree = 0.5F;
         float globalHeight = 1.0F;
 
