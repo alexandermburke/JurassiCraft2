@@ -83,7 +83,9 @@ public abstract class DinosaurAnimator implements IModelAnimator
         String dinoDefinition = dinoDir + name + ".json";
         this.models = new MowzieModelRenderer[0][]; // Pre-init with an empty map and no models
         this.animations = newEmptyMap();
-        try(Reader reader = new InputStreamReader(Unilib.class.getResourceAsStream(dinoDefinition)))
+
+        Reader reader = new InputStreamReader(Unilib.class.getResourceAsStream(dinoDefinition));
+        try
         {
             AnimationsDTO rawAnimations = GSON.fromJson(reader, AnimationsDTO.class);
             URI dinoDirURI = new URI(dinoDir);
@@ -95,11 +97,10 @@ public abstract class DinosaurAnimator implements IModelAnimator
         {
             JurassiCraft.instance.getLogger().fatal("Invalid URI: " + dinoDir, e);
         }
-        catch (IllegalArgumentException | IOException | JsonSyntaxException iae)
+        catch (Exception e)
         {
-            JurassiCraft.instance.getLogger().fatal("Failed to parse the dinosaur animation file " + dinoDefinition, iae);
+            JurassiCraft.instance.getLogger().fatal("Failed to parse the dinosaur animation file " + dinoDefinition, e);
         }
-
     }
     /**
      * Gets the posed models from the set of animations defined. Illegal poses (e.g. where the file

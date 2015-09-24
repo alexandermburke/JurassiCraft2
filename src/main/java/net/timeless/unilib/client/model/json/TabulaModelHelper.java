@@ -11,38 +11,39 @@ import com.google.gson.Gson;
 
 public class TabulaModelHelper
 {
-
     private static Gson gson = new Gson();
 
     public static JsonTabulaModel parseModel(String path) throws Exception
     {
-
         if (!path.endsWith("\\.tbl"))
         {
             path += ".tbl";
         }
 
+        ZipInputStream inputStream = new ZipInputStream(Unilib.class.getResourceAsStream(path));
 
-        try(ZipInputStream inputStream = new ZipInputStream(Unilib.class.getResourceAsStream(path)))
+        try
         {
-
             ZipEntry entry;
             JsonTabulaModel parseTabulaModel = null;
 
             while ((entry = inputStream.getNextEntry()) != null)
             {
-
                 if (entry.getName().equals("model.json"))
                 {
-
                     parseTabulaModel = parseModel(inputStream);
                     break;
-
                 }
             }
+
             return parseTabulaModel;
         }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
 
+        return null;
     }
 
     public static JsonTabulaModel parseModel(InputStream stream)
