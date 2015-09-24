@@ -81,7 +81,7 @@ public class JabelarAnimationHelper
     private void init(ModelDinosaur parModel)
     {
         setNextSequence(theEntity.getAnimID());
-        JurassiCraft.instance.getLogger().info("Initializing to animation sequence = "+theEntity.getAnimTick());
+        JurassiCraft.instance.getLogger().info("Initializing to animation sequence = " + theEntity.getAnimTick());
         initPose(); // sets the target pose based on sequence
         initTween();
 
@@ -94,7 +94,7 @@ public class JabelarAnimationHelper
 
     private void initPose()
     {
-        numPosesInSequence = mapOfSequences.get(currentSequence).length;    
+        numPosesInSequence = mapOfSequences.get(currentSequence).length;
 
         // initialize first pose
         currentPose = 0;
@@ -324,7 +324,7 @@ public class JabelarAnimationHelper
         // handle case where animation sequence isn't available
         if (mapOfSequences.get(parSequenceIndex) == null)
         {
-            JurassiCraft.instance.getLogger().error("Requested an anim id "+parSequenceIndex.toString()+" that doesn't have animation sequence in map for entity "+theEntity.getEntityId());
+            JurassiCraft.instance.getLogger().error("Requested an anim id " + parSequenceIndex.toString() + " that doesn't have animation sequence in map for entity " + theEntity.getEntityId());
             currentSequence = AnimID.IDLE;
             theEntity.setAnimID(AnimID.IDLE);
         }

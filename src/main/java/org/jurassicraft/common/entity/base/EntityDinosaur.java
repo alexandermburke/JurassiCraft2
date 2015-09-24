@@ -128,7 +128,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         AnimationAPI.sendAnimPacket(this, animID);
         super.playLivingSound();
     }
-    
+
     public double getWater()
     {
         return water;
