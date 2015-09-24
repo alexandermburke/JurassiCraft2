@@ -4,21 +4,12 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.AnimID;
 import net.timeless.animationapi.client.Animator;
-<<<<<<< HEAD
 import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
-
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.dinosaur.DinosaurVelociraptor;
 import org.jurassicraft.common.entity.EntityVelociraptor;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
-=======
-import net.timeless.unilib.client.model.json.IModelAnimator;
-import net.timeless.unilib.client.model.json.ModelJson;
-import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
-import org.jurassicraft.client.model.ModelDinosaur;
-import org.jurassicraft.common.entity.EntityVelociraptor;
->>>>>>> bfa6504d32502acd56b7d1baa652d7c47e41ac30
 
 @SideOnly(Side.CLIENT)
 public class AnimationVelociraptor extends DinosaurAnimator

@@ -1,16 +1,15 @@
 package org.jurassicraft.common.entity.ai.animations;
 
-import java.util.List;
-import java.util.Random;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.util.AxisAlignedBB;
 import net.timeless.animationapi.AIAnimation;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.AnimID;
-
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.entity.EntityVelociraptor;
+
+import java.util.List;
+import java.util.Random;
 
 public class AnimationAICall extends AIAnimation
 {
