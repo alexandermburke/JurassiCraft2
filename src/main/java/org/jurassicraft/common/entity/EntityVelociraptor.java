@@ -13,11 +13,19 @@ import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.client.AnimID;
 import net.timeless.unilib.common.animation.ChainBuffer;
 import net.timeless.unilib.common.animation.ControlledAnimation;
+<<<<<<< HEAD
 
+=======
+>>>>>>> bfa6504d32502acd56b7d1baa652d7c47e41ac30
 import org.jurassicraft.common.entity.ai.animations.AnimationAICall;
 import org.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
 import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
 import org.jurassicraft.common.entity.base.EntityDinosaurAggressive;
+<<<<<<< HEAD
+=======
+
+import java.util.Random;
+>>>>>>> bfa6504d32502acd56b7d1baa652d7c47e41ac30
 
 public class EntityVelociraptor extends EntityDinosaurAggressive // implements ICarnivore, IEntityAICreature
 {

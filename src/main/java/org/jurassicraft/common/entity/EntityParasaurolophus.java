@@ -2,9 +2,9 @@ package org.jurassicraft.common.entity;
 
 import net.minecraft.world.World;
 import net.timeless.animationapi.client.AnimID;
+import net.timeless.unilib.common.animation.ChainBuffer;
 import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
 import org.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbivore;
-import net.timeless.unilib.common.animation.ChainBuffer;
 
 public class EntityParasaurolophus extends EntityDinosaurDefensiveHerbivore // implements IEntityAICreature, IHerbivore
 {
