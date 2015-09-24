@@ -22,7 +22,7 @@ public enum AnimID
     FLYING,
     ROARING,
     // This wasn't in Trello list but was used in one of the dinos
-    SCRATCHING,
+    SCRATCHING, 
     // These weren't in Trello list but are an example of how we could have random animations during idle
     LOOKING_LEFT,
     LOOKING_RIGHT,

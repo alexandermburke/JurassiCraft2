@@ -14,6 +14,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.timeless.animationapi.client.AnimID;
 import net.timeless.animationapi.client.CommandForceAnimation;
 import net.timeless.animationapi.packet.PacketAnim;
+
 import org.jurassicraft.JurassiCraft;
 
 @Mod(modid = "JCAnimationAPI", name = "JurassiCraft AnimationAPI", version = "1.2.5")
@@ -38,7 +39,7 @@ public class AnimationAPI
     {
         proxy.initTimer();
     }
-
+    
     @Mod.EventHandler
     public void serverLoad(FMLServerStartingEvent event)
     {

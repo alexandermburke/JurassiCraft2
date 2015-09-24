@@ -12,9 +12,9 @@ import net.minecraft.pathfinding.PathPoint;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
-import org.apache.commons.lang3.StringUtils;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+import org.apache.commons.lang3.StringUtils;
 
 public abstract class EntityAIJCTarget extends EntityAIBase
 {

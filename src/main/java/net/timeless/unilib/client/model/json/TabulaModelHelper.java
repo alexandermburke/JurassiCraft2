@@ -1,12 +1,13 @@
 package net.timeless.unilib.client.model.json;
 
-import com.google.gson.Gson;
-import net.timeless.unilib.Unilib;
-
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+
+import net.timeless.unilib.Unilib;
+
+import com.google.gson.Gson;
 
 public class TabulaModelHelper
 {

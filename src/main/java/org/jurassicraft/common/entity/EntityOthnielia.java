@@ -1,8 +1,8 @@
 package org.jurassicraft.common.entity;
 
 import net.minecraft.world.World;
-import net.timeless.unilib.common.animation.ChainBuffer;
 import org.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbivore;
+import net.timeless.unilib.common.animation.ChainBuffer;
 
 public class EntityOthnielia extends EntityDinosaurDefensiveHerbivore  //implements IEntityAICreature, IHerbivore
 {

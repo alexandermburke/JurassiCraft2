@@ -5,10 +5,10 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-import net.timeless.unilib.client.model.json.ModelJson;
-import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.entity.item.EntityCageSmall;
+import net.timeless.unilib.client.model.json.ModelJson;
+import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import org.lwjgl.opengl.GL11;
 
 public class RenderCageSmall extends Render

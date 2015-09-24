@@ -1,6 +1,6 @@
 {
-    "parent": "block/cross",
-    "textures": {
-        "cross": "jurassicraft:blocks/plants/cycad_zamites_bottom"
-    }
+  "parent": "block/cross",
+  "textures": {
+    "cross": "jurassicraft:blocks/plants/cycad_zamites_bottom"
+  }
 }

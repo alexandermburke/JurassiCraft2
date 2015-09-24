@@ -7,11 +7,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.unilib.client.model.json.ModelJson;
-import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.animation.vehicle.AnimationHelicopter;
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
+import net.timeless.unilib.client.model.json.ModelJson;
+import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)

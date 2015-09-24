@@ -3,11 +3,11 @@ package org.jurassicraft.client.model.animation.raptorsquad;
 import net.minecraft.entity.Entity;
 import net.timeless.animationapi.client.AnimID;
 import net.timeless.animationapi.client.Animator;
+import org.jurassicraft.client.model.ModelDinosaur;
+import org.jurassicraft.common.entity.EntityVelociraptor;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
-import org.jurassicraft.client.model.ModelDinosaur;
-import org.jurassicraft.common.entity.EntityVelociraptor;
 
 public class AnimationBlue implements IModelAnimator
 {
