@@ -1,8 +1,8 @@
 package org.jurassicraft.common.entity;
 
 import net.minecraft.world.World;
-import org.jurassicraft.common.entity.base.EntityDinosaurProvokableHerbivore;
 import net.timeless.unilib.common.animation.ChainBuffer;
+import org.jurassicraft.common.entity.base.EntityDinosaurProvokableHerbivore;
 
 public class EntityTriceratops extends EntityDinosaurProvokableHerbivore  //implements IEntityAICreature, IHerbivore
 {

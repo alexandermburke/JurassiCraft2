@@ -2,7 +2,6 @@ package org.jurassicraft.common.entity;
 
 import net.minecraft.world.World;
 import net.timeless.unilib.common.animation.ChainBuffer;
-
 import org.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbivore;
 
 public class EntityTherizinosaurus extends EntityDinosaurDefensiveHerbivore // implements IEntityAICreature, IHerbivore

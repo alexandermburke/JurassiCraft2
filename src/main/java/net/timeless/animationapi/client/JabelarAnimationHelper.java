@@ -1,15 +1,14 @@
 package net.timeless.animationapi.client;
 
-import java.util.Map;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
-
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+
+import java.util.Map;
 
 /**
  * @author jabelar
@@ -41,12 +40,12 @@ public class JabelarAnimationHelper
 
     private final boolean inertialTweens;
     private final float baseInertiaFactor;
+
     /**
-     *
-     * @param parEntity the entity to animate from
-     * @param parModel the model to animate
+     * @param parEntity         the entity to animate from
+     * @param parModel          the model to animate
      * @param parNumParts
-     * @param parArrayOfPoses for each pose(-index) an array of posed Renderers
+     * @param parArrayOfPoses   for each pose(-index) an array of posed Renderers
      * @param parMapOfSequences maps from an {@link AnimID} to the sequence of (pose-index, tween-length)
      * @param parInertialTweens
      * @param parInertiaFactor
@@ -324,13 +323,13 @@ public class JabelarAnimationHelper
         // handle case where animation sequence isn't available
         if (mapOfSequences.get(parSequenceIndex) == null)
         {
-            System.err.println("Requested an anim id "+parSequenceIndex.toString()+" that doesn't have animatino sequence in map for entity "+theEntity.getEntityId());
+            System.err.println("Requested an anim id " + parSequenceIndex.toString() + " that doesn't have animatino sequence in map for entity " + theEntity.getEntityId());
             currentSequence = AnimID.IDLE;
             theEntity.setAnimID(AnimID.IDLE);
         }
         else if (currentSequence != AnimID.IDLE && currentSequence == parSequenceIndex) // finished sequence but no new sequence set
         {
-        	JurassiCraft.instance.getLogger().debug("Reverting to idle sequence");
+            JurassiCraft.instance.getLogger().debug("Reverting to idle sequence");
             currentSequence = AnimID.IDLE;
             theEntity.setAnimID(AnimID.IDLE);
         }

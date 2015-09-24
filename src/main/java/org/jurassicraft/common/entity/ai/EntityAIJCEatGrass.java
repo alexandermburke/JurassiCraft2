@@ -13,6 +13,8 @@
 
 package org.jurassicraft.common.entity.ai;
 
+import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTallGrass;
 import net.minecraft.block.state.IBlockState;
@@ -25,9 +27,6 @@ import net.minecraft.world.World;
 import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.AnimID;
-
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
 
 /**
  * @author jabelar

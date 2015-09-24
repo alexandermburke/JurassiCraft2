@@ -4,13 +4,13 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.unilib.client.model.json.IModelAnimator;
+import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.client.render.entity.RenderDinosaur;
 import org.jurassicraft.client.render.entity.RenderDinosaurMultilayer;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
-import net.timeless.unilib.client.model.json.IModelAnimator;
-import net.timeless.unilib.client.model.json.TabulaModelHelper;
 
 @SideOnly(Side.CLIENT)
 public abstract class RenderDinosaurDefinition
