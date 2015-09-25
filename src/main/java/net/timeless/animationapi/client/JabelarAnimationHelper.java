@@ -1,14 +1,15 @@
 package net.timeless.animationapi.client;
 
+import java.util.Map;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
-
-import java.util.Map;
 
 /**
  * @author jabelar
@@ -81,7 +82,7 @@ public class JabelarAnimationHelper
     private void init(ModelDinosaur parModel)
     {
         setNextSequence(theEntity.getAnimID());
-        JurassiCraft.instance.getLogger().info("Initializing to animation sequence = " + theEntity.getAnimTick());
+        JurassiCraft.instance.getLogger().info("Initializing to animation sequence = " + theEntity.getAnimID());
         initPose(); // sets the target pose based on sequence
         initTween();
 
