@@ -5,7 +5,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
-
 import org.jurassicraft.client.model.animation.AnimationVelociraptor;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
 import org.jurassicraft.common.entity.base.JCEntityRegistry;
@@ -28,7 +27,7 @@ public class RenderDefVelociraptor extends RenderDinosaurDefinition
 
         try
         {
-           this.model = getDefaultTabulaModel();
+            this.model = getDefaultTabulaModel();
             // TODO
             // Change to mapping in super class
 //            this.infant = getTabulaModel(texture + "_infant", 0);
@@ -45,7 +44,7 @@ public class RenderDefVelociraptor extends RenderDinosaurDefinition
     public ModelBase getModel(int geneticVariant, EnumGrowthStage stage)
     {
         return model;
-        
+
         // TODO
         // Change to mapping in super class
 //        switch (stage)

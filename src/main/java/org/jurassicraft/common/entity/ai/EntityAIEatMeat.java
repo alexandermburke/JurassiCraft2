@@ -2,6 +2,8 @@ package org.jurassicraft.common.entity.ai;
 
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
@@ -45,24 +47,29 @@ public class EntityAIEatMeat extends EntityAIBase
 
                 List<EntityItem> items = world.getEntitiesWithinAABB(EntityItem.class, AxisAlignedBB.fromBounds(posX - 16, posY - 16, posZ - 16, posX + 16, posY + 16, posZ + 16));
 
-                for (EntityItem item : items)
+                for (EntityItem e : items)
                 {
-                    ItemStack stack = item.getEntityItem();
+                    ItemStack stack = e.getEntityItem();
 
-                    if(stack != null && stack.getItem() == JCItemRegistry.dino_meat)
+                    if (stack != null)
                     {
-                        double diffX = posX - item.posX;
-                        double diffY = posY - item.posY;
-                        double diffZ = posZ - item.posZ;
+                        Item item = stack.getItem();
 
-                        double dist = (diffX * diffX) + (diffY * diffY) + (diffZ * diffZ);
-
-                        if (dist < closestDist)
+                        if (item == JCItemRegistry.dino_meat || item == JCItemRegistry.dino_steak || item == Items.porkchop || item == Items.cooked_porkchop || item == Items.beef || item == Items.cooked_beef || item == Items.chicken || item == Items.cooked_chicken || item == Items.fish || item == Items.cooked_fish || item == Items.rabbit || item == Items.cooked_rabbit || item == Items.mutton || item == Items.cooked_mutton)
                         {
-                            closestDist = dist;
-                            closest = item;
+                            double diffX = posX - e.posX;
+                            double diffY = posY - e.posY;
+                            double diffZ = posZ - e.posZ;
 
-                            found = true;
+                            double dist = (diffX * diffX) + (diffY * diffY) + (diffZ * diffZ);
+
+                            if (dist < closestDist)
+                            {
+                                closestDist = dist;
+                                closest = e;
+
+                                found = true;
+                            }
                         }
                     }
                 }
@@ -89,7 +96,7 @@ public class EntityAIEatMeat extends EntityAIBase
 
             if (dinosaur.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing"))
             {
-                if(item.getEntityItem().stackSize > 1)
+                if (item.getEntityItem().stackSize > 1)
                 {
                     item.getEntityItem().stackSize--;
                 }
@@ -99,7 +106,7 @@ public class EntityAIEatMeat extends EntityAIBase
                 }
             }
 
-            dinosaur.setEnergy(dinosaur.getEnergy() + 200);
+            dinosaur.setEnergy(dinosaur.getEnergy() + 500);
         }
     }
 

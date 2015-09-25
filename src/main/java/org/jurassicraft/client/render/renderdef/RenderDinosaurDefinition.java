@@ -6,7 +6,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
-
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.client.render.entity.RenderDinosaur;
@@ -64,13 +63,13 @@ public abstract class RenderDinosaurDefinition
 
     public ModelDinosaur getDefaultTabulaModel(int geneticVariant) throws Exception
     {
-        JurassiCraft.instance.getLogger().info("The entity model asset path is /assets/jurassicraft/models/entities/" 
-                + dinosaur.getName(0).toLowerCase() + "/" 
+        JurassiCraft.instance.getLogger().info("The entity model asset path is /assets/jurassicraft/models/entities/"
+                + dinosaur.getName(0).toLowerCase() + "/"
                 + dinosaur.getName(0).toLowerCase() + "_idle");
-        return getTabulaModel("/assets/jurassicraft/models/entities/" 
-                + dinosaur.getName(0).toLowerCase() + "/" 
-                + dinosaur.getName(0).toLowerCase() + "_idle"
-                );
+        return getTabulaModel("/assets/jurassicraft/models/entities/"
+                        + dinosaur.getName(0).toLowerCase() + "/"
+                        + dinosaur.getName(0).toLowerCase() + "_idle"
+        );
     }
 
     public ModelDinosaur getDefaultTabulaModel() throws Exception
