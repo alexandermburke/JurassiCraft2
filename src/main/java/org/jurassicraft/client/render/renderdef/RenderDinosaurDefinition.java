@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.json.IModelAnimator;
+import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.client.render.entity.RenderDinosaur;
@@ -13,42 +14,76 @@ import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
 
 @SideOnly(Side.CLIENT)
-public abstract class RenderDinosaurDefinition
+public class RenderDinosaurDefinition
 {
     private final Dinosaur dinosaur;
+    private final IModelAnimator animator;
+    private final ModelJson model;
+    private float adultScaleAdjustment = 1.0F;
+    private float babyScaleAdjustment = 0.325F;
+    private float shadowSize = 0.65F;
+    private float renderXOffset = 0.0F;
+    private float renderYOffset = 0.0F;
+    private float renderZOffset = 0.0F;
 
-    public RenderDinosaurDefinition(Dinosaur dinosaur)
+    public RenderDinosaurDefinition(
+            Dinosaur parDinosaur, 
+            IModelAnimator parAnimator, 
+            float parAdultScaleAdjustment, float parBabyScaleAdjustment, 
+            float parShadowSize,
+            float parRenderXOffset, float parRenderYOffset, float parRenderZOffset)
     {
-        this.dinosaur = dinosaur;
+        dinosaur = parDinosaur;
+        animator = parAnimator;
+        adultScaleAdjustment = parAdultScaleAdjustment;
+        babyScaleAdjustment = parBabyScaleAdjustment;
+        shadowSize = parShadowSize;
+        renderXOffset = parRenderXOffset;
+        renderYOffset = parRenderYOffset;
+        renderZOffset = parRenderZOffset;
+        
+        model = getDefaultTabulaModel();
     }
 
-    public abstract ModelBase getModel(int geneticVariant, EnumGrowthStage stage);
+    public ModelBase getModel(int geneticVariant, EnumGrowthStage stage)
+    {
+        return model;
+    }
 
     public IModelAnimator getModelAnimator(int geneticVariant)
     {
-        return null;
+        return animator;
     }
 
     public float getRenderXOffset(int geneticVariant)
     {
-        return 0.0F;
+        return renderXOffset;
     }
 
     public float getRenderYOffset(int geneticVariant)
     {
-        return 0.0F;
+        return renderYOffset;
     }
 
     public float getRenderZOffset(int geneticVariant)
     {
-        return 0.0F;
+        return renderZOffset;
     }
 
-    public abstract float getAdultScaleAdjustment();
+    public float getAdultScaleAdjustment()
+    {
+        return adultScaleAdjustment;
+    }
 
-    public abstract float getBabyScaleAdjustment();
+    public float getBabyScaleAdjustment()
+    {
+        return babyScaleAdjustment;
+    }
 
-    public abstract float getShadowSize();
+    public float getShadowSize()
+    {
+        return shadowSize;
+    }
 
     public ModelDinosaur getTabulaModel(String tabulaModel, int geneticVariant) throws Exception
     {
@@ -68,9 +103,17 @@ public abstract class RenderDinosaurDefinition
         );
     }
 
-    public ModelDinosaur getDefaultTabulaModel() throws Exception
+    public ModelDinosaur getDefaultTabulaModel() 
     {
-        return getDefaultTabulaModel(0);
+        try
+        {
+            return getDefaultTabulaModel(0);
+        } catch (Exception e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public Dinosaur getDinosaur()

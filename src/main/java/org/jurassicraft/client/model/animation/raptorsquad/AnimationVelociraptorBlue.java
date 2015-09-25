@@ -9,7 +9,7 @@ import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.entity.EntityVelociraptor;
 
-public class AnimationBlue implements IModelAnimator
+public class AnimationVelociraptorBlue implements IModelAnimator
 {
     @Override
     public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
