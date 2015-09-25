@@ -109,6 +109,6 @@ public class EntityAIFindPlant extends EntityAIBase
     @Override
     public boolean continueExecuting()
     {
-        return !this.dinosaur.getNavigator().noPath() && dinosaur.worldObj.getBlockState(new BlockPos(x, y, z)).getBlock() instanceof BlockBush;
+        return dinosaur != null && !this.dinosaur.getNavigator().noPath() && dinosaur.worldObj.getBlockState(new BlockPos(x, y, z)).getBlock() instanceof BlockBush;
     }
 }

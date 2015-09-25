@@ -9,12 +9,14 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import org.jurassicraft.common.entity.ai.EntityAIEatMeat;
 
 public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
 {
     public EntityDinosaurAggressive(World world)
     {
         super(world);
+        this.tasks.addTask(2, new EntityAIEatMeat(this));
     }
 
     /**
