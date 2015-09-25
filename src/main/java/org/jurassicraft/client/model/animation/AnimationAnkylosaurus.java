@@ -1,22 +1,27 @@
 package org.jurassicraft.client.model.animation;
 
-import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.Animator;
-import net.timeless.unilib.client.model.json.IModelAnimator;
-import net.timeless.unilib.client.model.json.ModelJson;
+import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 import org.jurassicraft.client.model.ModelDinosaur;
+import org.jurassicraft.common.dinosaur.DinosaurAnkylosaurus;
 import org.jurassicraft.common.entity.EntityAnkylosaurus;
+import org.jurassicraft.common.entity.base.EntityDinosaur;
 
 @SideOnly(Side.CLIENT)
-public class AnimationAnkylosaurus implements IModelAnimator
+public class AnimationAnkylosaurus extends DinosaurAnimator
 {
-    @Override
-    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
+    public AnimationAnkylosaurus()
     {
-        ModelDinosaur model = (ModelDinosaur) modelJson;
+        super(new DinosaurAnkylosaurus());
+    }
+    
+    @Override
+    public void setRotationAngles(ModelDinosaur modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur entity)
+    {
+        ModelDinosaur model = modelJson;
         Animator animator = model.animator;
 
         MowzieModelRenderer head = model.getCube("head ");
