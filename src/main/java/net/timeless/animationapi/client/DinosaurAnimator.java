@@ -2,6 +2,18 @@ package net.timeless.animationapi.client;
 
 import com.google.gson.Gson;
 import com.mojang.realmsclient.util.Pair;
+
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -14,13 +26,6 @@ import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
-
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.*;
 
 @SideOnly(Side.CLIENT)
 public abstract class DinosaurAnimator implements IModelAnimator
@@ -74,8 +79,8 @@ public abstract class DinosaurAnimator implements IModelAnimator
     public DinosaurAnimator(Dinosaur dino)
     {
         String name = dino.getName(0).toLowerCase(); // this should match name of your resource package and files
-        String dinoDir = "/assets/jurassicraft/models/entities/" + name + "/";
-        String dinoDefinition = dinoDir + name + ".json";
+        String dinoDir = "/assets/jurassicraft/models/entities/" + name + "/adult/";
+        String dinoDefinition = dinoDir + name + "_adult.json";
         this.models = new MowzieModelRenderer[0][]; // Pre-init with an empty map and no models
         this.animations = newEmptyMap();
 
