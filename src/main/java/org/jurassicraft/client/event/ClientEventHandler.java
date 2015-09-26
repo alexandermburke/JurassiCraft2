@@ -40,9 +40,9 @@ public class ClientEventHandler
         if (event.entity instanceof EntityDinosaur && event.renderer instanceof IDinosaurRenderer)
         {
             IDinosaurRenderer dinoRenderer = (IDinosaurRenderer) event.renderer;
-            EntityDinosaur dinosaur = (EntityDinosaur) event.entity;
+            EntityDinosaur entityDinosaur = (EntityDinosaur) event.entity;
 
-            dinoRenderer.setModel(dinoRenderer.getRenderDef().getModel(dinosaur.getGeneticVariant(), dinosaur.getGrowthStage()));
+            dinoRenderer.setModel(dinoRenderer.getRenderDef().getModel(entityDinosaur.getGeneticVariant(), entityDinosaur.getGrowthStage()));
         }
     }
 
