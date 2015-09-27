@@ -5,6 +5,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
@@ -20,9 +21,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class HelicopterSeat extends Entity implements IEntityAdditionalSpawnData
 {
     private UUID parentID;
-    private float relX;
-    private float relY;
-    private float relZ;
+    private float dist;
     private int index;
     EntityHelicopterBase parent;
 
@@ -34,13 +33,11 @@ public class HelicopterSeat extends Entity implements IEntityAdditionalSpawnData
         parentID = UUID.randomUUID();
     }
 
-    public HelicopterSeat(float relX, float relY, float relZ, int index, EntityHelicopterBase parent)
+    public HelicopterSeat(float dist, int index, EntityHelicopterBase parent)
     {
         super(parent.getEntityWorld());
         setEntityBoundingBox(AxisAlignedBB.fromBounds(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY));
-        this.relX = relX;
-        this.relY = relY;
-        this.relZ = relZ;
+        this.dist = dist;
         this.index = index;
         this.parent = checkNotNull(parent, "parent");
         parentID = parent.getHeliID();
@@ -70,12 +67,13 @@ public class HelicopterSeat extends Entity implements IEntityAdditionalSpawnData
             parent.seats[index] = this;
 
             float angle = parent.rotationYaw;
-            double cos = Math.cos(Math.toRadians(angle));
-            double sine = Math.sin(Math.toRadians(angle));
-            double nx = getRelX() * sine;
-            double nz = getRelZ() * cos;
+
+            float nx = -MathHelper.sin(parent.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(parent.rotationPitch / 180.0F * (float)Math.PI) * dist;
+            float nz = MathHelper.cos(parent.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(parent.rotationPitch / 180.0F * (float)Math.PI) * dist;
+            float ny = -MathHelper.sin((parent.rotationPitch)) / 180.0F * (float)Math.PI * dist;
+
             this.posX = parent.posX + nx;
-            this.posY = parent.posY + getRelY();
+            this.posY = parent.posY + ny + 0.4f;
             this.posZ = parent.posZ + nz;
             if (parent.isDead)
             {
@@ -91,10 +89,7 @@ public class HelicopterSeat extends Entity implements IEntityAdditionalSpawnData
     @Override
     protected void readEntityFromNBT(NBTTagCompound tagCompound)
     {
-        relX = tagCompound.getFloat("relX");
-        relY = tagCompound.getFloat("relY");
-        relZ = tagCompound.getFloat("relZ");
-
+        dist = tagCompound.getFloat("dist");
         index = tagCompound.getInteger("index");
 
         parentID = UUID.fromString(tagCompound.getString("heliID"));
@@ -123,28 +118,10 @@ public class HelicopterSeat extends Entity implements IEntityAdditionalSpawnData
     @Override
     protected void writeEntityToNBT(NBTTagCompound tagCompound)
     {
-        tagCompound.setFloat("relX", relX);
-        tagCompound.setFloat("relY", relY);
-        tagCompound.setFloat("relZ", relZ);
-
+        tagCompound.setFloat("dist", dist);
         tagCompound.setInteger("index", index);
 
         tagCompound.setString("heliID", parentID.toString());
-    }
-
-    public float getRelX()
-    {
-        return relX;
-    }
-
-    public float getRelY()
-    {
-        return relY;
-    }
-
-    public float getRelZ()
-    {
-        return relZ;
     }
 
     public EntityHelicopterBase getParent()
@@ -179,17 +156,13 @@ public class HelicopterSeat extends Entity implements IEntityAdditionalSpawnData
     public void writeSpawnData(ByteBuf buffer)
     {
         ByteBufUtils.writeUTF8String(buffer, parentID.toString());
-        buffer.writeFloat(relX);
-        buffer.writeFloat(relY);
-        buffer.writeFloat(relZ);
+        buffer.writeFloat(dist);
     }
 
     @Override
     public void readSpawnData(ByteBuf additionalData)
     {
         parentID = UUID.fromString(ByteBufUtils.readUTF8String(additionalData));
-        relX = additionalData.readFloat();
-        relY = additionalData.readFloat();
-        relZ = additionalData.readFloat();
+        dist = additionalData.readFloat();
     }
 }
