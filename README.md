@@ -14,6 +14,7 @@ JTGhawk137
 Reuxertz  
 jglrxavpok  
 TheLarsinator
+Kaneras
 
 ## Artists
 TheLieutenantGhost  
@@ -36,7 +37,7 @@ You must have [Gradle](http://gradle.org/) installed before you can begin.
 First, clone this repository.
 Run in console or Git Bash:
 ```
-git clone https://github.com/TimelessModdingTeam/JurassiCraft2
+git clone https://bitbucket.org/timelessmodding/jurassicraft2
 ```
 
 When that's done, go into the directory and run in the console:
