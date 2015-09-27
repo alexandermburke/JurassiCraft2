@@ -1,0 +1,24 @@
+{
+    "version": 0,
+    "poses": {
+        "IDLE": [
+            {"pose": "tyrannosaurus_adolescent_idle", "time": 20}
+        ],
+        "LOOKING_LEFT": [
+               {"pose": "tyrannosaurus_adolescent_looking_left", "time": 100}, 
+               {"pose": "tyrannosaurus_adolescent_looking_left", "time": 80}, 
+               {"pose": "tyrannosaurus_adolescent_idle", "time": 100}
+        ],
+        "LOOKING_RIGHT": [
+               {"pose": "tyrannosaurus_adolescent_looking_right", "time": 100}, 
+               {"pose": "tyrannosaurus_adolescent_looking_right", "time": 80}, 
+               {"pose": "tyrannosaurus_adolescent_idle", "time": 100}
+        ],
+        "SNIFFING": [
+               {"pose": "tyrannosaurus_adolescent_rearing_1", "time": 40}, 
+               {"pose": "tyrannosaurus_adolescent_rearing_2", "time": 100}, 
+               {"pose": "tyrannosaurus_adolescent_rearing_2", "time": 80}, 
+               {"pose": "tyrannosaurus_adolescent_idle", "time": 100}
+        ]      
+    }
+}

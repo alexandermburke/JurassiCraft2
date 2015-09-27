@@ -1,18 +1,6 @@
 package net.timeless.animationapi.client;
 
 import com.google.gson.Gson;
-import com.mojang.realmsclient.util.Pair;
-
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
@@ -22,10 +10,25 @@ import net.timeless.unilib.Unilib;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+import org.jurassicraft.common.entity.base.EnumGrowthStage;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 @SideOnly(Side.CLIENT)
 public abstract class DinosaurAnimator implements IModelAnimator
@@ -58,6 +61,29 @@ public abstract class DinosaurAnimator implements IModelAnimator
         }
     }
 
+    private static class PreloadedModelData
+    {
+        public PreloadedModelData()
+        {
+            this(null, null);
+        }
+
+        public PreloadedModelData(MowzieModelRenderer[][] renderers, Map<AnimID, int[][]> animations)
+        {
+            if (renderers == null)
+            {
+                renderers = new MowzieModelRenderer[0][];
+            }
+            if (animations == null)
+            {
+                animations = newEmptyMap();
+            }
+            this.models = renderers;
+            this.animations = animations;
+        }
+        MowzieModelRenderer[][] models;
+        Map<AnimID, int[][]> animations;
+    }
     private static final Gson GSON = new Gson();
 
     public static EnumMap<AnimID, int[][]> newEmptyMap()
@@ -66,9 +92,8 @@ public abstract class DinosaurAnimator implements IModelAnimator
         return map;
     }
 
-    private MowzieModelRenderer[][] models;
-    private Map<AnimID, int[][]> animations;
-    protected Map<Integer, JabelarAnimationHelper> entityIDToAnimation = new HashMap<Integer, JabelarAnimationHelper>();
+    private Map<EnumGrowthStage, PreloadedModelData> modelData;
+    protected Map<Integer, Map<EnumGrowthStage, JabelarAnimationHelper>> entityIDToAnimation = new HashMap<>();
 
     /**
      * Loads the model, etc... for the dinosaur given.
@@ -79,27 +104,59 @@ public abstract class DinosaurAnimator implements IModelAnimator
     public DinosaurAnimator(Dinosaur dino)
     {
         String name = dino.getName(0).toLowerCase(); // this should match name of your resource package and files
-        String dinoDir = "/assets/jurassicraft/models/entities/" + name + "/adult/";
-        String dinoDefinition = dinoDir + name + "_adult.json";
-        this.models = new MowzieModelRenderer[0][]; // Pre-init with an empty map and no models
-        this.animations = newEmptyMap();
-
-        Reader reader = new InputStreamReader(Unilib.class.getResourceAsStream(dinoDefinition));
+        this.modelData = new EnumMap<>(EnumGrowthStage.class);
+        URI dinoDirURI = null;
         try
         {
+             dinoDirURI = new URI("/assets/jurassicraft/models/entities/" + name + "/");
+        }
+        catch (URISyntaxException urise)
+        {
+            JurassiCraft.instance.getLogger().fatal("Illegal URI /assets/jurassicraft/models/entities/" + name + "/", urise);
+            return;
+        }
+
+        for (EnumGrowthStage growth : EnumGrowthStage.values())
+        {
+            try
+            {
+                this.modelData.put(growth, loadDinosaur(dinoDirURI, name, growth));
+            }
+            catch (Exception e)
+            {
+                // TODO: should this be caught here? We can't continue, because it breaks the contract that every ...
+                // model has at least the IDLE sequence defined
+                JurassiCraft.instance.getLogger().fatal("Failed to parse growth state " + growth + " for dinosaur " + name, e);
+                this.modelData.put(growth, new PreloadedModelData());
+            }
+        }
+    }
+
+    /**
+     * Loads a specific growth state
+     *
+     * @param dinoDir
+     *            the base directory
+     * @param name
+     *            the name of the dino
+     * @param growth
+     *            the growthstate to load
+     * @throws IOException
+     */
+    private static PreloadedModelData loadDinosaur(URI dinoDir, String name, EnumGrowthStage growth) throws IOException
+    {
+        String growthName = growth.name().toLowerCase(Locale.ROOT);
+        URI growthSensitiveDir = dinoDir.resolve(growthName + "/");
+        URI definitionFile = growthSensitiveDir.resolve(name + "_" + growthName + ".json");
+        InputStream dinoDef = Unilib.class.getResourceAsStream(definitionFile.toString());
+        if(dinoDef == null)
+            throw new IllegalArgumentException("No model definition for the dino " + name + " with grow-state " + growth + " exists. Expected at " + definitionFile);
+        try (Reader reader = new InputStreamReader(dinoDef))
+        {
             AnimationsDTO rawAnimations = GSON.fromJson(reader, AnimationsDTO.class);
-            URI dinoDirURI = new URI(dinoDir);
-            Pair<MowzieModelRenderer[][], Map<AnimID, int[][]>> posings = getPosedModels(dinoDirURI, rawAnimations);
-            this.models = posings.first();
-            this.animations = posings.second();
-        }
-        catch (URISyntaxException e)
-        {
-            JurassiCraft.instance.getLogger().fatal("Invalid URI: " + dinoDir, e);
-        }
-        catch (Exception e)
-        {
-            JurassiCraft.instance.getLogger().fatal("Failed to parse the dinosaur animation file " + dinoDefinition, e);
+            PreloadedModelData data = getPosedModels(growthSensitiveDir, rawAnimations);
+            JurassiCraft.instance.getLogger().debug("Successfully loaded " + name + "(" + growth + ") from " + definitionFile);
+            return data;
         }
     }
 
@@ -110,7 +167,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
      * @param anims the read animations
      * @return
      */
-    private Pair<MowzieModelRenderer[][], Map<AnimID, int[][]>> getPosedModels(URI dinoDirURI, AnimationsDTO anims)
+    private static PreloadedModelData getPosedModels(URI dinoDirURI, AnimationsDTO anims)
     {
         // Check if the file is legal: -> at least one pose for the IDLE animation
         if (anims == null || anims.poses == null || anims.poses.get(AnimID.IDLE.name()) == null
@@ -132,7 +189,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
                 }
                 if (pose.pose == null)
                     throw new IllegalArgumentException("Every pose must define a pose file");
-                String resolvedRes = normalize(dinoDirURI, pose.pose);
+                String resolvedRes = resolve(dinoDirURI, pose.pose);
                 int index = posedModelResources.indexOf(resolvedRes);
                 if (index == -1)
                 { // Not in the list
@@ -145,7 +202,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
                 }
             }
         }
-        assert (posedModelResources.size() > 0);
+        assert (posedModelResources.size() > 0); // anims.poses.get(AnimID.IDLE.name()).length != 0
         MowzieModelRenderer[][] posedCubes = new MowzieModelRenderer[posedModelResources.size()][];
         Map<AnimID, int[][]> animationSequences = newEmptyMap();
         // find all names we need
@@ -185,10 +242,10 @@ public abstract class DinosaurAnimator implements IModelAnimator
             }
             animationSequences.put(animID, poseSequence);
         }
-        return Pair.of(posedCubes, animationSequences);
+        return new PreloadedModelData(posedCubes, animationSequences);
     }
 
-    private String normalize(URI dinoDirURI, String posePath)
+    private static String resolve(URI dinoDirURI, String posePath)
     {
         URI uri = dinoDirURI.resolve(posePath);
         return uri.toString();
@@ -197,12 +254,20 @@ public abstract class DinosaurAnimator implements IModelAnimator
     private JabelarAnimationHelper forEntity(EntityDinosaur entity, ModelDinosaur model)
     {
         Integer id = entity.getEntityId();
-        JabelarAnimationHelper render = entityIDToAnimation.get(id);
+        EnumGrowthStage growth = entity.getGrowthStage();
+        Map<EnumGrowthStage, JabelarAnimationHelper> growthToRender = entityIDToAnimation.get(id);
+        if (growthToRender == null)
+        {
+            growthToRender = new EnumMap<>(EnumGrowthStage.class);
+            entityIDToAnimation.put(id, growthToRender);
+        }
+        JabelarAnimationHelper render = growthToRender.get(growth);
         if (render == null)
         {
-            int cubes = models.length > 0 ? models[0].length : 0;
-            render = new JabelarAnimationHelper(entity, model, cubes, models, animations, true, 1.0f);
-            entityIDToAnimation.put(id, render);
+            PreloadedModelData growthModel = modelData.get(growth);
+            int cubes = growthModel.models.length > 0 ? growthModel.models[0].length : 0;
+            render = new JabelarAnimationHelper(entity, model, cubes, growthModel.models, growthModel.animations, true, 1.0f);
+            growthToRender.put(growth, render);
         }
         return render;
     }

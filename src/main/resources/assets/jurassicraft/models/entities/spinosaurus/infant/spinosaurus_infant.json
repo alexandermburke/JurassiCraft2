@@ -1,0 +1,15 @@
+{
+    "version": 0,
+    "poses": {
+        "IDLE": [
+            {"pose": "spinosaurus_infant_idle", "time": 20}
+        ],
+        "ROARING": [
+               {"pose": "spinosaurus_infant_roaring_1", "time": 100}, 
+               {"pose": "spinosaurus_infant_roaring_2", "time": 80}, 
+               {"pose": "spinosaurus_infant_roaring_3", "time": 80}, 
+               {"pose": "spinosaurus_infant_roaring_3", "time": 180}, 
+               {"pose": "spinosaurus_infant_idle", "time": 100}
+        ]
+    }
+}
