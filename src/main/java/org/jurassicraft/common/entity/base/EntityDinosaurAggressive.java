@@ -9,6 +9,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import net.timeless.animationapi.AnimationAPI;
+import net.timeless.animationapi.client.AnimID;
 import org.jurassicraft.common.entity.ai.EntityAIEatMeat;
 
 public class EntityDinosaurAggressive extends EntityDinosaur implements IMob

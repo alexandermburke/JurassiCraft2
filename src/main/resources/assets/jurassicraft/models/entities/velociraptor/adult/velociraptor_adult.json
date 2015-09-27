@@ -4,6 +4,18 @@
         "IDLE": [
             {"pose": "velociraptor_adult_idle", "time": 20}
         ],
+		"DYING": [
+            {"pose": "velociraptor_adult_dying_1", "time": 50}, {"pose": "velociraptor_adult_dying_1", "time": 10},
+			{"pose": "velociraptor_adult_dying_2", "time": 40}, {"pose": "velociraptor_adult_dying_2", "time": 20}
+        ],
+		"DRINKING": [
+            {"pose": "velociraptor_adult_drinking_1", "time": 50}, {"pose": "velociraptor_adult_drinking_1", "time": 10},
+			{"pose": "velociraptor_adult_drinking_2", "time": 30}, {"pose": "velociraptor_adult_drinking_2", "time": 10},
+			{"pose": "velociraptor_adult_drinking_1", "time": 30}, {"pose": "velociraptor_adult_drinking_1", "time": 10},
+			{"pose": "velociraptor_adult_drinking_2", "time": 30}, {"pose": "velociraptor_adult_drinking_2", "time": 10},
+			{"pose": "velociraptor_adult_drinking_1", "time": 30}, {"pose": "velociraptor_adult_drinking_1", "time": 10},
+			{"pose": "velociraptor_adult_idle", "time": 80}
+        ],
 		"EATING": [
 			{"pose": "velociraptor_adult_eat_1", "time": 20}, {"pose": "velociraptor_adult_eat_1", "time": 10},
 			{"pose": "velociraptor_adult_eat_2", "time": 20}, {"pose": "velociraptor_adult_eat_2", "time": 10},

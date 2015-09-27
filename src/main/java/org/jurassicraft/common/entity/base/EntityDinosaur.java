@@ -747,7 +747,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     @Override
     public void onDeath(DamageSource parDamageSource)
     {
-        AnimationAPI.sendAnimPacket(this, AnimID.INJURED);
+        AnimationAPI.sendAnimPacket(this, AnimID.DYING);
         super.onDeath(parDamageSource);
     }
 
