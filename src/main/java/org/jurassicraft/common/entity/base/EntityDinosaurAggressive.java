@@ -11,6 +11,7 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.client.AnimID;
+
 import org.jurassicraft.common.entity.ai.EntityAIEatMeat;
 
 public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
@@ -24,6 +25,7 @@ public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
     /**
      * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
      */
+    @Override
     public void onLivingUpdate()
     {
         this.updateArmSwingProgress();
@@ -34,6 +36,7 @@ public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
     /**
      * Called when the entity is attacked.
      */
+    @Override
     public boolean attackEntityFrom(DamageSource source, float amount)
     {
         if (this.isEntityInvulnerable(source))
@@ -51,6 +54,7 @@ public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
         }
     }
 
+    @Override
     public boolean attackEntityAsMob(Entity entity)
     {
         float damage = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
@@ -62,43 +66,49 @@ public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
             knockback += EnchantmentHelper.getKnockbackModifier(this);
         }
 
-        boolean attacked = entity.attackEntityFrom(DamageSource.causeMobDamage(this), damage);
+        boolean attackSuccessful = entity.attackEntityFrom(DamageSource.causeMobDamage(this), damage);
 
-        if (attacked)
+        if (attackSuccessful)
         {
             if (knockback > 0)
             {
-                entity.addVelocity((double) (-MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F) * (float) knockback * 0.5F), 0.1D, (double) (MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F) * (float) knockback * 0.5F));
+                entity.addVelocity(-MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F) * knockback * 0.5F, 0.1D, MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F) * knockback * 0.5F);
                 this.motionX *= 0.6D;
                 this.motionZ *= 0.6D;
             }
 
             this.applyEnchantments(this, entity);
+            
+            AnimationAPI.sendAnimPacket(this, AnimID.ATTACKING);
         }
 
-        return attacked;
+        return attackSuccessful;
     }
 
     /**
      * Checks if the entity's current position is a valid location to spawn this entity.
      */
+    @Override
     public boolean getCanSpawnHere()
     {
         return this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && super.getCanSpawnHere();
     }
 
+    @Override
     protected void applyEntityAttributes()
     {
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
         super.applyEntityAttributes();
     }
 
+    @Override
     public void updateCreatureData()
     {
         super.updateCreatureData();
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(transitionFromAge(dinosaur.getBabyStrength(), dinosaur.getAdultStrength()));
     }
 
+    @Override
     protected boolean canDropLoot()
     {
         return true;
