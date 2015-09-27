@@ -38,7 +38,7 @@ public class CreativeTabJurassiCraftEggs extends CreativeTabs
     @SideOnly(Side.CLIENT)
     public ItemStack getIconItemStack()
     {
-        return new ItemStack(getTabIconItem(), 1, metas[((int) ((JurassiCraft.timer / 20) % metas.length))]);
+        return new ItemStack(getTabIconItem(), 1, metas[((int) ((JurassiCraft.timerTicks / 20) % metas.length))]);
     }
 
     @Override

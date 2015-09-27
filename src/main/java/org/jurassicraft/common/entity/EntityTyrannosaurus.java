@@ -55,7 +55,7 @@ public class EntityTyrannosaurus extends EntityDinosaurAggressive implements IAn
     @Override
     public String getLivingSound()
     {
-        JurassiCraft.instance.getLogger().info("Getting living sound");
+        JurassiCraft.instance.getLogger().debug("Getting living sound");
         return randomSound(roarSounds);
     }
 

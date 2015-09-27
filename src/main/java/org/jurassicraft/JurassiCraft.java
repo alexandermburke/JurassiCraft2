@@ -6,6 +6,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+
 import org.apache.logging.log4j.Logger;
 import org.jurassicraft.common.achievements.JCAchievements;
 import org.jurassicraft.common.block.JCBlockRegistry;
@@ -29,7 +30,8 @@ public class JurassiCraft
 
     @Instance(JurassiCraft.MODID)
     public static JurassiCraft instance;
-    public static long timer;
+    public static long timerTicks;
+    public static long timerNanoseconds;
 
     private Logger logger;
 
@@ -49,6 +51,7 @@ public class JurassiCraft
     {
         logger = event.getModLog();
         logger.info("Loading JurassiCraft...");
+        timerNanoseconds = System.nanoTime();
         proxy.preInit();
     }
 
@@ -73,5 +76,12 @@ public class JurassiCraft
     public boolean isDebugging()
     {
         return "${version}".equals("${" + "version" + "}");
+    }
+    
+    public long getNanoTimeInterval()
+    {
+        long interval = System.nanoTime()-timerNanoseconds;
+        timerNanoseconds = 0;
+        return interval;
     }
 }

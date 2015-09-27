@@ -293,10 +293,10 @@ public class JabelarAnimationHelper
     // boolean returned indicates if tween was finished
     public boolean incrementTweenTick()
     {
+//        JurassiCraft.instance.getLogger().info("current tween step = "+currentTickInTween);
         currentTickInTween++;
         if (currentTickInTween >= numTicksInTween)
             return true;
-        // JurassiCraft.instance.getLogger().debug("current tween step = "+currentTickInTween);
         return false;
     }
 
@@ -337,12 +337,17 @@ public class JabelarAnimationHelper
         }
         else
         {
+            JurassiCraft.instance.getLogger().debug("Setting new sequence to "+parSequenceIndex);
             currentSequence = parSequenceIndex;
         }
 
-        numPosesInSequence = mapOfSequences.get(currentSequence).length;
         currentPose = 0;
-        currentTickInTween = 0;
+        initPose();
+        initTween();
+        if (currentSequence != AnimID.IDLE)
+            JurassiCraft.instance.getLogger().info("current sequence for entity ID " + theEntity.getEntityId() + " is " + currentSequence
+                    + " out of " + mapOfSequences.size() + " and current pose " + currentPose + " out of "
+                    + mapOfSequences.get(currentSequence).length + " with " + numTicksInTween + " ticks in tween");
     }
 
     public int getCurrentPose()

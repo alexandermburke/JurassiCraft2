@@ -6,7 +6,6 @@ import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.event.entity.PlaySoundAtEntityEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import net.timeless.animationapi.client.AnimID;
 
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.gui.GuiPaleoTab;
@@ -22,22 +21,23 @@ public class ClientEventHandler
     @SubscribeEvent
     public void event(PlaySoundAtEntityEvent event)
     {
-        if (event.entity instanceof EntityDinosaur)
-        {
-            EntityDinosaur theEntityDinosaur = (EntityDinosaur)event.entity;
-            
-            JurassiCraft.instance.getLogger().info("Playing sound "+event.name+" at entity "+event.entity.getEntityId());
-            if (event.name.contains("roaring"))
-            {
-                theEntityDinosaur.setAnimID(AnimID.ROARING);
-            }
-        }
+//        if (event.entity instanceof EntityDinosaur)
+//        {
+//            EntityDinosaur theEntityDinosaur = (EntityDinosaur)event.entity;
+//            
+//            if (event.name.contains("roaring"))
+//            {
+//                JurassiCraft.instance.getNanoTimeInterval();
+//                JurassiCraft.instance.getLogger().info("Playing sound "+event.name+" at entity "+event.entity.getEntityId());
+//                theEntityDinosaur.setAnimID(AnimID.ROARING);
+//            }
+//        }
     }
 
     @SubscribeEvent
     public void tick(TickEvent.ClientTickEvent event)
     {
-        JurassiCraft.timer++;
+        JurassiCraft.timerTicks++;
 
         if (mc.currentScreen instanceof GuiPaleoTab)
         {
