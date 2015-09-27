@@ -112,7 +112,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
         }
         catch (URISyntaxException urise)
         {
-            JurassiCraft.instance.getLogger().fatal("Illegal URI " + "/assets/jurassicraft/models/entities/" + name + "/", urise);
+            JurassiCraft.instance.getLogger().fatal("Illegal URI /assets/jurassicraft/models/entities/" + name + "/", urise);
             return;
         }
 
@@ -155,7 +155,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
         {
             AnimationsDTO rawAnimations = GSON.fromJson(reader, AnimationsDTO.class);
             PreloadedModelData data = getPosedModels(growthSensitiveDir, rawAnimations);
-            JurassiCraft.instance.getLogger().debug("Successfully loaded " + name + "(" + growth + ") from " + dinoDef);
+            JurassiCraft.instance.getLogger().debug("Successfully loaded " + name + "(" + growth + ") from " + definitionFile);
             return data;
         }
     }

@@ -713,7 +713,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
 
         if (percent > 75)
         {
-            stage = EnumGrowthStage.MATURE;
+            stage = EnumGrowthStage.ADULT;
         }
         else if (percent > 50)
         {
