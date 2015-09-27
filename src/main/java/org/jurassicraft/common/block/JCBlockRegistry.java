@@ -47,8 +47,8 @@ public class JCBlockRegistry
     public static BlockIncubator incubator;
     public static BlockDNAExtractor dna_extractor;
 
-    public static BlockAmber amber_ore;
-    public static BlockIceShard ice_shard;
+    public static Block amber_ore;
+    public static Block ice_shard;
 
     public static Block gypsum_cobblestone;
     public static Block gypsum_stone;
@@ -92,10 +92,10 @@ public class JCBlockRegistry
         cultivate_bottom = new BlockCultivateBottom();
         cultivate_top = new BlockCultivateTop();
 
-        amber_ore = new BlockAmber();
-        ice_shard = new BlockIceShard();
+        amber_ore = addBlock(new BlockAmber(), "amber_ore");
+        ice_shard = addBlock(new BlockIceShard(), "ice_shard");
 
-        gypsum_stone = new BlockGypsumStone().setHardness(1.5F).setResistance(10.0F);
+        gypsum_stone = addBlock(new BlockGypsumStone().setHardness(1.5F).setResistance(10.0F), "gypsum_stone");
         gypsum_cobblestone = new BlockBasic(Material.rock, "Gypsum Cobblestone").setHardness(1.5F).setResistance(10.0F);
         gypsum_bricks = new BlockBasic(Material.rock, "Gypsum Bricks").setHardness(1.5F).setResistance(10.0F);
         reinforced_stone = new BlockBasic(Material.rock, "Reinforced Stone").setHardness(2.0F).setResistance(15.0F);
@@ -135,10 +135,6 @@ public class JCBlockRegistry
             registerBlock(encasedFossil, "Encased Fossil " + i);
         }
 
-        registerBlock(amber_ore, "Amber Ore");
-        registerBlock(ice_shard, "Ice Shard");
-
-        registerBlock(gypsum_stone, "Gypsum Stone");
         registerBlock(gypsum_cobblestone, "Gypsum Cobblestone");
         registerBlock(gypsum_bricks, "Gypsum Bricks");
 
@@ -214,6 +210,12 @@ public class JCBlockRegistry
         registerBlockTileEntity(TileDNAHybridizer.class, dna_hybridizer, "DNA Hybridizer");
         registerBlockTileEntity(TileDNACombinator.class, dna_combinator, "DNA Combinator");
         registerBlockTileEntity(TileIncubator.class, incubator, "Incubator");
+    }
+    
+    private Block addBlock(Block block, String unlocalizedName) {
+    	block.setUnlocalizedName(unlocalizedName);
+    	GameRegistry.registerBlock(block, unlocalizedName);
+    	return block;
     }
 
     public BlockFossil getFossilBlock(Dinosaur dinosaur)
