@@ -38,14 +38,14 @@ public class JCBlockRegistry
     public static List<BlockFossil> fossils;
     public static List<BlockEncasedFossil> encased_fossils;
 
-    public static BlockCleaningStation cleaning_station;
-    public static BlockFossilGrinder fossil_grinder;
-    public static BlockDnaSequencer dna_sequencer;
-    public static BlockDnaSynthesizer dna_synthesizer;
-    public static BlockEmbryonicMachine embryonic_machine;
-    public static BlockEmbryoCalcificationMachine embryo_calcification_machine;
-    public static BlockIncubator incubator;
-    public static BlockDNAExtractor dna_extractor;
+    public static Block cleaning_station;
+    public static Block fossil_grinder;
+    public static Block dna_sequencer;
+    public static Block dna_synthesizer;
+    public static Block embryonic_machine;
+    public static Block embryo_calcification_machine;
+    public static Block incubator;
+    public static Block dna_extractor;
 
     public static Block amber_ore;
     public static Block ice_shard;
@@ -59,19 +59,19 @@ public class JCBlockRegistry
     public static Block reinforced_stone;
     public static Block reinforced_bricks;
 
-    public static BlockSmallRoyalFern small_royal_fern;
-    public static BlockSmallChainFern small_chain_fern;
-    public static BlockSmallCycad small_cycad;
+    public static Block small_royal_fern;
+    public static Block small_chain_fern;
+    public static Block small_cycad;
 
-    public static BlockCultivate cultivate_top;
-    public static BlockCultivate cultivate_bottom;
+    public static Block cultivate_top;
+    public static Block cultivate_bottom;
 
-    public static BlockCarnivoreFeeder carnivore_feeder;
-    public static BlockBennettitaleanCycadeoidea bennettitalean_cycadeoidea;
-    public static BlockCryPansy cry_pansy;
-    public static BlockScalyTreeFern scaly_tree_fern;
-    public static BlockCycadZamites cycad_zamites;
-    public static BlockDicksonia dicksonia;
+    public static Block carnivore_feeder;
+    public static Block bennettitalean_cycadeoidea;
+    public static Block cry_pansy;
+    public static Block scaly_tree_fern;
+    public static Block cycad_zamites;
+    public static Block dicksonia;
 
     public void register()
     {
