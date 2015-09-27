@@ -37,7 +37,7 @@ public class ItemHelicopter extends Item
         helicopter.setPosition(pos.getX() + hitX, pos.getY() + hitY, pos.getZ() + hitZ);
         worldIn.spawnEntityInWorld(helicopter);
 
-        HelicopterSeat pilotSeat = new HelicopterSeat(0f, 0f, 1.3f, EntityHelicopterBase.PILOT_SEAT, helicopter);
+        HelicopterSeat pilotSeat = new HelicopterSeat(1.3f, EntityHelicopterBase.PILOT_SEAT, helicopter);
         helicopter.seats[EntityHelicopterBase.PILOT_SEAT] = pilotSeat;
 
         pilotSeat.setPosition(helicopter.posX, helicopter.posY, helicopter.posZ);

@@ -4,6 +4,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.dinosaur.DinosaurTyrannosaurus;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
@@ -77,10 +78,10 @@ public class AnimationTyrannosaurusRex extends DinosaurAnimator
         MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[]{handLeft, lowerArmLeft, upperArmLeft};
         MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[]{handRight, lowerArmRight, upperArmRight};
 
-        parModel.faceTarget(stomach, 6.0F, rotationYaw, rotationPitch);
-        parModel.faceTarget(chest, 6.0F, rotationYaw, rotationPitch);
-        parModel.faceTarget(head, 3.0F, rotationYaw, rotationPitch);
-        parModel.faceTarget(neck1, 3.0F, rotationYaw, rotationPitch);
+//        parModel.faceTarget(stomach, 6.0F, rotationYaw, rotationPitch);
+//        parModel.faceTarget(chest, 6.0F, rotationYaw, rotationPitch);
+//        parModel.faceTarget(head, 3.0F, rotationYaw, rotationPitch);
+//        parModel.faceTarget(neck1, 3.0F, rotationYaw, rotationPitch);
 
         parModel.bob(waist, 1F * globalSpeed, height, false, f, f1);
         parModel.bob(leftThigh, 1F * globalSpeed, height, false, f, f1);

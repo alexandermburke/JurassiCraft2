@@ -3,8 +3,10 @@ package org.jurassicraft.client.event;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraftforge.client.event.RenderLivingEvent;
+import net.minecraftforge.event.entity.PlaySoundAtEntityEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.gui.GuiPaleoTab;
 import org.jurassicraft.client.gui.app.GuiApp;
@@ -17,9 +19,25 @@ public class ClientEventHandler
     private static final Minecraft mc = Minecraft.getMinecraft();
 
     @SubscribeEvent
+    public void event(PlaySoundAtEntityEvent event)
+    {
+//        if (event.entity instanceof EntityDinosaur)
+//        {
+//            EntityDinosaur theEntityDinosaur = (EntityDinosaur)event.entity;
+//            
+//            if (event.name.contains("roaring"))
+//            {
+//                JurassiCraft.instance.getNanoTimeInterval();
+//                JurassiCraft.instance.getLogger().info("Playing sound "+event.name+" at entity "+event.entity.getEntityId());
+//                theEntityDinosaur.setAnimID(AnimID.ROARING);
+//            }
+//        }
+    }
+
+    @SubscribeEvent
     public void tick(TickEvent.ClientTickEvent event)
     {
-        JurassiCraft.timer++;
+        JurassiCraft.timerTicks++;
 
         if (mc.currentScreen instanceof GuiPaleoTab)
         {
@@ -40,9 +58,9 @@ public class ClientEventHandler
         if (event.entity instanceof EntityDinosaur && event.renderer instanceof IDinosaurRenderer)
         {
             IDinosaurRenderer dinoRenderer = (IDinosaurRenderer) event.renderer;
-            EntityDinosaur dinosaur = (EntityDinosaur) event.entity;
+            EntityDinosaur entityDinosaur = (EntityDinosaur) event.entity;
 
-            dinoRenderer.setModel(dinoRenderer.getRenderDef().getModel(dinosaur.getGeneticVariant(), dinosaur.getGrowthStage()));
+            dinoRenderer.setModel(dinoRenderer.getRenderDef().getModel(entityDinosaur.getGeneticVariant(), entityDinosaur.getGrowthStage()));
         }
     }
 
