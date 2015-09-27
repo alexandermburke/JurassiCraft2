@@ -1,16 +1,9 @@
 package org.jurassicraft.common.entity.base;
 
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import net.timeless.animationapi.AnimationAPI;
-import net.timeless.animationapi.client.AnimID;
 
 import org.jurassicraft.common.entity.ai.EntityAIEatMeat;
 
@@ -31,58 +24,6 @@ public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
         this.updateArmSwingProgress();
 
         super.onLivingUpdate();
-    }
-
-    /**
-     * Called when the entity is attacked.
-     */
-    @Override
-    public boolean attackEntityFrom(DamageSource source, float amount)
-    {
-        if (this.isEntityInvulnerable(source))
-        {
-            return false;
-        }
-        else if (super.attackEntityFrom(source, amount))
-        {
-            Entity entity = source.getEntity();
-            return this.riddenByEntity != entity && this.ridingEntity != entity ? true : true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    @Override
-    public boolean attackEntityAsMob(Entity entity)
-    {
-        float damage = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
-        int knockback = 0;
-
-        if (entity instanceof EntityLivingBase)
-        {
-            damage += EnchantmentHelper.func_152377_a(this.getHeldItem(), ((EntityLivingBase) entity).getCreatureAttribute());
-            knockback += EnchantmentHelper.getKnockbackModifier(this);
-        }
-
-        boolean attackSuccessful = entity.attackEntityFrom(DamageSource.causeMobDamage(this), damage);
-
-        if (attackSuccessful)
-        {
-            if (knockback > 0)
-            {
-                entity.addVelocity(-MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F) * knockback * 0.5F, 0.1D, MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F) * knockback * 0.5F);
-                this.motionX *= 0.6D;
-                this.motionZ *= 0.6D;
-            }
-
-            this.applyEnchantments(this, entity);
-            
-            AnimationAPI.sendAnimPacket(this, AnimID.ATTACKING);
-        }
-
-        return attackSuccessful;
     }
 
     /**

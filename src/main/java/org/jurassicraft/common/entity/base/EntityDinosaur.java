@@ -5,7 +5,10 @@ import io.netty.buffer.ByteBuf;
 import java.util.HashSet;
 import java.util.Set;
 
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -20,6 +23,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
@@ -127,7 +131,59 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         hasTracker = false;
         return false;
     }
+    
+    @Override
+    public boolean attackEntityAsMob(Entity entity)
+    {
+        AnimationAPI.sendAnimPacket(this, AnimID.ATTACKING);
 
+        float damage = (float) getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
+        int knockback = 0;
+
+        if (entity instanceof EntityLivingBase)
+        {
+            damage += EnchantmentHelper.func_152377_a(getHeldItem(), ((EntityLivingBase) entity).getCreatureAttribute());
+            knockback += EnchantmentHelper.getKnockbackModifier(this);
+        }
+
+        boolean attacked = entity.attackEntityFrom(DamageSource.causeMobDamage(this), damage);
+
+        if (attacked)
+        {
+            if (knockback > 0)
+            {
+                entity.addVelocity(-MathHelper.sin(rotationYaw * (float) Math.PI / 180.0F) * knockback * 0.5F, 0.1D, MathHelper.cos(rotationYaw * (float) Math.PI / 180.0F) * knockback * 0.5F);
+                motionX *= 0.6D;
+                motionZ *= 0.6D;
+            }
+
+            applyEnchantments(this, entity);
+        }
+
+        return attacked;
+    }
+
+    /**
+     * Called when the entity is attacked.
+     */
+    @Override
+    public boolean attackEntityFrom(DamageSource source, float amount)
+    {
+        if (this.isEntityInvulnerable(source))
+        {
+            return false;
+        }
+        else if (super.attackEntityFrom(source, amount))
+        {
+            Entity entity = source.getEntity();
+            return this.riddenByEntity != entity && this.ridingEntity != entity ? true : true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
     @Override
     public void playLivingSound()
     {
