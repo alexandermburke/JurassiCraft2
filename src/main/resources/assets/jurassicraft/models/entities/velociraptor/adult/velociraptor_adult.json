@@ -3,6 +3,15 @@
     "poses": {
         "IDLE": [
             {"pose": "velociraptor_adult_idle", "time": 20}
-        ]
+        ],
+		"EATING": [
+			{"pose": "velociraptor_adult_eat_1", "time": 20}, {"pose": "velociraptor_adult_eat_1", "time": 10},
+			{"pose": "velociraptor_adult_eat_2", "time": 20}, {"pose": "velociraptor_adult_eat_2", "time": 10},
+			{"pose": "velociraptor_adult_eat_3", "time": 20},
+			{"pose": "velociraptor_adult_eat_2", "time": 20},
+			{"pose": "velociraptor_adult_eat_3", "time": 20},
+			{"pose": "velociraptor_adult_eat_2", "time": 20},
+			{"pose": "velociraptor_adult_idle", "time": 40}
+		]
      }
 }
