@@ -70,7 +70,6 @@ public class JabelarAnimationHelper
 
     public void performJabelarAnimations(ModelDinosaur parModel)
     {
-//        passedInModelRendererArray = convertPassedInModelToModelRendererArray(parModel);
         // Allow interruption of the animation if it is a new animation and not currently dying
         if (theEntity.getAnimID() != currentSequence && theEntity.getAnimID() != AnimID.DYING)
         {
@@ -170,10 +169,10 @@ public class JabelarAnimationHelper
         numTicksInTween = mapOfSequences.get(currentSequence)[currentPose][1];
         currentTickInTween = 0;
 
-//        if (currentSequence != AnimID.IDLE)
-//            JurassiCraft.instance.getLogger().debug("current sequence for entity ID " + theEntity.getEntityId() + " is " + currentSequence
-//                    + " out of " + mapOfSequences.size() + " and current pose " + currentPose + " out of "
-//                    + mapOfSequences.get(currentSequence).length + " with " + numTicksInTween + " ticks in tween");
+        if (currentSequence != AnimID.IDLE)
+            JurassiCraft.instance.getLogger().info("current sequence for entity ID " + theEntity.getEntityId() + " is " + currentSequence
+                    + " out of " + mapOfSequences.size() + " and current pose " + currentPose + " out of "
+                    + mapOfSequences.get(currentSequence).length + " with " + numTicksInTween + " ticks in tween");
     }
 
     private void performNextTweenTick()
