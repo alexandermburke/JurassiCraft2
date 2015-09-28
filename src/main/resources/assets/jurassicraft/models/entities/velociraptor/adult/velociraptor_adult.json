@@ -16,12 +16,12 @@
 			{"pose": "velociraptor_adult_drinking_1", "time": 30}, {"pose": "velociraptor_adult_drinking_1", "time": 10},
 			{"pose": "velociraptor_adult_idle", "time": 80}
         ],
-		"attack": [
+		"ATTACKING": [
             {"pose": "velociraptor_adult_attack_1", "time": 80}, {"pose": "velociraptor_adult_attack_1", "time": 10},
 			{"pose": "velociraptor_adult_attack_2", "time": 20}, {"pose": "velociraptor_adult_attack_3", "time": 20},
 		    {"pose": "velociraptor_adult_attack_2", "time": 20}, {"pose": "velociraptor_adult_attack_3", "time": 20},
 			{"pose": "velociraptor_adult_attack_2", "time": 20}, {"pose": "velociraptor_adult_attack_3", "time": 20},
-			{"pose": "velociraptor_adult_attack_3", "time": 30},
+			{"pose": "velociraptor_adult_attack_4", "time": 30},
 			{"pose": "velociraptor_adult_idle", "time": 20}
         ],
 		"EATING": [
