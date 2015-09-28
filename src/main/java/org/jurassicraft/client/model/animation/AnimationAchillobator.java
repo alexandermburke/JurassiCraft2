@@ -17,7 +17,7 @@ public class AnimationAchillobator extends DinosaurAnimator
     {
         super(new DinosaurAchillobator());
     }
-    
+
     @Override
     protected void performMowzieAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
     {

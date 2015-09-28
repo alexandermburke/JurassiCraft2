@@ -17,7 +17,7 @@ public class AnimationDilophosaurus extends DinosaurAnimator
     {
         super(new DinosaurDilophosaurus());
     }
-    
+
     @Override
     public void setRotationAngles(ModelDinosaur modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur entity)
     {

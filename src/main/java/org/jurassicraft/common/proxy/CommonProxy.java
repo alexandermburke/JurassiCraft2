@@ -60,5 +60,8 @@ public class CommonProxy
         return ctx.getServerHandler().playerEntity;
     }
 
-    public void registerRenderSubBlock(Block block) {}
+    public void registerRenderSubBlock(Block block)
+    {
+
+    }
 }

@@ -17,7 +17,7 @@ public class AnimationCarnotaurus extends DinosaurAnimator
     {
         super(new DinosaurCarnotaurus());
     }
-    
+
     @Override
     public void setRotationAngles(ModelDinosaur modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur entity)
     {

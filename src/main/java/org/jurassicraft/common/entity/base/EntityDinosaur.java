@@ -144,10 +144,10 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         }
 
         boolean attackSuccesful = entity.attackEntityFrom(DamageSource.causeMobDamage(this), damage);
-        
+
         if (entity instanceof EntityLivingBase)
         {
-            EntityLivingBase theEntityLivingBase = (EntityLivingBase)entity;
+            EntityLivingBase theEntityLivingBase = (EntityLivingBase) entity;
             // if attacked entity is killed, stop attacking animation
             if (theEntityLivingBase.getHealth() < 0.0F)
             {
@@ -300,7 +300,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     @Override
     public float getSoundVolume()
     {
-        return (10.0F*((float)transitionFromAge(0.3F, 1.0F)));
+        return (10.0F * ((float) transitionFromAge(0.3F, 1.0F)));
 //        return (float) transitionFromAge(0.3F, 1.0F) + ((rand.nextFloat() - 0.5F) * 0.125F);
     }
 
@@ -798,7 +798,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     {
         super.onDeath(parDamageSource);
     }
-    
+
     /**
      * have to override so that death time can go much longer so that we can see a good dying animation
      */
@@ -806,7 +806,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     protected void onDeathUpdate()
     {
         ++deathTime;
-        
+
         if (getAnimID() != AnimID.DYING)
         {
             AnimationAPI.sendAnimPacket(this, AnimID.DYING);
