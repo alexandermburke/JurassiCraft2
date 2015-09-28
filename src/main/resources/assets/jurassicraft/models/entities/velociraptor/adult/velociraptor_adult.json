@@ -5,8 +5,8 @@
             {"pose": "velociraptor_adult_idle", "time": 20}
         ],
 		"DYING": [
-            {"pose": "velociraptor_adult_dying_1", "time": 50}, {"pose": "velociraptor_adult_dying_1", "time": 10},
-			{"pose": "velociraptor_adult_dying_2", "time": 40}, {"pose": "velociraptor_adult_dying_2", "time": 20}
+            {"pose": "velociraptor_adult_dying_1", "time": 60}, {"pose": "velociraptor_adult_dying_1", "time": 10},
+			{"pose": "velociraptor_adult_dying_2", "time": 80}, {"pose": "velociraptor_adult_dying_2", "time": 20}
         ],
 		"DRINKING": [
             {"pose": "velociraptor_adult_drinking_1", "time": 50}, {"pose": "velociraptor_adult_drinking_1", "time": 10},
