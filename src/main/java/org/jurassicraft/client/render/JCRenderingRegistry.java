@@ -126,6 +126,7 @@ public class JCRenderingRegistry
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.megapiranha, new AnimationMegapiranha(), 1.0F, 0.15F, 0.65F, 0.0F, 0.65F, -0.25F));
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.baryonyx, new AnimationBaryonyx(), 1.3F, 0.25F, 0.65F, 0.0F, 0.0F, 0.0F));
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.cearadactylus, new AnimationCearadactylus(), 1.0F, 0.45F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.mamenchisaurus, new AnimationMamenchisaurus(), 2.5F, 0.25F, 5.0F, 0.0F, 0.0F, 0.0F));
 
         GuiAppRegistry.register();
 
