@@ -17,9 +17,9 @@
 			{"pose": "velociraptor_adult_idle", "time": 80}
         ],
 		"ATTACKING": [
-            {"pose": "velociraptor_adult_attack_1", "time": 80}, {"pose": "velociraptor_adult_attack_1", "time": 10},
+			{"pose": "velociraptor_adult_attack_1", "time": 80}, {"pose": "velociraptor_adult_attack_1", "time": 10},
 			{"pose": "velociraptor_adult_attack_2", "time": 30}, {"pose": "velociraptor_adult_attack_3", "time": 30},
-		    {"pose": "velociraptor_adult_attack_2", "time": 30}, {"pose": "velociraptor_adult_attack_3", "time": 30},
+			{"pose": "velociraptor_adult_attack_2", "time": 30}, {"pose": "velociraptor_adult_attack_3", "time": 30},
 			{"pose": "velociraptor_adult_attack_2", "time": 30}, {"pose": "velociraptor_adult_attack_3", "time": 30},
 			{"pose": "velociraptor_adult_attack_4", "time": 30}, {"pose": "velociraptor_adult_attack_4", "time": 50},
 			{"pose": "velociraptor_adult_attack_5", "time": 30}, {"pose": "velociraptor_adult_attack_5", "time": 50},
