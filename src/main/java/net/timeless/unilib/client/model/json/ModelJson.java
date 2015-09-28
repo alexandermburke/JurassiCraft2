@@ -1,6 +1,5 @@
 package net.timeless.unilib.client.model.json;
 
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -10,10 +9,7 @@ import net.timeless.unilib.client.model.tools.MowzieModelBase;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 import org.lwjgl.opengl.GL11;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author gegy1000
@@ -22,29 +18,29 @@ import java.util.Set;
 @SideOnly(Side.CLIENT)
 public class ModelJson extends MowzieModelBase
 {
-    private final JsonTabulaModel tabulaModel;
-    private final Map<MowzieModelRenderer, MowzieModelRenderer> childParentMap = Maps.newHashMap();
+    private final List<MowzieModelRenderer> parents = new ArrayList<MowzieModelRenderer>();
     private final Map<String, MowzieModelRenderer> nameMap = Maps.newHashMap();
-    private final Map<String, MowzieModelRenderer> identifierMap = Maps.newHashMap();
+//    private final Map<String, MowzieModelRenderer> identifierMap = Maps.newHashMap();
     private IModelAnimator animator;
 
-    private ArrayList<Animation> animations = Lists.newArrayList();
-
-    private Animation playingAnimation;
-    private int animationTimer;
-
-    private int animationLength;
-
+//    private ArrayList<Animation> animations = Lists.newArrayList();
+//
+//    private Animation playingAnimation;
+//    private int animationTimer;
+//
+//    private int animationLength;
+//
     private boolean resetsEachFrame;
+
+    private double[] scale;
 
     public ModelJson(JsonTabulaModel model)
     {
-        tabulaModel = model;
-
+        this.scale = model.getScale();
         textureWidth = model.getTextureWidth();
         textureHeight = model.getTextureHeight();
 
-        animations = model.getAnimations();
+//        animations = model.getAnimations();
 
         for (CubeInfo c : model.getCubes())
         {
@@ -72,15 +68,11 @@ public class ModelJson extends MowzieModelBase
     {
         this.setRotationAngles(limbSwing, limbSwingAmount, rotation, rotationYaw, rotationPitch, partialTicks, entity);
 
-        double[] scale = tabulaModel.getScale();
         GL11.glScaled(scale[0], scale[1], scale[2]);
 
-        for (Map.Entry<MowzieModelRenderer, MowzieModelRenderer> cube : childParentMap.entrySet())
+        for (MowzieModelRenderer parent : parents)
         {
-            if (cube.getValue() == null)
-            {
-                cube.getKey().render(partialTicks);
-            }
+            parent.render(partialTicks);
         }
     }
 
@@ -100,10 +92,10 @@ public class ModelJson extends MowzieModelBase
             if (resetsEachFrame)
                 this.setToInitPose();
 
-            if (playingAnimation != null)
-            {
-                updateAnimation(entity);
-            }
+//            if (playingAnimation != null)
+//            {
+//                updateAnimation(entity);
+//            }
 
             if (animator != null)
             {
@@ -129,9 +121,13 @@ public class ModelJson extends MowzieModelBase
     {
         MowzieModelRenderer modelRenderer = createModelRenderer(cube);
 
-        childParentMap.put(modelRenderer, parent);
+        if(parent == null)
+        {
+            parents.add(modelRenderer);
+        }
+
         nameMap.put(cube.name, modelRenderer);
-        identifierMap.put(cube.identifier, modelRenderer);
+//        identifierMap.put(cube.identifier, modelRenderer);
 
         if (parent != null)
         {
@@ -144,84 +140,84 @@ public class ModelJson extends MowzieModelBase
         }
     }
 
-    /**
-     * Starts an animation with the id from the Tabula model.
-     *
-     * @since 0.1.0
-     */
-    public void startAnimation(int id)
-    {
-        if (playingAnimation == null)
-        {
-            playingAnimation = animations.get(id);
-
-            animationLength = 0;
-
-            for (Map.Entry<String, ArrayList<AnimationComponent>> entry : playingAnimation.sets.entrySet())
-            {
-                for (AnimationComponent component : entry.getValue())
-                {
-                    if (component.startKey + component.length > animationLength)
-                    {
-                        animationLength = component.startKey + component.length;
-                    }
-                }
-            }
-
-            animationTimer = 0;
-        }
-    }
-
-    /**
-     * Stop all current running animations.
-     */
-    public void stopAnimation()
-    {
-        playingAnimation = null;
-    }
-
-    public void updateAnimation(Entity entity)
-    {
-        for (Map.Entry<String, ArrayList<AnimationComponent>> entry : playingAnimation.sets.entrySet())
-        {
-            MowzieModelRenderer animating = identifierMap.get(entry.getKey());
-
-            for (AnimationComponent component : entry.getValue())
-            {
-                if (animationTimer > component.startKey) // && animationTimer < component.startKey + component.length)
-                {
-                    int componentTimer = animationTimer - component.startKey;
-
-                    if (componentTimer > component.length)
-                    {
-                        componentTimer = component.length;
-                    }
-
-                    animating.rotationPointX += component.posChange[0] / component.length * componentTimer;
-                    animating.rotationPointY += component.posChange[1] / component.length * componentTimer;
-                    animating.rotationPointZ += component.posChange[2] / component.length * componentTimer;
-
-                    animating.rotateAngleX += Math.toRadians(component.rotChange[0] / component.length * componentTimer);
-                    animating.rotateAngleY += Math.toRadians(component.rotChange[1] / component.length * componentTimer);
-                    animating.rotateAngleZ += Math.toRadians(component.rotChange[2] / component.length * componentTimer);
-                }
-            }
-        }
-
-        animationTimer = entity.ticksExisted % animationLength;
-
-        if (animationTimer > animationLength)
-        {
-            if (playingAnimation.loops)
-            {
-                animationTimer = 0;
-            }
-            else
-            {
-                stopAnimation();
-            }
-        }
-    }
+//    /**
+//     * Starts an animation with the id from the Tabula model.
+//     *
+//     * @since 0.1.0
+//     */
+//    public void startAnimation(int id)
+//    {
+//        if (playingAnimation == null)
+//        {
+//            playingAnimation = animations.get(id);
+//
+//            animationLength = 0;
+//
+//            for (Map.Entry<String, ArrayList<AnimationComponent>> entry : playingAnimation.sets.entrySet())
+//            {
+//                for (AnimationComponent component : entry.getValue())
+//                {
+//                    if (component.startKey + component.length > animationLength)
+//                    {
+//                        animationLength = component.startKey + component.length;
+//                    }
+//                }
+//            }
+//
+//            animationTimer = 0;
+//        }
+//    }
+//
+//    /**
+//     * Stop all current running animations.
+//     */
+//    public void stopAnimation()
+//    {
+//        playingAnimation = null;
+//    }
+//
+//    public void updateAnimation(Entity entity)
+//    {
+//        for (Map.Entry<String, ArrayList<AnimationComponent>> entry : playingAnimation.sets.entrySet())
+//        {
+//            MowzieModelRenderer animating = identifierMap.get(entry.getKey());
+//
+//            for (AnimationComponent component : entry.getValue())
+//            {
+//                if (animationTimer > component.startKey) // && animationTimer < component.startKey + component.length)
+//                {
+//                    int componentTimer = animationTimer - component.startKey;
+//
+//                    if (componentTimer > component.length)
+//                    {
+//                        componentTimer = component.length;
+//                    }
+//
+//                    animating.rotationPointX += component.posChange[0] / component.length * componentTimer;
+//                    animating.rotationPointY += component.posChange[1] / component.length * componentTimer;
+//                    animating.rotationPointZ += component.posChange[2] / component.length * componentTimer;
+//
+//                    animating.rotateAngleX += Math.toRadians(component.rotChange[0] / component.length * componentTimer);
+//                    animating.rotateAngleY += Math.toRadians(component.rotChange[1] / component.length * componentTimer);
+//                    animating.rotateAngleZ += Math.toRadians(component.rotChange[2] / component.length * componentTimer);
+//                }
+//            }
+//        }
+//
+//        animationTimer = entity.ticksExisted % animationLength;
+//
+//        if (animationTimer > animationLength)
+//        {
+//            if (playingAnimation.loops)
+//            {
+//                animationTimer = 0;
+//            }
+//            else
+//            {
+//                stopAnimation();
+//            }
+//        }
+//    }
 
     private MowzieModelRenderer createModelRenderer(CubeInfo cubeInfo)
     {
@@ -256,10 +252,10 @@ public class ModelJson extends MowzieModelBase
         return cubeNamesArray;
     }
 
-    public boolean isAnimationInProgress()
-    {
-        return playingAnimation != null;
-    }
+//    public boolean isAnimationInProgress()
+//    {
+//        return playingAnimation != null;
+//    }
 
     public boolean resetsEachFrame()
     {
