@@ -1,6 +1,7 @@
 package org.jurassicraft.client.render;
 
 import com.google.common.collect.Maps;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
@@ -13,8 +14,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.gui.app.GuiAppRegistry;
 import org.jurassicraft.client.model.animation.*;
@@ -27,6 +30,7 @@ import org.jurassicraft.client.render.entity.RenderJurassiCraftSign;
 import org.jurassicraft.client.render.renderdef.RenderDinosaurDefinition;
 import org.jurassicraft.common.block.BlockEncasedFossil;
 import org.jurassicraft.common.block.BlockFossil;
+import org.jurassicraft.common.block.BlockMeta;
 import org.jurassicraft.common.block.JCBlockRegistry;
 import org.jurassicraft.common.block.tree.EnumType;
 import org.jurassicraft.common.dinosaur.Dinosaur;
@@ -196,6 +200,8 @@ public class JCRenderingRegistry
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.gypsum_stone, "gypsum_stone", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.gypsum_cobblestone, "gypsum_cobblestone", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.gypsum_bricks, "gypsum_bricks", "inventory");
+    
+        this.registerRenderSubBlock(JCBlockRegistry.bPlanks);
     }
 
     public void postInit()
@@ -315,6 +321,23 @@ public class JCRenderingRegistry
             }
         });
     }
+    
+    public void registerRenderSubBlock(Block block)
+    {
+        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
+        {
+            Item item = Item.getItemFromBlock(block);
+            BlockMeta bm = (BlockMeta) block;
+            for (int i = 0; i < bm.getSubBlocks(); i++)
+            {
+                String path = JurassiCraft.MODID + ":metablock/" + bm.getPath() + "/" + bm.getUnlocalizedName().substring(5) + "_" + i;
+                ModelBakery.addVariantName(item, new String[]{path});
+                ModelResourceLocation mrs = new ModelResourceLocation(path, "inventory");
+                Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, i, mrs);
+            }
+        }
+    }
+
 
     private void registerRenderDef(RenderDinosaurDefinition renderDef)
     {
