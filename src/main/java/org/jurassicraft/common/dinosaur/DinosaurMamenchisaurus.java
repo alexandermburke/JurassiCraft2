@@ -73,7 +73,7 @@ public class DinosaurMamenchisaurus extends Dinosaur
     @Override
     public int getStorage()
     {
-        return 81;
+        return 63;
     }
 
     @Override

@@ -30,8 +30,8 @@ import net.timeless.animationapi.client.AnimID;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.disease.Disease;
-import org.jurassicraft.common.entity.ai.EntityAIDrink;
-import org.jurassicraft.common.entity.ai.EntityAIMetabolism;
+import org.jurassicraft.common.entity.ai.*;
+import org.jurassicraft.common.entity.ai.EntityAIMate;
 import org.jurassicraft.common.genetics.GeneticsContainer;
 import org.jurassicraft.common.genetics.GeneticsHelper;
 import org.jurassicraft.common.item.ItemBluePrint;
@@ -65,7 +65,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
 
     private int growthSpeedOffset;
 
-    private ItemStack[] inventory = new ItemStack[81];
+    private ItemStack[] inventory = new ItemStack[63];
 
     private double energy;
     private double water;
@@ -91,6 +91,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
 
         tasks.addTask(0, new EntityAIMetabolism(this));
         tasks.addTask(1, new EntityAIDrink(this));
+        tasks.addTask(2, new EntityAIMate(this));
 
         dinosaurAge = 0;
 
