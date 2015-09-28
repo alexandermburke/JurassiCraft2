@@ -12,8 +12,7 @@ import org.jurassicraft.common.event.CommonEventHandler;
 import org.jurassicraft.common.handler.JCGuiHandler;
 import org.jurassicraft.common.world.WorldGenerator;
 
-public class CommonProxy
-{
+public class CommonProxy {
     public void preInit()
     {
         JurassiCraft.entityRegistry.register();

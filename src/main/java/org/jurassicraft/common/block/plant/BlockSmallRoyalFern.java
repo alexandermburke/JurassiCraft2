@@ -9,7 +9,6 @@ public class BlockSmallRoyalFern extends BlockBush
     public BlockSmallRoyalFern()
     {
         super();
-        this.setUnlocalizedName("small_royal_fern");
         this.setCreativeTab(JCCreativeTabs.plants);
 
         float f = 0.4F;

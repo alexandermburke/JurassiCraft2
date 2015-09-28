@@ -9,7 +9,6 @@ public class BlockBennettitaleanCycadeoidea extends BlockBush
     public BlockBennettitaleanCycadeoidea()
     {
         super();
-        this.setUnlocalizedName("bennettitalean_cycadeoidea");
         this.setCreativeTab(JCCreativeTabs.plants);
 
         float f = 0.4F;

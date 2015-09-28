@@ -9,7 +9,6 @@ public class BlockSmallChainFern extends BlockBush
     public BlockSmallChainFern()
     {
         super();
-        this.setUnlocalizedName("small_chain_fern");
         this.setCreativeTab(JCCreativeTabs.plants);
 
         float f = 0.4F;

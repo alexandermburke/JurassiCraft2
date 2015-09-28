@@ -6,10 +6,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
+
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.api.ISubBlocksBlock;
 import org.jurassicraft.common.block.plant.*;
 import org.jurassicraft.common.block.tree.*;
+import org.jurassicraft.common.creativetab.JCCreativeTabs;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.base.JCEntityRegistry;
 import org.jurassicraft.common.item.ItemBlockMeta;
@@ -20,8 +22,7 @@ import org.jurassicraft.common.world.jurdstrees.algorythms.TreeCompendium;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JCBlockRegistry
-{
+public class JCBlockRegistry {
     public static final int numOfTrees = 2;
 
     // tree blocks
@@ -74,6 +75,8 @@ public class JCBlockRegistry
     public static Block scaly_tree_fern;
     public static Block cycad_zamites;
     public static Block dicksonia;
+    
+    public static Block bPlanks;
 
     public void register()
     {
@@ -98,35 +101,27 @@ public class JCBlockRegistry
         ice_shard = addBlock(new BlockIceShard(), "ice_shard");
 
         gypsum_stone = addBlock(new BlockGypsumStone().setHardness(1.5F).setResistance(10.0F), "gypsum_stone");
-        gypsum_cobblestone = new BlockBasic(Material.rock, "Gypsum Cobblestone").setHardness(1.5F).setResistance(10.0F);
-        gypsum_bricks = new BlockBasic(Material.rock, "Gypsum Bricks").setHardness(1.5F).setResistance(10.0F);
-        reinforced_stone = new BlockBasic(Material.rock, "Reinforced Stone").setHardness(2.0F).setResistance(15.0F);
-        reinforced_bricks = new BlockBasic(Material.rock, "Reinforced Bricks").setHardness(2.0F).setResistance(15.0F);
+        gypsum_cobblestone = addBlock(new BlockBasic(Material.rock).setHardness(1.5F).setResistance(10.0F), "gypsum_cobblestone");
+        gypsum_bricks = addBlock(new BlockBasic(Material.rock).setHardness(1.5F).setResistance(10.0F), "gypsum_bricks");
+        reinforced_stone = addBlock(new BlockBasic(Material.rock).setHardness(2.0F).setResistance(15.0F), "reinforced_stone");
+        reinforced_bricks = addBlock(new BlockBasic(Material.rock).setHardness(2.0F).setResistance(15.0F), "reinforced_bricks");
 
-        small_royal_fern = new BlockSmallRoyalFern();
-        small_chain_fern = new BlockSmallChainFern();
-        small_cycad = new BlockSmallCycad();
-        bennettitalean_cycadeoidea = new BlockBennettitaleanCycadeoidea();
-        cry_pansy = new BlockCryPansy();
-        scaly_tree_fern = new BlockScalyTreeFern();
-        cycad_zamites = new BlockCycadZamites();
-        dicksonia = new BlockDicksonia();
-
-        registerBlock(small_royal_fern, "Small Royal Fern");
-        registerBlock(small_chain_fern, "Small Chain Fern");
-        registerBlock(small_cycad, "Small Cycad");
-        registerBlock(bennettitalean_cycadeoidea, "Bennettitalean Cycadeoidea");
-        registerBlock(cry_pansy, "Cry Pansy");
-        registerBlock(scaly_tree_fern, "Scaly Tree Fern");
-        registerBlock(cycad_zamites, "Cycad Zamites");
-        registerBlock(dicksonia, "Dicksonia");
+        small_royal_fern = addBlock(new BlockSmallRoyalFern(), "small_royal_fern");
+        small_chain_fern = addBlock(new BlockSmallChainFern(), "small_chain_fern");
+        small_cycad = addBlock(new BlockSmallCycad(), "small_cycad");
+        bennettitalean_cycadeoidea = addBlock(new BlockBennettitaleanCycadeoidea(), "bennettitalean_cycadeoidea");
+        cry_pansy = addBlock(new BlockCryPansy(), "cry_pansy");
+        scaly_tree_fern = addBlock(new BlockScalyTreeFern(), "scaly_tree_fern");
+        cycad_zamites = addBlock(new BlockCycadZamites(), "cycad_zamites");
+        dicksonia = addBlock(new BlockDicksonia(), "dicksonia");
+        
+        bPlanks = addBlock(new BlockMeta(Material.wood, "planks", 8).setCreativeTab(JCCreativeTabs.blocks), "planks");
 
         List<Dinosaur> dinosaurs = JCEntityRegistry.getDinosaurs();
 
         int blocksToCreate = (int) (Math.ceil(((float) dinosaurs.size()) / 16.0F));
 
-        for (int i = 0; i < blocksToCreate; i++)
-        {
+        for (int i = 0; i < blocksToCreate; i++) {
             BlockFossil fossil = new BlockFossil(i * 16);
             BlockEncasedFossil encasedFossil = new BlockEncasedFossil(i * 16);
 
@@ -136,12 +131,6 @@ public class JCBlockRegistry
             registerBlock(fossil, "Fossil Block " + i);
             registerBlock(encasedFossil, "Encased Fossil " + i);
         }
-
-        registerBlock(gypsum_cobblestone, "Gypsum Cobblestone");
-        registerBlock(gypsum_bricks, "Gypsum Bricks");
-
-        registerBlock(reinforced_stone, "Reinforced Stone");
-        registerBlock(reinforced_bricks, "Reinforced Bricks");
 
         // initialize EnumType meta lookup
         EnumType.GINKGO.setMetaLookup();
@@ -163,8 +152,7 @@ public class JCBlockRegistry
         stairs = new Block[numOfTrees];
 
         // initialize blocks within arrays
-        for (int i = 0; i < numOfTrees; i++)
-        {
+        for (int i = 0; i < numOfTrees; i++) {
             EnumType type = EnumType.getMetaLookup()[i];
             String typeName = type.getName();
 
@@ -181,8 +169,8 @@ public class JCBlockRegistry
             GameRegistry.registerBlock(leaves[i], typeName + "_leaves");
             GameRegistry.registerBlock(saplings[i], typeName + "_sapling");
             GameRegistry.registerBlock(stairs[i], typeName + "_stairs");
-            GameRegistry.registerBlock(slabs[i], ItemJCSlab.class, typeName + "_slab", new Object[]{slabs[i], doubleSlabs[i]});
-            GameRegistry.registerBlock(doubleSlabs[i], ItemJCSlab.class, typeName + "_double_slab", new Object[]{slabs[i], doubleSlabs[i]});
+            GameRegistry.registerBlock(slabs[i], ItemJCSlab.class, typeName + "_slab", new Object[] { slabs[i], doubleSlabs[i] });
+            GameRegistry.registerBlock(doubleSlabs[i], ItemJCSlab.class, typeName + "_double_slab", new Object[] { slabs[i], doubleSlabs[i] });
 
             OreDictionary.registerOre("logWood", woods[i]);
             OreDictionary.registerOre("plankWood", planks[i]);
@@ -218,16 +206,15 @@ public class JCBlockRegistry
     {
         block.setUnlocalizedName(name);
 
-        if (block instanceof BlockMeta)
-        {
+        if (block instanceof BlockMeta) {
             GameRegistry.registerBlock(block, ItemBlockMeta.class, name);
             JurassiCraft.proxy.registerRenderSubBlock(block);
-        }
-        else
-        {
+        } else if (block instanceof ISubBlocksBlock) {
+            GameRegistry.registerBlock(block, ((ISubBlocksBlock) block).getItemBlockClass(), name);
+            JurassiCraft.proxy.registerRenderSubBlock(block);
+        } else {
             GameRegistry.registerBlock(block, name);
         }
-
         return block;
     }
 

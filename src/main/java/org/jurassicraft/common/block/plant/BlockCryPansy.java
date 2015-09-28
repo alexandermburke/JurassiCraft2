@@ -9,7 +9,6 @@ public class BlockCryPansy extends BlockBush
     public BlockCryPansy()
     {
         super();
-        this.setUnlocalizedName("cry_pansy");
         this.setCreativeTab(JCCreativeTabs.plants);
 
         this.setStepSound(Block.soundTypeGrass);

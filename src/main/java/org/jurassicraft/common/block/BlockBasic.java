@@ -6,10 +6,9 @@ import org.jurassicraft.common.creativetab.JCCreativeTabs;
 
 public class BlockBasic extends Block
 {
-    public BlockBasic(Material material, String name)
+    public BlockBasic(Material material)
     {
         super(material);
-        this.setUnlocalizedName(name.toLowerCase().replaceAll(" ", "_"));
         this.setCreativeTab(JCCreativeTabs.blocks);
     }
 }

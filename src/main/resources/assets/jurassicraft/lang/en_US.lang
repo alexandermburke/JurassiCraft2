@@ -138,6 +138,15 @@ tile.reinforced_bricks.name=Reinforced Bricks
 
 tile.cultivate.name={color} Cultivator
 
+tile.planks_0.name=Alethopteris Planks
+tile.planks_1.name=Williamsonia Planks
+tile.planks_2.name=Archaeopteris Planks
+tile.planks_3.name=Cycadeoidea Planks
+tile.planks_4.name=Calamites Planks
+tile.planks_5.name=Glossopteris Planks
+tile.planks_6.name=Dorycordaites Planks
+tile.planks_7.name=Mangrove Planks
+
 //Plants =========================================
 plants.small_royal_fern.name=Small Royal Fern
 plants.calamites.name=Calamites
