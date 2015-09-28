@@ -279,7 +279,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
             render = new JabelarAnimationHelper(entity, model, cubes, growthModel.models, growthModel.animations, true, 1.0f);
             growthToRender.put(growth, render);
         }
-        
+
         return render;
     }
 
