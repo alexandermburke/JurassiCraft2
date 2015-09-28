@@ -7,9 +7,11 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
@@ -18,6 +20,10 @@ import net.timeless.unilib.utils.MutableVec3;
 import org.jurassicraft.common.message.JCNetworkManager;
 import org.jurassicraft.common.message.MessageHelicopterDirection;
 import org.jurassicraft.common.message.MessageHelicopterEngine;
+import org.jurassicraft.common.vehicles.helicopter.modules.HelicopterDoor;
+import org.jurassicraft.common.vehicles.helicopter.modules.HelicopterMinigun;
+import org.jurassicraft.common.vehicles.helicopter.modules.HelicopterModule;
+import org.jurassicraft.common.vehicles.helicopter.modules.HelicopterModuleSpot;
 
 import java.util.UUID;
 
@@ -26,12 +32,13 @@ import java.util.UUID;
  */
 public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdditionalSpawnData
 {
+    private final HelicopterModuleSpot[] moduleSpots;
     private UUID heliID;
     public HelicopterSeat[] seats;
     public static final int ENGINE_RUNNING = 20;
     public static final int PILOT_SEAT = 0;
-    public static final int LEFT_BACK_SEAT = 1;
-    public static final int RIGHT_BACK_SEAT = 2;
+    public static final int LEFT_PART = 0;
+    public static final int RIGHT_PART = 1;
     public static final float MAX_POWER = 80f;
     public static final float REQUIRED_POWER = MAX_POWER / 2f;
     private float roll;
@@ -49,6 +56,14 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
         double d = 8f; // depth in blocks
         setBox(0, 0, 0, w, h, d);
         seats = new HelicopterSeat[3];
+        moduleSpots = new HelicopterModuleSpot[2]; // Both doors at the moment
+        moduleSpots[LEFT_PART] = new HelicopterModuleSpot((float) Math.PI);
+        moduleSpots[RIGHT_PART] = new HelicopterModuleSpot(0);
+
+        // TODO: Debug stuff, remove
+        moduleSpots[RIGHT_PART].getModules().add(HelicopterModule.minigun);
+
+        moduleSpots[LEFT_PART].getModules().add(HelicopterModule.door);
         direction = new MutableVec3(0, 1, 0);
     }
 
@@ -87,6 +102,9 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     {
         super.readEntityFromNBT(tagCompound);
         heliID = UUID.fromString(tagCompound.getString("heliID"));
+
+        moduleSpots[LEFT_PART].readFromNBT(tagCompound.getTagList("leftModules", Constants.NBT.TAG_STRING));
+        moduleSpots[RIGHT_PART].readFromNBT(tagCompound.getTagList("rightModules", Constants.NBT.TAG_STRING));
     }
 
     @Override
@@ -124,6 +142,14 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     {
         super.writeEntityToNBT(tagCompound);
         tagCompound.setString("heliID", heliID.toString());
+
+        NBTTagList leftModulesList = new NBTTagList();
+        moduleSpots[LEFT_PART].writeToNBT(leftModulesList);
+        tagCompound.setTag("leftModules", leftModulesList);
+
+        NBTTagList rightModulesList = new NBTTagList();
+        moduleSpots[RIGHT_PART].writeToNBT(rightModulesList);
+        tagCompound.setTag("rightModules", rightModulesList);
     }
 
     @Override
@@ -385,6 +411,9 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     {
         ByteBufUtils.writeUTF8String(buffer, heliID.toString());
         buffer.writeBoolean(hasMinigun);
+
+        moduleSpots[LEFT_PART].writeSpawnData(buffer);
+        moduleSpots[RIGHT_PART].writeSpawnData(buffer);
     }
 
     @Override
@@ -392,6 +421,9 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     {
         heliID = UUID.fromString(ByteBufUtils.readUTF8String(additionalData));
         hasMinigun = additionalData.readBoolean();
+
+        moduleSpots[LEFT_PART].readSpawnData(additionalData);
+        moduleSpots[RIGHT_PART].readSpawnData(additionalData);
     }
 
     public boolean isEngineRunning()
@@ -417,5 +449,10 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     public void setDirection(MutableVec3 direction)
     {
         this.direction.set(direction);
+    }
+
+    public HelicopterModuleSpot[] getModuleSpots()
+    {
+        return moduleSpots;
     }
 }
