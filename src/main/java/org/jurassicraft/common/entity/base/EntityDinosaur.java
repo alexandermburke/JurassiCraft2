@@ -1,12 +1,20 @@
 package org.jurassicraft.common.entity.base;
 
 import io.netty.buffer.ByteBuf;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.*;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAILeapAtTarget;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,15 +38,13 @@ import net.timeless.animationapi.client.AnimID;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.disease.Disease;
-import org.jurassicraft.common.entity.ai.*;
+import org.jurassicraft.common.entity.ai.EntityAIDrink;
 import org.jurassicraft.common.entity.ai.EntityAIMate;
+import org.jurassicraft.common.entity.ai.EntityAIMetabolism;
 import org.jurassicraft.common.genetics.GeneticsContainer;
 import org.jurassicraft.common.genetics.GeneticsHelper;
 import org.jurassicraft.common.item.ItemBluePrint;
 import org.jurassicraft.common.item.JCItemRegistry;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class EntityDinosaur extends EntityCreature implements IEntityAdditionalSpawnData, IAnimatedEntity, IInventory
 {
@@ -813,7 +819,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
             AnimationAPI.sendAnimPacket(this, AnimID.DYING);
         }
 
-        if (deathTime == 600)
+        if (deathTime == 400)
         {
             int i;
 
