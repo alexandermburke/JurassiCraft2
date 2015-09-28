@@ -54,7 +54,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
 
         for (int i = 0; i < targets.length; i++)
         {
-            this.attackCreature(targets[i], new Random().nextInt(3) + 1);
+            this.addAIForAttackTargets(targets[i], new Random().nextInt(3) + 1);
         }
 
         for (int j = 0; j < deftargets.length; j++)
@@ -66,7 +66,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
     // NOTE: This adds an attack target. Class should be the entity class for the target, lower prio get executed
     // earlier
     @Override
-    protected void attackCreature(Class entity, int prio)
+    protected void addAIForAttackTargets(Class entity, int prio)
     {
         this.tasks.addTask(0, new EntityAIAttackOnCollide(this, entity, 1.0D, false));
         this.tasks.addTask(1, new EntityAILeapAtTarget(this, 0.5F));

@@ -133,7 +133,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         hasTracker = false;
         return false;
     }
-    
+
+    // need to override to add animations
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
@@ -148,9 +149,19 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
             knockback += EnchantmentHelper.getKnockbackModifier(this);
         }
 
-        boolean attacked = entity.attackEntityFrom(DamageSource.causeMobDamage(this), damage);
+        boolean attackSuccesful = entity.attackEntityFrom(DamageSource.causeMobDamage(this), damage);
+        
+        if (entity instanceof EntityLivingBase)
+        {
+            EntityLivingBase theEntityLivingBase = (EntityLivingBase)entity;
+            // if attacked entity is killed, stop attacking animation
+            if (theEntityLivingBase.getHealth() < 0.0F)
+            {
+                AnimationAPI.sendAnimPacket(this, AnimID.IDLE);
+            }
+        }
 
-        if (attacked)
+        if (attackSuccesful)
         {
             if (knockback > 0)
             {
@@ -162,34 +173,20 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
             applyEnchantments(this, entity);
         }
 
-        return attacked;
+        return attackSuccesful;
     }
 
-    /**
-     * Called when the entity is attacked.
-     */
     @Override
-    public boolean attackEntityFrom(DamageSource source, float amount)
+    @SideOnly(Side.CLIENT)
+    public void performHurtAnimation()
     {
-        if (isEntityInvulnerable(source))
-        {
-            return false;
-        }
-        else if (super.attackEntityFrom(source, amount))
-        {
-            Entity entity = source.getEntity();
-            return riddenByEntity != entity && ridingEntity != entity ? true : true;
-        }
-        else
-        {
-            return false;
-        }
+        AnimationAPI.sendAnimPacket(this, AnimID.INJURED);
     }
-    
+
     @Override
     public void playLivingSound()
     {
-        AnimationAPI.sendAnimPacket(this, AnimID.ROARING);
+        AnimationAPI.sendAnimPacket(this, AnimID.CALLING);
         super.playLivingSound();
     }
 
@@ -663,7 +660,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
 
     // NOTE: This adds an attack target. Class should be the entity class for the target, lower prio get executed
     // earlier
-    protected void attackCreature(Class entity, int prio)
+    protected void addAIForAttackTargets(Class entity, int prio)
     {
         tasks.addTask(0, new EntityAIAttackOnCollide(this, entity, 1.0D, false));
         tasks.addTask(1, new EntityAILeapAtTarget(this, 0.4F));

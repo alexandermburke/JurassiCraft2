@@ -20,7 +20,7 @@ public class EntityCarnotaurus extends EntityDinosaurAggressive  //implements IE
 
         for (int i = 0; i < targets.length; i++)
         {
-            this.attackCreature(targets[i], new Random().nextInt(3) + 1);
+            this.addAIForAttackTargets(targets[i], new Random().nextInt(3) + 1);
         }
 
         for (int j = 0; j < deftargets.length; j++)

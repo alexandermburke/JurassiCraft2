@@ -36,12 +36,12 @@
                {"pose": "tyrannosaurus_adult_looking_right", "time": 80}, 
                {"pose": "tyrannosaurus_adult_idle", "time": 100}
         ],
-        "ROARING": [
-               {"pose": "tyrannosaurus_adult_roaring_1", "time": 40}, 
-               {"pose": "tyrannosaurus_adult_roaring_2", "time": 80}, 
-               {"pose": "tyrannosaurus_adult_roaring_3", "time": 120}, 
-               {"pose": "tyrannosaurus_adult_roaring_4", "time": 120}, 
-               {"pose": "tyrannosaurus_adult_roaring_5", "time": 120}, 
+        "CALLING": [
+               {"pose": "tyrannosaurus_adult_calling_1", "time": 40}, 
+               {"pose": "tyrannosaurus_adult_calling_2", "time": 80}, 
+               {"pose": "tyrannosaurus_adult_calling_3", "time": 120}, 
+               {"pose": "tyrannosaurus_adult_calling_4", "time": 120}, 
+               {"pose": "tyrannosaurus_adult_calling_5", "time": 120}, 
                {"pose": "tyrannosaurus_adult_idle", "time": 100}
         ]      
     }

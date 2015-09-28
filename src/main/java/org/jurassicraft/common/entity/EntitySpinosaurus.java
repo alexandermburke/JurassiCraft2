@@ -33,7 +33,7 @@ public class EntitySpinosaurus extends EntityDinosaurAggressive // implements IE
 
         for (int i = 0; i < targets.length; i++)
         {
-            this.attackCreature(targets[i], new Random().nextInt(3) + 1);
+            this.addAIForAttackTargets(targets[i], new Random().nextInt(3) + 1);
         }
 
         tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, AnimID.INJURED, 750, "jurassicraft:spinosaurus_hurt_1", 1.5F));

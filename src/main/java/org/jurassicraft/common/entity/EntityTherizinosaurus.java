@@ -12,7 +12,7 @@ public class EntityTherizinosaurus extends EntityDinosaurDefensiveHerbivore // i
     public EntityTherizinosaurus(World world)
     {
         super(world);
-        this.attackCreature(EntityTyrannosaurus.class, 1);
+        this.addAIForAttackTargets(EntityTyrannosaurus.class, 1);
     }
 
     @Override

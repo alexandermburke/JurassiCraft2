@@ -33,7 +33,7 @@ public class EntityIndominusRex extends EntityDinosaurAggressive // implements I
     {
         super(world);
         tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, AnimID.IDLE, 750, breathSounds[0], 1.5F));
-        this.attackCreature(EntityDinosaur.class, 0);
+        this.addAIForAttackTargets(EntityDinosaur.class, 0);
         this.defendFromAttacker(EntityDinosaur.class, 0);
     }
 
