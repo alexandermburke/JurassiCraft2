@@ -65,9 +65,6 @@ public class JCEntityRegistry
     public static final Dinosaur megapiranha = new DinosaurMegapiranha();
     public static final Dinosaur baryonyx = new DinosaurBaryonyx();
     public static final Dinosaur cearadactylus = new DinosaurCearadactylus();
-    public static final Dinosaur mamenchisaurus = new DinosaurMamenchisaurus();
-    public static final Dinosaur mamenchisaurus = new DinosaurMamenchisaurus();
-    public static final Dinosaur mamenchisaurus = new DinosaurMamenchisaurus();
 
     public static List<Dinosaur> getDinosaursFromSeaLampreys()
     {
@@ -129,9 +126,6 @@ public class JCEntityRegistry
         registerDinosaurType(megapiranha);
         registerDinosaurType(baryonyx);
         registerDinosaurType(cearadactylus);
-        registerDinosaurType(mamenchisaurus);
-        registerDinosaurType(mamenchisaurus);
-        registerDinosaurType(mamenchisaurus);
 
         registerEntity(EntityBluePrint.class, "Blueprint");
         registerEntity(EntityJurassiCraftSign.class, "JurassiCraft Sign");
