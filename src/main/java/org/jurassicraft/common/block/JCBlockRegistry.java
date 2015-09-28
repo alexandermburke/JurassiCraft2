@@ -2,15 +2,9 @@ package org.jurassicraft.common.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.model.ModelBakery;
-import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.OreDictionary;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.api.ISubBlocksBlock;
@@ -223,32 +217,18 @@ public class JCBlockRegistry
     private Block addBlock(Block block, String name)
     {
         block.setUnlocalizedName(name);
+
         if (block instanceof BlockMeta)
         {
             GameRegistry.registerBlock(block, ItemBlockMeta.class, name);
-            registerRenderSubBlock(block);
+            JurassiCraft.proxy.registerRenderSubBlock(block);
         }
         else
         {
             GameRegistry.registerBlock(block, name);
         }
-        return block;
-    }
 
-    private void registerRenderSubBlock(Block block)
-    {
-        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
-        {
-            Item item = Item.getItemFromBlock(block);
-            BlockMeta bm = (BlockMeta) block;
-            for (int i = 0; i < bm.getSubBlocks(); i++)
-            {
-                String path = JurassiCraft.MODID + ":metablock/" + bm.getPath() + "/" + bm.getUnlocalizedName().substring(5) + "_" + i;
-                ModelBakery.addVariantName(item, new String[]{path});
-                ModelResourceLocation mrs = new ModelResourceLocation(path, "inventory");
-                Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, i, mrs);
-            }
-        }
+        return block;
     }
 
     public BlockFossil getFossilBlock(Dinosaur dinosaur)

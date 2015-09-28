@@ -1,15 +1,21 @@
 package org.jurassicraft.client.proxy;
 
 import com.google.common.collect.Lists;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.model.ModelBakery;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.event.ClientEventHandler;
 import org.jurassicraft.client.render.JCRenderingRegistry;
+import org.jurassicraft.common.block.BlockMeta;
 import org.jurassicraft.common.proxy.CommonProxy;
 
 import java.util.ArrayList;
@@ -100,6 +106,23 @@ public class ClientProxy extends CommonProxy
     public EntityPlayer getPlayer()
     {
         return Minecraft.getMinecraft().thePlayer;
+    }
+
+    @Override
+    public void registerRenderSubBlock(Block block)
+    {
+        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
+        {
+            Item item = Item.getItemFromBlock(block);
+            BlockMeta bm = (BlockMeta) block;
+            for (int i = 0; i < bm.getSubBlocks(); i++)
+            {
+                String path = JurassiCraft.MODID + ":metablock/" + bm.getPath() + "/" + bm.getUnlocalizedName().substring(5) + "_" + i;
+                ModelBakery.addVariantName(item, new String[]{path});
+                ModelResourceLocation mrs = new ModelResourceLocation(path, "inventory");
+                Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, i, mrs);
+            }
+        }
     }
 
     /**

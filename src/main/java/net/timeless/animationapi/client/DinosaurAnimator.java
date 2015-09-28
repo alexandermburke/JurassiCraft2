@@ -88,7 +88,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
     }
 
     private Map<EnumGrowthStage, PreloadedModelData> modelData;
-    protected Map<Integer, Map<EnumGrowthStage, JabelarAnimationHelper>> entityIDToAnimation = new HashMap<>();
+    protected Map<Integer, Map<EnumGrowthStage, JabelarAnimationHelper>> entityIDToAnimation = new HashMap<Integer, Map<EnumGrowthStage, JabelarAnimationHelper>>();
 
     /**
      * Loads the model, etc... for the dinosaur given.
@@ -99,7 +99,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
     public DinosaurAnimator(Dinosaur dino)
     {
         String name = dino.getName(0).toLowerCase(); // this should match name of your resource package and files
-        this.modelData = new EnumMap<>(EnumGrowthStage.class);
+        this.modelData = new EnumMap<EnumGrowthStage, PreloadedModelData>(EnumGrowthStage.class);
         URI dinoDirURI = null;
         try
         {
@@ -141,15 +141,30 @@ public abstract class DinosaurAnimator implements IModelAnimator
         URI growthSensitiveDir = dinoDir.resolve(growthName + "/");
         URI definitionFile = growthSensitiveDir.resolve(name + "_" + growthName + ".json");
         InputStream dinoDef = Unilib.class.getResourceAsStream(definitionFile.toString());
+
         if (dinoDef == null)
-            throw new IllegalArgumentException("No model definition for the dino " + name + " with grow-state " + growth + " exists. Expected at " + definitionFile);
-        try (Reader reader = new InputStreamReader(dinoDef))
         {
+            throw new IllegalArgumentException("No model definition for the dino " + name + " with grow-state " + growth + " exists. Expected at " + definitionFile);
+        }
+
+        try
+        {
+            Reader reader = new InputStreamReader(dinoDef);
+
             AnimationsDTO rawAnimations = GSON.fromJson(reader, AnimationsDTO.class);
             PreloadedModelData data = getPosedModels(growthSensitiveDir, rawAnimations);
             JurassiCraft.instance.getLogger().debug("Successfully loaded " + name + "(" + growth + ") from " + definitionFile);
+
+            reader.close();
+
             return data;
         }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     /**
@@ -248,12 +263,15 @@ public abstract class DinosaurAnimator implements IModelAnimator
         Integer id = entity.getEntityId();
         EnumGrowthStage growth = entity.getGrowthStage();
         Map<EnumGrowthStage, JabelarAnimationHelper> growthToRender = entityIDToAnimation.get(id);
+
         if (growthToRender == null)
         {
-            growthToRender = new EnumMap<>(EnumGrowthStage.class);
+            growthToRender = new EnumMap<EnumGrowthStage, JabelarAnimationHelper>(EnumGrowthStage.class);
             entityIDToAnimation.put(id, growthToRender);
         }
+
         JabelarAnimationHelper render = growthToRender.get(growth);
+
         if (render == null)
         {
             PreloadedModelData growthModel = modelData.get(growth);
@@ -261,6 +279,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
             render = new JabelarAnimationHelper(entity, model, cubes, growthModel.models, growthModel.animations, true, 1.0f);
             growthToRender.put(growth, render);
         }
+        
         return render;
     }
 

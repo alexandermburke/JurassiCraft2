@@ -1,5 +1,6 @@
 package org.jurassicraft.common.proxy;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -58,4 +59,6 @@ public class CommonProxy
     {
         return ctx.getServerHandler().playerEntity;
     }
+
+    public void registerRenderSubBlock(Block block) {}
 }
