@@ -1,5 +1,7 @@
 package org.jurassicraft.client.render.entity;
 
+import java.util.Random;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
@@ -11,14 +13,14 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.animationapi.IAnimatedEntity;
+
 import org.jurassicraft.client.render.renderdef.RenderDinosaurDefinition;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.EntityVelociraptor;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
 import org.lwjgl.opengl.GL11;
-
-import java.util.Random;
 
 @SideOnly(Side.CLIENT)
 public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
@@ -64,6 +66,7 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
         }
     }
 
+    @Override
     public void preRenderCallback(EntityLivingBase entity, float side)
     {
         EntityDinosaur entityDinosaur = (EntityDinosaur) entity;
@@ -122,15 +125,30 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
         return entity.isMale() ? maleTextures[entity.getGeneticVariant()][entity.getTexture()][entity.getGrowthStage().ordinal()] : femaleTextures[entity.getGeneticVariant()][entity.getTexture()][entity.getGrowthStage().ordinal()];
     }
 
+    @Override
     public ResourceLocation getEntityTexture(Entity entity)
     {
         return getEntityTexture((EntityDinosaur) entity);
     }
 
     @Override
-    protected float getDeathMaxRotation(EntityLivingBase entity)
+    protected void rotateCorpse(EntityLivingBase parEntity, float p_77043_2_, float p_77043_3_, float p_77043_4_)
     {
-        return 90.0F;
+        if (parEntity.deathTime > 0)
+        {
+            if (parEntity instanceof IAnimatedEntity)
+            {
+                // Do nothing because animation we don't want the rotation since animation system will do the animation
+            }
+            else
+            {
+                super.rotateCorpse(parEntity, p_77043_2_, p_77043_3_, p_77043_4_);
+            }
+        }
+        else
+        {
+            super.rotateCorpse(parEntity, p_77043_2_, p_77043_3_, p_77043_4_);
+        }
     }
 
     @Override

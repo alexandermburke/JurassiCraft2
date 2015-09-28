@@ -73,9 +73,9 @@
 			{"pose": "therizinosaurus_adult_sniffing_1", "time": 20 }
 		],
 		"DYING": [
-			{"pose": "therizinosaurus_adult_dying_1", "time": 60 }, {"pose": "therizinosaurus_adult_dying_2", "time": 100},
-			{"pose": "therizinosaurus_adult_dying_3", "time": 120}, {"pose": "therizinosaurus_adult_dying_4", "time": 100},
-			{"pose": "therizinosaurus_adult_dying_4", "time": 600}
+			{"pose": "therizinosaurus_adult_dying_1", "time": 30 }, {"pose": "therizinosaurus_adult_dying_2", "time": 50},
+			{"pose": "therizinosaurus_adult_dying_3", "time": 60}, {"pose": "therizinosaurus_adult_dying_4", "time": 50},
+			{"pose": "therizinosaurus_adult_dying_4", "time": 80}
 		],
 		"ATTACKING": [
 			{"pose": "therizinosaurus_adult_crouching_1", "time": 40}, {"pose": "therizinosaurus_adult_crouching_2", "time": 20},

@@ -7,10 +7,10 @@ import org.jurassicraft.common.period.EnumTimePeriod;
 
 public class DinosaurTyrannosaurus extends Dinosaur
 {
-    private String[] maleTextures;
-    private String[] femaleTextures;
-    private String[] maleOverlayTextures;
-    private String[] femaleOverlayTextures;
+    private final String[] maleTextures;
+    private final String[] femaleTextures;
+    private final String[] maleOverlayTextures;
+    private final String[] femaleOverlayTextures;
 
     public DinosaurTyrannosaurus()
     {
@@ -75,6 +75,7 @@ public class DinosaurTyrannosaurus extends Dinosaur
         return 0.42;
     }
 
+    @Override
     public double getAttackSpeed()
     {
         return 0.50;
@@ -89,7 +90,7 @@ public class DinosaurTyrannosaurus extends Dinosaur
     @Override
     public double getAdultStrength()
     {
-        return 1;
+        return 30;
     }
 
     @Override

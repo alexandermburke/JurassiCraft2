@@ -1,6 +1,17 @@
 package net.timeless.animationapi.client;
 
-import com.google.gson.Gson;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
@@ -17,18 +28,7 @@ import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import com.google.gson.Gson;
 
 @SideOnly(Side.CLIENT)
 public abstract class DinosaurAnimator implements IModelAnimator
@@ -251,7 +251,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
         return uri.toString();
     }
 
-    private JabelarAnimationHelper forEntity(EntityDinosaur entity, ModelDinosaur model)
+    private JabelarAnimationHelper getAnimationHelper(EntityDinosaur entity, ModelDinosaur model)
     {
         Integer id = entity.getEntityId();
         EnumGrowthStage growth = entity.getGrowthStage();
@@ -285,10 +285,11 @@ public abstract class DinosaurAnimator implements IModelAnimator
     protected void setRotationAngles(ModelDinosaur model, float limbSwing, float limbSwingAmount, float rotation,
                                      float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur entity)
     {
-        JabelarAnimationHelper render = forEntity(entity, model);
-        render.performJabelarAnimations(model);
-        performMowzieAnimations(model, limbSwing, limbSwingAmount, rotation, rotationYaw, rotationPitch, partialTicks, entity);
-
+        getAnimationHelper(entity, model).performJabelarAnimations();
+        if (entity.getAnimID() != AnimID.DYING) // still alive
+        {
+            performMowzieAnimations(model, limbSwing, limbSwingAmount, rotation, rotationYaw, rotationPitch, partialTicks, entity);
+        }
     }
 
     protected void performMowzieAnimations(ModelDinosaur parModel, float parLimbSwing, float parLimbSwingAmount, float parRotation, float parRotationYaw, float parRotationPitch, float parPartialTicks, EntityDinosaur parEntity)

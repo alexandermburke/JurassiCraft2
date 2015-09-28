@@ -48,7 +48,7 @@ public class PacketAnim implements IMessage
         @Override
         public IMessage onMessage(final PacketAnim packet, MessageContext ctx)
         {
-            JurassiCraft.instance.getLogger().debug("PacketAnim received for entity " + packet.entityID + " and animation ID " + AnimID.values()[packet.animID]);
+            JurassiCraft.instance.getLogger().info("PacketAnim received for entity " + packet.entityID + " and animation ID " + AnimID.values()[packet.animID]);
 
             final EntityPlayer player = JurassiCraft.proxy.getPlayerEntityFromContext(ctx);
 

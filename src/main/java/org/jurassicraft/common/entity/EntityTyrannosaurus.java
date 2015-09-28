@@ -31,7 +31,7 @@ public class EntityTyrannosaurus extends EntityDinosaurAggressive implements IAn
             EntityProtoceratops.class, EntityParasaurolophus.class, EntityOthnielia.class, EntityMicroceratus.class,
             EntityTriceratops.class, EntityStegosaurus.class, EntityBrachiosaurus.class, EntityApatosaurus.class,
             EntityRugops.class, EntityHerrerasaurus.class, EntityVelociraptor.class, EntityAchillobator.class,
-            EntityCarnotaurus.class};
+            EntityCarnotaurus.class, EntityTherizinosaurus.class};
 
     private int stepCount = 0;
 

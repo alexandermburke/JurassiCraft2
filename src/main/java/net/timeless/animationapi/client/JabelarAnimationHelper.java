@@ -68,10 +68,10 @@ public class JabelarAnimationHelper
         JurassiCraft.instance.getLogger().debug("Finished JabelarAnimation constructor");
     }
 
-    public void performJabelarAnimations(ModelDinosaur parModel)
+    public void performJabelarAnimations()
     {
         // Allow interruption of the animation if it is a new animation and not currently dying
-        if (theEntity.getAnimID() != currentSequence && theEntity.getAnimID() != AnimID.DYING)
+        if (theEntity.getAnimID() != currentSequence && currentSequence != AnimID.DYING)
         {
             setNextSequence(theEntity.getAnimID());
         }
@@ -308,8 +308,15 @@ public class JabelarAnimationHelper
         // check if finished sequence
         if (currentPose >= numPosesInSequence)
         {
-            currentPose = 0;
-            return true;
+            if (theEntity.getAnimID() == AnimID.DYING) // hold last dying pose indefinitely
+            {
+                currentPose--;
+            }
+            else
+            {
+                currentPose = 0;
+                return true;
+            }
         }
 
         // JurassiCraft.instance.getLogger().debug("Next pose is sequence step = "+currentSequenceStep);
