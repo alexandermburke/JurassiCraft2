@@ -26,12 +26,7 @@ public class RenderDinosaurDefinition
     private float renderYOffset = 0.0F;
     private float renderZOffset = 0.0F;
 
-    public RenderDinosaurDefinition(
-            Dinosaur parDinosaur,
-            IModelAnimator parAnimator,
-            float parAdultScaleAdjustment, float parBabyScaleAdjustment,
-            float parShadowSize,
-            float parRenderXOffset, float parRenderYOffset, float parRenderZOffset)
+    public RenderDinosaurDefinition(Dinosaur parDinosaur, IModelAnimator parAnimator, float parAdultScaleAdjustment, float parBabyScaleAdjustment, float parShadowSize, float parRenderXOffset, float parRenderYOffset, float parRenderZOffset)
     {
         dinosaur = parDinosaur;
         animator = parAnimator;
