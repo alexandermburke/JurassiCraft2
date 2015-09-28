@@ -27,8 +27,8 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
     public Dinosaur dinosaur;
     public RenderDinosaurDefinition renderDef;
 
-    public ResourceLocation[][][] maleTextures;
-    public ResourceLocation[][][] femaleTextures;
+    public ResourceLocation[][] maleTextures;
+    public ResourceLocation[][] femaleTextures;
     public Random random;
 
     public RenderDinosaur(RenderDinosaurDefinition renderDef)
@@ -39,28 +39,25 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
         this.random = new Random();
         this.renderDef = renderDef;
 
-        this.maleTextures = new ResourceLocation[dinosaur.getGeneticVariants()][dinosaur.getMaleTextures(0, EnumGrowthStage.INFANT).length][4]; //TODO
-        this.femaleTextures = new ResourceLocation[dinosaur.getGeneticVariants()][dinosaur.getFemaleTextures(0, EnumGrowthStage.INFANT).length][4];
+        this.maleTextures = new ResourceLocation[dinosaur.getMaleTextures(0, EnumGrowthStage.INFANT).length][4]; //TODO
+        this.femaleTextures = new ResourceLocation[dinosaur.getFemaleTextures(0, EnumGrowthStage.INFANT).length][4];
 
-        for (int v = 0; v < dinosaur.getGeneticVariants(); v++)
+        for (EnumGrowthStage stage : EnumGrowthStage.values())
         {
-            for (EnumGrowthStage stage : EnumGrowthStage.values())
+            int i = 0;
+
+            for (String texture : dinosaur.getMaleTextures(0, stage))
             {
-                int i = 0;
+                this.maleTextures[i][stage.ordinal()] = new ResourceLocation(texture);
+                i++;
+            }
 
-                for (String texture : dinosaur.getMaleTextures(v, stage))
-                {
-                    this.maleTextures[v][i][stage.ordinal()] = new ResourceLocation(texture);
-                    i++;
-                }
+            i = 0;
 
-                i = 0;
-
-                for (String texture : dinosaur.getFemaleTextures(v, stage))
-                {
-                    this.femaleTextures[v][i][stage.ordinal()] = new ResourceLocation(texture);
-                    i++;
-                }
+            for (String texture : dinosaur.getFemaleTextures(0, stage))
+            {
+                this.femaleTextures[i][stage.ordinal()] = new ResourceLocation(texture);
+                i++;
             }
         }
     }
@@ -121,7 +118,7 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
 
     public ResourceLocation getEntityTexture(EntityDinosaur entity)
     {
-        return entity.isMale() ? maleTextures[entity.getGeneticVariant()][entity.getTexture()][entity.getGrowthStage().ordinal()] : femaleTextures[entity.getGeneticVariant()][entity.getTexture()][entity.getGrowthStage().ordinal()];
+        return entity.isMale() ? maleTextures[entity.getTexture()][entity.getGrowthStage().ordinal()] : femaleTextures[entity.getTexture()][entity.getGrowthStage().ordinal()];
     }
 
     @Override
@@ -133,20 +130,13 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
     @Override
     protected void rotateCorpse(EntityLivingBase parEntity, float p_77043_2_, float p_77043_3_, float p_77043_4_)
     {
-        if (parEntity.deathTime > 0)
+        if (!(parEntity.deathTime > 0))
         {
-            if (parEntity instanceof IAnimatedEntity)
-            {
-                // Do nothing because animation we don't want the rotation since animation system will do the animation
-            }
-            else
-            {
-                super.rotateCorpse(parEntity, p_77043_2_, p_77043_3_, p_77043_4_);
-            }
+            super.rotateCorpse(parEntity, p_77043_2_, p_77043_3_, p_77043_4_);
         }
         else
         {
-            super.rotateCorpse(parEntity, p_77043_2_, p_77043_3_, p_77043_4_);
+            GlStateManager.rotate(180.0F - p_77043_3_, 0.0F, 1.0F, 0.0F);
         }
     }
 

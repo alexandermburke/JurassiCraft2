@@ -26,10 +26,10 @@ public class RenderDinosaurMultilayer extends RenderLiving implements IDinosaurR
 {
     public Dinosaur dinosaur;
     public RenderDinosaurDefinition renderDef;
-    public ResourceLocation[][][] maleTextures;
-    public ResourceLocation[][][] femaleTextures;
-    public ResourceLocation[][][] maleOverlayTextures;
-    public ResourceLocation[][][] femaleOverlayTextures;
+    public ResourceLocation[][] maleTextures;
+    public ResourceLocation[][] femaleTextures;
+    public ResourceLocation[][] maleOverlayTextures;
+    public ResourceLocation[][] femaleOverlayTextures;
     public Random random;
 
     public RenderDinosaurMultilayer(RenderDinosaurDefinition renderDef)
@@ -41,46 +41,43 @@ public class RenderDinosaurMultilayer extends RenderLiving implements IDinosaurR
         this.random = new Random();
         this.renderDef = renderDef;
 
-        this.maleTextures = new ResourceLocation[dinosaur.getGeneticVariants()][dinosaur.getMaleTextures(0, EnumGrowthStage.INFANT).length][EnumGrowthStage.values().length]; //TODO
-        this.femaleTextures = new ResourceLocation[dinosaur.getGeneticVariants()][dinosaur.getFemaleTextures(0, EnumGrowthStage.INFANT).length][EnumGrowthStage.values().length];
-        this.maleOverlayTextures = new ResourceLocation[dinosaur.getGeneticVariants()][dinosaur.getMaleOverlayTextures(0, EnumGrowthStage.INFANT).length][EnumGrowthStage.values().length];
-        this.femaleOverlayTextures = new ResourceLocation[dinosaur.getGeneticVariants()][dinosaur.getFemaleOverlayTextures(0, EnumGrowthStage.INFANT).length][EnumGrowthStage.values().length];
+        this.maleTextures = new ResourceLocation[dinosaur.getMaleTextures(0, EnumGrowthStage.INFANT).length][EnumGrowthStage.values().length]; //TODO
+        this.femaleTextures = new ResourceLocation[dinosaur.getFemaleTextures(0, EnumGrowthStage.INFANT).length][EnumGrowthStage.values().length];
+        this.maleOverlayTextures = new ResourceLocation[dinosaur.getMaleOverlayTextures(0, EnumGrowthStage.INFANT).length][EnumGrowthStage.values().length];
+        this.femaleOverlayTextures = new ResourceLocation[dinosaur.getFemaleOverlayTextures(0, EnumGrowthStage.INFANT).length][EnumGrowthStage.values().length];
 
-        for (int v = 0; v < dinosaur.getGeneticVariants(); v++)
+        for (EnumGrowthStage stage : EnumGrowthStage.values())
         {
-            for (EnumGrowthStage stage : EnumGrowthStage.values())
+            int i = 0;
+
+            for (String texture : dinosaur.getMaleTextures(0, stage))
             {
-                int i = 0;
+                this.maleTextures[i][stage.ordinal()] = new ResourceLocation(texture);
+                i++;
+            }
 
-                for (String texture : dinosaur.getMaleTextures(v, stage))
-                {
-                    this.maleTextures[v][i][stage.ordinal()] = new ResourceLocation(texture);
-                    i++;
-                }
+            i = 0;
 
-                i = 0;
+            for (String texture : dinosaur.getFemaleTextures(0, stage))
+            {
+                this.femaleTextures[i][stage.ordinal()] = new ResourceLocation(texture);
+                i++;
+            }
 
-                for (String texture : dinosaur.getFemaleTextures(v, stage))
-                {
-                    this.femaleTextures[v][i][stage.ordinal()] = new ResourceLocation(texture);
-                    i++;
-                }
+            i = 0;
 
-                i = 0;
+            for (String texture : dinosaur.getMaleOverlayTextures(0, stage))
+            {
+                this.maleOverlayTextures[i][stage.ordinal()] = new ResourceLocation(texture);
+                i++;
+            }
 
-                for (String texture : dinosaur.getMaleOverlayTextures(v, stage))
-                {
-                    this.maleOverlayTextures[v][i][stage.ordinal()] = new ResourceLocation(texture);
-                    i++;
-                }
+            i = 0;
 
-                i = 0;
-
-                for (String texture : dinosaur.getFemaleOverlayTextures(v, stage))
-                {
-                    this.femaleOverlayTextures[v][i][stage.ordinal()] = new ResourceLocation(texture);
-                    i++;
-                }
+            for (String texture : dinosaur.getFemaleOverlayTextures(0, stage))
+            {
+                this.femaleOverlayTextures[i][stage.ordinal()] = new ResourceLocation(texture);
+                i++;
             }
         }
     }
@@ -140,7 +137,7 @@ public class RenderDinosaurMultilayer extends RenderLiving implements IDinosaurR
 
     public ResourceLocation getEntityTexture(EntityDinosaur entity)
     {
-        return entity.isMale() ? maleTextures[entity.getGeneticVariant()][entity.getTexture()][entity.getGrowthStage().ordinal()] : femaleTextures[entity.getGeneticVariant()][entity.getTexture()][entity.getGrowthStage().ordinal()];
+        return entity.isMale() ? maleTextures[entity.getTexture()][entity.getGrowthStage().ordinal()] : femaleTextures[entity.getTexture()][entity.getGrowthStage().ordinal()];
     }
 
     public ResourceLocation getEntityTexture(Entity entity)
@@ -170,14 +167,14 @@ public class RenderDinosaurMultilayer extends RenderLiving implements IDinosaurR
                     if (texture > maleOverlayTextures.length)
                         texture = maleOverlayTextures.length;
 
-                    this.renderer.bindTexture(maleOverlayTextures[variation][texture][entity.getGrowthStage().ordinal()]);
+                    this.renderer.bindTexture(maleOverlayTextures[texture][entity.getGrowthStage().ordinal()]);
                 }
                 else
                 {
                     if (texture > femaleOverlayTextures.length)
                         texture = femaleOverlayTextures.length;
 
-                    this.renderer.bindTexture(femaleOverlayTextures[variation][texture][entity.getGrowthStage().ordinal()]);
+                    this.renderer.bindTexture(femaleOverlayTextures[texture][entity.getGrowthStage().ordinal()]);
                 }
 
                 this.renderer.getMainModel().render(entity, armSwing, armSwingAmount, p_177148_5_, p_177148_6_, p_177148_7_, partialTicks);
@@ -209,8 +206,15 @@ public class RenderDinosaurMultilayer extends RenderLiving implements IDinosaurR
     }
 
     @Override
-    protected float getDeathMaxRotation(EntityLivingBase entity)
+    protected void rotateCorpse(EntityLivingBase parEntity, float p_77043_2_, float p_77043_3_, float p_77043_4_)
     {
-        return 90.0F;
+        if (!(parEntity.deathTime > 0))
+        {
+            super.rotateCorpse(parEntity, p_77043_2_, p_77043_3_, p_77043_4_);
+        }
+        else
+        {
+            GlStateManager.rotate(180.0F - p_77043_3_, 0.0F, 1.0F, 0.0F);
+        }
     }
 }

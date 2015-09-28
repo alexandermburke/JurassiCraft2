@@ -65,7 +65,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
 
     private int growthSpeedOffset;
 
-    private ItemStack[] inventory = new ItemStack[54];
+    private ItemStack[] inventory = new ItemStack[81];
 
     private double energy;
     private double water;
