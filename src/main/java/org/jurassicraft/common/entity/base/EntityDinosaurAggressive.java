@@ -4,7 +4,6 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-
 import org.jurassicraft.common.entity.ai.EntityAIEatMeat;
 
 public class EntityDinosaurAggressive extends EntityDinosaur implements IMob

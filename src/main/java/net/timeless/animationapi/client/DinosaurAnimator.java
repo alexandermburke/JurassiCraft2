@@ -1,18 +1,6 @@
 package net.timeless.animationapi.client;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-
+import com.google.gson.Gson;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -21,14 +9,19 @@ import net.timeless.unilib.Unilib;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
-
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
 
-import com.google.gson.Gson;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.*;
 
 @SideOnly(Side.CLIENT)
 public abstract class DinosaurAnimator implements IModelAnimator
@@ -81,9 +74,11 @@ public abstract class DinosaurAnimator implements IModelAnimator
             this.models = renderers;
             this.animations = animations;
         }
+
         MowzieModelRenderer[][] models;
         Map<AnimID, int[][]> animations;
     }
+
     private static final Gson GSON = new Gson();
 
     public static EnumMap<AnimID, int[][]> newEmptyMap()
@@ -93,7 +88,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
     }
 
     private Map<EnumGrowthStage, PreloadedModelData> modelData;
-    protected Map<Integer, Map<EnumGrowthStage, JabelarAnimationHelper>> entityIDToAnimation = new HashMap<>();
+    protected Map<Integer, Map<EnumGrowthStage, JabelarAnimationHelper>> entityIDToAnimation = new HashMap<Integer, Map<EnumGrowthStage, JabelarAnimationHelper>>();
 
     /**
      * Loads the model, etc... for the dinosaur given.
@@ -104,11 +99,11 @@ public abstract class DinosaurAnimator implements IModelAnimator
     public DinosaurAnimator(Dinosaur dino)
     {
         String name = dino.getName(0).toLowerCase(); // this should match name of your resource package and files
-        this.modelData = new EnumMap<>(EnumGrowthStage.class);
+        this.modelData = new EnumMap<EnumGrowthStage, PreloadedModelData>(EnumGrowthStage.class);
         URI dinoDirURI = null;
         try
         {
-             dinoDirURI = new URI("/assets/jurassicraft/models/entities/" + name + "/");
+            dinoDirURI = new URI("/assets/jurassicraft/models/entities/" + name + "/");
         }
         catch (URISyntaxException urise)
         {
@@ -135,12 +130,9 @@ public abstract class DinosaurAnimator implements IModelAnimator
     /**
      * Loads a specific growth state
      *
-     * @param dinoDir
-     *            the base directory
-     * @param name
-     *            the name of the dino
-     * @param growth
-     *            the growthstate to load
+     * @param dinoDir the base directory
+     * @param name    the name of the dino
+     * @param growth  the growthstate to load
      * @throws IOException
      */
     private static PreloadedModelData loadDinosaur(URI dinoDir, String name, EnumGrowthStage growth) throws IOException
@@ -149,15 +141,30 @@ public abstract class DinosaurAnimator implements IModelAnimator
         URI growthSensitiveDir = dinoDir.resolve(growthName + "/");
         URI definitionFile = growthSensitiveDir.resolve(name + "_" + growthName + ".json");
         InputStream dinoDef = Unilib.class.getResourceAsStream(definitionFile.toString());
-        if(dinoDef == null)
-            throw new IllegalArgumentException("No model definition for the dino " + name + " with grow-state " + growth + " exists. Expected at " + definitionFile);
-        try (Reader reader = new InputStreamReader(dinoDef))
+
+        if (dinoDef == null)
         {
+            throw new IllegalArgumentException("No model definition for the dino " + name + " with grow-state " + growth + " exists. Expected at " + definitionFile);
+        }
+
+        try
+        {
+            Reader reader = new InputStreamReader(dinoDef);
+
             AnimationsDTO rawAnimations = GSON.fromJson(reader, AnimationsDTO.class);
             PreloadedModelData data = getPosedModels(growthSensitiveDir, rawAnimations);
             JurassiCraft.instance.getLogger().debug("Successfully loaded " + name + "(" + growth + ") from " + definitionFile);
+
+            reader.close();
+
             return data;
         }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     /**
@@ -256,12 +263,15 @@ public abstract class DinosaurAnimator implements IModelAnimator
         Integer id = entity.getEntityId();
         EnumGrowthStage growth = entity.getGrowthStage();
         Map<EnumGrowthStage, JabelarAnimationHelper> growthToRender = entityIDToAnimation.get(id);
+
         if (growthToRender == null)
         {
-            growthToRender = new EnumMap<>(EnumGrowthStage.class);
+            growthToRender = new EnumMap<EnumGrowthStage, JabelarAnimationHelper>(EnumGrowthStage.class);
             entityIDToAnimation.put(id, growthToRender);
         }
+
         JabelarAnimationHelper render = growthToRender.get(growth);
+
         if (render == null)
         {
             PreloadedModelData growthModel = modelData.get(growth);
@@ -269,6 +279,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
             render = new JabelarAnimationHelper(entity, model, cubes, growthModel.models, growthModel.animations, true, 1.0f);
             growthToRender.put(growth, render);
         }
+
         return render;
     }
 

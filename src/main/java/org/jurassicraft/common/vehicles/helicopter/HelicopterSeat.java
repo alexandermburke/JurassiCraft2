@@ -68,9 +68,9 @@ public class HelicopterSeat extends Entity implements IEntityAdditionalSpawnData
 
             float angle = parent.rotationYaw;
 
-            float nx = -MathHelper.sin(parent.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(parent.rotationPitch / 180.0F * (float)Math.PI) * dist;
-            float nz = MathHelper.cos(parent.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(parent.rotationPitch / 180.0F * (float)Math.PI) * dist;
-            float ny = -MathHelper.sin((parent.rotationPitch)) / 180.0F * (float)Math.PI * dist;
+            float nx = -MathHelper.sin(parent.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(parent.rotationPitch / 180.0F * (float) Math.PI) * dist;
+            float nz = MathHelper.cos(parent.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(parent.rotationPitch / 180.0F * (float) Math.PI) * dist;
+            float ny = -MathHelper.sin((parent.rotationPitch)) / 180.0F * (float) Math.PI * dist;
 
             this.posX = parent.posX + nx;
             this.posY = parent.posY + ny + 0.4f;

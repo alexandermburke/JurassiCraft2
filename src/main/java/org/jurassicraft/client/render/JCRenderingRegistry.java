@@ -1,9 +1,6 @@
 package org.jurassicraft.client.render;
 
 import com.google.common.collect.Maps;
-
-import java.util.Map;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
@@ -20,45 +17,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.gui.app.GuiAppRegistry;
-import org.jurassicraft.client.model.animation.AnimationAchillobator;
-import org.jurassicraft.client.model.animation.AnimationAnkylosaurus;
-import org.jurassicraft.client.model.animation.AnimationApatosaurus;
-import org.jurassicraft.client.model.animation.AnimationBaryonyx;
-import org.jurassicraft.client.model.animation.AnimationBrachiosaurus;
-import org.jurassicraft.client.model.animation.AnimationCarnotaurus;
-import org.jurassicraft.client.model.animation.AnimationCearadactylus;
-import org.jurassicraft.client.model.animation.AnimationCoelacanth;
-import org.jurassicraft.client.model.animation.AnimationCompsognathus;
-import org.jurassicraft.client.model.animation.AnimationDilophosaurus;
-import org.jurassicraft.client.model.animation.AnimationDimorphodon;
-import org.jurassicraft.client.model.animation.AnimationDodo;
-import org.jurassicraft.client.model.animation.AnimationDunkleosteus;
-import org.jurassicraft.client.model.animation.AnimationGallimimus;
-import org.jurassicraft.client.model.animation.AnimationGiganotosaurus;
-import org.jurassicraft.client.model.animation.AnimationHerrerasaurus;
-import org.jurassicraft.client.model.animation.AnimationHypsilophodon;
-import org.jurassicraft.client.model.animation.AnimationIndominusRex;
-import org.jurassicraft.client.model.animation.AnimationLeaellynasaura;
-import org.jurassicraft.client.model.animation.AnimationLeptictidium;
-import org.jurassicraft.client.model.animation.AnimationLudodactylus;
-import org.jurassicraft.client.model.animation.AnimationMajungasaurus;
-import org.jurassicraft.client.model.animation.AnimationMegapiranha;
-import org.jurassicraft.client.model.animation.AnimationMicroceratus;
-import org.jurassicraft.client.model.animation.AnimationOthnielia;
-import org.jurassicraft.client.model.animation.AnimationOviraptor;
-import org.jurassicraft.client.model.animation.AnimationParasaurolophus;
-import org.jurassicraft.client.model.animation.AnimationProtoceratops;
-import org.jurassicraft.client.model.animation.AnimationPteranodon;
-import org.jurassicraft.client.model.animation.AnimationRugops;
-import org.jurassicraft.client.model.animation.AnimationSegisaurus;
-import org.jurassicraft.client.model.animation.AnimationSpinosaurus;
-import org.jurassicraft.client.model.animation.AnimationStegosaurus;
-import org.jurassicraft.client.model.animation.AnimationTherizinosaurus;
-import org.jurassicraft.client.model.animation.AnimationTriceratops;
-import org.jurassicraft.client.model.animation.AnimationTropeognathus;
-import org.jurassicraft.client.model.animation.AnimationTylosaurus;
-import org.jurassicraft.client.model.animation.AnimationTyrannosaurusRex;
-import org.jurassicraft.client.model.animation.AnimationVelociraptor;
+import org.jurassicraft.client.model.animation.*;
 import org.jurassicraft.client.model.animation.raptorsquad.AnimationVelociraptorBlue;
 import org.jurassicraft.client.render.block.SpecialRendererDNAExtractor;
 import org.jurassicraft.client.render.entity.RenderBluePrint;
@@ -80,6 +39,8 @@ import org.jurassicraft.common.plant.JCPlantRegistry;
 import org.jurassicraft.common.plant.Plant;
 import org.jurassicraft.common.tileentity.TileDNAExtractor;
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
+
+import java.util.Map;
 
 @SideOnly(Side.CLIENT)
 public class JCRenderingRegistry
@@ -132,7 +93,7 @@ public class JCRenderingRegistry
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.dunkleosteus, new AnimationDunkleosteus(), 2.1F, 0.55F, 0.35F, 0.0F, 1.0F, -0.25F));
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.gallimimus, new AnimationGallimimus(), 1.2F, 0.25F, 0.65F, 0.0F, 0.0F, 0.0F));
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.giganotosaurus, new AnimationGiganotosaurus(), 2.37F, 0.3F, 0.65F, 0.0F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.hypsilophodon, new AnimationHypsilophodon(), 0.65F, 0.2F, 0.65F, 0.0F, -0.5F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.hypsilophodon, new AnimationHypsilophodon(), 0.65F, 0.2F, 0.65F, 0.0F, 0.0F, 0.0F));
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.indominus, new AnimationIndominusRex(), 3.0F, 0.4F, 0.65F, 0.0F, 0.0F, 0.0F));
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.majungasaurus, new AnimationMajungasaurus(), 1.6F, 0.4F, 0.65F, 0.0F, 0.0F, 0.0F));
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.parasaurolophus, new AnimationParasaurolophus(), 1.9F, 0.4F, 0.65F, 0.0F, 0.75F, 0.0F));

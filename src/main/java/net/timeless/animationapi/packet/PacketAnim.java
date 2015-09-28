@@ -8,7 +8,6 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.timeless.animationapi.client.AnimID;
-
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 
