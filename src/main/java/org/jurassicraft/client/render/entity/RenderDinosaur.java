@@ -1,7 +1,5 @@
 package org.jurassicraft.client.render.entity;
 
-import java.util.Random;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
@@ -14,13 +12,14 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.IAnimatedEntity;
-
 import org.jurassicraft.client.render.renderdef.RenderDinosaurDefinition;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.EntityVelociraptor;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
 import org.lwjgl.opengl.GL11;
+
+import java.util.Random;
 
 @SideOnly(Side.CLIENT)
 public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer

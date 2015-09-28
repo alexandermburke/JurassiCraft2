@@ -1,15 +1,14 @@
 package net.timeless.animationapi.client;
 
-import java.util.Map;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
-
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+
+import java.util.Map;
 
 /**
  * @author jabelar
@@ -344,7 +343,7 @@ public class JabelarAnimationHelper
         }
         else
         {
-            JurassiCraft.instance.getLogger().debug("Setting new sequence to "+parSequenceIndex);
+            JurassiCraft.instance.getLogger().debug("Setting new sequence to " + parSequenceIndex);
             currentSequence = parSequenceIndex;
         }
 

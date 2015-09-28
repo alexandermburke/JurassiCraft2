@@ -27,9 +27,9 @@ public class RenderDinosaurDefinition
     private float renderZOffset = 0.0F;
 
     public RenderDinosaurDefinition(
-            Dinosaur parDinosaur, 
-            IModelAnimator parAnimator, 
-            float parAdultScaleAdjustment, float parBabyScaleAdjustment, 
+            Dinosaur parDinosaur,
+            IModelAnimator parAnimator,
+            float parAdultScaleAdjustment, float parBabyScaleAdjustment,
             float parShadowSize,
             float parRenderXOffset, float parRenderYOffset, float parRenderZOffset)
     {
@@ -41,7 +41,7 @@ public class RenderDinosaurDefinition
         renderXOffset = parRenderXOffset;
         renderYOffset = parRenderYOffset;
         renderZOffset = parRenderZOffset;
-        
+
         model = getDefaultTabulaModel();
     }
 
@@ -103,12 +103,13 @@ public class RenderDinosaurDefinition
         );
     }
 
-    public ModelDinosaur getDefaultTabulaModel() 
+    public ModelDinosaur getDefaultTabulaModel()
     {
         try
         {
             return getDefaultTabulaModel(0);
-        } catch (Exception e)
+        }
+        catch (Exception e)
         {
             // TODO Auto-generated catch block
             e.printStackTrace();

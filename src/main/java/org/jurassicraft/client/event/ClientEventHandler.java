@@ -6,7 +6,6 @@ import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.event.entity.PlaySoundAtEntityEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.gui.GuiPaleoTab;
 import org.jurassicraft.client.gui.app.GuiApp;
