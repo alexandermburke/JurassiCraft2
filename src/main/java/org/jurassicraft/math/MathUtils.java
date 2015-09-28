@@ -83,5 +83,22 @@ public class MathUtils {
     {
         return num < 0;
     }
+    
+    public static double makePositive(double num) {
+        if (num >= 0) {
+            return num;
+        }
+        double newNum = Math.pow(num, 2);
+        double posNum = Math.sqrt(newNum);
+        return posNum;
+    }
+    
+    public static double makeNegative(double num) {
+        if (num < 0) {
+            return num;
+        }
+        String str = "-" + num;
+        return Double.parseDouble(str);
+    }
 
 }
