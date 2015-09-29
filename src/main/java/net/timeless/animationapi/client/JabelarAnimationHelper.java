@@ -1,14 +1,20 @@
 package net.timeless.animationapi.client;
 
+import java.util.Map;
+
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
-
-import java.util.Map;
 
 /**
  * @author jabelar
@@ -19,6 +25,10 @@ import java.util.Map;
 public class JabelarAnimationHelper
 {
     private final EntityDinosaur theEntity;
+    private World theWorld;
+    private IBlockState theBloodIBlockState;
+    
+    private Minecraft mc;
 
     private final Map<AnimID, int[][]> mapOfSequences;
 
@@ -63,12 +73,15 @@ public class JabelarAnimationHelper
         baseInertiaFactor = parInertiaFactor;
 
         init(parModel);
+        initBloodParticles();
 
         JurassiCraft.instance.getLogger().debug("Finished JabelarAnimation constructor");
     }
 
     public void performJabelarAnimations()
     {
+        performBloodSpurt();
+
         // Allow interruption of the animation if it is a new animation and not currently dying
         if (theEntity.getAnimID() != currentSequence && currentSequence != AnimID.DYING)
         {
@@ -381,5 +394,27 @@ public class JabelarAnimationHelper
     public ModelDinosaur getTabulaModel(String tabulaModel)
     {
         return getTabulaModel(tabulaModel, 0);
+    }
+    
+    private void initBloodParticles()
+    {        
+        theWorld = theEntity.worldObj;
+        
+        mc = Minecraft.getMinecraft();
+        
+        theWorld.setBlockState(new BlockPos(0, 0, 0), Blocks.redstone_block.getDefaultState());
+        theBloodIBlockState = theWorld.getBlockState(new BlockPos(0, 0, 0));        
+    }
+    
+    private void performBloodSpurt()
+    {
+        if (theEntity.hurtTime == 9)
+        {
+            mc.effectRenderer.addBlockDestroyEffects(theEntity.getPosition().up((int)Math.round(theEntity.height * 0.75)), theBloodIBlockState);
+        }
+        if (theEntity.deathTime > 0 && theEntity.deathTime < 140 && theEntity.deathTime%30 == 0)
+        {
+            mc.effectRenderer.addBlockDestroyEffects(theEntity.getPosition().up(), theBloodIBlockState);
+        }
     }
 }

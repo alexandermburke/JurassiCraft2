@@ -15,6 +15,7 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
 import org.jurassicraft.client.render.renderdef.RenderDinosaurDefinition;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.EntityVelociraptor;
@@ -25,7 +26,7 @@ import org.lwjgl.opengl.GL11;
 @SideOnly(Side.CLIENT)
 public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
 {
-    private static final DynamicTexture field_177096_e = new DynamicTexture(16, 16);
+    private static final DynamicTexture dynamicTexture = new DynamicTexture(16, 16);
 
     public Dinosaur dinosaur;
     public RenderDinosaurDefinition renderDef;
@@ -126,7 +127,7 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
         float f1 = entitylivingbaseIn.getBrightness(partialTicks);
         int i = this.getColorMultiplier(entitylivingbaseIn, f1, partialTicks);
         boolean flag1 = (i >> 24 & 255) > 0;
-        boolean flag2 = entitylivingbaseIn.hurtTime > 0 ; // || entitylivingbaseIn.deathTime > 0;
+        boolean flag2 = false; // entitylivingbaseIn.hurtTime > 0 || entitylivingbaseIn.deathTime > 0;
 
         if (!flag1 && !flag2)
         {
@@ -187,7 +188,7 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
             GL11.glTexEnv(GL11.GL_TEXTURE_ENV, GL11.GL_TEXTURE_ENV_COLOR, this.brightnessBuffer);
             GlStateManager.setActiveTexture(OpenGlHelper.GL_TEXTURE2);
             GlStateManager.enableTexture2D();
-            GlStateManager.bindTexture(field_177096_e.getGlTextureId());
+            GlStateManager.bindTexture(dynamicTexture.getGlTextureId());
             GL11.glTexEnvi(GL11.GL_TEXTURE_ENV, GL11.GL_TEXTURE_ENV_MODE, OpenGlHelper.GL_COMBINE);
             GL11.glTexEnvi(GL11.GL_TEXTURE_ENV, OpenGlHelper.GL_COMBINE_RGB, GL11.GL_MODULATE);
             GL11.glTexEnvi(GL11.GL_TEXTURE_ENV, OpenGlHelper.GL_SOURCE0_RGB, OpenGlHelper.GL_PREVIOUS);
