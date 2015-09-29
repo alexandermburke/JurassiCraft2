@@ -402,8 +402,7 @@ public class JabelarAnimationHelper
         
         mc = Minecraft.getMinecraft();
         
-        theWorld.setBlockState(new BlockPos(0, 0, 0), Blocks.redstone_block.getDefaultState());
-        theBloodIBlockState = theWorld.getBlockState(new BlockPos(0, 0, 0));        
+        theBloodIBlockState = Blocks.redstone_block.getDefaultState();
     }
     
     private void performBloodSpurt()

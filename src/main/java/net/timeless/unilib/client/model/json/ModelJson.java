@@ -121,7 +121,7 @@ public class ModelJson extends MowzieModelBase
     {
         MowzieModelRenderer modelRenderer = createModelRenderer(cube);
 
-        if(parent == null)
+        if(parent == null && !parents.contains(modelRenderer))
         {
             parents.add(modelRenderer);
         }
