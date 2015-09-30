@@ -1,6 +1,5 @@
 package org.jurassicraft.common.entity.base;
 
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
@@ -32,20 +31,6 @@ public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
     public boolean getCanSpawnHere()
     {
         return this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && super.getCanSpawnHere();
-    }
-
-    @Override
-    protected void applyEntityAttributes()
-    {
-        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
-        super.applyEntityAttributes();
-    }
-
-    @Override
-    public void updateCreatureData()
-    {
-        super.updateCreatureData();
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(transitionFromAge(dinosaur.getBabyStrength(), dinosaur.getAdultStrength()));
     }
 
     @Override

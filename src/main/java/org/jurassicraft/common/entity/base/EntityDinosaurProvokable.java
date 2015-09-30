@@ -23,6 +23,7 @@ public class EntityDinosaurProvokable extends EntityDinosaur
     /**
      * Sets the active target the Task system uses for tracking
      */
+    @Override
     public void setAttackTarget(EntityLivingBase entity)
     {
         super.setAttackTarget(entity);
@@ -40,6 +41,7 @@ public class EntityDinosaurProvokable extends EntityDinosaur
     /**
      * (abstract) Protected helper method to write subclass entity data to NBT.
      */
+    @Override
     public void writeEntityToNBT(NBTTagCompound tagCompound)
     {
         super.writeEntityToNBT(tagCompound);
@@ -49,6 +51,7 @@ public class EntityDinosaurProvokable extends EntityDinosaur
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
+    @Override
     public void readEntityFromNBT(NBTTagCompound tagCompund)
     {
         super.readEntityFromNBT(tagCompund);
@@ -59,6 +62,7 @@ public class EntityDinosaurProvokable extends EntityDinosaur
      * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
      * use this to react to sunlight and start to burn.
      */
+    @Override
     public void onLivingUpdate()
     {
         super.onLivingUpdate();
@@ -69,6 +73,7 @@ public class EntityDinosaurProvokable extends EntityDinosaur
         }
     }
 
+    @Override
     public void entityInit()
     {
         super.entityInit();
@@ -92,9 +97,10 @@ public class EntityDinosaurProvokable extends EntityDinosaur
 //        }
 //    }
 
+    @Override
     public boolean attackEntityAsMob(Entity entity)
     {
-        boolean flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) ((int) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue()));
+        boolean flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), ((int) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue()));
 
         if (flag)
         {
@@ -127,11 +133,5 @@ public class EntityDinosaurProvokable extends EntityDinosaur
         {
             this.dataWatcher.updateObject(16, Byte.valueOf((byte) (b0 & -3)));
         }
-    }
-
-    protected void applyEntityAttributes()
-    {
-        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
-        super.applyEntityAttributes();
     }
 }

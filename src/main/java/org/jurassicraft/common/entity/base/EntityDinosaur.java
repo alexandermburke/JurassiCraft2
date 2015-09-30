@@ -272,6 +272,10 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(transitionFromAge(dinosaur.getBabyKnockback(), dinosaur.getAdultKnockback()));
 
         // adjustHitbox();
+        
+        getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
+//        getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(transitionFromAge(dinosaur.getBabyStrength(), dinosaur.getAdultStrength()));
+        getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(transitionFromAge(5);
 
         heal((float) (newHealth - lastDamage));
     }

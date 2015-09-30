@@ -1,6 +1,5 @@
 package org.jurassicraft.common.entity.base;
 
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.world.World;
 import org.jurassicraft.common.entity.ai.EntityAIFindPlant;
@@ -28,20 +27,5 @@ public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements 
     {
         super.onLivingUpdate();
         updateArmSwingProgress();
-    }
-
-    @Override
-    protected void applyEntityAttributes()
-    {
-        getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
-        super.applyEntityAttributes();
-    }
-
-    @Override
-    public void updateCreatureData()
-    {
-        super.updateCreatureData();
-
-        getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(transitionFromAge(dinosaur.getBabyStrength(), dinosaur.getAdultStrength()));
     }
 }
