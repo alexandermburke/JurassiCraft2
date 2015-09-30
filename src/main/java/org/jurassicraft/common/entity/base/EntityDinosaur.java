@@ -222,6 +222,17 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         }
     }
 
+    @Override
+    public boolean attackEntityFrom(DamageSource damageSource, float amount)
+    {
+        if (getAnimID() == AnimID.IDLE)
+        {
+            AnimationAPI.sendAnimPacket(this, AnimID.INJURED);
+        }
+
+        return super.attackEntityFrom(damageSource, amount);
+    }
+
     public void setWater(double water)
     {
         water = Math.min(water, 24000);

@@ -92,13 +92,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
     @Override
     public String getHurtSound()
     {
-        if (getAnimID() == AnimID.IDLE)
-        {
-            AnimationAPI.sendAnimPacket(this, AnimID.INJURED);
-            return randomSound(hurtSounds);
-        }
-
-        return null;
+        return randomSound(hurtSounds);
     }
 
     @Override
