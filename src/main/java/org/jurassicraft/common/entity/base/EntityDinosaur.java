@@ -260,6 +260,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
 
         dinosaur = JCEntityRegistry.getDinosaurByClass(getClass());
 
+        getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
         updateCreatureData();
         adjustHitbox();
     }
@@ -274,7 +275,6 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
 
         // adjustHitbox();
         
-        getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
 //        getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(transitionFromAge(dinosaur.getBabyStrength(), dinosaur.getAdultStrength()));
         getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(5);
 
