@@ -1,23 +1,28 @@
 package org.jurassicraft.client.model.animation;
 
-import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.Animator;
-import net.timeless.unilib.client.model.json.IModelAnimator;
-import net.timeless.unilib.client.model.json.ModelJson;
+import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+
 import org.jurassicraft.client.model.ModelDinosaur;
+import org.jurassicraft.common.dinosaur.DinosaurProtoceratops;
 import org.jurassicraft.common.entity.EntityProtoceratops;
+import org.jurassicraft.common.entity.base.EntityDinosaur;
 
 @SideOnly(Side.CLIENT)
-public class AnimationProtoceratops implements IModelAnimator
+public class AnimationProtoceratops extends DinosaurAnimator
 {
-    @Override
-    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity e)
+    public AnimationProtoceratops()
     {
-        ModelDinosaur model = (ModelDinosaur) modelJson;
-        EntityProtoceratops entity = (EntityProtoceratops) e;
+        super(new DinosaurProtoceratops());
+    }
+
+    @Override
+    protected void performMowzieAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
+    {
+        ModelDinosaur model = parModel;
         Animator animator = model.animator;
 
 //        f = entity.ticksExisted;
@@ -91,7 +96,7 @@ public class AnimationProtoceratops implements IModelAnimator
         model.walk(armLowerRight, 1F * globalSpeed, 0.6F * globalDegree, false, frontOffset + 1F, -0.2F, f, f1);
         model.walk(handRight, 1F * globalSpeed, 0.6F * globalDegree, true, frontOffset + 2F, 0.8F, f, f1);
 
-        int ticksExisted = entity.ticksExisted;
+        int ticksExisted = parEntity.ticksExisted;
 
         model.chainWave(tail, globalSpeed * 0.25F, globalHeight * 1.0F, 3, ticksExisted, 0.1F);
         model.chainWave(neck, globalSpeed * 0.25F, globalHeight * 1.0F, -3, ticksExisted, 0.1F);
@@ -99,6 +104,6 @@ public class AnimationProtoceratops implements IModelAnimator
         model.faceTarget(head, 2, rotationYaw, rotationPitch);
         model.faceTarget(neck1, 2, rotationYaw, rotationPitch);
 
-        entity.tailBuffer.applyChainSwingBuffer(tail);
+        ((EntityProtoceratops)parEntity).tailBuffer.applyChainSwingBuffer(tail);
     }
 }
