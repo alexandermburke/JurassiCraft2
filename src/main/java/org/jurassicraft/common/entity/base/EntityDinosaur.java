@@ -35,6 +35,7 @@ import net.timeless.animationapi.AIAnimation;
 import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.AnimID;
+
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.disease.Disease;
@@ -275,7 +276,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         
         getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
 //        getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(transitionFromAge(dinosaur.getBabyStrength(), dinosaur.getAdultStrength()));
-        getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(transitionFromAge(5);
+        getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(5);
 
         heal((float) (newHealth - lastDamage));
     }

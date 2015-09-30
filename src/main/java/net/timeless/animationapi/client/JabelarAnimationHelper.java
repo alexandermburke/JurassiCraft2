@@ -5,8 +5,6 @@ import java.util.Map;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
@@ -25,7 +23,6 @@ import org.jurassicraft.common.entity.base.EntityDinosaur;
 public class JabelarAnimationHelper
 {
     private final EntityDinosaur theEntity;
-    private World theWorld;
     private IBlockState theBloodIBlockState;
     
     private Minecraft mc;
@@ -398,8 +395,6 @@ public class JabelarAnimationHelper
     
     private void initBloodParticles()
     {        
-        theWorld = theEntity.worldObj;
-        
         mc = Minecraft.getMinecraft();
         
         theBloodIBlockState = Blocks.redstone_block.getDefaultState();
