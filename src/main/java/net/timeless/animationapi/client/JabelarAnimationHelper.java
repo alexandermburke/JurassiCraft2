@@ -402,11 +402,11 @@ public class JabelarAnimationHelper
     
     private void performBloodSpurt()
     {
-        if (theEntity.hurtTime == 9)
+        if (theEntity.hurtTime == theEntity.maxHurtTime-1)
         {
             mc.effectRenderer.addBlockDestroyEffects(theEntity.getPosition().up((int)Math.round(theEntity.height * 0.75)), theBloodIBlockState);
         }
-        if (theEntity.deathTime > 0 && theEntity.deathTime < 140 && theEntity.deathTime%30 == 0)
+        if (theEntity.deathTime > 0 && theEntity.deathTime < 70 && theEntity.deathTime%30 == 0)
         {
             mc.effectRenderer.addBlockDestroyEffects(theEntity.getPosition().up(), theBloodIBlockState);
         }

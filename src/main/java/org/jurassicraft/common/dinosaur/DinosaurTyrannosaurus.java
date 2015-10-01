@@ -96,13 +96,13 @@ public class DinosaurTyrannosaurus extends Dinosaur
     @Override
     public double getBabyKnockback()
     {
-        return 0.3;
+        return 0.3D;
     }
 
     @Override
     public double getAdultKnockback()
     {
-        return 0.6;
+        return 0.6D;
     }
 
     @Override

@@ -286,8 +286,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
 
         // adjustHitbox();
         
-//        getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(transitionFromAge(dinosaur.getBabyStrength(), dinosaur.getAdultStrength()));
-        getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(5);
+        getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(transitionFromAge(dinosaur.getBabyStrength(), dinosaur.getAdultStrength()));
 
         heal((float) (newHealth - lastDamage));
     }
@@ -296,10 +295,28 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     {
         setSize((float) transitionFromAge(dinosaur.getBabySizeX(), dinosaur.getAdultSizeX()), (float) transitionFromAge(dinosaur.getBabySizeY(), dinosaur.getAdultSizeY()));
     }
+    
+    // Need to override because vanilla knockback makes big dinos get knocked into air
+    @Override
+    public void knockBack(Entity p_70653_1_, float p_70653_2_, double p_70653_3_, double p_70653_5_)
+    {
+        if (rand.nextDouble() >= getEntityAttribute(SharedMonsterAttributes.knockbackResistance).getAttributeValue())
+        {
+            isAirBorne = true;
+            float f1 = MathHelper.sqrt_double(p_70653_3_ * p_70653_3_ + p_70653_5_ * p_70653_5_);
+            float f2 = 0.4F;
+            motionX /= 2.0D;
+            motionZ /= 2.0D;
+            motionX -= p_70653_3_ / f1 * f2;
+            motionZ -= p_70653_5_ / f1 * f2;
+            
+            // TODO
+            // We should make knockback bigger and into air if dino is much smaller than attacking dino
+       }
+    }
 
     public double transitionFromAge(double baby, double adult)
     {
-        int dinosaurAge = this.dinosaurAge;
         int maxAge = dinosaur.getMaximumAge();
 
         if (dinosaurAge > maxAge)

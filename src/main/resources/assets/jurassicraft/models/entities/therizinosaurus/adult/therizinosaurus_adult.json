@@ -78,13 +78,12 @@
 			{"pose": "therizinosaurus_adult_dying_4", "time": 80}
 		],
 		"ATTACKING": [
-			{"pose": "therizinosaurus_adult_crouching_1", "time": 40}, {"pose": "therizinosaurus_adult_crouching_2", "time": 20},
-			{"pose": "therizinosaurus_adult_crouching_3", "time": 20}, {"pose": "therizinosaurus_adult_crouching_2", "time": 20},
-			{"pose": "therizinosaurus_adult_crouching_3", "time": 20}, {"pose": "therizinosaurus_adult_crouching_2", "time": 20},
-			{"pose": "therizinosaurus_adult_crouching_3", "time": 20}, {"pose": "therizinosaurus_adult_crouching_2", "time": 20},
-			{"pose": "therizinosaurus_adult_crouching_3", "time": 20}, {"pose": "therizinosaurus_adult_crouching_4", "time": 40},
-			{"pose": "therizinosaurus_adult_crouching_5", "time": 60}, {"pose": "therizinosaurus_adult_crouching_6", "time": 40},
-			{"pose": "therizinosaurus_adult_crouching_7", "time": 40}, {"pose": "therizinosaurus_adult_idle","time": 60}
+            {"pose": "therizinosaurus_adult_attacking_1", "time": 80},
+            {"pose": "therizinosaurus_adult_attacking_2", "time": 40},
+            {"pose": "therizinosaurus_adult_attacking_3", "time": 20},          
+            {"pose": "therizinosaurus_adult_attacking_1", "time": 40},
+            {"pose": "therizinosaurus_adult_attacking_2", "time": 40},
+            {"pose": "therizinosaurus_adult_attacking_3", "time": 20}
 		]
 	}
 }
