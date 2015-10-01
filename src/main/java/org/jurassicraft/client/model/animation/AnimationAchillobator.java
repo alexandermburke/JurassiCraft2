@@ -5,6 +5,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.dinosaur.DinosaurAchillobator;
 import org.jurassicraft.common.entity.EntityAchillobator;
@@ -106,9 +107,6 @@ public class AnimationAchillobator extends DinosaurAnimator
         model.chainWave(bodyParts, 0.1F, -0.03F, 5, parEntity.ticksExisted, 1F);
         model.chainWave(rightArmParts, 0.1F, -0.1F, 4, parEntity.ticksExisted, 1F);
         model.chainWave(leftArmParts, 0.1F, -0.1F, 4, parEntity.ticksExisted, 1F);
-
-        model.faceTarget(head, 2, rotationYaw, rotationPitch);
-        model.faceTarget(neck1, 2, rotationYaw, rotationPitch);
 
         ((EntityAchillobator) parEntity).tailBuffer.applyChainSwingBuffer(tailParts);
     }

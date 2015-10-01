@@ -87,8 +87,6 @@ public class AnimationHypsilophodon extends DinosaurAnimator
         parModel.walk(armright, 1 * scaleFactor, 0.3F, false, 1, -0.2F, f, f1);
         parModel.walk(armleft, 1 * scaleFactor, 0.3F, false, 1, -0.2F, f, f1);
 
-        parModel.faceTarget(head, 1, rotationYaw, rotationPitch);
-
         // Idling
         parModel.chainWave(tailParts, 0.2F, -0.05F, 2, ticksExisted, 1F);
         parModel.walk(neck, 0.2F, 0.1F, false, -1F, 0F, ticksExisted, 1F);
@@ -101,80 +99,6 @@ public class AnimationHypsilophodon extends DinosaurAnimator
         parModel.walk(armleft, 0.2F, 0.1F, false, 0F, 0F, ticksExisted, 1F);
 
         parModel.chainWave(tailParts, 1F * scaleFactor, 0.15F, 2, f, f1);
-
-//        EntityHypsilophodon hysilophodon = (EntityHypsilophodon) parEntity;
-//
-//        if (hysilophodon.getAnimID() == AnimID.SCRATCHING)
-//        {
-//            animator.setAnim(AnimID.SCRATCHING);
-//            animator.startPhase(5);
-//            animator.rotate(neck, 0.9F, -0.4F, 0);
-//            animator.rotate(head, -0.8F, -0.25F, 0.7F);
-//            animator.rotate(shoulderleft, -2.6F, 0, 0);
-//            animator.rotate(armleft, 0.5F, 0, 0);
-//            animator.endPhase();
-//            animator.startPhase(2);
-//            animator.rotate(neck, 0.9F, -0.35F, 0);
-//            animator.rotate(head, -0.8F, -0.15F, 0.7F);
-//            animator.rotate(shoulderleft, -0.5F, 0, 0);
-//            animator.rotate(armleft, -0.5F, 0, 0);
-//            animator.endPhase();
-//            animator.startPhase(3);
-//            animator.rotate(neck, 0.9F, -0.4F, 0);
-//            animator.rotate(head, -0.8F, -0.25F, 0.7F);
-//            animator.rotate(shoulderleft, -2.6F, 0, 0);
-//            animator.rotate(armleft, 0.5F, 0, 0);
-//            animator.endPhase();
-//            animator.startPhase(2);
-//            animator.rotate(neck, 0.9F, -0.35F, 0);
-//            animator.rotate(head, -0.8F, -0.15F, 0.7F);
-//            animator.rotate(shoulderleft, -0.5F, 0, 0);
-//            animator.rotate(armleft, -0.5F, 0, 0);
-//            animator.endPhase();
-//            animator.startPhase(3);
-//            animator.rotate(neck, 0.9F, -0.4F, 0);
-//            animator.rotate(head, -0.8F, -0.25F, 0.7F);
-//            animator.rotate(shoulderleft, -2.6F, 0, 0);
-//            animator.rotate(armleft, 0.5F, 0, 0);
-//            animator.endPhase();
-//            animator.startPhase(2);
-//            animator.rotate(neck, 0.9F, -0.35F, 0);
-//            animator.rotate(head, -0.8F, -0.15F, 0.7F);
-//            animator.rotate(shoulderleft, -0.5F, 0, 0);
-//            animator.rotate(armleft, -0.5F, 0, 0);
-//            animator.endPhase();
-//            animator.startPhase(3);
-//            animator.rotate(neck, 0.9F, -0.4F, 0);
-//            animator.rotate(head, -0.8F, -0.25F, 0.7F);
-//            animator.rotate(shoulderleft, -2.6F, 0, 0);
-//            animator.rotate(armleft, 0.5F, 0, 0);
-//            animator.endPhase();
-//            animator.startPhase(2);
-//            animator.rotate(neck, 0.9F, -0.35F, 0);
-//            animator.rotate(head, -0.8F, -0.15F, 0.7F);
-//            animator.rotate(shoulderleft, -0.5F, 0, 0);
-//            animator.rotate(armleft, -0.5F, 0, 0);
-//            animator.endPhase();
-//            animator.startPhase(3);
-//            animator.rotate(neck, 0.9F, -0.4F, 0);
-//            animator.rotate(head, -0.8F, -0.25F, 0.7F);
-//            animator.rotate(shoulderleft, -2.6F, 0, 0);
-//            animator.rotate(armleft, 0.5F, 0, 0);
-//            animator.endPhase();
-//            animator.startPhase(2);
-//            animator.rotate(neck, 0.9F, -0.35F, 0);
-//            animator.rotate(head, -0.8F, -0.15F, 0.7F);
-//            animator.rotate(shoulderleft, -0.5F, 0, 0);
-//            animator.rotate(armleft, -0.5F, 0, 0);
-//            animator.endPhase();
-//            animator.startPhase(3);
-//            animator.rotate(neck, 0.9F, -0.4F, 0);
-//            animator.rotate(head, -0.8F, -0.25F, 0.7F);
-//            animator.rotate(shoulderleft, -2.6F, 0, 0);
-//            animator.rotate(armleft, 0.5F, 0, 0);
-//            animator.endPhase();
-//            animator.resetPhase(5);
-//        }
 
         ((EntityHypsilophodon) parEntity).tailBuffer.applyChainSwingBuffer(tailParts);
     }

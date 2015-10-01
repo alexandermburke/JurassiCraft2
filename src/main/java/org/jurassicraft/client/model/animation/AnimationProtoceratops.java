@@ -2,7 +2,6 @@ package org.jurassicraft.client.model.animation;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.animationapi.client.Animator;
 import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 
@@ -23,10 +22,6 @@ public class AnimationProtoceratops extends DinosaurAnimator
     protected void performMowzieAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
     {
         ModelDinosaur model = parModel;
-        Animator animator = model.animator;
-
-//        f = entity.ticksExisted;
-//        f1 = 0.5F;
 
         float globalSpeed = 0.5F;
         float globalHeight = 0.5F;
@@ -100,9 +95,6 @@ public class AnimationProtoceratops extends DinosaurAnimator
 
         model.chainWave(tail, globalSpeed * 0.25F, globalHeight * 1.0F, 3, ticksExisted, 0.1F);
         model.chainWave(neck, globalSpeed * 0.25F, globalHeight * 1.0F, -3, ticksExisted, 0.1F);
-
-        model.faceTarget(head, 2, rotationYaw, rotationPitch);
-        model.faceTarget(neck1, 2, rotationYaw, rotationPitch);
 
         ((EntityProtoceratops)parEntity).tailBuffer.applyChainSwingBuffer(tail);
     }

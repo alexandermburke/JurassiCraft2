@@ -96,9 +96,6 @@ public class AnimationHerrerasaurus extends DinosaurAnimator
         parModel.chainWave(rightArmParts, 1F * scaleFactor, -0.3F, 4, f, f1);
         parModel.chainWave(leftArmParts, 1F * scaleFactor, -0.3F, 4, f, f1);
 
-        parModel.faceTarget(head, 2, rotationYaw, rotationPitch);
-        parModel.faceTarget(neck1, 2, rotationYaw, rotationPitch);
-
         // Idling
         int ticksExisted = entity.ticksExisted;
 

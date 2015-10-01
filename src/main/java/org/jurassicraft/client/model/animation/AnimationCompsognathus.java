@@ -2,10 +2,9 @@ package org.jurassicraft.client.model.animation;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.animationapi.client.AnimID;
-import net.timeless.animationapi.client.Animator;
 import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.dinosaur.DinosaurCompsognathus;
 import org.jurassicraft.common.entity.EntityCompsognathus;
@@ -23,7 +22,6 @@ public class AnimationCompsognathus extends DinosaurAnimator
     public void setRotationAngles(ModelDinosaur modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur entity)
     {
         ModelDinosaur model = modelJson;
-        Animator animator = model.animator;
 
         MowzieModelRenderer abdomen = model.getCube("abdomen");
         MowzieModelRenderer upperBody = model.getCube("Upper body");
@@ -95,95 +93,6 @@ public class AnimationCompsognathus extends DinosaurAnimator
         model.chainWave(tail, 0.125F * globalSpeed, globalHeight * 0.125F, 2, ticksExisted, 0.25F);
         model.chainWave(neck, 0.125F * globalSpeed, globalHeight * 0.125F, -2, ticksExisted, 0.25F);
 
-        model.faceTarget(head, 2, rotationYaw, rotationPitch);
-        model.faceTarget(neck1, 2, rotationYaw, rotationPitch);
-
         ((EntityCompsognathus) entity).tailBuffer.applyChainSwingBuffer(tail);
-
-        // beg animation
-        // 60 ticks
-        // Squat phase
-        animator.setAnim(AnimID.FLYING);
-        animator.startPhase(5);
-        animator.rotate(leftThigh, -0.3F, 0, 0);
-        animator.move(leftThigh, 0, 3F, 0);
-        animator.rotate(leftMidLeg, 0.8F, 0, 0);
-        animator.rotate(leftShin, -0.5F, 0, 0);
-        animator.rotate(leftFoot, -0.1F, 0, 0);
-        animator.rotate(rightThigh, -0.3F, 0, 0);
-        animator.move(rightThigh, 0, 3F, 0);
-        animator.rotate(rightMidLeg, 0.8F, 0, 0);
-        animator.rotate(rightShin, -0.4F, 0, 0);
-        animator.rotate(rightFoot, -0.1F, 0, 0);
-        animator.rotate(head, -0.4F, 0, 0);
-        animator.rotate(lowerJaw, 0.3F, 0, 0);
-        animator.rotate(abdomen, -0.1F, 0, 0);
-        animator.move(abdomen, 0, 3F, 0);
-        animator.rotate(tail1, 0.1F, 0, 0);
-        animator.rotate(tail2, 0.1F, 0, 0);
-        animator.rotate(tail3, 0.2F, 0, 0);
-        animator.rotate(tail4, 0.1F, 0, 0);
-        animator.rotate(tail5, 0.1F, 0, 0);
-        animator.endPhase();
-
-        // jump phase
-        animator.startPhase(7);
-        animator.rotate(leftThigh, 0, 0, 0);
-        animator.move(leftThigh, 0, -20F, 0);
-        animator.rotate(leftMidLeg, -0.1F, 0, 0);
-        animator.rotate(leftShin, 0, 0, 0);
-        animator.rotate(leftFoot, 0.6F, 0, 0);
-        animator.rotate(rightThigh, 0, 0, 0);
-        animator.move(rightThigh, 0, -20F, 0);
-        animator.rotate(rightMidLeg, -0.1F, 0, 0);
-        animator.rotate(rightShin, -0.1F, 0, 0);
-        animator.rotate(rightFoot, 0.6F, 0, 0);
-        animator.rotate(lowerJaw, 0.1F, 0, 0);
-        animator.rotate(head, -0.7F, 0, 0);
-        animator.rotate(abdomen, -0.8F, 0, 0);
-        animator.move(abdomen, 0, -20F, 0);
-        animator.rotate(lowerJaw, 0.4F, 0, 0);
-        animator.rotate(tail1, -0.1F, 0, 0);
-        animator.rotate(tail2, -0.1F, 0, 0);
-        animator.rotate(tail3, -0.1F, 0, 0);
-        animator.rotate(tail4, -0.1F, 0, 0);
-        animator.rotate(tail5, -0.1F, 0, 0);
-        animator.rotate(neck1, 0.6F, 0, 0);
-        animator.rotate(neck2, 0.1F, 0, 0);
-        animator.rotate(neck5, -0.2F, 0, 0);
-        animator.rotate(neck6, -0.2F, 0, 0);
-        animator.rotate(neck7, -0.2F, 0, 0);
-        animator.rotate(leftArm, -1.7F, 0, 0);
-        animator.rotate(leftForeArm, 0.6F, 0, 0);
-        animator.rotate(leftHand, -1.6F, 0, 0);
-        animator.rotate(rightArm, -1.5F, 0, 0);
-        animator.rotate(rightForeArm, 0.6F, 0, 0);
-        animator.rotate(rightHand, -1.5F, 0, 0);
-        animator.endPhase();
-
-        // land phase
-        animator.startPhase(5);
-        animator.rotate(leftThigh, -0.4F, 0, 0);
-        animator.move(leftThigh, 0, 3F, 0);
-        animator.rotate(leftMidLeg, 0.9F, 0, 0);
-        animator.rotate(leftShin, -0.6F, 0, 0);
-        animator.rotate(leftFoot, -0.1F, 0, 0);
-        animator.rotate(rightThigh, -0.4F, 0, 0);
-        animator.move(rightThigh, 0, 3F, 0);
-        animator.rotate(rightMidLeg, 0.9F, 0, 0);
-        animator.rotate(rightShin, -0.5F, 0, 0);
-        animator.rotate(rightFoot, -0.1F, 0, 0);
-        animator.rotate(head, -0.4F, 0, 0);
-        animator.rotate(lowerJaw, 0.3F, 0, 0);
-        animator.rotate(abdomen, -0.1F, 0, 0);
-        animator.rotate(neck4, 0.2F, 0, 0);
-        animator.rotate(neck5, 0.2F, 0, 0);
-        animator.rotate(neck6, 0.2F, 0, 0);
-        animator.rotate(neck7, 0.2F, 0, 0);
-        animator.move(abdomen, 0, 3F, 0);
-        animator.rotate(tail4, 0.1F, 0, 0);
-        animator.rotate(tail5, 0.1F, 0, 0);
-        animator.endPhase();
-        animator.resetPhase(8);
     }
 }

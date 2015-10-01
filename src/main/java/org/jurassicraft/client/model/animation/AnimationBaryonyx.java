@@ -2,7 +2,6 @@ package org.jurassicraft.client.model.animation;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.animationapi.client.Animator;
 import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 
@@ -22,8 +21,6 @@ public class AnimationBaryonyx extends DinosaurAnimator
     @Override
     protected void performMowzieAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
     {
-        Animator animator = parModel.animator;
-
         float scaleFactor = 0.62F;
         float height = 2F * f1;
 
@@ -94,9 +91,6 @@ public class AnimationBaryonyx extends DinosaurAnimator
         parModel.chainWave(tailParts, 1F * scaleFactor, -0.03F, 2, f, f1);
         parModel.chainWave(rightArmParts, 1F * scaleFactor, -0.3F, 4, f, f1);
         parModel.chainWave(leftArmParts, 1F * scaleFactor, -0.3F, 4, f, f1);
-
-        parModel.faceTarget(head, 2, rotationYaw, rotationPitch);
-        parModel.faceTarget(neck1, 2, rotationYaw, rotationPitch);
 
         // Idling
         int ticksExisted = parEntity.ticksExisted;

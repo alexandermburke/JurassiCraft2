@@ -5,6 +5,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.dinosaur.DinosaurAnkylosaurus;
 import org.jurassicraft.common.entity.EntityAnkylosaurus;
@@ -60,10 +61,6 @@ public class AnimationAnkylosaurus extends DinosaurAnimator
         float globalDegree = 0.8F;
         float height = 1.2F;
         float frontOffset = 0.84F;
-
-        model.faceTarget(head, 3, rotationYaw, rotationPitch);
-        model.faceTarget(headback, 3, rotationYaw, rotationPitch);
-        model.faceTarget(neck1, 3, rotationYaw, rotationPitch);
 
         model.bob(waist, 2 * globalSpeed, height, false, f, f1);
         // bob(legleftthigh, 2 * globalSpeed, height, false, f, f1);

@@ -2,9 +2,9 @@ package org.jurassicraft.client.model.animation;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.animationapi.client.Animator;
 import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.dinosaur.DinosaurBrachiosaurus;
 import org.jurassicraft.common.entity.EntityBrachiosaurus;
@@ -22,7 +22,6 @@ public class AnimationBrachiosaurus extends DinosaurAnimator
     public void setRotationAngles(ModelDinosaur modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur entity)
     {
         ModelDinosaur model = modelJson;
-        Animator animator = model.animator;
 
 //        f = entity.ticksExisted;
 //        f1 = 0.5F;
@@ -99,47 +98,6 @@ public class AnimationBrachiosaurus extends DinosaurAnimator
 
         model.chainWave(tailParts, globalSpeed * 0.25F, globalHeight * 1.0F, 3, ticksExisted, 0.1F);
         model.chainWave(neckParts, globalSpeed * 0.25F, globalHeight * 0.25F, -3, ticksExisted, 0.1F);
-
-        model.faceTarget(neck1, 5, 0, rotationPitch);
-        model.faceTarget(neck2, 5, 0, rotationPitch);
-        model.faceTarget(neck3, 5, 0, rotationPitch);
-        model.faceTarget(neck4, 5, 0, rotationPitch);
-        model.faceTarget(neck5, 5, 0, rotationPitch);
-//        model.bob(body_1, 2 * scaleFactor, height * animationDegree, false, f, f1);
-//        model.bob(top_leg_left, 2 * scaleFactor, height * animationDegree, false, f, f1);
-//        model.bob(top_leg_right, 2 * scaleFactor, height * animationDegree, false, f, f1);
-//        model.walk(body_1, 2 * scaleFactor, 0.15F * height * animationDegree, true, -1.5F, 0F, f, f1);
-//        model.chainWave(tailParts2, 2 * scaleFactor, 0.08F * animationDegree, 2, f, f1);
-//        model.chainWave(neckParts, 2 * scaleFactor, 0.3F * animationDegree, 4, f, f1);
-//        tail1.rotateAngleX += 0.1 * f1;
-//
-//        model.walk(top_leg_left, 1F * scaleFactor, 1F * animationDegree, false, 0F, 0F, f, f1);
-//        model.walk(bottom_leg_left, 1F * scaleFactor, 1F * animationDegree, true, 1F, 0F, f, f1);
-//        model.walk(left_back_foot, 1F * scaleFactor, 1F * animationDegree, false, 1.5F, 0F, f, f1);
-//
-//        model.walk(top_leg_right, 1F * scaleFactor, 1F * animationDegree, true, 0F, 0F, f, f1);
-//        model.walk(bottom_leg_right, 1F * scaleFactor, 1F * animationDegree, false, 1F, 0F, f, f1);
-//        model.walk(right_back_foot, 1F * scaleFactor, 1F * animationDegree, true, 1.5F, 0F, f, f1);
-//
-//        model.walk(front_right_top_leg, 1F * scaleFactor, 2F * animationDegree, true, frontOffset + 0F, -0.1F, f, f1);
-//        model.walk(bottom_front_right_leg, 1F * scaleFactor, 1.5F * animationDegree, true, frontOffset + 2F, -0.2F, f, f1);
-//        model.walk(front_right_foot, 1F * scaleFactor, 1.3F * animationDegree, false, frontOffset + 1.5F, 0F, f, f1);
-//
-//        model.walk(front_left_top_leg, 1F * scaleFactor, 2F * animationDegree, false, frontOffset + 0F, -0.1F, f, f1);
-//        model.walk(bottom_front_left_leg, 1F * scaleFactor, 1.5F * animationDegree, false, frontOffset + 2F, -0.2F, f, f1);
-//        model.walk(front_left_foot, 1F * scaleFactor, 1.3F * animationDegree, true, frontOffset + 1.5F, 0F, f, f1);
-//
-//        // Idle
-//        model.walk(body_1, 0.05F, 0.025F, false, 0, 0, entity.ticksExisted, 1);
-//        model.walk(front_right_top_leg, 0.05F, 0.1F, false, 0, 0, entity.ticksExisted, 1);
-//        model.walk(front_left_top_leg, 0.05F, 0.1F, false, 0, 0, entity.ticksExisted, 1);
-//        model.walk(bottom_front_right_leg, 0.05F, 0.3F, true, 0, 0, entity.ticksExisted, 1);
-//        model.walk(bottom_front_left_leg, 0.05F, 0.3F, true, 0, 0, entity.ticksExisted, 1);
-//        model.walk(front_right_foot, 0.05F, 0.175F, false, 0, 0, entity.ticksExisted, 1);
-//        model.walk(front_left_foot, 0.05F, 0.175F, false, 0, 0, entity.ticksExisted, 1);
-//        model.chainWave(neckParts, 0.05F, -0.05F, -4, entity.ticksExisted, 1);
-//        model.chainWave(tailParts, 0.05F, -0.05F, 1, entity.ticksExisted, 1);
-//        model.chainSwing(tailParts, 0.05F, 0.2F, 2, entity.ticksExisted, 1);
 
         ((EntityBrachiosaurus) entity).tailBuffer.applyChainSwingBuffer(tailParts2);
     }

@@ -107,9 +107,6 @@ public class AnimationGiganotosaurus extends DinosaurAnimator
         parModel.chainWave(tail, 0.1F, -0.05F, 2, ticksExisted, 1F);
         parModel.chainWave(body, 0.1F, 0.03F, 4, ticksExisted, 1F);
 
-        parModel.faceTarget(head, 2, rotationYaw, rotationPitch);
-        parModel.faceTarget(neck, 2, rotationYaw, rotationPitch);
-
         ((EntityGiganotosaurus) parEntity).tailBuffer.applyChainSwingBuffer(tail);
     }
 }

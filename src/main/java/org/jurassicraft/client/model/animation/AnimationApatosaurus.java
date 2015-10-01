@@ -2,7 +2,6 @@ package org.jurassicraft.client.model.animation;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.animationapi.client.Animator;
 import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 
@@ -23,7 +22,6 @@ public class AnimationApatosaurus extends DinosaurAnimator
     protected void performMowzieAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
     {
         ModelDinosaur model = parModel;
-        Animator animator = model.animator;
 
         MowzieModelRenderer head = model.getCube("head");
 
@@ -103,12 +101,6 @@ public class AnimationApatosaurus extends DinosaurAnimator
         model.chainWave(tailParts, globalSpeed * 0.25F, globalHeight * 2.0F, 3, ticksExisted, 0.1F);
         model.chainSwing(tailParts, globalSpeed * 0.125F, globalHeight * 2.0F, 3, ticksExisted, 0.1F);
         model.chainWave(neckParts, globalSpeed * 0.25F, globalHeight * 0.25F, -4, ticksExisted, 0.1F);
-
-        model.faceTarget(neck1, 5, 0, rotationPitch);
-        model.faceTarget(neck2, 5, 0, rotationPitch);
-        model.faceTarget(neck3, 5, 0, rotationPitch);
-        model.faceTarget(neck4, 5, 0, rotationPitch);
-        model.faceTarget(neck5, 5, 0, rotationPitch);
 
         ((EntityApatosaurus)parEntity).tailBuffer.applyChainSwingBuffer(tailParts);
     }

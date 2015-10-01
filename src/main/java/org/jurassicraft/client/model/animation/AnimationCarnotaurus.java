@@ -2,9 +2,9 @@ package org.jurassicraft.client.model.animation;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.animationapi.client.Animator;
 import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.dinosaur.DinosaurCarnotaurus;
 import org.jurassicraft.common.entity.EntityCarnotaurus;
@@ -22,7 +22,6 @@ public class AnimationCarnotaurus extends DinosaurAnimator
     public void setRotationAngles(ModelDinosaur modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur entity)
     {
         ModelDinosaur model = modelJson;
-        Animator animator = model.animator;
 
         //        f = entity.ticksExisted / 2;
         //        f1 = 1F;
@@ -118,9 +117,6 @@ public class AnimationCarnotaurus extends DinosaurAnimator
         model.chainWave(body, 0.1F, 0.03F, 5, ticksExisted, 1F);
         model.chainWave(armRight, 0.1F, 0.1F, 4, ticksExisted, 1F);
         model.chainWave(armLeft, 0.1F, 0.1F, 4, ticksExisted, 1F);
-
-        model.faceTarget(head, 2, rotationYaw, rotationPitch);
-        model.faceTarget(neck1, 2, rotationYaw, rotationPitch);
 
         ((EntityCarnotaurus) entity).tailBuffer.applyChainSwingBuffer(tail);
     }

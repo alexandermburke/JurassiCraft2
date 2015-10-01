@@ -2,9 +2,9 @@ package org.jurassicraft.client.model.animation;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.animationapi.client.Animator;
 import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.dinosaur.DinosaurDilophosaurus;
 import org.jurassicraft.common.entity.EntityDilophosaurus;
@@ -22,7 +22,6 @@ public class AnimationDilophosaurus extends DinosaurAnimator
     public void setRotationAngles(ModelDinosaur modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur entity)
     {
         ModelDinosaur model = modelJson;
-        Animator animator = model.animator;
 
         boolean scary = false;
 
@@ -99,12 +98,6 @@ public class AnimationDilophosaurus extends DinosaurAnimator
 
         MowzieModelRenderer[] armRight = new MowzieModelRenderer[]{handRight, lowerArmRight, upperArmRight};
         MowzieModelRenderer[] armLeft = new MowzieModelRenderer[]{handLeft, lowerArmLeft, upperArmLeft};
-
-        model.faceTarget(head, 5, rotationYaw, rotationPitch);
-        model.faceTarget(neck1, 5, rotationYaw, rotationPitch);
-        model.faceTarget(neck2, 5, rotationYaw, rotationPitch);
-        model.faceTarget(neck3, 5, rotationYaw, rotationPitch);
-        model.faceTarget(neck4, 5, rotationYaw, rotationPitch);
 
         neck4.rotateAngleZ += (rotationYaw / (180f / (float) Math.PI)) / 5;
         neck3.rotateAngleZ += (rotationYaw / (180f / (float) Math.PI)) / 5;
