@@ -4,8 +4,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.dinosaur.DinosaurTherizinosaurus;
+import org.jurassicraft.common.entity.EntityTherizinosaurus;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 
 @SideOnly(Side.CLIENT)
@@ -155,7 +157,7 @@ public class AnimationTherizinosaurus extends DinosaurAnimator
         parModel.chainWave(armRight, 0.1F, -0.1F, 4, frame, 1F);
         parModel.chainWave(armLeft, 0.1F, -0.1F, 4, frame, 1F);
 
-//     parEntity.tailBuffer.applyChainSwingBuffer(tail);
+     ((EntityTherizinosaurus)parEntity).tailBuffer.applyChainSwingBuffer(tail);
 
     }
 }
