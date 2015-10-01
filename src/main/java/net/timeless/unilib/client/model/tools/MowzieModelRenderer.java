@@ -4,10 +4,13 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GLAllocation;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
 import org.lwjgl.opengl.GL11;
+
 
 /**
  * @author BobMowzie, gegy1000, FiskFille
@@ -60,6 +63,7 @@ public class MowzieModelRenderer extends ModelRenderer
         super(modelBase);
     }
 
+    @Override
     public void addChild(ModelRenderer renderer)
     {
         super.addChild(renderer);
@@ -271,10 +275,11 @@ public class MowzieModelRenderer extends ModelRenderer
         this.scaleZ = z;
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public void render(float p_78785_1_)
     {
-        GL11.glPushMatrix();
+        GlStateManager.pushMatrix();
 
         if (!this.isHidden)
         {
@@ -285,18 +290,18 @@ public class MowzieModelRenderer extends ModelRenderer
                     this.compileDisplayList(p_78785_1_);
                 }
 
-                float f5 = 0.0625F;
-                GL11.glTranslatef(this.rotationPointX * f5, this.rotationPointY * f5, this.rotationPointZ * f5);
-                GL11.glTranslatef(this.offsetX, this.offsetY, this.offsetZ);
-                GL11.glScalef(scaleX, scaleY, scaleZ);
-                GL11.glTranslatef(-this.rotationPointX * f5, -this.rotationPointY * f5, -this.rotationPointZ * f5);
+                float f5 = 1 / 16F;
+                GlStateManager.translate(this.rotationPointX * f5, this.rotationPointY * f5, this.rotationPointZ * f5);
+                GlStateManager.translate(this.offsetX, this.offsetY, this.offsetZ);
+                GlStateManager.scale(scaleX, scaleY, scaleZ);
+                GlStateManager.translate(-this.rotationPointX * f5, -this.rotationPointY * f5, -this.rotationPointZ * f5);
                 int i;
 
                 if (this.rotateAngleX == 0.0F && this.rotateAngleY == 0.0F && this.rotateAngleZ == 0.0F)
                 {
                     if (this.rotationPointX == 0.0F && this.rotationPointY == 0.0F && this.rotationPointZ == 0.0F)
                     {
-                        GL11.glCallList(this.displayList);
+                        GlStateManager.callList(this.displayList);
 
                         if (this.childModels != null)
                         {
@@ -308,8 +313,8 @@ public class MowzieModelRenderer extends ModelRenderer
                     }
                     else
                     {
-                        GL11.glTranslatef(this.rotationPointX * p_78785_1_, this.rotationPointY * p_78785_1_, this.rotationPointZ * p_78785_1_);
-                        GL11.glCallList(this.displayList);
+                        GlStateManager.translate(this.rotationPointX * p_78785_1_, this.rotationPointY * p_78785_1_, this.rotationPointZ * p_78785_1_);
+                        GlStateManager.callList(this.displayList);
 
                         if (this.childModels != null)
                         {
@@ -319,30 +324,29 @@ public class MowzieModelRenderer extends ModelRenderer
                             }
                         }
 
-                        GL11.glTranslatef(-this.rotationPointX * p_78785_1_, -this.rotationPointY * p_78785_1_, -this.rotationPointZ * p_78785_1_);
+                        GlStateManager.translate(-this.rotationPointX * p_78785_1_, -this.rotationPointY * p_78785_1_, -this.rotationPointZ * p_78785_1_);
                     }
                 }
                 else
                 {
-                    GL11.glPushMatrix();
-                    GL11.glTranslatef(this.rotationPointX * p_78785_1_, this.rotationPointY * p_78785_1_, this.rotationPointZ * p_78785_1_);
+                    GlStateManager.translate(this.rotationPointX * p_78785_1_, this.rotationPointY * p_78785_1_, this.rotationPointZ * p_78785_1_);
 
                     if (this.rotateAngleZ != 0.0F)
                     {
-                        GL11.glRotatef(this.rotateAngleZ * (180F / (float) Math.PI), 0.0F, 0.0F, 1.0F);
+                        GlStateManager.rotate(this.rotateAngleZ * (180F / (float) Math.PI), 0.0F, 0.0F, 1.0F);
                     }
 
                     if (this.rotateAngleY != 0.0F)
                     {
-                        GL11.glRotatef(this.rotateAngleY * (180F / (float) Math.PI), 0.0F, 1.0F, 0.0F);
+                        GlStateManager.rotate(this.rotateAngleY * (180F / (float) Math.PI), 0.0F, 1.0F, 0.0F);
                     }
 
                     if (this.rotateAngleX != 0.0F)
                     {
-                        GL11.glRotatef(this.rotateAngleX * (180F / (float) Math.PI), 1.0F, 0.0F, 0.0F);
+                        GlStateManager.rotate(this.rotateAngleX * (180F / (float) Math.PI), 1.0F, 0.0F, 0.0F);
                     }
 
-                    GL11.glCallList(this.displayList);
+                    GlStateManager.callList(this.displayList);
 
                     if (this.childModels != null)
                     {
@@ -351,16 +355,11 @@ public class MowzieModelRenderer extends ModelRenderer
                             ((MowzieModelRenderer) this.childModels.get(i)).render(p_78785_1_);
                         }
                     }
-
-                    GL11.glPopMatrix();
                 }
-
-                GL11.glTranslatef(-this.offsetX, -this.offsetY, -this.offsetZ);
-                GL11.glScalef(1.0F / scaleX, 1.0F / scaleY, 1.0F / scaleZ);
             }
         }
 
-        GL11.glPopMatrix();
+        GlStateManager.popMatrix();
     }
 
     @SideOnly(Side.CLIENT)
