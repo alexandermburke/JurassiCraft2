@@ -5,6 +5,7 @@ import java.util.Map;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
@@ -404,6 +405,24 @@ public class JabelarAnimationHelper
     {
         if (theEntity.hurtTime == theEntity.maxHurtTime-1)
         {
+            int i = 0;
+
+            for (int x = (int) (theEntity.posX - theEntity.width - 1); x < (int) (theEntity.posX + theEntity.width - 1); x++)
+            {
+                for (int y = (int) (theEntity.posY - theEntity.height); y < (int) (theEntity.posY + theEntity.height); y++)
+                {
+                    for (int z = (int) (theEntity.posZ - theEntity.width - 1); z < (int) (theEntity.posZ + theEntity.width - 1); z++)
+                    {
+                        if(i % 10 == 0)
+                        {
+                            mc.effectRenderer.addBlockDestroyEffects(new BlockPos(x, y, z), theBloodIBlockState);
+                        }
+
+                        i++;
+                    }
+                }
+            }
+
             mc.effectRenderer.addBlockDestroyEffects(theEntity.getPosition().up((int)Math.round(theEntity.height * 0.75)), theBloodIBlockState);
         }
         if (theEntity.deathTime > 0 && theEntity.deathTime < 70 && theEntity.deathTime%30 == 0)

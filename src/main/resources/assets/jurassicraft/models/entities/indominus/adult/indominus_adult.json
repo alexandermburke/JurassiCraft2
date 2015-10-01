@@ -3,6 +3,18 @@
     "poses": {
         "IDLE": [
             {"pose": "indominus_adult_idle", "time": 20}
+        ],
+		"ROARING": [
+            {"pose": "indominus_adult_roaring_1", "time": 150}, {"pose": "indominus_adult_roaring_1", "time": 80}, 
+			{"pose": "indominus_adult_roaring_2", "time": 150}, 
+			{"pose": "indominus_adult_roaring_3", "time": 80}, 
+			{"pose": "indominus_adult_roaring_4", "time": 80}, 
+			{"pose": "indominus_adult_roaring_3", "time": 80}, 
+			{"pose": "indominus_adult_roaring_4", "time": 80}, 
+			{"pose": "indominus_adult_roaring_3", "time": 80}, 
+			{"pose": "indominus_adult_roaring_4", "time": 80}, 
+			{"pose": "indominus_adult_roaring_2", "time": 80}, 
+			{"pose": "indominus_adult_idle", "time": 80}
         ]
-     }
+	}
 }
