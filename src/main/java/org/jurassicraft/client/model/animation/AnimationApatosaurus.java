@@ -1,22 +1,28 @@
 package org.jurassicraft.client.model.animation;
 
-import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.Animator;
-import net.timeless.unilib.client.model.json.IModelAnimator;
-import net.timeless.unilib.client.model.json.ModelJson;
+import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+
 import org.jurassicraft.client.model.ModelDinosaur;
+import org.jurassicraft.common.dinosaur.DinosaurApatosaurus;
 import org.jurassicraft.common.entity.EntityApatosaurus;
+import org.jurassicraft.common.entity.base.EntityDinosaur;
 
 @SideOnly(Side.CLIENT)
-public class AnimationApatosaurus implements IModelAnimator
+public class AnimationApatosaurus extends DinosaurAnimator
 {
-    @Override
-    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
+    public AnimationApatosaurus()
     {
-        ModelDinosaur model = (ModelDinosaur) modelJson;
+        super(new DinosaurApatosaurus());
+    }
+    
+    @Override
+    protected void performMowzieAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
+    {
+        ModelDinosaur model = parModel;
         Animator animator = model.animator;
 
         MowzieModelRenderer head = model.getCube("head");
@@ -92,7 +98,7 @@ public class AnimationApatosaurus implements IModelAnimator
         model.walk(lowerArmRight, 1F * globalSpeed, 0.6F * globalDegree, false, frontOffset + 1F, -0.2F, f, f1);
         model.walk(handRight, 1F * globalSpeed, 0.6F * globalDegree, true, frontOffset + 2F, 0.8F, f, f1);
 
-        int ticksExisted = entity.ticksExisted;
+        int ticksExisted = parEntity.ticksExisted;
 
         model.chainWave(tailParts, globalSpeed * 0.25F, globalHeight * 2.0F, 3, ticksExisted, 0.1F);
         model.chainSwing(tailParts, globalSpeed * 0.125F, globalHeight * 2.0F, 3, ticksExisted, 0.1F);
@@ -104,6 +110,6 @@ public class AnimationApatosaurus implements IModelAnimator
         model.faceTarget(neck4, 5, 0, rotationPitch);
         model.faceTarget(neck5, 5, 0, rotationPitch);
 
-        ((EntityApatosaurus) entity).tailBuffer.applyChainSwingBuffer(tailParts);
+        ((EntityApatosaurus)parEntity).tailBuffer.applyChainSwingBuffer(tailParts);
     }
 }

@@ -1,110 +1,114 @@
 package org.jurassicraft.client.model.animation;
 
-import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.Animator;
-import net.timeless.unilib.client.model.json.IModelAnimator;
-import net.timeless.unilib.client.model.json.ModelJson;
+import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+
 import org.jurassicraft.client.model.ModelDinosaur;
+import org.jurassicraft.common.dinosaur.DinosaurBaryonyx;
 import org.jurassicraft.common.entity.EntityBaryonyx;
+import org.jurassicraft.common.entity.base.EntityDinosaur;
 
 @SideOnly(Side.CLIENT)
-public class AnimationBaryonyx implements IModelAnimator
+public class AnimationBaryonyx extends DinosaurAnimator
 {
-    @Override
-    public void setRotationAngles(ModelJson modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity e)
+    public AnimationBaryonyx()
     {
-        ModelDinosaur model = (ModelDinosaur) modelJson;
-        EntityBaryonyx entity = (EntityBaryonyx) e;
-        Animator animator = model.animator;
+        super(new DinosaurBaryonyx());
+    }
+    
+    @Override
+    protected void performMowzieAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
+    {
+        Animator animator = parModel.animator;
 
         float scaleFactor = 0.62F;
         float height = 2F * f1;
 
-        MowzieModelRenderer thighRight = model.getCube("Right Thigh");
-        MowzieModelRenderer thighLeft = model.getCube("Left Thigh");
+        MowzieModelRenderer thighRight = parModel.getCube("Right Thigh");
+        MowzieModelRenderer thighLeft = parModel.getCube("Left Thigh");
 
-        MowzieModelRenderer rightCalf1 = model.getCube("Right Calf 1");
-        MowzieModelRenderer rightCalf2 = model.getCube("Right Calf 2");
-        MowzieModelRenderer leftCalf1 = model.getCube("Left Calf 1");
-        MowzieModelRenderer leftCalf2 = model.getCube("Left Calf 2");
+        MowzieModelRenderer rightCalf1 = parModel.getCube("Right Calf 1");
+        MowzieModelRenderer rightCalf2 = parModel.getCube("Right Calf 2");
+        MowzieModelRenderer leftCalf1 = parModel.getCube("Left Calf 1");
+        MowzieModelRenderer leftCalf2 = parModel.getCube("Left Calf 2");
 
-        MowzieModelRenderer rightFoot = model.getCube("Foot Right");
-        MowzieModelRenderer leftFoot = model.getCube("Foot Left");
+        MowzieModelRenderer rightFoot = parModel.getCube("Foot Right");
+        MowzieModelRenderer leftFoot = parModel.getCube("Foot Left");
 
-        MowzieModelRenderer upperArmRight = model.getCube("Upper Arm Right");
-        MowzieModelRenderer upperArmLeft = model.getCube("Upper Arm LEFT");
+        MowzieModelRenderer upperArmRight = parModel.getCube("Upper Arm Right");
+        MowzieModelRenderer upperArmLeft = parModel.getCube("Upper Arm LEFT");
 
-        MowzieModelRenderer lowerArmRight = model.getCube("Lower Arm Right");
-        MowzieModelRenderer lowerArmLeft = model.getCube("Lower Arm LEFT");
+        MowzieModelRenderer lowerArmRight = parModel.getCube("Lower Arm Right");
+        MowzieModelRenderer lowerArmLeft = parModel.getCube("Lower Arm LEFT");
 
-        MowzieModelRenderer handRight = model.getCube("hand right");
-        MowzieModelRenderer handLeft = model.getCube("hand left");
+        MowzieModelRenderer handRight = parModel.getCube("hand right");
+        MowzieModelRenderer handLeft = parModel.getCube("hand left");
 
-        MowzieModelRenderer waist = model.getCube("Body 1");
-        MowzieModelRenderer stomach = model.getCube("Body 2");
-        MowzieModelRenderer shoulders = model.getCube("Body 3");
+        MowzieModelRenderer waist = parModel.getCube("Body 1");
+        MowzieModelRenderer stomach = parModel.getCube("Body 2");
+        MowzieModelRenderer shoulders = parModel.getCube("Body 3");
 
-        MowzieModelRenderer neck1 = model.getCube("Neck 1");
-        MowzieModelRenderer neck2 = model.getCube("Neck 2");
-        MowzieModelRenderer neck3 = model.getCube("Neck 3");
-        MowzieModelRenderer neck4 = model.getCube("Neck 4");
-        MowzieModelRenderer neck5 = model.getCube("Neck 5");
+        MowzieModelRenderer neck1 = parModel.getCube("Neck 1");
+        MowzieModelRenderer neck2 = parModel.getCube("Neck 2");
+        MowzieModelRenderer neck3 = parModel.getCube("Neck 3");
+        MowzieModelRenderer neck4 = parModel.getCube("Neck 4");
+        MowzieModelRenderer neck5 = parModel.getCube("Neck 5");
 
-        MowzieModelRenderer tail1 = model.getCube("Tail 1");
-        MowzieModelRenderer tail2 = model.getCube("Tail 2");
-        MowzieModelRenderer tail3 = model.getCube("Tail 3");
-        MowzieModelRenderer tail4 = model.getCube("Tail 4");
-        MowzieModelRenderer tail5 = model.getCube("Tail 5");
-        MowzieModelRenderer tail6 = model.getCube("Tail 6");
+        MowzieModelRenderer tail1 = parModel.getCube("Tail 1");
+        MowzieModelRenderer tail2 = parModel.getCube("Tail 2");
+        MowzieModelRenderer tail3 = parModel.getCube("Tail 3");
+        MowzieModelRenderer tail4 = parModel.getCube("Tail 4");
+        MowzieModelRenderer tail5 = parModel.getCube("Tail 5");
+        MowzieModelRenderer tail6 = parModel.getCube("Tail 6");
 
-        MowzieModelRenderer head = model.getCube("Head");
+        MowzieModelRenderer head = parModel.getCube("Head");
 
         MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[]{handLeft, lowerArmLeft, upperArmLeft};
         MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[]{handRight, lowerArmRight, upperArmRight};
 
         MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
 
-        model.bob(waist, 1F * scaleFactor, height, false, f, f1);
-        model.bob(thighLeft, 1F * scaleFactor, height, false, f, f1);
-        model.bob(thighRight, 1F * scaleFactor, height, false, f, f1);
-        model.bob(neck1, 1F * scaleFactor, height / 2, false, f, f1);
+        parModel.bob(waist, 1F * scaleFactor, height, false, f, f1);
+        parModel.bob(thighLeft, 1F * scaleFactor, height, false, f, f1);
+        parModel.bob(thighRight, 1F * scaleFactor, height, false, f, f1);
+        parModel.bob(neck1, 1F * scaleFactor, height / 2, false, f, f1);
 
-        model.walk(neck1, 1F * scaleFactor, 0.25F, false, 1F, 0.1F, f, f1);
-        model.walk(head, 1F * scaleFactor, 0.25F, true, 1F, -0.1F, f, f1);
-        model.walk(waist, 1F * scaleFactor, 0.1F, true, 0F, 0.05F, f, f1);
+        parModel.walk(neck1, 1F * scaleFactor, 0.25F, false, 1F, 0.1F, f, f1);
+        parModel.walk(head, 1F * scaleFactor, 0.25F, true, 1F, -0.1F, f, f1);
+        parModel.walk(waist, 1F * scaleFactor, 0.1F, true, 0F, 0.05F, f, f1);
 
-        model.walk(thighLeft, 0.5F * scaleFactor, 0.8F, false, 0F, 0.4F, f, f1);
-        model.walk(leftCalf1, 0.5F * scaleFactor, 0.5F, true, 1F, 0F, f, f1);
-        model.walk(leftCalf2, 0.5F * scaleFactor, 0.5F, false, 0F, 0F, f, f1);
-        model.walk(leftFoot, 0.5F * scaleFactor, 1.5F, true, 0.5F, 1F, f, f1);
+        parModel.walk(thighLeft, 0.5F * scaleFactor, 0.8F, false, 0F, 0.4F, f, f1);
+        parModel.walk(leftCalf1, 0.5F * scaleFactor, 0.5F, true, 1F, 0F, f, f1);
+        parModel.walk(leftCalf2, 0.5F * scaleFactor, 0.5F, false, 0F, 0F, f, f1);
+        parModel.walk(leftFoot, 0.5F * scaleFactor, 1.5F, true, 0.5F, 1F, f, f1);
 
-        model.walk(thighRight, 0.5F * scaleFactor, 0.8F, true, 0F, 0.4F, f, f1);
-        model.walk(rightCalf1, 0.5F * scaleFactor, 0.5F, false, 1F, 0F, f, f1);
-        model.walk(rightCalf2, 0.5F * scaleFactor, 0.5F, true, 0F, 0F, f, f1);
-        model.walk(rightFoot, 0.5F * scaleFactor, 1.5F, false, 0.5F, 1F, f, f1);
+        parModel.walk(thighRight, 0.5F * scaleFactor, 0.8F, true, 0F, 0.4F, f, f1);
+        parModel.walk(rightCalf1, 0.5F * scaleFactor, 0.5F, false, 1F, 0F, f, f1);
+        parModel.walk(rightCalf2, 0.5F * scaleFactor, 0.5F, true, 0F, 0F, f, f1);
+        parModel.walk(rightFoot, 0.5F * scaleFactor, 1.5F, false, 0.5F, 1F, f, f1);
 
-        model.chainSwing(tailParts, 0.5F * scaleFactor, -0.1F, 2, f, f1);
-        model.chainWave(tailParts, 1F * scaleFactor, -0.03F, 2, f, f1);
-        model.chainWave(rightArmParts, 1F * scaleFactor, -0.3F, 4, f, f1);
-        model.chainWave(leftArmParts, 1F * scaleFactor, -0.3F, 4, f, f1);
+        parModel.chainSwing(tailParts, 0.5F * scaleFactor, -0.1F, 2, f, f1);
+        parModel.chainWave(tailParts, 1F * scaleFactor, -0.03F, 2, f, f1);
+        parModel.chainWave(rightArmParts, 1F * scaleFactor, -0.3F, 4, f, f1);
+        parModel.chainWave(leftArmParts, 1F * scaleFactor, -0.3F, 4, f, f1);
 
-        model.faceTarget(head, 2, rotationYaw, rotationPitch);
-        model.faceTarget(neck1, 2, rotationYaw, rotationPitch);
+        parModel.faceTarget(head, 2, rotationYaw, rotationPitch);
+        parModel.faceTarget(neck1, 2, rotationYaw, rotationPitch);
 
         // Idling
-        int ticksExisted = entity.ticksExisted;
+        int ticksExisted = parEntity.ticksExisted;
 
-        model.chainWave(tailParts, 0.1F, -0.05F, 2, ticksExisted, 1.0F);
-        model.walk(neck1, 0.1F, 0.07F, false, -1F, 0F, ticksExisted, 1.0F);
-        model.walk(head, 0.1F, 0.07F, true, 0F, 0F, ticksExisted, 1.0F);
-        model.walk(waist, 0.1F, 0.05F, false, 0F, 0F, ticksExisted, 1.0F);
-        model.chainWave(rightArmParts, 0.1F, -0.1F, 4, ticksExisted, 1.0F);
-        model.chainWave(leftArmParts, 0.1F, -0.1F, 4, ticksExisted, 1.0F);
-        model.chainSwing(tailParts, 0.1F, -0.1F, 3, ticksExisted, 1.0F);
+        parModel.chainWave(tailParts, 0.1F, -0.05F, 2, ticksExisted, 1.0F);
+        parModel.walk(neck1, 0.1F, 0.07F, false, -1F, 0F, ticksExisted, 1.0F);
+        parModel.walk(head, 0.1F, 0.07F, true, 0F, 0F, ticksExisted, 1.0F);
+        parModel.walk(waist, 0.1F, 0.05F, false, 0F, 0F, ticksExisted, 1.0F);
+        parModel.chainWave(rightArmParts, 0.1F, -0.1F, 4, ticksExisted, 1.0F);
+        parModel.chainWave(leftArmParts, 0.1F, -0.1F, 4, ticksExisted, 1.0F);
+        parModel.chainSwing(tailParts, 0.1F, -0.1F, 3, ticksExisted, 1.0F);
 
-        entity.tailBuffer.applyChainSwingBuffer(tailParts);
+        ((EntityBaryonyx)parEntity).tailBuffer.applyChainSwingBuffer(tailParts);
     }
 }

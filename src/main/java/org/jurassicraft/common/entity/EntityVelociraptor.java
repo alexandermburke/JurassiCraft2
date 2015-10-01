@@ -92,13 +92,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
     @Override
     public String getHurtSound()
     {
-        if (getAnimID() == AnimID.IDLE)
-        {
-            AnimationAPI.sendAnimPacket(this, AnimID.INJURED);
-            return randomSound(hurtSounds);
-        }
-
-        return null;
+        return randomSound(hurtSounds);
     }
 
     @Override
@@ -113,8 +107,8 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
         super.onUpdate();
 
-        if (getAttackTarget() != null)
-            circleEntity(getAttackTarget(), 7, 1.0f, true, 0);
+//        if (getAttackTarget() != null)
+//            circleEntity(getAttackTarget(), 7, 1.0f, true, 0);
 
         if (getAnimID() == AnimID.RESTING || getAnimID() == AnimID.ATTACKING)
             dontLean.decreaseTimer();
@@ -122,14 +116,14 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
             dontLean.increaseTimer();
     }
 
-    public void circleEntity(Entity target, float radius, float speed, boolean direction, float offset)
-    {
-        EntityVelociraptor[] pack;
-        int directionInt = direction ? 1 : -1;
-
-        if (getDistanceSqToEntity(target) > radius - 1)
-        {
-            getNavigator().tryMoveToXYZ(target.posX + radius * Math.cos(directionInt * (ticksExisted + offset) * 0.5 * speed / radius), target.posY, target.posZ + radius * Math.sin(directionInt * (ticksExisted + offset) * 0.5 * speed / radius), speed);
-        }
-    }
+//    public void circleEntity(Entity target, float radius, float speed, boolean direction, float offset)
+//    {
+//        EntityVelociraptor[] pack;
+//        int directionInt = direction ? 1 : -1;
+//
+//        if (getDistanceSqToEntity(target) > radius - 1)
+//        {
+//            getNavigator().tryMoveToXYZ(target.posX + radius * Math.cos(directionInt * (ticksExisted + offset) * 0.5 * speed / radius), target.posY, target.posZ + radius * Math.sin(directionInt * (ticksExisted + offset) * 0.5 * speed / radius), speed);
+//        }
+//    }
 }
