@@ -18,37 +18,37 @@ public class AnimationLudodactylus extends DinosaurAnimator
     }
 
     @Override
-    protected void performMowzieAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
+    protected void performMowzieAnimations(ModelDinosaur model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
     {
         EntityLudodactylus entity = (EntityLudodactylus) parEntity;
 
-        MowzieModelRenderer leftThigh = parModel.getCube("Left thigh");
-        MowzieModelRenderer leftCalf = parModel.getCube("Left calf");
-        MowzieModelRenderer leftUpperFoot = parModel.getCube("Left upper foot");
-        MowzieModelRenderer leftFoot = parModel.getCube("Left foot");
-        MowzieModelRenderer rightThigh = parModel.getCube("Right thigh");
-        MowzieModelRenderer rightCalf = parModel.getCube("right calf");
-        MowzieModelRenderer rightUpperFoot = parModel.getCube("Right upper foot");
-        MowzieModelRenderer rightFoot = parModel.getCube("Right foot");
-        MowzieModelRenderer jaw = parModel.getCube("Lower jaw 1");
-        MowzieModelRenderer head = parModel.getCube("Head");
-        MowzieModelRenderer neck3 = parModel.getCube("Neck 3");
-        MowzieModelRenderer neck2 = parModel.getCube("Neck 2");
-        MowzieModelRenderer neck1 = parModel.getCube("Neck 1");
-        MowzieModelRenderer body3 = parModel.getCube("Body 3");
-        MowzieModelRenderer body2 = parModel.getCube("Body 2");
-        MowzieModelRenderer body1 = parModel.getCube("Body 1");
-        MowzieModelRenderer tail1 = parModel.getCube("Tail 1");
-        MowzieModelRenderer tail2 = parModel.getCube("Tail 2");
-        MowzieModelRenderer tail3 = parModel.getCube("Tail 3");
-        MowzieModelRenderer leftArm1 = parModel.getCube("Left Arm 1");
-        MowzieModelRenderer leftArm2 = parModel.getCube("Left Arm 2");
-        MowzieModelRenderer leftArm3 = parModel.getCube("Left Arm 3");
-        MowzieModelRenderer leftArm4 = parModel.getCube("Left Arm 4");
-        MowzieModelRenderer rightArm1 = parModel.getCube("Right Arm 1");
-        MowzieModelRenderer rightArm2 = parModel.getCube("Right Arm 2");
-        MowzieModelRenderer rightArm3 = parModel.getCube("Right Arm 3");
-        MowzieModelRenderer rightArm4 = parModel.getCube("Right Arm 4");
+        MowzieModelRenderer leftThigh = model.getCube("Left thigh");
+        MowzieModelRenderer leftCalf = model.getCube("Left calf");
+        MowzieModelRenderer leftUpperFoot = model.getCube("Left upper foot");
+        MowzieModelRenderer leftFoot = model.getCube("Left foot");
+        MowzieModelRenderer rightThigh = model.getCube("Right thigh");
+        MowzieModelRenderer rightCalf = model.getCube("right calf");
+        MowzieModelRenderer rightUpperFoot = model.getCube("Right upper foot");
+        MowzieModelRenderer rightFoot = model.getCube("Right foot");
+        MowzieModelRenderer jaw = model.getCube("Lower jaw 1");
+        MowzieModelRenderer head = model.getCube("Head");
+        MowzieModelRenderer neck3 = model.getCube("Neck 3");
+        MowzieModelRenderer neck2 = model.getCube("Neck 2");
+        MowzieModelRenderer neck1 = model.getCube("Neck 1");
+        MowzieModelRenderer body3 = model.getCube("Body 3");
+        MowzieModelRenderer body2 = model.getCube("Body 2");
+        MowzieModelRenderer body1 = model.getCube("Body 1");
+        MowzieModelRenderer tail1 = model.getCube("Tail 1");
+        MowzieModelRenderer tail2 = model.getCube("Tail 2");
+        MowzieModelRenderer tail3 = model.getCube("Tail 3");
+        MowzieModelRenderer leftArm1 = model.getCube("Left Arm 1");
+        MowzieModelRenderer leftArm2 = model.getCube("Left Arm 2");
+        MowzieModelRenderer leftArm3 = model.getCube("Left Arm 3");
+        MowzieModelRenderer leftArm4 = model.getCube("Left Arm 4");
+        MowzieModelRenderer rightArm1 = model.getCube("Right Arm 1");
+        MowzieModelRenderer rightArm2 = model.getCube("Right Arm 2");
+        MowzieModelRenderer rightArm3 = model.getCube("Right Arm 3");
+        MowzieModelRenderer rightArm4 = model.getCube("Right Arm 4");
 
         MowzieModelRenderer[] neck = new MowzieModelRenderer[]{head, neck3, neck2, neck1};
         MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail1, tail2, tail3};
@@ -93,16 +93,16 @@ public class AnimationLudodactylus extends DinosaurAnimator
 //        model.walk(rightArm3, 0.5F * globalSpeed, 0.7F * globalDegree, false, 2F + frontOffset, 0.4F, f, f1);
 
         int frame = entity.ticksExisted;
-        parModel.walk(body1, 0.08f, -0.05f, false, 0, 0, frame, 1);
-        parModel.chainWave(neck, 0.08f, 0.03f, 2, frame, 1);
-        parModel.walk(leftArm1, 0.08f, 0.1f, false, 0, 0, frame, 1);
-        parModel.walk(rightArm1, 0.08f, 0.1f, false, 0, 0, frame, 1);
-        parModel.walk(leftArm2, 0.08f, 0.1f, false, 0, 0, frame, 1);
-        parModel.walk(rightArm2, 0.08f, 0.1f, false, 0, 0, frame, 1);
-        parModel.walk(leftArm3, 0.08f, 0.2f, true, 0, 0, frame, 1);
-        parModel.walk(rightArm3, 0.08f, 0.2f, true, 0, 0, frame, 1);
-        parModel.flap(leftArm1, 0.08f, 0.03f, false, 0, 0, frame, 1);
-        parModel.flap(rightArm1, 0.08f, 0.03f, true, 0, 0, frame, 1);
+        model.walk(body1, 0.08f, -0.05f, false, 0, 0, frame, 1);
+        model.chainWave(neck, 0.08f, 0.03f, 2, frame, 1);
+        model.walk(leftArm1, 0.08f, 0.1f, false, 0, 0, frame, 1);
+        model.walk(rightArm1, 0.08f, 0.1f, false, 0, 0, frame, 1);
+        model.walk(leftArm2, 0.08f, 0.1f, false, 0, 0, frame, 1);
+        model.walk(rightArm2, 0.08f, 0.1f, false, 0, 0, frame, 1);
+        model.walk(leftArm3, 0.08f, 0.2f, true, 0, 0, frame, 1);
+        model.walk(rightArm3, 0.08f, 0.2f, true, 0, 0, frame, 1);
+        model.flap(leftArm1, 0.08f, 0.03f, false, 0, 0, frame, 1);
+        model.flap(rightArm1, 0.08f, 0.03f, true, 0, 0, frame, 1);
         leftArm1.rotationPointZ -= 1 * Math.cos(frame * 0.08);
         rightArm1.rotationPointZ -= 1 * Math.cos(frame * 0.08);
 
@@ -130,26 +130,26 @@ public class AnimationLudodactylus extends DinosaurAnimator
         rightArm4.rotateAngleY -= 2.6;
         rightArm4.rotateAngleX += 1.2;
 
-        parModel.bob(body1, 0.3f, 7, false, f, f1);
-        parModel.bob(leftThigh, 0.3f, 7, false, f, f1);
-        parModel.bob(rightThigh, 0.3f, 7, false, f, f1);
-        parModel.walk(body1, 0.3f, 0.2f, true, 1, 0, f, f1);
-        parModel.swing(leftArm1, 0.3f, 0.2f, false, 1, 0, f, f1);
-        parModel.swing(leftArm2, 0.3f, 0.2f, false, 1, 0, f, f1);
-        parModel.walk(neck1, 0.3f, 0.2f, false, 1, 0.2f, f, f1);
-        parModel.walk(head, 0.3f, 0.2f, true, 1, -0.4f, f, f1);
+        model.bob(body1, 0.3f, 7, false, f, f1);
+        model.bob(leftThigh, 0.3f, 7, false, f, f1);
+        model.bob(rightThigh, 0.3f, 7, false, f, f1);
+        model.walk(body1, 0.3f, 0.2f, true, 1, 0, f, f1);
+        model.swing(leftArm1, 0.3f, 0.2f, false, 1, 0, f, f1);
+        model.swing(leftArm2, 0.3f, 0.2f, false, 1, 0, f, f1);
+        model.walk(neck1, 0.3f, 0.2f, false, 1, 0.2f, f, f1);
+        model.walk(head, 0.3f, 0.2f, true, 1, -0.4f, f, f1);
 
-        parModel.chainFlap(wingLeft, 0.3f, 0.8f, 2, f, f1);
-        parModel.walk(leftArm1, 0.3f, 0.6f, false, -1f, -0.2f, f, f1);
-        parModel.walk(leftArm2, 0.3f, 1.2f, true, -1f, 0, f, f1);
-        parModel.walk(leftArm3, 0.3f, 0.7f, false, -1f, 0.2f, f, f1);
-        parModel.chainFlap(wingRight, 0.3f, -0.8f, 2, f, f1);
-        parModel.walk(rightArm1, 0.3f, 0.6f, false, -1f, -0.2f, f, f1);
-        parModel.walk(rightArm2, 0.3f, 1.2f, true, -1f, 0, f, f1);
-        parModel.walk(rightArm3, 0.3f, 0.7f, false, -1f, 0.2f, f, f1);
-        parModel.chainWave(legLeft, 0.3f, 0.2f, -3, f, f1);
-        parModel.chainWave(legRight, 0.3f, 0.2f, -3, f, f1);
-        parModel.chainWave(tail, 0.3f, 0.2f, 1, f, f1);
-        parModel.chainWave(neck, 0.3f, 0.4f, 4, f, f1);
+        model.chainFlap(wingLeft, 0.3f, 0.8f, 2, f, f1);
+        model.walk(leftArm1, 0.3f, 0.6f, false, -1f, -0.2f, f, f1);
+        model.walk(leftArm2, 0.3f, 1.2f, true, -1f, 0, f, f1);
+        model.walk(leftArm3, 0.3f, 0.7f, false, -1f, 0.2f, f, f1);
+        model.chainFlap(wingRight, 0.3f, -0.8f, 2, f, f1);
+        model.walk(rightArm1, 0.3f, 0.6f, false, -1f, -0.2f, f, f1);
+        model.walk(rightArm2, 0.3f, 1.2f, true, -1f, 0, f, f1);
+        model.walk(rightArm3, 0.3f, 0.7f, false, -1f, 0.2f, f, f1);
+        model.chainWave(legLeft, 0.3f, 0.2f, -3, f, f1);
+        model.chainWave(legRight, 0.3f, 0.2f, -3, f, f1);
+        model.chainWave(tail, 0.3f, 0.2f, 1, f, f1);
+        model.chainWave(neck, 0.3f, 0.4f, 4, f, f1);
     }
 }

@@ -18,10 +18,8 @@ public class AnimationDilophosaurus extends DinosaurAnimator
     }
 
     @Override
-    public void setRotationAngles(ModelDinosaur modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur entity)
+    protected void performMowzieAnimations(ModelDinosaur model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur entity)
     {
-        ModelDinosaur model = modelJson;
-
         boolean scary = false;
 
         MowzieModelRenderer frillLeftBottom = model.getCube("Frill Lower Left");

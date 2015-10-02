@@ -105,7 +105,7 @@ public class JCRenderingRegistry
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.spinosaurus, new AnimationSpinosaurus(), 2.37F, 0.3F, 0.65F, 0.0F, 0.0F, 0.0F));
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.stegosaurus, new AnimationStegosaurus(), 2.55F, 0.35F, 0.65F, 0.0F, 0.775F, 0.0F));
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.triceratops, new AnimationTriceratops(), 1.8F, 0.325F, 0.65F, 0.0F, 0.75F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.tyrannosaurus, new AnimationTyrannosaurusRex(), 2.4F, 0.35F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.tyrannosaurus, new AnimationTyrannosaurus(), 2.4F, 0.35F, 0.65F, 0.0F, 0.0F, 0.0F));
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.velociraptor, new AnimationVelociraptor(), 1.0F, 0.3F, 0.65F, 0.0F, 0.0F, 0.0F));
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.dodo, new AnimationDodo(), 0.8F, 0.3F, 0.5F, 0.0F, 0.0F, 0.0F));
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.leptictidium, new AnimationLeptictidium(), 0.6F, 0.25F, 0.45F, 0.0F, 0.0F, 0.0F));

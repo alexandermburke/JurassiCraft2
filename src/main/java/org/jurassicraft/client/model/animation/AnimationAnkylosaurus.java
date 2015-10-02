@@ -19,9 +19,8 @@ public class AnimationAnkylosaurus extends DinosaurAnimator
     }
 
     @Override
-    public void setRotationAngles(ModelDinosaur modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur entity)
+    protected void performMowzieAnimations(ModelDinosaur model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur entity)
     {
-        ModelDinosaur model = modelJson;
         Animator animator = model.animator;
 
         MowzieModelRenderer head = model.getCube("head ");

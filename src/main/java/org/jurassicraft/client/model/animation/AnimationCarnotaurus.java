@@ -18,10 +18,8 @@ public class AnimationCarnotaurus extends DinosaurAnimator
     }
 
     @Override
-    public void setRotationAngles(ModelDinosaur modelJson, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur entity)
+    protected void performMowzieAnimations(ModelDinosaur model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur entity)
     {
-        ModelDinosaur model = modelJson;
-
         //        f = entity.ticksExisted / 2;
         //        f1 = 1F;
 

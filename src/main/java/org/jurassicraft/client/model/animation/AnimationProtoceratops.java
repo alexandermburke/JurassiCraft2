@@ -18,10 +18,8 @@ public class AnimationProtoceratops extends DinosaurAnimator
     }
 
     @Override
-    protected void performMowzieAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
+    protected void performMowzieAnimations(ModelDinosaur model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
     {
-        ModelDinosaur model = parModel;
-
         float globalSpeed = 0.5F;
         float globalHeight = 0.5F;
         float globalDegree = 0.5F;
