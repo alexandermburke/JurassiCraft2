@@ -3,7 +3,6 @@ package org.jurassicraft.client.model.animation;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
-
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.dinosaur.DinosaurMegapiranha;
 import org.jurassicraft.common.entity.EntityMegapiranha;
@@ -15,7 +14,7 @@ public class AnimationMegapiranha extends DinosaurAnimator
     {
         super(new DinosaurMegapiranha());
     }
-    
+
     @Override
     protected void performMowzieAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
     {

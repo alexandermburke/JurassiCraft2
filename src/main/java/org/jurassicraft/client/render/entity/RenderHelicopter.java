@@ -17,7 +17,6 @@ import org.jurassicraft.common.vehicles.helicopter.modules.HelicopterModule;
 import org.jurassicraft.common.vehicles.helicopter.modules.HelicopterModuleSpot;
 import org.lwjgl.opengl.GL11;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @SideOnly(Side.CLIENT)
@@ -39,13 +38,13 @@ public class RenderHelicopter extends Render
             baseModel.setResetEachFrame(false);
 
             // Modules init.
-            for(HelicopterModule module : HelicopterModule.registry.values())
+            for (HelicopterModule module : HelicopterModule.registry.values())
             {
-                ModelJson model = new ModelJson(TabulaModelHelper.parseModel("/assets/jurassicraft/models/entities/helicopter/modules/"+module.getModuleID()));
+                ModelJson model = new ModelJson(TabulaModelHelper.parseModel("/assets/jurassicraft/models/entities/helicopter/modules/" + module.getModuleID()));
                 model.setResetEachFrame(true);
                 moduleMap.put(module, model);
 
-                moduleTextures.put(module, new ResourceLocation(JurassiCraft.MODID, "textures/entities/helicopter/modules/"+module.getModuleID()+"_texture.png"));
+                moduleTextures.put(module, new ResourceLocation(JurassiCraft.MODID, "textures/entities/helicopter/modules/" + module.getModuleID() + "_texture.png"));
             }
         }
         catch (Exception e)
@@ -86,13 +85,13 @@ public class RenderHelicopter extends Render
 
     private void renderModules(EntityHelicopterBase helicopter, double x, double y, double z, float yaw, float partialTicks)
     {
-        for(HelicopterModuleSpot spot : helicopter.getModuleSpots())
+        for (HelicopterModuleSpot spot : helicopter.getModuleSpots())
         {
             GlStateManager.pushMatrix();
             GlStateManager.rotate((float) Math.toDegrees(spot.getAngleFromCenter()), 0, 1, 0);
-            for(HelicopterModule m : spot.getModules())
+            for (HelicopterModule m : spot.getModules())
             {
-                if(m == null)
+                if (m == null)
                     continue;
                 GlStateManager.rotate((float) Math.toDegrees(m.getBaseRotationAngle()), 0, 1, 0);
                 bindTexture(moduleTextures.get(m));

@@ -4,7 +4,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
-
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.dinosaur.DinosaurBaryonyx;
 import org.jurassicraft.common.entity.EntityBaryonyx;
@@ -17,7 +16,7 @@ public class AnimationBaryonyx extends DinosaurAnimator
     {
         super(new DinosaurBaryonyx());
     }
-    
+
     @Override
     protected void performMowzieAnimations(ModelDinosaur parModel, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
     {
@@ -103,6 +102,6 @@ public class AnimationBaryonyx extends DinosaurAnimator
         parModel.chainWave(leftArmParts, 0.1F, -0.1F, 4, ticksExisted, 1.0F);
         parModel.chainSwing(tailParts, 0.1F, -0.1F, 3, ticksExisted, 1.0F);
 
-        ((EntityBaryonyx)parEntity).tailBuffer.applyChainSwingBuffer(tailParts);
+        ((EntityBaryonyx) parEntity).tailBuffer.applyChainSwingBuffer(tailParts);
     }
 }

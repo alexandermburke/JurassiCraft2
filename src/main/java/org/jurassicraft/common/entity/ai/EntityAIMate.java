@@ -1,7 +1,6 @@
 package org.jurassicraft.common.entity.ai;
 
 import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.timeless.animationapi.AnimationAPI;
@@ -25,7 +24,7 @@ public class EntityAIMate extends EntityAIBase
     {
         int minEnergy = 12000;
 
-        if(dinosaur.getEnergy() > minEnergy)
+        if (dinosaur.getEnergy() > minEnergy)
         {
             World world = dinosaur.worldObj;
 
@@ -37,7 +36,7 @@ public class EntityAIMate extends EntityAIBase
 
             for (EntityDinosaur entity : entities)
             {
-                if(entity.isMale() != dinosaur.isMale() && entity.getEnergy() > minEnergy)
+                if (entity.isMale() != dinosaur.isMale() && entity.getEnergy() > minEnergy)
                 {
                     dinosaur.getNavigator().tryMoveToEntityLiving(entity, 1.0D);
                     mate = entity;

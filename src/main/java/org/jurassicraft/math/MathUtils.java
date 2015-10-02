@@ -2,7 +2,8 @@ package org.jurassicraft.math;
 
 import java.util.Arrays;
 
-public class MathUtils {
+public class MathUtils
+{
 
     public static double getPi()
     {
@@ -12,7 +13,8 @@ public class MathUtils {
     public static long mean(long[] values)
     {
         long sum = 0l;
-        for (long v : values) {
+        for (long v : values)
+        {
             sum += v;
         }
 
@@ -35,13 +37,16 @@ public class MathUtils {
     {
         int maxValue = 0, maxCount = 0;
 
-        for (int i = 0; i < values.length; ++i) {
+        for (int i = 0; i < values.length; ++i)
+        {
             int count = 0;
-            for (int j = 0; j < values.length; ++j) {
+            for (int j = 0; j < values.length; ++j)
+            {
                 if (values[j] == values[i])
                     ++count;
             }
-            if (count > maxCount) {
+            if (count > maxCount)
+            {
                 maxCount = count;
                 maxValue = values[i];
             }
@@ -52,16 +57,21 @@ public class MathUtils {
 
     public static boolean hasNoRange(int num1, int num2, int difference)
     {
-        if (num1 == num2) {
+        if (num1 == num2)
+        {
             return true;
         }
-        if (num1 > num2) {
-            if (num1 - num2 <= 0) {
+        if (num1 > num2)
+        {
+            if (num1 - num2 <= 0)
+            {
                 return true;
             }
         }
-        if (num2 > num1) {
-            if (num2 - num1 <= 0) {
+        if (num2 > num1)
+        {
+            if (num2 - num1 <= 0)
+            {
                 return true;
             }
         }
@@ -70,10 +80,13 @@ public class MathUtils {
 
     public static boolean isNumeric(String str)
     {
-        try {
+        try
+        {
             @SuppressWarnings("unused")
             double d = Double.parseDouble(str);
-        } catch (NumberFormatException nfe) {
+        }
+        catch (NumberFormatException nfe)
+        {
             return false;
         }
         return true;
@@ -83,18 +96,22 @@ public class MathUtils {
     {
         return num < 0;
     }
-    
-    public static double makePositive(double num) {
-        if (num >= 0) {
+
+    public static double makePositive(double num)
+    {
+        if (num >= 0)
+        {
             return num;
         }
         double newNum = Math.pow(num, 2);
         double posNum = Math.sqrt(newNum);
         return posNum;
     }
-    
-    public static double makeNegative(double num) {
-        if (num < 0) {
+
+    public static double makeNegative(double num)
+    {
+        if (num < 0)
+        {
             return num;
         }
         String str = "-" + num;

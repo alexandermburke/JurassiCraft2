@@ -4,7 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
 
-public class BlockSmallCycad extends BlockBush {
+public class BlockSmallCycad extends BlockBush
+{
     public BlockSmallCycad()
     {
         super();

@@ -125,7 +125,7 @@ public class RenderDinosaurDefinition
 
     public RenderLiving getRenderer()
     {
-        if(dinosaur instanceof DinosaurIndominus)
+        if (dinosaur instanceof DinosaurIndominus)
         {
             return new RenderIndominus(this);
         }

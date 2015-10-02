@@ -20,10 +20,10 @@ public class ModelJson extends MowzieModelBase
 {
     private final List<MowzieModelRenderer> parents = new ArrayList<MowzieModelRenderer>();
     private final Map<String, MowzieModelRenderer> nameMap = Maps.newHashMap();
-//    private final Map<String, MowzieModelRenderer> identifierMap = Maps.newHashMap();
+    //    private final Map<String, MowzieModelRenderer> identifierMap = Maps.newHashMap();
     private IModelAnimator animator;
 
-//    private ArrayList<Animation> animations = Lists.newArrayList();
+    //    private ArrayList<Animation> animations = Lists.newArrayList();
 //
 //    private Animation playingAnimation;
 //    private int animationTimer;
@@ -121,7 +121,7 @@ public class ModelJson extends MowzieModelBase
     {
         MowzieModelRenderer modelRenderer = createModelRenderer(cube);
 
-        if(parent == null && !parents.contains(modelRenderer))
+        if (parent == null && !parents.contains(modelRenderer))
         {
             parents.add(modelRenderer);
         }

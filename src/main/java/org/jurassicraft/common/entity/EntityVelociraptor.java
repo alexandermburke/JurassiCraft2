@@ -1,13 +1,11 @@
 package org.jurassicraft.common.entity;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIOpenDoor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.client.AnimID;
 import net.timeless.unilib.common.animation.ChainBuffer;
 import net.timeless.unilib.common.animation.ControlledAnimation;

@@ -4,7 +4,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.Animator;
 import net.timeless.animationapi.client.DinosaurAnimator;
-
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.dinosaur.DinosaurMamenchisaurus;
@@ -18,11 +17,11 @@ public class AnimationMamenchisaurus extends DinosaurAnimator
     {
         super(new DinosaurMamenchisaurus());
     }
-    
+
     @Override
     protected void performMowzieAnimations(ModelDinosaur model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
     {
-		EntityMamenchisaurus entity = (EntityMamenchisaurus) parEntity;
+        EntityMamenchisaurus entity = (EntityMamenchisaurus) parEntity;
         Animator animator = model.animator;
 
         MowzieModelRenderer head = model.getCube("Head");

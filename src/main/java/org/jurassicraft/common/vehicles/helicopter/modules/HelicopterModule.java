@@ -31,14 +31,15 @@ public abstract class HelicopterModule
 
     /**
      * Base rotation of module, currently only used for rendering purposes.
+     *
      * @return
      */
     public abstract float getBaseRotationAngle();
 
     /**
      * Returns the module ID, used for module rendering
-     * @return
-     *        The module ID
+     *
+     * @return The module ID
      */
     public String getModuleID()
     {

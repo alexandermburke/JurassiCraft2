@@ -1,7 +1,5 @@
 package net.timeless.animationapi.client;
 
-import java.util.Map;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
@@ -10,10 +8,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
-
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+
+import java.util.Map;
 
 /**
  * @author jabelar
@@ -25,7 +24,7 @@ public class JabelarAnimationHelper
 {
     private final EntityDinosaur theEntity;
     private IBlockState theBloodIBlockState;
-    
+
     private Minecraft mc;
 
     private final Map<AnimID, int[][]> mapOfSequences;
@@ -393,17 +392,17 @@ public class JabelarAnimationHelper
     {
         return getTabulaModel(tabulaModel, 0);
     }
-    
+
     private void initBloodParticles()
-    {        
+    {
         mc = Minecraft.getMinecraft();
-        
+
         theBloodIBlockState = Blocks.redstone_block.getDefaultState();
     }
-    
+
     private void performBloodSpurt()
     {
-        if (theEntity.hurtTime == theEntity.maxHurtTime-1)
+        if (theEntity.hurtTime == theEntity.maxHurtTime - 1)
         {
             int i = 0;
 
@@ -413,7 +412,7 @@ public class JabelarAnimationHelper
                 {
                     for (int z = (int) (theEntity.posZ - theEntity.width - 1); z < (int) (theEntity.posZ + theEntity.width - 1); z++)
                     {
-                        if(i % 10 == 0)
+                        if (i % 10 == 0)
                         {
                             mc.effectRenderer.addBlockDestroyEffects(new BlockPos(x, y, z), theBloodIBlockState);
                         }
@@ -423,9 +422,9 @@ public class JabelarAnimationHelper
                 }
             }
 
-            mc.effectRenderer.addBlockDestroyEffects(theEntity.getPosition().up((int)Math.round(theEntity.height * 0.75)), theBloodIBlockState);
+            mc.effectRenderer.addBlockDestroyEffects(theEntity.getPosition().up((int) Math.round(theEntity.height * 0.75)), theBloodIBlockState);
         }
-        if (theEntity.deathTime > 0 && theEntity.deathTime < 70 && theEntity.deathTime%30 == 0)
+        if (theEntity.deathTime > 0 && theEntity.deathTime < 70 && theEntity.deathTime % 30 == 0)
         {
             mc.effectRenderer.addBlockDestroyEffects(theEntity.getPosition().up(), theBloodIBlockState);
         }

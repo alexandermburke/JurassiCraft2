@@ -20,8 +20,6 @@ import net.timeless.unilib.utils.MutableVec3;
 import org.jurassicraft.common.message.JCNetworkManager;
 import org.jurassicraft.common.message.MessageHelicopterDirection;
 import org.jurassicraft.common.message.MessageHelicopterEngine;
-import org.jurassicraft.common.vehicles.helicopter.modules.HelicopterDoor;
-import org.jurassicraft.common.vehicles.helicopter.modules.HelicopterMinigun;
 import org.jurassicraft.common.vehicles.helicopter.modules.HelicopterModule;
 import org.jurassicraft.common.vehicles.helicopter.modules.HelicopterModuleSpot;
 

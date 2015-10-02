@@ -39,13 +39,13 @@ public class HelicopterModuleSpot
     public void readFromNBT(NBTTagList tagList)
     {
         modules.clear();
-        for(int i = 0;i<tagList.tagCount();i++)
+        for (int i = 0; i < tagList.tagCount(); i++)
         {
             String s = tagList.getStringTagAt(i);
             HelicopterModule module = HelicopterModule.registry.get(s);
-            if(module == null)
+            if (module == null)
             {
-                System.err.println("Null module for id "+s);
+                System.err.println("Null module for id " + s);
             }
             modules.add(module);
         }
@@ -53,7 +53,7 @@ public class HelicopterModuleSpot
 
     public void writeToNBT(NBTTagList tagList)
     {
-        for(HelicopterModule m : modules)
+        for (HelicopterModule m : modules)
         {
             tagList.appendTag(new NBTTagString(m.getModuleID()));
         }
@@ -63,13 +63,13 @@ public class HelicopterModuleSpot
     {
         modules.clear();
         int size = data.readByte();
-        for(int i = 0;i<size;i++)
+        for (int i = 0; i < size; i++)
         {
             String id = ByteBufUtils.readUTF8String(data);
             HelicopterModule module = HelicopterModule.registry.get(id);
-            if(module == null)
+            if (module == null)
             {
-                System.err.println("Null module for id "+id);
+                System.err.println("Null module for id " + id);
             }
             modules.add(module);
         }
@@ -78,7 +78,7 @@ public class HelicopterModuleSpot
     public void writeSpawnData(ByteBuf data)
     {
         data.writeByte(modules.size());
-        for(HelicopterModule m : modules)
+        for (HelicopterModule m : modules)
         {
             ByteBufUtils.writeUTF8String(data, m.getModuleID());
         }

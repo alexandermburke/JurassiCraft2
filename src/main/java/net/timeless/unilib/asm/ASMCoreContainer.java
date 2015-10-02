@@ -15,7 +15,7 @@ public class ASMCoreContainer extends DummyModContainer
     {
         ModMetadata md = new ModMetadata();
         md.modId = "unilib";
-        md.name="UnilibCore";
+        md.name = "UnilibCore";
         return md;
     }
 }

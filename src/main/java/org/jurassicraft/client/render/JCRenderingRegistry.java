@@ -1,7 +1,6 @@
 package org.jurassicraft.client.render;
 
 import com.google.common.collect.Maps;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
@@ -17,7 +16,6 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.gui.app.GuiAppRegistry;
 import org.jurassicraft.client.model.animation.*;
@@ -200,7 +198,7 @@ public class JCRenderingRegistry
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.gypsum_stone, "gypsum_stone", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.gypsum_cobblestone, "gypsum_cobblestone", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.gypsum_bricks, "gypsum_bricks", "inventory");
-    
+
         this.registerRenderSubBlock(JCBlockRegistry.bPlanks);
     }
 
@@ -323,7 +321,7 @@ public class JCRenderingRegistry
             }
         });
     }
-    
+
     public void registerRenderSubBlock(Block block)
     {
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)

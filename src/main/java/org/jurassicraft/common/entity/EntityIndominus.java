@@ -115,7 +115,7 @@ public class EntityIndominus extends EntityDinosaurAggressive // implements ICar
 
         int color;
 
-        if(isCamouflaging())
+        if (isCamouflaging())
         {
             color = state.getBlock().colorMultiplier(this.worldObj, pos);
 

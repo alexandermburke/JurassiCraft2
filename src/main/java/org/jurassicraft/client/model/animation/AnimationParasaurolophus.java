@@ -4,7 +4,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
-
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.dinosaur.DinosaurParasaurolophus;
 import org.jurassicraft.common.entity.EntityParasaurolophus;
@@ -70,7 +69,7 @@ public class AnimationParasaurolophus extends DinosaurAnimator
         float scaleFactor = 0.6F;
         float height = 2F;
         float allFoursLean = (float) (Math.pow(f1, 1 / (f1 * 10)) / 4);
- 
+
         if (allFoursLean > 0.15F)
             allFoursLean = 0.15F;
 

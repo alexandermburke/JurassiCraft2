@@ -1,52 +1,27 @@
 package org.jurassicraft.common.block;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
-
 import org.jurassicraft.common.api.ISubBlocksBlock;
-import org.jurassicraft.common.block.plant.BlockBennettitaleanCycadeoidea;
-import org.jurassicraft.common.block.plant.BlockCryPansy;
-import org.jurassicraft.common.block.plant.BlockCycadZamites;
-import org.jurassicraft.common.block.plant.BlockDicksonia;
-import org.jurassicraft.common.block.plant.BlockScalyTreeFern;
-import org.jurassicraft.common.block.plant.BlockSmallChainFern;
-import org.jurassicraft.common.block.plant.BlockSmallCycad;
-import org.jurassicraft.common.block.plant.BlockSmallRoyalFern;
-import org.jurassicraft.common.block.tree.BlockJCLeaves;
-import org.jurassicraft.common.block.tree.BlockJCLog;
-import org.jurassicraft.common.block.tree.BlockJCPlanks;
-import org.jurassicraft.common.block.tree.BlockJCSapling;
-import org.jurassicraft.common.block.tree.BlockJCSlabDouble;
-import org.jurassicraft.common.block.tree.BlockJCSlabHalf;
-import org.jurassicraft.common.block.tree.BlockJCStairs;
-import org.jurassicraft.common.block.tree.EnumType;
+import org.jurassicraft.common.block.plant.*;
+import org.jurassicraft.common.block.tree.*;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.base.JCEntityRegistry;
 import org.jurassicraft.common.item.ItemBlockMeta;
 import org.jurassicraft.common.item.ItemJCSlab;
-import org.jurassicraft.common.tileentity.TileCarnivoreFeeder;
-import org.jurassicraft.common.tileentity.TileCleaningStation;
-import org.jurassicraft.common.tileentity.TileCultivate;
-import org.jurassicraft.common.tileentity.TileDNACombinator;
-import org.jurassicraft.common.tileentity.TileDNAExtractor;
-import org.jurassicraft.common.tileentity.TileDNAHybridizer;
-import org.jurassicraft.common.tileentity.TileDnaSequencer;
-import org.jurassicraft.common.tileentity.TileDnaSynthesizer;
-import org.jurassicraft.common.tileentity.TileEmbryoCalcificationMachine;
-import org.jurassicraft.common.tileentity.TileEmbryonicMachine;
-import org.jurassicraft.common.tileentity.TileFossilGrinder;
-import org.jurassicraft.common.tileentity.TileIncubator;
+import org.jurassicraft.common.tileentity.*;
 import org.jurassicraft.common.world.jurdstrees.algorythms.TreeCompendium;
 
-public class JCBlockRegistry {
+import java.util.ArrayList;
+import java.util.List;
+
+public class JCBlockRegistry
+{
     public static final int numOfTrees = 2;
 
     // tree blocks
@@ -99,7 +74,7 @@ public class JCBlockRegistry {
     public static Block scaly_tree_fern;
     public static Block cycad_zamites;
     public static Block dicksonia;
-    
+
     public static Block bPlanks;
 
     public void register()
@@ -138,14 +113,15 @@ public class JCBlockRegistry {
         scaly_tree_fern = addBlock(new BlockScalyTreeFern(), "scaly_tree_fern");
         cycad_zamites = addBlock(new BlockCycadZamites(), "cycad_zamites");
         dicksonia = addBlock(new BlockDicksonia(), "dicksonia");
-        
-        bPlanks = addBlock(new BlockMeta(Material.wood, "planks", 8).setCreativeTab(JCCreativeTabs.blocks), "planks");
+
+        bPlanks = addBlock(new BlockMeta(Material.wood, "planks", 8).setCreativeTab(JCCreativeTabs.plants), "planks");
 
         List<Dinosaur> dinosaurs = JCEntityRegistry.getDinosaurs();
 
         int blocksToCreate = (int) (Math.ceil(((float) dinosaurs.size()) / 16.0F));
 
-        for (int i = 0; i < blocksToCreate; i++) {
+        for (int i = 0; i < blocksToCreate; i++)
+        {
             BlockFossil fossil = new BlockFossil(i * 16);
             BlockEncasedFossil encasedFossil = new BlockEncasedFossil(i * 16);
 
@@ -176,7 +152,8 @@ public class JCBlockRegistry {
         stairs = new Block[numOfTrees];
 
         // initialize blocks within arrays
-        for (int i = 0; i < numOfTrees; i++) {
+        for (int i = 0; i < numOfTrees; i++)
+        {
             EnumType type = EnumType.getMetaLookup()[i];
             String typeName = type.getName();
 
@@ -193,8 +170,8 @@ public class JCBlockRegistry {
             GameRegistry.registerBlock(leaves[i], typeName + "_leaves");
             GameRegistry.registerBlock(saplings[i], typeName + "_sapling");
             GameRegistry.registerBlock(stairs[i], typeName + "_stairs");
-            GameRegistry.registerBlock(slabs[i], ItemJCSlab.class, typeName + "_slab", new Object[] { slabs[i], doubleSlabs[i] });
-            GameRegistry.registerBlock(doubleSlabs[i], ItemJCSlab.class, typeName + "_double_slab", new Object[] { slabs[i], doubleSlabs[i] });
+            GameRegistry.registerBlock(slabs[i], ItemJCSlab.class, typeName + "_slab", new Object[]{slabs[i], doubleSlabs[i]});
+            GameRegistry.registerBlock(doubleSlabs[i], ItemJCSlab.class, typeName + "_double_slab", new Object[]{slabs[i], doubleSlabs[i]});
 
             OreDictionary.registerOre("logWood", woods[i]);
             OreDictionary.registerOre("plankWood", planks[i]);
@@ -225,16 +202,21 @@ public class JCBlockRegistry {
         registerBlockTileEntity(TileDNACombinator.class, dna_combinator, "DNA Combinator");
         registerBlockTileEntity(TileIncubator.class, incubator, "Incubator");
     }
-    
+
     private Block addBlock(Block block, String name)
     {
         block.setUnlocalizedName(name);
 
-        if (block instanceof BlockMeta) {
+        if (block instanceof BlockMeta)
+        {
             GameRegistry.registerBlock(block, ItemBlockMeta.class, name);
-        } else if (block instanceof ISubBlocksBlock) {
+        }
+        else if (block instanceof ISubBlocksBlock)
+        {
             GameRegistry.registerBlock(block, ((ISubBlocksBlock) block).getItemBlockClass(), name);
-        } else {
+        }
+        else
+        {
             GameRegistry.registerBlock(block, name);
         }
         return block;

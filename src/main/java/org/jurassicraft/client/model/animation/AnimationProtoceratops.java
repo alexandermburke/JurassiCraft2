@@ -4,7 +4,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
-
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.dinosaur.DinosaurProtoceratops;
 import org.jurassicraft.common.entity.EntityProtoceratops;
@@ -96,6 +95,6 @@ public class AnimationProtoceratops extends DinosaurAnimator
         model.chainWave(tail, globalSpeed * 0.25F, globalHeight * 1.0F, 3, ticksExisted, 0.1F);
         model.chainWave(neck, globalSpeed * 0.25F, globalHeight * 1.0F, -3, ticksExisted, 0.1F);
 
-        ((EntityProtoceratops)parEntity).tailBuffer.applyChainSwingBuffer(tail);
+        ((EntityProtoceratops) parEntity).tailBuffer.applyChainSwingBuffer(tail);
     }
 }

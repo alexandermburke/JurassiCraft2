@@ -1,20 +1,12 @@
 package org.jurassicraft.common.entity.base;
 
 import io.netty.buffer.ByteBuf;
-
-import java.util.HashSet;
-import java.util.Set;
-
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILeapAtTarget;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
@@ -35,7 +27,6 @@ import net.timeless.animationapi.AIAnimation;
 import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.AnimID;
-
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.disease.Disease;
@@ -46,6 +37,9 @@ import org.jurassicraft.common.genetics.GeneticsContainer;
 import org.jurassicraft.common.genetics.GeneticsHelper;
 import org.jurassicraft.common.item.ItemBluePrint;
 import org.jurassicraft.common.item.JCItemRegistry;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class EntityDinosaur extends EntityCreature implements IEntityAdditionalSpawnData, IAnimatedEntity, IInventory
 {
@@ -286,10 +280,10 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(transitionFromAge(dinosaur.getBabyKnockback(), dinosaur.getAdultKnockback()));
 
         // adjustHitbox();
-        
+
         getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(transitionFromAge(dinosaur.getBabyStrength(), dinosaur.getAdultStrength()));
 
-        if(prevHealth != newHealth)
+        if (prevHealth != newHealth)
         {
             heal((float) (newHealth - lastDamage));
         }
@@ -299,7 +293,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     {
         setSize((float) transitionFromAge(dinosaur.getBabySizeX(), dinosaur.getAdultSizeX()), (float) transitionFromAge(dinosaur.getBabySizeY(), dinosaur.getAdultSizeY()));
     }
-    
+
     // Need to override because vanilla knockback makes big dinos get knocked into air
     @Override
     public void knockBack(Entity p_70653_1_, float p_70653_2_, double p_70653_3_, double p_70653_5_)
@@ -313,10 +307,10 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
             motionZ /= 2.0D;
             motionX -= p_70653_3_ / f1 * f2;
             motionZ -= p_70653_5_ / f1 * f2;
-            
+
             // TODO
             // We should make knockback bigger and into air if dino is much smaller than attacking dino
-       }
+        }
     }
 
     public double transitionFromAge(double baby, double adult)
@@ -370,7 +364,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
 
         adjustHitbox();
 
-        if(this.isWet())
+        if (this.isWet())
         {
             water = 24000;
         }
