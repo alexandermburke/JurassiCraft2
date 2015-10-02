@@ -344,7 +344,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     @Override
     public float getSoundVolume()
     {
-        return (10.0F * ((float) transitionFromAge(0.3F, 1.0F)));
+        return (2.0F * ((float) transitionFromAge(0.3F, 1.0F)));
 //        return (float) transitionFromAge(0.3F, 1.0F) + ((rand.nextFloat() - 0.5F) * 0.125F);
     }
 

@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.item.EnumDyeColor;
@@ -89,6 +90,17 @@ public class RenderIndominus extends RenderLiving implements IDinosaurRenderer
     }
 
     @Override
+    public void doRender(EntityLiving entity, double x, double y, double z, float entityYaw, float partialTicks)
+    {
+        super.doRender(entity, x, y, z, entityYaw, partialTicks);
+
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+
+//        GL11.glDisable(GL11.GL_BLEND);
+//        GL11.glEnable(GL11.GL_ALPHA_TEST);
+    }
+
+    @Override
     public void preRenderCallback(EntityLivingBase entity, float side)
     {
         EntityDinosaur entityDinosaur = (EntityDinosaur) entity;
@@ -110,9 +122,9 @@ public class RenderIndominus extends RenderLiving implements IDinosaurRenderer
 
         EntityIndominus iRex = (EntityIndominus) entity;
 
-        GL11.glEnable(GL11.GL_BLEND);
-        GL11.glDisable(GL11.GL_ALPHA_TEST);
-        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+//        GL11.glEnable(GL11.GL_BLEND);
+//        GL11.glDisable(GL11.GL_ALPHA_TEST);
+//        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
         float[] color = iRex.getSkinColor();
         GlStateManager.color(color[0], color[1], color[2], 1.0F);
