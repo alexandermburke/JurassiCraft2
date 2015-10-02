@@ -29,6 +29,8 @@ public class EntityIndominusRex extends EntityDinosaurAggressive // implements I
 
     private int stepCount = 0;
 
+    private boolean isCamouflaging;
+
     public EntityIndominusRex(World world)
     {
         super(world);
@@ -58,7 +60,12 @@ public class EntityIndominusRex extends EntityDinosaurAggressive // implements I
 
         if (worldObj.isRemote)
         {
+            isCamouflaging = this.dataWatcher.getWatchableObjectByte(31) == 1;
             changeSkinColor();
+        }
+        else
+        {
+            this.dataWatcher.updateObject(31, (byte) (isCamouflaging ? 1 : 0));
         }
         // if (getAnimID() == 0)
         // AnimationAPI.sendAnimPacket(this, 1);
@@ -90,18 +97,28 @@ public class EntityIndominusRex extends EntityDinosaurAggressive // implements I
 
     public boolean isCamouflaging()
     {
-        return true;
+        return isCamouflaging;
     }
 
     public void changeSkinColor()
     {
         BlockPos pos = new BlockPos(this).offset(EnumFacing.DOWN);
         IBlockState state = this.worldObj.getBlockState(pos);
-        int color = state.getBlock().colorMultiplier(this.worldObj, pos);
 
-        if (color == 16777215)
+        int color;
+
+        if(isCamouflaging())
         {
-            color = state.getBlock().getMapColor(state).colorValue;
+            color = state.getBlock().colorMultiplier(this.worldObj, pos);
+
+            if (color == 16777215)
+            {
+                color = state.getBlock().getMapColor(state).colorValue;
+            }
+        }
+        else
+        {
+            color = 0xFFFFFF;
         }
 
         // if(color == 0)

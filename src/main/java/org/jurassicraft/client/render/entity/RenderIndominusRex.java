@@ -110,15 +110,12 @@ public class RenderIndominusRex extends RenderLiving implements IDinosaurRendere
 
         EntityIndominusRex iRex = (EntityIndominusRex) entity;
 
-        if (iRex.isCamouflaging())
-        {
-            GL11.glEnable(GL11.GL_BLEND);
-            GL11.glDisable(GL11.GL_ALPHA_TEST);
-            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glDisable(GL11.GL_ALPHA_TEST);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
-            float[] color = iRex.getSkinColor();
-            GlStateManager.color(color[0], color[1], color[2], 0.7F);
-        }
+        float[] color = iRex.getSkinColor();
+        GlStateManager.color(color[0], color[1], color[2], 1.0F);
 
         shadowSize = scale * renderDef.getShadowSize();
 
@@ -261,6 +258,8 @@ public class RenderIndominusRex extends RenderLiving implements IDinosaurRendere
             if (!entity.isInvisible())
             {
                 int texture = entity.getTexture();
+
+                GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
                 if (entity.isMale())
                 {
