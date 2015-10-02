@@ -31,37 +31,37 @@ public class DinosaurMamenchisaurus extends Dinosaur
     @Override
     public EnumTimePeriod getPeriod()
     {
-        return EnumTimePeriod.CRETACEOUS;
+        return EnumTimePeriod.JURASSIC;
     }
 
     @Override
     public int getEggPrimaryColor()
     {
-        return 0xA2996E;
+        return 0xD1BA49;
     }
 
     @Override
     public int getEggSecondaryColor()
     {
-        return 0x545338;
+        return 0x909B1D;
     }
 
     @Override
     public double getBabyHealth()
     {
-        return 16;
+        return 25;
     }
 
     @Override
     public double getAdultHealth()
     {
-        return 5;
+        return 140;
     }
 
     @Override
     public double getBabySpeed()
     {
-        return 0.11;
+        return 0.32;
     }
 
     @Override
@@ -73,13 +73,13 @@ public class DinosaurMamenchisaurus extends Dinosaur
     @Override
     public int getStorage()
     {
-        return 63;
+        return 52;
     }
 
     @Override
     public double getAdultSpeed()
     {
-        return 0.10;
+        return 0.25;
     }
 
     @Override
@@ -109,7 +109,7 @@ public class DinosaurMamenchisaurus extends Dinosaur
     @Override
     public int getMaximumAge()
     {
-        return fromDays(20);
+        return fromDays(95);
     }
 
     @Override
@@ -127,36 +127,36 @@ public class DinosaurMamenchisaurus extends Dinosaur
     @Override
     public float getBabyEyeHeight()
     {
-        return 0.35F;
+        return 1.55F;
     }
 
     @Override
     public float getAdultEyeHeight()
     {
-        return 0.95F;
+        return 13.95F;
     }
 
     @Override
     public float getBabySizeX()
     {
-        return 0.25F;
+        return 0.75F;
     }
 
     @Override
     public float getBabySizeY()
     {
-        return 0.35F;
+        return 0.75F;
     }
 
     @Override
     public float getAdultSizeX()
     {
-        return 0.5F;
+        return 5.5F;
     }
 
     @Override
     public float getAdultSizeY()
     {
-        return 0.95F;
+        return 5.95F;
     }
 }
