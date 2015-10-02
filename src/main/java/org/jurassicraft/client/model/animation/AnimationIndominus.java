@@ -8,13 +8,13 @@ import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.dinosaur.DinosaurIndominus;
-import org.jurassicraft.common.entity.EntityIndominusRex;
+import org.jurassicraft.common.entity.EntityIndominus;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 
 @SideOnly(Side.CLIENT)
-public class AnimationIndominusRex extends DinosaurAnimator
+public class AnimationIndominus extends DinosaurAnimator
 {
-    public AnimationIndominusRex()
+    public AnimationIndominus()
     {
         super(new DinosaurIndominus());
     }
@@ -121,7 +121,7 @@ public class AnimationIndominusRex extends DinosaurAnimator
 //        parModel.faceTarget(head, 3.0F, rotationYaw, rotationPitch);
 //        parModel.faceTarget(neck1, 3.0F, rotationYaw, rotationPitch);
 
-        ((EntityIndominusRex) parEntity).tailBuffer.applyChainSwingBuffer(tail);
+        ((EntityIndominus) parEntity).tailBuffer.applyChainSwingBuffer(tail);
 
 //        animator.setAnim(AnimID.IDLE);
 //        animator.startPhase(15);

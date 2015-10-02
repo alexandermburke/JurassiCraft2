@@ -19,14 +19,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.jurassicraft.client.render.renderdef.RenderDinosaurDefinition;
 import org.jurassicraft.common.dinosaur.Dinosaur;
-import org.jurassicraft.common.entity.EntityIndominusRex;
+import org.jurassicraft.common.entity.EntityIndominus;
 import org.jurassicraft.common.entity.EntityVelociraptor;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
 import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
-public class RenderIndominusRex extends RenderLiving implements IDinosaurRenderer
+public class RenderIndominus extends RenderLiving implements IDinosaurRenderer
 {
     private static final DynamicTexture dynamicTexture = new DynamicTexture(16, 16);
 
@@ -38,7 +38,7 @@ public class RenderIndominusRex extends RenderLiving implements IDinosaurRendere
     public ResourceLocation[][] femaleOverlayTextures;
     public Random random;
 
-    public RenderIndominusRex(RenderDinosaurDefinition renderDef)
+    public RenderIndominus(RenderDinosaurDefinition renderDef)
     {
         super(Minecraft.getMinecraft().getRenderManager(), renderDef.getModel(EnumGrowthStage.INFANT), renderDef.getShadowSize());
         this.addLayer(new LayerDinosaurFeatures(this));
@@ -108,7 +108,7 @@ public class RenderIndominusRex extends RenderLiving implements IDinosaurRendere
 //            GL11.glColor3f(1.0F - color, 1.0F + color, 1.0F - color);
 //        }
 
-        EntityIndominusRex iRex = (EntityIndominusRex) entity;
+        EntityIndominus iRex = (EntityIndominus) entity;
 
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glDisable(GL11.GL_ALPHA_TEST);
@@ -246,9 +246,9 @@ public class RenderIndominusRex extends RenderLiving implements IDinosaurRendere
     @SideOnly(Side.CLIENT)
     public class LayerDinosaurFeatures implements LayerRenderer
     {
-        private final RenderIndominusRex renderer;
+        private final RenderIndominus renderer;
 
-        public LayerDinosaurFeatures(RenderIndominusRex renderer)
+        public LayerDinosaurFeatures(RenderIndominus renderer)
         {
             this.renderer = renderer;
         }
@@ -334,7 +334,7 @@ public class RenderIndominusRex extends RenderLiving implements IDinosaurRendere
 //import net.minecraftforge.fml.relauncher.SideOnly;
 //import org.jurassicraft.client.render.renderdef.RenderDinosaurDefinition;
 //import org.jurassicraft.common.dinosaur.Dinosaur;
-//import org.jurassicraft.common.entity.EntityIndominusRex;
+//import org.jurassicraft.common.entity.EntityIndominus;
 //import org.jurassicraft.common.entity.base.EntityDinosaur;
 //import org.jurassicraft.common.entity.base.EnumGrowthStage;
 //import org.lwjgl.opengl.GL11;
@@ -342,7 +342,7 @@ public class RenderIndominusRex extends RenderLiving implements IDinosaurRendere
 //import java.util.Random;
 //
 //@SideOnly(Side.CLIENT)
-//public class RenderIndominusRex extends RenderLiving implements IDinosaurRenderer
+//public class RenderIndominus extends RenderLiving implements IDinosaurRenderer
 //{
 //    public Dinosaur dinosaur;
 //    public RenderDinosaurDefinition renderDef;
@@ -352,7 +352,7 @@ public class RenderIndominusRex extends RenderLiving implements IDinosaurRendere
 //
 //    public Random random;
 //
-//    public RenderIndominusRex(RenderDinosaurDefinition renderDef)
+//    public RenderIndominus(RenderDinosaurDefinition renderDef)
 //    {
 //        super(Minecraft.getMinecraft().getRenderManager(), renderDef.getModel(EnumGrowthStage.INFANT), renderDef.getShadowSize());
 //
@@ -404,7 +404,7 @@ public class RenderIndominusRex extends RenderLiving implements IDinosaurRendere
 //
 //        GlStateManager.color(1.0F, 1.0F, 1.0F);
 //
-//        EntityIndominusRex iRex = (EntityIndominusRex) entity;
+//        EntityIndominus iRex = (EntityIndominus) entity;
 //
 //        if (iRex.isCamouflaging())
 //        {

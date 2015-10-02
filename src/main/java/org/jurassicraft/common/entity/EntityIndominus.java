@@ -12,7 +12,7 @@ import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimSoundBase;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 
-public class EntityIndominusRex extends EntityDinosaurAggressive // implements ICarnivore, IEntityAICreature
+public class EntityIndominus extends EntityDinosaurAggressive // implements ICarnivore, IEntityAICreature
 {
     public ChainBuffer tailBuffer = new ChainBuffer(7);
 
@@ -31,12 +31,20 @@ public class EntityIndominusRex extends EntityDinosaurAggressive // implements I
 
     private boolean isCamouflaging;
 
-    public EntityIndominusRex(World world)
+    public EntityIndominus(World world)
     {
         super(world);
         tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, AnimID.IDLE, 750, breathSounds[0], 1.5F));
         this.addAIForAttackTargets(EntityDinosaur.class, 0);
         this.defendFromAttacker(EntityDinosaur.class, 0);
+    }
+
+    @Override
+    public void entityInit()
+    {
+        super.entityInit();
+
+        this.dataWatcher.addObject(31, (byte) 0);
     }
 
     @Override
@@ -111,7 +119,7 @@ public class EntityIndominusRex extends EntityDinosaurAggressive // implements I
         {
             color = state.getBlock().colorMultiplier(this.worldObj, pos);
 
-            if (color == 16777215)
+            if (color == 0xFFFFFF)
             {
                 color = state.getBlock().getMapColor(state).colorValue;
             }
@@ -120,11 +128,6 @@ public class EntityIndominusRex extends EntityDinosaurAggressive // implements I
         {
             color = 0xFFFFFF;
         }
-
-        // if(color == 0)
-        // {
-        // color = 0xFFFFFF;
-        // }
 
         if (color != 0)
         {

@@ -1,7 +1,7 @@
 package org.jurassicraft.common.dinosaur;
 
 import org.jurassicraft.common.api.IHybrid;
-import org.jurassicraft.common.entity.EntityIndominusRex;
+import org.jurassicraft.common.entity.EntityIndominus;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
 import org.jurassicraft.common.period.EnumTimePeriod;
@@ -33,7 +33,7 @@ public class DinosaurIndominus extends Dinosaur implements IHybrid
     @Override
     public Class<? extends EntityDinosaur> getDinosaurClass()
     {
-        return EntityIndominusRex.class;
+        return EntityIndominus.class;
     }
 
     @Override

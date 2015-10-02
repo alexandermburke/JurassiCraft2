@@ -10,7 +10,7 @@ import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.client.render.entity.RenderDinosaur;
 import org.jurassicraft.client.render.entity.RenderDinosaurMultilayer;
-import org.jurassicraft.client.render.entity.RenderIndominusRex;
+import org.jurassicraft.client.render.entity.RenderIndominus;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.dinosaur.DinosaurIndominus;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
@@ -127,7 +127,7 @@ public class RenderDinosaurDefinition
     {
         if(dinosaur instanceof DinosaurIndominus)
         {
-            return new RenderIndominusRex(this);
+            return new RenderIndominus(this);
         }
         else
         {

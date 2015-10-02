@@ -10,7 +10,7 @@ import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.gui.GuiPaleoTab;
 import org.jurassicraft.client.gui.app.GuiApp;
 import org.jurassicraft.client.render.entity.IDinosaurRenderer;
-import org.jurassicraft.client.render.entity.RenderIndominusRex;
+import org.jurassicraft.client.render.entity.RenderIndominus;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 
 public class ClientEventHandler
@@ -66,7 +66,7 @@ public class ClientEventHandler
     @SubscribeEvent
     public void postRenderer(RenderLivingEvent.Post event)
     {
-        if (event.entity instanceof EntityDinosaur && event.renderer instanceof IDinosaurRenderer && !(event.renderer instanceof RenderIndominusRex))
+        if (event.entity instanceof EntityDinosaur && event.renderer instanceof IDinosaurRenderer && !(event.renderer instanceof RenderIndominus))
         {
             GlStateManager.color(1.0F, 1.0F, 1.0F);
         }
