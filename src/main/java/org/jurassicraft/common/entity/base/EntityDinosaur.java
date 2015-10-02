@@ -370,6 +370,11 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
 
         adjustHitbox();
 
+        if(this.isWet())
+        {
+            water = 24000;
+        }
+
         if (!this.isDead && ticksExisted % 8 == 0)
         {
             dinosaurAge += Math.min(growthSpeedOffset, 960) + 1;
