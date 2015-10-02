@@ -10,7 +10,9 @@ import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.client.render.entity.RenderDinosaur;
 import org.jurassicraft.client.render.entity.RenderDinosaurMultilayer;
+import org.jurassicraft.client.render.entity.RenderIndominusRex;
 import org.jurassicraft.common.dinosaur.Dinosaur;
+import org.jurassicraft.common.dinosaur.DinosaurIndominus;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
 
 @SideOnly(Side.CLIENT)
@@ -123,11 +125,18 @@ public class RenderDinosaurDefinition
 
     public RenderLiving getRenderer()
     {
-        String[] maleOverlayTextures = dinosaur.getMaleOverlayTextures(EnumGrowthStage.INFANT);
-
-        if (maleOverlayTextures != null && maleOverlayTextures.length > 0)
-            return new RenderDinosaurMultilayer(this);
+        if(dinosaur instanceof DinosaurIndominus)
+        {
+            return new RenderIndominusRex(this);
+        }
         else
-            return new RenderDinosaur(this);
+        {
+            String[] maleOverlayTextures = dinosaur.getMaleOverlayTextures(EnumGrowthStage.INFANT);
+
+            if (maleOverlayTextures != null && maleOverlayTextures.length > 0)
+                return new RenderDinosaurMultilayer(this);
+            else
+                return new RenderDinosaur(this);
+        }
     }
 }

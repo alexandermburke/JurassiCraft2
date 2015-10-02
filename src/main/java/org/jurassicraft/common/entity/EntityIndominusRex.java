@@ -90,7 +90,7 @@ public class EntityIndominusRex extends EntityDinosaurAggressive // implements I
 
     public boolean isCamouflaging()
     {
-        return false;
+        return true;
     }
 
     public void changeSkinColor()

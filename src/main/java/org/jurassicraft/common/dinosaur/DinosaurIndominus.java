@@ -8,16 +8,17 @@ import org.jurassicraft.common.period.EnumTimePeriod;
 
 public class DinosaurIndominus extends Dinosaur implements IHybrid
 {
-    private String[] maleTextures;
-    private String[] femaleTextures;
+    private String[] textures;
+
+    private String[] overlayTextures;
 
     private Class[] baseGenes;
     private Class[] extraGenes;
 
     public DinosaurIndominus()
     {
-        this.maleTextures = new String[]{getDinosaurTexture("")};
-        this.femaleTextures = new String[]{getDinosaurTexture("")};
+        this.textures = new String[]{getDinosaurTexture("camouflage")};
+        this.overlayTextures = new String[]{getDinosaurTexture("")};
 
         this.baseGenes = new Class[]{DinosaurTyrannosaurus.class, DinosaurVelociraptor.class};
         this.extraGenes = new Class[]{DinosaurGiganotosaurus.class, DinosaurRugops.class, DinosaurMajungasaurus.class, DinosaurCarnotaurus.class}; //TODO therizino
@@ -115,13 +116,25 @@ public class DinosaurIndominus extends Dinosaur implements IHybrid
     @Override
     public String[] getMaleTextures(EnumGrowthStage stage)
     {
-        return maleTextures;
+        return textures;
     }
 
     @Override
     public String[] getFemaleTextures(EnumGrowthStage stage)
     {
-        return femaleTextures;
+        return textures;
+    }
+
+    @Override
+    public String[] getMaleOverlayTextures(EnumGrowthStage stage)
+    {
+        return overlayTextures;
+    }
+
+    @Override
+    public String[] getFemaleOverlayTextures(EnumGrowthStage stage)
+    {
+        return overlayTextures;
     }
 
     @Override
