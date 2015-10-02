@@ -278,6 +278,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
 
     public void updateCreatureData()
     {
+        double prevHealth = getMaxHealth();
         double newHealth = transitionFromAge(dinosaur.getBabyHealth(), dinosaur.getAdultHealth());
 
         getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(newHealth);
@@ -288,7 +289,10 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         
         getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(transitionFromAge(dinosaur.getBabyStrength(), dinosaur.getAdultStrength()));
 
-        heal((float) (newHealth - lastDamage));
+        if(prevHealth != newHealth)
+        {
+            heal((float) (newHealth - lastDamage));
+        }
     }
 
     private void adjustHitbox()
