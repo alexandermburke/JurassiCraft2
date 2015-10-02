@@ -97,7 +97,7 @@ public class EntityAIDrink extends EntityAIBase
                 AnimationAPI.sendAnimPacket(dinosaur, AnimID.DRINKING);
             }
 
-            dinosaur.setWater(dinosaur.getWater() + 200);
+            dinosaur.setWater(24000);
         }
     }
 
