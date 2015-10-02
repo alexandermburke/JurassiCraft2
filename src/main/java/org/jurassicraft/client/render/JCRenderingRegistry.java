@@ -247,6 +247,8 @@ public class JCRenderingRegistry
         this.registerItemRenderer(modelMesher, JCItemRegistry.amber, 0, "amber_mosquito", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.amber, 1, "amber_aphid", "inventory");
 
+        this.registerItemRenderer(modelMesher, JCItemRegistry.helicopter_spawner, "helicopter_spawner", "inventory");
+
         int meta = 0;
 
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())

@@ -120,7 +120,7 @@ public class JCItemRegistry
         registerItem(dino_meat, "Dinosaur Meat");
         registerItem(dino_steak, "Dinosaur Steak");
 
-        registerItem(helicopter_spawner, "Helicopter");
+        registerItem(helicopter_spawner, "Helicopter Spawner");
 //        registerItem(entityRemover, "Entity Remover");
 
 //        for (int i = 0; i < JCEntityRegistry.getDinosaurs().size(); i++)
