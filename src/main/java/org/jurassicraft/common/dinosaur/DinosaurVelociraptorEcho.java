@@ -16,7 +16,7 @@ public class DinosaurVelociraptorEcho extends Dinosaur implements IHybrid
     }
 
     @Override
-    public String getName(int geneticVariant)
+    public String getName()
     {
         return "Echo";
     }
@@ -105,13 +105,13 @@ public class DinosaurVelociraptorEcho extends Dinosaur implements IHybrid
     }
 
     @Override
-    public String[] getMaleTextures(int geneticVariant, EnumGrowthStage stage)
+    public String[] getMaleTextures(EnumGrowthStage stage)
     {
         return textures;
     }
 
     @Override
-    public String[] getFemaleTextures(int geneticVariant, EnumGrowthStage stage)
+    public String[] getFemaleTextures(EnumGrowthStage stage)
     {
         return textures;
     }

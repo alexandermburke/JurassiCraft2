@@ -143,7 +143,7 @@ public class JCEntityRegistry
     public void registerDinosaur(Dinosaur dinosaur)
     {
         if (dinosaur.shouldRegister())
-            registerEntity(dinosaur.getDinosaurClass(), dinosaur.getName(0));
+            registerEntity(dinosaur.getDinosaurClass(), dinosaur.getName());
     }
 
     private void registerEntity(Class<? extends Entity> entity, String name)

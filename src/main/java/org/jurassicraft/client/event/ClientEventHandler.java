@@ -59,7 +59,7 @@ public class ClientEventHandler
             IDinosaurRenderer dinoRenderer = (IDinosaurRenderer) event.renderer;
             EntityDinosaur entityDinosaur = (EntityDinosaur) event.entity;
 
-            dinoRenderer.setModel(dinoRenderer.getRenderDef().getModel(entityDinosaur.getGeneticVariant(), entityDinosaur.getGrowthStage()));
+            dinoRenderer.setModel(dinoRenderer.getRenderDef().getModel(entityDinosaur.getGrowthStage()));
         }
     }
 

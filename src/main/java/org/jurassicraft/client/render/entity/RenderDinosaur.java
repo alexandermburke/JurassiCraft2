@@ -37,20 +37,20 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
 
     public RenderDinosaur(RenderDinosaurDefinition renderDef)
     {
-        super(Minecraft.getMinecraft().getRenderManager(), renderDef.getModel(0, EnumGrowthStage.INFANT), renderDef.getShadowSize());
+        super(Minecraft.getMinecraft().getRenderManager(), renderDef.getModel(EnumGrowthStage.INFANT), renderDef.getShadowSize());
 
         this.dinosaur = renderDef.getDinosaur();
         this.random = new Random();
         this.renderDef = renderDef;
 
-        this.maleTextures = new ResourceLocation[dinosaur.getMaleTextures(0, EnumGrowthStage.INFANT).length][4]; //TODO
-        this.femaleTextures = new ResourceLocation[dinosaur.getFemaleTextures(0, EnumGrowthStage.INFANT).length][4];
+        this.maleTextures = new ResourceLocation[dinosaur.getMaleTextures(EnumGrowthStage.INFANT).length][4]; //TODO
+        this.femaleTextures = new ResourceLocation[dinosaur.getFemaleTextures(EnumGrowthStage.INFANT).length][4];
 
         for (EnumGrowthStage stage : EnumGrowthStage.values())
         {
             int i = 0;
 
-            for (String texture : dinosaur.getMaleTextures(0, stage))
+            for (String texture : dinosaur.getMaleTextures(stage))
             {
                 this.maleTextures[i][stage.ordinal()] = new ResourceLocation(texture);
                 i++;
@@ -58,7 +58,7 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
 
             i = 0;
 
-            for (String texture : dinosaur.getFemaleTextures(0, stage))
+            for (String texture : dinosaur.getFemaleTextures(stage))
             {
                 this.femaleTextures[i][stage.ordinal()] = new ResourceLocation(texture);
                 i++;
@@ -70,8 +70,6 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
     public void preRenderCallback(EntityLivingBase entity, float side)
     {
         EntityDinosaur entityDinosaur = (EntityDinosaur) entity;
-
-        int geneticVariant = entityDinosaur.getGeneticVariant();
 
         float scale = (float) entityDinosaur.transitionFromAge(renderDef.getBabyScaleAdjustment(), renderDef.getAdultScaleAdjustment());
 
@@ -90,7 +88,7 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
 
         shadowSize = scale * renderDef.getShadowSize();
 
-        GL11.glTranslatef(renderDef.getRenderXOffset(geneticVariant) * scale, renderDef.getRenderYOffset(geneticVariant) * scale, renderDef.getRenderZOffset(geneticVariant) * scale);
+        GL11.glTranslatef(renderDef.getRenderXOffset() * scale, renderDef.getRenderYOffset() * scale, renderDef.getRenderZOffset() * scale);
 
         String name = entity.getCustomNameTag();
 

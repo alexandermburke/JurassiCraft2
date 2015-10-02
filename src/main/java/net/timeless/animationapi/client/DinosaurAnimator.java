@@ -98,7 +98,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
      */
     public DinosaurAnimator(Dinosaur dino)
     {
-        String name = dino.getName(0).toLowerCase(); // this should match name of your resource package and files
+        String name = dino.getName().toLowerCase(); // this should match name of your resource package and files
         this.modelData = new EnumMap<EnumGrowthStage, PreloadedModelData>(EnumGrowthStage.class);
         URI dinoDirURI = null;
         try

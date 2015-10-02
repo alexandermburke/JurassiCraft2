@@ -89,7 +89,7 @@ public class GuiCultivateProcess extends GuiScreen
 
         if (dinosaur != null)
         {
-            name = dinosaur.getName(0);
+            name = dinosaur.getName();
         }
         else
         {

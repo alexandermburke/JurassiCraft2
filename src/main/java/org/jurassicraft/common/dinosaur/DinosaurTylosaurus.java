@@ -17,7 +17,7 @@ public class DinosaurTylosaurus extends Dinosaur
     }
 
     @Override
-    public String getName(int geneticVariant)
+    public String getName()
     {
         return "Tylosaurus";
     }
@@ -107,13 +107,13 @@ public class DinosaurTylosaurus extends Dinosaur
     }
 
     @Override
-    public String[] getMaleTextures(int geneticVariant, EnumGrowthStage stage)
+    public String[] getMaleTextures(EnumGrowthStage stage)
     {
         return maleTextures;
     }
 
     @Override
-    public String[] getFemaleTextures(int geneticVariant, EnumGrowthStage stage)
+    public String[] getFemaleTextures(EnumGrowthStage stage)
     {
         return femaleTextures;
     }

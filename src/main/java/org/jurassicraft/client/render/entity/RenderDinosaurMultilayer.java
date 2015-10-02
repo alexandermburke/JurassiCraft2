@@ -39,23 +39,23 @@ public class RenderDinosaurMultilayer extends RenderLiving implements IDinosaurR
 
     public RenderDinosaurMultilayer(RenderDinosaurDefinition renderDef)
     {
-        super(Minecraft.getMinecraft().getRenderManager(), renderDef.getModel(0, EnumGrowthStage.INFANT), renderDef.getShadowSize());
+        super(Minecraft.getMinecraft().getRenderManager(), renderDef.getModel(EnumGrowthStage.INFANT), renderDef.getShadowSize());
         this.addLayer(new LayerDinosaurFeatures(this));
 
         this.dinosaur = renderDef.getDinosaur();
         this.random = new Random();
         this.renderDef = renderDef;
 
-        this.maleTextures = new ResourceLocation[dinosaur.getMaleTextures(0, EnumGrowthStage.INFANT).length][EnumGrowthStage.values().length]; //TODO
-        this.femaleTextures = new ResourceLocation[dinosaur.getFemaleTextures(0, EnumGrowthStage.INFANT).length][EnumGrowthStage.values().length];
-        this.maleOverlayTextures = new ResourceLocation[dinosaur.getMaleOverlayTextures(0, EnumGrowthStage.INFANT).length][EnumGrowthStage.values().length];
-        this.femaleOverlayTextures = new ResourceLocation[dinosaur.getFemaleOverlayTextures(0, EnumGrowthStage.INFANT).length][EnumGrowthStage.values().length];
+        this.maleTextures = new ResourceLocation[dinosaur.getMaleTextures(EnumGrowthStage.INFANT).length][EnumGrowthStage.values().length]; //TODO
+        this.femaleTextures = new ResourceLocation[dinosaur.getFemaleTextures(EnumGrowthStage.INFANT).length][EnumGrowthStage.values().length];
+        this.maleOverlayTextures = new ResourceLocation[dinosaur.getMaleOverlayTextures(EnumGrowthStage.INFANT).length][EnumGrowthStage.values().length];
+        this.femaleOverlayTextures = new ResourceLocation[dinosaur.getFemaleOverlayTextures(EnumGrowthStage.INFANT).length][EnumGrowthStage.values().length];
 
         for (EnumGrowthStage stage : EnumGrowthStage.values())
         {
             int i = 0;
 
-            for (String texture : dinosaur.getMaleTextures(0, stage))
+            for (String texture : dinosaur.getMaleTextures(stage))
             {
                 this.maleTextures[i][stage.ordinal()] = new ResourceLocation(texture);
                 i++;
@@ -63,7 +63,7 @@ public class RenderDinosaurMultilayer extends RenderLiving implements IDinosaurR
 
             i = 0;
 
-            for (String texture : dinosaur.getFemaleTextures(0, stage))
+            for (String texture : dinosaur.getFemaleTextures(stage))
             {
                 this.femaleTextures[i][stage.ordinal()] = new ResourceLocation(texture);
                 i++;
@@ -71,7 +71,7 @@ public class RenderDinosaurMultilayer extends RenderLiving implements IDinosaurR
 
             i = 0;
 
-            for (String texture : dinosaur.getMaleOverlayTextures(0, stage))
+            for (String texture : dinosaur.getMaleOverlayTextures(stage))
             {
                 this.maleOverlayTextures[i][stage.ordinal()] = new ResourceLocation(texture);
                 i++;
@@ -79,7 +79,7 @@ public class RenderDinosaurMultilayer extends RenderLiving implements IDinosaurR
 
             i = 0;
 
-            for (String texture : dinosaur.getFemaleOverlayTextures(0, stage))
+            for (String texture : dinosaur.getFemaleOverlayTextures(stage))
             {
                 this.femaleOverlayTextures[i][stage.ordinal()] = new ResourceLocation(texture);
                 i++;
@@ -111,7 +111,7 @@ public class RenderDinosaurMultilayer extends RenderLiving implements IDinosaurR
 
         shadowSize = scale * renderDef.getShadowSize();
 
-        GL11.glTranslatef(renderDef.getRenderXOffset(geneticVariant) * scale, renderDef.getRenderYOffset(geneticVariant) * scale, renderDef.getRenderZOffset(geneticVariant) * scale);
+        GL11.glTranslatef(renderDef.getRenderXOffset() * scale, renderDef.getRenderYOffset() * scale, renderDef.getRenderZOffset() * scale);
 
         String name = entity.getCustomNameTag();
 

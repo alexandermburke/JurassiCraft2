@@ -29,7 +29,7 @@ public class ItemBluePrint extends Item
         String name = "blue_print.blank.name";
 
         if (dino != null)
-            name = "entity." + dino.getName(0).toLowerCase().replaceAll(" ", "_") + ".name";
+            name = "entity." + dino.getName().toLowerCase().replaceAll(" ", "_") + ".name";
 
         return new AdvLang("item.blue_print.name").withProperty("type", name).build();
     }

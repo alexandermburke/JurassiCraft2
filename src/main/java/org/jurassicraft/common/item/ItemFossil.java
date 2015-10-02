@@ -32,7 +32,7 @@ public class ItemFossil extends Item
         Dinosaur dinosaur = this.getDinosaur(stack);
 
         if (dinosaur != null)
-            return new AdvLang("item." + type + ".name").withProperty("dino", "entity." + dinosaur.getName(0).replace(" ", "_").toLowerCase() + ".name").build();
+            return new AdvLang("item." + type + ".name").withProperty("dino", "entity." + dinosaur.getName().replace(" ", "_").toLowerCase() + ".name").build();
 
         return super.getItemStackDisplayName(stack);
     }

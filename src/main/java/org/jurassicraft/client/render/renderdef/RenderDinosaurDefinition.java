@@ -18,7 +18,12 @@ public class RenderDinosaurDefinition
 {
     private final Dinosaur dinosaur;
     private final IModelAnimator animator;
-    private final ModelJson model;
+
+    private final ModelJson modelAdult;
+    private final ModelJson modelJuvenile;
+    private final ModelJson modelAdolescent;
+    private final ModelJson modelInfant;
+
     private float adultScaleAdjustment = 1.0F;
     private float babyScaleAdjustment = 0.325F;
     private float shadowSize = 0.65F;
@@ -37,30 +42,43 @@ public class RenderDinosaurDefinition
         renderYOffset = parRenderYOffset;
         renderZOffset = parRenderZOffset;
 
-        model = getDefaultTabulaModel();
+        modelAdult = getDefaultTabulaModel("adult");
+        modelInfant = getDefaultTabulaModel("infant");
+        modelJuvenile = getDefaultTabulaModel("juvenile");
+        modelAdolescent = getDefaultTabulaModel("adolescent");
     }
 
-    public ModelBase getModel(int geneticVariant, EnumGrowthStage stage)
+    public ModelBase getModel(EnumGrowthStage stage)
     {
-        return model;
+        switch (stage)
+        {
+            case INFANT:
+                return modelInfant;
+            case JUVENILE:
+                return modelJuvenile;
+            case ADOLESCENT:
+                return modelAdolescent;
+            default:
+                return modelAdult;
+        }
     }
 
-    public IModelAnimator getModelAnimator(int geneticVariant)
+    public IModelAnimator getModelAnimator()
     {
         return animator;
     }
 
-    public float getRenderXOffset(int geneticVariant)
+    public float getRenderXOffset()
     {
         return renderXOffset;
     }
 
-    public float getRenderYOffset(int geneticVariant)
+    public float getRenderYOffset()
     {
         return renderYOffset;
     }
 
-    public float getRenderZOffset(int geneticVariant)
+    public float getRenderZOffset()
     {
         return renderZOffset;
     }
@@ -80,36 +98,22 @@ public class RenderDinosaurDefinition
         return shadowSize;
     }
 
-    public ModelDinosaur getTabulaModel(String tabulaModel, int geneticVariant) throws Exception
-    {
-        return new ModelDinosaur(TabulaModelHelper.parseModel(tabulaModel), getModelAnimator(geneticVariant));
-    }
-
     public ModelDinosaur getTabulaModel(String tabulaModel) throws Exception
     {
-        return getTabulaModel(tabulaModel, 0);
+        return new ModelDinosaur(TabulaModelHelper.parseModel(tabulaModel), getModelAnimator());
     }
 
-    public ModelDinosaur getDefaultTabulaModel(int geneticVariant) throws Exception
-    {
-        return getTabulaModel("/assets/jurassicraft/models/entities/"
-                        + dinosaur.getName(0).toLowerCase() + "/adult/"
-                        + dinosaur.getName(0).toLowerCase() + "_adult_idle"
-        );
-    }
-
-    public ModelDinosaur getDefaultTabulaModel()
+    public ModelDinosaur getDefaultTabulaModel(String stage)
     {
         try
         {
-            return getDefaultTabulaModel(0);
+            return getTabulaModel("/assets/jurassicraft/models/entities/" + dinosaur.getName().toLowerCase() + "/" + stage + "/" + dinosaur.getName().toLowerCase() + "_" + stage + "_idle");
         }
         catch (Exception e)
         {
-            // TODO Auto-generated catch block
             e.printStackTrace();
+            return null;
         }
-        return null;
     }
 
     public Dinosaur getDinosaur()
@@ -117,9 +121,9 @@ public class RenderDinosaurDefinition
         return dinosaur;
     }
 
-    public RenderLiving getRenderer(int geneticVariant)
+    public RenderLiving getRenderer()
     {
-        String[] maleOverlayTextures = dinosaur.getMaleOverlayTextures(0, EnumGrowthStage.INFANT);
+        String[] maleOverlayTextures = dinosaur.getMaleOverlayTextures(EnumGrowthStage.INFANT);
 
         if (maleOverlayTextures != null && maleOverlayTextures.length > 0)
             return new RenderDinosaurMultilayer(this);

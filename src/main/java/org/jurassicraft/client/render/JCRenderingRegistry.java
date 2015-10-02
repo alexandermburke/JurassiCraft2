@@ -55,7 +55,7 @@ public class JCRenderingRegistry
     {
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
         {
-            String dinoName = dino.getName(0).toLowerCase().replaceAll(" ", "_");
+            String dinoName = dino.getName().toLowerCase().replaceAll(" ", "_");
 
             ModelBakery.addVariantName(JCItemRegistry.skull, "jurassicraft:fossil/skull_" + dinoName);
             ModelBakery.addVariantName(JCItemRegistry.dna, "jurassicraft:dna/dna_" + dinoName);
@@ -207,7 +207,7 @@ public class JCRenderingRegistry
     public void postInit()
     {
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
-            RenderingRegistry.registerEntityRenderingHandler(dino.getDinosaurClass(), renderDefs.get(dino).getRenderer(0));
+            RenderingRegistry.registerEntityRenderingHandler(dino.getDinosaurClass(), renderDefs.get(dino).getRenderer());
 
         RenderingRegistry.registerEntityRenderingHandler(EntityCageSmall.class, new RenderCageSmall());
         RenderingRegistry.registerEntityRenderingHandler(EntityBluePrint.class, new RenderBluePrint());
@@ -251,7 +251,7 @@ public class JCRenderingRegistry
 
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
         {
-            String dinoName = dino.getName(0).toLowerCase().replaceAll(" ", "_");
+            String dinoName = dino.getName().toLowerCase().replaceAll(" ", "_");
 
             this.registerItemRenderer(modelMesher, JCItemRegistry.dna, meta, "dna/dna_" + dinoName, "inventory");
             this.registerItemRenderer(modelMesher, JCItemRegistry.skull, meta, "fossil/skull_" + dinoName, "inventory");

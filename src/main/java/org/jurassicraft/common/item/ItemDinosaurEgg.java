@@ -26,7 +26,7 @@ public class ItemDinosaurEgg extends ItemDnaContainer
 
     public String getItemStackDisplayName(ItemStack stack)
     {
-        String dinoName = getDinosaur(stack).getName(0).toLowerCase().replaceAll(" ", "_");
+        String dinoName = getDinosaur(stack).getName().toLowerCase().replaceAll(" ", "_");
 
         return new AdvLang("item.dino_egg.name").withProperty("dino", "entity." + dinoName + ".name").build();
     }

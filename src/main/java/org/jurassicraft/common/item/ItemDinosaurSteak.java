@@ -30,7 +30,7 @@ public class ItemDinosaurSteak extends ItemFood
     {
         Dinosaur dinosaur = this.getDinosaur(stack);
 
-        return new AdvLang("item.dinosaur_steak.name").withProperty("dino", "entity." + dinosaur.getName(0).replace(" ", "_").toLowerCase() + ".name").build();
+        return new AdvLang("item.dinosaur_steak.name").withProperty("dino", "entity." + dinosaur.getName().replace(" ", "_").toLowerCase() + ".name").build();
     }
 
     public Dinosaur getDinosaur(ItemStack stack)

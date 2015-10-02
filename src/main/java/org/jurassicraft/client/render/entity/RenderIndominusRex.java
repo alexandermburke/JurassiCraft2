@@ -31,20 +31,20 @@ public class RenderIndominusRex extends RenderLiving implements IDinosaurRendere
 
     public RenderIndominusRex(RenderDinosaurDefinition renderDef)
     {
-        super(Minecraft.getMinecraft().getRenderManager(), renderDef.getModel(0, EnumGrowthStage.INFANT), renderDef.getShadowSize());
+        super(Minecraft.getMinecraft().getRenderManager(), renderDef.getModel(EnumGrowthStage.INFANT), renderDef.getShadowSize());
 
         this.dinosaur = renderDef.getDinosaur();
         this.random = new Random();
         this.renderDef = renderDef;
 
-        this.maleTextures = new ResourceLocation[dinosaur.getMaleTextures(0, EnumGrowthStage.INFANT).length][EnumGrowthStage.values().length];
-        this.femaleTextures = new ResourceLocation[dinosaur.getFemaleTextures(0, EnumGrowthStage.INFANT).length][EnumGrowthStage.values().length];
+        this.maleTextures = new ResourceLocation[dinosaur.getMaleTextures(EnumGrowthStage.INFANT).length][EnumGrowthStage.values().length];
+        this.femaleTextures = new ResourceLocation[dinosaur.getFemaleTextures(EnumGrowthStage.INFANT).length][EnumGrowthStage.values().length];
 
         for (EnumGrowthStage stage : EnumGrowthStage.values())
         {
             int i = 0;
 
-            for (String texture : dinosaur.getMaleTextures(0, stage))
+            for (String texture : dinosaur.getMaleTextures(stage))
             {
                 this.maleTextures[i][stage.ordinal()] = new ResourceLocation(texture);
                 i++;
@@ -52,7 +52,7 @@ public class RenderIndominusRex extends RenderLiving implements IDinosaurRendere
 
             i = 0;
 
-            for (String texture : dinosaur.getFemaleTextures(0, stage))
+            for (String texture : dinosaur.getFemaleTextures(stage))
             {
                 this.femaleTextures[i][stage.ordinal()] = new ResourceLocation(texture);
                 i++;
@@ -97,7 +97,7 @@ public class RenderIndominusRex extends RenderLiving implements IDinosaurRendere
 //            GlStateManager.color(color[0], color[1], color[2], 0.7F);
         }
 
-        GlStateManager.translate(renderDef.getRenderXOffset(0) * scale, renderDef.getRenderYOffset(0) * scale, renderDef.getRenderZOffset(0) * scale);
+        GlStateManager.translate(renderDef.getRenderXOffset() * scale, renderDef.getRenderYOffset() * scale, renderDef.getRenderZOffset() * scale);
 
         String name = entity.getCustomNameTag();
 
