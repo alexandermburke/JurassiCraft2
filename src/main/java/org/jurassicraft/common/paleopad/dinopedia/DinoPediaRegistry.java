@@ -17,8 +17,14 @@ public class DinoPediaRegistry
     public static void addItemRecipe(ItemStack stack, IRecipe recipe)
     {
         recipes.put(recipe, stack);
+    }
 
-        registeredItems.add(stack);
+    public static void registerItem(ItemStack stack)
+    {
+        if(stack != null && stack.getItem() != null)
+        {
+            registeredItems.add(stack);
+        }
     }
 
     public static List<IRecipe> getRecipesForItem(ItemStack stack)

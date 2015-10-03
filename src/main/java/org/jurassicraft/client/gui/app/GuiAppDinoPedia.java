@@ -27,8 +27,6 @@ public class GuiAppDinoPedia extends GuiApp
 
     private boolean intro;
 
-    private int scroll;
-
     public GuiAppDinoPedia(App app)
     {
         super(app);
@@ -68,26 +66,27 @@ public class GuiAppDinoPedia extends GuiApp
 
         RenderHelper.enableGUIStandardItemLighting();
 
+        int renderX = 0;
+        int renderY = 0;
+
         for (int i = 0; i < items.size(); i++)
         {
             ItemStack stack = items.get(i);
 
-            if (stack != null && i >= scroll && i < 7 + scroll)
+            if (stack != null)
             {
                 GlStateManager.pushMatrix();
 
-                int renderY = (i - scroll) * 18 + 10;
-
                 if (app.getSelectedItem() == i)
                 {
-                    gui.drawBoxOutline(4, renderY + 8, 18, 18, 1, 1.0F, 0x606060);
+                    gui.drawBoxOutline(renderX + 4, renderY + 14, 18, 18, 1, 1.0F, 0x606060);
                 }
 
                 ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
                 GlStateManager.translate(dimensions.getScaledWidth() / 2 - 115, 75, 0);
 
                 render.zLevel = 200.0F;
-                render.renderItemAndEffectIntoGUI(stack, 5, renderY);
+                render.renderItemAndEffectIntoGUI(stack, renderX + 5, renderY + 6);
                 render.zLevel = 0.0F;
 
                 if (app.getSelectedItem() == i)
@@ -95,6 +94,13 @@ public class GuiAppDinoPedia extends GuiApp
                     GlStateManager.translate(70, 10, 0);
 
                     List<IRecipe> recipes = DinoPediaRegistry.getRecipesForItem(stack);
+
+                    gui.drawCenteredScaledText("Recipe:", -120, -12, 1.0F, 0xFFFFFF);
+                    gui.drawCenteredScaledText(stack.getDisplayName(), -120, -80, 1.0F, 0xFFFFFF);
+
+                    render.zLevel = 200.0F;
+                    render.renderItemAndEffectIntoGUI(stack, 75, -8);
+                    render.zLevel = 0.0F;
 
                     for (IRecipe recipe : recipes)
                     {
@@ -111,12 +117,12 @@ public class GuiAppDinoPedia extends GuiApp
                             {
                                 ItemStack item = recipeItems[r];
 
-                                gui.drawBoxOutline(rx * 19 - 206, ry * 19 - 66, 18, 18, 1, 1.0F, 0x606060);
+                                gui.drawBoxOutline(rx * 19 - 150, ry * 19, 18, 18, 1, 1.0F, r % 2 == 0 ? 0x606060 : 0x404040);
 
                                 if (item != null)
                                 {
                                     render.zLevel = 200.0F;
-                                    render.renderItemAndEffectIntoGUI(item, rx * 19, ry * 19);
+                                    render.renderItemAndEffectIntoGUI(item, (rx * 19) + 56, ry * 19 + 67);
                                     render.zLevel = 0.0F;
                                 }
 
@@ -132,6 +138,14 @@ public class GuiAppDinoPedia extends GuiApp
                             break;
                         }
                     }
+                }
+
+                renderY += 18;
+
+                if(renderY > 120)
+                {
+                    renderY = 0;
+                    renderX += 19;
                 }
 
                 GlStateManager.popMatrix();
@@ -157,22 +171,29 @@ public class GuiAppDinoPedia extends GuiApp
         else
         {
             AppDinoPedia app = (AppDinoPedia) getApp();
-
             List<ItemStack> items = DinoPediaRegistry.getItems();
+
+            int renderX = 0;
+            int renderY = 0;
 
             for (int i = 0; i < items.size(); i++)
             {
                 ItemStack stack = items.get(i);
 
-                if (stack != null && i >= scroll && i < 7 + scroll)
+                if (stack != null)
                 {
-                    int y = (i - scroll) * 18 + 10;
-
-                    if (mouseX > 0 && mouseX < 22 && mouseY > y && mouseY < y + 18)
+                    if(mouseX > renderX && mouseX < renderX + 18 && mouseY > renderY && mouseY < renderY + 18)
                     {
                         app.setSelectedItem(i);
-
                         break;
+                    }
+
+                    renderY += 18;
+
+                    if(renderY > 120)
+                    {
+                        renderY = 0;
+                        renderX += 19;
                     }
                 }
             }

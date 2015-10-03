@@ -1,8 +1,10 @@
 package org.jurassicraft.common.item;
 
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
+import org.jurassicraft.common.paleopad.dinopedia.DinoPediaRegistry;
 
 public class JCItemRegistry
 {
@@ -133,6 +135,8 @@ public class JCItemRegistry
 
     public void registerItem(Item item, String name)
     {
+        DinoPediaRegistry.registerItem(new ItemStack(item));
+
         GameRegistry.registerItem(item, name.toLowerCase().replaceAll(" ", "_"));
     }
 }

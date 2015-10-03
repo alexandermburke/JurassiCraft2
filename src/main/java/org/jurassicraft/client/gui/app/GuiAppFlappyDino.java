@@ -77,7 +77,7 @@ public class GuiAppFlappyDino extends GuiApp
         }
         else
         {
-            motionY = 10;
+            motionY = 8;
         }
     }
 
@@ -92,20 +92,28 @@ public class GuiAppFlappyDino extends GuiApp
 
     public void update()
     {
-        x++;
-
-        if (y > 140)
+        if(mc.thePlayer.ticksExisted % 2 == 0)
         {
-            y = 140;
-        }
+            x++;
 
-        y += motionY;
+            if (y > 140)
+            {
+                y = 140;
+            }
 
-        motionY--;
+            if(motionY < -5)
+            {
+                motionY = -5;
+            }
 
-        if (y < 20)
-        {
-            init();
+            y += motionY;
+
+            motionY--;
+
+            if (y < 20)
+            {
+                init();
+            }
         }
     }
 

@@ -3,6 +3,7 @@ package org.jurassicraft.common.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
@@ -14,6 +15,7 @@ import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.base.JCEntityRegistry;
 import org.jurassicraft.common.item.ItemBlockMeta;
 import org.jurassicraft.common.item.ItemJCSlab;
+import org.jurassicraft.common.paleopad.dinopedia.DinoPediaRegistry;
 import org.jurassicraft.common.tileentity.*;
 import org.jurassicraft.common.world.jurdstrees.algorythms.TreeCompendium;
 
@@ -207,6 +209,8 @@ public class JCBlockRegistry
     {
         block.setUnlocalizedName(name);
 
+        DinoPediaRegistry.registerItem(new ItemStack(block));
+
         if (block instanceof BlockMeta)
         {
             GameRegistry.registerBlock(block, ItemBlockMeta.class, name);
@@ -219,6 +223,7 @@ public class JCBlockRegistry
         {
             GameRegistry.registerBlock(block, name);
         }
+
         return block;
     }
 
@@ -277,6 +282,8 @@ public class JCBlockRegistry
     public void registerBlock(Block block, String name)
     {
         name = name.toLowerCase().replaceAll(" ", "_");
+
+        DinoPediaRegistry.registerItem(new ItemStack(block));
 
         if (block instanceof ISubBlocksBlock)
             GameRegistry.registerBlock(block, ((ISubBlocksBlock) block).getItemBlockClass(), name);
