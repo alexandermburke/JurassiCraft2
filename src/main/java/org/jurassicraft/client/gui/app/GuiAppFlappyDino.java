@@ -8,18 +8,26 @@ import org.jurassicraft.client.gui.GuiPaleoTab;
 import org.jurassicraft.common.paleopad.App;
 import org.jurassicraft.common.paleopad.AppFlappyDino;
 
+import java.util.*;
+
 public class GuiAppFlappyDino extends GuiApp
 {
     private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/apps/flappy_dino.png");
     private static final ResourceLocation logo = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/apps/background/flappy_dino.png");
     private static final ResourceLocation pteranodon = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/apps/background/flappy_dino_pteranodon.png");
-    private static final ResourceLocation character = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/apps/background/flappy_dino_char.png");
+    private static final ResourceLocation character = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/apps/background/pteranodon_char.png");
+    private static final ResourceLocation pillar_bottom = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/apps/background/pillar_bottom.png");
+    private static final ResourceLocation pillar_top = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/apps/background/pillar_top.png");
 
     private boolean mainScreen;
 
     private int x;
     private int y;
     private int motionY;
+
+    private boolean playing;
+
+    private Map<Integer, Integer> pillars = new HashMap<Integer, Integer>();
 
     public GuiAppFlappyDino(App app)
     {
@@ -51,7 +59,43 @@ public class GuiAppFlappyDino extends GuiApp
         else
         {
             mc.getTextureManager().bindTexture(character);
-            gui.drawScaledTexturedModalRect(5, 150 - y, 0, 0, 128, 64, 128, 64, 1.0F);
+            gui.drawScaledTexturedModalRect(5, 150 - y, 0, 0, 32, 32, 32, 32, 1.0F);
+
+            mc.getTextureManager().bindTexture(pillar_bottom);
+
+            for (Map.Entry<Integer, Integer> entry : pillars.entrySet())
+            {
+                int drawX = entry.getKey() - this.x;
+
+                if(drawX > 0 && drawX < 200)
+                {
+                    for (int height = 0; height < entry.getValue(); height++)
+                    {
+                        gui.drawScaledTexturedModalRect(drawX, 130 - (height * 20), 0, 12, 32, 20, 32, 32, 1.0F);
+                    }
+
+                    gui.drawScaledTexturedModalRect(drawX, 139 - (entry.getValue() * 20), 0, 0, 32, 12, 32, 32, 1.0F);
+                }
+            }
+
+            mc.getTextureManager().bindTexture(pillar_top);
+
+            for (Map.Entry<Integer, Integer> entry : pillars.entrySet())
+            {
+                int drawX = entry.getKey() - this.x;
+
+                if(drawX > 0 && drawX < 200)
+                {
+                    Integer totalHeight = 4 - entry.getValue();
+
+                    for (int height = 0; height < totalHeight; height++)
+                    {
+                        gui.drawScaledTexturedModalRect(drawX, 0 + (height * 20), 0, 0, 32, 20, 32, 32, 1.0F);
+                    }
+
+                    gui.drawScaledTexturedModalRect(drawX, 0 + (totalHeight * 20), 0, 20, 32, 12, 32, 32, 1.0F);
+                }
+            }
         }
     }
 
@@ -77,7 +121,7 @@ public class GuiAppFlappyDino extends GuiApp
         }
         else
         {
-            motionY = 8;
+            motionY = 6;
         }
     }
 
@@ -87,12 +131,22 @@ public class GuiAppFlappyDino extends GuiApp
         x = 0;
         y = 150;
         motionY = 0;
+
+        pillars.clear();
+
+        Random rand = new Random();
+
+        for (int i = 0; i < 100; i++)
+        {
+            pillars.put((i * 70) + 70, rand.nextInt(5));
+        }
+
         mainScreen = true;
     }
 
     public void update()
     {
-        if(mc.thePlayer.ticksExisted % 2 == 0)
+        if(!mainScreen && mc.thePlayer.ticksExisted % 2 == 0)
         {
             x++;
 
@@ -110,7 +164,37 @@ public class GuiAppFlappyDino extends GuiApp
 
             motionY--;
 
+            boolean died = false;
+
+            for (Map.Entry<Integer, Integer> entry : pillars.entrySet())
+            {
+                int renderX = x - entry.getKey();
+                int pillarX = entry.getKey();
+
+                int bottomHeight = (entry.getValue() * 20) + 10;
+                int topHeight = 139 - (((4 - entry.getValue()) * 20) - 12);
+
+                System.out.println("Bottom: " + bottomHeight + " TOP: " + topHeight + ", " + y);
+//BOTTOM NOT WORKING
+                if(renderX > 0 && renderX < 200)
+                {
+                    boolean collideX = x < (pillarX + 29) && x + 30 > pillarX;
+                    boolean collideY = y - 24 < bottomHeight || y > topHeight;
+
+                    if(collideX && collideY)
+                    {
+                        died = true;
+                        break;
+                    }
+                }
+            }
+
             if (y < 20)
+            {
+                died = true;
+            }
+
+            if(died)
             {
                 init();
             }
