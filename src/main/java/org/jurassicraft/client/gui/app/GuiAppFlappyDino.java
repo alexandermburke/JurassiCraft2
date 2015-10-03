@@ -18,6 +18,7 @@ public class GuiAppFlappyDino extends GuiApp
     private static final ResourceLocation character = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/apps/background/pteranodon_char.png");
     private static final ResourceLocation pillar_bottom = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/apps/background/pillar_bottom.png");
     private static final ResourceLocation pillar_top = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/apps/background/pillar_top.png");
+    private static final ResourceLocation background = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/apps/background/flappy_dino_background");
 
     private boolean mainScreen;
 
@@ -41,7 +42,8 @@ public class GuiAppFlappyDino extends GuiApp
 
         AppFlappyDino app = (AppFlappyDino) getApp();
 
-        gui.drawScaledRect(0, 0, 229, 150, 1.0F, 0x56FFF0);
+        mc.getTextureManager().bindTexture(background);
+        gui.drawScaledTexturedModalRect(0, 0, 0, 0, 229, 150, 229, 150, 1.0F);
 
         if (mainScreen)
         {
@@ -52,6 +54,7 @@ public class GuiAppFlappyDino extends GuiApp
             gui.drawScaledTexturedModalRect(145, 15, 0, 0, 128, 64, 128, 64, 1.0F);
 
             gui.drawBoxOutline(90, 100, 50, 20, 1, 1.0F, 0x545454);
+
             gui.drawScaledRect(91, 101, 49, 19, 1.0F, 0x747474);
 
             gui.drawScaledText("Play", 105, 107, 1.0F, 0xFFFFFF);
@@ -174,8 +177,6 @@ public class GuiAppFlappyDino extends GuiApp
                 int bottomHeight = (entry.getValue() * 20) + 10;
                 int topHeight = 139 - (((4 - entry.getValue()) * 20) - 12);
 
-                System.out.println("Bottom: " + bottomHeight + " TOP: " + topHeight + ", " + y);
-//BOTTOM NOT WORKING
                 if(renderX > 0 && renderX < 200)
                 {
                     boolean collideX = x < (pillarX + 29) && x + 30 > pillarX;
