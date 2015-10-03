@@ -11,7 +11,7 @@ import org.jurassicraft.common.entity.item.EntityCageSmall;
 import org.jurassicraft.common.entity.item.EntityJurassiCraftSign;
 import org.jurassicraft.common.period.EnumTimePeriod;
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
-import org.jurassicraft.common.vehicles.helicopter.HelicopterSeat;
+import org.jurassicraft.common.vehicles.helicopter.modules.EntityHelicopterSeat;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -134,7 +134,7 @@ public class JCEntityRegistry
         registerEntity(EntityCageSmall.class, "Small Dinosaur Cage");
 
         registerEntity(EntityHelicopterBase.class, "Helicopter base");
-        registerEntity(HelicopterSeat.class, "Helicopter seat Do not spawn please, like really don't");
+        registerEntity(EntityHelicopterSeat.class, "Helicopter seat Do not spawn please, like really don't");
 
         for (Dinosaur dinosaur : dinosaurs)
             registerDinosaur(dinosaur);

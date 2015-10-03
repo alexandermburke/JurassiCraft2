@@ -1,6 +1,8 @@
 package org.jurassicraft.common.vehicles.helicopter.modules;
 
 import com.google.common.collect.Maps;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.Vec3;
 
 import java.util.Collection;
 import java.util.Map;
@@ -11,11 +13,12 @@ public abstract class HelicopterModule
     public static final Map<String, HelicopterModule> registry = Maps.newHashMap();
     public static final HelicopterModule door = new HelicopterDoor();
     public static final HelicopterModule minigun = new HelicopterMinigun();
+    public static final HelicopterModule seat = new HelicopterSeat();
 
     private final String moduleID;
     private final Collection<Class<? extends HelicopterModule>> supported;
 
-    public HelicopterModule(String id)
+    protected HelicopterModule(String id)
     {
         this.moduleID = id;
         registry.put(id, this);
@@ -44,5 +47,17 @@ public abstract class HelicopterModule
     public String getModuleID()
     {
         return moduleID;
+    }
+
+    public abstract boolean onClicked(HelicopterModuleSpot m, EntityPlayer player, Vec3 vec);
+
+    public void onAdded(HelicopterModuleSpot m, EntityPlayer player, Vec3 vec)
+    {
+
+    }
+
+    public void onRemoved(HelicopterModuleSpot m, EntityPlayer player, Vec3 vec)
+    {
+
     }
 }

@@ -8,7 +8,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
-import org.jurassicraft.common.vehicles.helicopter.HelicopterSeat;
+import org.jurassicraft.common.vehicles.helicopter.modules.EnumModulePosition;
+import org.jurassicraft.common.vehicles.helicopter.modules.HelicopterModule;
 
 import java.util.List;
 
@@ -36,13 +37,7 @@ public class ItemHelicopter extends Item
         EntityHelicopterBase helicopter = new EntityHelicopterBase(worldIn);
         helicopter.setPosition(pos.getX() + hitX, pos.getY() + hitY, pos.getZ() + hitZ);
         worldIn.spawnEntityInWorld(helicopter);
-
-        HelicopterSeat pilotSeat = new HelicopterSeat(1.3f, EntityHelicopterBase.PILOT_SEAT, helicopter);
-        helicopter.seats[EntityHelicopterBase.PILOT_SEAT] = pilotSeat;
-
-        pilotSeat.setPosition(helicopter.posX, helicopter.posY, helicopter.posZ);
-        worldIn.spawnEntityInWorld(pilotSeat);
-
+        helicopter.getModuleSpot(EnumModulePosition.MAIN_SEAT).addModule(HelicopterModule.seat);
         return true;
     }
 }

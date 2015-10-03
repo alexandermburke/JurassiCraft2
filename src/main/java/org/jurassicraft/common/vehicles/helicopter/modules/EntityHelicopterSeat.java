@@ -1,4 +1,4 @@
-package org.jurassicraft.common.vehicles.helicopter;
+package org.jurassicraft.common.vehicles.helicopter.modules;
 
 import com.google.common.base.Predicate;
 import io.netty.buffer.ByteBuf;
@@ -9,6 +9,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
+import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 
 import java.util.List;
 import java.util.UUID;
@@ -18,14 +19,14 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Entity representing a seat inside the helicopter. Should NOT be spawned inside the world, the {@link EntityHelicopterBase Helicopter Entity} handles that for you.
  */
-public class HelicopterSeat extends Entity implements IEntityAdditionalSpawnData
+public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpawnData
 {
     private UUID parentID;
     private float dist;
     private int index;
-    EntityHelicopterBase parent;
+    public EntityHelicopterBase parent;
 
-    public HelicopterSeat(World worldIn)
+    public EntityHelicopterSeat(World worldIn)
     {
         super(worldIn);
         setEntityBoundingBox(AxisAlignedBB.fromBounds(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY));
@@ -33,7 +34,7 @@ public class HelicopterSeat extends Entity implements IEntityAdditionalSpawnData
         parentID = UUID.randomUUID();
     }
 
-    public HelicopterSeat(float dist, int index, EntityHelicopterBase parent)
+    public EntityHelicopterSeat(float dist, int index, EntityHelicopterBase parent)
     {
         super(parent.getEntityWorld());
         setEntityBoundingBox(AxisAlignedBB.fromBounds(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY));
@@ -42,6 +43,7 @@ public class HelicopterSeat extends Entity implements IEntityAdditionalSpawnData
         this.parent = checkNotNull(parent, "parent");
         parentID = parent.getHeliID();
         noClip = true;
+        resetPos();
     }
 
     @Override
@@ -68,13 +70,7 @@ public class HelicopterSeat extends Entity implements IEntityAdditionalSpawnData
 
             float angle = parent.rotationYaw;
 
-            float nx = -MathHelper.sin(parent.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(parent.rotationPitch / 180.0F * (float) Math.PI) * dist;
-            float nz = MathHelper.cos(parent.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(parent.rotationPitch / 180.0F * (float) Math.PI) * dist;
-            float ny = -MathHelper.sin((parent.rotationPitch)) / 180.0F * (float) Math.PI * dist;
-
-            this.posX = parent.posX + nx;
-            this.posY = parent.posY + ny + 0.4f;
-            this.posZ = parent.posZ + nz;
+            resetPos();
             if (parent.isDead)
             {
                 kill();
@@ -84,6 +80,17 @@ public class HelicopterSeat extends Entity implements IEntityAdditionalSpawnData
         {
             System.out.println("no parent :c " + parentID);
         }
+    }
+
+    private void resetPos()
+    {
+        float nx = -MathHelper.sin(parent.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(parent.rotationPitch / 180.0F * (float) Math.PI) * dist;
+        float nz = MathHelper.cos(parent.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(parent.rotationPitch / 180.0F * (float) Math.PI) * dist;
+        float ny = -MathHelper.sin((parent.rotationPitch)) / 180.0F * (float) Math.PI * dist;
+
+        this.posX = parent.posX + nx;
+        this.posY = parent.posY + ny + 0.4f;
+        this.posZ = parent.posZ + nz;
     }
 
     @Override
