@@ -37,7 +37,8 @@ public class ItemHelicopter extends Item
         EntityHelicopterBase helicopter = new EntityHelicopterBase(worldIn);
         helicopter.setPosition(pos.getX() + hitX, pos.getY() + hitY, pos.getZ() + hitZ);
         worldIn.spawnEntityInWorld(helicopter);
-        helicopter.getModuleSpot(EnumModulePosition.MAIN_SEAT).addModule(HelicopterModule.seat);
+
+// TODO: Make this not crash        helicopter.addDefaultModules();
         return true;
     }
 }

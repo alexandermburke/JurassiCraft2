@@ -18,14 +18,14 @@ public enum EnumModulePosition
     {
         public Boolean apply(Vec3 vec)
         {
-            return false;
+            return vec.zCoord < 0.6 && vec.xCoord > 0;
         }
     }),
     BACK_RIGHT(new Function<Vec3, Boolean>()
     {
         public Boolean apply(Vec3 vec)
         {
-            return false;
+            return vec.zCoord < 0.6 && vec.xCoord < 0;
         }
     });
 

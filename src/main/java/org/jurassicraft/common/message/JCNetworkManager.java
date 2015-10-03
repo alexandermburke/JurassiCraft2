@@ -21,6 +21,7 @@ public class JCNetworkManager
         registerPacket(MessageChangeTemperature.Handler.class, MessageChangeTemperature.class);
         registerPacket(MessageHelicopterEngine.Handler.class, MessageHelicopterEngine.class);
         registerPacket(MessageHelicopterDirection.Handler.class, MessageHelicopterDirection.class);
+        registerPacket(MessageHelicopterModules.Handler.class, MessageHelicopterModules.class);
     }
 
     private static <REQ extends IMessage, REPLY extends IMessage> void registerPacket(Class<? extends IMessageHandler<REQ, REPLY>> messageHandler, Class<REQ> requestMessageType)

@@ -21,6 +21,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpawnData
 {
+    private boolean sitedRider;
     private UUID parentID;
     private float dist;
     private int index;
@@ -32,9 +33,10 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
         setEntityBoundingBox(AxisAlignedBB.fromBounds(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY));
         noClip = true;
         parentID = UUID.randomUUID();
+        sitedRider = true;
     }
 
-    public EntityHelicopterSeat(float dist, int index, EntityHelicopterBase parent)
+    public EntityHelicopterSeat(float dist, int index, EntityHelicopterBase parent, boolean sitedRider)
     {
         super(parent.getEntityWorld());
         setEntityBoundingBox(AxisAlignedBB.fromBounds(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY));
@@ -44,6 +46,7 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
         parentID = parent.getHeliID();
         noClip = true;
         resetPos();
+        this.sitedRider = sitedRider;
     }
 
     @Override
@@ -66,8 +69,6 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
         }
         if (parent != null)
         {
-            parent.seats[index] = this;
-
             float angle = parent.rotationYaw;
 
             resetPos();
@@ -98,7 +99,7 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
     {
         dist = tagCompound.getFloat("dist");
         index = tagCompound.getInteger("index");
-
+        sitedRider = tagCompound.getBoolean("sitedRider");
         parentID = UUID.fromString(tagCompound.getString("heliID"));
     }
 
@@ -127,7 +128,7 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
     {
         tagCompound.setFloat("dist", dist);
         tagCompound.setInteger("index", index);
-
+        tagCompound.setBoolean("sitedRider", sitedRider);
         tagCompound.setString("heliID", parentID.toString());
     }
 
@@ -164,6 +165,7 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
     {
         ByteBufUtils.writeUTF8String(buffer, parentID.toString());
         buffer.writeFloat(dist);
+        buffer.writeBoolean(sitedRider);
     }
 
     @Override
@@ -171,5 +173,12 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
     {
         parentID = UUID.fromString(ByteBufUtils.readUTF8String(additionalData));
         dist = additionalData.readFloat();
+        sitedRider = additionalData.readBoolean();
+    }
+
+    @Override
+    public boolean shouldRiderSit()
+    {
+        return sitedRider;
     }
 }

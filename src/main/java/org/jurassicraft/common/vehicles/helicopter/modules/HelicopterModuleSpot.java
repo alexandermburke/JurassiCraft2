@@ -7,6 +7,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.*;
 import net.minecraft.util.Vec3;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
+import org.jurassicraft.common.message.JCNetworkManager;
+import org.jurassicraft.common.message.MessageHelicopterModules;
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 
 import java.util.List;
@@ -50,6 +52,10 @@ public class HelicopterModuleSpot
             modules.add(m);
             moduleData.put(m, new NBTTagCompound());
             m.onAdded(this, player, v);
+            if(!getHelicopter().worldObj.isRemote)
+            {
+                JCNetworkManager.networkWrapper.sendToAll(new MessageHelicopterModules(helicopter.getEntityId(), position, this));
+            }
             return true;
         }
         return false;
@@ -141,5 +147,10 @@ public class HelicopterModuleSpot
     NBTTagCompound getModuleData(HelicopterModule m)
     {
         return moduleData.get(m);
+    }
+
+    public boolean has(HelicopterModule module)
+    {
+        return modules.contains(module);
     }
 }

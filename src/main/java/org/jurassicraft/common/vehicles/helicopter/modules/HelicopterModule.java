@@ -13,7 +13,7 @@ public abstract class HelicopterModule
     public static final Map<String, HelicopterModule> registry = Maps.newHashMap();
     public static final HelicopterModule door = new HelicopterDoor();
     public static final HelicopterModule minigun = new HelicopterMinigun();
-    public static final HelicopterModule seat = new HelicopterSeat();
+    public static final HelicopterSeat seat = new HelicopterSeat();
 
     private final String moduleID;
     private final Collection<Class<? extends HelicopterModule>> supported;

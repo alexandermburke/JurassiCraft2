@@ -6,7 +6,7 @@ import net.minecraft.util.Vec3;
 
 import java.util.Collection;
 
-public class HelicopterMinigun extends HelicopterModule
+public class HelicopterMinigun extends HelicopterRidableModule
 {
     protected HelicopterMinigun()
     {
@@ -27,6 +27,18 @@ public class HelicopterMinigun extends HelicopterModule
 
     @Override
     public boolean onClicked(HelicopterModuleSpot m, EntityPlayer player, Vec3 vec)
+    {
+        return super.onClicked(m, player, vec);
+    }
+
+    @Override
+    protected float getDistanceFromCenter()
+    {
+        return 0;
+    }
+
+    @Override
+    protected boolean shouldRiderSit()
     {
         return false;
     }
