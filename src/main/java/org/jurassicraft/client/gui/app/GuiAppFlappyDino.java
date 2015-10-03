@@ -18,7 +18,7 @@ public class GuiAppFlappyDino extends GuiApp
     private static final ResourceLocation character = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/apps/background/pteranodon_char.png");
     private static final ResourceLocation pillar_bottom = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/apps/background/pillar_bottom.png");
     private static final ResourceLocation pillar_top = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/apps/background/pillar_top.png");
-    private static final ResourceLocation background = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/apps/background/flappy_dino_background");
+    private static final ResourceLocation background = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/apps/background/flappy_dino_background.png");
 
     private boolean mainScreen;
 
