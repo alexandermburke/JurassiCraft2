@@ -6,8 +6,6 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -51,9 +49,9 @@ public abstract class HelicopterRidableModule extends HelicopterModule
     public void onAdded(HelicopterModuleSpot m, EntityPlayer player, Vec3 vec)
     {
         EntityHelicopterBase helicopter = m.getHelicopter();
-        if(!m.getHelicopter().worldObj.isRemote)
+        if (!m.getHelicopter().worldObj.isRemote)
         {
-            if(!m.getModuleData(this).hasKey("entityID"))
+            if (!m.getModuleData(this).hasKey("entityID"))
             {
                 EntityHelicopterSeat pilotSeat = new EntityHelicopterSeat(getDistanceFromCenter(), m.getPosition().ordinal(), m.getHelicopter(), shouldRiderSit());
                 pilotSeat.setPosition(helicopter.posX, helicopter.posY, helicopter.posZ);

@@ -8,8 +8,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
-import org.jurassicraft.common.vehicles.helicopter.modules.EnumModulePosition;
-import org.jurassicraft.common.vehicles.helicopter.modules.HelicopterModule;
 
 import java.util.List;
 

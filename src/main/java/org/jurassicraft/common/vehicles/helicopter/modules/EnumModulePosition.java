@@ -38,10 +38,9 @@ public enum EnumModulePosition
 
     /**
      * Checks if the module is been clicked.
-     * @param v
-     *         The helicopter-relative raytrace produced by the player trying to interact
-     * @return
-     *        True if the raytrace ends up in this module, false otherwise
+     *
+     * @param v The helicopter-relative raytrace produced by the player trying to interact
+     * @return True if the raytrace ends up in this module, false otherwise
      */
     public boolean isClicked(Vec3 v)
     {

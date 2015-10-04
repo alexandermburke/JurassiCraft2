@@ -142,7 +142,7 @@ public class GuiAppDinoPedia extends GuiApp
 
                 renderY += 18;
 
-                if(renderY > 120)
+                if (renderY > 120)
                 {
                     renderY = 0;
                     renderX += 19;
@@ -182,7 +182,7 @@ public class GuiAppDinoPedia extends GuiApp
 
                 if (stack != null)
                 {
-                    if(mouseX > renderX && mouseX < renderX + 18 && mouseY > renderY && mouseY < renderY + 18)
+                    if (mouseX > renderX && mouseX < renderX + 18 && mouseY > renderY && mouseY < renderY + 18)
                     {
                         app.setSelectedItem(i);
                         break;
@@ -190,7 +190,7 @@ public class GuiAppDinoPedia extends GuiApp
 
                     renderY += 18;
 
-                    if(renderY > 120)
+                    if (renderY > 120)
                     {
                         renderY = 0;
                         renderX += 19;

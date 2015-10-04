@@ -127,13 +127,13 @@ public class JCBlockRegistry
             BlockFossil fossil = new BlockFossil(i * 16);
             BlockEncasedFossil encasedFossil = new BlockEncasedFossil(i * 16);
 
-            OreDictionary.registerOre("fossil", fossil);
-
             fossils.add(fossil);
             encased_fossils.add(encasedFossil);
 
             registerBlock(fossil, "Fossil Block " + i);
             registerBlock(encasedFossil, "Encased Fossil " + i);
+
+            OreDictionary.registerOre("fossil", fossil);
         }
 
         // initialize EnumType meta lookup
@@ -256,7 +256,7 @@ public class JCBlockRegistry
 
     public int getDinosaurId(BlockFossil fossil, int metadata)
     {
-        return (fossils.indexOf(fossil) * 15) + metadata;
+        return (fossils.indexOf(fossil) * 16) + metadata;
     }
 
     public int getDinosaurId(BlockEncasedFossil fossil, int metadata)
@@ -266,7 +266,7 @@ public class JCBlockRegistry
 
     public int getMetadata(int id)
     {
-        return id % 15;
+        return id % 16;
     }
 
     public int getMetadata(Dinosaur dinosaur)

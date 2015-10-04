@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.*;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.Vec3;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import org.jurassicraft.common.message.JCNetworkManager;
@@ -42,17 +42,17 @@ public class HelicopterModuleSpot
 
     public boolean addModule(HelicopterModule m)
     {
-        return addModule(m, null, new Vec3(0,0,0));
+        return addModule(m, null, new Vec3(0, 0, 0));
     }
 
     public boolean addModule(HelicopterModule m, EntityPlayer player, Vec3 v)
     {
-        if(!modules.contains(m))
+        if (!modules.contains(m))
         {
             modules.add(m);
             moduleData.put(m, new NBTTagCompound());
             m.onAdded(this, player, v);
-            if(!getHelicopter().worldObj.isRemote)
+            if (!getHelicopter().worldObj.isRemote)
             {
                 JCNetworkManager.networkWrapper.sendToAll(new MessageHelicopterModules(helicopter.getEntityId(), position, this));
             }
@@ -74,7 +74,7 @@ public class HelicopterModuleSpot
         modules.clear();
         for (HelicopterModule m : HelicopterModule.registry.values())
         {
-            if(tagList.hasKey(m.getModuleID()))
+            if (tagList.hasKey(m.getModuleID()))
             {
                 NBTTagCompound data = tagList.getCompoundTag(m.getModuleID());
                 addModule(m);
@@ -116,7 +116,7 @@ public class HelicopterModuleSpot
         {
             ByteBufUtils.writeUTF8String(data, m.getModuleID());
             ByteBufUtils.writeTag(data, moduleData.get(m));
-            System.out.println("Wrote for "+m.getModuleID()+": "+moduleData.get(m));
+            System.out.println("Wrote for " + m.getModuleID() + ": " + moduleData.get(m));
         }
     }
 
@@ -132,9 +132,9 @@ public class HelicopterModuleSpot
 
     public void onClicked(EntityPlayer player, Vec3 vec)
     {
-        for(HelicopterModule m : modules)
+        for (HelicopterModule m : modules)
         {
-            if(m.onClicked(this, player, vec))
+            if (m.onClicked(this, player, vec))
                 return;
         }
     }

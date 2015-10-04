@@ -85,7 +85,7 @@ public class RenderHelicopter extends Render
 
     private void renderModules(EntityHelicopterBase helicopter, double x, double y, double z, float yaw, float partialTicks)
     {
-        if(true)
+        if (true)
             return;
         for (HelicopterModuleSpot spot : helicopter.getModuleSpots())
         {

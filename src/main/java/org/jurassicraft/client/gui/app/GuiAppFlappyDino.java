@@ -8,7 +8,9 @@ import org.jurassicraft.client.gui.GuiPaleoTab;
 import org.jurassicraft.common.paleopad.App;
 import org.jurassicraft.common.paleopad.AppFlappyDino;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 public class GuiAppFlappyDino extends GuiApp
 {
@@ -68,7 +70,7 @@ public class GuiAppFlappyDino extends GuiApp
             {
                 int drawX = entry.getKey() - this.x;
 
-                if(drawX > 0 && drawX < 200)
+                if (drawX > 0 && drawX < 200)
                 {
                     for (int height = 0; height < entry.getValue(); height++)
                     {
@@ -85,7 +87,7 @@ public class GuiAppFlappyDino extends GuiApp
             {
                 int drawX = entry.getKey() - this.x;
 
-                if(drawX > 0 && drawX < 200)
+                if (drawX > 0 && drawX < 200)
                 {
                     Integer totalHeight = 4 - entry.getValue();
 
@@ -147,7 +149,7 @@ public class GuiAppFlappyDino extends GuiApp
 
     public void update()
     {
-        if(!mainScreen && mc.thePlayer.ticksExisted % 2 == 0)
+        if (!mainScreen && mc.thePlayer.ticksExisted % 2 == 0)
         {
             x++;
 
@@ -156,7 +158,7 @@ public class GuiAppFlappyDino extends GuiApp
                 y = 140;
             }
 
-            if(motionY < -5)
+            if (motionY < -5)
             {
                 motionY = -5;
             }
@@ -193,7 +195,7 @@ public class GuiAppFlappyDino extends GuiApp
                 died = true;
             }
 
-            if(died)
+            if (died)
             {
                 init();
             }

@@ -7,11 +7,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
@@ -20,10 +18,10 @@ import net.timeless.unilib.utils.MutableVec3;
 import org.jurassicraft.common.message.JCNetworkManager;
 import org.jurassicraft.common.message.MessageHelicopterDirection;
 import org.jurassicraft.common.message.MessageHelicopterEngine;
+import org.jurassicraft.common.vehicles.helicopter.modules.EntityHelicopterSeat;
 import org.jurassicraft.common.vehicles.helicopter.modules.EnumModulePosition;
 import org.jurassicraft.common.vehicles.helicopter.modules.HelicopterModule;
 import org.jurassicraft.common.vehicles.helicopter.modules.HelicopterModuleSpot;
-import org.jurassicraft.common.vehicles.helicopter.modules.EntityHelicopterSeat;
 
 import java.util.UUID;
 
@@ -170,10 +168,10 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
         {
             if (spot == null)
                 continue;
-            if(spot.has(HelicopterModule.seat))
+            if (spot.has(HelicopterModule.seat))
             {
                 EntityHelicopterSeat seat = HelicopterModule.seat.getEntity(spot);
-                if(seat != null)
+                if (seat != null)
                 {
                     seat.setParentID(heliID);
                     seat.parent = this;
@@ -403,7 +401,7 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
         ByteBufUtils.writeUTF8String(buffer, heliID.toString());
         buffer.writeBoolean(hasMinigun);
 
-        for(HelicopterModuleSpot spot : moduleSpots)
+        for (HelicopterModuleSpot spot : moduleSpots)
         {
             spot.writeSpawnData(buffer);
         }
@@ -415,7 +413,7 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
         heliID = UUID.fromString(ByteBufUtils.readUTF8String(additionalData));
         hasMinigun = additionalData.readBoolean();
 
-        for(HelicopterModuleSpot spot : moduleSpots)
+        for (HelicopterModuleSpot spot : moduleSpots)
         {
             spot.readSpawnData(additionalData);
         }

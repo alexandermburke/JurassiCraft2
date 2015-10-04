@@ -26,8 +26,6 @@ import org.jurassicraft.common.container.ContainerCleaningStation;
 import org.jurassicraft.common.item.ItemEncasedFossil;
 import org.jurassicraft.common.item.JCItemRegistry;
 
-import java.util.Random;
-
 public class TileCleaningStation extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
     private static final int[] slotsTop = new int[]{0};

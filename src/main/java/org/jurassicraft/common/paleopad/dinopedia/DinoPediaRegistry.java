@@ -21,7 +21,7 @@ public class DinoPediaRegistry
 
     public static void registerItem(ItemStack stack)
     {
-        if(stack != null && stack.getItem() != null)
+        if (stack != null && stack.getItem() != null)
         {
             registeredItems.add(stack);
         }
