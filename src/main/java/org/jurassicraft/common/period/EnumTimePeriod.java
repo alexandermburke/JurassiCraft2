@@ -126,4 +126,14 @@ public enum EnumTimePeriod implements IStringSerializable
             META_LOOKUP[timePeriod.getMetadata()] = timePeriod;
         }
     }
+
+    public static int getStartYLevel(EnumTimePeriod period)
+    {
+        return (int) (period.getStartTime() != 0 ? period.getStartTime() * 63.0F / 541.0F : 0) + 1;
+    }
+
+    public static int getEndYLevel(EnumTimePeriod period)
+    {
+        return (int) (period.getEndTime() != 0 ? period.getEndTime() * 63.0F / 541.0F : 0) + 1;
+    }
 }

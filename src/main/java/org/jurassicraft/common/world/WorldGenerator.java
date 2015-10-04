@@ -32,15 +32,32 @@ public class WorldGenerator implements IWorldGenerator
             int randPosY = random.nextInt(64);
             int randPosZ = chunkZ + random.nextInt(16);
 
-            EnumTimePeriod period = EnumTimePeriod.CRETACEOUS;
+            EnumTimePeriod period = null;
 
-            List<Dinosaur> dinos = JCEntityRegistry.getDinosaursFromPeriod(period);
+            for (EnumTimePeriod p : EnumTimePeriod.values())
+            {
+                if (randPosY < EnumTimePeriod.getStartYLevel(p) && randPosY > EnumTimePeriod.getEndYLevel(p))
+                {
+                    period = p;
 
-            //FIXME offset by one? sometimes you can get a Jurassic Fossil when at the moment it is hard-coded to Cretaceous (Also allows hybrids to be found)
-            Dinosaur dinosaur = dinos.get(random.nextInt(dinos.size()));
-            int meta = JurassiCraft.blockRegistry.getMetadata(dinosaur);
+                    break;
+                }
+            }
 
-            new WorldGenMinable(JurassiCraft.blockRegistry.getFossilBlock(dinosaur).getStateFromMeta(meta), 5).generate(world, random, new BlockPos(randPosX, randPosY, randPosZ));
+            if (period != null)
+            {
+                randPosY += random.nextInt(4) - 2;
+
+                List<Dinosaur> dinos = JCEntityRegistry.getDinosaursFromPeriod(period);
+
+                if(dinos != null && dinos.size() > 0)
+                {
+                    Dinosaur dinosaur = dinos.get(random.nextInt(dinos.size()));
+                    int meta = JurassiCraft.blockRegistry.getMetadata(dinosaur);
+
+                    new WorldGenMinable(JurassiCraft.blockRegistry.getFossilBlock(dinosaur).getStateFromMeta(meta), 5).generate(world, random, new BlockPos(randPosX, randPosY, randPosZ));
+                }
+            }
         }
 
         for (int i = 0; i < 16; i++)
