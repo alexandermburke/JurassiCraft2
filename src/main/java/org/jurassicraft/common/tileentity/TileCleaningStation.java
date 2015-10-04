@@ -26,6 +26,8 @@ import org.jurassicraft.common.container.ContainerCleaningStation;
 import org.jurassicraft.common.item.ItemEncasedFossil;
 import org.jurassicraft.common.item.JCItemRegistry;
 
+import java.util.Random;
+
 public class TileCleaningStation extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
     private static final int[] slotsTop = new int[]{0};
@@ -360,7 +362,7 @@ public class TileCleaningStation extends TileEntityLockable implements IUpdatePl
     {
         if (this.canClean())
         {
-            ItemStack fossil = new ItemStack(JCItemRegistry.skull, 1, JurassiCraft.blockRegistry.getDinosaurId((BlockEncasedFossil) Block.getBlockFromItem(slots[0].getItem()), slots[0].getItemDamage()));
+            ItemStack fossil = new ItemStack(worldObj.rand.nextBoolean() ? JCItemRegistry.skull : JCItemRegistry.tooth, 1, JurassiCraft.blockRegistry.getDinosaurId((BlockEncasedFossil) Block.getBlockFromItem(slots[0].getItem()), slots[0].getItemDamage()));
 
             int emptySlot = -1;
 

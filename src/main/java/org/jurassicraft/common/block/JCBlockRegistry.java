@@ -127,6 +127,8 @@ public class JCBlockRegistry
             BlockFossil fossil = new BlockFossil(i * 16);
             BlockEncasedFossil encasedFossil = new BlockEncasedFossil(i * 16);
 
+            OreDictionary.registerOre("fossil", fossil);
+
             fossils.add(fossil);
             encased_fossils.add(encasedFossil);
 

@@ -60,6 +60,7 @@ item.rock_pick.name=Rock Pick
 item.plaster_and_bandage.name=Plaster and Bandage
 
 item.skull.name={dino} Skull
+item.tooth.name={dino} Tooth
 item.dino_egg.name={dino} Egg
 item.dino_spawn_egg.name=Spawn {dino}
 item.dinosaur_meat.name={dino} Meat

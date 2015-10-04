@@ -11,6 +11,7 @@ public class JCItemRegistry
     public static ItemPlasterAndBandage plaster_and_bandage;
     public static ItemDinosaurSpawnEgg spawn_egg;
     public static ItemSkull skull;
+    public static ItemTooth tooth;
 
     public static ItemDNA dna;
     public static ItemDinosaurEgg egg;
@@ -61,6 +62,7 @@ public class JCItemRegistry
         plaster_and_bandage = new ItemPlasterAndBandage();
         spawn_egg = new ItemDinosaurSpawnEgg();
         skull = new ItemSkull();
+        tooth = new ItemTooth();
         dna = new ItemDNA();
         egg = new ItemDinosaurEgg();
         paleo_pad = new ItemPaleoPad();
@@ -106,6 +108,7 @@ public class JCItemRegistry
 //        registerItem(jc_sign, "JurassiCraft Sign");
         registerItem(spawn_egg, "Dino Spawn Egg");
         registerItem(skull, "Skull");
+        registerItem(tooth, "Tooth");
         registerItem(dna, "DNA");
         registerItem(egg, "Dino Egg");
         registerItem(paleo_pad, "Paleo Pad");
