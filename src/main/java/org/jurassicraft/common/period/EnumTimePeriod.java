@@ -129,11 +129,11 @@ public enum EnumTimePeriod implements IStringSerializable
 
     public static int getStartYLevel(EnumTimePeriod period)
     {
-        return (int) (period.getStartTime() != 0 ? period.getStartTime() * 63.0F / 541.0F : 0) + 1;
+        return 64 - (int) (period.getStartTime() != 0 ? period.getStartTime() * 64.0F / 541.0F : 0);
     }
 
     public static int getEndYLevel(EnumTimePeriod period)
     {
-        return (int) (period.getEndTime() != 0 ? period.getEndTime() * 63.0F / 541.0F : 0) + 1;
+        return 64 - (int) (period.getEndTime() != 0 ? period.getEndTime() * 64.0F / 541.0F : 0);
     }
 }
