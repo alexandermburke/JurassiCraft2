@@ -1,485 +1,90 @@
 {
-    "version": 0,
-    "poses": {
-        "IDLE": [
-            {
-                "pose": "therizinosaurus_adolescent_idle",
-                "time": 20
-            }
-        ],
-        "LOOKING_LEFT": [
-            {
-                "pose": "therizinosaurus_adolescent_head_cock_left",
-                "time": 100
-            },
-            {
-                "pose": "therizinosaurus_adolescent_head_cock_left",
-                "time": 80
-            },
-            {
-                "pose": "therizinosaurus_adolescent_idle",
-                "time": 100
-            }
-        ],
-        "LOOKING_RIGHT": [
-            {
-                "pose": "therizinosaurus_adolescent_head_cock_right",
-                "time": 100
-            },
-            {
-                "pose": "therizinosaurus_adolescent_head_cock_right",
-                "time": 80
-            },
-            {
-                "pose": "therizinosaurus_adolescent_idle",
-                "time": 100
-            }
-        ],
-        "MATING": [
-            {
-                "pose": "therizinosaurus_adolescent_mating",
-                "time": 10
-            },
-            {
-                "pose": "therizinosaurus_adolescent_hissing",
-                "time": 10
-            },
-            {
-                "pose": "therizinosaurus_adolescent_mating",
-                "time": 10
-            },
-            {
-                "pose": "therizinosaurus_adolescent_hissing",
-                "time": 10
-            },
-            {
-                "pose": "therizinosaurus_adolescent_mating",
-                "time": 10
-            },
-            {
-                "pose": "therizinosaurus_adolescent_hissing",
-                "time": 10
-            },
-            {
-                "pose": "therizinosaurus_adolescent_mating",
-                "time": 10
-            },
-            {
-                "pose": "therizinosaurus_adolescent_hissing",
-                "time": 10
-            },
-            {
-                "pose": "therizinosaurus_adolescent_mating",
-                "time": 10
-            },
-            {
-                "pose": "therizinosaurus_adolescent_hissing",
-                "time": 10
-            },
-            {
-                "pose": "therizinosaurus_adolescent_mating",
-                "time": 10
-            },
-            {
-                "pose": "therizinosaurus_adolescent_hissing",
-                "time": 10
-            },
-            {
-                "pose": "therizinosaurus_adolescent_mating",
-                "time": 10
-            },
-            {
-                "pose": "therizinosaurus_adolescent_hissing",
-                "time": 10
-            },
-            {
-                "pose": "therizinosaurus_adolescent_mating",
-                "time": 10
-            },
-            {
-                "pose": "therizinosaurus_adolescent_hissing",
-                "time": 10
-            },
-            {
-                "pose": "therizinosaurus_adolescent_mating",
-                "time": 10
-            },
-            {
-                "pose": "therizinosaurus_adolescent_hissing",
-                "time": 10
-            },
-            {
-                "pose": "therizinosaurus_adolescent_mating",
-                "time": 10
-            },
-            {
-                "pose": "therizinosaurus_adolescent_hissing",
-                "time": 10
-            },
-            {
-                "pose": "therizinosaurus_adolescent_mating",
-                "time": 10
-            },
-            {
-                "pose": "therizinosaurus_adolescent_idle",
-                "time": 100
-            }
-        ],
-        "EATING": [
-            {
-                "pose": "therizinosaurus_adolescent_eating_1",
-                "time": 100
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_1b",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_1",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_1b",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_1",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_1b",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_1",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_2",
-                "time": 80
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_3",
-                "time": 80
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_4",
-                "time": 100
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_4b",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_4",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_4b",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_4",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_4b",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_4",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_4b",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_3",
-                "time": 80
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_5",
-                "time": 160
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_6",
-                "time": 100
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_6b",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_6",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_6b",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_6",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_6b",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_6",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_6b",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_eating_5",
-                "time": 80
-            },
-            {
-                "pose": "therizinosaurus_adolescent_idle",
-                "time": 80
-            },
-            {
-                "pose": "therizinosaurus_adolescent_idle",
-                "time": 200
-            }
-        ],
-        "DRINKING": [
-            {
-                "pose": "therizinosaurus_adolescent_drinking_1",
-                "time": 100
-            },
-            {
-                "pose": "therizinosaurus_adolescent_drinking_2",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_drinking_2",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_drinking_3",
-                "time": 20
-            },
-            {
-                "pose": "therizinosaurus_adolescent_drinking_4",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_drinking_4",
-                "time": 100
-            },
-            {
-                "pose": "therizinosaurus_adolescent_drinking_1",
-                "time": 60
-            },
-            {
-                "pose": "therizinosaurus_adolescent_drinking_2",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_drinking_2",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_drinking_3",
-                "time": 20
-            },
-            {
-                "pose": "therizinosaurus_adolescent_drinking_4",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_drinking_4",
-                "time": 100
-            },
-            {
-                "pose": "therizinosaurus_adolescent_drinking_1",
-                "time": 60
-            },
-            {
-                "pose": "therizinosaurus_adolescent_drinking_2",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_drinking_2",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_drinking_3",
-                "time": 20
-            },
-            {
-                "pose": "therizinosaurus_adolescent_drinking_4",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_drinking_4",
-                "time": 100
-            }
-        ],
-        "RESTING": [
-            {
-                "pose": "therizinosaurus_adolescent_resting",
-                "time": 100
-            },
-            {
-                "pose": "therizinosaurus_adolescent_resting",
-                "time": 800
-            },
-            {
-                "pose": "therizinosaurus_adolescent_idle",
-                "time": 200
-            }
-        ],
-        "SLEEPING": [
-            {
-                "pose": "therizinosaurus_adolescent_resting",
-                "time": 100
-            },
-            {
-                "pose": "therizinosaurus_adolescent_sleeping",
-                "time": 80
-            },
-            {
-                "pose": "therizinosaurus_adolescent_sleeping",
-                "time": 800
-            },
-            {
-                "pose": "therizinosaurus_adolescent_resting",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_idle",
-                "time": 200
-            }
-        ],
-        "CALLING": [
-            {
-                "pose": "therizinosaurus_adolescent_calling_1",
-                "time": 100
-            },
-            {
-                "pose": "therizinosaurus_adolescent_calling_2",
-                "time": 60
-            },
-            {
-                "pose": "therizinosaurus_adolescent_calling_2",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_calling_3",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_calling_4",
-                "time": 80
-            },
-            {
-                "pose": "therizinosaurus_adolescent_calling_2",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_idle",
-                "time": 200
-            }
-        ],
-        "SNIFFING": [
-            {
-                "pose": "therizinosaurus_adolescent_sniffing_1",
-                "time": 100
-            },
-            {
-                "pose": "therizinosaurus_adolescent_sniffing_2",
-                "time": 20
-            },
-            {
-                "pose": "therizinosaurus_adolescent_sniffing_1",
-                "time": 20
-            }
-        ],
-        "DYING": [
-            {
-                "pose": "therizinosaurus_adolescent_dying_1",
-                "time": 60
-            },
-            {
-                "pose": "therizinosaurus_adolescent_dying_2",
-                "time": 100
-            },
-            {
-                "pose": "therizinosaurus_adolescent_dying_3",
-                "time": 120
-            },
-            {
-                "pose": "therizinosaurus_adolescent_dying_4",
-                "time": 100
-            },
-            {
-                "pose": "therizinosaurus_adolescent_dying_4",
-                "time": 600
-            }
-        ],
-        "ATTACKING": [
-            {
-                "pose": "therizinosaurus_adolescent_crouching_1",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_crouching_2",
-                "time": 20
-            },
-            {
-                "pose": "therizinosaurus_adolescent_crouching_3",
-                "time": 20
-            },
-            {
-                "pose": "therizinosaurus_adolescent_crouching_2",
-                "time": 20
-            },
-            {
-                "pose": "therizinosaurus_adolescent_crouching_3",
-                "time": 20
-            },
-            {
-                "pose": "therizinosaurus_adolescent_crouching_2",
-                "time": 20
-            },
-            {
-                "pose": "therizinosaurus_adolescent_crouching_3",
-                "time": 20
-            },
-            {
-                "pose": "therizinosaurus_adolescent_crouching_2",
-                "time": 20
-            },
-            {
-                "pose": "therizinosaurus_adolescent_crouching_3",
-                "time": 20
-            },
-            {
-                "pose": "therizinosaurus_adolescent_crouching_4",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_crouching_5",
-                "time": 60
-            },
-            {
-                "pose": "therizinosaurus_adolescent_crouching_6",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_crouching_7",
-                "time": 40
-            },
-            {
-                "pose": "therizinosaurus_adolescent_idle",
-                "time": 60
-            }
-        ]
-    }
+	"version": 0,
+	"poses": {
+		"IDLE": [
+			{"pose": "therizinosaurus_adolescent_idle", "time": 20}
+		],
+		"LOOKING_LEFT": [
+			{"pose": "therizinosaurus_adolescent_head_cock_left", "time": 100}, {"pose": "therizinosaurus_adolescent_head_cock_left", "time": 80},
+			{"pose": "therizinosaurus_adolescent_idle", "time": 100}
+		],
+		"LOOKING_RIGHT": [
+			{"pose": "therizinosaurus_adolescent_head_cock_right", "time": 100}, {"pose": "therizinosaurus_adolescent_head_cock_right", "time": 80},
+			{"pose": "therizinosaurus_adolescent_idle", "time": 100}
+		],
+		"MATING": [
+			{"pose": "therizinosaurus_adolescent_mating", "time": 10}, {"pose": "therizinosaurus_adolescent_hissing", "time": 10 },
+			{"pose": "therizinosaurus_adolescent_mating", "time": 10}, {"pose": "therizinosaurus_adolescent_hissing", "time": 10 },
+			{"pose": "therizinosaurus_adolescent_mating", "time": 10}, {"pose": "therizinosaurus_adolescent_hissing", "time": 10 },
+			{"pose": "therizinosaurus_adolescent_mating", "time": 10}, {"pose": "therizinosaurus_adolescent_hissing", "time": 10 },
+			{"pose": "therizinosaurus_adolescent_mating", "time": 10}, {"pose": "therizinosaurus_adolescent_hissing", "time": 10 },
+			{"pose": "therizinosaurus_adolescent_mating", "time": 10}, {"pose": "therizinosaurus_adolescent_hissing", "time": 10 },
+			{"pose": "therizinosaurus_adolescent_mating", "time": 10}, {"pose": "therizinosaurus_adolescent_hissing", "time": 10 },
+			{"pose": "therizinosaurus_adolescent_mating", "time": 10}, {"pose": "therizinosaurus_adolescent_hissing", "time": 10 },
+			{"pose": "therizinosaurus_adolescent_mating", "time": 10}, {"pose": "therizinosaurus_adolescent_hissing", "time": 10 },
+			{"pose": "therizinosaurus_adolescent_mating", "time": 10}, {"pose": "therizinosaurus_adolescent_hissing", "time": 10 },
+			{"pose": "therizinosaurus_adolescent_mating", "time": 10}, {"pose": "therizinosaurus_adolescent_idle",    "time": 100}
+		],
+		"EATING": [
+			{"pose": "therizinosaurus_adolescent_eating_1",  "time": 100}, {"pose": "therizinosaurus_adolescent_eating_1b", "time": 40 },
+			{"pose": "therizinosaurus_adolescent_eating_1",  "time": 40 }, {"pose": "therizinosaurus_adolescent_eating_1b", "time": 40 },
+			{"pose": "therizinosaurus_adolescent_eating_1",  "time": 40 }, {"pose": "therizinosaurus_adolescent_eating_1b", "time": 40 },
+			{"pose": "therizinosaurus_adolescent_eating_1",  "time": 40 }, {"pose": "therizinosaurus_adolescent_eating_2",  "time": 80 },
+			{"pose": "therizinosaurus_adolescent_eating_3",  "time": 80 }, {"pose": "therizinosaurus_adolescent_eating_4",  "time": 100},
+			{"pose": "therizinosaurus_adolescent_eating_4b", "time": 40 }, {"pose": "therizinosaurus_adolescent_eating_4",  "time": 40 },
+			{"pose": "therizinosaurus_adolescent_eating_4b", "time": 40 }, {"pose": "therizinosaurus_adolescent_eating_4",  "time": 40 },
+			{"pose": "therizinosaurus_adolescent_eating_4b", "time": 40 }, {"pose": "therizinosaurus_adolescent_eating_4",  "time": 40 },
+			{"pose": "therizinosaurus_adolescent_eating_4b", "time": 40 }, {"pose": "therizinosaurus_adolescent_eating_3",  "time": 80 },
+			{"pose": "therizinosaurus_adolescent_eating_5",  "time": 160}, {"pose": "therizinosaurus_adolescent_eating_6",  "time": 100},
+			{"pose": "therizinosaurus_adolescent_eating_6b", "time": 40 }, {"pose": "therizinosaurus_adolescent_eating_6",  "time": 40 },
+			{"pose": "therizinosaurus_adolescent_eating_6b", "time": 40 }, {"pose": "therizinosaurus_adolescent_eating_6",  "time": 40 },
+			{"pose": "therizinosaurus_adolescent_eating_6b", "time": 40 }, {"pose": "therizinosaurus_adolescent_eating_6",  "time": 40 },
+			{"pose": "therizinosaurus_adolescent_eating_6b", "time": 40 }, {"pose": "therizinosaurus_adolescent_eating_5",  "time": 80 },
+			{"pose": "therizinosaurus_adolescent_idle",      "time": 80 }, {"pose": "therizinosaurus_adolescent_idle",      "time": 200}
+		],
+		"DRINKING": [
+			{"pose": "therizinosaurus_adolescent_drinking_1", "time": 100}, {"pose": "therizinosaurus_adolescent_drinking_2", "time": 40 },
+			{"pose": "therizinosaurus_adolescent_drinking_2", "time": 40 }, {"pose": "therizinosaurus_adolescent_drinking_3", "time": 20 },
+			{"pose": "therizinosaurus_adolescent_drinking_4", "time": 40 }, {"pose": "therizinosaurus_adolescent_drinking_4", "time": 100},
+			{"pose": "therizinosaurus_adolescent_drinking_1", "time": 60 }, {"pose": "therizinosaurus_adolescent_drinking_2", "time": 40 },
+			{"pose": "therizinosaurus_adolescent_drinking_2", "time": 40 }, {"pose": "therizinosaurus_adolescent_drinking_3", "time": 20 },
+			{"pose": "therizinosaurus_adolescent_drinking_4", "time": 40 }, {"pose": "therizinosaurus_adolescent_drinking_4", "time": 100},
+			{"pose": "therizinosaurus_adolescent_drinking_1", "time": 60 }, {"pose": "therizinosaurus_adolescent_drinking_2", "time": 40 },
+			{"pose": "therizinosaurus_adolescent_drinking_2", "time": 40 }, {"pose": "therizinosaurus_adolescent_drinking_3", "time": 20 },
+			{"pose": "therizinosaurus_adolescent_drinking_4", "time": 40 }, {"pose": "therizinosaurus_adolescent_drinking_4", "time": 100}
+		],
+		"RESTING": [
+			{"pose": "therizinosaurus_adolescent_resting", "time": 100}, {"pose": "therizinosaurus_adolescent_resting", "time": 800},
+			{"pose": "therizinosaurus_adolescent_idle",    "time": 200}
+		],
+		"SLEEPING": [
+			{"pose": "therizinosaurus_adolescent_resting",  "time": 100}, {"pose": "therizinosaurus_adolescent_sleeping", "time": 80},
+			{"pose": "therizinosaurus_adolescent_sleeping", "time": 800}, {"pose": "therizinosaurus_adolescent_resting",  "time": 40},
+			{"pose": "therizinosaurus_adolescent_idle",     "time": 200}
+		],
+		"CALLING": [
+			{"pose": "therizinosaurus_adolescent_calling_1", "time": 100}, {"pose": "therizinosaurus_adolescent_calling_2", "time": 60},
+			{"pose": "therizinosaurus_adolescent_calling_2", "time": 40 }, {"pose": "therizinosaurus_adolescent_calling_3", "time": 40},
+			{"pose": "therizinosaurus_adolescent_calling_4", "time": 80 }, {"pose": "therizinosaurus_adolescent_calling_2", "time": 40},
+			{"pose": "therizinosaurus_adolescent_idle", "time": 200}
+		],
+		"SNIFFING": [
+			{"pose": "therizinosaurus_adolescent_sniffing_1", "time": 100}, {"pose": "therizinosaurus_adolescent_sniffing_2", "time": 20},
+			{"pose": "therizinosaurus_adolescent_sniffing_1", "time": 20 }
+		],
+		"DYING": [
+			{"pose": "therizinosaurus_adolescent_dying_1", "time": 60 }, {"pose": "therizinosaurus_adolescent_dying_2", "time": 100},
+			{"pose": "therizinosaurus_adolescent_dying_3", "time": 120}, {"pose": "therizinosaurus_adolescent_dying_4", "time": 100},
+			{"pose": "therizinosaurus_adolescent_dying_4", "time": 600}
+		],
+		"ATTACKING": [
+			{"pose": "therizinosaurus_adolescent_crouching_1", "time": 40}, {"pose": "therizinosaurus_adolescent_crouching_2", "time": 20},
+			{"pose": "therizinosaurus_adolescent_crouching_3", "time": 20}, {"pose": "therizinosaurus_adolescent_crouching_2", "time": 20},
+			{"pose": "therizinosaurus_adolescent_crouching_3", "time": 20}, {"pose": "therizinosaurus_adolescent_crouching_2", "time": 20},
+			{"pose": "therizinosaurus_adolescent_crouching_3", "time": 20}, {"pose": "therizinosaurus_adolescent_crouching_2", "time": 20},
+			{"pose": "therizinosaurus_adolescent_crouching_3", "time": 20}, {"pose": "therizinosaurus_adolescent_crouching_4", "time": 40},
+			{"pose": "therizinosaurus_adolescent_crouching_5", "time": 60}, {"pose": "therizinosaurus_adolescent_crouching_6", "time": 40},
+			{"pose": "therizinosaurus_adolescent_crouching_7", "time": 40}, {"pose": "therizinosaurus_adolescent_idle","time": 60}
+		]
+	}
 }

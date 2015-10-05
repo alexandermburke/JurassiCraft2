@@ -1,10 +1,7 @@
 {
     "poses": {
         "IDLE": [
-            {
-                "pose": "mamenchisaurus_juvenile_idle",
-                "time": 20
-            }
+            {"pose": "mamenchisaurus_juvenile_idle", "time": 20}
         ]
-    }
+     }
 }

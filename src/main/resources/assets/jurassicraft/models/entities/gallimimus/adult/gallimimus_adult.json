@@ -2,10 +2,7 @@
     "version": 0,
     "poses": {
         "IDLE": [
-            {
-                "pose": "gallimimus_adult_idle",
-                "time": 20
-            }
+            {"pose": "gallimimus_adult_idle", "time": 20}
         ]
-    }
+     }
 }
