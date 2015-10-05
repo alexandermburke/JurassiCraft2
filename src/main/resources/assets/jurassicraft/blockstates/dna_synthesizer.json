@@ -1,17 +1,8 @@
 {
     "variants": {
-        "facing=north": {"model": "jurassicraft:dna_synthesizer"},
-        "facing=south": {
-            "model": "jurassicraft:dna_synthesizer",
-            "y": 180
-        },
-        "facing=west": {
-            "model": "jurassicraft:dna_synthesizer",
-            "y": 270
-        },
-        "facing=east": {
-            "model": "jurassicraft:dna_synthesizer",
-            "y": 90
-        }
+        "facing=north": { "model": "jurassicraft:dna_synthesizer" },
+        "facing=south": { "model": "jurassicraft:dna_synthesizer", "y": 180 },
+        "facing=west": { "model": "jurassicraft:dna_synthesizer", "y": 270 },
+        "facing=east": { "model": "jurassicraft:dna_synthesizer", "y": 90 }
     }
 }

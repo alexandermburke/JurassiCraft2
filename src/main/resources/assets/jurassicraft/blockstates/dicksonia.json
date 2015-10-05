@@ -1,6 +1,6 @@
 {
     "variants": {
-        "half=lower": {"model": "jurassicraft:dicksonia_bottom"},
-        "half=upper": {"model": "jurassicraft:dicksonia_top"}
+        "half=lower": { "model": "jurassicraft:dicksonia_bottom" },
+        "half=upper": { "model": "jurassicraft:dicksonia_top" }
     }
 }

@@ -50,7 +50,7 @@ public class WorldGenerator implements IWorldGenerator
 
                 List<Dinosaur> dinos = JCEntityRegistry.getDinosaursFromPeriod(period);
 
-                if (dinos != null && dinos.size() > 0)
+                if(dinos != null && dinos.size() > 0)
                 {
                     Dinosaur dinosaur = dinos.get(random.nextInt(dinos.size()));
                     int meta = JurassiCraft.blockRegistry.getMetadata(dinosaur);
