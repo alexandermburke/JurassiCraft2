@@ -2,7 +2,10 @@
     "version": 0,
     "poses": {
         "IDLE": [
-            {"pose": "tropeognathus_infant_idle", "time": 20}
+            {
+                "pose": "tropeognathus_infant_idle",
+                "time": 20
+            }
         ]
-     }
+    }
 }
