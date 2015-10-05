@@ -1,8 +1,17 @@
 {
     "variants": {
-        "facing=north": { "model": "jurassicraft:incubator" },
-        "facing=south": { "model": "jurassicraft:incubator", "y": 180 },
-        "facing=west": { "model": "jurassicraft:incubator", "y": 270 },
-        "facing=east": { "model": "jurassicraft:incubator", "y": 90 }
+        "facing=north": {"model": "jurassicraft:incubator"},
+        "facing=south": {
+            "model": "jurassicraft:incubator",
+            "y": 180
+        },
+        "facing=west": {
+            "model": "jurassicraft:incubator",
+            "y": 270
+        },
+        "facing=east": {
+            "model": "jurassicraft:incubator",
+            "y": 90
+        }
     }
 }
