@@ -1,17 +1,18 @@
 package org.jurassicraft.math;
 
+import org.apache.commons.lang3.math.NumberUtils;
+
 import java.util.Arrays;
 
 public class MathUtils
 {
-
-    public static double getPi()
-    {
-        return Math.PI;
-    }
+    public static final double PI = Math.PI;
 
     public static long mean(long[] values)
     {
+        if (values.length <= 0)
+            throw new IllegalArgumentException("Array contains no elements");
+        // java 8: return LongStream.of(values).sum() / values.length;
         long sum = 0l;
         for (long v : values)
         {
@@ -23,12 +24,19 @@ public class MathUtils
 
     public static double median(int[] values)
     {
+        // FIXME: https://discuss.codechef.com/questions/1489/find-median-in-an-unsorted-array-without-sorting-it
+        // ^ solve the problem in O(n)
+        // v is O(n*log(n)) because of sorting it
         Arrays.sort(values);
         double median;
         if (values.length % 2 == 0)
+        {
             median = ((double) values[values.length / 2] + (double) values[values.length / 2 - 1]) / 2;
+        }
         else
-            median = (double) values[values.length / 2];
+        {
+            median = values[values.length / 2];
+        }
 
         return median;
     }
@@ -37,18 +45,20 @@ public class MathUtils
     {
         int maxValue = 0, maxCount = 0;
 
-        for (int i = 0; i < values.length; ++i)
+        for (int value : values)
         {
             int count = 0;
-            for (int j = 0; j < values.length; ++j)
+            for (int value2 : values)
             {
-                if (values[j] == values[i])
+                if (value2 == value)
+                {
                     ++count;
+                }
             }
             if (count > maxCount)
             {
                 maxCount = count;
-                maxValue = values[i];
+                maxValue = value;
             }
         }
 
@@ -58,38 +68,23 @@ public class MathUtils
     public static boolean hasNoRange(int num1, int num2, int difference)
     {
         if (num1 == num2)
-        {
             return true;
-        }
         if (num1 > num2)
         {
             if (num1 - num2 <= 0)
-            {
                 return true;
-            }
         }
         if (num2 > num1)
         {
             if (num2 - num1 <= 0)
-            {
                 return true;
-            }
         }
         return false;
     }
 
     public static boolean isNumeric(String str)
     {
-        try
-        {
-            @SuppressWarnings("unused")
-            double d = Double.parseDouble(str);
-        }
-        catch (NumberFormatException nfe)
-        {
-            return false;
-        }
-        return true;
+        return NumberUtils.isNumber(str);
     }
 
     public static boolean isNegative(double num)
@@ -100,22 +95,15 @@ public class MathUtils
     public static double makePositive(double num)
     {
         if (num >= 0)
-        {
             return num;
-        }
-        double newNum = Math.pow(num, 2);
-        double posNum = Math.sqrt(newNum);
-        return posNum;
+        return -num;
     }
 
     public static double makeNegative(double num)
     {
         if (num < 0)
-        {
             return num;
-        }
-        String str = "-" + num;
-        return Double.parseDouble(str);
+        return -num;
     }
 
 }
