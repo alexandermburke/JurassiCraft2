@@ -82,9 +82,9 @@ public class JabelarAnimationHelper
         JurassiCraft.instance.getLogger().debug("Finished JabelarAnimation constructor");
     }
 
-    public void performJabelarAnimations()
+    public void performJabelarAnimations(float parPartialTicks)
     {
-        JurassiCraft.instance.getLogger().info("FPS = "+mc.getDebugFPS()+" and current sequence = "+
+        JurassiCraft.instance.getLogger().info("FPS = "+Minecraft.getDebugFPS()+" and current sequence = "+
                 currentSequence+" and current pose = "+this.currentPose+" and current tick = "+
                 this.currentTickInTween+" out of "+numTicksInTween+" and entity ticks existed = "+
                 theEntity.ticksExisted+" versus last ticks existed = "+this.lastTicksExisted);

@@ -2,54 +2,54 @@
     "version": 0,
     "poses": {
         "IDLE": [
-            {"pose": "tyrannosaurus_adult_idle", "time": 800},
-            {"pose": "tyrannosaurus_adult_looking_left", "time": 200},
-            {"pose": "tyrannosaurus_adult_looking_left", "time": 20},
-            {"pose": "tyrannosaurus_adult_idle", "time": 200},
-            {"pose": "tyrannosaurus_adult_idle", "time": 800},
-            {"pose": "tyrannosaurus_adult_looking_right", "time": 200},
-            {"pose": "tyrannosaurus_adult_looking_right", "time": 20},
-            {"pose": "tyrannosaurus_adult_idle", "time": 200}
+            {"pose": "tyrannosaurus_adult_idle", "time": 133},
+            {"pose": "tyrannosaurus_adult_looking_left", "time": 33},
+            {"pose": "tyrannosaurus_adult_looking_left", "time": 3},
+            {"pose": "tyrannosaurus_adult_idle", "time": 33},
+            {"pose": "tyrannosaurus_adult_idle", "time": 133},
+            {"pose": "tyrannosaurus_adult_looking_right", "time": 33},
+            {"pose": "tyrannosaurus_adult_looking_right", "time": 3},
+            {"pose": "tyrannosaurus_adult_idle", "time": 33}
         ],
         "ATTACKING": [
-               {"pose": "tyrannosaurus_adult_attacking_1", "time": 40}, 
-               {"pose": "tyrannosaurus_adult_attacking_2", "time": 60}, 
-               {"pose": "tyrannosaurus_adult_attacking_3", "time": 40}, 
-               {"pose": "tyrannosaurus_adult_attacking_4", "time": 40}, 
-               {"pose": "tyrannosaurus_adult_attacking_5", "time": 80}, 
-               {"pose": "tyrannosaurus_adult_attacking_6", "time": 80}, 
-               {"pose": "tyrannosaurus_adult_attacking_7", "time": 80}, 
-               {"pose": "tyrannosaurus_adult_attacking_8", "time": 80}, 
-               {"pose": "tyrannosaurus_adult_attacking_5", "time": 80}, 
-               {"pose": "tyrannosaurus_adult_attacking_6", "time": 80}, 
-               {"pose": "tyrannosaurus_adult_attacking_7", "time": 80}, 
-               {"pose": "tyrannosaurus_adult_attacking_8", "time": 80}, 
-               {"pose": "tyrannosaurus_adult_idle", "time": 100}
+               {"pose": "tyrannosaurus_adult_attacking_1", "time": 7}, 
+               {"pose": "tyrannosaurus_adult_attacking_2", "time": 10}, 
+               {"pose": "tyrannosaurus_adult_attacking_3", "time": 7}, 
+               {"pose": "tyrannosaurus_adult_attacking_4", "time": 7}, 
+               {"pose": "tyrannosaurus_adult_attacking_5", "time": 13}, 
+               {"pose": "tyrannosaurus_adult_attacking_6", "time": 13}, 
+               {"pose": "tyrannosaurus_adult_attacking_7", "time": 13}, 
+               {"pose": "tyrannosaurus_adult_attacking_8", "time": 13}, 
+               {"pose": "tyrannosaurus_adult_attacking_5", "time": 13}, 
+               {"pose": "tyrannosaurus_adult_attacking_6", "time": 13}, 
+               {"pose": "tyrannosaurus_adult_attacking_7", "time": 13}, 
+               {"pose": "tyrannosaurus_adult_attacking_8", "time": 13}, 
+               {"pose": "tyrannosaurus_adult_idle", "time": 16}
         ],      
         "LOOKING_LEFT": [
-               {"pose": "tyrannosaurus_adult_looking_left", "time": 100}, 
-               {"pose": "tyrannosaurus_adult_looking_left", "time": 80}, 
-               {"pose": "tyrannosaurus_adult_idle", "time": 100}
+               {"pose": "tyrannosaurus_adult_looking_left", "time": 16}, 
+               {"pose": "tyrannosaurus_adult_looking_left", "time": 13}, 
+               {"pose": "tyrannosaurus_adult_idle", "time": 16}
         ],
         "LOOKING_RIGHT": [
-               {"pose": "tyrannosaurus_adult_looking_right", "time": 100}, 
-               {"pose": "tyrannosaurus_adult_looking_right", "time": 80}, 
-               {"pose": "tyrannosaurus_adult_idle", "time": 100}
+               {"pose": "tyrannosaurus_adult_looking_right", "time": 16}, 
+               {"pose": "tyrannosaurus_adult_looking_right", "time": 13}, 
+               {"pose": "tyrannosaurus_adult_idle", "time": 16}
         ],
         "CALLING": [
-               {"pose": "tyrannosaurus_adult_calling_1", "time": 40}, 
-               {"pose": "tyrannosaurus_adult_calling_2", "time": 80}, 
-               {"pose": "tyrannosaurus_adult_calling_3", "time": 120}, 
-               {"pose": "tyrannosaurus_adult_calling_4", "time": 120}, 
-               {"pose": "tyrannosaurus_adult_calling_5", "time": 120}, 
-               {"pose": "tyrannosaurus_adult_idle", "time": 100}
+               {"pose": "tyrannosaurus_adult_calling_1", "time": 7}, 
+               {"pose": "tyrannosaurus_adult_calling_2", "time": 13}, 
+               {"pose": "tyrannosaurus_adult_calling_3", "time": 20}, 
+               {"pose": "tyrannosaurus_adult_calling_4", "time": 20}, 
+               {"pose": "tyrannosaurus_adult_calling_5", "time": 20}, 
+               {"pose": "tyrannosaurus_adult_idle", "time": 16}
         ],
         "DYING": [
-               {"pose": "tyrannosaurus_adult_dying_1", "time": 80}, 
-               {"pose": "tyrannosaurus_adult_dying_2", "time": 60}, 
-               {"pose": "tyrannosaurus_adult_dying_3", "time": 60}, 
-               {"pose": "tyrannosaurus_adult_dying_4", "time": 40},
-               {"pose": "tyrannosaurus_adult_dying_4", "time": 400}
+               {"pose": "tyrannosaurus_adult_dying_1", "time": 13}, 
+               {"pose": "tyrannosaurus_adult_dying_2", "time": 10}, 
+               {"pose": "tyrannosaurus_adult_dying_3", "time": 10}, 
+               {"pose": "tyrannosaurus_adult_dying_4", "time": 7},
+               {"pose": "tyrannosaurus_adult_dying_4", "time": 66}
         ]    
     }
 }
