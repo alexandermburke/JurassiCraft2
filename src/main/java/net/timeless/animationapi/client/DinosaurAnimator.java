@@ -1,14 +1,19 @@
 package net.timeless.animationapi.client;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.animationapi.client.DinosaurAnimator.AnimationsDTO.PoseDTO;
+import net.timeless.animationapi.client.dto.AnimationsDTO;
+import net.timeless.animationapi.client.dto.DinosaurRenderDefDTO;
+import net.timeless.animationapi.client.dto.PoseDTO;
 import net.timeless.unilib.Unilib;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.dinosaur.Dinosaur;
@@ -21,39 +26,16 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 @SideOnly(Side.CLIENT)
 public abstract class DinosaurAnimator implements IModelAnimator
 {
-    /**
-     * This class can be loaded via {@link Gson#fromJson}. It represents the poses
-     * of the animations of a model.
-     *
-     * @author WorldSEnder
-     */
-    public static class AnimationsDTO
-    {
-        /**
-         * Maps an {@link AnimID} as a string to the list of sequential poses
-         */
-        public Map<String, PoseDTO[]> poses;
-        public int version;
-
-        public static class PoseDTO
-        {
-            /**
-             * The pose's tabular file location
-             */
-            public String pose;
-            public transient int index;
-            /**
-             * The ticks it takes to transition into the pose
-             */
-            public int time;
-        }
-    }
-
     private static class PreloadedModelData
     {
         public PreloadedModelData()
@@ -79,7 +61,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
         Map<AnimID, int[][]> animations;
     }
 
-    private static final Gson GSON = new Gson();
+    private static final Gson GSON = new GsonBuilder().registerTypeAdapter(DinosaurRenderDefDTO.class, new DinosaurRenderDefDTO.DinosaurDeserializer()).create();
 
     public static EnumMap<AnimID, int[][]> newEmptyMap()
     {
@@ -143,9 +125,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
         InputStream dinoDef = Unilib.class.getResourceAsStream(definitionFile.toString());
 
         if (dinoDef == null)
-        {
             throw new IllegalArgumentException("No model definition for the dino " + name + " with grow-state " + growth + " exists. Expected at " + definitionFile);
-        }
 
         try
         {
