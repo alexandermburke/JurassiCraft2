@@ -5,34 +5,34 @@
             {"pose": "velociraptor_adult_idle", "time": 20}
         ],
 		"DYING": [
-            {"pose": "velociraptor_adult_dying_1", "time": 60}, {"pose": "velociraptor_adult_dying_1", "time": 10},
-			{"pose": "velociraptor_adult_dying_2", "time": 80}, {"pose": "velociraptor_adult_dying_2", "time": 20}
+            {"pose": "velociraptor_adult_dying_1", "time": 5}, {"pose": "velociraptor_adult_dying_1", "time": 2},
+			{"pose": "velociraptor_adult_dying_2", "time": 10}, {"pose": "velociraptor_adult_dying_2", "time": 20}
         ],
 		"DRINKING": [
-            {"pose": "velociraptor_adult_drinking_1", "time": 50}, {"pose": "velociraptor_adult_drinking_1", "time": 10},
-			{"pose": "velociraptor_adult_drinking_2", "time": 30}, {"pose": "velociraptor_adult_drinking_2", "time": 10},
-			{"pose": "velociraptor_adult_drinking_1", "time": 30}, {"pose": "velociraptor_adult_drinking_1", "time": 10},
-			{"pose": "velociraptor_adult_drinking_2", "time": 30}, {"pose": "velociraptor_adult_drinking_2", "time": 10},
-			{"pose": "velociraptor_adult_drinking_1", "time": 30}, {"pose": "velociraptor_adult_drinking_1", "time": 10},
-			{"pose": "velociraptor_adult_idle", "time": 80}
+            {"pose": "velociraptor_adult_drinking_1", "time": 5}, {"pose": "velociraptor_adult_drinking_1", "time": 5},
+			{"pose": "velociraptor_adult_drinking_2", "time": 5}, {"pose": "velociraptor_adult_drinking_2", "time": 2},
+			{"pose": "velociraptor_adult_drinking_1", "time": 5}, {"pose": "velociraptor_adult_drinking_1", "time": 2},
+			{"pose": "velociraptor_adult_drinking_2", "time": 5}, {"pose": "velociraptor_adult_drinking_2", "time": 2},
+			{"pose": "velociraptor_adult_drinking_1", "time": 5}, {"pose": "velociraptor_adult_drinking_1", "time": 2},
+			{"pose": "velociraptor_adult_idle", "time": 10}
         ],
 		"ATTACKING": [
-			{"pose": "velociraptor_adult_attack_1", "time": 80}, {"pose": "velociraptor_adult_attack_1", "time": 10},
-			{"pose": "velociraptor_adult_attack_2", "time": 30}, {"pose": "velociraptor_adult_attack_3", "time": 30},
-			{"pose": "velociraptor_adult_attack_2", "time": 30}, {"pose": "velociraptor_adult_attack_3", "time": 30},
-			{"pose": "velociraptor_adult_attack_2", "time": 30}, {"pose": "velociraptor_adult_attack_3", "time": 30},
-			{"pose": "velociraptor_adult_attack_4", "time": 30}, {"pose": "velociraptor_adult_attack_4", "time": 50},
-			{"pose": "velociraptor_adult_attack_5", "time": 50}, {"pose": "velociraptor_adult_attack_5", "time": 50},
-			{"pose": "velociraptor_adult_idle", "time": 20}
+			{"pose": "velociraptor_adult_attack_1", "time": 20}, {"pose": "velociraptor_adult_attack_1", "time": 2},
+			{"pose": "velociraptor_adult_attack_2", "time": 5}, {"pose": "velociraptor_adult_attack_3", "time": 5},
+			{"pose": "velociraptor_adult_attack_2", "time": 5}, {"pose": "velociraptor_adult_attack_3", "time": 5},
+			{"pose": "velociraptor_adult_attack_2", "time": 5}, {"pose": "velociraptor_adult_attack_3", "time": 5},
+			{"pose": "velociraptor_adult_attack_4", "time": 5}, {"pose": "velociraptor_adult_attack_4", "time": 5},
+			{"pose": "velociraptor_adult_attack_5", "time": 10}, {"pose": "velociraptor_adult_attack_5", "time": 10},
+			{"pose": "velociraptor_adult_idle", "time": 10}
         ],
 		"EATING": [
-			{"pose": "velociraptor_adult_eat_1", "time": 20}, {"pose": "velociraptor_adult_eat_1", "time": 10},
-			{"pose": "velociraptor_adult_eat_2", "time": 20}, {"pose": "velociraptor_adult_eat_2", "time": 10},
-			{"pose": "velociraptor_adult_eat_3", "time": 20},
-			{"pose": "velociraptor_adult_eat_2", "time": 20},
-			{"pose": "velociraptor_adult_eat_3", "time": 20},
-			{"pose": "velociraptor_adult_eat_2", "time": 20},
-			{"pose": "velociraptor_adult_idle", "time": 40}
+			{"pose": "velociraptor_adult_eat_1", "time": 5}, {"pose": "velociraptor_adult_eat_1", "time": 2},
+			{"pose": "velociraptor_adult_eat_2", "time": 5}, {"pose": "velociraptor_adult_eat_2", "time": 2},
+			{"pose": "velociraptor_adult_eat_3", "time": 5},
+			{"pose": "velociraptor_adult_eat_2", "time": 5},
+			{"pose": "velociraptor_adult_eat_3", "time": 5},
+			{"pose": "velociraptor_adult_eat_2", "time": 5},
+			{"pose": "velociraptor_adult_idle", "time": 10}
 		]
      }
 }

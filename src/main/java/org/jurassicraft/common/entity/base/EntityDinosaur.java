@@ -68,8 +68,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
 
     private ItemStack[] inventory = new ItemStack[63];
 
-    private double energy;
-    private double water;
+    private int energy;
+    private int water;
 
     private boolean hasTracker;
 
@@ -186,12 +186,12 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         super.playLivingSound();
     }
 
-    public double getWater()
+    public int getWater()
     {
         return water;
     }
 
-    public double getEnergy()
+    public int getEnergy()
     {
         return energy;
     }
@@ -202,7 +202,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
 
         if (energy <= 0)
         {
-            attackEntityFrom(DamageSource.outOfWorld, Float.MAX_VALUE);
+            attackEntityFrom(DamageSource.outOfWorld, 1.0F);
         }
     }
 
@@ -212,7 +212,7 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
 
         if (water <= 0)
         {
-            attackEntityFrom(DamageSource.outOfWorld, Float.MAX_VALUE);
+            attackEntityFrom(DamageSource.outOfWorld, 1.0F);
         }
     }
 
@@ -227,14 +227,14 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         return super.attackEntityFrom(damageSource, amount);
     }
 
-    public void setWater(double water)
+    public void setWater(int water)
     {
-        water = Math.min(water, 24000);
+        this.water = Math.min(water, 24000);
     }
 
-    public void setEnergy(double energy)
+    public void setEnergy(int energy)
     {
-        energy = Math.min(energy, 24000);
+        this.energy = Math.min(energy, 24000);
     }
 
     @Override
@@ -469,8 +469,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         nbt.setString("Genetics", genetics.toString());
         nbt.setBoolean("IsMale", isMale);
         nbt.setInteger("GrowthSpeedOffset", growthSpeedOffset);
-        nbt.setDouble("Energy", energy);
-        nbt.setDouble("Water", water);
+        nbt.setInteger("Energy", energy);
+        nbt.setInteger("Water", water);
 
         NBTTagList nbttaglist = new NBTTagList();
 
@@ -500,8 +500,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         genetics = new GeneticsContainer(nbt.getString("Genetics"));
         isMale = nbt.getBoolean("IsMale");
         growthSpeedOffset = nbt.getInteger("GrowthSpeedOffset");
-        energy = nbt.getDouble("Energy");
-        water = nbt.getDouble("Water");
+        energy = nbt.getInteger("Energy");
+        water = nbt.getInteger("Water");
 
         NBTTagList nbttaglist = nbt.getTagList("Items", 10);
         inventory = new ItemStack[getSizeInventory()];
@@ -530,8 +530,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         buffer.writeInt(quality);
         buffer.writeBoolean(isMale);
         buffer.writeInt(growthSpeedOffset);
-        buffer.writeDouble(energy);
-        buffer.writeDouble(water);
+        buffer.writeInt(energy);
+        buffer.writeInt(water);
         ByteBufUtils.writeUTF8String(buffer, genetics.toString());
     }
 
@@ -544,8 +544,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         quality = additionalData.readInt();
         isMale = additionalData.readBoolean();
         growthSpeedOffset = additionalData.readInt();
-        energy = additionalData.readDouble();
-        water = additionalData.readDouble();
+        energy = additionalData.readInt();
+        water = additionalData.readInt();
 
         genetics = new GeneticsContainer(ByteBufUtils.readUTF8String(additionalData));
 

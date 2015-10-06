@@ -25,9 +25,9 @@ public class EntityAIFindPlant extends EntityAIBase
     {
         double energy = dinosaur.getEnergy();
 
-        if (((int) energy) > 0 && dinosaur.ticksExisted % 8 == 0)
+        if (!dinosaur.isDead && dinosaur.ticksExisted % 8 == 0)
         {
-            if (dinosaur.getRNG().nextInt((int) energy) < (energy / 4))
+            if (energy < 12000 + (dinosaur.getRNG().nextInt(50) - 25))
             {
                 int posX = (int) dinosaur.posX;
                 int posY = (int) dinosaur.posY;
@@ -99,7 +99,7 @@ public class EntityAIFindPlant extends EntityAIBase
                 dinosaur.worldObj.destroyBlock(new BlockPos(x, y, z), false);
             }
 
-            dinosaur.setEnergy(dinosaur.getEnergy() + 100);
+            dinosaur.setEnergy(dinosaur.getEnergy() + 400);
         }
     }
 

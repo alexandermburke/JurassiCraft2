@@ -22,29 +22,29 @@ public class EntityAIMate extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        int minEnergy = 12000;
-
-        if (dinosaur.getEnergy() > minEnergy)
-        {
-            World world = dinosaur.worldObj;
-
-            double posX = dinosaur.posX;
-            double posY = dinosaur.posY;
-            double posZ = dinosaur.posZ;
-
-            List<EntityDinosaur> entities = world.getEntitiesWithinAABB(dinosaur.getClass(), AxisAlignedBB.fromBounds(posX - 16, posY - 16, posZ - 16, posX + 16, posY + 16, posZ + 16));
-
-            for (EntityDinosaur entity : entities)
-            {
-                if (entity.isMale() != dinosaur.isMale() && entity.getEnergy() > minEnergy)
-                {
-                    dinosaur.getNavigator().tryMoveToEntityLiving(entity, 1.0D);
-                    mate = entity;
-
-                    return true;
-                }
-            }
-        }
+//        int minEnergy = 12000;
+//
+//        if (dinosaur.getEnergy() > minEnergy)
+//        {
+//            World world = dinosaur.worldObj;
+//
+//            double posX = dinosaur.posX;
+//            double posY = dinosaur.posY;
+//            double posZ = dinosaur.posZ;
+//
+//            List<EntityDinosaur> entities = world.getEntitiesWithinAABB(dinosaur.getClass(), AxisAlignedBB.fromBounds(posX - 16, posY - 16, posZ - 16, posX + 16, posY + 16, posZ + 16));
+//
+//            for (EntityDinosaur entity : entities)
+//            {
+//                if (entity.isMale() != dinosaur.isMale() && entity.getEnergy() > minEnergy)
+//                {
+//                    dinosaur.getNavigator().tryMoveToEntityLiving(entity, 1.0D);
+//                    mate = entity;
+//
+//                    return true;
+//                }
+//            }
+//        }
 
         return false;
     }

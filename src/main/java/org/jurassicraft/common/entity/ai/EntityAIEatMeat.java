@@ -30,9 +30,9 @@ public class EntityAIEatMeat extends EntityAIBase
     {
         double energy = dinosaur.getEnergy();
 
-        if (((int) energy) > 0 && dinosaur.ticksExisted % 8 == 0)
+        if (!dinosaur.isDead && dinosaur.ticksExisted % 8 == 0)
         {
-            if (dinosaur.getRNG().nextInt((int) energy) < (energy / 4))
+            if (energy < 12000 + (dinosaur.getRNG().nextInt(50) - 25))
             {
                 double posX = dinosaur.posX;
                 double posY = dinosaur.posY;
@@ -106,7 +106,7 @@ public class EntityAIEatMeat extends EntityAIBase
                 }
             }
 
-            dinosaur.setEnergy(dinosaur.getEnergy() + 500);
+            dinosaur.setEnergy(dinosaur.getEnergy() + 800);
         }
     }
 

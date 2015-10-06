@@ -1,7 +1,6 @@
 package net.timeless.animationapi.client.dto;
 
 import com.google.gson.Gson;
-
 import net.timeless.animationapi.client.AnimID;
 
 import java.util.Map;

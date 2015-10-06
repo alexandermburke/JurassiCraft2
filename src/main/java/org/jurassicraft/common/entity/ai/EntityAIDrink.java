@@ -25,9 +25,9 @@ public class EntityAIDrink extends EntityAIBase
     {
         double water = dinosaur.getWater();
 
-        if (((int) water) > 0 && dinosaur.ticksExisted % 8 == 0)
+        if (!dinosaur.isDead && dinosaur.ticksExisted % 8 == 0)
         {
-            if (dinosaur.getRNG().nextInt((int) water) < (water / 4))
+            if (water < 12000 + (dinosaur.getRNG().nextInt(50) - 25))
             {
                 int posX = (int) dinosaur.posX;
                 int posY = (int) dinosaur.posY;

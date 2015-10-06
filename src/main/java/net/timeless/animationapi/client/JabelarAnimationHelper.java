@@ -1,7 +1,5 @@
 package net.timeless.animationapi.client;
 
-import java.util.Map;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
@@ -10,10 +8,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
-
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+
+import java.util.Map;
 
 /**
  * @author jabelar
@@ -45,7 +44,7 @@ public class JabelarAnimationHelper
     private int currentPose;
     private int numTicksInTween;
     private int currentTickInTween;
-    
+
     private int lastTicksExisted;
 
     private final boolean inertialTweens;
@@ -71,9 +70,9 @@ public class JabelarAnimationHelper
         mapOfSequences = parMapOfSequences;
         inertialTweens = parInertialTweens;
         baseInertiaFactor = parInertiaFactor;
-        
+
         lastTicksExisted = theEntity.ticksExisted;
-        
+
         mc = Minecraft.getMinecraft();
 
         init(parModel);
@@ -84,10 +83,10 @@ public class JabelarAnimationHelper
 
     public void performJabelarAnimations(float parPartialTicks)
     {
-        JurassiCraft.instance.getLogger().info("FPS = "+Minecraft.getDebugFPS()+" and current sequence = "+
-                currentSequence+" and current pose = "+this.currentPose+" and current tick = "+
-                this.currentTickInTween+" out of "+numTicksInTween+" and entity ticks existed = "+
-                theEntity.ticksExisted+" versus last ticks existed = "+this.lastTicksExisted);
+//        JurassiCraft.instance.getLogger().info("FPS = " + Minecraft.getDebugFPS() + " and current sequence = " +
+//                currentSequence + " and current pose = " + this.currentPose + " and current tick = " +
+//                this.currentTickInTween + " out of " + numTicksInTween + " and entity ticks existed = " +
+//                theEntity.ticksExisted + " versus last ticks existed = " + this.lastTicksExisted);
         performBloodSpurt();
 
         // Allow interruption of the animation if it is a new animation and not currently dying
@@ -203,7 +202,7 @@ public class JabelarAnimationHelper
         {
             lastTicksExisted = theEntity.ticksExisted;
             copyTweenToCurrent();
-    
+
             if (incrementTweenTick()) // increments tween tick and returns true if finished pose
             {
                 handleFinishedPose();

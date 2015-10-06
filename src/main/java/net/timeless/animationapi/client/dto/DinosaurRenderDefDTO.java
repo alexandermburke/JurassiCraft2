@@ -1,12 +1,6 @@
 package net.timeless.animationapi.client.dto;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-
+import com.google.gson.*;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
 
 import java.lang.reflect.Type;
@@ -33,7 +27,7 @@ public class DinosaurRenderDefDTO
             for (EnumGrowthStage g : EnumGrowthStage.values)
             {
                 JsonElement perhaps = def.get(g.name());
-                GrowthRenderDef renderDef = perhaps == null ? new GrowthRenderDef() : context.<GrowthRenderDef> deserialize(perhaps, GrowthRenderDef.class);
+                GrowthRenderDef renderDef = perhaps == null ? new GrowthRenderDef() : context.<GrowthRenderDef>deserialize(perhaps, GrowthRenderDef.class);
                 if (renderDef.directory == null || renderDef.directory.isEmpty())
                 {
                     renderDef.directory = g.name().toLowerCase(Locale.ROOT);
