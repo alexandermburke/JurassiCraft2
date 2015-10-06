@@ -9,4 +9,10 @@ public class EntityLeptictidium extends EntityDinosaurDefensiveHerbivore  //impl
     {
         super(world);
     }
+
+    @Override
+    public int getTailBoxCount()
+    {
+        return 0;
+    }
 }

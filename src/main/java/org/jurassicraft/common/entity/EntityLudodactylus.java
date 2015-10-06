@@ -9,4 +9,10 @@ public class EntityLudodactylus extends EntityDinosaurFlyingAggressive  //implem
     {
         super(world);
     }
+
+    @Override
+    public int getTailBoxCount()
+    {
+        return 0;
+    }
 }

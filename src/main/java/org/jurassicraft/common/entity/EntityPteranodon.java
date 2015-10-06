@@ -22,9 +22,9 @@ public class EntityPteranodon extends EntityDinosaurFlyingAggressive // implemen
     }
 
     @Override
-    public void onUpdate()
+    public int getTailBoxCount()
     {
-        super.onUpdate();
+        return 0;
     }
 
     @Override

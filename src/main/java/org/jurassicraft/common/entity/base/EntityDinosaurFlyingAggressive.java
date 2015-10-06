@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class EntityDinosaurFlyingAggressive extends EntityDinosaurAggressive
+public abstract class EntityDinosaurFlyingAggressive extends EntityDinosaurAggressive
 {
     public EntityDinosaurFlyingAggressive(World world)
     {

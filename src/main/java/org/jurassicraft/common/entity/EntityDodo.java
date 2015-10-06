@@ -20,6 +20,12 @@ public class EntityDodo extends EntityDinosaur // implements IEntityAICreature, 
     }
 
     @Override
+    public int getTailBoxCount()
+    {
+        return 0;
+    }
+
+    @Override
     public String getLivingSound()
     {
         return randomSound(livingSounds);
@@ -35,11 +41,5 @@ public class EntityDodo extends EntityDinosaur // implements IEntityAICreature, 
     public String getDeathSound()
     {
         return randomSound(deathSounds);
-    }
-
-    @Override
-    public void onUpdate()
-    {
-        super.onUpdate();
     }
 }

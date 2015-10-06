@@ -5,20 +5,20 @@
             {"pose": "indominus_adult_idle", "time": 20}
         ],
 		"DYING": [
-            {"pose": "indominus_adult_dying_1", "time": 150}, {"pose": "indominus_adult_dying_1", "time": 10}, 
-			{"pose": "indominus_adult_dying_2", "time": 250}
+            {"pose": "indominus_adult_dying_1", "time": 10}, {"pose": "indominus_adult_dying_1", "time": 2}, 
+			{"pose": "indominus_adult_dying_2", "time": 10}
         ],
 		"ROARING": [
-            {"pose": "indominus_adult_roaring_1", "time": 150}, {"pose": "indominus_adult_roaring_1", "time": 80}, 
-			{"pose": "indominus_adult_roaring_2", "time": 150}, 
-			{"pose": "indominus_adult_roaring_3", "time": 80}, 
-			{"pose": "indominus_adult_roaring_4", "time": 80}, 
-			{"pose": "indominus_adult_roaring_3", "time": 80}, 
-			{"pose": "indominus_adult_roaring_4", "time": 80}, 
-			{"pose": "indominus_adult_roaring_3", "time": 80}, 
-			{"pose": "indominus_adult_roaring_4", "time": 80}, 
-			{"pose": "indominus_adult_roaring_2", "time": 80}, 
-			{"pose": "indominus_adult_idle", "time": 80}
+            {"pose": "indominus_adult_roaring_1", "time": 10}, {"pose": "indominus_adult_roaring_1", "time": 5}, 
+			{"pose": "indominus_adult_roaring_2", "time": 8}, 
+			{"pose": "indominus_adult_roaring_3", "time": 5}, 
+			{"pose": "indominus_adult_roaring_4", "time": 5}, 
+			{"pose": "indominus_adult_roaring_3", "time": 5}, 
+			{"pose": "indominus_adult_roaring_4", "time": 5}, 
+			{"pose": "indominus_adult_roaring_3", "time": 5}, 
+			{"pose": "indominus_adult_roaring_4", "time": 5}, 
+			{"pose": "indominus_adult_roaring_2", "time": 5}, 
+			{"pose": "indominus_adult_idle", "time": 10}
         ]
 	}
 }

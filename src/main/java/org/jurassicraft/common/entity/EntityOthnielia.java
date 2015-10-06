@@ -6,16 +6,14 @@ import org.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbivore;
 
 public class EntityOthnielia extends EntityDinosaurDefensiveHerbivore  //implements IEntityAICreature, IHerbivore
 {
-    public ChainBuffer tailBuffer = new ChainBuffer(6);
-
     public EntityOthnielia(World world)
     {
         super(world);
     }
 
-    public void onUpdate()
+    @Override
+    public int getTailBoxCount()
     {
-        this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
-        super.onUpdate();
+        return 6;
     }
 }

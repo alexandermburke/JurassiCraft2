@@ -9,4 +9,10 @@ public class EntityMamenchisaurus extends EntityDinosaurDefensiveHerbivore
     {
         super(world);
     }
+
+    @Override
+    public int getTailBoxCount()
+    {
+        return 5;
+    }
 }

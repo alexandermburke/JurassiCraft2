@@ -11,7 +11,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityDinosaurSwimmingAggressive extends EntityDinosaurAggressive
+public abstract class EntityDinosaurSwimmingAggressive extends EntityDinosaurAggressive
 {
     private float field_175482_b;
     private float field_175484_c;

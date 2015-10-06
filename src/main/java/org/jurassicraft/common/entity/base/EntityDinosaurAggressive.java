@@ -5,7 +5,7 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import org.jurassicraft.common.entity.ai.EntityAIEatMeat;
 
-public class EntityDinosaurAggressive extends EntityDinosaur implements IMob
+public abstract class EntityDinosaurAggressive extends EntityDinosaur implements IMob
 {
     public EntityDinosaurAggressive(World world)
     {

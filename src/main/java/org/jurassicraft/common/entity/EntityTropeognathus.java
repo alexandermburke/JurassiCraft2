@@ -9,4 +9,10 @@ public class EntityTropeognathus extends EntityDinosaurFlyingAggressive // imple
     {
         super(world);
     }
+
+    @Override
+    public int getTailBoxCount()
+    {
+        return 0;
+    }
 }

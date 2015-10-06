@@ -10,9 +10,9 @@ public class EntityCoelacanth extends EntityDinosaurSwimmingAggressive //impleme
         super(world);
     }
 
-    public void onUpdate()
+    @Override
+    public int getTailBoxCount()
     {
-        super.onUpdate();
+        return 0;
     }
-
 }

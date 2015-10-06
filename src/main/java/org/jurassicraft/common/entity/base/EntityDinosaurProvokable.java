@@ -10,7 +10,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-public class EntityDinosaurProvokable extends EntityDinosaur
+public abstract class EntityDinosaurProvokable extends EntityDinosaur
 {
     public EntityDinosaurProvokable(World world)
     {

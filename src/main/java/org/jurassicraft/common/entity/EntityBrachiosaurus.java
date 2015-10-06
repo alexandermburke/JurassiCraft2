@@ -13,17 +13,20 @@ public class EntityBrachiosaurus extends EntityDinosaurDefensiveHerbivore  //imp
 
     private int stepCount = 0;
 
-    public ChainBuffer tailBuffer = new ChainBuffer(5);
-
     public EntityBrachiosaurus(World world)
     {
         super(world);
     }
 
+    @Override
+    public int getTailBoxCount()
+    {
+        return 5;
+    }
+
     public void onUpdate()
     {
         super.onUpdate();
-        this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
 
         /** Step Sound */
         if (this.moveForward > 0 && this.stepCount <= 0)

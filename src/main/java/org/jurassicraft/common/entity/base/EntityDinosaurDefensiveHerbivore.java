@@ -5,7 +5,7 @@ import net.minecraft.world.World;
 import org.jurassicraft.common.entity.ai.EntityAIFindPlant;
 import org.jurassicraft.common.entity.ai.EntityAIJCPanic;
 
-public class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements IMob
+public abstract class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements IMob
 {
     private final EntityAIJCPanic entityAIPanic = new EntityAIJCPanic(this, 1.25D);
     private final EntityAIFindPlant entityAIFindPlant = new EntityAIFindPlant(this);

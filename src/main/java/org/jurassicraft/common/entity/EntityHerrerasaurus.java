@@ -9,8 +9,6 @@ import java.util.Random;
 
 public class EntityHerrerasaurus extends EntityDinosaurAggressive  //implements IEntityAICreature, ICarnivore
 {
-    public ChainBuffer tailBuffer = new ChainBuffer(6);
-
     private static final String[] deathSounds = new String[]{"herrerasaurus_death_1"};
     private static final String[] livingSounds = new String[]{"herrerasaurus_living_1"};
 
@@ -32,6 +30,12 @@ public class EntityHerrerasaurus extends EntityDinosaurAggressive  //implements 
         }
     }
 
+    @Override
+    public int getTailBoxCount()
+    {
+        return 6;
+    }
+
     public String getLivingSound()
     {
         return randomSound(livingSounds);
@@ -50,12 +54,5 @@ public class EntityHerrerasaurus extends EntityDinosaurAggressive  //implements 
     public float getSoundVolume()
     {
         return (float) transitionFromAge(1.3F, 2.0F);
-    }
-
-    public void onUpdate()
-    {
-        super.onUpdate();
-
-        this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
     }
 }

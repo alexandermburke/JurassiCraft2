@@ -5,15 +5,14 @@ import org.jurassicraft.common.entity.base.EntityDinosaurSwimmingAggressive;
 
 public class EntityMegapiranha extends EntityDinosaurSwimmingAggressive
 {
-
-
     public EntityMegapiranha(World world)
     {
         super(world);
     }
 
-    public void onUpdate()
+    @Override
+    public int getTailBoxCount()
     {
-        super.onUpdate();
+        return 0;
     }
 }

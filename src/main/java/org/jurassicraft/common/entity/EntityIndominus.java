@@ -14,8 +14,6 @@ import org.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 
 public class EntityIndominus extends EntityDinosaurAggressive // implements ICarnivore, IEntityAICreature
 {
-    public ChainBuffer tailBuffer = new ChainBuffer(7);
-
     private static final String[] hurtSounds = new String[]{"indominus_hurt_1"};
     private static final String[] livingSounds = new String[]{"indominus_living_1"};
     private static final String[] deathSounds = new String[]{"indominus_death_1"};
@@ -40,6 +38,12 @@ public class EntityIndominus extends EntityDinosaurAggressive // implements ICar
     }
 
     @Override
+    public int getTailBoxCount()
+    {
+        return 7;
+    }
+
+    @Override
     public void entityInit()
     {
         super.entityInit();
@@ -51,8 +55,6 @@ public class EntityIndominus extends EntityDinosaurAggressive // implements ICar
     public void onUpdate()
     {
         super.onUpdate();
-
-        this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
 
         if (this.ticksExisted % 62 == 0)
             this.playSound(randomSound(breathSounds), this.getSoundVolume(), this.getSoundPitch());

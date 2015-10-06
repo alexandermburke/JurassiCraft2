@@ -18,8 +18,6 @@ import java.util.Random;
 
 public class EntityVelociraptor extends EntityDinosaurAggressive // implements ICarnivore, IEntityAICreature
 {
-    public ChainBuffer tailBuffer = new ChainBuffer(6);
-
     private static final String[] hurtSounds = new String[]{"velociraptor_hurt_1"};
     private static final String[] livingSounds = new String[]{"velociraptor_living_1", "velociraptor_living_2", "velociraptor_living_3"};
     private static final String[] deathSounds = new String[]{"velociraptor_death_1"};
@@ -33,7 +31,6 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
             EntityGiganotosaurus.class, EntitySpinosaurus.class};
 
     public ControlledAnimation dontLean = new ControlledAnimation(5);
-    private final int frame = this.ticksExisted;
 
     public EntityVelociraptor(World world)
     {
@@ -59,6 +56,12 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
         {
             this.defendFromAttacker(deftargets[j], new Random().nextInt(3) + 1);
         }
+    }
+
+    @Override
+    public int getTailBoxCount()
+    {
+        return 6;
     }
 
     // NOTE: This adds an attack target. Class should be the entity class for the target, lower prio get executed
@@ -102,7 +105,6 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
     @Override
     public void onUpdate()
     {
-        this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
         super.onUpdate();
 
 //        if (getAttackTarget() != null)

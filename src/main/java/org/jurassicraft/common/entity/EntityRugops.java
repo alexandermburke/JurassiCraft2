@@ -9,9 +9,6 @@ import java.util.Random;
 
 public class EntityRugops extends EntityDinosaurAggressive  //implements IEntityAICreature, ICarnivore
 {
-
-    public ChainBuffer tailBuffer = new ChainBuffer(6);
-
     private static final String[] hurtSounds = new String[]{"rugops_hurt_1", "rugops_hurt_2"};
     private static final String[] livingSounds = new String[]{"rugops_living_1", "rugops_living_2", "rugops_living_3", "rugops_living_4"};
     private static final String[] deathSounds = new String[]{"rugops_death_1", "rugops_death_2"};
@@ -34,10 +31,10 @@ public class EntityRugops extends EntityDinosaurAggressive  //implements IEntity
         }
     }
 
-    public void onUpdate()
+    @Override
+    public int getTailBoxCount()
     {
-        this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
-        super.onUpdate();
+        return 6;
     }
 
     public String getLivingSound()

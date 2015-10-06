@@ -11,7 +11,6 @@ public class EntityAchillobator extends EntityDinosaurAggressive  //implements I
 {
     private static final Class[] targets = {EntityCompsognathus.class, EntityPlayer.class, EntityDilophosaurus.class, EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class, EntityHypsilophodon.class, EntitySegisaurus.class, EntityProtoceratops.class, EntityOthnielia.class, EntityMicroceratus.class};
     private static final Class[] deftargets = {EntityPlayer.class, EntityTyrannosaurus.class, EntityGiganotosaurus.class, EntitySpinosaurus.class};
-    public ChainBuffer tailBuffer = new ChainBuffer(6);
 
     public EntityAchillobator(World world)
     {
@@ -29,9 +28,9 @@ public class EntityAchillobator extends EntityDinosaurAggressive  //implements I
         }
     }
 
-    public void onUpdate()
+    @Override
+    public int getTailBoxCount()
     {
-        this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
-        super.onUpdate();
+        return 6;
     }
 }

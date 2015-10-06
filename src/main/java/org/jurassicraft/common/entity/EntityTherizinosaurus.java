@@ -6,8 +6,6 @@ import org.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbivore;
 
 public class EntityTherizinosaurus extends EntityDinosaurDefensiveHerbivore // implements IEntityAICreature, IHerbivore
 {
-    public ChainBuffer tailBuffer = new ChainBuffer(6);
-
     public EntityTherizinosaurus(World world)
     {
         super(world);
@@ -15,9 +13,8 @@ public class EntityTherizinosaurus extends EntityDinosaurDefensiveHerbivore // i
     }
 
     @Override
-    public void onUpdate()
+    public int getTailBoxCount()
     {
-        tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
-        super.onUpdate();
+        return 6;
     }
 }

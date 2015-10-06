@@ -11,8 +11,6 @@ import java.util.Random;
 
 public class EntitySpinosaurus extends EntityDinosaurAggressive // implements IEntityAICreature, IOmnivore
 {
-    public ChainBuffer tailBuffer = new ChainBuffer(6);
-
     private static final String[] hurtSounds = new String[]{"spinosaurus_hurt_1"};
     private static final String[] livingSounds = new String[]{"spinosaurus_living_1", "spinosaurus_living_2", "spinosaurus_living_3", "spinosaurus_living_4"};
     private static final String[] deathSounds = new String[]{"spinosaurus_death_1", "spinosaurus_death_2"};
@@ -40,6 +38,12 @@ public class EntitySpinosaurus extends EntityDinosaurAggressive // implements IE
     }
 
     @Override
+    public int getTailBoxCount()
+    {
+        return 6;
+    }
+
+    @Override
     public void onUpdate()
     {
         super.onUpdate();
@@ -52,16 +56,6 @@ public class EntitySpinosaurus extends EntityDinosaurAggressive // implements IE
         }
 
         this.stepCount -= this.moveForward * 9.5;
-
-        // if(this.getAnimID() == 0)
-        // AnimationAPI.sendAnimPacket(this, 1);
-        this.tailBuffer.calculateChainSwingBuffer(68.0F, 10, 4.0F, this);
-
-//        // DEBUG
-//        if (this.getRNG().nextInt(1000) <= 10)
-//        {
-//            AnimationAPI.sendAnimPacket(this, AnimID.ROARING);
-//        }
     }
 
     @Override

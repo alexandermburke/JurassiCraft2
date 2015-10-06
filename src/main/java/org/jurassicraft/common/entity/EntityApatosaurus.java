@@ -6,8 +6,6 @@ import org.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbivore;
 
 public class EntityApatosaurus extends EntityDinosaurDefensiveHerbivore // implements IEntityAICreature, IHerbivore
 {
-    public ChainBuffer tailBuffer = new ChainBuffer(5);
-
     private int stepCount = 0;
 
     public EntityApatosaurus(World world)
@@ -15,10 +13,15 @@ public class EntityApatosaurus extends EntityDinosaurDefensiveHerbivore // imple
         super(world);
     }
 
+    @Override
+    public int getTailBoxCount()
+    {
+        return 5;
+    }
+
     public void onUpdate()
     {
         super.onUpdate();
-        this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
 
         /** Step Sound */
         if (this.moveForward > 0 && this.stepCount <= 0)

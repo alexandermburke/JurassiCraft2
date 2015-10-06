@@ -9,8 +9,6 @@ import java.util.Random;
 
 public class EntityCarnotaurus extends EntityDinosaurAggressive  //implements IEntityAICreature, ICarnivore
 {
-    public ChainBuffer tailBuffer = new ChainBuffer(6);
-
     private static final Class[] targets = {EntityCompsognathus.class, EntityAnkylosaurus.class, EntityPlayer.class, EntityDilophosaurus.class, EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class, EntityLudodactylus.class, EntityHypsilophodon.class, EntityGallimimus.class, EntitySegisaurus.class, EntityProtoceratops.class, EntityParasaurolophus.class, EntityOthnielia.class, EntityMicroceratus.class, EntityTriceratops.class, EntityStegosaurus.class};
     private static final Class[] deftargets = {EntityPlayer.class, EntityTyrannosaurus.class, EntityGiganotosaurus.class, EntitySpinosaurus.class};
 
@@ -29,10 +27,10 @@ public class EntityCarnotaurus extends EntityDinosaurAggressive  //implements IE
         }
     }
 
-    public void onUpdate()
+    @Override
+    public int getTailBoxCount()
     {
-        super.onUpdate();
-        this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
+        return 6;
     }
 
     public String getLivingSound()

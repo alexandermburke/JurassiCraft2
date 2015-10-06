@@ -27,6 +27,7 @@ import net.timeless.animationapi.AIAnimation;
 import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.AnimID;
+import net.timeless.unilib.common.animation.ChainBuffer;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.disease.Disease;
@@ -41,7 +42,7 @@ import org.jurassicraft.common.item.JCItemRegistry;
 import java.util.HashSet;
 import java.util.Set;
 
-public class EntityDinosaur extends EntityCreature implements IEntityAdditionalSpawnData, IAnimatedEntity, IInventory
+public abstract class EntityDinosaur extends EntityCreature implements IEntityAdditionalSpawnData, IAnimatedEntity, IInventory
 {
     protected Dinosaur dinosaur;
     protected int randTexture;
@@ -73,6 +74,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
 
     private boolean hasTracker;
 
+    public ChainBuffer tailBuffer;
+
 //    public void setNavigator(PathNavigate pn)
 //    {
 //        navigator = pn;
@@ -81,6 +84,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     public EntityDinosaur(World world)
     {
         super(world);
+
+        tailBuffer = new ChainBuffer(getTailBoxCount());
 
         energy = 12000;
         water = 12000;
@@ -107,6 +112,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
         updateCreatureData();
         adjustHitbox();
     }
+
+    public abstract int getTailBoxCount();
 
     public boolean hasTracker()
     {
@@ -395,6 +402,8 @@ public class EntityDinosaur extends EntityCreature implements IEntityAdditionalS
     public void onUpdate()
     {
         super.onUpdate();
+
+        this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
 
         if (!worldObj.isRemote)
         {

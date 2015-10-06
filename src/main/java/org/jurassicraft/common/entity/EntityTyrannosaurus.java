@@ -14,11 +14,9 @@ import org.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 
 import java.util.Random;
 
-public class EntityTyrannosaurus extends EntityDinosaurAggressive implements IAnimatedEntity // , IEntityAICreature,
+public class EntityTyrannosaurus extends EntityDinosaurAggressive // , IEntityAICreature,
         // ICarnivore
 {
-    public ChainBuffer tailBuffer = new ChainBuffer(6);
-
     private static final String[] hurtSounds = new String[]{"tyrannosaurus_hurt_1", "tyrannosaurus_hurt_2"};
     private static final String[] deathSounds = new String[]{"tyrannosaurus_death_1"};
     private static final String[] roarSounds = new String[]{"tyrannosaurus_roar_1"};
@@ -52,6 +50,12 @@ public class EntityTyrannosaurus extends EntityDinosaurAggressive implements IAn
     }
 
     @Override
+    public int getTailBoxCount()
+    {
+        return 6;
+    }
+
+    @Override
     public String getLivingSound()
     {
         JurassiCraft.instance.getLogger().debug("Getting living sound");
@@ -73,7 +77,6 @@ public class EntityTyrannosaurus extends EntityDinosaurAggressive implements IAn
     @Override
     public void onUpdate()
     {
-        this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
         super.onUpdate();
 
         this.roarCount.update();

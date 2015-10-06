@@ -6,8 +6,6 @@ import org.jurassicraft.common.entity.base.EntityDinosaurProvokableHerbivore;
 
 public class EntityStegosaurus extends EntityDinosaurProvokableHerbivore  //implements IEntityAICreature, IHerbivore
 {
-    public ChainBuffer tailBuffer = new ChainBuffer(6);
-
     private static final String[] hurtSounds = new String[]{"stegosaurus_hurt_1", "stegosaurus_hurt_2"};
     private static final String[] livingSounds = new String[]{"stegosaurus_living_1", "stegosaurus_living_2"};
     private static final String[] deathSounds = new String[]{"stegosaurus_death_1", "stegosaurus_death_2"};
@@ -17,10 +15,10 @@ public class EntityStegosaurus extends EntityDinosaurProvokableHerbivore  //impl
         super(world);
     }
 
-    public void onUpdate()
+    @Override
+    public int getTailBoxCount()
     {
-        this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
-        super.onUpdate();
+        return 6;
     }
 
     public String getLivingSound()

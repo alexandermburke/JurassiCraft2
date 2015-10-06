@@ -8,8 +8,6 @@ import org.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbivore;
 
 public class EntityHypsilophodon extends EntityDinosaurDefensiveHerbivore // implements IEntityAICreature, IHerbivore
 {
-    public ChainBuffer tailBuffer = new ChainBuffer(6);
-
     private static final String[] hurtSounds = new String[]{"hypsilophodon_hurt_1", "hypsilophodon_hurt_2"};
     private static final String[] livingSounds = new String[]{"hypsilophodon_living_1", "hypsilophodon_living_2", "hypsilophodon_living_3", "hypsilophodon_living_4"};
 
@@ -17,6 +15,12 @@ public class EntityHypsilophodon extends EntityDinosaurDefensiveHerbivore // imp
     {
         super(world);
         tasks.addTask(2, new JCNonAutoAnimBase(this, 35, AnimID.SCRATCHING, 60)); // Scratch Animation
+    }
+
+    @Override
+    public int getTailBoxCount()
+    {
+        return 6;
     }
 
     @Override
@@ -35,13 +39,5 @@ public class EntityHypsilophodon extends EntityDinosaurDefensiveHerbivore // imp
     public String getDeathSound()
     {
         return randomSound(hurtSounds);
-    }
-
-    @Override
-    public void onUpdate()
-    {
-        super.onUpdate();
-
-        this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
     }
 }

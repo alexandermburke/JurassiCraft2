@@ -6,11 +6,15 @@ import org.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbivore;
 
 public class EntityLeaellynasaura extends EntityDinosaurDefensiveHerbivore  //implements IEntityAICreature, IHerbivore
 {
-    public ChainBuffer tailBuffer = new ChainBuffer(6);
-
     public EntityLeaellynasaura(World world)
     {
         super(world);
+    }
+
+    @Override
+    public int getTailBoxCount()
+    {
+        return 6;
     }
 
     public void onUpdate()

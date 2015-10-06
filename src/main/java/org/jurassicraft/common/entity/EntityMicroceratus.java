@@ -6,17 +6,14 @@ import org.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbivore;
 
 public class EntityMicroceratus extends EntityDinosaurDefensiveHerbivore // implements IEntityAICreature, IHerbivore
 {
-    public ChainBuffer tailBuffer = new ChainBuffer(5);
-
     public EntityMicroceratus(World world)
     {
         super(world);
     }
 
-    public void onUpdate()
+    @Override
+    public int getTailBoxCount()
     {
-        super.onUpdate();
-
-        this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
+        return 5;
     }
 }

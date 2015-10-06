@@ -9,8 +9,6 @@ import java.util.Random;
 
 public class EntityGiganotosaurus extends EntityDinosaurAggressive // implements IEntityAICreature, ICarnivore
 {
-    public ChainBuffer tailBuffer = new ChainBuffer(6);
-
     private static final Class[] targets = {EntityCompsognathus.class, EntityAnkylosaurus.class, EntityPlayer.class, EntityDilophosaurus.class, EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class, EntityLudodactylus.class, EntityHypsilophodon.class, EntityGallimimus.class, EntitySegisaurus.class, EntityProtoceratops.class, EntityParasaurolophus.class, EntityOthnielia.class, EntityMicroceratus.class, EntityTriceratops.class, EntityStegosaurus.class, EntityBrachiosaurus.class, EntityApatosaurus.class, EntityRugops.class, EntityHerrerasaurus.class, EntityVelociraptor.class, EntityAchillobator.class, EntityCarnotaurus.class};
 
     private int stepCount = 0;
@@ -22,6 +20,12 @@ public class EntityGiganotosaurus extends EntityDinosaurAggressive // implements
         {
             this.addAIForAttackTargets(targets[i], new Random().nextInt(3) + 1);
         }
+    }
+
+    @Override
+    public int getTailBoxCount()
+    {
+        return 6;
     }
 
     public void onUpdate()
@@ -36,7 +40,5 @@ public class EntityGiganotosaurus extends EntityDinosaurAggressive // implements
         }
 
         this.stepCount -= this.moveForward * 9.5;
-
-        this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
     }
 }

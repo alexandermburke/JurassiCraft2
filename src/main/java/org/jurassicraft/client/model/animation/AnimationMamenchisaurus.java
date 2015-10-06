@@ -98,5 +98,7 @@ public class AnimationMamenchisaurus extends DinosaurAnimator
 
         model.chainWave(tailParts, globalSpeed * 0.25F, globalHeight * 1.0F, 3, ticksExisted, 0.1F);
         model.chainWave(neckParts, globalSpeed * 0.25F, globalHeight * 0.25F, -4, ticksExisted, 0.1F);
+
+        parEntity.tailBuffer.applyChainSwingBuffer(tailParts);
     }
 }
