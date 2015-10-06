@@ -2,8 +2,10 @@ package org.jurassicraft.common.event;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.world.GameRules;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import org.jurassicraft.common.achievements.JCAchievements;
@@ -39,6 +41,12 @@ public class CommonEventHandler
         {
             event.player.addStat(JCAchievements.amber, 1);
         }
+    }
+
+    @SubscribeEvent
+    public void worldLoad(WorldEvent.Load event)
+    {
+        event.world.getGameRules().addGameRule("dinoMetabolism", "true", GameRules.ValueType.BOOLEAN_VALUE);
     }
 
     @SubscribeEvent

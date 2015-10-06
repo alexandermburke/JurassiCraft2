@@ -25,7 +25,7 @@ public class EntityAIFindPlant extends EntityAIBase
     {
         double energy = dinosaur.getEnergy();
 
-        if (!dinosaur.isDead && dinosaur.ticksExisted % 8 == 0)
+        if (!dinosaur.isDead && dinosaur.ticksExisted % 8 == 0 && dinosaur.worldObj.getGameRules().getGameRuleBooleanValue("dinoMetabolism"))
         {
             if (energy < 12000 + (dinosaur.getRNG().nextInt(50) - 25))
             {
