@@ -12,6 +12,14 @@
 			{"pose": "indominus_adult_resting_1", "time": 20}, {"pose": "indominus_adult_resting_1", "time": 166},
 			{"pose": "indominus_adult_idle", "time": 20}
 		],
+		"LOOKING_LEFT": [
+            {"pose": "indominus_adult_looking_left", "time": 5}, {"pose": "indominus_adult_looking_left", "time": 30},
+            {"pose": "indominus_adult_idle", "time": 5}
+		],
+		"LOOKING_RIGHT": [
+            {"pose": "indominus_adult_looking_right", "time": 5}, {"pose": "indominus_adult_looking_right", "time": 30},
+            {"pose": "indominus_adult_idle", "time": 5}
+		],
 		"ROARING": [
             {"pose": "indominus_adult_roaring_1", "time": 10}, {"pose": "indominus_adult_roaring_1", "time": 5}, 
 			{"pose": "indominus_adult_roaring_2", "time": 8}, 

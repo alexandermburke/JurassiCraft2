@@ -1,7 +1,5 @@
 package net.timeless.animationapi.client;
 
-import java.util.Map;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
@@ -10,10 +8,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
-
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+
+import java.util.Map;
 
 /**
  * @author jabelar
@@ -79,7 +78,7 @@ public class JabelarAnimationHelper
         baseInertiaFactor = parInertiaFactor;
 
         lastTicksExisted = theEntity.ticksExisted;
-        
+
         partialTicks = 0.0F;
         tickStartNanoTime = System.nanoTime();
 
@@ -93,13 +92,13 @@ public class JabelarAnimationHelper
 
     public void performJabelarAnimations(float parPartialTicks)
     {
-        partialTicks = Math.min(1.0F,((float)(System.nanoTime() - tickStartNanoTime)) / 1000000000 * 20);
+        partialTicks = Math.min(1.0F, ((float) (System.nanoTime() - tickStartNanoTime)) / 1000000000 * 20);
 
         JurassiCraft.instance.getLogger().info("FPS = " + Minecraft.getDebugFPS() + " and current sequence = " +
                 currentSequence + " and current pose = " + this.currentPose + " and current tick = " +
                 this.currentTickInTween + " out of " + numTicksInTween + " and entity ticks existed = " +
-                theEntity.ticksExisted + " and partial ticks = "+partialTicks);
-    
+                theEntity.ticksExisted + " and partial ticks = " + partialTicks);
+
         performBloodSpurt();
 
         // Allow interruption of the animation if it is a new animation and not currently dying
@@ -127,7 +126,7 @@ public class JabelarAnimationHelper
         currentPositionArray = new float[numParts][3];
         currentOffsetArray = new float[numParts][3];
         updateCurrentPoseArrays();
-        
+
         // initialize the increment arrays to match difference between current and next pose
         rotationIncrementArray = new float[numParts][3];
         positionIncrementArray = new float[numParts][3];
@@ -211,9 +210,11 @@ public class JabelarAnimationHelper
         currentTickInTween = 0;
 
         if (currentSequence != AnimID.IDLE)
+        {
             JurassiCraft.instance.getLogger().info("current sequence for entity ID " + theEntity.getEntityId() + " is " + currentSequence
                     + " out of " + mapOfSequences.size() + " and current pose " + currentPose + " out of "
                     + mapOfSequences.get(currentSequence).length + " with " + numTicksInTween + " ticks in tween");
+        }
     }
 
     private void performNextTweenTick()
@@ -224,7 +225,7 @@ public class JabelarAnimationHelper
         {
             lastTicksExisted = theEntity.ticksExisted;
             tickStartNanoTime = System.nanoTime();
-            
+
 //            updateCurrentPoseArrays();
 
             if (incrementTweenTick()) // increments tween tick and returns true if finished pose
@@ -260,21 +261,21 @@ public class JabelarAnimationHelper
             }
         }
     }
-    
+
     private void nextTweenRotations(int parPartIndex, float parInertiaFactor)
     {
         theModelRendererArray[parPartIndex].rotateAngleX = currentRotationArray[parPartIndex][0] + rotationIncrementArray[parPartIndex][0] * (currentTickInTween + partialTicks);
         theModelRendererArray[parPartIndex].rotateAngleY = currentRotationArray[parPartIndex][1] + rotationIncrementArray[parPartIndex][1] * (currentTickInTween + partialTicks);
         theModelRendererArray[parPartIndex].rotateAngleZ = currentRotationArray[parPartIndex][2] + rotationIncrementArray[parPartIndex][2] * (currentTickInTween + partialTicks);
     }
-    
+
     private void nextTweenPositions(int parPartIndex, float parInertiaFactor)
     {
         theModelRendererArray[parPartIndex].rotationPointX = currentPositionArray[parPartIndex][0] + positionIncrementArray[parPartIndex][0] * (currentTickInTween + partialTicks);
         theModelRendererArray[parPartIndex].rotationPointY = currentPositionArray[parPartIndex][1] + positionIncrementArray[parPartIndex][1] * (currentTickInTween + partialTicks);
         theModelRendererArray[parPartIndex].rotationPointZ = currentPositionArray[parPartIndex][2] + positionIncrementArray[parPartIndex][2] * (currentTickInTween + partialTicks);
     }
-    
+
     private void nextTweenOffsets(int parPartIndex, float parInertiaFactor)
     {
         theModelRendererArray[parPartIndex].offsetX = currentOffsetArray[parPartIndex][0] + offsetIncrementArray[parPartIndex][0] * (currentTickInTween + partialTicks);
@@ -354,7 +355,7 @@ public class JabelarAnimationHelper
         {
             setNextSequence(theEntity.getAnimID());
         }
-        
+
         updateCurrentPoseArrays();
         setNextPose();
         updateIncrementArrays();
@@ -424,9 +425,11 @@ public class JabelarAnimationHelper
         initPose();
         initTweenTicks();
         if (currentSequence != AnimID.IDLE)
+        {
             JurassiCraft.instance.getLogger().info("current sequence for entity ID " + theEntity.getEntityId() + " is " + currentSequence
                     + " out of " + mapOfSequences.size() + " and current pose " + currentPose + " out of "
                     + mapOfSequences.get(currentSequence).length + " with " + numTicksInTween + " ticks in tween");
+        }
     }
 
     public int getCurrentPose()
