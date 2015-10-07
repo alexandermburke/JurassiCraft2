@@ -473,7 +473,9 @@ public abstract class TileMachineBase extends TileEntityLockable implements IUpd
         slots[slot].stackSize--;
 
         if (slots[slot].stackSize <= 0)
+        {
             slots[slot] = null;
+        }
     }
 
     @Override

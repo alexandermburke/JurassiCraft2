@@ -38,7 +38,7 @@ public class BlockAmber extends Block
      */
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        List<ItemStack> ret = new java.util.ArrayList<ItemStack>();
+        List<ItemStack> ret = new java.util.ArrayList<>();
 
         Random rand = world instanceof World ? ((World) world).rand : RANDOM;
 

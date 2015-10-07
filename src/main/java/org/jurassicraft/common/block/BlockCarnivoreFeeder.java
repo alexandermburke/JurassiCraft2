@@ -41,7 +41,9 @@ public class BlockCarnivoreFeeder extends BlockOriented
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
             if (tileentity instanceof TileCarnivoreFeeder)
+            {
                 ((TileCarnivoreFeeder) tileentity).setCustomInventoryName(stack.getDisplayName());
+            }
         }
     }
 

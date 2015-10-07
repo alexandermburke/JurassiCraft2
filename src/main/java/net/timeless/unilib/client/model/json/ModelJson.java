@@ -18,7 +18,7 @@ import java.util.*;
 @SideOnly(Side.CLIENT)
 public class ModelJson extends MowzieModelBase
 {
-    private final List<MowzieModelRenderer> parents = new ArrayList<MowzieModelRenderer>();
+    private final List<MowzieModelRenderer> parents = new ArrayList<>();
     private final Map<String, MowzieModelRenderer> nameMap = Maps.newHashMap();
     //    private final Map<String, MowzieModelRenderer> identifierMap = Maps.newHashMap();
     private IModelAnimator animator;
@@ -90,7 +90,9 @@ public class ModelJson extends MowzieModelBase
         if (!Minecraft.getMinecraft().isGamePaused())
         {
             if (resetsEachFrame)
+            {
                 this.setToInitPose();
+            }
 
 //            if (playingAnimation != null)
 //            {

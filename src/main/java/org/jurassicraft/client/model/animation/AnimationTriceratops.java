@@ -56,7 +56,9 @@ public class AnimationTriceratops extends DinosaurAnimator
         float legOffsetModifier = 2.5F;
         float bobBase = 2F;
         if (sprintModifier >= 0.9)
+        {
             bobBase = 1F;
+        }
 
         float scaleFactor = 0.25F;
         float height = 1.0F;

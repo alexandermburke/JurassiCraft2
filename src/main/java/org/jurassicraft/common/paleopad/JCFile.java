@@ -19,7 +19,7 @@ public class JCFile
 
     private JCPlayerData playerData;
 
-    private List<JCFile> children = new ArrayList<JCFile>();
+    private List<JCFile> children = new ArrayList<>();
 
     public JCFile(String name, JCFile parent, EntityPlayer player, boolean dir)
     {

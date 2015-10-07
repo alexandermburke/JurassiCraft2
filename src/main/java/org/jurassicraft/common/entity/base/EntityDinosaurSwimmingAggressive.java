@@ -43,7 +43,9 @@ public abstract class EntityDinosaurSwimmingAggressive extends EntityDinosaurAgg
         super.onUpdate();
 
         if (this.isInWater())
+        {
             this.motionY *= 0.1D;
+        }
     }
 
     public boolean canBreatheUnderwater()
@@ -181,7 +183,9 @@ public abstract class EntityDinosaurSwimmingAggressive extends EntityDinosaurAgg
             }
         }
         else
+        {
             this.setAir(300);
+        }
     }
 
     public boolean getCanSpawnHere()

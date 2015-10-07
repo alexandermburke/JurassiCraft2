@@ -11,7 +11,9 @@ public class MathUtils
     public static long mean(long[] values)
     {
         if (values.length <= 0)
+        {
             throw new IllegalArgumentException("Array contains no elements");
+        }
         // java 8: return LongStream.of(values).sum() / values.length;
         long sum = 0l;
         for (long v : values)
@@ -68,16 +70,22 @@ public class MathUtils
     public static boolean hasNoRange(int num1, int num2, int difference)
     {
         if (num1 == num2)
+        {
             return true;
+        }
         if (num1 > num2)
         {
             if (num1 - num2 <= 0)
+            {
                 return true;
+            }
         }
         if (num2 > num1)
         {
             if (num2 - num1 <= 0)
+            {
                 return true;
+            }
         }
         return false;
     }
@@ -95,14 +103,18 @@ public class MathUtils
     public static double makePositive(double num)
     {
         if (num >= 0)
+        {
             return num;
+        }
         return -num;
     }
 
     public static double makeNegative(double num)
     {
         if (num < 0)
+        {
             return num;
+        }
         return -num;
     }
 

@@ -28,13 +28,19 @@ public class BlockJCLog extends BlockLog
 
     public boolean isOpaqueCube()
     {
-        if (treeType == null) return true;
+        if (treeType == null)
+        {
+            return true;
+        }
         return true;
     }
 
     public boolean isFullCube()
     {
-        if (treeType == null) return true;
+        if (treeType == null)
+        {
+            return true;
+        }
         return true;
     }
 

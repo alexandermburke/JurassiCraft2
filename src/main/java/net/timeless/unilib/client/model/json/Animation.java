@@ -21,5 +21,5 @@ public class Animation
 
     public boolean loops;
 
-    public TreeMap<String, ArrayList<AnimationComponent>> sets = new TreeMap<String, ArrayList<AnimationComponent>>(Ordering.natural()); // cube identifier to animation component
+    public TreeMap<String, ArrayList<AnimationComponent>> sets = new TreeMap<>(Ordering.natural()); // cube identifier to animation component
 }

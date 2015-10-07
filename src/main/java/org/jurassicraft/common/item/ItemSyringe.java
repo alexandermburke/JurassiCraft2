@@ -36,7 +36,9 @@ public class ItemSyringe extends ItemDnaContainer
         Dinosaur dinosaur = JCEntityRegistry.getDinosaurById(stack.getItemDamage());
 
         if (dinosaur == null)
+        {
             dinosaur = JCEntityRegistry.achillobator;
+        }
 
         return dinosaur;
     }
@@ -50,9 +52,9 @@ public class ItemSyringe extends ItemDnaContainer
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List subtypes)
     {
-        List<Dinosaur> dinosaurs = new ArrayList<Dinosaur>(JCEntityRegistry.getDinosaurs());
+        List<Dinosaur> dinosaurs = new ArrayList<>(JCEntityRegistry.getDinosaurs());
 
-        Map<Dinosaur, Integer> ids = new HashMap<Dinosaur, Integer>();
+        Map<Dinosaur, Integer> ids = new HashMap<>();
 
         int id = 0;
 
@@ -68,7 +70,9 @@ public class ItemSyringe extends ItemDnaContainer
         for (Dinosaur dino : dinosaurs)
         {
             if (dino.shouldRegister())
+            {
                 subtypes.add(new ItemStack(item, 1, ids.get(dino)));
+            }
         }
     }
 }

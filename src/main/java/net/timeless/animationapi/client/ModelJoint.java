@@ -16,7 +16,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ModelJoint extends ModelRenderer
 {
-
     public ModelJoint(ModelBase base)
     {
         this(base, null);
@@ -51,14 +50,18 @@ public class ModelJoint extends ModelRenderer
     public ModelRenderer setTextureOffset(int x, int y)
     {
         if (model != null)
+        {
             model.setTextureOffset(x, y);
+        }
         return this;
     }
 
     public ModelRenderer setTextureSize(int w, int h)
     {
         if (model != null)
+        {
             model.setTextureSize(w, h);
+        }
         return this;
     }
 

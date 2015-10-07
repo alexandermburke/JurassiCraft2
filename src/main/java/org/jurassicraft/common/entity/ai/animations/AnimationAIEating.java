@@ -21,9 +21,13 @@ public class AnimationAIEating extends EntityAIBase
         this.creature = creature;
 
         if (duration > 0)
+        {
             this.duration = duration;
+        }
         else
+        {
             this.duration = 10;
+        }
 
         this.shouldAnimate = shouldAnimate;
         this.timer = 0;
@@ -41,7 +45,9 @@ public class AnimationAIEating extends EntityAIBase
         this.timer = this.duration;
 
         if (this.shouldAnimate && this.creature.getAnimID() == AnimID.IDLE)
+        {
             creature.setAnimID(AnimID.EATING);
+        }
     }
 
     @Override

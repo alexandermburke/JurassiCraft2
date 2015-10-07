@@ -51,7 +51,9 @@ public class ItemPlasterAndBandage extends Item
                 world.setBlockState(pos, blockRegistry.getEncasedFossil(id).getDefaultState().withProperty(BlockEncasedFossil.VARIANT, blockRegistry.getMetadata(id)));
 
                 if (!player.capabilities.isCreativeMode)
+                {
                     stack.stackSize--;
+                }
 
                 player.addStat(JCAchievements.fossils, 1);
 

@@ -22,7 +22,9 @@ public class RandomRule extends FixedRule
         this.min = min;
         this.max = max;
         if (maxIncluded)
+        {
             this.max++;
+        }
     }
 
     @Override

@@ -43,7 +43,9 @@ public class BlockFossilGrinder extends BlockOriented
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
             if (tileentity instanceof TileFossilGrinder)
+            {
                 ((TileFossilGrinder) tileentity).setCustomInventoryName(stack.getDisplayName());
+            }
         }
     }
 

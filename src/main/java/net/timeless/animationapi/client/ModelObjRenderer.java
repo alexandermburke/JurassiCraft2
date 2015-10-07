@@ -20,7 +20,6 @@ import org.lwjgl.opengl.GL11;
 @SideOnly(Side.CLIENT)
 public class ModelObjRenderer extends ModelRenderer
 {
-
     public ModelObjRenderer(ModelBase bass)
     {
         this(bass, null, 1F);

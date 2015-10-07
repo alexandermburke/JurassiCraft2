@@ -35,7 +35,9 @@ public class TreeBlock
     {
 
         if (TB.getX() == x && TB.getY() == y && TB.getZ() == z)
+        {
             return true;
+        }
 
         return false;
 
@@ -98,7 +100,9 @@ public class TreeBlock
         {
 
             if (rotation == null)
+            {
                 return 0;
+            }
 
             switch (rotation)
             {
@@ -151,12 +155,18 @@ public class TreeBlock
             int index = getRotationIndex(rotation);
 
             if (index == 0)
+            {
                 return Rotation.none;
+            }
 
             if (index < 4)
+            {
                 index++;
+            }
             else
+            {
                 index = 1;
+            }
 
             return getRotationFromIndex(index);
         }

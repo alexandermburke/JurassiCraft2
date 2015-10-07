@@ -1,6 +1,5 @@
 package org.jurassicraft.common.entity.base;
 
-import com.google.common.collect.Lists;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import org.jurassicraft.JurassiCraft;
@@ -19,8 +18,8 @@ import java.util.List;
 
 public class JCEntityRegistry
 {
-    private static List<Dinosaur> dinosaurs = Lists.newArrayList();
-    private static HashMap<EnumTimePeriod, List<Dinosaur>> dinosaursFromPeriod = new HashMap<EnumTimePeriod, List<Dinosaur>>();
+    private static List<Dinosaur> dinosaurs = new ArrayList<>();
+    private static HashMap<EnumTimePeriod, List<Dinosaur>> dinosaursFromPeriod = new HashMap<>();
 
     public static final Dinosaur dodo = new DinosaurDodo();
     public static final Dinosaur achillobator = new DinosaurAchillobator();
@@ -69,7 +68,7 @@ public class JCEntityRegistry
 
     public static List<Dinosaur> getDinosaursFromSeaLampreys()
     {
-        List<Dinosaur> marineDinos = new ArrayList<Dinosaur>();
+        List<Dinosaur> marineDinos = new ArrayList<>();
 
         for (Dinosaur dino : getRegisteredDinosaurs())
         {
@@ -137,13 +136,17 @@ public class JCEntityRegistry
         registerEntity(EntityHelicopterSeat.class, "Helicopter seat Do not spawn please, like really don't");
 
         for (Dinosaur dinosaur : dinosaurs)
+        {
             registerDinosaur(dinosaur);
+        }
     }
 
     public void registerDinosaur(Dinosaur dinosaur)
     {
         if (dinosaur.shouldRegister())
+        {
             registerEntity(dinosaur.getDinosaurClass(), dinosaur.getName());
+        }
     }
 
     private void registerEntity(Class<? extends Entity> entity, String name)
@@ -175,7 +178,7 @@ public class JCEntityRegistry
             }
             else
             {
-                List<Dinosaur> newDinoList = Lists.newArrayList();
+                List<Dinosaur> newDinoList = new ArrayList<>();
                 newDinoList.add(dinosaur);
 
                 dinosaursFromPeriod.put(period, newDinoList);
@@ -186,7 +189,9 @@ public class JCEntityRegistry
     public static Dinosaur getDinosaurById(int id)
     {
         if (id >= dinosaurs.size() || id < 0)
+        {
             return null;
+        }
 
         return dinosaurs.get(id);
     }
@@ -198,7 +203,7 @@ public class JCEntityRegistry
 
     public static List<Dinosaur> getDinosaursFromAmber()
     {
-        List<Dinosaur> amberDinos = new ArrayList<Dinosaur>();
+        List<Dinosaur> amberDinos = new ArrayList<>();
 
         for (Dinosaur dino : getRegisteredDinosaurs())
         {
@@ -218,7 +223,7 @@ public class JCEntityRegistry
 
     public static List<Dinosaur> getRegisteredDinosaurs()
     {
-        List<Dinosaur> reg = new ArrayList<Dinosaur>();
+        List<Dinosaur> reg = new ArrayList<>();
 
         for (Dinosaur dino : dinosaurs)
         {

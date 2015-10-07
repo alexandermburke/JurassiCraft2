@@ -135,7 +135,9 @@ public class RenderIndominus extends RenderLiving implements IDinosaurRenderer
         String name = entity.getCustomNameTag();
 
         if (entity instanceof EntityVelociraptor && (name.equals("iLexiconn") || name.equals("JTGhawk137")))
+        {
             GL11.glScalef(scale - 0.86F, scale, scale);
+        }
         else if (name.equals("Gegy"))
         {
             int ticksExisted = entity.ticksExisted / 25 + entity.getEntityId();
@@ -148,16 +150,24 @@ public class RenderIndominus extends RenderLiving implements IDinosaurRenderer
             GlStateManager.color(colors[0] * (1.0F - time) + colors2[0] * time, colors[1] * (1.0F - time) + colors2[1] * time, colors[2] * (1.0F - time) + colors2[2] * time);
 
             if (time > 0.5F)
+            {
                 time = 1 - time;
+            }
 
             GL11.glScalef(scale * (0.5F + time * 0.5F), scale * (1 + time * 0.5F), scale * (0.9F + time * 0.25F));
         }
         else if (name.equals("Notch") || name.equals("Jumbo"))
+        {
             GL11.glScalef(scale * 2, scale * 2, scale * 2);
+        }
         else if (name.equals("jglrxavpok"))
+        {
             GL11.glScalef(scale, scale, scale * -1);
+        }
         else
+        {
             GL11.glScalef(scale, scale, scale);
+        }
     }
 
     // need to override so that red overlay doesn't persist after death
@@ -275,14 +285,18 @@ public class RenderIndominus extends RenderLiving implements IDinosaurRenderer
                 if (entity.isMale())
                 {
                     if (texture > maleOverlayTextures.length)
+                    {
                         texture = maleOverlayTextures.length;
+                    }
 
                     this.renderer.bindTexture(maleOverlayTextures[texture][entity.getGrowthStage().ordinal()]);
                 }
                 else
                 {
                     if (texture > femaleOverlayTextures.length)
+                    {
                         texture = femaleOverlayTextures.length;
+                    }
 
                     this.renderer.bindTexture(femaleOverlayTextures[texture][entity.getGrowthStage().ordinal()]);
                 }

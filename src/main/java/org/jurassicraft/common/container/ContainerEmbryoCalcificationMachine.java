@@ -44,7 +44,9 @@ public class ContainerEmbryoCalcificationMachine extends Container
         super.onContainerClosed(player);
 
         if (!player.worldObj.isRemote)
+        {
             calcificationMachine.closeInventory(player);
+        }
     }
 
     @Override

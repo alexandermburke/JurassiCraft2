@@ -90,7 +90,9 @@ public class BlockFossil extends Block implements ISubBlocksBlock
         for (int i = 0; i < 16; i++)
         {
             if (i + start > dinosaurs.size())
+            {
                 break;
+            }
 
             list.add(new ItemStack(this, 1, i));
         }

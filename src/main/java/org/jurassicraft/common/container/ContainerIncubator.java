@@ -46,7 +46,9 @@ public class ContainerIncubator extends Container
     {
         super.onContainerClosed(player);
         if (!player.worldObj.isRemote)
+        {
             incubator.closeInventory(player);
+        }
     }
 
     @Override

@@ -41,7 +41,9 @@ public class BlockEmbryoCalcificationMachine extends BlockOriented
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
             if (tileentity instanceof TileEmbryoCalcificationMachine)
+            {
                 ((TileEmbryoCalcificationMachine) tileentity).setCustomInventoryName(stack.getDisplayName());
+            }
         }
     }
 

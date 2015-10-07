@@ -1,16 +1,16 @@
 /**
  * Copyright (C) 2015 by jabelar
- * <p/>
+ * <p>
  * This file is part of jabelar's Minecraft Forge modding examples; as such,
  * you can redistribute it and/or modify it under the terms of the GNU
  * General Public License as published by the Free Software Foundation,
  * either version 3 of the License, or (at your option) any later version.
- * <p/>
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * <p/>
+ * <p>
  * For a copy of the GNU General Public License see <http://www.gnu.org/licenses/>.
  */
 
@@ -62,7 +62,10 @@ public class CommandForceAnimation implements ICommand
         public boolean canCommandSenderUseCommand(int permLevel, String commandName)
         {
             if (commandName.equals("@"))
+            {
                 return true;
+            }
+
             return original.canCommandSenderUseCommand(permLevel, commandName);
         }
 
@@ -119,7 +122,7 @@ public class CommandForceAnimation implements ICommand
 
     public CommandForceAnimation()
     {
-        aliases = new ArrayList<String>();
+        aliases = new ArrayList<>();
         aliases.add("animate");
         aliases.add("anim");
     }
@@ -161,12 +164,15 @@ public class CommandForceAnimation implements ICommand
         {
             JurassiCraft.instance.getLogger().debug("Processing on Server side");
             if (argString.length < 1)
+            {
                 throw new WrongUsageException("Missing the animation to set");
+            }
             String entitySelector = argString.length < 2 ? "@e[c=1]" : argString[1];
-            List<EntityDinosaur> dinos = PlayerSelector.matchEntities(new ProxySender(parSender),
-                    entitySelector, EntityDinosaur.class);
+            List<EntityDinosaur> dinos = PlayerSelector.matchEntities(new ProxySender(parSender), entitySelector, EntityDinosaur.class);
             if (dinos == null || dinos.size() == 0)
+            {
                 throw new EntityNotFoundException("No IAnimatedEntity to animate");
+            }
             for (EntityDinosaur entity : dinos)
             {
                 setDinoAnimation(parSender, entity, argString[0]);
@@ -189,8 +195,7 @@ public class CommandForceAnimation implements ICommand
     }
 
     @Override
-    public List addTabCompletionOptions(ICommandSender sender, String[] args,
-                                        BlockPos pos)
+    public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
     {
         if (args.length == 1)
         {
@@ -208,8 +213,7 @@ public class CommandForceAnimation implements ICommand
         return null;
     }
 
-    private static void setDinoAnimation(ICommandSender parSender, EntityDinosaur entity, String parAnimType)
-            throws CommandException
+    private static void setDinoAnimation(ICommandSender sender, EntityDinosaur entity, String parAnimType) throws CommandException
     {
         try
         {

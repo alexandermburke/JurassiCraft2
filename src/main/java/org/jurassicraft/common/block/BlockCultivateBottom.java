@@ -37,7 +37,9 @@ public class BlockCultivateBottom extends BlockCultivate
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
             if (tileentity instanceof TileCultivate)
+            {
                 ((TileCultivate) tileentity).setCustomInventoryName(stack.getDisplayName());
+            }
         }
     }
 

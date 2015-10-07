@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 public class AdvLang
 {
     private String langPath;
-    private Map<String, String> properties = new HashMap<String, String>();
+    private Map<String, String> properties = new HashMap<>();
 
     public AdvLang(String langPath)
     {

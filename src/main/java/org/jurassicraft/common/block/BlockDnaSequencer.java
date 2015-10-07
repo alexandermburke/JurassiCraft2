@@ -41,7 +41,9 @@ public class BlockDnaSequencer extends BlockOriented
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
             if (tileentity instanceof TileDnaSequencer)
+            {
                 ((TileDnaSequencer) tileentity).setCustomInventoryName(stack.getDisplayName());
+            }
         }
     }
 

@@ -32,11 +32,17 @@ public class ControlledParam
         if (mode == 1)
         {
             if (value == max && pause != 0)
+            {
                 pause -= 1;
+            }
             if (pause != 0)
+            {
                 value += change;
+            }
             if (pause == 0)
+            {
                 value -= change;
+            }
         }
         else
         {
@@ -44,8 +50,12 @@ public class ControlledParam
         }
 
         if (value < min)
+        {
             value = min;
+        }
         if (value > max)
+        {
             value = max;
+        }
     }
 }

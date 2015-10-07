@@ -52,7 +52,9 @@ public class ContainerEmbryonicMachine extends Container
     {
         super.onContainerClosed(player);
         if (!player.worldObj.isRemote)
+        {
             embryonicMachine.closeInventory(player);
+        }
     }
 
     @Override

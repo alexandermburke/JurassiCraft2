@@ -135,7 +135,9 @@ public class HelicopterModuleSpot
         for (HelicopterModule m : modules)
         {
             if (m.onClicked(this, player, vec))
+            {
                 return;
+            }
         }
     }
 

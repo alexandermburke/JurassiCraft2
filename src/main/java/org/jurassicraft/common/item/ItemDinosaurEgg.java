@@ -45,9 +45,9 @@ public class ItemDinosaurEgg extends ItemDnaContainer
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List subtypes)
     {
-        List<Dinosaur> dinosaurs = new ArrayList<Dinosaur>(JCEntityRegistry.getDinosaurs());
+        List<Dinosaur> dinosaurs = new ArrayList<>(JCEntityRegistry.getDinosaurs());
 
-        Map<Dinosaur, Integer> ids = new HashMap<Dinosaur, Integer>();
+        Map<Dinosaur, Integer> ids = new HashMap<>();
 
         int id = 0;
 
@@ -63,7 +63,9 @@ public class ItemDinosaurEgg extends ItemDnaContainer
         for (Dinosaur dino : dinosaurs)
         {
             if (dino.shouldRegister() && !dino.isMammal())
+            {
                 subtypes.add(new ItemStack(item, 1, ids.get(dino)));
+            }
         }
     }
 }

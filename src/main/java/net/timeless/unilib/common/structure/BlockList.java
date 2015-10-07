@@ -29,7 +29,9 @@ public class BlockList
         while (chosen >= 0f)
         {
             if (index >= states.length)
+            {
                 return null;
+            }
             chosen -= probabilities[index];
             result = states[index];
             index++;

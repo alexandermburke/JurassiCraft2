@@ -58,7 +58,9 @@ public class AnimationAIBite extends AIAnimation
         if (this.entityTarget != null)
         {
             if (this.entityBiting.getAnimTick() < ((this.duration / 2) - 2))
+            {
                 this.entityBiting.getLookHelper().setLookPositionWithEntity(this.entityTarget, 30F, 30F);
+            }
 
             if (this.entityBiting.getAnimTick() == ((this.duration / 2) - 2))
             {
@@ -67,7 +69,9 @@ public class AnimationAIBite extends AIAnimation
                 if ((this.entityTarget.getHealth() - damage <= 0.0F)
                         && this.entityBiting instanceof EntityTyrannosaurus
                         && this.entityTarget instanceof EntityGallimimus)
+                {
                     eat = true;
+                }
                 else
                 {
                     eat = false;

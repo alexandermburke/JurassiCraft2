@@ -81,7 +81,9 @@ public class EntityTyrannosaurus extends EntityDinosaurAggressive // , IEntityAI
         this.roarTiltDegree.update();
 
         if (this.ticksExisted % 62 == 0)
+        {
             this.playSound(randomSound(breathSounds), this.getSoundVolume(), this.getSoundPitch());
+        }
 
         /** Step Sound */
         if (this.moveForward > 0 && this.stepCount <= 0)

@@ -195,7 +195,9 @@ public class TreeGenerator
             {
 
                 if (world.getBlockState(pos.add(xC, yC, zC)) != tree.getBlocksFromCode(tree.getCode()).getDefaultState())
+                {
                     break;
+                }
             }
         }
     }

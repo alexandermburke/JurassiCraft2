@@ -367,7 +367,9 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
             this.slots[1].stackSize--;
 
             if (this.slots[1].stackSize <= 0)
+            {
                 this.slots[1] = null;
+            }
         }
 
         Random random = new Random();
@@ -377,7 +379,9 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
             proximates = (short) (proximates + (800 + random.nextInt(201)) * nutrients.getProximate());
 
             if (proximates > maxNutrients)
+            {
                 proximates = (short) maxNutrients;
+            }
         }
 
         if (minerals < maxNutrients)
@@ -385,7 +389,9 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
             minerals = (short) (minerals + (900 + random.nextInt(101)) * nutrients.getMinerals());
 
             if (minerals > maxNutrients)
+            {
                 minerals = (short) maxNutrients;
+            }
         }
 
         if (vitamins < maxNutrients)
@@ -393,7 +399,9 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
             vitamins = (short) (vitamins + (900 + random.nextInt(101)) * nutrients.getVitamins());
 
             if (vitamins > maxNutrients)
+            {
                 vitamins = (short) maxNutrients;
+            }
         }
 
         if (lipids < maxNutrients)
@@ -401,7 +409,9 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
             lipids = (short) (lipids + (980 + random.nextInt(101)) * nutrients.getLipids());
 
             if (lipids > maxNutrients)
+            {
                 lipids = (short) maxNutrients;
+            }
         }
     }
 

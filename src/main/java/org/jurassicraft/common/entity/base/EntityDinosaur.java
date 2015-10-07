@@ -50,7 +50,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     protected int dinosaurAge;
     protected int prevAge;
 
-    protected Set<Disease> diseases = new HashSet<Disease>();
+    protected Set<Disease> diseases = new HashSet<>();
 
     // private boolean isCarcass;
 
@@ -325,7 +325,9 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         int maxAge = dinosaur.getMaximumAge();
 
         if (dinosaurAge > maxAge)
+        {
             dinosaurAge = maxAge;
+        }
 
         return (adult - baby) / maxAge * dinosaurAge + baby;
     }
@@ -442,7 +444,9 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         // isCarcass = dataWatcher.getWatchableObjectInt(25) == 1;
         // }
         if (getAnimID() != AnimID.IDLE)
+        {
             animTick++;
+        }
     }
 
     public int getDaysExisted()
@@ -594,9 +598,13 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         for (int i = 0; i < meatAmount; ++i)
         {
             if (isBurning())
+            {
                 dropStackWithQuality(new ItemStack(JCItemRegistry.dino_steak, 1, JCEntityRegistry.getDinosaurId(dinosaur)));
+            }
             else
+            {
                 dropStackWithQuality(new ItemStack(JCItemRegistry.dino_meat, 1, JCEntityRegistry.getDinosaurId(dinosaur)));
+            }
         }
 
         for (int i = 0; i < getSizeInventory(); ++i)
@@ -735,7 +743,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
     public void setDNAQuality(int quality)
     {
-        quality = quality;
+        this.quality = quality;
     }
 
     @Override

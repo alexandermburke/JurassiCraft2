@@ -42,7 +42,9 @@ public class ItemDinosaurMeat extends ItemFood
         Dinosaur dinosaur = JCEntityRegistry.getDinosaurById(stack.getItemDamage());
 
         if (dinosaur == null)
+        {
             dinosaur = JCEntityRegistry.achillobator;
+        }
 
         return dinosaur;
     }
@@ -56,9 +58,9 @@ public class ItemDinosaurMeat extends ItemFood
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List subtypes)
     {
-        List<Dinosaur> dinosaurs = new ArrayList<Dinosaur>(JCEntityRegistry.getDinosaurs());
+        List<Dinosaur> dinosaurs = new ArrayList<>(JCEntityRegistry.getDinosaurs());
 
-        Map<Dinosaur, Integer> ids = new HashMap<Dinosaur, Integer>();
+        Map<Dinosaur, Integer> ids = new HashMap<>();
 
         int id = 0;
 
@@ -74,7 +76,9 @@ public class ItemDinosaurMeat extends ItemFood
         for (Dinosaur dino : dinosaurs)
         {
             if (dino.shouldRegister())
+            {
                 subtypes.add(new ItemStack(item, 1, ids.get(dino)));
+            }
         }
     }
 
@@ -137,13 +141,21 @@ public class ItemDinosaurMeat extends ItemFood
         EnumChatFormatting colour;
 
         if (quality > 75)
+        {
             colour = EnumChatFormatting.GREEN;
+        }
         else if (quality > 50)
+        {
             colour = EnumChatFormatting.YELLOW;
+        }
         else if (quality > 25)
+        {
             colour = EnumChatFormatting.GOLD;
+        }
         else
+        {
             colour = EnumChatFormatting.RED;
+        }
 
         lore.add(colour + new AdvLang("lore.dna_quality.name").withProperty("quality", quality + "").build());
         lore.add(EnumChatFormatting.BLUE + new AdvLang("lore.genetic_code.name").withProperty("code", getGeneticCode(player, stack).toString()).build());

@@ -86,7 +86,9 @@ public class RenderHelicopter extends Render
     private void renderModules(EntityHelicopterBase helicopter, double x, double y, double z, float yaw, float partialTicks)
     {
         if (true)
+        {
             return;
+        }
         for (HelicopterModuleSpot spot : helicopter.getModuleSpots())
         {
             GlStateManager.pushMatrix();
@@ -94,7 +96,9 @@ public class RenderHelicopter extends Render
             for (HelicopterModule m : spot.getModules())
             {
                 if (m == null)
+                {
                     continue;
+                }
                 GlStateManager.rotate((float) Math.toDegrees(m.getBaseRotationAngle()), 0, 1, 0);
                 bindTexture(moduleTextures.get(m));
                 ModelJson model = moduleMap.get(m);

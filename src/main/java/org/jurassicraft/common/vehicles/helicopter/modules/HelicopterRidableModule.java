@@ -41,7 +41,9 @@ public abstract class HelicopterRidableModule extends HelicopterModule
             }
         });
         if (list.isEmpty())
+        {
             return null;
+        }
         return (EntityHelicopterSeat) list.get(0);
     }
 

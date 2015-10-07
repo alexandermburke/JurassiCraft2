@@ -107,24 +107,32 @@ public class BlockJCLeaves extends BlockLeaves
      */
     public java.util.List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        java.util.List<ItemStack> ret = new java.util.ArrayList<ItemStack>();
+        java.util.List<ItemStack> ret = new java.util.ArrayList<>();
         Random rand = world instanceof World ? ((World) world).rand : new Random();
         int chance = this.getSaplingDropChance(state);
 
         if (fortune > 0)
         {
             chance -= 2 << fortune;
-            if (chance < 10) chance = 10;
+            if (chance < 10)
+            {
+                chance = 10;
+            }
         }
 
         if (rand.nextInt(chance) == 0)
+        {
             ret.add(new ItemStack(getItemDropped(state, rand, fortune), 1, damageDropped(state)));
+        }
 
         chance = 200;
         if (fortune > 0)
         {
             chance -= 10 << fortune;
-            if (chance < 40) chance = 40;
+            if (chance < 40)
+            {
+                chance = 40;
+            }
         }
 
         this.captureDrops(true);

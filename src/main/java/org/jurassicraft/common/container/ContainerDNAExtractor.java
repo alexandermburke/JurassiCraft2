@@ -45,7 +45,9 @@ public class ContainerDNAExtractor extends Container
     {
         super.onContainerClosed(player);
         if (!player.worldObj.isRemote)
+        {
             extractor.closeInventory(player);
+        }
     }
 
     @Override

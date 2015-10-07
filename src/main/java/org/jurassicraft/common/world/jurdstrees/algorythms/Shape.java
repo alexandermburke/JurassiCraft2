@@ -11,9 +11,8 @@ import java.util.ArrayList;
  */
 public class Shape
 {
-
     private int shapeCode;
-    public ArrayList<TreeBlock> blocksList = new ArrayList<TreeBlock>();
+    public ArrayList<TreeBlock> blocksList = new ArrayList<>();
 
     public Shape(int code)
     {
@@ -23,14 +22,16 @@ public class Shape
 
     public boolean addLog(int x, int y, int z, int level)
     {
-
         TreeBlock currentBlock = new TreeBlock(x, y, z, level);
 
         for (TreeBlock TB : blocksList)
         {
             if (TB.equals(currentBlock))
+            {
                 return false;
+            }
         }
+
         blocksList.add(new TreeBlock(x, y, z, level));
         return true;
 
@@ -44,7 +45,9 @@ public class Shape
         for (TreeBlock TB : blocksList)
         {
             if (TB.equals(currentBlock))
+            {
                 return false;
+            }
         }
 
         blocksList.add(new TreeBlock(x, y, z, 0));
@@ -60,7 +63,9 @@ public class Shape
         for (TreeBlock TB : blocksList)
         {
             if (TB.equals(currentBlock))
+            {
                 return false;
+            }
         }
 
         blocksList.add(currentBlock.new InsPoint(x, y, z, level, Rotation.none));
@@ -76,7 +81,9 @@ public class Shape
         for (TreeBlock TB : blocksList)
         {
             if (TB.equals(currentBlock))
+            {
                 return false;
+            }
         }
 
         blocksList.add(currentBlock.new InsPoint(x, y, z, level, rotation));
@@ -92,7 +99,9 @@ public class Shape
         for (TreeBlock TB : blocksList)
         {
             if (TB.equals(currentBlock))
+            {
                 return false;
+            }
         }
 
         blocksList.add(currentBlock.new InsPoint(x, y, z, level, rotation, true, false));
@@ -115,7 +124,9 @@ public class Shape
         for (TreeBlock TB : blocksList)
         {
             if (TB.equals(currentBlock))
+            {
                 return false;
+            }
         }
 
         blocksList.add(currentBlock.new InsPoint(x, y, z, level, rotation, trunk, leaves));

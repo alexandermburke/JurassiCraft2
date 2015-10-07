@@ -346,7 +346,9 @@ public class TileCleaningStation extends TileEntityLockable implements IUpdatePl
             for (int i = 2; i < 8; i++)
             {
                 if (this.slots[i] == null)
+                {
                     return true;
+                }
             }
         }
 
@@ -388,7 +390,9 @@ public class TileCleaningStation extends TileEntityLockable implements IUpdatePl
                 this.slots[0].stackSize--;
 
                 if (this.slots[0].stackSize <= 0)
+                {
                     this.slots[0] = null;
+                }
             }
         }
     }

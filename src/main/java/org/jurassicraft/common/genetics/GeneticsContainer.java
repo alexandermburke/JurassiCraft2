@@ -132,11 +132,17 @@ public class GeneticsContainer
         for (char c : chars)
         {
             if (c == 'C')
+            {
                 value += 1 * Math.pow(4, i);
+            }
             else if (c == 'G')
+            {
                 value += 2 * Math.pow(4, i);
+            }
             else if (c == 'T')
+            {
                 value += 3 * Math.pow(4, i);
+            }
 
             i++;
         }

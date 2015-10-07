@@ -41,7 +41,9 @@ public class BlockIncubator extends BlockOriented
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
             if (tileentity instanceof TileIncubator)
+            {
                 ((TileIncubator) tileentity).setCustomInventoryName(stack.getDisplayName());
+            }
         }
     }
 

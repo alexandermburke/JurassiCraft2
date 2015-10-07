@@ -44,16 +44,24 @@ public abstract class BlockOriented extends BlockContainer
             EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
 
             if (enumfacing == EnumFacing.NORTH && blockNorth.isFullBlock() && !blockSouth.isFullBlock())
+            {
                 enumfacing = EnumFacing.SOUTH;
+            }
 
             else if (enumfacing == EnumFacing.SOUTH && blockSouth.isFullBlock() && !blockNorth.isFullBlock())
+            {
                 enumfacing = EnumFacing.NORTH;
+            }
 
             else if (enumfacing == EnumFacing.WEST && blockWest.isFullBlock() && !blockEast.isFullBlock())
+            {
                 enumfacing = EnumFacing.EAST;
+            }
 
             else if (enumfacing == EnumFacing.EAST && blockEast.isFullBlock() && !blockWest.isFullBlock())
+            {
                 enumfacing = EnumFacing.WEST;
+            }
 
             worldIn.setBlockState(pos, state.withProperty(FACING, enumfacing), 2);
         }
@@ -104,7 +112,9 @@ public abstract class BlockOriented extends BlockContainer
     {
         EnumFacing enumfacing = EnumFacing.getFront(meta);
         if (enumfacing.getAxis() == EnumFacing.Axis.Y)
+        {
             enumfacing = EnumFacing.NORTH;
+        }
         return this.getDefaultState().withProperty(FACING, enumfacing);
     }
 

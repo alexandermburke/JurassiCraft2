@@ -167,7 +167,9 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
         for (HelicopterModuleSpot spot : moduleSpots)
         {
             if (spot == null)
+            {
                 continue;
+            }
             if (spot.has(HelicopterModule.seat))
             {
                 EntityHelicopterSeat seat = HelicopterModule.seat.getEntity(spot);
@@ -194,9 +196,13 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
                         updateEngine(runEngine);
                         engineRunning = runEngine;
                         if (engineRunning && enginePower >= REQUIRED_POWER)
+                        {
                             direction = drive(direction);
+                        }
                         else
+                        {
                             direction.set(0, 1, 0);
+                        }
                     }
                 }
             }
@@ -289,7 +295,9 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
         }
 
         if (!Minecraft.getMinecraft().gameSettings.keyBindUseItem.isKeyDown())
+        {
             direction.addVector(0, 1, 0);
+        }
 
         return direction.normalize();
     }

@@ -14,7 +14,7 @@ public class Tree
 {
 
     // unique identifier.
-    private int TreeCode;
+    private int treeCode;
 
     // Features that can be built in the tree in the form of arrays of codes. This is used to generate a random tree.
     private int[] TrunkList;
@@ -31,18 +31,16 @@ public class Tree
     private int maxBranchLevel;
     private int maxTrunkHeight;
 
-    private ArrayList<InsPCoord> insPList = new ArrayList<InsPCoord>();
+    private ArrayList<InsPCoord> insPList = new ArrayList<>();
 
     public Tree(int code, int maxAge, int maxBranchLength)
     {
-
-        TreeCode = code;
+        treeCode = code;
         this.maxAge = maxAge;
         this.maxBranchLevel = maxBranchLength;
         penaltyPerHeight = 3;
         lowerBranchLevel = 0;
         maxTrunkHeight = 30;
-
     }
 
     public static Block getBlocksFromCode(int code)
@@ -64,7 +62,7 @@ public class Tree
     public Tree(int code, int maxAge, int maxBranchLength, int penalty, int lbl, int mtheight)
     {
 
-        TreeCode = code;
+        treeCode = code;
         this.maxAge = maxAge;
         this.maxBranchLevel = maxBranchLength;
         penaltyPerHeight = penalty;
@@ -75,13 +73,13 @@ public class Tree
 
     public int getCode()
     {
-        return TreeCode;
+        return treeCode;
     }
 
     public Tree getBaseCopy()
     {
 
-        Tree tree = new Tree(TreeCode, maxAge, maxBranchLevel, penaltyPerHeight, lowerBranchLevel, maxTrunkHeight);
+        Tree tree = new Tree(treeCode, maxAge, maxBranchLevel, penaltyPerHeight, lowerBranchLevel, maxTrunkHeight);
 
         tree.addFeatureList(TrunkList, FeatureType.Trunk);
         tree.addFeatureList(BranchList, FeatureType.Branch);
@@ -97,7 +95,9 @@ public class Tree
     {
 
         if (insPList.size() != 0)
+        {
             return true;
+        }
 
         return false;
 
@@ -137,7 +137,9 @@ public class Tree
     {
 
         if (TrunkList == null || BranchList == null || WoodList == null || LeafList == null || FruitList == null || TrunkLeafList == null)
+        {
             return false;
+        }
 
         Random random = new Random();
 
@@ -339,8 +341,10 @@ public class Tree
 
                                 if (insPList.get(j).getY() > i * lowerBranchLevel)
 
+                                {
                                     insPList.add(new InsPCoord(shape.getCode(), InsPType.getTypeIndex(type), xC, yC, zC, i, 0, 0, Rotation.getRotationIndex(insertp.rotation),
                                             insertp.getLeaves() ? 1 : 0));
+                                }
 
                             }
                         }

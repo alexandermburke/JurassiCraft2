@@ -142,7 +142,9 @@ public class JCGuiHandler implements IGuiHandler
     public static void openPaleoPad(EntityPlayer player)
     {
         if (player.worldObj.isRemote)
+        {
             displayPaleoPadGUIClient();
+        }
 //        else
 //            JurassiCraft.networkManager.networkWrapper.sendTo(new MessageSyncPaleoPad(player), (EntityPlayerMP) player);
     }

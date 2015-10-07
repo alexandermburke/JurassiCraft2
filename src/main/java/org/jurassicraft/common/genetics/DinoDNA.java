@@ -58,13 +58,21 @@ public class DinoDNA
         EnumChatFormatting colour;
 
         if (quality > 75)
+        {
             colour = EnumChatFormatting.GREEN;
+        }
         else if (quality > 50)
+        {
             colour = EnumChatFormatting.YELLOW;
+        }
         else if (quality > 25)
+        {
             colour = EnumChatFormatting.GOLD;
+        }
         else
+        {
             colour = EnumChatFormatting.RED;
+        }
 
         tooltip.add(colour + new AdvLang("lore.dna_quality.name").withProperty("quality", quality + "").build());
         tooltip.add(EnumChatFormatting.BLUE + new AdvLang("lore.genetic_code.name").withProperty("code", genetics.toString()).build());

@@ -49,9 +49,13 @@ public abstract class Disease
     public boolean setTerminal()
     {
         if (getLevel() == 5)
+        {
             return true;
+        }
         else
+        {
             return false;
+        }
     }
 
     public abstract void affects();

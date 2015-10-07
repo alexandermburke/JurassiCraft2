@@ -206,7 +206,9 @@ public class JCRenderingRegistry
     public void postInit()
     {
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
+        {
             RenderingRegistry.registerEntityRenderingHandler(dino.getDinosaurClass(), renderDefs.get(dino).getRenderer());
+        }
 
         RenderingRegistry.registerEntityRenderingHandler(EntityCageSmall.class, new RenderCageSmall());
         RenderingRegistry.registerEntityRenderingHandler(EntityBluePrint.class, new RenderBluePrint());

@@ -110,9 +110,13 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
 //            circleEntity(getAttackTarget(), 7, 1.0f, true, 0);
 
         if (getAnimID() == AnimID.RESTING || getAnimID() == AnimID.ATTACKING)
+        {
             dontLean.decreaseTimer();
+        }
         else
+        {
             dontLean.increaseTimer();
+        }
     }
 
 //    public void circleEntity(Entity target, float radius, float speed, boolean direction, float offset)

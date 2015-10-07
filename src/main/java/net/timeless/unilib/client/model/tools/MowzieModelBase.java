@@ -39,7 +39,9 @@ public class MowzieModelBase extends ModelBase
     protected void setInitPose()
     {
         for (int i = 0; i < this.parts.size(); i++)
+        {
             this.parts.get(i).setInitValuesToCurrentPose();
+        }
     }
 
     /**
@@ -50,14 +52,16 @@ public class MowzieModelBase extends ModelBase
     public void setToInitPose()
     {
         for (int i = 0; i < this.parts.size(); i++)
+        {
             parts.get(i).setCurrentPoseToInitValues();
+        }
     }
 
     /**
      * Calculates the relative positions and rotations easily.
-     * <p/>
+     * <p>
      * Note: When parenting a chain of boxes, such as a head to a neck to a body, the end of the chain should start first. In this case the head should be parented to the neck before parenting the neck to the body.
-     * <p/>
+     * <p>
      * Some corrections and adjustments to the rotation point may be needed.
      *
      * @param child  is the child box;
@@ -82,7 +86,7 @@ public class MowzieModelBase extends ModelBase
 
     /**
      * Rotates a box to face where the entity is looking.
-     * <p/>
+     * <p>
      * Note: Just keep f3 and f4 from the setRotationAngles() method.
      *
      * @param f  is the number of boxes being used. (i.e. if you are using this on a head and neck, set it to 2. Just a head, 1);
@@ -97,7 +101,7 @@ public class MowzieModelBase extends ModelBase
 
     /**
      * Returns a float that can be used to rotate boxes.
-     * <p/>
+     * <p>
      * Note: Just keep f and f1 from the setRotationAngles() method.
      *
      * @param speed  is how fast the animation runs;
@@ -111,14 +115,18 @@ public class MowzieModelBase extends ModelBase
     public float rotateBox(float speed, float degree, boolean invert, float offset, float weight, float f, float f1)
     {
         if (invert)
+        {
             return -MathHelper.cos(f * speed + offset) * degree * f1 + weight * f1;
+        }
         else
+        {
             return MathHelper.cos(f * speed + offset) * degree * f1 + weight * f1;
+        }
     }
 
     /**
      * Returns a float that can be used to move boxes.
-     * <p/>
+     * <p>
      * Note: Just keep f and f1 from the setRotationAngles() method.
      *
      * @param speed  is how fast the animation runs;
@@ -130,14 +138,18 @@ public class MowzieModelBase extends ModelBase
     public float moveBox(float speed, float degree, boolean bounce, float f, float f1)
     {
         if (bounce)
+        {
             return -MathHelper.abs((MathHelper.sin(f * speed) * f1 * degree));
+        }
         else
+        {
             return MathHelper.sin(f * speed) * f1 * degree - f1 * degree;
+        }
     }
 
     /**
      * Rotates a box back and forth (rotateAngleX). Useful for arms and legs.
-     * <p/>
+     * <p>
      * Note: Just keep f and f1 from the setRotationAngles() method.
      *
      * @param box    is the ModelRenderer to be animated;
@@ -153,13 +165,15 @@ public class MowzieModelBase extends ModelBase
     {
         int inverted = 1;
         if (invert)
+        {
             inverted = -1;
+        }
         box.rotateAngleX += MathHelper.cos(f * speed + offset) * degree * inverted * f1 + weight * f1;
     }
 
     /**
      * Rotates a box up and down (rotateAngleZ). Useful for wings and ears.
-     * <p/>
+     * <p>
      * Note: Just keep f and f1 from the setRotationAngles() method.
      *
      * @param box    is the ModelRenderer to be animated;
@@ -175,13 +189,15 @@ public class MowzieModelBase extends ModelBase
     {
         int inverted = 1;
         if (invert)
+        {
             inverted = -1;
+        }
         box.rotateAngleZ += MathHelper.cos(f * speed + offset) * degree * inverted * f1 + weight * f1;
     }
 
     /**
      * Rotates a box side to side (rotateAngleY).
-     * <p/>
+     * <p>
      * Note: Just keep f and f1 from the setRotationAngles() method.
      *
      * @param box    is the ModelRenderer to be animated;
@@ -197,13 +213,15 @@ public class MowzieModelBase extends ModelBase
     {
         int inverted = 1;
         if (invert)
+        {
             inverted = -1;
+        }
         box.rotateAngleY += MathHelper.cos(f * speed + offset) * degree * inverted * f1 + weight * f1;
     }
 
     /**
      * Moves a box up and down (rotationPointY). Useful for bodies.
-     * <p/>
+     * <p>
      * Note: Just keep f and f1 from the setRotationAngles() method.
      *
      * @param box    is the ModelRenderer to be animated;
@@ -217,13 +235,15 @@ public class MowzieModelBase extends ModelBase
     {
         float bob = (float) (Math.sin(f * speed) * f1 * degree - f1 * degree);
         if (bounce)
+        {
             bob = (float) -Math.abs((Math.sin(f * speed) * f1 * degree));
+        }
         box.rotationPointY += bob;
     }
 
     /**
      * Swings a chain of parented boxes back and forth (rotateAngleY). Useful for tails.
-     * <p/>
+     * <p>
      * Note: Just keep f and f1 from the setRotationAngles() method.
      *
      * @param boxes      are the ModelRenderers to be animated;
@@ -238,12 +258,14 @@ public class MowzieModelBase extends ModelBase
         int numberOfSegments = boxes.length;
         float offset = (float) ((rootOffset * Math.PI) / (2 * numberOfSegments));
         for (int i = 0; i < numberOfSegments; i++)
+        {
             boxes[i].rotateAngleY += MathHelper.cos(f * speed + offset * i) * f1 * degree;
+        }
     }
 
     /**
      * Swings a chain of parented boxes up and down (rotateAngleX). Useful for tails.
-     * <p/>
+     * <p>
      * Note: Just keep f and f1 from the setRotationAngles() method.
      *
      * @param boxes      are the ModelRenderers to be animated;
@@ -258,12 +280,14 @@ public class MowzieModelBase extends ModelBase
         int numberOfSegments = boxes.length;
         float offset = (float) ((rootOffset * Math.PI) / (2 * numberOfSegments));
         for (int i = 0; i < numberOfSegments; i++)
+        {
             boxes[i].rotateAngleX += MathHelper.cos(f * speed + offset * i) * f1 * degree;
+        }
     }
 
     /**
      * Flaps a chain of parented boxes up and down (rotateAngleZ). Useful for tails.
-     * <p/>
+     * <p>
      * Note: Just keep f and f1 from the setRotationAngles() method.
      *
      * @param boxes      are the ModelRenderers to be animated;
@@ -278,7 +302,9 @@ public class MowzieModelBase extends ModelBase
         int numberOfSegments = boxes.length;
         float offset = (float) ((rootOffset * Math.PI) / (2 * numberOfSegments));
         for (int i = 0; i < numberOfSegments; i++)
+        {
             boxes[i].rotateAngleZ += MathHelper.cos(f * speed + offset * i) * f1 * degree;
+        }
     }
 
     /**
@@ -316,7 +342,9 @@ public class MowzieModelBase extends ModelBase
     public void addPart(MowzieModelRenderer mowzieModelRenderer)
     {
         if (parts == null)
-            parts = new ArrayList<MowzieModelRenderer>();
+        {
+            parts = new ArrayList<>();
+        }
 
         parts.add(mowzieModelRenderer);
     }
