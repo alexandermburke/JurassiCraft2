@@ -13,8 +13,10 @@ import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 @SideOnly(Side.CLIENT)
 public class AnimationHelicopter implements IModelAnimator
 {
+    private float partialTicks = 0;
+
     @Override
-    public void setRotationAngles(ModelJson model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
+    public void setRotationAngles(ModelJson model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, Entity entity)
     {
         EntityHelicopterBase helicopter = (EntityHelicopterBase) entity;
 
@@ -32,7 +34,9 @@ public class AnimationHelicopter implements IModelAnimator
 
     @Override
     public void preRenderCallback(EntityLivingBase entity, float partialTicks)
-    {}
+    {
+        this.partialTicks = partialTicks;
+    }
 
     private float easeInCubic(float time, float startValue, float change, float duration)
     {

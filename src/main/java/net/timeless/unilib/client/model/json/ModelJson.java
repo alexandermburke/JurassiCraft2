@@ -1,15 +1,21 @@
 package net.timeless.unilib.client.model.json;
 
 import com.google.common.collect.Maps;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.tools.MowzieModelBase;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+
 import org.lwjgl.opengl.GL11;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author gegy1000
@@ -83,9 +89,9 @@ public class ModelJson extends MowzieModelBase
      * @since 0.1.0
      */
     @Override
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float rotation, float rotationYaw, float rotationPitch, float scale, Entity entity)
     {
-        super.setRotationAngles(limbSwing, limbSwingAmount, rotation, rotationYaw, rotationPitch, partialTicks, entity);
+        super.setRotationAngles(limbSwing, limbSwingAmount, rotation, rotationYaw, rotationPitch, scale, entity);
 
         if (!Minecraft.getMinecraft().isGamePaused())
         {
@@ -101,7 +107,7 @@ public class ModelJson extends MowzieModelBase
 
             if (animator != null)
             {
-                animator.setRotationAngles(this, limbSwing, limbSwingAmount, rotation, rotationYaw, rotationPitch, partialTicks, entity);
+                animator.setRotationAngles(this, limbSwing, limbSwingAmount, rotation, rotationYaw, rotationPitch, entity);
             }
         }
     }

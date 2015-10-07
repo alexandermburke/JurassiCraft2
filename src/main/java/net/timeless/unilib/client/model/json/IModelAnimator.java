@@ -16,7 +16,7 @@ public interface IModelAnimator
     /**
      * Set the rotation angles for the shapes. Called every tick.
      */
-    void setRotationAngles(ModelJson model, float limbSwing, float limbSwingAmount, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity);
+    void setRotationAngles(ModelJson model, float limbSwing, float limbSwingAmount, float rotation, float rotationYaw, float rotationPitch, Entity entity);
 
     void preRenderCallback(EntityLivingBase entity, float partialTicks);
 }

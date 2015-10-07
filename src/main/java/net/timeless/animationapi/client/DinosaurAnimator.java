@@ -263,7 +263,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
     }
 
     @Override
-    public final void setRotationAngles(ModelJson model, float limbSwing, float limbSwingAmount, float rotation, float rotationYaw, float rotationPitch, float size, Entity entity)
+    public final void setRotationAngles(ModelJson model, float limbSwing, float limbSwingAmount, float rotation, float rotationYaw, float rotationPitch, Entity entity)
     {
         ModelDinosaur theModel = (ModelDinosaur) model;
         EntityDinosaur theEntity = (EntityDinosaur) entity;
