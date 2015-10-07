@@ -1,13 +1,9 @@
 package org.jurassicraft.common.entity.ai;
 
 import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.world.World;
 import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.client.AnimID;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
-
-import java.util.List;
 
 public class EntityAIMate extends EntityAIBase
 {

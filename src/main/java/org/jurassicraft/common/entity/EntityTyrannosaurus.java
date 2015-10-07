@@ -2,9 +2,7 @@ package org.jurassicraft.common.entity;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.AnimID;
-import net.timeless.unilib.common.animation.ChainBuffer;
 import net.timeless.unilib.common.animation.ControlledParam;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.entity.ai.animations.AnimationAIEating;

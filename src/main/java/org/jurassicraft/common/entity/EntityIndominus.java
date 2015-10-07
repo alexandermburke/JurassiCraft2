@@ -7,7 +7,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.AnimID;
-import net.timeless.unilib.common.animation.ChainBuffer;
 import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimSoundBase;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaurAggressive;
