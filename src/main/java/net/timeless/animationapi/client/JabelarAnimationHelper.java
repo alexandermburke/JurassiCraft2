@@ -66,7 +66,9 @@ public class JabelarAnimationHelper
      * @param parInertialTweens
      * @param parInertiaFactor
      */
-    public JabelarAnimationHelper(EntityDinosaur parEntity, ModelDinosaur parModel, int parNumParts, MowzieModelRenderer[][] parArrayOfPoses, Map<AnimID, int[][]> parMapOfSequences, boolean parInertialTweens, float parInertiaFactor)
+    public JabelarAnimationHelper(EntityDinosaur parEntity, ModelDinosaur parModel, int parNumParts,
+                                  MowzieModelRenderer[][] parArrayOfPoses, Map<AnimID, int[][]> parMapOfSequences,
+                                  boolean parInertialTweens, float parInertiaFactor)
     {
         // transfer static animation info from constructor parameters to instance
         theEntity = parEntity;
@@ -209,11 +211,9 @@ public class JabelarAnimationHelper
         currentTickInTween = 0;
 
         if (currentSequence != AnimID.IDLE)
-        {
             JurassiCraft.instance.getLogger().info("current sequence for entity ID " + theEntity.getEntityId() + " is " + currentSequence
                     + " out of " + mapOfSequences.size() + " and current pose " + currentPose + " out of "
                     + mapOfSequences.get(currentSequence).length + " with " + numTicksInTween + " ticks in tween");
-        }
     }
 
     private void performNextTweenTick()
@@ -365,8 +365,11 @@ public class JabelarAnimationHelper
     {
 //        JurassiCraft.instance.getLogger().info("current tween step = "+currentTickInTween);
         currentTickInTween++;
-
-        return currentTickInTween >= numTicksInTween;
+        if (currentTickInTween >= numTicksInTween)
+        {
+            return true;
+        }
+        return false;
     }
 
     // boolean returned indicates if sequence was finished
@@ -419,16 +422,11 @@ public class JabelarAnimationHelper
 
         currentPose = 0;
         initPose();
-<<<<<<< HEAD
         initTweenTicks();
-=======
-        initTween();
-
->>>>>>> a0246c4e135a5d79bd6918a900f65290e4d52b29
         if (currentSequence != AnimID.IDLE)
-        {
-            JurassiCraft.instance.getLogger().info("current sequence for entity ID " + theEntity.getEntityId() + " is " + currentSequence + " out of " + mapOfSequences.size() + " and current pose " + currentPose + " out of " + mapOfSequences.get(currentSequence).length + " with " + numTicksInTween + " ticks in tween");
-        }
+            JurassiCraft.instance.getLogger().info("current sequence for entity ID " + theEntity.getEntityId() + " is " + currentSequence
+                    + " out of " + mapOfSequences.size() + " and current pose " + currentPose + " out of "
+                    + mapOfSequences.get(currentSequence).length + " with " + numTicksInTween + " ticks in tween");
     }
 
     public int getCurrentPose()
@@ -487,7 +485,6 @@ public class JabelarAnimationHelper
 
             mc.effectRenderer.addBlockDestroyEffects(theEntity.getPosition().up((int) Math.round(theEntity.height * 0.75)), theBloodIBlockState);
         }
-
         if (theEntity.deathTime > 0 && theEntity.deathTime < 70 && theEntity.deathTime % 30 == 0)
         {
             mc.effectRenderer.addBlockDestroyEffects(theEntity.getPosition().up(), theBloodIBlockState);
