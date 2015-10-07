@@ -8,6 +8,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
@@ -92,7 +93,7 @@ public class JabelarAnimationHelper
 
     public void performJabelarAnimations(float parPartialTicks)
     {
-        partialTicks = Math.min(1.0F, ((float) (System.nanoTime() - tickStartNanoTime)) / 1000000000 * 20);
+        partialTicks = parPartialTicks;
 
         JurassiCraft.instance.getLogger().info("FPS = " + Minecraft.getDebugFPS() + " and current sequence = " +
                 currentSequence + " and current pose = " + this.currentPose + " and current tick = " +
@@ -367,9 +368,7 @@ public class JabelarAnimationHelper
 //        JurassiCraft.instance.getLogger().info("current tween step = "+currentTickInTween);
         currentTickInTween++;
         if (currentTickInTween >= numTicksInTween)
-        {
             return true;
-        }
         return false;
     }
 
