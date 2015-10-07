@@ -13,7 +13,6 @@ import net.timeless.animationapi.CommonProxy;
 @SideOnly(Side.CLIENT)
 public class ClientProxy extends CommonProxy
 {
-
     @Override
     public void initTimer()
     {

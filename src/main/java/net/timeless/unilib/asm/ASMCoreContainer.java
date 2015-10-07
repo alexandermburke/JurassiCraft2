@@ -5,7 +5,6 @@ import net.minecraftforge.fml.common.ModMetadata;
 
 public class ASMCoreContainer extends DummyModContainer
 {
-
     public ASMCoreContainer()
     {
         super(createMetadata());

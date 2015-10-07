@@ -41,7 +41,9 @@ public class BlockDNAHybridizer extends BlockOriented
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
             if (tileentity instanceof TileDNAHybridizer)
+            {
                 ((TileDNAHybridizer) tileentity).setCustomInventoryName(stack.getDisplayName());
+            }
         }
     }
 

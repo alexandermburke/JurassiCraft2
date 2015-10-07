@@ -19,8 +19,8 @@ public class Animator
     {
         tempTick = 0;
         correctAnim = false;
-        transformMap = new HashMap<MowzieModelRenderer, Transform>();
-        prevTransformMap = new HashMap<MowzieModelRenderer, Transform>();
+        transformMap = new HashMap<>();
+        prevTransformMap = new HashMap<>();
         modelBase = model;
     }
 
@@ -50,7 +50,9 @@ public class Animator
     public void startPhase(int duration)
     {
         if (!correctAnim)
+        {
             return;
+        }
         prevTempTick = tempTick;
         tempTick += duration;
     }
@@ -70,22 +72,34 @@ public class Animator
     public void rotate(MowzieModelRenderer box, float x, float y, float z)
     {
         if (!correctAnim)
+        {
             return;
+        }
         if (!transformMap.containsKey(box))
+        {
             transformMap.put(box, new Transform(x, y, z));
+        }
         else
+        {
             transformMap.get(box).addRot(x, y, z);
+        }
     }
 
     public void move(MowzieModelRenderer box, float x, float y, float z)
     {
         if (!correctAnim)
+        {
             return;
+        }
 
         if (!transformMap.containsKey(box))
+        {
             transformMap.put(box, new Transform(x, y, z, 0F, 0F, 0F));
+        }
         else
+        {
             transformMap.get(box).addOffset(x, y, z);
+        }
     }
 
     public void endPhase()
@@ -96,7 +110,9 @@ public class Animator
     private void endPhase(boolean stationary)
     {
         if (!correctAnim)
+        {
             return;
+        }
         int animTick = animEntity.getAnimTick();
         if (animTick >= prevTempTick && animTick < tempTick)
         {

@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class StorageTypeRegistry
 {
-    private static Map<String, Class<? extends IStorageType>> storageTypes = new HashMap<String, Class<? extends IStorageType>>();
+    private static Map<String, Class<? extends IStorageType>> storageTypes = new HashMap<>();
 
     public void register()
     {

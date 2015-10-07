@@ -40,7 +40,9 @@ public enum EnumTimePeriod implements IStringSerializable
     public static EnumTimePeriod byMetadata(int meta)
     {
         if (meta < 0 || meta >= META_LOOKUP.length)
+        {
             meta = 0;
+        }
 
         return META_LOOKUP[meta];
     }

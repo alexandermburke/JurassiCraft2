@@ -43,7 +43,9 @@ public class ContainerCultivate extends Container
     {
         super.onContainerClosed(player);
         if (!player.worldObj.isRemote)
+        {
             cultivator.closeInventory(player);
+        }
     }
 
     @Override

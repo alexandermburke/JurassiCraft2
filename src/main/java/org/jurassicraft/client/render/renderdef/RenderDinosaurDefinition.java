@@ -134,9 +134,13 @@ public class RenderDinosaurDefinition
             String[] maleOverlayTextures = dinosaur.getMaleOverlayTextures(EnumGrowthStage.INFANT);
 
             if (maleOverlayTextures != null && maleOverlayTextures.length > 0)
+            {
                 return new RenderDinosaurMultilayer(this);
+            }
             else
+            {
                 return new RenderDinosaur(this);
+            }
         }
     }
 }

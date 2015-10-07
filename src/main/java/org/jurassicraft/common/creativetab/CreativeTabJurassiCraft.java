@@ -14,14 +14,22 @@ public abstract class CreativeTabJurassiCraft extends CreativeTabs
     public void setTab(Block... blocks)
     {
         for (Block block : blocks)
+        {
             if (block != null)
+            {
                 block.setCreativeTab(this);
+            }
+        }
     }
 
     public void setTab(Item... items)
     {
         for (Item item : items)
+        {
             if (item != null)
+            {
                 item.setCreativeTab(this);
+            }
+        }
     }
 }

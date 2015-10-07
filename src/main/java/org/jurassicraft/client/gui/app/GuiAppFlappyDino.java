@@ -28,7 +28,7 @@ public class GuiAppFlappyDino extends GuiApp
     private int y;
     private int motionY;
 
-    private Map<Integer, Integer> pillars = new HashMap<Integer, Integer>();
+    private Map<Integer, Integer> pillars = new HashMap<>();
 
     public GuiAppFlappyDino(App app)
     {

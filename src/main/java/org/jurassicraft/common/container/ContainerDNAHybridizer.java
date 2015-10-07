@@ -45,7 +45,9 @@ public class ContainerDNAHybridizer extends Container
     {
         super.onContainerClosed(player);
         if (!player.worldObj.isRemote)
+        {
             dnaHybridizer.closeInventory(player);
+        }
     }
 
     @Override

@@ -36,7 +36,7 @@ public class CommonProxy
         JurassiCraft.achievements.register();
         JurassiCraft.storageTypeRegistry.register();
 
-        addChestGenItems();
+//        addChestGenItems();
 
         GameRegistry.registerWorldGenerator(new WorldGenerator(), 0);
 
@@ -53,9 +53,9 @@ public class CommonProxy
         ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR).addItem(new WeightedRandomChestContent(new ItemStack(JCItemRegistry.amber, 1, 0), 1, 2, 30));
         ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR).addItem(new WeightedRandomChestContent(new ItemStack(JCItemRegistry.amber, 1, 1), 1, 2, 30));
 
-        List<Dinosaur> dinosaurs = new ArrayList<Dinosaur>(JCEntityRegistry.getDinosaurs());
+        List<Dinosaur> dinosaurs = new ArrayList<>(JCEntityRegistry.getDinosaurs());
 
-        Map<Dinosaur, Integer> ids = new HashMap<Dinosaur, Integer>();
+        Map<Dinosaur, Integer> ids = new HashMap<>();
 
         int id = 0;
 
@@ -71,7 +71,9 @@ public class CommonProxy
         for (Dinosaur dino : dinosaurs)
         {
             if (dino.shouldRegister() && !(dino instanceof IHybrid))
+            {
                 ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(JCItemRegistry.skull, 1, ids.get(dino)), 1, 6, 80));
+            }
         }
     }
 

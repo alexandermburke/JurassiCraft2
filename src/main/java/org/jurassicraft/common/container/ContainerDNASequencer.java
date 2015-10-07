@@ -49,7 +49,9 @@ public class ContainerDNASequencer extends Container
         super.onContainerClosed(player);
 
         if (!player.worldObj.isRemote)
+        {
             dnaSequencer.closeInventory(player);
+        }
     }
 
     @Override

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class JCPlantRegistry
 {
-    private static List<Plant> plants = new ArrayList<Plant>();
+    private static List<Plant> plants = new ArrayList<>();
 
     public static final Plant small_royal_fern = new PlantSmallRoyalFern();
     public static final Plant calamites = new PlantCalamites();
@@ -35,7 +35,9 @@ public class JCPlantRegistry
     public static Plant getPlantById(int id)
     {
         if (id >= plants.size() || id < 0)
+        {
             return null;
+        }
 
         return plants.get(id);
     }

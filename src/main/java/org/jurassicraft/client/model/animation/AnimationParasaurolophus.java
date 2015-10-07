@@ -71,7 +71,9 @@ public class AnimationParasaurolophus extends DinosaurAnimator
         float allFoursLean = (float) (Math.pow(f1, 1 / (f1 * 10)) / 4);
 
         if (allFoursLean > 0.15F)
+        {
             allFoursLean = 0.15F;
+        }
 
         // All fours behavior
         waist.rotateAngleX += allFoursLean * 1.5;

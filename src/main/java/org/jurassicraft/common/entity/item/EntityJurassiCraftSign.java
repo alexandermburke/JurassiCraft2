@@ -80,7 +80,9 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
         }
 
         if (this.signType == null)
+        {
             this.signType = EnumSignType.GENTLE_GIANTS;
+        }
     }
 
     /**

@@ -81,8 +81,8 @@ public class JCBlockRegistry
 
     public void register()
     {
-        fossils = new ArrayList<BlockFossil>();
-        encased_fossils = new ArrayList<BlockEncasedFossil>();
+        fossils = new ArrayList<>();
+        encased_fossils = new ArrayList<>();
 
         carnivore_feeder = new BlockCarnivoreFeeder();
         cleaning_station = new BlockCleaningStation();
@@ -288,8 +288,12 @@ public class JCBlockRegistry
         DinoPediaRegistry.registerItem(new ItemStack(block));
 
         if (block instanceof ISubBlocksBlock)
+        {
             GameRegistry.registerBlock(block, ((ISubBlocksBlock) block).getItemBlockClass(), name);
+        }
         else
+        {
             GameRegistry.registerBlock(block, name);
+        }
     }
 }

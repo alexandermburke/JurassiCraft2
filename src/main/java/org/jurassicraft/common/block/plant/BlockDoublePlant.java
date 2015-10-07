@@ -61,7 +61,10 @@ public class BlockDoublePlant extends BlockBush
             Object object = flag ? this : worldIn.getBlockState(blockpos1).getBlock();
             Object object1 = flag ? worldIn.getBlockState(blockpos2).getBlock() : this;
 
-            if (!flag) this.dropBlockAsItem(worldIn, pos, state, 0); //Forge move above the setting to air.
+            if (!flag)
+            {
+                this.dropBlockAsItem(worldIn, pos, state, 0); //Forge move above the setting to air.
+            }
 
             if (object == this)
             {
@@ -78,7 +81,9 @@ public class BlockDoublePlant extends BlockBush
     public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
     {
         if (state.getBlock() != this)
+        {
             return super.canBlockStay(worldIn, pos, state); //Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
+        }
         if (state.getValue(HALF) == BlockDoublePlant.EnumBlockHalf.UPPER)
         {
             return worldIn.getBlockState(pos.down()).getBlock() == this;
@@ -191,7 +196,9 @@ public class BlockDoublePlant extends BlockBush
         //Forge: Break both parts on the client to prevent the top part flickering as default type for a few frames.
         IBlockState state = world.getBlockState(pos);
         if (state.getBlock() == this && state.getValue(HALF) == EnumBlockHalf.LOWER && world.getBlockState(pos.up()).getBlock() == this)
+        {
             world.setBlockToAir(pos.up());
+        }
         return world.setBlockToAir(pos);
     }
 

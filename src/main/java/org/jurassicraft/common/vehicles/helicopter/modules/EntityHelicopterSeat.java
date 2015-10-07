@@ -119,7 +119,9 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
             }
         });
         if (list.isEmpty())
+        {
             return null;
+        }
         return (EntityHelicopterBase) list.get(0);
     }
 

@@ -8,16 +8,12 @@ import java.util.ArrayList;
 
 public class TreeCompendium
 {
+    public static ArrayList<Tree> TreeList = new ArrayList<>();
 
-    public static ArrayList<Tree> TreeList = new ArrayList<Tree>();
-
-    public static ArrayList<Shape> ShapeList = new ArrayList<Shape>();
-
+    public static ArrayList<Shape> ShapeList = new ArrayList<>();
 
     public static void addShapesToCompendium()
     {
-
-
         Shape shape;
 
         shape = new Shape(1); // basic shape with one block, 4 branch insert point and a trunk insert point
@@ -61,11 +57,18 @@ public class TreeCompendium
         shape = new Shape(4); // basic leaf shape for JC Tree.
 
         for (int i = 0; i <= 1; i++)
+        {
             for (int j = -1; j <= 1; j++)
+            {
                 for (int k = -1; k <= 1; k++)
+                {
                     shape.addLog(k, i, j);
+                }
+            }
+        }
 
         for (int i = -1; i <= 1; i++)
+        {
             for (int j = -1; j <= 1; j++)
             {
                 shape.addLog(i, 2, j);
@@ -73,6 +76,7 @@ public class TreeCompendium
                 shape.addLog(i, j, 2);
                 shape.addLog(i, j, -2);
             }
+        }
 
         shape.addLog(2, 0, 0);
         shape.addLog(2, 1, 0);

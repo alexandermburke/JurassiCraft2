@@ -7,7 +7,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.AnimID;
-import net.timeless.unilib.common.animation.ChainBuffer;
 import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimSoundBase;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaurAggressive;
@@ -57,7 +56,9 @@ public class EntityIndominus extends EntityDinosaurAggressive // implements ICar
         super.onUpdate();
 
         if (this.ticksExisted % 62 == 0)
+        {
             this.playSound(randomSound(breathSounds), this.getSoundVolume(), this.getSoundPitch());
+        }
 
         /** Step Sound */
         if (this.moveForward > 0 && this.stepCount <= 0)

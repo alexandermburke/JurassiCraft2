@@ -32,10 +32,10 @@ public class JCPlayerData implements IExtendedEntityProperties
         return JCPlayerDataClient.getPlayerData();
     }
 
-    private Map<String, NBTTagCompound> appdata = new HashMap<String, NBTTagCompound>();
-    private List<App> openApps = new ArrayList<App>();
+    private Map<String, NBTTagCompound> appdata = new HashMap<>();
+    private List<App> openApps = new ArrayList<>();
 
-    private List<JCFile> rootFiles = new ArrayList<JCFile>();
+    private List<JCFile> rootFiles = new ArrayList<>();
 
     private EntityPlayer player;
 
@@ -123,7 +123,9 @@ public class JCPlayerData implements IExtendedEntityProperties
     public void openApp(App app)
     {
         if (appdata.containsKey(app.getName()))
+        {
             app.readAppFromNBT(appdata.get(app.getName()));
+        }
 
         app.init();
         app.open();

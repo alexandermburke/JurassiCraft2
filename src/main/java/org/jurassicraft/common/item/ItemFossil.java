@@ -32,7 +32,9 @@ public class ItemFossil extends Item
         Dinosaur dinosaur = this.getDinosaur(stack);
 
         if (dinosaur != null)
+        {
             return new AdvLang("item." + type + ".name").withProperty("dino", "entity." + dinosaur.getName().replace(" ", "_").toLowerCase() + ".name").build();
+        }
 
         return super.getItemStackDisplayName(stack);
     }
@@ -46,9 +48,9 @@ public class ItemFossil extends Item
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List subtypes)
     {
-        List<Dinosaur> dinosaurs = new ArrayList<Dinosaur>(JCEntityRegistry.getDinosaurs());
+        List<Dinosaur> dinosaurs = new ArrayList<>(JCEntityRegistry.getDinosaurs());
 
-        Map<Dinosaur, Integer> ids = new HashMap<Dinosaur, Integer>();
+        Map<Dinosaur, Integer> ids = new HashMap<>();
 
         int id = 0;
 
@@ -64,7 +66,9 @@ public class ItemFossil extends Item
         for (Dinosaur dino : dinosaurs)
         {
             if (dino.shouldRegister())
+            {
                 subtypes.add(new ItemStack(item, 1, ids.get(dino)));
+            }
         }
     }
 }

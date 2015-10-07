@@ -33,7 +33,9 @@ public class TileFossilGrinder extends TileMachineBase
             for (int i = 1; i < 7; i++)
             {
                 if (slots[i] == null)
+                {
                     return true;
+                }
             }
         }
 
@@ -52,11 +54,17 @@ public class TileFossilGrinder extends TileMachineBase
             int item = rand.nextInt(6);
 
             if (item < 3)
+            {
                 output = new ItemStack(Items.dye, 1, 15);
+            }
             else if (item < 5)
+            {
                 output = new ItemStack(Items.flint);
+            }
             else
+            {
                 output = new ItemStack(JCItemRegistry.soft_tissue, 1, slots[0].getItemDamage());
+            }
 
             int emptySlot = getOutputSlot(output);
 

@@ -19,7 +19,6 @@ import org.jurassicraft.JurassiCraft;
 @Mod(modid = "JCAnimationAPI", name = "JurassiCraft AnimationAPI", version = "1.2.5")
 public class AnimationAPI
 {
-
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent e)
     {
@@ -60,6 +59,7 @@ public class AnimationAPI
     public static void sendAnimPacket(IAnimatedEntity entity, AnimID animID)
     {
         entity.setAnimID(animID);
+
         if (!((Entity) entity).worldObj.isRemote)
         {
             JurassiCraft.instance.getLogger().debug("sending Anim Packet for entity " + ((Entity) entity).getEntityId());
@@ -70,8 +70,9 @@ public class AnimationAPI
 
     @Mod.Instance("AnimationAPI")
     public static AnimationAPI instance;
-    @SidedProxy(clientSide = "net.timeless.animationapi.client.ClientProxy",
-            serverSide = "net.timeless.animationapi.CommonProxy")
+
+    @SidedProxy(clientSide = "net.timeless.animationapi.client.ClientProxy", serverSide = "net.timeless.animationapi.CommonProxy")
+
     public static CommonProxy proxy;
     public static SimpleNetworkWrapper wrapper;
 

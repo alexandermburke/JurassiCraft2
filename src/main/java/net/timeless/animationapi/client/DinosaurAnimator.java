@@ -42,10 +42,12 @@ public abstract class DinosaurAnimator implements IModelAnimator
             {
                 renderers = new MowzieModelRenderer[0][];
             }
+
             if (animations == null)
             {
                 animations = newEmptyMap();
             }
+
             this.models = renderers;
             this.animations = animations;
         }
@@ -58,24 +60,23 @@ public abstract class DinosaurAnimator implements IModelAnimator
 
     public static EnumMap<AnimID, int[][]> newEmptyMap()
     {
-        EnumMap<AnimID, int[][]> map = new EnumMap<AnimID, int[][]>(AnimID.class);
-        return map;
+        return new EnumMap<>(AnimID.class);
     }
 
     private Map<EnumGrowthStage, PreloadedModelData> modelData;
-    protected Map<Integer, Map<EnumGrowthStage, JabelarAnimationHelper>> entityIDToAnimation = new HashMap<Integer, Map<EnumGrowthStage, JabelarAnimationHelper>>();
+    protected Map<Integer, Map<EnumGrowthStage, JabelarAnimationHelper>> entityIDToAnimation = new HashMap<>();
 
     /**
      * Loads the model, etc... for the dinosaur given.
      *
      * @param dino
-     * @throws IOException
      */
     public DinosaurAnimator(Dinosaur dino)
     {
         String name = dino.getName().toLowerCase(); // this should match name of your resource package and files
-        this.modelData = new EnumMap<EnumGrowthStage, PreloadedModelData>(EnumGrowthStage.class);
-        URI dinoDirURI = null;
+        this.modelData = new EnumMap<>(EnumGrowthStage.class);
+        URI dinoDirURI;
+
         try
         {
             dinoDirURI = new URI("/assets/jurassicraft/models/entities/" + name + "/");
@@ -118,7 +119,9 @@ public abstract class DinosaurAnimator implements IModelAnimator
         InputStream dinoDef = Unilib.class.getResourceAsStream(definitionFile.toString());
 
         if (dinoDef == null)
+        {
             throw new IllegalArgumentException("No model definition for the dino " + name + " with grow-state " + growth + " exists. Expected at " + definitionFile);
+        }
 
         try
         {
@@ -152,9 +155,11 @@ public abstract class DinosaurAnimator implements IModelAnimator
         // Check if the file is legal: -> at least one pose for the IDLE animation
         if (anims == null || anims.poses == null || anims.poses.get(AnimID.IDLE.name()) == null
                 || anims.poses.get(AnimID.IDLE.name()).length == 0)
+        {
             throw new IllegalArgumentException("Animation files must define at least one pose for the IDLE animation");
+        }
         // Collect all needed resources
-        List<String> posedModelResources = new ArrayList<String>();
+        List<String> posedModelResources = new ArrayList<>();
         for (PoseDTO[] poses : anims.poses.values())
         {
             if (poses == null)
@@ -168,7 +173,9 @@ public abstract class DinosaurAnimator implements IModelAnimator
                     continue; // Pending comma in the list, ignoring
                 }
                 if (pose.pose == null)
+                {
                     throw new IllegalArgumentException("Every pose must define a pose file");
+                }
                 String resolvedRes = resolve(dinoDirURI, pose.pose);
                 int index = posedModelResources.indexOf(resolvedRes);
                 if (index == -1)
@@ -188,7 +195,9 @@ public abstract class DinosaurAnimator implements IModelAnimator
         // find all names we need
         ModelDinosaur mainModel = JabelarAnimationHelper.getTabulaModel(posedModelResources.get(0), 0);
         if (mainModel == null)
+        {
             throw new IllegalArgumentException("Couldn't load the model from " + posedModelResources.get(0));
+        }
         String[] cubeNameArray = mainModel.getCubeNamesArray();
         int numParts = cubeNameArray.length;
         // load the models from the resource files
@@ -197,14 +206,18 @@ public abstract class DinosaurAnimator implements IModelAnimator
             String resource = posedModelResources.get(i);
             ModelDinosaur theModel = JabelarAnimationHelper.getTabulaModel(resource, 0);
             if (theModel == null)
+            {
                 throw new IllegalArgumentException("Couldn't load the model from " + resource);
+            }
             MowzieModelRenderer[] cubes = new MowzieModelRenderer[numParts];
             for (int partIndex = 0; partIndex < numParts; partIndex++)
             {
                 String cubeName = cubeNameArray[partIndex];
                 MowzieModelRenderer cube = theModel.getCube(cubeName);
                 if (cube == null)
+                {
                     throw new IllegalArgumentException("Could not retrieve cube " + cubeName + " (" + partIndex + ") from the model " + resource);
+                }
                 cubes[partIndex] = cube;
             }
             posedCubes[i] = cubes;
@@ -239,7 +252,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
 
         if (growthToRender == null)
         {
-            growthToRender = new EnumMap<EnumGrowthStage, JabelarAnimationHelper>(EnumGrowthStage.class);
+            growthToRender = new EnumMap<>(EnumGrowthStage.class);
             entityIDToAnimation.put(id, growthToRender);
         }
 

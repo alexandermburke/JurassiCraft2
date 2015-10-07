@@ -51,7 +51,9 @@ public class ContainerDnaSynthesizer extends Container
     {
         super.onContainerClosed(player);
         if (!player.worldObj.isRemote)
+        {
             dnaSynthesizer.closeInventory(player);
+        }
     }
 
     @Override

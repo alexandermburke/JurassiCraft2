@@ -2,9 +2,7 @@ package org.jurassicraft.common.entity;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.AnimID;
-import net.timeless.unilib.common.animation.ChainBuffer;
 import net.timeless.unilib.common.animation.ControlledParam;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.entity.ai.animations.AnimationAIEating;
@@ -83,7 +81,9 @@ public class EntityTyrannosaurus extends EntityDinosaurAggressive // , IEntityAI
         this.roarTiltDegree.update();
 
         if (this.ticksExisted % 62 == 0)
+        {
             this.playSound(randomSound(breathSounds), this.getSoundVolume(), this.getSoundPitch());
+        }
 
         /** Step Sound */
         if (this.moveForward > 0 && this.stepCount <= 0)

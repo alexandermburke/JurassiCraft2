@@ -43,7 +43,9 @@ public class TileDnaSequencer extends TileMachineBase
                 output.setTagCompound(input.getTagCompound());
 
                 if (slots[process + 6] == null || ItemStack.areItemsEqual(slots[process + 6], output) && ItemStack.areItemStackTagsEqual(slots[process + 6], output))
+                {
                     return true;
+                }
             }
         }
 

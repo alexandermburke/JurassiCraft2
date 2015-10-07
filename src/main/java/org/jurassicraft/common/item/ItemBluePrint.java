@@ -29,7 +29,9 @@ public class ItemBluePrint extends Item
         String name = "blue_print.blank.name";
 
         if (dino != null)
+        {
             name = "entity." + dino.getName().toLowerCase().replaceAll(" ", "_") + ".name";
+        }
 
         return new AdvLang("item.blue_print.name").withProperty("type", name).build();
     }
@@ -39,7 +41,9 @@ public class ItemBluePrint extends Item
         NBTTagCompound nbt = stack.getTagCompound();
 
         if (nbt == null)
+        {
             nbt = new NBTTagCompound();
+        }
 
         nbt.setInteger("Dinosaur", dino);
 

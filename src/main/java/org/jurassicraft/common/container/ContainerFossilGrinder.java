@@ -47,7 +47,9 @@ public class ContainerFossilGrinder extends Container
     {
         super.onContainerClosed(player);
         if (!player.worldObj.isRemote)
+        {
             fossilGrinder.closeInventory(player);
+        }
     }
 
     @Override

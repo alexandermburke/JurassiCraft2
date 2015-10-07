@@ -62,7 +62,9 @@ public class MessageHelicopterDirection implements IMessage
             }
             EntityHelicopterBase helicopter = (EntityHelicopterBase) world.getEntityByID(packet.heliID);
             if (helicopter != null)
+            {
                 helicopter.setDirection(packet.direction);
+            }
             return null;
         }
 

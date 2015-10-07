@@ -41,7 +41,9 @@ public class BlockDnaSynthesizer extends BlockOriented
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
             if (tileentity instanceof TileDnaSynthesizer)
+            {
                 ((TileDnaSynthesizer) tileentity).setCustomInventoryName(stack.getDisplayName());
+            }
         }
     }
 

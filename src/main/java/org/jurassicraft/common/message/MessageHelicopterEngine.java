@@ -53,7 +53,9 @@ public class MessageHelicopterEngine implements IMessage
             }
             EntityHelicopterBase helicopter = (EntityHelicopterBase) world.getEntityByID(packet.heliID);
             if (helicopter != null)
+            {
                 helicopter.setEngineRunning(packet.engineState);
+            }
             return null;
         }
 

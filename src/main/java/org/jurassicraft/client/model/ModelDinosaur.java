@@ -27,7 +27,9 @@ public class ModelDinosaur extends ModelJson
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
     {
         if (!Minecraft.getMinecraft().isGamePaused())
+        {
             animator.update((IAnimatedEntity) entity);
+        }
 
         super.setRotationAngles(limbSwing, limbSwingAmount, rotation, rotationYaw, rotationPitch, partialTicks, entity);
     }

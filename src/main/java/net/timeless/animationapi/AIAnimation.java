@@ -6,7 +6,6 @@ import net.timeless.animationapi.client.AnimID;
 
 public abstract class AIAnimation extends EntityAIBase
 {
-
     public AIAnimation(IAnimatedEntity entity)
     {
         animatedEntity = entity;
@@ -33,7 +32,9 @@ public abstract class AIAnimation extends EntityAIBase
     public boolean shouldExecute()
     {
         if (isAutomatic())
+        {
             return animatedEntity.getAnimID() == getAnimID();
+        }
         return shouldAnimate();
     }
 
@@ -41,7 +42,9 @@ public abstract class AIAnimation extends EntityAIBase
     public void startExecuting()
     {
         if (!isAutomatic())
+        {
             AnimationAPI.sendAnimPacket(animatedEntity, getAnimID());
+        }
         animatedEntity.setAnimTick(0);
     }
 

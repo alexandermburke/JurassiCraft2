@@ -94,7 +94,9 @@ public class StructureBuilder extends StructureGenerator
             newComp.repeats.addAll(oldComp.repeats);
             newComp.facing = oldComp.facing;
             for (int i = 0; i < angle.turnsCount(); i++)
+            {
                 newComp.facing = getNextClockwise(newComp.facing);
+            }
             HashMap<BlockCoords, BlockList> blocks = newComp.blocks;
             Tuple3<Integer, Integer, Integer> minCoords = mins(oldComp.blocks);
             Tuple3<Integer, Integer, Integer> maxCoords = maxs(oldComp.blocks);
@@ -128,7 +130,9 @@ public class StructureBuilder extends StructureGenerator
                             PropertyDirection dir = (PropertyDirection) prop;
                             EnumFacing facing = (EnumFacing) state.getValue(dir);
                             for (int j = 0; j < angle.turnsCount(); j++)
+                            {
                                 facing = getNextClockwise(facing);
+                            }
                             states[i] = state.withProperty(dir, facing);
                         }
                     }
@@ -157,7 +161,7 @@ public class StructureBuilder extends StructureGenerator
 
     private Tuple3<Integer, Integer, Integer> maxs(HashMap<BlockCoords, BlockList> blocks)
     {
-        Tuple3<Integer, Integer, Integer> result = new Tuple3<Integer, Integer, Integer>();
+        Tuple3<Integer, Integer, Integer> result = new Tuple3<>();
         int maxX = Integer.MIN_VALUE;
         int maxY = Integer.MIN_VALUE;
         int maxZ = Integer.MIN_VALUE;
@@ -185,7 +189,7 @@ public class StructureBuilder extends StructureGenerator
 
     private Tuple3<Integer, Integer, Integer> mins(HashMap<BlockCoords, BlockList> blocks)
     {
-        Tuple3<Integer, Integer, Integer> result = new Tuple3<Integer, Integer, Integer>();
+        Tuple3<Integer, Integer, Integer> result = new Tuple3<>();
         int minX = Integer.MAX_VALUE;
         int minY = Integer.MAX_VALUE;
         int minZ = Integer.MAX_VALUE;

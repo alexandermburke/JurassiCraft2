@@ -41,7 +41,9 @@ public class BlockEmbryonicMachine extends BlockOriented
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
             if (tileentity instanceof TileEmbryonicMachine)
+            {
                 ((TileEmbryonicMachine) tileentity).setCustomInventoryName(stack.getDisplayName());
+            }
         }
     }
 

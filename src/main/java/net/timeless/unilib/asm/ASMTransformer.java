@@ -19,17 +19,21 @@ import java.util.List;
 // How early your core mod is called - Use > 1000 to work with srg names
 public class ASMTransformer implements IClassTransformer
 {
-
     private final File folder;
     private final List<String> filesToDebug;
 
     public ASMTransformer()
     {
         folder = new File(".", "asm/debug");
+
         if (!folder.exists())
+        {
             folder.mkdirs();
+        }
+
         filesToDebug = Lists.newArrayList();
         String options = System.getProperty("unilibAsmDebug");
+
         if (options != null)
         {
             String[] classes = options.split(";");
@@ -46,6 +50,7 @@ public class ASMTransformer implements IClassTransformer
         // Unilib does not operate on the bytecode but only outputs the bytecode as text and as a class file inside the
         // gameFolder/debug/ folder
         String name = className.replace(".", "/");
+
         if (name.equals("net/minecraft/item/ItemStack"))
         {
             ClassReader reader = new ClassReader(bytes);
@@ -54,6 +59,7 @@ public class ASMTransformer implements IClassTransformer
             bytes = writer.toByteArray();
             // TODO: Modify ItemStack::getMetadata()
         }
+
         if (filesToDebug.contains(name))
         {
             try
@@ -73,14 +79,19 @@ public class ASMTransformer implements IClassTransformer
                 e.printStackTrace();
             }
         }
+
         return bytes;
     }
 
     private File createFile(File folder, String className, String extension) throws IOException
     {
         File result = new File(folder, className.replace(".", "/") + "." + extension);
+
         if (!result.getParentFile().exists())
+        {
             result.getParentFile().mkdirs();
+        }
+
         result.createNewFile();
         return result;
     }
@@ -96,10 +107,12 @@ public class ASMTransformer implements IClassTransformer
         public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions)
         {
             MethodVisitor mv = super.visitMethod(access, name, desc, signature, exceptions);
+
             if (name.equals("getItem"))
             {
                 return new MetadataGetterTransformer(api, mv);
             }
+
             return mv;
         }
     }

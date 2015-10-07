@@ -77,7 +77,9 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
         String texture = "jurassicraft:textures/entities/" + dinosaurName + "/" + dinosaurName;
 
         if (subtype != "")
+        {
             texture += "_" + subtype;
+        }
 
         return texture + ".png";
     }

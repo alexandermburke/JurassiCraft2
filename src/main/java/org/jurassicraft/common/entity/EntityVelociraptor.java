@@ -7,7 +7,6 @@ import net.minecraft.entity.ai.EntityAIOpenDoor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.timeless.animationapi.client.AnimID;
-import net.timeless.unilib.common.animation.ChainBuffer;
 import net.timeless.unilib.common.animation.ControlledAnimation;
 import org.jurassicraft.common.entity.ai.animations.AnimationAICall;
 import org.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
@@ -111,9 +110,13 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
 //            circleEntity(getAttackTarget(), 7, 1.0f, true, 0);
 
         if (getAnimID() == AnimID.RESTING || getAnimID() == AnimID.ATTACKING)
+        {
             dontLean.decreaseTimer();
+        }
         else
+        {
             dontLean.increaseTimer();
+        }
     }
 
 //    public void circleEntity(Entity target, float radius, float speed, boolean direction, float offset)

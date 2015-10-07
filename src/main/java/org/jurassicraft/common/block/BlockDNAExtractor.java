@@ -43,7 +43,9 @@ public class BlockDNAExtractor extends BlockOriented
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
             if (tileentity instanceof TileDNAExtractor)
+            {
                 ((TileDNAExtractor) tileentity).setCustomInventoryName(stack.getDisplayName());
+            }
         }
     }
 
