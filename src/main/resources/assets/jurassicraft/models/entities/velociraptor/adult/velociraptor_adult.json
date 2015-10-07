@@ -25,6 +25,13 @@
 			{"pose": "velociraptor_adult_attack_5", "time": 10}, {"pose": "velociraptor_adult_attack_5", "time": 10},
 			{"pose": "velociraptor_adult_idle", "time": 10}
         ],
+		"CALLING": [
+			{"pose": "velociraptor_adult_calling_1", "time": 15}, {"pose": "velociraptor_adult_calling_1", "time": 5},
+			{"pose": "velociraptor_adult_calling_2", "time": 5},
+			{"pose": "velociraptor_adult_calling_1", "time": 5},
+			{"pose": "velociraptor_adult_calling_2", "time": 5},
+			{"pose": "velociraptor_adult_idle", "time": 10}
+		],
 		"EATING": [
 			{"pose": "velociraptor_adult_eat_1", "time": 5}, {"pose": "velociraptor_adult_eat_1", "time": 2},
 			{"pose": "velociraptor_adult_eat_2", "time": 5}, {"pose": "velociraptor_adult_eat_2", "time": 2},
