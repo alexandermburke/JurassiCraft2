@@ -14,6 +14,7 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
 import org.jurassicraft.client.render.renderdef.RenderDinosaurDefinition;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.EntityVelociraptor;
@@ -90,6 +91,7 @@ public class RenderDinosaurMultilayer extends RenderLiving implements IDinosaurR
     public void preRenderCallback(EntityLivingBase entity, float side)
     {
         EntityDinosaur entityDinosaur = (EntityDinosaur) entity;
+        this.renderDef.getModelAnimator().preRenderCallback(entityDinosaur, side);
 
         int geneticVariant = entityDinosaur.getGeneticVariant();
 
@@ -160,13 +162,9 @@ public class RenderDinosaurMultilayer extends RenderLiving implements IDinosaurR
         boolean flag2 = false; // entitylivingbaseIn.hurtTime > 0 || entitylivingbaseIn.deathTime > 0;
 
         if (!flag1 && !flag2)
-        {
             return false;
-        }
         else if (!flag1 && !combineTextures)
-        {
             return false;
-        }
         else
         {
             GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);

@@ -1,11 +1,13 @@
 package org.jurassicraft.client.model.animation.vehicle;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 
 @SideOnly(Side.CLIENT)
@@ -27,6 +29,10 @@ public class AnimationHelicopter implements IModelAnimator
         tailrotor.rotateAngleX %= 360f;
         // Be sure that this works only with the lastest version of Unilib!
     }
+
+    @Override
+    public void preRenderCallback(EntityLivingBase entity, float partialTicks)
+    {}
 
     private float easeInCubic(float time, float startValue, float change, float duration)
     {
