@@ -1,6 +1,6 @@
 {
     "variants": {
-        "half=bottom": {"model": "jurassicraft:half_slab_ginkgo"},
-        "half=top": {"model": "jurassicraft:upper_slab_ginkgo"}
+        "half=bottom": { "model": "jurassicraft:half_slab_ginkgo" },
+        "half=top": { "model": "jurassicraft:upper_slab_ginkgo" }
     }
 }

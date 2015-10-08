@@ -1,17 +1,8 @@
 {
     "variants": {
-        "facing=north": {
-            "model": "jurassicraft:cleaning_station",
-            "y": 180
-        },
-        "facing=south": {"model": "jurassicraft:cleaning_station"},
-        "facing=west": {
-            "model": "jurassicraft:cleaning_station",
-            "y": 90
-        },
-        "facing=east": {
-            "model": "jurassicraft:cleaning_station",
-            "y": 270
-        }
+        "facing=north": { "model": "jurassicraft:cleaning_station", "y": 180 },
+        "facing=south": { "model": "jurassicraft:cleaning_station" },
+        "facing=west": { "model": "jurassicraft:cleaning_station", "y": 90 },
+        "facing=east": { "model": "jurassicraft:cleaning_station", "y": 270 }
     }
 }
