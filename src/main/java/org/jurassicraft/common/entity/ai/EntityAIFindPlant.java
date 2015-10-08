@@ -25,7 +25,7 @@ public class EntityAIFindPlant extends EntityAIBase
     {
         double energy = dinosaur.getEnergy();
 
-        if (!dinosaur.isDead && dinosaur.ticksExisted % 8 == 0 && dinosaur.worldObj.getGameRules().getGameRuleBooleanValue("dinoMetabolism"))
+        if (!dinosaur.isDead && dinosaur.ticksExisted % 4 == 0 && dinosaur.worldObj.getGameRules().getGameRuleBooleanValue("dinoMetabolism"))
         {
             if (energy < 12000 + (dinosaur.getRNG().nextInt(50) - 25))
             {
@@ -99,7 +99,7 @@ public class EntityAIFindPlant extends EntityAIBase
                 dinosaur.worldObj.destroyBlock(new BlockPos(x, y, z), false);
             }
 
-            dinosaur.setEnergy(dinosaur.getEnergy() + 100);
+            dinosaur.setEnergy(dinosaur.getEnergy() + 400);
         }
     }
 

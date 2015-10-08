@@ -30,7 +30,7 @@ public class EntityAIEatMeat extends EntityAIBase
     {
         double energy = dinosaur.getEnergy();
 
-        if (!dinosaur.isDead && dinosaur.ticksExisted % 8 == 0 && dinosaur.worldObj.getGameRules().getGameRuleBooleanValue("dinoMetabolism"))
+        if (!dinosaur.isDead && dinosaur.ticksExisted % 4 == 0 && dinosaur.worldObj.getGameRules().getGameRuleBooleanValue("dinoMetabolism"))
         {
             if (energy < 12000 + (dinosaur.getRNG().nextInt(50) - 25))
             {
@@ -106,7 +106,7 @@ public class EntityAIEatMeat extends EntityAIBase
                 }
             }
 
-            dinosaur.setEnergy(dinosaur.getEnergy() + 200);
+            dinosaur.setEnergy(dinosaur.getEnergy() + 600);
         }
     }
 
