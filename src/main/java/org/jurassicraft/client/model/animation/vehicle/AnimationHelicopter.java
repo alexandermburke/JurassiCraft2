@@ -7,7 +7,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
-
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 
 @SideOnly(Side.CLIENT)
