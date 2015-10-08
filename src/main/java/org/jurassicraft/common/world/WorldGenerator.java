@@ -36,7 +36,7 @@ public class WorldGenerator implements IWorldGenerator
 
             for (EnumTimePeriod p : EnumTimePeriod.values())
             {
-                if (randPosY < EnumTimePeriod.getStartYLevel(p) && randPosY > EnumTimePeriod.getEndYLevel(p))
+                if (randPosY < EnumTimePeriod.getEndYLevel(p) && randPosY > EnumTimePeriod.getStartYLevel(p))
                 {
                     period = p;
 
