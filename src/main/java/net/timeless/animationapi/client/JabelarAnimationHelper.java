@@ -1,7 +1,5 @@
 package net.timeless.animationapi.client;
 
-import java.util.Map;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
@@ -10,10 +8,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
-
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+
+import java.util.Map;
 
 /**
  * @author jabelar
@@ -107,7 +106,7 @@ public class JabelarAnimationHelper
         performNextTweenTick();
 
         partialTicks = parPartialTicks; // need to update this after the call because entity ticks are updated one call after partial ticks
-}
+    }
 
     private void init(ModelDinosaur parModel)
     {
@@ -227,7 +226,7 @@ public class JabelarAnimationHelper
 
     private void tween()
     {
-        JurassiCraft.instance.getLogger().info("current tween tick +  partial ticks = "+(currentTickInTween + partialTicks));
+        JurassiCraft.instance.getLogger().info("current tween tick +  partial ticks = " + (currentTickInTween + partialTicks));
 
         for (int partIndex = 0; partIndex < numParts; partIndex++)
         {
