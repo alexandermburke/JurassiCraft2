@@ -3,6 +3,7 @@ package org.jurassicraft.common.genetics;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
+
 import org.jurassicraft.common.entity.base.JCEntityRegistry;
 import org.jurassicraft.common.lang.AdvLang;
 
@@ -41,6 +42,7 @@ public class DinoDNA
         return quality;
     }
 
+    @Override
     public String toString()
     {
         return genetics.toString();
@@ -51,7 +53,7 @@ public class DinoDNA
         return genetics;
     }
 
-    public void addInformation(ItemStack stack, List tooltip)
+    public void addInformation(ItemStack stack, List<String> tooltip)
     {
         tooltip.add(EnumChatFormatting.DARK_AQUA + new AdvLang("lore.dinosaur.name").withProperty("dino", "entity." + JCEntityRegistry.getDinosaurById(genetics.getDinosaur()).getName().toLowerCase() + ".name").build());
 

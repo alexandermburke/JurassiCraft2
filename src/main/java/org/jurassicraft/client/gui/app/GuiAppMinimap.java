@@ -1,6 +1,7 @@
 package org.jurassicraft.client.gui.app;
 
 import com.google.common.base.Predicate;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.state.IBlockState;
@@ -15,6 +16,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
+
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.gui.GuiPaleoTab;
 import org.jurassicraft.common.dinosaur.Dinosaur;
@@ -160,9 +162,9 @@ public class GuiAppMinimap extends GuiApp
                                 Dinosaur dinosaur = dino.getDinosaur();
                                 int colour = dinosaur.getEggPrimaryColor();
 
-                                float red = (float) (colour >> 16 & 255) / 255.0F;
-                                float green = (float) (colour >> 8 & 255) / 255.0F;
-                                float blue = (float) (colour & 255) / 255.0F;
+                                float red = (colour >> 16 & 255) / 255.0F;
+                                float green = (colour >> 8 & 255) / 255.0F;
+                                float blue = (colour & 255) / 255.0F;
 
                                 GL11.glColor3f(red, green, blue);
 
@@ -198,7 +200,7 @@ public class GuiAppMinimap extends GuiApp
     /**
      * Fills the given list of all entities that intersect within the given bounding box that aren't the passed entity.
      */
-    public List<Entity> getEntitiesInChunk(Chunk chunk, Entity exclude, Predicate predicate)
+    public List<Entity> getEntitiesInChunk(Chunk chunk, Entity exclude, Predicate<Entity> predicate)
     {
         List<Entity> entities = new ArrayList<>();
 
@@ -210,11 +212,11 @@ public class GuiAppMinimap extends GuiApp
 
         for (int k = i; k <= j; ++k)
         {
-            Iterator iterator = entityLists[k].iterator();
+            Iterator<Entity> iterator = entityLists[k].iterator();
 
             while (iterator.hasNext())
             {
-                Entity entity = (Entity) iterator.next();
+                Entity entity = iterator.next();
 
                 if (entity != exclude && (predicate == null || predicate.apply(entity)))
                 {
@@ -223,9 +225,9 @@ public class GuiAppMinimap extends GuiApp
 
                     if (parts != null)
                     {
-                        for (int l = 0; l < parts.length; ++l)
+                        for (Entity part : parts)
                         {
-                            entity = parts[l];
+                            entity = part;
 
                             if (entity != exclude && (predicate == null || predicate.apply(entity)))
                             {

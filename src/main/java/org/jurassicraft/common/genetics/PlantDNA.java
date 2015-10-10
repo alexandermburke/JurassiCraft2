@@ -3,6 +3,7 @@ package org.jurassicraft.common.genetics;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
+
 import org.jurassicraft.common.lang.AdvLang;
 import org.jurassicraft.common.plant.JCPlantRegistry;
 
@@ -46,7 +47,7 @@ public class PlantDNA
         return plant;
     }
 
-    public void addInformation(ItemStack stack, List tooltip)
+    public void addInformation(ItemStack stack, List<String> tooltip)
     {
         tooltip.add(EnumChatFormatting.DARK_AQUA + new AdvLang("lore.plant.name").withProperty("plant", "plants." + JCPlantRegistry.getPlantById(plant).getName().toLowerCase().replaceAll(" ", "_") + ".name").build());
 

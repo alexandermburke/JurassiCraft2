@@ -11,5 +11,5 @@ public interface IStorageType
 
     void readFromNBT(NBTTagCompound nbt);
 
-    void addInformation(ItemStack stack, List tooltip);
+    void addInformation(ItemStack stack, List<String> tooltip);
 }

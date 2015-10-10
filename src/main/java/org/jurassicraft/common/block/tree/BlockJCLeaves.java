@@ -1,5 +1,7 @@
 package org.jurassicraft.common.block.tree;
 
+import com.google.common.collect.Lists;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
@@ -23,6 +25,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
 import org.jurassicraft.common.block.JCBlockRegistry;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
 
@@ -44,18 +47,21 @@ public class BlockJCLeaves extends BlockLeaves
         this.setCreativeTab(JCCreativeTabs.plants);
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public int getBlockColor()
     {
         return this.treeType == EnumType.GINKGO ? 0xFFFFFF : ColorizerFoliage.getFoliageColor(0.5D, 1.0D);
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public int getRenderColor(IBlockState state)
     {
         return this.treeType == EnumType.GINKGO ? 0xFFFFFF : ColorizerFoliage.getFoliageColorBasic();
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass)
     {
@@ -67,27 +73,32 @@ public class BlockJCLeaves extends BlockLeaves
         return treeType;
     }
 
+    @Override
     protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance)
     {
 
     }
 
+    @Override
     public boolean isOpaqueCube()
     {
         return Blocks.leaves.isOpaqueCube();
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public EnumWorldBlockLayer getBlockLayer()
     {
         return Blocks.leaves.getBlockLayer();
     }
 
+    @Override
     public boolean isVisuallyOpaque()
     {
         return Blocks.leaves.isVisuallyOpaque();
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
     {
@@ -105,6 +116,7 @@ public class BlockJCLeaves extends BlockLeaves
     /**
      * Copied from BlockLeaves, without the part about dropping apples.
      */
+    @Override
     public java.util.List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
         java.util.List<ItemStack> ret = new java.util.ArrayList<>();
@@ -140,6 +152,7 @@ public class BlockJCLeaves extends BlockLeaves
         return ret;
     }
 
+    @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
         return Item.getItemFromBlock(JCBlockRegistry.saplings[treeType.getMetadata()]);
@@ -148,6 +161,7 @@ public class BlockJCLeaves extends BlockLeaves
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
+    @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item itemIn, CreativeTabs tab, List list)
     {
@@ -157,6 +171,7 @@ public class BlockJCLeaves extends BlockLeaves
     /**
      * Convert the given metadata into a BlockState for this Block
      */
+    @Override
     public IBlockState getStateFromMeta(int meta)
     {
         boolean dec = meta < 4;
@@ -167,6 +182,7 @@ public class BlockJCLeaves extends BlockLeaves
     /**
      * Convert the BlockState into the correct metadata value
      */
+    @Override
     public int getMetaFromState(IBlockState state)
     {
         int i = 0;
@@ -184,6 +200,7 @@ public class BlockJCLeaves extends BlockLeaves
         return i;
     }
 
+    @Override
     protected BlockState createBlockState()
     {
         return new BlockState(this, new IProperty[]{CHECK_DECAY, DECAYABLE});
@@ -192,11 +209,13 @@ public class BlockJCLeaves extends BlockLeaves
     /**
      * Get the damage value that this Block should drop
      */
+    @Override
     public int damageDropped(IBlockState state)
     {
         return 0;
     }
 
+    @Override
     public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te)
     {
         if (!worldIn.isRemote && player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == Items.shears)
@@ -214,7 +233,7 @@ public class BlockJCLeaves extends BlockLeaves
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
         IBlockState state = world.getBlockState(pos);
-        return new java.util.ArrayList(java.util.Arrays.asList(new ItemStack(this, 1, 0)));
+        return Lists.newArrayList(new ItemStack(this, 1, 0));
     }
 
     @Override

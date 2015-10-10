@@ -1,6 +1,7 @@
 package org.jurassicraft.common.recipe;
 
 import com.google.common.collect.Maps;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -8,6 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+
 import org.jurassicraft.common.block.JCBlockRegistry;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.base.JCEntityRegistry;
@@ -255,9 +257,8 @@ public class JCRecipeRegistry
         {
             String[] astring = (String[]) pars[i++];
 
-            for (int l = 0; l < astring.length; ++l)
+            for (String s1 : astring)
             {
-                String s1 = astring[l];
                 ++k;
                 j = s1.length();
                 s = s + s1;
@@ -274,7 +275,7 @@ public class JCRecipeRegistry
             }
         }
 
-        HashMap hashmap;
+        HashMap<Character, ItemStack> hashmap;
 
         for (hashmap = Maps.newHashMap(); i < pars.length; i += 2)
         {
@@ -305,7 +306,7 @@ public class JCRecipeRegistry
 
             if (hashmap.containsKey(Character.valueOf(character)))
             {
-                inputs[i1] = ((ItemStack) hashmap.get(Character.valueOf(character))).copy();
+                inputs[i1] = hashmap.get(Character.valueOf(character)).copy();
             }
             else
             {

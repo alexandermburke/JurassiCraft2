@@ -1,12 +1,23 @@
 package net.timeless.unilib.asm;
 
 import com.google.common.collect.Lists;
+
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
-import org.objectweb.asm.*;
+
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.ClassVisitor;
+import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.Label;
+import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.util.TraceClassVisitor;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 
@@ -69,10 +80,11 @@ public class ASMTransformer implements IClassTransformer
                 TraceClassVisitor visitor = new TraceClassVisitor(new PrintWriter(new FileWriter(textFile)));
                 reader.accept(visitor, 0);
                 File classFile = createFile(folder, className, "class");
-                FileOutputStream out = new FileOutputStream(classFile);
-                out.write(bytes);
-                out.flush();
-                out.close();
+                try (FileOutputStream out = new FileOutputStream(classFile))
+                {
+                    out.write(bytes);
+                    out.flush();
+                }
             }
             catch (IOException e)
             {
@@ -109,9 +121,7 @@ public class ASMTransformer implements IClassTransformer
             MethodVisitor mv = super.visitMethod(access, name, desc, signature, exceptions);
 
             if (name.equals("getItem"))
-            {
                 return new MetadataGetterTransformer(api, mv);
-            }
 
             return mv;
         }

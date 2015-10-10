@@ -8,8 +8,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.jurassicraft.JurassiCraft;
+
 import org.jurassicraft.common.container.ContainerIncubator;
+import org.jurassicraft.common.message.JCNetworkManager;
 import org.jurassicraft.common.message.MessageChangeTemperature;
 
 import java.io.IOException;
@@ -32,6 +33,7 @@ public class GuiIncubator extends GuiContainer
     }
 
 
+    @Override
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException
     {
         super.mouseClicked(mouseX, mouseY, mouseButton);
@@ -43,6 +45,7 @@ public class GuiIncubator extends GuiContainer
      * Called when a mouse button is pressed and the mouse is moved around. Parameters are : mouseX, mouseY,
      * lastButtonClicked & timeSinceMouseClick.
      */
+    @Override
     protected void mouseClickMove(int mouseX, int mouseY, int clickedMouseButton, long timeSinceLastClick)
     {
         super.mouseClickMove(mouseX, mouseY, clickedMouseButton, timeSinceLastClick);
@@ -94,7 +97,7 @@ public class GuiIncubator extends GuiContainer
                 if (temp != incubator.getField(i + 10))
                 {
                     incubator.setField(i + 10, temp);
-                    JurassiCraft.networkManager.networkWrapper.sendToServer(new MessageChangeTemperature(((TileEntity) incubator).getPos(), i, temp));
+                    JCNetworkManager.networkWrapper.sendToServer(new MessageChangeTemperature(((TileEntity) incubator).getPos(), i, temp));
                 }
 
                 break;
@@ -105,6 +108,7 @@ public class GuiIncubator extends GuiContainer
     /**
      * Draw the foreground layer for the GuiContainer (everything in front of the items). Args : mouseX, mouseY
      */
+    @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
         String s = this.incubator.getDisplayName().getUnformattedText();
@@ -115,6 +119,7 @@ public class GuiIncubator extends GuiContainer
     /**
      * Args : renderPartialTicks, mouseX, mouseY
      */
+    @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
     {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);

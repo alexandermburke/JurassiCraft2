@@ -1,13 +1,14 @@
 package org.jurassicraft.common.message;
 
-import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import org.jurassicraft.JurassiCraft;
+
 import org.jurassicraft.common.entity.data.JCPlayerData;
+
+import io.netty.buffer.ByteBuf;
 
 public class MessageRequestFile implements IMessage
 {
@@ -46,7 +47,7 @@ public class MessageRequestFile implements IMessage
                 if (player != null)
                 {
                     JCPlayerData playerData = JCPlayerData.getPlayerData(player);
-                    JurassiCraft.networkManager.networkWrapper.sendTo(new MessageSendFile(playerData, playerData.getFileFromPath(packet.path)), player);
+                    JCNetworkManager.networkWrapper.sendTo(new MessageSendFile(playerData, playerData.getFileFromPath(packet.path)), player);
                 }
             }
             else //TODO

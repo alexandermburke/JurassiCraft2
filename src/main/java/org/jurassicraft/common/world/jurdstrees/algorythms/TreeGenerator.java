@@ -4,6 +4,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
+
 import org.jurassicraft.common.block.JCBlockRegistry;
 import org.jurassicraft.common.world.jurdstrees.algorythms.InsPCoord.InsPType;
 import org.jurassicraft.common.world.jurdstrees.algorythms.TreeBlock.Rotation;
@@ -92,7 +93,7 @@ public class TreeGenerator
     private void buildLeavesFromInsPCoord(World world, int x, int y, int z, InsPCoord coord)
     {
 
-        IBlockState leaves = tree.getLeavesFromCode(tree.getCode()).getDefaultState();
+        IBlockState leaves = Tree.getLeavesFromCode(tree.getCode()).getDefaultState();
 
 
         if (coord.getLevel() <= tree.getMaxAge() + 1 && coord.getLeaves() == 1)
@@ -136,7 +137,7 @@ public class TreeGenerator
                 }
 
 
-                if ((world.getBlockState(pos.add(xW, yW, zW)) == Blocks.air.getDefaultState() || world.getBlockState(new BlockPos(xW, yW, zW)).getBlock() == tree.getLeavesFromCode(tree.getCode())))
+                if ((world.getBlockState(pos.add(xW, yW, zW)) == Blocks.air.getDefaultState() || world.getBlockState(new BlockPos(xW, yW, zW)).getBlock() == Tree.getLeavesFromCode(tree.getCode())))
                 {
 
 
@@ -151,7 +152,7 @@ public class TreeGenerator
     {
 
 
-        IBlockState logs = tree.getBlocksFromCode(tree.getCode()).getDefaultState();
+        IBlockState logs = Tree.getBlocksFromCode(tree.getCode()).getDefaultState();
 
         for (TreeBlock TB : skull.blocksList)
         {
@@ -162,11 +163,10 @@ public class TreeGenerator
 
             // this sets the skull blocks from the loaded shape.
 
-            if (world.getBlockState(pos.add(xC, yC, zC)) == Blocks.air.getDefaultState() || world.getBlockState(pos.add(xC, yC, zC)) == tree.getBlocksFromCode(tree.getCode()).getDefaultState()
-                    || world.getBlockState(pos.add(xC, yC, zC)) == tree.getLeavesFromCode(tree.getCode()).getDefaultState() || world.getBlockState(pos.add(xC, yC, zC)).getBlock() == JCBlockRegistry.saplings[tree.getCode()])
+            if (world.getBlockState(pos.add(xC, yC, zC)) == Blocks.air.getDefaultState() || world.getBlockState(pos.add(xC, yC, zC)) == Tree.getBlocksFromCode(tree.getCode()).getDefaultState() || world.getBlockState(pos.add(xC, yC, zC)) == Tree.getLeavesFromCode(tree.getCode()).getDefaultState() || world.getBlockState(pos.add(xC, yC, zC)).getBlock() == JCBlockRegistry.saplings[tree.getCode()])
             {
 
-                if (world.getBlockState(pos.add(xC, yC, zC)) == Blocks.air.getDefaultState() || world.getBlockState(pos.add(xC, yC, zC)) == tree.getLeavesFromCode(tree.getCode()).getDefaultState()
+                if (world.getBlockState(pos.add(xC, yC, zC)) == Blocks.air.getDefaultState() || world.getBlockState(pos.add(xC, yC, zC)) == Tree.getLeavesFromCode(tree.getCode()).getDefaultState()
                         || world.getBlockState(pos.add(xC, yC, zC)).getBlock() == JCBlockRegistry.saplings[tree.getCode()])
                 {
                     world.setBlockState(pos.add(xC, yC, zC), logs); // skull block
@@ -182,7 +182,7 @@ public class TreeGenerator
 
                     int ageLevel = tree.getMaxAge() - (yW - y) / tree.getPenalty();
 
-                    if (WoodB.level < ageLevel && (world.getBlockState(pos.add(xW, yW, zW)) == Blocks.air.getDefaultState() || world.getBlockState(pos.add(xW, yW, zW)) == tree.getLeavesFromCode(tree.getCode()).getDefaultState()))
+                    if (WoodB.level < ageLevel && (world.getBlockState(pos.add(xW, yW, zW)) == Blocks.air.getDefaultState() || world.getBlockState(pos.add(xW, yW, zW)) == Tree.getLeavesFromCode(tree.getCode()).getDefaultState()))
                     {
 
                         world.setBlockState(pos.add(xW, yW, zW), logs);
@@ -194,7 +194,7 @@ public class TreeGenerator
             else
             {
 
-                if (world.getBlockState(pos.add(xC, yC, zC)) != tree.getBlocksFromCode(tree.getCode()).getDefaultState())
+                if (world.getBlockState(pos.add(xC, yC, zC)) != Tree.getBlocksFromCode(tree.getCode()).getDefaultState())
                 {
                     break;
                 }

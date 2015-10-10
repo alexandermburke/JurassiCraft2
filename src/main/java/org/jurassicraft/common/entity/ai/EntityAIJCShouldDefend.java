@@ -3,6 +3,7 @@ package org.jurassicraft.common.entity.ai;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.AxisAlignedBB;
+
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 
 import java.util.Iterator;
@@ -47,12 +48,12 @@ public class EntityAIJCShouldDefend extends EntityAIJCTarget
         if (this.entityCallsForHelp)
         {
             double d0 = this.getTargetDistance();
-            List list = this.taskOwner.worldObj.getEntitiesWithinAABB(this.taskOwner.getClass(), (new AxisAlignedBB(this.taskOwner.posX, this.taskOwner.posY, this.taskOwner.posZ, this.taskOwner.posX + 1.0D, this.taskOwner.posY + 1.0D, this.taskOwner.posZ + 1.0D)).expand(d0, 10.0D, d0));
-            Iterator iterator = list.iterator();
+            List<EntityCreature> list = this.taskOwner.worldObj.getEntitiesWithinAABB(this.taskOwner.getClass(), (new AxisAlignedBB(this.taskOwner.posX, this.taskOwner.posY, this.taskOwner.posZ, this.taskOwner.posX + 1.0D, this.taskOwner.posY + 1.0D, this.taskOwner.posZ + 1.0D)).expand(d0, 10.0D, d0));
+            Iterator<EntityCreature> iterator = list.iterator();
 
             while (iterator.hasNext())
             {
-                EntityCreature entitycreature = (EntityCreature) iterator.next();
+                EntityCreature entitycreature = iterator.next();
 
                 if (this.taskOwner != entitycreature && entitycreature.getAttackTarget() == null && !entitycreature.isOnSameTeam(this.taskOwner.getAITarget()))
                 {

@@ -1,9 +1,12 @@
 package org.jurassicraft.common.vehicles.helicopter.modules;
 
 import com.google.common.base.Predicate;
+
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 
 import java.util.List;
@@ -27,10 +30,10 @@ public abstract class HelicopterRidableModule extends HelicopterModule
 
     public static EntityHelicopterSeat getSeatFromID(World worldObj, final UUID id)
     {
-        List list = worldObj.getEntities(EntityHelicopterSeat.class, new Predicate()
+        List<EntityHelicopterSeat> list = worldObj.getEntities(EntityHelicopterSeat.class, new Predicate<Entity>()
         {
             @Override
-            public boolean apply(Object input)
+            public boolean apply(Entity input)
             {
                 if (input instanceof EntityHelicopterSeat)
                 {
@@ -41,10 +44,8 @@ public abstract class HelicopterRidableModule extends HelicopterModule
             }
         });
         if (list.isEmpty())
-        {
             return null;
-        }
-        return (EntityHelicopterSeat) list.get(0);
+        return list.get(0);
     }
 
     @Override

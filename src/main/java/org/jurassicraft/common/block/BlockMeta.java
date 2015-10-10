@@ -45,7 +45,7 @@ public class BlockMeta extends Block
         return ((Integer) state.getValue(TYPE)).intValue();
     }
 
-    @SuppressWarnings({"unchecked", "rawtypes"})
+    @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item itemIn, CreativeTabs tab, List list)
     {

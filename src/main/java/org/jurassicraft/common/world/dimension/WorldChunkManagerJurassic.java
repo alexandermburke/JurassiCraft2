@@ -1,16 +1,18 @@
 package org.jurassicraft.common.world.dimension;
 
+import com.google.common.collect.Lists;
+
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeCache;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class WorldChunkManagerJurassic extends WorldChunkManager
 {
 
-    private final List biomesToSpawnIn;
+    private final List<BiomeGenBase> biomesToSpawnIn;
     private final BiomeCache biomeCache;
 //    private final GenLayer biomeGenLayer;
 
@@ -21,7 +23,7 @@ public class WorldChunkManagerJurassic extends WorldChunkManager
 //        this.genBiomes = agenlayer[0];
 //        this.biomeIndexLayer = agenlayer[1];
         this.biomeCache = new BiomeCache(this);
-        this.biomesToSpawnIn = new ArrayList(allowedBiomes);
+        this.biomesToSpawnIn = Lists.newArrayList(WorldChunkManager.allowedBiomes);
     }
 
     public WorldChunkManagerJurassic(World worldIn)

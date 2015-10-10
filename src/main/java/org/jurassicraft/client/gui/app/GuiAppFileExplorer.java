@@ -3,10 +3,12 @@ package org.jurassicraft.client.gui.app;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.ResourceLocation;
+
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.gui.GuiPaleoTab;
 import org.jurassicraft.common.entity.data.JCPlayerData;
 import org.jurassicraft.common.entity.data.JCPlayerDataClient;
+import org.jurassicraft.common.message.JCNetworkManager;
 import org.jurassicraft.common.message.MessageRequestFile;
 import org.jurassicraft.common.paleopad.App;
 import org.jurassicraft.common.paleopad.AppFileExplorer;
@@ -170,7 +172,7 @@ public class GuiAppFileExplorer extends GuiApp
             path = "";
         }
 
-        JurassiCraft.networkManager.networkWrapper.sendToServer(new MessageRequestFile(path));
+        JCNetworkManager.networkWrapper.sendToServer(new MessageRequestFile(path));
         JCPlayerData playerData = JCPlayerDataClient.getPlayerData();
 
         if (path.length() == 0)

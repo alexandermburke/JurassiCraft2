@@ -2,6 +2,7 @@ package org.jurassicraft.common.storagedisc;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+
 import org.jurassicraft.common.genetics.PlantDNA;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class StorageTypePlantDNA implements IStorageType
     }
 
     @Override
-    public void addInformation(ItemStack stack, List tooltip)
+    public void addInformation(ItemStack stack, List<String> tooltip)
     {
         dna.addInformation(stack, tooltip);
     }

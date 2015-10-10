@@ -1,7 +1,7 @@
 package org.jurassicraft.common.entity.item;
 
 import com.google.common.collect.Lists;
-import io.netty.buffer.ByteBuf;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHanging;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,7 +14,10 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
 import org.jurassicraft.common.item.JCItemRegistry;
+
+import io.netty.buffer.ByteBuf;
 
 import java.util.ArrayList;
 
@@ -30,7 +33,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
     public EntityJurassiCraftSign(World world, BlockPos blockPos, EnumFacing enumFacing)
     {
         super(world, blockPos);
-        ArrayList arraylist = Lists.newArrayList();
+        ArrayList<EntityJurassiCraftSign.EnumSignType> arraylist = Lists.newArrayList();
         EntityJurassiCraftSign.EnumSignType[] aenumart = EntityJurassiCraftSign.EnumSignType.values();
         int i = aenumart.length;
 
@@ -48,7 +51,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
 
         if (!arraylist.isEmpty())
         {
-            this.signType = (EntityJurassiCraftSign.EnumSignType) arraylist.get(this.rand.nextInt(arraylist.size()));
+            this.signType = arraylist.get(this.rand.nextInt(arraylist.size()));
         }
 
         this.func_174859_a(enumFacing);
@@ -88,6 +91,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
     /**
      * (abstract) Protected helper method to write subclass entity data to NBT.
      */
+    @Override
     public void writeEntityToNBT(NBTTagCompound tagCompound)
     {
         tagCompound.setString("Motive", this.signType.title);
@@ -97,6 +101,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
+    @Override
     public void readEntityFromNBT(NBTTagCompound tagCompund)
     {
         String s = tagCompund.getString("Motive");
@@ -106,11 +111,13 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
         super.readEntityFromNBT(tagCompund);
     }
 
+    @Override
     public int getWidthPixels()
     {
         return this.signType.sizeX;
     }
 
+    @Override
     public int getHeightPixels()
     {
         return this.signType.sizeY;
@@ -119,6 +126,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
     /**
      * Called when this entity is broken. Entity parameter may be null.
      */
+    @Override
     public void onBroken(Entity entity)
     {
         if (this.worldObj.getGameRules().getGameRuleBooleanValue("doTileDrops"))
@@ -128,9 +136,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
                 EntityPlayer entityplayer = (EntityPlayer) entity;
 
                 if (entityplayer.capabilities.isCreativeMode)
-                {
                     return;
-                }
             }
 
             this.entityDropItem(new ItemStack(JCItemRegistry.jc_sign), 0.0F);
@@ -140,11 +146,12 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
     /**
      * Sets the location and Yaw/Pitch of an entity in the world
      */
+    @Override
     public void setLocationAndAngles(double x, double y, double z, float yaw, float pitch)
     {
         BlockPos blockpos = new BlockPos(x - this.posX, y - this.posY, z - this.posZ);
         BlockPos blockpos1 = this.hangingPosition.add(blockpos);
-        this.setPosition((double) blockpos1.getX(), (double) blockpos1.getY(), (double) blockpos1.getZ());
+        this.setPosition(blockpos1.getX(), blockpos1.getY(), blockpos1.getZ());
     }
 
     public enum EnumSignType
@@ -167,6 +174,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
         }
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public void setPositionAndRotation2(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean p_180426_10_)
     {
