@@ -8,6 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
 import org.jurassicraft.common.lang.AdvLang;
 import org.jurassicraft.common.plant.JCPlantRegistry;
@@ -50,9 +51,9 @@ public class ItemPlantDNA extends Item
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List subtypes)
     {
-        List<Plant> plants = new ArrayList<>(JCPlantRegistry.getPlants());
+        List<Plant> plants = new ArrayList<Plant>(JCPlantRegistry.getPlants());
 
-        Map<Plant, Integer> ids = new HashMap<>();
+        Map<Plant, Integer> ids = new HashMap<Plant, Integer>();
 
         int id = 0;
 

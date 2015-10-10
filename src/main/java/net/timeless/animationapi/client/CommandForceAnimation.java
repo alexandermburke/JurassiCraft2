@@ -17,6 +17,7 @@
 package net.timeless.animationapi.client;
 
 import com.google.common.collect.Lists;
+
 import net.minecraft.command.*;
 import net.minecraft.command.CommandResultStats.Type;
 import net.minecraft.entity.Entity;
@@ -26,6 +27,7 @@ import net.minecraft.util.IChatComponent;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.timeless.animationapi.AnimationAPI;
+
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 
@@ -122,7 +124,7 @@ public class CommandForceAnimation implements ICommand
 
     public CommandForceAnimation()
     {
-        aliases = new ArrayList<>();
+        aliases = new ArrayList<String>();
         aliases.add("animate");
         aliases.add("anim");
     }

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Shape
 {
     private int shapeCode;
-    public ArrayList<TreeBlock> blocksList = new ArrayList<>();
+    public ArrayList<TreeBlock> blocksList = new ArrayList<TreeBlock>();
 
     public Shape(int code)
     {

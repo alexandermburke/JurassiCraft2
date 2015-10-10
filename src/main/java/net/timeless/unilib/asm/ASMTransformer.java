@@ -20,16 +20,17 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-
-@IFMLLoadingPlugin.Name(value = "MyCoreMod") // The readable mod name
+@IFMLLoadingPlugin.Name(value = "MyCoreMod")
+// The readable mod name
 @IFMLLoadingPlugin.MCVersion(value = "1.8")
-// The MC version it is designed for (Remember? Upwards/Downwards compatibility lost!)
+// The MC version it is designed for (Remember? Upwards/Downwards compatibility
+// lost!)
 @IFMLLoadingPlugin.TransformerExclusions(value = "net.timeless.asm")
-// Your whole core mod package - Whatever you don't want the transformers to run over to prevent circularity Exceptions
+// Your whole core mod package - Whatever you don't want the transformers to run
+// over to prevent circularity Exceptions
 @IFMLLoadingPlugin.SortingIndex(value = Integer.MAX_VALUE)
 // How early your core mod is called - Use > 1000 to work with srg names
-public class ASMTransformer implements IClassTransformer
-{
+public class ASMTransformer implements IClassTransformer {
     private final File folder;
     private final List<String> filesToDebug;
 
@@ -37,19 +38,16 @@ public class ASMTransformer implements IClassTransformer
     {
         folder = new File(".", "asm/debug");
 
-        if (!folder.exists())
-        {
+        if (!folder.exists()) {
             folder.mkdirs();
         }
 
         filesToDebug = Lists.newArrayList();
         String options = System.getProperty("unilibAsmDebug");
 
-        if (options != null)
-        {
+        if (options != null) {
             String[] classes = options.split(";");
-            for (String clazz : classes)
-            {
+            for (String clazz : classes) {
                 filesToDebug.add(clazz.replace(".", "/"));
             }
         }
@@ -80,6 +78,7 @@ public class ASMTransformer implements IClassTransformer
                 TraceClassVisitor visitor = new TraceClassVisitor(new PrintWriter(new FileWriter(textFile)));
                 reader.accept(visitor, 0);
                 File classFile = createFile(folder, className, "class");
+             // FIXME: Does not work with Java 1.6, which Minecraft is built for!
                 try (FileOutputStream out = new FileOutputStream(classFile))
                 {
                     out.write(bytes);
@@ -99,8 +98,7 @@ public class ASMTransformer implements IClassTransformer
     {
         File result = new File(folder, className.replace(".", "/") + "." + extension);
 
-        if (!result.getParentFile().exists())
-        {
+        if (!result.getParentFile().exists()) {
             result.getParentFile().mkdirs();
         }
 
@@ -108,8 +106,7 @@ public class ASMTransformer implements IClassTransformer
         return result;
     }
 
-    private class UniItemStackTransformer extends ClassVisitor
-    {
+    private class UniItemStackTransformer extends ClassVisitor {
         public UniItemStackTransformer(int api, ClassWriter writer)
         {
             super(api, writer);
@@ -127,8 +124,7 @@ public class ASMTransformer implements IClassTransformer
         }
     }
 
-    private class MetadataGetterTransformer extends MethodVisitor implements Opcodes
-    {
+    private class MetadataGetterTransformer extends MethodVisitor implements Opcodes {
         private final Label endLabel;
 
         public MetadataGetterTransformer(int api, MethodVisitor mv)
@@ -146,8 +142,7 @@ public class ASMTransformer implements IClassTransformer
         @Override
         public void visitInsn(int opcode)
         {
-            if (opcode == ARETURN)
-            {
+            if (opcode == ARETURN) {
                 super.visitInsn(DUP);
                 super.visitJumpInsn(IFNULL, endLabel);
                 super.visitInsn(ARETURN);
@@ -156,9 +151,7 @@ public class ASMTransformer implements IClassTransformer
                 // Loads Items.stick
                 super.visitFieldInsn(GETSTATIC, "net/minecraft/init/Items", "stick", "Lnet/minecraft/item/Item;");
                 super.visitInsn(ARETURN);
-            }
-            else
-            {
+            } else {
                 super.visitInsn(opcode);
             }
         }

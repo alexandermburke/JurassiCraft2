@@ -24,7 +24,7 @@ import java.util.Set;
 @SideOnly(Side.CLIENT)
 public class ModelJson extends MowzieModelBase
 {
-    private final List<MowzieModelRenderer> parents = new ArrayList<>();
+    private final List<MowzieModelRenderer> parents = new ArrayList<MowzieModelRenderer>();
     private final Map<String, MowzieModelRenderer> nameMap = Maps.newHashMap();
     //    private final Map<String, MowzieModelRenderer> identifierMap = Maps.newHashMap();
     private IModelAnimator animator;

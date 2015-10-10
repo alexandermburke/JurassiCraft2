@@ -50,7 +50,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     protected int dinosaurAge;
     protected int prevAge;
 
-    protected Set<Disease> diseases = new HashSet<>();
+    protected Set<Disease> diseases = new HashSet<Disease>();
 
     // private boolean isCarcass;
 

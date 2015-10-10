@@ -202,7 +202,7 @@ public class GuiAppMinimap extends GuiApp
      */
     public List<Entity> getEntitiesInChunk(Chunk chunk, Entity exclude, Predicate<Entity> predicate)
     {
-        List<Entity> entities = new ArrayList<>();
+        List<Entity> entities = new ArrayList<Entity>();
 
         int i = MathHelper.floor_double((0 - World.MAX_ENTITY_RADIUS) / 16.0D);
         int j = MathHelper.floor_double((256 + World.MAX_ENTITY_RADIUS) / 16.0D);

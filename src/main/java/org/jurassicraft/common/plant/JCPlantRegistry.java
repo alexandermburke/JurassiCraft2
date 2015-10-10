@@ -5,7 +5,7 @@ import java.util.List;
 
 public class JCPlantRegistry
 {
-    private static List<Plant> plants = new ArrayList<>();
+    private static List<Plant> plants = new ArrayList<Plant>();
 
     public static final Plant small_royal_fern = new PlantSmallRoyalFern();
     public static final Plant calamites = new PlantCalamites();

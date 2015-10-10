@@ -31,7 +31,7 @@ public class Tree
     private int maxBranchLevel;
     private int maxTrunkHeight;
 
-    private ArrayList<InsPCoord> insPList = new ArrayList<>();
+    private ArrayList<InsPCoord> insPList = new ArrayList<InsPCoord>();
 
     public Tree(int code, int maxAge, int maxBranchLength)
     {

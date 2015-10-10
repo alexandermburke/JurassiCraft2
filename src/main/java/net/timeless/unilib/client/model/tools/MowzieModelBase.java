@@ -343,7 +343,7 @@ public class MowzieModelBase extends ModelBase
     {
         if (parts == null)
         {
-            parts = new ArrayList<>();
+            parts = new ArrayList<MowzieModelRenderer>();
         }
 
         parts.add(mowzieModelRenderer);

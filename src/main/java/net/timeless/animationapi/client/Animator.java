@@ -19,8 +19,8 @@ public class Animator
     {
         tempTick = 0;
         correctAnim = false;
-        transformMap = new HashMap<>();
-        prevTransformMap = new HashMap<>();
+        transformMap = new HashMap<MowzieModelRenderer, Transform>();
+        prevTransformMap = new HashMap<MowzieModelRenderer, Transform>();
         modelBase = model;
     }
 

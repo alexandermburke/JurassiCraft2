@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.entity.data.JCPlayerData;
 import org.jurassicraft.common.paleopad.JCFile;
@@ -22,7 +23,7 @@ public class MessageSendFile implements IMessage
 
     //Receive
     private String path;
-    private List<String> children = new ArrayList<>();
+    private List<String> children = new ArrayList<String>();
     private NBTTagCompound data;
     private boolean isFile;
 

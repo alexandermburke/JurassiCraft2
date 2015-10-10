@@ -81,8 +81,8 @@ public class JCBlockRegistry
 
     public void register()
     {
-        fossils = new ArrayList<>();
-        encased_fossils = new ArrayList<>();
+        fossils = new ArrayList<BlockFossil>();
+        encased_fossils = new ArrayList<BlockEncasedFossil>();
 
         carnivore_feeder = new BlockCarnivoreFeeder();
         cleaning_station = new BlockCleaningStation();

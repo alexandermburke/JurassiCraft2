@@ -33,10 +33,10 @@ public class JCPlayerData implements IExtendedEntityProperties
         return JCPlayerDataClient.getPlayerData();
     }
 
-    private Map<String, NBTTagCompound> appdata = new HashMap<>();
-    private List<App> openApps = new ArrayList<>();
+    private Map<String, NBTTagCompound> appdata = new HashMap<String, NBTTagCompound>();
+    private List<App> openApps = new ArrayList<App>();
 
-    private List<JCFile> rootFiles = new ArrayList<>();
+    private List<JCFile> rootFiles = new ArrayList<JCFile>();
 
     private EntityPlayer player;
 
