@@ -29,6 +29,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jurassicraft.common.block.JCBlockRegistry;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -119,7 +120,7 @@ public class BlockJCLeaves extends BlockLeaves
     @Override
     public java.util.List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        java.util.List<ItemStack> ret = new java.util.ArrayList<>();
+        java.util.List<ItemStack> ret = new ArrayList<ItemStack>();
         Random rand = world instanceof World ? ((World) world).rand : new Random();
         int chance = this.getSaplingDropChance(state);
 
