@@ -22,7 +22,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.container.ContainerDnaSynthesizer;
 import org.jurassicraft.common.dinosaur.Dinosaur;
@@ -108,7 +107,9 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
             }
         }
         else
+        {
             return null;
+        }
     }
 
     /**
@@ -125,7 +126,9 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
             return itemstack;
         }
         else
+        {
             return null;
+        }
     }
 
     /**
@@ -437,7 +440,9 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
             Dinosaur dino = JCEntityRegistry.getDinosaurById(slots[0].getItemDamage());
 
             if (dino.isMammal() && lipids >= dino.getLipids() && minerals >= dino.getMinerals() && proximates >= dino.getProximates() && vitamins >= dino.getVitamins())
+            {
                 return true;
+            }
         }
 
         return false;
@@ -568,7 +573,9 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
             Item item = stack.getItem();
 
             if (item != Items.water_bucket && item != Items.bucket)
+            {
                 return false;
+            }
         }
 
         return true;
@@ -676,7 +683,9 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
     public Dinosaur getDinosaur()
     {
         if (slots[0] != null)
+        {
             return JCEntityRegistry.getDinosaurById(slots[0].getItemDamage());
+        }
 
         return null;
     }

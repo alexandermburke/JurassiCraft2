@@ -1,20 +1,25 @@
 package org.jurassicraft.math;
 
-import java.util.Arrays;
-
 import org.apache.commons.lang3.math.NumberUtils;
 
-public class MathUtils {
+import java.util.Arrays;
+
+public class MathUtils
+{
     public static final double PI = Math.PI;
 
     public static long mean(long[] values)
     {
         if (values.length <= 0)
+        {
             throw new IllegalArgumentException("Array contains no elements");
+        }
 
         long sum = 0l;
         for (long v : values)
+        {
             sum += v;
+        }
 
         return sum / values.length;
     }
@@ -27,9 +32,12 @@ public class MathUtils {
         // v is O(n*log(n)) because of sorting it
         Arrays.sort(values);
         double median;
-        if (values.length % 2 == 0) {
+        if (values.length % 2 == 0)
+        {
             median = ((double) values[values.length / 2] + (double) values[values.length / 2 - 1]) / 2;
-        } else {
+        }
+        else
+        {
             median = values[values.length / 2];
         }
 
@@ -40,14 +48,18 @@ public class MathUtils {
     {
         int maxValue = 0, maxCount = 0;
 
-        for (int value : values) {
+        for (int value : values)
+        {
             int count = 0;
-            for (int value2 : values) {
-                if (value2 == value) {
+            for (int value2 : values)
+            {
+                if (value2 == value)
+                {
                     ++count;
                 }
             }
-            if (count > maxCount) {
+            if (count > maxCount)
+            {
                 maxCount = count;
                 maxValue = value;
             }
@@ -59,14 +71,22 @@ public class MathUtils {
     public static boolean hasNoRange(int num1, int num2, int difference)
     {
         if (num1 == num2)
+        {
             return true;
-        if (num1 > num2) {
-            if (num1 - num2 <= 0)
-                return true;
         }
-        if (num2 > num1) {
-            if (num2 - num1 <= 0)
+        if (num1 > num2)
+        {
+            if (num1 - num2 <= 0)
+            {
                 return true;
+            }
+        }
+        if (num2 > num1)
+        {
+            if (num2 - num1 <= 0)
+            {
+                return true;
+            }
         }
         return false;
     }
@@ -84,14 +104,18 @@ public class MathUtils {
     public static double makePositive(double num)
     {
         if (num >= 0)
+        {
             return num;
+        }
         return -num;
     }
 
     public static double makeNegative(double num)
     {
         if (num <= 0)
+        {
             return num;
+        }
         return -num;
     }
 

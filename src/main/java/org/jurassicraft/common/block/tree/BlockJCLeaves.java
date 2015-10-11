@@ -1,7 +1,6 @@
 package org.jurassicraft.common.block.tree;
 
 import com.google.common.collect.Lists;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
@@ -25,7 +24,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
 import org.jurassicraft.common.block.JCBlockRegistry;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
 

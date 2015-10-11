@@ -7,7 +7,6 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-
 import org.jurassicraft.common.genetics.DinoDNA;
 import org.jurassicraft.common.paleopad.App;
 import org.jurassicraft.common.paleopad.JCFile;
@@ -167,7 +166,9 @@ public class JCPlayerData implements IExtendedEntityProperties
     public JCFile getFileFromPath(String path)
     {
         if (path.length() == 0)
+        {
             return null;
+        }
 
         String[] pathSplit = path.split(Pattern.quote("/"));
 
@@ -182,27 +183,37 @@ public class JCPlayerData implements IExtendedEntityProperties
     public List<JCFile> getFilesAtPath(String path)
     {
         if (path == null || path.length() == 0)
+        {
             return rootFiles;
+        }
         else
         {
             JCFile fileFromPath = getFileFromPath(path);
 
             if (fileFromPath == null)
+            {
                 return null;
+            }
             else
+            {
                 return fileFromPath.getChildren();
+            }
         }
     }
 
     public JCFile traversePath(String[] path, int i, JCFile lastFile)
     {
         if (i == path.length)
+        {
             return lastFile;
+        }
 
         for (JCFile child : lastFile.getChildren())
         {
             if (child.getName().equals(path[i]))
+            {
                 return traversePath(path, i + 1, child);
+            }
         }
 
         return null;

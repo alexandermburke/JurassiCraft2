@@ -2,7 +2,6 @@ package org.jurassicraft.common.storagedisc;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-
 import org.jurassicraft.common.genetics.DinoDNA;
 
 import java.util.List;

@@ -9,7 +9,6 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
 import org.jurassicraft.common.item.JCItemRegistry;
 

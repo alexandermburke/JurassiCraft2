@@ -1,12 +1,10 @@
 package org.jurassicraft.common.vehicles.helicopter.modules;
 
 import com.google.common.base.Predicate;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 
 import java.util.List;
@@ -44,7 +42,9 @@ public abstract class HelicopterRidableModule extends HelicopterModule
             }
         });
         if (list.isEmpty())
+        {
             return null;
+        }
         return list.get(0);
     }
 

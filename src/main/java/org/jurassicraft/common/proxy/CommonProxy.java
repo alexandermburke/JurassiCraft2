@@ -10,7 +10,6 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.api.IHybrid;
 import org.jurassicraft.common.dinosaur.Dinosaur;
@@ -20,7 +19,11 @@ import org.jurassicraft.common.handler.JCGuiHandler;
 import org.jurassicraft.common.item.JCItemRegistry;
 import org.jurassicraft.common.world.WorldGenerator;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class CommonProxy
 {

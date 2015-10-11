@@ -1,9 +1,7 @@
 package org.jurassicraft.common.vehicles.helicopter.modules;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import com.google.common.base.Predicate;
-
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
@@ -11,13 +9,12 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
-
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
-
-import io.netty.buffer.ByteBuf;
 
 import java.util.List;
 import java.util.UUID;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Entity representing a seat inside the helicopter. Should NOT be spawned inside the world, the {@link EntityHelicopterBase Helicopter Entity} handles that for you.
@@ -122,7 +119,9 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
             }
         });
         if (list.isEmpty())
+        {
             return null;
+        }
         return list.get(0);
     }
 

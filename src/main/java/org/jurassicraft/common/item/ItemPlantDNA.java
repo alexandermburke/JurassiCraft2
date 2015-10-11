@@ -8,13 +8,16 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
 import org.jurassicraft.common.lang.AdvLang;
 import org.jurassicraft.common.plant.JCPlantRegistry;
 import org.jurassicraft.common.plant.Plant;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ItemPlantDNA extends Item
 {

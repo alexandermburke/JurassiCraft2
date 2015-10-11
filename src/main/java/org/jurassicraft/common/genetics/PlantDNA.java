@@ -3,7 +3,6 @@ package org.jurassicraft.common.genetics;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
-
 import org.jurassicraft.common.lang.AdvLang;
 import org.jurassicraft.common.plant.JCPlantRegistry;
 

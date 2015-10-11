@@ -2,7 +2,6 @@ package net.timeless.unilib.common.structure;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
@@ -14,7 +13,11 @@ import net.timeless.unilib.common.structure.rules.FixedRule;
 import net.timeless.unilib.common.structure.rules.RepeatRule;
 import net.timeless.unilib.utils.Tuple3;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 public class StructureBuilder extends StructureGenerator
 {

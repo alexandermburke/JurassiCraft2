@@ -1,9 +1,5 @@
 package org.jurassicraft.common.block;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -13,9 +9,12 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
 import org.jurassicraft.common.item.JCItemRegistry;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class BlockIceShard extends Block
 {

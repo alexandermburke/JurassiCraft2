@@ -1,10 +1,8 @@
 package net.timeless.unilib.asm;
 
 import com.google.common.collect.Lists;
-
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
-
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
@@ -30,7 +28,8 @@ import java.util.List;
 // over to prevent circularity Exceptions
 @IFMLLoadingPlugin.SortingIndex(value = Integer.MAX_VALUE)
 // How early your core mod is called - Use > 1000 to work with srg names
-public class ASMTransformer implements IClassTransformer {
+public class ASMTransformer implements IClassTransformer
+{
     private final File folder;
     private final List<String> filesToDebug;
 
@@ -38,16 +37,19 @@ public class ASMTransformer implements IClassTransformer {
     {
         folder = new File(".", "asm/debug");
 
-        if (!folder.exists()) {
+        if (!folder.exists())
+        {
             folder.mkdirs();
         }
 
         filesToDebug = Lists.newArrayList();
         String options = System.getProperty("unilibAsmDebug");
 
-        if (options != null) {
+        if (options != null)
+        {
             String[] classes = options.split(";");
-            for (String clazz : classes) {
+            for (String clazz : classes)
+            {
                 filesToDebug.add(clazz.replace(".", "/"));
             }
         }
@@ -78,7 +80,7 @@ public class ASMTransformer implements IClassTransformer {
                 TraceClassVisitor visitor = new TraceClassVisitor(new PrintWriter(new FileWriter(textFile)));
                 reader.accept(visitor, 0);
                 File classFile = createFile(folder, className, "class");
-             // FIXME: Does not work with Java 1.6, which Minecraft is built for!
+                // FIXME: Does not work with Java 1.6, which Minecraft is built for!
                 try (FileOutputStream out = new FileOutputStream(classFile))
                 {
                     out.write(bytes);
@@ -98,7 +100,8 @@ public class ASMTransformer implements IClassTransformer {
     {
         File result = new File(folder, className.replace(".", "/") + "." + extension);
 
-        if (!result.getParentFile().exists()) {
+        if (!result.getParentFile().exists())
+        {
             result.getParentFile().mkdirs();
         }
 
@@ -106,7 +109,8 @@ public class ASMTransformer implements IClassTransformer {
         return result;
     }
 
-    private class UniItemStackTransformer extends ClassVisitor {
+    private class UniItemStackTransformer extends ClassVisitor
+    {
         public UniItemStackTransformer(int api, ClassWriter writer)
         {
             super(api, writer);
@@ -118,13 +122,16 @@ public class ASMTransformer implements IClassTransformer {
             MethodVisitor mv = super.visitMethod(access, name, desc, signature, exceptions);
 
             if (name.equals("getItem"))
+            {
                 return new MetadataGetterTransformer(api, mv);
+            }
 
             return mv;
         }
     }
 
-    private class MetadataGetterTransformer extends MethodVisitor implements Opcodes {
+    private class MetadataGetterTransformer extends MethodVisitor implements Opcodes
+    {
         private final Label endLabel;
 
         public MetadataGetterTransformer(int api, MethodVisitor mv)
@@ -142,7 +149,8 @@ public class ASMTransformer implements IClassTransformer {
         @Override
         public void visitInsn(int opcode)
         {
-            if (opcode == ARETURN) {
+            if (opcode == ARETURN)
+            {
                 super.visitInsn(DUP);
                 super.visitJumpInsn(IFNULL, endLabel);
                 super.visitInsn(ARETURN);
@@ -151,7 +159,9 @@ public class ASMTransformer implements IClassTransformer {
                 // Loads Items.stick
                 super.visitFieldInsn(GETSTATIC, "net/minecraft/init/Items", "stick", "Lnet/minecraft/item/Item;");
                 super.visitInsn(ARETURN);
-            } else {
+            }
+            else
+            {
                 super.visitInsn(opcode);
             }
         }

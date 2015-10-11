@@ -1,7 +1,7 @@
 package org.jurassicraft.common.entity.item;
 
 import com.google.common.collect.Lists;
-
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHanging;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,10 +14,7 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
 import org.jurassicraft.common.item.JCItemRegistry;
-
-import io.netty.buffer.ByteBuf;
 
 import java.util.ArrayList;
 
@@ -136,7 +133,9 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
                 EntityPlayer entityplayer = (EntityPlayer) entity;
 
                 if (entityplayer.capabilities.isCreativeMode)
+                {
                     return;
+                }
             }
 
             this.entityDropItem(new ItemStack(JCItemRegistry.jc_sign), 0.0F);

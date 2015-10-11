@@ -1,7 +1,6 @@
 package net.timeless.unilib.client.model.json;
 
 import com.google.common.collect.Ordering;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

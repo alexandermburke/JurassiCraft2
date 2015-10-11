@@ -1,7 +1,6 @@
 package org.jurassicraft.common.world.dimension;
 
 import com.google.common.collect.Lists;
-
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeCache;
 import net.minecraft.world.biome.BiomeGenBase;

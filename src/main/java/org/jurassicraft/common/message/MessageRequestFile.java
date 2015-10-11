@@ -1,14 +1,12 @@
 package org.jurassicraft.common.message;
 
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-
 import org.jurassicraft.common.entity.data.JCPlayerData;
-
-import io.netty.buffer.ByteBuf;
 
 public class MessageRequestFile implements IMessage
 {
