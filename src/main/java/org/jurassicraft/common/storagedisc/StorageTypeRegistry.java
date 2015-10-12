@@ -29,11 +29,7 @@ public class StorageTypeRegistry
 
             return storageTypes.get(id).newInstance();
         }
-        catch (InstantiationException e)
-        {
-            e.printStackTrace();
-        }
-        catch (IllegalAccessException e)
+        catch (Exception e)
         {
             e.printStackTrace();
         }

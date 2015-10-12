@@ -34,7 +34,7 @@ public class TileDnaSynthesizer extends TileMachineBase
 
             if (storage.getTagCompound().getInteger("DNAQuality") == 100)
             {
-                if (storage.getTagCompound().getString("StorageId") == "DinoDNA")
+                if (storage.getTagCompound().getString("StorageId").equalsIgnoreCase("DinoDNA"))
                 {
                     output = new ItemStack(JCItemRegistry.dna, 1, storage.getItemDamage());
                     output.setTagCompound(storage.getTagCompound());
@@ -57,7 +57,7 @@ public class TileDnaSynthesizer extends TileMachineBase
     {
         if (this.canProcess(process))
         {
-            ItemStack output = new ItemStack(slots[0].getTagCompound().getString("StorageId") == "DinoDNA" ? JCItemRegistry.dna : JCItemRegistry.plant_dna, 1, slots[0].getItemDamage());
+            ItemStack output = new ItemStack(slots[0].getTagCompound().getString("StorageId").equalsIgnoreCase("DinoDNA") ? JCItemRegistry.dna : JCItemRegistry.plant_dna, 1, slots[0].getItemDamage());
             output.setTagCompound(slots[0].getTagCompound());
 
             int emptySlot = getOutputSlot(output);
