@@ -1,6 +1,7 @@
 package org.jurassicraft.common.entity;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
@@ -8,7 +9,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.AnimID;
 import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimSoundBase;
-import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 
 public class EntityIndominus extends EntityDinosaurAggressive // implements ICarnivore, IEntityAICreature
@@ -32,8 +32,8 @@ public class EntityIndominus extends EntityDinosaurAggressive // implements ICar
     {
         super(world);
         tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, AnimID.IDLE, 750, breathSounds[0], 1.5F));
-        this.addAIForAttackTargets(EntityDinosaur.class, 0);
-        this.defendFromAttacker(EntityDinosaur.class, 0);
+        this.addAIForAttackTargets(EntityLivingBase.class, 0);
+        this.defendFromAttacker(EntityLivingBase.class, 0);
     }
 
     @Override
