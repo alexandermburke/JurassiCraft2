@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-		"layer0": "jurassicraft:items/soft_tissue/soft_tissue",
+		"layer0": "jurassicraft:items/soft_tissue/soft_tissue_3",
 		"layer1": "jurassicraft:items/overlay/carnotaurus"
     },
     "display": {
