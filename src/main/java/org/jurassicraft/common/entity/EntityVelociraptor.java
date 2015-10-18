@@ -44,7 +44,6 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
         tasks.addTask(2, new JCNonAutoAnimBase(this, 25, AnimID.LOOKING_RIGHT, 100)); // Head twitch right
         tasks.addTask(2, new JCNonAutoAnimBase(this, 25, AnimID.LOOKING_LEFT, 100)); // Head twitch left
         tasks.addTask(2, new JCNonAutoAnimBase(this, 45, AnimID.SNIFFING, 150)); // Sniff
-        tasks.addTask(2, new AnimationAICall(this, 78, AnimID.CALLING));
 
         for (int i = 0; i < targets.length; i++)
         {

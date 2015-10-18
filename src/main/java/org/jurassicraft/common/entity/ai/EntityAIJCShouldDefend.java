@@ -17,9 +17,9 @@ public class EntityAIJCShouldDefend extends EntityAIJCTarget
     private int revengeTimerOld;
     private final Class[] field_179447_c;
 
-    public EntityAIJCShouldDefend(EntityDinosaur p_i45885_1_, boolean p_i45885_2_, Class... p_i45885_3_)
+    public EntityAIJCShouldDefend(EntityDinosaur dinosaur, boolean p_i45885_2_, Class... p_i45885_3_)
     {
-        super(p_i45885_1_, false);
+        super(dinosaur, false);
         this.entityCallsForHelp = p_i45885_2_;
         this.field_179447_c = p_i45885_3_;
         this.setMutexBits(1);
@@ -32,7 +32,7 @@ public class EntityAIJCShouldDefend extends EntityAIJCTarget
     public boolean shouldExecute()
     {
         int i = this.taskOwner.getRevengeTimer();
-        return i != this.revengeTimerOld && this.isSuitableTarget(this.taskOwner.getAITarget(), false);
+        return i != this.revengeTimerOld && this.isSuitableTarget(this.taskOwner.getAITarget(), false) && !taskOwner.isCarcass();
     }
 
     /**

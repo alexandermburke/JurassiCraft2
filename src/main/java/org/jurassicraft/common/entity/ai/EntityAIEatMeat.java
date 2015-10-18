@@ -30,7 +30,7 @@ public class EntityAIEatMeat extends EntityAIBase
     {
         double energy = dinosaur.getEnergy();
 
-        if (!dinosaur.isDead && dinosaur.ticksExisted % 4 == 0 && dinosaur.worldObj.getGameRules().getGameRuleBooleanValue("dinoMetabolism"))
+        if (!dinosaur.isDead && !dinosaur.isCarcass() && dinosaur.ticksExisted % 4 == 0 && dinosaur.worldObj.getGameRules().getGameRuleBooleanValue("dinoMetabolism"))
         {
             if (energy < 12000 + (dinosaur.getRNG().nextInt(50) - 25))
             {

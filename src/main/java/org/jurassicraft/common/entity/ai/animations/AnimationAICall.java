@@ -1,68 +1,27 @@
 package org.jurassicraft.common.entity.ai.animations;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.AxisAlignedBB;
 import net.timeless.animationapi.AIAnimation;
+import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.AnimID;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.entity.EntityVelociraptor;
+import org.jurassicraft.common.entity.base.EntityDinosaur;
 
 import java.util.List;
 import java.util.Random;
 
-public class AnimationAICall extends AIAnimation
+public class AnimationAICall extends EntityAIBase
 {
-    protected EntityVelociraptor animatingEntity;
-    protected int duration;
-    protected AnimID id;
-    private final Random random = new Random();
+    protected EntityDinosaur animatingEntity;
 
-    public AnimationAICall(IAnimatedEntity entity, int duration, AnimID id)
+    public AnimationAICall(IAnimatedEntity entity)
     {
-        super(entity);
-        this.duration = duration;
-        animatingEntity = (EntityVelociraptor) entity;
-        this.id = id;
-    }
-
-    @Override
-    public AnimID getAnimID()
-    {
-        return id;
-    }
-
-    @Override
-    public boolean isAutomatic()
-    {
-        return false;
-    }
-
-    @Override
-    public int getDuration()
-    {
-        return duration;
-    }
-
-    @Override
-    public boolean shouldAnimate()
-    {
-        if (random.nextDouble() < 0.003)
-        {
-            List<Entity> entities = getEntitiesWithinDistance(animatingEntity, 50, 2);
-
-            for (Entity entity : entities)
-            {
-                if (entity instanceof EntityVelociraptor)
-                {
-                    animatingEntity.playSound(animatingEntity.getCallSound(), animatingEntity.getSoundVolume() + 1.25F, animatingEntity.getSoundPitch());
-                    JurassiCraft.instance.getLogger().info("AI is starting for calling");
-                    return true;
-                }
-            }
-        }
-
-        return false;
+        super();
+        animatingEntity = (EntityDinosaur) entity;
     }
 
     public List<Entity> getEntitiesWithinDistance(Entity e, double xz, double y)
@@ -71,10 +30,30 @@ public class AnimationAICall extends AIAnimation
     }
 
     @Override
+    public boolean shouldExecute()
+    {
+        if (animatingEntity.getRNG().nextDouble() < 0.003)
+        {
+            List<Entity> entities = getEntitiesWithinDistance(animatingEntity, 50, 10);
+
+            for (Entity entity : entities)
+            {
+                if (animatingEntity.getClass().isInstance(entity))
+                {
+                    animatingEntity.playSound(animatingEntity.getCallSound(), animatingEntity.getSoundVolume() + 1.25F, animatingEntity.getSoundPitch());
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    @Override
     public void startExecuting()
     {
         super.startExecuting();
-        animatingEntity.currentAnim = this;
+        AnimationAPI.sendAnimPacket(animatingEntity, AnimID.CALLING);
         animatingEntity.getNavigator().clearPathEntity();
     }
 

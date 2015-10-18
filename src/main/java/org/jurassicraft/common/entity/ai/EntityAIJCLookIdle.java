@@ -2,13 +2,14 @@ package org.jurassicraft.common.entity.ai;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
+import org.jurassicraft.common.entity.base.EntityDinosaur;
 
 public class EntityAIJCLookIdle extends EntityAIBase
 {
     /**
      * The entity that is looking idle.
      */
-    private EntityLiving idleEntity;
+    private EntityDinosaur idleEntity;
 
     /**
      * X offset to look at
@@ -35,7 +36,7 @@ public class EntityAIJCLookIdle extends EntityAIBase
      */
     private float turnSpeedPitch;
 
-    public EntityAIJCLookIdle(EntityLiving entity, float turnSpeedYaw, float turnSpeedPitch)
+    public EntityAIJCLookIdle(EntityDinosaur entity, float turnSpeedYaw, float turnSpeedPitch)
     {
         this.idleEntity = entity;
         this.turnSpeedYaw = turnSpeedYaw;
@@ -49,7 +50,7 @@ public class EntityAIJCLookIdle extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        return this.idleEntity.getRNG().nextFloat() < 0.02F;
+        return this.idleEntity.getRNG().nextFloat() < 0.02F && !this.idleEntity.isCarcass();
     }
 
     /**

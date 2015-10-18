@@ -15,7 +15,7 @@ public class EntityAIMetabolism extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        return !dinosaur.isDead && dinosaur.worldObj.getGameRules().getGameRuleBooleanValue("dinoMetabolism");
+        return !dinosaur.isDead && !dinosaur.isCarcass() && dinosaur.worldObj.getGameRules().getGameRuleBooleanValue("dinoMetabolism");
     }
 
     @Override

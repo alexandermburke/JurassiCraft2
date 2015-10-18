@@ -43,6 +43,9 @@ import org.jurassicraft.common.disease.Disease;
 import org.jurassicraft.common.entity.ai.EntityAIDrink;
 import org.jurassicraft.common.entity.ai.EntityAIMate;
 import org.jurassicraft.common.entity.ai.EntityAIMetabolism;
+import org.jurassicraft.common.entity.ai.animations.AnimationAICall;
+import org.jurassicraft.common.entity.ai.animations.AnimationAIHeadCock;
+import org.jurassicraft.common.entity.ai.animations.AnimationAILook;
 import org.jurassicraft.common.genetics.GeneticsContainer;
 import org.jurassicraft.common.genetics.GeneticsHelper;
 import org.jurassicraft.common.item.ItemBluePrint;
@@ -104,6 +107,10 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         tasks.addTask(0, new EntityAIMetabolism(this));
         tasks.addTask(1, new EntityAIDrink(this));
         tasks.addTask(2, new EntityAIMate(this));
+
+        tasks.addTask(2, new AnimationAICall(this));
+        tasks.addTask(2, new AnimationAILook(this));
+        tasks.addTask(2, new AnimationAIHeadCock(this));
 
         dinosaurAge = 0;
 
@@ -1058,5 +1065,10 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     public boolean isSwimming()
     {
         return (isInWater() || isInLava());
+    }
+
+    public String getCallSound()
+    {
+        return null;
     }
 }
