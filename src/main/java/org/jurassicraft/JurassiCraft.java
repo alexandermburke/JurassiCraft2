@@ -64,7 +64,7 @@ public class JurassiCraft
     public void postInit(FMLPostInitializationEvent event)
     {
         proxy.postInit();
-        logger.info("Successfully loaded JurassicCraft!");
+        logger.info("Successfully loaded JurassiCraft!");
     }
 
     public Logger getLogger()
