@@ -5,11 +5,15 @@ import net.minecraft.item.Item;
 import net.minecraft.world.GameRules;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+import net.timeless.animationapi.AnimationAPI;
+import net.timeless.animationapi.client.AnimID;
 import org.jurassicraft.common.achievements.JCAchievements;
 import org.jurassicraft.common.block.JCBlockRegistry;
+import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.data.JCPlayerData;
 import org.jurassicraft.common.item.JCItemRegistry;
 
@@ -76,19 +80,19 @@ public class CommonEventHandler
         }
     }
 
-//    @SubscribeEvent
-//    public void livingHurt(LivingHurtEvent event)
-//    {
-//        if (event.entityLiving instanceof EntityDinosaur)
-//        {
-//            EntityDinosaur dino = (EntityDinosaur) event.entityLiving;
-//
-//            if (!dino.isCarcass() && dino.getHealth() - event.ammount <= 0)
-//            {
-//                event.setCanceled(true);
-//                event.ammount = 0;
-//                dino.setCarcass(true);
-//            }
-//        }
-//    }
+    @SubscribeEvent
+    public void livingHurt(LivingHurtEvent event)
+    {
+        if (event.entityLiving instanceof EntityDinosaur)
+        {
+            EntityDinosaur dino = (EntityDinosaur) event.entityLiving;
+
+            if (!dino.isCarcass() && dino.getHealth() - event.ammount <= 0)
+            {
+                event.setCanceled(true);
+                event.ammount = 0;
+                dino.setCarcass(true);
+            }
+        }
+    }
 }

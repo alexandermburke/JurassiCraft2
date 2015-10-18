@@ -58,7 +58,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
     protected Set<Disease> diseases = new HashSet<Disease>();
 
-    // private boolean isCarcass;
+    private boolean isCarcass;
 
     private int quality;
 
@@ -441,14 +441,23 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
             hasTracker = dataWatcher.getWatchableObjectInt(28) == 1;
         }
 
-        // if (!worldObj.isRemote)
-        // {
-        // dataWatcher.updateObject(25, isCarcass ? 1 : 0);
-        // }
-        // else
-        // {
-        // isCarcass = dataWatcher.getWatchableObjectInt(25) == 1;
-        // }
+        if (!worldObj.isRemote)
+        {
+            dataWatcher.updateObject(25, isCarcass ? 1 : 0);
+        }
+        else
+        {
+            isCarcass = dataWatcher.getWatchableObjectInt(25) == 1;
+        }
+
+        if (isCarcass)
+        {
+            if (getAnimID() != AnimID.DYING)
+            {
+                AnimationAPI.sendAnimPacket(this, AnimID.DYING);
+            }
+        }
+
         if (getAnimID() != AnimID.IDLE)
         {
             animTick++;
@@ -483,7 +492,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
         nbt.setInteger("Texture", randTexture);
         nbt.setDouble("DinosaurAge", dinosaurAge);
-        // nbt.setBoolean("IsCarcass", isCarcass);
+        nbt.setBoolean("IsCarcass", isCarcass);
         nbt.setInteger("DNAQuality", quality);
         nbt.setString("Genetics", genetics.toString());
         nbt.setBoolean("IsMale", isMale);
@@ -514,7 +523,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
         randTexture = nbt.getInteger("Texture");
         dinosaurAge = nbt.getInteger("DinosaurAge");
-        // isCarcass = nbt.getBoolean("IsCarcass");
+        isCarcass = nbt.getBoolean("IsCarcass");
         quality = nbt.getInteger("DNAQuality");
         genetics = new GeneticsContainer(nbt.getString("Genetics"));
         isMale = nbt.getBoolean("IsMale");
@@ -545,7 +554,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     {
         buffer.writeInt(randTexture);
         buffer.writeInt(dinosaurAge);
-        // buffer.writeBoolean(isCarcass);
+        buffer.writeBoolean(isCarcass);
         buffer.writeInt(quality);
         buffer.writeBoolean(isMale);
         buffer.writeInt(growthSpeedOffset);
@@ -559,7 +568,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     {
         randTexture = additionalData.readInt();
         dinosaurAge = additionalData.readInt();
-        // isCarcass = additionalData.readBoolean();
+        isCarcass = additionalData.readBoolean();
         quality = additionalData.readInt();
         isMale = additionalData.readBoolean();
         growthSpeedOffset = additionalData.readInt();
@@ -654,25 +663,25 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         entityDropItem(stack, 0.0F);
     }
 
-    // public void setCarcass(boolean carcass)
-    // {
-    // isCarcass = carcass;
-    //
-    // if (isCarcass)
-    // {
-    // String s = getDeathSound();
-    //
-    // if (s != null)
-    // {
-    // playSound(s, getSoundVolume(), (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
-    // }
-    // }
-    // }
-    //
-    // public boolean isCarcass()
-    // {
-    // return isCarcass;
-    // }
+    public void setCarcass(boolean carcass)
+    {
+        isCarcass = carcass;
+
+        if (isCarcass)
+        {
+            String s = getDeathSound();
+
+            if (s != null)
+            {
+                playSound(s, getSoundVolume(), (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
+            }
+        }
+    }
+
+    public boolean isCarcass()
+    {
+        return isCarcass;
+    }
 
     @Override
     public boolean interact(EntityPlayer player)
@@ -865,47 +874,46 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         super.onDeath(parDamageSource);
     }
 
-    /**
-     * have to override so that death time can go much longer so that we can see a good dying animation
-     */
-    @Override
-    protected void onDeathUpdate()
-    {
-        ++deathTime;
-
-        if (getAnimID() != AnimID.DYING)
-        {
-            AnimationAPI.sendAnimPacket(this, AnimID.DYING);
-        }
-
-        if (deathTime == 400)
-        {
-            int i;
-
-            if (!worldObj.isRemote && (recentlyHit > 0 || isPlayer()) && canDropLoot() && worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot"))
-            {
-                i = getExperiencePoints(attackingPlayer);
-                i = net.minecraftforge.event.ForgeEventFactory.getExperienceDrop(this, attackingPlayer, i);
-                while (i > 0)
-                {
-                    int j = EntityXPOrb.getXPSplit(i);
-                    i -= j;
-                    worldObj.spawnEntityInWorld(new EntityXPOrb(worldObj, posX, posY, posZ, j));
-                }
-            }
-
-            setDead();
-
-            for (i = 0; i < 20; ++i)
-            {
-                double d2 = rand.nextGaussian() * 0.02D;
-                double d0 = rand.nextGaussian() * 0.02D;
-                double d1 = rand.nextGaussian() * 0.02D;
-                worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, posX + rand.nextFloat() * width * 2.0F - width, posY + rand.nextFloat() * height, posZ + rand.nextFloat() * width * 2.0F - width, d2, d0, d1, new int[0]);
-            }
-        }
-    }
-
+//    /**
+//     * have to override so that death time can go much longer so that we can see a good dying animation
+//     */
+//    @Override
+//    protected void onDeathUpdate()
+//    {
+//        super.onDeathUpdate();
+//
+//        if (getAnimID() != AnimID.DYING)
+//        {
+//            AnimationAPI.sendAnimPacket(this, AnimID.DYING);
+//        }
+//
+//        if (deathTime == 400)
+//        {
+//            int i;
+//
+//            if (!worldObj.isRemote && (recentlyHit > 0 || isPlayer()) && canDropLoot() && worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot"))
+//            {
+//                i = getExperiencePoints(attackingPlayer);
+//                i = net.minecraftforge.event.ForgeEventFactory.getExperienceDrop(this, attackingPlayer, i);
+//                while (i > 0)
+//                {
+//                    int j = EntityXPOrb.getXPSplit(i);
+//                    i -= j;
+//                    worldObj.spawnEntityInWorld(new EntityXPOrb(worldObj, posX, posY, posZ, j));
+//                }
+//            }
+//
+//            setDead();
+//
+//            for (i = 0; i < 20; ++i)
+//            {
+//                double d2 = rand.nextGaussian() * 0.02D;
+//                double d0 = rand.nextGaussian() * 0.02D;
+//                double d1 = rand.nextGaussian() * 0.02D;
+//                worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, posX + rand.nextFloat() * width * 2.0F - width, posY + rand.nextFloat() * height, posZ + rand.nextFloat() * width * 2.0F - width, d2, d0, d1, new int[0]);
+//            }
+//        }
+//    }
 
     public void increaseGrowthSpeed()
     {
