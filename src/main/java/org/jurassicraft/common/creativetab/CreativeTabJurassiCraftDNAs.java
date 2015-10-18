@@ -12,33 +12,40 @@ import org.jurassicraft.common.item.JCItemRegistry;
 
 public class CreativeTabJurassiCraftDNAs extends CreativeTabs
 {
-    private int[] metas;
+    private ItemStack[] stacks = null;
 
     public CreativeTabJurassiCraftDNAs(String label)
     {
         super(label);
-        this.metas = new int[JCEntityRegistry.getRegisteredDinosaurs().size()];
-
-        int id = 0;
-        int i = 0;
-
-        for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
-        {
-            if (dino.shouldRegister())
-            {
-                metas[i] = id;
-
-                i++;
-            }
-
-            id++;
-        }
     }
 
     @SideOnly(Side.CLIENT)
     public ItemStack getIconItemStack()
     {
-        return new ItemStack(getTabIconItem(), 1, metas[((int) ((JurassiCraft.timerTicks / 20) % metas.length))]);
+        if (stacks == null)
+        {
+            int dinosaurs = JCEntityRegistry.getRegisteredDinosaurs().size();
+            this.stacks = new ItemStack[dinosaurs * 3];
+
+            int id = 0;
+            int i = 0;
+
+            for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
+            {
+                if (dino.shouldRegister())
+                {
+                    stacks[i] = new ItemStack(JCItemRegistry.dna, 1, id);
+                    stacks[i + dinosaurs] = new ItemStack(JCItemRegistry.soft_tissue, 1, id);
+                    stacks[i + (dinosaurs * 2)] = new ItemStack(JCItemRegistry.syringe, 1, id);
+
+                    i++;
+                }
+
+                id++;
+            }
+        }
+
+        return stacks[(int) ((JurassiCraft.timerTicks / 20) % stacks.length)];
     }
 
     @Override
