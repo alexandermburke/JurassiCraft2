@@ -28,5 +28,5 @@ public enum AnimID
     LOOKING_RIGHT,
     BEGGING,
     // I was requested by Gegy to add dying animations
-    DYING;
+    DYING,
 }

@@ -18,7 +18,7 @@ public class AnimationVelociraptor extends DinosaurAnimator
     }
 
     @Override
-    protected void performMowzieAnimations(ModelDinosaur model, float limbSwing, float limbSwingAmount, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur entity)
+    protected void performMowzieLandAnimations(ModelDinosaur model, float limbSwing, float limbSwingAmount, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur entity)
     {
         EntityVelociraptor velociraptor = (EntityVelociraptor) entity;
 

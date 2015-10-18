@@ -18,7 +18,7 @@ public class AnimationTylosaurus extends DinosaurAnimator
     }
 
     @Override
-    protected void performMowzieAnimations(ModelDinosaur model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
+    protected void performMowzieLandAnimations(ModelDinosaur model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
     {
         EntityTylosaurus entity = (EntityTylosaurus) parEntity;
 

@@ -18,7 +18,7 @@ public class AnimationCompsognathus extends DinosaurAnimator
     }
 
     @Override
-    protected void performMowzieAnimations(ModelDinosaur model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur entity)
+    protected void performMowzieLandAnimations(ModelDinosaur model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur entity)
     {
         MowzieModelRenderer abdomen = model.getCube("abdomen");
         MowzieModelRenderer upperBody = model.getCube("Upper body");

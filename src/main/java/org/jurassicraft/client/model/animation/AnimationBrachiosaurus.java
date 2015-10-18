@@ -18,7 +18,7 @@ public class AnimationBrachiosaurus extends DinosaurAnimator
     }
 
     @Override
-    protected void performMowzieAnimations(ModelDinosaur model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur entity)
+    protected void performMowzieLandAnimations(ModelDinosaur model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur entity)
     {
 //        f = entity.ticksExisted;
 //        f1 = 0.5F;

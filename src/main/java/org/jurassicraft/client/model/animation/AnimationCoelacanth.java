@@ -18,7 +18,7 @@ public class AnimationCoelacanth extends DinosaurAnimator
     }
 
     @Override
-    protected void performMowzieAnimations(ModelDinosaur model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur entity)
+    protected void performMowzieLandAnimations(ModelDinosaur model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur entity)
     {
         Animator animator = model.animator;
         //NOTES: Because the animation does not need to be synced to the ground, global variables are not needed.

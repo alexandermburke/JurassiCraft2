@@ -1,5 +1,7 @@
 package net.timeless.animationapi.client;
 
+import java.util.Map;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
@@ -8,11 +10,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
-
-import java.util.Map;
 
 /**
  * @author jabelar
@@ -53,7 +54,6 @@ public class JabelarAnimationHelper
     private int lastTicksExisted;
 
     private final boolean inertialTweens;
-    private final float baseInertiaFactor;
 
     /**
      * @param parEntity         the entity to animate from
@@ -74,7 +74,6 @@ public class JabelarAnimationHelper
         arrayOfPoses = parArrayOfPoses;
         mapOfSequences = parMapOfSequences;
         inertialTweens = parInertialTweens;
-        baseInertiaFactor = parInertiaFactor;
 
         lastTicksExisted = theEntity.ticksExisted;
 
@@ -91,7 +90,7 @@ public class JabelarAnimationHelper
     public void performJabelarAnimations(float parPartialTicks)
     {
 
-        JurassiCraft.instance.getLogger().info("FPS = " + Minecraft.getDebugFPS() + " and current sequence = " +
+        JurassiCraft.instance.getLogger().debug("FPS = " + Minecraft.getDebugFPS() + " and current sequence = " +
                 currentSequence + " and current pose = " + this.currentPose + " and current tick = " +
                 this.currentTickInTween + " out of " + numTicksInTween + " and entity ticks existed = " +
                 theEntity.ticksExisted + " and partial ticks = " + partialTicks);
@@ -226,7 +225,7 @@ public class JabelarAnimationHelper
 
     private void tween()
     {
-        JurassiCraft.instance.getLogger().info("current tween tick +  partial ticks = " + (currentTickInTween + partialTicks));
+        JurassiCraft.instance.getLogger().debug("current tween tick +  partial ticks = " + (currentTickInTween + partialTicks));
 
         for (int partIndex = 0; partIndex < numParts; partIndex++)
         {

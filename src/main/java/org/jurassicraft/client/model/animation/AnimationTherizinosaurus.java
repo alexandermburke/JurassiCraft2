@@ -19,7 +19,7 @@ public class AnimationTherizinosaurus extends DinosaurAnimator
     }
 
     @Override
-    protected void performMowzieAnimations(ModelDinosaur model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
+    protected void performMowzieLandAnimations(ModelDinosaur model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur parEntity)
     {
         MowzieModelRenderer rightThigh = model.getCube("Right Thigh");
         MowzieModelRenderer bodyHips = model.getCube("Body hips");

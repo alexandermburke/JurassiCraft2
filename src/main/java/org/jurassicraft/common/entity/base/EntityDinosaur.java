@@ -1,6 +1,10 @@
 package org.jurassicraft.common.entity.base;
 
 import io.netty.buffer.ByteBuf;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -32,6 +36,7 @@ import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.AnimID;
 import net.timeless.unilib.common.animation.ChainBuffer;
+
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.disease.Disease;
@@ -42,9 +47,6 @@ import org.jurassicraft.common.genetics.GeneticsContainer;
 import org.jurassicraft.common.genetics.GeneticsHelper;
 import org.jurassicraft.common.item.ItemBluePrint;
 import org.jurassicraft.common.item.JCItemRegistry;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public abstract class EntityDinosaur extends EntityCreature implements IEntityAdditionalSpawnData, IAnimatedEntity, IInventory
 {
@@ -1039,5 +1041,14 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         {
             setInventorySlotContents(i, null);
         }
+    }
+
+    /*
+     * Used by DinosaurAnimator class to allow different cyclic animations when
+     * land dinosaur is in water (need to @Override the performMowzieSwimmingAnimations() method)
+     */
+    public boolean isSwimming()
+    {
+        return (isInWater() || isInLava());
     }
 }

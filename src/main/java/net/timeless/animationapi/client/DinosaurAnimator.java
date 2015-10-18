@@ -1,24 +1,5 @@
 package net.timeless.animationapi.client;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.animationapi.client.dto.AnimationsDTO;
-import net.timeless.animationapi.client.dto.DinosaurRenderDefDTO;
-import net.timeless.animationapi.client.dto.PoseDTO;
-import net.timeless.unilib.Unilib;
-import net.timeless.unilib.client.model.json.IModelAnimator;
-import net.timeless.unilib.client.model.json.ModelJson;
-import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
-import org.jurassicraft.JurassiCraft;
-import org.jurassicraft.client.model.ModelDinosaur;
-import org.jurassicraft.common.dinosaur.Dinosaur;
-import org.jurassicraft.common.entity.base.EntityDinosaur;
-import org.jurassicraft.common.entity.base.EnumGrowthStage;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -31,6 +12,27 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.animationapi.client.dto.AnimationsDTO;
+import net.timeless.animationapi.client.dto.DinosaurRenderDefDTO;
+import net.timeless.animationapi.client.dto.PoseDTO;
+import net.timeless.unilib.Unilib;
+import net.timeless.unilib.client.model.json.IModelAnimator;
+import net.timeless.unilib.client.model.json.ModelJson;
+import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+
+import org.jurassicraft.JurassiCraft;
+import org.jurassicraft.client.model.ModelDinosaur;
+import org.jurassicraft.common.dinosaur.Dinosaur;
+import org.jurassicraft.common.entity.base.EntityDinosaur;
+import org.jurassicraft.common.entity.base.EnumGrowthStage;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 @SideOnly(Side.CLIENT)
 public abstract class DinosaurAnimator implements IModelAnimator
@@ -299,11 +301,26 @@ public abstract class DinosaurAnimator implements IModelAnimator
         getAnimationHelper(entity, model).performJabelarAnimations(partialTick);
         if (entity.getAnimID() != AnimID.DYING) // still alive
         {
-            performMowzieAnimations(model, limbSwing, limbSwingAmount, rotation, rotationYaw, rotationPitch, partialTick, entity);
+            if (entity.isSwimming())
+            {
+                performMowzieSwimmingAnimations(model, limbSwing, limbSwingAmount, rotation, rotationYaw, rotationPitch, partialTick, entity);  
+            }
+            else
+            {
+                performMowzieLandAnimations(model, limbSwing, limbSwingAmount, rotation, rotationYaw, rotationPitch, partialTick, entity);
+            }
         }
     }
 
-    protected void performMowzieAnimations(ModelDinosaur parModel, float parLimbSwing, float parLimbSwingAmount, float parRotation, float parRotationYaw, float parRotationPitch, float parPartialTicks, EntityDinosaur parEntity)
+    protected void performMowzieLandAnimations(ModelDinosaur parModel, float parLimbSwing, float parLimbSwingAmount, float parRotation, float parRotationYaw, float parRotationPitch, float parPartialTicks, EntityDinosaur parEntity)
     {
+    }
+    
+    /*
+     * @Override this if you want swimming dino to have different cyclical animations.
+     */
+    protected void performMowzieSwimmingAnimations(ModelDinosaur parModel, float parLimbSwing, float parLimbSwingAmount, float parRotation, float parRotationYaw, float parRotationPitch, float parPartialTicks, EntityDinosaur parEntity)
+    {
+        performMowzieLandAnimations(parModel, parLimbSwing, parLimbSwingAmount, parRotation, parRotationYaw, parRotationPitch, parPartialTicks, parEntity);
     }
 }
