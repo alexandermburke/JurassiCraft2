@@ -1,6 +1,5 @@
 package org.jurassicraft.common.entity.ai;
 
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 

@@ -6,8 +6,6 @@ import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.AnimID;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 
-import java.util.Random;
-
 public class AnimationAILook extends EntityAIBase
 {
     protected EntityDinosaur animatingEntity;

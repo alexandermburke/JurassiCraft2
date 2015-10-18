@@ -1,7 +1,5 @@
 package net.timeless.animationapi.client;
 
-import java.util.Map;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
@@ -10,10 +8,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
-
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+
+import java.util.Map;
 
 /**
  * @author jabelar
