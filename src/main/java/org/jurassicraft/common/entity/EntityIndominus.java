@@ -18,10 +18,7 @@ public class EntityIndominus extends EntityDinosaurAggressive // implements ICar
     private static final String[] deathSounds = new String[]{"indominus_death_1"};
     private static final String[] breathSounds = new String[]{"indominus_breath"};
 
-    @SideOnly(Side.CLIENT)
     private float[] newSkinColor = new float[3];
-
-    @SideOnly(Side.CLIENT)
     private float[] skinColor = new float[3];
 
     private int stepCount = 0;
