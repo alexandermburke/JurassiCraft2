@@ -85,6 +85,8 @@ public class JCBlockRegistry
     public static Block dna_hybridizer;
     public static Block dna_combinator;
 
+    public static Block security_camera;
+
     public static Block reinforced_stone;
     public static Block reinforced_bricks;
 
@@ -142,6 +144,8 @@ public class JCBlockRegistry
         dicksonia = addBlock(new BlockDicksonia(), "dicksonia");
 
         bPlanks = addBlock(new BlockMeta(Material.wood, "planks", 8).setCreativeTab(JCCreativeTabs.plants), "planks");
+
+        security_camera = addBlock(new BlockSecurityCamera(), "security_camera");
 
         List<Dinosaur> dinosaurs = JCEntityRegistry.getDinosaurs();
 

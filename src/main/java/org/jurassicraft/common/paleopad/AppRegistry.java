@@ -10,6 +10,7 @@ public class AppRegistry
     public static App file_explorer;
     public static App flappy_dino;
     public static App minimap;
+    public static App security;
 
     public void registerApp(App app)
     {
@@ -22,11 +23,13 @@ public class AppRegistry
         file_explorer = new AppFileExplorer();
         flappy_dino = new AppFlappyDino();
         minimap = new AppMinimap();
+        security = new AppSecurity();
 
         registerApp(dinopedia);
         registerApp(file_explorer);
         registerApp(flappy_dino);
         registerApp(minimap);
+        registerApp(security);
     }
 
     public static List<App> getApps()

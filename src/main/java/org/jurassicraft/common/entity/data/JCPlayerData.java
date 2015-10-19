@@ -4,6 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -36,6 +37,7 @@ public class JCPlayerData implements IExtendedEntityProperties
     private List<App> openApps = new ArrayList<App>();
 
     private List<JCFile> rootFiles = new ArrayList<JCFile>();
+    private List<BlockPos> cameras = new ArrayList<BlockPos>();
 
     private EntityPlayer player;
 
@@ -90,6 +92,21 @@ public class JCPlayerData implements IExtendedEntityProperties
 
         nbt.setTag("JCAppData", appDataList);
 
+        NBTTagList cameraList = new NBTTagList();
+
+        for (BlockPos pos : cameras)
+        {
+            NBTTagCompound camera = new NBTTagCompound();
+
+            camera.setInteger("CamX", pos.getX());
+            camera.setInteger("CamY", pos.getY());
+            camera.setInteger("CamZ", pos.getZ());
+
+            cameraList.appendTag(camera);
+        }
+
+        nbt.setTag("Cameras", cameraList);
+
         playerData.setTag("PaleoPadData", nbt);
     }
 
@@ -117,6 +134,15 @@ public class JCPlayerData implements IExtendedEntityProperties
             NBTTagCompound appData = (NBTTagCompound) appDataList.get(i);
 
             this.appdata.put(appData.getString("Name"), appData.getCompoundTag("Data"));
+        }
+
+        NBTTagList cameraList = nbt.getTagList("Cameras", 10);
+
+        for (int i = 0; i < cameraList.tagCount(); i++)
+        {
+            NBTTagCompound camera = (NBTTagCompound) cameraList.get(i);
+
+            this.cameras.add(new BlockPos(camera.getInteger("CamX"), camera.getInteger("CamY"), camera.getInteger("CamZ")));
         }
     }
 
@@ -152,6 +178,19 @@ public class JCPlayerData implements IExtendedEntityProperties
         dna.writeToNBT(data);
 
         dnaFile.setData(data);
+    }
+
+    public void addCamera(BlockPos pos)
+    {
+        if (!cameras.contains(pos))
+        {
+            cameras.add(pos);
+        }
+    }
+
+    public List<BlockPos> getCameras()
+    {
+        return cameras;
     }
 
     @Override

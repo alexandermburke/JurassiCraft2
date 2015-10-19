@@ -24,7 +24,7 @@ public class MessageSendFile implements IMessage
     private String path;
     private List<String> children = new ArrayList<String>();
     private NBTTagCompound data;
-    private boolean isFile;
+    private boolean isDir;
 
     public MessageSendFile()
     {
@@ -82,7 +82,7 @@ public class MessageSendFile implements IMessage
             }
 
             buffer.writeInt(i);
-            buffer.writeBoolean(file.isFile());
+            buffer.writeBoolean(file.isDirectory());
 
             for (JCFile child : children)
             {
@@ -107,7 +107,7 @@ public class MessageSendFile implements IMessage
         if (path.length() > 0)
         {
             int childCount = buffer.readInt();
-            isFile = buffer.readBoolean();
+            isDir = buffer.readBoolean();
 
             for (int i = 0; i < childCount; i++)
             {
@@ -116,7 +116,7 @@ public class MessageSendFile implements IMessage
                 children.add(childName);
             }
 
-            if (isFile)
+            if (!isDir)
             {
                 data = ByteBufUtils.readTag(buffer);
             }
@@ -124,7 +124,7 @@ public class MessageSendFile implements IMessage
         else
         {
             int childCount = buffer.readInt();
-            isFile = false;
+            isDir = true;
 
             for (int i = 0; i < childCount; i++)
             {
@@ -144,14 +144,14 @@ public class MessageSendFile implements IMessage
             {
                 JCFile file = JCPlayerData.getPlayerData(null).getFileFromPath(packet.path);
 
-                if (packet.isFile)
+                if (!packet.isDir)
                 {
-                    file.setData(file.getData());
+                    file.setData(packet.data);
                 }
 
                 for (String child : packet.children)
                 {
-                    new JCFile(child, file, JurassiCraft.proxy.getPlayer(), !packet.isFile);
+                    new JCFile(child, file, JurassiCraft.proxy.getPlayer(), packet.isDir);
                 }
             }
             else
@@ -162,14 +162,14 @@ public class MessageSendFile implements IMessage
                 {
                     JCFile file = JCPlayerData.getPlayerData(player).getFileFromPath(packet.path);
 
-                    if (packet.isFile)
+                    if (!packet.isDir)
                     {
-                        file.setData(file.getData());
+                        file.setData(packet.data);
                     }
 
                     for (String child : packet.children)
                     {
-                        new JCFile(child, file, player, !packet.isFile);
+                        new JCFile(child, file, player, packet.isDir);
                     }
                 }
             }

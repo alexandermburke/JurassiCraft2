@@ -24,6 +24,7 @@ public class GuiAppRegistry
         registerApp(new GuiAppFileExplorer(AppRegistry.file_explorer));
         registerApp(new GuiAppFlappyDino(AppRegistry.flappy_dino));
         registerApp(new GuiAppMinimap(AppRegistry.minimap));
+        registerApp(new GuiAppSecurity(AppRegistry.security));
     }
 
     public static GuiApp getGui(App app)

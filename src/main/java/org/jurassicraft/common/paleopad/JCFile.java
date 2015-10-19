@@ -108,6 +108,7 @@ public class JCFile
     public void writeToNBT(NBTTagCompound nbt)
     {
         nbt.setString("Name", name);
+        nbt.setBoolean("Directory", dir);
 
         if (isDirectory())
         {
@@ -133,7 +134,7 @@ public class JCFile
 
     public static JCFile readFromNBT(NBTTagCompound nbt, EntityPlayer player, JCFile parent)
     {
-        JCFile file = new JCFile(nbt.getString("Name"), parent, player, !nbt.hasKey("Data"));
+        JCFile file = new JCFile(nbt.getString("Name"), parent, player, nbt.getBoolean("Directory"));
 
         if (file.dir)
         {

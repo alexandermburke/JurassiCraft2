@@ -6,10 +6,16 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.nbt.NBTUtil;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import org.jurassicraft.common.block.JCBlockRegistry;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+import org.jurassicraft.common.entity.data.JCPlayerData;
 import org.jurassicraft.common.handler.JCGuiHandler;
 
 public class ItemPaleoPad extends Item
@@ -22,6 +28,25 @@ public class ItemPaleoPad extends Item
         this.setMaxStackSize(1);
 
         this.setCreativeTab(JCCreativeTabs.items);
+    }
+
+    /**
+     * Called when a Block is right-clicked with this Item
+     *
+     * @param pos The block being right-clicked
+     * @param side The side being right-clicked
+     */
+    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+    {
+        if (world.getBlockState(pos).getBlock() == JCBlockRegistry.security_camera)
+        {
+            JCPlayerData data = JCPlayerData.getPlayerData(player);
+            data.addCamera(pos);
+
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -70,6 +95,15 @@ public class ItemPaleoPad extends Item
 
     public void setString(ItemStack stack, String key, String value)
     {
+        NBTTagCompound nbt = getNBT(stack);
+
+        nbt.setString(key, value);
+
+        stack.setTagCompound(nbt);
+    }
+
+    private NBTTagCompound getNBT(ItemStack stack)
+    {
         NBTTagCompound nbt = stack.getTagCompound();
 
         if (nbt == null)
@@ -77,8 +111,6 @@ public class ItemPaleoPad extends Item
             nbt = new NBTTagCompound();
         }
 
-        nbt.setString(key, value);
-
-        stack.setTagCompound(nbt);
+        return nbt;
     }
 }
