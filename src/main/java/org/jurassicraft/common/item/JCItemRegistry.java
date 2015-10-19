@@ -44,6 +44,8 @@ public class JCItemRegistry
 
     public static ItemBasic iron_blades;
     public static ItemBasic iron_rod;
+    public static ItemBasic disc_reader;
+    public static ItemBasic laser;
 
     public static ItemBasic needle;
 
@@ -78,6 +80,8 @@ public class JCItemRegistry
         empty_syringe = new ItemEmptySyringe();
         entityRemover = new ItemEntityRemover();
         storage_disc = new ItemStorageDisc();
+        disc_reader = new ItemBasic("Disc Reader", JCCreativeTabs.items);
+        laser = new ItemBasic("Laser", JCCreativeTabs.items);
         dna_base = new ItemBasic("DNA Base Material", JCCreativeTabs.items);
         cage_small = new ItemCage();
         plant_dna = new ItemPlantDNA();
@@ -100,6 +104,8 @@ public class JCItemRegistry
         registerItem(empty_syringe, "Empty Syringe");
         registerItem(growth_serum, "Growth Serum");
         registerItem(storage_disc, "Storage Disc");
+        registerItem(disc_reader, "Disc Reader");
+        registerItem(laser, "Laser");
         registerItem(dna_base, "DNA Base Material");
         registerItem(petri_dish, "Petri Dish");
         registerItem(plant_cells_petri_dish, "Plant Cells Petri Dish");

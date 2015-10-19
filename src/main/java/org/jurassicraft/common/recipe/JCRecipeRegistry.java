@@ -165,22 +165,16 @@ public class JCRecipeRegistry
                 'S', JCBlockRegistry.dna_sequencer, 'I', Items.iron_ingot, 'R', Items.redstone, 'N', JCItemRegistry.needle);
 
         addRecipe(new ItemStack(JCBlockRegistry.dna_sequencer),
-                "GLG",
-                "CTR",
-                "IBI",
-                'G', Items.gold_ingot, 'I', Blocks.iron_block, 'B', Blocks.redstone_block, 'T', Blocks.redstone_torch, 'L', new ItemStack(Items.dye, 1, 4), 'R', Items.repeater, 'C', Items.comparator);
-
-        addRecipe(new ItemStack(JCBlockRegistry.dna_sequencer),
-                "GLG",
-                "RTC",
-                "IBI",
-                'G', Items.gold_ingot, 'I', Blocks.iron_block, 'B', Blocks.redstone_block, 'T', Blocks.redstone_torch, 'L', new ItemStack(Items.dye, 1, 4), 'R', Items.repeater, 'C', Items.comparator);
+                "RDR",
+                "GNG",
+                "III",
+                'G', Items.gold_ingot, 'I', Items.iron_ingot, 'N', JCItemRegistry.needle, 'D', JCItemRegistry.disc_reader, 'R', Items.redstone);
 
         addRecipe(new ItemStack(JCBlockRegistry.dna_synthesizer),
-                "GGG",
+                "GDG",
                 "RBR",
                 "ITI",
-                'G', Items.gold_ingot, 'I', Blocks.iron_block, 'T', Blocks.redstone_torch, 'B', Items.bucket, 'R', Items.redstone);
+                'G', Items.gold_ingot, 'I', Items.iron_ingot, 'B', Items.bucket, 'R', Items.redstone, 'D', JCItemRegistry.disc_reader);
 
         for (i = 0; i < 16; i++)
         {
@@ -207,19 +201,37 @@ public class JCRecipeRegistry
                 "GGG",
                 "RRR",
                 "III",
-                'I', Blocks.iron_block, 'R', Blocks.redstone_block, 'G', Blocks.glass);
+                'I', Items.iron_ingot, 'R', Items.redstone, 'G', Blocks.glass);
 
         addRecipe(new ItemStack(JCBlockRegistry.dna_combinator),
-                "III",
+                "IDI",
                 "GRG",
                 "III",
-                'G', Blocks.glass, 'I', Items.iron_ingot, 'R', Blocks.redstone_block);
+                'G', Blocks.glass, 'I', Items.iron_ingot, 'R', Items.redstone, 'D', JCItemRegistry.disc_reader);
 
         addRecipe(new ItemStack(JCBlockRegistry.dna_hybridizer),
                 "IRI",
                 "GIG",
                 "IRI",
-                'G', Blocks.glass, 'I', Items.iron_ingot, 'R', Blocks.redstone_block);
+                'G', Blocks.glass, 'I', Items.iron_ingot, 'R', Items.redstone);
+
+        addRecipe(new ItemStack(JCItemRegistry.laser),
+                "PRP",
+                "ILI",
+                "IGI",
+                'G', Blocks.glass, 'I', Items.iron_ingot, 'R', Items.redstone, 'P', Items.repeater, 'L', Blocks.redstone_lamp);
+
+        addRecipe(new ItemStack(JCItemRegistry.disc_reader),
+                "ILI",
+                "RNR",
+                "TPT",
+                'N', JCItemRegistry.needle, 'I', Items.iron_ingot, 'R', Items.redstone, 'T', Blocks.redstone_torch, 'L', JCItemRegistry.laser, 'P', Blocks.piston);
+
+        addRecipe(new ItemStack(JCItemRegistry.storage_disc),
+                "III",
+                "IGI",
+                "III",
+                'G', Items.gold_ingot, 'I', Items.iron_ingot);
 
         GameRegistry.addShapelessRecipe(new ItemStack(JCItemRegistry.plant_cells_petri_dish), JCItemRegistry.plant_cells, JCItemRegistry.petri_dish);
 

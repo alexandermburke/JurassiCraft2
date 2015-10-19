@@ -90,6 +90,8 @@ item.plant_cells_petri_dish.name=Plant Cells in Petri Dish
 item.plant_callus.name={plant} Plant Callus
 item.tracker.name=Dinosaur Tracking Implant
 item.helicopter_spawner.name=Helicopter
+item.disc_reader.name=Disc Drive
+item.laser.name=Laser
 
 //Blocks ==================================================
 tile.fossil_block.name={period} Fossil
