@@ -1,5 +1,11 @@
 package org.jurassicraft.common.proxy;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -7,9 +13,11 @@ import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.api.IHybrid;
 import org.jurassicraft.common.dinosaur.Dinosaur;
@@ -19,15 +27,9 @@ import org.jurassicraft.common.handler.JCGuiHandler;
 import org.jurassicraft.common.item.JCItemRegistry;
 import org.jurassicraft.common.world.WorldGenerator;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 public class CommonProxy
 {
-    public void preInit()
+    public void preInit(FMLPreInitializationEvent event)
     {
         JurassiCraft.entityRegistry.register();
         JurassiCraft.plantRegistry.register();
@@ -39,6 +41,7 @@ public class CommonProxy
         JurassiCraft.appRegistry.register();
         JurassiCraft.achievements.register();
         JurassiCraft.storageTypeRegistry.register();
+        JurassiCraft.configurations.initConfig(event);
 
 //        addChestGenItems();
 

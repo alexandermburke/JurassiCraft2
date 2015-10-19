@@ -1,14 +1,19 @@
 package org.jurassicraft;
 
+import java.io.File;
+
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+
 import org.apache.logging.log4j.Logger;
 import org.jurassicraft.common.achievements.JCAchievements;
 import org.jurassicraft.common.block.JCBlockRegistry;
+import org.jurassicraft.common.configuration.JCConfigurations;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
 import org.jurassicraft.common.entity.base.JCEntityRegistry;
 import org.jurassicraft.common.item.JCItemRegistry;
@@ -19,13 +24,15 @@ import org.jurassicraft.common.proxy.CommonProxy;
 import org.jurassicraft.common.recipe.JCRecipeRegistry;
 import org.jurassicraft.common.storagedisc.StorageTypeRegistry;
 
-@Mod(modid = JurassiCraft.MODID, name = "JurassiCraft", version = "${version}")
+@Mod(modid = JurassiCraft.MODID, name = JurassiCraft.MODNAME, version = JurassiCraft.MODVERSION)
 public class JurassiCraft
 {
     @SidedProxy(serverSide = "org.jurassicraft.common.proxy.CommonProxy", clientSide = "org.jurassicraft.client.proxy.ClientProxy")
     public static CommonProxy proxy;
 
     public static final String MODID = "jurassicraft";
+    public static final String MODNAME = "JurassiCraft";
+    public static final String MODVERSION = "${version}";
 
     @Instance(JurassiCraft.MODID)
     public static JurassiCraft instance;
@@ -44,14 +51,21 @@ public class JurassiCraft
     public static AppRegistry appRegistry = new AppRegistry();
     public static JCAchievements achievements = new JCAchievements();
     public static StorageTypeRegistry storageTypeRegistry = new StorageTypeRegistry();
-
+    public static JCConfigurations configurations = new JCConfigurations();
+    
+    // set up configuration properties (will be read from config file in preInit)
+    public static File configFile;
+    public static Configuration config;
+    public static boolean spawnDinosNaturally = true;
+    public static boolean spawnVanillaMobsNaturally = true;
+    
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
         logger = event.getModLog();
         logger.info("Loading JurassiCraft...");
         timerNanoseconds = System.nanoTime();
-        proxy.preInit();
+        proxy.preInit(event);
     }
 
     @Mod.EventHandler
