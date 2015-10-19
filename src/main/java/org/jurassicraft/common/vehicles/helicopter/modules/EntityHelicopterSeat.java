@@ -74,6 +74,7 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
             resetPos();
             if (parent.isDead)
             {
+                System.out.println("KILLED");
                 kill();
             }
         }
@@ -92,6 +93,7 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
         this.posX = parent.posX + nx;
         this.posY = parent.posY + ny + 0.4f;
         this.posZ = parent.posZ + nz;
+        System.out.println(">> new pos: "+posX+", "+posY+", "+posZ);
     }
 
     @Override
@@ -110,10 +112,10 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
             @Override
             public boolean apply(Entity input)
             {
-                if (input instanceof EntityHelicopterBase)
+                if(input instanceof EntityHelicopterBase)
                 {
-                    EntityHelicopterBase helicopter = (EntityHelicopterBase) input;
-                    return helicopter.getHeliID().equals(id);
+                    EntityHelicopterBase helicopterBase = (EntityHelicopterBase)input;
+                    return helicopterBase.getHeliID().equals(id);
                 }
                 return false;
             }

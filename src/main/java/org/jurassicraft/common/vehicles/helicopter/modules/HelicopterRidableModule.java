@@ -33,12 +33,8 @@ public abstract class HelicopterRidableModule extends HelicopterModule
             @Override
             public boolean apply(Entity input)
             {
-                if (input instanceof EntityHelicopterSeat)
-                {
-                    EntityHelicopterSeat helicopter = (EntityHelicopterSeat) input;
-                    return helicopter.getUniqueID().equals(id);
-                }
-                return false;
+                System.out.println(">> "+input);
+                return input.getUniqueID().equals(id);
             }
         });
         if (list.isEmpty())
@@ -59,15 +55,23 @@ public abstract class HelicopterRidableModule extends HelicopterModule
                 EntityHelicopterSeat pilotSeat = new EntityHelicopterSeat(getDistanceFromCenter(), m.getPosition().ordinal(), m.getHelicopter(), shouldRiderSit());
                 pilotSeat.setPosition(helicopter.posX, helicopter.posY, helicopter.posZ);
                 helicopter.worldObj.spawnEntityInWorld(pilotSeat);
-                m.getModuleData(this).setString("entityID", pilotSeat.getUniqueID().toString());
+                String id = pilotSeat.getUniqueID().toString();
+                m.getModuleData(this).setString("entityID", id);
+                System.out.println(id);
             }
         }
     }
 
     public EntityHelicopterSeat getEntity(HelicopterModuleSpot spot)
     {
-        UUID entityID = UUID.fromString(spot.getModuleData(this).getString("entityID"));
-        return getSeatFromID(spot.getHelicopter().worldObj, entityID);
+        String id = spot.getModuleData(this).getString("entityID");
+        if(id.isEmpty())
+            return null;
+        //System.out.println(id);
+        UUID entityID = UUID.fromString(id);
+        EntityHelicopterSeat entity = getSeatFromID(spot.getHelicopter().worldObj, entityID);
+      //  System.out.println(entity);
+        return entity;
     }
 
     protected abstract float getDistanceFromCenter();

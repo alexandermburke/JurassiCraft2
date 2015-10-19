@@ -34,11 +34,9 @@ public class ItemHelicopter extends Item
         {
             return true;
         }
-        EntityHelicopterBase helicopter = new EntityHelicopterBase(worldIn);
+        EntityHelicopterBase helicopter = new EntityHelicopterBase(worldIn, this);
         helicopter.setPosition(pos.getX() + hitX, pos.getY() + hitY, pos.getZ() + hitZ);
         worldIn.spawnEntityInWorld(helicopter);
-
-// TODO: Make this not crash        helicopter.addDefaultModules();
         return true;
     }
 }

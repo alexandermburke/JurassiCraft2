@@ -60,7 +60,7 @@ public class MessageHelicopterDirection implements IMessage
             {
                 world = ctx.getServerHandler().playerEntity.worldObj;
             }
-            EntityHelicopterBase helicopter = (EntityHelicopterBase) world.getEntityByID(packet.heliID);
+            EntityHelicopterBase helicopter = HelicopterMessages.getHeli(world, packet.heliID);
             if (helicopter != null)
             {
                 helicopter.setDirection(packet.direction);

@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.utils.MutableVec3;
+import org.jurassicraft.common.item.ItemHelicopter;
 import org.jurassicraft.common.message.JCNetworkManager;
 import org.jurassicraft.common.message.MessageHelicopterDirection;
 import org.jurassicraft.common.message.MessageHelicopterEngine;
@@ -31,6 +32,7 @@ import java.util.UUID;
 public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdditionalSpawnData
 {
     private final HelicopterModuleSpot[] moduleSpots;
+    private boolean syncModules;
     private UUID heliID;
     public static final int ENGINE_RUNNING = 20;
     public static final int PILOT_SEAT = EnumModulePosition.MAIN_SEAT.ordinal();
@@ -43,6 +45,12 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     private float enginePower;
     private boolean hasMinigun;
     private MutableVec3 direction;
+
+    public EntityHelicopterBase(World worldIn, ItemHelicopter creator)
+    {
+        this(worldIn);
+        prepareDefaultModules();
+    }
 
     public EntityHelicopterBase(World worldIn)
     {
@@ -58,13 +66,16 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
         moduleSpots[RIGHT_PART] = new HelicopterModuleSpot(EnumModulePosition.BACK_RIGHT, this, 0);
 
         direction = new MutableVec3(0, 1, 0);
+        syncModules = true;
     }
 
-    public void addDefaultModules()
+    public void prepareDefaultModules()
     {
+        syncModules = false;
         getModuleSpot(EnumModulePosition.MAIN_SEAT).addModule(HelicopterModule.seat);
         getModuleSpot(EnumModulePosition.BACK_LEFT).addModule(HelicopterModule.door);
         getModuleSpot(EnumModulePosition.BACK_RIGHT).addModule(HelicopterModule.minigun);
+        syncModules = true;
     }
 
     /**
@@ -167,9 +178,7 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
         for (HelicopterModuleSpot spot : moduleSpots)
         {
             if (spot == null)
-            {
                 continue;
-            }
             if (spot.has(HelicopterModule.seat))
             {
                 EntityHelicopterSeat seat = HelicopterModule.seat.getEntity(spot);
@@ -183,77 +192,77 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
 
         if (getModuleSpot(EnumModulePosition.MAIN_SEAT).has(HelicopterModule.seat))
         {
-            Entity riderEntity = HelicopterModule.seat.getEntity(getModuleSpot(EnumModulePosition.MAIN_SEAT)).riddenByEntity;
-            boolean runEngine = false;
-            if (riderEntity != null) // There is a pilot!
+            EntityHelicopterSeat seat = HelicopterModule.seat.getEntity(getModuleSpot(EnumModulePosition.MAIN_SEAT));
+            if(seat != null)
             {
-                EntityPlayer rider = (EntityPlayer) riderEntity;
-                if (worldObj.isRemote) // We are on client
+                Entity riderEntity = seat.riddenByEntity;
+                boolean runEngine = false;
+                if (riderEntity != null) // There is a pilot!
                 {
-                    runEngine = handleClientRunning(rider);
-                    if (isPilotThisClient(rider))
+                    EntityPlayer rider = (EntityPlayer) riderEntity;
+                    if (worldObj.isRemote) // We are on client
                     {
-                        updateEngine(runEngine);
-                        engineRunning = runEngine;
-                        if (engineRunning && enginePower >= REQUIRED_POWER)
+                        runEngine = handleClientRunning(rider);
+                        if (isPilotThisClient(rider))
                         {
-                            direction = drive(direction);
-                        }
-                        else
-                        {
-                            direction.set(0, 1, 0);
+                            updateEngine(runEngine);
+                            engineRunning = runEngine;
+                            if (engineRunning && enginePower >= REQUIRED_POWER)
+                                direction = drive(direction);
+                            else
+                                direction.set(0, 1, 0);
                         }
                     }
-                }
-            }
-            else
-            {
-                runEngine = false;
-                updateEngine(runEngine);
-                direction.set(0, 1f, 0);
-            }
-            rotationYaw -= direction.xCoord * 1.25f;
-            roll = (float) (direction.xCoord * 20f);
-            rotationPitch = (float) -(direction.zCoord * 40f);
-            updateDirection(direction);
-            if (engineRunning)
-            {
-                enginePower++;
-                if (enginePower >= REQUIRED_POWER)
-                {
-                    // We can fly \o/
-                    // ♪ Fly on the wings of code! ♪
-                    MutableVec3 localDir = new MutableVec3(direction.xCoord, direction.yCoord, direction.zCoord * 8f);
-                    localDir = localDir.rotateYaw((float) Math.toRadians(-rotationYaw));
-                    final float gravityCancellation = 0.08f;
-                    final float speedY = gravityCancellation + 0.005f;
-                    double my = speedY * localDir.yCoord;
-                    if (my < gravityCancellation)
-                    {
-                        my = gravityCancellation;
-                    }
-                    motionY += my;
-                    motionX = localDir.xCoord / 10f;
-                    motionZ = localDir.zCoord / 10f;
-                }
-                if (enginePower >= MAX_POWER)
-                {
-                    enginePower = MAX_POWER;
-                }
-            }
-            else
-            {
-                if (enginePower >= REQUIRED_POWER)
-                {
-                    enginePower -= 0.5f;
                 }
                 else
                 {
-                    enginePower--;
+                    runEngine = false;
+                    updateEngine(runEngine);
+                    direction.set(0, 1f, 0);
                 }
-                if (enginePower < 0f)
+                rotationYaw -= direction.xCoord * 1.25f;
+                roll = (float) (direction.xCoord * 20f);
+                rotationPitch = (float) -(direction.zCoord * 40f);
+                updateDirection(direction);
+                if (engineRunning)
                 {
-                    enginePower = 0f;
+                    enginePower++;
+                    if (enginePower >= REQUIRED_POWER)
+                    {
+                        // We can fly \o/
+                        // ♪ Fly on the wings of code! ♪
+                        MutableVec3 localDir = new MutableVec3(direction.xCoord, direction.yCoord, direction.zCoord * 8f);
+                        localDir = localDir.rotateYaw((float) Math.toRadians(-rotationYaw));
+                        final float gravityCancellation = 0.08f;
+                        final float speedY = gravityCancellation + 0.005f;
+                        double my = speedY * localDir.yCoord;
+                        if (my < gravityCancellation)
+                        {
+                            my = gravityCancellation;
+                        }
+                        motionY += my;
+                        motionX = localDir.xCoord / 10f;
+                        motionZ = localDir.zCoord / 10f;
+                    }
+                    if (enginePower >= MAX_POWER)
+                    {
+                        enginePower = MAX_POWER;
+                    }
+                }
+                else
+                {
+                    if (enginePower >= REQUIRED_POWER)
+                    {
+                        enginePower -= 0.5f;
+                    }
+                    else
+                    {
+                        enginePower--;
+                    }
+                    if (enginePower < 0f)
+                    {
+                        enginePower = 0f;
+                    }
                 }
             }
         }
@@ -295,9 +304,7 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
         }
 
         if (!Minecraft.getMinecraft().gameSettings.keyBindUseItem.isKeyDown())
-        {
             direction.addVector(0, 1, 0);
-        }
 
         return direction.normalize();
     }
@@ -407,7 +414,6 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     public void writeSpawnData(ByteBuf buffer)
     {
         ByteBufUtils.writeUTF8String(buffer, heliID.toString());
-        buffer.writeBoolean(hasMinigun);
 
         for (HelicopterModuleSpot spot : moduleSpots)
         {
@@ -419,7 +425,6 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     public void readSpawnData(ByteBuf additionalData)
     {
         heliID = UUID.fromString(ByteBufUtils.readUTF8String(additionalData));
-        hasMinigun = additionalData.readBoolean();
 
         for (HelicopterModuleSpot spot : moduleSpots)
         {
@@ -442,11 +447,6 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
         return enginePower;
     }
 
-    public boolean hasMinigun()
-    {
-        return hasMinigun;
-    }
-
     public void setDirection(MutableVec3 direction)
     {
         this.direction.set(direction);
@@ -460,5 +460,9 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     public HelicopterModuleSpot getModuleSpot(EnumModulePosition pos)
     {
         return moduleSpots[pos.ordinal()];
+    }
+
+    public boolean shouldSyncModules() {
+        return syncModules;
     }
 }

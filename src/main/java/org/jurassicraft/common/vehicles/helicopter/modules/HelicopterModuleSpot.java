@@ -50,9 +50,10 @@ public class HelicopterModuleSpot
         if (!modules.contains(m))
         {
             modules.add(m);
-            moduleData.put(m, new NBTTagCompound());
+            if(!moduleData.containsKey(m))
+                moduleData.put(m, new NBTTagCompound());
             m.onAdded(this, player, v);
-            if (!getHelicopter().worldObj.isRemote)
+            if (getHelicopter().shouldSyncModules() && !getHelicopter().worldObj.isRemote)
             {
                 JCNetworkManager.networkWrapper.sendToAll(new MessageHelicopterModules(helicopter.getEntityId(), position, this));
             }
@@ -77,8 +78,8 @@ public class HelicopterModuleSpot
             if (tagList.hasKey(m.getModuleID()))
             {
                 NBTTagCompound data = tagList.getCompoundTag(m.getModuleID());
-                addModule(m);
                 moduleData.put(m, data);
+                addModule(m);
             }
         }
     }
@@ -94,28 +95,32 @@ public class HelicopterModuleSpot
     public void readSpawnData(ByteBuf data)
     {
         modules.clear();
-        int size = data.readByte();
+        int size = data.readInt();
         for (int i = 0; i < size; i++)
         {
             String id = ByteBufUtils.readUTF8String(data);
             HelicopterModule module = HelicopterModule.registry.get(id);
+            NBTTagCompound nbt = ByteBufUtils.readTag(data);
             if (module == null)
             {
                 System.err.println("Null module for id " + id);
             }
-            NBTTagCompound nbt = ByteBufUtils.readTag(data);
-            addModule(module);
-            moduleData.put(module, nbt);
+            else
+            {
+                System.out.println(">> Read for " + id + " " + nbt);
+                moduleData.put(module, nbt);
+                addModule(module);
+            }
         }
     }
 
     public void writeSpawnData(ByteBuf data)
     {
-        data.writeByte(modules.size());
+        data.writeInt(modules.size());
         for (HelicopterModule m : modules)
         {
             ByteBufUtils.writeUTF8String(data, m.getModuleID());
-            ByteBufUtils.writeTag(data, moduleData.get(m));
+            ByteBufUtils.writeTag(data, getModuleData(m));
             System.out.println("Wrote for " + m.getModuleID() + ": " + moduleData.get(m));
         }
     }
@@ -134,6 +139,7 @@ public class HelicopterModuleSpot
     {
         for (HelicopterModule m : modules)
         {
+            System.out.println(">> Clicked on "+m.getModuleID());
             if (m.onClicked(this, player, vec))
             {
                 return;

@@ -53,7 +53,7 @@ public class MessageHelicopterModules implements IMessage
         @Override
         public IMessage onMessage(MessageHelicopterModules packet, MessageContext ctx)
         {
-            World world = null;
+            World world;
             if (ctx.side == Side.CLIENT)
             {
                 world = getClientWorld();
@@ -62,10 +62,14 @@ public class MessageHelicopterModules implements IMessage
             {
                 world = ctx.getServerHandler().playerEntity.worldObj;
             }
-            EntityHelicopterBase helicopter = (EntityHelicopterBase) world.getEntityByID(packet.heliID);
-            System.out.println(packet.heliID);
-            HelicopterModuleSpot spot = helicopter.getModuleSpot(packet.pos);
-            spot.readFromNBT(packet.compound);
+            EntityHelicopterBase helicopter = HelicopterMessages.getHeli(world, packet.heliID);
+            if(helicopter != null)
+            {
+                System.out.println(packet.heliID);
+                HelicopterModuleSpot spot = helicopter.getModuleSpot(packet.pos);
+                spot.readFromNBT(packet.compound);
+                System.out.println(packet.compound);
+            }
             return null;
         }
 
