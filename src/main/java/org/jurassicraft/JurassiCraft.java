@@ -57,7 +57,7 @@ public class JurassiCraft
     public static File configFile;
     public static Configuration config;
     public static boolean spawnDinosNaturally = true;
-    public static boolean spawnVanillaMobsNaturally = true;
+    public static boolean spawnNonDinoMobsNaturally = true;
     
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
