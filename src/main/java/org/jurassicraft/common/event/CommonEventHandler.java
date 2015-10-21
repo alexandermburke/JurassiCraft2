@@ -59,14 +59,15 @@ public class CommonEventHandler
         {
             if (JurassiCraft.spawnNonDinoMobsNaturally)
             {
+                JurassiCraft.instance.getLogger().debug("Allowing spawn for non-dino");
                 event.setResult(Result.ALLOW);
             }
             else
             {
+                JurassiCraft.instance.getLogger().debug("Denying spawn for non-dino");
                 event.setResult(Result.DENY);
             }      
-        }
-        
+        }       
     }
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
