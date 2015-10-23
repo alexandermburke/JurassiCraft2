@@ -1,12 +1,6 @@
 package org.jurassicraft.client.render.renderdef;
 
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.unilib.client.model.json.IModelAnimator;
-import net.timeless.unilib.client.model.json.ModelJson;
-import net.timeless.unilib.client.model.json.TabulaModelHelper;
+import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.client.render.entity.RenderDinosaur;
 import org.jurassicraft.client.render.entity.RenderDinosaurMultilayer;
@@ -14,6 +8,14 @@ import org.jurassicraft.client.render.entity.RenderIndominus;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.dinosaur.DinosaurIndominus;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
+
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.unilib.client.model.json.IModelAnimator;
+import net.timeless.unilib.client.model.json.ModelJson;
+import net.timeless.unilib.client.model.json.TabulaModelHelper;
 
 @SideOnly(Side.CLIENT)
 public class RenderDinosaurDefinition
@@ -107,13 +109,14 @@ public class RenderDinosaurDefinition
 
     public ModelDinosaur getDefaultTabulaModel(String stage)
     {
+        String model = "/assets/jurassicraft/models/entities/" + dinosaur.getName().toLowerCase() + "/" + stage + "/" + dinosaur.getName().toLowerCase() + "_" + stage + "_idle";
         try
         {
-            return getTabulaModel("/assets/jurassicraft/models/entities/" + dinosaur.getName().toLowerCase() + "/" + stage + "/" + dinosaur.getName().toLowerCase() + "_" + stage + "_idle");
+            return getTabulaModel(model);
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            JurassiCraft.instance.getLogger().fatal("Couldn't load model " + model, e);
             return null;
         }
     }

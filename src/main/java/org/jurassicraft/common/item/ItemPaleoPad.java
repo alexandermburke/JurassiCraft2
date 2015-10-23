@@ -6,8 +6,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumFacing;
@@ -33,8 +31,10 @@ public class ItemPaleoPad extends Item
     /**
      * Called when a Block is right-clicked with this Item
      *
-     * @param pos The block being right-clicked
-     * @param side The side being right-clicked
+     * @param pos
+     *            The block being right-clicked
+     * @param side
+     *            The side being right-clicked
      */
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
@@ -70,7 +70,7 @@ public class ItemPaleoPad extends Item
 
             if (player.worldObj.isRemote)
             {
-                player.addChatMessage(new ChatComponentText("Days Existed: " + dino.getDaysExisted())); //TODO view entity (size / screensize)
+                player.addChatMessage(new ChatComponentText("Days Existed: " + dino.getDaysExisted())); // TODO view entity (size / screensize)
             }
 
             return true;
@@ -80,8 +80,7 @@ public class ItemPaleoPad extends Item
     }
 
     /**
-     * Called each tick as long the item is on a player inventory. Uses by maps to check if is on a player hand and
-     * update it's contents.
+     * Called each tick as long the item is on a player inventory. Uses by maps to check if is on a player hand and update it's contents.
      */
     public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
     {

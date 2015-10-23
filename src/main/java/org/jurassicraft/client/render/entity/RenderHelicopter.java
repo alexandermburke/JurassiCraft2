@@ -49,7 +49,7 @@ public class RenderHelicopter extends Render
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            JurassiCraft.instance.getLogger().fatal("Failed to load the models for the Helicopter", e);
         }
     }
 

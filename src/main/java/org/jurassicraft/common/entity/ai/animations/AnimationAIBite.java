@@ -24,7 +24,7 @@ public class AnimationAIBite extends AIAnimation
         this.entityTarget = null;
         this.duration = duration;
         eat = false;
-        this.id = id;
+        this.id = AnimID.ATTACKING;
     }
 
     @Override
@@ -66,9 +66,7 @@ public class AnimationAIBite extends AIAnimation
             {
                 float damage = (float) getCreatureSpeed();
 
-                if ((this.entityTarget.getHealth() - damage <= 0.0F)
-                        && this.entityBiting instanceof EntityTyrannosaurus
-                        && this.entityTarget instanceof EntityGallimimus)
+                if ((this.entityTarget.getHealth() - damage <= 0.0F) && this.entityBiting instanceof EntityTyrannosaurus && this.entityTarget instanceof EntityGallimimus)
                 {
                     eat = true;
                 }
@@ -83,26 +81,31 @@ public class AnimationAIBite extends AIAnimation
 
     public double getCreatureSpeed()
     {
-        return (double) ((int) (100 * this.entityBiting.getEntityAttribute(SharedMonsterAttributes.movementSpeed)
-                .getAttributeValue())) / 100;
+        return (double) ((int) (100 * this.entityBiting.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue())) / 100;
     }
 
     @Override
     public void resetTask()
     {
-        /** Eating animations, should not use super.resetTask, or the eating animation ID will be replaced */
-        // if (eat && this.entityTarget instanceof EntityGallimimus && entityTarget.ridingEntity == null)
+        /**
+         * Eating animations, should not use super.resetTask, or the eating
+         * animation ID will be replaced
+         */
+        // if (eat && this.entityTarget instanceof EntityGallimimus &&
+        // entityTarget.ridingEntity == null)
         // {
         // super.resetTask();
         // this.entityTarget.mountEntity(this.entityBiting);
         // this.entityBiting.setAttackTarget(null);
         // this.entityBiting.getNavigator().clearPathEntity();
         // entityBiting.setAnimationTick(0);
-        // AnimationHandler.sendAnimationPacket(this.entityBiting, JurassiCraftAnimationIDs.EATING.animID());
+        // AnimationHandler.sendAnimationPacket(this.entityBiting,
+        // JurassiCraftAnimationIDs.EATING.animID());
         // EntityGallimimus gallimimus = (EntityGallimimus) this.entityTarget;
         // gallimimus.setAttackTarget(null);
         // gallimimus.getNavigator().clearPathEntity();
-        // AnimationHandler.sendAnimationPacket(gallimimus, JurassiCraftAnimationIDs.BEING_EATEN.animID());
+        // AnimationHandler.sendAnimationPacket(gallimimus,
+        // JurassiCraftAnimationIDs.BEING_EATEN.animID());
         // this.entityTarget = null;
         // return;
         // }

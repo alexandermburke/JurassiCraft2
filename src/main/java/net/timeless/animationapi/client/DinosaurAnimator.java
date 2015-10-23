@@ -1,24 +1,5 @@
 package net.timeless.animationapi.client;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.animationapi.client.dto.AnimationsDTO;
-import net.timeless.animationapi.client.dto.DinosaurRenderDefDTO;
-import net.timeless.animationapi.client.dto.PoseDTO;
-import net.timeless.unilib.Unilib;
-import net.timeless.unilib.client.model.json.IModelAnimator;
-import net.timeless.unilib.client.model.json.ModelJson;
-import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
-import org.jurassicraft.JurassiCraft;
-import org.jurassicraft.client.model.ModelDinosaur;
-import org.jurassicraft.common.dinosaur.Dinosaur;
-import org.jurassicraft.common.entity.base.EntityDinosaur;
-import org.jurassicraft.common.entity.base.EnumGrowthStage;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -31,6 +12,27 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import org.jurassicraft.JurassiCraft;
+import org.jurassicraft.client.model.ModelDinosaur;
+import org.jurassicraft.common.dinosaur.Dinosaur;
+import org.jurassicraft.common.entity.base.EntityDinosaur;
+import org.jurassicraft.common.entity.base.EnumGrowthStage;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.animationapi.client.dto.AnimationsDTO;
+import net.timeless.animationapi.client.dto.DinosaurRenderDefDTO;
+import net.timeless.animationapi.client.dto.PoseDTO;
+import net.timeless.unilib.Unilib;
+import net.timeless.unilib.client.model.json.IModelAnimator;
+import net.timeless.unilib.client.model.json.ModelJson;
+import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 
 @SideOnly(Side.CLIENT)
 public abstract class DinosaurAnimator implements IModelAnimator
@@ -116,9 +118,12 @@ public abstract class DinosaurAnimator implements IModelAnimator
     /**
      * Loads a specific growth state
      *
-     * @param dinoDir the base directory
-     * @param name    the name of the dino
-     * @param growth  the growthstate to load
+     * @param dinoDir
+     *            the base directory
+     * @param name
+     *            the name of the dino
+     * @param growth
+     *            the growthstate to load
      * @throws IOException
      */
     private static PreloadedModelData loadDinosaur(URI dinoDir, String name, EnumGrowthStage growth) throws IOException
@@ -133,7 +138,6 @@ public abstract class DinosaurAnimator implements IModelAnimator
             throw new IllegalArgumentException("No model definition for the dino " + name + " with grow-state " + growth + " exists. Expected at " + definitionFile);
         }
 
-        // FIXME: Does not work with Java 1.6, which Minecraft is built for!
         try (Reader reader = new InputStreamReader(dinoDef))
         {
             AnimationsDTO rawAnimations = GSON.fromJson(reader, AnimationsDTO.class);
@@ -142,12 +146,6 @@ public abstract class DinosaurAnimator implements IModelAnimator
 
             return data;
         }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-
-        return null;
     }
 
     /**
@@ -155,7 +153,8 @@ public abstract class DinosaurAnimator implements IModelAnimator
      * (e.g. where the file doesn't exist) will be skipped and not show up in
      * the map.
      *
-     * @param anims the read animations
+     * @param anims
+     *            the read animations
      * @return
      */
     private static PreloadedModelData getPosedModels(URI dinoDirURI, AnimationsDTO anims)
@@ -311,11 +310,11 @@ public abstract class DinosaurAnimator implements IModelAnimator
     }
 
     protected void performMowzieLandAnimations(ModelDinosaur parModel, float parLimbSwing, float parLimbSwingAmount, float parRotation, float parRotationYaw, float parRotationPitch, float parPartialTicks, EntityDinosaur parEntity)
-    {
-    }
+    {}
 
     /*
-     * @Override this if you want swimming dino to have different cyclical animations.
+     * @Override this if you want swimming dino to have different cyclical
+     * animations.
      */
     protected void performMowzieSwimmingAnimations(ModelDinosaur parModel, float parLimbSwing, float parLimbSwingAmount, float parRotation, float parRotationYaw, float parRotationPitch, float parPartialTicks, EntityDinosaur parEntity)
     {

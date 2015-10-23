@@ -2,38 +2,47 @@ package org.jurassicraft.common.storagedisc;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+
+import com.google.common.base.Supplier;
 
 public class StorageTypeRegistry
 {
-    private static Map<String, Class<? extends IStorageType>> storageTypes = new HashMap<String, Class<? extends IStorageType>>();
+    private static Map<String, Supplier<? extends IStorageType>> storageTypes = new HashMap<String, Supplier<? extends IStorageType>>();
 
     public void register()
     {
-        register("DinoDNA", StorageTypeDinosaurDNA.class);
-        register("PlantDNA", StorageTypePlantDNA.class);
+        register("DinoDNA", new Supplier<IStorageType>()
+        {
+            @Override
+            public StorageTypeDinosaurDNA get()
+            {
+                return new StorageTypeDinosaurDNA();
+            }
+        });
+        register("PlantDNA", new Supplier<IStorageType>()
+        {
+
+            @Override
+            public StorageTypePlantDNA get()
+            {
+                return new StorageTypePlantDNA();
+            }
+        });
     }
 
-    private void register(String id, Class<? extends IStorageType> storageType)
+    private void register(String id, Supplier<? extends IStorageType> storageType)
     {
-        storageTypes.put(id, storageType);
+        storageTypes.put(id, Objects.requireNonNull(storageType));
     }
 
     public static IStorageType getStorageType(String id)
     {
-        try
+        if (id == null || id.isEmpty())
         {
-            if (id == null || id.length() == 0)
-            {
-                id = "DinoDNA";
-            }
-
-            return storageTypes.get(id).newInstance();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
+            id = "DinoDNA";
         }
 
-        return null;
+        return storageTypes.get(id).get();
     }
 }

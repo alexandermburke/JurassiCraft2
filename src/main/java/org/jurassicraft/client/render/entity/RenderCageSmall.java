@@ -21,13 +21,14 @@ public class RenderCageSmall extends Render
     {
         super(Minecraft.getMinecraft().getRenderManager());
 
+        String modelLoc = "/assets/jurassicraft/models/entities/cage_small/cage_small";
         try
         {
-            model = new ModelJson(TabulaModelHelper.parseModel("/assets/jurassicraft/models/entities/cage_small/cage_small"));
+            model = new ModelJson(TabulaModelHelper.parseModel(modelLoc));
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            JurassiCraft.instance.getLogger().fatal("Couldn't load the model " + modelLoc, e);
         }
     }
 
