@@ -1,7 +1,6 @@
 package org.jurassicraft.client.proxy;
 
-import java.util.ArrayList;
-
+import com.google.common.collect.Lists;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
@@ -10,12 +9,11 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
 import org.jurassicraft.client.event.ClientEventHandler;
 import org.jurassicraft.client.render.JCRenderingRegistry;
 import org.jurassicraft.common.proxy.CommonProxy;
 
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 
 @SideOnly(Side.CLIENT)
 public class ClientProxy extends CommonProxy
@@ -48,6 +46,7 @@ public class ClientProxy extends CommonProxy
         uuids.add("a94683c5-aac9-464f-b064-67b1696237a5"); // TheLarsinator
         uuids.add("5909ec5a-54ae-480b-a95a-1d21a95948ab"); // CristianXtreme (Cristian)
         uuids.add("0d2e2d40-72c3-4b2d-b221-ab94a791d5bc"); // jglrxavpok (Zavier/Xavier)
+        uuids.add("aebf9f65-3697-4a75-a1d7-87bb399818ae"); // WorldSEnder (Martin)
 
         // uuids.add("487a286b-25a6-44d0-aaa0-f6b87fee6bfb"); //BobMowzie (Josh)
         // uuids.add("40e85e42-21f6-46b6-b5b3-6aeb07f3e3fd"); //iLexiconn (Lex)
