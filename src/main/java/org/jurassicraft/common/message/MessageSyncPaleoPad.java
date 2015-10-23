@@ -15,8 +15,7 @@ public class MessageSyncPaleoPad implements IMessage
     private NBTTagCompound nbt;
 
     public MessageSyncPaleoPad()
-    {
-    }
+    {}
 
     public MessageSyncPaleoPad(EntityPlayer player)
     {

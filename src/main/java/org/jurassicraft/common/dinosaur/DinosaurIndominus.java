@@ -17,11 +17,11 @@ public class DinosaurIndominus extends Dinosaur implements IHybrid
 
     public DinosaurIndominus()
     {
-        this.textures = new String[]{getDinosaurTexture("camouflage")};
-        this.overlayTextures = new String[]{getDinosaurTexture("")};
+        this.textures = new String[] { getDinosaurTexture("camouflage") };
+        this.overlayTextures = new String[] { getDinosaurTexture("") };
 
-        this.baseGenes = new Class[]{DinosaurTyrannosaurus.class, DinosaurVelociraptor.class};
-        this.extraGenes = new Class[]{DinosaurGiganotosaurus.class, DinosaurRugops.class, DinosaurMajungasaurus.class, DinosaurCarnotaurus.class}; //TODO therizino
+        this.baseGenes = new Class[] { DinosaurTyrannosaurus.class, DinosaurVelociraptor.class };
+        this.extraGenes = new Class[] { DinosaurGiganotosaurus.class, DinosaurRugops.class, DinosaurMajungasaurus.class, DinosaurCarnotaurus.class }; // TODO therizino
     }
 
     @Override

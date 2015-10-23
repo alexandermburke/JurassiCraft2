@@ -131,8 +131,7 @@ public class Animator
             }
             else
             {
-                float tick = (animTick - prevTempTick + AnimationAPI.getProxy().getPartialTick())
-                        / (tempTick - prevTempTick);
+                float tick = (animTick - prevTempTick + AnimationAPI.getProxy().getPartialTick()) / (tempTick - prevTempTick);
                 float inc = MathHelper.sin(tick * PI / 2F), dec = 1F - inc;
 
                 for (MowzieModelRenderer box : prevTransformMap.keySet())

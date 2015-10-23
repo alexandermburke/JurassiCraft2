@@ -16,17 +16,14 @@ import java.util.Random;
 
 public class EntityVelociraptor extends EntityDinosaurAggressive // implements ICarnivore, IEntityAICreature
 {
-    private static final String[] hurtSounds = new String[]{"velociraptor_hurt_1"};
-    private static final String[] livingSounds = new String[]{"velociraptor_living_1", "velociraptor_living_2", "velociraptor_living_3"};
-    private static final String[] deathSounds = new String[]{"velociraptor_death_1"};
-    private static final String[] barkSounds = new String[]{"velociraptor_bark_1", "velociraptor_bark_2", "velociraptor_bark_3"};
+    private static final String[] hurtSounds = new String[] { "velociraptor_hurt_1" };
+    private static final String[] livingSounds = new String[] { "velociraptor_living_1", "velociraptor_living_2", "velociraptor_living_3" };
+    private static final String[] deathSounds = new String[] { "velociraptor_death_1" };
+    private static final String[] barkSounds = new String[] { "velociraptor_bark_1", "velociraptor_bark_2", "velociraptor_bark_3" };
 
-    private static final Class[] targets = {EntityCompsognathus.class, EntityPlayer.class, EntityDilophosaurus.class,
-            EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class, EntityHypsilophodon.class,
-            EntitySegisaurus.class, EntityProtoceratops.class, EntityOthnielia.class, EntityMicroceratus.class};
+    private static final Class[] targets = { EntityCompsognathus.class, EntityPlayer.class, EntityDilophosaurus.class, EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class, EntityHypsilophodon.class, EntitySegisaurus.class, EntityProtoceratops.class, EntityOthnielia.class, EntityMicroceratus.class };
 
-    private static final Class[] deftargets = {EntityPlayer.class, EntityTyrannosaurus.class,
-            EntityGiganotosaurus.class, EntitySpinosaurus.class};
+    private static final Class[] deftargets = { EntityPlayer.class, EntityTyrannosaurus.class, EntityGiganotosaurus.class, EntitySpinosaurus.class };
 
     public ControlledAnimation dontLean = new ControlledAnimation(5);
 
@@ -104,8 +101,8 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
     {
         super.onUpdate();
 
-//        if (getAttackTarget() != null)
-//            circleEntity(getAttackTarget(), 7, 1.0f, true, 0);
+        // if (getAttackTarget() != null)
+        // circleEntity(getAttackTarget(), 7, 1.0f, true, 0);
 
         if (getAnimID() == AnimID.RESTING || getAnimID() == AnimID.ATTACKING)
         {
@@ -117,14 +114,14 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
         }
     }
 
-//    public void circleEntity(Entity target, float radius, float speed, boolean direction, float offset)
-//    {
-//        EntityVelociraptor[] pack;
-//        int directionInt = direction ? 1 : -1;
-//
-//        if (getDistanceSqToEntity(target) > radius - 1)
-//        {
-//            getNavigator().tryMoveToXYZ(target.posX + radius * Math.cos(directionInt * (ticksExisted + offset) * 0.5 * speed / radius), target.posY, target.posZ + radius * Math.sin(directionInt * (ticksExisted + offset) * 0.5 * speed / radius), speed);
-//        }
-//    }
+    // public void circleEntity(Entity target, float radius, float speed, boolean direction, float offset)
+    // {
+    // EntityVelociraptor[] pack;
+    // int directionInt = direction ? 1 : -1;
+    //
+    // if (getDistanceSqToEntity(target) > radius - 1)
+    // {
+    // getNavigator().tryMoveToXYZ(target.posX + radius * Math.cos(directionInt * (ticksExisted + offset) * 0.5 * speed / radius), target.posY, target.posZ + radius * Math.sin(directionInt * (ticksExisted + offset) * 0.5 * speed / radius), speed);
+    // }
+    // }
 }

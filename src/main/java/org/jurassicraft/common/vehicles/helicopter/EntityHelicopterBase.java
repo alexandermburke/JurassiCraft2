@@ -81,12 +81,18 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     /**
      * Sets entity size
      *
-     * @param offsetX The offset of the box in blocks on the X axis
-     * @param offsetY The offset of the box in blocks on the Y axis
-     * @param offsetZ The offset of the box in blocks on the Z axis
-     * @param w       The width of the entity
-     * @param h       The height of the entity
-     * @param d       The depth of the entity
+     * @param offsetX
+     *            The offset of the box in blocks on the X axis
+     * @param offsetY
+     *            The offset of the box in blocks on the Y axis
+     * @param offsetZ
+     *            The offset of the box in blocks on the Z axis
+     * @param w
+     *            The width of the entity
+     * @param h
+     *            The height of the entity
+     * @param d
+     *            The depth of the entity
      */
     private void setBox(double offsetX, double offsetY, double offsetZ, double w, double h, double d)
     {
@@ -193,7 +199,7 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
         if (getModuleSpot(EnumModulePosition.MAIN_SEAT).has(HelicopterModule.seat))
         {
             EntityHelicopterSeat seat = HelicopterModule.seat.getEntity(getModuleSpot(EnumModulePosition.MAIN_SEAT));
-            if(seat != null)
+            if (seat != null)
             {
                 Entity riderEntity = seat.riddenByEntity;
                 boolean runEngine = false;
@@ -324,7 +330,8 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     /**
      * Checks if the current pilot is the player using this client
      *
-     * @param pilot The pilot
+     * @param pilot
+     *            The pilot
      * @return True if Client's player's UUID is equal to pilot
      */
     @SideOnly(Side.CLIENT)
@@ -366,8 +373,7 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     }
 
     /**
-     * Returns a boundingBox used to collide the entity with other entities and blocks. This enables the entity to be
-     * pushable on contact, like boats or minecarts.
+     * Returns a boundingBox used to collide the entity with other entities and blocks. This enables the entity to be pushable on contact, like boats or minecarts.
      */
     public AxisAlignedBB getCollisionBox(Entity entityIn)
     {
@@ -462,7 +468,8 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
         return moduleSpots[pos.ordinal()];
     }
 
-    public boolean shouldSyncModules() {
+    public boolean shouldSyncModules()
+    {
         return syncModules;
     }
 }

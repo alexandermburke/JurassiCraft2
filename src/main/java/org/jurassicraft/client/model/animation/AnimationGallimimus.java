@@ -23,8 +23,8 @@ public class AnimationGallimimus extends DinosaurAnimator
     {
         Animator animator = model.animator;
 
-        //        f = entity.ticksExisted;
-        //        f1 = 1F;
+        // f = entity.ticksExisted;
+        // f1 = 1F;
 
         float globalSpeed = 0.8F;
         float globalDegree = 1.0F;
@@ -36,7 +36,7 @@ public class AnimationGallimimus extends DinosaurAnimator
         MowzieModelRenderer neck4 = model.getCube("neck4");
         MowzieModelRenderer neck5 = model.getCube("neck5");
 
-        //TODO
+        // TODO
         MowzieModelRenderer throat = model.getCube("Throat");
 
         MowzieModelRenderer tail1 = model.getCube("tail1");
@@ -73,12 +73,12 @@ public class AnimationGallimimus extends DinosaurAnimator
         MowzieModelRenderer handRight = model.getCube("Hand RIGHT");
         MowzieModelRenderer handLeft = model.getCube("Hand LEFT");
 
-        MowzieModelRenderer[] body = new MowzieModelRenderer[]{head, neck5, neck4, neck3, neck2, neck1, body1, body2, body3};
+        MowzieModelRenderer[] body = new MowzieModelRenderer[] { head, neck5, neck4, neck3, neck2, neck1, body1, body2, body3 };
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
 
-        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[]{handLeft, lowerArmLeft, upperArmLeft};
-        MowzieModelRenderer[] armRight = new MowzieModelRenderer[]{handRight, lowerArmRight, upperArmRight};
+        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[] { handLeft, lowerArmLeft, upperArmLeft };
+        MowzieModelRenderer[] armRight = new MowzieModelRenderer[] { handRight, lowerArmRight, upperArmRight };
 
         model.bob(body3, 1F * globalSpeed, globalHeight, false, f, f1);
         model.bob(leftThigh, 1F * globalSpeed, globalHeight, false, f, f1);

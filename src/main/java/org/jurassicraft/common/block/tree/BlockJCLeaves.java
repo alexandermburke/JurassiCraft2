@@ -104,13 +104,9 @@ public class BlockJCLeaves extends BlockLeaves
         return Blocks.leaves.shouldSideBeRendered(worldIn, pos, side);
     }
 
-   /* protected int getSaplingDropChance(IBlockState state)
-    {
-        return treeType.equals(EnumType.REDWOOD) ? 80 :
-                treeType.equals(EnumType.BAMBOO) ? 5 :
-                        super.getSaplingDropChance(state);
-    }
-    */
+    /*
+     * protected int getSaplingDropChance(IBlockState state) { return treeType.equals(EnumType.REDWOOD) ? 80 : treeType.equals(EnumType.BAMBOO) ? 5 : super.getSaplingDropChance(state); }
+     */
 
     /**
      * Copied from BlockLeaves, without the part about dropping apples.
@@ -202,7 +198,7 @@ public class BlockJCLeaves extends BlockLeaves
     @Override
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[]{CHECK_DECAY, DECAYABLE});
+        return new BlockState(this, new IProperty[] { CHECK_DECAY, DECAYABLE });
     }
 
     /**

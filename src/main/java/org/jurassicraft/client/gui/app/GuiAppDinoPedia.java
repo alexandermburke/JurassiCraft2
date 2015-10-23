@@ -156,7 +156,6 @@ public class GuiAppDinoPedia extends GuiApp
         GlStateManager.enableDepth();
     }
 
-
     @Override
     public void mouseClicked(int mouseX, int mouseY, GuiPaleoTab gui)
     {

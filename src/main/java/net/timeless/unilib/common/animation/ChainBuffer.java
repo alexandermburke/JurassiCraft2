@@ -5,8 +5,7 @@ import net.minecraft.util.MathHelper;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 
 /**
- * @author RafaMv0
- *         TAKEN FROM LLIBRARY
+ * @author RafaMv0 TAKEN FROM LLIBRARY
  */
 public class ChainBuffer
 {

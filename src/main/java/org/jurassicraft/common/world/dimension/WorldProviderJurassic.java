@@ -27,12 +27,11 @@ public class WorldProviderJurassic extends WorldProvider
     {
         this.worldChunkMgr = new WorldChunkManagerJurassic(this.worldObj);
     }
-//
-//    @Override
-//    public IChunkProvider createChunkGenerator()
-//    {
-//        return new ChunkGeneratorJurassic(this.worldObj, this.worldObj.getSeed(), this.worldObj.getWorldInfo().isMapFeaturesEnabled(), this.worldObj.getWorldInfo().getGeneratorOptions());
-//    }
-
+    //
+    // @Override
+    // public IChunkProvider createChunkGenerator()
+    // {
+    // return new ChunkGeneratorJurassic(this.worldObj, this.worldObj.getSeed(), this.worldObj.getWorldInfo().isMapFeaturesEnabled(), this.worldObj.getWorldInfo().getGeneratorOptions());
+    // }
 
 }

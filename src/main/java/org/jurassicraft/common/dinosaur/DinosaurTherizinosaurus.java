@@ -12,8 +12,8 @@ public class DinosaurTherizinosaurus extends Dinosaur
 
     public DinosaurTherizinosaurus()
     {
-        this.maleTextures = new String[]{getDinosaurTexture("male")};
-        this.femaleTextures = new String[]{getDinosaurTexture("female")};
+        this.maleTextures = new String[] { getDinosaurTexture("male") };
+        this.femaleTextures = new String[] { getDinosaurTexture("female") };
     }
 
     @Override

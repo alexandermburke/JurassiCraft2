@@ -21,7 +21,7 @@ import java.util.List;
 
 public class TileIncubator extends TileMachineBase
 {
-    private int[] inputs = new int[]{0, 1, 2, 3, 4};
+    private int[] inputs = new int[] { 0, 1, 2, 3, 4 };
     private int[] other = new int[5];
     private int[] outputs = new int[0];
     private int[] temperature = new int[5];
@@ -110,7 +110,7 @@ public class TileIncubator extends TileMachineBase
                     }
                     else
                     {
-                        //TODO find valid spawn area
+                        // TODO find valid spawn area
                         dino.setLocationAndAngles(blockX + 2, blockY + 0.5, blockZ + 2, MathHelper.wrapAngleTo180_float(worldObj.rand.nextFloat() * 360.0F), 0.0F);
                         dino.rotationYawHead = dino.rotationYaw;
                         dino.renderYawOffset = dino.rotationYaw;
@@ -227,7 +227,7 @@ public class TileIncubator extends TileMachineBase
         }
     }
 
-    public String getCommandSenderName() //Forge Version compatibility, keep both getName and getCommandSenderName
+    public String getCommandSenderName() // Forge Version compatibility, keep both getName and getCommandSenderName
     {
         return getName();
     }

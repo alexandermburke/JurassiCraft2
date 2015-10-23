@@ -102,8 +102,7 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
 
     @SideOnly(Side.CLIENT)
     public void setPositionAndRotation2(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean p_180426_10_)
-    {
-    }
+    {}
 
     @Override
     public void writeSpawnData(ByteBuf buffer)

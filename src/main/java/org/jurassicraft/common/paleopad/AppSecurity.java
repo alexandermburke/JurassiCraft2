@@ -18,16 +18,13 @@ public class AppSecurity extends App
 
     @Override
     public void writeToNBT(NBTTagCompound nbt)
-    {
-    }
+    {}
 
     @Override
     public void readFromNBT(NBTTagCompound nbt)
-    {
-    }
+    {}
 
     @Override
     public void init()
-    {
-    }
+    {}
 }

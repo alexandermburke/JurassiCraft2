@@ -23,8 +23,8 @@ public class AnimationStegosaurus extends DinosaurAnimator
     {
         Animator animator = model.animator;
 
-//        f = entity.ticksExisted;
-//        f1 = 0.25F;
+        // f = entity.ticksExisted;
+        // f1 = 0.25F;
 
         MowzieModelRenderer head = model.getCube("Head");
 
@@ -66,15 +66,15 @@ public class AnimationStegosaurus extends DinosaurAnimator
         MowzieModelRenderer handRight = model.getCube("FrontLeg FOOT Right");
         MowzieModelRenderer handLeft = model.getCube("FrontLeg FOOT Left");
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
 
         float scaleFactor = 0.5F;
         float height = 0.8F;
         float frontOffset = -2F;
 
-//        model.faceTarget(head, 3, rotationYaw, rotationPitch);
-//        model.faceTarget(neck3, 3, rotationYaw, rotationPitch);
-//        model.faceTarget(neck1, 3, rotationYaw, rotationPitch);
+        // model.faceTarget(head, 3, rotationYaw, rotationPitch);
+        // model.faceTarget(neck3, 3, rotationYaw, rotationPitch);
+        // model.faceTarget(neck1, 3, rotationYaw, rotationPitch);
 
         model.bob(hips, 2 * scaleFactor, height, false, f, f1);
         model.bob(thighLeft, 2 * scaleFactor, height, false, f, f1);

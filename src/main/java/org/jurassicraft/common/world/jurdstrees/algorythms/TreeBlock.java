@@ -79,7 +79,6 @@ public class TreeBlock
 
         }
 
-
         public int getLevel()
         {
             return level;

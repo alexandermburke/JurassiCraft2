@@ -13,8 +13,7 @@ public class MessageRequestFile implements IMessage
     private String path;
 
     public MessageRequestFile()
-    {
-    }
+    {}
 
     public MessageRequestFile(String path)
     {
@@ -48,7 +47,7 @@ public class MessageRequestFile implements IMessage
                     JCNetworkManager.networkWrapper.sendTo(new MessageSendFile(playerData, playerData.getFileFromPath(packet.path)), player);
                 }
             }
-            else //TODO
+            else // TODO
             {
 
             }

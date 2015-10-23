@@ -33,7 +33,7 @@ public abstract class HelicopterRidableModule extends HelicopterModule
             @Override
             public boolean apply(Entity input)
             {
-                System.out.println(">> "+input);
+                System.out.println(">> " + input);
                 return input.getUniqueID().equals(id);
             }
         });
@@ -65,12 +65,12 @@ public abstract class HelicopterRidableModule extends HelicopterModule
     public EntityHelicopterSeat getEntity(HelicopterModuleSpot spot)
     {
         String id = spot.getModuleData(this).getString("entityID");
-        if(id.isEmpty())
+        if (id.isEmpty())
             return null;
-        //System.out.println(id);
+        // System.out.println(id);
         UUID entityID = UUID.fromString(id);
         EntityHelicopterSeat entity = getSeatFromID(spot.getHelicopter().worldObj, entityID);
-      //  System.out.println(entity);
+        // System.out.println(entity);
         return entity;
     }
 

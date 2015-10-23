@@ -16,19 +16,18 @@ import java.util.List;
 
 public class MessageSendFile implements IMessage
 {
-    //Send
+    // Send
     private JCFile file;
     private JCPlayerData playerData;
 
-    //Receive
+    // Receive
     private String path;
     private List<String> children = new ArrayList<String>();
     private NBTTagCompound data;
     private boolean isDir;
 
     public MessageSendFile()
-    {
-    }
+    {}
 
     public MessageSendFile(JCPlayerData data, JCFile file)
     {

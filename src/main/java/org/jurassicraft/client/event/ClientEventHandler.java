@@ -20,17 +20,17 @@ public class ClientEventHandler
     @SubscribeEvent
     public void event(PlaySoundAtEntityEvent event)
     {
-//        if (event.entity instanceof EntityDinosaur)
-//        {
-//            EntityDinosaur theEntityDinosaur = (EntityDinosaur)event.entity;
-//            
-//            if (event.name.contains("roaring"))
-//            {
-//                JurassiCraft.instance.getNanoTimeInterval();
-//                JurassiCraft.instance.getLogger().info("Playing sound "+event.name+" at entity "+event.entity.getEntityId());
-//                theEntityDinosaur.setAnimID(AnimID.ROARING);
-//            }
-//        }
+        // if (event.entity instanceof EntityDinosaur)
+        // {
+        // EntityDinosaur theEntityDinosaur = (EntityDinosaur)event.entity;
+        //
+        // if (event.name.contains("roaring"))
+        // {
+        // JurassiCraft.instance.getNanoTimeInterval();
+        // JurassiCraft.instance.getLogger().info("Playing sound "+event.name+" at entity "+event.entity.getEntityId());
+        // theEntityDinosaur.setAnimID(AnimID.ROARING);
+        // }
+        // }
     }
 
     @SubscribeEvent

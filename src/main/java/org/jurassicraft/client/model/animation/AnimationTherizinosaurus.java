@@ -104,17 +104,17 @@ public class AnimationTherizinosaurus extends DinosaurAnimator
         MowzieModelRenderer leftCalf2 = model.getCube("Left Calf 2");
         MowzieModelRenderer footLeft = model.getCube("Foot Left");
 
-        MowzieModelRenderer[] neck = new MowzieModelRenderer[]{head, neck7, neck6, neck5, neck4, neck3, neck2, neck1, neckBase, bodyShoulders};
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail1, tail2, tail3, tail4, tail5, tail6};
-        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[]{lowerArmLeft, lowerArmLeft1, leftHand};
-        MowzieModelRenderer[] armRight = new MowzieModelRenderer[]{lowerArmRight, lowerArmRight1, rightHand};
+        MowzieModelRenderer[] neck = new MowzieModelRenderer[] { head, neck7, neck6, neck5, neck4, neck3, neck2, neck1, neckBase, bodyShoulders };
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail1, tail2, tail3, tail4, tail5, tail6 };
+        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[] { lowerArmLeft, lowerArmLeft1, leftHand };
+        MowzieModelRenderer[] armRight = new MowzieModelRenderer[] { lowerArmRight, lowerArmRight1, rightHand };
 
         int frame = parEntity.ticksExisted;
 
-//     float globalHeight = 2F;
-//     float frontOffset = -1.35f;
+        // float globalHeight = 2F;
+        // float frontOffset = -1.35f;
 
-        //The tail must always be up when the neck is down
+        // The tail must always be up when the neck is down
         float speed = 0.75F;
         float height = 3F;
 
@@ -144,7 +144,7 @@ public class AnimationTherizinosaurus extends DinosaurAnimator
         model.chainWave(tail, 1F * speed, -0.02F, 2.5F, f, f1);
         model.chainSwing(neck, 0.5F * speed, 0.02F, 2, f, f1);
         model.chainWave(neck, 1.0F * speed, 0.02F, 0.5F, f, f1);
-//     model.chainWave(bodyParts, 1F * speed, -0.1F, 4, f, f1);
+        // model.chainWave(bodyParts, 1F * speed, -0.1F, 4, f, f1);
 
         model.chainWave(armRight, 1F * speed, -0.3F, 4, f, f1);
         model.chainWave(armLeft, 1F * speed, -0.3F, 4, f, f1);
@@ -152,7 +152,7 @@ public class AnimationTherizinosaurus extends DinosaurAnimator
         // Idling
         model.chainWave(tail, 0.1F, 0.02F, 2, frame, 1F);
         model.chainWave(neck, 0.1F, 0.02F, 2, frame, 1F);
-//     model.chainWave(bodyParts, 0.1F, -0.03F, 5, frame, 1F);
+        // model.chainWave(bodyParts, 0.1F, -0.03F, 5, frame, 1F);
         model.chainWave(armRight, 0.1F, -0.1F, 4, frame, 1F);
         model.chainWave(armLeft, 0.1F, -0.1F, 4, frame, 1F);
 

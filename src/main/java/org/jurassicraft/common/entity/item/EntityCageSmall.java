@@ -31,8 +31,7 @@ public class EntityCageSmall extends Entity implements IEntityAdditionalSpawnDat
     }
 
     /**
-     * Returns a boundingBox used to collide the entity with other entities and blocks. This enables the entity to be
-     * pushable on contact, like boats or minecarts.
+     * Returns a boundingBox used to collide the entity with other entities and blocks. This enables the entity to be pushable on contact, like boats or minecarts.
      */
     public AxisAlignedBB getCollisionBox(Entity entityIn)
     {

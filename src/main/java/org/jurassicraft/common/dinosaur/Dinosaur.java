@@ -126,7 +126,7 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
         return 1500;
     }
 
-    public int getProximates() //TODO
+    public int getProximates() // TODO
     {
         return 1500;
     }

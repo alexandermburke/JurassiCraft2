@@ -26,10 +26,10 @@ public class AnimationDunkleosteus extends DinosaurAnimator
         float globalDegree = 0.77F;
         float globalHeight = 2F;
 
-//        f = entity.ticksExisted;
-//        f1 = 1F;
+        // f = entity.ticksExisted;
+        // f1 = 1F;
 
-        //tail
+        // tail
         MowzieModelRenderer tail1 = model.getCube("Tail Section 1");
         MowzieModelRenderer tail2 = model.getCube("Tail Section 2");
         MowzieModelRenderer tail3 = model.getCube("Tail Section 3");
@@ -37,18 +37,18 @@ public class AnimationDunkleosteus extends DinosaurAnimator
         MowzieModelRenderer tail5 = model.getCube("Tail Section 5");
         MowzieModelRenderer tail6 = model.getCube("Tail Section 6");
 
-        //head stoof
+        // head stoof
         MowzieModelRenderer head = model.getCube("Main head");
 
-        //flipper
+        // flipper
         MowzieModelRenderer rightFlipper = model.getCube("Right Front Flipper");
         MowzieModelRenderer leftFlipper = model.getCube("Left Front Flipper");
 
-        //body
+        // body
         MowzieModelRenderer body2 = model.getCube("Body Section 2");
         MowzieModelRenderer body3 = model.getCube("Body Section 3");
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1, body3, body2, head};
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1, body3, body2, head };
 
         head.rotationPointX -= -1 * f1 * Math.sin((f + 1) * 0.6);
         model.chainSwing(tail, 0.3F, 0.2F, 3.0D, f, f1);

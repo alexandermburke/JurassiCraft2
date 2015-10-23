@@ -15,9 +15,7 @@ import org.jurassicraft.common.entity.base.EntityDinosaur;
 import java.util.Map;
 
 /**
- * @author jabelar
- *         This class is used to hold per-entity animation variables for use with
- *         Jabelar's animation tweening system.
+ * @author jabelar This class is used to hold per-entity animation variables for use with Jabelar's animation tweening system.
  */
 @SideOnly(Side.CLIENT)
 public class JabelarAnimationHelper
@@ -55,17 +53,19 @@ public class JabelarAnimationHelper
     private final boolean inertialTweens;
 
     /**
-     * @param parEntity         the entity to animate from
-     * @param parModel          the model to animate
+     * @param parEntity
+     *            the entity to animate from
+     * @param parModel
+     *            the model to animate
      * @param parNumParts
-     * @param parArrayOfPoses   for each pose(-index) an array of posed Renderers
-     * @param parMapOfSequences maps from an {@link AnimID} to the sequence of (pose-index, tween-length)
+     * @param parArrayOfPoses
+     *            for each pose(-index) an array of posed Renderers
+     * @param parMapOfSequences
+     *            maps from an {@link AnimID} to the sequence of (pose-index, tween-length)
      * @param parInertialTweens
      * @param parInertiaFactor
      */
-    public JabelarAnimationHelper(EntityDinosaur parEntity, ModelDinosaur parModel, int parNumParts,
-                                  MowzieModelRenderer[][] parArrayOfPoses, Map<AnimID, int[][]> parMapOfSequences,
-                                  boolean parInertialTweens, float parInertiaFactor)
+    public JabelarAnimationHelper(EntityDinosaur parEntity, ModelDinosaur parModel, int parNumParts, MowzieModelRenderer[][] parArrayOfPoses, Map<AnimID, int[][]> parMapOfSequences, boolean parInertialTweens, float parInertiaFactor)
     {
         // transfer static animation info from constructor parameters to instance
         theEntity = parEntity;
@@ -89,10 +89,7 @@ public class JabelarAnimationHelper
     public void performJabelarAnimations(float parPartialTicks)
     {
 
-        JurassiCraft.instance.getLogger().debug("FPS = " + Minecraft.getDebugFPS() + " and current sequence = " +
-                currentSequence + " and current pose = " + this.currentPose + " and current tick = " +
-                this.currentTickInTween + " out of " + numTicksInTween + " and entity ticks existed = " +
-                theEntity.ticksExisted + " and partial ticks = " + partialTicks);
+        JurassiCraft.instance.getLogger().debug("FPS = " + Minecraft.getDebugFPS() + " and current sequence = " + currentSequence + " and current pose = " + this.currentPose + " and current tick = " + this.currentTickInTween + " out of " + numTicksInTween + " and entity ticks existed = " + theEntity.ticksExisted + " and partial ticks = " + partialTicks);
 
         performBloodSpurt();
 
@@ -304,7 +301,7 @@ public class JabelarAnimationHelper
     // boolean returned indicates if tween was finished
     public boolean incrementTweenTick()
     {
-//        JurassiCraft.instance.getLogger().info("current tween step = "+currentTickInTween);
+        // JurassiCraft.instance.getLogger().info("current tween step = "+currentTickInTween);
         currentTickInTween++;
         if (currentTickInTween >= numTicksInTween)
         {
@@ -366,9 +363,7 @@ public class JabelarAnimationHelper
         initTweenTicks();
         if (currentSequence != AnimID.IDLE)
         {
-            JurassiCraft.instance.getLogger().info("current sequence for entity ID " + theEntity.getEntityId() + " is " + currentSequence
-                    + " out of " + mapOfSequences.size() + " and current pose " + currentPose + " out of "
-                    + mapOfSequences.get(currentSequence).length + " with " + numTicksInTween + " ticks in tween");
+            JurassiCraft.instance.getLogger().info("current sequence for entity ID " + theEntity.getEntityId() + " is " + currentSequence + " out of " + mapOfSequences.size() + " and current pose " + currentPose + " out of " + mapOfSequences.get(currentSequence).length + " with " + numTicksInTween + " ticks in tween");
         }
     }
 

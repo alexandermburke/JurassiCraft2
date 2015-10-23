@@ -26,8 +26,8 @@ public class AnimationMegapiranha extends DinosaurAnimator
         float globalDegree = 0.77F;
         float globalHeight = 2F;
 
-//        f = dino.ticksExisted;
-//        f1 = 1F;
+        // f = dino.ticksExisted;
+        // f1 = 1F;
 
         MowzieModelRenderer head = model.getCube("Neck ");
         MowzieModelRenderer body1 = model.getCube("Body Section 1");
@@ -41,7 +41,7 @@ public class AnimationMegapiranha extends DinosaurAnimator
         MowzieModelRenderer leftFlipper = model.getCube("Left Front Flipper");
         MowzieModelRenderer rightFlipper = model.getCube("Right Front Flipper");
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail3, tail2, tail1, body3, body2, body1, head};
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail3, tail2, tail1, body3, body2, body1, head };
 
         head.rotationPointX -= -1 * f1 * Math.sin((f + 1) * 0.6);
         model.chainSwing(tail, 0.3F, 0.2F, 3.0D, f, f1);

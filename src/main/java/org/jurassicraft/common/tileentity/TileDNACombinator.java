@@ -13,8 +13,8 @@ import org.jurassicraft.common.item.JCItemRegistry;
 
 public class TileDNACombinator extends TileMachineBase
 {
-    private int[] inputs = new int[]{0, 1};
-    private int[] outputs = new int[]{2};
+    private int[] inputs = new int[] { 0, 1 };
+    private int[] outputs = new int[] { 2 };
 
     private ItemStack[] slots = new ItemStack[3];
 
@@ -156,7 +156,7 @@ public class TileDNACombinator extends TileMachineBase
         return hasCustomName() ? customName : "container.dna_combinator";
     }
 
-    public String getCommandSenderName() //Forge Version compatibility, keep both getName and getCommandSenderName
+    public String getCommandSenderName() // Forge Version compatibility, keep both getName and getCommandSenderName
     {
         return getName();
     }

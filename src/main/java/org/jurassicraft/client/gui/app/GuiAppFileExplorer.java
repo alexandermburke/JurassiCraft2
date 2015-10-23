@@ -89,7 +89,7 @@ public class GuiAppFileExplorer extends GuiApp
                 gui.drawBoxOutline(5, 132, 65, 12, 1, 1.0F, 0x606060);
                 gui.drawScaledText("<-- Move up", 8, 135, 1.0F, 0xFFFFFF);
             }
-//            gui.drawBoxOutline(10, 10, 100, 15, 1, 1.0F, 0x606060);
+            // gui.drawBoxOutline(10, 10, 100, 15, 1, 1.0F, 0x606060);
         }
     }
 

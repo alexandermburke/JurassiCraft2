@@ -34,7 +34,7 @@ public class BlockJCStairs extends Block
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
     public static final PropertyEnum HALF = PropertyEnum.create("half", BlockJCStairs.EnumHalf.class);
     public static final PropertyEnum SHAPE = PropertyEnum.create("shape", BlockJCStairs.EnumShape.class);
-    private static final int[][] field_150150_a = new int[][]{{4, 5}, {5, 7}, {6, 7}, {4, 6}, {0, 1}, {1, 3}, {2, 3}, {0, 2}};
+    private static final int[][] field_150150_a = new int[][] { { 4, 5 }, { 5, 7 }, { 6, 7 }, { 4, 6 }, { 0, 1 }, { 1, 3 }, { 2, 3 }, { 0, 2 } };
     private final Block modelBlock;
     private final IBlockState modelState;
     private boolean hasRaytraced;
@@ -548,7 +548,8 @@ public class BlockJCStairs extends Block
     /**
      * Add all collision boxes of this Block to the list that intersect with the given mask.
      *
-     * @param collidingEntity the Entity colliding with this Block
+     * @param collidingEntity
+     *            the Entity colliding with this Block
      */
     public void addCollisionBoxesToList(World worldIn, BlockPos pos, IBlockState state, AxisAlignedBB mask, List list, Entity collidingEntity)
     {
@@ -696,8 +697,10 @@ public class BlockJCStairs extends Block
     /**
      * Ray traces through the blocks collision from start vector to end vector returning a ray trace hit.
      *
-     * @param start The start vector
-     * @param end   The end vector
+     * @param start
+     *            The start vector
+     * @param end
+     *            The end vector
      */
     public MovingObjectPosition collisionRayTrace(World worldIn, BlockPos pos, Vec3 start, Vec3 end)
     {
@@ -778,8 +781,7 @@ public class BlockJCStairs extends Block
     }
 
     /**
-     * Get the actual Block state of this Block at the given position. This applies properties not visible in the
-     * metadata, such as fence connections.
+     * Get the actual Block state of this Block at the given position. This applies properties not visible in the metadata, such as fence connections.
      */
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
     {
@@ -817,13 +819,12 @@ public class BlockJCStairs extends Block
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[]{FACING, HALF, SHAPE});
+        return new BlockState(this, new IProperty[] { FACING, HALF, SHAPE });
     }
 
     public static enum EnumHalf implements IStringSerializable
     {
-        TOP("top"),
-        BOTTOM("bottom");
+        TOP("top"), BOTTOM("bottom");
         private final String name;
 
         private EnumHalf(String name)
@@ -844,11 +845,7 @@ public class BlockJCStairs extends Block
 
     public static enum EnumShape implements IStringSerializable
     {
-        STRAIGHT("straight"),
-        INNER_LEFT("inner_left"),
-        INNER_RIGHT("inner_right"),
-        OUTER_LEFT("outer_left"),
-        OUTER_RIGHT("outer_right");
+        STRAIGHT("straight"), INNER_LEFT("inner_left"), INNER_RIGHT("inner_right"), OUTER_LEFT("outer_left"), OUTER_RIGHT("outer_right");
         private final String name;
 
         private EnumShape(String name)

@@ -6,8 +6,7 @@ import net.timeless.animationapi.client.AnimID;
 import java.util.Map;
 
 /**
- * This class can be loaded via {@link Gson#fromJson}. It represents the poses
- * of the animations of a model.
+ * This class can be loaded via {@link Gson#fromJson}. It represents the poses of the animations of a model.
  *
  * @author WorldSEnder
  */

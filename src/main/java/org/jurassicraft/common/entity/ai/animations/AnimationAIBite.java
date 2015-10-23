@@ -88,8 +88,7 @@ public class AnimationAIBite extends AIAnimation
     public void resetTask()
     {
         /**
-         * Eating animations, should not use super.resetTask, or the eating
-         * animation ID will be replaced
+         * Eating animations, should not use super.resetTask, or the eating animation ID will be replaced
          */
         // if (eat && this.entityTarget instanceof EntityGallimimus &&
         // entityTarget.ridingEntity == null)

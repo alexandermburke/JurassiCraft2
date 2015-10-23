@@ -149,9 +149,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
     }
 
     /**
-     * Gets the posed models from the set of animations defined. Illegal poses
-     * (e.g. where the file doesn't exist) will be skipped and not show up in
-     * the map.
+     * Gets the posed models from the set of animations defined. Illegal poses (e.g. where the file doesn't exist) will be skipped and not show up in the map.
      *
      * @param anims
      *            the read animations
@@ -313,8 +311,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
     {}
 
     /*
-     * @Override this if you want swimming dino to have different cyclical
-     * animations.
+     * @Override this if you want swimming dino to have different cyclical animations.
      */
     protected void performMowzieSwimmingAnimations(ModelDinosaur parModel, float parLimbSwing, float parLimbSwingAmount, float parRotation, float parRotationYaw, float parRotationPitch, float parPartialTicks, EntityDinosaur parEntity)
     {

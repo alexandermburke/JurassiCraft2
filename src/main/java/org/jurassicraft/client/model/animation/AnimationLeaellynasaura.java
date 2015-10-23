@@ -22,8 +22,8 @@ public class AnimationLeaellynasaura extends DinosaurAnimator
     {
         EntityLeaellynasaura entity = (EntityLeaellynasaura) parEntity;
 
-//        f = entity.ticksExisted;
-//        f1 = 0.4F;
+        // f = entity.ticksExisted;
+        // f1 = 0.4F;
 
         float globalSpeed = 0.4F;
         float globalHeight = 0.8F;
@@ -68,11 +68,11 @@ public class AnimationLeaellynasaura extends DinosaurAnimator
         MowzieModelRenderer handLeft = model.getCube("Arm HAND LEFT");
         MowzieModelRenderer handRight = model.getCube("Arm HAND RIGHT");
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
-        MowzieModelRenderer[] neck = new MowzieModelRenderer[]{head, neck5, neck4, neck3, neck2, neck1, bodyFront};
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
+        MowzieModelRenderer[] neck = new MowzieModelRenderer[] { head, neck5, neck4, neck3, neck2, neck1, bodyFront };
 
-        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[]{handLeft, armLowerLeft, armUpperLeft};
-        MowzieModelRenderer[] armRight = new MowzieModelRenderer[]{handRight, armLowerRight, armUpperRight};
+        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[] { handLeft, armLowerLeft, armUpperLeft };
+        MowzieModelRenderer[] armRight = new MowzieModelRenderer[] { handRight, armLowerRight, armUpperRight };
 
         model.bob(bodyRear, globalSpeed * 1.0F, globalHeight * 1.0F, false, f, f1);
         model.bob(thighLeft, globalSpeed * 1.0F, globalHeight * 1.0F, false, f, f1);

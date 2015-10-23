@@ -52,13 +52,13 @@ public class JurassiCraft
     public static JCAchievements achievements = new JCAchievements();
     public static StorageTypeRegistry storageTypeRegistry = new StorageTypeRegistry();
     public static JCConfigurations configurations = new JCConfigurations();
-    
+
     // set up configuration properties (will be read from config file in preInit)
     public static File configFile;
     public static Configuration config;
     public static boolean spawnDinosNaturally = true;
     public static boolean spawnNonDinoMobsNaturally = true;
-    
+
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {

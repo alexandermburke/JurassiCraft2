@@ -76,12 +76,11 @@ public class AnimationIndominus extends DinosaurAnimator
         MowzieModelRenderer handLeft = model.getCube("Hand LEFT");
         MowzieModelRenderer handRight = model.getCube("Hand RIGHT");
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail7, tail6, tail5, tail4, tail3, tail2, tail1};
-        MowzieModelRenderer[] body = new MowzieModelRenderer[]{head, neck4, neck3, neck2, neck1, bodyFront, bodyMid,
-                bodyRear};
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail7, tail6, tail5, tail4, tail3, tail2, tail1 };
+        MowzieModelRenderer[] body = new MowzieModelRenderer[] { head, neck4, neck3, neck2, neck1, bodyFront, bodyMid, bodyRear };
 
-        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[]{handLeft, lowerArmLeft, upperArmLeft};
-        MowzieModelRenderer[] armRight = new MowzieModelRenderer[]{handRight, lowerArmRight, upperArmRight};
+        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[] { handLeft, lowerArmLeft, upperArmLeft };
+        MowzieModelRenderer[] armRight = new MowzieModelRenderer[] { handRight, lowerArmRight, upperArmRight };
 
         model.bob(bodyRear, globalSpeed * 1F, globalHeight * 1.0F, false, f, f1);
 
@@ -115,55 +114,55 @@ public class AnimationIndominus extends DinosaurAnimator
         model.chainWave(armRight, -0.1F, 0.1F, 4, ticksExisted, 1F);
         model.chainWave(armLeft, -0.1F, 0.1F, 4, ticksExisted, 1F);
 
-//        parModel.faceTarget(bodyMid, 6.0F, rotationYaw, rotationPitch);
-//        parModel.faceTarget(bodyFront, 6.0F, rotationYaw, rotationPitch);
-//        parModel.faceTarget(head, 3.0F, rotationYaw, rotationPitch);
-//        parModel.faceTarget(neck1, 3.0F, rotationYaw, rotationPitch);
+        // parModel.faceTarget(bodyMid, 6.0F, rotationYaw, rotationPitch);
+        // parModel.faceTarget(bodyFront, 6.0F, rotationYaw, rotationPitch);
+        // parModel.faceTarget(head, 3.0F, rotationYaw, rotationPitch);
+        // parModel.faceTarget(neck1, 3.0F, rotationYaw, rotationPitch);
 
         ((EntityIndominus) parEntity).tailBuffer.applyChainSwingBuffer(tail);
 
-//        animator.setAnim(AnimID.IDLE);
-//        animator.startPhase(15);
-//        animator.move(bodyRear, 0, -3, -5);
-//        animator.move(rightThigh, 0, -3, -5);
-//        animator.move(leftThigh, 0, -3, -5);
-//        animator.rotate(bodyRear, -0.3F, 0, 0);
-//        animator.rotate(head, 0.3F, 0, 0);
-//        animator.rotate(rightThigh, 0.3F, 0, 0);
-//        animator.rotate(rightCalf1, -0.4F, 0, 0);
-//        animator.rotate(rightCalf2, 0.4F, 0, 0);
-//        animator.rotate(rightFoot, -0.3F, 0, 0);
-//        animator.rotate(leftThigh, -0.7F, 0, 0);
-//        animator.rotate(leftCalf1, 0.7F, 0, 0);
-//        animator.rotate(leftCalf2, -0.5F, 0, 0);
-//        animator.rotate(leftFoot, 0.7F, 0, 0);
-//        animator.endPhase();
-//        animator.startPhase(10);
-//        animator.move(bodyRear, 0, 3, -10);
-//        animator.move(rightThigh, 0, 3, -10);
-//        animator.move(leftThigh, 0, 3, -10);
-//        animator.move(head, 0, 1, 2);
-//        animator.move(lowerJaw, 0, 0, 1);
-//        animator.rotate(bodyRear, 0.2F, 0, 0);
-//        animator.rotate(neck1, 0.2F, 0, 0);
-//        animator.rotate(neck2, 0.2F, 0, 0);
-//        animator.rotate(neck3, -0.2F, 0, 0);
-//        animator.rotate(neck4, -0.2F, 0, 0);
-//        animator.move(throat1, 0, -0.5F, 0);
-//        animator.move(throat2, 0, -1, 0);
-//        animator.rotate(head, -0.5F, 0, 0);
-//        animator.move(head, 0, 1, 0);
-//        animator.rotate(lowerJaw, 0.9F, 0, 0);
-//        animator.rotate(rightThigh, 0.6F, 0, 0);
-//        animator.rotate(rightCalf1, 0.05F, 0, 0);
-//        animator.rotate(rightCalf2, -0.3F, 0, 0);
-//        animator.rotate(rightFoot, -0.3F, 0, 0);
-//        animator.rotate(leftThigh, -0.3F, 0, 0);
-//        animator.rotate(leftCalf1, 0.2F, 0, 0);
-//        animator.rotate(leftCalf2, -0.2F, 0, 0);
-//        animator.rotate(leftFoot, 0.3F, 0, 0);
-//        animator.endPhase();
-//        animator.setStationaryPhase(35);
-//        animator.resetPhase(15);
+        // animator.setAnim(AnimID.IDLE);
+        // animator.startPhase(15);
+        // animator.move(bodyRear, 0, -3, -5);
+        // animator.move(rightThigh, 0, -3, -5);
+        // animator.move(leftThigh, 0, -3, -5);
+        // animator.rotate(bodyRear, -0.3F, 0, 0);
+        // animator.rotate(head, 0.3F, 0, 0);
+        // animator.rotate(rightThigh, 0.3F, 0, 0);
+        // animator.rotate(rightCalf1, -0.4F, 0, 0);
+        // animator.rotate(rightCalf2, 0.4F, 0, 0);
+        // animator.rotate(rightFoot, -0.3F, 0, 0);
+        // animator.rotate(leftThigh, -0.7F, 0, 0);
+        // animator.rotate(leftCalf1, 0.7F, 0, 0);
+        // animator.rotate(leftCalf2, -0.5F, 0, 0);
+        // animator.rotate(leftFoot, 0.7F, 0, 0);
+        // animator.endPhase();
+        // animator.startPhase(10);
+        // animator.move(bodyRear, 0, 3, -10);
+        // animator.move(rightThigh, 0, 3, -10);
+        // animator.move(leftThigh, 0, 3, -10);
+        // animator.move(head, 0, 1, 2);
+        // animator.move(lowerJaw, 0, 0, 1);
+        // animator.rotate(bodyRear, 0.2F, 0, 0);
+        // animator.rotate(neck1, 0.2F, 0, 0);
+        // animator.rotate(neck2, 0.2F, 0, 0);
+        // animator.rotate(neck3, -0.2F, 0, 0);
+        // animator.rotate(neck4, -0.2F, 0, 0);
+        // animator.move(throat1, 0, -0.5F, 0);
+        // animator.move(throat2, 0, -1, 0);
+        // animator.rotate(head, -0.5F, 0, 0);
+        // animator.move(head, 0, 1, 0);
+        // animator.rotate(lowerJaw, 0.9F, 0, 0);
+        // animator.rotate(rightThigh, 0.6F, 0, 0);
+        // animator.rotate(rightCalf1, 0.05F, 0, 0);
+        // animator.rotate(rightCalf2, -0.3F, 0, 0);
+        // animator.rotate(rightFoot, -0.3F, 0, 0);
+        // animator.rotate(leftThigh, -0.3F, 0, 0);
+        // animator.rotate(leftCalf1, 0.2F, 0, 0);
+        // animator.rotate(leftCalf2, -0.2F, 0, 0);
+        // animator.rotate(leftFoot, 0.3F, 0, 0);
+        // animator.endPhase();
+        // animator.setStationaryPhase(35);
+        // animator.resetPhase(15);
     }
 }

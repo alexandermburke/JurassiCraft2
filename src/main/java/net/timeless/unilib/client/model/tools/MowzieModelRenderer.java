@@ -10,10 +10,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 
-
 /**
- * @author BobMowzie, gegy1000, FiskFille
- *         TAKEN FROM LLIBRARY
+ * @author BobMowzie, gegy1000, FiskFille TAKEN FROM LLIBRARY
  */
 @SideOnly(Side.CLIENT)
 public class MowzieModelRenderer extends ModelRenderer

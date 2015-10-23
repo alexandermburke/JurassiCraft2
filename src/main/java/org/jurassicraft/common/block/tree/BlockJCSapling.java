@@ -76,49 +76,13 @@ public class BlockJCSapling extends BlockBush implements IGrowable
                     break;
             }
 
-
             // this.generateTree(worldIn, pos, state, rand);
         }
     }
 
-    /*public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand)
-    {
-        WorldGenAbstractTree gen;
-
-        switch (treeType)
-        {
-            case ASPEN:
-                gen = HighlandsGenerators.aspenSapling;
-                break;
-            case POPLAR:
-                gen = HighlandsGenerators.poplarSapling;
-                break;
-            case EUCA:
-                gen = HighlandsGenerators.eucalyptusSapling;
-                break;
-            case PALM:
-                gen = HighlandsGenerators.palmSapling;
-                break;
-            case FIR:
-                gen = HighlandsGenerators.firSapling;
-                break;
-            case REDWOOD:
-                gen = HighlandsGenerators.redwoodSapling;
-                break;
-            case BAMBOO:
-                gen = HighlandsGenerators.bambooSapling;
-                break;
-            default:
-                return;
-        }
-
-        boolean flag = gen.generate(worldIn, rand, pos);
-
-        // if tree is not in legal position, reset sapling.
-        if (!flag)
-            worldIn.setBlockState(pos, state);
-    }
-    */
+    /*
+     * public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand) { WorldGenAbstractTree gen; switch (treeType) { case ASPEN: gen = HighlandsGenerators.aspenSapling; break; case POPLAR: gen = HighlandsGenerators.poplarSapling; break; case EUCA: gen = HighlandsGenerators.eucalyptusSapling; break; case PALM: gen = HighlandsGenerators.palmSapling; break; case FIR: gen = HighlandsGenerators.firSapling; break; case REDWOOD: gen = HighlandsGenerators.redwoodSapling; break; case BAMBOO: gen = HighlandsGenerators.bambooSapling; break; default: return; } boolean flag = gen.generate(worldIn, rand, pos); // if tree is not in legal position, reset sapling. if (!flag) worldIn.setBlockState(pos, state); }
+     */
 
     public int damageDropped(IBlockState state)
     {
@@ -169,6 +133,6 @@ public class BlockJCSapling extends BlockBush implements IGrowable
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[]{STAGE});
+        return new BlockState(this, new IProperty[] { STAGE });
     }
 }

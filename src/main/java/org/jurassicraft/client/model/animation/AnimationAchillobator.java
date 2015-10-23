@@ -23,8 +23,8 @@ public class AnimationAchillobator extends DinosaurAnimator
     {
         Animator animator = model.animator;
 
-        //        f = entity.ticksExisted;
-        //        f1 = 1F;
+        // f = entity.ticksExisted;
+        // f1 = 1F;
 
         float speed = 0.75F;
         float height = 2F * f1;
@@ -62,10 +62,10 @@ public class AnimationAchillobator extends DinosaurAnimator
         MowzieModelRenderer Hand_Right = model.getCube("Right hand");
         MowzieModelRenderer Hand_Left = model.getCube("Left hand");
 
-        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[]{Hand_Right, Lower_Arm_Right, upperArmRight};
-        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[]{Hand_Left, Lower_Arm_Left, upperArmLeft};
-        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
-        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[]{waist, chest, shoulders, neck4, neck3, neck2, neck1, head};
+        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[] { Hand_Right, Lower_Arm_Right, upperArmRight };
+        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[] { Hand_Left, Lower_Arm_Left, upperArmLeft };
+        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
+        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[] { waist, chest, shoulders, neck4, neck3, neck2, neck1, head };
 
         model.bob(waist, 1F * speed, height, false, f, f1);
         model.bob(leftThigh, 1F * speed, height, false, f, f1);

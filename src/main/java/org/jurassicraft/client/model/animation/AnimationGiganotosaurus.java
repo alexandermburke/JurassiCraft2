@@ -24,8 +24,8 @@ public class AnimationGiganotosaurus extends DinosaurAnimator
         float globalDegree = 0.45F;
         float height = 1.0F;
 
-        //        f = entity.ticksExisted;
-        //        f1 = 1.0F;
+        // f = entity.ticksExisted;
+        // f1 = 1.0F;
 
         MowzieModelRenderer neck = model.getCube("Neck 1");
         MowzieModelRenderer neck2 = model.getCube("Neck 2");
@@ -62,11 +62,11 @@ public class AnimationGiganotosaurus extends DinosaurAnimator
 
         MowzieModelRenderer lowerJaw = model.getCube("Lower jaw");
 
-        MowzieModelRenderer[] body = new MowzieModelRenderer[]{head, neck4, neck3, neck2, neck, body1, body2, body3};
+        MowzieModelRenderer[] body = new MowzieModelRenderer[] { head, neck4, neck3, neck2, neck, body1, body2, body3 };
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
 
-        //TODO:Arms
+        // TODO:Arms
 
         int ticksExisted = parEntity.ticksExisted;
 

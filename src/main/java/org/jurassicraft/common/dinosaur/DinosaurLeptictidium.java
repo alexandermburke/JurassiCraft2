@@ -12,8 +12,8 @@ public class DinosaurLeptictidium extends Dinosaur
 
     public DinosaurLeptictidium()
     {
-        this.maleTextures = new String[]{getDinosaurTexture("male")};
-        this.femaleTextures = new String[]{getDinosaurTexture("female")};
+        this.maleTextures = new String[] { getDinosaurTexture("male") };
+        this.femaleTextures = new String[] { getDinosaurTexture("female") };
     }
 
     @Override
@@ -32,7 +32,7 @@ public class DinosaurLeptictidium extends Dinosaur
     public EnumTimePeriod getPeriod()
     {
         return EnumTimePeriod.CRETACEOUS;
-    } //TODO EOCENE
+    } // TODO EOCENE
 
     @Override
     public int getEggPrimaryColor()

@@ -29,8 +29,7 @@ public class GuiPaleoTab extends GuiScreen
     public GuiApp focus;
 
     public GuiPaleoTab()
-    {
-    }
+    {}
 
     @Override
     public void initGui()
@@ -46,7 +45,7 @@ public class GuiPaleoTab extends GuiScreen
         if (focus != null)
         {
             JCPlayerDataClient.getPlayerData().closeApp(focus.getApp());
-//            JurassiCraft.networkManager.networkWrapper.sendToServer(new MessageSyncPaleoPad(mc.thePlayer));
+            // JurassiCraft.networkManager.networkWrapper.sendToServer(new MessageSyncPaleoPad(mc.thePlayer));
         }
     }
 
@@ -269,7 +268,6 @@ public class GuiPaleoTab extends GuiScreen
 
         GL11.glPopMatrix();
     }
-
 
     @Override
     protected void actionPerformed(GuiButton button)

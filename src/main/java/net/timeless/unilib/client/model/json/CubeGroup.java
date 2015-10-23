@@ -5,8 +5,7 @@ import com.google.common.collect.Lists;
 import java.util.ArrayList;
 
 /**
- * @author iChun
- *         TAKEN FROM LLIBRARY
+ * @author iChun TAKEN FROM LLIBRARY
  */
 public class CubeGroup
 {

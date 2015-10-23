@@ -13,20 +13,14 @@ import org.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 import java.util.Random;
 
 public class EntityTyrannosaurus extends EntityDinosaurAggressive // , IEntityAICreature,
-        // ICarnivore
+// ICarnivore
 {
-    private static final String[] hurtSounds = new String[]{"tyrannosaurus_hurt_1", "tyrannosaurus_hurt_2"};
-    private static final String[] deathSounds = new String[]{"tyrannosaurus_death_1"};
-    private static final String[] roarSounds = new String[]{"tyrannosaurus_roar_1"};
-    private static final String[] breathSounds = new String[]{"tyrannosaurus_breath_1"};
+    private static final String[] hurtSounds = new String[] { "tyrannosaurus_hurt_1", "tyrannosaurus_hurt_2" };
+    private static final String[] deathSounds = new String[] { "tyrannosaurus_death_1" };
+    private static final String[] roarSounds = new String[] { "tyrannosaurus_roar_1" };
+    private static final String[] breathSounds = new String[] { "tyrannosaurus_breath_1" };
 
-    private static final Class[] targets = {EntityCompsognathus.class, EntityAnkylosaurus.class, EntityPlayer.class,
-            EntityDilophosaurus.class, EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class,
-            EntityLudodactylus.class, EntityHypsilophodon.class, EntityGallimimus.class, EntitySegisaurus.class,
-            EntityProtoceratops.class, EntityParasaurolophus.class, EntityOthnielia.class, EntityMicroceratus.class,
-            EntityTriceratops.class, EntityStegosaurus.class, EntityBrachiosaurus.class, EntityApatosaurus.class,
-            EntityRugops.class, EntityHerrerasaurus.class, EntityVelociraptor.class, EntityAchillobator.class,
-            EntityCarnotaurus.class, EntityTherizinosaurus.class};
+    private static final Class[] targets = { EntityCompsognathus.class, EntityAnkylosaurus.class, EntityPlayer.class, EntityDilophosaurus.class, EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class, EntityLudodactylus.class, EntityHypsilophodon.class, EntityGallimimus.class, EntitySegisaurus.class, EntityProtoceratops.class, EntityParasaurolophus.class, EntityOthnielia.class, EntityMicroceratus.class, EntityTriceratops.class, EntityStegosaurus.class, EntityBrachiosaurus.class, EntityApatosaurus.class, EntityRugops.class, EntityHerrerasaurus.class, EntityVelociraptor.class, EntityAchillobator.class, EntityCarnotaurus.class, EntityTherizinosaurus.class };
 
     private int stepCount = 0;
 

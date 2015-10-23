@@ -4,8 +4,7 @@ import net.minecraft.util.IStringSerializable;
 
 public enum EnumType implements IStringSerializable
 {
-    GINKGO(0, "ginkgo"),
-    CALAMITES(1, "calamites");
+    GINKGO(0, "ginkgo"), CALAMITES(1, "calamites");
     private static final EnumType[] META_LOOKUP = new EnumType[values().length];
     private final int meta;
     private final String name;

@@ -47,10 +47,10 @@ public class AnimationTriceratops extends DinosaurAnimator
         MowzieModelRenderer footRight = model.getCube("RearLeg Foot Right");
         MowzieModelRenderer jaw = model.getCube("Jaw LOWER");
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
 
-//        f = entity.ticksExisted;
-//        f1 = 0.5F;
+        // f = entity.ticksExisted;
+        // f1 = 0.5F;
 
         float sprintModifier = (float) (1 / (1 + Math.exp(30 * (-f1 + 0.92))));
         float legOffsetModifier = 2.5F;
@@ -65,8 +65,8 @@ public class AnimationTriceratops extends DinosaurAnimator
         float frontOffset = -2F;
         float animationDegree = 2 - sprintModifier * 0.2F;
 
-//        parModel.faceTarget(head, 2, rotationYaw, rotationPitch);
-//        parModel.faceTarget(neck1, 2, rotationYaw, rotationPitch);
+        // parModel.faceTarget(head, 2, rotationYaw, rotationPitch);
+        // parModel.faceTarget(neck1, 2, rotationYaw, rotationPitch);
 
         model.bob(waist, bobBase * scaleFactor, height, false, f, f1);
         model.bob(thighLeft, bobBase * scaleFactor, height, false, f, f1);
@@ -114,13 +114,13 @@ public class AnimationTriceratops extends DinosaurAnimator
         model.chainSwing(tail, 0.1F, 0.05F, 2, ticksExisted, 1F);
         model.chainWave(tail, 0.1F, -0.05F, 1, ticksExisted, 1F);
 
-//        model.faceTarget(head, 4, rotationYaw, rotationPitch);
-//        model.faceTarget(neck3, 4, rotationYaw, rotationPitch);
-//        model.faceTarget(neck2, 4, rotationYaw, rotationPitch);
-//        model.faceTarget(neck1, 4, rotationYaw, rotationPitch);
-//
-//        model.bob(waist, 1 * globalSpeed, height, false, f, f1);
-//        model.walk(waist, 1 * globalSpeed, 0.1F * height, true, -1.5F, 0.05F, f, f1);
+        // model.faceTarget(head, 4, rotationYaw, rotationPitch);
+        // model.faceTarget(neck3, 4, rotationYaw, rotationPitch);
+        // model.faceTarget(neck2, 4, rotationYaw, rotationPitch);
+        // model.faceTarget(neck1, 4, rotationYaw, rotationPitch);
+        //
+        // model.bob(waist, 1 * globalSpeed, height, false, f, f1);
+        // model.walk(waist, 1 * globalSpeed, 0.1F * height, true, -1.5F, 0.05F, f, f1);
 
         ((EntityTriceratops) parEntity).tailBuffer.applyChainSwingBuffer(tail);
     }

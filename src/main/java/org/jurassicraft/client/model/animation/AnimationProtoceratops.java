@@ -61,8 +61,8 @@ public class AnimationProtoceratops extends DinosaurAnimator
         MowzieModelRenderer footLeft = model.getCube("Leg Foot LEFT");
         MowzieModelRenderer footRight = model.getCube("Leg Foot RIGHT");
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail4, tail3, tail2, tail1};
-        MowzieModelRenderer[] neck = new MowzieModelRenderer[]{head, neck3, neck2, neck1};
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail4, tail3, tail2, tail1 };
+        MowzieModelRenderer[] neck = new MowzieModelRenderer[] { head, neck3, neck2, neck1 };
 
         model.bob(body, globalSpeed * 1.0F, globalHeight * 1.0F, false, f, f1);
         model.bob(thighLeft, globalSpeed * 1.0F, globalHeight * 1.0F, false, f, f1);

@@ -12,8 +12,8 @@ public class DinosaurCarnotaurus extends Dinosaur
 
     public DinosaurCarnotaurus()
     {
-        this.maleTextures = new String[]{getDinosaurTexture("male")};
-        this.femaleTextures = new String[]{getDinosaurTexture("female")};
+        this.maleTextures = new String[] { getDinosaurTexture("male") };
+        this.femaleTextures = new String[] { getDinosaurTexture("female") };
     }
 
     // TODO: Figure out all the entities properties

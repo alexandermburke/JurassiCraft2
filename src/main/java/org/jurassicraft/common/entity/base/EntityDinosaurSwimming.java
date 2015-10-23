@@ -48,8 +48,7 @@ public abstract class EntityDinosaurSwimming extends EntityCreature
     }
 
     /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
-     * use this to react to sunlight and start to burn.
+     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
      */
     public void onLivingUpdate()
     {
@@ -67,8 +66,7 @@ public abstract class EntityDinosaurSwimming extends EntityCreature
     }
 
     /**
-     * returns if this entity triggers Block.onEntityWalking on the blocks they walk on. used for spiders and wolves to
-     * prevent them from trampling crops
+     * returns if this entity triggers Block.onEntityWalking on the blocks they walk on. used for spiders and wolves to prevent them from trampling crops
      */
     protected boolean canTriggerWalking()
     {
@@ -81,7 +79,7 @@ public abstract class EntityDinosaurSwimming extends EntityCreature
     }
 
     /**
-     * Moves the entity based on the specified heading.  Args: strafe, forward
+     * Moves the entity based on the specified heading. Args: strafe, forward
      */
     public void moveEntityWithHeading(float strafe, float forward)
     {

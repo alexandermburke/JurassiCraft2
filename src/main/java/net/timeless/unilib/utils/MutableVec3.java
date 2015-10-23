@@ -110,8 +110,7 @@ public class MutableVec3
     }
 
     /**
-     * Adds the specified x,y,z vector components to this vector and returns the resulting vector. Does not change this
-     * vector.
+     * Adds the specified x,y,z vector components to this vector and returns the resulting vector. Does not change this vector.
      */
     public MutableVec3 addVector(double x, double y, double z)
     {
@@ -149,8 +148,7 @@ public class MutableVec3
     }
 
     /**
-     * Returns a new vector with x value equal to the second parameter, along the line between this vector and the
-     * passed in vector, or null if not possible.
+     * Returns a new vector with x value equal to the second parameter, along the line between this vector and the passed in vector, or null if not possible.
      */
     public MutableVec3 getIntermediateWithXValue(MutableVec3 vec, double x)
     {
@@ -170,8 +168,7 @@ public class MutableVec3
     }
 
     /**
-     * Returns a new vector with y value equal to the second parameter, along the line between this vector and the
-     * passed in vector, or null if not possible.
+     * Returns a new vector with y value equal to the second parameter, along the line between this vector and the passed in vector, or null if not possible.
      */
     public MutableVec3 getIntermediateWithYValue(MutableVec3 vec, double y)
     {
@@ -191,8 +188,7 @@ public class MutableVec3
     }
 
     /**
-     * Returns a new vector with z value equal to the second parameter, along the line between this vector and the
-     * passed in vector, or null if not possible.
+     * Returns a new vector with z value equal to the second parameter, along the line between this vector and the passed in vector, or null if not possible.
      */
     public MutableVec3 getIntermediateWithZValue(MutableVec3 vec, double z)
     {

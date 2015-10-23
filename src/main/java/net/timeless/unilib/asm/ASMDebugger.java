@@ -16,7 +16,7 @@ public class ASMDebugger implements IFMLLoadingPlugin, IFMLCallHook
     @Override
     public String[] getASMTransformerClass()
     {
-        return new String[]{"net.timeless.unilib.asm.ASMTransformer"};
+        return new String[] { "net.timeless.unilib.asm.ASMTransformer" };
     }
 
     @Override

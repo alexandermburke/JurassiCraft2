@@ -20,8 +20,8 @@ public class AnimationCarnotaurus extends DinosaurAnimator
     @Override
     protected void performMowzieLandAnimations(ModelDinosaur model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur entity)
     {
-        //        f = entity.ticksExisted / 2;
-        //        f1 = 1F;
+        // f = entity.ticksExisted / 2;
+        // f1 = 1F;
 
         float globalSpeed = 0.8F;
         float globalDegree = 0.6F;
@@ -69,11 +69,11 @@ public class AnimationCarnotaurus extends DinosaurAnimator
         MowzieModelRenderer lowerJaw = model.getCube("Lower Jaw");
         MowzieModelRenderer upperJaw = model.getCube("Upper Jaw");
 
-        MowzieModelRenderer[] body = new MowzieModelRenderer[]{head, neck4, neck3, neck2, neck1, shoulders, waist, hips};
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
+        MowzieModelRenderer[] body = new MowzieModelRenderer[] { head, neck4, neck3, neck2, neck1, shoulders, waist, hips };
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
 
-        MowzieModelRenderer[] armRight = new MowzieModelRenderer[]{handRight, lowerArmRight, upperArmRight};
-        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[]{handLeft, lowerArmLeft, upperArmLeft};
+        MowzieModelRenderer[] armRight = new MowzieModelRenderer[] { handRight, lowerArmRight, upperArmRight };
+        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[] { handLeft, lowerArmLeft, upperArmLeft };
 
         model.bob(hips, globalSpeed * 1.0F, globalHeight * 1.0F, false, f, f1);
 

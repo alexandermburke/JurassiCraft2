@@ -24,12 +24,13 @@ public class ItemPlantCallus extends Item
         return new AdvLang("item.plant_callus.name").withProperty("plant", "plants." + JCPlantRegistry.getPlantById(stack.getItemDamage()).getName().toLowerCase().replaceAll(" ", "_") + ".name").build();
     }
 
-
     /**
      * Called when a Block is right-clicked with this Item
      *
-     * @param pos  The block being right-clicked
-     * @param side The side being right-clicked
+     * @param pos
+     *            The block being right-clicked
+     * @param side
+     *            The side being right-clicked
      */
     public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {

@@ -51,7 +51,6 @@ public class GuiEmbryonicMachine extends GuiContainer
         int progress = this.getProgress(17);
         this.drawTexturedModalRect(k + 79, l + 34, 176, 14, progress + 1, 16);
 
-
     }
 
     private int getProgress(int scale)

@@ -12,8 +12,8 @@ public class DinosaurLudodactylus extends Dinosaur
 
     public DinosaurLudodactylus()
     {
-        this.maleTextures = new String[]{getDinosaurTexture("male")};
-        this.femaleTextures = new String[]{getDinosaurTexture("female")};
+        this.maleTextures = new String[] { getDinosaurTexture("male") };
+        this.femaleTextures = new String[] { getDinosaurTexture("female") };
     }
 
     @Override

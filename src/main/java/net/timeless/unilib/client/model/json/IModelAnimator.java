@@ -8,8 +8,7 @@ import net.minecraft.entity.EntityLivingBase;
  * <p>
  * This can be used for Living animations.
  *
- * @author Gegy1000
- *         TAKEN FROM LLIBRARY
+ * @author Gegy1000 TAKEN FROM LLIBRARY
  */
 public interface IModelAnimator
 {

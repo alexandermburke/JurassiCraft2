@@ -10,8 +10,7 @@ import java.util.TreeMap;
 /**
  * Container for Tabula animations.
  *
- * @author Gegy1000
- *         TAKEN FROM LLIBRARY
+ * @author Gegy1000 TAKEN FROM LLIBRARY
  */
 @SideOnly(Side.CLIENT)
 public class Animation

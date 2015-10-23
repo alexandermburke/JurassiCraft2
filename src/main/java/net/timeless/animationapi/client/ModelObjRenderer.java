@@ -9,11 +9,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 
 /**
- * ModelObjRenderer.java
- * A simple ModelRenderer-compatible class that allows the modder to link custom models to ModelRenderer models. Very useful
- * if the modder wants to replace a previous ModelRenderer with a custom model piece without having to redo all of the
- * translations, scales, and rotations. However, this model renders the methods addBox, setTextureOffset, etc useless, as it
- * only applies the translations and rotations originally in the ModelRenderer.
+ * ModelObjRenderer.java A simple ModelRenderer-compatible class that allows the modder to link custom models to ModelRenderer models. Very useful if the modder wants to replace a previous ModelRenderer with a custom model piece without having to redo all of the translations, scales, and rotations. However, this model renders the methods addBox, setTextureOffset, etc useless, as it only applies the translations and rotations originally in the ModelRenderer.
  *
  * @author thehippomaster21
  */

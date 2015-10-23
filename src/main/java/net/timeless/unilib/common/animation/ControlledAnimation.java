@@ -4,8 +4,7 @@ import net.minecraft.util.MathHelper;
 
 /**
  * @author RafaMv0
- * @author BobMowzie
- *         TAKEN FROM LLIBRARY
+ * @author BobMowzie TAKEN FROM LLIBRARY
  */
 public class ControlledAnimation
 {

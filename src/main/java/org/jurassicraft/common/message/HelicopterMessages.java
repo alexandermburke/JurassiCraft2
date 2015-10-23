@@ -11,7 +11,7 @@ public class HelicopterMessages
         {
             return (EntityHelicopterBase) world.getEntityByID(heliID);
         }
-        catch(NullPointerException e)
+        catch (NullPointerException e)
         {
             // shhh
         }

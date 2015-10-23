@@ -50,10 +50,10 @@ public class AnimationHerrerasaurus extends DinosaurAnimator
         MowzieModelRenderer handLeft = model.getCube("hand left");
         MowzieModelRenderer handRight = model.getCube("hand right");
 
-        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[]{handLeft, lowerArmLeft, upperArmLeft};
-        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[]{handRight, lowerArmRight, upperArmRight};
+        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[] { handLeft, lowerArmLeft, upperArmLeft };
+        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[] { handRight, lowerArmRight, upperArmRight };
 
-        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
+        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
 
         MowzieModelRenderer body1 = model.getCube("Body 1");
         MowzieModelRenderer body2 = model.getCube("Body 2");

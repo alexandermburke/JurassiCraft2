@@ -31,7 +31,8 @@ public class ItemCage extends Item
     /**
      * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
      *
-     * @param subItems The List of sub-items. This is a List of ItemStacks.
+     * @param subItems
+     *            The List of sub-items. This is a List of ItemStacks.
      */
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item itemIn, CreativeTabs tab, List subItems)
@@ -43,8 +44,10 @@ public class ItemCage extends Item
     /**
      * allows items to add custom lines of information to the mouseover description
      *
-     * @param tooltip  All lines to display in the Item's tooltip. This is a List of Strings.
-     * @param advanced Whether the setting "Advanced tooltips" is enabled
+     * @param tooltip
+     *            All lines to display in the Item's tooltip. This is a List of Strings.
+     * @param advanced
+     *            Whether the setting "Advanced tooltips" is enabled
      */
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced)
@@ -70,11 +73,16 @@ public class ItemCage extends Item
     /**
      * This is called when the item is used, before the block is activated.
      *
-     * @param stack  The Item Stack
-     * @param player The Player that used the item
-     * @param world  The Current World
-     * @param pos    Target position
-     * @param side   The side of the target hit
+     * @param stack
+     *            The Item Stack
+     * @param player
+     *            The Player that used the item
+     * @param world
+     *            The Current World
+     * @param pos
+     *            Target position
+     * @param side
+     *            The side of the target hit
      * @return Return true to prevent any further processing.
      */
     public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)

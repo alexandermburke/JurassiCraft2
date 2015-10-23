@@ -16,8 +16,8 @@ import java.util.Random;
 
 public class TileDnaSequencer extends TileMachineBase
 {
-    private int[] inputs = new int[]{0, 1, 2, 3, 4, 5};
-    private int[] outputs = new int[]{6, 7, 8};
+    private int[] inputs = new int[] { 0, 1, 2, 3, 4, 5 };
+    private int[] outputs = new int[] { 6, 7, 8 };
 
     private ItemStack[] slots = new ItemStack[9];
 
@@ -61,7 +61,7 @@ public class TileDnaSequencer extends TileMachineBase
 
             int tissue = process * 2;
 
-//            EntityPlayer player = worldObj.getPlayerEntityByUUID(UUID.fromString(slots[1].getTagCompound().getString("LastOwner")));
+            // EntityPlayer player = worldObj.getPlayerEntityByUUID(UUID.fromString(slots[1].getTagCompound().getString("LastOwner")));
 
             int quality = rand.nextInt(25) + 1;
 
@@ -94,7 +94,7 @@ public class TileDnaSequencer extends TileMachineBase
             output.setItemDamage(dna.getContainer().getDinosaur());
             output.setTagCompound(nbt);
 
-//            JCPlayerData.getPlayerData(player).addSequencedDNA(new DinoDNA(quality, GeneticsHelper.randomGenetics(rand, slots[0].getItemDamage(), quality).toString()));
+            // JCPlayerData.getPlayerData(player).addSequencedDNA(new DinoDNA(quality, GeneticsHelper.randomGenetics(rand, slots[0].getItemDamage(), quality).toString()));
 
             mergeStack(process + 6, output);
 
@@ -168,7 +168,7 @@ public class TileDnaSequencer extends TileMachineBase
         return hasCustomName() ? customName : "container.dna_sequencer";
     }
 
-    public String getCommandSenderName() //Forge Version compatibility, keep both getName and getCommandSenderName
+    public String getCommandSenderName() // Forge Version compatibility, keep both getName and getCommandSenderName
     {
         return getName();
     }

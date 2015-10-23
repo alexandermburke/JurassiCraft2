@@ -29,8 +29,7 @@ public class ItemJCSlab extends ItemBlock
     }
 
     /**
-     * Converts the given ItemStack damage value into a metadata value to be placed in the world when this Item is
-     * placed as a Block (mostly used with ItemBlocks).
+     * Converts the given ItemStack damage value into a metadata value to be placed in the world when this Item is placed as a Block (mostly used with ItemBlocks).
      */
     public int getMetadata(int damage)
     {
@@ -38,8 +37,7 @@ public class ItemJCSlab extends ItemBlock
     }
 
     /**
-     * Returns the unlocalized name of this item. This version accepts an ItemStack so different stacks can have
-     * different names based on their damage or NBT.
+     * Returns the unlocalized name of this item. This version accepts an ItemStack so different stacks can have different names based on their damage or NBT.
      */
     public String getUnlocalizedName(ItemStack stack)
     {
@@ -49,8 +47,10 @@ public class ItemJCSlab extends ItemBlock
     /**
      * Called when a Block is right-clicked with this Item
      *
-     * @param pos  The block being right-clicked
-     * @param side The side being right-clicked
+     * @param pos
+     *            The block being right-clicked
+     * @param side
+     *            The side being right-clicked
      */
     public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {

@@ -64,7 +64,7 @@ public class AnimationParasaurolophus extends DinosaurAnimator
 
         MowzieModelRenderer jaw = model.getCube("Jaw");
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
 
         float scaleFactor = 0.6F;
         float height = 2F;

@@ -7,18 +7,7 @@ import net.minecraft.util.IStringSerializable;
  */
 public enum EnumTimePeriod implements IStringSerializable
 {
-    QUATERNARY(0, "quaternary", 2.588F, 0.0F, false),
-    NEOGENE(1, "neogene", 23.03F, 2.589F, false),
-    PALEOGENE(2, "paleogene", 66.0F, 23.04F, false),
-    CRETACEOUS(3, "cretaceous", 145.5F, 66.1F, true),
-    JURASSIC(4, "jurassic", 201.3F, 145.6F, false),
-    TRIASSIC(5, "triassic", 252.17F, 201.4F, false),
-    PERMIAN(6, "permian", 298.9F, 252.18F, false),
-    CARBONIFEROUS(7, "carboniferous", 358.9F, 299.0F, false),
-    DEVONIAN(8, "devonian", 419.2F, 359.0F, false),
-    SILURIAN(9, "silurian", 443.4F, 419.3F, false),
-    ORDOVICIAN(10, "ordovician", 485.4F, 443.5F, false),
-    CAMBRIAN(11, "cambrian", 541.0F, 485.5F, false);
+    QUATERNARY(0, "quaternary", 2.588F, 0.0F, false), NEOGENE(1, "neogene", 23.03F, 2.589F, false), PALEOGENE(2, "paleogene", 66.0F, 23.04F, false), CRETACEOUS(3, "cretaceous", 145.5F, 66.1F, true), JURASSIC(4, "jurassic", 201.3F, 145.6F, false), TRIASSIC(5, "triassic", 252.17F, 201.4F, false), PERMIAN(6, "permian", 298.9F, 252.18F, false), CARBONIFEROUS(7, "carboniferous", 358.9F, 299.0F, false), DEVONIAN(8, "devonian", 419.2F, 359.0F, false), SILURIAN(9, "silurian", 443.4F, 419.3F, false), ORDOVICIAN(10, "ordovician", 485.4F, 443.5F, false), CAMBRIAN(11, "cambrian", 541.0F, 485.5F, false);
 
     /**
      * Returns the metadata of this time period.

@@ -213,7 +213,7 @@ public class JCPlayerData implements IExtendedEntityProperties
 
         if (pathSplit.length == 0)
         {
-            pathSplit = new String[]{path};
+            pathSplit = new String[] { path };
         }
 
         return traversePath(pathSplit, 1, getFile(pathSplit[0], true));

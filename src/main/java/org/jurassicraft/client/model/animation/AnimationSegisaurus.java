@@ -61,15 +61,15 @@ public class AnimationSegisaurus extends DinosaurAnimator
         MowzieModelRenderer footR = model.getCube("foot1");
         MowzieModelRenderer footL = model.getCube("foot2");
 
-        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[]{handR, lowerArmR, upperArmR};
-        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[]{handL, lowerArmL, upperArmL};
-        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{tail5, tail4, tail3, tail2, tail1};
-        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[]{waist, chest, shoulders, neck4, neck3, neck2, neck1, head};
+        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[] { handR, lowerArmR, upperArmR };
+        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[] { handL, lowerArmL, upperArmL };
+        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[] { tail5, tail4, tail3, tail2, tail1 };
+        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[] { waist, chest, shoulders, neck4, neck3, neck2, neck1, head };
 
         float globalSpeed = 1.0F;
         float globalHeight = 2F * f1;
 
-//        float dontLeanProgress = entity.dontLean.getAnimationProgressSinSqrt();
+        // float dontLeanProgress = entity.dontLean.getAnimationProgressSinSqrt();
 
         model.bob(waist, 1F * globalSpeed, globalHeight, false, f, f1);
         model.bob(thighL, 1F * globalSpeed, globalHeight, false, f, f1);
@@ -87,15 +87,15 @@ public class AnimationSegisaurus extends DinosaurAnimator
         model.walk(upperFootR, 0.5F * globalSpeed, 0.8F, true, -1F, -0.1F, f, f1);
         model.walk(footR, 0.5F * globalSpeed, 1.5F, false, -1F, 1F, f, f1);
 
-//        shoulders.rotationPointY -= 0.5 * f1 * dontLeanProgress;
-//        shoulders.rotationPointZ -= 0.5 * f1 * dontLeanProgress;
-//        shoulders.rotateAngleX += 0.6 * f1 * dontLeanProgress;
-//        chest.rotateAngleX += 0.1 * f1 * dontLeanProgress;
-//        neck1.rotateAngleX += 0.1 * f1 * dontLeanProgress;
-//        neck2.rotateAngleX += 0.1 * f1 * dontLeanProgress;
-//        neck3.rotateAngleX -= 0.2 * f1 * dontLeanProgress;
-//        neck4.rotateAngleX -= 0.2 * f1 * dontLeanProgress;
-//        head.rotateAngleX -= 0.3 * f1 * dontLeanProgress;
+        // shoulders.rotationPointY -= 0.5 * f1 * dontLeanProgress;
+        // shoulders.rotationPointZ -= 0.5 * f1 * dontLeanProgress;
+        // shoulders.rotateAngleX += 0.6 * f1 * dontLeanProgress;
+        // chest.rotateAngleX += 0.1 * f1 * dontLeanProgress;
+        // neck1.rotateAngleX += 0.1 * f1 * dontLeanProgress;
+        // neck2.rotateAngleX += 0.1 * f1 * dontLeanProgress;
+        // neck3.rotateAngleX -= 0.2 * f1 * dontLeanProgress;
+        // neck4.rotateAngleX -= 0.2 * f1 * dontLeanProgress;
+        // head.rotateAngleX -= 0.3 * f1 * dontLeanProgress;
 
         model.chainSwing(tailParts, 0.5F * globalSpeed, -0.1F, 2, f, f1);
         model.chainWave(tailParts, 1F * globalSpeed, -0.1F, 2.5F, f, f1);

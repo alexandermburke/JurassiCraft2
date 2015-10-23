@@ -83,10 +83,10 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
     public ChainBuffer tailBuffer;
 
-//    public void setNavigator(PathNavigate pn)
-//    {
-//        navigator = pn;
-//    }
+    // public void setNavigator(PathNavigate pn)
+    // {
+    // navigator = pn;
+    // }
 
     public EntityDinosaur(World world)
     {
@@ -266,8 +266,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     }
 
     /**
-     * Checks if the entity is in range to render by using the past in distance and comparing it to its average edge
-     * length * 64 * renderDistanceWeight Args: distance
+     * Checks if the entity is in range to render by using the past in distance and comparing it to its average edge length * 64 * renderDistanceWeight Args: distance
      */
     @Override
     @SideOnly(Side.CLIENT)
@@ -359,7 +358,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     public float getSoundVolume()
     {
         return (2.0F * ((float) transitionFromAge(0.3F, 1.0F)));
-//        return (float) transitionFromAge(0.3F, 1.0F) + ((rand.nextFloat() - 0.5F) * 0.125F);
+        // return (float) transitionFromAge(0.3F, 1.0F) + ((rand.nextFloat() - 0.5F) * 0.125F);
     }
 
     public void setGenetics(String genetics)
@@ -879,46 +878,46 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         super.onDeath(parDamageSource);
     }
 
-//    /**
-//     * have to override so that death time can go much longer so that we can see a good dying animation
-//     */
-//    @Override
-//    protected void onDeathUpdate()
-//    {
-//        super.onDeathUpdate();
-//
-//        if (getAnimID() != AnimID.DYING)
-//        {
-//            AnimationAPI.sendAnimPacket(this, AnimID.DYING);
-//        }
-//
-//        if (deathTime == 400)
-//        {
-//            int i;
-//
-//            if (!worldObj.isRemote && (recentlyHit > 0 || isPlayer()) && canDropLoot() && worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot"))
-//            {
-//                i = getExperiencePoints(attackingPlayer);
-//                i = net.minecraftforge.event.ForgeEventFactory.getExperienceDrop(this, attackingPlayer, i);
-//                while (i > 0)
-//                {
-//                    int j = EntityXPOrb.getXPSplit(i);
-//                    i -= j;
-//                    worldObj.spawnEntityInWorld(new EntityXPOrb(worldObj, posX, posY, posZ, j));
-//                }
-//            }
-//
-//            setDead();
-//
-//            for (i = 0; i < 20; ++i)
-//            {
-//                double d2 = rand.nextGaussian() * 0.02D;
-//                double d0 = rand.nextGaussian() * 0.02D;
-//                double d1 = rand.nextGaussian() * 0.02D;
-//                worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, posX + rand.nextFloat() * width * 2.0F - width, posY + rand.nextFloat() * height, posZ + rand.nextFloat() * width * 2.0F - width, d2, d0, d1, new int[0]);
-//            }
-//        }
-//    }
+    // /**
+    // * have to override so that death time can go much longer so that we can see a good dying animation
+    // */
+    // @Override
+    // protected void onDeathUpdate()
+    // {
+    // super.onDeathUpdate();
+    //
+    // if (getAnimID() != AnimID.DYING)
+    // {
+    // AnimationAPI.sendAnimPacket(this, AnimID.DYING);
+    // }
+    //
+    // if (deathTime == 400)
+    // {
+    // int i;
+    //
+    // if (!worldObj.isRemote && (recentlyHit > 0 || isPlayer()) && canDropLoot() && worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot"))
+    // {
+    // i = getExperiencePoints(attackingPlayer);
+    // i = net.minecraftforge.event.ForgeEventFactory.getExperienceDrop(this, attackingPlayer, i);
+    // while (i > 0)
+    // {
+    // int j = EntityXPOrb.getXPSplit(i);
+    // i -= j;
+    // worldObj.spawnEntityInWorld(new EntityXPOrb(worldObj, posX, posY, posZ, j));
+    // }
+    // }
+    //
+    // setDead();
+    //
+    // for (i = 0; i < 20; ++i)
+    // {
+    // double d2 = rand.nextGaussian() * 0.02D;
+    // double d0 = rand.nextGaussian() * 0.02D;
+    // double d1 = rand.nextGaussian() * 0.02D;
+    // worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, posX + rand.nextFloat() * width * 2.0F - width, posY + rand.nextFloat() * height, posZ + rand.nextFloat() * width * 2.0F - width, d2, d0, d1, new int[0]);
+    // }
+    // }
+    // }
 
     public void increaseGrowthSpeed()
     {
@@ -1004,8 +1003,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
     @Override
     public void markDirty()
-    {
-    }
+    {}
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer player)
@@ -1015,13 +1013,11 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
     @Override
     public void openInventory(EntityPlayer player)
-    {
-    }
+    {}
 
     @Override
     public void closeInventory(EntityPlayer player)
-    {
-    }
+    {}
 
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack)
@@ -1057,8 +1053,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     }
 
     /*
-     * Used by DinosaurAnimator class to allow different cyclic animations when
-     * land dinosaur is in water (need to @Override the performMowzieSwimmingAnimations() method)
+     * Used by DinosaurAnimator class to allow different cyclic animations when land dinosaur is in water (need to @Override the performMowzieSwimmingAnimations() method)
      */
     public boolean isSwimming()
     {

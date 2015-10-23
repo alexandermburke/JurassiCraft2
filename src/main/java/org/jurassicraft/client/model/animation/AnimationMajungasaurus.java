@@ -25,8 +25,8 @@ public class AnimationMajungasaurus extends DinosaurAnimator
 
         EntityMajungasaurus dino = (EntityMajungasaurus) parEntity;
 
-        //        f = dino.ticksExisted;
-        //        f1 = 1F;
+        // f = dino.ticksExisted;
+        // f1 = 1F;
 
         MowzieModelRenderer tail1 = model.getCube("Tail Base");
         MowzieModelRenderer tail2 = model.getCube("Tail 2");
@@ -70,12 +70,12 @@ public class AnimationMajungasaurus extends DinosaurAnimator
         MowzieModelRenderer handRight = model.getCube("Hand Right");
         MowzieModelRenderer handLeft = model.getCube("Hand LEFT");
 
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail1, tail2, tail3, tail4, tail5, tail6};
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail1, tail2, tail3, tail4, tail5, tail6 };
 
-        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[]{upperArmLeft, lowerArmLeft, handLeft};
-        MowzieModelRenderer[] armRight = new MowzieModelRenderer[]{upperArmRight, lowerArmRight, handRight};
+        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[] { upperArmLeft, lowerArmLeft, handLeft };
+        MowzieModelRenderer[] armRight = new MowzieModelRenderer[] { upperArmRight, lowerArmRight, handRight };
 
-        MowzieModelRenderer[] body = new MowzieModelRenderer[]{bodyRear, bodyMid, bodyFront, neck1, neck2, neck3, neck4, head};
+        MowzieModelRenderer[] body = new MowzieModelRenderer[] { bodyRear, bodyMid, bodyFront, neck1, neck2, neck3, neck4, head };
 
         float globalSpeed = 0.5F;
         float globalDegree = 0.4F;
@@ -117,9 +117,9 @@ public class AnimationMajungasaurus extends DinosaurAnimator
         model.chainWave(armRight, 0.1F, 0.1F, -4, ticksExisted, 1F);
         model.chainWave(armLeft, 0.1F, 0.1F, -4, ticksExisted, 1F);
 
-//        model.faceTarget(head, 3, rotationYaw, rotationPitch);
-//        model.faceTarget(neck1, 3, rotationYaw, rotationPitch);
-//        model.faceTarget(neck2, 3, rotationYaw, rotationPitch);
+        // model.faceTarget(head, 3, rotationYaw, rotationPitch);
+        // model.faceTarget(neck1, 3, rotationYaw, rotationPitch);
+        // model.faceTarget(neck2, 3, rotationYaw, rotationPitch);
 
         ((EntityMajungasaurus) parEntity).tailBuffer.applyChainSwingBuffer(tail);
     }

@@ -12,8 +12,8 @@ public class DinosaurMegapiranha extends Dinosaur
 
     public DinosaurMegapiranha()
     {
-        this.maleTextures = new String[]{getDinosaurTexture("male")};
-        this.femaleTextures = new String[]{getDinosaurTexture("female")};
+        this.maleTextures = new String[] { getDinosaurTexture("male") };
+        this.femaleTextures = new String[] { getDinosaurTexture("female") };
     }
 
     @Override
@@ -31,7 +31,7 @@ public class DinosaurMegapiranha extends Dinosaur
     @Override
     public EnumTimePeriod getPeriod()
     {
-        return EnumTimePeriod.CRETACEOUS; //TODO LATE MIOCENE
+        return EnumTimePeriod.CRETACEOUS; // TODO LATE MIOCENE
     }
 
     @Override

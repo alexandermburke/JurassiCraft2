@@ -43,8 +43,8 @@ public class AnimationDilophosaurus extends DinosaurAnimator
         float globalDegree = 0.77F;
         float globalHeight = 2F;
 
-        //        f = entity.ticksExisted;
-        //        f1 = 1F;
+        // f = entity.ticksExisted;
+        // f1 = 1F;
 
         MowzieModelRenderer head = model.getCube("Head");
 
@@ -90,11 +90,11 @@ public class AnimationDilophosaurus extends DinosaurAnimator
         // MowzieModelRenderer upperJaw = model.getCube("upperjaw");
         // MowzieModelRenderer lowerJaw = model.getCube("down_jaw");
 
-        MowzieModelRenderer[] body = new MowzieModelRenderer[]{head, neck6, neck5, neck4, neck3, neck2, neck1, body1, body2, body3};
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
+        MowzieModelRenderer[] body = new MowzieModelRenderer[] { head, neck6, neck5, neck4, neck3, neck2, neck1, body1, body2, body3 };
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
 
-        MowzieModelRenderer[] armRight = new MowzieModelRenderer[]{handRight, lowerArmRight, upperArmRight};
-        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[]{handLeft, lowerArmLeft, upperArmLeft};
+        MowzieModelRenderer[] armRight = new MowzieModelRenderer[] { handRight, lowerArmRight, upperArmRight };
+        MowzieModelRenderer[] armLeft = new MowzieModelRenderer[] { handLeft, lowerArmLeft, upperArmLeft };
 
         neck4.rotateAngleZ += (rotationYaw / (180f / (float) Math.PI)) / 5;
         neck3.rotateAngleZ += (rotationYaw / (180f / (float) Math.PI)) / 5;

@@ -56,8 +56,8 @@ public class AnimationDodo extends DinosaurAnimator
         MowzieModelRenderer rightLeg2 = model.getCube("RightLeg2");
         MowzieModelRenderer rightFoot = model.getCube("RightFeet");
 
-        MowzieModelRenderer[] neckParts = new MowzieModelRenderer[]{head, neck7, neck6, neck5, neck4, neck3, neck2, neck1};
-        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[]{bodyFront, body, bodyBack, tail};
+        MowzieModelRenderer[] neckParts = new MowzieModelRenderer[] { head, neck7, neck6, neck5, neck4, neck3, neck2, neck1 };
+        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[] { bodyFront, body, bodyBack, tail };
 
         // f = entity.ticksExisted;
         // f1 = 0.25F;

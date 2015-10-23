@@ -36,202 +36,79 @@ public class JCRecipeRegistry
         {
             GameRegistry.addShapelessRecipe(new ItemStack(block, 4), JCBlockRegistry.woods[i]);
 
-            addRecipe(new ItemStack(JCBlockRegistry.stairs[i], 4),
-                    "w  ",
-                    "ww ",
-                    "www",
-                    'w', block);
+            addRecipe(new ItemStack(JCBlockRegistry.stairs[i], 4), "w  ", "ww ", "www", 'w', block);
 
-            addRecipe(new ItemStack(JCBlockRegistry.stairs[i], 4),
-                    "  w",
-                    " ww",
-                    "www",
-                    'w', block);
+            addRecipe(new ItemStack(JCBlockRegistry.stairs[i], 4), "  w", " ww", "www", 'w', block);
 
-            addRecipe(new ItemStack(JCBlockRegistry.slabs[i], 6),
-                    "www",
-                    'w', block);
+            addRecipe(new ItemStack(JCBlockRegistry.slabs[i], 6), "www", 'w', block);
 
             i++;
         }
 
         GameRegistry.addSmelting(new ItemStack(JCBlockRegistry.gypsum_cobblestone), new ItemStack(JCBlockRegistry.gypsum_stone), 1.5F);
 
-        addRecipe(new ItemStack(JCItemRegistry.iron_blades),
-                "I I",
-                " S ",
-                "I I",
-                'I', Items.iron_ingot, 'S', Items.stick);
+        addRecipe(new ItemStack(JCItemRegistry.iron_blades), "I I", " S ", "I I", 'I', Items.iron_ingot, 'S', Items.stick);
 
-        addRecipe(new ItemStack(JCItemRegistry.iron_rod),
-                "ISI",
-                "ISI",
-                "ISI",
-                'I', Items.iron_ingot, 'S', Items.stick);
+        addRecipe(new ItemStack(JCItemRegistry.iron_rod), "ISI", "ISI", "ISI", 'I', Items.iron_ingot, 'S', Items.stick);
 
-        addRecipe(new ItemStack(JCBlockRegistry.fossil_grinder),
-                "lBl",
-                "rRr",
-                "IPI",
-                'I', Items.iron_ingot, 'R', JCItemRegistry.iron_rod, 'B', JCItemRegistry.iron_blades, 'r', Items.redstone, 'l', new ItemStack(Items.dye, 1, 4), 'P', Blocks.piston);
+        addRecipe(new ItemStack(JCBlockRegistry.fossil_grinder), "lBl", "rRr", "IPI", 'I', Items.iron_ingot, 'R', JCItemRegistry.iron_rod, 'B', JCItemRegistry.iron_blades, 'r', Items.redstone, 'l', new ItemStack(Items.dye, 1, 4), 'P', Blocks.piston);
 
-        addRecipe(new ItemStack(JCItemRegistry.plaster_and_bandage, 9),
-                "PPP",
-                "PWP",
-                "PPP",
-                'P', Items.paper, 'W', Blocks.wool);
+        addRecipe(new ItemStack(JCItemRegistry.plaster_and_bandage, 9), "PPP", "PWP", "PPP", 'P', Items.paper, 'W', Blocks.wool);
 
-        addRecipe(new ItemStack(JCItemRegistry.cage_small, 1),
-                "III",
-                "BBB",
-                "III",
-                'I', Items.iron_ingot, 'B', Blocks.iron_bars);
+        addRecipe(new ItemStack(JCItemRegistry.cage_small, 1), "III", "BBB", "III", 'I', Items.iron_ingot, 'B', Blocks.iron_bars);
 
-        addRecipe(new ItemStack(JCItemRegistry.cage_small, 1, 1),
-                "III",
-                "GBG",
-                "III",
-                'I', Items.iron_ingot, 'G', Blocks.glass_pane, 'B', Items.water_bucket);
+        addRecipe(new ItemStack(JCItemRegistry.cage_small, 1, 1), "III", "GBG", "III", 'I', Items.iron_ingot, 'G', Blocks.glass_pane, 'B', Items.water_bucket);
 
-        addRecipe(new ItemStack(JCBlockRegistry.gypsum_bricks, 4),
-                "SS",
-                "SS",
-                'S', JCBlockRegistry.gypsum_stone);
+        addRecipe(new ItemStack(JCBlockRegistry.gypsum_bricks, 4), "SS", "SS", 'S', JCBlockRegistry.gypsum_stone);
 
-        addRecipe(new ItemStack(JCBlockRegistry.cleaning_station),
-                "iii",
-                "RGR",
-                "IBI",
-                'i', Items.iron_ingot, 'B', Items.bucket, 'G', Blocks.glass_pane, 'R', Items.redstone, 'I', Blocks.iron_block);
+        addRecipe(new ItemStack(JCBlockRegistry.cleaning_station), "iii", "RGR", "IBI", 'i', Items.iron_ingot, 'B', Items.bucket, 'G', Blocks.glass_pane, 'R', Items.redstone, 'I', Blocks.iron_block);
 
-        addRecipe(new ItemStack(JCBlockRegistry.reinforced_stone, 8),
-                "PPP",
-                "PWP",
-                "PPP",
-                'P', Blocks.stone, 'W', Items.iron_ingot);
+        addRecipe(new ItemStack(JCBlockRegistry.reinforced_stone, 8), "PPP", "PWP", "PPP", 'P', Blocks.stone, 'W', Items.iron_ingot);
 
-        addRecipe(new ItemStack(JCBlockRegistry.reinforced_bricks, 8),
-                "PPP",
-                "PWP",
-                "PPP",
-                'P', Blocks.stonebrick, 'W', Items.iron_ingot);
+        addRecipe(new ItemStack(JCBlockRegistry.reinforced_bricks, 8), "PPP", "PWP", "PPP", 'P', Blocks.stonebrick, 'W', Items.iron_ingot);
 
-        addRecipe(new ItemStack(JCBlockRegistry.reinforced_bricks, 4),
-                "SS",
-                "SS",
-                'S', JCBlockRegistry.reinforced_stone);
+        addRecipe(new ItemStack(JCBlockRegistry.reinforced_bricks, 4), "SS", "SS", 'S', JCBlockRegistry.reinforced_stone);
 
-        addRecipe(new ItemStack(JCItemRegistry.empty_test_tube),
-                "I",
-                "G",
-                "G",
-                'G', Blocks.glass_pane, 'I', Items.iron_ingot);
+        addRecipe(new ItemStack(JCItemRegistry.empty_test_tube), "I", "G", "G", 'G', Blocks.glass_pane, 'I', Items.iron_ingot);
 
-        addRecipe(new ItemStack(JCItemRegistry.petri_dish),
-                "G G",
-                "GGG",
-                'G', Blocks.glass_pane);
+        addRecipe(new ItemStack(JCItemRegistry.petri_dish), "G G", "GGG", 'G', Blocks.glass_pane);
 
-        addRecipe(new ItemStack(JCItemRegistry.blue_print),
-                "BBB",
-                "BPB",
-                "BBB",
-                'B', new ItemStack(Items.dye, 1, 4), 'P', Items.paper);
+        addRecipe(new ItemStack(JCItemRegistry.blue_print), "BBB", "BPB", "BBB", 'B', new ItemStack(Items.dye, 1, 4), 'P', Items.paper);
 
-        addRecipe(new ItemStack(JCItemRegistry.empty_syringe),
-                "  N",
-                "IG ",
-                "II ",
-                'G', Blocks.glass_pane, 'I', Items.iron_ingot, 'N', JCItemRegistry.needle);
+        addRecipe(new ItemStack(JCItemRegistry.empty_syringe), "  N", "IG ", "II ", 'G', Blocks.glass_pane, 'I', Items.iron_ingot, 'N', JCItemRegistry.needle);
 
-        addRecipe(new ItemStack(JCItemRegistry.empty_syringe),
-                "N  ",
-                " GI",
-                " II",
-                'G', Blocks.glass_pane, 'I', Items.iron_ingot, 'N', JCItemRegistry.needle);
+        addRecipe(new ItemStack(JCItemRegistry.empty_syringe), "N  ", " GI", " II", 'G', Blocks.glass_pane, 'I', Items.iron_ingot, 'N', JCItemRegistry.needle);
 
         GameRegistry.addSmelting(new ItemStack(Items.potionitem, 1, 0), new ItemStack(JCItemRegistry.dna_base), 1.0F);
 
-        addRecipe(new ItemStack(JCItemRegistry.needle),
-                "GIG",
-                "GIG",
-                " I ",
-                'G', Blocks.glass_pane, 'I', Items.iron_ingot);
+        addRecipe(new ItemStack(JCItemRegistry.needle), "GIG", "GIG", " I ", 'G', Blocks.glass_pane, 'I', Items.iron_ingot);
 
-        addRecipe(new ItemStack(JCBlockRegistry.dna_extractor),
-                "III",
-                "INI",
-                "RSR",
-                'S', JCBlockRegistry.dna_sequencer, 'I', Items.iron_ingot, 'R', Items.redstone, 'N', JCItemRegistry.needle);
+        addRecipe(new ItemStack(JCBlockRegistry.dna_extractor), "III", "INI", "RSR", 'S', JCBlockRegistry.dna_sequencer, 'I', Items.iron_ingot, 'R', Items.redstone, 'N', JCItemRegistry.needle);
 
-        addRecipe(new ItemStack(JCBlockRegistry.dna_sequencer),
-                "RDR",
-                "GNG",
-                "III",
-                'G', Items.gold_ingot, 'I', Items.iron_ingot, 'N', JCItemRegistry.needle, 'D', JCItemRegistry.disc_reader, 'R', Items.redstone);
+        addRecipe(new ItemStack(JCBlockRegistry.dna_sequencer), "RDR", "GNG", "III", 'G', Items.gold_ingot, 'I', Items.iron_ingot, 'N', JCItemRegistry.needle, 'D', JCItemRegistry.disc_reader, 'R', Items.redstone);
 
-        addRecipe(new ItemStack(JCBlockRegistry.dna_synthesizer),
-                "GDG",
-                "RBR",
-                "ITI",
-                'G', Items.gold_ingot, 'I', Items.iron_ingot, 'B', Items.bucket, 'R', Items.redstone, 'D', JCItemRegistry.disc_reader);
+        addRecipe(new ItemStack(JCBlockRegistry.dna_synthesizer), "GDG", "RBR", "ITI", 'G', Items.gold_ingot, 'I', Items.iron_ingot, 'B', Items.bucket, 'R', Items.redstone, 'D', JCItemRegistry.disc_reader);
 
         for (i = 0; i < 16; i++)
         {
-            addRecipe(new ItemStack(JCBlockRegistry.cultivate_bottom, 1, i),
-                    "GGG",
-                    "GWG",
-                    "III",
-                    'G', new ItemStack(Blocks.stained_glass_pane, 1, i), 'W', Items.water_bucket, 'I', Items.iron_ingot);
+            addRecipe(new ItemStack(JCBlockRegistry.cultivate_bottom, 1, i), "GGG", "GWG", "III", 'G', new ItemStack(Blocks.stained_glass_pane, 1, i), 'W', Items.water_bucket, 'I', Items.iron_ingot);
         }
 
-        addRecipe(new ItemStack(JCBlockRegistry.embryonic_machine),
-                "GIG",
-                "GIG",
-                "III",
-                'G', Blocks.glass_pane, 'I', Items.iron_ingot);
+        addRecipe(new ItemStack(JCBlockRegistry.embryonic_machine), "GIG", "GIG", "III", 'G', Blocks.glass_pane, 'I', Items.iron_ingot);
 
-        addRecipe(new ItemStack(JCBlockRegistry.embryo_calcification_machine),
-                "GIG",
-                "GSG",
-                "III",
-                'G', Blocks.glass_pane, 'I', Items.iron_ingot, 'S', JCItemRegistry.needle);
+        addRecipe(new ItemStack(JCBlockRegistry.embryo_calcification_machine), "GIG", "GSG", "III", 'G', Blocks.glass_pane, 'I', Items.iron_ingot, 'S', JCItemRegistry.needle);
 
-        addRecipe(new ItemStack(JCBlockRegistry.incubator),
-                "GGG",
-                "RRR",
-                "III",
-                'I', Items.iron_ingot, 'R', Items.redstone, 'G', Blocks.glass);
+        addRecipe(new ItemStack(JCBlockRegistry.incubator), "GGG", "RRR", "III", 'I', Items.iron_ingot, 'R', Items.redstone, 'G', Blocks.glass);
 
-        addRecipe(new ItemStack(JCBlockRegistry.dna_combinator),
-                "IDI",
-                "GRG",
-                "III",
-                'G', Blocks.glass, 'I', Items.iron_ingot, 'R', Items.redstone, 'D', JCItemRegistry.disc_reader);
+        addRecipe(new ItemStack(JCBlockRegistry.dna_combinator), "IDI", "GRG", "III", 'G', Blocks.glass, 'I', Items.iron_ingot, 'R', Items.redstone, 'D', JCItemRegistry.disc_reader);
 
-        addRecipe(new ItemStack(JCBlockRegistry.dna_hybridizer),
-                "IRI",
-                "GIG",
-                "IRI",
-                'G', Blocks.glass, 'I', Items.iron_ingot, 'R', Items.redstone);
+        addRecipe(new ItemStack(JCBlockRegistry.dna_hybridizer), "IRI", "GIG", "IRI", 'G', Blocks.glass, 'I', Items.iron_ingot, 'R', Items.redstone);
 
-        addRecipe(new ItemStack(JCItemRegistry.laser),
-                "PRP",
-                "ILI",
-                "IGI",
-                'G', Blocks.glass, 'I', Items.iron_ingot, 'R', Items.redstone, 'P', Items.repeater, 'L', Blocks.redstone_lamp);
+        addRecipe(new ItemStack(JCItemRegistry.laser), "PRP", "ILI", "IGI", 'G', Blocks.glass, 'I', Items.iron_ingot, 'R', Items.redstone, 'P', Items.repeater, 'L', Blocks.redstone_lamp);
 
-        addRecipe(new ItemStack(JCItemRegistry.disc_reader),
-                "ILI",
-                "RNR",
-                "TPT",
-                'N', JCItemRegistry.needle, 'I', Items.iron_ingot, 'R', Items.redstone, 'T', Blocks.redstone_torch, 'L', JCItemRegistry.laser, 'P', Blocks.piston);
+        addRecipe(new ItemStack(JCItemRegistry.disc_reader), "ILI", "RNR", "TPT", 'N', JCItemRegistry.needle, 'I', Items.iron_ingot, 'R', Items.redstone, 'T', Blocks.redstone_torch, 'L', JCItemRegistry.laser, 'P', Blocks.piston);
 
-        addRecipe(new ItemStack(JCItemRegistry.storage_disc),
-                "III",
-                "IGI",
-                "III",
-                'G', Items.gold_ingot, 'I', Items.iron_ingot);
+        addRecipe(new ItemStack(JCItemRegistry.storage_disc), "III", "IGI", "III", 'G', Items.gold_ingot, 'I', Items.iron_ingot);
 
         GameRegistry.addShapelessRecipe(new ItemStack(JCItemRegistry.plant_cells_petri_dish), JCItemRegistry.plant_cells, JCItemRegistry.petri_dish);
 

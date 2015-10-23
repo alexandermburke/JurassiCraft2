@@ -17,8 +17,7 @@ public class JCNonAutoAnimSoundBase extends AIAnimation
     protected String sound;
     protected float volumeOffset;
 
-    public JCNonAutoAnimSoundBase(IAnimatedEntity entity, int duration, AnimID id, int chance, String sound,
-                                  float volumeOffset)
+    public JCNonAutoAnimSoundBase(IAnimatedEntity entity, int duration, AnimID id, int chance, String sound, float volumeOffset)
     {
         super(entity);
         this.duration = duration;

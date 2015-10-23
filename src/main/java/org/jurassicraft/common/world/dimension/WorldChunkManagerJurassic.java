@@ -13,14 +13,14 @@ public class WorldChunkManagerJurassic extends WorldChunkManager
 
     private final List<BiomeGenBase> biomesToSpawnIn;
     private final BiomeCache biomeCache;
-//    private final GenLayer biomeGenLayer;
+    // private final GenLayer biomeGenLayer;
 
     public WorldChunkManagerJurassic(long seed)
     {
         super();
-//        biomeGenLayer = GenLayerJurassic.initializeAllBiomeGenerators(seed);
-//        this.genBiomes = agenlayer[0];
-//        this.biomeIndexLayer = agenlayer[1];
+        // biomeGenLayer = GenLayerJurassic.initializeAllBiomeGenerators(seed);
+        // this.genBiomes = agenlayer[0];
+        // this.biomeIndexLayer = agenlayer[1];
         this.biomeCache = new BiomeCache(this);
         this.biomesToSpawnIn = Lists.newArrayList(WorldChunkManager.allowedBiomes);
     }

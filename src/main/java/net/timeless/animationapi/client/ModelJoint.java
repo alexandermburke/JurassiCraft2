@@ -6,10 +6,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
- * ModelJoint.java
- * This is an extension of ModelRenderer that creates two model parts: a virtual model and the real model.
- * The real model is a child of the virtual model, and by doing this, one can create better rotations
- * that do not have to only be based off of the real model.
+ * ModelJoint.java This is an extension of ModelRenderer that creates two model parts: a virtual model and the real model. The real model is a child of the virtual model, and by doing this, one can create better rotations that do not have to only be based off of the real model.
  *
  * @author thehippomaster21
  */

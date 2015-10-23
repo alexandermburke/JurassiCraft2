@@ -61,8 +61,8 @@ public class AnimationMamenchisaurus extends DinosaurAnimator
         MowzieModelRenderer stomach = model.getCube("Stomach");
         MowzieModelRenderer body = model.getCube("body");
 
-        MowzieModelRenderer[] neckParts = new MowzieModelRenderer[]{head, neck6, neck5, neck4, neck3, neck2, neck1, body};
-        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{tail5, tail4, tail3, tail2, tail1};
+        MowzieModelRenderer[] neckParts = new MowzieModelRenderer[] { head, neck6, neck5, neck4, neck3, neck2, neck1, body };
+        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[] { tail5, tail4, tail3, tail2, tail1 };
 
         float globalSpeed = 0.5F;
         float globalHeight = 0.5F;

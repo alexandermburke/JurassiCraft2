@@ -17,8 +17,8 @@ import org.jurassicraft.common.item.JCItemRegistry;
 
 public class TileDNAHybridizer extends TileMachineBase
 {
-    private int[] inputs = new int[]{0, 1, 2, 3, 4, 5};
-    private int[] outputs = new int[]{6};
+    private int[] inputs = new int[] { 0, 1, 2, 3, 4, 5 };
+    private int[] outputs = new int[] { 6 };
 
     private ItemStack[] slots = new ItemStack[7];
 
@@ -45,9 +45,9 @@ public class TileDNAHybridizer extends TileMachineBase
         Dinosaur extraGene3 = getDino(extraDNA3Disc);
         Dinosaur extraGene4 = getDino(extraDNA4Disc);
 
-        Dinosaur[] baseGenes = new Dinosaur[]{baseGene1, baseGene2};
+        Dinosaur[] baseGenes = new Dinosaur[] { baseGene1, baseGene2 };
 
-        Dinosaur[] extraGenes = new Dinosaur[]{extraGene1, extraGene2, extraGene3, extraGene4};
+        Dinosaur[] extraGenes = new Dinosaur[] { extraGene1, extraGene2, extraGene3, extraGene4 };
 
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
         {
@@ -225,7 +225,7 @@ public class TileDNAHybridizer extends TileMachineBase
         return hasCustomName() ? customName : "container.dna_hybridizer";
     }
 
-    public String getCommandSenderName() //Forge Version compatibility, keep both getName and getCommandSenderName
+    public String getCommandSenderName() // Forge Version compatibility, keep both getName and getCommandSenderName
     {
         return getName();
     }

@@ -376,13 +376,12 @@ public class JCRenderingRegistry
             for (int i = 0; i < bm.getSubBlocks(); i++)
             {
                 String path = JurassiCraft.MODID + ":metablock/" + bm.getPath() + "/" + bm.getUnlocalizedName().substring(5) + "_" + i;
-                ModelBakery.addVariantName(item, new String[]{path});
+                ModelBakery.addVariantName(item, new String[] { path });
                 ModelResourceLocation mrs = new ModelResourceLocation(path, "inventory");
                 Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, i, mrs);
             }
         }
     }
-
 
     private void registerRenderDef(RenderDinosaurDefinition renderDef)
     {

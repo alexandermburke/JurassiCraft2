@@ -168,27 +168,27 @@ public class GuiAppFlappyDino extends GuiApp
             motionY--;
 
             boolean died = false;
-//
-//            for (Map.Entry<Integer, Integer> entry : pillars.entrySet())
-//            {
-//                int renderX = x - entry.getKey();
-//                int pillarX = entry.getKey();
-//
-//                int bottomHeight = (entry.getValue() * 20) + 10;
-//                int topHeight = 139 - (((4 - entry.getValue()) * 20) - 12);
-//
-//                if(renderX > 0 && renderX < 200)
-//                {
-//                    boolean collideX = x < (pillarX + 29) && x + 30 > pillarX;
-//                    boolean collideY = y - 24 < bottomHeight || y > topHeight;
-//
-//                    if(collideX && collideY)
-//                    {
-//                        died = true;
-//                        break;
-//                    }
-//                }
-//            }
+            //
+            // for (Map.Entry<Integer, Integer> entry : pillars.entrySet())
+            // {
+            // int renderX = x - entry.getKey();
+            // int pillarX = entry.getKey();
+            //
+            // int bottomHeight = (entry.getValue() * 20) + 10;
+            // int topHeight = 139 - (((4 - entry.getValue()) * 20) - 12);
+            //
+            // if(renderX > 0 && renderX < 200)
+            // {
+            // boolean collideX = x < (pillarX + 29) && x + 30 > pillarX;
+            // boolean collideY = y - 24 < bottomHeight || y > topHeight;
+            //
+            // if(collideX && collideY)
+            // {
+            // died = true;
+            // break;
+            // }
+            // }
+            // }
 
             if (y < 20)
             {

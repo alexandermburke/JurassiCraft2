@@ -21,8 +21,8 @@ import java.util.Random;
 
 public class TileDNAExtractor extends TileMachineBase
 {
-    private int[] inputs = new int[]{0, 1};
-    private int[] outputs = new int[]{2, 3, 4, 5};
+    private int[] inputs = new int[] { 0, 1 };
+    private int[] outputs = new int[] { 2, 3, 4, 5 };
 
     private ItemStack[] slots = new ItemStack[6];
 
@@ -199,7 +199,7 @@ public class TileDNAExtractor extends TileMachineBase
         return hasCustomName() ? customName : "container.dna_extractor";
     }
 
-    public String getCommandSenderName() //Forge Version compatibility, keep both getName and getCommandSenderName
+    public String getCommandSenderName() // Forge Version compatibility, keep both getName and getCommandSenderName
     {
         return getName();
     }

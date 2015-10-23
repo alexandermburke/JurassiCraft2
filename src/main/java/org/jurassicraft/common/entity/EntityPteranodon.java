@@ -8,10 +8,10 @@ import org.jurassicraft.common.entity.base.EntityDinosaurFlyingAggressive;
 
 public class EntityPteranodon extends EntityDinosaurFlyingAggressive // implements IEntityAIFlyingCreature, ICarnivore
 {
-    private static final String[] hurtSounds = new String[]{"pteranodon_hurt_1"};
-    private static final String[] livingSounds = new String[]{"pteranodon_living_1"};
-    private static final String[] deathSounds = new String[]{"pteranodon_death_1"};
-    private static final String[] callSounds = new String[]{"pteranodon_call_1"};
+    private static final String[] hurtSounds = new String[] { "pteranodon_hurt_1" };
+    private static final String[] livingSounds = new String[] { "pteranodon_living_1" };
+    private static final String[] deathSounds = new String[] { "pteranodon_death_1" };
+    private static final String[] callSounds = new String[] { "pteranodon_call_1" };
 
     public EntityPteranodon(World world)
     {

@@ -20,8 +20,8 @@ public class AnimationBrachiosaurus extends DinosaurAnimator
     @Override
     protected void performMowzieLandAnimations(ModelDinosaur model, float f, float f1, float rotation, float rotationYaw, float rotationPitch, float partialTicks, EntityDinosaur entity)
     {
-//        f = entity.ticksExisted;
-//        f1 = 0.5F;
+        // f = entity.ticksExisted;
+        // f1 = 0.5F;
 
         MowzieModelRenderer head = model.getCube("head");
 
@@ -58,9 +58,9 @@ public class AnimationBrachiosaurus extends DinosaurAnimator
         MowzieModelRenderer front_right_foot = model.getCube("front right foot");
         MowzieModelRenderer front_left_foot = model.getCube("front left foot");
 
-        MowzieModelRenderer[] neckParts = new MowzieModelRenderer[]{head, neck7, neck6, neck5, neck4, neck3, neck2, neck1};
-        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{tail5, tail4, tail3};
-        MowzieModelRenderer[] tailParts2 = new MowzieModelRenderer[]{tail5, tail4, tail3, tail2, tail1};
+        MowzieModelRenderer[] neckParts = new MowzieModelRenderer[] { head, neck7, neck6, neck5, neck4, neck3, neck2, neck1 };
+        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[] { tail5, tail4, tail3 };
+        MowzieModelRenderer[] tailParts2 = new MowzieModelRenderer[] { tail5, tail4, tail3, tail2, tail1 };
 
         float globalSpeed = 0.4F;
         float globalHeight = 0.5F;

@@ -12,7 +12,7 @@ public class BlockList
 
     public BlockList(IBlockState blockState)
     {
-        this(new IBlockState[]{blockState}, new float[]{1f});
+        this(new IBlockState[] { blockState }, new float[] { 1f });
     }
 
     public BlockList(IBlockState[] blockStates, float[] probabilities)

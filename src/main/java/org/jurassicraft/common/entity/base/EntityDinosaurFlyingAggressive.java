@@ -29,11 +29,10 @@ public abstract class EntityDinosaurFlyingAggressive extends EntityDinosaurAggre
 
     @Override
     protected void updateFallState(double y, boolean onGroundIn, Block blockIn, BlockPos pos)
-    {
-    }
+    {}
 
     /**
-     * Moves the entity based on the specified heading.  Args: strafe, forward
+     * Moves the entity based on the specified heading. Args: strafe, forward
      */
     @Override
     public void moveEntityWithHeading(float strafe, float forward)

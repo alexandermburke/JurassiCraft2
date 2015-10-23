@@ -1,14 +1,5 @@
 /**
- * Copyright (C) 2015 by jabelar
- * This file is part of jabelar's Minecraft Forge modding examples; as such,
- * you can redistribute it and/or modify it under the terms of the GNU
- * General Public License as published by the Free Software Foundation,
- * either version 3 of the License, or (at your option) any later version.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- * For a copy of the GNU General Public License see <http://www.gnu.org/licenses/>.
+ * Copyright (C) 2015 by jabelar This file is part of jabelar's Minecraft Forge modding examples; as such, you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. For a copy of the GNU General Public License see <http://www.gnu.org/licenses/>.
  */
 
 package org.jurassicraft.common.entity.ai;
@@ -83,7 +74,7 @@ public class EntityAIJCEatGrass extends EntityAIBase
 
         AnimationAPI.sendAnimPacket((IAnimatedEntity) grassEaterEntity, AnimID.EATING);
 
-//        JurassiCraft.instance.getLogger().info("Starting eating AI for entity " + grassEaterEntity.getEntityId());
+        // JurassiCraft.instance.getLogger().info("Starting eating AI for entity " + grassEaterEntity.getEntityId());
     }
 
     /**

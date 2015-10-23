@@ -28,9 +28,9 @@ import org.jurassicraft.common.item.JCItemRegistry;
 
 public class TileCleaningStation extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
-    private static final int[] slotsTop = new int[]{0};
-    private static final int[] slotsBottom = new int[]{7, 6, 5, 4, 3, 2, 1};
-    private static final int[] slotsSides = new int[]{1}; //0 = cleaning 1 = fuel 2 = output
+    private static final int[] slotsTop = new int[] { 0 };
+    private static final int[] slotsBottom = new int[] { 7, 6, 5, 4, 3, 2, 1 };
+    private static final int[] slotsSides = new int[] { 1 }; // 0 = cleaning 1 = fuel 2 = output
 
     /**
      * The ItemStacks that hold the items currently being used in the cleaning station
@@ -69,8 +69,7 @@ public class TileCleaningStation extends TileEntityLockable implements IUpdatePl
     }
 
     /**
-     * Removes from an inventory slot (first arg) up to a specified number (second arg) of items and returns them in a
-     * new stack.
+     * Removes from an inventory slot (first arg) up to a specified number (second arg) of items and returns them in a new stack.
      */
     public ItemStack decrStackSize(int index, int count)
     {
@@ -103,8 +102,7 @@ public class TileCleaningStation extends TileEntityLockable implements IUpdatePl
     }
 
     /**
-     * When some containers are closed they call this on each slot, then drop whatever it returns as an EntityItem -
-     * like when you close a workbench GUI.
+     * When some containers are closed they call this on each slot, then drop whatever it returns as an EntityItem - like when you close a workbench GUI.
      */
     public ItemStack getStackInSlotOnClosing(int index)
     {
@@ -227,8 +225,7 @@ public class TileCleaningStation extends TileEntityLockable implements IUpdatePl
     }
 
     /**
-     * Returns the maximum stack size for a inventory slot. Seems to always be 64, possibly will be extended. *Isn't
-     * this more of a set than a get?*
+     * Returns the maximum stack size for a inventory slot. Seems to always be 64, possibly will be extended. *Isn't this more of a set than a get?*
      */
     public int getInventoryStackLimit()
     {
@@ -411,12 +408,10 @@ public class TileCleaningStation extends TileEntityLockable implements IUpdatePl
     }
 
     public void openInventory(EntityPlayer player)
-    {
-    }
+    {}
 
     public void closeInventory(EntityPlayer player)
-    {
-    }
+    {}
 
     /**
      * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
@@ -432,8 +427,7 @@ public class TileCleaningStation extends TileEntityLockable implements IUpdatePl
     }
 
     /**
-     * Returns true if automation can insert the given item in the given slot from the given side. Args: slot, item,
-     * side
+     * Returns true if automation can insert the given item in the given slot from the given side. Args: slot, item, side
      */
     public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction)
     {
@@ -441,8 +435,7 @@ public class TileCleaningStation extends TileEntityLockable implements IUpdatePl
     }
 
     /**
-     * Returns true if automation can extract the given item in the given slot from the given side. Args: slot, item,
-     * side
+     * Returns true if automation can extract the given item in the given slot from the given side. Args: slot, item, side
      */
     public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction)
     {

@@ -39,8 +39,7 @@ public abstract class EntityAIJCTarget extends EntityAIBase
      */
     private int targetSearchDelay;
     /**
-     * If  @shouldCheckSight is true, the number of ticks before the interuption of this AITastk when the entity does't
-     * see the target
+     * If @shouldCheckSight is true, the number of ticks before the interuption of this AITastk when the entity does't see the target
      */
     private int targetUnseenTicks;
 
@@ -189,8 +188,7 @@ public abstract class EntityAIJCTarget extends EntityAIBase
     protected Dinosaur dinosaur;
 
     /**
-     * A method used to see if an entity is a suitable target through a number of checks. Args : entity,
-     * canTargetInvinciblePlayer
+     * A method used to see if an entity is a suitable target through a number of checks. Args : entity, canTargetInvinciblePlayer
      */
     protected boolean isSuitableTarget(EntityLivingBase entity, boolean canTargetInvPlayer)
     {

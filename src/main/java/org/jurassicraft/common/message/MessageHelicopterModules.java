@@ -21,7 +21,8 @@ public class MessageHelicopterModules implements IMessage
     private HelicopterModuleSpot spot;
     private int heliID;
 
-    public MessageHelicopterModules() {}
+    public MessageHelicopterModules()
+    {}
 
     public MessageHelicopterModules(int heliID, EnumModulePosition pos, HelicopterModuleSpot spot)
     {
@@ -63,7 +64,7 @@ public class MessageHelicopterModules implements IMessage
                 world = ctx.getServerHandler().playerEntity.worldObj;
             }
             EntityHelicopterBase helicopter = HelicopterMessages.getHeli(world, packet.heliID);
-            if(helicopter != null)
+            if (helicopter != null)
             {
                 System.out.println(packet.heliID);
                 HelicopterModuleSpot spot = helicopter.getModuleSpot(packet.pos);

@@ -27,7 +27,6 @@ public class WorldGenGinkgo extends WorldGenAbstractTree
     public boolean generate(World worldIn, Random random, BlockPos pos)
     {
 
-
         TreeGenerator generator = new TreeGenerator(code, worldIn, pos);
         generator.placeTree();
 

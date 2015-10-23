@@ -57,7 +57,7 @@ public class JCItemRegistry
     public static ItemHelicopter helicopter_spawner;
     public static ItemBasic tracker;
 
-    //TODO more complex crafting components, eg circuit boards, ROM Drive
+    // TODO more complex crafting components, eg circuit boards, ROM Drive
 
     public void register()
     {
@@ -111,7 +111,7 @@ public class JCItemRegistry
         registerItem(plant_cells_petri_dish, "Plant Cells Petri Dish");
         registerItem(blue_print, "Blue Print");
         registerItem(cage_small, "Cage Small");
-//        registerItem(jc_sign, "JurassiCraft Sign");
+        // registerItem(jc_sign, "JurassiCraft Sign");
         registerItem(spawn_egg, "Dino Spawn Egg");
         registerItem(skull, "Skull");
         registerItem(tooth, "Tooth");
@@ -132,14 +132,14 @@ public class JCItemRegistry
         registerItem(dino_steak, "Dinosaur Steak");
 
         registerItem(helicopter_spawner, "Helicopter Spawner");
-//        registerItem(entityRemover, "Entity Remover");
+        // registerItem(entityRemover, "Entity Remover");
 
-//        for (int i = 0; i < JCEntityRegistry.getDinosaurs().size(); i++)
-//        {
-//            EcoAPI.registerEcologicalRoleFoodItem(EcoAPI.carnivore, new ItemStack(JCItemRegistry.dino_meat, 1, i));
-//            EcoAPI.registerEcologicalRoleFoodItem(EcoAPI.carnivore, new ItemStack(JCItemRegistry.dino_steak, 1, i));
-//            EcoAPI.registerEntityClassDropItems(JCEntityRegistry.getDinosaurs().get(i).getDinosaurClass(), new ItemStack[]{new ItemStack(JCItemRegistry.dino_meat, 1, i), new ItemStack(JCItemRegistry.dino_steak, 1, i)});
-//        }
+        // for (int i = 0; i < JCEntityRegistry.getDinosaurs().size(); i++)
+        // {
+        // EcoAPI.registerEcologicalRoleFoodItem(EcoAPI.carnivore, new ItemStack(JCItemRegistry.dino_meat, 1, i));
+        // EcoAPI.registerEcologicalRoleFoodItem(EcoAPI.carnivore, new ItemStack(JCItemRegistry.dino_steak, 1, i));
+        // EcoAPI.registerEntityClassDropItems(JCEntityRegistry.getDinosaurs().get(i).getDinosaurClass(), new ItemStack[]{new ItemStack(JCItemRegistry.dino_meat, 1, i), new ItemStack(JCItemRegistry.dino_steak, 1, i)});
+        // }
     }
 
     public void registerItem(Item item, String name)

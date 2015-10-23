@@ -114,7 +114,7 @@ public class BlockCultivate extends BlockContainer implements ISubBlocksBlock
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[]{COLOR});
+        return new BlockState(this, new IProperty[] { COLOR });
     }
 
     @SideOnly(Side.CLIENT)

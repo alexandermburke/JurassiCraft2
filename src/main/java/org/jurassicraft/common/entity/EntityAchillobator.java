@@ -6,10 +6,10 @@ import org.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 
 import java.util.Random;
 
-public class EntityAchillobator extends EntityDinosaurAggressive  //implements ICarnivore, IEntityAICreature
+public class EntityAchillobator extends EntityDinosaurAggressive // implements ICarnivore, IEntityAICreature
 {
-    private static final Class[] targets = {EntityCompsognathus.class, EntityPlayer.class, EntityDilophosaurus.class, EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class, EntityHypsilophodon.class, EntitySegisaurus.class, EntityProtoceratops.class, EntityOthnielia.class, EntityMicroceratus.class};
-    private static final Class[] deftargets = {EntityPlayer.class, EntityTyrannosaurus.class, EntityGiganotosaurus.class, EntitySpinosaurus.class};
+    private static final Class[] targets = { EntityCompsognathus.class, EntityPlayer.class, EntityDilophosaurus.class, EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class, EntityHypsilophodon.class, EntitySegisaurus.class, EntityProtoceratops.class, EntityOthnielia.class, EntityMicroceratus.class };
+    private static final Class[] deftargets = { EntityPlayer.class, EntityTyrannosaurus.class, EntityGiganotosaurus.class, EntitySpinosaurus.class };
 
     public EntityAchillobator(World world)
     {

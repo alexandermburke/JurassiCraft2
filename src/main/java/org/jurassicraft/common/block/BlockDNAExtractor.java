@@ -130,4 +130,3 @@ public class BlockDNAExtractor extends BlockOriented
         return true;
     }
 }
-

@@ -43,7 +43,7 @@ public class CommonProxy
         JurassiCraft.storageTypeRegistry.register();
         JurassiCraft.configurations.initConfig(event);
 
-//        addChestGenItems();
+        // addChestGenItems();
 
         GameRegistry.registerWorldGenerator(new WorldGenerator(), 0);
 

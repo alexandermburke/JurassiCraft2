@@ -101,8 +101,7 @@ public abstract class TileMachineBase extends TileEntityLockable implements IUpd
     }
 
     /**
-     * Removes from an inventory slot (first arg) up to a specified number (second arg) of items and returns them in a
-     * new stack.
+     * Removes from an inventory slot (first arg) up to a specified number (second arg) of items and returns them in a new stack.
      */
     public ItemStack decrStackSize(int index, int count)
     {
@@ -137,8 +136,7 @@ public abstract class TileMachineBase extends TileEntityLockable implements IUpd
     }
 
     /**
-     * When some containers are closed they call this on each slot, then drop whatever it returns as an EntityItem -
-     * like when you close a workbench GUI.
+     * When some containers are closed they call this on each slot, then drop whatever it returns as an EntityItem - like when you close a workbench GUI.
      */
     public ItemStack getStackInSlotOnClosing(int index)
     {
@@ -313,12 +311,10 @@ public abstract class TileMachineBase extends TileEntityLockable implements IUpd
     }
 
     public void openInventory(EntityPlayer player)
-    {
-    }
+    {}
 
     public void closeInventory(EntityPlayer player)
-    {
-    }
+    {}
 
     /**
      * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
@@ -334,8 +330,7 @@ public abstract class TileMachineBase extends TileEntityLockable implements IUpd
     }
 
     /**
-     * Returns true if automation can insert the given item in the given slot from the given side. Args: slot, item,
-     * side
+     * Returns true if automation can insert the given item in the given slot from the given side. Args: slot, item, side
      */
     public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction)
     {
@@ -434,10 +429,9 @@ public abstract class TileMachineBase extends TileEntityLockable implements IUpd
     }
 
     /**
-     * Returns true if automation can extract the given item in the given slot from the given side. Args: slot, item,
-     * side
+     * Returns true if automation can extract the given item in the given slot from the given side. Args: slot, item, side
      */
-    public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) //TODO
+    public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) // TODO
     {
         if (direction == EnumFacing.DOWN && index == 1)
         {

@@ -52,12 +52,12 @@ public class AnimationPteranodon extends DinosaurAnimator
         MowzieModelRenderer rightArm3 = model.getCube("Right Arm 3");
         MowzieModelRenderer rightArm4 = model.getCube("Right Arm 4");
 
-        MowzieModelRenderer[] neck = new MowzieModelRenderer[]{head, neck3, neck2, neck1};
-        MowzieModelRenderer[] tail = new MowzieModelRenderer[]{tail1, tail2, tail3};
-        MowzieModelRenderer[] wingLeft = new MowzieModelRenderer[]{leftArm4, leftArm3, leftArm2, leftArm1};
-        MowzieModelRenderer[] wingRight = new MowzieModelRenderer[]{rightArm4, rightArm3, rightArm2, rightArm1};
-        MowzieModelRenderer[] legLeft = new MowzieModelRenderer[]{leftThigh, leftCalf, leftUpperFoot, leftFoot};
-        MowzieModelRenderer[] legRight = new MowzieModelRenderer[]{rightThigh, rightCalf, rightUpperFoot, rightFoot};
+        MowzieModelRenderer[] neck = new MowzieModelRenderer[] { head, neck3, neck2, neck1 };
+        MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail1, tail2, tail3 };
+        MowzieModelRenderer[] wingLeft = new MowzieModelRenderer[] { leftArm4, leftArm3, leftArm2, leftArm1 };
+        MowzieModelRenderer[] wingRight = new MowzieModelRenderer[] { rightArm4, rightArm3, rightArm2, rightArm1 };
+        MowzieModelRenderer[] legLeft = new MowzieModelRenderer[] { leftThigh, leftCalf, leftUpperFoot, leftFoot };
+        MowzieModelRenderer[] legRight = new MowzieModelRenderer[] { rightThigh, rightCalf, rightUpperFoot, rightFoot };
 
         f = entity.ticksExisted;
         f1 = 1.0f;
@@ -154,36 +154,36 @@ public class AnimationPteranodon extends DinosaurAnimator
         model.chainWave(tail, 0.3f, 0.2f, 1, f, f1);
         model.chainWave(neck, 0.3f, 0.4f, 4, f, f1);
 
-//        // Twitch right
-//        animator.setAnim(AnimID.LOOKING_RIGHT);
-//        animator.startPhase(3);
-//        animator.rotate(head, 0, 0, 0.3f);
-//        animator.move(head, 1, 0, 0);
-//        animator.endPhase();
-//        animator.setStationaryPhase(19);
-//        animator.resetPhase(3);
-//
-//        // Twitch left
-//        animator.setAnim(AnimID.LOOKING_LEFT);
-//        animator.startPhase(3);
-//        animator.rotate(head, 0, 0, -0.3f);
-//        animator.move(head, -1, 0, 0);
-//        animator.endPhase();
-//        animator.setStationaryPhase(19);
-//        animator.resetPhase(3);
-//
-//        // Call
-//        animator.setAnim(AnimID.CALLING);
-//        animator.startPhase(8);
-//        animator.rotate(jaw, 0.3f, 0, 0);
-//        animator.rotate(neck1, -0.15f, 0, 0);
-//        animator.rotate(neck2, -0.15f, 0, 0);
-//        animator.rotate(head, -0.15f, 0, 0);
-//        animator.rotate(body2, -0.15f, 0, 0);
-//        animator.move(body1, 0, 2, 0);
-//        animator.endPhase();
-//        animator.setStationaryPhase(20);
-//        animator.resetPhase(6);
+        // // Twitch right
+        // animator.setAnim(AnimID.LOOKING_RIGHT);
+        // animator.startPhase(3);
+        // animator.rotate(head, 0, 0, 0.3f);
+        // animator.move(head, 1, 0, 0);
+        // animator.endPhase();
+        // animator.setStationaryPhase(19);
+        // animator.resetPhase(3);
+        //
+        // // Twitch left
+        // animator.setAnim(AnimID.LOOKING_LEFT);
+        // animator.startPhase(3);
+        // animator.rotate(head, 0, 0, -0.3f);
+        // animator.move(head, -1, 0, 0);
+        // animator.endPhase();
+        // animator.setStationaryPhase(19);
+        // animator.resetPhase(3);
+        //
+        // // Call
+        // animator.setAnim(AnimID.CALLING);
+        // animator.startPhase(8);
+        // animator.rotate(jaw, 0.3f, 0, 0);
+        // animator.rotate(neck1, -0.15f, 0, 0);
+        // animator.rotate(neck2, -0.15f, 0, 0);
+        // animator.rotate(head, -0.15f, 0, 0);
+        // animator.rotate(body2, -0.15f, 0, 0);
+        // animator.move(body1, 0, 2, 0);
+        // animator.endPhase();
+        // animator.setStationaryPhase(20);
+        // animator.resetPhase(6);
 
     }
 }

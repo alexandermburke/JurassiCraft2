@@ -33,42 +33,8 @@ public class Unilib extends BaseMod
         logger.info("Loading Unilib " + Unilib.getVersion());
         logger.info("Loading content handlers...");
         /*
-        try {
-            // Get the FML mod controller in order to change the current container later
-            LoadController controller = ObfuscationReflectionHelper.getPrivateValue(Loader.class, Loader.instance(), 16);
-            ModContainer container = ObfuscationReflectionHelper.getPrivateValue(LoadController.class, controller, 7);
-
-            // List of all the packages in which not to search for providers.
-            // Loading a class from them at this stage might crash the game!
-            List<String> forbiddenPackages = Lists.newArrayList("com.google.", "com.ibm", "akka.", "org.apache.",
-                    "net.minecraft.", "net.minecraftforge.", "com.intellij.", "com.mojang.", "com.oracle.", "com.sun.",
-                    "io.netty.", "ibxm.", "gnu.trove.", "com.typesafe.", "com.jcraft.", "javaw.", "javafx.",
-                    "org.eclipse.", "java.", "org.lwjgl.", "scala.", "paulscode.", "org.xml.", "org.w3c.", "org.omg.",
-                    "org.objectweb.asm.", "org.jcp.xml.", "org.ietf.jgss.", "oracle.", "netscape.", "sun.",
-                    "net.java.games.", "joptsimple.", "jdk.internal.", "javax.", "tv.twitch.", "sunw.", "jdk.", "LZMA.",
-                    "com.apple.", "apple.");
-            // Get all the classes from the classloader and look for providers
-            ClassPath path = ClassPath.from(ClassLoader.getSystemClassLoader());
-            for(ClassPath.ResourceInfo info : path.getResources()) {
-                if(info instanceof ClassPath.ClassInfo) {
-                    handleClass((ClassPath.ClassInfo) info, controller, container, forbiddenPackages);
-                } else {
-                    String name = info.getResourceName();
-                    if(name.startsWith("assets")) {
-                        String[] parts = name.split("/");
-                        String modid = parts[1];
-                        if(modid.equals("minecraft"))
-                            continue;
-                        String type = parts[2];
-                        if(type.equals("sounds")) {
-
-                        }
-                    }
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
+         * try { // Get the FML mod controller in order to change the current container later LoadController controller = ObfuscationReflectionHelper.getPrivateValue(Loader.class, Loader.instance(), 16); ModContainer container = ObfuscationReflectionHelper.getPrivateValue(LoadController.class, controller, 7); // List of all the packages in which not to search for providers. // Loading a class from them at this stage might crash the game! List<String> forbiddenPackages = Lists.newArrayList("com.google.", "com.ibm", "akka.", "org.apache.", "net.minecraft.", "net.minecraftforge.", "com.intellij.", "com.mojang.", "com.oracle.", "com.sun.", "io.netty.", "ibxm.", "gnu.trove.", "com.typesafe.", "com.jcraft.", "javaw.", "javafx.", "org.eclipse.", "java.", "org.lwjgl.", "scala.", "paulscode.", "org.xml.", "org.w3c.", "org.omg.", "org.objectweb.asm.", "org.jcp.xml.", "org.ietf.jgss.", "oracle.", "netscape.", "sun.", "net.java.games.", "joptsimple.", "jdk.internal.", "javax.", "tv.twitch.", "sunw.", "jdk.", "LZMA.", "com.apple.", "apple."); // Get all the classes from the classloader and look for providers ClassPath path = ClassPath.from(ClassLoader.getSystemClassLoader()); for(ClassPath.ResourceInfo info : path.getResources()) { if(info instanceof ClassPath.ClassInfo) { handleClass((ClassPath.ClassInfo) info, controller, container, forbiddenPackages); } else { String name = info.getResourceName(); if(name.startsWith("assets")) { String[] parts = name.split("/"); String modid = parts[1]; if(modid.equals("minecraft")) continue; String type = parts[2]; if(type.equals("sounds")) { } } } } } catch (IOException e) { e.printStackTrace(); }
+         */
     }
 
     private void handleClass(ClassPath.ClassInfo info, LoadController controller, ModContainer container, List<String> forbiddenPackages)
@@ -89,8 +55,7 @@ public class Unilib extends BaseMod
                 return;
             }
             Side currentSide = FMLCommonHandler.instance().getEffectiveSide();
-            if ((info.getName().toLowerCase().contains("client") && currentSide != Side.CLIENT)
-                    || (info.getName().toLowerCase().contains("server") && currentSide != Side.SERVER))
+            if ((info.getName().toLowerCase().contains("client") && currentSide != Side.CLIENT) || (info.getName().toLowerCase().contains("server") && currentSide != Side.SERVER))
             {
                 System.out.println(">> " + info.getName().toLowerCase());
                 return;

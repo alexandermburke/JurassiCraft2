@@ -68,10 +68,10 @@ public class AnimationTyrannosaurus extends DinosaurAnimator
         MowzieModelRenderer rightCalf2 = model.getCube("Right Calf 2");
         MowzieModelRenderer rightFoot = model.getCube("Foot Right");
 
-        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
-        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[]{head, neck5, neck4, neck3, neck2, neck1, chest, stomach, waist};
-        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[]{handLeft, lowerArmLeft, upperArmLeft};
-        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[]{handRight, lowerArmRight, upperArmRight};
+        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
+        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[] { head, neck5, neck4, neck3, neck2, neck1, chest, stomach, waist };
+        MowzieModelRenderer[] leftArmParts = new MowzieModelRenderer[] { handLeft, lowerArmLeft, upperArmLeft };
+        MowzieModelRenderer[] rightArmParts = new MowzieModelRenderer[] { handRight, lowerArmRight, upperArmRight };
 
         model.bob(waist, 1F * globalSpeed, height, false, f, f1);
         model.bob(leftThigh, 1F * globalSpeed, height, false, f, f1);
@@ -107,4 +107,3 @@ public class AnimationTyrannosaurus extends DinosaurAnimator
         ((EntityTyrannosaurus) parEntity).tailBuffer.applyChainSwingBuffer(tailParts);
     }
 }
-

@@ -14,7 +14,6 @@ public class TileCarnivoreFeeder extends TileEntityLockable implements IUpdatePl
 
     private String customName;
 
-
     public void setCustomInventoryName(String customName)
     {
         this.customName = customName;

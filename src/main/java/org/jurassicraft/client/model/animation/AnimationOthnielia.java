@@ -59,7 +59,7 @@ public class AnimationOthnielia extends DinosaurAnimator
         MowzieModelRenderer handLeft = model.getCube("Arm HAND LEFT");
         MowzieModelRenderer handRight = model.getCube("Arm HAND RIGHT");
 
-        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[]{tail6, tail5, tail4, tail3, tail2, tail1};
+        MowzieModelRenderer[] tailParts = new MowzieModelRenderer[] { tail6, tail5, tail4, tail3, tail2, tail1 };
 
         model.bob(bodyRear, 0.5F * speed, height, true, f, f1);
         model.bob(thighRight, 0.5F * speed, height, true, f, f1);
@@ -84,7 +84,7 @@ public class AnimationOthnielia extends DinosaurAnimator
         model.walk(lowerArmRight, 1 * speed, 0.3F, false, 1, -0.2F, f, f1);
         model.walk(lowerArmLeft, 1 * speed, 0.3F, false, 1, -0.2F, f, f1);
 
-//        parModel.faceTarget(head, 1, rotationYaw, rotationPitch);
+        // parModel.faceTarget(head, 1, rotationYaw, rotationPitch);
 
         // Idling
         model.chainWave(tailParts, 0.2F, -0.05F, 2, ticksExisted, 1F);

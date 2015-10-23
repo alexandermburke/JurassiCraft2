@@ -31,10 +31,14 @@ public class BlockIceShard extends Block
     /**
      * This returns a complete list of items dropped from this block.
      *
-     * @param world   The current world
-     * @param pos     Block position in world
-     * @param state   Current state
-     * @param fortune Breakers fortune level
+     * @param world
+     *            The current world
+     * @param pos
+     *            Block position in world
+     * @param state
+     *            Current state
+     * @param fortune
+     *            Breakers fortune level
      * @return A ArrayList containing all items this block drops
      */
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
@@ -43,7 +47,7 @@ public class BlockIceShard extends Block
 
         Random rand = world instanceof World ? ((World) world).rand : RANDOM;
 
-        if (rand.nextDouble() < 0.2) //TODO fortune makes sea lampreys more common
+        if (rand.nextDouble() < 0.2) // TODO fortune makes sea lampreys more common
         {
             ret.add(new ItemStack(JCItemRegistry.sea_lamprey));
         }

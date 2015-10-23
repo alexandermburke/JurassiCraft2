@@ -42,10 +42,10 @@ public class AnimationTylosaurus extends DinosaurAnimator
 
         float scaleFactor = 0.3F;
 
-//        f = entity.ticksExisted;
-//        f1 = 0.4F;
+        // f = entity.ticksExisted;
+        // f1 = 0.4F;
 
-        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[]{head, neck, body1, body2, body3, tail1, tail2, tail3, tail4};
+        MowzieModelRenderer[] bodyParts = new MowzieModelRenderer[] { head, neck, body1, body2, body3, tail1, tail2, tail3, tail4 };
 
         model.chainSwing(bodyParts, 1F * scaleFactor, 0.2F, -3, f, f1);
         head.rotationPointX -= 6 * f1 * Math.sin(f * scaleFactor);

@@ -93,7 +93,7 @@ public abstract class BlockJCSlab extends BlockSlab
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[]{HALF});
+        return new BlockState(this, new IProperty[] { HALF });
     }
 
     /**

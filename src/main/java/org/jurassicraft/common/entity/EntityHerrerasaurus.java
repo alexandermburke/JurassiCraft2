@@ -6,13 +6,13 @@ import org.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 
 import java.util.Random;
 
-public class EntityHerrerasaurus extends EntityDinosaurAggressive  //implements IEntityAICreature, ICarnivore
+public class EntityHerrerasaurus extends EntityDinosaurAggressive // implements IEntityAICreature, ICarnivore
 {
-    private static final String[] deathSounds = new String[]{"herrerasaurus_death_1"};
-    private static final String[] livingSounds = new String[]{"herrerasaurus_living_1"};
+    private static final String[] deathSounds = new String[] { "herrerasaurus_death_1" };
+    private static final String[] livingSounds = new String[] { "herrerasaurus_living_1" };
 
-    private static final Class[] targets = {EntityCompsognathus.class, EntityAnkylosaurus.class, EntityPlayer.class, EntityDilophosaurus.class, EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class, EntityLudodactylus.class, EntityHypsilophodon.class, EntityGallimimus.class, EntitySegisaurus.class, EntityProtoceratops.class, EntityParasaurolophus.class, EntityOthnielia.class, EntityMicroceratus.class, EntityTriceratops.class, EntityStegosaurus.class};
-    private static final Class[] deftargets = {EntityPlayer.class, EntityTyrannosaurus.class, EntityGiganotosaurus.class, EntitySpinosaurus.class};
+    private static final Class[] targets = { EntityCompsognathus.class, EntityAnkylosaurus.class, EntityPlayer.class, EntityDilophosaurus.class, EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class, EntityLudodactylus.class, EntityHypsilophodon.class, EntityGallimimus.class, EntitySegisaurus.class, EntityProtoceratops.class, EntityParasaurolophus.class, EntityOthnielia.class, EntityMicroceratus.class, EntityTriceratops.class, EntityStegosaurus.class };
+    private static final Class[] deftargets = { EntityPlayer.class, EntityTyrannosaurus.class, EntityGiganotosaurus.class, EntitySpinosaurus.class };
 
     public EntityHerrerasaurus(World world)
     {

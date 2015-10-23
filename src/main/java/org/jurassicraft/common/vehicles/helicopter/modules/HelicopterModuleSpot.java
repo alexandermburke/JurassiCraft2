@@ -50,7 +50,7 @@ public class HelicopterModuleSpot
         if (!modules.contains(m))
         {
             modules.add(m);
-            if(!moduleData.containsKey(m))
+            if (!moduleData.containsKey(m))
                 moduleData.put(m, new NBTTagCompound());
             m.onAdded(this, player, v);
             if (getHelicopter().shouldSyncModules() && !getHelicopter().worldObj.isRemote)
@@ -139,7 +139,7 @@ public class HelicopterModuleSpot
     {
         for (HelicopterModule m : modules)
         {
-            System.out.println(">> Clicked on "+m.getModuleID());
+            System.out.println(">> Clicked on " + m.getModuleID());
             if (m.onClicked(this, player, vec))
             {
                 return;

@@ -3,7 +3,7 @@ package org.jurassicraft.common.entity;
 import net.minecraft.world.World;
 import org.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbivore;
 
-public class EntityLeaellynasaura extends EntityDinosaurDefensiveHerbivore  //implements IEntityAICreature, IHerbivore
+public class EntityLeaellynasaura extends EntityDinosaurDefensiveHerbivore // implements IEntityAICreature, IHerbivore
 {
     public EntityLeaellynasaura(World world)
     {

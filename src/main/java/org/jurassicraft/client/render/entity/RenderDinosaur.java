@@ -42,7 +42,7 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
         this.random = new Random();
         this.renderDef = renderDef;
 
-        this.maleTextures = new ResourceLocation[dinosaur.getMaleTextures(EnumGrowthStage.INFANT).length][4]; //TODO
+        this.maleTextures = new ResourceLocation[dinosaur.getMaleTextures(EnumGrowthStage.INFANT).length][4]; // TODO
         this.femaleTextures = new ResourceLocation[dinosaur.getFemaleTextures(EnumGrowthStage.INFANT).length][4];
 
         for (EnumGrowthStage stage : EnumGrowthStage.values())
@@ -73,18 +73,18 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
 
         float scale = (float) entityDinosaur.transitionFromAge(renderDef.getBabyScaleAdjustment(), renderDef.getAdultScaleAdjustment());
 
-//        scale *= (((float) entityDinosaur.getScaleOffset()) * 0.09F); TODO color offset and scale offset
+        // scale *= (((float) entityDinosaur.getScaleOffset()) * 0.09F); TODO color offset and scale offset
 
-//        float color = (((float) entityDinosaur.getColorOffset()) * 0.004F);
-//
-//        if(entityDinosaur.getColorOffset() % 2 == 0)
-//        {
-//            GL11.glColor3f(1.0F + color, 1.0F - color, 1.0F + color);
-//        }
-//        else
-//        {
-//            GL11.glColor3f(1.0F - color, 1.0F + color, 1.0F - color);
-//        }
+        // float color = (((float) entityDinosaur.getColorOffset()) * 0.004F);
+        //
+        // if(entityDinosaur.getColorOffset() % 2 == 0)
+        // {
+        // GL11.glColor3f(1.0F + color, 1.0F - color, 1.0F + color);
+        // }
+        // else
+        // {
+        // GL11.glColor3f(1.0F - color, 1.0F + color, 1.0F - color);
+        // }
 
         shadowSize = scale * renderDef.getShadowSize();
 

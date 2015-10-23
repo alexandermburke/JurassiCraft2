@@ -46,9 +46,7 @@ public class Tree
     public static Block getBlocksFromCode(int code)
     {
 
-
         return JCBlockRegistry.woods[code];
-
 
     }
 
@@ -146,9 +144,9 @@ public class Tree
         // adding the first insert point to the tree. It is placed above the main block (supposedly the TileEntity).
         insPList.add(new InsPCoord(TrunkList[random.nextInt(TrunkList.length)], InsPType.getTypeIndex(InsPType.trunk), 0, 0, 0, 0, 1, 0, 0, 0));
 
-		/*
+        /*
          * ROTATION AND SHAPE ARE DETERMINED IN THE INSERTPOINT BEFORE THE FEATURE. ALSO REMEMBER THAT SHAPES ARE ALWAYS FACING EAST AT THE BEGGINING.
-		 */
+         */
 
         // generating the tree to the maximum level of complexity, AKA the maximum number of added levels you will find.
         for (int i = 1; i < maxAge; i++)
@@ -307,8 +305,7 @@ public class Tree
                     insPList.get(j).turnBuilt();
 
                     // add the new insert point generating the rotation and shape for the next feature at random.
-                    insPList.add(new InsPCoord(TrunkList[new Random().nextInt(TrunkList.length)], InsPType.getTypeIndex(type), xC, yC, zC, i, 1, 0, newRotation,
-                            insertp.getLeaves() ? 1 : 0));
+                    insPList.add(new InsPCoord(TrunkList[new Random().nextInt(TrunkList.length)], InsPType.getTypeIndex(type), xC, yC, zC, i, 1, 0, newRotation, insertp.getLeaves() ? 1 : 0));
 
                 }
                 else
@@ -320,8 +317,7 @@ public class Tree
                     if (insertp.growLeaves)
                     {
 
-                        insPList.add(new InsPCoord(LeafList[new Random().nextInt(LeafList.length)], InsPType.getTypeIndex(type), xC, yC, zC, i, 0, 0,
-                                Rotation.getRotationIndex(insertp.rotation), insertp.getLeaves() ? 1 : 0));
+                        insPList.add(new InsPCoord(LeafList[new Random().nextInt(LeafList.length)], InsPType.getTypeIndex(type), xC, yC, zC, i, 0, 0, Rotation.getRotationIndex(insertp.rotation), insertp.getLeaves() ? 1 : 0));
                     }
                     else
                     {
@@ -332,8 +328,7 @@ public class Tree
                             if (insertp.rotation == Rotation.none)
                             {
 
-                                insPList.add(new InsPCoord(BranchList[new Random().nextInt(BranchList.length)], InsPType.getTypeIndex(type), xC, yC, zC, i, 0, 0,
-                                        Rotation.getRotationIndex(insertp.rotation), insertp.getLeaves() ? 1 : 0));
+                                insPList.add(new InsPCoord(BranchList[new Random().nextInt(BranchList.length)], InsPType.getTypeIndex(type), xC, yC, zC, i, 0, 0, Rotation.getRotationIndex(insertp.rotation), insertp.getLeaves() ? 1 : 0));
 
                             }
                             else
@@ -342,8 +337,7 @@ public class Tree
                                 if (insPList.get(j).getY() > i * lowerBranchLevel)
 
                                 {
-                                    insPList.add(new InsPCoord(shape.getCode(), InsPType.getTypeIndex(type), xC, yC, zC, i, 0, 0, Rotation.getRotationIndex(insertp.rotation),
-                                            insertp.getLeaves() ? 1 : 0));
+                                    insPList.add(new InsPCoord(shape.getCode(), InsPType.getTypeIndex(type), xC, yC, zC, i, 0, 0, Rotation.getRotationIndex(insertp.rotation), insertp.getLeaves() ? 1 : 0));
                                 }
 
                             }

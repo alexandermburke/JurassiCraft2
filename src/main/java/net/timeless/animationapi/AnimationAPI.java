@@ -21,8 +21,7 @@ public class AnimationAPI
 {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent e)
-    {
-    }
+    {}
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent e)
@@ -80,7 +79,7 @@ public class AnimationAPI
 
     static
     {
-        fTimer = new String[]{"field_71428_T", "S", "timer"};
+        fTimer = new String[] { "field_71428_T", "S", "timer" };
     }
 
     public static CommonProxy getProxy()

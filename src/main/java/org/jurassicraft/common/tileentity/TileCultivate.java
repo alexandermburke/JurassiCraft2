@@ -36,9 +36,9 @@ import java.util.Random;
 
 public class TileCultivate extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
-    private static final int[] slotsTop = new int[]{0, 1}; //input (embryo + nutrients)
-    private static final int[] slotsBottom = new int[]{4}; //output
-    private static final int[] slotsSides = new int[]{2, 3}; //buckets
+    private static final int[] slotsTop = new int[] { 0, 1 }; // input (embryo + nutrients)
+    private static final int[] slotsBottom = new int[] { 4 }; // output
+    private static final int[] slotsSides = new int[] { 2, 3 }; // buckets
 
     private int waterLevel;
 
@@ -78,8 +78,7 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
     }
 
     /**
-     * Removes from an inventory slot (first arg) up to a specified number (second arg) of items and returns them in a
-     * new stack.
+     * Removes from an inventory slot (first arg) up to a specified number (second arg) of items and returns them in a new stack.
      */
     @Override
     public ItemStack decrStackSize(int index, int count)
@@ -113,8 +112,7 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
     }
 
     /**
-     * When some containers are closed they call this on each slot, then drop whatever it returns as an EntityItem -
-     * like when you close a workbench GUI.
+     * When some containers are closed they call this on each slot, then drop whatever it returns as an EntityItem - like when you close a workbench GUI.
      */
     @Override
     public ItemStack getStackInSlotOnClosing(int index)
@@ -250,8 +248,7 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
     }
 
     /**
-     * Returns the maximum stack size for a inventory slot. Seems to always be 64, possibly will be extended. *Isn't
-     * this more of a set than a get?*
+     * Returns the maximum stack size for a inventory slot. Seems to always be 64, possibly will be extended. *Isn't this more of a set than a get?*
      */
     @Override
     public int getInventoryStackLimit()
@@ -528,13 +525,11 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
 
     @Override
     public void openInventory(EntityPlayer player)
-    {
-    }
+    {}
 
     @Override
     public void closeInventory(EntityPlayer player)
-    {
-    }
+    {}
 
     /**
      * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
@@ -552,8 +547,7 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
     }
 
     /**
-     * Returns true if automation can insert the given item in the given slot from the given side. Args: slot, item,
-     * side
+     * Returns true if automation can insert the given item in the given slot from the given side. Args: slot, item, side
      */
     @Override
     public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction)
@@ -562,8 +556,7 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
     }
 
     /**
-     * Returns true if automation can extract the given item in the given slot from the given side. Args: slot, item,
-     * side
+     * Returns true if automation can extract the given item in the given slot from the given side. Args: slot, item, side
      */
     @Override
     public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction)

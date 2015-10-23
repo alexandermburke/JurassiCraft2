@@ -7,8 +7,8 @@ import org.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbivore;
 
 public class EntityHypsilophodon extends EntityDinosaurDefensiveHerbivore // implements IEntityAICreature, IHerbivore
 {
-    private static final String[] hurtSounds = new String[]{"hypsilophodon_hurt_1", "hypsilophodon_hurt_2"};
-    private static final String[] livingSounds = new String[]{"hypsilophodon_living_1", "hypsilophodon_living_2", "hypsilophodon_living_3", "hypsilophodon_living_4"};
+    private static final String[] hurtSounds = new String[] { "hypsilophodon_hurt_1", "hypsilophodon_hurt_2" };
+    private static final String[] livingSounds = new String[] { "hypsilophodon_living_1", "hypsilophodon_living_2", "hypsilophodon_living_3", "hypsilophodon_living_4" };
 
     public EntityHypsilophodon(World world)
     {

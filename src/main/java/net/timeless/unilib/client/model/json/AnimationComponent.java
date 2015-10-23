@@ -5,8 +5,7 @@ import java.util.ArrayList;
 /**
  * Container for Tabula animation components.
  *
- * @author Gegy1000
- *         TAKEN FROM LLIBRARY
+ * @author Gegy1000 TAKEN FROM LLIBRARY
  */
 public class AnimationComponent
 {

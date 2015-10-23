@@ -16,14 +16,14 @@ public class ItemJCLog extends ItemBlock
     }
 
     @Override
-    public int getMetadata(int metadata) //In here we extend ItemBlock and return metadata (the block's metadata) for the item damage
+    public int getMetadata(int metadata) // In here we extend ItemBlock and return metadata (the block's metadata) for the item damage
     {
         return metadata;
     }
 
     public String getItemStackDisplayName(ItemStack stack)
     {
-        //So there I specify the lang
-        return new AdvLang("tile.jc_wood.name").withProperty("wood", "wood." + stack.getItemDamage() + ".name").build(); //For now will use wood lang in this format: wood.0.name
+        // So there I specify the lang
+        return new AdvLang("tile.jc_wood.name").withProperty("wood", "wood." + stack.getItemDamage() + ".name").build(); // For now will use wood lang in this format: wood.0.name
     }
 }

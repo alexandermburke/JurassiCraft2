@@ -70,7 +70,7 @@ public class BlockMeta extends Block
     @Override
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[]{TYPE});
+        return new BlockState(this, new IProperty[] { TYPE });
     }
 
 }

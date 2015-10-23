@@ -14,8 +14,7 @@ public class MessageChangeTemperature implements IMessage
     private BlockPos pos;
 
     public MessageChangeTemperature()
-    {
-    }
+    {}
 
     public MessageChangeTemperature(BlockPos pos, int slot, int temp)
     {

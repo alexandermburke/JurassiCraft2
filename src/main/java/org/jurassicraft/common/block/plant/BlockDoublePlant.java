@@ -63,7 +63,7 @@ public class BlockDoublePlant extends BlockBush
 
             if (!flag)
             {
-                this.dropBlockAsItem(worldIn, pos, state, 0); //Forge move above the setting to air.
+                this.dropBlockAsItem(worldIn, pos, state, 0); // Forge move above the setting to air.
             }
 
             if (object == this)
@@ -82,7 +82,7 @@ public class BlockDoublePlant extends BlockBush
     {
         if (state.getBlock() != this)
         {
-            return super.canBlockStay(worldIn, pos, state); //Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
+            return super.canBlockStay(worldIn, pos, state); // Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
         }
         if (state.getValue(HALF) == BlockDoublePlant.EnumBlockHalf.UPPER)
         {
@@ -98,7 +98,8 @@ public class BlockDoublePlant extends BlockBush
     /**
      * Get the Item that this Block should drop when harvested.
      *
-     * @param fortune the level of the Fortune enchantment on the player's tool
+     * @param fortune
+     *            the level of the Fortune enchantment on the player's tool
      */
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
@@ -169,8 +170,7 @@ public class BlockDoublePlant extends BlockBush
     }
 
     /**
-     * Get the actual Block state of this Block at the given position. This applies properties not visible in the
-     * metadata, such as fence connections.
+     * Get the actual Block state of this Block at the given position. This applies properties not visible in the metadata, such as fence connections.
      */
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
     {
@@ -187,13 +187,13 @@ public class BlockDoublePlant extends BlockBush
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[]{HALF});
+        return new BlockState(this, new IProperty[] { HALF });
     }
 
     @Override
     public boolean removedByPlayer(World world, BlockPos pos, EntityPlayer player, boolean willHarvest)
     {
-        //Forge: Break both parts on the client to prevent the top part flickering as default type for a few frames.
+        // Forge: Break both parts on the client to prevent the top part flickering as default type for a few frames.
         IBlockState state = world.getBlockState(pos);
         if (state.getBlock() == this && state.getValue(HALF) == EnumBlockHalf.LOWER && world.getBlockState(pos.up()).getBlock() == this)
         {
@@ -204,8 +204,7 @@ public class BlockDoublePlant extends BlockBush
 
     static enum EnumBlockHalf implements IStringSerializable
     {
-        UPPER,
-        LOWER;
+        UPPER, LOWER;
 
         public String toString()
         {

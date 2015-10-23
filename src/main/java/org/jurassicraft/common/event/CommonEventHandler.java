@@ -22,7 +22,7 @@ import org.jurassicraft.common.item.JCItemRegistry;
 
 public class CommonEventHandler
 {
-    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+    @SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
     public void entityConstructing(EntityConstructing event)
     {
         if (event.entity instanceof EntityPlayer)
@@ -31,7 +31,7 @@ public class CommonEventHandler
         }
     }
 
-    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+    @SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
     public void onEntityJoinWorld(EntityJoinWorldEvent event)
     {
         if (event.entity instanceof EntityPlayer)
@@ -40,8 +40,8 @@ public class CommonEventHandler
             player.addStat(JCAchievements.jurassicraft, 1);
         }
     }
-    
-    @SubscribeEvent(priority=EventPriority.HIGHEST, receiveCanceled=true)
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST, receiveCanceled = true)
     public void onCheckSpawn(CheckSpawn event)
     {
         if (event.entityLiving instanceof EntityDinosaur)
@@ -66,11 +66,11 @@ public class CommonEventHandler
             {
                 JurassiCraft.instance.getLogger().debug("Denying spawn for non-dino");
                 event.setResult(Result.DENY);
-            }      
-        }       
+            }
+        }
     }
 
-    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+    @SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
     public void onItemPickup(PlayerEvent.ItemPickupEvent event)
     {
         if (event.pickedUp.getEntityItem().getItem() == JCItemRegistry.amber)
@@ -79,13 +79,13 @@ public class CommonEventHandler
         }
     }
 
-    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+    @SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
     public void worldLoad(WorldEvent.Load event)
     {
         event.world.getGameRules().addGameRule("dinoMetabolism", "true", GameRules.ValueType.BOOLEAN_VALUE);
     }
 
-    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+    @SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
     public void onCraft(PlayerEvent.ItemCraftedEvent event)
     {
         Item item = event.crafting.getItem();
@@ -112,7 +112,7 @@ public class CommonEventHandler
         }
     }
 
-    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+    @SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
     public void livingHurt(LivingHurtEvent event)
     {
         if (event.entityLiving instanceof EntityDinosaur)

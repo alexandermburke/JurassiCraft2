@@ -12,8 +12,8 @@ import org.jurassicraft.common.item.JCItemRegistry;
 
 public class TileEmbryonicMachine extends TileMachineBase
 {
-    private int[] inputs = new int[]{0, 1, 2};
-    private int[] outputs = new int[]{3, 4, 5, 6};
+    private int[] inputs = new int[] { 0, 1, 2 };
+    private int[] outputs = new int[] { 3, 4, 5, 6 };
 
     private ItemStack[] slots = new ItemStack[7];
 
@@ -147,7 +147,7 @@ public class TileEmbryonicMachine extends TileMachineBase
         return hasCustomName() ? customName : "container.embryonic_machine";
     }
 
-    public String getCommandSenderName() //Forge Version compatibility, keep both getName and getCommandSenderName
+    public String getCommandSenderName() // Forge Version compatibility, keep both getName and getCommandSenderName
     {
         return getName();
     }
