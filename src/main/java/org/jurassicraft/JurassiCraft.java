@@ -2,6 +2,8 @@ package org.jurassicraft;
 
 import java.io.File;
 
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.GameRules;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -10,6 +12,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
+import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import org.apache.logging.log4j.Logger;
 import org.jurassicraft.common.achievements.JCAchievements;
 import org.jurassicraft.common.block.JCBlockRegistry;
@@ -82,6 +85,17 @@ public class JurassiCraft
     { 
         proxy.postInit(event);
         logger.info("Finished loaded JurassiCraft!");
+    }
+
+    @Mod.EventHandler
+    public void serverStart(FMLServerStartedEvent event)
+    {
+        GameRules gameRules = MinecraftServer.getServer().worldServerForDimension(0).getGameRules();
+
+        if (!gameRules.hasRule("dinoMetabolism"))
+        {
+            gameRules.addGameRule("dinoMetabolism", "true", GameRules.ValueType.BOOLEAN_VALUE);
+        }
     }
 
     public Logger getLogger()

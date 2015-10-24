@@ -54,6 +54,14 @@ entity.megapiranha.name=Megapiranha
 entity.baryonyx.name=Baryonyx
 entity.cearadactylus.name=Cearadactylus
 entity.mamenchisaurus.name=Mamenchisaurus
+entity.chasmosaurus.name=Chasmosaurus
+entity.corythosaurus.name=Corythosaurus
+entity.edmontosaurus.name=Edmontosaurus
+entity.lambeosaurus.name=Lambeosaurus
+entity.metriacanthosaurus.name=Metriacanthosaurus
+entity.moganopterus.name=Moganopterus
+entity.ornithomimus.name=Ornithomimus
+entity.zhenyuanopterus.name=Zhenyuanopterus
 
 //Items ==================================================
 item.rock_pick.name=Rock Pick

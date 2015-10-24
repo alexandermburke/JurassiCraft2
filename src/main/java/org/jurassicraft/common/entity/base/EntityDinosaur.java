@@ -15,6 +15,7 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -94,13 +95,15 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
         tailBuffer = new ChainBuffer(getTailBoxCount());
 
-        energy = 12000;
-        water = 12000;
+        energy = 24000;
+        water = 24000;
 
         if (!dinosaur.isMarineAnimal())
         {
             tasks.addTask(0, new EntityAISwimming(this));
         }
+
+        tasks.addTask(0, new EntityAIWander(this, 0.8));
 
         tasks.addTask(0, new EntityAIMetabolism(this));
         tasks.addTask(1, new EntityAIDrink(this));
@@ -247,12 +250,12 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
     public void setWater(int water)
     {
-        this.water = Math.min(water, 24000);
+        this.water = Math.min(water, 48000);
     }
 
     public void setEnergy(int energy)
     {
-        this.energy = Math.min(energy, 24000);
+        this.energy = Math.min(energy, 48000);
     }
 
     @Override
@@ -385,7 +388,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
         if (this.isWet())
         {
-            water = 24000;
+            water = 48000;
         }
 
         if (!this.isDead && ticksExisted % 8 == 0)
@@ -467,6 +470,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
             animTick++;
         }
     }
+
 
     public int getDaysExisted()
     {

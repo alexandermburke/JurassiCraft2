@@ -63,7 +63,7 @@ public class DinosaurTriceratops extends Dinosaur
     @Override
     public double getBabySpeed()
     {
-        return 0.42;
+        return 0.37;
     }
 
     @Override
@@ -75,7 +75,7 @@ public class DinosaurTriceratops extends Dinosaur
     @Override
     public double getAdultSpeed()
     {
-        return 0.40;
+        return 0.35;
     }
 
     @Override

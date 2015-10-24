@@ -105,7 +105,7 @@ public class DinosaurParasaurolophus extends Dinosaur
     @Override
     public int getMaximumAge()
     {
-        return fromDays(50);
+        return fromDays(45);
     }
 
     @Override

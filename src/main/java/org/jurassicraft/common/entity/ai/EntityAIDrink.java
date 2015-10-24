@@ -27,7 +27,7 @@ public class EntityAIDrink extends EntityAIBase
 
         if (!dinosaur.isDead && !dinosaur.isCarcass() && dinosaur.ticksExisted % 8 == 0 && dinosaur.worldObj.getGameRules().getGameRuleBooleanValue("dinoMetabolism"))
         {
-            if (water < 12000 + (dinosaur.getRNG().nextInt(50) - 25))
+            if (water < 24000 + (dinosaur.getRNG().nextInt(50) - 25))
             {
                 int posX = (int) dinosaur.posX;
                 int posY = (int) dinosaur.posY;

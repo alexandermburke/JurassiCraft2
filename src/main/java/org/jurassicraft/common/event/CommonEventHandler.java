@@ -48,12 +48,6 @@ public class CommonEventHandler
     }
 
     @SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
-    public void worldLoad(WorldEvent.Load event)
-    {
-        event.world.getGameRules().addGameRule("dinoMetabolism", "true", GameRules.ValueType.BOOLEAN_VALUE);
-    }
-
-    @SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
     public void onCraft(PlayerEvent.ItemCraftedEvent event)
     {
         Item item = event.crafting.getItem();
