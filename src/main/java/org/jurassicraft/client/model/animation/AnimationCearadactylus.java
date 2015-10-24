@@ -6,15 +6,15 @@ import net.timeless.animationapi.client.Animator;
 import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 import org.jurassicraft.client.model.ModelDinosaur;
-import org.jurassicraft.common.dinosaur.DinosaurCearadactylus;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+import org.jurassicraft.common.entity.base.JCEntityRegistry;
 
 @SideOnly(Side.CLIENT)
 public class AnimationCearadactylus extends DinosaurAnimator
 {
     public AnimationCearadactylus()
     {
-        super(new DinosaurCearadactylus());
+        super(JCEntityRegistry.cearadactylus);
     }
 
     @Override

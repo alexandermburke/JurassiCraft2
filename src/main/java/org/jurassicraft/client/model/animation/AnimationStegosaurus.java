@@ -6,16 +6,16 @@ import net.timeless.animationapi.client.Animator;
 import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 import org.jurassicraft.client.model.ModelDinosaur;
-import org.jurassicraft.common.dinosaur.DinosaurStegosaurus;
 import org.jurassicraft.common.entity.EntityStegosaurus;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+import org.jurassicraft.common.entity.base.JCEntityRegistry;
 
 @SideOnly(Side.CLIENT)
 public class AnimationStegosaurus extends DinosaurAnimator
 {
     public AnimationStegosaurus()
     {
-        super(new DinosaurStegosaurus());
+        super(JCEntityRegistry.stegosaurus);
     }
 
     @Override

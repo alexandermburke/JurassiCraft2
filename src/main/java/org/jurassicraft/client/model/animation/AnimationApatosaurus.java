@@ -5,16 +5,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 import org.jurassicraft.client.model.ModelDinosaur;
-import org.jurassicraft.common.dinosaur.DinosaurApatosaurus;
 import org.jurassicraft.common.entity.EntityApatosaurus;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+import org.jurassicraft.common.entity.base.JCEntityRegistry;
 
 @SideOnly(Side.CLIENT)
 public class AnimationApatosaurus extends DinosaurAnimator
 {
     public AnimationApatosaurus()
     {
-        super(new DinosaurApatosaurus());
+        super(JCEntityRegistry.apatosaurus);
     }
 
     @Override

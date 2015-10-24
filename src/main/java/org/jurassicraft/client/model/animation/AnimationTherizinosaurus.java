@@ -5,9 +5,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 import org.jurassicraft.client.model.ModelDinosaur;
-import org.jurassicraft.common.dinosaur.DinosaurTherizinosaurus;
 import org.jurassicraft.common.entity.EntityTherizinosaurus;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+import org.jurassicraft.common.entity.base.JCEntityRegistry;
 
 @SideOnly(Side.CLIENT)
 public class AnimationTherizinosaurus extends DinosaurAnimator
@@ -15,7 +15,7 @@ public class AnimationTherizinosaurus extends DinosaurAnimator
 
     public AnimationTherizinosaurus()
     {
-        super(new DinosaurTherizinosaurus());
+        super(JCEntityRegistry.therizinosaurus);
     }
 
     @Override

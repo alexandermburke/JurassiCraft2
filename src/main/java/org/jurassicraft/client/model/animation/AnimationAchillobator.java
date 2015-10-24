@@ -6,16 +6,16 @@ import net.timeless.animationapi.client.Animator;
 import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 import org.jurassicraft.client.model.ModelDinosaur;
-import org.jurassicraft.common.dinosaur.DinosaurAchillobator;
 import org.jurassicraft.common.entity.EntityAchillobator;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+import org.jurassicraft.common.entity.base.JCEntityRegistry;
 
 @SideOnly(Side.CLIENT)
 public class AnimationAchillobator extends DinosaurAnimator
 {
     public AnimationAchillobator()
     {
-        super(new DinosaurAchillobator());
+        super(JCEntityRegistry.achillobator);
     }
 
     @Override

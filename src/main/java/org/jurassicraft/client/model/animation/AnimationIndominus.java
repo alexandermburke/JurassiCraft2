@@ -6,16 +6,16 @@ import net.timeless.animationapi.client.Animator;
 import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 import org.jurassicraft.client.model.ModelDinosaur;
-import org.jurassicraft.common.dinosaur.DinosaurIndominus;
 import org.jurassicraft.common.entity.EntityIndominus;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+import org.jurassicraft.common.entity.base.JCEntityRegistry;
 
 @SideOnly(Side.CLIENT)
 public class AnimationIndominus extends DinosaurAnimator
 {
     public AnimationIndominus()
     {
-        super(new DinosaurIndominus());
+        super(JCEntityRegistry.indominus);
     }
 
     @Override

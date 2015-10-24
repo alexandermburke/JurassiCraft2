@@ -7,15 +7,15 @@ import net.timeless.animationapi.client.Animator;
 import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 import org.jurassicraft.client.model.ModelDinosaur;
-import org.jurassicraft.common.dinosaur.DinosaurDodo;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+import org.jurassicraft.common.entity.base.JCEntityRegistry;
 
 @SideOnly(Side.CLIENT)
 public class AnimationDodo extends DinosaurAnimator
 {
     public AnimationDodo()
     {
-        super(new DinosaurDodo());
+        super(JCEntityRegistry.dodo);
     }
 
     @Override

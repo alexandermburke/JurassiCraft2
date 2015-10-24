@@ -4,15 +4,15 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.DinosaurAnimator;
 import org.jurassicraft.client.model.ModelDinosaur;
-import org.jurassicraft.common.dinosaur.DinosaurLeptictidium;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+import org.jurassicraft.common.entity.base.JCEntityRegistry;
 
 @SideOnly(Side.CLIENT)
 public class AnimationLeptictidium extends DinosaurAnimator
 {
     public AnimationLeptictidium()
     {
-        super(new DinosaurLeptictidium());
+        super(JCEntityRegistry.leptictidium);
     }
 
     @Override
