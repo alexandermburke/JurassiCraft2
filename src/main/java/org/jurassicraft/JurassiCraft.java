@@ -66,19 +66,21 @@ public class JurassiCraft
         logger.info("Loading JurassiCraft...");
         timerNanoseconds = System.nanoTime();
         proxy.preInit(event);
+        logger.debug("Finished pre-init for JurassiCraft!");
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
-        proxy.init();
+        proxy.init(event);
+        logger.debug("Finished init for JurassiCraft!");
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event)
-    {
-        proxy.postInit();
-        logger.info("Successfully loaded JurassiCraft!");
+    { 
+        proxy.postInit(event);
+        logger.info("Finished loaded JurassiCraft!");
     }
 
     public Logger getLogger()

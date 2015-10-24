@@ -6,14 +6,11 @@ import net.minecraft.world.GameRules;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn;
 import net.minecraftforge.event.world.WorldEvent;
-import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
-import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.achievements.JCAchievements;
 import org.jurassicraft.common.block.JCBlockRegistry;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
@@ -38,38 +35,6 @@ public class CommonEventHandler
         {
             EntityPlayer player = (EntityPlayer) event.entity;
             player.addStat(JCAchievements.jurassicraft, 1);
-        }
-    }
-
-    @SubscribeEvent(priority = EventPriority.HIGHEST, receiveCanceled = true)
-    public void onCheckSpawn(CheckSpawn event)
-    {
-        if (!event.isCanceled())
-        {
-            if (event.entityLiving instanceof EntityDinosaur)
-            {
-                if (JurassiCraft.spawnDinosNaturally)
-                {
-                    event.setResult(event.getResult());
-                }
-                else
-                {
-                    event.setResult(Result.DENY);
-                }
-            }
-            else
-            {
-                if (JurassiCraft.spawnNonDinoMobsNaturally)
-                {
-                    JurassiCraft.instance.getLogger().debug("Allowing spawn for non-dino");
-                    event.setResult(event.getResult());
-                }
-                else
-                {
-                    JurassiCraft.instance.getLogger().debug("Denying spawn for non-dino");
-                    event.setResult(Result.DENY);
-                }
-            }
         }
     }
 
