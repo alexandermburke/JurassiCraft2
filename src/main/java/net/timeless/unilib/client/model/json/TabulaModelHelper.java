@@ -20,8 +20,12 @@ public class TabulaModelHelper
             path += ".tbl";
         }
 
-        try (ZipInputStream inputStream = new ZipInputStream(Unilib.class.getResourceAsStream(path)))
+        ZipInputStream inputStream = null;
+
+        try
         {
+            inputStream = new ZipInputStream(Unilib.class.getResourceAsStream(path));
+
             ZipEntry entry;
             JsonTabulaModel parseTabulaModel = null;
 
@@ -34,7 +38,16 @@ public class TabulaModelHelper
                 }
             }
 
+            inputStream.close();
+
             return parseTabulaModel;
+        }
+        finally
+        {
+            if (inputStream != null)
+            {
+                inputStream.close();
+            }
         }
     }
 

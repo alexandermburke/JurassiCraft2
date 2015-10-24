@@ -80,11 +80,22 @@ public class ASMTransformer implements IClassTransformer
                 TraceClassVisitor visitor = new TraceClassVisitor(new PrintWriter(new FileWriter(textFile)));
                 reader.accept(visitor, 0);
                 File classFile = createFile(folder, className, "class");
-                // FIXME: Does not work with Java 1.6, which Minecraft is built for!
-                try (FileOutputStream out = new FileOutputStream(classFile))
+
+                FileOutputStream out = null;
+
+                try
                 {
+                    out = new FileOutputStream(classFile);
+
                     out.write(bytes);
                     out.flush();
+                }
+                finally
+                {
+                    if (out != null)
+                    {
+                        out.close();
+                    }
                 }
             }
             catch (IOException e)
