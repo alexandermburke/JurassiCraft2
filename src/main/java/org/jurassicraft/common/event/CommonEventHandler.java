@@ -44,28 +44,31 @@ public class CommonEventHandler
     @SubscribeEvent(priority = EventPriority.HIGHEST, receiveCanceled = true)
     public void onCheckSpawn(CheckSpawn event)
     {
-        if (event.entityLiving instanceof EntityDinosaur)
+        if (!event.isCanceled())
         {
-            if (JurassiCraft.spawnDinosNaturally)
+            if (event.entityLiving instanceof EntityDinosaur)
             {
-                event.setResult(Result.ALLOW);
+                if (JurassiCraft.spawnDinosNaturally)
+                {
+                    event.setResult(event.getResult());
+                }
+                else
+                {
+                    event.setResult(Result.DENY);
+                }
             }
             else
             {
-                event.setResult(Result.DENY);
-            }
-        }
-        else
-        {
-            if (JurassiCraft.spawnNonDinoMobsNaturally)
-            {
-                JurassiCraft.instance.getLogger().debug("Allowing spawn for non-dino");
-                event.setResult(Result.ALLOW);
-            }
-            else
-            {
-                JurassiCraft.instance.getLogger().debug("Denying spawn for non-dino");
-                event.setResult(Result.DENY);
+                if (JurassiCraft.spawnNonDinoMobsNaturally)
+                {
+                    JurassiCraft.instance.getLogger().debug("Allowing spawn for non-dino");
+                    event.setResult(event.getResult());
+                }
+                else
+                {
+                    JurassiCraft.instance.getLogger().debug("Denying spawn for non-dino");
+                    event.setResult(Result.DENY);
+                }
             }
         }
     }
