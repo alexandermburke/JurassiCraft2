@@ -5,9 +5,9 @@ import org.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbivore;
 
 import java.lang.Override;
 
-public class EntityOrnithomimus extends EntityDinosaurDefensiveHerbivore
+public class EntityTroodon extends EntityDinosaurDefensiveHerbivore
 {
-    public EntityOrnithomimus(World world)
+    public EntityTroodon(World world)
     {
         super(world);
     }
@@ -15,6 +15,6 @@ public class EntityOrnithomimus extends EntityDinosaurDefensiveHerbivore
     @Override
     public int getTailBoxCount()
     {
-        return 6;
+        return 5;
     }
 }

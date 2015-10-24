@@ -61,6 +61,7 @@ import org.jurassicraft.client.model.animation.AnimationSpinosaurus;
 import org.jurassicraft.client.model.animation.AnimationStegosaurus;
 import org.jurassicraft.client.model.animation.AnimationTherizinosaurus;
 import org.jurassicraft.client.model.animation.AnimationTriceratops;
+import org.jurassicraft.client.model.animation.AnimationTroodon;
 import org.jurassicraft.client.model.animation.AnimationTropeognathus;
 import org.jurassicraft.client.model.animation.AnimationTylosaurus;
 import org.jurassicraft.client.model.animation.AnimationTyrannosaurus;
@@ -185,6 +186,7 @@ public class JCRenderingRegistry
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.moganopterus, new AnimationMoganopterus(), 0.725F, 0.2F, 0.65F, 0.0F, 0.0F, 0.0F));
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.ornithomimus, new AnimationOrnithomimus(), 0.9F, 0.25F, 0.65F, 0.0F, 0.0F, 0.0F));
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.zhenyuanopterus, new AnimationZhenyuanopterus(), 0.7F, 0.25F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.troodon, new AnimationTroodon(), 0.75F, 0.25F, 0.65F, 0.0F, 0.0F, 0.5F));
 
         GuiAppRegistry.register();
 

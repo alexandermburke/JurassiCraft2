@@ -62,6 +62,7 @@ entity.metriacanthosaurus.name=Metriacanthosaurus
 entity.moganopterus.name=Moganopterus
 entity.ornithomimus.name=Ornithomimus
 entity.zhenyuanopterus.name=Zhenyuanopterus
+entity.troodon.name=Troodon
 
 //Items ==================================================
 item.rock_pick.name=Rock Pick
