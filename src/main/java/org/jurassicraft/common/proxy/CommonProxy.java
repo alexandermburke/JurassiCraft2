@@ -98,7 +98,6 @@ public class CommonProxy
     {
         // use configurations to adjust natural spawning
         List entityNameList = EntityList.getEntityNameList();
-        JurassiCraft.instance.getLogger().debug("Entity list = "+entityNameList.toString());
         Iterator iterator = entityNameList.iterator();
 
         /*
@@ -111,8 +110,7 @@ public class CommonProxy
             Class entityClass = EntityList.getClassFromID(EntityList.getIDFromString((String) iterator.next()));
             if (entityClass.toString().contains(JurassiCraft.MODID))
             {
-                JurassiCraft.instance.getLogger().debug("Found a dinosaur");
-                if (!JurassiCraft.spawnDinosNaturally)
+                if (!JurassiCraft.spawnJurassiCraftMobsNaturally)
                 {
                     EntityRegistry.removeSpawn(entityClass, EnumCreatureType.AMBIENT, allBiomes);
                     EntityRegistry.removeSpawn(entityClass, EnumCreatureType.CREATURE, allBiomes);
@@ -120,10 +118,19 @@ public class CommonProxy
                     EntityRegistry.removeSpawn(entityClass, EnumCreatureType.WATER_CREATURE, allBiomes);                  
                 }
             }
-            else
+            else if(entityClass.toString().contains("minecraft"))
             {
-                JurassiCraft.instance.getLogger().debug("Entity class = "+entityClass.toString());
-                if (!JurassiCraft.spawnNonDinoMobsNaturally)
+                if (!JurassiCraft.spawnVanillaMobsNaturally)
+                {
+                    EntityRegistry.removeSpawn(entityClass, EnumCreatureType.AMBIENT, allBiomes);
+                    EntityRegistry.removeSpawn(entityClass, EnumCreatureType.CREATURE, allBiomes);
+                    EntityRegistry.removeSpawn(entityClass, EnumCreatureType.MONSTER, allBiomes);
+                    EntityRegistry.removeSpawn(entityClass, EnumCreatureType.WATER_CREATURE, allBiomes);                  
+                }
+            }
+            else 
+            {
+                if (!JurassiCraft.spawnOtherMobsModsNaturally)
                 {
                     EntityRegistry.removeSpawn(entityClass, EnumCreatureType.AMBIENT, allBiomes);
                     EntityRegistry.removeSpawn(entityClass, EnumCreatureType.CREATURE, allBiomes);

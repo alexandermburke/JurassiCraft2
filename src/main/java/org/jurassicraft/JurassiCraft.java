@@ -56,8 +56,9 @@ public class JurassiCraft
     // set up configuration properties (will be read from config file in preInit)
     public static File configFile;
     public static Configuration config;
-    public static boolean spawnDinosNaturally = true;
-    public static boolean spawnNonDinoMobsNaturally = true;
+    public static boolean spawnJurassiCraftMobsNaturally = true;
+    public static boolean spawnVanillaMobsNaturally = true;
+    public static boolean spawnOtherMobsModsNaturally = true;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)

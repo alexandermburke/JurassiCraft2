@@ -34,10 +34,12 @@ public class JCConfigurations
     public void syncConfig()
     {
         JurassiCraft.config.load();
-        JurassiCraft.spawnDinosNaturally = JurassiCraft.config.get(Configuration.CATEGORY_GENERAL, "Dinosaurs Spawn Naturally", true, "Allow dinosaurs to spawn naturally during world generation").getBoolean(true);
-        JurassiCraft.instance.getLogger().info("Config spawnDinosNaturally = " + JurassiCraft.spawnDinosNaturally);
-        JurassiCraft.spawnNonDinoMobsNaturally = JurassiCraft.config.get(Configuration.CATEGORY_GENERAL, "Non-Dinosaur Mobs Spawn Naturally", true, "Allow vanilla mobs and mobs from other mods to spawn naturally during world generation").getBoolean(true);
-        JurassiCraft.instance.getLogger().info("Config spawnVanillaMobsNaturally = " + JurassiCraft.spawnNonDinoMobsNaturally);
+        JurassiCraft.spawnJurassiCraftMobsNaturally = JurassiCraft.config.get(Configuration.CATEGORY_GENERAL, "JurassiCraft Mobs Spawn Naturally", true, "Allow JurassiCraft entities to spawn naturally during world generation").getBoolean(true);
+        JurassiCraft.instance.getLogger().info("Config spawnDinosNaturally = " + JurassiCraft.spawnJurassiCraftMobsNaturally);
+        JurassiCraft.spawnVanillaMobsNaturally = JurassiCraft.config.get(Configuration.CATEGORY_GENERAL, "Vanilla Mobs Spawn Naturally", true, "Allow vanilla mobs to spawn naturally during world generation").getBoolean(true);
+        JurassiCraft.instance.getLogger().info("Config spawnVanillaMobsNaturally = " + JurassiCraft.spawnVanillaMobsNaturally);
+        JurassiCraft.spawnOtherMobsModsNaturally = JurassiCraft.config.get(Configuration.CATEGORY_GENERAL, "Other Mods' Mobs Spawn Naturally", true, "Allow mobs from other mods to spawn naturally during world generation").getBoolean(true);
+        JurassiCraft.instance.getLogger().info("Config spawnOtherMobsModsNaturally = " + JurassiCraft.spawnOtherMobsModsNaturally);
 
         // save is useful for the first run where config might not exist, and doesn't hurt
         JurassiCraft.config.save();
