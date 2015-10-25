@@ -9,6 +9,9 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import org.jurassicraft.common.entity.ai.EntityAIGlide;
+import org.jurassicraft.common.entity.ai.EntityAILand;
+import org.jurassicraft.common.entity.ai.EntityAITakeOff;
 
 import java.util.Random;
 
@@ -20,6 +23,16 @@ public abstract class EntityDinosaurFlyingAggressive extends EntityDinosaurAggre
     public EntityDinosaurFlyingAggressive(World world)
     {
         super(world);
+        this.tasks.addTask(1, new EntityAIGlide(this));
+        this.tasks.addTask(1, new EntityAILand(this));
+        this.tasks.addTask(1, new EntityAITakeOff(this));
+    }
+
+    @Override
+    public void entityInit()
+    {
+        super.entityInit();
+        this.dataWatcher.addObject(30, (byte) 0);
     }
 
     @Override
@@ -27,7 +40,16 @@ public abstract class EntityDinosaurFlyingAggressive extends EntityDinosaurAggre
     {
         super.onLivingUpdate();
 
-        flying = true; //TODO add this on the datawatcher, do gl rotate on renderer
+        if (!worldObj.isRemote)
+        {
+            this.dataWatcher.updateObject(30, (byte) (flying ? 1 : 0));
+        }
+        else
+        {
+            this.flying = dataWatcher.getWatchableObjectByte(30) == 1;
+        }
+
+        //TODO do gl rotate on renderer
 
         if (flying)
         {
@@ -35,13 +57,10 @@ public abstract class EntityDinosaurFlyingAggressive extends EntityDinosaurAggre
 
             float flapMotion = flapDiff > 0 ? flapDiff : flapDiff / 2;
 
-            float speedMultiplier = 0.25F;
-
             flapMotion = 1.5F;
-
-            rotationPitch = 10;
-
             moveForward = 0.5F;
+
+            float speedMultiplier = 0.25F;
 
             double horizontalMotion = flapMotion * Math.cos(rotationPitch * (float)Math.PI / 180.0F);
             double verticalMotion = flapMotion * Math.sin(rotationPitch * (float) Math.PI / 180.0F);
