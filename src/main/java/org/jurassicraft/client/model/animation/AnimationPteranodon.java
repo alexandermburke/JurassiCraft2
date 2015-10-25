@@ -25,8 +25,6 @@ public class AnimationPteranodon extends DinosaurAnimator
         EntityPteranodon entity = (EntityPteranodon) parEntity;
         Animator animator = model.animator;
 
-        GL11.glRotatef(-entity.rotationPitch / 2, 1.0F, 0.0F, 0.0F);
-
         MowzieModelRenderer leftThigh = model.getCube("Left thigh");
         MowzieModelRenderer leftCalf = model.getCube("Left calf");
         MowzieModelRenderer leftUpperFoot = model.getCube("Left upper foot");
@@ -71,6 +69,9 @@ public class AnimationPteranodon extends DinosaurAnimator
         {
             f = entity.ticksExisted;
             f1 = 1.0f;
+
+            GL11.glRotatef(-entity.rotationPitch / 2, 1.0F, 0.0F, 0.0F);
+            GL11.glRotatef(rotationYaw * 2, 0.0F, 0.0F, 1.0F);
 
             body1.rotateAngleX += 0.3;
             neck1.rotateAngleX -= 0.1;
