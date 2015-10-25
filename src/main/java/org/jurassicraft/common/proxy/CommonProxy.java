@@ -96,18 +96,17 @@ public class CommonProxy
 
     public void postInit(FMLPostInitializationEvent event)
     {
-        // use configurations to adjust natural spawning
-        List entityNameList = EntityList.getEntityNameList();
-        Iterator iterator = entityNameList.iterator();
-
         /*
          * Remove null entries from biomeList.
          */
         BiomeGenBase[] allBiomes = Iterators.toArray(Iterators.filter(Iterators.forArray(BiomeGenBase.getBiomeGenArray()), Predicates.notNull()), BiomeGenBase.class);
 
-        while (iterator.hasNext())
+        for (Object object : EntityList.classToStringMapping.entrySet())
         {
-            Class entityClass = EntityList.getClassFromID(EntityList.getIDFromString((String) iterator.next()));
+            Map.Entry<Class, String> entry = (Map.Entry<Class, String>) object;
+
+            Class entityClass = entry.getKey();
+
             if (entityClass.toString().contains(JurassiCraft.MODID))
             {
                 if (!JurassiCraft.spawnJurassiCraftMobsNaturally)
@@ -115,7 +114,7 @@ public class CommonProxy
                     EntityRegistry.removeSpawn(entityClass, EnumCreatureType.AMBIENT, allBiomes);
                     EntityRegistry.removeSpawn(entityClass, EnumCreatureType.CREATURE, allBiomes);
                     EntityRegistry.removeSpawn(entityClass, EnumCreatureType.MONSTER, allBiomes);
-                    EntityRegistry.removeSpawn(entityClass, EnumCreatureType.WATER_CREATURE, allBiomes);                  
+                    EntityRegistry.removeSpawn(entityClass, EnumCreatureType.WATER_CREATURE, allBiomes);
                 }
             }
             else if(entityClass.toString().contains("minecraft"))
@@ -125,17 +124,17 @@ public class CommonProxy
                     EntityRegistry.removeSpawn(entityClass, EnumCreatureType.AMBIENT, allBiomes);
                     EntityRegistry.removeSpawn(entityClass, EnumCreatureType.CREATURE, allBiomes);
                     EntityRegistry.removeSpawn(entityClass, EnumCreatureType.MONSTER, allBiomes);
-                    EntityRegistry.removeSpawn(entityClass, EnumCreatureType.WATER_CREATURE, allBiomes);                  
+                    EntityRegistry.removeSpawn(entityClass, EnumCreatureType.WATER_CREATURE, allBiomes);
                 }
             }
-            else 
+            else
             {
                 if (!JurassiCraft.spawnOtherMobsModsNaturally)
                 {
                     EntityRegistry.removeSpawn(entityClass, EnumCreatureType.AMBIENT, allBiomes);
                     EntityRegistry.removeSpawn(entityClass, EnumCreatureType.CREATURE, allBiomes);
                     EntityRegistry.removeSpawn(entityClass, EnumCreatureType.MONSTER, allBiomes);
-                    EntityRegistry.removeSpawn(entityClass, EnumCreatureType.WATER_CREATURE, allBiomes);                  
+                    EntityRegistry.removeSpawn(entityClass, EnumCreatureType.WATER_CREATURE, allBiomes);
                 }
             }
         }
