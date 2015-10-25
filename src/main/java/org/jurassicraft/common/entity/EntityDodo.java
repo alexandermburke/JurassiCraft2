@@ -2,7 +2,7 @@ package org.jurassicraft.common.entity;
 
 import net.minecraft.world.World;
 import net.timeless.animationapi.client.AnimID;
-import org.jurassicraft.common.entity.ai.EntityAIFindPlant;
+import org.jurassicraft.common.entity.ai.metabolism.EntityAIFindPlant;
 import org.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 
