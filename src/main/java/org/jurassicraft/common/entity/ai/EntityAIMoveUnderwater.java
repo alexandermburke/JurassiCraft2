@@ -3,16 +3,16 @@ package org.jurassicraft.common.entity.ai;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.util.Vec3;
-import org.jurassicraft.common.entity.base.EntityDinosaurSwimming;
+import org.jurassicraft.common.entity.base.EntityDinosaur;
 
 public class EntityAIMoveUnderwater extends EntityAIBase
 {
-    private EntityDinosaurSwimming swimmingEntity;
+    private EntityDinosaur swimmingEntity;
     private double xPosition;
     private double yPosition;
     private double zPosition;
 
-    public EntityAIMoveUnderwater(EntityDinosaurSwimming entity)
+    public EntityAIMoveUnderwater(EntityDinosaur entity)
     {
         this.swimmingEntity = entity;
         this.setMutexBits(3);
@@ -23,6 +23,11 @@ public class EntityAIMoveUnderwater extends EntityAIBase
      */
     public boolean shouldExecute()
     {
+        if (this.swimmingEntity.getRNG().nextFloat() < 0.50)
+        {
+            return false;
+        }
+
         Vec3 vec3 = RandomPositionGenerator.findRandomTarget(this.swimmingEntity, 6, 2);
 
         if (vec3 == null)

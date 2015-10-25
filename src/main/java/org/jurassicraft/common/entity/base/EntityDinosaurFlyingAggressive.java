@@ -27,30 +27,35 @@ public abstract class EntityDinosaurFlyingAggressive extends EntityDinosaurAggre
     {
         super.onLivingUpdate();
 
-        float flapDiff = -(wingFlap - prevWingFlap);
+        flying = true; //TODO add this on the datawatcher, do gl rotate on renderer
 
-        float flapMotion = flapDiff > 0 ? flapDiff : flapDiff / 2;
+        if (flying)
+        {
+            float flapDiff = -(wingFlap - prevWingFlap);
 
-        float speedMultiplier = 0.25F;
+            float flapMotion = flapDiff > 0 ? flapDiff : flapDiff / 2;
 
-        flapMotion = 1.5F;
+            float speedMultiplier = 0.25F;
 
-        rotationPitch = 0;
+            flapMotion = 1.5F;
 
-        moveForward = 0;
+            rotationPitch = 20;
 
-        double horizontalMotion = flapMotion * Math.cos(rotationPitch);
-        double verticalMotion = flapMotion * Math.sin(rotationPitch);
+            moveForward = 0.5F;
 
-        float x = MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F);
-        float z = MathHelper.cos(this.rotationYaw * (float)Math.PI / 180.0F);
-        this.motionX = (z - horizontalMotion * x) * speedMultiplier * moveForward;
-        this.motionZ = (horizontalMotion * z * x) * speedMultiplier * moveForward;
-        this.motionY = verticalMotion * 10;
+            double horizontalMotion = flapMotion * Math.cos(rotationPitch);
+            double verticalMotion = flapMotion * Math.sin(rotationPitch * (float) Math.PI / 180.0F);
 
-        moveEntity(motionX, motionY, motionZ);
+            double x = MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F) * horizontalMotion;
+            double z = MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F) * horizontalMotion;
+            this.motionX = -x * speedMultiplier * moveForward;
+            this.motionZ = z * speedMultiplier * moveForward;
+            this.motionY = verticalMotion * speedMultiplier * moveForward;
 
-        prevWingFlap = wingFlap;
+            moveEntity(motionX, motionY, motionZ);
+
+            prevWingFlap = wingFlap;
+        }
     }
 
     @Override

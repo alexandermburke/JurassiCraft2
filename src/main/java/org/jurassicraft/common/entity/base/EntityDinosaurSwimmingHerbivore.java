@@ -1,6 +1,5 @@
 package org.jurassicraft.common.entity.base;
 
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.pathfinding.PathNavigate;
@@ -8,13 +7,21 @@ import net.minecraft.pathfinding.PathNavigateSwimmer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import org.jurassicraft.common.entity.ai.EntityAIMoveUnderwater;
+import org.jurassicraft.common.entity.ai.metabolism.EntityAIFindPlant;
 
-public abstract class EntityDinosaurSwimming extends EntityCreature
+public abstract class EntityDinosaurSwimmingHerbivore extends EntityDinosaur
 {
-    public EntityDinosaurSwimming(World worldIn)
+    private final EntityAIFindPlant entityAIFindPlant = new EntityAIFindPlant(this);
+
+    public EntityDinosaurSwimmingHerbivore(World worldIn)
     {
         super(worldIn);
-        this.moveHelper = new EntityDinosaurSwimming.SwimmingMoveHelper();
+        this.moveHelper = new EntityDinosaurSwimmingHerbivore.SwimmingMoveHelper();
+        this.tasks.addTask(1, new EntityAIMoveUnderwater(this));
+        this.navigator = new PathNavigateSwimmer(this, worldIn);
+
+        tasks.addTask(2, entityAIFindPlant);
     }
 
     protected PathNavigate func_175447_b(World worldIn)
@@ -99,16 +106,16 @@ public abstract class EntityDinosaurSwimming extends EntityCreature
 
     class SwimmingMoveHelper extends EntityMoveHelper
     {
-        private EntityDinosaurSwimming swimmingEntity = EntityDinosaurSwimming.this;
+        private EntityDinosaurSwimmingHerbivore swimmingEntity = EntityDinosaurSwimmingHerbivore.this;
 
         public SwimmingMoveHelper()
         {
-            super(EntityDinosaurSwimming.this);
+            super(EntityDinosaurSwimmingHerbivore.this);
         }
 
         public void onUpdateMoveHelper()
         {
-            if (this.update && !this.swimmingEntity.getNavigator().noPath())
+            if (update && !this.swimmingEntity.getNavigator().noPath())
             {
                 double d0 = this.posX - this.swimmingEntity.posX;
                 double d1 = this.posY - this.swimmingEntity.posY;
@@ -118,7 +125,7 @@ public abstract class EntityDinosaurSwimming extends EntityCreature
                 d1 /= d3;
                 float f = (float) (Math.atan2(d2, d0) * 180.0D / Math.PI) - 90.0F;
                 this.swimmingEntity.rotationYaw = this.limitAngle(this.swimmingEntity.rotationYaw, f, 30.0F);
-                this.swimmingEntity.setAIMoveSpeed((float) (this.speed * this.swimmingEntity.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue()));
+                this.swimmingEntity.setAIMoveSpeed((float) (this.swimmingEntity.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue() * 0.5));
                 this.swimmingEntity.motionY += (double) this.swimmingEntity.getAIMoveSpeed() * d1 * 0.1D;
             }
             else
