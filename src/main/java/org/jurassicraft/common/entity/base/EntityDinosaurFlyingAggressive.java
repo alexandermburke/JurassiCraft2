@@ -39,11 +39,11 @@ public abstract class EntityDinosaurFlyingAggressive extends EntityDinosaurAggre
 
             flapMotion = 1.5F;
 
-            rotationPitch = 20;
+            rotationPitch = 10;
 
             moveForward = 0.5F;
 
-            double horizontalMotion = flapMotion * Math.cos(rotationPitch);
+            double horizontalMotion = flapMotion * Math.cos(rotationPitch * (float)Math.PI / 180.0F);
             double verticalMotion = flapMotion * Math.sin(rotationPitch * (float) Math.PI / 180.0F);
 
             double x = MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F) * horizontalMotion;
