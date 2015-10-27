@@ -15,7 +15,7 @@ public class EntityAILand extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        return flyer.flying && flyer.posY - flyer.worldObj.getHeight(flyer.getPosition()).getY() > 10 && flyer.getRNG().nextFloat() < 0.1F;
+        return flyer.isFlying() && flyer.posY - flyer.worldObj.getHeight(flyer.getPosition()).getY() > 10 && flyer.getRNG().nextFloat() < 0.1F;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class EntityAILand extends EntityAIBase
         if (flyer.onGround)
         {
             flyer.rotationPitch = 0;
-            flyer.flying = false;
+            flyer.setFlying(false);
         }
     }
 
@@ -36,6 +36,6 @@ public class EntityAILand extends EntityAIBase
     @Override
     public boolean continueExecuting()
     {
-        return flyer != null && !this.flyer.getNavigator().noPath() && this.flyer.flying;
+        return flyer != null && !this.flyer.getNavigator().noPath() && this.flyer.isFlying();
     }
 }

@@ -1,11 +1,7 @@
 package org.jurassicraft.common.entity.base;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -13,12 +9,11 @@ import org.jurassicraft.common.entity.ai.EntityAIGlide;
 import org.jurassicraft.common.entity.ai.EntityAILand;
 import org.jurassicraft.common.entity.ai.EntityAITakeOff;
 
-import java.util.Random;
-
 public abstract class EntityDinosaurFlyingAggressive extends EntityDinosaurAggressive
 {
+    private final static int DW_FLYING = 30;
     public float wingFlap, prevWingFlap;
-    public boolean flying;
+    private boolean flying;
 
     public EntityDinosaurFlyingAggressive(World world)
     {
@@ -40,16 +35,8 @@ public abstract class EntityDinosaurFlyingAggressive extends EntityDinosaurAggre
     {
         super.onLivingUpdate();
 
-        if (!worldObj.isRemote)
-        {
-            this.dataWatcher.updateObject(30, (byte) (flying ? 1 : 0));
-        }
-        else
-        {
-            this.flying = dataWatcher.getWatchableObjectByte(30) == 1;
-        }
-
-        //TODO do gl rotate on renderer
+        boolean flying = isFlying();
+        // TODO do gl rotate on renderer
 
         if (flying)
         {
@@ -62,10 +49,10 @@ public abstract class EntityDinosaurFlyingAggressive extends EntityDinosaurAggre
 
             float speedMultiplier = 0.25F;
 
-            double horizontalMotion = flapMotion * Math.cos(rotationPitch * (float)Math.PI / 180.0F);
+            double horizontalMotion = flapMotion * Math.cos(rotationPitch * (float) Math.PI / 180.0F);
             double verticalMotion = flapMotion * Math.sin(rotationPitch * (float) Math.PI / 180.0F);
 
-            double x = MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F) * horizontalMotion;
+            double x = MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F) * horizontalMotion;
             double z = MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F) * horizontalMotion;
             this.motionX = -x * speedMultiplier * moveForward;
             this.motionZ = z * speedMultiplier * moveForward;
@@ -75,6 +62,18 @@ public abstract class EntityDinosaurFlyingAggressive extends EntityDinosaurAggre
 
             prevWingFlap = wingFlap;
         }
+    }
+
+    public boolean isFlying()
+    {
+        return dataWatcher.getWatchableObjectByte(DW_FLYING) == 1;
+    }
+
+    public void setFlying(boolean fly)
+    {
+        if (worldObj.isRemote)
+            return;
+        dataWatcher.updateObject(DW_FLYING, fly ? 1 : 0);
     }
 
     @Override
@@ -91,13 +90,13 @@ public abstract class EntityDinosaurFlyingAggressive extends EntityDinosaurAggre
     public void writeToNBT(NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
-        nbt.setBoolean("Flying", flying);
+        nbt.setBoolean("Flying", isFlying());
     }
 
     @Override
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-        flying = nbt.getBoolean("Flying");
+        setFlying(nbt.getBoolean("Flying"));
     }
 }
