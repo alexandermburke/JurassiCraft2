@@ -15,14 +15,14 @@ public class EntityAITakeOff extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        return !flyer.flying && flyer.onGround && flyer.getRNG().nextFloat() < 0.01F;
+        return !flyer.isFlying() && flyer.onGround && flyer.getRNG().nextFloat() < 0.01F;
     }
 
     @Override
     public void updateTask()
     {
         flyer.rotationPitch = 80;
-        flyer.flying = true;
+        flyer.setFlying(true);
 
         if (!flyer.onGround && flyer.posY - flyer.worldObj.getHeight(flyer.getPosition()).getY() > 10)
         {

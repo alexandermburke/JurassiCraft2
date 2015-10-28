@@ -81,21 +81,10 @@ public class ASMTransformer implements IClassTransformer
                 reader.accept(visitor, 0);
                 File classFile = createFile(folder, className, "class");
 
-                FileOutputStream out = null;
-
-                try
+                try (FileOutputStream out = new FileOutputStream(classFile))
                 {
-                    out = new FileOutputStream(classFile);
-
                     out.write(bytes);
                     out.flush();
-                }
-                finally
-                {
-                    if (out != null)
-                    {
-                        out.close();
-                    }
                 }
             }
             catch (IOException e)

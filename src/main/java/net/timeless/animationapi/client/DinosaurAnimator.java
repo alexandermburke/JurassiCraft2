@@ -1,5 +1,24 @@
 package net.timeless.animationapi.client;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.animationapi.client.dto.AnimationsDTO;
+import net.timeless.animationapi.client.dto.DinosaurRenderDefDTO;
+import net.timeless.animationapi.client.dto.PoseDTO;
+import net.timeless.unilib.Unilib;
+import net.timeless.unilib.client.model.json.IModelAnimator;
+import net.timeless.unilib.client.model.json.ModelJson;
+import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+import org.jurassicraft.JurassiCraft;
+import org.jurassicraft.client.model.ModelDinosaur;
+import org.jurassicraft.common.dinosaur.Dinosaur;
+import org.jurassicraft.common.entity.base.EntityDinosaur;
+import org.jurassicraft.common.entity.base.EnumGrowthStage;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -12,27 +31,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
-import org.jurassicraft.JurassiCraft;
-import org.jurassicraft.client.model.ModelDinosaur;
-import org.jurassicraft.common.dinosaur.Dinosaur;
-import org.jurassicraft.common.entity.base.EntityDinosaur;
-import org.jurassicraft.common.entity.base.EnumGrowthStage;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.animationapi.client.dto.AnimationsDTO;
-import net.timeless.animationapi.client.dto.DinosaurRenderDefDTO;
-import net.timeless.animationapi.client.dto.PoseDTO;
-import net.timeless.unilib.Unilib;
-import net.timeless.unilib.client.model.json.IModelAnimator;
-import net.timeless.unilib.client.model.json.ModelJson;
-import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 
 @SideOnly(Side.CLIENT)
 public abstract class DinosaurAnimator implements IModelAnimator
@@ -138,12 +136,8 @@ public abstract class DinosaurAnimator implements IModelAnimator
             throw new IllegalArgumentException("No model definition for the dino " + name + " with grow-state " + growth + " exists. Expected at " + definitionFile);
         }
 
-        Reader reader = null;
-
-        try
+        try (Reader reader = new InputStreamReader(dinoDef))
         {
-            reader = new InputStreamReader(dinoDef);
-
             AnimationsDTO rawAnimations = GSON.fromJson(reader, AnimationsDTO.class);
             PreloadedModelData data = getPosedModels(growthSensitiveDir, rawAnimations);
             JurassiCraft.instance.getLogger().debug("Successfully loaded " + name + "(" + growth + ") from " + definitionFile);
@@ -151,13 +145,6 @@ public abstract class DinosaurAnimator implements IModelAnimator
             reader.close();
 
             return data;
-        }
-        finally
-        {
-            if (reader != null)
-            {
-                reader.close();
-            }
         }
     }
 

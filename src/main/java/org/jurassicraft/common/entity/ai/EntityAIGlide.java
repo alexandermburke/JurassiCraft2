@@ -1,9 +1,6 @@
 package org.jurassicraft.common.entity.ai;
 
 import net.minecraft.entity.ai.EntityAIBase;
-import net.timeless.animationapi.AnimationAPI;
-import net.timeless.animationapi.client.AnimID;
-import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaurFlyingAggressive;
 
 public class EntityAIGlide extends EntityAIBase
@@ -22,8 +19,8 @@ public class EntityAIGlide extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        //TODO check when bumping into wall and more complex stuff
-        boolean execute = flyer.flying && flyer.posY - flyer.worldObj.getHeight(flyer.getPosition()).getY() > 10;
+        // TODO check when bumping into wall and more complex stuff
+        boolean execute = flyer.isFlying() && flyer.posY - flyer.worldObj.getHeight(flyer.getPosition()).getY() > 10;
 
         if (execute)
         {
@@ -48,7 +45,7 @@ public class EntityAIGlide extends EntityAIBase
             if (flyer.onGround)
             {
                 flyer.rotationPitch = 0;
-                flyer.flying = false;
+                flyer.setFlying(false);
             }
         }
         else
