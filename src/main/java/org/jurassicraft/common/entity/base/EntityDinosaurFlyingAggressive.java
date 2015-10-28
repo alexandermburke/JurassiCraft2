@@ -2,7 +2,6 @@ package org.jurassicraft.common.entity.base;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.nbt.NBTTagCompound;
@@ -100,39 +99,5 @@ public abstract class EntityDinosaurFlyingAggressive extends EntityDinosaurAggre
     {
         super.readFromNBT(nbt);
         flying = nbt.getBoolean("Flying");
-    }
-
-    class FlyingMoveHelper extends EntityMoveHelper
-    {
-        private EntityDinosaurFlyingAggressive flyingEntity = EntityDinosaurFlyingAggressive.this;
-
-        public FlyingMoveHelper()
-        {
-            super(EntityDinosaurFlyingAggressive.this);
-        }
-
-        public void onUpdateMoveHelper()
-        {
-            this.entity.setMoveForward(0.0F);
-
-            if (this.update)
-            {
-                this.update = false;
-                int i = MathHelper.floor_double(this.entity.getEntityBoundingBox().minY + 0.5D);
-                double d0 = this.posX - this.entity.posX;
-                double d1 = this.posZ - this.entity.posZ;
-                double d2 = this.posY - (double)i;
-                double d3 = d0 * d0 + d2 * d2 + d1 * d1;
-
-                if (d3 >= 2.500000277905201E-7D)
-                {
-                    float f = (float)(Math.atan2(d1, d0) * 180.0D / Math.PI) - 90.0F;
-                    this.entity.rotationYaw = this.limitAngle(this.entity.rotationYaw, f, 30.0F);
-                    this.entity.setAIMoveSpeed((float)(this.speed * this.entity.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue()));
-
-                    this.flyingEntity.rotationPitch = (float) (this.flyingEntity.getAIMoveSpeed() * d1 * 0.1D);
-                }
-            }
-        }
     }
 }
