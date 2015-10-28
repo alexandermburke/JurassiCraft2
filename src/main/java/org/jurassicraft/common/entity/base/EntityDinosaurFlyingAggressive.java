@@ -13,7 +13,6 @@ public abstract class EntityDinosaurFlyingAggressive extends EntityDinosaurAggre
 {
     private final static int DW_FLYING = 30;
     public float wingFlap, prevWingFlap;
-    private boolean flying;
 
     public EntityDinosaurFlyingAggressive(World world)
     {
@@ -27,7 +26,7 @@ public abstract class EntityDinosaurFlyingAggressive extends EntityDinosaurAggre
     public void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(30, (byte) 0);
+        this.dataWatcher.addObject(DW_FLYING, (byte) 0);
     }
 
     @Override
@@ -73,7 +72,7 @@ public abstract class EntityDinosaurFlyingAggressive extends EntityDinosaurAggre
     {
         if (worldObj.isRemote)
             return;
-        dataWatcher.updateObject(DW_FLYING, fly ? 1 : 0);
+        dataWatcher.updateObject(DW_FLYING, (byte) (fly ? 1 : 0));
     }
 
     @Override
