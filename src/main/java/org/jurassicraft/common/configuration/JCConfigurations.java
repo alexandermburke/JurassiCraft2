@@ -19,9 +19,8 @@ public class JCConfigurations
     {
         // might need to use suggestedConfigFile (event.getSuggestedConfigFile) location to publish
         JurassiCraft.configFile = event.getSuggestedConfigurationFile();
-        // DEBUG
-        System.out.println(JurassiCraft.MODNAME + " config path = " + JurassiCraft.configFile.getAbsolutePath());
-        System.out.println("Config file exists = " + JurassiCraft.configFile.canRead());
+        JurassiCraft.instance.getLogger().debug(JurassiCraft.MODNAME + " config path = " + JurassiCraft.configFile.getAbsolutePath());
+        JurassiCraft.instance.getLogger().debug("Config file exists = " + JurassiCraft.configFile.canRead());
 
         JurassiCraft.config = new Configuration(JurassiCraft.configFile);
 

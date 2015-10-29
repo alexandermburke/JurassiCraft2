@@ -7,6 +7,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.client.AnimID;
+
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 
 public class EntityAIDrink extends EntityAIBase
@@ -23,11 +24,10 @@ public class EntityAIDrink extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        double water = dinosaur.getWater();
-
         if (!dinosaur.isDead && !dinosaur.isCarcass() && dinosaur.ticksExisted % 8 == 0 && dinosaur.worldObj.getGameRules().getGameRuleBooleanValue("dinoMetabolism"))
         {
-            if (water < 24000 + (dinosaur.getRNG().nextInt(50) - 25))
+            // check if thirsty
+            if (dinosaur.getWater() < EntityDinosaur.MAX_WATER / 10) 
             {
                 int posX = (int) dinosaur.posX;
                 int posY = (int) dinosaur.posY;
@@ -50,7 +50,7 @@ public class EntityAIDrink extends EntityAIBase
                         {
                             Block block = world.getBlockState(new BlockPos(x, y, z)).getBlock();
 
-                            if (block == Blocks.water)
+                            if (block == Blocks.water && block == Blocks.flowing_water)
                             {
                                 int diffX = posX - x;
                                 int diffY = posY - y;
@@ -107,6 +107,6 @@ public class EntityAIDrink extends EntityAIBase
     @Override
     public boolean continueExecuting()
     {
-        return dinosaur != null && !this.dinosaur.getNavigator().noPath() && dinosaur.worldObj.getBlockState(new BlockPos(x, y, z)).getBlock() == Blocks.water;
+        return dinosaur != null && !this.dinosaur.getNavigator().noPath() && (dinosaur.worldObj.getBlockState(new BlockPos(x, y, z)).getBlock() == Blocks.water && dinosaur.worldObj.getBlockState(new BlockPos(x, y, z)).getBlock() == Blocks.flowing_water);
     }
 }

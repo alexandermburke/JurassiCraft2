@@ -1,5 +1,7 @@
 package net.timeless.animationapi.client;
 
+import java.util.Map;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
@@ -8,11 +10,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
-
-import java.util.Map;
 
 /**
  * @author jabelar This class is used to hold per-entity animation variables for use with Jabelar's animation tweening system.
@@ -89,7 +90,7 @@ public class JabelarAnimationHelper
     public void performJabelarAnimations(float parPartialTicks)
     {
 
-        JurassiCraft.instance.getLogger().debug("FPS = " + Minecraft.getDebugFPS() + " and current sequence = " + currentSequence + " and current pose = " + this.currentPose + " and current tick = " + this.currentTickInTween + " out of " + numTicksInTween + " and entity ticks existed = " + theEntity.ticksExisted + " and partial ticks = " + partialTicks);
+//        JurassiCraft.instance.getLogger().debug("FPS = " + Minecraft.getDebugFPS() + " and current sequence = " + currentSequence + " and current pose = " + this.currentPose + " and current tick = " + this.currentTickInTween + " out of " + numTicksInTween + " and entity ticks existed = " + theEntity.ticksExisted + " and partial ticks = " + partialTicks);
 
         performBloodSpurt();
 
@@ -143,7 +144,7 @@ public class JabelarAnimationHelper
         // filter out illegal values in array
         if (numTicksInTween < 1)
         {
-            System.err.println("Array of sequences has sequence with num ticks illegal value (< 1)");
+            JurassiCraft.instance.getLogger().error("Array of sequences has sequence with num ticks illegal value (< 1)");
             numTicksInTween = 1;
         }
         currentTickInTween = 0;
@@ -221,7 +222,7 @@ public class JabelarAnimationHelper
 
     private void tween()
     {
-        JurassiCraft.instance.getLogger().debug("current tween tick +  partial ticks = " + (currentTickInTween + partialTicks));
+//        JurassiCraft.instance.getLogger().debug("current tween tick +  partial ticks = " + (currentTickInTween + partialTicks));
 
         for (int partIndex = 0; partIndex < numParts; partIndex++)
         {

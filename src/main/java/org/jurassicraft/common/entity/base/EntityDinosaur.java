@@ -39,12 +39,11 @@ import net.timeless.unilib.common.animation.ChainBuffer;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.disease.Disease;
-import org.jurassicraft.common.entity.ai.metabolism.EntityAIDrink;
 import org.jurassicraft.common.entity.ai.EntityAIMate;
-import org.jurassicraft.common.entity.ai.metabolism.EntityAIMetabolism;
 import org.jurassicraft.common.entity.ai.animations.AnimationAICall;
 import org.jurassicraft.common.entity.ai.animations.AnimationAIHeadCock;
 import org.jurassicraft.common.entity.ai.animations.AnimationAILook;
+import org.jurassicraft.common.entity.ai.metabolism.EntityAIDrink;
 import org.jurassicraft.common.genetics.GeneticsContainer;
 import org.jurassicraft.common.genetics.GeneticsHelper;
 import org.jurassicraft.common.item.ItemBluePrint;
@@ -52,6 +51,9 @@ import org.jurassicraft.common.item.JCItemRegistry;
 
 public abstract class EntityDinosaur extends EntityCreature implements IEntityAdditionalSpawnData, IAnimatedEntity, IInventory
 {
+    public static final int MAX_ENERGY = 24000;
+    public static final int MAX_WATER = 24000;
+    
     protected Dinosaur dinosaur;
     protected int randTexture;
 
@@ -95,8 +97,8 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
         tailBuffer = new ChainBuffer(getTailBoxCount());
 
-        energy = 24000;
-        water = 24000;
+        energy = MAX_ENERGY;
+        water = MAX_WATER;
 
         if (!dinosaur.isMarineAnimal())
         {
@@ -105,7 +107,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
         tasks.addTask(0, new EntityAIWander(this, 0.8));
 
-        tasks.addTask(0, new EntityAIMetabolism(this));
         tasks.addTask(1, new EntityAIDrink(this));
         tasks.addTask(2, new EntityAIMate(this));
 
@@ -388,7 +389,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
         if (this.isWet())
         {
-            water = 48000;
+            water = MAX_WATER;
         }
 
         if (!this.isDead && ticksExisted % 8 == 0)
@@ -410,6 +411,17 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
                     growthSpeedOffset = 0;
                 }
             }
+        }
+        
+        updateMetabolism();
+    }
+    
+    public void updateMetabolism()
+    {
+        if (!isDead && !isCarcass() && worldObj.getGameRules().getGameRuleBooleanValue("dinoMetabolism"))
+        {
+            decreaseEnergy();
+            decreaseWater();
         }
     }
 
