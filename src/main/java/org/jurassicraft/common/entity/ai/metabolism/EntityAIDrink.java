@@ -50,7 +50,7 @@ public class EntityAIDrink extends EntityAIBase
                         {
                             Block block = world.getBlockState(new BlockPos(x, y, z)).getBlock();
 
-                            if (block == Blocks.water && block == Blocks.flowing_water)
+                            if (block == Blocks.water || block == Blocks.flowing_water)
                             {
                                 int diffX = posX - x;
                                 int diffY = posY - y;
@@ -107,6 +107,8 @@ public class EntityAIDrink extends EntityAIBase
     @Override
     public boolean continueExecuting()
     {
-        return dinosaur != null && !this.dinosaur.getNavigator().noPath() && (dinosaur.worldObj.getBlockState(new BlockPos(x, y, z)).getBlock() == Blocks.water && dinosaur.worldObj.getBlockState(new BlockPos(x, y, z)).getBlock() == Blocks.flowing_water);
+        Block block = dinosaur.worldObj.getBlockState(new BlockPos(x, y, z)).getBlock();
+
+        return dinosaur != null && !this.dinosaur.getNavigator().noPath() && (block == Blocks.water || block == Blocks.flowing_water);
     }
 }
