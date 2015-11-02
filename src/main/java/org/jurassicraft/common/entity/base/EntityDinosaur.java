@@ -66,9 +66,14 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
     private int quality;
 
+    // For animation AI system
     private int animTick;
-    private AnimID animID;
 
+    // For jabelar pose-based animation system
+    private AnimID animID;
+    private int currentPose;
+    private int currentTickInTween;
+    
     private GeneticsContainer genetics;
 
     public AIAnimation currentAnim = null;
@@ -99,7 +104,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
         energy = MAX_ENERGY;
         water = MAX_WATER;
-
+        
         if (!dinosaur.isMarineAnimal())
         {
             tasks.addTask(0, new EntityAISwimming(this));
@@ -121,6 +126,8 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
         animTick = 0;
         setAnimID(AnimID.IDLE);
+        currentPose = 0;
+        currentTickInTween = 0;
 
         ignoreFrustumCheck = true; // stops dino disappearing when hitbox goes off screen
 
@@ -519,6 +526,12 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         nbt.setInteger("GrowthSpeedOffset", growthSpeedOffset);
         nbt.setInteger("Energy", energy);
         nbt.setInteger("Water", water);
+        nbt.setInteger("AnimID", animID.ordinal());
+        nbt.setInteger("CurrentPose", currentPose);
+        nbt.setInteger("TickInTween", currentTickInTween);
+        // DEBUG
+        System.out.println("Write to NBT AnimID = "+animID.ordinal()+" current pose = "+currentPose+"current tick in tween = "+currentTickInTween);
+        
 
         NBTTagList nbttaglist = new NBTTagList();
 
@@ -550,6 +563,11 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         growthSpeedOffset = nbt.getInteger("GrowthSpeedOffset");
         energy = nbt.getInteger("Energy");
         water = nbt.getInteger("Water");
+        setAnimID(AnimID.values()[nbt.getInteger("AnimID")]);
+        currentPose = nbt.getInteger("CurrentPose");
+        currentTickInTween = nbt.getInteger("TickInTween");
+        // DEBUG
+        System.out.println("Read from NBT AnimID = "+animID.ordinal()+" current pose "+currentPose+" current tick in tween = "+currentTickInTween);
 
         NBTTagList nbttaglist = nbt.getTagList("Items", 10);
         inventory = new ItemStack[getSizeInventory()];
@@ -1079,5 +1097,25 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     public String getCallSound()
     {
         return null;
+    }
+
+    public int getCurrentTickInTween()
+    {
+        return currentTickInTween;
+    }
+
+    public void setCurrentTickInTween(int currentTickInTween)
+    {
+        this.currentTickInTween = currentTickInTween;
+    }
+
+    public int getCurrentPose()
+    {
+        return currentPose;
+    }
+
+    public void setCurrentPose(int currentPose)
+    {
+        currentPose = currentPose;
     }
 }

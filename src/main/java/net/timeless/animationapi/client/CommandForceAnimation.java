@@ -10,7 +10,10 @@
 
 package net.timeless.animationapi.client;
 
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 import net.minecraft.command.CommandException;
 import net.minecraft.command.CommandResultStats.Type;
 import net.minecraft.command.EntityNotFoundException;
@@ -25,12 +28,11 @@ import net.minecraft.util.IChatComponent;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.timeless.animationapi.AnimationAPI;
+
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import com.google.common.collect.Lists;
 
 /**
  * @author jabelar
@@ -44,7 +46,7 @@ public class CommandForceAnimation implements ICommand
      */
     private static class ProxySender implements ICommandSender
     {
-        private ICommandSender original;
+        private final ICommandSender original;
 
         public ProxySender(ICommandSender proxy)
         {
@@ -153,7 +155,7 @@ public class CommandForceAnimation implements ICommand
     @Override
     public void processCommand(ICommandSender parSender, String[] argString) throws CommandException
     {
-        World theWorld = parSender.getEntityWorld();
+        World theWorld = parSender.getEntityWorld(); 
 
         if (theWorld.isRemote)
         {
