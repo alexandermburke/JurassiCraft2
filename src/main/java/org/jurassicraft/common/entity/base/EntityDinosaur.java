@@ -100,6 +100,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     {
         super(world);
 
+        System.out.println("Constructing");
         tailBuffer = new ChainBuffer(getTailBoxCount());
 
         energy = MAX_ENERGY;
@@ -553,7 +554,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-
+        System.out.println("Reading from NBT");
         randTexture = nbt.getInteger("Texture");
         dinosaurAge = nbt.getInteger("DinosaurAge");
         isCarcass = nbt.getBoolean("IsCarcass");
@@ -590,6 +591,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     @Override
     public void writeSpawnData(ByteBuf buffer)
     {
+        System.out.println("Writing spawn data");
         buffer.writeInt(randTexture);
         buffer.writeInt(dinosaurAge);
         buffer.writeBoolean(isCarcass);
@@ -598,6 +600,9 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         buffer.writeInt(growthSpeedOffset);
         buffer.writeInt(energy);
         buffer.writeInt(water);
+        buffer.writeInt(animID.ordinal());
+        buffer.writeInt(currentPose);
+        buffer.writeInt(currentTickInTween);
         ByteBufUtils.writeUTF8String(buffer, genetics.toString());
     }
 
@@ -612,6 +617,9 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         growthSpeedOffset = additionalData.readInt();
         energy = additionalData.readInt();
         water = additionalData.readInt();
+        animID = AnimID.values()[additionalData.readInt()];
+        currentPose = additionalData.readInt();
+        currentTickInTween = additionalData.readInt();
 
         genetics = new GeneticsContainer(ByteBufUtils.readUTF8String(additionalData));
 
@@ -1114,8 +1122,8 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         return currentPose;
     }
 
-    public void setCurrentPose(int currentPose)
+    public void setCurrentPose(int parCurrentPose)
     {
-        currentPose = currentPose;
+        currentPose = parCurrentPose;
     }
 }
