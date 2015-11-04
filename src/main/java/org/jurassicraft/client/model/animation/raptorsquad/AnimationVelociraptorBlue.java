@@ -7,12 +7,13 @@ import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.dinosaur.DinosaurVelociraptorBlue;
 import org.jurassicraft.common.entity.EntityVelociraptor;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+import org.jurassicraft.common.entity.base.JCEntityRegistry;
 
 public class AnimationVelociraptorBlue extends DinosaurAnimator
 {
     public AnimationVelociraptorBlue()
     {
-        super(new DinosaurVelociraptorBlue());
+        super(JCEntityRegistry.velociraptor_blue);
     }
 
     @Override

@@ -2,6 +2,7 @@ package org.jurassicraft.common.tileentity;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import org.jurassicraft.JurassiCraft;
@@ -30,16 +31,16 @@ public class TileEmbryoCalcificationMachine extends TileMachineBase
         ItemStack input = slots[0];
         ItemStack egg = slots[1];
 
-        if (input != null && input.getItem() instanceof ItemSyringe)
+        if (input != null && input.getItem() instanceof ItemSyringe && egg != null && egg.getItem() == Items.egg)
         {
-            Dinosaur dino = JCEntityRegistry.getDinosaurById(slots[0].getItemDamage());
+            Dinosaur dino = JCEntityRegistry.getDinosaurById(input.getItemDamage());
 
             if (!dino.isMammal())
             {
-                ItemStack output = new ItemStack(JCItemRegistry.egg, 1, slots[0].getItemDamage());
-                output.setTagCompound(slots[0].getTagCompound());
+                ItemStack output = new ItemStack(JCItemRegistry.egg, 1, input.getItemDamage());
+                output.setTagCompound(input.getTagCompound());
 
-                return hasOutputSlot(egg);
+                return hasOutputSlot(output);
             }
         }
 
