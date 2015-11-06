@@ -4,6 +4,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
+import org.jurassicraft.common.item.bones.ItemSkull;
+import org.jurassicraft.common.item.bones.ItemTooth;
 import org.jurassicraft.common.paleopad.dinopedia.DinoPediaRegistry;
 
 public class JCItemRegistry
