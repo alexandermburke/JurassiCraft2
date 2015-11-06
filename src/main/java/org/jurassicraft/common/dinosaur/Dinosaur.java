@@ -55,13 +55,13 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
                     }
                     else
                     {
-                        if (name.contains("male"))
+                        if (name.contains("female"))
                         {
-                            maleTextures.put(stage, resourceLocation);
+                            femaleTextures.put(stage, resourceLocation);
                         }
                         else
                         {
-                            femaleTextures.put(stage, resourceLocation);
+                            maleTextures.put(stage, resourceLocation);
                         }
                     }
                 }
