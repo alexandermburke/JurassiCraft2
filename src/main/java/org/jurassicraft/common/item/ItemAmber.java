@@ -28,8 +28,7 @@ public class ItemAmber extends Item
     /**
      * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
      *
-     * @param subItems
-     *            The List of sub-items. This is a List of ItemStacks.
+     * @param subItems The List of sub-items. This is a List of ItemStacks.
      */
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item itemIn, CreativeTabs tab, List subItems)

@@ -1,14 +1,5 @@
 package org.jurassicraft.client.render.renderdef;
 
-import org.jurassicraft.JurassiCraft;
-import org.jurassicraft.client.model.ModelDinosaur;
-import org.jurassicraft.client.render.entity.RenderDinosaur;
-import org.jurassicraft.client.render.entity.RenderDinosaurMultilayer;
-import org.jurassicraft.client.render.entity.RenderIndominus;
-import org.jurassicraft.common.dinosaur.Dinosaur;
-import org.jurassicraft.common.dinosaur.DinosaurIndominus;
-import org.jurassicraft.common.entity.base.EnumGrowthStage;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraftforge.fml.relauncher.Side;
@@ -16,6 +7,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
+import org.jurassicraft.JurassiCraft;
+import org.jurassicraft.client.model.ModelDinosaur;
+import org.jurassicraft.client.render.entity.RenderDinosaur;
+import org.jurassicraft.client.render.entity.RenderIndominus;
+import org.jurassicraft.common.dinosaur.Dinosaur;
+import org.jurassicraft.common.dinosaur.DinosaurIndominus;
+import org.jurassicraft.common.entity.base.EnumGrowthStage;
 
 @SideOnly(Side.CLIENT)
 public class RenderDinosaurDefinition
@@ -128,22 +126,13 @@ public class RenderDinosaurDefinition
 
     public RenderLiving getRenderer()
     {
-        if (dinosaur instanceof DinosaurIndominus)
+        if (dinosaur instanceof DinosaurIndominus) //TODO custom renderer
         {
             return new RenderIndominus(this);
         }
         else
         {
-            String[] maleOverlayTextures = dinosaur.getMaleOverlayTextures(EnumGrowthStage.INFANT);
-
-            if (maleOverlayTextures != null && maleOverlayTextures.length > 0)
-            {
-                return new RenderDinosaurMultilayer(this);
-            }
-            else
-            {
-                return new RenderDinosaur(this);
-            }
+            return new RenderDinosaur(this);
         }
     }
 }

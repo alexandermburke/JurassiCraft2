@@ -71,7 +71,9 @@ public abstract class EntityDinosaurFlyingAggressive extends EntityDinosaurAggre
     public void setFlying(boolean fly)
     {
         if (worldObj.isRemote)
+        {
             return;
+        }
         dataWatcher.updateObject(DW_FLYING, (byte) (fly ? 1 : 0));
     }
 

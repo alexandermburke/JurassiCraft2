@@ -14,18 +14,18 @@ public enum EnumModulePosition
             return vec.zCoord > 0.6;
         }
     }), BACK_LEFT(new Function<Vec3, Boolean>()
+{
+    public Boolean apply(Vec3 vec)
     {
-        public Boolean apply(Vec3 vec)
-        {
-            return vec.zCoord < 0.6 && vec.xCoord > 0;
-        }
-    }), BACK_RIGHT(new Function<Vec3, Boolean>()
+        return vec.zCoord < 0.6 && vec.xCoord > 0;
+    }
+}), BACK_RIGHT(new Function<Vec3, Boolean>()
+{
+    public Boolean apply(Vec3 vec)
     {
-        public Boolean apply(Vec3 vec)
-        {
-            return vec.zCoord < 0.6 && vec.xCoord < 0;
-        }
-    });
+        return vec.zCoord < 0.6 && vec.xCoord < 0;
+    }
+});
 
     private final Function<Vec3, Boolean> func;
 
@@ -37,8 +37,7 @@ public enum EnumModulePosition
     /**
      * Checks if the module is been clicked.
      *
-     * @param v
-     *            The helicopter-relative raytrace produced by the player trying to interact
+     * @param v The helicopter-relative raytrace produced by the player trying to interact
      * @return True if the raytrace ends up in this module, false otherwise
      */
     public boolean isClicked(Vec3 v)

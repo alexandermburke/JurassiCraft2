@@ -1,11 +1,74 @@
 package org.jurassicraft.common.dinosaur;
 
+import net.minecraft.util.ResourceLocation;
+import org.jurassicraft.JurassiCraft;
+import org.jurassicraft.common.api.IHybrid;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
 import org.jurassicraft.common.period.EnumTimePeriod;
 
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+
 public abstract class Dinosaur implements Comparable<Dinosaur>
 {
+    private Map<EnumGrowthStage, ResourceLocation> overlays = new HashMap<EnumGrowthStage, ResourceLocation>();
+    private Map<EnumGrowthStage, ResourceLocation> maleTextures = new HashMap<EnumGrowthStage, ResourceLocation>();
+    private Map<EnumGrowthStage, ResourceLocation> femaleTextures = new HashMap<EnumGrowthStage, ResourceLocation>();
+
+    public void init()
+    {
+        String dinosaurName = getName().toLowerCase().replaceAll(" ", "_");
+
+        File file = new File(JurassiCraft.class.getResource("/assets/jurassicraft/textures/entities/" + dinosaurName).getFile());
+
+        for (File image : file.listFiles())
+        {
+            String name = image.getName();
+
+            EnumGrowthStage stage = null;
+
+            for (EnumGrowthStage growthStage : EnumGrowthStage.values())
+            {
+                if (name.contains(growthStage.name().toLowerCase()))
+                {
+                    stage = growthStage;
+                    break;
+                }
+            }
+
+            if (stage != null)
+            {
+                ResourceLocation resourceLocation = new ResourceLocation(JurassiCraft.MODID, "textures/entities/" + dinosaurName + "/" + name);
+
+                if (name.contains("overlay"))
+                {
+                    overlays.put(stage, resourceLocation);
+                }
+                else
+                {
+                    if (this instanceof IHybrid)
+                    {
+                        maleTextures.put(stage, resourceLocation);
+                        femaleTextures.put(stage, resourceLocation);
+                    }
+                    else
+                    {
+                        if (name.contains("male"))
+                        {
+                            maleTextures.put(stage, resourceLocation);
+                        }
+                        else
+                        {
+                            femaleTextures.put(stage, resourceLocation);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     public abstract String getName();
 
     public abstract Class<? extends EntityDinosaur> getDinosaurClass();
@@ -46,18 +109,14 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
 
     public abstract int getMaximumAge();
 
-    public abstract String[] getMaleTextures(EnumGrowthStage stage);
-
-    public abstract String[] getFemaleTextures(EnumGrowthStage stage);
-
-    public String[] getMaleOverlayTextures(EnumGrowthStage stage)
+    public ResourceLocation getMaleTexture(EnumGrowthStage stage)
     {
-        return new String[0];
+        return maleTextures.get(stage);
     }
 
-    public String[] getFemaleOverlayTextures(EnumGrowthStage stage)
+    public ResourceLocation getFemaleTexture(EnumGrowthStage stage)
     {
-        return new String[0];
+        return femaleTextures.get(stage);
     }
 
     public double getAttackSpeed()
@@ -132,4 +191,14 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
     }
 
     public abstract int getStorage();
+
+    public ResourceLocation getOverlayTexture(int overlay)
+    {
+        return overlay != 255 ? overlays.get(overlay) : null;
+    }
+
+    public int getOverlayCount()
+    {
+        return overlays.size();
+    }
 }

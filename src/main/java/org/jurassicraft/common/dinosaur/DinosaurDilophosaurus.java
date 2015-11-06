@@ -2,20 +2,10 @@ package org.jurassicraft.common.dinosaur;
 
 import org.jurassicraft.common.entity.EntityDilophosaurus;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
-import org.jurassicraft.common.entity.base.EnumGrowthStage;
 import org.jurassicraft.common.period.EnumTimePeriod;
 
 public class DinosaurDilophosaurus extends Dinosaur
 {
-    private String[] maleTextures;
-    private String[] femaleTextures;
-
-    public DinosaurDilophosaurus()
-    {
-        this.maleTextures = new String[] { getDinosaurTexture("male") };
-        this.femaleTextures = new String[] { getDinosaurTexture("female") };
-    }
-
     // TODO: Figure out all the entities properties
 
     @Override
@@ -106,18 +96,6 @@ public class DinosaurDilophosaurus extends Dinosaur
     public int getMaximumAge()
     {
         return fromDays(40);
-    }
-
-    @Override
-    public String[] getMaleTextures(EnumGrowthStage stage)
-    {
-        return maleTextures;
-    }
-
-    @Override
-    public String[] getFemaleTextures(EnumGrowthStage stage)
-    {
-        return femaleTextures;
     }
 
     @Override

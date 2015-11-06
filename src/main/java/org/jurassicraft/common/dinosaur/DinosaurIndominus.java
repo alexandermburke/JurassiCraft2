@@ -1,5 +1,6 @@
 package org.jurassicraft.common.dinosaur;
 
+import net.minecraft.util.ResourceLocation;
 import org.jurassicraft.common.api.IHybrid;
 import org.jurassicraft.common.entity.EntityIndominus;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
@@ -8,17 +9,17 @@ import org.jurassicraft.common.period.EnumTimePeriod;
 
 public class DinosaurIndominus extends Dinosaur implements IHybrid
 {
-    private String[] textures;
+    private ResourceLocation texture;
 
-    private String[] overlayTextures;
+    private ResourceLocation overlayTexture;
 
     private Class[] baseGenes;
     private Class[] extraGenes;
 
     public DinosaurIndominus()
     {
-        this.textures = new String[] { getDinosaurTexture("camouflage") };
-        this.overlayTextures = new String[] { getDinosaurTexture("") };
+        this.texture = new ResourceLocation(getDinosaurTexture("camouflage"));
+        this.overlayTexture = new ResourceLocation(getDinosaurTexture(""));
 
         this.baseGenes = new Class[] { DinosaurTyrannosaurus.class, DinosaurVelociraptor.class };
         this.extraGenes = new Class[] { DinosaurGiganotosaurus.class, DinosaurRugops.class, DinosaurMajungasaurus.class, DinosaurCarnotaurus.class }; // TODO therizino
@@ -114,27 +115,20 @@ public class DinosaurIndominus extends Dinosaur implements IHybrid
     }
 
     @Override
-    public String[] getMaleTextures(EnumGrowthStage stage)
+    public ResourceLocation getMaleTexture(EnumGrowthStage stage)
     {
-        return textures;
+        return texture;
     }
 
     @Override
-    public String[] getFemaleTextures(EnumGrowthStage stage)
+    public ResourceLocation getFemaleTexture(EnumGrowthStage stage)
     {
-        return textures;
+        return texture;
     }
 
-    @Override
-    public String[] getMaleOverlayTextures(EnumGrowthStage stage)
+    public ResourceLocation getCamoTexture(EnumGrowthStage stage)
     {
-        return overlayTextures;
-    }
-
-    @Override
-    public String[] getFemaleOverlayTextures(EnumGrowthStage stage)
-    {
-        return overlayTextures;
+        return overlayTexture;
     }
 
     @Override

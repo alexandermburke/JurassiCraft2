@@ -2,38 +2,10 @@ package org.jurassicraft.common.dinosaur;
 
 import org.jurassicraft.common.entity.EntityVelociraptor;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
-import org.jurassicraft.common.entity.base.EnumGrowthStage;
 import org.jurassicraft.common.period.EnumTimePeriod;
 
 public class DinosaurVelociraptor extends Dinosaur
 {
-    private String[] maleTextures;
-    private String[] femaleTextures;
-
-    private String[] maleTexturesInfant;
-    private String[] femaleTexturesInfant;
-
-    private String[] maleTexturesJuvenile;
-    private String[] femaleTexturesJuvenile;
-
-    private String[] maleTexturesAdolescent;
-    private String[] femaleTexturesAdolescent;
-
-    public DinosaurVelociraptor()
-    {
-        this.maleTextures = new String[] { getDinosaurTexture("male") };
-        this.femaleTextures = new String[] { getDinosaurTexture("female") };
-
-        this.maleTexturesInfant = new String[] { getDinosaurTexture("male_infant") };
-        this.femaleTexturesInfant = new String[] { getDinosaurTexture("female_infant") };
-
-        this.maleTexturesJuvenile = new String[] { getDinosaurTexture("male_juvenile") };
-        this.femaleTexturesJuvenile = new String[] { getDinosaurTexture("female_juvenile") };
-
-        this.maleTexturesAdolescent = new String[] { getDinosaurTexture("male_adolescent") };
-        this.femaleTexturesAdolescent = new String[] { getDinosaurTexture("female_adolescent") };
-    }
-
     @Override
     public String getName()
     {
@@ -121,38 +93,6 @@ public class DinosaurVelociraptor extends Dinosaur
     public int getMaximumAge()
     {
         return fromDays(45);
-    }
-
-    @Override
-    public String[] getMaleTextures(EnumGrowthStage stage)
-    {
-        switch (stage)
-        {
-            case INFANT:
-                return maleTexturesInfant;
-            case JUVENILE:
-                return maleTexturesJuvenile;
-            case ADOLESCENT:
-                return maleTexturesAdolescent;
-            default:
-                return maleTextures;
-        }
-    }
-
-    @Override
-    public String[] getFemaleTextures(EnumGrowthStage stage)
-    {
-        switch (stage)
-        {
-            case INFANT:
-                return femaleTexturesInfant;
-            case JUVENILE:
-                return femaleTexturesJuvenile;
-            case ADOLESCENT:
-                return femaleTexturesAdolescent;
-            default:
-                return femaleTextures;
-        }
     }
 
     @Override

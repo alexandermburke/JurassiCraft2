@@ -2,20 +2,10 @@ package org.jurassicraft.common.dinosaur;
 
 import org.jurassicraft.common.entity.EntityLeaellynasaura;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
-import org.jurassicraft.common.entity.base.EnumGrowthStage;
 import org.jurassicraft.common.period.EnumTimePeriod;
 
 public class DinosaurLeaellynasaura extends Dinosaur
 {
-    private String[] maleTextures;
-    private String[] femaleTextures;
-
-    public DinosaurLeaellynasaura()
-    {
-        this.maleTextures = new String[] { getDinosaurTexture("male") };
-        this.femaleTextures = new String[] { getDinosaurTexture("female") };
-    }
-
     @Override
     public String getName()
     {
@@ -104,18 +94,6 @@ public class DinosaurLeaellynasaura extends Dinosaur
     public int getMaximumAge()
     {
         return fromDays(35);
-    }
-
-    @Override
-    public String[] getMaleTextures(EnumGrowthStage stage)
-    {
-        return maleTextures;
-    }
-
-    @Override
-    public String[] getFemaleTextures(EnumGrowthStage stage)
-    {
-        return femaleTextures;
     }
 
     @Override

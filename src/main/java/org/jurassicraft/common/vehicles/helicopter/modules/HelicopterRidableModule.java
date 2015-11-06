@@ -66,7 +66,9 @@ public abstract class HelicopterRidableModule extends HelicopterModule
     {
         String id = spot.getModuleData(this).getString("entityID");
         if (id.isEmpty())
+        {
             return null;
+        }
         // System.out.println(id);
         UUID entityID = UUID.fromString(id);
         EntityHelicopterSeat entity = getSeatFromID(spot.getHelicopter().worldObj, entityID);

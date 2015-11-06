@@ -23,8 +23,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.block.BlockEncasedFossil;
 import org.jurassicraft.common.container.ContainerCleaningStation;
-import org.jurassicraft.common.item.itemblock.ItemEncasedFossil;
 import org.jurassicraft.common.item.JCItemRegistry;
+import org.jurassicraft.common.item.itemblock.ItemEncasedFossil;
 
 public class TileCleaningStation extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {

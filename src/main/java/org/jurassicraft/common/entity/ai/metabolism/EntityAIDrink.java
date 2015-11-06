@@ -7,7 +7,6 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.client.AnimID;
-
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 
 public class EntityAIDrink extends EntityAIBase
@@ -27,7 +26,7 @@ public class EntityAIDrink extends EntityAIBase
         if (!dinosaur.isDead && !dinosaur.isCarcass() && dinosaur.ticksExisted % 8 == 0 && dinosaur.worldObj.getGameRules().getGameRuleBooleanValue("dinoMetabolism"))
         {
             // check if thirsty
-            if (dinosaur.getWater() < EntityDinosaur.MAX_WATER / 10) 
+            if (dinosaur.getWater() < EntityDinosaur.MAX_WATER / 10)
             {
                 int posX = (int) dinosaur.posX;
                 int posY = (int) dinosaur.posY;

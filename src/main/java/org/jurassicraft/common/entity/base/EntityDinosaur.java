@@ -1,10 +1,6 @@
 package org.jurassicraft.common.entity.base;
 
 import io.netty.buffer.ByteBuf;
-
-import java.util.HashSet;
-import java.util.Set;
-
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -35,7 +31,6 @@ import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.AnimID;
 import net.timeless.unilib.common.animation.ChainBuffer;
-
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.disease.Disease;
@@ -49,13 +44,15 @@ import org.jurassicraft.common.genetics.GeneticsHelper;
 import org.jurassicraft.common.item.ItemBluePrint;
 import org.jurassicraft.common.item.JCItemRegistry;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public abstract class EntityDinosaur extends EntityCreature implements IEntityAdditionalSpawnData, IAnimatedEntity, IInventory
 {
     public static final int MAX_ENERGY = 24000;
     public static final int MAX_WATER = 24000;
-    
+
     protected Dinosaur dinosaur;
-    protected int randTexture;
 
     protected int dinosaurAge;
     protected int prevAge;
@@ -73,7 +70,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     private AnimID animID;
     private int currentPose;
     private int currentTickInTween;
-    
+
     private GeneticsContainer genetics;
 
     public AIAnimation currentAnim = null;
@@ -91,6 +88,9 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
     public ChainBuffer tailBuffer;
 
+    private int[] overlayColours = new int[3];
+    private byte[] overlayTextures = new byte[3];
+
     // public void setNavigator(PathNavigate pn)
     // {
     // navigator = pn;
@@ -105,7 +105,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
         energy = MAX_ENERGY;
         water = MAX_WATER;
-        
+
         if (!dinosaur.isMarineAnimal())
         {
             tasks.addTask(0, new EntityAISwimming(this));
@@ -420,10 +420,10 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
                 }
             }
         }
-        
+
         updateMetabolism();
     }
-    
+
     public void updateMetabolism()
     {
         if (!isDead && !isCarcass() && worldObj.getGameRules().getGameRuleBooleanValue("dinoMetabolism"))
@@ -449,7 +449,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
             }
 
             dataWatcher.updateObject(27, growthSpeedOffset);
-
             dataWatcher.updateObject(28, hasTracker ? 1 : 0);
         }
         else
@@ -464,7 +463,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
             }
 
             growthSpeedOffset = dataWatcher.getWatchableObjectInt(27);
-
             hasTracker = dataWatcher.getWatchableObjectInt(28) == 1;
         }
 
@@ -518,7 +516,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     {
         super.writeToNBT(nbt);
 
-        nbt.setInteger("Texture", randTexture);
         nbt.setDouble("DinosaurAge", dinosaurAge);
         nbt.setBoolean("IsCarcass", isCarcass);
         nbt.setInteger("DNAQuality", quality);
@@ -531,8 +528,8 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         nbt.setInteger("CurrentPose", currentPose);
         nbt.setInteger("TickInTween", currentTickInTween);
         // DEBUG
-        System.out.println("Write to NBT AnimID = "+animID.ordinal()+" current pose = "+currentPose+"current tick in tween = "+currentTickInTween);
-        
+        System.out.println("Write to NBT AnimID = " + animID.ordinal() + " current pose = " + currentPose + "current tick in tween = " + currentTickInTween);
+
 
         NBTTagList nbttaglist = new NBTTagList();
 
@@ -555,7 +552,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     {
         super.readFromNBT(nbt);
         System.out.println("Reading from NBT");
-        randTexture = nbt.getInteger("Texture");
         dinosaurAge = nbt.getInteger("DinosaurAge");
         isCarcass = nbt.getBoolean("IsCarcass");
         quality = nbt.getInteger("DNAQuality");
@@ -568,7 +564,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         currentPose = nbt.getInteger("CurrentPose");
         currentTickInTween = nbt.getInteger("TickInTween");
         // DEBUG
-        System.out.println("Read from NBT AnimID = "+animID.ordinal()+" current pose "+currentPose+" current tick in tween = "+currentTickInTween);
+        System.out.println("Read from NBT AnimID = " + animID.ordinal() + " current pose " + currentPose + " current tick in tween = " + currentTickInTween);
 
         NBTTagList nbttaglist = nbt.getTagList("Items", 10);
         inventory = new ItemStack[getSizeInventory()];
@@ -592,7 +588,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     public void writeSpawnData(ByteBuf buffer)
     {
         System.out.println("Writing spawn data");
-        buffer.writeInt(randTexture);
         buffer.writeInt(dinosaurAge);
         buffer.writeBoolean(isCarcass);
         buffer.writeInt(quality);
@@ -603,13 +598,12 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         buffer.writeInt(animID.ordinal());
         buffer.writeInt(currentPose);
         buffer.writeInt(currentTickInTween);
-        ByteBufUtils.writeUTF8String(buffer, genetics.toString());
+        ByteBufUtils.writeUTF8String(buffer, genetics.toString()); //TODO do we need to add the things that are on the datawatcher?
     }
 
     @Override
     public void readSpawnData(ByteBuf additionalData)
     {
-        randTexture = additionalData.readInt();
         dinosaurAge = additionalData.readInt();
         isCarcass = additionalData.readBoolean();
         quality = additionalData.readInt();
@@ -630,11 +624,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     public int getDinosaurAge()
     {
         return dinosaurAge;
-    }
-
-    public int getTexture()
-    {
-        return randTexture;
     }
 
     public void setAge(int age)
@@ -753,7 +742,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
                         msg = "This " + getCommandSenderName();
                     }
 
-                    player.addChatComponentMessage(new ChatComponentText(msg + " is not old enough to hold items!"));
+                    player.addChatComponentMessage(new ChatComponentText(msg + " is not old enough to hold items!")); //TODO translation
                 }
             }
         }
@@ -861,25 +850,40 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         isMale = male;
     }
 
-    public int getScaleOffset()
-    {
-        return genetics.getScaleOffset();
-    }
-
-    public int getColorOffset()
-    {
-        return genetics.getColorOffset();
-    }
-
-    public int getGeneticVariant()
-    {
-        return genetics.getGeneticVariation();
-    }
-
     public int getAgePercentage()
     {
         int age = getDinosaurAge();
         return age != 0 ? age * 100 / getDinosaur().getMaximumAge() : 0;
+    }
+
+    public int getOverlayR()
+    {
+        return genetics.getOverlayR();
+    }
+
+    public int getOverlayG()
+    {
+        return genetics.getOverlayG();
+    }
+
+    public int getOverlayB()
+    {
+        return genetics.getOverlayB();
+    }
+
+    public int getOverlay(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return genetics.getOverlay1();
+            case 1:
+                return genetics.getOverlay2();
+            case 2:
+                return genetics.getOverlay3();
+            default:
+                return -1;
+        }
     }
 
     public EnumGrowthStage getGrowthStage()

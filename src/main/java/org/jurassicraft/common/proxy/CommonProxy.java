@@ -1,12 +1,7 @@
 package org.jurassicraft.common.proxy;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
+import com.google.common.base.Predicates;
+import com.google.common.collect.Iterators;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EnumCreatureType;
@@ -24,7 +19,6 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.api.IHybrid;
 import org.jurassicraft.common.dinosaur.Dinosaur;
@@ -34,8 +28,11 @@ import org.jurassicraft.common.handler.JCGuiHandler;
 import org.jurassicraft.common.item.JCItemRegistry;
 import org.jurassicraft.common.world.WorldGenerator;
 
-import com.google.common.base.Predicates;
-import com.google.common.collect.Iterators;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class CommonProxy
 {
@@ -117,7 +114,7 @@ public class CommonProxy
                     EntityRegistry.removeSpawn(entityClass, EnumCreatureType.WATER_CREATURE, allBiomes);
                 }
             }
-            else if(entityClass.toString().contains("minecraft"))
+            else if (entityClass.toString().contains("minecraft"))
             {
                 if (!JurassiCraft.spawnVanillaMobsNaturally)
                 {

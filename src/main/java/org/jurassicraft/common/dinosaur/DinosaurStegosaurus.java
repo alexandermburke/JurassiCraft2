@@ -2,25 +2,10 @@ package org.jurassicraft.common.dinosaur;
 
 import org.jurassicraft.common.entity.EntityStegosaurus;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
-import org.jurassicraft.common.entity.base.EnumGrowthStage;
 import org.jurassicraft.common.period.EnumTimePeriod;
 
 public class DinosaurStegosaurus extends Dinosaur
 {
-    private String[] maleTextures;
-    private String[] femaleTextures;
-
-    public DinosaurStegosaurus()
-    {
-        this.maleTextures = new String[] { getDinosaurTexture("male") };
-        this.femaleTextures = new String[] { getDinosaurTexture("female") };
-    }
-
-    public float getRenderYOffset()
-    {
-        return 0.76F;
-    }
-
     // TODO: Figure out all the entities properties
 
     @Override
@@ -111,18 +96,6 @@ public class DinosaurStegosaurus extends Dinosaur
     public int getMaximumAge()
     {
         return fromDays(50);
-    }
-
-    @Override
-    public String[] getMaleTextures(EnumGrowthStage stage)
-    {
-        return maleTextures;
-    }
-
-    @Override
-    public String[] getFemaleTextures(EnumGrowthStage stage)
-    {
-        return femaleTextures;
     }
 
     @Override

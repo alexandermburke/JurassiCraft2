@@ -5,34 +5,30 @@ public class GeneticsContainer
     private String genetics;
 
     public static final int DINOSAUR = 0; // Which dinosaur is this?
-    public static final int COLOR = 1; // Color offset
-    public static final int SCALE = 2; // Scale offset
-    public static final int CAUTIOUSNESS = 3; // How cautious is this dinosaur
-    public static final int AGRESSION = 4; // How agressive is this dinosaur
-    public static final int GENETIC_VARIATION = 5; // Skin + Model variants (Blue, Echo, Delta, Charlie)
-    public static final int LIFE_TIME = 6; // How long to live after adulthood
-    public static final int SPEED = 7; // Speed Modifier
-    public static final int ADULT_TIME = 8; // How long to become an adult
+    public static final int OVERLAY_R = 1;
+    public static final int OVERLAY_G = 2;
+    public static final int OVERLAY_B = 3;
+    public static final int OVERLAY_1 = 4;
+    public static final int OVERLAY_2 = 5;
+    public static final int OVERLAY_3 = 6;
 
-    private static final int VAR_COUNT = 8;
+    private static final int VAR_COUNT = 6;
 
     public GeneticsContainer(String genetics)
     {
         this.genetics = genetics;
     }
 
-    public GeneticsContainer(int dinosaur, int colorOffset, int scaleOffset, int cautiousness, int agression, int geneticVariation, int adultTime, int lifeTime, int speed)
+    public GeneticsContainer(int dinosaur, int overlayR, int overlayG, int overlayB, int overlay1, int overlay2, int overlay3)
     {
         genetics = defaultGeneticCode();
         set(DINOSAUR, dinosaur);
-        set(COLOR, colorOffset);
-        set(SCALE, scaleOffset);
-        set(CAUTIOUSNESS, cautiousness);
-        set(AGRESSION, agression);
-        set(GENETIC_VARIATION, geneticVariation);
-        set(SPEED, speed);
-        set(LIFE_TIME, lifeTime);
-        set(ADULT_TIME, adultTime);
+        set(OVERLAY_R, overlayR);
+        set(OVERLAY_G, overlayG);
+        set(OVERLAY_B, overlayB);
+        set(OVERLAY_1, overlay1);
+        set(OVERLAY_2, overlay2);
+        set(OVERLAY_3, overlay3);
     }
 
     private String defaultGeneticCode()
@@ -52,44 +48,34 @@ public class GeneticsContainer
         return get(DINOSAUR);
     }
 
-    public int getColorOffset()
+    public int getOverlayR()
     {
-        return get(COLOR);
+        return get(OVERLAY_R);
     }
 
-    public int getScaleOffset()
+    public int getOverlayG()
     {
-        return get(SCALE);
+        return get(OVERLAY_G);
     }
 
-    public int getCautiousness()
+    public int getOverlayB()
     {
-        return get(CAUTIOUSNESS);
+        return get(OVERLAY_B);
     }
 
-    public int getAgression()
+    public int getOverlay1()
     {
-        return get(AGRESSION);
+        return get(OVERLAY_1);
     }
 
-    public int getSpeed()
+    public int getOverlay2()
     {
-        return get(SPEED);
+        return get(OVERLAY_2);
     }
 
-    public int getLifeTime()
+    public int getOverlay3()
     {
-        return get(LIFE_TIME);
-    }
-
-    public int getAdultTime()
-    {
-        return get(ADULT_TIME);
-    }
-
-    public int getGeneticVariation()
-    {
-        return get(GENETIC_VARIATION);
+        return get(OVERLAY_3);
     }
 
     public int get(int id)

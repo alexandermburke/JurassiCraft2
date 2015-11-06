@@ -2,15 +2,12 @@ package org.jurassicraft.common.event;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.world.GameRules;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
-
 import org.jurassicraft.common.achievements.JCAchievements;
 import org.jurassicraft.common.block.JCBlockRegistry;
 import org.jurassicraft.common.entity.base.EntityDinosaur;

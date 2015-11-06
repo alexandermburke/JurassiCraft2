@@ -2,8 +2,8 @@ package org.jurassicraft.common.entity.base;
 
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.world.World;
-import org.jurassicraft.common.entity.ai.metabolism.EntityAIFindPlant;
 import org.jurassicraft.common.entity.ai.EntityAIJCPanic;
+import org.jurassicraft.common.entity.ai.metabolism.EntityAIFindPlant;
 
 public abstract class EntityDinosaurDefensiveHerbivore extends EntityDinosaur implements IMob
 {

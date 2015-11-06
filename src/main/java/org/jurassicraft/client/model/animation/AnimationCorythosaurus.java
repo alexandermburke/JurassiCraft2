@@ -6,9 +6,8 @@ import net.timeless.animationapi.client.Animator;
 import net.timeless.animationapi.client.DinosaurAnimator;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 import org.jurassicraft.client.model.ModelDinosaur;
-import org.jurassicraft.common.entity.EntityParasaurolophus;
-import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.EntityCorythosaurus;
+import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.JCEntityRegistry;
 
 @SideOnly(Side.CLIENT)

@@ -2,25 +2,10 @@ package org.jurassicraft.common.dinosaur;
 
 import org.jurassicraft.common.entity.EntityTyrannosaurus;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
-import org.jurassicraft.common.entity.base.EnumGrowthStage;
 import org.jurassicraft.common.period.EnumTimePeriod;
 
 public class DinosaurTyrannosaurus extends Dinosaur
 {
-    private final String[] maleTextures;
-    private final String[] femaleTextures;
-    private final String[] maleOverlayTextures;
-    private final String[] femaleOverlayTextures;
-
-    public DinosaurTyrannosaurus()
-    {
-        this.maleTextures = new String[] { getDinosaurTexture("male") };
-        this.femaleTextures = new String[] { getDinosaurTexture("female") };
-
-        this.maleOverlayTextures = new String[] { getDinosaurTexture("male_detail") };
-        this.femaleOverlayTextures = new String[] { getDinosaurTexture("female_detail") };
-    }
-
     @Override
     public String getName()
     {
@@ -109,30 +94,6 @@ public class DinosaurTyrannosaurus extends Dinosaur
     public int getMaximumAge()
     {
         return fromDays(60);
-    }
-
-    @Override
-    public String[] getMaleTextures(EnumGrowthStage stage)
-    {
-        return maleTextures;
-    }
-
-    @Override
-    public String[] getFemaleTextures(EnumGrowthStage stage)
-    {
-        return femaleTextures;
-    }
-
-    @Override
-    public String[] getMaleOverlayTextures(EnumGrowthStage stage)
-    {
-        return maleOverlayTextures;
-    }
-
-    @Override
-    public String[] getFemaleOverlayTextures(EnumGrowthStage stage)
-    {
-        return femaleOverlayTextures;
     }
 
     @Override

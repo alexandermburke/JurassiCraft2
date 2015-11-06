@@ -2,7 +2,6 @@ package org.jurassicraft.common.configuration;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-
 import org.jurassicraft.JurassiCraft;
 
 /**
@@ -12,7 +11,7 @@ public class JCConfigurations
 {
     /**
      * Process the configuration
-     * 
+     *
      * @param event
      */
     public void initConfig(FMLPreInitializationEvent event)

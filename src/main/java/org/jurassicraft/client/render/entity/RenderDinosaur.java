@@ -5,6 +5,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -30,8 +31,6 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
     public Dinosaur dinosaur;
     public RenderDinosaurDefinition renderDef;
 
-    public ResourceLocation[][] maleTextures;
-    public ResourceLocation[][] femaleTextures;
     public Random random;
 
     public RenderDinosaur(RenderDinosaurDefinition renderDef)
@@ -42,26 +41,9 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
         this.random = new Random();
         this.renderDef = renderDef;
 
-        this.maleTextures = new ResourceLocation[dinosaur.getMaleTextures(EnumGrowthStage.INFANT).length][4]; // TODO
-        this.femaleTextures = new ResourceLocation[dinosaur.getFemaleTextures(EnumGrowthStage.INFANT).length][4];
-
-        for (EnumGrowthStage stage : EnumGrowthStage.values())
+        for (int i = 0; i < dinosaur.getOverlayCount(); i++)
         {
-            int i = 0;
-
-            for (String texture : dinosaur.getMaleTextures(stage))
-            {
-                this.maleTextures[i][stage.ordinal()] = new ResourceLocation(texture);
-                i++;
-            }
-
-            i = 0;
-
-            for (String texture : dinosaur.getFemaleTextures(stage))
-            {
-                this.femaleTextures[i][stage.ordinal()] = new ResourceLocation(texture);
-                i++;
-            }
+            addLayer(new LayerDinosaurVariations(this, i));
         }
     }
 
@@ -71,20 +53,7 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
         EntityDinosaur entityDinosaur = (EntityDinosaur) entity;
         this.renderDef.getModelAnimator().preRenderCallback(entityDinosaur, partialTick);
 
-        float scale = (float) entityDinosaur.transitionFromAge(renderDef.getBabyScaleAdjustment(), renderDef.getAdultScaleAdjustment());
-
-        // scale *= (((float) entityDinosaur.getScaleOffset()) * 0.09F); TODO color offset and scale offset
-
-        // float color = (((float) entityDinosaur.getColorOffset()) * 0.004F);
-        //
-        // if(entityDinosaur.getColorOffset() % 2 == 0)
-        // {
-        // GL11.glColor3f(1.0F + color, 1.0F - color, 1.0F + color);
-        // }
-        // else
-        // {
-        // GL11.glColor3f(1.0F - color, 1.0F + color, 1.0F - color);
-        // }
+        float scale = (float) entityDinosaur.transitionFromAge(renderDef.getBabyScaleAdjustment(), renderDef.getAdultScaleAdjustment()); //TODO scale offset
 
         shadowSize = scale * renderDef.getShadowSize();
 
@@ -213,7 +182,7 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
 
     public ResourceLocation getEntityTexture(EntityDinosaur entity)
     {
-        return entity.isMale() ? maleTextures[entity.getTexture()][entity.getGrowthStage().ordinal()] : femaleTextures[entity.getTexture()][entity.getGrowthStage().ordinal()];
+        return entity.isMale() ? dinosaur.getMaleTexture(entity.getGrowthStage()) : dinosaur.getFemaleTexture(entity.getGrowthStage());
     }
 
     @Override
@@ -245,5 +214,50 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
     public RenderDinosaurDefinition getRenderDef()
     {
         return renderDef;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public class LayerDinosaurVariations implements LayerRenderer
+    {
+        private final RenderDinosaur renderer;
+        private final int index;
+
+        public LayerDinosaurVariations(RenderDinosaur renderer, int index)
+        {
+            this.renderer = renderer;
+            this.index = index;
+        }
+
+        public void render(EntityDinosaur entity, float armSwing, float armSwingAmount, float p_177148_4_, float p_177148_5_, float p_177148_6_, float p_177148_7_, float partialTicks)
+        {
+            if (!entity.isInvisible())
+            {
+                ResourceLocation texture = renderer.dinosaur.getOverlayTexture(entity.getOverlay(index));
+
+                if (texture != null)
+                {
+                    GlStateManager.color(entity.getOverlayR() / 255.0F, entity.getOverlayG() / 255.0F, entity.getOverlayB() / 255.0F);
+
+                    this.renderer.bindTexture(texture);
+
+                    this.renderer.getMainModel().render(entity, armSwing, armSwingAmount, p_177148_5_, p_177148_6_, p_177148_7_, partialTicks);
+                    this.renderer.func_177105_a(entity, p_177148_4_);
+
+                    GlStateManager.color(1.0F, 1.0F, 1.0F);
+                }
+            }
+        }
+
+        @Override
+        public boolean shouldCombineTextures()
+        {
+            return true;
+        }
+
+        @Override
+        public void doRenderLayer(EntityLivingBase entity, float p_177141_2_, float p_177141_3_, float p_177141_4_, float p_177141_5_, float p_177141_6_, float p_177141_7_, float p_177141_8_)
+        {
+            this.render((EntityDinosaur) entity, p_177141_2_, p_177141_3_, p_177141_4_, p_177141_5_, p_177141_6_, p_177141_7_, p_177141_8_);
+        }
     }
 }

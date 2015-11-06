@@ -2,22 +2,10 @@ package org.jurassicraft.common.dinosaur;
 
 import org.jurassicraft.common.entity.EntityCorythosaurus;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
-import org.jurassicraft.common.entity.base.EnumGrowthStage;
 import org.jurassicraft.common.period.EnumTimePeriod;
-
-import java.lang.Override;
 
 public class DinosaurCorythosaurus extends Dinosaur
 {
-    private String[] maleTextures;
-    private String[] femaleTextures;
-
-    public DinosaurCorythosaurus()
-    {
-        this.maleTextures = new String[] { getDinosaurTexture("male") };
-        this.femaleTextures = new String[] { getDinosaurTexture("female") };
-    }
-
     @Override
     public String getName()
     {
@@ -106,18 +94,6 @@ public class DinosaurCorythosaurus extends Dinosaur
     public int getMaximumAge()
     {
         return fromDays(40);
-    }
-
-    @Override
-    public String[] getMaleTextures(EnumGrowthStage growthStage)
-    {
-        return maleTextures;
-    }
-
-    @Override
-    public String[] getFemaleTextures(EnumGrowthStage growthStage)
-    {
-        return femaleTextures;
     }
 
     @Override

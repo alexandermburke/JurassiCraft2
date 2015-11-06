@@ -1,19 +1,16 @@
 /**
  * Copyright (C) 2015 by jabelar
- * <p>
+ * <p/>
  * This file is part of jabelar's Minecraft Forge modding examples; as such, you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- * <p>
+ * <p/>
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- * <p>
+ * <p/>
  * For a copy of the GNU General Public License see <http://www.gnu.org/licenses/>.
  */
 
 package net.timeless.animationapi.client;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
+import com.google.common.collect.Lists;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.CommandResultStats.Type;
 import net.minecraft.command.EntityNotFoundException;
@@ -28,11 +25,12 @@ import net.minecraft.util.IChatComponent;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.timeless.animationapi.AnimationAPI;
-
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * @author jabelar
@@ -155,7 +153,7 @@ public class CommandForceAnimation implements ICommand
     @Override
     public void processCommand(ICommandSender parSender, String[] argString) throws CommandException
     {
-        World theWorld = parSender.getEntityWorld(); 
+        World theWorld = parSender.getEntityWorld();
 
         if (theWorld.isRemote)
         {

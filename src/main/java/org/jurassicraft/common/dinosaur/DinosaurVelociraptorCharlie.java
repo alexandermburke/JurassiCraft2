@@ -3,18 +3,10 @@ package org.jurassicraft.common.dinosaur;
 import org.jurassicraft.common.api.IHybrid;
 import org.jurassicraft.common.entity.EntityVelociraptorCharlie;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
-import org.jurassicraft.common.entity.base.EnumGrowthStage;
 import org.jurassicraft.common.period.EnumTimePeriod;
 
 public class DinosaurVelociraptorCharlie extends Dinosaur implements IHybrid
 {
-    private String[] textures;
-
-    public DinosaurVelociraptorCharlie()
-    {
-        this.textures = new String[] { getDinosaurTexture("") };
-    }
-
     @Override
     public String getName()
     {
@@ -102,18 +94,6 @@ public class DinosaurVelociraptorCharlie extends Dinosaur implements IHybrid
     public int getMaximumAge()
     {
         return fromDays(45);
-    }
-
-    @Override
-    public String[] getMaleTextures(EnumGrowthStage stage)
-    {
-        return textures;
-    }
-
-    @Override
-    public String[] getFemaleTextures(EnumGrowthStage stage)
-    {
-        return textures;
     }
 
     @Override

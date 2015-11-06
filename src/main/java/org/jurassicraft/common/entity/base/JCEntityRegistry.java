@@ -4,7 +4,60 @@ import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.api.IHybrid;
-import org.jurassicraft.common.dinosaur.*;
+import org.jurassicraft.common.dinosaur.Dinosaur;
+import org.jurassicraft.common.dinosaur.DinosaurAchillobator;
+import org.jurassicraft.common.dinosaur.DinosaurAnkylosaurus;
+import org.jurassicraft.common.dinosaur.DinosaurApatosaurus;
+import org.jurassicraft.common.dinosaur.DinosaurBaryonyx;
+import org.jurassicraft.common.dinosaur.DinosaurBrachiosaurus;
+import org.jurassicraft.common.dinosaur.DinosaurCarnotaurus;
+import org.jurassicraft.common.dinosaur.DinosaurCearadactylus;
+import org.jurassicraft.common.dinosaur.DinosaurChasmosaurus;
+import org.jurassicraft.common.dinosaur.DinosaurCoelacanth;
+import org.jurassicraft.common.dinosaur.DinosaurCompsognathus;
+import org.jurassicraft.common.dinosaur.DinosaurCorythosaurus;
+import org.jurassicraft.common.dinosaur.DinosaurDilophosaurus;
+import org.jurassicraft.common.dinosaur.DinosaurDimorphodon;
+import org.jurassicraft.common.dinosaur.DinosaurDodo;
+import org.jurassicraft.common.dinosaur.DinosaurDunkleosteus;
+import org.jurassicraft.common.dinosaur.DinosaurEdmontosaurus;
+import org.jurassicraft.common.dinosaur.DinosaurGallimimus;
+import org.jurassicraft.common.dinosaur.DinosaurGiganotosaurus;
+import org.jurassicraft.common.dinosaur.DinosaurHerrerasaurus;
+import org.jurassicraft.common.dinosaur.DinosaurHypsilophodon;
+import org.jurassicraft.common.dinosaur.DinosaurIndominus;
+import org.jurassicraft.common.dinosaur.DinosaurLambeosaurus;
+import org.jurassicraft.common.dinosaur.DinosaurLeaellynasaura;
+import org.jurassicraft.common.dinosaur.DinosaurLeptictidium;
+import org.jurassicraft.common.dinosaur.DinosaurLudodactylus;
+import org.jurassicraft.common.dinosaur.DinosaurMajungasaurus;
+import org.jurassicraft.common.dinosaur.DinosaurMamenchisaurus;
+import org.jurassicraft.common.dinosaur.DinosaurMegapiranha;
+import org.jurassicraft.common.dinosaur.DinosaurMetriacanthosaurus;
+import org.jurassicraft.common.dinosaur.DinosaurMicroceratus;
+import org.jurassicraft.common.dinosaur.DinosaurMoganopterus;
+import org.jurassicraft.common.dinosaur.DinosaurOrnithomimus;
+import org.jurassicraft.common.dinosaur.DinosaurOthnielia;
+import org.jurassicraft.common.dinosaur.DinosaurOviraptor;
+import org.jurassicraft.common.dinosaur.DinosaurParasaurolophus;
+import org.jurassicraft.common.dinosaur.DinosaurProtoceratops;
+import org.jurassicraft.common.dinosaur.DinosaurPteranodon;
+import org.jurassicraft.common.dinosaur.DinosaurRugops;
+import org.jurassicraft.common.dinosaur.DinosaurSegisaurus;
+import org.jurassicraft.common.dinosaur.DinosaurSpinosaurus;
+import org.jurassicraft.common.dinosaur.DinosaurStegosaurus;
+import org.jurassicraft.common.dinosaur.DinosaurTherizinosaurus;
+import org.jurassicraft.common.dinosaur.DinosaurTriceratops;
+import org.jurassicraft.common.dinosaur.DinosaurTroodon;
+import org.jurassicraft.common.dinosaur.DinosaurTropeognathus;
+import org.jurassicraft.common.dinosaur.DinosaurTylosaurus;
+import org.jurassicraft.common.dinosaur.DinosaurTyrannosaurus;
+import org.jurassicraft.common.dinosaur.DinosaurVelociraptor;
+import org.jurassicraft.common.dinosaur.DinosaurVelociraptorBlue;
+import org.jurassicraft.common.dinosaur.DinosaurVelociraptorCharlie;
+import org.jurassicraft.common.dinosaur.DinosaurVelociraptorDelta;
+import org.jurassicraft.common.dinosaur.DinosaurVelociraptorEcho;
+import org.jurassicraft.common.dinosaur.DinosaurZhenyuanopterus;
 import org.jurassicraft.common.entity.item.EntityBluePrint;
 import org.jurassicraft.common.entity.item.EntityCageSmall;
 import org.jurassicraft.common.entity.item.EntityJurassiCraftSign;
@@ -179,6 +232,8 @@ public class JCEntityRegistry
 
     public static void registerDinosaurType(Dinosaur dinosaur)
     {
+        dinosaur.init();
+
         dinosaurs.add(dinosaur);
 
         if (!(dinosaur instanceof IHybrid) && dinosaur.shouldRegister())

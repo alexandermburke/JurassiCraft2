@@ -1,7 +1,5 @@
 package org.jurassicraft;
 
-import java.io.File;
-
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.GameRules;
 import net.minecraftforge.common.config.Configuration;
@@ -11,7 +9,6 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import org.apache.logging.log4j.Logger;
 import org.jurassicraft.common.achievements.JCAchievements;
@@ -26,6 +23,8 @@ import org.jurassicraft.common.plant.JCPlantRegistry;
 import org.jurassicraft.common.proxy.CommonProxy;
 import org.jurassicraft.common.recipe.JCRecipeRegistry;
 import org.jurassicraft.common.storagedisc.StorageTypeRegistry;
+
+import java.io.File;
 
 @Mod(modid = JurassiCraft.MODID, name = JurassiCraft.MODNAME, version = JurassiCraft.MODVERSION)
 public class JurassiCraft
@@ -82,7 +81,7 @@ public class JurassiCraft
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event)
-    { 
+    {
         proxy.postInit(event);
         logger.info("Finished loaded JurassiCraft!");
     }

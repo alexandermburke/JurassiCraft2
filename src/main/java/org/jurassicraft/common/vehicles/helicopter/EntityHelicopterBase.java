@@ -81,18 +81,12 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     /**
      * Sets entity size
      *
-     * @param offsetX
-     *            The offset of the box in blocks on the X axis
-     * @param offsetY
-     *            The offset of the box in blocks on the Y axis
-     * @param offsetZ
-     *            The offset of the box in blocks on the Z axis
-     * @param w
-     *            The width of the entity
-     * @param h
-     *            The height of the entity
-     * @param d
-     *            The depth of the entity
+     * @param offsetX The offset of the box in blocks on the X axis
+     * @param offsetY The offset of the box in blocks on the Y axis
+     * @param offsetZ The offset of the box in blocks on the Z axis
+     * @param w       The width of the entity
+     * @param h       The height of the entity
+     * @param d       The depth of the entity
      */
     private void setBox(double offsetX, double offsetY, double offsetZ, double w, double h, double d)
     {
@@ -184,7 +178,9 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
         for (HelicopterModuleSpot spot : moduleSpots)
         {
             if (spot == null)
+            {
                 continue;
+            }
             if (spot.has(HelicopterModule.seat))
             {
                 EntityHelicopterSeat seat = HelicopterModule.seat.getEntity(spot);
@@ -214,9 +210,13 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
                             updateEngine(runEngine);
                             engineRunning = runEngine;
                             if (engineRunning && enginePower >= REQUIRED_POWER)
+                            {
                                 direction = drive(direction);
+                            }
                             else
+                            {
                                 direction.set(0, 1, 0);
+                            }
                         }
                     }
                 }
@@ -310,7 +310,9 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
         }
 
         if (!Minecraft.getMinecraft().gameSettings.keyBindUseItem.isKeyDown())
+        {
             direction.addVector(0, 1, 0);
+        }
 
         return direction.normalize();
     }
@@ -330,8 +332,7 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     /**
      * Checks if the current pilot is the player using this client
      *
-     * @param pilot
-     *            The pilot
+     * @param pilot The pilot
      * @return True if Client's player's UUID is equal to pilot
      */
     @SideOnly(Side.CLIENT)

@@ -1,7 +1,5 @@
 package net.timeless.animationapi.client;
 
-import java.util.Map;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
@@ -10,10 +8,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
-
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+
+import java.util.Map;
 
 /**
  * @author jabelar This class is used to hold per-entity animation variables for use with Jabelar's animation tweening system.
@@ -54,25 +53,21 @@ public class JabelarAnimationHelper
     private final boolean inertialTweens;
 
     /**
-     * @param parEntity
-     *            the entity to animate from
-     * @param parModel
-     *            the model to animate
+     * @param parEntity         the entity to animate from
+     * @param parModel          the model to animate
      * @param parNumParts
-     * @param parArrayOfPoses
-     *            for each pose(-index) an array of posed Renderers
-     * @param parMapOfSequences
-     *            maps from an {@link AnimID} to the sequence of (pose-index, tween-length)
+     * @param parArrayOfPoses   for each pose(-index) an array of posed Renderers
+     * @param parMapOfSequences maps from an {@link AnimID} to the sequence of (pose-index, tween-length)
      * @param parInertialTweens
      * @param parInertiaFactor
      */
     public JabelarAnimationHelper(
-            EntityDinosaur parEntity, 
-            ModelDinosaur parModel, 
-            int parNumParts, 
-            MowzieModelRenderer[][] parArrayOfPoses, 
-            Map<AnimID, int[][]> parMapOfSequences, 
-            boolean parInertialTweens, 
+            EntityDinosaur parEntity,
+            ModelDinosaur parModel,
+            int parNumParts,
+            MowzieModelRenderer[][] parArrayOfPoses,
+            Map<AnimID, int[][]> parMapOfSequences,
+            boolean parInertialTweens,
             float parInertiaFactor)
     {
         // transfer static animation info from constructor parameters to instance
@@ -83,7 +78,7 @@ public class JabelarAnimationHelper
         inertialTweens = parInertialTweens;
 
         lastTicksExisted = theEntity.ticksExisted;
-        
+
         partialTicks = 0.0F;
 
         mc = Minecraft.getMinecraft();
@@ -375,7 +370,7 @@ public class JabelarAnimationHelper
     public boolean incrementCurrentPose()
     {
         boolean finishedSequence = false;
-        
+
         // increment current sequence step
         currentPose++;
         // check if finished sequence
@@ -420,11 +415,11 @@ public class JabelarAnimationHelper
             JurassiCraft.instance.getLogger().debug("Setting new sequence to " + parSequenceIndex);
             currentSequence = parSequenceIndex;
         }
-        
+
         theEntity.setAnimID(currentSequence);
         setNextPoseModel(0);
         startNextTween();
-        
+
         if (currentSequence != AnimID.IDLE)
         {
             JurassiCraft.instance.getLogger().debug("current sequence for entity ID " + theEntity.getEntityId() + " is " + currentSequence + " out of " + mapOfSequences.size() + " and current pose " + currentPose + " out of " + mapOfSequences.get(currentSequence).length + " with " + numTicksInTween + " ticks in tween");

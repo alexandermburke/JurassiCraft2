@@ -7,8 +7,8 @@ import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.container.ContainerFossilGrinder;
-import org.jurassicraft.common.item.bones.ItemFossil;
 import org.jurassicraft.common.item.JCItemRegistry;
+import org.jurassicraft.common.item.bones.ItemFossil;
 
 import java.util.Random;
 
