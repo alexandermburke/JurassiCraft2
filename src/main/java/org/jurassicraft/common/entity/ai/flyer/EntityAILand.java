@@ -1,13 +1,13 @@
-package org.jurassicraft.common.entity.ai;
+package org.jurassicraft.common.entity.ai.flyer;
 
 import net.minecraft.entity.ai.EntityAIBase;
 import org.jurassicraft.common.entity.base.EntityDinosaurFlyingAggressive;
 
-public class EntityAITakeOff extends EntityAIBase
+public class EntityAILand extends EntityAIBase
 {
     protected EntityDinosaurFlyingAggressive flyer;
 
-    public EntityAITakeOff(EntityDinosaurFlyingAggressive dinosaur)
+    public EntityAILand(EntityDinosaurFlyingAggressive dinosaur)
     {
         this.flyer = dinosaur;
     }
@@ -15,18 +15,18 @@ public class EntityAITakeOff extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        return !flyer.isFlying() && flyer.onGround && flyer.getRNG().nextFloat() < 0.01F;
+        return flyer.isFlying() && flyer.posY - flyer.worldObj.getHeight(flyer.getPosition()).getY() > 10 && flyer.getRNG().nextFloat() < 0.1F;
     }
 
     @Override
     public void updateTask()
     {
-        flyer.rotationPitch = 80;
-        flyer.setFlying(true);
+        flyer.rotationPitch = -90;
 
-        if (!flyer.onGround && flyer.posY - flyer.worldObj.getHeight(flyer.getPosition()).getY() > 10)
+        if (flyer.onGround)
         {
             flyer.rotationPitch = 0;
+            flyer.setFlying(false);
         }
     }
 
@@ -36,6 +36,6 @@ public class EntityAITakeOff extends EntityAIBase
     @Override
     public boolean continueExecuting()
     {
-        return flyer != null && !this.flyer.getNavigator().noPath();
+        return flyer != null && !this.flyer.getNavigator().noPath() && this.flyer.isFlying();
     }
 }

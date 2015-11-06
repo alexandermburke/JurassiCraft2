@@ -1,4 +1,4 @@
-package org.jurassicraft.common.block;
+package org.jurassicraft.common.block.machine;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -15,17 +15,19 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jurassicraft.JurassiCraft;
+import org.jurassicraft.common.block.BlockOriented;
+import org.jurassicraft.common.block.JCBlockRegistry;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
-import org.jurassicraft.common.tileentity.TileIncubator;
+import org.jurassicraft.common.tileentity.TileEmbryoCalcificationMachine;
 
 import java.util.Random;
 
-public class BlockIncubator extends BlockOriented
+public class BlockEmbryoCalcificationMachine extends BlockOriented
 {
-    public BlockIncubator()
+    public BlockEmbryoCalcificationMachine()
     {
         super(Material.iron);
-        this.setUnlocalizedName("incubator");
+        this.setUnlocalizedName("embryo_calcification_machine");
         this.setHardness(2.0F);
         this.setStepSound(Block.soundTypeMetal);
         this.setCreativeTab(JCCreativeTabs.blocks);
@@ -40,9 +42,9 @@ public class BlockIncubator extends BlockOriented
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileIncubator)
+            if (tileentity instanceof TileEmbryoCalcificationMachine)
             {
-                ((TileIncubator) tileentity).setCustomInventoryName(stack.getDisplayName());
+                ((TileEmbryoCalcificationMachine) tileentity).setCustomInventoryName(stack.getDisplayName());
             }
         }
     }
@@ -52,9 +54,9 @@ public class BlockIncubator extends BlockOriented
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        if (tileentity instanceof TileIncubator)
+        if (tileentity instanceof TileEmbryoCalcificationMachine)
         {
-            InventoryHelper.dropInventoryItems(worldIn, pos, (TileIncubator) tileentity);
+            InventoryHelper.dropInventoryItems(worldIn, pos, (TileEmbryoCalcificationMachine) tileentity);
         }
 
         super.breakBlock(worldIn, pos, state);
@@ -63,20 +65,14 @@ public class BlockIncubator extends BlockOriented
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(JCBlockRegistry.incubator);
+        return Item.getItemFromBlock(JCBlockRegistry.embryo_calcification_machine);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public Item getItem(World worldIn, BlockPos pos)
     {
-        return Item.getItemFromBlock(JCBlockRegistry.incubator);
-    }
-
-    @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta)
-    {
-        return new TileIncubator();
+        return Item.getItemFromBlock(JCBlockRegistry.embryo_calcification_machine);
     }
 
     @Override
@@ -90,17 +86,23 @@ public class BlockIncubator extends BlockOriented
         {
             TileEntity tileEntity = world.getTileEntity(pos);
 
-            if (tileEntity instanceof TileIncubator)
+            if (tileEntity instanceof TileEmbryoCalcificationMachine)
             {
-                TileIncubator embryonicMachine = (TileIncubator) tileEntity;
+                TileEmbryoCalcificationMachine dnaSequencer = (TileEmbryoCalcificationMachine) tileEntity;
 
-                if (embryonicMachine.isUseableByPlayer(player))
+                if (dnaSequencer.isUseableByPlayer(player))
                 {
-                    player.openGui(JurassiCraft.instance, 6, world, pos.getX(), pos.getY(), pos.getZ());
+                    player.openGui(JurassiCraft.instance, 4, world, pos.getX(), pos.getY(), pos.getZ());
                     return true;
                 }
             }
         }
         return false;
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta)
+    {
+        return new TileEmbryoCalcificationMachine();
     }
 }

@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jurassicraft.common.container.slot.SlotStorage;
-import org.jurassicraft.common.item.ItemEncasedFossil;
+import org.jurassicraft.common.item.itemblock.ItemEncasedFossil;
 import org.jurassicraft.common.tileentity.TileCleaningStation;
 
 public class ContainerDNACombinator extends Container

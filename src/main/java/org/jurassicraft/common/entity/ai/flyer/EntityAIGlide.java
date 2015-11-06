@@ -1,4 +1,4 @@
-package org.jurassicraft.common.entity.ai;
+package org.jurassicraft.common.entity.ai.flyer;
 
 import net.minecraft.entity.ai.EntityAIBase;
 import org.jurassicraft.common.entity.base.EntityDinosaurFlyingAggressive;

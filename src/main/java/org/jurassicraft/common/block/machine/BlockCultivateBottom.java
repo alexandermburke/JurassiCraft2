@@ -1,4 +1,4 @@
-package org.jurassicraft.common.block;
+package org.jurassicraft.common.block.machine;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -11,6 +11,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import org.jurassicraft.JurassiCraft;
+import org.jurassicraft.common.block.JCBlockRegistry;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
 import org.jurassicraft.common.tileentity.TileCultivate;
 

@@ -1,4 +1,4 @@
-package org.jurassicraft.common.block;
+package org.jurassicraft.common.block.machine;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.MapColor;
@@ -20,7 +20,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jurassicraft.common.api.ISubBlocksBlock;
-import org.jurassicraft.common.item.ItemBlockCultivate;
+import org.jurassicraft.common.block.JCBlockRegistry;
+import org.jurassicraft.common.item.itemblock.ItemBlockCultivate;
 import org.jurassicraft.common.tileentity.TileCultivate;
 
 import java.util.List;

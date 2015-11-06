@@ -1,4 +1,4 @@
-package org.jurassicraft.common.block;
+package org.jurassicraft.common.block.machine;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -11,6 +11,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import org.jurassicraft.common.block.JCBlockRegistry;
 
 public class BlockCultivateTop extends BlockCultivate
 {
@@ -28,7 +29,7 @@ public class BlockCultivateTop extends BlockCultivate
             return null;
         }
 
-        Block block = item instanceof ItemBlock && !isFlowerPot() ? Block.getBlockFromItem(item) : this;
+        Block block = item instanceof ItemBlock && !isFlowerPot() ? getBlockFromItem(item) : this;
         return new ItemStack(item, 1, block.getDamageValue(world, pos));
     }
 

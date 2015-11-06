@@ -1,4 +1,4 @@
-package org.jurassicraft.common.block;
+package org.jurassicraft.common.block.machine;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -17,19 +17,20 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jurassicraft.JurassiCraft;
+import org.jurassicraft.common.block.BlockOriented;
+import org.jurassicraft.common.block.JCBlockRegistry;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
-import org.jurassicraft.common.tileentity.TileDNACombinator;
+import org.jurassicraft.common.tileentity.TileFossilGrinder;
 
 import java.util.Random;
 
-public class BlockDNACombinator extends BlockOriented
+public class BlockFossilGrinder extends BlockOriented
 {
-    public BlockDNACombinator()
+    public BlockFossilGrinder()
     {
         super(Material.iron);
-        this.setUnlocalizedName("dna_combinator");
+        this.setUnlocalizedName("fossil_grinder");
         this.setHardness(2.0F);
-        this.setLightOpacity(0);
         this.setStepSound(Block.soundTypeMetal);
         this.setCreativeTab(JCCreativeTabs.blocks);
     }
@@ -43,9 +44,9 @@ public class BlockDNACombinator extends BlockOriented
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileDNACombinator)
+            if (tileentity instanceof TileFossilGrinder)
             {
-                ((TileDNACombinator) tileentity).setCustomInventoryName(stack.getDisplayName());
+                ((TileFossilGrinder) tileentity).setCustomInventoryName(stack.getDisplayName());
             }
         }
     }
@@ -55,9 +56,9 @@ public class BlockDNACombinator extends BlockOriented
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        if (tileentity instanceof TileDNACombinator)
+        if (tileentity instanceof TileFossilGrinder)
         {
-            InventoryHelper.dropInventoryItems(worldIn, pos, (TileDNACombinator) tileentity);
+            InventoryHelper.dropInventoryItems(worldIn, pos, (TileFossilGrinder) tileentity);
         }
 
         super.breakBlock(worldIn, pos, state);
@@ -66,14 +67,14 @@ public class BlockDNACombinator extends BlockOriented
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(JCBlockRegistry.dna_combinator);
+        return Item.getItemFromBlock(JCBlockRegistry.fossil_grinder);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public Item getItem(World worldIn, BlockPos pos)
     {
-        return Item.getItemFromBlock(JCBlockRegistry.dna_combinator);
+        return Item.getItemFromBlock(JCBlockRegistry.fossil_grinder);
     }
 
     @Override
@@ -87,13 +88,13 @@ public class BlockDNACombinator extends BlockOriented
         {
             TileEntity tileEntity = world.getTileEntity(pos);
 
-            if (tileEntity instanceof TileDNACombinator)
+            if (tileEntity instanceof TileFossilGrinder)
             {
-                TileDNACombinator combinator = (TileDNACombinator) tileEntity;
+                TileFossilGrinder cleaningStation = (TileFossilGrinder) tileEntity;
 
-                if (combinator.isUseableByPlayer(player))
+                if (cleaningStation.isUseableByPlayer(player))
                 {
-                    player.openGui(JurassiCraft.instance, 8, world, pos.getX(), pos.getY(), pos.getZ());
+                    player.openGui(JurassiCraft.instance, 1, world, pos.getX(), pos.getY(), pos.getZ());
                     return true;
                 }
             }
@@ -104,7 +105,7 @@ public class BlockDNACombinator extends BlockOriented
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta)
     {
-        return new TileDNACombinator();
+        return new TileFossilGrinder();
     }
 
     @SideOnly(Side.CLIENT)

@@ -1,4 +1,4 @@
-package org.jurassicraft.common.item;
+package org.jurassicraft.common.item.bones;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

@@ -18,7 +18,7 @@ import org.jurassicraft.common.api.ISubBlocksBlock;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.base.JCEntityRegistry;
-import org.jurassicraft.common.item.ItemEncasedFossil;
+import org.jurassicraft.common.item.itemblock.ItemEncasedFossil;
 
 import java.util.List;
 

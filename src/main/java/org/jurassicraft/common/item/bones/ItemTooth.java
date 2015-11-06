@@ -1,4 +1,4 @@
-package org.jurassicraft.common.item;
+package org.jurassicraft.common.item.bones;
 
 public class ItemTooth extends ItemFossil
 {

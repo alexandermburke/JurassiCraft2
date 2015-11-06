@@ -1,4 +1,4 @@
-package org.jurassicraft.common.block;
+package org.jurassicraft.common.block.machine;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -11,23 +11,23 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumWorldBlockLayer;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jurassicraft.JurassiCraft;
+import org.jurassicraft.common.block.BlockOriented;
+import org.jurassicraft.common.block.JCBlockRegistry;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
-import org.jurassicraft.common.tileentity.TileFossilGrinder;
+import org.jurassicraft.common.tileentity.TileDnaSequencer;
 
 import java.util.Random;
 
-public class BlockFossilGrinder extends BlockOriented
+public class BlockDnaSequencer extends BlockOriented
 {
-    public BlockFossilGrinder()
+    public BlockDnaSequencer()
     {
         super(Material.iron);
-        this.setUnlocalizedName("fossil_grinder");
+        this.setUnlocalizedName("dna_sequencer");
         this.setHardness(2.0F);
         this.setStepSound(Block.soundTypeMetal);
         this.setCreativeTab(JCCreativeTabs.blocks);
@@ -42,9 +42,9 @@ public class BlockFossilGrinder extends BlockOriented
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileFossilGrinder)
+            if (tileentity instanceof TileDnaSequencer)
             {
-                ((TileFossilGrinder) tileentity).setCustomInventoryName(stack.getDisplayName());
+                ((TileDnaSequencer) tileentity).setCustomInventoryName(stack.getDisplayName());
             }
         }
     }
@@ -54,9 +54,9 @@ public class BlockFossilGrinder extends BlockOriented
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        if (tileentity instanceof TileFossilGrinder)
+        if (tileentity instanceof TileDnaSequencer)
         {
-            InventoryHelper.dropInventoryItems(worldIn, pos, (TileFossilGrinder) tileentity);
+            InventoryHelper.dropInventoryItems(worldIn, pos, (TileDnaSequencer) tileentity);
         }
 
         super.breakBlock(worldIn, pos, state);
@@ -65,14 +65,14 @@ public class BlockFossilGrinder extends BlockOriented
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(JCBlockRegistry.fossil_grinder);
+        return Item.getItemFromBlock(JCBlockRegistry.dna_sequencer);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public Item getItem(World worldIn, BlockPos pos)
     {
-        return Item.getItemFromBlock(JCBlockRegistry.fossil_grinder);
+        return Item.getItemFromBlock(JCBlockRegistry.dna_sequencer);
     }
 
     @Override
@@ -86,13 +86,13 @@ public class BlockFossilGrinder extends BlockOriented
         {
             TileEntity tileEntity = world.getTileEntity(pos);
 
-            if (tileEntity instanceof TileFossilGrinder)
+            if (tileEntity instanceof TileDnaSequencer)
             {
-                TileFossilGrinder cleaningStation = (TileFossilGrinder) tileEntity;
+                TileDnaSequencer dnaSequencer = (TileDnaSequencer) tileEntity;
 
-                if (cleaningStation.isUseableByPlayer(player))
+                if (dnaSequencer.isUseableByPlayer(player))
                 {
-                    player.openGui(JurassiCraft.instance, 1, world, pos.getX(), pos.getY(), pos.getZ());
+                    player.openGui(JurassiCraft.instance, 2, world, pos.getX(), pos.getY(), pos.getZ());
                     return true;
                 }
             }
@@ -103,30 +103,6 @@ public class BlockFossilGrinder extends BlockOriented
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta)
     {
-        return new TileFossilGrinder();
-    }
-
-    @SideOnly(Side.CLIENT)
-    public EnumWorldBlockLayer getBlockLayer()
-    {
-        return EnumWorldBlockLayer.CUTOUT;
-    }
-
-    @Override
-    public boolean isOpaqueCube()
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isFullCube()
-    {
-        return false;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
-    {
-        return true;
+        return new TileDnaSequencer();
     }
 }

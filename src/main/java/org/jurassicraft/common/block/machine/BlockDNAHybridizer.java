@@ -1,4 +1,4 @@
-package org.jurassicraft.common.block;
+package org.jurassicraft.common.block.machine;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -15,17 +15,19 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jurassicraft.JurassiCraft;
+import org.jurassicraft.common.block.BlockOriented;
+import org.jurassicraft.common.block.JCBlockRegistry;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
-import org.jurassicraft.common.tileentity.TileEmbryonicMachine;
+import org.jurassicraft.common.tileentity.TileDNAHybridizer;
 
 import java.util.Random;
 
-public class BlockEmbryonicMachine extends BlockOriented
+public class BlockDNAHybridizer extends BlockOriented
 {
-    public BlockEmbryonicMachine()
+    public BlockDNAHybridizer()
     {
         super(Material.iron);
-        this.setUnlocalizedName("embryonic_machine");
+        this.setUnlocalizedName("dna_hybridizer");
         this.setHardness(2.0F);
         this.setStepSound(Block.soundTypeMetal);
         this.setCreativeTab(JCCreativeTabs.blocks);
@@ -40,9 +42,9 @@ public class BlockEmbryonicMachine extends BlockOriented
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEmbryonicMachine)
+            if (tileentity instanceof TileDNAHybridizer)
             {
-                ((TileEmbryonicMachine) tileentity).setCustomInventoryName(stack.getDisplayName());
+                ((TileDNAHybridizer) tileentity).setCustomInventoryName(stack.getDisplayName());
             }
         }
     }
@@ -52,9 +54,9 @@ public class BlockEmbryonicMachine extends BlockOriented
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        if (tileentity instanceof TileEmbryonicMachine)
+        if (tileentity instanceof TileDNAHybridizer)
         {
-            InventoryHelper.dropInventoryItems(worldIn, pos, (TileEmbryonicMachine) tileentity);
+            InventoryHelper.dropInventoryItems(worldIn, pos, (TileDNAHybridizer) tileentity);
         }
 
         super.breakBlock(worldIn, pos, state);
@@ -63,14 +65,20 @@ public class BlockEmbryonicMachine extends BlockOriented
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(JCBlockRegistry.embryonic_machine);
+        return Item.getItemFromBlock(JCBlockRegistry.dna_hybridizer);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public Item getItem(World worldIn, BlockPos pos)
     {
-        return Item.getItemFromBlock(JCBlockRegistry.embryonic_machine);
+        return Item.getItemFromBlock(JCBlockRegistry.dna_hybridizer);
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta)
+    {
+        return new TileDNAHybridizer();
     }
 
     @Override
@@ -84,23 +92,17 @@ public class BlockEmbryonicMachine extends BlockOriented
         {
             TileEntity tileEntity = world.getTileEntity(pos);
 
-            if (tileEntity instanceof TileEmbryonicMachine)
+            if (tileEntity instanceof TileDNAHybridizer)
             {
-                TileEmbryonicMachine embryonicMachine = (TileEmbryonicMachine) tileEntity;
+                TileDNAHybridizer embryonicMachine = (TileDNAHybridizer) tileEntity;
 
                 if (embryonicMachine.isUseableByPlayer(player))
                 {
-                    player.openGui(JurassiCraft.instance, 3, world, pos.getX(), pos.getY(), pos.getZ());
+                    player.openGui(JurassiCraft.instance, 7, world, pos.getX(), pos.getY(), pos.getZ());
                     return true;
                 }
             }
         }
         return false;
-    }
-
-    @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta)
-    {
-        return new TileEmbryonicMachine();
     }
 }

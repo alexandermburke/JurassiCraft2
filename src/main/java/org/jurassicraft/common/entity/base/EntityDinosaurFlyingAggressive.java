@@ -5,9 +5,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import org.jurassicraft.common.entity.ai.EntityAIGlide;
-import org.jurassicraft.common.entity.ai.EntityAILand;
-import org.jurassicraft.common.entity.ai.EntityAITakeOff;
+import org.jurassicraft.common.entity.ai.flyer.EntityAIGlide;
+import org.jurassicraft.common.entity.ai.flyer.EntityAILand;
+import org.jurassicraft.common.entity.ai.flyer.EntityAITakeOff;
 
 public abstract class EntityDinosaurFlyingAggressive extends EntityDinosaurAggressive
 {

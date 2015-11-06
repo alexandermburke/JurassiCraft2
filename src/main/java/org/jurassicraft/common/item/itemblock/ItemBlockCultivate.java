@@ -1,4 +1,4 @@
-package org.jurassicraft.common.item;
+package org.jurassicraft.common.item.itemblock;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.EnumDyeColor;

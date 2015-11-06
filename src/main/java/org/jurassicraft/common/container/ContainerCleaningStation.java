@@ -11,7 +11,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jurassicraft.common.container.slot.SlotFossil;
 import org.jurassicraft.common.container.slot.SlotWaterBucket;
-import org.jurassicraft.common.item.ItemEncasedFossil;
+import org.jurassicraft.common.item.itemblock.ItemEncasedFossil;
 import org.jurassicraft.common.tileentity.TileCleaningStation;
 
 public class ContainerCleaningStation extends Container

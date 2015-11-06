@@ -1,4 +1,4 @@
-package org.jurassicraft.common.block;
+package org.jurassicraft.common.block.machine;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -15,17 +15,19 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jurassicraft.JurassiCraft;
+import org.jurassicraft.common.block.BlockOriented;
+import org.jurassicraft.common.block.JCBlockRegistry;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
-import org.jurassicraft.common.tileentity.TileEmbryoCalcificationMachine;
+import org.jurassicraft.common.tileentity.TileDnaSynthesizer;
 
 import java.util.Random;
 
-public class BlockEmbryoCalcificationMachine extends BlockOriented
+public class BlockDnaSynthesizer extends BlockOriented
 {
-    public BlockEmbryoCalcificationMachine()
+    public BlockDnaSynthesizer()
     {
         super(Material.iron);
-        this.setUnlocalizedName("embryo_calcification_machine");
+        this.setUnlocalizedName("dna_synthesizer");
         this.setHardness(2.0F);
         this.setStepSound(Block.soundTypeMetal);
         this.setCreativeTab(JCCreativeTabs.blocks);
@@ -40,9 +42,9 @@ public class BlockEmbryoCalcificationMachine extends BlockOriented
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEmbryoCalcificationMachine)
+            if (tileentity instanceof TileDnaSynthesizer)
             {
-                ((TileEmbryoCalcificationMachine) tileentity).setCustomInventoryName(stack.getDisplayName());
+                ((TileDnaSynthesizer) tileentity).setCustomInventoryName(stack.getDisplayName());
             }
         }
     }
@@ -52,9 +54,9 @@ public class BlockEmbryoCalcificationMachine extends BlockOriented
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        if (tileentity instanceof TileEmbryoCalcificationMachine)
+        if (tileentity instanceof TileDnaSynthesizer)
         {
-            InventoryHelper.dropInventoryItems(worldIn, pos, (TileEmbryoCalcificationMachine) tileentity);
+            InventoryHelper.dropInventoryItems(worldIn, pos, (TileDnaSynthesizer) tileentity);
         }
 
         super.breakBlock(worldIn, pos, state);
@@ -63,14 +65,14 @@ public class BlockEmbryoCalcificationMachine extends BlockOriented
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(JCBlockRegistry.embryo_calcification_machine);
+        return Item.getItemFromBlock(JCBlockRegistry.dna_synthesizer);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public Item getItem(World worldIn, BlockPos pos)
     {
-        return Item.getItemFromBlock(JCBlockRegistry.embryo_calcification_machine);
+        return Item.getItemFromBlock(JCBlockRegistry.dna_synthesizer);
     }
 
     @Override
@@ -84,13 +86,13 @@ public class BlockEmbryoCalcificationMachine extends BlockOriented
         {
             TileEntity tileEntity = world.getTileEntity(pos);
 
-            if (tileEntity instanceof TileEmbryoCalcificationMachine)
+            if (tileEntity instanceof TileDnaSynthesizer)
             {
-                TileEmbryoCalcificationMachine dnaSequencer = (TileEmbryoCalcificationMachine) tileEntity;
+                TileDnaSynthesizer dnaSynthesizer = (TileDnaSynthesizer) tileEntity;
 
-                if (dnaSequencer.isUseableByPlayer(player))
+                if (dnaSynthesizer.isUseableByPlayer(player))
                 {
-                    player.openGui(JurassiCraft.instance, 4, world, pos.getX(), pos.getY(), pos.getZ());
+                    player.openGui(JurassiCraft.instance, 5, world, pos.getX(), pos.getY(), pos.getZ());
                     return true;
                 }
             }
@@ -101,6 +103,6 @@ public class BlockEmbryoCalcificationMachine extends BlockOriented
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta)
     {
-        return new TileEmbryoCalcificationMachine();
+        return new TileDnaSynthesizer();
     }
 }

@@ -9,10 +9,10 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class JurassicPortal extends BlockPortal
+public class BlockJurassicPortal extends BlockPortal
 {
 
-    public JurassicPortal()
+    public BlockJurassicPortal()
     {
         super();
     }

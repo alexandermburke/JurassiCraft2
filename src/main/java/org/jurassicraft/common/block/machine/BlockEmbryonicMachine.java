@@ -1,4 +1,4 @@
-package org.jurassicraft.common.block;
+package org.jurassicraft.common.block.machine;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -11,25 +11,24 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumWorldBlockLayer;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jurassicraft.JurassiCraft;
+import org.jurassicraft.common.block.BlockOriented;
+import org.jurassicraft.common.block.JCBlockRegistry;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
-import org.jurassicraft.common.tileentity.TileCleaningStation;
+import org.jurassicraft.common.tileentity.TileEmbryonicMachine;
 
 import java.util.Random;
 
-public class BlockCleaningStation extends BlockOriented
+public class BlockEmbryonicMachine extends BlockOriented
 {
-    public BlockCleaningStation()
+    public BlockEmbryonicMachine()
     {
         super(Material.iron);
-        this.setUnlocalizedName("cleaning_station");
+        this.setUnlocalizedName("embryonic_machine");
         this.setHardness(2.0F);
-        this.setLightOpacity(0);
         this.setStepSound(Block.soundTypeMetal);
         this.setCreativeTab(JCCreativeTabs.blocks);
     }
@@ -43,9 +42,9 @@ public class BlockCleaningStation extends BlockOriented
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileCleaningStation)
+            if (tileentity instanceof TileEmbryonicMachine)
             {
-                ((TileCleaningStation) tileentity).setCustomInventoryName(stack.getDisplayName());
+                ((TileEmbryonicMachine) tileentity).setCustomInventoryName(stack.getDisplayName());
             }
         }
     }
@@ -55,9 +54,9 @@ public class BlockCleaningStation extends BlockOriented
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        if (tileentity instanceof TileCleaningStation)
+        if (tileentity instanceof TileEmbryonicMachine)
         {
-            InventoryHelper.dropInventoryItems(worldIn, pos, (TileCleaningStation) tileentity);
+            InventoryHelper.dropInventoryItems(worldIn, pos, (TileEmbryonicMachine) tileentity);
         }
 
         super.breakBlock(worldIn, pos, state);
@@ -66,14 +65,14 @@ public class BlockCleaningStation extends BlockOriented
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(JCBlockRegistry.cleaning_station);
+        return Item.getItemFromBlock(JCBlockRegistry.embryonic_machine);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public Item getItem(World worldIn, BlockPos pos)
     {
-        return Item.getItemFromBlock(JCBlockRegistry.cleaning_station);
+        return Item.getItemFromBlock(JCBlockRegistry.embryonic_machine);
     }
 
     @Override
@@ -87,13 +86,13 @@ public class BlockCleaningStation extends BlockOriented
         {
             TileEntity tileEntity = world.getTileEntity(pos);
 
-            if (tileEntity instanceof TileCleaningStation)
+            if (tileEntity instanceof TileEmbryonicMachine)
             {
-                TileCleaningStation cleaningStation = (TileCleaningStation) tileEntity;
+                TileEmbryonicMachine embryonicMachine = (TileEmbryonicMachine) tileEntity;
 
-                if (cleaningStation.isUseableByPlayer(player))
+                if (embryonicMachine.isUseableByPlayer(player))
                 {
-                    player.openGui(JurassiCraft.instance, 0, world, pos.getX(), pos.getY(), pos.getZ());
+                    player.openGui(JurassiCraft.instance, 3, world, pos.getX(), pos.getY(), pos.getZ());
                     return true;
                 }
             }
@@ -104,30 +103,6 @@ public class BlockCleaningStation extends BlockOriented
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta)
     {
-        return new TileCleaningStation();
-    }
-
-    @SideOnly(Side.CLIENT)
-    public EnumWorldBlockLayer getBlockLayer()
-    {
-        return EnumWorldBlockLayer.CUTOUT;
-    }
-
-    @Override
-    public boolean isOpaqueCube()
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isFullCube()
-    {
-        return false;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
-    {
-        return true;
+        return new TileEmbryonicMachine();
     }
 }
