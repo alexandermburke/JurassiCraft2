@@ -61,19 +61,19 @@ public class DinosaurMegapiranha extends Dinosaur
     @Override
     public double getBabySpeed()
     {
-        return 0.46;
+        return 0.62;
     }
 
     @Override
     public double getAttackSpeed()
     {
-        return 0.40;
+        return 0.50;
     }
 
     @Override
     public double getAdultSpeed()
     {
-        return 0.80;
+        return 0.50;
     }
 
     @Override

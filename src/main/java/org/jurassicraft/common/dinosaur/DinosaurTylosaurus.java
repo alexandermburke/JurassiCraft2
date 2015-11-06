@@ -61,19 +61,19 @@ public class DinosaurTylosaurus extends Dinosaur
     @Override
     public double getBabySpeed()
     {
-        return 4.8;
+        return 0.72;
     }
 
     @Override
     public double getAttackSpeed()
     {
-        return 0.17;
+        return 0.50;
     }
 
     @Override
     public double getAdultSpeed()
     {
-        return 3.8;
+        return 0.75;
     }
 
     @Override

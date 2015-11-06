@@ -143,7 +143,7 @@ public class JCBlockRegistry
         cycad_zamites = addBlock(new BlockCycadZamites(), "cycad_zamites");
         dicksonia = addBlock(new BlockDicksonia(), "dicksonia");
 
-        bPlanks = addBlock(new BlockMeta(Material.wood, "planks", 8).setCreativeTab(JCCreativeTabs.plants), "planks");
+//        bPlanks = addBlock(new BlockMeta(Material.wood, "planks", 8).setCreativeTab(JCCreativeTabs.plants), "planks");
 
         security_camera = addBlock(new BlockSecurityCamera(), "security_camera");
 

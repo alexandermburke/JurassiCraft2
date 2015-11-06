@@ -22,7 +22,7 @@ public class AnimationMegapiranha extends DinosaurAnimator
 
         EntityMegapiranha dino = (EntityMegapiranha) parEntity;
 
-        float globalSpeed = 0.2F;
+        float globalSpeed = 5.5F;
         float globalDegree = 0.77F;
         float globalHeight = 2F;
 
@@ -43,8 +43,8 @@ public class AnimationMegapiranha extends DinosaurAnimator
 
         MowzieModelRenderer[] tail = new MowzieModelRenderer[] { tail3, tail2, tail1, body3, body2, body1, head };
 
-        head.rotationPointX -= -1 * f1 * Math.sin((f + 1) * 0.6);
-        model.chainSwing(tail, 0.3F, 0.2F, 3.0D, f, f1);
+        head.rotationPointX -= -4 * f1 * Math.sin((f + 1) * 0.6); // Head moves side to side
+        model.chainSwing(tail, 0.6F, 0.4F, 3.0D, f, f1); // and the tail follows with a delay.
 
         model.walk(leftFlipper, 0.6F, 0.6F, false, 0.0F, 0.8F, f, f1);
         model.walk(rightFlipper, 0.6F, 0.6F, false, 0.0F, 0.8F, f, f1);
@@ -52,8 +52,7 @@ public class AnimationMegapiranha extends DinosaurAnimator
         model.flap(leftFlipper, 0.6F, 0.6F, false, 0.0F, 0.8F, f, f1);
         model.flap(rightFlipper, 0.6F, 0.6F, true, 0.0F, -0.8F, f, f1);
 
-        int ticksExisted = parEntity.ticksExisted;
-
+        int ticksExisted = dino.ticksExisted;
         model.bob(head, 0.04F, 2.0F, false, ticksExisted, 1.0F);
 
         model.walk(leftFlipper, 0.2F, 0.25F, false, 1.0F, 0.1F, ticksExisted, 1.0F);

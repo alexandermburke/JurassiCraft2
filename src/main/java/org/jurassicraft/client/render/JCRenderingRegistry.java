@@ -260,7 +260,7 @@ public class JCRenderingRegistry
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.gypsum_cobblestone, "gypsum_cobblestone", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.gypsum_bricks, "gypsum_bricks", "inventory");
 
-        this.registerRenderSubBlock(JCBlockRegistry.bPlanks);
+//        this.registerRenderSubBlock(JCBlockRegistry.bPlanks);
     }
 
     public void postInit()
