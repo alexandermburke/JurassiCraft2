@@ -232,7 +232,7 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
         {
             if (!entity.isInvisible())
             {
-                ResourceLocation texture = renderer.dinosaur.getOverlayTexture(entity.getOverlay(index));
+                ResourceLocation texture = renderer.dinosaur.getOverlayTexture(entity.getGrowthStage(), entity.getOverlay(index));
 
                 if (texture != null)
                 {

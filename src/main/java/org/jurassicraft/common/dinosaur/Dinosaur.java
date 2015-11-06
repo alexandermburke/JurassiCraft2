@@ -8,12 +8,14 @@ import org.jurassicraft.common.entity.base.EnumGrowthStage;
 import org.jurassicraft.common.period.EnumTimePeriod;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public abstract class Dinosaur implements Comparable<Dinosaur>
 {
-    private Map<EnumGrowthStage, ResourceLocation> overlays = new HashMap<EnumGrowthStage, ResourceLocation>();
+    private Map<EnumGrowthStage, List<ResourceLocation>> overlays = new HashMap<EnumGrowthStage, List<ResourceLocation>>();
     private Map<EnumGrowthStage, ResourceLocation> maleTextures = new HashMap<EnumGrowthStage, ResourceLocation>();
     private Map<EnumGrowthStage, ResourceLocation> femaleTextures = new HashMap<EnumGrowthStage, ResourceLocation>();
 
@@ -44,7 +46,16 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
 
                 if (name.contains("overlay"))
                 {
-                    overlays.put(stage, resourceLocation);
+                    List<ResourceLocation> growthStageOverlays = overlays.get(stage);
+
+                    if (growthStageOverlays == null)
+                    {
+                        growthStageOverlays = new ArrayList<ResourceLocation>();
+                    }
+
+                    growthStageOverlays.add(resourceLocation);
+
+                    overlays.put(stage, growthStageOverlays);
                 }
                 else
                 {
@@ -192,9 +203,9 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
 
     public abstract int getStorage();
 
-    public ResourceLocation getOverlayTexture(int overlay)
+    public ResourceLocation getOverlayTexture(EnumGrowthStage stage, int overlay)
     {
-        return overlay != 255 ? overlays.get(overlay) : null;
+        return overlay != 255 ? overlays.get(stage).get(overlay) : null;
     }
 
     public int getOverlayCount()
