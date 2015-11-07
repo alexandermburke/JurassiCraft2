@@ -440,6 +440,12 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
 
+        if (this.isCarcass)
+        {
+            this.tasks.taskEntries.clear();
+            this.targetTasks.taskEntries.clear();
+        }
+
         if (!worldObj.isRemote)
         {
             if (prevAge != dinosaurAge)
