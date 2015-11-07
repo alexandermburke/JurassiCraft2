@@ -3,6 +3,13 @@
     "poses": {
         "IDLE": [
             {"pose": "velociraptor_infant_idle", "time": 20}
-        ]
+        ],
+		"CALLING": [
+			{"pose": "velociraptor_infant_calling_1", "time": 15}, {"pose": "velociraptor_infant_calling_1", "time": 5},
+			{"pose": "velociraptor_infant_calling_2", "time": 7}, {"pose": "velociraptor_infant_calling_2", "time": 2},
+			{"pose": "velociraptor_infant_calling_1", "time": 7}, {"pose": "velociraptor_infant_calling_1", "time": 2},
+			{"pose": "velociraptor_infant_calling_3", "time": 5}, {"pose": "velociraptor_infant_calling_3", "time": 5},
+			{"pose": "velociraptor_infant_idle", "time": 10}
+		]
      }
 }

@@ -99,7 +99,7 @@ public class EntityAIFindPlant extends EntityAIBase
                 dinosaur.worldObj.destroyBlock(new BlockPos(x, y, z), false);
             }
 
-            dinosaur.setEnergy(dinosaur.getEnergy() + 400);
+            dinosaur.setEnergy(dinosaur.getEnergy() + 1000);
         }
     }
 

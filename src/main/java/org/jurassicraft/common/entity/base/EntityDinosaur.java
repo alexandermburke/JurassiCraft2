@@ -369,7 +369,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     @Override
     public float getSoundVolume()
     {
-        return (2.0F * ((float) transitionFromAge(0.3F, 1.0F)));
+        return isCarcass ? 0.0F : (2.0F * ((float) transitionFromAge(0.3F, 1.0F)));
         // return (float) transitionFromAge(0.3F, 1.0F) + ((rand.nextFloat() - 0.5F) * 0.125F);
     }
 
@@ -706,9 +706,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
     public void setCarcass(boolean carcass)
     {
-        isCarcass = carcass;
-
-        if (isCarcass)
+        if (carcass)
         {
             String s = getDeathSound();
 
@@ -717,6 +715,8 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
                 playSound(s, getSoundVolume(), (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
             }
         }
+
+        isCarcass = carcass;
     }
 
     public boolean isCarcass()
