@@ -388,40 +388,43 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     {
         super.onLivingUpdate();
 
-        if (firstUpdate)
+        if (!isCarcass)
         {
-            updateCreatureData();
-        }
-
-        adjustHitbox();
-
-        if (this.isWet())
-        {
-            water = MAX_WATER;
-        }
-
-        if (!this.isDead && ticksExisted % 8 == 0)
-        {
-            dinosaurAge += Math.min(growthSpeedOffset, 960) + 1;
-            energy -= (Math.min(growthSpeedOffset, 960) + 1) * 0.1;
-
-            if (dinosaurAge % 20 == 0)
+            if (firstUpdate)
             {
                 updateCreatureData();
             }
 
-            if (growthSpeedOffset > 0)
-            {
-                growthSpeedOffset -= 10;
+            adjustHitbox();
 
-                if (growthSpeedOffset < 0)
+            if (this.isWet())
+            {
+                water = MAX_WATER;
+            }
+
+            if (!this.isDead && ticksExisted % 8 == 0)
+            {
+                dinosaurAge += Math.min(growthSpeedOffset, 960) + 1;
+                energy -= (Math.min(growthSpeedOffset, 960) + 1) * 0.1;
+
+                if (dinosaurAge % 20 == 0)
                 {
-                    growthSpeedOffset = 0;
+                    updateCreatureData();
+                }
+
+                if (growthSpeedOffset > 0)
+                {
+                    growthSpeedOffset -= 10;
+
+                    if (growthSpeedOffset < 0)
+                    {
+                        growthSpeedOffset = 0;
+                    }
                 }
             }
-        }
 
-        updateMetabolism();
+            updateMetabolism();
+        }
     }
 
     public void updateMetabolism()

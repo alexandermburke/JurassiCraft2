@@ -22,17 +22,20 @@ public class ItemGrowthSerum extends Item
         {
             EntityDinosaur dinosaur = (EntityDinosaur) target;
 
-            dinosaur.increaseGrowthSpeed();
-            // dinosaur.setAge(dinosaur.getDinosaurAge() + 750);
-
-            stack.stackSize--;
-
-            if (!player.capabilities.isCreativeMode)
+            if (!dinosaur.isCarcass())
             {
-                player.inventory.addItemStackToInventory(new ItemStack(JCItemRegistry.empty_syringe));
-            }
+                dinosaur.increaseGrowthSpeed();
+                // dinosaur.setAge(dinosaur.getDinosaurAge() + 750);
 
-            return true;
+                stack.stackSize--;
+
+                if (!player.capabilities.isCreativeMode)
+                {
+                    player.inventory.addItemStackToInventory(new ItemStack(JCItemRegistry.empty_syringe));
+                }
+
+                return true;
+            }
         }
 
         return false;

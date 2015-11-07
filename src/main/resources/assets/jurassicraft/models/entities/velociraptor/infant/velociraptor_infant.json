@@ -10,6 +10,10 @@
 			{"pose": "velociraptor_infant_calling_1", "time": 7}, {"pose": "velociraptor_infant_calling_1", "time": 2},
 			{"pose": "velociraptor_infant_calling_3", "time": 5}, {"pose": "velociraptor_infant_calling_3", "time": 5},
 			{"pose": "velociraptor_infant_idle", "time": 10}
+		],
+		"DYING": [
+			{"pose": "velociraptor_infant_dying_1", "time": 25}, {"pose": "velociraptor_infant_dying_1", "time": 5},
+			{"pose": "velociraptor_infant_dying_2", "time": 20}
 		]
      }
 }
