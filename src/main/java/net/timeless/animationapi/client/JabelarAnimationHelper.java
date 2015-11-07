@@ -1,9 +1,9 @@
 package net.timeless.animationapi.client;
 
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.init.Blocks;
+import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.util.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
@@ -11,6 +11,7 @@ import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+import org.jurassicraft.common.entity.fx.EntityFXBlood;
 
 import java.util.Map;
 
@@ -21,7 +22,6 @@ import java.util.Map;
 public class JabelarAnimationHelper
 {
     private final EntityDinosaur theEntity;
-    private IBlockState theBloodIBlockState;
 
     private final Minecraft mc;
 
@@ -84,7 +84,6 @@ public class JabelarAnimationHelper
         mc = Minecraft.getMinecraft();
 
         init(parModel);
-        initBloodParticles();
 
         JurassiCraft.instance.getLogger().debug("Finished JabelarAnimation constructor");
     }
@@ -453,38 +452,38 @@ public class JabelarAnimationHelper
         return getTabulaModel(tabulaModel, 0);
     }
 
-    private void initBloodParticles()
-    {
-        theBloodIBlockState = Blocks.redstone_block.getDefaultState();
-    }
-
     private void performBloodSpurt()
     {
+        double posX = theEntity.posX;
+        double posY = theEntity.posY;
+        double posZ = theEntity.posZ;
+
+        World world = theEntity.worldObj;
+
+        EffectRenderer effectRenderer = mc.effectRenderer;
+
         if (theEntity.hurtTime == theEntity.maxHurtTime - 1)
         {
-            int i = 0;
+            float entityWidth = theEntity.width;
+            float entityHeight = theEntity.height;
 
-            for (int x = (int) (theEntity.posX - theEntity.width - 1); x < (int) (theEntity.posX + theEntity.width - 1); x++)
+            for (float x = 0; x < entityWidth; x++)
             {
-                for (int y = (int) (theEntity.posY - theEntity.height); y < (int) (theEntity.posY + theEntity.height); y++)
+                for (float y = 0; y < entityHeight; y++)
                 {
-                    for (int z = (int) (theEntity.posZ - theEntity.width - 1); z < (int) (theEntity.posZ + theEntity.width - 1); z++)
+                    for (float z = 0; z < entityWidth; z++)
                     {
-                        if (i % 10 == 0)
-                        {
-                            mc.effectRenderer.addBlockDestroyEffects(new BlockPos(x, y, z), theBloodIBlockState);
-                        }
-
-                        i++;
+                        addBloodEffect(world, effectRenderer, x + posX - (entityWidth / 2.0F), y + posY, z + posZ - (entityWidth / 2.0F));
                     }
                 }
             }
 
-            mc.effectRenderer.addBlockDestroyEffects(theEntity.getPosition().up((int) Math.round(theEntity.height * 0.75)), theBloodIBlockState);
+//            addBloodEffect(world, effectRenderer, posX, posY + Math.round(theEntity.height * 0.75), posZ);
         }
-        if (theEntity.deathTime > 0 && theEntity.deathTime < 70 && theEntity.deathTime % 30 == 0)
-        {
-            mc.effectRenderer.addBlockDestroyEffects(theEntity.getPosition().up(), theBloodIBlockState);
-        }
+    }
+
+    private void addBloodEffect(World world, EffectRenderer effectRenderer, double x, double y, double z)
+    {
+        effectRenderer.addEffect((new EntityFXBlood(world, x + 0.5D, y + 0.5D, z + 0.5D, 0, 0, 0)).func_174846_a(new BlockPos(x, y, z)));
     }
 }
