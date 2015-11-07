@@ -214,6 +214,7 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
 
     public int getOverlayCount()
     {
-        return overlays.size();
+        List<ResourceLocation> overlayTextures = overlays.get(EnumGrowthStage.ADULT);
+        return overlayTextures != null ? overlayTextures.size() : 0; //TODO what growth stage do you use here???
     }
 }

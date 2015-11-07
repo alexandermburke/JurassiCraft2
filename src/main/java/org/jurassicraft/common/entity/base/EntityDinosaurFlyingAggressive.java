@@ -37,6 +37,8 @@ public abstract class EntityDinosaurFlyingAggressive extends EntityDinosaurAggre
         boolean flying = isFlying();
         // TODO do gl rotate on renderer
 
+        rotationPitch = 10;
+
         if (flying)
         {
             float flapDiff = -(wingFlap - prevWingFlap);

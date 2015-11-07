@@ -159,7 +159,7 @@ public class GuiAppMinimap extends GuiApp
                             if (dino.hasTracker())
                             {
                                 Dinosaur dinosaur = dino.getDinosaur();
-                                int colour = dinosaur.getEggPrimaryColorMale();
+                                int colour = dino.isMale() ? dinosaur.getEggPrimaryColorMale() : dinosaur.getEggPrimaryColorFemale();
 
                                 float red = (colour >> 16 & 255) / 255.0F;
                                 float green = (colour >> 8 & 255) / 255.0F;
