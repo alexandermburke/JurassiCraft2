@@ -27,15 +27,27 @@ public class DinosaurDilophosaurus extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0x62702B;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x26292A;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0x5E6E2B;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x2D221A;
     }
 
     @Override

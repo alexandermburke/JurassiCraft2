@@ -25,15 +25,27 @@ public class DinosaurLeptictidium extends Dinosaur
     } // TODO EOCENE
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0x362410;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x978A78;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0xAFA27E;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x3E2D17;
     }
 
     @Override

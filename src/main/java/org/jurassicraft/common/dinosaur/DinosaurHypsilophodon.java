@@ -27,15 +27,27 @@ public class DinosaurHypsilophodon extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0x7DAC78;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x3E6226;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0x799073;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x33432F;
     }
 
     @Override

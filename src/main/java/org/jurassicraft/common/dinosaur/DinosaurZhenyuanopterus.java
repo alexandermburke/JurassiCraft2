@@ -25,15 +25,27 @@ public class DinosaurZhenyuanopterus extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0x434F4E;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x0F1010;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0x4A5957;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0xB9B7A3;
     }
 
     @Override

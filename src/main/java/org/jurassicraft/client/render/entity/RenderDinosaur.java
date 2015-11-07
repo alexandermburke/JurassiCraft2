@@ -236,14 +236,16 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
 
                 if (texture != null)
                 {
-                    GlStateManager.color(entity.getOverlayR() / 255.0F, entity.getOverlayG() / 255.0F, entity.getOverlayB() / 255.0F);
+                    GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+                    GL11.glEnable(GL11.GL_BLEND);
+                    GlStateManager.color(entity.getOverlayR() / 255.0F, entity.getOverlayG() / 255.0F, entity.getOverlayB() / 255.0F, 0.2F);
 
                     this.renderer.bindTexture(texture);
 
                     this.renderer.getMainModel().render(entity, armSwing, armSwingAmount, p_177148_5_, p_177148_6_, p_177148_7_, partialTicks);
                     this.renderer.func_177105_a(entity, p_177148_4_);
 
-                    GlStateManager.color(1.0F, 1.0F, 1.0F);
+                    GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                 }
             }
         }

@@ -25,15 +25,27 @@ public class DinosaurDimorphodon extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0xB2AC94;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x636644;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0xBDB4A9;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x726B57;
     }
 
     @Override

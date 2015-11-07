@@ -25,15 +25,27 @@ public class DinosaurProtoceratops extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0xFDCEB5;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0xFBC073;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0xEBCC98;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0xAA804E;
     }
 
     @Override

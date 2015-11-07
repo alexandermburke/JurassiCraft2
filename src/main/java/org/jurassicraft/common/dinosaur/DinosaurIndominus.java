@@ -44,15 +44,27 @@ public class DinosaurIndominus extends Dinosaur implements IHybrid
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0xBEBABB;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x95949A;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return getEggPrimaryColorMale();
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return getEggSecondaryColorMale();
     }
 
     @Override

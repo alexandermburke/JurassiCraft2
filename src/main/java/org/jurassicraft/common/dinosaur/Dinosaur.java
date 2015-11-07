@@ -84,11 +84,15 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
 
     public abstract Class<? extends EntityDinosaur> getDinosaurClass();
 
-    public abstract int getEggPrimaryColor();
+    public abstract int getEggPrimaryColorMale();
+
+    public abstract int getEggSecondaryColorMale();
+
+    public abstract int getEggPrimaryColorFemale();
+
+    public abstract int getEggSecondaryColorFemale();
 
     public abstract EnumTimePeriod getPeriod();
-
-    public abstract int getEggSecondaryColor();
 
     public abstract double getBabyHealth();
 
@@ -205,7 +209,7 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
 
     public ResourceLocation getOverlayTexture(EnumGrowthStage stage, int overlay)
     {
-        return overlay != 255 ? overlays.get(stage).get(overlay) : null;
+        return overlay != 255 && overlays.containsKey(stage) ? overlays.get(stage).get(overlay) : null;
     }
 
     public int getOverlayCount()

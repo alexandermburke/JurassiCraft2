@@ -25,15 +25,27 @@ public class DinosaurOviraptor extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0xA2A7AE;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x666E81;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0xDEDAC4;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x663341;
     }
 
     @Override

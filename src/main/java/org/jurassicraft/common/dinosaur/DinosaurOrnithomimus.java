@@ -25,15 +25,27 @@ public class DinosaurOrnithomimus extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0x92A8D5;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x475F93;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0xBDC4A9;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x7F91C1;
     }
 
     @Override

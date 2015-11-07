@@ -25,15 +25,27 @@ public class DinosaurChasmosaurus extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0xB6B293;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x85563E;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0xB9B597;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x323232;
     }
 
     @Override

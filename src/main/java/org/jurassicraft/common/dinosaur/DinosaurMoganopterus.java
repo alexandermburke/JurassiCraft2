@@ -25,15 +25,27 @@ public class DinosaurMoganopterus extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0xE6E2D8;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0xD67F5C;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0xE0DED3;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0xD37B58;
     }
 
     @Override

@@ -25,15 +25,27 @@ public class DinosaurDodo extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0xA2996E;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x545338;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0x908B80;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x665C51;
     }
 
     @Override

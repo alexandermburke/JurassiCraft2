@@ -27,15 +27,27 @@ public class DinosaurApatosaurus extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0xA79F93;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x987664;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0x7E7D70;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x30343E;
     }
 
     @Override

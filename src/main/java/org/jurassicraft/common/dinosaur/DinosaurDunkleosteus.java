@@ -27,15 +27,27 @@ public class DinosaurDunkleosteus extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0xA89B8C;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x753A28;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0xA6A588;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x785F2A;
     }
 
     @Override

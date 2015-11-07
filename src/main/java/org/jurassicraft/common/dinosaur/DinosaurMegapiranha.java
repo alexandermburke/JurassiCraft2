@@ -25,15 +25,27 @@ public class DinosaurMegapiranha extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0x17100B;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x645C54;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0x7D735D;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x322922;
     }
 
     @Override

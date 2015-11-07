@@ -27,15 +27,27 @@ public class DinosaurAchillobator extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0x7A7268;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x7E4941;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0xE1DFDC;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x675C58;
     }
 
     @Override

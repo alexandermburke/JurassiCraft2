@@ -25,15 +25,27 @@ public class DinosaurMamenchisaurus extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0xD1BA49;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x909B1D;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0x98764E;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x545028;
     }
 
     @Override

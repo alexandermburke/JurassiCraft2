@@ -25,15 +25,27 @@ public class DinosaurLambeosaurus extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0x82947A;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x2F3129;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0x898969;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x464C3A;
     }
 
     @Override

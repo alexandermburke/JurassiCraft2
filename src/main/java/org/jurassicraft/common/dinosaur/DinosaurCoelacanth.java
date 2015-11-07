@@ -27,15 +27,27 @@ public class DinosaurCoelacanth extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0x3C4B65;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x737E96;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0x4C4A3A;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x7C775E;
     }
 
     @Override

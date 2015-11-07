@@ -8,16 +8,19 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.MobSpawnerBaseLogic;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
@@ -54,6 +57,17 @@ public class ItemDinosaurSpawnEgg extends Item
 
                 dino.setDNAQuality(100);
 
+                int mode = getMode(stack);
+
+                if (mode == 1)
+                {
+                    dino.setMale(true);
+                }
+                else if (mode == 2)
+                {
+                    dino.setMale(false);
+                }
+
                 if (!player.isSneaking())
                 {
                     dino.setAge(dino.getDinosaur().getMaximumAge());
@@ -72,6 +86,37 @@ public class ItemDinosaurSpawnEgg extends Item
         }
 
         return null;
+    }
+
+    /**
+     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
+     */
+    @Override
+    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
+    {
+        int mode = changeMode(stack);
+
+        if (world.isRemote)
+        {
+            String modeString = "";
+
+            if (mode == 0)
+            {
+                modeString = "Random";
+            }
+            else if (mode == 1)
+            {
+                modeString = "Male";
+            }
+            else if (mode == 2)
+            {
+                modeString = "Female";
+            }
+
+            player.addChatMessage(new ChatComponentText("This egg will now spawn a " + modeString + " gender.")); //TODO translation
+        }
+
+        return stack;
     }
 
     @Override
@@ -100,7 +145,26 @@ public class ItemDinosaurSpawnEgg extends Item
     {
         Dinosaur dino = getDinosaur(stack);
 
-        return dino != null ? (renderPass == 0 ? dino.getEggPrimaryColor() : dino.getEggSecondaryColor()) : 16777215;
+        if (dino != null)
+        {
+            int mode = getMode(stack);
+
+            if (mode == 0)
+            {
+                mode = JurassiCraft.timerTicks % 64 > 32 ? 1 : 2;
+            }
+
+            if (mode == 1)
+            {
+                return renderPass == 0 ? dino.getEggPrimaryColorMale() : dino.getEggSecondaryColorMale();
+            }
+            else
+            {
+                return renderPass == 0 ? dino.getEggPrimaryColorFemale() : dino.getEggSecondaryColorFemale();
+            }
+        }
+
+        return 16777215;
     }
 
     @Override
@@ -194,6 +258,44 @@ public class ItemDinosaurSpawnEgg extends Item
 
             return true;
         }
+    }
+
+    public int getMode(ItemStack stack)
+    {
+        return getNBT(stack).getInteger("GenderMode");
+    }
+
+    public int changeMode(ItemStack stack)
+    {
+        NBTTagCompound nbt = getNBT(stack);
+
+        int mode = getMode(stack);
+        mode++;
+
+        if (mode > 2)
+        {
+            mode = 0;
+        }
+
+        nbt.setInteger("GenderMode", mode);
+
+        stack.setTagCompound(nbt);
+
+        return mode;
+    }
+
+    public NBTTagCompound getNBT(ItemStack stack)
+    {
+        NBTTagCompound nbt = stack.getTagCompound();
+
+        if (nbt == null)
+        {
+            nbt = new NBTTagCompound();
+        }
+
+        stack.setTagCompound(nbt);
+
+        return nbt;
     }
 
     public void addInformation(ItemStack stack, EntityPlayer player, List lore, boolean advanced)

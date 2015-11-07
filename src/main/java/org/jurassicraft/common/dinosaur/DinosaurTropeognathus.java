@@ -25,15 +25,27 @@ public class DinosaurTropeognathus extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0x4E646B;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x483141;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0x5C6C71;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x4D3E4D;
     }
 
     @Override

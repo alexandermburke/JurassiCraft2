@@ -27,15 +27,27 @@ public class DinosaurCarnotaurus extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0xA2996E;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x545338;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0x9C8E6A;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x635639;
     }
 
     @Override

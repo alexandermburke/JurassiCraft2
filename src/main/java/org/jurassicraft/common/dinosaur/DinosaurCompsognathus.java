@@ -27,15 +27,27 @@ public class DinosaurCompsognathus extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0x7B8042;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x454B3B;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0x7D734A;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x484A3D;
     }
 
     @Override

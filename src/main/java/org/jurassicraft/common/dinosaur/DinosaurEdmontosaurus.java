@@ -25,15 +25,27 @@ public class DinosaurEdmontosaurus extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0xB97840;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x644329;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0x8F8039;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x615A30;
     }
 
     @Override

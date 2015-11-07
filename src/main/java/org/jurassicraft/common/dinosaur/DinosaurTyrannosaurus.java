@@ -25,15 +25,27 @@ public class DinosaurTyrannosaurus extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0x6B6628;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x39363B;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0xBA997E;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x7D5D48;
     }
 
     @Override

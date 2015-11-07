@@ -25,15 +25,27 @@ public class DinosaurOthnielia extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0x3EA999;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x584F41;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0xC9AC95;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x46342E;
     }
 
     @Override

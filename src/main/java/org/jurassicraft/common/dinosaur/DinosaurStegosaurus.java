@@ -27,15 +27,27 @@ public class DinosaurStegosaurus extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0xBABF83;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x75964E;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0xC8BC9A;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x827D54;
     }
 
     @Override

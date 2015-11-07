@@ -25,15 +25,27 @@ public class DinosaurLeaellynasaura extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0xE1D0A6;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x262B27;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0x926045;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0xC8B50C;
     }
 
     @Override

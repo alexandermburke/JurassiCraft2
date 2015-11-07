@@ -26,15 +26,27 @@ public class DinosaurVelociraptorCharlie extends Dinosaur implements IHybrid
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0x525637;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x2C2F24;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return getEggPrimaryColorMale();
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return getEggSecondaryColorMale();
     }
 
     @Override

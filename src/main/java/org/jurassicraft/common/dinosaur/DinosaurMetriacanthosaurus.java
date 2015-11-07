@@ -25,15 +25,27 @@ public class DinosaurMetriacanthosaurus extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0xB05E1C;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0xE7DB27;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0xB5985E;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x60451C;
     }
 
     @Override

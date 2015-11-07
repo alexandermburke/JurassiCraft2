@@ -27,15 +27,27 @@ public class DinosaurMajungasaurus extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0xE6CC9B;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x7C8A7D;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0xE8CF9C;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0xADAC7E;
     }
 
     @Override

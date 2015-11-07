@@ -25,15 +25,27 @@ public class DinosaurCorythosaurus extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0xBAA87E;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x5E7201;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0xB3A27D;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0xE9BF47;
     }
 
     @Override

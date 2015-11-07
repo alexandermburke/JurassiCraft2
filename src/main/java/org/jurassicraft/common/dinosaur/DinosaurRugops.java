@@ -21,7 +21,7 @@ public class DinosaurRugops extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0xB5F75D;
     }
@@ -33,9 +33,21 @@ public class DinosaurRugops extends Dinosaur
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x202022;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0xE1A857;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x5A2108;
     }
 
     @Override

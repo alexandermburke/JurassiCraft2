@@ -25,15 +25,27 @@ public class DinosaurCearadactylus extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0x64A0B3;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x3B3937;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0xB55252;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x4C423A;
     }
 
     @Override

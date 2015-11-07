@@ -27,15 +27,27 @@ public class DinosaurSegisaurus extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0x834B4C;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x4B8FB5;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0xCEEE99;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x776343;
     }
 
     @Override

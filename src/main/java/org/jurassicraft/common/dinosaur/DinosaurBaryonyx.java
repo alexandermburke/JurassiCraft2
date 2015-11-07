@@ -25,15 +25,27 @@ public class DinosaurBaryonyx extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0x567F4F;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x13270F;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0x9D9442;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x2A2405;
     }
 
     @Override

@@ -27,15 +27,27 @@ public class DinosaurParasaurolophus extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0x9F8138;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x422306;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0x5F653E;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x3C3F44;
     }
 
     @Override

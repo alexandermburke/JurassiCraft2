@@ -27,15 +27,27 @@ public class DinosaurAnkylosaurus extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0xAB9B82;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x7C6270;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0x554E45;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x3F3935;
     }
 
     @Override

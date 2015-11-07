@@ -25,15 +25,27 @@ public class DinosaurMicroceratus extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0x956F2D;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x92442C;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0x958331;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x7E4A1F;
     }
 
     @Override

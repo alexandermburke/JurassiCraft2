@@ -27,15 +27,27 @@ public class DinosaurGallimimus extends Dinosaur
     }
 
     @Override
-    public int getEggPrimaryColor()
+    public int getEggPrimaryColorMale()
     {
         return 0xC57B5F;
     }
 
     @Override
-    public int getEggSecondaryColor()
+    public int getEggSecondaryColorMale()
     {
         return 0x985E54;
+    }
+
+    @Override
+    public int getEggPrimaryColorFemale()
+    {
+        return 0xDAC0AC;
+    }
+
+    @Override
+    public int getEggSecondaryColorFemale()
+    {
+        return 0x966943;
     }
 
     @Override
