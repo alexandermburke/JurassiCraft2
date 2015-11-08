@@ -7,7 +7,7 @@ import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
 import org.jurassicraft.common.period.EnumTimePeriod;
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,60 +23,69 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
     {
         String dinosaurName = getName().toLowerCase().replaceAll(" ", "_");
 
-        File file = new File(JurassiCraft.class.getResource("/assets/jurassicraft/textures/entities/" + dinosaurName).getFile());
+        InputStream stream = JurassiCraft.class.getClassLoader().getResourceAsStream("./assets/jurassicraft/textures/entities/" + dinosaurName);
 
-        for (File image : file.listFiles())
+        BufferedReader in = new BufferedReader(new InputStreamReader(stream));
+
+        String name;
+
+        try
         {
-            String name = image.getName();
-
-            EnumGrowthStage stage = null;
-
-            for (EnumGrowthStage growthStage : EnumGrowthStage.values())
+            while ((name = in.readLine()) != null)
             {
-                if (name.contains(growthStage.name().toLowerCase()))
+                EnumGrowthStage stage = null;
+
+                for (EnumGrowthStage growthStage : EnumGrowthStage.values())
                 {
-                    stage = growthStage;
-                    break;
-                }
-            }
-
-            if (stage != null)
-            {
-                ResourceLocation resourceLocation = new ResourceLocation(JurassiCraft.MODID, "textures/entities/" + dinosaurName + "/" + name);
-
-                if (name.contains("overlay"))
-                {
-                    List<ResourceLocation> growthStageOverlays = overlays.get(stage);
-
-                    if (growthStageOverlays == null)
+                    if (name.contains(growthStage.name().toLowerCase()))
                     {
-                        growthStageOverlays = new ArrayList<ResourceLocation>();
+                        stage = growthStage;
+                        break;
                     }
-
-                    growthStageOverlays.add(resourceLocation);
-
-                    overlays.put(stage, growthStageOverlays);
                 }
-                else
+
+                if (stage != null)
                 {
-                    if (this instanceof IHybrid)
+                    ResourceLocation resourceLocation = new ResourceLocation(JurassiCraft.MODID, "textures/entities/" + dinosaurName + "/" + name);
+
+                    if (name.contains("overlay"))
                     {
-                        maleTextures.put(stage, resourceLocation);
-                        femaleTextures.put(stage, resourceLocation);
+                        List<ResourceLocation> growthStageOverlays = overlays.get(stage);
+
+                        if (growthStageOverlays == null)
+                        {
+                            growthStageOverlays = new ArrayList<ResourceLocation>();
+                        }
+
+                        growthStageOverlays.add(resourceLocation);
+
+                        overlays.put(stage, growthStageOverlays);
                     }
                     else
                     {
-                        if (name.contains("female"))
+                        if (this instanceof IHybrid)
                         {
+                            maleTextures.put(stage, resourceLocation);
                             femaleTextures.put(stage, resourceLocation);
                         }
                         else
                         {
-                            maleTextures.put(stage, resourceLocation);
+                            if (name.contains("female"))
+                            {
+                                femaleTextures.put(stage, resourceLocation);
+                            }
+                            else
+                            {
+                                maleTextures.put(stage, resourceLocation);
+                            }
                         }
                     }
                 }
             }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
         }
     }
 
