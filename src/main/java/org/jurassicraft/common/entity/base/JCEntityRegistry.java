@@ -282,7 +282,7 @@ public class JCEntityRegistry
 
         for (Dinosaur dino : getRegisteredDinosaurs())
         {
-            if (!dino.isMammal() && !(dino instanceof IHybrid))
+            if (!dino.isMarineAnimal() && !(dino instanceof IHybrid))
             {
                 amberDinos.add(dino);
             }
