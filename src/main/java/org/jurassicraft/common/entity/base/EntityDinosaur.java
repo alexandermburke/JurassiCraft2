@@ -19,6 +19,7 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -47,6 +48,7 @@ import org.jurassicraft.common.entity.ai.metabolism.EntityAIDrink;
 import org.jurassicraft.common.genetics.GeneticsContainer;
 import org.jurassicraft.common.genetics.GeneticsHelper;
 import org.jurassicraft.common.item.ItemBluePrint;
+import org.jurassicraft.common.item.ItemPaddockSign;
 import org.jurassicraft.common.item.JCItemRegistry;
 
 public abstract class EntityDinosaur extends EntityCreature implements IEntityAdditionalSpawnData, IAnimatedEntity, IInventory
@@ -739,9 +741,15 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
             if (heldItem != null)
             {
-                if (heldItem.getItem() instanceof ItemBluePrint)
+                Item item = heldItem.getItem();
+
+                if (item instanceof ItemBluePrint)
                 {
-                    ((ItemBluePrint) heldItem.getItem()).setDinosaur(heldItem, JCEntityRegistry.getDinosaurId(getDinosaur()));
+                    ((ItemBluePrint) item).setDinosaur(heldItem, JCEntityRegistry.getDinosaurId(getDinosaur()));
+                }
+                else if (item instanceof ItemPaddockSign)
+                {
+                    ((ItemPaddockSign) item).setDinosaur(heldItem, JCEntityRegistry.getDinosaurId(getDinosaur()));
                 }
             }
         }

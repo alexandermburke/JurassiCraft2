@@ -24,6 +24,7 @@ public class JCItemRegistry
     public static ItemDinosaurSteak dino_steak;
 
     public static ItemBluePrint blue_print;
+    public static ItemPaddockSign paddock_sign;
     public static ItemJurassiCraftSign jc_sign;
 
     public static ItemAmber amber;
@@ -73,6 +74,7 @@ public class JCItemRegistry
         dino_meat = new ItemDinosaurMeat();
         dino_steak = new ItemDinosaurSteak();
         blue_print = new ItemBluePrint();
+        paddock_sign = new ItemPaddockSign();
         jc_sign = new ItemJurassiCraftSign();
         soft_tissue = new ItemSoftTissue();
         amber = new ItemAmber();
@@ -112,6 +114,7 @@ public class JCItemRegistry
         registerItem(petri_dish, "Petri Dish");
         registerItem(plant_cells_petri_dish, "Plant Cells Petri Dish");
         registerItem(blue_print, "Blue Print");
+        registerItem(paddock_sign, "Paddock Sign");
         registerItem(cage_small, "Cage Small");
         // registerItem(jc_sign, "JurassiCraft Sign");
         registerItem(spawn_egg, "Dino Spawn Egg");

@@ -61,6 +61,7 @@ import org.jurassicraft.common.dinosaur.DinosaurZhenyuanopterus;
 import org.jurassicraft.common.entity.item.EntityBluePrint;
 import org.jurassicraft.common.entity.item.EntityCageSmall;
 import org.jurassicraft.common.entity.item.EntityJurassiCraftSign;
+import org.jurassicraft.common.entity.item.EntityPaddockSign;
 import org.jurassicraft.common.period.EnumTimePeriod;
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 import org.jurassicraft.common.vehicles.helicopter.modules.EntityHelicopterSeat;
@@ -202,6 +203,7 @@ public class JCEntityRegistry
         registerEntity(EntityBluePrint.class, "Blueprint");
         registerEntity(EntityJurassiCraftSign.class, "JurassiCraft Sign");
         registerEntity(EntityCageSmall.class, "Small Dinosaur Cage");
+        registerEntity(EntityPaddockSign.class, "Paddock Sign");
 
         registerEntity(EntityHelicopterBase.class, "Helicopter base");
         registerEntity(EntityHelicopterSeat.class, "Helicopter seat Do not spawn please, like really don't");

@@ -76,6 +76,7 @@ import org.jurassicraft.client.render.entity.RenderBluePrint;
 import org.jurassicraft.client.render.entity.RenderCageSmall;
 import org.jurassicraft.client.render.entity.RenderHelicopter;
 import org.jurassicraft.client.render.entity.RenderJurassiCraftSign;
+import org.jurassicraft.client.render.entity.RenderPaddockSign;
 import org.jurassicraft.client.render.renderdef.RenderDinosaurDefinition;
 import org.jurassicraft.common.block.BlockEncasedFossil;
 import org.jurassicraft.common.block.BlockFossil;
@@ -87,6 +88,7 @@ import org.jurassicraft.common.entity.base.JCEntityRegistry;
 import org.jurassicraft.common.entity.item.EntityBluePrint;
 import org.jurassicraft.common.entity.item.EntityCageSmall;
 import org.jurassicraft.common.entity.item.EntityJurassiCraftSign;
+import org.jurassicraft.common.entity.item.EntityPaddockSign;
 import org.jurassicraft.common.item.JCItemRegistry;
 import org.jurassicraft.common.plant.JCPlantRegistry;
 import org.jurassicraft.common.plant.Plant;
@@ -272,6 +274,7 @@ public class JCRenderingRegistry
 
         RenderingRegistry.registerEntityRenderingHandler(EntityCageSmall.class, new RenderCageSmall());
         RenderingRegistry.registerEntityRenderingHandler(EntityBluePrint.class, new RenderBluePrint());
+        RenderingRegistry.registerEntityRenderingHandler(EntityPaddockSign.class, new RenderPaddockSign());
         RenderingRegistry.registerEntityRenderingHandler(EntityJurassiCraftSign.class, new RenderJurassiCraftSign());
         RenderingRegistry.registerEntityRenderingHandler(EntityHelicopterBase.class, new RenderHelicopter());
 
@@ -297,6 +300,7 @@ public class JCRenderingRegistry
         this.registerItemRenderer(modelMesher, JCItemRegistry.spawn_egg, "dino_spawn_egg", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.paleo_pad, "paleo_pad", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.blue_print, "blue_print", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.paddock_sign, "paddock_sign", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.jc_sign, "jurassicraft_sign", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.empty_test_tube, "empty_test_tube", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.empty_syringe, "empty_syringe", "inventory");
