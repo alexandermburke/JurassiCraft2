@@ -1,6 +1,10 @@
 package org.jurassicraft.common.entity.base;
 
 import io.netty.buffer.ByteBuf;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -31,6 +35,7 @@ import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.AnimID;
 import net.timeless.unilib.common.animation.ChainBuffer;
+
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.disease.Disease;
@@ -43,9 +48,6 @@ import org.jurassicraft.common.genetics.GeneticsContainer;
 import org.jurassicraft.common.genetics.GeneticsHelper;
 import org.jurassicraft.common.item.ItemBluePrint;
 import org.jurassicraft.common.item.JCItemRegistry;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public abstract class EntityDinosaur extends EntityCreature implements IEntityAdditionalSpawnData, IAnimatedEntity, IInventory
 {
@@ -64,12 +66,8 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     private int quality;
 
     // For animation AI system
-    private int animTick;
-
-    // For jabelar pose-based animation system
     private AnimID animID;
-    private int currentPose;
-    private int currentTickInTween;
+    private int animTick;
 
     private GeneticsContainer genetics;
 
@@ -88,8 +86,8 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
     public ChainBuffer tailBuffer;
 
-    private int[] overlayColours = new int[3];
-    private byte[] overlayTextures = new byte[3];
+    private final int[] overlayColours = new int[3];
+    private final byte[] overlayTextures = new byte[3];
 
     // public void setNavigator(PathNavigate pn)
     // {
@@ -127,8 +125,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
         animTick = 0;
         setAnimID(AnimID.IDLE);
-        currentPose = 0;
-        currentTickInTween = 0;
 
         ignoreFrustumCheck = true; // stops dino disappearing when hitbox goes off screen
 
@@ -533,12 +529,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         nbt.setInteger("GrowthSpeedOffset", growthSpeedOffset);
         nbt.setInteger("Energy", energy);
         nbt.setInteger("Water", water);
-        nbt.setInteger("AnimID", animID.ordinal());
-        nbt.setInteger("CurrentPose", currentPose);
-        nbt.setInteger("TickInTween", currentTickInTween);
-        // DEBUG
-        System.out.println("Write to NBT AnimID = " + animID.ordinal() + " current pose = " + currentPose + "current tick in tween = " + currentTickInTween);
-
 
         NBTTagList nbttaglist = new NBTTagList();
 
@@ -569,11 +559,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         growthSpeedOffset = nbt.getInteger("GrowthSpeedOffset");
         energy = nbt.getInteger("Energy");
         water = nbt.getInteger("Water");
-        setAnimID(AnimID.values()[nbt.getInteger("AnimID")]);
-        currentPose = nbt.getInteger("CurrentPose");
-        currentTickInTween = nbt.getInteger("TickInTween");
-        // DEBUG
-        System.out.println("Read from NBT AnimID = " + animID.ordinal() + " current pose " + currentPose + " current tick in tween = " + currentTickInTween);
 
         NBTTagList nbttaglist = nbt.getTagList("Items", 10);
         inventory = new ItemStack[getSizeInventory()];
@@ -604,9 +589,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         buffer.writeInt(growthSpeedOffset);
         buffer.writeInt(energy);
         buffer.writeInt(water);
-        buffer.writeInt(animID.ordinal());
-        buffer.writeInt(currentPose);
-        buffer.writeInt(currentTickInTween);
         ByteBufUtils.writeUTF8String(buffer, genetics.toString()); //TODO do we need to add the things that are on the datawatcher?
     }
 
@@ -620,10 +602,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         growthSpeedOffset = additionalData.readInt();
         energy = additionalData.readInt();
         water = additionalData.readInt();
-        animID = AnimID.values()[additionalData.readInt()];
-        currentPose = additionalData.readInt();
-        currentTickInTween = additionalData.readInt();
-
         genetics = new GeneticsContainer(ByteBufUtils.readUTF8String(additionalData));
 
         updateCreatureData();
@@ -1118,25 +1096,5 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     public String getCallSound()
     {
         return null;
-    }
-
-    public int getCurrentTickInTween()
-    {
-        return currentTickInTween;
-    }
-
-    public void setCurrentTickInTween(int currentTickInTween)
-    {
-        this.currentTickInTween = currentTickInTween;
-    }
-
-    public int getCurrentPose()
-    {
-        return currentPose;
-    }
-
-    public void setCurrentPose(int parCurrentPose)
-    {
-        currentPose = parCurrentPose;
     }
 }

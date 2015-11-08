@@ -1,5 +1,7 @@
 package net.timeless.animationapi.client;
 
+import java.util.Map;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.util.BlockPos;
@@ -8,12 +10,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.fx.EntityFXBlood;
-
-import java.util.Map;
 
 /**
  * @author jabelar This class is used to hold per-entity animation variables for use with Jabelar's animation tweening system.
@@ -145,13 +146,16 @@ public class JabelarAnimationHelper
         }
         else if (currentSequence != AnimID.IDLE && currentSequence == parSequenceIndex) // finished sequence but no new sequence set
         {
-            JurassiCraft.instance.getLogger().debug("Reverting to idle sequence");
+            JurassiCraft.instance.getLogger().debug("Intializing to idle sequence");
             currentSequence = AnimID.IDLE;
             theEntity.setAnimID(AnimID.IDLE);
         }
+        else if (theEntity.isCarcass())
+        {
+            currentSequence = AnimID.DYING;
+        }
         else
         {
-            JurassiCraft.instance.getLogger().debug("Setting new sequence to " + parSequenceIndex);
             currentSequence = parSequenceIndex;
         }
     }
@@ -161,7 +165,15 @@ public class JabelarAnimationHelper
         numPosesInSequence = mapOfSequences.get(currentSequence).length;
 
         // initialize first pose
-        currentPose = theEntity.getCurrentPose();
+        // carcass should init to last pose in dying sequence
+        if (theEntity.isCarcass())
+        {
+            currentPose = numPosesInSequence-1;
+        }
+        else
+        {
+            currentPose = 0;
+        }
         nextPoseModel = arrayOfPoses[mapOfSequences.get(currentSequence)[currentPose][0]];
     }
 
@@ -171,7 +183,6 @@ public class JabelarAnimationHelper
 
         // initialize first pose
         currentPose = parPose;
-        theEntity.setCurrentPose(currentPose);
         nextPoseModel = arrayOfPoses[mapOfSequences.get(currentSequence)[currentPose][0]];
     }
 
@@ -184,7 +195,15 @@ public class JabelarAnimationHelper
             JurassiCraft.instance.getLogger().error("Array of sequences has sequence with num ticks illegal value (< 1)");
             numTicksInTween = 1;
         }
-        currentTickInTween = theEntity.getCurrentTickInTween();
+        
+        if (theEntity.isCarcass())
+        {
+            currentTickInTween = numTicksInTween - 1;
+        }
+        else
+        {
+            currentTickInTween = 0;
+        }
     }
 
     private void startNextTween()
@@ -197,7 +216,6 @@ public class JabelarAnimationHelper
             numTicksInTween = 1;
         }
         currentTickInTween = 0;
-        theEntity.setCurrentTickInTween(currentTickInTween);
     }
 
     private void updateIncrementArrays()
@@ -253,7 +271,6 @@ public class JabelarAnimationHelper
         nextPoseModel = arrayOfPoses[mapOfSequences.get(currentSequence)[currentPose][0]];
         numTicksInTween = mapOfSequences.get(currentSequence)[currentPose][1];
         currentTickInTween = 0;
-        theEntity.setCurrentTickInTween(currentTickInTween);
     }
 
     private void performNextTweenTick()
@@ -357,7 +374,6 @@ public class JabelarAnimationHelper
     {
         // JurassiCraft.instance.getLogger().info("current tween step = "+currentTickInTween);
         currentTickInTween++;
-        theEntity.setCurrentTickInTween(currentTickInTween);
         if (currentTickInTween >= numTicksInTween)
         {
             return true;
@@ -382,13 +398,11 @@ public class JabelarAnimationHelper
             else
             {
                 currentPose = 0;
-                theEntity.setCurrentPose(currentPose);
                 finishedSequence = true;
             }
         }
 
         // JurassiCraft.instance.getLogger().debug("Next pose is sequence step = "+currentSequenceStep);
-        theEntity.setCurrentPose(currentPose);
         return finishedSequence;
     }
 
