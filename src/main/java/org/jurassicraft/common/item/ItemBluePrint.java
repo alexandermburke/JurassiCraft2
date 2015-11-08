@@ -19,6 +19,7 @@ public class ItemBluePrint extends Item
     {
         this.setUnlocalizedName("blue_print");
         this.setCreativeTab(JCCreativeTabs.items);
+        this.setMaxStackSize(1);
     }
 
     @Override

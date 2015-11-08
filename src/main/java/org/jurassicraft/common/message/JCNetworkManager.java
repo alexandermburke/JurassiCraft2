@@ -18,6 +18,7 @@ public class JCNetworkManager
         registerPacket(MessageSyncPaleoPad.Handler.class, MessageSyncPaleoPad.class);
         registerPacket(MessageRequestFile.Handler.class, MessageRequestFile.class);
         registerPacket(MessageSendFile.Handler.class, MessageSendFile.class);
+        registerPacket(MessagePlacePaddockSign.Handler.class, MessagePlacePaddockSign.class);
         registerPacket(MessageChangeTemperature.Handler.class, MessageChangeTemperature.class);
         registerPacket(MessageHelicopterEngine.Handler.class, MessageHelicopterEngine.class);
         registerPacket(MessageHelicopterDirection.Handler.class, MessageHelicopterDirection.class);

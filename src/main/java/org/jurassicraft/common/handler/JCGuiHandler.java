@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -21,6 +22,7 @@ import org.jurassicraft.client.gui.GuiEmbryonicMachine;
 import org.jurassicraft.client.gui.GuiFossilGrinder;
 import org.jurassicraft.client.gui.GuiIncubator;
 import org.jurassicraft.client.gui.GuiPaleoTab;
+import org.jurassicraft.client.gui.GuiSelectDino;
 import org.jurassicraft.common.container.ContainerCarnivoreFeeder;
 import org.jurassicraft.common.container.ContainerCleaningStation;
 import org.jurassicraft.common.container.ContainerCultivate;
@@ -183,9 +185,23 @@ public class JCGuiHandler implements IGuiHandler
         // JurassiCraft.networkManager.networkWrapper.sendTo(new MessageSyncPaleoPad(player), (EntityPlayerMP) player);
     }
 
+    public static void openSelectDino(EntityPlayer player, BlockPos pos, EnumFacing facing)
+    {
+        if (player.worldObj.isRemote)
+        {
+            displayOpenSelectDino(pos, facing);
+        }
+    }
+
     @SideOnly(Side.CLIENT)
     private static void displayPaleoPadGUIClient()
     {
         Minecraft.getMinecraft().displayGuiScreen(new GuiPaleoTab());
+    }
+
+    @SideOnly(Side.CLIENT)
+    private static void displayOpenSelectDino(BlockPos pos, EnumFacing facing)
+    {
+        Minecraft.getMinecraft().displayGuiScreen(new GuiSelectDino(pos, facing));
     }
 }

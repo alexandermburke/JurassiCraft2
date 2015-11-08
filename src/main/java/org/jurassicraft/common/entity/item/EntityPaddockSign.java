@@ -87,7 +87,7 @@ public class EntityPaddockSign extends EntityHanging implements IEntityAdditiona
                 }
             }
 
-            ItemStack stack = new ItemStack(JCItemRegistry.blue_print);
+            ItemStack stack = new ItemStack(JCItemRegistry.paddock_sign);
             NBTTagCompound nbt = new NBTTagCompound();
             nbt.setInteger("Dinosaur", dinosaur);
 

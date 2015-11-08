@@ -747,10 +747,10 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
                 {
                     ((ItemBluePrint) item).setDinosaur(heldItem, JCEntityRegistry.getDinosaurId(getDinosaur()));
                 }
-                else if (item instanceof ItemPaddockSign)
-                {
-                    ((ItemPaddockSign) item).setDinosaur(heldItem, JCEntityRegistry.getDinosaurId(getDinosaur()));
-                }
+//                else if (item instanceof ItemPaddockSign)
+//                {
+//                    ((ItemPaddockSign) item).setDinosaur(heldItem, JCEntityRegistry.getDinosaurId(getDinosaur()));
+//                }
             }
         }
 
