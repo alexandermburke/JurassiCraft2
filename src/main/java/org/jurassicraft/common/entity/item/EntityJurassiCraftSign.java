@@ -1,7 +1,9 @@
 package org.jurassicraft.common.entity.item;
 
-import com.google.common.collect.Lists;
 import io.netty.buffer.ByteBuf;
+
+import java.util.ArrayList;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHanging;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,9 +16,10 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
 import org.jurassicraft.common.item.JCItemRegistry;
 
-import java.util.ArrayList;
+import com.google.common.collect.Lists;
 
 public class EntityJurassiCraftSign extends EntityHanging implements IEntityAdditionalSpawnData
 {
@@ -38,7 +41,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
         {
             EntityJurassiCraftSign.EnumSignType enumart = aenumart[j];
             this.signType = enumart;
-            this.func_174859_a(enumFacing);
+            this.updateFacingWithBoundingBox(enumFacing);
 
             if (this.onValidSurface())
             {
@@ -51,7 +54,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
             this.signType = arraylist.get(this.rand.nextInt(arraylist.size()));
         }
 
-        this.func_174859_a(enumFacing);
+        this.updateFacingWithBoundingBox(enumFacing);
     }
 
     @SideOnly(Side.CLIENT)
@@ -60,7 +63,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
         this(world, pos, enumFacing);
         setType(titleName);
 
-        this.func_174859_a(enumFacing);
+        this.updateFacingWithBoundingBox(enumFacing);
     }
 
     private void setType(String titleName)
@@ -191,6 +194,6 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
     {
         setType(ByteBufUtils.readUTF8String(buf));
         hangingPosition = BlockPos.fromLong(buf.readLong());
-        func_174859_a(EnumFacing.getHorizontal(buf.readByte()));
+        updateFacingWithBoundingBox(EnumFacing.getHorizontal(buf.readByte()));
     }
 }

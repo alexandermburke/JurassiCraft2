@@ -1,31 +1,25 @@
 buildscript {
-    repositories {
-        mavenCentral()
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
-        }
-        maven {
-            name = "sonatype"
-            url = "https://oss.sonatype.org/content/repositories/snapshots/"
-        }
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
     }
-    dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
-    }
+  }
+  dependencies {
+    classpath "gradle.plugin.net.minecraftforge.gradle:ForgeGradle:2.0.2"
+  }
 }
 
-apply plugin: 'forge'
+apply plugin: "net.minecraftforge.gradle.forge"
 
-version = "2.0.0-Pre"
+version = "2.0.0-pre"
 group = "net.timeless.jurassicraft"
 archivesBaseName = "JurassiCraft"
 
 minecraft {
-    version = "1.8-11.14.3.1450"
+    version = "11.14.3.1552"
     runDir = "minecraft"
     replace '${version}', project.version
-    mappings = "snapshot_20150903"
+    mappings = "snapshot_20151107"
 }
 
 processResources {

@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
 import org.jurassicraft.common.item.JCItemRegistry;
 
 public class EntityBluePrint extends EntityHanging implements IEntityAdditionalSpawnData
@@ -28,7 +29,7 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
         super(world, pos);
         setType(dinosaur);
 
-        this.func_174859_a(enumFacing);
+        this.updateFacingWithBoundingBox(enumFacing);
     }
 
     private void setType(int dinosaur)
@@ -39,6 +40,7 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
     /**
      * (abstract) Protected helper method to write subclass entity data to NBT.
      */
+    @Override
     public void writeEntityToNBT(NBTTagCompound tagCompound)
     {
         tagCompound.setInteger("Dinosaur", this.dinosaur);
@@ -48,6 +50,7 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
+    @Override
     public void readEntityFromNBT(NBTTagCompound tagCompund)
     {
         setType(tagCompund.getInteger("Dinosaur"));
@@ -55,11 +58,13 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
         super.readEntityFromNBT(tagCompund);
     }
 
+    @Override
     public int getWidthPixels()
     {
         return 32;
     }
 
+    @Override
     public int getHeightPixels()
     {
         return 16;
@@ -68,6 +73,7 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
     /**
      * Called when this entity is broken. Entity parameter may be null.
      */
+    @Override
     public void onBroken(Entity entity)
     {
         if (this.worldObj.getGameRules().getGameRuleBooleanValue("doTileDrops"))
@@ -93,13 +99,15 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
     /**
      * Sets the location and Yaw/Pitch of an entity in the world
      */
+    @Override
     public void setLocationAndAngles(double x, double y, double z, float yaw, float pitch)
     {
         BlockPos blockpos = new BlockPos(x - this.posX, y - this.posY, z - this.posZ);
         BlockPos blockpos1 = this.hangingPosition.add(blockpos);
-        this.setPosition((double) blockpos1.getX(), (double) blockpos1.getY(), (double) blockpos1.getZ());
+        this.setPosition(blockpos1.getX(), blockpos1.getY(), blockpos1.getZ());
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public void setPositionAndRotation2(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean p_180426_10_)
     {}
@@ -117,7 +125,7 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
     {
         setType(buf.readInt());
         hangingPosition = BlockPos.fromLong(buf.readLong());
-        func_174859_a(EnumFacing.getHorizontal(buf.readByte()));
+        updateFacingWithBoundingBox(EnumFacing.getHorizontal(buf.readByte()));
     }
 
     public int getDinosaur()
