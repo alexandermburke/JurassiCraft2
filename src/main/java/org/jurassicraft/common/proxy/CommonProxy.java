@@ -50,7 +50,7 @@ public class CommonProxy
         JurassiCraft.storageTypeRegistry.register();
         JurassiCraft.configurations.initConfig(event);
 
-//        addChestGenItems();
+        // addChestGenItems();
 
         GameRegistry.registerWorldGenerator(new WorldGenerator(), 0);
 
@@ -58,6 +58,7 @@ public class CommonProxy
 
         CommonEventHandler eventHandler = new CommonEventHandler();
 
+        FMLCommonHandler.instance().bus().register(JurassiCraft.configurations);
         FMLCommonHandler.instance().bus().register(eventHandler);
         MinecraftForge.EVENT_BUS.register(eventHandler);
     }

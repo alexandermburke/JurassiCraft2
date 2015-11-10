@@ -1,7 +1,9 @@
 package org.jurassicraft.common.configuration;
 
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.jurassicraft.JurassiCraft;
 
 /**
@@ -40,6 +42,17 @@ public class JCConfigurations
         JurassiCraft.instance.getLogger().info("Config spawnOtherMobsModsNaturally = " + JurassiCraft.spawnOtherMobsModsNaturally);
 
         // save is useful for the first run where config might not exist, and doesn't hurt
-        JurassiCraft.config.save();
+        if (JurassiCraft.config.hasChanged())
+        {
+            JurassiCraft.config.save();
+        }
+    }
+
+    @SubscribeEvent
+    public void onConfigChange(OnConfigChangedEvent occe)
+    {
+        if (!occe.modID.equals(JurassiCraft.MODID))
+            return;
+        syncConfig();
     }
 }
