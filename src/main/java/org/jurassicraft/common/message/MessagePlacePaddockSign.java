@@ -67,8 +67,11 @@ public class MessagePlacePaddockSign implements IMessage
                 {
                     world.spawnEntityInWorld(paddockSign);
 
-                    InventoryPlayer inventory = player.inventory;
-                    inventory.decrStackSize(inventory.currentItem, 1);
+                    if (!player.capabilities.isCreativeMode)
+                    {
+                        InventoryPlayer inventory = player.inventory;
+                        inventory.decrStackSize(inventory.currentItem, 1);
+                    }
                 }
             }
 

@@ -139,8 +139,11 @@ public class GuiSelectDino extends GuiScreen
     public void selectDinosaur(Dinosaur dinosaur)
     {
         mc.displayGuiScreen(null);
-        InventoryPlayer inventory = mc.thePlayer.inventory;
-        inventory.decrStackSize(inventory.currentItem, 1);
+        if (!mc.thePlayer.capabilities.isCreativeMode)
+        {
+            InventoryPlayer inventory = mc.thePlayer.inventory;
+            inventory.decrStackSize(inventory.currentItem, 1);
+        }
         JurassiCraft.networkManager.networkWrapper.sendToServer(new MessagePlacePaddockSign(facing, pos, dinosaur));
     }
 
