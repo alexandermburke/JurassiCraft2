@@ -102,18 +102,18 @@ public class ItemDinosaurSpawnEgg extends Item
 
             if (mode == 0)
             {
-                modeString = "Random";
+                modeString = "random";
             }
             else if (mode == 1)
             {
-                modeString = "Male";
+                modeString = "male";
             }
             else if (mode == 2)
             {
-                modeString = "Female";
+                modeString = "female";
             }
 
-            player.addChatMessage(new ChatComponentText("This egg will now spawn a " + modeString + " gender.")); //TODO translation
+            player.addChatMessage(new ChatComponentText(new AdvLang("spawnegg.genderchange.name").withProperty("mode", StatCollector.translateToLocal("gender." + modeString + ".name")).build()));
         }
 
         return stack;
@@ -301,5 +301,6 @@ public class ItemDinosaurSpawnEgg extends Item
     public void addInformation(ItemStack stack, EntityPlayer player, List lore, boolean advanced)
     {
         lore.add(StatCollector.translateToLocal("lore.baby_dino.name"));
+        lore.add(StatCollector.translateToLocal("lore.change_gender.name"));
     }
 }

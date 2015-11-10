@@ -33,21 +33,21 @@ public class RenderDinosaurDefinition
     private float renderYOffset = 0.0F;
     private float renderZOffset = 0.0F;
 
-    public RenderDinosaurDefinition(Dinosaur parDinosaur, IModelAnimator parAnimator, float parAdultScaleAdjustment, float parBabyScaleAdjustment, float parShadowSize, float parRenderXOffset, float parRenderYOffset, float parRenderZOffset)
+    public RenderDinosaurDefinition(Dinosaur dinosaur, IModelAnimator animator, float adultScaleAdjustment, float babyScaleAdjustment, float parShadowSize, float parRenderXOffset, float parRenderYOffset, float parRenderZOffset)
     {
-        dinosaur = parDinosaur;
-        animator = parAnimator;
-        adultScaleAdjustment = parAdultScaleAdjustment;
-        babyScaleAdjustment = parBabyScaleAdjustment;
-        shadowSize = parShadowSize;
-        renderXOffset = parRenderXOffset;
-        renderYOffset = parRenderYOffset;
-        renderZOffset = parRenderZOffset;
+        this.dinosaur = dinosaur;
+        this.animator = animator;
+        this.adultScaleAdjustment = adultScaleAdjustment;
+        this.babyScaleAdjustment = babyScaleAdjustment;
+        this.shadowSize = parShadowSize;
+        this.renderXOffset = parRenderXOffset;
+        this.renderYOffset = parRenderYOffset;
+        this.renderZOffset = parRenderZOffset;
 
-        modelAdult = getDefaultTabulaModel("adult");
-        modelInfant = getDefaultTabulaModel("infant");
-        modelJuvenile = getDefaultTabulaModel("juvenile");
-        modelAdolescent = getDefaultTabulaModel("adolescent");
+        this.modelAdult = getDefaultTabulaModel("adult");
+        this.modelInfant = getDefaultTabulaModel("infant");
+        this.modelJuvenile = getDefaultTabulaModel("juvenile");
+        this.modelAdolescent = getDefaultTabulaModel("adolescent");
     }
 
     public ModelBase getModel(EnumGrowthStage stage)
@@ -126,13 +126,6 @@ public class RenderDinosaurDefinition
 
     public RenderLiving getRenderer()
     {
-        if (dinosaur instanceof DinosaurIndominus) //TODO custom renderer
-        {
-            return new RenderIndominus(this);
-        }
-        else
-        {
-            return new RenderDinosaur(this);
-        }
+        return new RenderDinosaur(this);
     }
 }

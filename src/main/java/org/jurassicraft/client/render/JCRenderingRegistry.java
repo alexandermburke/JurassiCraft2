@@ -72,11 +72,8 @@ import org.jurassicraft.client.model.animation.raptorsquad.AnimationVelociraptor
 import org.jurassicraft.client.model.animation.raptorsquad.AnimationVelociraptorDelta;
 import org.jurassicraft.client.model.animation.raptorsquad.AnimationVelociraptorEcho;
 import org.jurassicraft.client.render.block.SpecialRendererDNAExtractor;
-import org.jurassicraft.client.render.entity.RenderBluePrint;
-import org.jurassicraft.client.render.entity.RenderCageSmall;
-import org.jurassicraft.client.render.entity.RenderHelicopter;
-import org.jurassicraft.client.render.entity.RenderJurassiCraftSign;
-import org.jurassicraft.client.render.entity.RenderPaddockSign;
+import org.jurassicraft.client.render.entity.*;
+import org.jurassicraft.client.render.renderdef.RenderDefIndominus;
 import org.jurassicraft.client.render.renderdef.RenderDinosaurDefinition;
 import org.jurassicraft.common.block.BlockEncasedFossil;
 import org.jurassicraft.common.block.BlockFossil;
@@ -150,7 +147,7 @@ public class JCRenderingRegistry
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.gallimimus, new AnimationGallimimus(), 1.2F, 0.25F, 0.65F, 0.0F, 0.0F, 0.0F));
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.giganotosaurus, new AnimationGiganotosaurus(), 2.37F, 0.3F, 0.65F, 0.0F, 0.0F, 0.0F));
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.hypsilophodon, new AnimationHypsilophodon(), 0.65F, 0.2F, 0.65F, 0.0F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.indominus, new AnimationIndominus(), 3.4F, 0.4F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDefIndominus(3.4F, 0.4F, 0.65F));
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.majungasaurus, new AnimationMajungasaurus(), 1.6F, 0.4F, 0.65F, 0.0F, 0.0F, 0.0F));
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.parasaurolophus, new AnimationParasaurolophus(), 1.9F, 0.4F, 0.65F, 0.0F, 0.75F, 0.0F));
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.pteranodon, new AnimationPteranodon(), 1.2F, 0.3F, 0.65F, 0.0F, 0.0F, 0.0F));

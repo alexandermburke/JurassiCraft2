@@ -43,7 +43,7 @@ public class BlockIceShard extends Block
 
         Random rand = world instanceof World ? ((World) world).rand : RANDOM;
 
-        if (rand.nextDouble() < 0.2) // TODO fortune makes sea lampreys more common
+        if (rand.nextDouble() < 0.2 + ((fortune / 3.0) * 0.8))
         {
             ret.add(new ItemStack(JCItemRegistry.sea_lamprey));
         }

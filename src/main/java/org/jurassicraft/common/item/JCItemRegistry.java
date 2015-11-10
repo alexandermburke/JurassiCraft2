@@ -60,7 +60,7 @@ public class JCItemRegistry
     public static ItemHelicopter helicopter_spawner;
     public static ItemBasic tracker;
 
-    // TODO more complex crafting components, eg circuit boards, ROM Drive
+    // TODO more complex crafting components, eg circuit boards
 
     public void register()
     {
