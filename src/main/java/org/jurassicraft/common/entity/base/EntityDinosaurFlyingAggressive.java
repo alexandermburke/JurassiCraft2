@@ -12,7 +12,8 @@ import org.jurassicraft.common.entity.ai.flyer.EntityAITakeOff;
 public abstract class EntityDinosaurFlyingAggressive extends EntityDinosaurAggressive
 {
     private final static int DW_FLYING = 30;
-    public float wingFlap, prevWingFlap;
+    private final static int DW_WING_FLAP = 31;
+    private int wingFlap, prevWingFlap;
 
     public EntityDinosaurFlyingAggressive(World world)
     {
@@ -27,6 +28,7 @@ public abstract class EntityDinosaurFlyingAggressive extends EntityDinosaurAggre
     {
         super.entityInit();
         this.dataWatcher.addObject(DW_FLYING, (byte) 0);
+        this.dataWatcher.addObject(DW_WING_FLAP, 0);
     }
 
     @Override
@@ -34,34 +36,54 @@ public abstract class EntityDinosaurFlyingAggressive extends EntityDinosaurAggre
     {
         super.onLivingUpdate();
 
-        boolean flying = isFlying();
-        // TODO do gl rotate on renderer
-
-        rotationPitch = 10;
-
-        if (flying)
+        if (!this.isCarcass())
         {
-            float flapDiff = -(wingFlap - prevWingFlap);
+            boolean flying = isFlying();
+            int wingFlap = getWingFlap();
 
-            float flapMotion = flapDiff > 0 ? flapDiff : flapDiff / 2;
+            if (flying && !worldObj.isRemote)
+            {
+                rotationPitch = 20;
 
-            flapMotion = 1.5F;
-            moveForward = 0.5F;
+//                setWingFlap(wingFlap + 1);
 
-            float speedMultiplier = 0.25F;
+                float flapDiff = (wingFlap - prevWingFlap);
 
-            double horizontalMotion = flapMotion * Math.cos(rotationPitch * (float) Math.PI / 180.0F);
-            double verticalMotion = flapMotion * Math.sin(rotationPitch * (float) Math.PI / 180.0F);
+                float flapMotion = flapDiff;
 
-            double x = MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F) * horizontalMotion;
-            double z = MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F) * horizontalMotion;
-            this.motionX = -x * speedMultiplier * moveForward;
-            this.motionZ = z * speedMultiplier * moveForward;
-            this.motionY = verticalMotion * speedMultiplier * moveForward;
+//            flapMotion = 1.5F;
+                moveForward = 0.15F;
 
-            moveEntity(motionX, motionY, motionZ);
+                float speedMultiplier = 0.25F;
 
-            prevWingFlap = wingFlap;
+                double horizontalMotion = flapMotion * Math.cos(rotationPitch * (float) Math.PI / 180.0F);
+                double verticalMotion = flapMotion * Math.sin(rotationPitch * (float) Math.PI / 180.0F);
+
+                double x = MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F) * horizontalMotion;
+                double z = MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F) * horizontalMotion;
+                this.motionX += -x * speedMultiplier * moveForward;
+                this.motionZ += z * speedMultiplier * moveForward;
+                this.motionY = (verticalMotion * speedMultiplier * moveForward) * 3.75F;
+
+                motionY -= 0.025F;
+
+                motionX *= 1.06F;
+                motionZ *= 1.06F;
+
+                if (motionX > 0.15F)
+                {
+                    motionX = 0.15F;
+                }
+
+                if (motionZ > 0.15F)
+                {
+                    motionZ = 0.15F;
+                }
+
+                moveEntity(motionX, motionY, motionZ);
+
+                prevWingFlap = wingFlap;
+            }
         }
     }
 
@@ -76,7 +98,23 @@ public abstract class EntityDinosaurFlyingAggressive extends EntityDinosaurAggre
         {
             return;
         }
+
         dataWatcher.updateObject(DW_FLYING, (byte) (fly ? 1 : 0));
+    }
+
+    public void setWingFlap(int wingFlap)
+    {
+        if (worldObj.isRemote)
+        {
+            return;
+        }
+
+        dataWatcher.updateObject(DW_WING_FLAP, wingFlap);
+    }
+
+    public int getWingFlap()
+    {
+        return dataWatcher.getWatchableObjectInt(DW_WING_FLAP);
     }
 
     @Override

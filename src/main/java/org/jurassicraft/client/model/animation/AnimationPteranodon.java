@@ -67,11 +67,8 @@ public class AnimationPteranodon extends DinosaurAnimator
 
         if (entity.isFlying())
         {
-            f = entity.ticksExisted;
+            f = entity.getWingFlap();
             f1 = 1.0f;
-
-            GL11.glRotatef(-entity.rotationPitch / 2, 1.0F, 0.0F, 0.0F);
-            // GL11.glRotatef(rotationYaw * 2, 0.0F, 0.0F, 1.0F);
 
             body1.rotateAngleX += 0.3;
             neck1.rotateAngleX -= 0.1;

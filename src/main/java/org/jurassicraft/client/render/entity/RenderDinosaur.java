@@ -18,6 +18,7 @@ import org.jurassicraft.client.render.renderdef.RenderDinosaurDefinition;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.EntityVelociraptor;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+import org.jurassicraft.common.entity.base.EntityDinosaurFlyingAggressive;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
 import org.lwjgl.opengl.GL11;
 
@@ -52,6 +53,14 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
     {
         EntityDinosaur entityDinosaur = (EntityDinosaur) entity;
         this.renderDef.getModelAnimator().preRenderCallback(entityDinosaur, partialTick);
+
+        if (entity instanceof EntityDinosaurFlyingAggressive) //TODO default flying
+        {
+            if (((EntityDinosaurFlyingAggressive) entity).isFlying())
+            {
+                GlStateManager.rotate(-entity.rotationPitch / 2, 1.0F, 0.0F, 0.0F);
+            }
+        }
 
         float scale = (float) entityDinosaur.transitionFromAge(renderDef.getBabyScaleAdjustment(), renderDef.getAdultScaleAdjustment()); //TODO scale offset
 
