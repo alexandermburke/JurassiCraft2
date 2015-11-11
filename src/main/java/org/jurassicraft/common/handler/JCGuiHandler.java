@@ -21,7 +21,7 @@ import org.jurassicraft.client.gui.GuiEmbryoCalcificationMachine;
 import org.jurassicraft.client.gui.GuiEmbryonicMachine;
 import org.jurassicraft.client.gui.GuiFossilGrinder;
 import org.jurassicraft.client.gui.GuiIncubator;
-import org.jurassicraft.client.gui.GuiPaleoTab;
+import org.jurassicraft.client.gui.GuiPaleoPad;
 import org.jurassicraft.client.gui.GuiSelectDino;
 import org.jurassicraft.common.container.ContainerCarnivoreFeeder;
 import org.jurassicraft.common.container.ContainerCleaningStation;
@@ -196,7 +196,7 @@ public class JCGuiHandler implements IGuiHandler
     @SideOnly(Side.CLIENT)
     private static void displayPaleoPadGUIClient()
     {
-        Minecraft.getMinecraft().displayGuiScreen(new GuiPaleoTab());
+        Minecraft.getMinecraft().displayGuiScreen(new GuiPaleoPad());
     }
 
     @SideOnly(Side.CLIENT)

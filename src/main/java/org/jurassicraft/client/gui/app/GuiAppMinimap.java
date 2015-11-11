@@ -16,7 +16,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import org.jurassicraft.JurassiCraft;
-import org.jurassicraft.client.gui.GuiPaleoTab;
+import org.jurassicraft.client.gui.GuiPaleoPad;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.paleopad.App;
@@ -39,7 +39,7 @@ public class GuiAppMinimap extends GuiApp
     }
 
     @Override
-    public void render(int mouseX, int mouseY, GuiPaleoTab gui)
+    public void render(int mouseX, int mouseY, GuiPaleoPad gui)
     {
         super.renderButtons(mouseX, mouseY, gui);
 
@@ -248,7 +248,7 @@ public class GuiAppMinimap extends GuiApp
     }
 
     @Override
-    public void mouseClicked(int mouseX, int mouseY, GuiPaleoTab gui)
+    public void mouseClicked(int mouseX, int mouseY, GuiPaleoPad gui)
     {
         ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
         mouseX -= dimensions.getScaledWidth() / 2 - 115;
@@ -260,7 +260,7 @@ public class GuiAppMinimap extends GuiApp
     {}
 
     @Override
-    public ResourceLocation getTexture(GuiPaleoTab gui)
+    public ResourceLocation getTexture(GuiPaleoPad gui)
     {
         return texture;
     }

@@ -7,7 +7,7 @@ import net.minecraftforge.event.entity.PlaySoundAtEntityEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.jurassicraft.JurassiCraft;
-import org.jurassicraft.client.gui.GuiPaleoTab;
+import org.jurassicraft.client.gui.GuiPaleoPad;
 import org.jurassicraft.client.gui.app.GuiApp;
 import org.jurassicraft.client.render.entity.IDinosaurRenderer;
 import org.jurassicraft.client.render.entity.RenderIndominus;
@@ -38,9 +38,9 @@ public class ClientEventHandler
     {
         JurassiCraft.timerTicks++;
 
-        if (mc.currentScreen instanceof GuiPaleoTab)
+        if (mc.currentScreen instanceof GuiPaleoPad)
         {
-            GuiPaleoTab tab = (GuiPaleoTab) mc.currentScreen;
+            GuiPaleoPad tab = (GuiPaleoPad) mc.currentScreen;
 
             GuiApp focus = tab.focus;
 

@@ -22,13 +22,13 @@ import org.lwjgl.opengl.GL11;
 import java.util.List;
 
 @SideOnly(Side.CLIENT)
-public class GuiPaleoTab extends GuiScreen
+public class GuiPaleoPad extends GuiScreen
 {
     private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/paleo_pad.png");
 
     public GuiApp focus;
 
-    public GuiPaleoTab()
+    public GuiPaleoPad()
     {}
 
     @Override

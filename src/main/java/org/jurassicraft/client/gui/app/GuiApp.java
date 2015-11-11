@@ -6,7 +6,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.jurassicraft.client.gui.GuiPaleoTab;
+import org.jurassicraft.client.gui.GuiPaleoPad;
 import org.jurassicraft.common.entity.data.JCPlayerData;
 import org.jurassicraft.common.paleopad.App;
 
@@ -41,9 +41,9 @@ public abstract class GuiApp
         return requestShutdown;
     }
 
-    public abstract void render(int mouseX, int mouseY, GuiPaleoTab gui);
+    public abstract void render(int mouseX, int mouseY, GuiPaleoPad gui);
 
-    protected void renderButtons(int mouseX, int mouseY, GuiPaleoTab gui)
+    protected void renderButtons(int mouseX, int mouseY, GuiPaleoPad gui)
     {
         for (GuiButton button : buttons)
         {
@@ -54,14 +54,14 @@ public abstract class GuiApp
     public void keyPressed(int key)
     {}
 
-    public void mouseClicked(int mouseX, int mouseY, GuiPaleoTab gui)
+    public void mouseClicked(int mouseX, int mouseY, GuiPaleoPad gui)
     {}
 
     public abstract void actionPerformed(GuiButton button);
 
     public abstract void init();
 
-    public abstract ResourceLocation getTexture(GuiPaleoTab gui);
+    public abstract ResourceLocation getTexture(GuiPaleoPad gui);
 
     public App getApp()
     {

@@ -4,7 +4,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.ResourceLocation;
 import org.jurassicraft.JurassiCraft;
-import org.jurassicraft.client.gui.GuiPaleoTab;
+import org.jurassicraft.client.gui.GuiPaleoPad;
 import org.jurassicraft.common.paleopad.App;
 import org.jurassicraft.common.paleopad.AppFlappyDino;
 
@@ -36,7 +36,7 @@ public class GuiAppFlappyDino extends GuiApp
     }
 
     @Override
-    public void render(int mouseX, int mouseY, GuiPaleoTab gui)
+    public void render(int mouseX, int mouseY, GuiPaleoPad gui)
     {
         super.renderButtons(mouseX, mouseY, gui);
 
@@ -109,7 +109,7 @@ public class GuiAppFlappyDino extends GuiApp
     }
 
     @Override
-    public void mouseClicked(int mouseX, int mouseY, GuiPaleoTab gui)
+    public void mouseClicked(int mouseX, int mouseY, GuiPaleoPad gui)
     {
         ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
         mouseX -= dimensions.getScaledWidth() / 2 - 115;
@@ -203,7 +203,7 @@ public class GuiAppFlappyDino extends GuiApp
     }
 
     @Override
-    public ResourceLocation getTexture(GuiPaleoTab gui)
+    public ResourceLocation getTexture(GuiPaleoPad gui)
     {
         return texture;
     }
