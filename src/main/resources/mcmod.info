@@ -3,6 +3,7 @@
         "modid": "jurassicraft",
         "name": "JurassiCraft",
         "version": "${version}",
+		"mcversion": "${mcversion}",
         "authorList": ["TeamJC"],
         "url": "https://jurassicraft.net/",
         "dependencies": [],
