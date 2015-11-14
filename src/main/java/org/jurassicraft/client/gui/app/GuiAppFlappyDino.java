@@ -93,10 +93,21 @@ public class GuiAppFlappyDino extends GuiApp
 
                     for (int height = 0; height < totalHeight; height++)
                     {
-                        gui.drawScaledTexturedModalRect(drawX, 0 + (height * 20), 0, 0, 32, 20, 32, 32, 1.0F);
+                        gui.drawScaledTexturedModalRect(drawX, (height * 20), 0, 0, 32, 20, 32, 32, 1.0F);
                     }
 
-                    gui.drawScaledTexturedModalRect(drawX, 0 + (totalHeight * 20), 0, 20, 32, 12, 32, 32, 1.0F);
+                    gui.drawScaledTexturedModalRect(drawX, (totalHeight * 20), 0, 20, 32, 12, 32, 32, 1.0F);
+
+//                    int topHeight = ((4 - entry.getValue()) * 20) + 11;
+//                    int bottomHeight = (150 - (entry.getValue() * 20)) - 11;
+//
+//                    int actualY = 150 - y;
+//
+//                    gui.drawScaledRect(drawX + 1, topHeight, 30, 1, 1.0F, 0xFFFFFF);
+//                    gui.drawScaledRect(drawX + 1, bottomHeight, 30, 1, 1.0F, 0xFFFF00);
+//
+//                    gui.drawScaledRect(6, actualY + 5, 30, 1, 1.0F, 0xFF0000);
+//                    gui.drawScaledRect(6, actualY + 23, 30, 1, 1.0F, 0xFF00FF);
                 }
             }
         }
@@ -168,27 +179,29 @@ public class GuiAppFlappyDino extends GuiApp
             motionY--;
 
             boolean died = false;
-            //
-            // for (Map.Entry<Integer, Integer> entry : pillars.entrySet())
-            // {
-            // int renderX = x - entry.getKey();
-            // int pillarX = entry.getKey();
-            //
-            // int bottomHeight = (entry.getValue() * 20) + 10;
-            // int topHeight = 139 - (((4 - entry.getValue()) * 20) - 12);
-            //
-            // if(renderX > 0 && renderX < 200)
-            // {
-            // boolean collideX = x < (pillarX + 29) && x + 30 > pillarX;
-            // boolean collideY = y - 24 < bottomHeight || y > topHeight;
-            //
-            // if(collideX && collideY)
-            // {
-            // died = true;
-            // break;
-            // }
-            // }
-            // }
+
+            for (Map.Entry<Integer, Integer> entry : pillars.entrySet())
+            {
+                int renderX = entry.getKey() - x;
+
+                int height = entry.getValue();
+                int bottomHeight = (150 - (entry.getValue() * 20)) - 11;
+                int topHeight = ((4 - height) * 20) + 11;
+
+                int actualY = 150 - y;
+
+                if(renderX > 0 && renderX < 200)
+                {
+                    boolean collideX = (renderX) < 30;
+                    boolean collideY = (actualY + 5) < topHeight || (actualY + 23) > bottomHeight;
+
+                    if(collideX && collideY)
+                    {
+                        died = true;
+                        break;
+                    }
+                }
+            }
 
             if (y < 20)
             {
