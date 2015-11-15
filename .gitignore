@@ -1,24 +1,22 @@
-## IDEA files
-.idea/
-build/
-out/
-.gradle/
-*.iml
+# eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
+
+# idea
+out
 *.ipr
 *.iws
+*.iml
+.idea
 
-## Eclipse files
-bin/
-eclipse/
-.project
-.classpath
-.settings/
+# gradle
+build
+.gradle
 
-## JurassiCraft files
-Resources.zip
-
-## Minecraft files
-minecraft/
-logs/
-saves/
-screenshots/
+# other
+eclipse
+run
