@@ -17,6 +17,7 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -194,7 +195,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
                 motionZ *= 0.6D;
             }
 
-            applyEnchantments(this, entity);
+            func_174815_a(this, entity);
         }
 
         return attackSuccesful;
@@ -728,7 +729,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
                     }
                     else
                     {
-                        msg = "This " + getCommandSenderName();
+                        msg = "This " + getName();
                     }
 
                     player.addChatComponentMessage(new ChatComponentText(msg + " is not old enough to hold items!")); //TODO translation
@@ -755,6 +756,11 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         }
 
         return false;
+    }
+
+    public boolean isDinoEating()
+    {
+        return this.getFlag(4);
     }
 
     // NOTE: This adds an attack target. Class should be the entity class for the target, lower prio get executed

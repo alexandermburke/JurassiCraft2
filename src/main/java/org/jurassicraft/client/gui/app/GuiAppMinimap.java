@@ -78,7 +78,7 @@ public class GuiAppMinimap extends GuiApp
                         for (int z = 0; z < 16; z++)
                         {
                             int blockX = x + (chunkX * 16);
-                            int blockY = chunk.getHeightValue(x, z);
+                            int blockY = chunk.getHeight(x, z);
                             int blockZ = z + (chunkZ * 16);
 
                             if (world.isAirBlock(new BlockPos(blockX, blockY, blockZ)))

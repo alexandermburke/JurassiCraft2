@@ -58,14 +58,14 @@ public class CommandForceAnimation implements ICommand
         }
 
         @Override
-        public boolean canCommandSenderUseCommand(int permLevel, String commandName)
+        public boolean canUseCommand(int permLevel, String commandName)
         {
             if (commandName.equals("@"))
             {
                 return true;
             }
 
-            return original.canCommandSenderUseCommand(permLevel, commandName);
+            return original.canUseCommand(permLevel, commandName);
         }
 
         @Override
@@ -75,9 +75,9 @@ public class CommandForceAnimation implements ICommand
         }
 
         @Override
-        public String getCommandSenderName()
+        public String getName()
         {
-            return original.getCommandSenderName();
+            return original.getName();
         }
 
         @Override
@@ -133,7 +133,7 @@ public class CommandForceAnimation implements ICommand
     }
 
     @Override
-    public String getCommandName()
+    public String getName()
     {
         return "animate";
     }
@@ -145,13 +145,13 @@ public class CommandForceAnimation implements ICommand
     }
 
     @Override
-    public List getCommandAliases()
+    public List getAliases()
     {
         return this.aliases;
     }
 
     @Override
-    public void processCommand(ICommandSender parSender, String[] argString) throws CommandException
+    public void execute(ICommandSender parSender, String[] argString) throws CommandException
     {
         World theWorld = parSender.getEntityWorld();
 
@@ -181,7 +181,7 @@ public class CommandForceAnimation implements ICommand
     }
 
     @Override
-    public boolean canCommandSenderUseCommand(ICommandSender var1)
+    public boolean canCommandSenderUse(ICommandSender var1)
     {
         return true;
     }

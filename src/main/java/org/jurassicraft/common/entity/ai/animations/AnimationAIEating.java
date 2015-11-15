@@ -36,7 +36,7 @@ public class AnimationAIEating extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        return this.creature.isEating();
+        return this.creature.isDinoEating();
     }
 
     @Override

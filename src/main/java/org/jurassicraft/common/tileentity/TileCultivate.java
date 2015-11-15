@@ -159,12 +159,6 @@ public class TileCultivate extends TileEntityLockable implements IUpdatePlayerLi
         return this.hasCustomName() ? this.customName : "container.cultivator";
     }
 
-    @Override
-    public String getCommandSenderName()
-    {
-        return getName();
-    }
-
     /**
      * Returns true if this thing is named
      */

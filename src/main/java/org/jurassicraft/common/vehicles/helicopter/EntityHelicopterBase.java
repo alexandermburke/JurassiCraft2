@@ -355,7 +355,7 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     }
 
     @Override
-    public boolean interactAt(EntityPlayer player, Vec3 vec)
+    public boolean func_174825_a(EntityPlayer player, Vec3 vec)
     {
         // Transforms the vector in local coordinates (cancels possible rotations to simplify 'seat detection')
         Vec3 localVec = vec.rotateYaw((float) Math.toRadians(this.rotationYaw));

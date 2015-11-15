@@ -32,10 +32,4 @@ public abstract class EntityDinosaurAggressive extends EntityDinosaur implements
     {
         return this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && super.getCanSpawnHere();
     }
-
-    @Override
-    protected boolean canDropLoot()
-    {
-        return true;
-    }
 }

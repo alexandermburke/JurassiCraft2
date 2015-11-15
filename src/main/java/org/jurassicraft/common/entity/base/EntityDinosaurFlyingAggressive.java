@@ -124,8 +124,9 @@ public abstract class EntityDinosaurFlyingAggressive extends EntityDinosaurAggre
     }
 
     @Override
-    protected void updateFallState(double y, boolean onGroundIn, Block blockIn, BlockPos pos)
-    {}
+    protected void func_180433_a(double y, boolean onGroundIn, Block blockIn, BlockPos pos)
+    {
+    }
 
     @Override
     public void writeToNBT(NBTTagCompound nbt)
