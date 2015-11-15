@@ -26,8 +26,6 @@ import org.jurassicraft.common.storagedisc.StorageTypeRegistry;
 
 import java.io.File;
 
-import java.io.File;
-
 @Mod(modid = JurassiCraft.MODID, name = JurassiCraft.MODNAME, version = JurassiCraft.MODVERSION, guiFactory = "org.jurassicraft.client.gui.config.GUIFactory")
 public class JurassiCraft
 {
