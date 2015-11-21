@@ -29,7 +29,7 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
         super(world, pos);
         setType(dinosaur);
 
-        this.func_174859_a(enumFacing);
+        this.updateFacingWithBoundingBox(enumFacing);
     }
 
     private void setType(int dinosaur)
@@ -125,7 +125,7 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
     {
         setType(buf.readInt());
         hangingPosition = BlockPos.fromLong(buf.readLong());
-        func_174859_a(EnumFacing.getHorizontal(buf.readByte()));
+        updateFacingWithBoundingBox(EnumFacing.getHorizontal(buf.readByte()));
     }
 
     public int getDinosaur()

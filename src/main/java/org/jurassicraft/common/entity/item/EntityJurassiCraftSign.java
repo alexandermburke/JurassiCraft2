@@ -41,7 +41,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
         {
             EntityJurassiCraftSign.EnumSignType enumart = aenumart[j];
             this.signType = enumart;
-            this.func_174859_a(enumFacing);
+            this.updateFacingWithBoundingBox(enumFacing);
 
             if (this.onValidSurface())
             {
@@ -54,7 +54,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
             this.signType = arraylist.get(this.rand.nextInt(arraylist.size()));
         }
 
-        this.func_174859_a(enumFacing);
+        this.updateFacingWithBoundingBox(enumFacing);
     }
 
     @SideOnly(Side.CLIENT)
@@ -63,7 +63,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
         this(world, pos, enumFacing);
         setType(titleName);
 
-        this.func_174859_a(enumFacing);
+        this.updateFacingWithBoundingBox(enumFacing);
     }
 
     private void setType(String titleName)
@@ -195,6 +195,6 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
     {
         setType(ByteBufUtils.readUTF8String(buf));
         hangingPosition = BlockPos.fromLong(buf.readLong());
-        func_174859_a(EnumFacing.getHorizontal(buf.readByte()));
+        updateFacingWithBoundingBox(EnumFacing.getHorizontal(buf.readByte()));
     }
 }
