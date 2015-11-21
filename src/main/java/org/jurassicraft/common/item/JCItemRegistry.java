@@ -60,6 +60,10 @@ public class JCItemRegistry
     public static ItemHelicopter helicopter_spawner;
     public static ItemBasic tracker;
 
+    public static ItemJCMusicDisc disc_jurassicraft_theme;
+    public static ItemJCMusicDisc disc_troodons_and_raptors;
+    public static ItemJCMusicDisc disc_dont_move_a_muscle;
+
     // TODO more complex crafting components, eg circuit boards
 
     public void register()
@@ -101,6 +105,10 @@ public class JCItemRegistry
 
         helicopter_spawner = new ItemHelicopter();
 
+        disc_jurassicraft_theme = new ItemJCMusicDisc("jurassicraft_theme");
+        disc_troodons_and_raptors = new ItemJCMusicDisc("troodons_and_raptors");
+        disc_dont_move_a_muscle = new ItemJCMusicDisc("dont_move_a_muscle");
+
         registerItem(amber, "Amber");
         registerItem(sea_lamprey, "Sea Lamprey");
         registerItem(plaster_and_bandage, "Plaster And Bandage");
@@ -137,6 +145,10 @@ public class JCItemRegistry
         registerItem(dino_steak, "Dinosaur Steak");
 
         registerItem(helicopter_spawner, "Helicopter Spawner");
+
+        registerItem(disc_jurassicraft_theme, "Disc JurassiCraft Theme");
+        registerItem(disc_troodons_and_raptors, "Disc Troodons And Raptors");
+        registerItem(disc_dont_move_a_muscle, "Disc Don't Move A Muscle");
         // registerItem(entityRemover, "Entity Remover");
 
         // for (int i = 0; i < JCEntityRegistry.getDinosaurs().size(); i++)
@@ -151,6 +163,6 @@ public class JCItemRegistry
     {
         DinoPediaRegistry.registerItem(new ItemStack(item));
 
-        GameRegistry.registerItem(item, name.toLowerCase().replaceAll(" ", "_"));
+        GameRegistry.registerItem(item, name.toLowerCase().replaceAll(" ", "_").replaceAll("'", ""));
     }
 }

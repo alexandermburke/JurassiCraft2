@@ -313,6 +313,10 @@ public class JCRenderingRegistry
 
         this.registerItemRenderer(modelMesher, JCItemRegistry.helicopter_spawner, "helicopter_spawner", "inventory");
 
+        this.registerItemRenderer(modelMesher, JCItemRegistry.disc_jurassicraft_theme, "disc_jurassicraft_theme", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.disc_dont_move_a_muscle, "disc_dont_move_a_muscle", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.disc_troodons_and_raptors, "disc_troodons_and_raptors", "inventory");
+
         int meta = 0;
 
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
