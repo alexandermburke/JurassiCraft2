@@ -52,6 +52,7 @@ import org.jurassicraft.client.model.animation.AnimationMoganopterus;
 import org.jurassicraft.client.model.animation.AnimationOrnithomimus;
 import org.jurassicraft.client.model.animation.AnimationOthnielia;
 import org.jurassicraft.client.model.animation.AnimationOviraptor;
+import org.jurassicraft.client.model.animation.AnimationPachycephalosaurus;
 import org.jurassicraft.client.model.animation.AnimationParasaurolophus;
 import org.jurassicraft.client.model.animation.AnimationProtoceratops;
 import org.jurassicraft.client.model.animation.AnimationPteranodon;
@@ -189,6 +190,7 @@ public class JCRenderingRegistry
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.ornithomimus, new AnimationOrnithomimus(), 0.9F, 0.25F, 0.65F, 0.0F, 0.0F, 0.0F));
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.zhenyuanopterus, new AnimationZhenyuanopterus(), 0.7F, 0.25F, 0.65F, 0.0F, 0.0F, 0.0F));
         registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.troodon, new AnimationTroodon(), 0.75F, 0.25F, 0.65F, 0.0F, 0.0F, 0.5F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.pachycephalosaurus, new AnimationPachycephalosaurus(), 0.9F, 0.2F, 0.65F, 0.0F, 0.0F, 0.0F));
 
         GuiAppRegistry.register();
 

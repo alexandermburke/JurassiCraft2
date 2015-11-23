@@ -39,6 +39,7 @@ import org.jurassicraft.common.dinosaur.DinosaurMoganopterus;
 import org.jurassicraft.common.dinosaur.DinosaurOrnithomimus;
 import org.jurassicraft.common.dinosaur.DinosaurOthnielia;
 import org.jurassicraft.common.dinosaur.DinosaurOviraptor;
+import org.jurassicraft.common.dinosaur.DinosaurPachycephalosaurus;
 import org.jurassicraft.common.dinosaur.DinosaurParasaurolophus;
 import org.jurassicraft.common.dinosaur.DinosaurProtoceratops;
 import org.jurassicraft.common.dinosaur.DinosaurPteranodon;
@@ -128,6 +129,7 @@ public class JCEntityRegistry
     public static final Dinosaur ornithomimus = new DinosaurOrnithomimus();
     public static final Dinosaur zhenyuanopterus = new DinosaurZhenyuanopterus();
     public static final Dinosaur troodon = new DinosaurTroodon();
+    public static final Dinosaur pachycephalosaurus = new DinosaurPachycephalosaurus();
 
     public static List<Dinosaur> getDinosaursFromSeaLampreys()
     {
@@ -199,6 +201,7 @@ public class JCEntityRegistry
         registerDinosaurType(ornithomimus);
         registerDinosaurType(zhenyuanopterus);
         registerDinosaurType(troodon);
+        registerDinosaurType(pachycephalosaurus);
 
         registerEntity(EntityBluePrint.class, "Blueprint");
         registerEntity(EntityJurassiCraftSign.class, "JurassiCraft Sign");

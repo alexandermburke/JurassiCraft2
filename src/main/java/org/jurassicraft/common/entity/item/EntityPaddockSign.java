@@ -28,7 +28,7 @@ public class EntityPaddockSign extends EntityHanging implements IEntityAdditiona
         super(world, pos);
         setType(dinosaur);
 
-        this.updateFacingWithBoundingBox(enumFacing);
+        this.func_174859_a(enumFacing);
     }
 
     private void setType(int dinosaur)
@@ -124,7 +124,7 @@ public class EntityPaddockSign extends EntityHanging implements IEntityAdditiona
     {
         setType(buf.readInt());
         hangingPosition = BlockPos.fromLong(buf.readLong());
-        updateFacingWithBoundingBox(EnumFacing.getHorizontal(buf.readByte()));
+        func_174859_a(EnumFacing.getHorizontal(buf.readByte()));
     }
 
     public int getDinosaur()
