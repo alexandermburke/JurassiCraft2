@@ -23,69 +23,33 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
     {
         String dinosaurName = getName().toLowerCase().replaceAll(" ", "_");
 
-        InputStream stream = JurassiCraft.class.getClassLoader().getResourceAsStream("./assets/jurassicraft/textures/entities/" + dinosaurName);
+        String baseTextures = "textures/entities/" + dinosaurName + "/";
 
-        BufferedReader in = new BufferedReader(new InputStreamReader(stream));
-
-        String name;
-
-        try
+        for (EnumGrowthStage growthStage : EnumGrowthStage.values())
         {
-            while ((name = in.readLine()) != null)
+            String growthStageName = growthStage.name().toLowerCase();
+
+            if (this instanceof IHybrid)
             {
-                EnumGrowthStage stage = null;
+                ResourceLocation hybridTexture = new ResourceLocation(JurassiCraft.MODID, baseTextures + dinosaurName + "_" + growthStageName + ".png");
 
-                for (EnumGrowthStage growthStage : EnumGrowthStage.values())
-                {
-                    if (name.contains(growthStage.name().toLowerCase()))
-                    {
-                        stage = growthStage;
-                        break;
-                    }
-                }
-
-                if (stage != null)
-                {
-                    ResourceLocation resourceLocation = new ResourceLocation(JurassiCraft.MODID, "textures/entities/" + dinosaurName + "/" + name);
-
-                    if (name.contains("overlay"))
-                    {
-                        List<ResourceLocation> growthStageOverlays = overlays.get(stage);
-
-                        if (growthStageOverlays == null)
-                        {
-                            growthStageOverlays = new ArrayList<ResourceLocation>();
-                        }
-
-                        growthStageOverlays.add(resourceLocation);
-
-                        overlays.put(stage, growthStageOverlays);
-                    }
-                    else
-                    {
-                        if (this instanceof IHybrid)
-                        {
-                            maleTextures.put(stage, resourceLocation);
-                            femaleTextures.put(stage, resourceLocation);
-                        }
-                        else
-                        {
-                            if (name.contains("female"))
-                            {
-                                femaleTextures.put(stage, resourceLocation);
-                            }
-                            else
-                            {
-                                maleTextures.put(stage, resourceLocation);
-                            }
-                        }
-                    }
-                }
+                maleTextures.put(growthStage, hybridTexture);
+                femaleTextures.put(growthStage, hybridTexture);
             }
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
+            else
+            {
+                maleTextures.put(growthStage, new ResourceLocation(JurassiCraft.MODID, baseTextures + dinosaurName + "_male_" + growthStageName + ".png"));
+                femaleTextures.put(growthStage, new ResourceLocation(JurassiCraft.MODID, baseTextures + dinosaurName + "_female_" + growthStageName + ".png"));
+            }
+
+            List<ResourceLocation> overlaysForGrowthStage = new ArrayList<ResourceLocation>();
+
+            for (int i = 1; i <= getOverlayCount(); i++)
+            {
+                overlaysForGrowthStage.add(new ResourceLocation(JurassiCraft.MODID, baseTextures + dinosaurName + "_overlay_" + growthStageName + "_" + i + ".png"));
+            }
+
+            overlays.put(growthStage, overlaysForGrowthStage);
         }
     }
 
@@ -223,7 +187,6 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
 
     public int getOverlayCount()
     {
-        List<ResourceLocation> overlayTextures = overlays.get(EnumGrowthStage.ADULT);
-        return overlayTextures != null ? overlayTextures.size() : 0; //TODO what growth stage do you use here???
+        return 0;
     }
 }

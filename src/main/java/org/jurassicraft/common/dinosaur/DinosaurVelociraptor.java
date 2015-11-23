@@ -148,4 +148,10 @@ public class DinosaurVelociraptor extends Dinosaur
     {
         return 27;
     }
+
+    @Override
+    public int getOverlayCount()
+    {
+        return 1;
+    }
 }

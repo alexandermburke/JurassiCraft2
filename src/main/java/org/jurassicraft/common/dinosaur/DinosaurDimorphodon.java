@@ -149,4 +149,10 @@ public class DinosaurDimorphodon extends Dinosaur
     {
         return 9;
     }
+
+    @Override
+    public int getOverlayCount()
+    {
+        return 4;
+    }
 }

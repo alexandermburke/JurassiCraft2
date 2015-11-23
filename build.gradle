@@ -56,5 +56,6 @@ jar {
 	
 	manifest {
         attributes "FMLCorePlugin": "net.ilexiconn.llibrary.LLibraryWrapper"
+		attributes "FMLCorePluginContainsFMLMod": "true"
     }
 }
