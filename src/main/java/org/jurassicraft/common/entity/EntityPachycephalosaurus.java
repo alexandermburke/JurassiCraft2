@@ -15,6 +15,6 @@ public class EntityPachycephalosaurus extends EntityDinosaurDefensiveHerbivore
     @Override
     public int getTailBoxCount()
     {
-        return 0;
+        return 7;
     }
 }
