@@ -9,6 +9,8 @@ import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import net.timeless.animationapi.AnimationAPI;
+import net.timeless.animationapi.client.AnimID;
 
 public abstract class EntityDinosaurProvokable extends EntityDinosaur
 {
@@ -77,36 +79,6 @@ public abstract class EntityDinosaurProvokable extends EntityDinosaur
     {
         super.entityInit();
         this.dataWatcher.addObject(16, new Byte((byte) 0));
-    }
-
-    // /**
-    // * Called when the entity is attacked.
-    // */
-    // public boolean attackEntityFrom(DamageSource source, float amount)
-    // {
-    // if (this.isEntityInvulnerable(source))
-    // {
-    // return false;
-    // }
-    // else
-    // {
-    // float damage = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
-    //
-    // return super.attackEntityFrom(source, damage);
-    // }
-    // }
-
-    @Override
-    public boolean attackEntityAsMob(Entity entity)
-    {
-        boolean flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), ((int) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue()));
-
-        if (flag)
-        {
-            this.func_174815_a(this, entity);
-        }
-
-        return flag;
     }
 
     /**
