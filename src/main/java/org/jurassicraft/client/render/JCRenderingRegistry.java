@@ -114,6 +114,7 @@ public class JCRenderingRegistry
             ModelBakery.addVariantName(JCItemRegistry.dino_steak, "jurassicraft:meat/steak_" + dinoName);
             ModelBakery.addVariantName(JCItemRegistry.soft_tissue, "jurassicraft:soft_tissue/soft_tissue_" + dinoName);
             ModelBakery.addVariantName(JCItemRegistry.syringe, "jurassicraft:syringe/syringe_" + dinoName);
+            ModelBakery.addVariantName(JCItemRegistry.action_figure, "jurassicraft:action_figure/action_figure_" + dinoName);
         }
 
         for (Plant plant : JCPlantRegistry.getPlants())
@@ -319,6 +320,10 @@ public class JCRenderingRegistry
         this.registerItemRenderer(modelMesher, JCItemRegistry.disc_dont_move_a_muscle, "disc_dont_move_a_muscle", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.disc_troodons_and_raptors, "disc_troodons_and_raptors", "inventory");
 
+        this.registerItemRenderer(modelMesher, JCItemRegistry.amber_keychain, "amber_keychain", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.amber_cane, "amber_cane", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.mr_dna_keychain, "mr_dna_keychain", "inventory");
+
         int meta = 0;
 
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
@@ -333,6 +338,7 @@ public class JCRenderingRegistry
             this.registerItemRenderer(modelMesher, JCItemRegistry.dino_steak, meta, "meat/steak_" + dinoName, "inventory");
             this.registerItemRenderer(modelMesher, JCItemRegistry.soft_tissue, meta, "soft_tissue/soft_tissue_" + dinoName, "inventory");
             this.registerItemRenderer(modelMesher, JCItemRegistry.syringe, meta, "syringe/syringe_" + dinoName, "inventory");
+            this.registerItemRenderer(modelMesher, JCItemRegistry.action_figure, meta, "action_figure/action_figure_" + dinoName, "inventory");
 
             meta++;
         }

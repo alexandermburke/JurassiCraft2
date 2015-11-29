@@ -64,6 +64,12 @@ public class JCItemRegistry
     public static ItemJCMusicDisc disc_troodons_and_raptors;
     public static ItemJCMusicDisc disc_dont_move_a_muscle;
 
+    public static ItemActionFigure action_figure;
+
+    public static ItemBasic amber_keychain;
+    public static ItemBasic amber_cane;
+    public static ItemBasic mr_dna_keychain;
+
     // TODO more complex crafting components, eg circuit boards
 
     public void register()
@@ -102,6 +108,13 @@ public class JCItemRegistry
         plant_callus = new ItemPlantCallus();
         plant_cells_petri_dish = new ItemBasic("Plant Cells Petri Dish", JCCreativeTabs.items);
         tracker = new ItemBasic("Tracker", JCCreativeTabs.items);
+        action_figure = new ItemActionFigure();
+
+        amber_cane = new ItemBasic("Amber Cane", JCCreativeTabs.items);
+        amber_cane.setFull3D();
+        amber_cane.setMaxStackSize(1);
+        amber_keychain = new ItemBasic("Amber Keychain", JCCreativeTabs.items);
+        mr_dna_keychain = new ItemBasic("Mr DNA Keychain", JCCreativeTabs.items);
 
         helicopter_spawner = new ItemHelicopter();
 
@@ -149,6 +162,12 @@ public class JCItemRegistry
         registerItem(disc_jurassicraft_theme, "Disc JurassiCraft Theme");
         registerItem(disc_troodons_and_raptors, "Disc Troodons And Raptors");
         registerItem(disc_dont_move_a_muscle, "Disc Don't Move A Muscle");
+
+        registerItem(amber_cane, "Amber Cane");
+        registerItem(amber_keychain, "Amber Keychain");
+        registerItem(mr_dna_keychain, "Mr DNA Keychain");
+
+        registerItem(action_figure, "Action Figure");
         // registerItem(entityRemover, "Entity Remover");
 
         // for (int i = 0; i < JCEntityRegistry.getDinosaurs().size(); i++)
