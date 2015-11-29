@@ -26,9 +26,10 @@ public class AnimationAPI
     @Mod.EventHandler
     public void init(FMLInitializationEvent e)
     {
-        wrapper = NetworkRegistry.INSTANCE.newSimpleChannel("AnimAPI");
+        wrapper = NetworkRegistry.INSTANCE.newSimpleChannel("jcanimationapi");
         int discriminator = 0;
         wrapper.registerMessage(PacketAnim.Handler.class, PacketAnim.class, discriminator++, Side.CLIENT);
+        wrapper.registerMessage(PacketAnim.Handler.class, PacketAnim.class, discriminator++, Side.SERVER);
     }
 
     @Mod.EventHandler

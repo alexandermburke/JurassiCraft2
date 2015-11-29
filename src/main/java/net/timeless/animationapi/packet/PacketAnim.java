@@ -17,7 +17,9 @@ public class PacketAnim implements IMessage
     private int entityID;
 
     public PacketAnim()
-    {}
+    {
+
+    }
 
     public PacketAnim(AnimID parAnimID, int parEntityID)
     {
@@ -28,17 +30,17 @@ public class PacketAnim implements IMessage
     }
 
     @Override
-    public void toBytes(ByteBuf buffer)
+    public void fromBytes(ByteBuf buf)
     {
-        buffer.writeInt(animID);
-        buffer.writeInt(entityID);
+        entityID = buf.readInt();
+        animID = buf.readInt();
     }
 
     @Override
-    public void fromBytes(ByteBuf buffer)
+    public void toBytes(ByteBuf buf)
     {
-        animID = buffer.readInt();
-        entityID = buffer.readInt();
+        buf.writeInt(entityID);
+        buf.writeInt(animID);
     }
 
     public static class Handler implements IMessageHandler<PacketAnim, IMessage>
@@ -46,14 +48,14 @@ public class PacketAnim implements IMessage
         @Override
         public IMessage onMessage(final PacketAnim packet, MessageContext ctx)
         {
-            JurassiCraft.instance.getLogger().info("PacketAnim received for entity " + packet.entityID + " and animation ID " + AnimID.values()[packet.animID]);
+            final AnimID animationId = AnimID.values()[packet.animID];
+
+            JurassiCraft.instance.getLogger().info("PacketAnim received for entity " + packet.entityID + " and animation ID " + animationId);
 
             final EntityPlayer player = JurassiCraft.proxy.getPlayerEntityFromContext(ctx);
 
             Minecraft.getMinecraft().addScheduledTask(new Runnable()
             {
-                private final AnimID animation = AnimID.values()[packet.animID];
-
                 @Override
                 public void run()
                 {
@@ -62,7 +64,7 @@ public class PacketAnim implements IMessage
 
                     if (entity != null)
                     {
-                        entity.setAnimID(this.animation);
+                        entity.setAnimID(animationId);
                     }
 
                 }
