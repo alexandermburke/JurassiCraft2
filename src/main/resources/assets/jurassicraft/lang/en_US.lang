@@ -8,6 +8,7 @@ itemGroup.jurassicraft.foods=JurassiCraft Foodstuffs
 itemGroup.jurassicraft.plants=JurassiCraft Plants
 itemGroup.jurassicraft.fossils=JurassiCraft Fossils
 itemGroup.jurassicraft.dino_bones=JurassiCraft Bones
+itemGroup.jurassicraft.merchandise=JurassiCraft Merchandise
 
 //Entities ==================================================
 entity.velociraptor.name=Velociraptor

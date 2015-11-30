@@ -1,14 +1,24 @@
 package org.jurassicraft.common.item;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jurassicraft.common.block.JCBlockRegistry;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.base.JCEntityRegistry;
 import org.jurassicraft.common.lang.AdvLang;
+import org.jurassicraft.common.tileentity.TileActionFigure;
 
 import java.util.*;
 
@@ -20,8 +30,38 @@ public class ItemActionFigure extends Item
 
         this.setUnlocalizedName("action_figure");
 
-        this.setCreativeTab(JCCreativeTabs.items);
+        this.setCreativeTab(JCCreativeTabs.merchandise);
         this.setHasSubtypes(true);
+    }
+
+    /**
+     * Called when a Block is right-clicked with this Item
+     *
+     * @param pos The block being right-clicked
+     * @param side The side being right-clicked
+     */
+    public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+    {
+        pos = pos.offset(side);
+
+        if (playerIn.canPlayerEdit(pos, side, stack))
+        {
+            Block block = JCBlockRegistry.action_figure;
+
+            if (block.canPlaceBlockAt(worldIn, pos))
+            {
+                IBlockState state = block.getDefaultState();
+                worldIn.setBlockState(pos, block.onBlockPlaced(worldIn, pos, side, hitX, hitY, hitZ, 0, playerIn));
+                block.onBlockPlacedBy(worldIn, pos, state, playerIn, stack);
+
+                TileActionFigure tile = (TileActionFigure) worldIn.getTileEntity(pos);
+                tile.setDinosaur(stack.getItemDamage());
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public String getItemStackDisplayName(ItemStack stack)

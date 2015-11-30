@@ -72,6 +72,7 @@ import org.jurassicraft.client.model.animation.raptorsquad.AnimationVelociraptor
 import org.jurassicraft.client.model.animation.raptorsquad.AnimationVelociraptorCharlie;
 import org.jurassicraft.client.model.animation.raptorsquad.AnimationVelociraptorDelta;
 import org.jurassicraft.client.model.animation.raptorsquad.AnimationVelociraptorEcho;
+import org.jurassicraft.client.render.block.SpecialRendererActionFigure;
 import org.jurassicraft.client.render.block.SpecialRendererDNAExtractor;
 import org.jurassicraft.client.render.entity.*;
 import org.jurassicraft.client.render.renderdef.RenderDefIndominus;
@@ -90,6 +91,7 @@ import org.jurassicraft.common.entity.item.EntityPaddockSign;
 import org.jurassicraft.common.item.JCItemRegistry;
 import org.jurassicraft.common.plant.JCPlantRegistry;
 import org.jurassicraft.common.plant.Plant;
+import org.jurassicraft.common.tileentity.TileActionFigure;
 import org.jurassicraft.common.tileentity.TileDNAExtractor;
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 
@@ -261,6 +263,7 @@ public class JCRenderingRegistry
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.gypsum_stone, "gypsum_stone", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.gypsum_cobblestone, "gypsum_cobblestone", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.gypsum_bricks, "gypsum_bricks", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.action_figure, "action_figure_block", "inventory");
 
 //        this.registerRenderSubBlock(JCBlockRegistry.bPlanks);
     }
@@ -279,6 +282,7 @@ public class JCRenderingRegistry
         RenderingRegistry.registerEntityRenderingHandler(EntityHelicopterBase.class, new RenderHelicopter());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileDNAExtractor.class, new SpecialRendererDNAExtractor());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileActionFigure.class, new SpecialRendererActionFigure());
 
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
         ItemModelMesher modelMesher = renderItem.getItemModelMesher();

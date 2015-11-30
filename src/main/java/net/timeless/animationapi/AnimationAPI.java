@@ -16,20 +16,21 @@ import net.timeless.animationapi.client.CommandForceAnimation;
 import net.timeless.animationapi.packet.PacketAnim;
 import org.jurassicraft.JurassiCraft;
 
-@Mod(modid = "JCAnimationAPI", name = "JurassiCraft AnimationAPI", version = "1.2.5")
+@Mod(modid = "jcanimationapi", name = "JurassiCraft AnimationAPI", version = "1.2.5")
 public class AnimationAPI
 {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent e)
-    {}
-
-    @Mod.EventHandler
-    public void init(FMLInitializationEvent e)
     {
         wrapper = NetworkRegistry.INSTANCE.newSimpleChannel("jcanimationapi");
         int discriminator = 0;
         wrapper.registerMessage(PacketAnim.Handler.class, PacketAnim.class, discriminator++, Side.CLIENT);
         wrapper.registerMessage(PacketAnim.Handler.class, PacketAnim.class, discriminator++, Side.SERVER);
+    }
+
+    @Mod.EventHandler
+    public void init(FMLInitializationEvent e)
+    {
     }
 
     @Mod.EventHandler

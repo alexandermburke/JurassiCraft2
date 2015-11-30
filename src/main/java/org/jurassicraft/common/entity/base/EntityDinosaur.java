@@ -101,7 +101,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     {
         super(world);
 
-        System.out.println("Constructing");
         tailBuffer = new ChainBuffer(getTailBoxCount());
 
         energy = MAX_ENERGY;
@@ -339,6 +338,13 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
             // TODO
             // We should make knockback bigger and into air if dino is much smaller than attacking dino
         }
+    }
+
+    public void applySettingsForActionFigure()
+    {
+        this.setFullyGrown();
+        this.setMale(true);
+        this.genetics = new GeneticsContainer(JCEntityRegistry.getDinosaurId(dinosaur), 0, 0, 0, 255, 255, 255);
     }
 
     public double transitionFromAge(double baby, double adult)

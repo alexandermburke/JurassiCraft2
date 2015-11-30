@@ -18,6 +18,8 @@ public class JCCreativeTabs
 
     public static CreativeTabJurassiCraftFossils bones;
 
+    public static CreativeTabJurassiCraftMerchandise merchandise;
+
     public void register()
     {
         items = new CreativeTabJurassiCraft("jurassicraft.items")
@@ -61,5 +63,7 @@ public class JCCreativeTabs
                 return Item.getItemFromBlock(JCBlockRegistry.encased_fossils.get(0));
             }
         };
+
+        merchandise = new CreativeTabJurassiCraftMerchandise("jurassicraft.merchandise");
     }
 }

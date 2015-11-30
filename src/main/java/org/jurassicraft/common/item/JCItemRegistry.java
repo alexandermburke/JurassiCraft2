@@ -110,11 +110,11 @@ public class JCItemRegistry
         tracker = new ItemBasic("Tracker", JCCreativeTabs.items);
         action_figure = new ItemActionFigure();
 
-        amber_cane = new ItemBasic("Amber Cane", JCCreativeTabs.items);
+        amber_cane = new ItemBasic("Amber Cane", JCCreativeTabs.merchandise);
         amber_cane.setFull3D();
         amber_cane.setMaxStackSize(1);
-        amber_keychain = new ItemBasic("Amber Keychain", JCCreativeTabs.items);
-        mr_dna_keychain = new ItemBasic("Mr DNA Keychain", JCCreativeTabs.items);
+        amber_keychain = new ItemBasic("Amber Keychain", JCCreativeTabs.merchandise);
+        mr_dna_keychain = new ItemBasic("Mr DNA Keychain", JCCreativeTabs.merchandise);
 
         helicopter_spawner = new ItemHelicopter();
 

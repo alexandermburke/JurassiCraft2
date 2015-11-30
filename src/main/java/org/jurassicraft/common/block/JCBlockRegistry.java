@@ -43,18 +43,7 @@ import org.jurassicraft.common.entity.base.JCEntityRegistry;
 import org.jurassicraft.common.item.itemblock.ItemBlockMeta;
 import org.jurassicraft.common.item.itemblock.ItemJCSlab;
 import org.jurassicraft.common.paleopad.dinopedia.DinoPediaRegistry;
-import org.jurassicraft.common.tileentity.TileCarnivoreFeeder;
-import org.jurassicraft.common.tileentity.TileCleaningStation;
-import org.jurassicraft.common.tileentity.TileCultivate;
-import org.jurassicraft.common.tileentity.TileDNACombinator;
-import org.jurassicraft.common.tileentity.TileDNAExtractor;
-import org.jurassicraft.common.tileentity.TileDNAHybridizer;
-import org.jurassicraft.common.tileentity.TileDnaSequencer;
-import org.jurassicraft.common.tileentity.TileDnaSynthesizer;
-import org.jurassicraft.common.tileentity.TileEmbryoCalcificationMachine;
-import org.jurassicraft.common.tileentity.TileEmbryonicMachine;
-import org.jurassicraft.common.tileentity.TileFossilGrinder;
-import org.jurassicraft.common.tileentity.TileIncubator;
+import org.jurassicraft.common.tileentity.*;
 import org.jurassicraft.common.world.jurdstrees.algorythms.TreeCompendium;
 
 import java.util.ArrayList;
@@ -117,6 +106,8 @@ public class JCBlockRegistry
     public static Block cycad_zamites;
     public static Block dicksonia;
 
+    public static Block action_figure;
+
     public static Block bPlanks;
 
     public void register()
@@ -155,6 +146,8 @@ public class JCBlockRegistry
         scaly_tree_fern = addBlock(new BlockScalyTreeFern(), "scaly_tree_fern");
         cycad_zamites = addBlock(new BlockCycadZamites(), "cycad_zamites");
         dicksonia = addBlock(new BlockDicksonia(), "dicksonia");
+
+        action_figure = new BlockActionFigure();
 
 //        bPlanks = addBlock(new BlockMeta(Material.wood, "planks", 8).setCreativeTab(JCCreativeTabs.plants), "planks");
 
@@ -247,6 +240,7 @@ public class JCBlockRegistry
         registerBlockTileEntity(TileDNAHybridizer.class, dna_hybridizer, "DNA Hybridizer");
         registerBlockTileEntity(TileDNACombinator.class, dna_combinator, "DNA Combinator");
         registerBlockTileEntity(TileIncubator.class, incubator, "Incubator");
+        registerBlockTileEntity(TileActionFigure.class, action_figure, "Action Figure Block");
     }
 
     private Block addBlock(Block block, String name)
