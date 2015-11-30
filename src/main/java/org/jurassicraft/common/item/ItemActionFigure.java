@@ -57,6 +57,11 @@ public class ItemActionFigure extends Item
                 TileActionFigure tile = (TileActionFigure) worldIn.getTileEntity(pos);
                 tile.setDinosaur(stack.getItemDamage());
 
+                if (!playerIn.capabilities.isCreativeMode)
+                {
+                    stack.stackSize--;
+                }
+
                 return true;
             }
         }

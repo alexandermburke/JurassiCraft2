@@ -66,7 +66,14 @@ public class SpecialRendererActionFigure extends TileEntitySpecialRenderer
 
             RenderLiving renderer = (RenderLiving) mc.getRenderManager().entityRenderMap.get(dino.getDinosaurClass());
 
-            renderer.doRender(tile.entity, 0, 0, 0, 0, 0);
+            if (tile.entity != null)
+            {
+                renderer.doRender(tile.entity, 0, 0, 0, 0, 0);
+            }
+            else
+            {
+                tile.updateEntity();
+            }
 
             GlStateManager.popMatrix();
         }

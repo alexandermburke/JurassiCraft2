@@ -39,16 +39,19 @@ public class TileActionFigure extends TileEntity
         nbt.setInteger("DinosaurId", dinosaur);
     }
 
-    private void updateEntity()
+    public void updateEntity()
     {
-        try
+        if (worldObj != null)
         {
-            EntityDinosaur entity = JCEntityRegistry.getDinosaurById(dinosaur).getDinosaurClass().getDeclaredConstructor(World.class).newInstance(worldObj);
-            entity.applySettingsForActionFigure();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
+            try
+            {
+                entity = JCEntityRegistry.getDinosaurById(dinosaur).getDinosaurClass().getDeclaredConstructor(World.class).newInstance(worldObj);
+                entity.applySettingsForActionFigure();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
         }
     }
 
