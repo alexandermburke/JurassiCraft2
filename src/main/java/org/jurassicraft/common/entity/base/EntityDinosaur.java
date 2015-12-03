@@ -41,6 +41,7 @@ import net.timeless.unilib.common.animation.ChainBuffer;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.disease.Disease;
+import org.jurassicraft.common.entity.ai.EntityAIHerd;
 import org.jurassicraft.common.entity.ai.EntityAIMate;
 import org.jurassicraft.common.entity.ai.animations.AnimationAICall;
 import org.jurassicraft.common.entity.ai.animations.AnimationAIHeadCock;
@@ -119,6 +120,8 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         tasks.addTask(2, new AnimationAICall(this));
         tasks.addTask(2, new AnimationAILook(this));
         tasks.addTask(2, new AnimationAIHeadCock(this));
+
+        tasks.addTask(3, new EntityAIHerd(this));
 
         dinosaurAge = 0;
 
