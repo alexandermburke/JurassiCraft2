@@ -4,8 +4,8 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.client.config.GuiConfig;
 import net.minecraftforge.fml.client.config.IConfigElement;
 import org.jurassicraft.JurassiCraft;
+import org.jurassicraft.common.configuration.JCConfigurations;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ConfigGUI extends GuiConfig
@@ -17,7 +17,6 @@ public class ConfigGUI extends GuiConfig
 
     private static List<IConfigElement> getConfigElements()
     {
-        List<IConfigElement> list = new ArrayList<>();
-        return list;
+        return JCConfigurations.getAllConfigurableOptions();
     }
 }

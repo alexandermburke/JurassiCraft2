@@ -1,16 +1,63 @@
 package org.jurassicraft.common.configuration;
 
+import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
+import net.minecraftforge.fml.client.config.IConfigElement;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.jurassicraft.JurassiCraft;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author jabelar
  */
 public class JCConfigurations
 {
+    private static boolean isInit = false;
+
+    private static final void checkInit()
+    {
+        if (!isInit)
+            throw new IllegalStateException("Configuration not yet initialized.");
+    }
+
+    private static Property spawnJurassiCraftMobsNaturally;
+
+    public static boolean spawnJurassiCraftMobsNaturally()
+    {
+        checkInit();
+        return spawnJurassiCraftMobsNaturally.getBoolean(true);
+    }
+
+    private static Property spawnVanillaMobsNaturally;
+
+    public static boolean spawnVanillaMobsNaturally()
+    {
+        checkInit();
+        return spawnVanillaMobsNaturally.getBoolean(true);
+    }
+
+    private static Property spawnOtherMobsModsNaturally;
+
+    public static boolean spawnOtherMobsModsNaturally()
+    {
+        checkInit();
+        return spawnVanillaMobsNaturally.getBoolean(true);
+    }
+
+    public static List<IConfigElement> getAllConfigurableOptions()
+    {
+        List<IConfigElement> list = new ArrayList<>();
+        list.add(new ConfigElement(spawnJurassiCraftMobsNaturally));
+        list.add(new ConfigElement(spawnVanillaMobsNaturally));
+        list.add(new ConfigElement(spawnOtherMobsModsNaturally));
+        return list;
+    }
+
     /**
      * Process the configuration
      *
@@ -24,8 +71,10 @@ public class JCConfigurations
         JurassiCraft.instance.getLogger().debug("Config file exists = " + JurassiCraft.configFile.canRead());
 
         JurassiCraft.config = new Configuration(JurassiCraft.configFile);
+        JurassiCraft.config.load();
 
         syncConfig();
+        isInit = true;
     }
 
     /*
@@ -33,13 +82,15 @@ public class JCConfigurations
      */
     public void syncConfig()
     {
-        JurassiCraft.config.load();
-        JurassiCraft.spawnJurassiCraftMobsNaturally = JurassiCraft.config.get(Configuration.CATEGORY_GENERAL, "JurassiCraft Mobs Spawn Naturally", true, "Allow JurassiCraft entities to spawn naturally during world generation").getBoolean(true);
-        JurassiCraft.instance.getLogger().info("Config spawnDinosNaturally = " + JurassiCraft.spawnJurassiCraftMobsNaturally);
-        JurassiCraft.spawnVanillaMobsNaturally = JurassiCraft.config.get(Configuration.CATEGORY_GENERAL, "Vanilla Mobs Spawn Naturally", true, "Allow vanilla mobs to spawn naturally during world generation").getBoolean(true);
-        JurassiCraft.instance.getLogger().info("Config spawnVanillaMobsNaturally = " + JurassiCraft.spawnVanillaMobsNaturally);
-        JurassiCraft.spawnOtherMobsModsNaturally = JurassiCraft.config.get(Configuration.CATEGORY_GENERAL, "Other Mods' Mobs Spawn Naturally", true, "Allow mobs from other mods to spawn naturally during world generation").getBoolean(true);
-        JurassiCraft.instance.getLogger().info("Config spawnOtherMobsModsNaturally = " + JurassiCraft.spawnOtherMobsModsNaturally);
+        spawnJurassiCraftMobsNaturally = JurassiCraft.config.get(Configuration.CATEGORY_GENERAL, "JurassiCraft Mobs Spawn Naturally", true, "Allow JurassiCraft entities to spawn naturally during world generation");
+        spawnJurassiCraftMobsNaturally.getBoolean(true); // Init
+        spawnJurassiCraftMobsNaturally.setRequiresMcRestart(true);
+        spawnVanillaMobsNaturally = JurassiCraft.config.get(Configuration.CATEGORY_GENERAL, "Vanilla Mobs Spawn Naturally", true, "Allow vanilla mobs to spawn naturally during world generation");
+        spawnVanillaMobsNaturally.getBoolean(true); // Init
+        spawnVanillaMobsNaturally.setRequiresMcRestart(true);
+        spawnOtherMobsModsNaturally = JurassiCraft.config.get(Configuration.CATEGORY_GENERAL, "Other Mods' Mobs Spawn Naturally", true, "Allow mobs from other mods to spawn naturally during world generation");
+        spawnOtherMobsModsNaturally.getBoolean(true); // Init
+        spawnOtherMobsModsNaturally.setRequiresMcRestart(true);
 
         // save is useful for the first run where config might not exist, and doesn't hurt
         if (JurassiCraft.config.hasChanged())

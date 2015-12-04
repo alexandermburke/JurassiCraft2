@@ -21,6 +21,7 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.api.IHybrid;
+import org.jurassicraft.common.configuration.JCConfigurations;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.base.JCEntityRegistry;
 import org.jurassicraft.common.event.CommonEventHandler;
@@ -107,7 +108,7 @@ public class CommonProxy
 
             if (entityClass.toString().contains(JurassiCraft.MODID))
             {
-                if (!JurassiCraft.spawnJurassiCraftMobsNaturally)
+                if (!JCConfigurations.spawnJurassiCraftMobsNaturally())
                 {
                     EntityRegistry.removeSpawn(entityClass, EnumCreatureType.AMBIENT, allBiomes);
                     EntityRegistry.removeSpawn(entityClass, EnumCreatureType.CREATURE, allBiomes);
@@ -117,7 +118,7 @@ public class CommonProxy
             }
             else if (entityClass.toString().contains("minecraft"))
             {
-                if (!JurassiCraft.spawnVanillaMobsNaturally)
+                if (!JCConfigurations.spawnVanillaMobsNaturally())
                 {
                     EntityRegistry.removeSpawn(entityClass, EnumCreatureType.AMBIENT, allBiomes);
                     EntityRegistry.removeSpawn(entityClass, EnumCreatureType.CREATURE, allBiomes);
@@ -127,7 +128,7 @@ public class CommonProxy
             }
             else
             {
-                if (!JurassiCraft.spawnOtherMobsModsNaturally)
+                if (!JCConfigurations.spawnOtherMobsModsNaturally())
                 {
                     EntityRegistry.removeSpawn(entityClass, EnumCreatureType.AMBIENT, allBiomes);
                     EntityRegistry.removeSpawn(entityClass, EnumCreatureType.CREATURE, allBiomes);
