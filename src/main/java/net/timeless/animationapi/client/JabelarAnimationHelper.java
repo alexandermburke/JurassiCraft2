@@ -217,10 +217,10 @@ public class JabelarAnimationHelper
 
     private void updateIncrementArrays()
     {
+        float inertiaFactor = calculateInertiaFactor();
 
         for (int partIndex = 0; partIndex < numParts; partIndex++)
         {
-            float inertiaFactor = calculateInertiaFactor();
             
             rotationIncrementArray[partIndex][0] = (nextPoseModel[partIndex].rotateAngleX - currentRotationArray[partIndex][0]) * inertiaFactor;
             rotationIncrementArray[partIndex][1] = (nextPoseModel[partIndex].rotateAngleY - currentRotationArray[partIndex][1]) * inertiaFactor;
