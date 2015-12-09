@@ -22,9 +22,9 @@ public class RenderDinosaurDefinition
     private final IModelAnimator animator;
 
     private final ModelJson modelAdult;
-    private final ModelJson modelJuvenile;
-    private final ModelJson modelAdolescent;
     private final ModelJson modelInfant;
+    private ModelJson modelJuvenile;
+    private ModelJson modelAdolescent;
 
     private float adultScaleAdjustment = 1.0F;
     private float babyScaleAdjustment = 0.325F;
@@ -46,8 +46,12 @@ public class RenderDinosaurDefinition
 
         this.modelAdult = getDefaultTabulaModel("adult");
         this.modelInfant = getDefaultTabulaModel("infant");
-        this.modelJuvenile = getDefaultTabulaModel("juvenile");
-        this.modelAdolescent = getDefaultTabulaModel("adolescent");
+
+        if (dinosaur.useAllGrowthStages())
+        {
+            this.modelJuvenile = getDefaultTabulaModel("juvenile");
+            this.modelAdolescent = getDefaultTabulaModel("adolescent");
+        }
     }
 
     public ModelBase getModel(EnumGrowthStage stage)
@@ -57,9 +61,9 @@ public class RenderDinosaurDefinition
             case INFANT:
                 return modelInfant;
             case JUVENILE:
-                return modelJuvenile;
+                return dinosaur.useAllGrowthStages() ? modelJuvenile : modelInfant;
             case ADOLESCENT:
-                return modelAdolescent;
+                return dinosaur.useAllGrowthStages() ? modelAdolescent : modelAdult;
             default:
                 return modelAdult;
         }

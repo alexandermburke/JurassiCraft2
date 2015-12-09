@@ -101,7 +101,21 @@ public abstract class DinosaurAnimator implements IModelAnimator
         {
             try
             {
-                this.modelData.put(growth, loadDinosaur(dinoDirURI, name, growth));
+                EnumGrowthStage fileGrowthStage = growth;
+
+                if (!dino.useAllGrowthStages())
+                {
+                    if (growth == EnumGrowthStage.ADOLESCENT)
+                    {
+                        fileGrowthStage = EnumGrowthStage.ADULT;
+                    }
+                    else if (growth == EnumGrowthStage.JUVENILE)
+                    {
+                        fileGrowthStage = EnumGrowthStage.INFANT;
+                    }
+                }
+
+                this.modelData.put(growth, loadDinosaur(dinoDirURI, name, fileGrowthStage));
             }
             catch (Exception e)
             {

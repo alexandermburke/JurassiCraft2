@@ -151,4 +151,10 @@ public class DinosaurAchillobator extends Dinosaur
     {
         return 1.8F;
     }
+
+    @Override
+    public boolean useAllGrowthStages()
+    {
+        return true;
+    }
 }

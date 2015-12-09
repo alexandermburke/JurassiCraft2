@@ -154,4 +154,10 @@ public class DinosaurVelociraptor extends Dinosaur
     {
         return 1;
     }
+
+    @Override
+    public boolean useAllGrowthStages()
+    {
+        return true;
+    }
 }

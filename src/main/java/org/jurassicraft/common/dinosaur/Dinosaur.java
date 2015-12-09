@@ -29,6 +29,18 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
         {
             String growthStageName = growthStage.name().toLowerCase();
 
+            if (!useAllGrowthStages())
+            {
+                if (growthStage == EnumGrowthStage.ADOLESCENT)
+                {
+                    growthStageName = EnumGrowthStage.ADULT.name().toLowerCase();
+                }
+                else if (growthStage == EnumGrowthStage.JUVENILE)
+                {
+                    growthStageName = EnumGrowthStage.INFANT.name().toLowerCase();
+                }
+            }
+
             if (this instanceof IHybrid)
             {
                 ResourceLocation hybridTexture = new ResourceLocation(JurassiCraft.MODID, baseTextures + dinosaurName + "_" + growthStageName + ".png");
@@ -188,5 +200,10 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
     public int getOverlayCount()
     {
         return 0;
+    }
+
+    public boolean useAllGrowthStages()
+    {
+        return false;
     }
 }

@@ -17,7 +17,6 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -26,6 +25,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
@@ -39,6 +39,7 @@ import net.timeless.animationapi.client.AnimID;
 import net.timeless.unilib.common.animation.ChainBuffer;
 
 import org.jurassicraft.JurassiCraft;
+import org.jurassicraft.common.damagesource.EntityDinosaurDamageSource;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.disease.Disease;
 import org.jurassicraft.common.entity.ai.EntityAIHerd;
@@ -50,7 +51,6 @@ import org.jurassicraft.common.entity.ai.metabolism.EntityAIDrink;
 import org.jurassicraft.common.genetics.GeneticsContainer;
 import org.jurassicraft.common.genetics.GeneticsHelper;
 import org.jurassicraft.common.item.ItemBluePrint;
-import org.jurassicraft.common.item.ItemPaddockSign;
 import org.jurassicraft.common.item.JCItemRegistry;
 
 public abstract class EntityDinosaur extends EntityCreature implements IEntityAdditionalSpawnData, IAnimatedEntity, IInventory
@@ -89,9 +89,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     private boolean hasTracker;
 
     public ChainBuffer tailBuffer;
-
-    private final int[] overlayColours = new int[3];
-    private final byte[] overlayTextures = new byte[3];
 
     // public void setNavigator(PathNavigate pn)
     // {
@@ -176,7 +173,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
             knockback += EnchantmentHelper.getKnockbackModifier(this);
         }
 
-        boolean attackSuccesful = entity.attackEntityFrom(DamageSource.causeMobDamage(this), damage);
+        boolean attackSuccesful = entity.attackEntityFrom(new EntityDinosaurDamageSource("mob", this), damage);
 
         if (entity instanceof EntityLivingBase)
         {
