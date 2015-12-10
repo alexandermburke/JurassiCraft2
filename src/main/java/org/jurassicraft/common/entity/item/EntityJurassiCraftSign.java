@@ -41,7 +41,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
         {
             EntityJurassiCraftSign.EnumSignType enumart = aenumart[j];
             this.signType = enumart;
-            this.func_174859_a(enumFacing);
+            this.updateFacingWithBoundingBox(enumFacing);
 
             if (this.onValidSurface())
             {
@@ -54,7 +54,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
             this.signType = arraylist.get(this.rand.nextInt(arraylist.size()));
         }
 
-        this.func_174859_a(enumFacing);
+        this.updateFacingWithBoundingBox(enumFacing);
     }
 
     @SideOnly(Side.CLIENT)
@@ -63,7 +63,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
         this(world, pos, enumFacing);
         setType(titleName);
 
-        this.func_174859_a(enumFacing);
+        this.updateFacingWithBoundingBox(enumFacing);
     }
 
     private void setType(String titleName)
@@ -178,8 +178,9 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void func_180426_a(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean p_180426_10_)
+    public void setPositionAndRotation2(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean p_180426_10_)
     {
+
     }
 
     @Override
@@ -187,7 +188,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
     {
         ByteBufUtils.writeUTF8String(buffer, signType.title);
         buffer.writeLong(hangingPosition.toLong());
-        buffer.writeByte(field_174860_b.getHorizontalIndex());
+        buffer.writeByte(facingDirection.getHorizontalIndex());
     }
 
     @Override
@@ -195,6 +196,6 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
     {
         setType(ByteBufUtils.readUTF8String(buf));
         hangingPosition = BlockPos.fromLong(buf.readLong());
-        func_174859_a(EnumFacing.getHorizontal(buf.readByte()));
+        updateFacingWithBoundingBox(EnumFacing.getHorizontal(buf.readByte()));
     }
 }

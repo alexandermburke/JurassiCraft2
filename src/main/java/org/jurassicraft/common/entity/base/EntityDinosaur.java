@@ -194,7 +194,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
                 motionZ *= 0.6D;
             }
 
-            func_174815_a(this, entity);
+            applyEnchantments(this, entity);
         }
 
         return attackSuccesful;
@@ -735,7 +735,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
                     }
                     else
                     {
-                        msg = "This " + getName();
+                        msg = "This " + getCommandSenderName();
                     }
 
                     player.addChatComponentMessage(new ChatComponentText(msg + " is not old enough to hold items!")); //TODO translation

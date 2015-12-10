@@ -5,6 +5,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.BlockPos;
@@ -230,11 +231,11 @@ public class GuiSelectDino extends GuiScreen
         float f1 = 1.0F / (float) height;
         Tessellator tessellator = Tessellator.getInstance();
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-        worldrenderer.startDrawingQuads();
-        worldrenderer.addVertexWithUV((double) (x), (double) (y + height), (double) this.zLevel, (double) (0), (double) ((float) (height) * f1));
-        worldrenderer.addVertexWithUV((double) (x + width), (double) (y + height), (double) this.zLevel, (double) ((float) (width) * f), (double) ((float) (height) * f1));
-        worldrenderer.addVertexWithUV((double) (x + width), (double) (y), (double) this.zLevel, (double) ((float) (width) * f), (double) ((float) 0));
-        worldrenderer.addVertexWithUV((double) (x), (double) (y), (double) this.zLevel, (double) ((float) 0), (double) ((float) 0));
+        worldrenderer.func_181668_a(7, DefaultVertexFormats.field_181707_g);
+        worldrenderer.func_181662_b((double)(x + 0), (double)(y + height), (double)this.zLevel).func_181673_a((double)((float)(0) * f), (double)((float)(height) * f1)).func_181675_d();
+        worldrenderer.func_181662_b((double)(x + width), (double)(y + height), (double)this.zLevel).func_181673_a((double)((float)(width) * f), (double)((float)(0 + height) * f1)).func_181675_d();
+        worldrenderer.func_181662_b((double)(x + width), (double)(y + 0), (double)this.zLevel).func_181673_a((double)((float)(0 + width) * f), (double)((float)(0 + 0) * f1)).func_181675_d();
+        worldrenderer.func_181662_b((double)(x + 0), (double)(y + 0), (double)this.zLevel).func_181673_a((double)((float)(0 + 0) * f), (double)((float)(0 + 0) * f1)).func_181675_d();
         tessellator.draw();
 
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);

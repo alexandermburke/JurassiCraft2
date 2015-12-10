@@ -6,13 +6,9 @@ import net.minecraft.block.material.MapColor;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.ClassInheritanceMultiMap;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import org.jurassicraft.JurassiCraft;
@@ -78,7 +74,7 @@ public class GuiAppMinimap extends GuiApp
                         for (int z = 0; z < 16; z++)
                         {
                             int blockX = x + (chunkX * 16);
-                            int blockY = chunk.getHeight(x, z);
+                            int blockY = chunk.getHeightValue(x, z);
                             int blockZ = z + (chunkZ * 16);
 
                             if (world.isAirBlock(new BlockPos(blockX, blockY, blockZ)))
@@ -148,7 +144,7 @@ public class GuiAppMinimap extends GuiApp
 
                 if (!chunk.isEmpty())
                 {
-                    for (Object e : getEntitiesInChunk(chunk, null, IEntitySelector.NOT_SPECTATING))
+                    for (Object e : getEntitiesInChunk(chunk, null, EntitySelectors.NOT_SPECTATING))
                     {
                         Entity entity = (Entity) e;
 
@@ -250,7 +246,7 @@ public class GuiAppMinimap extends GuiApp
     @Override
     public void mouseClicked(int mouseX, int mouseY, GuiPaleoPad gui)
     {
-        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+        ScaledResolution dimensions = new ScaledResolution(mc);
         mouseX -= dimensions.getScaledWidth() / 2 - 115;
         mouseY -= 65;
     }

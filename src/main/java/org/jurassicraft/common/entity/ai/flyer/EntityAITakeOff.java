@@ -24,7 +24,7 @@ public class EntityAITakeOff extends EntityAIBase
         flyer.rotationPitch = 80;
         flyer.setFlying(true);
 
-        if (!flyer.onGround && flyer.posY - flyer.worldObj.getHorizon(flyer.getPosition()).getY() > 10)
+        if (!flyer.onGround && flyer.posY - flyer.worldObj.getHeight(flyer.getPosition()).getY() > 10)
         {
             flyer.rotationPitch = 0;
         }

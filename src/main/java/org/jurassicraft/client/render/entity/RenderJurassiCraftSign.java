@@ -14,6 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jurassicraft.JurassiCraft;
+import org.jurassicraft.client.render.WorldRendererUtils;
 import org.jurassicraft.common.entity.item.EntityJurassiCraftSign;
 
 @SideOnly(Side.CLIENT)
@@ -83,37 +84,38 @@ public class RenderJurassiCraftSign extends Render
                 float f22 = (float) (p_77010_5_ + p_77010_3_ - (j1 + 1) * 16) / 256.0F;
                 Tessellator tessellator = Tessellator.getInstance();
                 WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-                worldrenderer.startDrawingQuads();
-                worldrenderer.setNormal(0.0F, 0.0F, -1.0F);
-                worldrenderer.addVertexWithUV((double) f15, (double) f18, (double) (-f2), (double) f20, (double) f21);
-                worldrenderer.addVertexWithUV((double) f16, (double) f18, (double) (-f2), (double) f19, (double) f21);
-                worldrenderer.addVertexWithUV((double) f16, (double) f17, (double) (-f2), (double) f19, (double) f22);
-                worldrenderer.addVertexWithUV((double) f15, (double) f17, (double) (-f2), (double) f20, (double) f22);
-                worldrenderer.setNormal(0.0F, 0.0F, 1.0F);
-                worldrenderer.addVertexWithUV((double) f15, (double) f17, (double) f2, (double) f3, (double) f5);
-                worldrenderer.addVertexWithUV((double) f16, (double) f17, (double) f2, (double) f4, (double) f5);
-                worldrenderer.addVertexWithUV((double) f16, (double) f18, (double) f2, (double) f4, (double) f6);
-                worldrenderer.addVertexWithUV((double) f15, (double) f18, (double) f2, (double) f3, (double) f6);
-                worldrenderer.setNormal(0.0F, 1.0F, 0.0F);
-                worldrenderer.addVertexWithUV((double) f15, (double) f17, (double) (-f2), (double) f7, (double) f9);
-                worldrenderer.addVertexWithUV((double) f16, (double) f17, (double) (-f2), (double) f8, (double) f9);
-                worldrenderer.addVertexWithUV((double) f16, (double) f17, (double) f2, (double) f8, (double) f10);
-                worldrenderer.addVertexWithUV((double) f15, (double) f17, (double) f2, (double) f7, (double) f10);
-                worldrenderer.setNormal(0.0F, -1.0F, 0.0F);
-                worldrenderer.addVertexWithUV((double) f15, (double) f18, (double) f2, (double) f7, (double) f9);
-                worldrenderer.addVertexWithUV((double) f16, (double) f18, (double) f2, (double) f8, (double) f9);
-                worldrenderer.addVertexWithUV((double) f16, (double) f18, (double) (-f2), (double) f8, (double) f10);
-                worldrenderer.addVertexWithUV((double) f15, (double) f18, (double) (-f2), (double) f7, (double) f10);
-                worldrenderer.setNormal(-1.0F, 0.0F, 0.0F);
-                worldrenderer.addVertexWithUV((double) f15, (double) f17, (double) f2, (double) f12, (double) f13);
-                worldrenderer.addVertexWithUV((double) f15, (double) f18, (double) f2, (double) f12, (double) f14);
-                worldrenderer.addVertexWithUV((double) f15, (double) f18, (double) (-f2), (double) f11, (double) f14);
-                worldrenderer.addVertexWithUV((double) f15, (double) f17, (double) (-f2), (double) f11, (double) f13);
-                worldrenderer.setNormal(1.0F, 0.0F, 0.0F);
-                worldrenderer.addVertexWithUV((double) f16, (double) f17, (double) (-f2), (double) f12, (double) f13);
-                worldrenderer.addVertexWithUV((double) f16, (double) f18, (double) (-f2), (double) f12, (double) f14);
-                worldrenderer.addVertexWithUV((double) f16, (double) f18, (double) f2, (double) f11, (double) f14);
-                worldrenderer.addVertexWithUV((double) f16, (double) f17, (double) f2, (double) f11, (double) f13);
+                WorldRendererUtils rendererUtils = new WorldRendererUtils(worldrenderer);
+                rendererUtils.startDrawingQuads();
+                rendererUtils.setNormal(0.0F, 0.0F, -1.0F);
+                rendererUtils.addVertexWithUV((double) f15, (double) f18, (double) (-f2), (double) f20, (double) f21);
+                rendererUtils.addVertexWithUV((double) f16, (double) f18, (double) (-f2), (double) f19, (double) f21);
+                rendererUtils.addVertexWithUV((double) f16, (double) f17, (double) (-f2), (double) f19, (double) f22);
+                rendererUtils.addVertexWithUV((double) f15, (double) f17, (double) (-f2), (double) f20, (double) f22);
+                rendererUtils.setNormal(0.0F, 0.0F, 1.0F);
+                rendererUtils.addVertexWithUV((double) f15, (double) f17, (double) f2, (double) f3, (double) f5);
+                rendererUtils.addVertexWithUV((double) f16, (double) f17, (double) f2, (double) f4, (double) f5);
+                rendererUtils.addVertexWithUV((double) f16, (double) f18, (double) f2, (double) f4, (double) f6);
+                rendererUtils.addVertexWithUV((double) f15, (double) f18, (double) f2, (double) f3, (double) f6);
+                rendererUtils.setNormal(0.0F, 1.0F, 0.0F);
+                rendererUtils.addVertexWithUV((double) f15, (double) f17, (double) (-f2), (double) f7, (double) f9);
+                rendererUtils.addVertexWithUV((double) f16, (double) f17, (double) (-f2), (double) f8, (double) f9);
+                rendererUtils.addVertexWithUV((double) f16, (double) f17, (double) f2, (double) f8, (double) f10);
+                rendererUtils.addVertexWithUV((double) f15, (double) f17, (double) f2, (double) f7, (double) f10);
+                rendererUtils.setNormal(0.0F, -1.0F, 0.0F);
+                rendererUtils.addVertexWithUV((double) f15, (double) f18, (double) f2, (double) f7, (double) f9);
+                rendererUtils.addVertexWithUV((double) f16, (double) f18, (double) f2, (double) f8, (double) f9);
+                rendererUtils.addVertexWithUV((double) f16, (double) f18, (double) (-f2), (double) f8, (double) f10);
+                rendererUtils.addVertexWithUV((double) f15, (double) f18, (double) (-f2), (double) f7, (double) f10);
+                rendererUtils.setNormal(-1.0F, 0.0F, 0.0F);
+                rendererUtils.addVertexWithUV((double) f15, (double) f17, (double) f2, (double) f12, (double) f13);
+                rendererUtils.addVertexWithUV((double) f15, (double) f18, (double) f2, (double) f12, (double) f14);
+                rendererUtils.addVertexWithUV((double) f15, (double) f18, (double) (-f2), (double) f11, (double) f14);
+                rendererUtils.addVertexWithUV((double) f15, (double) f17, (double) (-f2), (double) f11, (double) f13);
+                rendererUtils.setNormal(1.0F, 0.0F, 0.0F);
+                rendererUtils.addVertexWithUV((double) f16, (double) f17, (double) (-f2), (double) f12, (double) f13);
+                rendererUtils.addVertexWithUV((double) f16, (double) f18, (double) (-f2), (double) f12, (double) f14);
+                rendererUtils.addVertexWithUV((double) f16, (double) f18, (double) f2, (double) f11, (double) f14);
+                rendererUtils.addVertexWithUV((double) f16, (double) f17, (double) f2, (double) f11, (double) f13);
                 tessellator.draw();
             }
         }
@@ -122,34 +124,34 @@ public class RenderJurassiCraftSign extends Render
     private void func_77008_a(EntityJurassiCraftSign sign, float p_77008_2_, float p_77008_3_)
     {
         int i = MathHelper.floor_double(sign.posX);
-        int j = MathHelper.floor_double(sign.posY + (double) (p_77008_3_ / 16.0F));
+        int j = MathHelper.floor_double(sign.posY + (double)(p_77008_3_ / 16.0F));
         int k = MathHelper.floor_double(sign.posZ);
-        EnumFacing enumfacing = sign.field_174860_b;
+        EnumFacing enumfacing = sign.facingDirection;
 
         if (enumfacing == EnumFacing.NORTH)
         {
-            i = MathHelper.floor_double(sign.posX + (double) (p_77008_2_ / 16.0F));
+            i = MathHelper.floor_double(sign.posX + (double)(p_77008_2_ / 16.0F));
         }
 
         if (enumfacing == EnumFacing.WEST)
         {
-            k = MathHelper.floor_double(sign.posZ - (double) (p_77008_2_ / 16.0F));
+            k = MathHelper.floor_double(sign.posZ - (double)(p_77008_2_ / 16.0F));
         }
 
         if (enumfacing == EnumFacing.SOUTH)
         {
-            i = MathHelper.floor_double(sign.posX - (double) (p_77008_2_ / 16.0F));
+            i = MathHelper.floor_double(sign.posX - (double)(p_77008_2_ / 16.0F));
         }
 
         if (enumfacing == EnumFacing.EAST)
         {
-            k = MathHelper.floor_double(sign.posZ + (double) (p_77008_2_ / 16.0F));
+            k = MathHelper.floor_double(sign.posZ + (double)(p_77008_2_ / 16.0F));
         }
 
         int l = this.renderManager.worldObj.getCombinedLight(new BlockPos(i, j, k), 0);
         int i1 = l % 65536;
         int j1 = l / 65536;
-        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) i1, (float) j1);
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)i1, (float)j1);
         GlStateManager.color(1.0F, 1.0F, 1.0F);
     }
 

@@ -20,7 +20,7 @@ public class EntityAIGlide extends EntityAIBase
     public boolean shouldExecute()
     {
         // TODO check when bumping into wall and more complex stuff
-        boolean execute = flyer.isFlying() && flyer.posY - flyer.worldObj.getHorizon(flyer.getPosition()).getY() > 10;
+        boolean execute = flyer.isFlying() && flyer.posY - flyer.worldObj.getHeight(flyer.getPosition()).getY() > 10;
 
         if (execute)
         {

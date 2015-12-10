@@ -35,7 +35,7 @@ public class BlockActionFigure extends BlockOriented
 
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
     {
-        return super.canPlaceBlockAt(worldIn, pos) && canBlockStay(worldIn, pos);
+        return super.canPlaceBlockAt(worldIn, pos) && canBlockStay(worldIn, pos, worldIn.getBlockState(pos));
     }
 
     /**
@@ -54,16 +54,16 @@ public class BlockActionFigure extends BlockOriented
 
     protected void checkAndDropBlock(World worldIn, BlockPos pos, IBlockState state)
     {
-        if (!this.canBlockStay(worldIn, pos))
+        if (!this.canBlockStay(worldIn, pos, state))
         {
             this.dropBlockAsItem(worldIn, pos, state, 0);
             worldIn.setBlockState(pos, Blocks.air.getDefaultState(), 3);
         }
     }
 
-    public boolean canBlockStay(World worldIn, BlockPos pos)
+    public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
     {
-        return worldIn.getBlockState(pos.down()).getBlock().isSolidFullCube();
+        return worldIn.getBlockState(pos.down()).getBlock().isFullCube();
     }
 
     @Override

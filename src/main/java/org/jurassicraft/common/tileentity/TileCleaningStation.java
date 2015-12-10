@@ -14,9 +14,9 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -26,7 +26,7 @@ import org.jurassicraft.common.container.ContainerCleaningStation;
 import org.jurassicraft.common.item.JCItemRegistry;
 import org.jurassicraft.common.item.itemblock.ItemEncasedFossil;
 
-public class TileCleaningStation extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
+public class TileCleaningStation extends TileEntityLockable implements ITickable, ISidedInventory
 {
     private static final int[] slotsTop = new int[] { 0 };
     private static final int[] slotsBottom = new int[] { 7, 6, 5, 4, 3, 2, 1 };
@@ -142,7 +142,7 @@ public class TileCleaningStation extends TileEntityLockable implements IUpdatePl
     /**
      * Gets the name of this command sender (usually username, but possibly "Rcon")
      */
-    public String getName()
+    public String getCommandSenderName()
     {
         return this.hasCustomName() ? this.customName : "container.cleaning_station";
     }
