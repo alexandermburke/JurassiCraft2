@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 import org.jurassicraft.common.vehicles.helicopter.modules.EnumModulePosition;
 import org.jurassicraft.common.vehicles.helicopter.modules.HelicopterModuleSpot;
@@ -52,25 +53,33 @@ public class MessageHelicopterModules implements IMessage
     public static class Handler implements IMessageHandler<MessageHelicopterModules, IMessage>
     {
         @Override
-        public IMessage onMessage(MessageHelicopterModules packet, MessageContext ctx)
+        public IMessage onMessage(final MessageHelicopterModules packet, final MessageContext ctx)
         {
-            World world;
-            if (ctx.side == Side.CLIENT)
+            JurassiCraft.proxy.scheduleTask(ctx, new Runnable()
             {
-                world = getClientWorld();
-            }
-            else
-            {
-                world = ctx.getServerHandler().playerEntity.worldObj;
-            }
-            EntityHelicopterBase helicopter = HelicopterMessages.getHeli(world, packet.heliID);
-            if (helicopter != null)
-            {
-                System.out.println(packet.heliID);
-                HelicopterModuleSpot spot = helicopter.getModuleSpot(packet.pos);
-                spot.readFromNBT(packet.compound);
-                System.out.println(packet.compound);
-            }
+                @Override
+                public void run()
+                {
+                    World world;
+                    if (ctx.side == Side.CLIENT)
+                    {
+                        world = getClientWorld();
+                    }
+                    else
+                    {
+                        world = ctx.getServerHandler().playerEntity.worldObj;
+                    }
+                    EntityHelicopterBase helicopter = HelicopterMessages.getHeli(world, packet.heliID);
+                    if (helicopter != null)
+                    {
+                        System.out.println(packet.heliID);
+                        HelicopterModuleSpot spot = helicopter.getModuleSpot(packet.pos);
+                        spot.readFromNBT(packet.compound);
+                        System.out.println(packet.compound);
+                    }
+                }
+            });
+
             return null;
         }
 

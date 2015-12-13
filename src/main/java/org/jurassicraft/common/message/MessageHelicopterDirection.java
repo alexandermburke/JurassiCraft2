@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.utils.MutableVec3;
+import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 
 public class MessageHelicopterDirection implements IMessage
@@ -49,22 +50,30 @@ public class MessageHelicopterDirection implements IMessage
     public static class Handler implements IMessageHandler<MessageHelicopterDirection, IMessage>
     {
         @Override
-        public IMessage onMessage(MessageHelicopterDirection packet, MessageContext ctx)
+        public IMessage onMessage(final MessageHelicopterDirection packet, final MessageContext ctx)
         {
-            World world = null;
-            if (ctx.side == Side.CLIENT)
+            JurassiCraft.proxy.scheduleTask(ctx, new Runnable()
             {
-                world = getClientWorld();
-            }
-            else
-            {
-                world = ctx.getServerHandler().playerEntity.worldObj;
-            }
-            EntityHelicopterBase helicopter = HelicopterMessages.getHeli(world, packet.heliID);
-            if (helicopter != null)
-            {
-                helicopter.setDirection(packet.direction);
-            }
+                @Override
+                public void run()
+                {
+                    World world = null;
+                    if (ctx.side == Side.CLIENT)
+                    {
+                        world = getClientWorld();
+                    }
+                    else
+                    {
+                        world = ctx.getServerHandler().playerEntity.worldObj;
+                    }
+                    EntityHelicopterBase helicopter = HelicopterMessages.getHeli(world, packet.heliID);
+                    if (helicopter != null)
+                    {
+                        helicopter.setDirection(packet.direction);
+                    }
+                }
+            });
+
             return null;
         }
 

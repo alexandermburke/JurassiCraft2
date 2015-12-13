@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 
 public class MessageHelicopterEngine implements IMessage
@@ -41,22 +42,30 @@ public class MessageHelicopterEngine implements IMessage
     public static class Handler implements IMessageHandler<MessageHelicopterEngine, IMessage>
     {
         @Override
-        public IMessage onMessage(MessageHelicopterEngine packet, MessageContext ctx)
+        public IMessage onMessage(final MessageHelicopterEngine packet, final MessageContext ctx)
         {
-            World world = null;
-            if (ctx.side == Side.CLIENT)
+            JurassiCraft.proxy.scheduleTask(ctx, new Runnable()
             {
-                world = getClientWorld();
-            }
-            else
-            {
-                world = ctx.getServerHandler().playerEntity.worldObj;
-            }
-            EntityHelicopterBase helicopter = HelicopterMessages.getHeli(world, packet.heliID);
-            if (helicopter != null)
-            {
-                helicopter.setEngineRunning(packet.engineState);
-            }
+                @Override
+                public void run()
+                {
+                    World world = null;
+                    if (ctx.side == Side.CLIENT)
+                    {
+                        world = getClientWorld();
+                    }
+                    else
+                    {
+                        world = ctx.getServerHandler().playerEntity.worldObj;
+                    }
+                    EntityHelicopterBase helicopter = HelicopterMessages.getHeli(world, packet.heliID);
+                    if (helicopter != null)
+                    {
+                        helicopter.setEngineRunning(packet.engineState);
+                    }
+                }
+            });
+
             return null;
         }
 

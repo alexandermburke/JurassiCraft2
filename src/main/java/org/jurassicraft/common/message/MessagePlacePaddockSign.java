@@ -51,29 +51,36 @@ public class MessagePlacePaddockSign implements IMessage
     public static class Handler implements IMessageHandler<MessagePlacePaddockSign, IMessage>
     {
         @Override
-        public IMessage onMessage(MessagePlacePaddockSign packet, MessageContext ctx)
+        public IMessage onMessage(final MessagePlacePaddockSign packet, final MessageContext ctx)
         {
-            if (ctx.side.isServer())
+            JurassiCraft.proxy.scheduleTask(ctx, new Runnable()
             {
-                EntityPlayer player = JurassiCraft.proxy.getPlayerEntityFromContext(ctx);
-                World world = player.worldObj;
-
-                EnumFacing side = packet.facing;
-                BlockPos pos = packet.pos;
-
-                EntityPaddockSign paddockSign = new EntityPaddockSign(world, pos, side, packet.dino);
-
-                if (player.canPlayerEdit(pos, side, player.getHeldItem()) && paddockSign.onValidSurface())
+                @Override
+                public void run()
                 {
-                    world.spawnEntityInWorld(paddockSign);
-
-                    if (!player.capabilities.isCreativeMode)
+                    if (ctx.side.isServer())
                     {
-                        InventoryPlayer inventory = player.inventory;
-                        inventory.decrStackSize(inventory.currentItem, 1);
+                        EntityPlayer player = JurassiCraft.proxy.getPlayerEntityFromContext(ctx);
+                        World world = player.worldObj;
+
+                        EnumFacing side = packet.facing;
+                        BlockPos pos = packet.pos;
+
+                        EntityPaddockSign paddockSign = new EntityPaddockSign(world, pos, side, packet.dino);
+
+                        if (player.canPlayerEdit(pos, side, player.getHeldItem()) && paddockSign.onValidSurface())
+                        {
+                            world.spawnEntityInWorld(paddockSign);
+
+                            if (!player.capabilities.isCreativeMode)
+                            {
+                                InventoryPlayer inventory = player.inventory;
+                                inventory.decrStackSize(inventory.currentItem, 1);
+                            }
+                        }
                     }
                 }
-            }
+            });
 
             return null;
         }

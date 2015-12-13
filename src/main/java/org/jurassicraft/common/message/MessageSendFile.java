@@ -137,41 +137,48 @@ public class MessageSendFile implements IMessage
     public static class Handler implements IMessageHandler<MessageSendFile, IMessage>
     {
         @Override
-        public IMessage onMessage(MessageSendFile packet, MessageContext ctx)
+        public IMessage onMessage(final MessageSendFile packet, final MessageContext ctx)
         {
-            if (ctx.side.isClient())
+            JurassiCraft.proxy.scheduleTask(ctx, new Runnable()
             {
-                JCFile file = JCPlayerData.getPlayerData(null).getFileFromPath(packet.path);
-
-                if (!packet.isDir)
+                @Override
+                public void run()
                 {
-                    file.setData(packet.data);
-                }
-
-                for (String child : packet.children)
-                {
-                    new JCFile(child, file, JurassiCraft.proxy.getPlayer(), packet.isDir);
-                }
-            }
-            else
-            {
-                EntityPlayerMP player = ctx.getServerHandler().playerEntity;
-
-                if (player != null)
-                {
-                    JCFile file = JCPlayerData.getPlayerData(player).getFileFromPath(packet.path);
-
-                    if (!packet.isDir)
+                    if (ctx.side.isClient())
                     {
-                        file.setData(packet.data);
-                    }
+                        JCFile file = JCPlayerData.getPlayerData(null).getFileFromPath(packet.path);
 
-                    for (String child : packet.children)
+                        if (!packet.isDir)
+                        {
+                            file.setData(packet.data);
+                        }
+
+                        for (String child : packet.children)
+                        {
+                            new JCFile(child, file, JurassiCraft.proxy.getPlayer(), packet.isDir);
+                        }
+                    }
+                    else
                     {
-                        new JCFile(child, file, player, packet.isDir);
+                        EntityPlayerMP player = ctx.getServerHandler().playerEntity;
+
+                        if (player != null)
+                        {
+                            JCFile file = JCPlayerData.getPlayerData(player).getFileFromPath(packet.path);
+
+                            if (!packet.isDir)
+                            {
+                                file.setData(packet.data);
+                            }
+
+                            for (String child : packet.children)
+                            {
+                                new JCFile(child, file, player, packet.isDir);
+                            }
+                        }
                     }
                 }
-            }
+            });
 
             return null;
         }

@@ -47,17 +47,19 @@ public class EntityAIHerd extends EntityAIBase {
     public boolean continueExecuting() {
         //System.out.println("CHECKING CONTINUE EXECUTE");
         Entity target = this.getTarget();
+
         if (target == null) {
             //System.out.println("TARGET IS NULL");
             return false;
         }
+
         if (!target.isEntityAlive()) {
             // System.out.println("TARGET IS DEAD");
             return false;
         }
 
         //System.out.println("CHECKING CONTINUE EXECUTE DONE");
-        return target != null;
+        return true;
     }
 
     public void updateTask() {
@@ -65,11 +67,15 @@ public class EntityAIHerd extends EntityAIBase {
             //System.out.println("AI STARTING");
             this.updateRate = 10;
             Entity target = this.getTarget();
-            int rand = target.worldObj.rand.nextInt(10);
-            int rand2 = target.worldObj.rand.nextInt(10);
 
-            this.host.getNavigator().tryMoveToXYZ(target.posX + rand - rand2, target.posY, target.posZ + rand - rand2, speed);
-            // System.out.println("AI STARTING DONE");
+            if (target.worldObj != null)
+            {
+                int rand = target.worldObj.rand.nextInt(10);
+                int rand2 = target.worldObj.rand.nextInt(10);
+
+                this.host.getNavigator().tryMoveToXYZ(target.posX + rand - rand2, target.posY, target.posZ + rand - rand2, speed);
+                // System.out.println("AI STARTING DONE");
+            }
         }
     }
 

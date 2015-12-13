@@ -27,7 +27,8 @@ public class JCNetworkManager
 
     private static <REQ extends IMessage, REPLY extends IMessage> void registerPacket(Class<? extends IMessageHandler<REQ, REPLY>> messageHandler, Class<REQ> requestMessageType)
     {
-        networkWrapper.registerMessage(messageHandler, requestMessageType, packetId++, Side.CLIENT);
-        networkWrapper.registerMessage(messageHandler, requestMessageType, packetId++, Side.SERVER);
+        networkWrapper.registerMessage(messageHandler, requestMessageType, packetId, Side.CLIENT);
+        networkWrapper.registerMessage(messageHandler, requestMessageType, packetId, Side.SERVER);
+        packetId++;
     }
 }

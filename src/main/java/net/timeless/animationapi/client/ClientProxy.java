@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.util.Timer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -32,4 +33,10 @@ public class ClientProxy extends CommonProxy
     }
 
     private Timer mcTimer;
+
+    @Override
+    public void scheduleTask(MessageContext ctx, Runnable runnable)
+    {
+        Minecraft.getMinecraft().addScheduledTask(runnable);
+    }
 }

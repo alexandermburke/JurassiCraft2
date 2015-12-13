@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.entity.data.JCPlayerData;
 
 public class MessageSyncPaleoPad implements IMessage
@@ -38,21 +39,28 @@ public class MessageSyncPaleoPad implements IMessage
     public static class Handler implements IMessageHandler<MessageSyncPaleoPad, IMessage>
     {
         @Override
-        public IMessage onMessage(MessageSyncPaleoPad packet, MessageContext ctx)
+        public IMessage onMessage(final MessageSyncPaleoPad packet, final MessageContext ctx)
         {
-            if (ctx.side.isClient())
+            JurassiCraft.proxy.scheduleTask(ctx, new Runnable()
             {
-                JCPlayerData.setPlayerData(null, packet.nbt);
-            }
-            else
-            {
-                EntityPlayerMP player = ctx.getServerHandler().playerEntity;
-
-                if (player != null)
+                @Override
+                public void run()
                 {
-                    JCPlayerData.setPlayerData(player, packet.nbt);
+                    if (ctx.side.isClient())
+                    {
+                        JCPlayerData.setPlayerData(null, packet.nbt);
+                    }
+                    else
+                    {
+                        EntityPlayerMP player = ctx.getServerHandler().playerEntity;
+
+                        if (player != null)
+                        {
+                            JCPlayerData.setPlayerData(player, packet.nbt);
+                        }
+                    }
                 }
-            }
+            });
 
             return null;
         }

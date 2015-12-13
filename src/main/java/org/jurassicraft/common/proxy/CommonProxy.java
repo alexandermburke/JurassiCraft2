@@ -8,6 +8,8 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.MinecraftForge;
@@ -160,5 +162,11 @@ public class CommonProxy
     public void registerRenderSubBlock(Block block)
     {
 
+    }
+
+    public void scheduleTask(MessageContext ctx, Runnable runnable)
+    {
+        WorldServer worldObj = (WorldServer) ctx.getServerHandler().playerEntity.worldObj;
+        worldObj.addScheduledTask(runnable);
     }
 }

@@ -1,11 +1,13 @@
 package org.jurassicraft.common.message;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import org.jurassicraft.JurassiCraft;
 
 public class MessageChangeTemperature implements IMessage
 {
@@ -42,13 +44,24 @@ public class MessageChangeTemperature implements IMessage
     public static class Handler implements IMessageHandler<MessageChangeTemperature, IMessage>
     {
         @Override
-        public IMessage onMessage(MessageChangeTemperature packet, MessageContext ctx)
+        public IMessage onMessage(final MessageChangeTemperature packet, final MessageContext ctx)
         {
-            if (ctx.side.isServer())
+            JurassiCraft.proxy.scheduleTask(ctx, new Runnable()
             {
-                IInventory incubator = (IInventory) ctx.getServerHandler().playerEntity.worldObj.getTileEntity(packet.pos);
-                incubator.setField(packet.slot + 10, packet.temp);
-            }
+                @Override
+                public void run()
+                {
+                    EntityPlayer player = JurassiCraft.proxy.getPlayerEntityFromContext(ctx);
+
+                    IInventory incubator = (IInventory) player.worldObj.getTileEntity(packet.pos);
+                    incubator.setField(packet.slot + 10, packet.temp);
+
+                    if (ctx.side.isServer())
+                    {
+                        JCNetworkManager.networkWrapper.sendToAll(packet);
+                    }
+                }
+            });
 
             return null;
         }

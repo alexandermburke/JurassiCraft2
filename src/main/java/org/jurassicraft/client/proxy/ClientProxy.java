@@ -101,4 +101,10 @@ public class ClientProxy extends CommonProxy
         // Solution is to double-check side before returning the player:
         return (ctx.side.isClient() ? Minecraft.getMinecraft().thePlayer : super.getPlayerEntityFromContext(ctx));
     }
+
+    @Override
+    public void scheduleTask(MessageContext ctx, Runnable runnable)
+    {
+        Minecraft.getMinecraft().addScheduledTask(runnable);
+    }
 }

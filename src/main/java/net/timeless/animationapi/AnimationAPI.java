@@ -9,6 +9,8 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.timeless.animationapi.client.AnimID;
@@ -19,13 +21,38 @@ import org.jurassicraft.JurassiCraft;
 @Mod(modid = "jcanimationapi", name = "JurassiCraft AnimationAPI", version = "1.2.5")
 public class AnimationAPI
 {
+    @Mod.Instance("AnimationAPI")
+    public static AnimationAPI instance;
+
+    @SidedProxy(clientSide = "net.timeless.animationapi.client.ClientProxy", serverSide = "net.timeless.animationapi.CommonProxy")
+    public static CommonProxy proxy;
+
+    public static final String[] fTimer;
+
+    static
+    {
+        fTimer = new String[] { "field_71428_T", "S", "timer" };
+    }
+
+    public static SimpleNetworkWrapper networkWrapper;
+    private static int packetId = 0;
+
+    public static CommonProxy getProxy()
+    {
+        return proxy;
+    }
+
+    public static String[] getFTimer()
+    {
+        return fTimer;
+    }
+
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent e)
     {
-        wrapper = NetworkRegistry.INSTANCE.newSimpleChannel("jcanimationapi");
-        int discriminator = 0;
-        wrapper.registerMessage(PacketAnim.Handler.class, PacketAnim.class, discriminator++, Side.CLIENT);
-        wrapper.registerMessage(PacketAnim.Handler.class, PacketAnim.class, discriminator++, Side.SERVER);
+        networkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel("animapi");
+
+        registerPacket(PacketAnim.Handler.class, PacketAnim.class);
     }
 
     @Mod.EventHandler
@@ -47,6 +74,13 @@ public class AnimationAPI
         event.registerServerCommand(new CommandForceAnimation());
     }
 
+    private static <REQ extends IMessage, REPLY extends IMessage> void registerPacket(Class<? extends IMessageHandler<REQ, REPLY>> messageHandler, Class<REQ> requestMessageType)
+    {
+        networkWrapper.registerMessage(messageHandler, requestMessageType, packetId, Side.CLIENT);
+        networkWrapper.registerMessage(messageHandler, requestMessageType, packetId, Side.SERVER);
+        packetId++;
+    }
+
     public static boolean isClient()
     {
         return FMLCommonHandler.instance().getSide().isClient();
@@ -57,40 +91,15 @@ public class AnimationAPI
         return FMLCommonHandler.instance().getEffectiveSide().isClient();
     }
 
-    public static void sendAnimPacket(IAnimatedEntity entity, AnimID animID)
+    public static void sendAnimPacket(IAnimatedEntity animatedEntity, AnimID animID)
     {
-        entity.setAnimID(animID);
+        animatedEntity.setAnimID(animID);
 
-        if (!((Entity) entity).worldObj.isRemote)
+        Entity entity = (Entity) animatedEntity;
+
+        if (!entity.worldObj.isRemote)
         {
-            JurassiCraft.instance.getLogger().debug("sending Anim Packet for entity " + ((Entity) entity).getEntityId());
-
-            wrapper.sendToAll(new PacketAnim(animID, ((Entity) entity).getEntityId()));
+            networkWrapper.sendToAll(new PacketAnim(entity));
         }
-    }
-
-    @Mod.Instance("AnimationAPI")
-    public static AnimationAPI instance;
-
-    @SidedProxy(clientSide = "net.timeless.animationapi.client.ClientProxy", serverSide = "net.timeless.animationapi.CommonProxy")
-
-    public static CommonProxy proxy;
-    public static SimpleNetworkWrapper wrapper;
-
-    public static final String[] fTimer;
-
-    static
-    {
-        fTimer = new String[] { "field_71428_T", "S", "timer" };
-    }
-
-    public static CommonProxy getProxy()
-    {
-        return proxy;
-    }
-
-    public static String[] getFTimer()
-    {
-        return fTimer;
     }
 }
