@@ -20,6 +20,13 @@ build
 # other
 eclipse
 run
+saves/
+config/
+options.txt
+usercache.json
+usernamecache.json
+logs/
+*.launch
 
 # Minecraft
 minecraft
