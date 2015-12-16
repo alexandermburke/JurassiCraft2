@@ -26,6 +26,7 @@ options.txt
 usercache.json
 usernamecache.json
 logs/
+crash-reports/
 *.launch
 
 # Minecraft

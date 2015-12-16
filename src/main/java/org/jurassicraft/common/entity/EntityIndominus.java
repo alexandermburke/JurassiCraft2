@@ -2,12 +2,14 @@ package org.jurassicraft.common.entity;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.AnimID;
+
 import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimSoundBase;
 import org.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 
@@ -55,6 +57,30 @@ public class EntityIndominus extends EntityDinosaurAggressive // implements ICar
         skinColor = new float[] {255, 255, 255};
         newSkinColor = new float[] {255, 255, 255};
     }
+    
+    public float getNewHealth()
+    {
+        return 300.0F;
+    }
+    
+    public void updateCreatureData()
+    {
+        double prevHealth = getMaxHealth();
+        double newHealth = getNewHealth();
+
+        getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(newHealth);
+        getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(transitionFromAge(dinosaur.getBabySpeed(), dinosaur.getAdultSpeed()));
+        getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(transitionFromAge(dinosaur.getBabyKnockback(), dinosaur.getAdultKnockback()));
+
+        // adjustHitbox();
+
+        getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(20.0F);
+
+        if (prevHealth != newHealth)
+        {
+            heal((float) (newHealth - lastDamage));
+        }
+    }
 
     @Override
     public void onUpdate()
@@ -73,9 +99,9 @@ public class EntityIndominus extends EntityDinosaurAggressive // implements ICar
             stepCount = 65;
         }
 
-        this.stepCount -= this.moveForward * 9.5;
+        this.stepCount -= this.moveForward * 1.25;
 
-        if (worldObj.isRemote)
+        if (worldObj.isRemote || this.getAttackTarget() == null)
         {
             isCamouflaging = this.dataWatcher.getWatchableObjectByte(31) == 1;
             changeSkinColor();
