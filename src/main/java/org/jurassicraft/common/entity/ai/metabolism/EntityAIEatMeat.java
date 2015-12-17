@@ -107,6 +107,7 @@ public class EntityAIEatMeat extends EntityAIBase
             }
 
             dinosaur.setEnergy(dinosaur.getEnergy() + 1400);
+            dinosaur.heal(4.0F);
         }
     }
 
