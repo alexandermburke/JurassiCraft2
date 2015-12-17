@@ -1,15 +1,9 @@
 package org.jurassicraft.common.entity;
 
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.timeless.animationapi.client.AnimID;
 import net.timeless.unilib.common.animation.ControlledParam;
-
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.entity.ai.animations.AnimationAIEating;
 import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
@@ -26,13 +20,12 @@ public class EntityTyrannosaurus extends EntityDinosaurAggressive // , IEntityAI
     private static final String[] roarSounds = new String[] { "tyrannosaurus_roar_1" };
     private static final String[] breathSounds = new String[] { "tyrannosaurus_breath_1" };
 
-    private static final Class[] targets = { EntityMob.class, EntityAnimal.class, EntityIndominus.class, EntityCompsognathus.class, EntityAnkylosaurus.class, EntityPlayer.class, EntityDilophosaurus.class, EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class, EntityLudodactylus.class, EntityHypsilophodon.class, EntityGallimimus.class, EntitySegisaurus.class, EntityProtoceratops.class, EntityParasaurolophus.class, EntityOthnielia.class, EntityMicroceratus.class, EntityTriceratops.class, EntityStegosaurus.class, EntityBrachiosaurus.class, EntityApatosaurus.class, EntityRugops.class, EntityHerrerasaurus.class, EntityVelociraptor.class, EntitySpinosaurus.class, EntityAchillobator.class, EntityCarnotaurus.class, EntityTherizinosaurus.class };
+    private static final Class[] targets = { EntityCompsognathus.class, EntityAnkylosaurus.class, EntityPlayer.class, EntityDilophosaurus.class, EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class, EntityLudodactylus.class, EntityHypsilophodon.class, EntityGallimimus.class, EntitySegisaurus.class, EntityProtoceratops.class, EntityParasaurolophus.class, EntityOthnielia.class, EntityMicroceratus.class, EntityTriceratops.class, EntityStegosaurus.class, EntityBrachiosaurus.class, EntityApatosaurus.class, EntityRugops.class, EntityHerrerasaurus.class, EntityVelociraptor.class, EntitySpinosaurus.class, EntityAchillobator.class, EntityCarnotaurus.class, EntityTherizinosaurus.class };
 
     private int stepCount = 0;
 
     public ControlledParam roarCount = new ControlledParam(0F, 0F, 0.5F, 0F);
     public ControlledParam roarTiltDegree = new ControlledParam(0F, 0F, 1F, 0F);
-	private boolean hasTarget;
 
     public EntityTyrannosaurus(World world)
     {
@@ -45,32 +38,6 @@ public class EntityTyrannosaurus extends EntityDinosaurAggressive // , IEntityAI
         for (int i = 0; i < targets.length; i++)
         {
             this.addAIForAttackTargets(targets[i], new Random().nextInt(3) + 1);
-        }
-        
-        this.defendFromAttacker(EntityLivingBase.class, 0);
-    }
-    
-    public float getNewHealth()
-    {
-        return 200.0F;
-    }
-    
-    public void updateCreatureData()
-    {
-        double prevHealth = getMaxHealth();
-        double newHealth = getNewHealth();
-
-        getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(newHealth);
-        getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(transitionFromAge(dinosaur.getBabySpeed(), dinosaur.getAdultSpeed()));
-        getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(transitionFromAge(dinosaur.getBabyKnockback(), dinosaur.getAdultKnockback()));
-
-        // adjustHitbox();
-
-        getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(50.0F);
-
-        if (prevHealth != newHealth)
-        {
-            heal((float) (newHealth - lastDamage));
         }
     }
 
@@ -120,18 +87,5 @@ public class EntityTyrannosaurus extends EntityDinosaurAggressive // , IEntityAI
         }
 
         this.stepCount -= this.moveForward * 9.5;
-        
-        if (this.hasTarget == false && this.getAttackTarget() != null)
-        {
-        	this.hasTarget = true;
-            this.playSound(this.getLivingSound(), (float) transitionFromAge(0.1F, 1.0F), this.getSoundPitch());
-            this.roarCount = new ControlledParam(0F, 0F, 1.0F, 0F);
-        }
-        
-        if (this.hasTarget == true && this.getAttackTarget() == null)
-        {
-        	this.hasTarget = true;
-            this.roarCount = new ControlledParam(0F, 0F, 0.5F, 0F);
-        }
     }
 }
