@@ -99,7 +99,7 @@ public class AnimationAPI
 
         if (!entity.worldObj.isRemote)
         {
-//            instance.networkWrapper.sendToAll(new PacketAnim(entity));
+            instance.networkWrapper.sendToAll(new PacketAnim(entity));
         }
     }
 }

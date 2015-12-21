@@ -95,6 +95,11 @@ public class JurassiCraft
         {
             gameRules.addGameRule("dinoMetabolism", "true", GameRules.ValueType.BOOLEAN_VALUE);
         }
+
+        if (!gameRules.hasRule("dinoGrowth"))
+        {
+            gameRules.addGameRule("dinoGrowth", "true", GameRules.ValueType.BOOLEAN_VALUE);
+        }
     }
 
     public Logger getLogger()

@@ -406,8 +406,11 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
             if (!this.isDead && ticksExisted % 8 == 0)
             {
-                dinosaurAge += Math.min(growthSpeedOffset, 960) + 1;
-                energy -= (Math.min(growthSpeedOffset, 960) + 1) * 0.1;
+                if (worldObj.getGameRules().getGameRuleBooleanValue("dinoGrowth"))
+                {
+                    dinosaurAge += Math.min(growthSpeedOffset, 960) + 1;
+                    energy -= (Math.min(growthSpeedOffset, 960) + 1) * 0.1;
+                }
 
                 if (dinosaurAge % 20 == 0)
                 {

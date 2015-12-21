@@ -71,6 +71,7 @@ import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 import org.jurassicraft.common.vehicles.helicopter.modules.EntityHelicopterSeat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -228,9 +229,27 @@ public class JCEntityRegistry
 
             if (dinosaur.shouldRegister() && !(dinosaur instanceof IHybrid) && JCConfigurations.spawnJurassiCraftMobsNaturally())
             {
-                EntityRegistry.addSpawn(dinosaur.getDinosaurClass(), 5, 1, 5, dinosaur.isMarineAnimal() ? EnumCreatureType.WATER_CREATURE : EnumCreatureType.CREATURE, BiomeGenBase.getBiomeGenArray());
+                EntityRegistry.addSpawn(dinosaur.getDinosaurClass(), 5, 1, 5, dinosaur.isMarineAnimal() ? EnumCreatureType.WATER_CREATURE : EnumCreatureType.CREATURE, removeNullEntries(BiomeGenBase.getBiomeGenArray()));
             }
         }
+    }
+
+    public BiomeGenBase[] removeNullEntries(BiomeGenBase[] original)
+    {
+        int index, from;
+        int to = index = from = original.length;
+
+        while (index > 0)
+        {
+            BiomeGenBase biome = original[--index];
+
+            if (biome != null)
+            {
+                original[--from] = biome;
+            }
+        }
+
+        return Arrays.copyOfRange(original, from, to);
     }
 
     private void registerEntity(Class<? extends Entity> entity, String name)

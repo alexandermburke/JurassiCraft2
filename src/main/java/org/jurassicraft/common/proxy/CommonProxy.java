@@ -40,6 +40,8 @@ public class CommonProxy
 {
     public void preInit(FMLPreInitializationEvent event)
     {
+        JurassiCraft.configurations.initConfig(event);
+
         JurassiCraft.entityRegistry.register();
         JurassiCraft.plantRegistry.register();
         JurassiCraft.creativeTabRegistry.register();
@@ -50,7 +52,6 @@ public class CommonProxy
         JurassiCraft.appRegistry.register();
         JurassiCraft.achievements.register();
         JurassiCraft.storageTypeRegistry.register();
-        JurassiCraft.configurations.initConfig(event);
 
         // addChestGenItems();
 
