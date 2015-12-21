@@ -8,8 +8,8 @@ import net.minecraftforge.fml.relauncher.Side;
 
 public class JCNetworkManager
 {
-    public static SimpleNetworkWrapper networkWrapper;
-    private static int packetId = 0;
+    public SimpleNetworkWrapper networkWrapper;
+    private int packetId = 0;
 
     public void register()
     {
@@ -25,10 +25,11 @@ public class JCNetworkManager
         registerPacket(MessageHelicopterModules.Handler.class, MessageHelicopterModules.class);
     }
 
-    private static <REQ extends IMessage, REPLY extends IMessage> void registerPacket(Class<? extends IMessageHandler<REQ, REPLY>> messageHandler, Class<REQ> requestMessageType)
+    private <REQ extends IMessage, REPLY extends IMessage> void registerPacket(Class<? extends IMessageHandler<REQ, REPLY>> messageHandler, Class<REQ> requestMessageType)
     {
         networkWrapper.registerMessage(messageHandler, requestMessageType, packetId, Side.CLIENT);
+        packetId += 1;
         networkWrapper.registerMessage(messageHandler, requestMessageType, packetId, Side.SERVER);
-        packetId++;
+        packetId += 1;
     }
 }

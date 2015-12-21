@@ -2,6 +2,7 @@ package org.jurassicraft;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.GameRules;
+import net.minecraft.world.WorldType;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -23,6 +24,7 @@ import org.jurassicraft.common.plant.JCPlantRegistry;
 import org.jurassicraft.common.proxy.CommonProxy;
 import org.jurassicraft.common.recipe.JCRecipeRegistry;
 import org.jurassicraft.common.storagedisc.StorageTypeRegistry;
+import org.jurassicraft.common.world.islanublar.WorldTypeIslaNublar;
 
 import java.io.File;
 
@@ -54,6 +56,8 @@ public class JurassiCraft
     public static JCAchievements achievements = new JCAchievements();
     public static StorageTypeRegistry storageTypeRegistry = new StorageTypeRegistry();
     public static JCConfigurations configurations = new JCConfigurations();
+
+    public static WorldTypeIslaNublar worldTypeIslaNublar = new WorldTypeIslaNublar();
 
     // set up configuration properties (will be read from config file in preInit)
     public static File configFile;

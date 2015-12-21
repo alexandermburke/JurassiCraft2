@@ -58,7 +58,7 @@ public class MessageChangeTemperature implements IMessage
 
                     if (ctx.side.isServer())
                     {
-                        JCNetworkManager.networkWrapper.sendToAll(packet);
+                        JurassiCraft.networkManager.networkWrapper.sendToAll(packet);
                     }
                 }
             });

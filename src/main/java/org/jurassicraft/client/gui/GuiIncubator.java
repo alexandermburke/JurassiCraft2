@@ -8,6 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.container.ContainerIncubator;
 import org.jurassicraft.common.message.JCNetworkManager;
 import org.jurassicraft.common.message.MessageChangeTemperature;
@@ -94,7 +95,7 @@ public class GuiIncubator extends GuiContainer
                 if (temp != incubator.getField(i + 10))
                 {
                     incubator.setField(i + 10, temp);
-                    JCNetworkManager.networkWrapper.sendToServer(new MessageChangeTemperature(((TileEntity) incubator).getPos(), i, temp));
+                    JurassiCraft.networkManager.networkWrapper.sendToServer(new MessageChangeTemperature(((TileEntity) incubator).getPos(), i, temp));
                 }
 
                 break;

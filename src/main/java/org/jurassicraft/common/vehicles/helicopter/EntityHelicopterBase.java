@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.utils.MutableVec3;
+import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.item.ItemHelicopter;
 import org.jurassicraft.common.message.JCNetworkManager;
 import org.jurassicraft.common.message.MessageHelicopterDirection;
@@ -278,11 +279,11 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     {
         if (worldObj.isRemote)
         {
-            JCNetworkManager.networkWrapper.sendToServer(new MessageHelicopterDirection(getEntityId(), direction));
+            JurassiCraft.networkManager.networkWrapper.sendToServer(new MessageHelicopterDirection(getEntityId(), direction));
         }
         else
         {
-            JCNetworkManager.networkWrapper.sendToAll(new MessageHelicopterDirection(getEntityId(), direction));
+            JurassiCraft.networkManager.networkWrapper.sendToAll(new MessageHelicopterDirection(getEntityId(), direction));
         }
     }
 
@@ -321,11 +322,11 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     {
         if (worldObj.isRemote)
         {
-            JCNetworkManager.networkWrapper.sendToServer(new MessageHelicopterEngine(getEntityId(), engineState));
+            JurassiCraft.networkManager.networkWrapper.sendToServer(new MessageHelicopterEngine(getEntityId(), engineState));
         }
         else
         {
-            JCNetworkManager.networkWrapper.sendToAll(new MessageHelicopterEngine(getEntityId(), engineState));
+            JurassiCraft.networkManager.networkWrapper.sendToAll(new MessageHelicopterEngine(getEntityId(), engineState));
         }
     }
 
