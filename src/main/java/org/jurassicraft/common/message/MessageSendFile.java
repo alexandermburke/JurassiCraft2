@@ -27,7 +27,8 @@ public class MessageSendFile implements IMessage
     private boolean isDir;
 
     public MessageSendFile()
-    {}
+    {
+    }
 
     public MessageSendFile(JCPlayerData data, JCFile file)
     {

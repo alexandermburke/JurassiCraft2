@@ -5,9 +5,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
@@ -20,7 +18,11 @@ import org.jurassicraft.common.entity.base.JCEntityRegistry;
 import org.jurassicraft.common.lang.AdvLang;
 import org.jurassicraft.common.tileentity.TileActionFigure;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ItemActionFigure extends Item
 {
@@ -37,7 +39,7 @@ public class ItemActionFigure extends Item
     /**
      * Called when a Block is right-clicked with this Item
      *
-     * @param pos The block being right-clicked
+     * @param pos  The block being right-clicked
      * @param side The side being right-clicked
      */
     public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)

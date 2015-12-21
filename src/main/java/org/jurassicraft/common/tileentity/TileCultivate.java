@@ -519,11 +519,13 @@ public class TileCultivate extends TileEntityLockable implements ITickable, ISid
 
     @Override
     public void openInventory(EntityPlayer player)
-    {}
+    {
+    }
 
     @Override
     public void closeInventory(EntityPlayer player)
-    {}
+    {
+    }
 
     /**
      * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.

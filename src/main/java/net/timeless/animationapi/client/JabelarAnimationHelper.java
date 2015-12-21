@@ -1,7 +1,5 @@
 package net.timeless.animationapi.client;
 
-import java.util.Map;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.util.BlockPos;
@@ -14,6 +12,8 @@ import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.fx.EntityFXBlood;
+
+import java.util.Map;
 
 /**
  * @author jabelar This class is used to hold per-entity animation variables for use with Jabelar's animation tweening system.
@@ -67,7 +67,7 @@ public class JabelarAnimationHelper
             MowzieModelRenderer[][] parArrayOfPoses,
             Map<AnimID, int[][]> parMapOfSequences,
             boolean parInertialTweens
-            )
+    )
     {
         // transfer static animation info from constructor parameters to instance
         theEntity = parEntity;
@@ -165,7 +165,7 @@ public class JabelarAnimationHelper
         // carcass should init to last pose in dying sequence
         if (theEntity.isCarcass())
         {
-            currentPose = numPosesInSequence-1;
+            currentPose = numPosesInSequence - 1;
         }
         else
         {
@@ -192,7 +192,7 @@ public class JabelarAnimationHelper
             JurassiCraft.instance.getLogger().error("Array of sequences has sequence with num ticks illegal value (< 1)");
             numTicksInTween = 1;
         }
-        
+
         if (theEntity.isCarcass())
         {
             currentTickInTween = numTicksInTween - 1;
@@ -221,7 +221,7 @@ public class JabelarAnimationHelper
 
         for (int partIndex = 0; partIndex < numParts; partIndex++)
         {
-            
+
             rotationIncrementArray[partIndex][0] = (nextPoseModel[partIndex].rotateAngleX - currentRotationArray[partIndex][0]) * inertiaFactor;
             rotationIncrementArray[partIndex][1] = (nextPoseModel[partIndex].rotateAngleY - currentRotationArray[partIndex][1]) * inertiaFactor;
             rotationIncrementArray[partIndex][2] = (nextPoseModel[partIndex].rotateAngleZ - currentRotationArray[partIndex][2]) * inertiaFactor;
@@ -276,7 +276,7 @@ public class JabelarAnimationHelper
     {
         // update the passed in model
         tween();
-        
+
         // since the method is called at rate of twice the display refresh rate
         // need to slow it down to only increment per tick.
         if (theEntity.ticksExisted > lastTicksExisted)
@@ -320,23 +320,23 @@ public class JabelarAnimationHelper
 
     private void nextTweenRotations(int parPartIndex)
     {
-        theModelRendererArray[parPartIndex].rotateAngleX = currentRotationArray[parPartIndex][0] + rotationIncrementArray[parPartIndex][0] ;
-        theModelRendererArray[parPartIndex].rotateAngleY = currentRotationArray[parPartIndex][1] + rotationIncrementArray[parPartIndex][1] ;
-        theModelRendererArray[parPartIndex].rotateAngleZ = currentRotationArray[parPartIndex][2] + rotationIncrementArray[parPartIndex][2] ;
+        theModelRendererArray[parPartIndex].rotateAngleX = currentRotationArray[parPartIndex][0] + rotationIncrementArray[parPartIndex][0];
+        theModelRendererArray[parPartIndex].rotateAngleY = currentRotationArray[parPartIndex][1] + rotationIncrementArray[parPartIndex][1];
+        theModelRendererArray[parPartIndex].rotateAngleZ = currentRotationArray[parPartIndex][2] + rotationIncrementArray[parPartIndex][2];
     }
 
     private void nextTweenPositions(int parPartIndex)
     {
-        theModelRendererArray[parPartIndex].rotationPointX = currentPositionArray[parPartIndex][0] + positionIncrementArray[parPartIndex][0] ;
-        theModelRendererArray[parPartIndex].rotationPointY = currentPositionArray[parPartIndex][1] + positionIncrementArray[parPartIndex][1] ;
-        theModelRendererArray[parPartIndex].rotationPointZ = currentPositionArray[parPartIndex][2] + positionIncrementArray[parPartIndex][2] ;
+        theModelRendererArray[parPartIndex].rotationPointX = currentPositionArray[parPartIndex][0] + positionIncrementArray[parPartIndex][0];
+        theModelRendererArray[parPartIndex].rotationPointY = currentPositionArray[parPartIndex][1] + positionIncrementArray[parPartIndex][1];
+        theModelRendererArray[parPartIndex].rotationPointZ = currentPositionArray[parPartIndex][2] + positionIncrementArray[parPartIndex][2];
     }
 
     private void nextTweenOffsets(int parPartIndex)
     {
-        theModelRendererArray[parPartIndex].offsetX = currentOffsetArray[parPartIndex][0] + offsetIncrementArray[parPartIndex][0] ;
-        theModelRendererArray[parPartIndex].offsetY = currentOffsetArray[parPartIndex][1] + offsetIncrementArray[parPartIndex][1] ;
-        theModelRendererArray[parPartIndex].offsetZ = currentOffsetArray[parPartIndex][2] + offsetIncrementArray[parPartIndex][2] ;
+        theModelRendererArray[parPartIndex].offsetX = currentOffsetArray[parPartIndex][0] + offsetIncrementArray[parPartIndex][0];
+        theModelRendererArray[parPartIndex].offsetY = currentOffsetArray[parPartIndex][1] + offsetIncrementArray[parPartIndex][1];
+        theModelRendererArray[parPartIndex].offsetZ = currentOffsetArray[parPartIndex][2] + offsetIncrementArray[parPartIndex][2];
     }
 
     private float calculateInertiaFactor()
@@ -365,7 +365,7 @@ public class JabelarAnimationHelper
     // boolean returned indicates if tween was finished
     public boolean incrementTweenTick()
     {
-        JurassiCraft.instance.getLogger().info("current tween step = "+currentTickInTween);
+        JurassiCraft.instance.getLogger().info("current tween step = " + currentTickInTween);
         currentTickInTween++;
         if (currentTickInTween >= numTicksInTween)
         {
@@ -395,7 +395,7 @@ public class JabelarAnimationHelper
             }
         }
 
-        JurassiCraft.instance.getLogger().debug("Next pose is pose = "+currentPose);
+        JurassiCraft.instance.getLogger().debug("Next pose is pose = " + currentPose);
         return finishedSequence;
     }
 

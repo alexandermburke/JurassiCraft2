@@ -190,12 +190,12 @@ public class GuiAppFlappyDino extends GuiApp
 
                 int actualY = 150 - y;
 
-                if(renderX > 0 && renderX < 200)
+                if (renderX > 0 && renderX < 200)
                 {
                     boolean collideX = (renderX) < 30;
                     boolean collideY = (actualY + 5) < topHeight || (actualY + 23) > bottomHeight;
 
-                    if(collideX && collideY)
+                    if (collideX && collideY)
                     {
                         died = true;
                         break;

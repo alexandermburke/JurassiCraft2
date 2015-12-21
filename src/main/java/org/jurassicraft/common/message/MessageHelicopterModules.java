@@ -23,7 +23,8 @@ public class MessageHelicopterModules implements IMessage
     private int heliID;
 
     public MessageHelicopterModules()
-    {}
+    {
+    }
 
     public MessageHelicopterModules(int heliID, EnumModulePosition pos, HelicopterModuleSpot spot)
     {

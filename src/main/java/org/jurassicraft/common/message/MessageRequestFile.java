@@ -14,7 +14,8 @@ public class MessageRequestFile implements IMessage
     private String path;
 
     public MessageRequestFile()
-    {}
+    {
+    }
 
     public MessageRequestFile(String path)
     {

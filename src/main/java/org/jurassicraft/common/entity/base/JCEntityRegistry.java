@@ -1,9 +1,12 @@
 package org.jurassicraft.common.entity.base;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.api.IHybrid;
+import org.jurassicraft.common.configuration.JCConfigurations;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.dinosaur.DinosaurAchillobator;
 import org.jurassicraft.common.dinosaur.DinosaurAnkylosaurus;
@@ -222,6 +225,11 @@ public class JCEntityRegistry
         if (dinosaur.shouldRegister())
         {
             registerEntity(dinosaur.getDinosaurClass(), dinosaur.getName());
+
+            if (dinosaur.shouldRegister() && !(dinosaur instanceof IHybrid) && JCConfigurations.spawnJurassiCraftMobsNaturally())
+            {
+                EntityRegistry.addSpawn(dinosaur.getDinosaurClass(), 5, 1, 5, dinosaur.isMarineAnimal() ? EnumCreatureType.WATER_CREATURE : EnumCreatureType.CREATURE, BiomeGenBase.getBiomeGenArray());
+            }
         }
     }
 

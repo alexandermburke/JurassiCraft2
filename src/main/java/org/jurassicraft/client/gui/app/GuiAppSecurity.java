@@ -54,7 +54,8 @@ public class GuiAppSecurity extends GuiApp
 
     @Override
     public void init()
-    {}
+    {
+    }
 
     @Override
     public ResourceLocation getTexture(GuiPaleoPad gui)

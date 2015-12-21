@@ -7,7 +7,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 public class CommonProxy
 {
     public void initTimer()
-    {}
+    {
+    }
 
     public float getPartialTick()
     {

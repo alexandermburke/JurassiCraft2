@@ -9,7 +9,6 @@ import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.entity.EntityPteranodon;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.JCEntityRegistry;
-import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class AnimationPteranodon extends DinosaurAnimator

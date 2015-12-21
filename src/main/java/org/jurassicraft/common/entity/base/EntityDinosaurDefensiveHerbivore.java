@@ -2,7 +2,6 @@ package org.jurassicraft.common.entity.base;
 
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.world.World;
-import org.jurassicraft.common.entity.ai.EntityAIHerd;
 import org.jurassicraft.common.entity.ai.EntityAIJCPanic;
 import org.jurassicraft.common.entity.ai.metabolism.EntityAIFindPlant;
 

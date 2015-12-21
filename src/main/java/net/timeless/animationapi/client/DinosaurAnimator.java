@@ -2,20 +2,6 @@ package net.timeless.animationapi.client;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.fml.relauncher.Side;
@@ -32,6 +18,19 @@ import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 @SideOnly(Side.CLIENT)
 public abstract class DinosaurAnimator implements IModelAnimator
@@ -319,7 +318,8 @@ public abstract class DinosaurAnimator implements IModelAnimator
     }
 
     protected void performMowzieLandAnimations(ModelDinosaur parModel, float parLimbSwing, float parLimbSwingAmount, float parRotation, float parRotationYaw, float parRotationPitch, float parPartialTicks, EntityDinosaur parEntity)
-    {}
+    {
+    }
 
     /*
      * @Override this if you want swimming dino to have different cyclical animations.

@@ -66,32 +66,32 @@ public class AnimationDimorphodon extends DinosaurAnimator
 
         if (!entity.isFlying())
         {
-             model.bob(body1, 1 * globalSpeed, 1 * globalHeight, false, f, f1);
-             model.bob(leftThigh, 1 * globalSpeed, 1 * globalHeight, false, f, f1);
-             model.bob(rightThigh, 1 * globalSpeed, 1 * globalHeight, false, f, f1);
-             model.walk(body1, 1 * globalSpeed, -0.08f * globalHeight, false, 0, 0.1f, f, f1);
-             model.walk(leftArm1, 1 * globalSpeed, -0.08f * globalHeight, true, 0, 0, f, f1);
-             model.walk(rightArm1, 1 * globalSpeed, -0.08f * globalHeight, true, 0, 0, f, f1);
-             model.chainWave(neck, 1 * globalSpeed, -0.15f * globalHeight, 4, f, f1);
-             model.chainWave(tail, 1 * globalSpeed, 0.1f * globalHeight, 1, f, f1);
+            model.bob(body1, 1 * globalSpeed, 1 * globalHeight, false, f, f1);
+            model.bob(leftThigh, 1 * globalSpeed, 1 * globalHeight, false, f, f1);
+            model.bob(rightThigh, 1 * globalSpeed, 1 * globalHeight, false, f, f1);
+            model.walk(body1, 1 * globalSpeed, -0.08f * globalHeight, false, 0, 0.1f, f, f1);
+            model.walk(leftArm1, 1 * globalSpeed, -0.08f * globalHeight, true, 0, 0, f, f1);
+            model.walk(rightArm1, 1 * globalSpeed, -0.08f * globalHeight, true, 0, 0, f, f1);
+            model.chainWave(neck, 1 * globalSpeed, -0.15f * globalHeight, 4, f, f1);
+            model.chainWave(tail, 1 * globalSpeed, 0.1f * globalHeight, 1, f, f1);
 
-             model.walk(leftThigh, 0.5F * globalSpeed, 0.7F * globalDegree, false, 3.14F, 0.2F, f, f1);
-             model.walk(leftCalf, 0.5F * globalSpeed, 0.6F * globalDegree, false, 1.5F, 0.3F, f, f1);
-             model.walk(leftUpperFoot, 0.5F * globalSpeed, 0.8F * globalDegree, false, -2F, -0.4F, f, f1);
-             model.walk(leftFoot, 0.5F * globalSpeed, 1.5F * globalDegree, true, -2F, 2.3F, f, f1);
+            model.walk(leftThigh, 0.5F * globalSpeed, 0.7F * globalDegree, false, 3.14F, 0.2F, f, f1);
+            model.walk(leftCalf, 0.5F * globalSpeed, 0.6F * globalDegree, false, 1.5F, 0.3F, f, f1);
+            model.walk(leftUpperFoot, 0.5F * globalSpeed, 0.8F * globalDegree, false, -2F, -0.4F, f, f1);
+            model.walk(leftFoot, 0.5F * globalSpeed, 1.5F * globalDegree, true, -2F, 2.3F, f, f1);
 
-             model.walk(rightThigh, 0.5F * globalSpeed, 0.7F * globalDegree, true, 3.14F, 0.2F, f, f1);
-             model.walk(rightCalf, 0.5F * globalSpeed, 0.6F * globalDegree, true, 1.5F, 0.3F, f, f1);
-             model.walk(rightUpperFoot, 0.5F * globalSpeed, 0.8F * globalDegree, true, -2F, -0.4F, f, f1);
-             model.walk(rightFoot, 0.5F * globalSpeed, 1.5F * globalDegree, false, -2F, 2.3F, f, f1);
+            model.walk(rightThigh, 0.5F * globalSpeed, 0.7F * globalDegree, true, 3.14F, 0.2F, f, f1);
+            model.walk(rightCalf, 0.5F * globalSpeed, 0.6F * globalDegree, true, 1.5F, 0.3F, f, f1);
+            model.walk(rightUpperFoot, 0.5F * globalSpeed, 0.8F * globalDegree, true, -2F, -0.4F, f, f1);
+            model.walk(rightFoot, 0.5F * globalSpeed, 1.5F * globalDegree, false, -2F, 2.3F, f, f1);
 
-             model.walk(leftArm1, 0.5F * globalSpeed, 0.5F * globalDegree, true, -3.14F + frontOffset, 0.5F, f, f1);
-             model.walk(leftArm2, 0.5F * globalSpeed, 0.4F * globalDegree, true, -1.5F + frontOffset, -0.3F, f, f1);
-             model.walk(leftArm3, 0.5F * globalSpeed, 0.7F * globalDegree, true, 2F + frontOffset, 0.4F, f, f1);
+            model.walk(leftArm1, 0.5F * globalSpeed, 0.5F * globalDegree, true, -3.14F + frontOffset, 0.5F, f, f1);
+            model.walk(leftArm2, 0.5F * globalSpeed, 0.4F * globalDegree, true, -1.5F + frontOffset, -0.3F, f, f1);
+            model.walk(leftArm3, 0.5F * globalSpeed, 0.7F * globalDegree, true, 2F + frontOffset, 0.4F, f, f1);
 
-             model.walk(rightArm1, 0.5F * globalSpeed, 0.5F * globalDegree, false, -3.14F + frontOffset, 0.5F, f, f1);
-             model.walk(rightArm2, 0.5F * globalSpeed, 0.4F * globalDegree, false, -1.5F + frontOffset, -0.3F, f, f1);
-             model.walk(rightArm3, 0.5F * globalSpeed, 0.7F * globalDegree, false, 2F + frontOffset, 0.4F, f, f1);
+            model.walk(rightArm1, 0.5F * globalSpeed, 0.5F * globalDegree, false, -3.14F + frontOffset, 0.5F, f, f1);
+            model.walk(rightArm2, 0.5F * globalSpeed, 0.4F * globalDegree, false, -1.5F + frontOffset, -0.3F, f, f1);
+            model.walk(rightArm3, 0.5F * globalSpeed, 0.7F * globalDegree, false, 2F + frontOffset, 0.4F, f, f1);
         }
         else
         {

@@ -1,7 +1,10 @@
 package org.jurassicraft.client.render.entity;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.BlockPos;
@@ -12,7 +15,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.render.WorldRendererUtils;
-import org.jurassicraft.common.entity.item.EntityBluePrint;
 import org.jurassicraft.common.entity.item.EntityPaddockSign;
 import org.lwjgl.opengl.GL11;
 
@@ -124,34 +126,34 @@ public class RenderPaddockSign extends Render
     private void func_77008_a(EntityPaddockSign sign, float p_77008_2_, float p_77008_3_)
     {
         int i = MathHelper.floor_double(sign.posX);
-        int j = MathHelper.floor_double(sign.posY + (double)(p_77008_3_ / 16.0F));
+        int j = MathHelper.floor_double(sign.posY + (double) (p_77008_3_ / 16.0F));
         int k = MathHelper.floor_double(sign.posZ);
         EnumFacing enumfacing = sign.facingDirection;
 
         if (enumfacing == EnumFacing.NORTH)
         {
-            i = MathHelper.floor_double(sign.posX + (double)(p_77008_2_ / 16.0F));
+            i = MathHelper.floor_double(sign.posX + (double) (p_77008_2_ / 16.0F));
         }
 
         if (enumfacing == EnumFacing.WEST)
         {
-            k = MathHelper.floor_double(sign.posZ - (double)(p_77008_2_ / 16.0F));
+            k = MathHelper.floor_double(sign.posZ - (double) (p_77008_2_ / 16.0F));
         }
 
         if (enumfacing == EnumFacing.SOUTH)
         {
-            i = MathHelper.floor_double(sign.posX - (double)(p_77008_2_ / 16.0F));
+            i = MathHelper.floor_double(sign.posX - (double) (p_77008_2_ / 16.0F));
         }
 
         if (enumfacing == EnumFacing.EAST)
         {
-            k = MathHelper.floor_double(sign.posZ + (double)(p_77008_2_ / 16.0F));
+            k = MathHelper.floor_double(sign.posZ + (double) (p_77008_2_ / 16.0F));
         }
 
         int l = this.renderManager.worldObj.getCombinedLight(new BlockPos(i, j, k), 0);
         int i1 = l % 65536;
         int j1 = l / 65536;
-        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)i1, (float)j1);
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) i1, (float) j1);
         GlStateManager.color(1.0F, 1.0F, 1.0F);
     }
 

@@ -52,8 +52,8 @@ public class EntityIndominus extends EntityDinosaurAggressive // implements ICar
     {
         super.applySettingsForActionFigure();
         isCamouflaging = false;
-        skinColor = new float[] {255, 255, 255};
-        newSkinColor = new float[] {255, 255, 255};
+        skinColor = new float[] { 255, 255, 255 };
+        newSkinColor = new float[] { 255, 255, 255 };
     }
 
     @Override

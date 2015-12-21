@@ -17,7 +17,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.utils.MutableVec3;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.item.ItemHelicopter;
-import org.jurassicraft.common.message.JCNetworkManager;
 import org.jurassicraft.common.message.MessageHelicopterDirection;
 import org.jurassicraft.common.message.MessageHelicopterEngine;
 import org.jurassicraft.common.vehicles.helicopter.modules.EntityHelicopterSeat;

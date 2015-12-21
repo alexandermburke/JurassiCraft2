@@ -2,7 +2,6 @@ package org.jurassicraft.common.damagesource;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.DamageSource;
@@ -12,14 +11,16 @@ import net.minecraft.util.StatCollector;
 public class EntityDinosaurDamageSource extends DamageSource
 {
     protected Entity damageSourceEntity;
-    /** Whether this EntityDamageSource is from an entity wearing Thorns-enchanted armor. */
+    /**
+     * Whether this EntityDamageSource is from an entity wearing Thorns-enchanted armor.
+     */
     private boolean isThornsDamage = false;
 
     public EntityDinosaurDamageSource(String name, Entity damageSourceEntityIn)
     {
-    super(name);
-    this.damageSourceEntity = damageSourceEntityIn;
-}
+        super(name);
+        this.damageSourceEntity = damageSourceEntityIn;
+    }
 
     /**
      * Sets this EntityDamageSource as originating from Thorns armor
@@ -45,10 +46,10 @@ public class EntityDinosaurDamageSource extends DamageSource
      */
     public IChatComponent getDeathMessage(EntityLivingBase p_151519_1_)
     {
-        ItemStack itemstack = this.damageSourceEntity instanceof EntityLivingBase ? ((EntityLivingBase)this.damageSourceEntity).getHeldItem() : null;
+        ItemStack itemstack = this.damageSourceEntity instanceof EntityLivingBase ? ((EntityLivingBase) this.damageSourceEntity).getHeldItem() : null;
         String s = "death.attack." + this.damageType;
         String s1 = s + ".item";
-        return itemstack != null && itemstack.hasDisplayName() && StatCollector.canTranslate(s1) ? new ChatComponentTranslation(s1, new Object[] {p_151519_1_.getDisplayName(), this.damageSourceEntity.getDisplayName(), itemstack.getChatComponent()}): new ChatComponentTranslation(s, new Object[] {p_151519_1_.getDisplayName(), this.damageSourceEntity.getDisplayName()});
+        return itemstack != null && itemstack.hasDisplayName() && StatCollector.canTranslate(s1) ? new ChatComponentTranslation(s1, new Object[] { p_151519_1_.getDisplayName(), this.damageSourceEntity.getDisplayName(), itemstack.getChatComponent() }) : new ChatComponentTranslation(s, new Object[] { p_151519_1_.getDisplayName(), this.damageSourceEntity.getDisplayName() });
     }
 
     /**

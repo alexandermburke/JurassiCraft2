@@ -125,34 +125,34 @@ public class RenderBluePrint extends Render
     private void func_77008_a(EntityBluePrint blueprint, float p_77008_2_, float p_77008_3_)
     {
         int i = MathHelper.floor_double(blueprint.posX);
-        int j = MathHelper.floor_double(blueprint.posY + (double)(p_77008_3_ / 16.0F));
+        int j = MathHelper.floor_double(blueprint.posY + (double) (p_77008_3_ / 16.0F));
         int k = MathHelper.floor_double(blueprint.posZ);
         EnumFacing enumfacing = blueprint.facingDirection;
 
         if (enumfacing == EnumFacing.NORTH)
         {
-            i = MathHelper.floor_double(blueprint.posX + (double)(p_77008_2_ / 16.0F));
+            i = MathHelper.floor_double(blueprint.posX + (double) (p_77008_2_ / 16.0F));
         }
 
         if (enumfacing == EnumFacing.WEST)
         {
-            k = MathHelper.floor_double(blueprint.posZ - (double)(p_77008_2_ / 16.0F));
+            k = MathHelper.floor_double(blueprint.posZ - (double) (p_77008_2_ / 16.0F));
         }
 
         if (enumfacing == EnumFacing.SOUTH)
         {
-            i = MathHelper.floor_double(blueprint.posX - (double)(p_77008_2_ / 16.0F));
+            i = MathHelper.floor_double(blueprint.posX - (double) (p_77008_2_ / 16.0F));
         }
 
         if (enumfacing == EnumFacing.EAST)
         {
-            k = MathHelper.floor_double(blueprint.posZ + (double)(p_77008_2_ / 16.0F));
+            k = MathHelper.floor_double(blueprint.posZ + (double) (p_77008_2_ / 16.0F));
         }
 
         int l = this.renderManager.worldObj.getCombinedLight(new BlockPos(i, j, k), 0);
         int i1 = l % 65536;
         int j1 = l / 65536;
-        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)i1, (float)j1);
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) i1, (float) j1);
         GlStateManager.color(1.0F, 1.0F, 1.0F);
     }
 

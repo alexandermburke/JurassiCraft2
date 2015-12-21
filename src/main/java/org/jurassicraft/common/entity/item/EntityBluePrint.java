@@ -12,7 +12,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
 import org.jurassicraft.common.item.JCItemRegistry;
 
 public class EntityBluePrint extends EntityHanging implements IEntityAdditionalSpawnData
@@ -110,7 +109,8 @@ public class EntityBluePrint extends EntityHanging implements IEntityAdditionalS
     @Override
     @SideOnly(Side.CLIENT)
     public void setPositionAndRotation2(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean p_180426_10_)
-    {}
+    {
+    }
 
     @Override
     public void writeSpawnData(ByteBuf buffer)

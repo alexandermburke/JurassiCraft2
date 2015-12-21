@@ -4,8 +4,6 @@ import org.jurassicraft.common.entity.EntityPachycephalosaurus;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.period.EnumTimePeriod;
 
-import java.lang.Override;
-
 public class DinosaurPachycephalosaurus extends Dinosaur
 {
     @Override

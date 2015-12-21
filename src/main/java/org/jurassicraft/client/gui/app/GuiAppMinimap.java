@@ -8,7 +8,11 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.*;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.ClassInheritanceMultiMap;
+import net.minecraft.util.EntitySelectors;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import org.jurassicraft.JurassiCraft;
@@ -253,7 +257,8 @@ public class GuiAppMinimap extends GuiApp
 
     @Override
     public void init()
-    {}
+    {
+    }
 
     @Override
     public ResourceLocation getTexture(GuiPaleoPad gui)

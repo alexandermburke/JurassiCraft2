@@ -7,7 +7,6 @@ import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.gui.GuiPaleoPad;
 import org.jurassicraft.common.entity.data.JCPlayerData;
 import org.jurassicraft.common.entity.data.JCPlayerDataClient;
-import org.jurassicraft.common.message.JCNetworkManager;
 import org.jurassicraft.common.message.MessageRequestFile;
 import org.jurassicraft.common.paleopad.App;
 import org.jurassicraft.common.paleopad.AppFileExplorer;

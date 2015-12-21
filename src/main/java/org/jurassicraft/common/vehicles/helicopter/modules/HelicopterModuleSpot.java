@@ -8,7 +8,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.Vec3;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import org.jurassicraft.JurassiCraft;
-import org.jurassicraft.common.message.JCNetworkManager;
 import org.jurassicraft.common.message.MessageHelicopterModules;
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 

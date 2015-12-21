@@ -1,16 +1,11 @@
 package org.jurassicraft.common.entity.base;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import net.timeless.animationapi.AnimationAPI;
-import net.timeless.animationapi.client.AnimID;
 
 public abstract class EntityDinosaurProvokable extends EntityDinosaur
 {

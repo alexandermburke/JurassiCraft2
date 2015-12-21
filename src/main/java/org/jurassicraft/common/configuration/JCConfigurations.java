@@ -22,7 +22,9 @@ public class JCConfigurations
     private static final void checkInit()
     {
         if (!isInit)
+        {
             throw new IllegalStateException("Configuration not yet initialized.");
+        }
     }
 
     private static Property spawnJurassiCraftMobsNaturally;
@@ -30,7 +32,7 @@ public class JCConfigurations
     public static boolean spawnJurassiCraftMobsNaturally()
     {
         checkInit();
-        return spawnJurassiCraftMobsNaturally.getBoolean(true);
+        return spawnJurassiCraftMobsNaturally.getBoolean(false);
     }
 
     private static Property spawnVanillaMobsNaturally;
@@ -83,7 +85,7 @@ public class JCConfigurations
     public void syncConfig()
     {
         spawnJurassiCraftMobsNaturally = JurassiCraft.config.get(Configuration.CATEGORY_GENERAL, "JurassiCraft Mobs Spawn Naturally", true, "Allow JurassiCraft entities to spawn naturally during world generation");
-        spawnJurassiCraftMobsNaturally.getBoolean(true); // Init
+        spawnJurassiCraftMobsNaturally.getBoolean(false); // Init
         spawnJurassiCraftMobsNaturally.setRequiresMcRestart(true);
         spawnVanillaMobsNaturally = JurassiCraft.config.get(Configuration.CATEGORY_GENERAL, "Vanilla Mobs Spawn Naturally", true, "Allow vanilla mobs to spawn naturally during world generation");
         spawnVanillaMobsNaturally.getBoolean(true); // Init
@@ -103,7 +105,9 @@ public class JCConfigurations
     public void onConfigChange(OnConfigChangedEvent occe)
     {
         if (!occe.modID.equals(JurassiCraft.MODID))
+        {
             return;
+        }
         syncConfig();
     }
 }

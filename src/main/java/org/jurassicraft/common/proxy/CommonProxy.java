@@ -8,7 +8,6 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
-import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.ChestGenHooks;
@@ -108,17 +107,7 @@ public class CommonProxy
 
             Class entityClass = entry.getKey();
 
-            if (entityClass.toString().contains(JurassiCraft.MODID))
-            {
-                if (!JCConfigurations.spawnJurassiCraftMobsNaturally())
-                {
-                    EntityRegistry.removeSpawn(entityClass, EnumCreatureType.AMBIENT, allBiomes);
-                    EntityRegistry.removeSpawn(entityClass, EnumCreatureType.CREATURE, allBiomes);
-                    EntityRegistry.removeSpawn(entityClass, EnumCreatureType.MONSTER, allBiomes);
-                    EntityRegistry.removeSpawn(entityClass, EnumCreatureType.WATER_CREATURE, allBiomes);
-                }
-            }
-            else if (entityClass.toString().contains("minecraft"))
+            if (entityClass.toString().contains("minecraft"))
             {
                 if (!JCConfigurations.spawnVanillaMobsNaturally())
                 {

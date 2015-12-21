@@ -2,7 +2,6 @@ package org.jurassicraft;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.GameRules;
-import net.minecraft.world.WorldType;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;

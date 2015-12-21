@@ -10,9 +10,7 @@ import net.timeless.unilib.client.model.json.TabulaModelHelper;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.client.render.entity.RenderDinosaur;
-import org.jurassicraft.client.render.entity.RenderIndominus;
 import org.jurassicraft.common.dinosaur.Dinosaur;
-import org.jurassicraft.common.dinosaur.DinosaurIndominus;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
 
 @SideOnly(Side.CLIENT)

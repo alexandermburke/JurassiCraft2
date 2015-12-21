@@ -8,7 +8,6 @@ import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.entity.EntityMoganopterus;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
-import org.jurassicraft.common.entity.base.EntityDinosaurFlyingAggressive;
 import org.jurassicraft.common.entity.base.JCEntityRegistry;
 
 @SideOnly(Side.CLIENT)

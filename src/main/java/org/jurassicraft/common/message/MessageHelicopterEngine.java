@@ -17,7 +17,8 @@ public class MessageHelicopterEngine implements IMessage
     private boolean engineState;
 
     public MessageHelicopterEngine()
-    {}
+    {
+    }
 
     public MessageHelicopterEngine(int heliID, boolean engineState)
     {

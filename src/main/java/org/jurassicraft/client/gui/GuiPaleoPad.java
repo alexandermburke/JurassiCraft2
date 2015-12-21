@@ -6,7 +6,6 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.fml.relauncher.Side;
@@ -31,7 +30,8 @@ public class GuiPaleoPad extends GuiScreen
     public GuiApp focus;
 
     public GuiPaleoPad()
-    {}
+    {
+    }
 
     @Override
     public void initGui()

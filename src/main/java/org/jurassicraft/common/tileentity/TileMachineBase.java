@@ -311,10 +311,12 @@ public abstract class TileMachineBase extends TileEntityLockable implements ITic
     }
 
     public void openInventory(EntityPlayer player)
-    {}
+    {
+    }
 
     public void closeInventory(EntityPlayer player)
-    {}
+    {
+    }
 
     /**
      * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.

@@ -17,7 +17,8 @@ public class PacketAnim implements IMessage
     public int entityId;
 
     public PacketAnim()
-    {}
+    {
+    }
 
     public PacketAnim(Entity entity)
     {
