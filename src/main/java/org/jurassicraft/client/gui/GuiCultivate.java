@@ -15,9 +15,6 @@ public class GuiCultivate extends GuiContainer
 {
     private TileCultivate cultivator;
 
-    /**
-     * The player inventory bound to this GUI.
-     */
     private final InventoryPlayer playerInventory;
 
     private static final ResourceLocation gui = new ResourceLocation(JurassiCraft.MODID, "textures/gui/cultivator.png");
@@ -39,11 +36,6 @@ public class GuiCultivate extends GuiContainer
             this.mc.thePlayer.closeScreen();
             this.mc.displayGuiScreen(new GuiCultivateProcess(cultivator));
         }
-    }
-
-    public void onGuiClosed()
-    {
-        super.onGuiClosed();
     }
 
     protected void drawGuiContainerForegroundLayer(int i, int j)

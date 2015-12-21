@@ -68,9 +68,9 @@ public class ItemDinosaurSpawnEgg extends Item
                     dino.setMale(false);
                 }
 
-                if (!player.isSneaking())
+                if (player.isSneaking())
                 {
-                    dino.setAge(dino.getDinosaur().getMaximumAge());
+                    dino.setAge(0);
                 }
 
                 dino.setPosition(x, y, z);

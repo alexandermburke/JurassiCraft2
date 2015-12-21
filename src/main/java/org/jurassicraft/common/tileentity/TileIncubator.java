@@ -86,6 +86,7 @@ public class TileIncubator extends TileMachineBase
                     dino.setGenetics(egg.getTagCompound().getString("Genetics"));
 
                     dino.setMale(temperature[process] > 50);
+                    dino.setAge(0);
 
                     int blockX = pos.getX();
                     int blockY = pos.getY();

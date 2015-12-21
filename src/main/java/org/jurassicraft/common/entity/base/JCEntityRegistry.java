@@ -229,7 +229,14 @@ public class JCEntityRegistry
 
             if (dinosaur.shouldRegister() && !(dinosaur instanceof IHybrid) && JCConfigurations.spawnJurassiCraftMobsNaturally())
             {
-                EntityRegistry.addSpawn(dinosaur.getDinosaurClass(), 5, 1, 5, dinosaur.isMarineAnimal() ? EnumCreatureType.WATER_CREATURE : EnumCreatureType.CREATURE, removeNullEntries(BiomeGenBase.getBiomeGenArray()));
+                if (dinosaur.isMarineAnimal())
+                {
+                    EntityRegistry.addSpawn(dinosaur.getDinosaurClass(), 5, 1, 5,  EnumCreatureType.WATER_CREATURE, new BiomeGenBase[] { BiomeGenBase.ocean, BiomeGenBase.deepOcean, BiomeGenBase.river });
+                }
+                else
+                {
+                    EntityRegistry.addSpawn(dinosaur.getDinosaurClass(), 5, 1, 5, EnumCreatureType.CREATURE, removeNullEntries(BiomeGenBase.getBiomeGenArray()));
+                }
             }
         }
     }

@@ -18,22 +18,6 @@ public class ClientEventHandler
     private static final Minecraft mc = Minecraft.getMinecraft();
 
     @SubscribeEvent
-    public void event(PlaySoundAtEntityEvent event)
-    {
-        // if (event.entity instanceof EntityDinosaur)
-        // {
-        // EntityDinosaur theEntityDinosaur = (EntityDinosaur)event.entity;
-        //
-        // if (event.name.contains("roaring"))
-        // {
-        // JurassiCraft.instance.getNanoTimeInterval();
-        // JurassiCraft.instance.getLogger().info("Playing sound "+event.name+" at entity "+event.entity.getEntityId());
-        // theEntityDinosaur.setAnimID(AnimID.ROARING);
-        // }
-        // }
-    }
-
-    @SubscribeEvent
     public void tick(TickEvent.ClientTickEvent event)
     {
         JurassiCraft.timerTicks++;
@@ -64,7 +48,7 @@ public class ClientEventHandler
     }
 
     @SubscribeEvent
-    public void postRenderer(RenderLivingEvent.Post event)
+    public void postRender(RenderLivingEvent.Post event)
     {
         if (event.entity instanceof EntityDinosaur && event.renderer instanceof IDinosaurRenderer && !(event.renderer instanceof RenderIndominus))
         {

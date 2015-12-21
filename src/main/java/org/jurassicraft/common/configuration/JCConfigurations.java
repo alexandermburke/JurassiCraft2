@@ -84,7 +84,7 @@ public class JCConfigurations
      */
     public void syncConfig()
     {
-        spawnJurassiCraftMobsNaturally = JurassiCraft.config.get(Configuration.CATEGORY_GENERAL, "JurassiCraft Mobs Spawn Naturally", true, "Allow JurassiCraft entities to spawn naturally during world generation");
+        spawnJurassiCraftMobsNaturally = JurassiCraft.config.get(Configuration.CATEGORY_GENERAL, "JurassiCraft Mobs Spawn Naturally", false, "Allow JurassiCraft entities to spawn naturally during world generation");
         spawnJurassiCraftMobsNaturally.getBoolean(false); // Init
         spawnJurassiCraftMobsNaturally.setRequiresMcRestart(true);
         spawnVanillaMobsNaturally = JurassiCraft.config.get(Configuration.CATEGORY_GENERAL, "Vanilla Mobs Spawn Naturally", true, "Allow vanilla mobs to spawn naturally during world generation");

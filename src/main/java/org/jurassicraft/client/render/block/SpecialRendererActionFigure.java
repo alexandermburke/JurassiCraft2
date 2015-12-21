@@ -35,7 +35,7 @@ public class SpecialRendererActionFigure extends TileEntitySpecialRenderer
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             GlStateManager.translate(x + 0.5, y, z + 0.5);
 
-            EnumFacing value = (EnumFacing) blockState.getValue(BlockOriented.FACING);
+            EnumFacing value = blockState.getValue(BlockOriented.FACING);
 
             if (value == EnumFacing.EAST)
             {

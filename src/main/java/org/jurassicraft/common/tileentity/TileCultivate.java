@@ -467,6 +467,8 @@ public class TileCultivate extends TileEntityLockable implements ITickable, ISid
                 int blockY = pos.getY();
                 int blockZ = pos.getZ();
 
+                dino.setAge(0);
+
                 List<EntityCageSmall> cages = worldObj.getEntitiesWithinAABB(EntityCageSmall.class, AxisAlignedBB.fromBounds(blockX - 2, blockY, blockZ - 2, blockX + 2, blockY + 1, blockZ + 2));
 
                 EntityCageSmall cage = null;
