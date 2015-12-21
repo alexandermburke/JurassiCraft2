@@ -19,7 +19,7 @@ archivesBaseName = "JurassiCraft"
 sourceCompatibility = targetCompatibility = "1.7"
 
 minecraft {
-    version = "1.8.8-11.15.0.1612-1.8.8"
+    version = "1.8.8-11.15.0.1639-1.8.8"
     runDir = "minecraft"
     replace '${version}', project.version
 	replace '${mcversion}', project.minecraft.version
