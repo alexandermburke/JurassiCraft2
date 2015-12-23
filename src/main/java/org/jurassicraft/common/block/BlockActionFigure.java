@@ -1,6 +1,7 @@
 package org.jurassicraft.common.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -63,7 +64,7 @@ public class BlockActionFigure extends BlockOriented
 
     public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
     {
-        return worldIn.getBlockState(pos.down()).getBlock().isFullCube();
+        return worldIn.getBlockState(pos.down()).getBlock().isOpaqueCube();
     }
 
     @Override

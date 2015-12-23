@@ -548,7 +548,13 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         growthSpeedOffset = nbt.getInteger("GrowthSpeedOffset");
         energy = nbt.getInteger("Energy");
         water = nbt.getInteger("Water");
-        owner = UUID.fromString(nbt.getString("OwnerUUID"));
+
+        String ownerUUID = nbt.getString("OwnerUUID");
+
+        if (ownerUUID != null && ownerUUID.length() > 0)
+        {
+            owner = UUID.fromString(ownerUUID);
+        }
 
         inventory.readFromNBT(nbt);
 
@@ -559,7 +565,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     @Override
     public void writeSpawnData(ByteBuf buffer)
     {
-        System.out.println("Writing spawn data");
         buffer.writeInt(dinosaurAge);
         buffer.writeBoolean(isCarcass);
         buffer.writeInt(geneticsQuality);
