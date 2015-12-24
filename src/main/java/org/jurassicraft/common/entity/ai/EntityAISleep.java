@@ -60,14 +60,6 @@ public class EntityAISleep extends EntityAIBase
                         }
                     }
                 }
-
-                int tries = 0;
-
-                while (tries < 20)
-                {
-
-                    tries++;
-                }
             }
 
             dinosaur.setSleepLocation(dinosaur.getPosition()); //Sleep right where you are

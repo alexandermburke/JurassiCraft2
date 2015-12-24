@@ -99,6 +99,10 @@ public class EntityAIEatFoodItem extends EntityAIBase
 
                     return true;
                 }
+                else if (dinosaur.getOwner() != null)
+                {
+                    dinosaur.decrementOwnerRelationship(1);
+                }
             }
         }
 
