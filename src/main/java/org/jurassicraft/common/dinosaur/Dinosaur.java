@@ -4,7 +4,10 @@ import net.minecraft.util.ResourceLocation;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.api.IHybrid;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+import org.jurassicraft.common.entity.base.EnumDiet;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
+import org.jurassicraft.common.entity.base.EnumSleepingSchedule;
+import org.jurassicraft.common.food.EnumFoodType;
 import org.jurassicraft.common.period.EnumTimePeriod;
 
 import java.util.ArrayList;
@@ -205,4 +208,8 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
     {
         return false;
     }
+
+    public abstract EnumDiet getDiet();
+
+    public abstract EnumSleepingSchedule getSleepingSchedule();
 }

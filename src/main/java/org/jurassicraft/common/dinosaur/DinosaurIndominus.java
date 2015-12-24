@@ -4,7 +4,10 @@ import net.minecraft.util.ResourceLocation;
 import org.jurassicraft.common.api.IHybrid;
 import org.jurassicraft.common.entity.EntityIndominus;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+import org.jurassicraft.common.entity.base.EnumDiet;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
+import org.jurassicraft.common.entity.base.EnumSleepingSchedule;
+import org.jurassicraft.common.food.EnumFoodType;
 import org.jurassicraft.common.period.EnumTimePeriod;
 
 public class DinosaurIndominus extends Dinosaur implements IHybrid
@@ -195,5 +198,17 @@ public class DinosaurIndominus extends Dinosaur implements IHybrid
     public int getStorage()
     {
         return 54;
+    }
+
+    @Override
+    public EnumDiet getDiet()
+    {
+        return EnumDiet.CARNIVORE;
+    }
+
+    @Override
+    public EnumSleepingSchedule getSleepingSchedule()
+    {
+        return EnumSleepingSchedule.DIURNAL;
     }
 }

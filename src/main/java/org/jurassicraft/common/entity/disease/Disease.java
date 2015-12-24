@@ -1,4 +1,4 @@
-package org.jurassicraft.common.disease;
+package org.jurassicraft.common.entity.disease;
 
 public abstract class Disease
 {

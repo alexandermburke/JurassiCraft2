@@ -16,6 +16,7 @@ import org.jurassicraft.common.block.JCBlockRegistry;
 import org.jurassicraft.common.configuration.JCConfigurations;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
 import org.jurassicraft.common.entity.base.JCEntityRegistry;
+import org.jurassicraft.common.food.FoodHelper;
 import org.jurassicraft.common.item.JCItemRegistry;
 import org.jurassicraft.common.message.JCNetworkManager;
 import org.jurassicraft.common.paleopad.AppRegistry;
@@ -70,6 +71,8 @@ public class JurassiCraft
         timerNanoseconds = System.nanoTime();
         proxy.preInit(event);
         logger.debug("Finished pre-init for JurassiCraft!");
+
+        FoodHelper.init();
     }
 
     @Mod.EventHandler

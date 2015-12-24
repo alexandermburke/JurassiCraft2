@@ -12,16 +12,12 @@ import org.jurassicraft.common.entity.ai.metabolism.EntityAIFindPlant;
 
 public abstract class EntityDinosaurSwimmingHerbivore extends EntityDinosaur
 {
-    private final EntityAIFindPlant entityAIFindPlant = new EntityAIFindPlant(this);
-
     public EntityDinosaurSwimmingHerbivore(World worldIn)
     {
         super(worldIn);
         this.moveHelper = new EntityDinosaurSwimmingHerbivore.SwimmingMoveHelper();
         this.tasks.addTask(1, new EntityAIMoveUnderwater(this));
         this.navigator = new PathNavigateSwimmer(this, worldIn);
-
-        tasks.addTask(2, entityAIFindPlant);
     }
 
     protected PathNavigate func_175447_b(World worldIn)

@@ -20,7 +20,7 @@ public class EntityAIMate extends EntityAIBase
     {
         // int minEnergy = 12000;
         //
-        // if (dinosaur.getEnergy() > minEnergy)
+        // if (dinosaur.getFood() > minEnergy)
         // {
         // World world = dinosaur.worldObj;
         //
@@ -32,7 +32,7 @@ public class EntityAIMate extends EntityAIBase
         //
         // for (EntityDinosaur entity : entities)
         // {
-        // if (entity.isMale() != dinosaur.isMale() && entity.getEnergy() > minEnergy)
+        // if (entity.isMale() != dinosaur.isMale() && entity.getFood() > minEnergy)
         // {
         // dinosaur.getNavigator().tryMoveToEntityLiving(entity, 1.0D);
         // mate = entity;
@@ -52,7 +52,7 @@ public class EntityAIMate extends EntityAIBase
         {
             AnimationAPI.sendAnimPacket(dinosaur, AnimID.MATING);
 
-            dinosaur.setEnergy(dinosaur.getEnergy() - 100);
+            dinosaur.getMetabolism().decreaseFood(1000);
         }
     }
 

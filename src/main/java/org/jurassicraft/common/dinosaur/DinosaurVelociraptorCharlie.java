@@ -3,6 +3,9 @@ package org.jurassicraft.common.dinosaur;
 import org.jurassicraft.common.api.IHybrid;
 import org.jurassicraft.common.entity.EntityVelociraptorCharlie;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+import org.jurassicraft.common.entity.base.EnumDiet;
+import org.jurassicraft.common.entity.base.EnumSleepingSchedule;
+import org.jurassicraft.common.food.EnumFoodType;
 import org.jurassicraft.common.period.EnumTimePeriod;
 
 public class DinosaurVelociraptorCharlie extends Dinosaur implements IHybrid
@@ -160,5 +163,17 @@ public class DinosaurVelociraptorCharlie extends Dinosaur implements IHybrid
     public int getStorage()
     {
         return 27;
+    }
+
+    @Override
+    public EnumDiet getDiet()
+    {
+        return EnumDiet.CARNIVORE;
+    }
+
+    @Override
+    public EnumSleepingSchedule getSleepingSchedule()
+    {
+        return EnumSleepingSchedule.DIURNAL;
     }
 }

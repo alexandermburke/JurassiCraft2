@@ -2,6 +2,9 @@ package org.jurassicraft.common.dinosaur;
 
 import org.jurassicraft.common.entity.EntityAchillobator;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+import org.jurassicraft.common.entity.base.EnumDiet;
+import org.jurassicraft.common.entity.base.EnumSleepingSchedule;
+import org.jurassicraft.common.food.EnumFoodType;
 import org.jurassicraft.common.period.EnumTimePeriod;
 
 public class DinosaurAchillobator extends Dinosaur
@@ -156,5 +159,17 @@ public class DinosaurAchillobator extends Dinosaur
     public boolean useAllGrowthStages()
     {
         return true;
+    }
+
+    @Override
+    public EnumDiet getDiet()
+    {
+        return EnumDiet.CARNIVORE;
+    }
+
+    @Override
+    public EnumSleepingSchedule getSleepingSchedule()
+    {
+        return EnumSleepingSchedule.DIURNAL;
     }
 }

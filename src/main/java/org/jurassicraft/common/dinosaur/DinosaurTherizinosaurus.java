@@ -2,6 +2,9 @@ package org.jurassicraft.common.dinosaur;
 
 import org.jurassicraft.common.entity.EntityTherizinosaurus;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+import org.jurassicraft.common.entity.base.EnumDiet;
+import org.jurassicraft.common.entity.base.EnumSleepingSchedule;
+import org.jurassicraft.common.food.EnumFoodType;
 import org.jurassicraft.common.period.EnumTimePeriod;
 
 public class DinosaurTherizinosaurus extends Dinosaur
@@ -148,5 +151,17 @@ public class DinosaurTherizinosaurus extends Dinosaur
     public int getStorage()
     {
         return 36;
+    }
+
+    @Override
+    public EnumDiet getDiet()
+    {
+        return EnumDiet.HERBIVORE;
+    }
+
+    @Override
+    public EnumSleepingSchedule getSleepingSchedule()
+    {
+        return EnumSleepingSchedule.NOCTURNAL;
     }
 }

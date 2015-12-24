@@ -2,7 +2,6 @@ package org.jurassicraft.common.entity.ai.metabolism;
 
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
@@ -10,17 +9,18 @@ import net.minecraft.world.World;
 import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.client.AnimID;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
-import org.jurassicraft.common.item.JCItemRegistry;
+import org.jurassicraft.common.entity.base.MetabolismContainer;
+import org.jurassicraft.common.food.FoodHelper;
 
 import java.util.List;
 
-public class EntityAIEatMeat extends EntityAIBase
+public class EntityAIEatFoodItem extends EntityAIBase
 {
     protected EntityDinosaur dinosaur;
 
     protected EntityItem item;
 
-    public EntityAIEatMeat(EntityDinosaur dinosaur)
+    public EntityAIEatFoodItem(EntityDinosaur dinosaur)
     {
         this.dinosaur = dinosaur;
     }
@@ -28,11 +28,29 @@ public class EntityAIEatMeat extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        double energy = dinosaur.getEnergy();
+        MetabolismContainer metabolism = dinosaur.getMetabolism();
 
         if (!dinosaur.isDead && !dinosaur.isCarcass() && dinosaur.ticksExisted % 4 == 0 && dinosaur.worldObj.getGameRules().getGameRuleBooleanValue("dinoMetabolism"))
         {
-            if (energy < 24000 + (dinosaur.getRNG().nextInt(50) - 25))
+            double food = metabolism.getFood();
+
+            boolean execute = false;
+
+            int maxFood = metabolism.getMaxFood();
+
+            if (food / maxFood * 100 < 25)
+            {
+                execute = true;
+            }
+            else
+            {
+                if (food < maxFood - (maxFood / 8) && dinosaur.getDinosaur().getSleepingSchedule().isWithinEatingTime(dinosaur.getDinosaurTime(), dinosaur.getRNG()))
+                {
+                    execute = true;
+                }
+            }
+
+            if (execute)
             {
                 double posX = dinosaur.posX;
                 double posY = dinosaur.posY;
@@ -55,7 +73,7 @@ public class EntityAIEatMeat extends EntityAIBase
                     {
                         Item item = stack.getItem();
 
-                        if (item == JCItemRegistry.dino_meat || item == JCItemRegistry.dino_steak || item == Items.porkchop || item == Items.cooked_porkchop || item == Items.beef || item == Items.cooked_beef || item == Items.chicken || item == Items.cooked_chicken || item == Items.fish || item == Items.cooked_fish || item == Items.rabbit || item == Items.cooked_rabbit || item == Items.mutton || item == Items.cooked_mutton)
+                        if (FoodHelper.canDietEat(dinosaur.getDinosaur().getDiet(), item))
                         {
                             double diffX = posX - e.posX;
                             double diffY = posY - e.posY;
@@ -106,7 +124,7 @@ public class EntityAIEatMeat extends EntityAIBase
                 }
             }
 
-            dinosaur.setEnergy(dinosaur.getEnergy() + 1400);
+            dinosaur.getMetabolism().increaseFood(2000);
             dinosaur.heal(4.0F);
         }
     }

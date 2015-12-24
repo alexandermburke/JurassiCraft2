@@ -8,6 +8,7 @@ import net.minecraft.world.World;
 import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.client.AnimID;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+import org.jurassicraft.common.entity.base.MetabolismContainer;
 
 public class EntityAIFindPlant extends EntityAIBase
 {
@@ -23,11 +24,29 @@ public class EntityAIFindPlant extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        double energy = dinosaur.getEnergy();
+        MetabolismContainer metabolism = dinosaur.getMetabolism();
 
         if (!dinosaur.isDead && !dinosaur.isCarcass() && dinosaur.ticksExisted % 4 == 0 && dinosaur.worldObj.getGameRules().getGameRuleBooleanValue("dinoMetabolism"))
         {
-            if (energy < 24000 + (dinosaur.getRNG().nextInt(50) - 25))
+            double food = metabolism.getFood();
+
+            boolean execute = false;
+
+            int maxFood = metabolism.getMaxFood();
+
+            if (food / maxFood * 100 < 25)
+            {
+                execute = true;
+            }
+            else
+            {
+                if (food < maxFood - (maxFood / 8) && dinosaur.getDinosaur().getSleepingSchedule().isWithinEatingTime(dinosaur.getDinosaurTime(), dinosaur.getRNG()))
+                {
+                    execute = true;
+                }
+            }
+
+            if (execute)
             {
                 int posX = (int) dinosaur.posX;
                 int posY = (int) dinosaur.posY;
@@ -99,7 +118,8 @@ public class EntityAIFindPlant extends EntityAIBase
                 dinosaur.worldObj.destroyBlock(new BlockPos(x, y, z), false);
             }
 
-            dinosaur.setEnergy(dinosaur.getEnergy() + 1000);
+            dinosaur.getMetabolism().increaseFood(2000);
+            dinosaur.heal(4.0F);
         }
     }
 

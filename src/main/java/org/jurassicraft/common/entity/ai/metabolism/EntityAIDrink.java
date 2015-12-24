@@ -8,6 +8,7 @@ import net.minecraft.world.World;
 import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.client.AnimID;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
+import org.jurassicraft.common.entity.base.MetabolismContainer;
 
 public class EntityAIDrink extends EntityAIBase
 {
@@ -23,10 +24,29 @@ public class EntityAIDrink extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        if (!dinosaur.isDead && !dinosaur.isCarcass() && dinosaur.ticksExisted % 8 == 0 && dinosaur.worldObj.getGameRules().getGameRuleBooleanValue("dinoMetabolism"))
+        MetabolismContainer metabolism = dinosaur.getMetabolism();
+
+        if (!dinosaur.isDead && !dinosaur.isCarcass() && dinosaur.ticksExisted % 4 == 0 && dinosaur.worldObj.getGameRules().getGameRuleBooleanValue("dinoMetabolism"))
         {
-            // check if thirsty
-            if (dinosaur.getWater() < EntityDinosaur.MAX_WATER / 10)
+            double water = metabolism.getWater();
+
+            boolean execute = false;
+
+            int maxWater = metabolism.getMaxWater();
+
+            if (water / maxWater * 100 < 25)
+            {
+                execute = true;
+            }
+            else
+            {
+                if (water < maxWater - (maxWater / 8) && dinosaur.getDinosaur().getSleepingSchedule().isWithinEatingTime(dinosaur.getDinosaurTime(), dinosaur.getRNG()))
+                {
+                    execute = true;
+                }
+            }
+
+            if (execute)
             {
                 int posX = (int) dinosaur.posX;
                 int posY = (int) dinosaur.posY;
@@ -51,20 +71,29 @@ public class EntityAIDrink extends EntityAIBase
 
                             if (block == Blocks.water || block == Blocks.flowing_water)
                             {
-                                int diffX = posX - x;
-                                int diffY = posY - y;
-                                int diffZ = posZ - z;
-
-                                int dist = (diffX * diffX) + (diffY * diffY) + (diffZ * diffZ);
-
-                                if (dist < closestDist)
+                                for (int landX = x - 1; landX < x + 1; landX++)
                                 {
-                                    closestDist = dist;
-                                    closestX = x;
-                                    closestY = y;
-                                    closestZ = z;
+                                    for (int landZ = z - 1; landZ < z + 1; landZ++)
+                                    {
+                                        if (world.getBlockState(new BlockPos(landX, y, landZ)).getBlock().isOpaqueCube())
+                                        {
+                                            int diffX = posX - landX;
+                                            int diffY = posY - y;
+                                            int diffZ = posZ - landZ;
 
-                                    found = true;
+                                            int dist = (diffX * diffX) + (diffY * diffY) + (diffZ * diffZ);
+
+                                            if (dist < closestDist)
+                                            {
+                                                closestDist = dist;
+                                                closestX = landX;
+                                                closestY = y;
+                                                closestZ = landZ;
+
+                                                found = true;
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -96,7 +125,8 @@ public class EntityAIDrink extends EntityAIBase
                 AnimationAPI.sendAnimPacket(dinosaur, AnimID.DRINKING);
             }
 
-            dinosaur.setWater(24000);
+            MetabolismContainer metabolism = dinosaur.getMetabolism();
+            metabolism.setWater(metabolism.getMaxWater());
         }
     }
 

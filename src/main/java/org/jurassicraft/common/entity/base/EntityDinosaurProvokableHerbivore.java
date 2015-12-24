@@ -8,7 +8,6 @@ public abstract class EntityDinosaurProvokableHerbivore extends EntityDinosaurPr
     public EntityDinosaurProvokableHerbivore(World world)
     {
         super(world);
-        tasks.addTask(1, new EntityAIFindPlant(this));
     }
 
     /**

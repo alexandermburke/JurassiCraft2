@@ -7,14 +7,17 @@ import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAITasks;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
@@ -33,22 +36,25 @@ import org.jurassicraft.common.damagesource.EntityDinosaurDamageSource;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.ai.EntityAIHerd;
 import org.jurassicraft.common.entity.ai.EntityAIMate;
+import org.jurassicraft.common.entity.ai.EntityAISleep;
 import org.jurassicraft.common.entity.ai.animations.AnimationAICall;
 import org.jurassicraft.common.entity.ai.animations.AnimationAIHeadCock;
 import org.jurassicraft.common.entity.ai.animations.AnimationAILook;
 import org.jurassicraft.common.entity.ai.metabolism.EntityAIDrink;
+import org.jurassicraft.common.entity.ai.metabolism.EntityAIEatFoodItem;
+import org.jurassicraft.common.entity.ai.metabolism.EntityAIFindPlant;
+import org.jurassicraft.common.food.EnumFoodType;
 import org.jurassicraft.common.genetics.GeneticsContainer;
 import org.jurassicraft.common.genetics.GeneticsHelper;
 import org.jurassicraft.common.item.ItemBluePrint;
 import org.jurassicraft.common.item.JCItemRegistry;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.UUID;
 
 public abstract class EntityDinosaur extends EntityCreature implements IEntityAdditionalSpawnData, IAnimatedEntity
 {
-    public static final int MAX_ENERGY = 24000;
-    public static final int MAX_WATER = 24000;
-
     protected Dinosaur dinosaur;
 
     protected int dinosaurAge;
@@ -66,9 +72,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     private AnimID animID;
     private int animTick;
 
-    private int energy;
-    private int water;
-
     private boolean hasTracker;
 
     public ChainBuffer tailBuffer;
@@ -81,16 +84,22 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     private static final int WATCHER_AGE = 26;
     private static final int WATCHER_GROWTH_OFFSET = 27;
     private static final int WATCHER_HAS_TRACKER = 28;
+    private static final int WATCHER_IS_SLEEPING = 29;
+
+    private MetabolismContainer metabolism;
+
+    private boolean isSleeping;
+    private BlockPos sleepLocation;
+    private boolean goBackToSleep;
 
     public EntityDinosaur(World world)
     {
         super(world);
 
+        metabolism = new MetabolismContainer(this);
+
         inventory = new InventoryDinosaur(this);
         tailBuffer = new ChainBuffer(getTailBoxCount());
-
-        energy = MAX_ENERGY;
-        water = MAX_WATER;
 
         if (!dinosaur.isMarineAnimal())
         {
@@ -99,12 +108,20 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
         tasks.addTask(0, new EntityAIWander(this, 0.8));
 
-        tasks.addTask(1, new EntityAIDrink(this));
-        tasks.addTask(2, new EntityAIMate(this));
+        tasks.addTask(2, new EntityAISleep(this));
 
-        tasks.addTask(2, new AnimationAICall(this));
-        tasks.addTask(2, new AnimationAILook(this));
-        tasks.addTask(2, new AnimationAIHeadCock(this));
+        tasks.addTask(2, new EntityAIDrink(this));
+        tasks.addTask(2, new EntityAIMate(this));
+        tasks.addTask(2, new EntityAIEatFoodItem(this));
+
+        if (dinosaur.getDiet().doesEatPlants())
+        {
+            tasks.addTask(2, new EntityAIFindPlant(this));
+        }
+
+        tasks.addTask(3, new AnimationAICall(this));
+        tasks.addTask(3, new AnimationAILook(this));
+        tasks.addTask(3, new AnimationAIHeadCock(this));
 
         tasks.addTask(3, new EntityAIHerd(this));
 
@@ -116,10 +133,48 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         animTick = 0;
         setAnimID(AnimID.IDLE);
 
+        goBackToSleep = true;
+
         ignoreFrustumCheck = true; // stops dino disappearing when hitbox goes off screen
 
         updateCreatureData();
         adjustHitbox();
+    }
+
+    public boolean shouldSleep()
+    {
+        return getDinosaurTime() > getDinosaur().getSleepingSchedule().getAwakeTime();
+    }
+
+    public void setSleeping(boolean sleeping)
+    {
+        if (this.isSleeping != sleeping)
+        {
+            if (sleeping)
+            {
+                AnimationAPI.sendAnimPacket(this, AnimID.SLEEPING);
+            }
+            else
+            {
+                AnimationAPI.sendAnimPacket(this, AnimID.IDLE);
+            }
+        }
+
+        this.isSleeping = sleeping;
+    }
+
+    public int getDinosaurTime()
+    {
+        EnumSleepingSchedule sleepingSchedule = getDinosaur().getSleepingSchedule();
+
+        long time = (worldObj.getWorldTime() % 24000) - sleepingSchedule.getWakeUpTime();
+
+        if (time < 0)
+        {
+            time += 24000;
+        }
+
+        return (int) time;
     }
 
     public abstract int getTailBoxCount();
@@ -127,6 +182,11 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     public boolean hasTracker()
     {
         return hasTracker;
+    }
+
+    public void setHasTracker(boolean hasTracker)
+    {
+        this.hasTracker = hasTracker;
     }
 
     public UUID getOwner()
@@ -139,7 +199,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         this.owner = player.getUniqueID();
     }
 
-    // need to override to add animations
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
@@ -182,6 +241,42 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     }
 
     @Override
+    public boolean attackEntityFrom(DamageSource damageSource, float amount)
+    {
+        if (getAnimID() == AnimID.IDLE)
+        {
+            AnimationAPI.sendAnimPacket(this, AnimID.INJURED);
+        }
+
+        if (isSleeping)
+        {
+            isSleeping = false;
+            dontGoBackToSleep();
+        }
+
+        return super.attackEntityFrom(damageSource, amount);
+    }
+
+    // Need to override because vanilla knockback makes big dinos get knocked into air
+    @Override
+    public void knockBack(Entity entity, float p_70653_2_, double motionX, double motionZ)
+    {
+        if (rand.nextDouble() >= getEntityAttribute(SharedMonsterAttributes.knockbackResistance).getAttributeValue())
+        {
+            isAirBorne = true;
+            float distance = MathHelper.sqrt_double(motionX * motionX + motionZ * motionZ);
+            float multiplier = 0.4F;
+            this.motionX /= 2.0D;
+            this.motionZ /= 2.0D;
+            this.motionX -= motionX / distance * multiplier;
+            this.motionZ -= motionZ / distance * multiplier;
+
+            // TODO
+            // We should make knockback bigger and into air if dino is much smaller than attacking dino
+        }
+    }
+
+    @Override
     @SideOnly(Side.CLIENT)
     public void performHurtAnimation()
     {
@@ -195,75 +290,16 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         super.playLivingSound();
     }
 
-    public int getWater()
-    {
-        return water;
-    }
-
-    public int getEnergy()
-    {
-        return energy;
-    }
-
-    public void decreaseEnergy()
-    {
-        energy--;
-
-        if (energy <= 0)
-        {
-            attackEntityFrom(DamageSource.outOfWorld, 1.0F);
-        }
-    }
-
-    public void decreaseWater()
-    {
-        water--;
-
-        if (water <= 0)
-        {
-            attackEntityFrom(DamageSource.outOfWorld, 1.0F);
-        }
-    }
-
-    @Override
-    public boolean attackEntityFrom(DamageSource damageSource, float amount)
-    {
-        if (getAnimID() == AnimID.IDLE)
-        {
-            AnimationAPI.sendAnimPacket(this, AnimID.INJURED);
-        }
-
-        return super.attackEntityFrom(damageSource, amount);
-    }
-
-    public void setWater(int water)
-    {
-        this.water = Math.min(water, 48000);
-    }
-
-    public void setEnergy(int energy)
-    {
-        this.energy = Math.min(energy, 48000);
-    }
-
     @Override
     public void entityInit()
     {
         super.entityInit();
+
         dataWatcher.addObject(WATCHER_IS_CARCASS, 0);
         dataWatcher.addObject(WATCHER_AGE, 0);
         dataWatcher.addObject(WATCHER_GROWTH_OFFSET, 0);
         dataWatcher.addObject(WATCHER_HAS_TRACKER, 0);
-    }
-
-    /**
-     * Checks if the entity is in range to render by using the past in distance and comparing it to its average edge length * 64 * renderDistanceWeight Args: distance
-     */
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean isInRangeToRenderDist(double distance)
-    {
-        return true;
+        dataWatcher.addObject(WATCHER_IS_SLEEPING, 0);
     }
 
     @Override
@@ -302,32 +338,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         setSize((float) transitionFromAge(dinosaur.getBabySizeX(), dinosaur.getAdultSizeX()), (float) transitionFromAge(dinosaur.getBabySizeY(), dinosaur.getAdultSizeY()));
     }
 
-    // Need to override because vanilla knockback makes big dinos get knocked into air
-    @Override
-    public void knockBack(Entity entity, float p_70653_2_, double motionX, double motionZ)
-    {
-        if (rand.nextDouble() >= getEntityAttribute(SharedMonsterAttributes.knockbackResistance).getAttributeValue())
-        {
-            isAirBorne = true;
-            float distance = MathHelper.sqrt_double(motionX * motionX + motionZ * motionZ);
-            float multiplier = 0.4F;
-            this.motionX /= 2.0D;
-            this.motionZ /= 2.0D;
-            this.motionX -= motionX / distance * multiplier;
-            this.motionZ -= motionZ / distance * multiplier;
-
-            // TODO
-            // We should make knockback bigger and into air if dino is much smaller than attacking dino
-        }
-    }
-
-    public void applySettingsForActionFigure()
-    {
-        this.setFullyGrown();
-        this.setMale(true);
-        this.genetics = new GeneticsContainer(JCEntityRegistry.getDinosaurId(dinosaur), 0, 0, 0, 255, 255, 255);
-}
-
     public double transitionFromAge(double baby, double adult)
     {
         int maxAge = dinosaur.getMaximumAge();
@@ -338,6 +348,23 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         }
 
         return (adult - baby) / maxAge * dinosaurAge + baby;
+    }
+
+    /**
+     * Checks if the entity is in range to render by using the past in distance and comparing it to its average edge length * 64 * renderDistanceWeight Args: distance
+     */
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean isInRangeToRenderDist(double distance)
+    {
+        return true;
+    }
+
+    public void applySettingsForActionFigure()
+    {
+        this.setFullyGrown();
+        this.setMale(true);
+        this.genetics = new GeneticsContainer(JCEntityRegistry.getDinosaurId(dinosaur), 0, 0, 0, 255, 255, 255);
     }
 
     @Override
@@ -384,7 +411,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
             updateGrowth();
 
-            updateMetabolism();
+            metabolism.update();
         }
     }
 
@@ -395,7 +422,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
             if (worldObj.getGameRules().getGameRuleBooleanValue("dinoGrowth"))
             {
                 dinosaurAge += Math.min(growthSpeedOffset, 960) + 1;
-                energy -= (Math.min(growthSpeedOffset, 960) + 1) * 0.1;
+                metabolism.decreaseFood((int) ((Math.min(growthSpeedOffset, 960) + 1) * 0.1));
             }
 
             if (dinosaurAge % 20 == 0)
@@ -415,32 +442,12 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         }
     }
 
-    public void updateMetabolism()
-    {
-        if (!isDead && !isCarcass() && worldObj.getGameRules().getGameRuleBooleanValue("dinoMetabolism"))
-        {
-            decreaseEnergy();
-            decreaseWater();
-
-            if (this.isWet())
-            {
-                water = MAX_WATER;
-            }
-        }
-    }
-
     @Override
     public void onUpdate()
     {
         super.onUpdate();
 
         this.tailBuffer.calculateChainSwingBuffer(68.0F, 5, 4.0F, this);
-
-        if (this.isCarcass)
-        {
-            this.tasks.taskEntries.clear();
-            this.targetTasks.taskEntries.clear();
-        }
 
         if (!worldObj.isRemote)
         {
@@ -452,6 +459,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
             dataWatcher.updateObject(WATCHER_GROWTH_OFFSET, growthSpeedOffset);
             dataWatcher.updateObject(WATCHER_HAS_TRACKER, hasTracker ? 1 : 0);
+            dataWatcher.updateObject(WATCHER_IS_SLEEPING, isSleeping ? 1 : 0);
         }
         else
         {
@@ -466,6 +474,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
             growthSpeedOffset = dataWatcher.getWatchableObjectInt(WATCHER_GROWTH_OFFSET);
             hasTracker = dataWatcher.getWatchableObjectInt(WATCHER_HAS_TRACKER) == 1;
+            isSleeping = dataWatcher.getWatchableObjectInt(WATCHER_IS_SLEEPING) == 1;
         }
 
         if (!worldObj.isRemote)
@@ -485,12 +494,35 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
             }
         }
 
+        if (isSleeping)
+        {
+            if (getAnimID() != AnimID.SLEEPING)
+            {
+                AnimationAPI.sendAnimPacket(this, AnimID.SLEEPING);
+            }
+
+            if (!shouldSleep() && !worldObj.isRemote)
+            {
+                isSleeping = false;
+            }
+        }
+
+        if (!shouldSleep() && !isSleeping)
+        {
+            goBackToSleep = true;
+        }
+
         if (getAnimID() != AnimID.IDLE)
         {
             animTick++;
         }
     }
 
+    @Override
+    public boolean isMovementBlocked()
+    {
+        return isCarcass() || isSleeping();
+    }
 
     public int getDaysExisted()
     {
@@ -511,84 +543,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     public boolean canDespawn()
     {
         return false;
-    }
-
-    @Override
-    public void writeToNBT(NBTTagCompound nbt)
-    {
-        super.writeToNBT(nbt);
-
-        nbt.setDouble("DinosaurAge", dinosaurAge);
-        nbt.setBoolean("IsCarcass", isCarcass);
-        nbt.setInteger("DNAQuality", geneticsQuality);
-        nbt.setString("Genetics", genetics.toString());
-        nbt.setBoolean("IsMale", isMale);
-        nbt.setInteger("GrowthSpeedOffset", growthSpeedOffset);
-        nbt.setInteger("Energy", energy);
-        nbt.setInteger("Water", water);
-
-        if (owner != null)
-        {
-            nbt.setString("OwnerUUID", owner.toString());
-        }
-
-        inventory.writeToNBT(nbt);
-    }
-
-    @Override
-    public void readFromNBT(NBTTagCompound nbt)
-    {
-        super.readFromNBT(nbt);
-        System.out.println("Reading from NBT");
-        dinosaurAge = nbt.getInteger("DinosaurAge");
-        isCarcass = nbt.getBoolean("IsCarcass");
-        geneticsQuality = nbt.getInteger("DNAQuality");
-        genetics = new GeneticsContainer(nbt.getString("Genetics"));
-        isMale = nbt.getBoolean("IsMale");
-        growthSpeedOffset = nbt.getInteger("GrowthSpeedOffset");
-        energy = nbt.getInteger("Energy");
-        water = nbt.getInteger("Water");
-
-        String ownerUUID = nbt.getString("OwnerUUID");
-
-        if (ownerUUID != null && ownerUUID.length() > 0)
-        {
-            owner = UUID.fromString(ownerUUID);
-        }
-
-        inventory.readFromNBT(nbt);
-
-        updateCreatureData();
-        adjustHitbox();
-    }
-
-    @Override
-    public void writeSpawnData(ByteBuf buffer)
-    {
-        buffer.writeInt(dinosaurAge);
-        buffer.writeBoolean(isCarcass);
-        buffer.writeInt(geneticsQuality);
-        buffer.writeBoolean(isMale);
-        buffer.writeInt(growthSpeedOffset);
-        buffer.writeInt(energy);
-        buffer.writeInt(water);
-        ByteBufUtils.writeUTF8String(buffer, genetics.toString()); //TODO do we need to add the things that are on the datawatcher?
-    }
-
-    @Override
-    public void readSpawnData(ByteBuf additionalData)
-    {
-        dinosaurAge = additionalData.readInt();
-        isCarcass = additionalData.readBoolean();
-        geneticsQuality = additionalData.readInt();
-        isMale = additionalData.readBoolean();
-        growthSpeedOffset = additionalData.readInt();
-        energy = additionalData.readInt();
-        water = additionalData.readInt();
-        genetics = new GeneticsContainer(ByteBufUtils.readUTF8String(additionalData));
-
-        updateCreatureData();
-        adjustHitbox();
     }
 
     public int getDinosaurAge()
@@ -869,8 +823,122 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         return null;
     }
 
-    public void setHasTracker(boolean hasTracker)
+    @Override
+    public void writeToNBT(NBTTagCompound nbt)
     {
-        this.hasTracker = hasTracker;
+        super.writeToNBT(nbt);
+
+        nbt.setDouble("DinosaurAge", dinosaurAge);
+        nbt.setBoolean("IsCarcass", isCarcass);
+        nbt.setInteger("DNAQuality", geneticsQuality);
+        nbt.setString("Genetics", genetics.toString());
+        nbt.setBoolean("IsMale", isMale);
+        nbt.setInteger("GrowthSpeedOffset", growthSpeedOffset);
+
+        if (sleepLocation != null)
+        {
+            nbt.setLong("SleepLocation", sleepLocation.toLong());
+        }
+
+        metabolism.writeToNBT(nbt);
+
+        if (owner != null)
+        {
+            nbt.setString("OwnerUUID", owner.toString());
+        }
+
+        inventory.writeToNBT(nbt);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbt)
+    {
+        super.readFromNBT(nbt);
+        dinosaurAge = nbt.getInteger("DinosaurAge");
+        isCarcass = nbt.getBoolean("IsCarcass");
+        geneticsQuality = nbt.getInteger("DNAQuality");
+        genetics = new GeneticsContainer(nbt.getString("Genetics"));
+        isMale = nbt.getBoolean("IsMale");
+        growthSpeedOffset = nbt.getInteger("GrowthSpeedOffset");
+
+        if (nbt.hasKey("SleepLocation"))
+        {
+            sleepLocation = BlockPos.fromLong(nbt.getLong("SleepLocation"));
+        }
+
+        metabolism.readFromNBT(nbt);
+
+        String ownerUUID = nbt.getString("OwnerUUID");
+
+        if (ownerUUID != null && ownerUUID.length() > 0)
+        {
+            owner = UUID.fromString(ownerUUID);
+        }
+
+        inventory.readFromNBT(nbt);
+
+        updateCreatureData();
+        adjustHitbox();
+    }
+
+    @Override
+    public void writeSpawnData(ByteBuf buffer)
+    {
+        buffer.writeInt(dinosaurAge);
+        buffer.writeBoolean(isCarcass);
+        buffer.writeInt(geneticsQuality);
+        buffer.writeBoolean(isMale);
+        buffer.writeInt(growthSpeedOffset);
+
+        metabolism.writeSpawnData(buffer);
+
+        ByteBufUtils.writeUTF8String(buffer, genetics.toString()); //TODO do we need to add the things that are on the datawatcher?
+    }
+
+    @Override
+    public void readSpawnData(ByteBuf additionalData)
+    {
+        dinosaurAge = additionalData.readInt();
+        isCarcass = additionalData.readBoolean();
+        geneticsQuality = additionalData.readInt();
+        isMale = additionalData.readBoolean();
+        growthSpeedOffset = additionalData.readInt();
+
+        metabolism.readSpawnData(additionalData);
+
+        genetics = new GeneticsContainer(ByteBufUtils.readUTF8String(additionalData));
+
+        updateCreatureData();
+        adjustHitbox();
+    }
+
+    public MetabolismContainer getMetabolism()
+    {
+        return metabolism;
+    }
+
+    public BlockPos getSleepLocation()
+    {
+        return sleepLocation;
+    }
+
+    public void setSleepLocation(BlockPos sleepLocation)
+    {
+        this.sleepLocation = sleepLocation;
+    }
+
+    public boolean isSleeping()
+    {
+        return isSleeping;
+    }
+
+    public boolean shouldGoBackToSleep()
+    {
+        return goBackToSleep;
+    }
+
+    public void dontGoBackToSleep()
+    {
+        this.goBackToSleep = false;
     }
 }
