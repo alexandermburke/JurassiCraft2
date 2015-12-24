@@ -32,10 +32,8 @@ import net.timeless.unilib.common.animation.ChainBuffer;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.damagesource.EntityDinosaurDamageSource;
 import org.jurassicraft.common.dinosaur.Dinosaur;
-import org.jurassicraft.common.entity.ai.EntityAIAttackOnCollideDinosaur;
 import org.jurassicraft.common.entity.ai.EntityAIHerd;
 import org.jurassicraft.common.entity.ai.EntityAIMate;
-import org.jurassicraft.common.entity.ai.EntityAINearestAttackableTargetDinosaur;
 import org.jurassicraft.common.entity.ai.EntityAISleep;
 import org.jurassicraft.common.entity.ai.animations.AnimationAICall;
 import org.jurassicraft.common.entity.ai.animations.AnimationAIHeadCock;
@@ -43,7 +41,6 @@ import org.jurassicraft.common.entity.ai.animations.AnimationAILook;
 import org.jurassicraft.common.entity.ai.metabolism.EntityAIDrink;
 import org.jurassicraft.common.entity.ai.metabolism.EntityAIEatFoodItem;
 import org.jurassicraft.common.entity.ai.metabolism.EntityAIFindPlant;
-import org.jurassicraft.common.food.FoodHelper;
 import org.jurassicraft.common.genetics.GeneticsContainer;
 import org.jurassicraft.common.genetics.GeneticsHelper;
 import org.jurassicraft.common.item.ItemBluePrint;
@@ -75,26 +72,20 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     public ChainBuffer tailBuffer;
 
     private UUID owner;
-    private int ownerRelationship;
 
     private InventoryDinosaur inventory;
-
-    private static final int MAX_OWNER_RELATIONSHIP = 200;
 
     private static final int WATCHER_IS_CARCASS = 25;
     private static final int WATCHER_AGE = 26;
     private static final int WATCHER_GROWTH_OFFSET = 27;
     private static final int WATCHER_HAS_TRACKER = 28;
     private static final int WATCHER_IS_SLEEPING = 29;
-    private static final int WATCHER_OWNER_RELATIONSHIP = 30;
 
     private MetabolismContainer metabolism;
 
     private boolean isSleeping;
     private BlockPos sleepLocation;
     private boolean goBackToSleep;
-
-    private boolean imprinted;
 
     public EntityDinosaur(World world)
     {
@@ -104,8 +95,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
         inventory = new InventoryDinosaur(this);
         tailBuffer = new ChainBuffer(getTailBoxCount());
-
-        ownerRelationship = MAX_OWNER_RELATIONSHIP;
 
         if (!dinosaur.isMarineAnimal())
         {
@@ -202,14 +191,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
     public void setOwner(EntityPlayer player)
     {
-        if (player != null)
-        {
-            this.owner = player.getUniqueID();
-        }
-        else
-        {
-            this.owner = null;
-        }
+        this.owner = player.getUniqueID();
     }
 
     @Override
@@ -259,14 +241,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         if (getAnimID() == AnimID.IDLE)
         {
             AnimationAPI.sendAnimPacket(this, AnimID.INJURED);
-        }
-
-        if (damageSource.getEntity() != null)
-        {
-            if (damageSource.getEntity().getUniqueID().equals(getOwner()))
-            {
-                decrementOwnerRelationship(5);
-            }
         }
 
         if (isSleeping)
@@ -321,7 +295,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         dataWatcher.addObject(WATCHER_GROWTH_OFFSET, 0);
         dataWatcher.addObject(WATCHER_HAS_TRACKER, 0);
         dataWatcher.addObject(WATCHER_IS_SLEEPING, 0);
-        dataWatcher.addObject(WATCHER_OWNER_RELATIONSHIP, 0);
     }
 
     @Override
@@ -480,10 +453,8 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
             }
 
             dataWatcher.updateObject(WATCHER_GROWTH_OFFSET, growthSpeedOffset);
-            dataWatcher.updateObject(WATCHER_IS_CARCASS, isCarcass ? 1 : 0);
             dataWatcher.updateObject(WATCHER_HAS_TRACKER, hasTracker ? 1 : 0);
             dataWatcher.updateObject(WATCHER_IS_SLEEPING, isSleeping ? 1 : 0);
-            dataWatcher.updateObject(WATCHER_OWNER_RELATIONSHIP, ownerRelationship);
         }
         else
         {
@@ -497,10 +468,17 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
             }
 
             growthSpeedOffset = dataWatcher.getWatchableObjectInt(WATCHER_GROWTH_OFFSET);
-            isCarcass = dataWatcher.getWatchableObjectInt(WATCHER_IS_CARCASS) == 1;
             hasTracker = dataWatcher.getWatchableObjectInt(WATCHER_HAS_TRACKER) == 1;
             isSleeping = dataWatcher.getWatchableObjectInt(WATCHER_IS_SLEEPING) == 1;
-            ownerRelationship = dataWatcher.getWatchableObjectInt(WATCHER_OWNER_RELATIONSHIP);
+        }
+
+        if (!worldObj.isRemote)
+        {
+            dataWatcher.updateObject(WATCHER_IS_CARCASS, isCarcass ? 1 : 0);
+        }
+        else
+        {
+            isCarcass = dataWatcher.getWatchableObjectInt(WATCHER_IS_CARCASS) == 1;
         }
 
         if (isCarcass)
@@ -658,41 +636,9 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
                     player.addChatComponentMessage(new ChatComponentText(msg + " is not old enough to hold items!")); //TODO translation
                 }
             }
-
-            if (player.getUniqueID().equals(getOwner())) //TODO debug
-            {
-                player.addChatComponentMessage(new ChatComponentText("This dinosaur is tamed by you, they have a relationship of " + ownerRelationship));
-            }
         }
         else
         {
-            if (getGrowthStage() == EnumGrowthStage.INFANT && !imprinted)
-            {
-                if (!worldObj.isRemote)
-                {
-                    imprinted = true;
-                    setOwner(player);
-                    ownerRelationship = MAX_OWNER_RELATIONSHIP;
-
-                    String msg = "You have imprinted on";
-
-                    if (hasCustomName())
-                    {
-                        msg += getCustomNameTag();
-                    }
-                    else
-                    {
-                        msg += " this " + getCommandSenderName();
-                    }
-
-                    player.addChatComponentMessage(new ChatComponentText(msg + "!"));
-
-                    return true;
-                }
-
-                return false;
-            }
-
             ItemStack heldItem = player.getHeldItem();
 
             if (heldItem != null)
@@ -702,18 +648,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
                 if (item instanceof ItemBluePrint)
                 {
                     ((ItemBluePrint) item).setDinosaur(heldItem, JCEntityRegistry.getDinosaurId(getDinosaur()));
-                }
-                else if (FoodHelper.canDietEat(getDinosaur().getDiet(), item))
-                {
-                    getMetabolism().increaseFood(2000);
-                    heal(4.0F);
-
-                    ownerRelationship += 10;
-
-                    if (ownerRelationship > MAX_OWNER_RELATIONSHIP)
-                    {
-                        ownerRelationship = MAX_OWNER_RELATIONSHIP;
-                    }
                 }
             }
         }
@@ -725,8 +659,8 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     // earlier
     protected void addAIForAttackTargets(Class entity, int prio)
     {
-        tasks.addTask(0, new EntityAIAttackOnCollideDinosaur(this, entity, 1.0D, false));
-        targetTasks.addTask(0, new EntityAINearestAttackableTargetDinosaur(this, entity, false));
+        tasks.addTask(0, new EntityAIAttackOnCollide(this, entity, 1.0D, false));
+        targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, entity, false));
     }
 
     @Override
@@ -895,7 +829,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         nbt.setString("Genetics", genetics.toString());
         nbt.setBoolean("IsMale", isMale);
         nbt.setInteger("GrowthSpeedOffset", growthSpeedOffset);
-        nbt.setBoolean("Imprinted", imprinted);
 
         if (sleepLocation != null)
         {
@@ -916,14 +849,12 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-
         dinosaurAge = nbt.getInteger("DinosaurAge");
         isCarcass = nbt.getBoolean("IsCarcass");
         geneticsQuality = nbt.getInteger("DNAQuality");
         genetics = new GeneticsContainer(nbt.getString("Genetics"));
         isMale = nbt.getBoolean("IsMale");
         growthSpeedOffset = nbt.getInteger("GrowthSpeedOffset");
-        imprinted = nbt.getBoolean("Imprinted");
 
         if (nbt.hasKey("SleepLocation"))
         {
@@ -1004,15 +935,5 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     public void dontGoBackToSleep()
     {
         this.goBackToSleep = false;
-    }
-
-    public void decrementOwnerRelationship(int amount)
-    {
-        ownerRelationship -= amount;
-
-        if (ownerRelationship < 0)
-        {
-            setOwner(null);
-        }
     }
 }

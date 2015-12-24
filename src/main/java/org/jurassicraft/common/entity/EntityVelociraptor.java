@@ -8,8 +8,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.timeless.animationapi.client.AnimID;
 import net.timeless.unilib.common.animation.ControlledAnimation;
-import org.jurassicraft.common.entity.ai.EntityAIAttackOnCollideDinosaur;
-import org.jurassicraft.common.entity.ai.EntityAINearestAttackableTargetDinosaur;
 import org.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
 import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
 import org.jurassicraft.common.entity.base.EntityDinosaurAggressive;
@@ -65,9 +63,9 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
     @Override
     protected void addAIForAttackTargets(Class entity, int prio)
     {
-        this.tasks.addTask(0, new EntityAIAttackOnCollideDinosaur(this, entity, 1.0D, false));
+        this.tasks.addTask(0, new EntityAIAttackOnCollide(this, entity, 1.0D, false));
         this.tasks.addTask(1, new EntityAILeapAtTarget(this, 0.5F));
-        this.targetTasks.addTask(0, new EntityAINearestAttackableTargetDinosaur(this, entity, false));
+        this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, entity, false));
     }
 
     public String getCallSound()

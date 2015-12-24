@@ -7,6 +7,7 @@ import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.EnumDiet;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
 import org.jurassicraft.common.entity.base.EnumSleepingSchedule;
+import org.jurassicraft.common.food.EnumFoodType;
 import org.jurassicraft.common.period.EnumTimePeriod;
 
 import java.util.ArrayList;

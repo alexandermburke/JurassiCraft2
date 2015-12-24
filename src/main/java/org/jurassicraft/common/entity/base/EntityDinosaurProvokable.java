@@ -1,18 +1,20 @@
 package org.jurassicraft.common.entity.base;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import org.jurassicraft.common.entity.ai.EntityAIHurtByTargetDinosaur;
-import org.jurassicraft.common.entity.ai.EntityAIAttackOnCollideDinosaur;
 
 public abstract class EntityDinosaurProvokable extends EntityDinosaur
 {
     public EntityDinosaurProvokable(World world)
     {
         super(world);
-        this.targetTasks.addTask(3, new EntityAIHurtByTargetDinosaur(this, true, new Class[0]));
-        this.tasks.addTask(4, new EntityAIAttackOnCollideDinosaur(this, 1.0D, true));
+        this.tasks.addTask(3, new EntityAILeapAtTarget(this, 0.4F));
+        this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true, new Class[0]));
+        this.tasks.addTask(4, new EntityAIAttackOnCollide(this, 1.0D, true));
     }
 
     /**
