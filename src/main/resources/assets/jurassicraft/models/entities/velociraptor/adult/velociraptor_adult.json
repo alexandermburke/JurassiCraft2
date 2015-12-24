@@ -4,6 +4,16 @@
         "IDLE": [
             {"pose": "velociraptor_adult_idle", "time": 20}
         ],
+		"LIVING_SOUND": [
+            {"pose": "velociraptor_adult_hissing", "time": 10},
+			{"pose": "velociraptor_adult_hissing", "time": 10},
+			{"pose": "velociraptor_adult_idle", "time": 10}
+        ],
+		"HISSING": [
+            {"pose": "velociraptor_adult_hissing", "time": 10},
+			{"pose": "velociraptor_adult_hissing", "time": 10},
+			{"pose": "velociraptor_adult_idle", "time": 10}
+        ],
 		"DYING": [
             {"pose": "velociraptor_adult_dying_1", "time": 5}, {"pose": "velociraptor_adult_dying_1", "time": 2},
 			{"pose": "velociraptor_adult_dying_2", "time": 10}, {"pose": "velociraptor_adult_dying_2", "time": 20}

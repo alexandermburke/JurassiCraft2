@@ -61,11 +61,13 @@ public class EntityAIDrink extends EntityAIBase
 
                 World world = dinosaur.worldObj;
 
-                for (int x = posX - 16; x < posX + 16; x++)
+                int range = 32;
+
+                for (int x = posX - range; x < posX + range; x++)
                 {
-                    for (int y = posY - 16; y < posY + 16; y++)
+                    for (int y = posY - range; y < posY + range; y++)
                     {
-                        for (int z = posZ - 16; z < posZ + 16; z++)
+                        for (int z = posZ - range; z < posZ + range; z++)
                         {
                             Block block = world.getBlockState(new BlockPos(x, y, z)).getBlock();
 

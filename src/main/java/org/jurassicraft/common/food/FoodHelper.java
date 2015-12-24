@@ -5,6 +5,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import org.jurassicraft.common.entity.base.EnumDiet;
+import org.jurassicraft.common.item.JCItemRegistry;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,6 +40,9 @@ public class FoodHelper
         registerFood(Items.cooked_mutton, EnumFoodType.MEAT);
         registerFood(Items.rabbit, EnumFoodType.MEAT);
         registerFood(Items.cooked_rabbit, EnumFoodType.MEAT);
+
+        registerFood(JCItemRegistry.dino_meat, EnumFoodType.MEAT);
+        registerFood(JCItemRegistry.dino_steak, EnumFoodType.MEAT);
 
         for (Item item : Item.itemRegistry)
         {

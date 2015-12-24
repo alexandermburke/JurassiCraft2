@@ -7,11 +7,9 @@ import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAITasks;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -43,14 +41,11 @@ import org.jurassicraft.common.entity.ai.animations.AnimationAILook;
 import org.jurassicraft.common.entity.ai.metabolism.EntityAIDrink;
 import org.jurassicraft.common.entity.ai.metabolism.EntityAIEatFoodItem;
 import org.jurassicraft.common.entity.ai.metabolism.EntityAIFindPlant;
-import org.jurassicraft.common.food.EnumFoodType;
 import org.jurassicraft.common.genetics.GeneticsContainer;
 import org.jurassicraft.common.genetics.GeneticsHelper;
 import org.jurassicraft.common.item.ItemBluePrint;
 import org.jurassicraft.common.item.JCItemRegistry;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.UUID;
 
 public abstract class EntityDinosaur extends EntityCreature implements IEntityAdditionalSpawnData, IAnimatedEntity
@@ -286,7 +281,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     @Override
     public void playLivingSound()
     {
-        AnimationAPI.sendAnimPacket(this, AnimID.LIVING);
+        AnimationAPI.sendAnimPacket(this, AnimID.LIVING_SOUND);
         super.playLivingSound();
     }
 
@@ -370,7 +365,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     @Override
     public int getTalkInterval()
     {
-        return 1000;
+        return 200;
     }
 
     @Override
@@ -382,7 +377,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     @Override
     public float getSoundVolume()
     {
-        return isCarcass ? 0.0F : (2.0F * ((float) transitionFromAge(0.3F, 1.0F)));
+        return (isCarcass || isSleeping) ? 0.0F : (2.0F * ((float) transitionFromAge(0.3F, 1.0F)));
     }
 
     public void setGenetics(String genetics)

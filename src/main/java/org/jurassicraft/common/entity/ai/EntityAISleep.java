@@ -3,6 +3,7 @@ package org.jurassicraft.common.entity.ai;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.RandomPositionGenerator;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.timeless.animationapi.AnimationAPI;
@@ -34,17 +35,36 @@ public class EntityAISleep extends EntityAIBase
 
             if (findNew)
             {
+                int range = 20;
+
+                int posX = (int) dinosaur.posX;
+                int posY = (int) dinosaur.posY;
+                int posZ = (int) dinosaur.posZ;
+
+                for (int x = posX - range; x < posX + range; x++)
+                {
+                    for (int y = posY - range; y < posY + range; y++)
+                    {
+                        for (int z = posZ - range; z < posZ + range; z++)
+                        {
+                            BlockPos possiblePos = new BlockPos(x, y, z);
+
+                            if (dinosaur.worldObj.getBlockState(possiblePos.add(0, -1, 0)).getBlock() != Blocks.water)
+                            {
+                                if (canFit(possiblePos) && !dinosaur.worldObj.canSeeSky(possiblePos))
+                                {
+                                    dinosaur.setSleepLocation(possiblePos);
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+
                 int tries = 0;
 
                 while (tries < 20)
                 {
-                    BlockPos possiblePos = new BlockPos(RandomPositionGenerator.findRandomTarget(dinosaur, 20, 10));
-
-                    if (canFit(possiblePos) && !dinosaur.worldObj.canSeeSky(possiblePos))
-                    {
-                        dinosaur.setSleepLocation(possiblePos);
-                        return true;
-                    }
 
                     tries++;
                 }
