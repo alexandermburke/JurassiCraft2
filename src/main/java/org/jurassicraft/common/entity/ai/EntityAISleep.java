@@ -4,8 +4,11 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.init.Blocks;
+import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.Vec3;
+import net.minecraft.world.World;
 import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.client.AnimID;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
@@ -13,6 +16,8 @@ import org.jurassicraft.common.entity.base.EntityDinosaur;
 public class EntityAISleep extends EntityAIBase
 {
     protected EntityDinosaur dinosaur;
+
+    protected BlockPos sleepPos;
 
     public EntityAISleep(EntityDinosaur dinosaur)
     {
@@ -22,55 +27,34 @@ public class EntityAISleep extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        if (!dinosaur.worldObj.isRemote && dinosaur.shouldSleep() && !dinosaur.isSleeping() && dinosaur.shouldGoBackToSleep())
+        World world = dinosaur.worldObj;
+
+        if (!world.isRemote && dinosaur.shouldSleep() && !dinosaur.isSleeping() && dinosaur.shouldGoBackToSleep())
         {
-            boolean findNew = true;
+            int range = 16;
 
-            BlockPos oldLoc = dinosaur.getSleepLocation();
+            int posX = (int) dinosaur.posX;
+            int posZ = (int) dinosaur.posZ;
 
-            if (oldLoc != null)
+            for (int x = posX - range; x < posX + range; x++)
             {
-                findNew = canFit(oldLoc);
-            }
-
-            if (findNew)
-            {
-                int range = 20;
-
-                int posX = (int) dinosaur.posX;
-                int posY = (int) dinosaur.posY;
-                int posZ = (int) dinosaur.posZ;
-
-                for (int x = posX - range; x < posX + range; x++)
+                for (int z = posZ - range; z < posZ + range; z++)
                 {
-                    for (int y = posY - range; y < posY + range; y++)
-                    {
-                        for (int z = posZ - range; z < posZ + range; z++)
-                        {
-                            BlockPos possiblePos = new BlockPos(x, y, z);
+                    BlockPos possiblePos = world.getTopSolidOrLiquidBlock(new BlockPos(x, 0, z));
 
-                            if (dinosaur.worldObj.getBlockState(possiblePos.add(0, -1, 0)).getBlock() != Blocks.water)
-                            {
-                                if (canFit(possiblePos) && !dinosaur.worldObj.canSeeSky(possiblePos))
-                                {
-                                    dinosaur.setSleepLocation(possiblePos);
-                                    return true;
-                                }
-                            }
+                    if (world.isAirBlock(possiblePos) && world.getBlockState(possiblePos.add(0, -1, 0)).getBlock() != Blocks.water)
+                    {
+                        if (canFit(possiblePos) && !world.canSeeSky(possiblePos) && dinosaur.setSleepLocation(possiblePos, true))
+                        {
+                            sleepPos = possiblePos;
+                            return true;
                         }
                     }
                 }
-
-                int tries = 0;
-
-                while (tries < 20)
-                {
-
-                    tries++;
-                }
             }
 
-            dinosaur.setSleepLocation(dinosaur.getPosition()); //Sleep right where you are
+            dinosaur.setSleepLocation(dinosaur.getPosition(), false); //Sleep right where you are
+            sleepPos = dinosaur.getPosition();
 
             return true;
         }
@@ -94,13 +78,9 @@ public class EntityAISleep extends EntityAIBase
     {
         if (dinosaur.shouldGoBackToSleep())
         {
-            BlockPos sleepPos = dinosaur.getSleepLocation();
-
             int x = sleepPos.getX();
             int y = sleepPos.getY();
             int z = sleepPos.getZ();
-
-            dinosaur.getNavigator().tryMoveToXYZ(x, y, z, 1.0);
 
             if ((dinosaur.getDistanceSq(x, y, z) / 16) <= dinosaur.width)
             {
@@ -115,6 +95,6 @@ public class EntityAISleep extends EntityAIBase
     @Override
     public boolean continueExecuting()
     {
-        return dinosaur != null && !dinosaur.isCarcass() && dinosaur.getSleepLocation() != null && !dinosaur.isSleeping() && dinosaur.shouldSleep();
+        return dinosaur != null && !dinosaur.isCarcass() && sleepPos != null && !dinosaur.isSleeping() && dinosaur.shouldSleep();
     }
 }

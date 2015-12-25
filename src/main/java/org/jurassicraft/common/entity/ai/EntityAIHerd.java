@@ -10,7 +10,6 @@ import java.util.List;
 
 public class EntityAIHerd extends EntityAIBase
 {
-
     EntityDinosaur host;
     double speed = 1.0D;
     private Entity movingTo;
@@ -80,7 +79,7 @@ public class EntityAIHerd extends EntityAIBase
             this.updateRate = 10;
             Entity target = this.getTarget();
 
-            if (target.worldObj != null)
+            if (target.worldObj != null && (!host.shouldSleep() && host.shouldGoBackToSleep()))
             {
                 int rand = target.worldObj.rand.nextInt(10);
                 int rand2 = target.worldObj.rand.nextInt(10);
@@ -101,7 +100,7 @@ public class EntityAIHerd extends EntityAIBase
 
         for (Entity entity : nearbyEntities)
         {
-            if ((host.getDistanceToEntity(entity)) > 15)
+            if ((host.getDistanceToEntity(entity)) > 32)
             {
                 int amountOfNeighbours = getEntitiesOfSameTypeWithinDistance(entity, 20, 20).size();
 

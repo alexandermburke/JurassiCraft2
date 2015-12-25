@@ -84,7 +84,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     private MetabolismContainer metabolism;
 
     private boolean isSleeping;
-    private BlockPos sleepLocation;
     private boolean goBackToSleep;
 
     public EntityDinosaur(World world)
@@ -101,24 +100,23 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
             tasks.addTask(0, new EntityAISwimming(this));
         }
 
-        tasks.addTask(0, new EntityAIWander(this, 0.8));
+        tasks.addTask(0, new EntityAISleep(this));
 
-        tasks.addTask(2, new EntityAISleep(this));
-
-        tasks.addTask(2, new EntityAIDrink(this));
-        tasks.addTask(2, new EntityAIMate(this));
-        tasks.addTask(2, new EntityAIEatFoodItem(this));
+        tasks.addTask(1, new EntityAIDrink(this));
+        tasks.addTask(1, new EntityAIMate(this));
+        tasks.addTask(1, new EntityAIEatFoodItem(this));
 
         if (dinosaur.getDiet().doesEatPlants())
         {
-            tasks.addTask(2, new EntityAIFindPlant(this));
+            tasks.addTask(1, new EntityAIFindPlant(this));
         }
+
+        tasks.addTask(2, new EntityAIWander(this, 0.8));
+        tasks.addTask(2, new EntityAIHerd(this));
 
         tasks.addTask(3, new AnimationAICall(this));
         tasks.addTask(3, new AnimationAILook(this));
         tasks.addTask(3, new AnimationAIHeadCock(this));
-
-        tasks.addTask(3, new EntityAIHerd(this));
 
         setFullyGrown();
 
@@ -830,11 +828,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         nbt.setBoolean("IsMale", isMale);
         nbt.setInteger("GrowthSpeedOffset", growthSpeedOffset);
 
-        if (sleepLocation != null)
-        {
-            nbt.setLong("SleepLocation", sleepLocation.toLong());
-        }
-
         metabolism.writeToNBT(nbt);
 
         if (owner != null)
@@ -855,11 +848,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         genetics = new GeneticsContainer(nbt.getString("Genetics"));
         isMale = nbt.getBoolean("IsMale");
         growthSpeedOffset = nbt.getInteger("GrowthSpeedOffset");
-
-        if (nbt.hasKey("SleepLocation"))
-        {
-            sleepLocation = BlockPos.fromLong(nbt.getLong("SleepLocation"));
-        }
 
         metabolism.readFromNBT(nbt);
 
@@ -912,14 +900,18 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         return metabolism;
     }
 
-    public BlockPos getSleepLocation()
+    public boolean setSleepLocation(BlockPos sleepLocation, boolean moveTo)
     {
-        return sleepLocation;
-    }
+        if (moveTo)
+        {
+            int x = sleepLocation.getX();
+            int y = sleepLocation.getY();
+            int z = sleepLocation.getZ();
 
-    public void setSleepLocation(BlockPos sleepLocation)
-    {
-        this.sleepLocation = sleepLocation;
+            return getNavigator().tryMoveToXYZ(x, y, z, 1.0);
+        }
+
+        return true;
     }
 
     public boolean isSleeping()

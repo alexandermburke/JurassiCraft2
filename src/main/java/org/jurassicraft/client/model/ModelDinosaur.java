@@ -10,6 +10,7 @@ import net.timeless.unilib.client.model.json.IModelAnimator;
 import net.timeless.unilib.client.model.json.JsonTabulaModel;
 import net.timeless.unilib.client.model.json.ModelJson;
 import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+import org.jurassicraft.common.entity.base.EntityDinosaur;
 
 import java.util.List;
 
@@ -30,6 +31,10 @@ public class ModelDinosaur extends ModelJson
         {
             animator.update((IAnimatedEntity) entity);
         }
+
+        EntityDinosaur dinosaur = (EntityDinosaur) entity;
+
+        this.setMovementScale(dinosaur.isSleeping() ? 0.5F : 1.0F);
 
         super.setRotationAngles(limbSwing, limbSwingAmount, rotation, rotationYaw, rotationPitch, partialTicks, entity);
     }

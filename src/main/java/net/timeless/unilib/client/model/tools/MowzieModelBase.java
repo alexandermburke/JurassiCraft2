@@ -21,6 +21,8 @@ public class MowzieModelBase extends ModelBase
      */
     protected List<MowzieModelRenderer> parts;
 
+    private float movementScale = 1.0F;
+
     @Override
     public ModelRenderer getRandomModelBox(Random rand)
     {
@@ -30,6 +32,11 @@ public class MowzieModelBase extends ModelBase
         }
 
         return super.getRandomModelBox(rand);
+    }
+
+    public void setMovementScale(float scale)
+    {
+        this.movementScale = scale;
     }
 
     /**
@@ -167,6 +174,10 @@ public class MowzieModelBase extends ModelBase
         {
             inverted = -1;
         }
+
+        degree *= movementScale;
+        speed *= movementScale;
+
         box.rotateAngleX += MathHelper.cos(f * speed + offset) * degree * inverted * f1 + weight * f1;
     }
 
@@ -215,6 +226,10 @@ public class MowzieModelBase extends ModelBase
         {
             inverted = -1;
         }
+
+        degree *= movementScale;
+        speed *= movementScale;
+
         box.rotateAngleY += MathHelper.cos(f * speed + offset) * degree * inverted * f1 + weight * f1;
     }
 
@@ -237,6 +252,10 @@ public class MowzieModelBase extends ModelBase
         {
             bob = (float) -Math.abs((Math.sin(f * speed) * f1 * degree));
         }
+
+        degree *= movementScale;
+        speed *= movementScale;
+
         box.rotationPointY += bob;
     }
 
@@ -256,6 +275,10 @@ public class MowzieModelBase extends ModelBase
     {
         int numberOfSegments = boxes.length;
         float offset = (float) ((rootOffset * Math.PI) / (2 * numberOfSegments));
+
+        degree *= movementScale;
+        speed *= movementScale;
+
         for (int i = 0; i < numberOfSegments; i++)
         {
             boxes[i].rotateAngleY += MathHelper.cos(f * speed + offset * i) * f1 * degree;
@@ -278,6 +301,10 @@ public class MowzieModelBase extends ModelBase
     {
         int numberOfSegments = boxes.length;
         float offset = (float) ((rootOffset * Math.PI) / (2 * numberOfSegments));
+
+        degree *= movementScale;
+        speed *= movementScale;
+
         for (int i = 0; i < numberOfSegments; i++)
         {
             boxes[i].rotateAngleX += MathHelper.cos(f * speed + offset * i) * f1 * degree;
@@ -300,6 +327,10 @@ public class MowzieModelBase extends ModelBase
     {
         int numberOfSegments = boxes.length;
         float offset = (float) ((rootOffset * Math.PI) / (2 * numberOfSegments));
+
+        degree *= movementScale;
+        speed *= movementScale;
+
         for (int i = 0; i < numberOfSegments; i++)
         {
             boxes[i].rotateAngleZ += MathHelper.cos(f * speed + offset * i) * f1 * degree;
