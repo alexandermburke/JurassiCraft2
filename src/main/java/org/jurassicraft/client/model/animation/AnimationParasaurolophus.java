@@ -25,12 +25,12 @@ public class AnimationParasaurolophus extends DinosaurAnimator
         MowzieModelRenderer neck1 = model.getCube("Neck");
         MowzieModelRenderer neck2 = model.getCube("Neck 2");
 
-        // body parts
+//         body parts
         MowzieModelRenderer stomach = model.getCube("Body 1");
         MowzieModelRenderer shoulders = model.getCube("Body 2");
         MowzieModelRenderer waist = model.getCube("Body 3");
 
-        // tail parts
+//         tail parts
         MowzieModelRenderer tail1 = model.getCube("Tail 1");
         MowzieModelRenderer tail2 = model.getCube("Tail 2");
         MowzieModelRenderer tail3 = model.getCube("Tail 3");
@@ -38,13 +38,13 @@ public class AnimationParasaurolophus extends DinosaurAnimator
         MowzieModelRenderer tail5 = model.getCube("Tail 5");
         MowzieModelRenderer tail6 = model.getCube("Tail 6");
 
-        // left foot
+//         left foot
         MowzieModelRenderer leftThigh = model.getCube("Left Thigh");
         MowzieModelRenderer leftCalf = model.getCube("Left Calf 1");
         MowzieModelRenderer leftUpperFoot = model.getCube("Left Upper Foot");
         MowzieModelRenderer leftFoot = model.getCube("Foot Left");
 
-        // right foot
+//         right foot
         MowzieModelRenderer rightThigh = model.getCube("Right Thigh");
         MowzieModelRenderer rightCalf = model.getCube("Right Calf 1");
         MowzieModelRenderer rightUpperFoot = model.getCube("Right Upper Foot");

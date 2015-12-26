@@ -3,6 +3,9 @@
     "poses": {
         "IDLE": [
             {"pose": "parasaurolophus_adult_idle", "time": 20}
+        ],
+		"SLEEPING": [
+            {"pose": "parasaurolophus_adult_sleeping", "time": 20}
         ]
      }
 }
