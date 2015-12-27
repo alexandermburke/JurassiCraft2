@@ -22,6 +22,7 @@ import org.jurassicraft.client.gui.GuiEmbryonicMachine;
 import org.jurassicraft.client.gui.GuiFossilGrinder;
 import org.jurassicraft.client.gui.GuiIncubator;
 import org.jurassicraft.client.gui.GuiPaleoPad;
+import org.jurassicraft.client.gui.GuiPaleoPadViewDinosaur;
 import org.jurassicraft.client.gui.GuiSelectDino;
 import org.jurassicraft.common.container.ContainerCarnivoreFeeder;
 import org.jurassicraft.common.container.ContainerCleaningStation;
@@ -35,6 +36,7 @@ import org.jurassicraft.common.container.ContainerEmbryoCalcificationMachine;
 import org.jurassicraft.common.container.ContainerEmbryonicMachine;
 import org.jurassicraft.common.container.ContainerFossilGrinder;
 import org.jurassicraft.common.container.ContainerIncubator;
+import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.tileentity.TileCarnivoreFeeder;
 import org.jurassicraft.common.tileentity.TileCleaningStation;
 import org.jurassicraft.common.tileentity.TileCultivate;
@@ -203,5 +205,19 @@ public class JCGuiHandler implements IGuiHandler
     private static void displayOpenSelectDino(BlockPos pos, EnumFacing facing)
     {
         Minecraft.getMinecraft().displayGuiScreen(new GuiSelectDino(pos, facing));
+    }
+
+    public static void openViewDinosaur(EntityDinosaur dinosaur)
+    {
+        if (dinosaur.worldObj.isRemote)
+        {
+            displayViewDinosaurClient(dinosaur);
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    private static void displayViewDinosaurClient(EntityDinosaur dinosaur)
+    {
+        Minecraft.getMinecraft().displayGuiScreen(new GuiPaleoPadViewDinosaur(dinosaur));
     }
 }

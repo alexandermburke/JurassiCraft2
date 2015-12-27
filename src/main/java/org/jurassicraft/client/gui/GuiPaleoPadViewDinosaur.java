@@ -1,11 +1,16 @@
 package org.jurassicraft.client.gui;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.fml.relauncher.Side;
@@ -13,7 +18,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.gui.app.GuiApp;
 import org.jurassicraft.client.gui.app.GuiAppRegistry;
+import org.jurassicraft.client.proxy.ClientProxy;
 import org.jurassicraft.client.render.WorldRendererUtils;
+import org.jurassicraft.common.dinosaur.Dinosaur;
+import org.jurassicraft.common.entity.base.EntityDinosaur;
+import org.jurassicraft.common.entity.base.EnumDiet;
 import org.jurassicraft.common.entity.data.JCPlayerDataClient;
 import org.jurassicraft.common.lang.AdvLang;
 import org.jurassicraft.common.paleopad.App;
@@ -23,67 +32,15 @@ import org.lwjgl.opengl.GL11;
 import java.util.List;
 
 @SideOnly(Side.CLIENT)
-public class GuiPaleoPad extends GuiScreen
+public class GuiPaleoPadViewDinosaur extends GuiScreen
 {
     private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/paleo_pad.png");
 
-    public GuiApp focus;
+    private EntityDinosaur dinosaur;
 
-    public GuiPaleoPad()
+    public GuiPaleoPadViewDinosaur(EntityDinosaur dinosaur)
     {
-    }
-
-    @Override
-    public void initGui()
-    {
-        super.initGui();
-    }
-
-    /**
-     * Called when the screen is unloaded. Used to disable keyboard repeat events
-     */
-    public void onGuiClosed()
-    {
-        if (focus != null)
-        {
-            JCPlayerDataClient.getPlayerData().closeApp(focus.getApp());
-            // JurassiCraft.networkManager.networkWrapper.sendToServer(new MessageSyncoPad(mc.thePlayer));
-        }
-    }
-
-    @Override
-    protected void mouseReleased(int mouseX, int mouseY, int state)
-    {
-        ScaledResolution dimensions = new ScaledResolution(mc);
-        int scaledWidth = dimensions.getScaledWidth();
-
-        if (focus == null)
-        {
-            List<App> apps = AppRegistry.getApps();
-
-            for (int i = 0; i < apps.size(); i++)
-            {
-                int x = ((i % 4) * 55) + scaledWidth / 2 - 110;
-                int y = ((int) Math.floor((float) i / 4.0F) * 38) + 70;
-
-                if (mouseX > x && mouseY > y && mouseX < x + 32 && mouseY < y + 32)
-                {
-                    App app = apps.get(i);
-
-                    focus = GuiAppRegistry.getGui(app);
-                    focus.init();
-                    JCPlayerDataClient.getPlayerData().openApp(app);
-
-                    focus.buttons.clear();
-                    buttonList.clear();
-                    buttonList.addAll(focus.buttons);
-                }
-            }
-        }
-        else
-        {
-            focus.mouseClicked(mouseX, mouseY, this);
-        }
+        this.dinosaur = dinosaur;
     }
 
     @Override
@@ -119,31 +76,25 @@ public class GuiPaleoPad extends GuiScreen
         }
 
         drawCenteredScaledText(new AdvLang("paleopad.time.name").withProperty("hours", hoursStr).withProperty("minutes", minutesStr).build(), 115, -10, 1.0F, 0xFFFFFF);
+        Dinosaur dinoDef = this.dinosaur.getDinosaur();
+        drawScaledText("Viewing: " + this.dinosaur.getCommandSenderName(), 5, 5, 1.0F, this.dinosaur.isMale() ? dinoDef.getEggPrimaryColorMale() : dinoDef.getEggPrimaryColorFemale());
+        drawScaledText("Age: " + this.dinosaur.getDaysExisted() + " days", 5, 20, 1.0F, 0x808080);
         drawScaledRect(0, 0, 458, 2, 0.5F, 0x404040);
 
-        if (focus == null)
+        drawScaledText(StatCollector.translateToLocal("paleopad.os.name"), 2, -10, 1.0F, 0xFFFFFF);
+
+        this.zLevel = -100;
+        drawEntityOnScreen(115, 140, (int) (70 / dinoDef.getAdultSizeY()), this.dinosaur);
+
+        EnumDiet diet = dinoDef.getDiet();
+        drawScaledEndText((this.dinosaur.isMale() ? "MALE" : "FEMALE"), 225, 5, 1.0F, 0xFFFF00);
+        drawScaledEndText(diet.toString(), 225, 35, 1.0F, diet.getColor());
+        drawScaledEndText(dinoDef.getSleepingSchedule().toString(), 225, 20, 1.0F, 0xAAAAAA);
+        drawScaledEndText(dinosaur.getGrowthStage().toString(), 225, 50, 1.0F, 0xB200FF);
+
+        if (dinoDef.isMarineAnimal())
         {
-            for (int i = 0; i < apps.size(); i++)
-            {
-                int x = (i % 4) * 50 + 5;
-                int y = (int) Math.floor((float) i / 4.0F) * 42;
-
-                App app = apps.get(i);
-                GuiApp gui = GuiAppRegistry.getGui(app);
-
-                mc.getTextureManager().bindTexture(gui.getTexture(this));
-
-                drawScaledTexturedModalRect(x + 5, y + 5, 0, 0, 32, 32, 32, 32, 1.0F);
-
-                drawCenteredScaledText(app.getName(), x + 22, y + 39, 0.7F, 0xFFFFFF);
-            }
-
-            drawScaledText(StatCollector.translateToLocal("paleopad.os.name"), 2, -10, 1.0F, 0xFFFFFF);
-        }
-        else
-        {
-            drawScaledText(focus.getApp().getName(), 2, -10, 1.0F, 0xFFFFFF);
-            focus.render(mouseX, mouseY, this);
+            drawScaledEndText("MARINE", 225, 138, 1.0F, 0x0080FF);
         }
 
         super.drawScreen(mouseX, mouseY, partialTicks);
@@ -273,10 +224,72 @@ public class GuiPaleoPad extends GuiScreen
         GL11.glPopMatrix();
     }
 
+    public void drawScaledEndText(String text, int x, int y, float scale, int colour)
+    {
+        GL11.glPushMatrix();
+
+        ScaledResolution dimensions = new ScaledResolution(mc);
+        x += dimensions.getScaledWidth() / 2 - 115;
+        y += 65;
+
+        GL11.glScalef(scale, scale, scale);
+
+        x /= scale;
+        y /= scale;
+
+        drawString(fontRendererObj, text, x - (fontRendererObj.getStringWidth(text)), y, colour);
+
+        GL11.glPopMatrix();
+    }
+
     @Override
     protected void actionPerformed(GuiButton button)
     {
 
+    }
+
+    public void drawEntityOnScreen(int posX, int posY, int scale, EntityLivingBase ent)
+    {
+        ScaledResolution dimensions = new ScaledResolution(mc);
+        posX += dimensions.getScaledWidth() / 2 - 115;
+        posY += 65;
+
+        GlStateManager.enableColorMaterial();
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((float)posX, (float)posY, 50.0F);
+        GlStateManager.scale((float)(-scale), (float)scale, (float)scale);
+        GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
+        float f = ent.renderYawOffset;
+        float f1 = ent.rotationYaw;
+        float f2 = ent.rotationPitch;
+        float f3 = ent.prevRotationYawHead;
+        float f4 = ent.rotationYawHead;
+        GlStateManager.rotate(135.0F, 0.0F, 1.0F, 0.0F);
+        RenderHelper.enableStandardItemLighting();
+        GlStateManager.rotate(-135.0F, 0.0F, 1.0F, 0.0F);
+        int rot = ent.ticksExisted % 360;
+        ent.renderYawOffset = rot;
+        ent.rotationYaw = rot;
+        ent.rotationPitch = 0;
+        ent.rotationYawHead = ent.rotationYaw;
+        ent.prevRotationYawHead = ent.rotationYaw;
+        GlStateManager.translate(0.0F, 0.0F, 0.0F);
+        RenderManager rendermanager = Minecraft.getMinecraft().getRenderManager();
+        rendermanager.setPlayerViewY(180.0F);
+        rendermanager.setRenderShadow(false);
+        rendermanager.renderEntityWithPosYaw(ent, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F);
+        rendermanager.setRenderShadow(true);
+        ent.renderYawOffset = f;
+        ent.rotationYaw = f1;
+        ent.rotationPitch = f2;
+        ent.prevRotationYawHead = f3;
+        ent.rotationYawHead = f4;
+        GlStateManager.popMatrix();
+        RenderHelper.disableStandardItemLighting();
+        GlStateManager.disableRescaleNormal();
+        GlStateManager.setActiveTexture(OpenGlHelper.lightmapTexUnit);
+        GlStateManager.disableTexture2D();
+        GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
     }
 
     @Override

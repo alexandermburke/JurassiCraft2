@@ -66,10 +66,7 @@ public class ItemPaleoPad extends Item
         {
             EntityDinosaur dino = (EntityDinosaur) target;
 
-            if (player.worldObj.isRemote)
-            {
-                player.addChatMessage(new ChatComponentText("Days Existed: " + dino.getDaysExisted())); // TODO view entity (size / screensize)
-            }
+            JCGuiHandler.openViewDinosaur(dino);
 
             return true;
         }
