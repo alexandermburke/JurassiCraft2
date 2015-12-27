@@ -231,11 +231,11 @@ public class JCEntityRegistry
             {
                 if (dinosaur.isMarineAnimal())
                 {
-                    EntityRegistry.addSpawn(dinosaur.getDinosaurClass(), 5, 1, 5,  EnumCreatureType.WATER_CREATURE, new BiomeGenBase[] { BiomeGenBase.ocean, BiomeGenBase.deepOcean, BiomeGenBase.river });
+                    EntityRegistry.addSpawn(dinosaur.getDinosaurClass(), 5, 1, 2,  EnumCreatureType.WATER_CREATURE, new BiomeGenBase[] { BiomeGenBase.ocean, BiomeGenBase.deepOcean, BiomeGenBase.river });
                 }
                 else
                 {
-                    EntityRegistry.addSpawn(dinosaur.getDinosaurClass(), 5, 1, 5, EnumCreatureType.CREATURE, removeNullEntries(BiomeGenBase.getBiomeGenArray()));
+                    EntityRegistry.addSpawn(dinosaur.getDinosaurClass(), 5, 1, 2, EnumCreatureType.CREATURE, removeNullEntries(BiomeGenBase.getBiomeGenArray()));
                 }
             }
         }

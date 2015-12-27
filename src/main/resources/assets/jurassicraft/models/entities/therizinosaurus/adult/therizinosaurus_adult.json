@@ -58,9 +58,7 @@
 			{"pose": "therizinosaurus_adult_idle",    "time": 33}
 		],
 		"SLEEPING": [
-			{"pose": "therizinosaurus_adult_resting",  "time": 16}, {"pose": "therizinosaurus_adult_sleeping", "time": 13},
-			{"pose": "therizinosaurus_adult_sleeping", "time": 166}, {"pose": "therizinosaurus_adult_resting",  "time": 7},
-			{"pose": "therizinosaurus_adult_idle",     "time": 33}
+			{"pose": "therizinosaurus_adult_sleeping", "time": 20}
 		],
 		"CALLING": [
 			{"pose": "therizinosaurus_adult_calling_1", "time": 3}, {"pose": "therizinosaurus_adult_calling_2", "time": 12},
