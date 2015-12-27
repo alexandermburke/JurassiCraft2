@@ -6,8 +6,8 @@ import net.minecraft.util.DamageSource;
 
 public class MetabolismContainer
 {
-    public static final int MAX_FOOD = 24000;
-    public static final int MAX_WATER = 24000;
+    public final int MAX_FOOD;
+    public final int MAX_WATER;
 
     private int food;
     private int water;
@@ -17,6 +17,9 @@ public class MetabolismContainer
     public MetabolismContainer(EntityDinosaur dinosaur)
     {
         this.dinosaur = dinosaur;
+
+        MAX_FOOD = (int) (24000 * (dinosaur.getDinosaur().getAdultHealth() / 15));
+        MAX_WATER = (int) (24000 * (dinosaur.getDinosaur().getAdultHealth() / 15));
 
         food = MAX_FOOD;
         water = MAX_WATER;

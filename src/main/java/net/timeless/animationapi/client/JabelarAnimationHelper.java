@@ -84,7 +84,7 @@ public class JabelarAnimationHelper
 
         init(parModel);
 
-        JurassiCraft.instance.getLogger().debug("Finished JabelarAnimation constructor");
+//        JurassiCraft.instance.getLogger().debug("Finished JabelarAnimation constructor");
     }
 
     public void performJabelarAnimations(float parPartialTicks)
@@ -107,7 +107,7 @@ public class JabelarAnimationHelper
     private void init(ModelDinosaur parModel)
     {
         initSequence(theEntity.getAnimID());
-        JurassiCraft.instance.getLogger().info("Initializing to animation sequence = " + currentSequence);
+//        JurassiCraft.instance.getLogger().info("Initializing to animation sequence = " + currentSequence);
         initPoseModel();
         initTweenTicks();
 
@@ -143,7 +143,7 @@ public class JabelarAnimationHelper
         }
         else if (currentSequence != AnimID.IDLE && currentSequence == parSequenceIndex) // finished sequence but no new sequence set
         {
-            JurassiCraft.instance.getLogger().debug("Intializing to idle sequence");
+//            JurassiCraft.instance.getLogger().debug("Intializing to idle sequence");
             currentSequence = AnimID.IDLE;
             theEntity.setAnimID(AnimID.IDLE);
         }
@@ -292,7 +292,7 @@ public class JabelarAnimationHelper
 
     private void tween()
     {
-        JurassiCraft.instance.getLogger().debug("current tween tick +  partial ticks = " + (currentTickInTween + partialTicks));
+//        JurassiCraft.instance.getLogger().debug("current tween tick +  partial ticks = " + (currentTickInTween + partialTicks));
 
         for (int partIndex = 0; partIndex < numParts; partIndex++)
         {
@@ -365,7 +365,7 @@ public class JabelarAnimationHelper
     // boolean returned indicates if tween was finished
     public boolean incrementTweenTick()
     {
-        JurassiCraft.instance.getLogger().info("current tween step = " + currentTickInTween);
+//        JurassiCraft.instance.getLogger().info("current tween step = " + currentTickInTween);
         currentTickInTween++;
         if (currentTickInTween >= numTicksInTween)
         {
@@ -395,7 +395,7 @@ public class JabelarAnimationHelper
             }
         }
 
-        JurassiCraft.instance.getLogger().debug("Next pose is pose = " + currentPose);
+//        JurassiCraft.instance.getLogger().debug("Next pose is pose = " + currentPose);
         return finishedSequence;
     }
 
@@ -413,12 +413,12 @@ public class JabelarAnimationHelper
         }
         else if (currentSequence != AnimID.IDLE && currentSequence == parSequenceIndex) // finished sequence but no new sequence set
         {
-            JurassiCraft.instance.getLogger().debug("Reverting to idle sequence");
+//            JurassiCraft.instance.getLogger().debug("Reverting to idle sequence");
             currentSequence = AnimID.IDLE;
         }
         else
         {
-            JurassiCraft.instance.getLogger().debug("Setting new sequence to " + parSequenceIndex);
+//            JurassiCraft.instance.getLogger().debug("Setting new sequence to " + parSequenceIndex);
             currentSequence = parSequenceIndex;
         }
 
@@ -426,10 +426,10 @@ public class JabelarAnimationHelper
         setNextPoseModel(0);
         startNextTween();
 
-        if (currentSequence != AnimID.IDLE)
-        {
-            JurassiCraft.instance.getLogger().debug("current sequence for entity ID " + theEntity.getEntityId() + " is " + currentSequence + " out of " + mapOfSequences.size() + " and current pose " + currentPose + " out of " + mapOfSequences.get(currentSequence).length + " with " + numTicksInTween + " ticks in tween");
-        }
+//        if (currentSequence != AnimID.IDLE)
+//        {
+//            JurassiCraft.instance.getLogger().debug("current sequence for entity ID " + theEntity.getEntityId() + " is " + currentSequence + " out of " + mapOfSequences.size() + " and current pose " + currentPose + " out of " + mapOfSequences.get(currentSequence).length + " with " + numTicksInTween + " ticks in tween");
+//        }
     }
 
     public int getCurrentPose()
