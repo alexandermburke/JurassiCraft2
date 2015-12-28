@@ -25,8 +25,6 @@ public class GuiAppDinoPedia extends GuiApp
 
     private final RenderItem render = Minecraft.getMinecraft().getRenderItem();
 
-    private boolean intro;
-
     public GuiAppDinoPedia(App app)
     {
         super(app);
@@ -39,20 +37,9 @@ public class GuiAppDinoPedia extends GuiApp
 
         AppDinoPedia app = (AppDinoPedia) this.app;
 
-        if (intro)
-        {
-            gui.drawScaledText("Hello " + mc.thePlayer.getDisplayName().getFormattedText() + "! Welcome to " + app.getName() + "!", 4, 10, 1.0F, 0xFFFFFF);
-            mc.getTextureManager().bindTexture(texture);
-            gui.drawScaledTexturedModalRect(1, 20, 0, 0, 32, 32, 32, 32, 1.0F);
-            gui.drawScaledText("Using " + app.getName() + " you can find all the information", 34, 29, 0.7F, 0xFFFFFF);
-            gui.drawScaledText("you need to start creating living dinosaurs!", 34, 37, 0.7F, 0xFFFFFF);
-        }
-        else
-        {
-            gui.drawScaledText("Items:", 4, 5, 1.0F, 0xFFFFFF);
+        gui.drawScaledText("Items:", 4, 5, 1.0F, 0xFFFFFF);
 
-            drawItemsAndRecipes(gui, app);
-        }
+        drawItemsAndRecipes(gui, app);
     }
 
     private void drawItemsAndRecipes(GuiPaleoPad gui, AppDinoPedia app)
@@ -82,7 +69,7 @@ public class GuiAppDinoPedia extends GuiApp
                     gui.drawBoxOutline(renderX + 4, renderY + 14, 18, 18, 1, 1.0F, 0x606060);
                 }
 
-                ScaledResolution dimensions = new ScaledResolution(mc);
+                ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
                 GlStateManager.translate(dimensions.getScaledWidth() / 2 - 115, 75, 0);
 
                 render.zLevel = 200.0F;
@@ -159,41 +146,34 @@ public class GuiAppDinoPedia extends GuiApp
     @Override
     public void mouseClicked(int mouseX, int mouseY, GuiPaleoPad gui)
     {
-        ScaledResolution dimensions = new ScaledResolution(mc);
+        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
         mouseX -= dimensions.getScaledWidth() / 2 - 115;
         mouseY -= 75;
 
-        if (intro)
+        AppDinoPedia app = (AppDinoPedia) getApp();
+        List<ItemStack> items = DinoPediaRegistry.getItems();
+
+        int renderX = 0;
+        int renderY = 0;
+
+        for (int i = 0; i < items.size(); i++)
         {
+            ItemStack stack = items.get(i);
 
-        }
-        else
-        {
-            AppDinoPedia app = (AppDinoPedia) getApp();
-            List<ItemStack> items = DinoPediaRegistry.getItems();
-
-            int renderX = 0;
-            int renderY = 0;
-
-            for (int i = 0; i < items.size(); i++)
+            if (stack != null)
             {
-                ItemStack stack = items.get(i);
-
-                if (stack != null)
+                if (mouseX > renderX && mouseX < renderX + 18 && mouseY > renderY && mouseY < renderY + 18)
                 {
-                    if (mouseX > renderX && mouseX < renderX + 18 && mouseY > renderY && mouseY < renderY + 18)
-                    {
-                        app.setSelectedItem(i);
-                        break;
-                    }
+                    app.setSelectedItem(i);
+                    break;
+                }
 
-                    renderY += 18;
+                renderY += 18;
 
-                    if (renderY > 120)
-                    {
-                        renderY = 0;
-                        renderX += 19;
-                    }
+                if (renderY > 120)
+                {
+                    renderY = 0;
+                    renderX += 19;
                 }
             }
         }
@@ -208,7 +188,6 @@ public class GuiAppDinoPedia extends GuiApp
     @Override
     public void init()
     {
-        intro = !app.hasBeenPreviouslyOpened();
     }
 
     @Override

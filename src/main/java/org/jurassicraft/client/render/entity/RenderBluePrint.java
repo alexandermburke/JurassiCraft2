@@ -88,31 +88,37 @@ public class RenderBluePrint extends Render
                 float f22 = (float)(textureV + height - (y + 1) * 16) / 256.0F;
                 Tessellator tessellator = Tessellator.getInstance();
                 WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-                worldrenderer.func_181668_a(7, DefaultVertexFormats.field_181710_j);
-                worldrenderer.func_181662_b((double)bottomX, (double)f18, (double)(-f2)).func_181673_a((double)f20, (double)f21).func_181663_c(0.0F, 0.0F, -1.0F).func_181675_d();
-                worldrenderer.func_181662_b((double)f16, (double)f18, (double)(-f2)).func_181673_a((double)f19, (double)f21).func_181663_c(0.0F, 0.0F, -1.0F).func_181675_d();
-                worldrenderer.func_181662_b((double)f16, (double)f17, (double)(-f2)).func_181673_a((double)f19, (double)f22).func_181663_c(0.0F, 0.0F, -1.0F).func_181675_d();
-                worldrenderer.func_181662_b((double)bottomX, (double)f17, (double)(-f2)).func_181673_a((double)f20, (double)f22).func_181663_c(0.0F, 0.0F, -1.0F).func_181675_d();
-                worldrenderer.func_181662_b((double)bottomX, (double)f17, (double)f2).func_181673_a((double)f3, (double)f5).func_181663_c(0.0F, 0.0F, 1.0F).func_181675_d();
-                worldrenderer.func_181662_b((double)f16, (double)f17, (double)f2).func_181673_a((double)f4, (double)f5).func_181663_c(0.0F, 0.0F, 1.0F).func_181675_d();
-                worldrenderer.func_181662_b((double)f16, (double)f18, (double)f2).func_181673_a((double)f4, (double)f6).func_181663_c(0.0F, 0.0F, 1.0F).func_181675_d();
-                worldrenderer.func_181662_b((double)bottomX, (double)f18, (double)f2).func_181673_a((double)f3, (double)f6).func_181663_c(0.0F, 0.0F, 1.0F).func_181675_d();
-                worldrenderer.func_181662_b((double)bottomX, (double)f17, (double)(-f2)).func_181673_a((double)f7, (double)f9).func_181663_c(0.0F, 1.0F, 0.0F).func_181675_d();
-                worldrenderer.func_181662_b((double)f16, (double)f17, (double)(-f2)).func_181673_a((double)f8, (double)f9).func_181663_c(0.0F, 1.0F, 0.0F).func_181675_d();
-                worldrenderer.func_181662_b((double)f16, (double)f17, (double)f2).func_181673_a((double)f8, (double)f10).func_181663_c(0.0F, 1.0F, 0.0F).func_181675_d();
-                worldrenderer.func_181662_b((double)bottomX, (double)f17, (double)f2).func_181673_a((double)f7, (double)f10).func_181663_c(0.0F, 1.0F, 0.0F).func_181675_d();
-                worldrenderer.func_181662_b((double)bottomX, (double)f18, (double)f2).func_181673_a((double)f7, (double)f9).func_181663_c(0.0F, -1.0F, 0.0F).func_181675_d();
-                worldrenderer.func_181662_b((double)f16, (double)f18, (double)f2).func_181673_a((double)f8, (double)f9).func_181663_c(0.0F, -1.0F, 0.0F).func_181675_d();
-                worldrenderer.func_181662_b((double)f16, (double)f18, (double)(-f2)).func_181673_a((double)f8, (double)f10).func_181663_c(0.0F, -1.0F, 0.0F).func_181675_d();
-                worldrenderer.func_181662_b((double)bottomX, (double)f18, (double)(-f2)).func_181673_a((double)f7, (double)f10).func_181663_c(0.0F, -1.0F, 0.0F).func_181675_d();
-                worldrenderer.func_181662_b((double)bottomX, (double)f17, (double)f2).func_181673_a((double)f12, (double)f13).func_181663_c(-1.0F, 0.0F, 0.0F).func_181675_d();
-                worldrenderer.func_181662_b((double)bottomX, (double)f18, (double)f2).func_181673_a((double)f12, (double)f14).func_181663_c(-1.0F, 0.0F, 0.0F).func_181675_d();
-                worldrenderer.func_181662_b((double)bottomX, (double)f18, (double)(-f2)).func_181673_a((double)f11, (double)f14).func_181663_c(-1.0F, 0.0F, 0.0F).func_181675_d();
-                worldrenderer.func_181662_b((double)bottomX, (double)f17, (double)(-f2)).func_181673_a((double)f11, (double)f13).func_181663_c(-1.0F, 0.0F, 0.0F).func_181675_d();
-                worldrenderer.func_181662_b((double)f16, (double)f17, (double)(-f2)).func_181673_a((double)f12, (double)f13).func_181663_c(1.0F, 0.0F, 0.0F).func_181675_d();
-                worldrenderer.func_181662_b((double)f16, (double)f18, (double)(-f2)).func_181673_a((double)f12, (double)f14).func_181663_c(1.0F, 0.0F, 0.0F).func_181675_d();
-                worldrenderer.func_181662_b((double)f16, (double)f18, (double)f2).func_181673_a((double)f11, (double)f14).func_181663_c(1.0F, 0.0F, 0.0F).func_181675_d();
-                worldrenderer.func_181662_b((double)f16, (double)f17, (double)f2).func_181673_a((double)f11, (double)f13).func_181663_c(1.0F, 0.0F, 0.0F).func_181675_d();
+                worldrenderer.startDrawingQuads();
+                worldrenderer.setNormal(0.0F, 0.0F, -1.0F);
+                worldrenderer.addVertexWithUV((double) bottomX, (double) f18, (double) (-f2), (double) f20, (double) f21);
+                worldrenderer.addVertexWithUV((double) f16, (double) f18, (double) (-f2), (double) f19, (double) f21);
+                worldrenderer.addVertexWithUV((double) f16, (double) f17, (double) (-f2), (double) f19, (double) f22);
+                worldrenderer.addVertexWithUV((double) bottomX, (double) f17, (double) (-f2), (double) f20, (double) f22);
+                worldrenderer.setNormal(0.0F, 0.0F, 1.0F);
+                worldrenderer.addVertexWithUV((double)bottomX, (double)f17, (double) f2, (double) f3, (double)f5);
+                worldrenderer.addVertexWithUV((double)f16, (double)f17, (double) f2, (double) f4, (double)f5);
+                worldrenderer.addVertexWithUV((double)f16, (double)f18, (double) f2, (double) f4, (double)f6);
+                worldrenderer.addVertexWithUV((double)bottomX, (double)f18, (double) f2, (double) f3, (double)f6);
+                worldrenderer.setNormal(0.0F, 1.0F, 0.0F);
+                worldrenderer.addVertexWithUV((double)bottomX, (double)f17, (double) (-f2), (double) f7, (double)f9);
+                worldrenderer.addVertexWithUV((double)f16, (double)f17, (double) (-f2), (double) f8, (double)f9);
+                worldrenderer.addVertexWithUV((double)f16, (double)f17, (double) f2, (double) f8, (double)f10);
+                worldrenderer.addVertexWithUV((double)bottomX, (double)f17, (double) f2, (double) f7, (double)f10);
+                worldrenderer.setNormal(0.0F, -1.0F, 0.0F);
+                worldrenderer.addVertexWithUV((double)bottomX, (double)f18, (double) f2, (double) f7, (double)f9);
+                worldrenderer.addVertexWithUV((double)f16, (double)f18, (double) f2, (double) f8, (double)f9);
+                worldrenderer.addVertexWithUV((double)f16, (double)f18, (double) (-f2), (double) f8, (double)f10);
+                worldrenderer.addVertexWithUV((double)bottomX, (double)f18, (double) (-f2), (double) f7, (double)f10);
+                worldrenderer.setNormal(-1.0F, 0.0F, 0.0F);
+                worldrenderer.addVertexWithUV((double)bottomX, (double)f17, (double) f2, (double) f12, (double)f13);
+                worldrenderer.addVertexWithUV((double)bottomX, (double)f18, (double) f2, (double) f12, (double)f14);
+                worldrenderer.addVertexWithUV((double)bottomX, (double)f18, (double)(-f2), (double) f11, (double)f14);
+                worldrenderer.addVertexWithUV((double)bottomX, (double)f17, (double)(-f2), (double) f11, (double)f13);
+                worldrenderer.setNormal(1.0F, 0.0F, 0.0F);
+                worldrenderer.addVertexWithUV((double)f16, (double)f17, (double)(-f2), (double) f12, (double)f13);
+                worldrenderer.addVertexWithUV((double)f16, (double)f18, (double)(-f2), (double) f12, (double)f14);
+                worldrenderer.addVertexWithUV((double)f16, (double)f18, (double) f2, (double) f11, (double)f14);
+                worldrenderer.addVertexWithUV((double)f16, (double)f17, (double) f2, (double) f11, (double)f13);
                 tessellator.draw();
             }
         }
@@ -123,7 +129,7 @@ public class RenderBluePrint extends Render
         int i = MathHelper.floor_double(blueprint.posX);
         int j = MathHelper.floor_double(blueprint.posY + (double) (p_77008_3_ / 16.0F));
         int k = MathHelper.floor_double(blueprint.posZ);
-        EnumFacing enumfacing = blueprint.facingDirection;
+        EnumFacing enumfacing = blueprint.field_174860_b;
 
         if (enumfacing == EnumFacing.NORTH)
         {

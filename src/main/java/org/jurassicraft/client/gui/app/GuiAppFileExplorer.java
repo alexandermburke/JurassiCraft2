@@ -19,8 +19,6 @@ public class GuiAppFileExplorer extends GuiApp
 {
     private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/apps/file_explorer.png");
 
-    private boolean intro;
-
     public GuiAppFileExplorer(App app)
     {
         super(app);
@@ -35,60 +33,49 @@ public class GuiAppFileExplorer extends GuiApp
 
         AppFileExplorer app = (AppFileExplorer) getApp();
 
-        if (intro)
-        {
-            gui.drawScaledText("Hello " + mc.thePlayer.getDisplayName().getFormattedText() + "! Welcome to " + app.getName() + "!", 4, 10, 1.0F, 0xFFFFFF);
-            mc.getTextureManager().bindTexture(texture);
-            gui.drawScaledTexturedModalRect(1, 20, 0, 0, 32, 32, 32, 32, 1.0F);
-            gui.drawScaledText("Using " + app.getName() + " you can browse all your files!", 34, 29, 0.7F, 0xFFFFFF);
-        }
-        else
-        {
-            String path = app.getPath();
+        String path = app.getPath();
 
-            List<JCFile> filesAtPath = JCPlayerDataClient.getPlayerData().getFilesAtPath(path);
+        List<JCFile> filesAtPath = JCPlayerDataClient.getPlayerData().getFilesAtPath(path);
 
-            if (loading)
+        if (loading)
+        {
+            if (filesAtPath != null)
             {
-                if (filesAtPath != null)
-                {
-                    loading = false;
-                }
-                else
-                {
-                    gui.drawScaledText("Downloading files...", 4, 10, 1.0F, 0xFFFFFF);
-                }
+                loading = false;
             }
             else
             {
-                int y = 5;
-
-                for (JCFile file : filesAtPath)
-                {
-                    if (file != null && file.getName().length() > 0 && y < 125)
-                    {
-                        gui.drawBoxOutline(5, y, 207, 12, 1, 1.0F, 0x606060);
-                        String name = file.getName();
-
-                        if (name.length() > 23)
-                        {
-                            name = name.substring(0, 23) + "...";
-                        }
-
-                        gui.drawScaledText(name, 7, y + 3, 1.0F, 0xFFFFFF);
-                        gui.drawScaledText(file.isFile() ? "       File" : "Directory", 160, y + 3, 1.0F, 0x7F7F7F);
-
-                        y += 15;
-                    }
-                }
-
-                gui.drawScaledRect(217, 5, 7, 140, 1.0F, 0x7F7F7F);
-                gui.drawBoxOutline(217, 5, 7, 140, 1, 1.0F, 0x606060);
-
-                gui.drawBoxOutline(5, 132, 65, 12, 1, 1.0F, 0x606060);
-                gui.drawScaledText("<-- Move up", 8, 135, 1.0F, 0xFFFFFF);
+                gui.drawScaledText("Downloading files...", 4, 10, 1.0F, 0xFFFFFF);
             }
-            // gui.drawBoxOutline(10, 10, 100, 15, 1, 1.0F, 0x606060);
+        }
+        else
+        {
+            int y = 5;
+
+            for (JCFile file : filesAtPath)
+            {
+                if (file != null && file.getName().length() > 0 && y < 125)
+                {
+                    gui.drawBoxOutline(5, y, 207, 12, 1, 1.0F, 0x606060);
+                    String name = file.getName();
+
+                    if (name.length() > 23)
+                    {
+                        name = name.substring(0, 23) + "...";
+                    }
+
+                    gui.drawScaledText(name, 7, y + 3, 1.0F, 0xFFFFFF);
+                    gui.drawScaledText(file.isFile() ? "       File" : "Directory", 160, y + 3, 1.0F, 0x7F7F7F);
+
+                    y += 15;
+                }
+            }
+
+            gui.drawScaledRect(217, 5, 7, 140, 1.0F, 0x7F7F7F);
+            gui.drawBoxOutline(217, 5, 7, 140, 1, 1.0F, 0x606060);
+
+            gui.drawBoxOutline(5, 132, 65, 12, 1, 1.0F, 0x606060);
+            gui.drawScaledText("<-- Move up", 8, 135, 1.0F, 0xFFFFFF);
         }
     }
 
@@ -101,64 +88,57 @@ public class GuiAppFileExplorer extends GuiApp
     @Override
     public void mouseClicked(int mouseX, int mouseY, GuiPaleoPad gui)
     {
-        ScaledResolution dimensions = new ScaledResolution(mc);
+        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
         mouseX -= dimensions.getScaledWidth() / 2 - 115;
         mouseY -= 65;
 
-        if (intro)
+        AppFileExplorer app = (AppFileExplorer) getApp();
+
+        String path = app.getPath();
+
+        List<JCFile> filesAtPath = JCPlayerDataClient.getPlayerData().getFilesAtPath(path);
+
+        if (filesAtPath != null)
         {
+            int y = 5;
 
-        }
-        else
-        {
-            AppFileExplorer app = (AppFileExplorer) getApp();
-
-            String path = app.getPath();
-
-            List<JCFile> filesAtPath = JCPlayerDataClient.getPlayerData().getFilesAtPath(path);
-
-            if (filesAtPath != null)
+            for (JCFile file : filesAtPath)
             {
-                int y = 5;
-
-                for (JCFile file : filesAtPath)
+                if (file != null && file.getName().length() > 0 && file.isDirectory() && y < 125)
                 {
-                    if (file != null && file.getName().length() > 0 && file.isDirectory() && y < 125)
+                    if (mouseX > 5 && mouseX < 212 && mouseY > y && mouseY < y + 12)
                     {
-                        if (mouseX > 5 && mouseX < 212 && mouseY > y && mouseY < y + 12)
+                        app.setPath(file.getPath());
+
+                        if (!(path.equals(app.getPath())))
                         {
-                            app.setPath(file.getPath());
-
-                            if (!(path.equals(app.getPath())))
-                            {
-                                request(app.getPath());
-                            }
-
-                            break;
+                            request(app.getPath());
                         }
 
-                        y += 15;
+                        break;
                     }
+
+                    y += 15;
                 }
             }
+        }
 
-            if (mouseX > 5 && mouseX < 70 && mouseY > 132 && mouseY < 144)
+        if (mouseX > 5 && mouseX < 70 && mouseY > 132 && mouseY < 144)
+        {
+            String[] split = path.split(Pattern.quote("/"));
+
+            if (split.length > 1)
             {
-                String[] split = path.split(Pattern.quote("/"));
+                app.setPath(path.substring(0, path.lastIndexOf("/")));
+            }
+            else
+            {
+                app.setPath("");
+            }
 
-                if (split.length > 1)
-                {
-                    app.setPath(path.substring(0, path.lastIndexOf("/")));
-                }
-                else
-                {
-                    app.setPath("");
-                }
-
-                if (!(path.equals(app.getPath())))
-                {
-                    request(app.getPath());
-                }
+            if (!(path.equals(app.getPath())))
+            {
+                request(app.getPath());
             }
         }
     }
@@ -188,8 +168,6 @@ public class GuiAppFileExplorer extends GuiApp
     @Override
     public void init()
     {
-        intro = !app.hasBeenPreviouslyOpened();
-
         request(((AppFileExplorer) app).getPath());
     }
 

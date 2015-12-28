@@ -49,7 +49,7 @@ public class GuiPaleoPadViewDinosaur extends GuiScreen
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         mc.getTextureManager().bindTexture(texture);
 
-        ScaledResolution dimensions = new ScaledResolution(mc);
+        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
         int scaledWidth = dimensions.getScaledWidth();
         int scaledHeight = dimensions.getScaledHeight();
         drawTexturedModalRect(scaledWidth / 2 - 128, 40, 0, 0, 256, 256);
@@ -77,7 +77,7 @@ public class GuiPaleoPadViewDinosaur extends GuiScreen
 
         drawCenteredScaledText(new AdvLang("paleopad.time.name").withProperty("hours", hoursStr).withProperty("minutes", minutesStr).build(), 115, -10, 1.0F, 0xFFFFFF);
         Dinosaur dinoDef = this.dinosaur.getDinosaur();
-        drawScaledText("Viewing: " + this.dinosaur.getCommandSenderName(), 5, 5, 1.0F, this.dinosaur.isMale() ? dinoDef.getEggPrimaryColorMale() : dinoDef.getEggPrimaryColorFemale());
+        drawScaledText("Viewing: " + this.dinosaur.getName(), 5, 5, 1.0F, this.dinosaur.isMale() ? dinoDef.getEggPrimaryColorMale() : dinoDef.getEggPrimaryColorFemale());
         drawScaledText("Age: " + this.dinosaur.getDaysExisted() + " days", 5, 20, 1.0F, 0x808080);
         drawScaledRect(0, 0, 458, 2, 0.5F, 0x404040);
 
@@ -107,7 +107,7 @@ public class GuiPaleoPadViewDinosaur extends GuiScreen
     {
         GL11.glPushMatrix();
 
-        ScaledResolution dimensions = new ScaledResolution(mc);
+        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
         x += dimensions.getScaledWidth() / 2 - 115;
         y += 65;
 
@@ -140,7 +140,7 @@ public class GuiPaleoPadViewDinosaur extends GuiScreen
     {
         GL11.glPushMatrix();
 
-        ScaledResolution dimensions = new ScaledResolution(mc);
+        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
         x += dimensions.getScaledWidth() / 2 - 115;
         y += 65;
 
@@ -192,7 +192,7 @@ public class GuiPaleoPadViewDinosaur extends GuiScreen
     {
         GL11.glPushMatrix();
 
-        ScaledResolution dimensions = new ScaledResolution(mc);
+        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
         x += dimensions.getScaledWidth() / 2 - 115;
         y += 65;
 
@@ -210,7 +210,7 @@ public class GuiPaleoPadViewDinosaur extends GuiScreen
     {
         GL11.glPushMatrix();
 
-        ScaledResolution dimensions = new ScaledResolution(mc);
+        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
         x += dimensions.getScaledWidth() / 2 - 115;
         y += 65;
 
@@ -228,7 +228,7 @@ public class GuiPaleoPadViewDinosaur extends GuiScreen
     {
         GL11.glPushMatrix();
 
-        ScaledResolution dimensions = new ScaledResolution(mc);
+        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
         x += dimensions.getScaledWidth() / 2 - 115;
         y += 65;
 
@@ -250,7 +250,7 @@ public class GuiPaleoPadViewDinosaur extends GuiScreen
 
     public void drawEntityOnScreen(int posX, int posY, int scale, EntityLivingBase ent)
     {
-        ScaledResolution dimensions = new ScaledResolution(mc);
+        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
         posX += dimensions.getScaledWidth() / 2 - 115;
         posY += 65;
 

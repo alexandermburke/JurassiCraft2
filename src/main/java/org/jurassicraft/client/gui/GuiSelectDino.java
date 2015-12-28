@@ -12,6 +12,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import org.jurassicraft.JurassiCraft;
+import org.jurassicraft.client.render.WorldRendererUtils;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.base.JCEntityRegistry;
 import org.jurassicraft.common.message.MessagePlacePaddockSign;
@@ -230,11 +231,12 @@ public class GuiSelectDino extends GuiScreen
         float f1 = 1.0F / (float) height;
         Tessellator tessellator = Tessellator.getInstance();
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-        worldrenderer.func_181668_a(7, DefaultVertexFormats.field_181707_g);
-        worldrenderer.func_181662_b((double) (x + 0), (double) (y + height), (double) this.zLevel).func_181673_a((double) ((float) (0) * f), (double) ((float) (height) * f1)).func_181675_d();
-        worldrenderer.func_181662_b((double) (x + width), (double) (y + height), (double) this.zLevel).func_181673_a((double) ((float) (width) * f), (double) ((float) (0 + height) * f1)).func_181675_d();
-        worldrenderer.func_181662_b((double) (x + width), (double) (y + 0), (double) this.zLevel).func_181673_a((double) ((float) (0 + width) * f), (double) ((float) (0 + 0) * f1)).func_181675_d();
-        worldrenderer.func_181662_b((double) (x + 0), (double) (y + 0), (double) this.zLevel).func_181673_a((double) ((float) (0 + 0) * f), (double) ((float) (0 + 0) * f1)).func_181675_d();
+        WorldRendererUtils utils = new WorldRendererUtils(worldrenderer);
+        utils.startDrawingQuads();
+        utils.addVertexWithUV((double) (x + 0), (double) (y + height), (double) this.zLevel, (double) ((float) (0) * f), (double) ((float) (height) * f1));
+        utils.addVertexWithUV((double) (x + width), (double) (y + height), (double) this.zLevel, (double) ((float) (width) * f), (double) ((float) (0 + height) * f1));
+        utils.addVertexWithUV((double) (x + width), (double) (y + 0), (double) this.zLevel, (double) ((float) (0 + width) * f), (double) ((float) (0 + 0) * f1));
+        utils.addVertexWithUV((double) (x + 0), (double) (y + 0), (double) this.zLevel, (double) ((float) (0 + 0) * f), (double) ((float) (0 + 0) * f1));
         tessellator.draw();
 
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);

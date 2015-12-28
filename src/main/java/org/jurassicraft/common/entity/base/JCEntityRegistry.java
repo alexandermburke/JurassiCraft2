@@ -135,6 +135,8 @@ public class JCEntityRegistry
     public static final Dinosaur troodon = new DinosaurTroodon();
     public static final Dinosaur pachycephalosaurus = new DinosaurPachycephalosaurus();
 
+    private int entityId;
+
     public static List<Dinosaur> getDinosaursFromSeaLampreys()
     {
         List<Dinosaur> marineDinos = new ArrayList<Dinosaur>();
@@ -261,12 +263,9 @@ public class JCEntityRegistry
 
     private void registerEntity(Class<? extends Entity> entity, String name)
     {
-        int entityId = EntityRegistry.findGlobalUniqueEntityId();
-
         String formattedName = name.toLowerCase().replaceAll(" ", "_");
 
-        EntityRegistry.registerGlobalEntityID(entity, formattedName, entityId);
-        EntityRegistry.registerModEntity(entity, formattedName, entityId, JurassiCraft.instance, 1024, 1, true);
+        EntityRegistry.registerModEntity(entity, formattedName, entityId++, JurassiCraft.instance, 1024, 1, true);
     }
 
     public static void registerDinosaurType(Dinosaur dinosaur)

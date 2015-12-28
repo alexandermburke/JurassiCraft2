@@ -211,9 +211,9 @@ public class InventoryDinosaur implements IInventory
     }
 
     @Override
-    public String getCommandSenderName()
+    public String getName()
     {
-        return entity.getCommandSenderName();
+        return entity.getName();
     }
 
     @Override

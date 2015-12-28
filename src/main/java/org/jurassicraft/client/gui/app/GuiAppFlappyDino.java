@@ -122,7 +122,7 @@ public class GuiAppFlappyDino extends GuiApp
     @Override
     public void mouseClicked(int mouseX, int mouseY, GuiPaleoPad gui)
     {
-        ScaledResolution dimensions = new ScaledResolution(mc);
+        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
         mouseX -= dimensions.getScaledWidth() / 2 - 115;
         mouseY -= 65;
 

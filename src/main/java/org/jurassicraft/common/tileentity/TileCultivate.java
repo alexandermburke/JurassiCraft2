@@ -14,10 +14,10 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -34,7 +34,7 @@ import org.jurassicraft.common.item.JCItemRegistry;
 import java.util.List;
 import java.util.Random;
 
-public class TileCultivate extends TileEntityLockable implements ITickable, ISidedInventory
+public class TileCultivate extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
 {
     private static final int[] slotsTop = new int[] { 0, 1 }; // input (embryo + nutrients)
     private static final int[] slotsBottom = new int[] { 4 }; // output
@@ -154,7 +154,7 @@ public class TileCultivate extends TileEntityLockable implements ITickable, ISid
     /**
      * Gets the name of this command sender (usually username, but possibly "Rcon")
      */
-    public String getCommandSenderName()
+    public String getName()
     {
         return this.hasCustomName() ? this.customName : "container.cultivator";
     }

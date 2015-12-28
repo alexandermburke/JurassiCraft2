@@ -4,6 +4,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import org.jurassicraft.common.entity.base.EnumDiet;
 import org.jurassicraft.common.item.JCItemRegistry;
 
@@ -44,9 +45,9 @@ public class FoodHelper
         registerFood(JCItemRegistry.dino_meat, EnumFoodType.MEAT);
         registerFood(JCItemRegistry.dino_steak, EnumFoodType.MEAT);
 
-        for (Item item : Item.itemRegistry)
+        for (Object item : Item.itemRegistry)
         {
-            String resourceDomain = Item.itemRegistry.getNameForObject(item).getResourceDomain();
+            String resourceDomain = ((ResourceLocation) Item.itemRegistry.getNameForObject(item)).getResourceDomain();
 
             if (!resourceDomain.equals("minecraft"))
             {

@@ -54,7 +54,7 @@ public class GuiPaleoPad extends GuiScreen
     @Override
     protected void mouseReleased(int mouseX, int mouseY, int state)
     {
-        ScaledResolution dimensions = new ScaledResolution(mc);
+        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
         int scaledWidth = dimensions.getScaledWidth();
 
         if (focus == null)
@@ -92,7 +92,7 @@ public class GuiPaleoPad extends GuiScreen
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         mc.getTextureManager().bindTexture(texture);
 
-        ScaledResolution dimensions = new ScaledResolution(mc);
+        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
         int scaledWidth = dimensions.getScaledWidth();
         int scaledHeight = dimensions.getScaledHeight();
         drawTexturedModalRect(scaledWidth / 2 - 128, 40, 0, 0, 256, 256);
@@ -156,7 +156,7 @@ public class GuiPaleoPad extends GuiScreen
     {
         GL11.glPushMatrix();
 
-        ScaledResolution dimensions = new ScaledResolution(mc);
+        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
         x += dimensions.getScaledWidth() / 2 - 115;
         y += 65;
 
@@ -189,7 +189,7 @@ public class GuiPaleoPad extends GuiScreen
     {
         GL11.glPushMatrix();
 
-        ScaledResolution dimensions = new ScaledResolution(mc);
+        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
         x += dimensions.getScaledWidth() / 2 - 115;
         y += 65;
 
@@ -241,7 +241,7 @@ public class GuiPaleoPad extends GuiScreen
     {
         GL11.glPushMatrix();
 
-        ScaledResolution dimensions = new ScaledResolution(mc);
+        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
         x += dimensions.getScaledWidth() / 2 - 115;
         y += 65;
 
@@ -259,7 +259,7 @@ public class GuiPaleoPad extends GuiScreen
     {
         GL11.glPushMatrix();
 
-        ScaledResolution dimensions = new ScaledResolution(mc);
+        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
         x += dimensions.getScaledWidth() / 2 - 115;
         y += 65;
 
