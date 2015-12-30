@@ -102,13 +102,13 @@ public class DinosaurIndominus extends Dinosaur implements IHybrid
     @Override
     public double getBabyStrength()
     {
-        return 6;
+        return 8;
     }
 
     @Override
     public double getAdultStrength()
     {
-        return 3;
+        return 20;
     }
 
     @Override

@@ -4,6 +4,9 @@
         "IDLE": [
             {"pose": "spinosaurus_adult_idle", "time": 20}
         ],
+		"SLEEPING": [
+            {"pose": "spinosaurus_adult_sleeping", "time": 20}
+        ],
         "ROARING": [
                {"pose": "spinosaurus_adult_roaring_1", "time": 100}, 
                {"pose": "spinosaurus_adult_roaring_2", "time": 80}, 

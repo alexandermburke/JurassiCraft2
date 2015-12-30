@@ -31,7 +31,7 @@ public class ItemBluePrint extends Item
 
         if (dino != null)
         {
-            name = "entity." + dino.getName().toLowerCase().replaceAll(" ", "_") + ".name";
+            name = "entity.jurassicraft." + dino.getName().toLowerCase().replaceAll(" ", "_") + ".name";
         }
 
         return new AdvLang("item.blue_print.name").withProperty("type", name).build();

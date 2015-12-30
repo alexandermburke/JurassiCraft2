@@ -30,7 +30,7 @@ public class ItemSoftTissue extends Item
     {
         String dinoName = getDinosaur(stack).getName().toLowerCase().replaceAll(" ", "_");
 
-        return new AdvLang("item.soft_tissue.name").withProperty("dino", "entity." + dinoName + ".name").build();
+        return new AdvLang("item.soft_tissue.name").withProperty("dino", "entity.jurassicraft." + dinoName + ".name").build();
     }
 
     public Dinosaur getDinosaur(ItemStack stack)

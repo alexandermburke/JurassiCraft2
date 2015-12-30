@@ -75,7 +75,7 @@ public class ItemActionFigure extends Item
     {
         String dinoName = getDinosaur(stack).getName().toLowerCase().replaceAll(" ", "_");
 
-        return new AdvLang("item.action_figure.name").withProperty("dino", "entity." + dinoName + ".name").build();
+        return new AdvLang("item.action_figure.name").withProperty("dino", "entity.jurassicraft." + dinoName + ".name").build();
     }
 
     public Dinosaur getDinosaur(ItemStack stack)

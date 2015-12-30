@@ -54,7 +54,7 @@ public class ItemCage extends Item
 
         if (caged != -1)
         {
-            tooltip.add(EnumChatFormatting.BLUE + StatCollector.translateToLocal("entity." + EntityList.classToStringMapping.get(EntityList.idToClassMapping.get(caged)) + ".name"));
+            tooltip.add(EnumChatFormatting.BLUE + StatCollector.translateToLocal("entity.jurassicraft." + EntityList.classToStringMapping.get(EntityList.idToClassMapping.get(caged)) + ".name"));
 
             if (data != null)
             {
