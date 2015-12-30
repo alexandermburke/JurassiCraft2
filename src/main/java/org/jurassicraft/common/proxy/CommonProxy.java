@@ -108,24 +108,29 @@ public class CommonProxy
 
             Class entityClass = entry.getKey();
 
-            if (entityClass.toString().contains("minecraft"))
+            String clazzName = entityClass.toString();
+
+            if (!clazzName.contains("jurassicraft"))
             {
-                if (!JCConfigurations.spawnVanillaMobsNaturally())
+                if (clazzName.contains("minecraft"))
                 {
-                    EntityRegistry.removeSpawn(entityClass, EnumCreatureType.AMBIENT, allBiomes);
-                    EntityRegistry.removeSpawn(entityClass, EnumCreatureType.CREATURE, allBiomes);
-                    EntityRegistry.removeSpawn(entityClass, EnumCreatureType.MONSTER, allBiomes);
-                    EntityRegistry.removeSpawn(entityClass, EnumCreatureType.WATER_CREATURE, allBiomes);
+                    if (!JCConfigurations.spawnVanillaMobsNaturally())
+                    {
+                        EntityRegistry.removeSpawn(entityClass, EnumCreatureType.AMBIENT, allBiomes);
+                        EntityRegistry.removeSpawn(entityClass, EnumCreatureType.CREATURE, allBiomes);
+                        EntityRegistry.removeSpawn(entityClass, EnumCreatureType.MONSTER, allBiomes);
+                        EntityRegistry.removeSpawn(entityClass, EnumCreatureType.WATER_CREATURE, allBiomes);
+                    }
                 }
-            }
-            else
-            {
-                if (!JCConfigurations.spawnOtherMobsModsNaturally())
+                else
                 {
-                    EntityRegistry.removeSpawn(entityClass, EnumCreatureType.AMBIENT, allBiomes);
-                    EntityRegistry.removeSpawn(entityClass, EnumCreatureType.CREATURE, allBiomes);
-                    EntityRegistry.removeSpawn(entityClass, EnumCreatureType.MONSTER, allBiomes);
-                    EntityRegistry.removeSpawn(entityClass, EnumCreatureType.WATER_CREATURE, allBiomes);
+                    if (!JCConfigurations.spawnOtherMobsModsNaturally())
+                    {
+                        EntityRegistry.removeSpawn(entityClass, EnumCreatureType.AMBIENT, allBiomes);
+                        EntityRegistry.removeSpawn(entityClass, EnumCreatureType.CREATURE, allBiomes);
+                        EntityRegistry.removeSpawn(entityClass, EnumCreatureType.MONSTER, allBiomes);
+                        EntityRegistry.removeSpawn(entityClass, EnumCreatureType.WATER_CREATURE, allBiomes);
+                    }
                 }
             }
         }

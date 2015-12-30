@@ -1,5 +1,7 @@
 package org.jurassicraft.common.entity.base;
 
+import com.google.common.base.Predicates;
+import com.google.common.collect.Iterators;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -227,38 +229,22 @@ public class JCEntityRegistry
     {
         if (dinosaur.shouldRegister())
         {
-            registerEntity(dinosaur.getDinosaurClass(), dinosaur.getName());
+            Class<? extends EntityDinosaur> clazz = dinosaur.getDinosaurClass();
+
+            registerEntity(clazz, dinosaur.getName());
 
             if (dinosaur.shouldRegister() && !(dinosaur instanceof IHybrid) && JCConfigurations.spawnJurassiCraftMobsNaturally())
             {
                 if (dinosaur.isMarineAnimal())
                 {
-                    EntityRegistry.addSpawn(dinosaur.getDinosaurClass(), 5, 1, 2,  EnumCreatureType.WATER_CREATURE, new BiomeGenBase[] { BiomeGenBase.ocean, BiomeGenBase.deepOcean, BiomeGenBase.river });
+                    EntityRegistry.addSpawn(clazz, 5, 1, 2,  EnumCreatureType.WATER_CREATURE, BiomeGenBase.ocean, BiomeGenBase.deepOcean, BiomeGenBase.river);
                 }
                 else
                 {
-                    EntityRegistry.addSpawn(dinosaur.getDinosaurClass(), 5, 1, 2, EnumCreatureType.CREATURE, removeNullEntries(BiomeGenBase.getBiomeGenArray()));
+                    EntityRegistry.addSpawn(clazz, 5, 1, 2, EnumCreatureType.CREATURE, Iterators.toArray(Iterators.filter(Iterators.forArray(BiomeGenBase.getBiomeGenArray()), Predicates.notNull()), BiomeGenBase.class));
                 }
             }
         }
-    }
-
-    public BiomeGenBase[] removeNullEntries(BiomeGenBase[] original)
-    {
-        int index, from;
-        int to = index = from = original.length;
-
-        while (index > 0)
-        {
-            BiomeGenBase biome = original[--index];
-
-            if (biome != null)
-            {
-                original[--from] = biome;
-            }
-        }
-
-        return Arrays.copyOfRange(original, from, to);
     }
 
     private void registerEntity(Class<? extends Entity> entity, String name)
