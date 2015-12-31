@@ -15,7 +15,7 @@ public class EntityAILand extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        return flyer.isFlying() && flyer.posY - flyer.worldObj.getHorizon() > 10 && flyer.getRNG().nextFloat() < 0.1F;
+        return flyer.isFlying() && flyer.posY - flyer.worldObj.getHeight(flyer.getPosition()).getY() > 10 && flyer.getRNG().nextFloat() < 0.1F;
     }
 
     @Override
