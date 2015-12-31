@@ -20,7 +20,7 @@ public class BlockCultivateTop extends BlockCultivate
         super("top");
     }
 
-    public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
+    public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos, EntityPlayer player)
     {
         Item item = Item.getItemFromBlock(JCBlockRegistry.cultivate_bottom);
 

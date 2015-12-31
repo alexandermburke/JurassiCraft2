@@ -6,6 +6,7 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.fml.relauncher.Side;
@@ -13,7 +14,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.gui.app.GuiApp;
 import org.jurassicraft.client.gui.app.GuiAppRegistry;
-import org.jurassicraft.client.render.WorldRendererUtils;
 import org.jurassicraft.common.entity.data.JCPlayerDataClient;
 import org.jurassicraft.common.lang.AdvLang;
 import org.jurassicraft.common.paleopad.App;
@@ -54,7 +54,7 @@ public class GuiPaleoPad extends GuiScreen
     @Override
     protected void mouseReleased(int mouseX, int mouseY, int state)
     {
-        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+        ScaledResolution dimensions = new ScaledResolution(mc);
         int scaledWidth = dimensions.getScaledWidth();
 
         if (focus == null)
@@ -92,7 +92,7 @@ public class GuiPaleoPad extends GuiScreen
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         mc.getTextureManager().bindTexture(texture);
 
-        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+        ScaledResolution dimensions = new ScaledResolution(mc);
         int scaledWidth = dimensions.getScaledWidth();
         int scaledHeight = dimensions.getScaledHeight();
         drawTexturedModalRect(scaledWidth / 2 - 128, 40, 0, 0, 256, 256);
@@ -156,7 +156,7 @@ public class GuiPaleoPad extends GuiScreen
     {
         GL11.glPushMatrix();
 
-        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+        ScaledResolution dimensions = new ScaledResolution(mc);
         x += dimensions.getScaledWidth() / 2 - 115;
         y += 65;
 
@@ -169,12 +169,11 @@ public class GuiPaleoPad extends GuiScreen
         float f1 = 1.0F / (float) textureHeight;
         Tessellator tessellator = Tessellator.getInstance();
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-        WorldRendererUtils rendererUtils = new WorldRendererUtils(worldrenderer);
-        rendererUtils.startDrawingQuads();
-        rendererUtils.addVertexWithUV((double) (x), (double) (y + height), (double) this.zLevel, (double) ((float) (textureX) * f), (double) ((float) (textureY + height) * f1));
-        rendererUtils.addVertexWithUV((double) (x + width), (double) (y + height), (double) this.zLevel, (double) ((float) (textureX + width) * f), (double) ((float) (textureY + height) * f1));
-        rendererUtils.addVertexWithUV((double) (x + width), (double) (y), (double) this.zLevel, (double) ((float) (textureX + width) * f), (double) ((float) (textureY) * f1));
-        rendererUtils.addVertexWithUV((double) (x), (double) (y), (double) this.zLevel, (double) ((float) (textureX) * f), (double) ((float) (textureY) * f1));
+        worldrenderer.begin(7, DefaultVertexFormats.POSITION);
+        worldrenderer.pos((double) (x), (double) (y + height), (double) this.zLevel).tex((double) ((float) (textureX) * f), (double) ((float) (textureY + height) * f1)).endVertex();
+        worldrenderer.pos((double) (x + width), (double) (y + height), (double) this.zLevel).tex((double) ((float) (textureX + width) * f), (double) ((float) (textureY + height) * f1)).endVertex();
+        worldrenderer.pos((double) (x + width), (double) (y), (double) this.zLevel).tex((double) ((float) (textureX + width) * f), (double) ((float) (textureY) * f1)).endVertex();
+        worldrenderer.pos((double) (x), (double) (y), (double) this.zLevel).tex((double) ((float) (textureX) * f), (double) ((float) (textureY) * f1)).endVertex();
         tessellator.draw();
 
         GL11.glColor3f(1.0F, 1.0F, 1.0F);
@@ -189,7 +188,7 @@ public class GuiPaleoPad extends GuiScreen
     {
         GL11.glPushMatrix();
 
-        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+        ScaledResolution dimensions = new ScaledResolution(mc);
         x += dimensions.getScaledWidth() / 2 - 115;
         y += 65;
 
@@ -210,12 +209,11 @@ public class GuiPaleoPad extends GuiScreen
         float f1 = 1.0F / (float) height;
         Tessellator tessellator = Tessellator.getInstance();
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-        WorldRendererUtils rendererUtils = new WorldRendererUtils(worldrenderer);
-        rendererUtils.startDrawingQuads();
-        rendererUtils.addVertexWithUV((double) (x), (double) (y + height), (double) this.zLevel, (double) (0), (double) ((float) (height) * f1));
-        rendererUtils.addVertexWithUV((double) (x + width), (double) (y + height), (double) this.zLevel, (double) ((float) (width) * f), (double) ((float) (height) * f1));
-        rendererUtils.addVertexWithUV((double) (x + width), (double) (y), (double) this.zLevel, (double) ((float) (width) * f), (double) ((float) 0));
-        rendererUtils.addVertexWithUV((double) (x), (double) (y), (double) this.zLevel, (double) ((float) 0), (double) ((float) 0));
+        worldrenderer.begin(7, DefaultVertexFormats.POSITION);
+        worldrenderer.pos((double) (x), (double) (y + height), (double) this.zLevel).tex((double) (0), (double) ((float) (height) * f1)).endVertex();
+        worldrenderer.pos((double) (x + width), (double) (y + height), (double) this.zLevel).tex((double) ((float) (width) * f), (double) ((float) (height) * f1)).endVertex();
+        worldrenderer.pos((double) (x + width), (double) (y), (double) this.zLevel).tex((double) ((float) (width) * f), (double) ((float) 0)).endVertex();
+        worldrenderer.pos((double) (x), (double) (y), (double) this.zLevel).tex((double) ((float) 0), (double) ((float) 0)).endVertex();
         tessellator.draw();
 
         GL11.glColor3f(1.0F, 1.0F, 1.0F);
@@ -241,7 +239,7 @@ public class GuiPaleoPad extends GuiScreen
     {
         GL11.glPushMatrix();
 
-        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+        ScaledResolution dimensions = new ScaledResolution(mc);
         x += dimensions.getScaledWidth() / 2 - 115;
         y += 65;
 
@@ -259,7 +257,7 @@ public class GuiPaleoPad extends GuiScreen
     {
         GL11.glPushMatrix();
 
-        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+        ScaledResolution dimensions = new ScaledResolution(mc);
         x += dimensions.getScaledWidth() / 2 - 115;
         y += 65;
 

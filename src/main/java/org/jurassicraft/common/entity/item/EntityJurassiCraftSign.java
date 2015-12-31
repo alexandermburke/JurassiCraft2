@@ -34,14 +34,12 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
         EntityJurassiCraftSign.EnumSignType[] aenumart = EntityJurassiCraftSign.EnumSignType.values();
         int i = aenumart.length;
 
-        for (int j = 0; j < i; ++j)
+        for (EnumSignType enumart : aenumart)
         {
-            EntityJurassiCraftSign.EnumSignType enumart = aenumart[j];
             this.signType = enumart;
-            this.func_174859_a(enumFacing);
+            this.updateFacingWithBoundingBox(enumFacing);
 
-            if (this.onValidSurface())
-            {
+            if (this.onValidSurface()) {
                 arraylist.add(enumart);
             }
         }
@@ -51,7 +49,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
             this.signType = arraylist.get(this.rand.nextInt(arraylist.size()));
         }
 
-        this.func_174859_a(enumFacing);
+        this.updateFacingWithBoundingBox(enumFacing);
     }
 
     @SideOnly(Side.CLIENT)
@@ -60,7 +58,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
         this(world, pos, enumFacing);
         setType(titleName);
 
-        this.func_174859_a(enumFacing);
+        this.updateFacingWithBoundingBox(enumFacing);
     }
 
     private void setType(String titleName)
@@ -126,7 +124,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
     @Override
     public void onBroken(Entity entity)
     {
-        if (this.worldObj.getGameRules().getGameRuleBooleanValue("doTileDrops"))
+        if (this.worldObj.getGameRules().getBoolean("doTileDrops"))
         {
             if (entity instanceof EntityPlayer)
             {
@@ -175,7 +173,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void func_180426_a(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean p_180426_10_)
+    public void setPositionAndRotation2(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean p_180426_10_)
     {
 
     }
@@ -185,7 +183,7 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
     {
         ByteBufUtils.writeUTF8String(buffer, signType.title);
         buffer.writeLong(hangingPosition.toLong());
-        buffer.writeByte(field_174860_b.getHorizontalIndex());
+        buffer.writeByte(facingDirection.getHorizontalIndex());
     }
 
     @Override
@@ -193,6 +191,6 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
     {
         setType(ByteBufUtils.readUTF8String(buf));
         hangingPosition = BlockPos.fromLong(buf.readLong());
-        func_174859_a(EnumFacing.getHorizontal(buf.readByte()));
+        updateFacingWithBoundingBox(EnumFacing.getHorizontal(buf.readByte()));
     }
 }

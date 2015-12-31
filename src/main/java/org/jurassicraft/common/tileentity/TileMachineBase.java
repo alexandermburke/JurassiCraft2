@@ -11,14 +11,14 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class TileMachineBase extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
+public abstract class TileMachineBase extends TileEntityLockable implements ITickable, ISidedInventory
 {
     protected String customName;
 
@@ -138,7 +138,7 @@ public abstract class TileMachineBase extends TileEntityLockable implements IUpd
     /**
      * When some containers are closed they call this on each slot, then drop whatever it returns as an EntityItem - like when you close a workbench GUI.
      */
-    public ItemStack getStackInSlotOnClosing(int index)
+    public ItemStack removeStackFromSlot(int index)
     {
         ItemStack[] slots = getSlots();
 

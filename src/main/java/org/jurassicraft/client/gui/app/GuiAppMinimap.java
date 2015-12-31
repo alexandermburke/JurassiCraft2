@@ -6,13 +6,9 @@ import net.minecraft.block.material.MapColor;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.ClassInheritanceMultiMap;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import org.jurassicraft.JurassiCraft;
@@ -24,7 +20,6 @@ import org.jurassicraft.common.paleopad.AppMinimap;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class GuiAppMinimap extends GuiApp
@@ -78,7 +73,7 @@ public class GuiAppMinimap extends GuiApp
                         for (int z = 0; z < 16; z++)
                         {
                             int blockX = x + (chunkX * 16);
-                            int blockY = chunk.getHeight(x, z);
+                            int blockY = chunk.getHeight(new BlockPos(x, 0, z));
                             int blockZ = z + (chunkZ * 16);
 
                             if (world.isAirBlock(new BlockPos(blockX, blockY, blockZ)))
@@ -148,7 +143,7 @@ public class GuiAppMinimap extends GuiApp
 
                 if (!chunk.isEmpty())
                 {
-                    for (Object e : getEntitiesInChunk(chunk, null, IEntitySelector.NOT_SPECTATING))
+                    for (Object e : getEntitiesInChunk(chunk, null, EntitySelectors.NOT_SPECTATING))
                     {
                         Entity entity = (Entity) e;
 
@@ -205,18 +200,14 @@ public class GuiAppMinimap extends GuiApp
 
         int i = MathHelper.floor_double((0 - World.MAX_ENTITY_RADIUS) / 16.0D);
         int j = MathHelper.floor_double((256 + World.MAX_ENTITY_RADIUS) / 16.0D);
-        ClassInheritanceMultiMap[] entityLists = chunk.getEntityLists();
+        ClassInheritanceMultiMap<Entity>[] entityLists = chunk.getEntityLists();
         i = MathHelper.clamp_int(i, 0, entityLists.length - 1);
         j = MathHelper.clamp_int(j, 0, entityLists.length - 1);
 
         for (int k = i; k <= j; ++k)
         {
-            Iterator<Entity> iterator = entityLists[k].iterator();
-
-            while (iterator.hasNext())
+            for (Entity entity : entityLists[k])
             {
-                Entity entity = iterator.next();
-
                 if (entity != exclude && (predicate == null || predicate.apply(entity)))
                 {
                     entities.add(entity);
@@ -250,7 +241,7 @@ public class GuiAppMinimap extends GuiApp
     @Override
     public void mouseClicked(int mouseX, int mouseY, GuiPaleoPad gui)
     {
-        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+        ScaledResolution dimensions = new ScaledResolution(mc);
         mouseX -= dimensions.getScaledWidth() / 2 - 115;
         mouseY -= 65;
     }

@@ -108,7 +108,7 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
 
     // need to override so that red overlay doesn't persist after death
     @Override
-    protected boolean func_177092_a(EntityLivingBase entitylivingbaseIn, float partialTicks, boolean combineTextures)
+    protected boolean setBrightness(EntityLivingBase entitylivingbaseIn, float partialTicks, boolean combineTextures)
     {
         float f1 = entitylivingbaseIn.getBrightness(partialTicks);
         int i = this.getColorMultiplier(entitylivingbaseIn, f1, partialTicks);
@@ -149,14 +149,14 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
             GL11.glTexEnvi(GL11.GL_TEXTURE_ENV, OpenGlHelper.GL_COMBINE_ALPHA, GL11.GL_REPLACE);
             GL11.glTexEnvi(GL11.GL_TEXTURE_ENV, OpenGlHelper.GL_SOURCE0_ALPHA, OpenGlHelper.GL_PREVIOUS);
             GL11.glTexEnvi(GL11.GL_TEXTURE_ENV, OpenGlHelper.GL_OPERAND0_ALPHA, GL11.GL_SRC_ALPHA);
-            this.field_177095_g.position(0);
+            this.brightnessBuffer.position(0);
 
             if (flag2)
             {
-                this.field_177095_g.put(1.0F);
-                this.field_177095_g.put(0.0F);
-                this.field_177095_g.put(0.0F);
-                this.field_177095_g.put(0.3F);
+                this.brightnessBuffer.put(1.0F);
+                this.brightnessBuffer.put(0.0F);
+                this.brightnessBuffer.put(0.0F);
+                this.brightnessBuffer.put(0.3F);
             }
             else
             {
@@ -164,14 +164,14 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
                 float f3 = (i >> 16 & 255) / 255.0F;
                 float f4 = (i >> 8 & 255) / 255.0F;
                 float f5 = (i & 255) / 255.0F;
-                this.field_177095_g.put(f3);
-                this.field_177095_g.put(f4);
-                this.field_177095_g.put(f5);
-                this.field_177095_g.put(1.0F - f2);
+                this.brightnessBuffer.put(f3);
+                this.brightnessBuffer.put(f4);
+                this.brightnessBuffer.put(f5);
+                this.brightnessBuffer.put(1.0F - f2);
             }
 
-            this.field_177095_g.flip();
-            GL11.glTexEnv(GL11.GL_TEXTURE_ENV, GL11.GL_TEXTURE_ENV_COLOR, this.field_177095_g);
+            this.brightnessBuffer.flip();
+            GL11.glTexEnv(GL11.GL_TEXTURE_ENV, GL11.GL_TEXTURE_ENV_COLOR, this.brightnessBuffer);
             GlStateManager.setActiveTexture(OpenGlHelper.GL_TEXTURE2);
             GlStateManager.enableTexture2D();
             GlStateManager.bindTexture(dynamicTexture.getGlTextureId());

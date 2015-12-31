@@ -123,7 +123,7 @@ public class InventoryDinosaur implements IInventory
     }
 
     @Override
-    public ItemStack getStackInSlotOnClosing(int index)
+    public ItemStack removeStackFromSlot(int index)
     {
         if (inventory[index] != null)
         {

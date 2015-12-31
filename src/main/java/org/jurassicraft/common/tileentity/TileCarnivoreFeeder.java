@@ -5,11 +5,11 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
 
-public class TileCarnivoreFeeder extends TileEntityLockable implements IUpdatePlayerListBox, ISidedInventory
+public class TileCarnivoreFeeder extends TileEntityLockable implements ITickable, ISidedInventory
 {
     private String customName;
 
@@ -67,7 +67,7 @@ public class TileCarnivoreFeeder extends TileEntityLockable implements IUpdatePl
     }
 
     @Override
-    public ItemStack getStackInSlotOnClosing(int index)
+    public ItemStack removeStackFromSlot(int index)
     {
         return null;
     }

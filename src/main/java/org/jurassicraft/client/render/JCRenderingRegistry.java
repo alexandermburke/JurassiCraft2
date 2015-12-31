@@ -11,6 +11,7 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -111,34 +112,32 @@ public class JCRenderingRegistry
         {
             String dinoName = dino.getName().toLowerCase().replaceAll(" ", "_");
 
-            ModelBakery.addVariantName(JCItemRegistry.skull, "jurassicraft:fossil/skull_" + dinoName);
-            ModelBakery.addVariantName(JCItemRegistry.tooth, "jurassicraft:fossil/tooth_" + dinoName);
-            ModelBakery.addVariantName(JCItemRegistry.dna, "jurassicraft:dna/dna_" + dinoName);
-            ModelBakery.addVariantName(JCItemRegistry.egg, "jurassicraft:egg/egg_" + dinoName);
-            ModelBakery.addVariantName(JCItemRegistry.dino_meat, "jurassicraft:meat/meat_" + dinoName);
-            ModelBakery.addVariantName(JCItemRegistry.dino_steak, "jurassicraft:meat/steak_" + dinoName);
-            ModelBakery.addVariantName(JCItemRegistry.soft_tissue, "jurassicraft:soft_tissue/soft_tissue_" + dinoName);
-            ModelBakery.addVariantName(JCItemRegistry.syringe, "jurassicraft:syringe/syringe_" + dinoName);
-            ModelBakery.addVariantName(JCItemRegistry.action_figure, "jurassicraft:action_figure/action_figure_" + dinoName);
+            ModelBakery.registerItemVariants(JCItemRegistry.skull, new ResourceLocation("jurassicraft:fossil/skull_" + dinoName));
+            ModelBakery.registerItemVariants(JCItemRegistry.tooth, new ResourceLocation("jurassicraft:fossil/tooth_" + dinoName));
+            ModelBakery.registerItemVariants(JCItemRegistry.dna, new ResourceLocation("jurassicraft:dna/dna_" + dinoName));
+            ModelBakery.registerItemVariants(JCItemRegistry.egg, new ResourceLocation("jurassicraft:egg/egg_" + dinoName));
+            ModelBakery.registerItemVariants(JCItemRegistry.dino_meat, new ResourceLocation("jurassicraft:meat/meat_" + dinoName));
+            ModelBakery.registerItemVariants(JCItemRegistry.dino_steak, new ResourceLocation("jurassicraft:meat/steak_" + dinoName));
+            ModelBakery.registerItemVariants(JCItemRegistry.soft_tissue, new ResourceLocation("jurassicraft:soft_tissue/soft_tissue_" + dinoName));
+            ModelBakery.registerItemVariants(JCItemRegistry.syringe, new ResourceLocation("jurassicraft:syringe/syringe_" + dinoName));
+            ModelBakery.registerItemVariants(JCItemRegistry.action_figure, new ResourceLocation("jurassicraft:action_figure/action_figure_" + dinoName));
         }
 
         for (Plant plant : JCPlantRegistry.getPlants())
         {
             String name = plant.getName().toLowerCase().replaceAll(" ", "_");
 
-            ModelBakery.addVariantName(JCItemRegistry.plant_dna, "jurassicraft:dna/plants/dna_" + name);
+            ModelBakery.registerItemVariants(JCItemRegistry.plant_dna, new ResourceLocation("jurassicraft:dna/plants/dna_" + name));
         }
 
         for (EnumDyeColor color : EnumDyeColor.values())
         {
-            ModelBakery.addVariantName(Item.getItemFromBlock(JCBlockRegistry.cultivate_bottom), "jurassicraft:cultivate/cultivate_bottom_" + color.getName().toLowerCase());
+            ModelBakery.registerItemVariants(Item.getItemFromBlock(JCBlockRegistry.cultivate_bottom), new ResourceLocation("jurassicraft:cultivate/cultivate_bottom_" + color.getName().toLowerCase()));
         }
 
-        ModelBakery.addVariantName(JCItemRegistry.amber, "jurassicraft:amber_aphid");
-        ModelBakery.addVariantName(JCItemRegistry.amber, "jurassicraft:amber_mosquito");
+        ModelBakery.registerItemVariants(JCItemRegistry.amber, new ResourceLocation("jurassicraft:amber_aphid"), new ResourceLocation("jurassicraft:amber_mosquito"));
 
-        ModelBakery.addVariantName(JCItemRegistry.cage_small, "jurassicraft:cage_small");
-        ModelBakery.addVariantName(JCItemRegistry.cage_small, "jurassicraft:cage_small_marine");
+        ModelBakery.registerItemVariants(JCItemRegistry.cage_small, new ResourceLocation("jurassicraft:cage_small"), new ResourceLocation("jurassicraft:cage_small_marine"));
     }
 
     public void init()
@@ -417,7 +416,7 @@ public class JCRenderingRegistry
             for (int i = 0; i < bm.getSubBlocks(); i++)
             {
                 String path = JurassiCraft.MODID + ":metablock/" + bm.getPath() + "/" + bm.getUnlocalizedName().substring(5) + "_" + i;
-                ModelBakery.addVariantName(item, new String[] { path });
+                ModelBakery.registerItemVariants(item, new ResourceLocation(path));
                 ModelResourceLocation mrs = new ModelResourceLocation(path, "inventory");
                 Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, i, mrs);
             }
