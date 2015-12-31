@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.event.entity.PlaySoundAtEntityEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.jurassicraft.JurassiCraft;
@@ -17,7 +18,7 @@ public class ClientEventHandler
 {
     private static final Minecraft mc = Minecraft.getMinecraft();
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
     public void tick(TickEvent.ClientTickEvent event)
     {
         JurassiCraft.timerTicks++;
@@ -35,7 +36,7 @@ public class ClientEventHandler
         }
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
     public void preRender(RenderLivingEvent.Pre event)
     {
         if (event.entity instanceof EntityDinosaur && event.renderer instanceof IDinosaurRenderer)
@@ -47,7 +48,7 @@ public class ClientEventHandler
         }
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
     public void postRender(RenderLivingEvent.Post event)
     {
         if (event.entity instanceof EntityDinosaur && event.renderer instanceof IDinosaurRenderer && !(event.renderer instanceof RenderIndominus))
