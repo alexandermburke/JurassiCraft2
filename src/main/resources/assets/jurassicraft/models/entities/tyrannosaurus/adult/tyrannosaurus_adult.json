@@ -3,6 +3,9 @@
     "poses": {
         "IDLE": [
             {"pose": "tyrannosaurus_adult_idle", "time": 20}
+        ],
+		"SLEEPING": [
+            {"pose": "tyrannosaurus_adult_sleeping", "time": 20}
         ]
     }
 }
