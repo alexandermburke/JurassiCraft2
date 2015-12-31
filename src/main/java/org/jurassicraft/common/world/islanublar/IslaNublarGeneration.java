@@ -26,9 +26,8 @@ public class IslaNublarGeneration extends WorldHeightmapGenerator
     }
 
     @Override
-    public double getHeightScale(int height)
-    {
-        return 1.0;
+    public int adjustHeight(int i, int i1, int i2) {
+        return 0;
     }
 
     @Override
@@ -83,5 +82,20 @@ public class IslaNublarGeneration extends WorldHeightmapGenerator
     public int getOceanHeight(int i, int i1)
     {
         return 62;
+    }
+
+    @Override
+    public int getOutOfBoundsHeight(int i, int i1) {
+        return 0;
+    }
+
+    @Override
+    public boolean loadHeightmapIntoArray() {
+        return false;
+    }
+
+    @Override
+    public boolean loadBiomemapIntoArray() {
+        return false;
     }
 }

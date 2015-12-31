@@ -55,10 +55,10 @@ public class ContainerCleaningStation extends Container
     /**
      * Add the given Listener to the list of Listeners. Method name is for legacy.
      */
-    public void addCraftingToCrafters(ICrafting listener)
+    public void onCraftGuiOpened(ICrafting listener)
     {
-        super.addCraftingToCrafters(listener);
-        listener.func_175173_a(this, this.tileCleaningStation);
+        super.onCraftGuiOpened(listener);
+        listener.sendAllWindowProperties(this, this.tileCleaningStation);
     }
 
     /**

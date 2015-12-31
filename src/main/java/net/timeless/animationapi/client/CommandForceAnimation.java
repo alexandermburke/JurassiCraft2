@@ -37,6 +37,11 @@ import java.util.Objects;
  */
 public class CommandForceAnimation implements ICommand
 {
+    @Override
+    public int compareTo(ICommand o) {
+        return 0;
+    }
+
     /**
      * A proxy sender that can always execute the "@" (selection) command.
      *
@@ -58,14 +63,14 @@ public class CommandForceAnimation implements ICommand
         }
 
         @Override
-        public boolean canUseCommand(int permLevel, String commandName)
+        public boolean canCommandSenderUseCommand(int permLevel, String commandName)
         {
             if (commandName.equals("@"))
             {
                 return true;
             }
 
-            return original.canUseCommand(permLevel, commandName);
+            return original.canCommandSenderUseCommand(permLevel, commandName);
         }
 
 
@@ -122,19 +127,13 @@ public class CommandForceAnimation implements ICommand
 
     public CommandForceAnimation()
     {
-        aliases = new ArrayList<String>();
+        aliases = new ArrayList<>();
         aliases.add("animate");
         aliases.add("anim");
     }
 
     @Override
-    public int compareTo(Object o)
-    {
-        return 0;
-    }
-
-    @Override
-    public String getName()
+    public String getCommandName()
     {
         return "animate";
     }
@@ -146,13 +145,17 @@ public class CommandForceAnimation implements ICommand
     }
 
     @Override
-    public List<String> getAliases()
-    {
-        return this.aliases;
+    public List<String> getCommandAliases() {
+        return aliases;
     }
 
     @Override
-    public void execute(ICommandSender parSender, String[] argString) throws CommandException
+    public boolean canCommandSenderUseCommand(ICommandSender sender) {
+        return true;
+    }
+
+    @Override
+    public void processCommand(ICommandSender parSender, String[] argString) throws CommandException
     {
         World theWorld = parSender.getEntityWorld();
 
@@ -179,12 +182,6 @@ public class CommandForceAnimation implements ICommand
                 parSender.addChatMessage(new ChatComponentText("Animating entity " + entity.getEntityId() + " with animation type " + argString[0]));
             }
         }
-    }
-
-    @Override
-    public boolean canCommandSenderUse(ICommandSender sender)
-    {
-        return true;
     }
 
     @Override

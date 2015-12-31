@@ -26,7 +26,7 @@ public class EntityAIDrink extends EntityAIBase
     {
         MetabolismContainer metabolism = dinosaur.getMetabolism();
 
-        if (!dinosaur.isDead && !dinosaur.isCarcass() && dinosaur.ticksExisted % 4 == 0 && dinosaur.worldObj.getGameRules().getGameRuleBooleanValue("dinoMetabolism"))
+        if (!dinosaur.isDead && !dinosaur.isCarcass() && dinosaur.ticksExisted % 4 == 0 && dinosaur.worldObj.getGameRules().getBoolean("dinoMetabolism"))
         {
             double water = metabolism.getWater();
 

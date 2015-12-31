@@ -88,7 +88,7 @@ public class GuiAppFileExplorer extends GuiApp
     @Override
     public void mouseClicked(int mouseX, int mouseY, GuiPaleoPad gui)
     {
-        ScaledResolution dimensions = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+        ScaledResolution dimensions = new ScaledResolution(mc);
         mouseX -= dimensions.getScaledWidth() / 2 - 115;
         mouseY -= 65;
 

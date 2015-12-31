@@ -28,7 +28,7 @@ public class EntityPaddockSign extends EntityHanging implements IEntityAdditiona
         super(world, pos);
         setType(dinosaur);
 
-        this.func_174859_a(enumFacing);
+        this.updateFacingWithBoundingBox(enumFacing);
     }
 
     private void setType(int dinosaur)
@@ -75,7 +75,7 @@ public class EntityPaddockSign extends EntityHanging implements IEntityAdditiona
     @Override
     public void onBroken(Entity entity)
     {
-        if (this.worldObj.getGameRules().getGameRuleBooleanValue("doTileDrops"))
+        if (this.worldObj.getGameRules().getBoolean("doTileDrops"))
         {
             if (entity instanceof EntityPlayer)
             {
@@ -108,7 +108,7 @@ public class EntityPaddockSign extends EntityHanging implements IEntityAdditiona
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void func_180426_a(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean p_180426_10_)
+    public void setPositionAndRotation2(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean p_180426_10_)
     {
     }
 
@@ -117,7 +117,7 @@ public class EntityPaddockSign extends EntityHanging implements IEntityAdditiona
     {
         buffer.writeInt(dinosaur);
         buffer.writeLong(hangingPosition.toLong());
-        buffer.writeByte(field_174860_b.getHorizontalIndex());
+        buffer.writeByte(facingDirection.getHorizontalIndex());
     }
 
     @Override
@@ -125,7 +125,7 @@ public class EntityPaddockSign extends EntityHanging implements IEntityAdditiona
     {
         setType(buf.readInt());
         hangingPosition = BlockPos.fromLong(buf.readLong());
-        func_174859_a(EnumFacing.getHorizontal(buf.readByte()));
+        updateFacingWithBoundingBox(EnumFacing.getHorizontal(buf.readByte()));
     }
 
     public int getDinosaur()

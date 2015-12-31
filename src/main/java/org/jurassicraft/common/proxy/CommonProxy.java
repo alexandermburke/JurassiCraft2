@@ -12,7 +12,6 @@ import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -30,11 +29,7 @@ import org.jurassicraft.common.handler.JCGuiHandler;
 import org.jurassicraft.common.item.JCItemRegistry;
 import org.jurassicraft.common.world.WorldGenerator;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CommonProxy
 {
@@ -61,8 +56,7 @@ public class CommonProxy
 
         CommonEventHandler eventHandler = new CommonEventHandler();
 
-        FMLCommonHandler.instance().bus().register(JurassiCraft.configurations);
-        FMLCommonHandler.instance().bus().register(eventHandler);
+        MinecraftForge.EVENT_BUS.register(JurassiCraft.configurations);
         MinecraftForge.EVENT_BUS.register(eventHandler);
     }
 

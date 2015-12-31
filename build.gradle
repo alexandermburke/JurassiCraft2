@@ -1,19 +1,26 @@
-plugins {
-    id "net.minecraftforge.gradle.forge" version "2.0.2"
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+    }
+    dependencies {
+        classpath "net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT"
+    }
 }
+apply plugin: "net.minecraftforge.gradle.forge"
 
-version = "2.0.0-pre"
+version = getVersionFromJava()
 group = "org.jurassicraft"
 archivesBaseName = "JurassiCraft"
-
 sourceCompatibility = targetCompatibility = "1.7"
 
 minecraft {
-    version = "1.8-11.14.4.1563"
+    version = "1.8.8-11.15.0.1655"
     runDir = "minecraft"
-    replace '${version}', project.version
-	replace '${mcversion}', project.minecraft.version
-    mappings = "snapshot_20141130"
+    mappings = "stable_20"
 }
 
 repositories {
@@ -25,21 +32,33 @@ repositories {
 }
 
 dependencies {
-	compile 'net.ilexiconn:llibrary:0.5.5-1.8:dev'
+	compile "net.ilexiconn:llibrary:0.6.2-1.8.8:dev"
 }
 
-processResources
-{
+processResources {
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
 
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-                
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+    from (sourceSets.main.resources.srcDirs) {
+        include "mcmod.info"
+        expand "version":project.version, "mcversion":project.minecraft.version
     }
         
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
+    from (sourceSets.main.resources.srcDirs) {
+        exclude "mcmod.info"
+    }
+}
+
+String getVersionFromJava() {
+    String prefix = "public static final String VERSION = \"";
+    File file = file("src/main/java/org/jurassicraft/JurassiCraft.java")
+    file.eachLine { String s ->
+        s = s.trim();
+        if (s.startsWith(prefix)) {
+            s = s.substring(prefix.length(), s.length() - 2);
+            String[] pts = s.split("\\.");
+
+            return pts[0] + "." + pts[1] + "." + pts[2] + "-1.8.8";
+        }
     }
 }

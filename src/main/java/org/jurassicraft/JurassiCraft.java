@@ -28,7 +28,7 @@ import org.jurassicraft.common.world.islanublar.WorldTypeIslaNublar;
 
 import java.io.File;
 
-@Mod(modid = JurassiCraft.MODID, name = JurassiCraft.MODNAME, version = JurassiCraft.MODVERSION, guiFactory = "org.jurassicraft.client.gui.config.GUIFactory", dependencies = "required-after:llibrary@[0.5.5,)")
+@Mod(modid = JurassiCraft.MODID, name = JurassiCraft.MODNAME, version = JurassiCraft.VERSION, guiFactory = "org.jurassicraft.client.gui.config.GUIFactory", dependencies = "required-after:llibrary@[0.6.2,)")
 public class JurassiCraft
 {
     @SidedProxy(serverSide = "org.jurassicraft.common.proxy.CommonProxy", clientSide = "org.jurassicraft.client.proxy.ClientProxy")
@@ -36,7 +36,7 @@ public class JurassiCraft
 
     public static final String MODID = "jurassicraft";
     public static final String MODNAME = "JurassiCraft";
-    public static final String MODVERSION = "${version}";
+    public static final String VERSION = "2.0.0-pre";
 
     @Instance(JurassiCraft.MODID)
     public static JurassiCraft instance;

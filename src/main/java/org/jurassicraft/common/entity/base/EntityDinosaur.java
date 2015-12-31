@@ -227,7 +227,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
                 motionZ *= 0.6D;
             }
 
-            func_174815_a(this, entity);
+            applyEnchantments(this, entity);
         }
 
         return attackSuccesful;
@@ -412,7 +412,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     {
         if (!this.isDead && ticksExisted % 8 == 0)
         {
-            if (worldObj.getGameRules().getGameRuleBooleanValue("dinoGrowth"))
+            if (worldObj.getGameRules().getBoolean("dinoGrowth"))
             {
                 dinosaurAge += Math.min(growthSpeedOffset, 960) + 1;
                 metabolism.decreaseFood((int) ((Math.min(growthSpeedOffset, 960) + 1) * 0.1));

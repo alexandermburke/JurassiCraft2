@@ -26,7 +26,7 @@ public class EntityAIFindPlant extends EntityAIBase
     {
         MetabolismContainer metabolism = dinosaur.getMetabolism();
 
-        if (!dinosaur.isDead && !dinosaur.isCarcass() && dinosaur.ticksExisted % 4 == 0 && dinosaur.worldObj.getGameRules().getGameRuleBooleanValue("dinoMetabolism"))
+        if (!dinosaur.isDead && !dinosaur.isCarcass() && dinosaur.ticksExisted % 4 == 0 && dinosaur.worldObj.getGameRules().getBoolean("dinoMetabolism"))
         {
             double food = metabolism.getFood();
 
@@ -113,7 +113,7 @@ public class EntityAIFindPlant extends EntityAIBase
         {
             AnimationAPI.sendAnimPacket(dinosaur, AnimID.EATING);
 
-            if (dinosaur.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing"))
+            if (dinosaur.worldObj.getGameRules().getBoolean("mobGriefing"))
             {
                 dinosaur.worldObj.destroyBlock(new BlockPos(x, y, z), false);
             }
