@@ -18,14 +18,12 @@ public class EntityHerrerasaurus extends EntityDinosaurAggressive // implements 
     {
         super(world);
 
-        for (int i = 0; i < targets.length; i++)
-        {
-            this.addAIForAttackTargets(targets[i], new Random().nextInt(3) + 1);
+        for (Class target : targets) {
+            this.addAIForAttackTargets(target);
         }
 
-        for (int j = 0; j < deftargets.length; j++)
-        {
-            this.defendFromAttacker(deftargets[j], new Random().nextInt(3) + 1);
+        for (Class deftarget : deftargets) {
+            this.defendFromAttacker(deftarget, new Random().nextInt(3) + 1);
         }
     }
 

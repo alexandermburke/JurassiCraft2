@@ -20,10 +20,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class TileMachineBase extends TileEntityLockable implements ITickable, ISidedInventory
 {
-    protected String customName;
+    String customName;
 
-    protected int[] processTime = new int[getProcessCount()];
-    protected int[] totalProcessTime = new int[getProcessCount()];
+    final int[] processTime = new int[getProcessCount()];
+    final int[] totalProcessTime = new int[getProcessCount()];
 
     public void readFromNBT(NBTTagCompound compound)
     {
@@ -172,7 +172,7 @@ public abstract class TileMachineBase extends TileEntityLockable implements ITic
         if (index < getInputs().length && !flag)
         {
             int i = getProcess(index);
-            this.totalProcessTime[i] = this.getStackProcessTime(stack);
+            this.totalProcessTime[i] = this.getStackProcessTime();
             this.processTime[i] = 0;
             worldObj.markBlockForUpdate(pos);
         }
@@ -182,10 +182,8 @@ public abstract class TileMachineBase extends TileEntityLockable implements ITic
     {
         int[] inputs = getInputs();
 
-        for (int i = 0; i < inputs.length; i++)
-        {
-            if (inputs[i] == slot)
-            {
+        for (int input : inputs) {
+            if (input == slot) {
                 return true;
             }
         }
@@ -197,10 +195,8 @@ public abstract class TileMachineBase extends TileEntityLockable implements ITic
     {
         int[] outputs = getOutputs();
 
-        for (int i = 0; i < outputs.length; i++)
-        {
-            if (outputs[i] == slot)
-            {
+        for (int output : outputs) {
+            if (output == slot) {
                 return true;
             }
         }
@@ -270,7 +266,7 @@ public abstract class TileMachineBase extends TileEntityLockable implements ITic
                         if (this.processTime[i] == this.totalProcessTime[i])
                         {
                             this.processTime[i] = 0;
-                            this.totalProcessTime[i] = this.getStackProcessTime(slots[getMainInput(i)]);
+                            this.totalProcessTime[i] = this.getStackProcessTime();
                             this.processItem(i);
                             sync = true;
                         }
@@ -307,7 +303,7 @@ public abstract class TileMachineBase extends TileEntityLockable implements ITic
      */
     public boolean isUseableByPlayer(EntityPlayer player)
     {
-        return this.worldObj.getTileEntity(this.pos) != this ? false : player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
+        return this.worldObj.getTileEntity(this.pos) == this && player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
     }
 
     public void openInventory(EntityPlayer player)
@@ -349,7 +345,7 @@ public abstract class TileMachineBase extends TileEntityLockable implements ITic
 
     protected abstract int getMainOutput(int process);
 
-    protected abstract int getStackProcessTime(ItemStack stack);
+    protected abstract int getStackProcessTime();
 
     protected abstract int getProcessCount();
 
@@ -361,23 +357,19 @@ public abstract class TileMachineBase extends TileEntityLockable implements ITic
 
     protected abstract void setSlots(ItemStack[] slots);
 
-    public boolean hasOutputSlot(ItemStack output)
+    boolean hasOutputSlot(ItemStack output)
     {
         return getOutputSlot(output) != -1;
     }
 
-    public int getOutputSlot(ItemStack output)
+    int getOutputSlot(ItemStack output)
     {
         ItemStack[] slots = getSlots();
 
         int[] outputs = getOutputs();
 
-        for (int i = 0; i < outputs.length; i++)
-        {
-            int slot = outputs[i];
-
-            if (slots[slot] == null || (ItemStack.areItemStackTagsEqual(slots[slot], output) && slots[slot].getItem() == output.getItem()))
-            {
+        for (int slot : outputs) {
+            if (slots[slot] == null || (ItemStack.areItemStackTagsEqual(slots[slot], output) && slots[slot].getItem() == output.getItem())) {
                 return slot;
             }
         }
@@ -448,7 +440,7 @@ public abstract class TileMachineBase extends TileEntityLockable implements ITic
         return true;
     }
 
-    protected void mergeStack(int slot, ItemStack stack)
+    void mergeStack(int slot, ItemStack stack)
     {
         ItemStack[] slots = getSlots();
 
@@ -462,7 +454,7 @@ public abstract class TileMachineBase extends TileEntityLockable implements ITic
         }
     }
 
-    protected void decreaseStackSize(int slot)
+    void decreaseStackSize(int slot)
     {
         ItemStack[] slots = getSlots();
 

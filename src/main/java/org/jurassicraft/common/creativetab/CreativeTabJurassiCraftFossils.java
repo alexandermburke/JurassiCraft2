@@ -12,11 +12,11 @@ import org.jurassicraft.common.item.JCItemRegistry;
 
 public class CreativeTabJurassiCraftFossils extends CreativeTabs
 {
-    private int[] metas;
+    private final int[] metas;
 
-    public CreativeTabJurassiCraftFossils(String label)
+    public CreativeTabJurassiCraftFossils()
     {
-        super(label);
+        super("jurassicraft.dino_bones");
         this.metas = new int[JCEntityRegistry.getRegisteredDinosaurs().size()];
 
         int id = 0;

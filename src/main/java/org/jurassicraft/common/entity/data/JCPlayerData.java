@@ -33,11 +33,11 @@ public class JCPlayerData implements IExtendedEntityProperties
         return JCPlayerDataClient.getPlayerData();
     }
 
-    private Map<String, NBTTagCompound> appdata = new HashMap<String, NBTTagCompound>();
-    private List<App> openApps = new ArrayList<App>();
+    private final Map<String, NBTTagCompound> appdata = new HashMap<>();
+    private final List<App> openApps = new ArrayList<>();
 
-    private List<JCFile> rootFiles = new ArrayList<JCFile>();
-    private List<BlockPos> cameras = new ArrayList<BlockPos>();
+    private final List<JCFile> rootFiles = new ArrayList<>();
+    private final List<BlockPos> cameras = new ArrayList<>();
 
     private EntityPlayer player;
 
@@ -170,7 +170,7 @@ public class JCPlayerData implements IExtendedEntityProperties
 
     public void addSequencedDNA(DinoDNA dna)
     {
-        JCFile sequencedDNADir = getFile("Sequenced DNA", true);
+        JCFile sequencedDNADir = getFile("Sequenced DNA");
 
         JCFile dnaFile = new JCFile(dna.toString(), sequencedDNADir, player, false);
 
@@ -216,7 +216,7 @@ public class JCPlayerData implements IExtendedEntityProperties
             pathSplit = new String[] { path };
         }
 
-        return traversePath(pathSplit, 1, getFile(pathSplit[0], true));
+        return traversePath(pathSplit, 1, getFile(pathSplit[0]));
     }
 
     public List<JCFile> getFilesAtPath(String path)
@@ -240,7 +240,7 @@ public class JCPlayerData implements IExtendedEntityProperties
         }
     }
 
-    public JCFile traversePath(String[] path, int i, JCFile lastFile)
+    private JCFile traversePath(String[] path, int i, JCFile lastFile)
     {
         if (i == path.length)
         {
@@ -258,7 +258,7 @@ public class JCPlayerData implements IExtendedEntityProperties
         return null;
     }
 
-    public JCFile getFile(String file, boolean dir)
+    private JCFile getFile(String file)
     {
         JCFile jcFile = null;
 
@@ -277,7 +277,7 @@ public class JCPlayerData implements IExtendedEntityProperties
 
         if (jcFile == null)
         {
-            jcFile = new JCFile(file, null, player, dir);
+            jcFile = new JCFile(file, null, player, true);
             addRootFile(jcFile);
         }
 

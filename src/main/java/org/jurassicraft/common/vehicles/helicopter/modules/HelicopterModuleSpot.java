@@ -40,12 +40,12 @@ public class HelicopterModuleSpot
         return modules;
     }
 
-    public boolean addModule(HelicopterModule m)
+    public void addModule(HelicopterModule m)
     {
-        return addModule(m, null, new Vec3(0, 0, 0));
+        return addModule(m, new Vec3(0, 0, 0));
     }
 
-    public boolean addModule(HelicopterModule m, EntityPlayer player, Vec3 v)
+    private boolean addModule(HelicopterModule m, Vec3 v)
     {
         if (!modules.contains(m))
         {
@@ -54,7 +54,7 @@ public class HelicopterModuleSpot
             {
                 moduleData.put(m, new NBTTagCompound());
             }
-            m.onAdded(this, player, v);
+            m.onAdded(this);
             if (getHelicopter().shouldSyncModules() && !getHelicopter().worldObj.isRemote)
             {
                 JurassiCraft.networkManager.networkWrapper.sendToAll(new MessageHelicopterModules(helicopter.getEntityId(), position, this));
@@ -159,8 +159,8 @@ public class HelicopterModuleSpot
         return moduleData.get(m);
     }
 
-    public boolean has(HelicopterModule module)
+    public boolean has()
     {
-        return modules.contains(module);
+        return modules.contains(HelicopterModule.seat);
     }
 }

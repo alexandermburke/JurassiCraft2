@@ -13,13 +13,13 @@ import java.util.Random;
 public class WorldGenCalamites extends WorldGenAbstractTree
 {
 
-    private int code;
+    private final int code;
 
-    public WorldGenCalamites(int code)
+    public WorldGenCalamites()
     {
 
         super(true);
-        this.code = code;
+        this.code = 1;
 
     }
 

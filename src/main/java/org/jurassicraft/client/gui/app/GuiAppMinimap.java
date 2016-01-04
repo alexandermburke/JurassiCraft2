@@ -4,7 +4,6 @@ import com.google.common.base.Predicate;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,14 +35,14 @@ public class GuiAppMinimap extends GuiApp
     @Override
     public void render(int mouseX, int mouseY, GuiPaleoPad gui)
     {
-        super.renderButtons(mouseX, mouseY, gui);
+        super.renderButtons(mouseX, mouseY);
 
         AppMinimap app = (AppMinimap) getApp();
 
         EntityPlayer player = mc.thePlayer;
         World world = mc.theWorld;
 
-        gui.drawScaledText("Loc: " + (int) player.posX + " " + (int) player.posY + " " + (int) player.posZ, 2, 3, 1.0F, 0xFFFFFF);
+        gui.drawScaledText("Loc: " + (int) player.posX + " " + (int) player.posY + " " + (int) player.posZ, 2, 3, 0xFFFFFF);
 
         int playerX = (int) player.posX;
         int playerZ = (int) player.posZ;
@@ -125,7 +124,7 @@ public class GuiAppMinimap extends GuiApp
 
                 renderChunkY++;
 
-                gui.drawBoxOutline(renderChunkX * 16 + 90, renderChunkY * 16 - 1, 15, 15, 1, 1.0F, (renderChunkX + renderChunkY) % 2 == 0 ? 0x606060 : 0x505050);
+                gui.drawBoxOutline(renderChunkX * 16 + 90, renderChunkY * 16 - 1, 15, 15, 1.0F, (renderChunkX + renderChunkY) % 2 == 0 ? 0x606060 : 0x505050);
             }
 
             renderChunkY = 0;
@@ -143,7 +142,7 @@ public class GuiAppMinimap extends GuiApp
 
                 if (!chunk.isEmpty())
                 {
-                    for (Object e : getEntitiesInChunk(chunk, null, EntitySelectors.NOT_SPECTATING))
+                    for (Object e : getEntitiesInChunk(chunk, EntitySelectors.NOT_SPECTATING))
                     {
                         Entity entity = (Entity) e;
 
@@ -169,16 +168,16 @@ public class GuiAppMinimap extends GuiApp
                                 int entityRenderX = (dinoX & 15) + (renderChunkX * 16) + 90 - 4;
                                 int entityRenderY = (dinoZ & 15) + (renderChunkY * 16) + 15 - 4;
 
-                                gui.drawScaledTexturedModalRect(entityRenderX, entityRenderY, 0, 0, 16, 16, 16, 16, 0.6F);
+                                gui.drawScaledTexturedModalRect(entityRenderX, entityRenderY, 0, 16, 16, 16, 16, 0.6F);
 
-                                gui.drawCenteredScaledText(dinoX + " " + (int) dino.posY + " " + dinoZ, entityRenderX + 5, entityRenderY + 8, 0.3F, 0xFFFFFF);
+                                gui.drawCenteredScaledText(dinoX + " " + (int) dino.posY + " " + dinoZ, entityRenderX + 5, entityRenderY + 8, 0.3F);
                             }
                         }
                         else if (player == entity)
                         {
                             mc.getTextureManager().bindTexture(GuiAppMinimap.entity);
 
-                            gui.drawScaledTexturedModalRect((playerX & 15) + (renderChunkX * 16) + 90 - 4, (playerZ & 15) + (renderChunkY * 16) + 15 - 4, 0, 0, 16, 16, 16, 16, 0.6F);
+                            gui.drawScaledTexturedModalRect((playerX & 15) + (renderChunkX * 16) + 90 - 4, (playerZ & 15) + (renderChunkY * 16) + 15 - 4, 0, 16, 16, 16, 16, 0.6F);
                         }
                     }
                 }
@@ -194,9 +193,9 @@ public class GuiAppMinimap extends GuiApp
     /**
      * Fills the given list of all entities that intersect within the given bounding box that aren't the passed entity.
      */
-    public List<Entity> getEntitiesInChunk(Chunk chunk, Entity exclude, Predicate<Entity> predicate)
+    private List<Entity> getEntitiesInChunk(Chunk chunk, Predicate<Entity> predicate)
     {
-        List<Entity> entities = new ArrayList<Entity>();
+        List<Entity> entities = new ArrayList<>();
 
         int i = MathHelper.floor_double((0 - World.MAX_ENTITY_RADIUS) / 16.0D);
         int j = MathHelper.floor_double((256 + World.MAX_ENTITY_RADIUS) / 16.0D);
@@ -208,7 +207,7 @@ public class GuiAppMinimap extends GuiApp
         {
             for (Entity entity : entityLists[k])
             {
-                if (entity != exclude && (predicate == null || predicate.apply(entity)))
+                if (entity != null && (EntitySelectors.NOT_SPECTATING == null || EntitySelectors.NOT_SPECTATING.apply(entity)))
                 {
                     entities.add(entity);
                     Entity[] parts = entity.getParts();
@@ -219,7 +218,7 @@ public class GuiAppMinimap extends GuiApp
                         {
                             entity = part;
 
-                            if (entity != exclude && (predicate == null || predicate.apply(entity)))
+                            if (entity != null && (EntitySelectors.NOT_SPECTATING == null || EntitySelectors.NOT_SPECTATING.apply(entity)))
                             {
                                 entities.add(entity);
                             }
@@ -233,17 +232,16 @@ public class GuiAppMinimap extends GuiApp
     }
 
     @Override
-    public void actionPerformed(GuiButton button)
+    public void actionPerformed()
     {
 
     }
 
     @Override
-    public void mouseClicked(int mouseX, int mouseY, GuiPaleoPad gui)
+    public void mouseClicked(int mouseX, int mouseY)
     {
         ScaledResolution dimensions = new ScaledResolution(mc);
         mouseX -= dimensions.getScaledWidth() / 2 - 115;
-        mouseY -= 65;
     }
 
     @Override
@@ -252,7 +250,7 @@ public class GuiAppMinimap extends GuiApp
     }
 
     @Override
-    public ResourceLocation getTexture(GuiPaleoPad gui)
+    public ResourceLocation getTexture()
     {
         return texture;
     }

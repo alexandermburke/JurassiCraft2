@@ -133,7 +133,7 @@ public class TileCleaningStation extends TileEntityLockable implements ITickable
 
         if (index == 0 && !flag)
         {
-            this.totalCleanTime = this.getStackWashTime(stack);
+            this.totalCleanTime = this.getStackWashTime();
             this.cleanTime = 0;
             worldObj.markBlockForUpdate(pos);
         }
@@ -182,7 +182,7 @@ public class TileCleaningStation extends TileEntityLockable implements ITickable
         this.cleaningStationWaterTime = compound.getShort("WaterTime");
         this.cleanTime = compound.getShort("CleanTime");
         this.totalCleanTime = compound.getShort("CleanTimeTotal");
-        this.currentItemWaterTime = getItemCleanTime(this.slots[1]);
+        this.currentItemWaterTime = getItemCleanTime();
 
         if (compound.hasKey("CustomName", 8))
         {
@@ -226,7 +226,7 @@ public class TileCleaningStation extends TileEntityLockable implements ITickable
         return 64;
     }
 
-    public boolean isCleaning()
+    private boolean isCleaning()
     {
         return this.cleaningStationWaterTime > 0;
     }
@@ -263,7 +263,7 @@ public class TileCleaningStation extends TileEntityLockable implements ITickable
             {
                 if (!this.isCleaning() && this.canClean() && isItemFuel(slots[1]))
                 {
-                    this.currentItemWaterTime = this.cleaningStationWaterTime = getItemCleanTime(this.slots[1]);
+                    this.currentItemWaterTime = this.cleaningStationWaterTime = getItemCleanTime();
 
                     if (this.isCleaning())
                     {
@@ -288,7 +288,7 @@ public class TileCleaningStation extends TileEntityLockable implements ITickable
                     if (this.cleanTime == this.totalCleanTime)
                     {
                         this.cleanTime = 0;
-                        this.totalCleanTime = this.getStackWashTime(this.slots[0]);
+                        this.totalCleanTime = this.getStackWashTime();
                         this.cleanItem();
                         sync = true;
                     }
@@ -317,12 +317,12 @@ public class TileCleaningStation extends TileEntityLockable implements ITickable
         }
     }
 
-    private int getItemCleanTime(ItemStack itemStack)
+    private int getItemCleanTime()
     {
         return 1600;
     }
 
-    public int getStackWashTime(ItemStack stack)
+    private int getStackWashTime()
     {
         return 200;
     }
@@ -349,7 +349,7 @@ public class TileCleaningStation extends TileEntityLockable implements ITickable
     /**
      * Turn one item from the cleaning station source stack into the appropriate cleaned item in the cleaning station result stack
      */
-    public void cleanItem()
+    private void cleanItem()
     {
         if (this.canClean())
         {
@@ -390,7 +390,7 @@ public class TileCleaningStation extends TileEntityLockable implements ITickable
 
     public static boolean isItemFuel(ItemStack stack)
     {
-        return stack != null ? stack.getItem() == Items.water_bucket : false;
+        return stack != null && stack.getItem() == Items.water_bucket;
     }
 
     /**
@@ -398,7 +398,7 @@ public class TileCleaningStation extends TileEntityLockable implements ITickable
      */
     public boolean isUseableByPlayer(EntityPlayer player)
     {
-        return this.worldObj.getTileEntity(this.pos) != this ? false : player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
+        return this.worldObj.getTileEntity(this.pos) == this && player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
     }
 
     public void openInventory(EntityPlayer player)
@@ -414,7 +414,7 @@ public class TileCleaningStation extends TileEntityLockable implements ITickable
      */
     public boolean isItemValidForSlot(int index, ItemStack stack)
     {
-        return index == 2 ? false : (index != 1 ? true : isItemFuel(stack));
+        return index != 2 && (index != 1 || isItemFuel(stack));
     }
 
     public int[] getSlotsForFace(EnumFacing side)

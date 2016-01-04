@@ -3,22 +3,24 @@ package org.jurassicraft.common.world.jurdstrees.algorythms;
 public class InsPCoord
 {
 
-    private int x, y, z;
-    private int level;
-    private int code;
-    private int trunk;
+    private final int x;
+    private final int y;
+    private final int z;
+    private final int level;
+    private final int code;
+    private final int trunk;
     private int built;
-    private int rotation;
-    private int leaves;
-    private int type;
+    private final int rotation;
+    private final int leaves;
+    private final int type;
 
-    public InsPCoord(int code, int type, int x, int y, int z, int level, int trunk, int built, int rotation, int leaves)
+    public InsPCoord(int code, int type, int x, int y, int z, int level, int trunk, int rotation, int leaves)
     {
 
         this.code = code;
         this.level = level;
         this.trunk = trunk;
-        this.built = built;
+        this.built = 0;
         this.rotation = rotation;
         this.leaves = leaves;
         this.x = x;

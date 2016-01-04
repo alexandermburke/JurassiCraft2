@@ -4,11 +4,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
 
-public class BlockBasic extends Block
+class BlockBasic extends Block
 {
-    public BlockBasic(Material material)
+    public BlockBasic()
     {
-        super(material);
+        super(Material.rock);
         this.setCreativeTab(JCCreativeTabs.blocks);
     }
 }

@@ -10,9 +10,9 @@ import java.util.Map;
 
 public class DinoPediaRegistry
 {
-    private static final Map<IRecipe, ItemStack> recipes = new HashMap<IRecipe, ItemStack>();
+    private static final Map<IRecipe, ItemStack> recipes = new HashMap<>();
 
-    private static final List<ItemStack> registeredItems = new ArrayList<ItemStack>();
+    private static final List<ItemStack> registeredItems = new ArrayList<>();
 
     public static void addItemRecipe(ItemStack stack, IRecipe recipe)
     {
@@ -29,7 +29,7 @@ public class DinoPediaRegistry
 
     public static List<IRecipe> getRecipesForItem(ItemStack stack)
     {
-        List<IRecipe> recipesForItem = new ArrayList<IRecipe>();
+        List<IRecipe> recipesForItem = new ArrayList<>();
 
         for (Map.Entry<IRecipe, ItemStack> entry : recipes.entrySet())
         {

@@ -12,7 +12,7 @@ import java.util.UUID;
 
 public abstract class HelicopterRidableModule extends HelicopterModule
 {
-    protected HelicopterRidableModule(String id)
+    HelicopterRidableModule(String id)
     {
         super(id);
     }
@@ -26,7 +26,7 @@ public abstract class HelicopterRidableModule extends HelicopterModule
         return true;
     }
 
-    public static EntityHelicopterSeat getSeatFromID(World worldObj, final UUID id)
+    private static EntityHelicopterSeat getSeatFromID(World worldObj, final UUID id)
     {
         List<EntityHelicopterSeat> list = worldObj.getEntities(EntityHelicopterSeat.class, new Predicate<Entity>()
         {
@@ -45,7 +45,7 @@ public abstract class HelicopterRidableModule extends HelicopterModule
     }
 
     @Override
-    public void onAdded(HelicopterModuleSpot m, EntityPlayer player, Vec3 vec)
+    public void onAdded(HelicopterModuleSpot m)
     {
         EntityHelicopterBase helicopter = m.getHelicopter();
         if (!m.getHelicopter().worldObj.isRemote)
@@ -71,9 +71,8 @@ public abstract class HelicopterRidableModule extends HelicopterModule
         }
         // System.out.println(id);
         UUID entityID = UUID.fromString(id);
-        EntityHelicopterSeat entity = getSeatFromID(spot.getHelicopter().worldObj, entityID);
         // System.out.println(entity);
-        return entity;
+        return getSeatFromID(spot.getHelicopter().worldObj, entityID);
     }
 
     protected abstract float getDistanceFromCenter();
@@ -81,7 +80,7 @@ public abstract class HelicopterRidableModule extends HelicopterModule
     protected abstract boolean shouldRiderSit();
 
     @Override
-    public void onRemoved(HelicopterModuleSpot m, EntityPlayer player, Vec3 vec)
+    public void onRemoved()
     {
 
     }

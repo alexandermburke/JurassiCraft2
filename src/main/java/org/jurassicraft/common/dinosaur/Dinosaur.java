@@ -7,19 +7,15 @@ import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.EnumDiet;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
 import org.jurassicraft.common.entity.base.EnumSleepingSchedule;
-import org.jurassicraft.common.food.EnumFoodType;
 import org.jurassicraft.common.period.EnumTimePeriod;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public abstract class Dinosaur implements Comparable<Dinosaur>
 {
-    private Map<EnumGrowthStage, List<ResourceLocation>> overlays = new HashMap<EnumGrowthStage, List<ResourceLocation>>();
-    private Map<EnumGrowthStage, ResourceLocation> maleTextures = new HashMap<EnumGrowthStage, ResourceLocation>();
-    private Map<EnumGrowthStage, ResourceLocation> femaleTextures = new HashMap<EnumGrowthStage, ResourceLocation>();
+    private final Map<EnumGrowthStage, List<ResourceLocation>> overlays = new HashMap<>();
+    private final Map<EnumGrowthStage, ResourceLocation> maleTextures = new HashMap<>();
+    private final Map<EnumGrowthStage, ResourceLocation> femaleTextures = new HashMap<>();
 
     public void init()
     {
@@ -56,7 +52,7 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
                 femaleTextures.put(growthStage, new ResourceLocation(JurassiCraft.MODID, baseTextures + dinosaurName + "_female_" + growthStageName + ".png"));
             }
 
-            List<ResourceLocation> overlaysForGrowthStage = new ArrayList<ResourceLocation>();
+            List<ResourceLocation> overlaysForGrowthStage = new ArrayList<>();
 
             for (int i = 1; i <= getOverlayCount(); i++)
             {
@@ -131,13 +127,13 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
         return true;
     }
 
-    protected String getDinosaurTexture(String subtype)
+    String getDinosaurTexture(String subtype)
     {
         String dinosaurName = getName().toLowerCase().replaceAll(" ", "_");
 
         String texture = "jurassicraft:textures/entities/" + dinosaurName + "/" + dinosaurName;
 
-        if (subtype != "")
+        if (!Objects.equals(subtype, ""))
         {
             texture += "_" + subtype;
         }
@@ -151,7 +147,7 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
         return getName().hashCode();
     }
 
-    protected int fromDays(int days)
+    int fromDays(int days)
     {
         return (days * 24000) / 8;
     }

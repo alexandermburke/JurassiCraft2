@@ -4,15 +4,15 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelSauropodEgg extends ModelBase
+class ModelSauropodEgg extends ModelBase
 {
-    public ModelRenderer bottom;
-    public ModelRenderer main1;
-    public ModelRenderer top;
-    public ModelRenderer side1;
-    public ModelRenderer side2;
-    public ModelRenderer side3;
-    public ModelRenderer side4;
+    private final ModelRenderer bottom;
+    private final ModelRenderer main1;
+    private final ModelRenderer top;
+    private final ModelRenderer side1;
+    private final ModelRenderer side2;
+    private final ModelRenderer side3;
+    private final ModelRenderer side4;
 
     public ModelSauropodEgg()
     {

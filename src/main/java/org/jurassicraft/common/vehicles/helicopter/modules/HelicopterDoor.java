@@ -8,7 +8,7 @@ import java.util.Collections;
 
 public class HelicopterDoor extends HelicopterModule
 {
-    protected HelicopterDoor()
+    HelicopterDoor()
     {
         super("ranger_helicopter_door");
     }

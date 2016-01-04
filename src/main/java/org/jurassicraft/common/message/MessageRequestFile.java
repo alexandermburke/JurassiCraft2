@@ -1,15 +1,14 @@
 package org.jurassicraft.common.message;
 
 import io.netty.buffer.ByteBuf;
+import net.ilexiconn.llibrary.common.message.AbstractMessage;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.entity.data.JCPlayerData;
 
-public class MessageRequestFile implements IMessage
+public class MessageRequestFile extends AbstractMessage<MessageRequestFile>
 {
     private String path;
 
@@ -23,6 +22,19 @@ public class MessageRequestFile implements IMessage
     }
 
     @Override
+    public void handleClientMessage(MessageRequestFile messageRequestFile, EntityPlayer entityPlayer)
+    {
+
+    }
+
+    @Override
+    public void handleServerMessage(MessageRequestFile messageRequestFile, EntityPlayer entityPlayer)
+    {
+        JCPlayerData playerData = JCPlayerData.getPlayerData(entityPlayer);
+        JurassiCraft.networkManager.networkWrapper.sendTo(new MessageSendFile(playerData, playerData.getFileFromPath(messageRequestFile.path)), (EntityPlayerMP) entityPlayer);
+    }
+
+    @Override
     public void toBytes(ByteBuf buffer)
     {
         ByteBufUtils.writeUTF8String(buffer, path);
@@ -32,36 +44,5 @@ public class MessageRequestFile implements IMessage
     public void fromBytes(ByteBuf buffer)
     {
         path = ByteBufUtils.readUTF8String(buffer);
-    }
-
-    public static class Handler implements IMessageHandler<MessageRequestFile, IMessage>
-    {
-        @Override
-        public IMessage onMessage(final MessageRequestFile packet, final MessageContext ctx)
-        {
-            JurassiCraft.proxy.scheduleTask(ctx, new Runnable()
-            {
-                @Override
-                public void run()
-                {
-                    if (ctx.side.isServer())
-                    {
-                        EntityPlayerMP player = ctx.getServerHandler().playerEntity;
-
-                        if (player != null)
-                        {
-                            JCPlayerData playerData = JCPlayerData.getPlayerData(player);
-                            JurassiCraft.networkManager.networkWrapper.sendTo(new MessageSendFile(playerData, playerData.getFileFromPath(packet.path)), player);
-                        }
-                    }
-                    else // TODO
-                    {
-
-                    }
-                }
-            });
-
-            return null;
-        }
     }
 }

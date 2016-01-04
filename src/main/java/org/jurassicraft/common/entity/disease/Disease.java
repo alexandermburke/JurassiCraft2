@@ -1,18 +1,18 @@
 package org.jurassicraft.common.entity.disease;
 
-public abstract class Disease
+abstract class Disease
 {
 
     // name of the disease (Cancer etc...)
-    private String name;
+    private final String name;
     // Diseases have levels that can range from 1 - 5 (5 obviously being the worst)
     private int level;
     // returns true or false depending on if the disease can kill the entity
     private boolean isTerminal;
 
-    public Disease(String name)
+    Disease()
     {
-        this.name = name;
+        this.name = "Cancer";
     }
 
     public Disease(String name, int level)
@@ -26,7 +26,7 @@ public abstract class Disease
         return name;
     }
 
-    public int getLevel()
+    private int getLevel()
     {
         return level;
     }
@@ -46,15 +46,15 @@ public abstract class Disease
         isTerminal = terminal;
     }
 
-    public boolean setTerminal()
+    void setTerminal()
     {
         if (getLevel() == 5)
         {
-            return true;
+            return;
         }
         else
         {
-            return false;
+            return;
         }
     }
 

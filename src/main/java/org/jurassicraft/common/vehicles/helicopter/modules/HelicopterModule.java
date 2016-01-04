@@ -18,7 +18,7 @@ public abstract class HelicopterModule
     private final String moduleID;
     private final Collection<Class<? extends HelicopterModule>> supported;
 
-    protected HelicopterModule(String id)
+    HelicopterModule(String id)
     {
         this.moduleID = id;
         registry.put(id, this);
@@ -51,12 +51,12 @@ public abstract class HelicopterModule
 
     public abstract boolean onClicked(HelicopterModuleSpot m, EntityPlayer player, Vec3 vec);
 
-    public void onAdded(HelicopterModuleSpot m, EntityPlayer player, Vec3 vec)
+    public void onAdded(HelicopterModuleSpot m)
     {
 
     }
 
-    public void onRemoved(HelicopterModuleSpot m, EntityPlayer player, Vec3 vec)
+    public void onRemoved()
     {
 
     }

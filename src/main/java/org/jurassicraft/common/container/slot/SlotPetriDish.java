@@ -7,9 +7,9 @@ import org.jurassicraft.common.item.JCItemRegistry;
 
 public class SlotPetriDish extends Slot
 {
-    public SlotPetriDish(IInventory inventory, int slotIndex, int xPosition, int yPosition)
+    public SlotPetriDish(IInventory inventory, int xPosition, int yPosition)
     {
-        super(inventory, slotIndex, xPosition, yPosition);
+        super(inventory, 1, 50, 49);
     }
 
     @Override

@@ -18,9 +18,9 @@ import java.util.Map;
 
 public class ItemFossil extends Item
 {
-    private String type;
+    private final String type;
 
-    public ItemFossil(String type)
+    ItemFossil(String type)
     {
         this.type = type.toLowerCase().replaceAll(" ", "_");
 
@@ -43,18 +43,18 @@ public class ItemFossil extends Item
         return super.getItemStackDisplayName(stack);
     }
 
-    public Dinosaur getDinosaur(ItemStack stack)
+    private Dinosaur getDinosaur(ItemStack stack)
     {
         return JCEntityRegistry.getDinosaurById(stack.getItemDamage());
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List subtypes)
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> subtypes)
     {
-        List<Dinosaur> dinosaurs = new ArrayList<Dinosaur>(JCEntityRegistry.getDinosaurs());
+        List<Dinosaur> dinosaurs = new ArrayList<>(JCEntityRegistry.getDinosaurs());
 
-        Map<Dinosaur, Integer> ids = new HashMap<Dinosaur, Integer>();
+        Map<Dinosaur, Integer> ids = new HashMap<>();
 
         int id = 0;
 

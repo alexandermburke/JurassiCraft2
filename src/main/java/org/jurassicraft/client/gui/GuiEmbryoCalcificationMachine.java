@@ -18,7 +18,7 @@ public class GuiEmbryoCalcificationMachine extends GuiContainer
      * The player inventory bound to this GUI.
      */
     private final InventoryPlayer playerInventory;
-    private IInventory calcificationMachine;
+    private final IInventory calcificationMachine;
 
     public GuiEmbryoCalcificationMachine(InventoryPlayer playerInv, IInventory fossilGrinder)
     {

@@ -82,7 +82,7 @@ public class GuiPaleoPad extends GuiScreen
         }
         else
         {
-            focus.mouseClicked(mouseX, mouseY, this);
+            focus.mouseClicked(mouseX, mouseY);
         }
     }
 
@@ -118,7 +118,7 @@ public class GuiPaleoPad extends GuiScreen
             minutesStr = "0" + minutesStr;
         }
 
-        drawCenteredScaledText(new AdvLang("paleopad.time.name").withProperty("hours", hoursStr).withProperty("minutes", minutesStr).build(), 115, -10, 1.0F, 0xFFFFFF);
+        drawCenteredScaledText(new AdvLang("paleopad.time.name").withProperty("hours", hoursStr).withProperty("minutes", minutesStr).build(), 115, -10, 1.0F);
         drawScaledRect(0, 0, 458, 2, 0.5F, 0x404040);
 
         if (focus == null)
@@ -131,18 +131,18 @@ public class GuiPaleoPad extends GuiScreen
                 App app = apps.get(i);
                 GuiApp gui = GuiAppRegistry.getGui(app);
 
-                mc.getTextureManager().bindTexture(gui.getTexture(this));
+                mc.getTextureManager().bindTexture(gui.getTexture());
 
-                drawScaledTexturedModalRect(x + 5, y + 5, 0, 0, 32, 32, 32, 32, 1.0F);
+                drawScaledTexturedModalRect(x + 5, y + 5, 0, 32, 32, 32, 32, 1.0F);
 
-                drawCenteredScaledText(app.getName(), x + 22, y + 39, 0.7F, 0xFFFFFF);
+                drawCenteredScaledText(app.getName(), x + 22, y + 39, 0.7F);
             }
 
-            drawScaledText(StatCollector.translateToLocal("paleopad.os.name"), 2, -10, 1.0F, 0xFFFFFF);
+            drawScaledText(StatCollector.translateToLocal("paleopad.os.name"), 2, -10, 0xFFFFFF);
         }
         else
         {
-            drawScaledText(focus.getApp().getName(), 2, -10, 1.0F, 0xFFFFFF);
+            drawScaledText(focus.getApp().getName(), 2, -10, 0xFFFFFF);
             focus.render(mouseX, mouseY, this);
         }
 
@@ -152,7 +152,7 @@ public class GuiPaleoPad extends GuiScreen
     /**
      * Draws a textured rectangle at the stored z-value. Args: x, y, u, v, width, height
      */
-    public void drawScaledTexturedModalRect(int x, int y, int textureX, int textureY, int width, int height, int textureWidth, int textureHeight, float scale)
+    public void drawScaledTexturedModalRect(int x, int y, int textureY, int width, int height, int textureWidth, int textureHeight, float scale)
     {
         GL11.glPushMatrix();
 
@@ -170,10 +170,10 @@ public class GuiPaleoPad extends GuiScreen
         Tessellator tessellator = Tessellator.getInstance();
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
         worldrenderer.begin(7, DefaultVertexFormats.POSITION);
-        worldrenderer.pos((double) (x), (double) (y + height), (double) this.zLevel).tex((double) ((float) (textureX) * f), (double) ((float) (textureY + height) * f1)).endVertex();
-        worldrenderer.pos((double) (x + width), (double) (y + height), (double) this.zLevel).tex((double) ((float) (textureX + width) * f), (double) ((float) (textureY + height) * f1)).endVertex();
-        worldrenderer.pos((double) (x + width), (double) (y), (double) this.zLevel).tex((double) ((float) (textureX + width) * f), (double) ((float) (textureY) * f1)).endVertex();
-        worldrenderer.pos((double) (x), (double) (y), (double) this.zLevel).tex((double) ((float) (textureX) * f), (double) ((float) (textureY) * f1)).endVertex();
+        worldrenderer.pos((double) (x), (double) (y + height), (double) this.zLevel).tex((double) ((float) (0) * f), (double) ((float) (textureY + height) * f1)).endVertex();
+        worldrenderer.pos((double) (x + width), (double) (y + height), (double) this.zLevel).tex((double) ((float) (0 + width) * f), (double) ((float) (textureY + height) * f1)).endVertex();
+        worldrenderer.pos((double) (x + width), (double) (y), (double) this.zLevel).tex((double) ((float) (0 + width) * f), (double) ((float) (textureY) * f1)).endVertex();
+        worldrenderer.pos((double) (x), (double) (y), (double) this.zLevel).tex((double) ((float) (0) * f), (double) ((float) (textureY) * f1)).endVertex();
         tessellator.draw();
 
         GL11.glColor3f(1.0F, 1.0F, 1.0F);
@@ -223,19 +223,19 @@ public class GuiPaleoPad extends GuiScreen
         GL11.glPopMatrix();
     }
 
-    public void drawBoxOutline(int x, int y, int sizeX, int sizeY, int borderSize, float scale, int colour)
+    public void drawBoxOutline(int x, int y, int sizeX, int sizeY, float scale, int colour)
     {
         GL11.glPushMatrix();
 
-        drawScaledRect(x, y, sizeX, borderSize, scale, colour);
-        drawScaledRect(x + sizeX, y, borderSize, sizeY + borderSize, scale, colour);
-        drawScaledRect(x, y, borderSize, sizeY + borderSize, scale, colour);
-        drawScaledRect(x, y + sizeY, sizeX, borderSize, scale, colour);
+        drawScaledRect(x, y, sizeX, 1, 1.0F, colour);
+        drawScaledRect(x + sizeX, y, 1, sizeY + 1, 1.0F, colour);
+        drawScaledRect(x, y, 1, sizeY + 1, 1.0F, colour);
+        drawScaledRect(x, y + sizeY, sizeX, 1, 1.0F, colour);
 
         GL11.glPopMatrix();
     }
 
-    public void drawCenteredScaledText(String text, int x, int y, float scale, int colour)
+    public void drawCenteredScaledText(String text, int x, int y, float scale)
     {
         GL11.glPushMatrix();
 
@@ -248,12 +248,12 @@ public class GuiPaleoPad extends GuiScreen
         x /= scale;
         y /= scale;
 
-        drawCenteredString(fontRendererObj, text, x, y, colour);
+        drawCenteredString(fontRendererObj, text, x, y, 0xFFFFFF);
 
         GL11.glPopMatrix();
     }
 
-    public void drawScaledText(String text, int x, int y, float scale, int colour)
+    public void drawScaledText(String text, int x, int y, int colour)
     {
         GL11.glPushMatrix();
 
@@ -261,10 +261,10 @@ public class GuiPaleoPad extends GuiScreen
         x += dimensions.getScaledWidth() / 2 - 115;
         y += 65;
 
-        GL11.glScalef(scale, scale, scale);
+        GL11.glScalef(1.0F, 1.0F, 1.0F);
 
-        x /= scale;
-        y /= scale;
+        x /= 1.0F;
+        y /= 1.0F;
 
         drawString(fontRendererObj, text, x, y, colour);
 

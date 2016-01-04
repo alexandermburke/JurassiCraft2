@@ -3,7 +3,6 @@ package org.jurassicraft.common.block.machine;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
@@ -28,9 +27,9 @@ import java.util.List;
 
 public class BlockCultivate extends BlockContainer implements ISubBlocksBlock
 {
-    public static final PropertyEnum COLOR = PropertyEnum.create("color", EnumDyeColor.class);
+    static final PropertyEnum COLOR = PropertyEnum.create("color", EnumDyeColor.class);
 
-    public BlockCultivate(String position)
+    BlockCultivate(String position)
     {
         super(Material.iron);
         this.setUnlocalizedName("cultivator_" + position);
@@ -47,7 +46,7 @@ public class BlockCultivate extends BlockContainer implements ISubBlocksBlock
         return ((EnumDyeColor) state.getValue(COLOR)).getMetadata();
     }
 
-    public void dropItems(World world, BlockPos pos)
+    void dropItems(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getBlock() == JCBlockRegistry.cultivate_top)
         {
@@ -66,13 +65,11 @@ public class BlockCultivate extends BlockContainer implements ISubBlocksBlock
      * returns a subtypes of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List subtypes)
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> subtypes)
     {
         EnumDyeColor[] colors = EnumDyeColor.values();
 
-        for (int j = 0; j < colors.length; ++j)
-        {
-            EnumDyeColor color = colors[j];
+        for (EnumDyeColor color : colors) {
             subtypes.add(new ItemStack(item, 1, color.getMetadata()));
         }
     }
@@ -115,7 +112,7 @@ public class BlockCultivate extends BlockContainer implements ISubBlocksBlock
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] { COLOR });
+        return new BlockState(this, COLOR);
     }
 
     @SideOnly(Side.CLIENT)

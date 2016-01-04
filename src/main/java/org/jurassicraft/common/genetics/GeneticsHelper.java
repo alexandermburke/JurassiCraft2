@@ -9,10 +9,10 @@ public class GeneticsHelper
 {
     public static GeneticsContainer randomGenetics(Random rand, Dinosaur dinosaur, int quality)
     {
-        return randomGenetics(rand, JCEntityRegistry.getDinosaurId(dinosaur), quality);
+        return randomGenetics(rand, JCEntityRegistry.getDinosaurId(dinosaur));
     }
 
-    public static GeneticsContainer randomGenetics(Random rand, int dinosaur, int quality)
+    public static GeneticsContainer randomGenetics(Random rand, int dinosaur)
     {
         return new GeneticsContainer(dinosaur, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256), getRandomOverlayTexture(rand, dinosaur), getRandomOverlayTexture(rand, dinosaur), getRandomOverlayTexture(rand, dinosaur)); //TODO
     }

@@ -11,7 +11,7 @@ import org.jurassicraft.common.tileentity.TileDNAHybridizer;
 
 public class ContainerDNAHybridizer extends Container
 {
-    private TileDNAHybridizer dnaHybridizer;
+    private final TileDNAHybridizer dnaHybridizer;
 
     public ContainerDNAHybridizer(InventoryPlayer playerInventory, TileEntity tileEntity)
     {

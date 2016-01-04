@@ -7,7 +7,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import org.jurassicraft.common.block.JCBlockRegistry;
@@ -83,15 +82,15 @@ public class ItemPaleoPad extends Item
         {
             EntityPlayer player = (EntityPlayer) entityIn;
 
-            setString(stack, "LastOwner", player.getUniqueID().toString());
+            setString(stack, player.getUniqueID().toString());
         }
     }
 
-    public void setString(ItemStack stack, String key, String value)
+    private void setString(ItemStack stack, String value)
     {
         NBTTagCompound nbt = getNBT(stack);
 
-        nbt.setString(key, value);
+        nbt.setString("LastOwner", value);
 
         stack.setTagCompound(nbt);
     }

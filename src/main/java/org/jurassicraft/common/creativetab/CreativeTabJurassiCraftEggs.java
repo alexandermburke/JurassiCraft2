@@ -12,11 +12,11 @@ import org.jurassicraft.common.item.JCItemRegistry;
 
 public class CreativeTabJurassiCraftEggs extends CreativeTabs
 {
-    private int[] metas;
+    private final int[] metas;
 
-    public CreativeTabJurassiCraftEggs(String label)
+    public CreativeTabJurassiCraftEggs()
     {
-        super(label);
+        super("jurassicraft.eggs");
         this.metas = new int[JCEntityRegistry.getRegisteredDinosaurs().size()];
 
         int id = 0;

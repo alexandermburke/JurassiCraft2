@@ -11,7 +11,7 @@ import org.jurassicraft.common.tileentity.TileFossilGrinder;
 
 public class ContainerFossilGrinder extends Container
 {
-    private TileFossilGrinder fossilGrinder;
+    private final TileFossilGrinder fossilGrinder;
 
     public ContainerFossilGrinder(InventoryPlayer playerInventory, TileEntity tileEntity)
     {

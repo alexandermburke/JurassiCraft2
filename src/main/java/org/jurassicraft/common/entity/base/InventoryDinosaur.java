@@ -12,9 +12,9 @@ import org.jurassicraft.common.item.JCItemRegistry;
 
 import java.util.Random;
 
-public class InventoryDinosaur implements IInventory
+class InventoryDinosaur implements IInventory
 {
-    private EntityDinosaur entity;
+    private final EntityDinosaur entity;
 
     private ItemStack[] inventory;
 
@@ -24,7 +24,7 @@ public class InventoryDinosaur implements IInventory
         this.inventory = new ItemStack[entity.getDinosaur().getStorage()];
     }
 
-    public boolean checkForTracker()
+    private void checkForTracker()
     {
         boolean hasTracker = false;
 

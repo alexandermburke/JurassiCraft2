@@ -2,7 +2,6 @@ package org.jurassicraft.common.proxy;
 
 import com.google.common.base.Predicates;
 import com.google.common.collect.Iterators;
-import net.minecraft.block.Block;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.player.EntityPlayer;
@@ -65,9 +64,9 @@ public class CommonProxy
         ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR).addItem(new WeightedRandomChestContent(new ItemStack(JCItemRegistry.amber, 1, 0), 1, 2, 30));
         ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR).addItem(new WeightedRandomChestContent(new ItemStack(JCItemRegistry.amber, 1, 1), 1, 2, 30));
 
-        List<Dinosaur> dinosaurs = new ArrayList<Dinosaur>(JCEntityRegistry.getDinosaurs());
+        List<Dinosaur> dinosaurs = new ArrayList<>(JCEntityRegistry.getDinosaurs());
 
-        Map<Dinosaur, Integer> ids = new HashMap<Dinosaur, Integer>();
+        Map<Dinosaur, Integer> ids = new HashMap<>();
 
         int id = 0;
 
@@ -148,7 +147,7 @@ public class CommonProxy
         return ctx.getServerHandler().playerEntity;
     }
 
-    public void registerRenderSubBlock(Block block)
+    public void registerRenderSubBlock()
     {
 
     }

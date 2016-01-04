@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class StorageTypeRegistry
 {
-    private static Map<String, Supplier<? extends IStorageType>> storageTypes = new HashMap<String, Supplier<? extends IStorageType>>();
+    private static final Map<String, Supplier<? extends IStorageType>> storageTypes = new HashMap<>();
 
     public void register()
     {

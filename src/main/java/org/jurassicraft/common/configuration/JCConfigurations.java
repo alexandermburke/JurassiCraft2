@@ -82,7 +82,7 @@ public class JCConfigurations
     /*
      * sync the configuration want it public so you can handle case of changes made in-game
      */
-    public void syncConfig()
+    private void syncConfig()
     {
         spawnJurassiCraftMobsNaturally = JurassiCraft.config.get(Configuration.CATEGORY_GENERAL, "JurassiCraft Creatures Spawn Naturally", false, "Allow JurassiCraft entities to spawn naturally during world generation");
         spawnJurassiCraftMobsNaturally.getBoolean(false); // Init

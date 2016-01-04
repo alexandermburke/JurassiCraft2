@@ -2,7 +2,7 @@ package org.jurassicraft.common.entity.base;
 
 import net.minecraft.world.World;
 
-public abstract class EntityDinosaurFlying extends EntityDinosaur
+abstract class EntityDinosaurFlying extends EntityDinosaur
 {
     public EntityDinosaurFlying(World world)
     {

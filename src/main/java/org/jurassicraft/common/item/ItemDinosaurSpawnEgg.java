@@ -43,7 +43,7 @@ public class ItemDinosaurSpawnEgg extends Item
         this.setCreativeTab(JCCreativeTabs.spawnEggs);
     }
 
-    public EntityDinosaur spawnCreature(World world, EntityPlayer player, ItemStack stack, double x, double y, double z)
+    private EntityDinosaur spawnCreature(World world, EntityPlayer player, ItemStack stack, double x, double y, double z)
     {
         Dinosaur dinoInEgg = getDinosaur(stack);
 
@@ -127,7 +127,7 @@ public class ItemDinosaurSpawnEgg extends Item
         return new AdvLang("item.dino_spawn_egg.name").withProperty("dino", "entity.jurassicraft." + dinosaur.getName().replace(" ", "_").toLowerCase() + ".name").build();
     }
 
-    public Dinosaur getDinosaur(ItemStack stack)
+    private Dinosaur getDinosaur(ItemStack stack)
     {
         Dinosaur dinosaur = JCEntityRegistry.getDinosaurById(stack.getItemDamage());
 
@@ -169,11 +169,11 @@ public class ItemDinosaurSpawnEgg extends Item
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List subtypes)
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> subtypes)
     {
-        List<Dinosaur> dinosaurs = new ArrayList<Dinosaur>(JCEntityRegistry.getDinosaurs());
+        List<Dinosaur> dinosaurs = new ArrayList<>(JCEntityRegistry.getDinosaurs());
 
-        Map<Dinosaur, Integer> ids = new HashMap<Dinosaur, Integer>();
+        Map<Dinosaur, Integer> ids = new HashMap<>();
 
         int id = 0;
 
@@ -217,7 +217,7 @@ public class ItemDinosaurSpawnEgg extends Item
                 if (tileentity instanceof TileEntityMobSpawner)
                 {
                     MobSpawnerBaseLogic mobspawnerbaselogic = ((TileEntityMobSpawner) tileentity).getSpawnerBaseLogic();
-                    mobspawnerbaselogic.setEntityName((String) EntityList.classToStringMapping.get(getDinosaur(stack).getDinosaurClass()));
+                    mobspawnerbaselogic.setEntityName(EntityList.classToStringMapping.get(getDinosaur(stack).getDinosaurClass()));
                     tileentity.markDirty();
                     world.markBlockForUpdate(pos);
 
@@ -260,12 +260,12 @@ public class ItemDinosaurSpawnEgg extends Item
         }
     }
 
-    public int getMode(ItemStack stack)
+    private int getMode(ItemStack stack)
     {
         return getNBT(stack).getInteger("GenderMode");
     }
 
-    public int changeMode(ItemStack stack)
+    private int changeMode(ItemStack stack)
     {
         NBTTagCompound nbt = getNBT(stack);
 
@@ -284,7 +284,7 @@ public class ItemDinosaurSpawnEgg extends Item
         return mode;
     }
 
-    public NBTTagCompound getNBT(ItemStack stack)
+    private NBTTagCompound getNBT(ItemStack stack)
     {
         NBTTagCompound nbt = stack.getTagCompound();
 
@@ -298,7 +298,7 @@ public class ItemDinosaurSpawnEgg extends Item
         return nbt;
     }
 
-    public void addInformation(ItemStack stack, EntityPlayer player, List lore, boolean advanced)
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> lore, boolean advanced)
     {
         lore.add(StatCollector.translateToLocal("lore.baby_dino.name"));
         lore.add(StatCollector.translateToLocal("lore.change_gender.name"));

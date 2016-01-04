@@ -7,9 +7,9 @@ import org.jurassicraft.common.item.JCItemRegistry;
 
 public class SlotDNAExtraction extends Slot
 {
-    public SlotDNAExtraction(IInventory inventory, int slotIndex, int xPosition, int yPosition)
+    public SlotDNAExtraction(IInventory inventory, int xPosition, int yPosition)
     {
-        super(inventory, slotIndex, xPosition, yPosition);
+        super(inventory, 0, 55, 26);
     }
 
     @Override

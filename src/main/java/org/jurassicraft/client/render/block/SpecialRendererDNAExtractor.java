@@ -7,22 +7,19 @@ import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import org.jurassicraft.common.block.BlockOriented;
 import org.jurassicraft.common.block.JCBlockRegistry;
 import org.jurassicraft.common.tileentity.TileDNAExtractor;
 
-public class SpecialRendererDNAExtractor extends TileEntitySpecialRenderer
+public class SpecialRendererDNAExtractor extends TileEntitySpecialRenderer<TileDNAExtractor>
 {
-    private Minecraft mc = Minecraft.getMinecraft();
+    private final Minecraft mc = Minecraft.getMinecraft();
 
     @Override
-    public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float p_180535_8_, int p_180535_9_)
+    public void renderTileEntityAt(TileDNAExtractor tileEntity, double x, double y, double z, float p_180535_8_, int p_180535_9_)
     {
-        TileDNAExtractor tile = (TileDNAExtractor) tileEntity;
-
-        IBlockState blockState = tileEntity.getWorld().getBlockState(tile.getPos());
+        IBlockState blockState = tileEntity.getWorld().getBlockState(tileEntity.getPos());
 
         if (blockState.getBlock() == JCBlockRegistry.dna_extractor)
         {
@@ -31,7 +28,7 @@ public class SpecialRendererDNAExtractor extends TileEntitySpecialRenderer
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             GlStateManager.translate(x + 0.5, y, z + 0.5);
 
-            EnumFacing value = (EnumFacing) blockState.getValue(BlockOriented.FACING);
+            EnumFacing value = blockState.getValue(BlockOriented.FACING);
 
             if (value == EnumFacing.EAST)
             {
@@ -48,7 +45,7 @@ public class SpecialRendererDNAExtractor extends TileEntitySpecialRenderer
             GlStateManager.scale(1.25F, 1.25F, 1.25F);
             GlStateManager.rotate(90, 1, 0, 0);
 
-            ItemStack extraction = tile.getStackInSlot(0);
+            ItemStack extraction = tileEntity.getStackInSlot(0);
 
             RenderItem renderItem = mc.getRenderItem();
 
@@ -57,14 +54,14 @@ public class SpecialRendererDNAExtractor extends TileEntitySpecialRenderer
                 renderItem.renderItem(extraction, renderItem.getItemModelMesher().getItemModel(extraction));
             }
 
-            ItemStack disc = tile.getStackInSlot(1);
+            ItemStack disc = tileEntity.getStackInSlot(1);
 
             if (disc != null)
             {
                 GlStateManager.translate(0, 0, -0.45);
                 GlStateManager.rotate(15, 1, 0, 0);
 
-                if (tile.isProcessing(0))
+                if (tileEntity.isProcessing(0))
                 {
                     GlStateManager.rotate(mc.thePlayer.ticksExisted * 2 % 360, 0, 0, 1);
                 }

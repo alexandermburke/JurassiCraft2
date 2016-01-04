@@ -178,7 +178,7 @@ public class JCItemRegistry
         // }
     }
 
-    public void registerItem(Item item, String name)
+    private void registerItem(Item item, String name)
     {
         DinoPediaRegistry.registerItem(new ItemStack(item));
 

@@ -12,7 +12,7 @@ import java.util.List;
 
 public class AnimationAICall extends EntityAIBase
 {
-    protected EntityDinosaur animatingEntity;
+    private final EntityDinosaur animatingEntity;
 
     public AnimationAICall(IAnimatedEntity entity)
     {
@@ -20,9 +20,9 @@ public class AnimationAICall extends EntityAIBase
         animatingEntity = (EntityDinosaur) entity;
     }
 
-    public List<Entity> getEntitiesWithinDistance(Entity e, double xz, double y)
+    private List<Entity> getEntitiesWithinDistance(Entity e, double xz)
     {
-        return e.worldObj.getEntitiesWithinAABBExcludingEntity(e, AxisAlignedBB.fromBounds(e.posX - xz, e.posY - y, e.posZ - xz, e.posX + xz, e.posY + y, e.posZ + xz));
+        return e.worldObj.getEntitiesWithinAABBExcludingEntity(e, AxisAlignedBB.fromBounds(e.posX - (double) 50, e.posY - (double) 10, e.posZ - (double) 50, e.posX + (double) 50, e.posY + (double) 10, e.posZ + (double) 50));
     }
 
     @Override
@@ -30,7 +30,7 @@ public class AnimationAICall extends EntityAIBase
     {
         if (animatingEntity.getRNG().nextDouble() < 0.003)
         {
-            List<Entity> entities = getEntitiesWithinDistance(animatingEntity, 50, 10);
+            List<Entity> entities = getEntitiesWithinDistance(animatingEntity, 50);
 
             for (Entity entity : entities)
             {

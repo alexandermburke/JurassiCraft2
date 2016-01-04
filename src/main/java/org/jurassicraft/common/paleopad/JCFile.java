@@ -10,16 +10,16 @@ import java.util.List;
 
 public class JCFile
 {
-    private boolean dir;
-    private String name;
+    private final boolean dir;
+    private final String name;
 
-    private JCFile parent;
+    private final JCFile parent;
 
     private NBTTagCompound data;
 
-    private JCPlayerData playerData;
+    private final JCPlayerData playerData;
 
-    private List<JCFile> children = new ArrayList<JCFile>();
+    private final List<JCFile> children = new ArrayList<>();
 
     public JCFile(String name, JCFile parent, EntityPlayer player, boolean dir)
     {
@@ -45,7 +45,7 @@ public class JCFile
         return data;
     }
 
-    public void addChild(JCFile file)
+    private void addChild(JCFile file)
     {
         if (this.children.contains(file))
         {
@@ -55,7 +55,7 @@ public class JCFile
         this.children.add(file);
     }
 
-    public void removeChild(JCFile file)
+    private void removeChild(JCFile file)
     {
         this.children.remove(file);
     }

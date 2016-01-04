@@ -75,14 +75,13 @@ import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 import org.jurassicraft.common.vehicles.helicopter.modules.EntityHelicopterSeat;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 public class JCEntityRegistry
 {
-    private static List<Dinosaur> dinosaurs = new ArrayList<Dinosaur>();
-    private static HashMap<EnumTimePeriod, List<Dinosaur>> dinosaursFromPeriod = new HashMap<EnumTimePeriod, List<Dinosaur>>();
+    private static final List<Dinosaur> dinosaurs = new ArrayList<>();
+    private static final HashMap<EnumTimePeriod, List<Dinosaur>> dinosaursFromPeriod = new HashMap<>();
 
     public static final Dinosaur dodo = new DinosaurDodo();
     public static final Dinosaur achillobator = new DinosaurAchillobator();
@@ -143,7 +142,7 @@ public class JCEntityRegistry
 
     public static List<Dinosaur> getDinosaursFromSeaLampreys()
     {
-        List<Dinosaur> marineDinos = new ArrayList<Dinosaur>();
+        List<Dinosaur> marineDinos = new ArrayList<>();
 
         for (Dinosaur dino : getRegisteredDinosaurs())
         {
@@ -227,7 +226,7 @@ public class JCEntityRegistry
         }
     }
 
-    public void registerDinosaur(Dinosaur dinosaur)
+    private void registerDinosaur(Dinosaur dinosaur)
     {
         if (dinosaur.shouldRegister())
         {
@@ -258,7 +257,7 @@ public class JCEntityRegistry
         EntityRegistry.registerModEntity(entity, formattedName, entityId++, JurassiCraft.instance, 1024, 1, true);
     }
 
-    public static void registerDinosaurType(Dinosaur dinosaur)
+    private static void registerDinosaurType(Dinosaur dinosaur)
     {
         dinosaur.init();
 
@@ -279,7 +278,7 @@ public class JCEntityRegistry
             }
             else
             {
-                List<Dinosaur> newDinoList = new ArrayList<Dinosaur>();
+                List<Dinosaur> newDinoList = new ArrayList<>();
                 newDinoList.add(dinosaur);
 
                 dinosaursFromPeriod.put(period, newDinoList);
@@ -304,7 +303,7 @@ public class JCEntityRegistry
 
     public static List<Dinosaur> getDinosaursFromAmber()
     {
-        List<Dinosaur> amberDinos = new ArrayList<Dinosaur>();
+        List<Dinosaur> amberDinos = new ArrayList<>();
 
         for (Dinosaur dino : getRegisteredDinosaurs())
         {
@@ -324,7 +323,7 @@ public class JCEntityRegistry
 
     public static List<Dinosaur> getRegisteredDinosaurs()
     {
-        List<Dinosaur> reg = new ArrayList<Dinosaur>();
+        List<Dinosaur> reg = new ArrayList<>();
 
         for (Dinosaur dino : dinosaurs)
         {

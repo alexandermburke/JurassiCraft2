@@ -4,11 +4,10 @@ import net.minecraft.block.Block;
 
 public class Feature
 {
-
-    private int FeatureCode;
-    private Block block;
-    private Shape shape;
-    private FeatureType type;
+    private final int FeatureCode;
+    private final Block block;
+    private final Shape shape;
+    private final FeatureType type;
 
     public Feature(int code, FeatureType type, Shape shape, Block block)
     {
@@ -21,16 +20,11 @@ public class Feature
 
     public FeatureType getType()
     {
-
         return type;
-
     }
 
     public enum FeatureType
     {
-
         Trunk, Branch, Fruit, leaves, wood, TrunkLeaves;
-
     }
-
 }

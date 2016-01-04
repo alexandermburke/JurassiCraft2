@@ -3,7 +3,6 @@ package org.jurassicraft.common.block.tree;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
@@ -23,16 +22,16 @@ import java.util.Random;
 
 public class BlockJCSapling extends BlockBush implements IGrowable
 {
-    private EnumType treeType;
+    private final EnumType treeType;
 
-    public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
+    private static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
 
     public BlockJCSapling(EnumType type, String name)
     {
         super();
         treeType = type;
         setUnlocalizedName(name + "_sapling");
-        this.setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(STAGE, 0));
         this.setStepSound(Block.soundTypeGrass);
 
         float f = 0.4F;
@@ -54,9 +53,9 @@ public class BlockJCSapling extends BlockBush implements IGrowable
         }
     }
 
-    public void grow(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    private void grow(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
-        if (((Integer) state.getValue(STAGE)).intValue() == 0)
+        if (state.getValue(STAGE) == 0)
         {
             worldIn.setBlockState(pos, state.cycleProperty(STAGE), 4);
         }
@@ -67,11 +66,11 @@ public class BlockJCSapling extends BlockBush implements IGrowable
             {
 
                 case GINKGO:
-                    WorldGenGinkgo ginkgogen = new WorldGenGinkgo(0);
+                    WorldGenGinkgo ginkgogen = new WorldGenGinkgo();
                     ginkgogen.generate(worldIn, rand, pos);
                     break;
                 case CALAMITES:
-                    WorldGenCalamites calamitesgen = new WorldGenCalamites(1);
+                    WorldGenCalamites calamitesgen = new WorldGenCalamites();
                     calamitesgen.generate(worldIn, rand, pos);
                     break;
             }
@@ -90,7 +89,7 @@ public class BlockJCSapling extends BlockBush implements IGrowable
     }
 
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, List list)
+    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
     {
         list.add(new ItemStack(itemIn, 1, 0));
     }
@@ -118,7 +117,7 @@ public class BlockJCSapling extends BlockBush implements IGrowable
      */
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(STAGE, Integer.valueOf((meta & 8) >> 3));
+        return this.getDefaultState().withProperty(STAGE, (meta & 8) >> 3);
     }
 
     /**
@@ -127,12 +126,12 @@ public class BlockJCSapling extends BlockBush implements IGrowable
     public int getMetaFromState(IBlockState state)
     {
         int i = 0;
-        i |= ((Integer) state.getValue(STAGE)).intValue() << 3;
+        i |= state.getValue(STAGE) << 3;
         return i;
     }
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] { STAGE });
+        return new BlockState(this, STAGE);
     }
 }

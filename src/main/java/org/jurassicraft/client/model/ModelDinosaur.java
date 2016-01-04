@@ -17,7 +17,7 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public class ModelDinosaur extends ModelJson
 {
-    public Animator animator;
+    public final Animator animator;
 
     public ModelDinosaur(JsonTabulaModel model)
     {

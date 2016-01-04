@@ -1,8 +1,10 @@
 package org.jurassicraft.common.api;
 
+import org.jurassicraft.common.dinosaur.Dinosaur;
+
 public interface IHybrid
 {
-    Class[] getBaseGenes();
+    Class<? extends Dinosaur>[] getBaseGenes();
 
-    Class[] getExtraGenes();
+    Class<? extends Dinosaur>[] getExtraGenes();
 }
