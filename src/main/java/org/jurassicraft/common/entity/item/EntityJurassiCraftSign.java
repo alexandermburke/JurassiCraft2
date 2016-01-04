@@ -39,7 +39,8 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
             this.signType = enumart;
             this.updateFacingWithBoundingBox(enumFacing);
 
-            if (this.onValidSurface()) {
+            if (this.onValidSurface())
+            {
                 arraylist.add(enumart);
             }
         }

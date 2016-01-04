@@ -367,11 +367,8 @@ public class JabelarAnimationHelper
     {
 //        JurassiCraft.instance.getLogger().info("current tween step = " + currentTickInTween);
         currentTickInTween++;
-        if (currentTickInTween >= numTicksInTween)
-        {
-            return true;
-        }
-        return false;
+
+        return currentTickInTween >= numTicksInTween;
     }
 
     // boolean returned indicates if sequence was finished

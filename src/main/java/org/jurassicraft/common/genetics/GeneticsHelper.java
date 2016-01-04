@@ -21,11 +21,14 @@ public class GeneticsHelper
     {
         Dinosaur dinosaur = JCEntityRegistry.getDinosaurById(dinosaurId);
 
-        int overlayCount = dinosaur.getOverlayCount();
-
-        if (rand.nextBoolean() && overlayCount > 0)
+        if (dinosaur != null)
         {
-            return rand.nextInt(overlayCount);
+            int overlayCount = dinosaur.getOverlayCount();
+
+            if (rand.nextBoolean() && overlayCount > 0)
+            {
+                return rand.nextInt(overlayCount);
+            }
         }
 
         return 255;

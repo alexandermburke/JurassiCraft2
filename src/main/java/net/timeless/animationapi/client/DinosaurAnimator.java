@@ -76,7 +76,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
     /**
      * Loads the model, etc... for the dinosaur given.
      *
-     * @param dino
+     * @param dino the dinosaur to animate
      */
     public DinosaurAnimator(Dinosaur dino)
     {
@@ -163,7 +163,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
      * Gets the posed models from the set of animations defined. Illegal poses (e.g. where the file doesn't exist) will be skipped and not show up in the map.
      *
      * @param anims the read animations
-     * @return
+     * @returns the posed models
      */
     private static PreloadedModelData getPosedModels(URI dinoDirURI, AnimationsDTO anims)
     {
@@ -290,7 +290,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
     {
         ModelDinosaur theModel = (ModelDinosaur) model;
         EntityDinosaur theEntity = (EntityDinosaur) entity;
-        ; // assert(size == 1/16f); // Ignore the size
+        // assert(size == 1/16f); // Ignore the size
 
         setRotationAngles(theModel, limbSwing, limbSwingAmount, rotation, rotationYaw, rotationPitch, partialTick, theEntity);
     }

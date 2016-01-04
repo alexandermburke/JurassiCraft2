@@ -71,9 +71,8 @@ public abstract class HelicopterRidableModule extends HelicopterModule
         }
         // System.out.println(id);
         UUID entityID = UUID.fromString(id);
-        EntityHelicopterSeat entity = getSeatFromID(spot.getHelicopter().worldObj, entityID);
         // System.out.println(entity);
-        return entity;
+        return getSeatFromID(spot.getHelicopter().worldObj, entityID);
     }
 
     protected abstract float getDistanceFromCenter();

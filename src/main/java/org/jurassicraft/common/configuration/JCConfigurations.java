@@ -19,7 +19,7 @@ public class JCConfigurations
 {
     private static boolean isInit = false;
 
-    private static final void checkInit()
+    private static void checkInit()
     {
         if (!isInit)
         {

@@ -274,7 +274,7 @@ public class MowzieModelRenderer extends ModelRenderer
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void render(float p_78785_1_)
+    public void render(float partialTicks)
     {
         GlStateManager.pushMatrix();
 
@@ -284,7 +284,7 @@ public class MowzieModelRenderer extends ModelRenderer
             {
                 if (!this.compiled)
                 {
-                    this.compileDisplayList(p_78785_1_);
+                    this.compileDisplayList(partialTicks);
                 }
 
                 float f5 = 1 / 16F;
@@ -304,29 +304,29 @@ public class MowzieModelRenderer extends ModelRenderer
                         {
                             for (i = 0; i < this.childModels.size(); ++i)
                             {
-                                ((MowzieModelRenderer) this.childModels.get(i)).render(p_78785_1_);
+                                this.childModels.get(i).render(partialTicks);
                             }
                         }
                     }
                     else
                     {
-                        GlStateManager.translate(this.rotationPointX * p_78785_1_, this.rotationPointY * p_78785_1_, this.rotationPointZ * p_78785_1_);
+                        GlStateManager.translate(this.rotationPointX * partialTicks, this.rotationPointY * partialTicks, this.rotationPointZ * partialTicks);
                         GlStateManager.callList(this.displayList);
 
                         if (this.childModels != null)
                         {
                             for (i = 0; i < this.childModels.size(); ++i)
                             {
-                                ((MowzieModelRenderer) this.childModels.get(i)).render(p_78785_1_);
+                                this.childModels.get(i).render(partialTicks);
                             }
                         }
 
-                        GlStateManager.translate(-this.rotationPointX * p_78785_1_, -this.rotationPointY * p_78785_1_, -this.rotationPointZ * p_78785_1_);
+                        GlStateManager.translate(-this.rotationPointX * partialTicks, -this.rotationPointY * partialTicks, -this.rotationPointZ * partialTicks);
                     }
                 }
                 else
                 {
-                    GlStateManager.translate(this.rotationPointX * p_78785_1_, this.rotationPointY * p_78785_1_, this.rotationPointZ * p_78785_1_);
+                    GlStateManager.translate(this.rotationPointX * partialTicks, this.rotationPointY * partialTicks, this.rotationPointZ * partialTicks);
 
                     if (this.rotateAngleZ != 0.0F)
                     {
@@ -349,7 +349,7 @@ public class MowzieModelRenderer extends ModelRenderer
                     {
                         for (i = 0; i < this.childModels.size(); ++i)
                         {
-                            ((MowzieModelRenderer) this.childModels.get(i)).render(p_78785_1_);
+                            this.childModels.get(i).render(partialTicks);
                         }
                     }
                 }
@@ -366,9 +366,9 @@ public class MowzieModelRenderer extends ModelRenderer
         GL11.glNewList(this.displayList, GL11.GL_COMPILE);
         Tessellator tessellator = Tessellator.getInstance();
 
-        for (int i = 0; i < this.cubeList.size(); ++i)
+        for (ModelBox aCubeList : this.cubeList)
         {
-            ((ModelBox) this.cubeList.get(i)).render(tessellator.getWorldRenderer(), p_78788_1_);
+            ((ModelBox) aCubeList).render(tessellator.getWorldRenderer(), p_78788_1_);
         }
 
         GL11.glEndList();

@@ -44,12 +44,12 @@ public class EntityDinosaurDamageSource extends DamageSource
     /**
      * Gets the death message that is displayed when the player dies
      */
-    public IChatComponent getDeathMessage(EntityLivingBase p_151519_1_)
+    public IChatComponent getDeathMessage(EntityLivingBase entity)
     {
         ItemStack itemstack = this.damageSourceEntity instanceof EntityLivingBase ? ((EntityLivingBase) this.damageSourceEntity).getHeldItem() : null;
         String s = "death.attack." + this.damageType;
         String s1 = s + ".item";
-        return itemstack != null && itemstack.hasDisplayName() && StatCollector.canTranslate(s1) ? new ChatComponentTranslation(s1, new Object[] { p_151519_1_.getDisplayName(), this.damageSourceEntity.getDisplayName(), itemstack.getChatComponent() }) : new ChatComponentTranslation(s, new Object[] { p_151519_1_.getDisplayName(), this.damageSourceEntity.getDisplayName() });
+        return itemstack != null && itemstack.hasDisplayName() && StatCollector.canTranslate(s1) ? new ChatComponentTranslation(s1, entity.getDisplayName(), this.damageSourceEntity.getDisplayName(), itemstack.getChatComponent()) : new ChatComponentTranslation(s, new Object[] { entity.getDisplayName(), this.damageSourceEntity.getDisplayName() });
     }
 
     /**

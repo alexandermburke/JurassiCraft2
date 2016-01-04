@@ -182,9 +182,9 @@ public abstract class TileMachineBase extends TileEntityLockable implements ITic
     {
         int[] inputs = getInputs();
 
-        for (int i = 0; i < inputs.length; i++)
+        for (int input : inputs)
         {
-            if (inputs[i] == slot)
+            if (input == slot)
             {
                 return true;
             }
@@ -197,9 +197,9 @@ public abstract class TileMachineBase extends TileEntityLockable implements ITic
     {
         int[] outputs = getOutputs();
 
-        for (int i = 0; i < outputs.length; i++)
+        for (int output : outputs)
         {
-            if (outputs[i] == slot)
+            if (output == slot)
             {
                 return true;
             }
@@ -307,7 +307,7 @@ public abstract class TileMachineBase extends TileEntityLockable implements ITic
      */
     public boolean isUseableByPlayer(EntityPlayer player)
     {
-        return this.worldObj.getTileEntity(this.pos) != this ? false : player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
+        return this.worldObj.getTileEntity(this.pos) == this && player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
     }
 
     public void openInventory(EntityPlayer player)
@@ -372,10 +372,8 @@ public abstract class TileMachineBase extends TileEntityLockable implements ITic
 
         int[] outputs = getOutputs();
 
-        for (int i = 0; i < outputs.length; i++)
+        for (int slot : outputs)
         {
-            int slot = outputs[i];
-
             if (slots[slot] == null || (ItemStack.areItemStackTagsEqual(slots[slot], output) && slots[slot].getItem() == output.getItem()))
             {
                 return slot;

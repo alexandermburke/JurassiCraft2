@@ -16,14 +16,14 @@ public class EntityAchillobator extends EntityDinosaurAggressive // implements I
         super(world);
         this.addAIForAttackTargets(EntityPlayer.class, 1);
 
-        for (int i = 0; i < targets.length; i++)
+        for (Class target : targets)
         {
-            this.addAIForAttackTargets(targets[i], new Random().nextInt(3) + 1);
+            this.addAIForAttackTargets(target, new Random().nextInt(3) + 1);
         }
 
-        for (int j = 0; j < deftargets.length; j++)
+        for (Class deftarget : deftargets)
         {
-            this.defendFromAttacker(deftargets[j], new Random().nextInt(3) + 1);
+            this.defendFromAttacker(deftarget, new Random().nextInt(3) + 1);
         }
     }
 

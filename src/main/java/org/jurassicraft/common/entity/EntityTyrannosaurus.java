@@ -4,7 +4,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.timeless.animationapi.client.AnimID;
 import net.timeless.unilib.common.animation.ControlledParam;
-import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
 import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimSoundBase;
 import org.jurassicraft.common.entity.base.EntityDinosaurAggressive;
@@ -19,7 +18,7 @@ public class EntityTyrannosaurus extends EntityDinosaurAggressive // , IEntityAI
     private static final String[] roarSounds = new String[] { "tyrannosaurus_roar_1" };
     private static final String[] breathSounds = new String[] { "tyrannosaurus_breath_1" };
 
-    private static final Class[] targets = { EntityCompsognathus.class, EntityAnkylosaurus.class, EntityPlayer.class, EntityDilophosaurus.class, EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class, EntityLudodactylus.class, EntityHypsilophodon.class, EntityGallimimus.class, EntitySegisaurus.class, EntityProtoceratops.class, EntityParasaurolophus.class, EntityOthnielia.class, EntityMicroceratus.class, EntityTriceratops.class, EntityStegosaurus.class, EntityBrachiosaurus.class, EntityApatosaurus.class, EntityRugops.class, EntityHerrerasaurus.class, EntityVelociraptor.class, EntitySpinosaurus.class, EntityAchillobator.class, EntityCarnotaurus.class, EntityTherizinosaurus.class, EntityIndominus.class};
+    private static final Class[] targets = { EntityCompsognathus.class, EntityAnkylosaurus.class, EntityPlayer.class, EntityDilophosaurus.class, EntityDimorphodon.class, EntityDodo.class, EntityLeaellynasaura.class, EntityLudodactylus.class, EntityHypsilophodon.class, EntityGallimimus.class, EntitySegisaurus.class, EntityProtoceratops.class, EntityParasaurolophus.class, EntityOthnielia.class, EntityMicroceratus.class, EntityTriceratops.class, EntityStegosaurus.class, EntityBrachiosaurus.class, EntityApatosaurus.class, EntityRugops.class, EntityHerrerasaurus.class, EntityVelociraptor.class, EntitySpinosaurus.class, EntityAchillobator.class, EntityCarnotaurus.class, EntityTherizinosaurus.class, EntityIndominus.class };
 
     private int stepCount = 0;
 
@@ -33,9 +32,9 @@ public class EntityTyrannosaurus extends EntityDinosaurAggressive // , IEntityAI
         tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, AnimID.IDLE, 750, "jurassicraft:" + roarSounds[0], 1.5F));
         tasks.addTask(2, new JCNonAutoAnimBase(this, 75, AnimID.INJURED, 750));
 
-        for (int i = 0; i < targets.length; i++)
+        for (Class target : targets)
         {
-            this.addAIForAttackTargets(targets[i], new Random().nextInt(3) + 1);
+            this.addAIForAttackTargets(target, new Random().nextInt(3) + 1);
         }
     }
 

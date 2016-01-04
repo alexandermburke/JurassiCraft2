@@ -13,19 +13,21 @@ public enum EnumModulePosition
         {
             return vec.zCoord > 0.6;
         }
-    }), BACK_LEFT(new Function<Vec3, Boolean>()
-{
-    public Boolean apply(Vec3 vec)
+    }),
+    BACK_LEFT(new Function<Vec3, Boolean>()
     {
-        return vec.zCoord < 0.6 && vec.xCoord > 0;
-    }
-}), BACK_RIGHT(new Function<Vec3, Boolean>()
-{
-    public Boolean apply(Vec3 vec)
+        public Boolean apply(Vec3 vec)
+        {
+            return vec.zCoord < 0.6 && vec.xCoord > 0;
+        }
+    }),
+    BACK_RIGHT(new Function<Vec3, Boolean>()
     {
-        return vec.zCoord < 0.6 && vec.xCoord < 0;
-    }
-});
+        public Boolean apply(Vec3 vec)
+        {
+            return vec.zCoord < 0.6 && vec.xCoord < 0;
+        }
+    });
 
     private final Function<Vec3, Boolean> func;
 

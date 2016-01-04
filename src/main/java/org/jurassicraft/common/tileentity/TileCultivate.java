@@ -274,7 +274,7 @@ public class TileCultivate extends TileEntityLockable implements ITickable, ISid
         {
             if (!this.isCultivating() && (this.slots[0] == null))
             {
-                if (!this.isCultivating() && this.cultivateTime > 0)
+                if (this.cultivateTime > 0)
                 {
                     this.cultivateTime = MathHelper.clamp_int(this.cultivateTime - 2, 0, this.totalCultivateTime);
                 }
@@ -430,9 +430,12 @@ public class TileCultivate extends TileEntityLockable implements ITickable, ISid
         {
             Dinosaur dino = JCEntityRegistry.getDinosaurById(slots[0].getItemDamage());
 
-            if (dino.isMammal() && lipids >= dino.getLipids() && minerals >= dino.getMinerals() && proximates >= dino.getProximates() && vitamins >= dino.getVitamins())
+            if (dino != null)
             {
-                return true;
+                if (dino.isMammal() && lipids >= dino.getLipids() && minerals >= dino.getMinerals() && proximates >= dino.getProximates() && vitamins >= dino.getVitamins())
+                {
+                    return true;
+                }
             }
         }
 
@@ -449,63 +452,67 @@ public class TileCultivate extends TileEntityLockable implements ITickable, ISid
             Dinosaur dinoInEgg = JCEntityRegistry.getDinosaurById(slots[0].getItemDamage());
 
             waterLevel = 0;
-            lipids -= dinoInEgg.getLipids();
-            minerals -= dinoInEgg.getMinerals();
-            vitamins -= dinoInEgg.getVitamins();
-            proximates -= dinoInEgg.getProximates();
 
-            Class<? extends EntityDinosaur> dinoClass = dinoInEgg.getDinosaurClass();
-
-            try
+            if (dinoInEgg != null)
             {
-                EntityDinosaur dino = dinoClass.getConstructor(World.class).newInstance(worldObj);
+                lipids -= dinoInEgg.getLipids();
+                minerals -= dinoInEgg.getMinerals();
+                vitamins -= dinoInEgg.getVitamins();
+                proximates -= dinoInEgg.getProximates();
 
-                dino.setDNAQuality(slots[0].getTagCompound().getInteger("DNAQuality"));
-                dino.setGenetics((slots[0].getTagCompound().getString("Genetics")));
+                Class<? extends EntityDinosaur> dinoClass = dinoInEgg.getDinosaurClass();
 
-                int blockX = pos.getX();
-                int blockY = pos.getY();
-                int blockZ = pos.getZ();
-
-                dino.setAge(0);
-
-                List<EntityCageSmall> cages = worldObj.getEntitiesWithinAABB(EntityCageSmall.class, AxisAlignedBB.fromBounds(blockX - 2, blockY, blockZ - 2, blockX + 2, blockY + 1, blockZ + 2));
-
-                EntityCageSmall cage = null;
-
-                for (EntityCageSmall cCage : cages)
+                try
                 {
-                    if (cCage.getEntity() == null)
+                    EntityDinosaur dino = dinoClass.getConstructor(World.class).newInstance(worldObj);
+
+                    dino.setDNAQuality(slots[0].getTagCompound().getInteger("DNAQuality"));
+                    dino.setGenetics((slots[0].getTagCompound().getString("Genetics")));
+
+                    int blockX = pos.getX();
+                    int blockY = pos.getY();
+                    int blockZ = pos.getZ();
+
+                    dino.setAge(0);
+
+                    List<EntityCageSmall> cages = worldObj.getEntitiesWithinAABB(EntityCageSmall.class, AxisAlignedBB.fromBounds(blockX - 2, blockY, blockZ - 2, blockX + 2, blockY + 1, blockZ + 2));
+
+                    EntityCageSmall cage = null;
+
+                    for (EntityCageSmall cCage : cages)
                     {
-                        cage = cCage;
-                        break;
+                        if (cCage.getEntity() == null)
+                        {
+                            cage = cCage;
+                            break;
+                        }
+                    }
+
+                    if (cage != null)
+                    {
+                        cage.setEntity(dino);
+                    }
+                    else
+                    {
+                        // TODO find valid spawn area
+                        dino.setLocationAndAngles(blockX + 2, blockY + 0.5, blockZ + 2, MathHelper.wrapAngleTo180_float(worldObj.rand.nextFloat() * 360.0F), 0.0F);
+                        dino.rotationYawHead = dino.rotationYaw;
+                        dino.renderYawOffset = dino.rotationYaw;
+
+                        worldObj.spawnEntityInWorld(dino);
+                    }
+
+                    slots[0].stackSize--;
+
+                    if (slots[0].stackSize <= 0)
+                    {
+                        slots[0] = null;
                     }
                 }
-
-                if (cage != null)
+                catch (Exception e)
                 {
-                    cage.setEntity(dino);
+                    e.printStackTrace();
                 }
-                else
-                {
-                    // TODO find valid spawn area
-                    dino.setLocationAndAngles(blockX + 2, blockY + 0.5, blockZ + 2, MathHelper.wrapAngleTo180_float(worldObj.rand.nextFloat() * 360.0F), 0.0F);
-                    dino.rotationYawHead = dino.rotationYaw;
-                    dino.renderYawOffset = dino.rotationYaw;
-
-                    worldObj.spawnEntityInWorld(dino);
-                }
-
-                slots[0].stackSize--;
-
-                if (slots[0].stackSize <= 0)
-                {
-                    slots[0] = null;
-                }
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
             }
         }
     }
@@ -516,7 +523,7 @@ public class TileCultivate extends TileEntityLockable implements ITickable, ISid
     @Override
     public boolean isUseableByPlayer(EntityPlayer player)
     {
-        return this.worldObj.getTileEntity(this.pos) != this ? false : player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
+        return this.worldObj.getTileEntity(this.pos) == this && player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
     }
 
     @Override
@@ -535,7 +542,7 @@ public class TileCultivate extends TileEntityLockable implements ITickable, ISid
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack)
     {
-        return index == 2 ? false : true;
+        return index != 2;
     }
 
     @Override

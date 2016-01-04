@@ -246,11 +246,11 @@ public class ModelJson extends MowzieModelBase
         String[] cubeNamesArray = new String[nameMap.size()];
         int index = 0;
 
-        Set<String> keySet = nameMap.keySet();
-        Iterator<String> iterator = keySet.iterator();
-        while (iterator.hasNext())
+        Set<String> names = nameMap.keySet();
+
+        for (String name : names)
         {
-            cubeNamesArray[index] = iterator.next();
+            cubeNamesArray[index] = name;
             index++;
         }
 

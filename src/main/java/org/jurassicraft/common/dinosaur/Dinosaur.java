@@ -7,7 +7,6 @@ import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.EnumDiet;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
 import org.jurassicraft.common.entity.base.EnumSleepingSchedule;
-import org.jurassicraft.common.food.EnumFoodType;
 import org.jurassicraft.common.period.EnumTimePeriod;
 
 import java.util.ArrayList;
@@ -137,7 +136,7 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
 
         String texture = "jurassicraft:textures/entities/" + dinosaurName + "/" + dinosaurName;
 
-        if (subtype != "")
+        if (subtype.length() > 0)
         {
             texture += "_" + subtype;
         }

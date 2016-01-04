@@ -38,7 +38,8 @@ import java.util.Objects;
 public class CommandForceAnimation implements ICommand
 {
     @Override
-    public int compareTo(ICommand o) {
+    public int compareTo(ICommand o)
+    {
         return 0;
     }
 
@@ -65,14 +66,8 @@ public class CommandForceAnimation implements ICommand
         @Override
         public boolean canCommandSenderUseCommand(int permLevel, String commandName)
         {
-            if (commandName.equals("@"))
-            {
-                return true;
-            }
-
-            return original.canCommandSenderUseCommand(permLevel, commandName);
+            return commandName.equals("@") || original.canCommandSenderUseCommand(permLevel, commandName);
         }
-
 
         @Override
         public Entity getCommandSenderEntity()
@@ -145,12 +140,14 @@ public class CommandForceAnimation implements ICommand
     }
 
     @Override
-    public List<String> getCommandAliases() {
+    public List<String> getCommandAliases()
+    {
         return aliases;
     }
 
     @Override
-    public boolean canCommandSenderUseCommand(ICommandSender sender) {
+    public boolean canCommandSenderUseCommand(ICommandSender sender)
+    {
         return true;
     }
 

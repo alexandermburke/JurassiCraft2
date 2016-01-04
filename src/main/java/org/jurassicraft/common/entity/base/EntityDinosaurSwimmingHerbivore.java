@@ -4,12 +4,10 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.pathfinding.PathNavigateSwimmer;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import org.jurassicraft.common.entity.ai.EntityAIMoveUnderwater;
-import org.jurassicraft.common.entity.ai.metabolism.EntityAIFindPlant;
 
 public abstract class EntityDinosaurSwimmingHerbivore extends EntityDinosaur
 {

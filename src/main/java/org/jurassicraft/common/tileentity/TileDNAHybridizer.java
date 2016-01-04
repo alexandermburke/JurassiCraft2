@@ -122,12 +122,7 @@ public class TileDNAHybridizer extends TileMachineBase
     @Override
     protected boolean canProcess(int process)
     {
-        if (this.slots[0] != null && this.slots[0].getItem() instanceof ItemStorageDisc && this.slots[1] != null && this.slots[1].getItem() instanceof ItemStorageDisc)
-        {
-            return getHybrid() != null;
-        }
-
-        return false;
+        return this.slots[0] != null && this.slots[0].getItem() instanceof ItemStorageDisc && this.slots[1] != null && this.slots[1].getItem() instanceof ItemStorageDisc && getHybrid() != null;
     }
 
     @Override

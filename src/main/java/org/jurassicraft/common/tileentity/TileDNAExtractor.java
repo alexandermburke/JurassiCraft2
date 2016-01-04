@@ -68,10 +68,7 @@ public class TileDNAExtractor extends TileMachineBase
 
                 if (input.getItem() == JCItemRegistry.amber)
                 {
-                    if (input.getItemDamage() == 0)
-                    {
-                        possibleDinos = JCEntityRegistry.getDinosaursFromAmber();
-                    }
+                    possibleDinos = JCEntityRegistry.getDinosaursFromAmber();
                 }
                 else if (input.getItem() == JCItemRegistry.sea_lamprey)
                 {

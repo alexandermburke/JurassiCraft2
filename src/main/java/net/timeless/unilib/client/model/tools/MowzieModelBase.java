@@ -44,9 +44,9 @@ public class MowzieModelBase extends ModelBase
      */
     protected void setInitPose()
     {
-        for (int i = 0; i < this.parts.size(); i++)
+        for (MowzieModelRenderer part : this.parts)
         {
-            this.parts.get(i).setInitValuesToCurrentPose();
+            part.setInitValuesToCurrentPose();
         }
     }
 
@@ -57,9 +57,9 @@ public class MowzieModelBase extends ModelBase
      */
     public void setToInitPose()
     {
-        for (int i = 0; i < this.parts.size(); i++)
+        for (MowzieModelRenderer part : this.parts)
         {
-            parts.get(i).setCurrentPoseToInitValues();
+            part.setCurrentPoseToInitValues();
         }
     }
 

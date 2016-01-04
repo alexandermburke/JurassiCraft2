@@ -390,7 +390,7 @@ public class TileCleaningStation extends TileEntityLockable implements ITickable
 
     public static boolean isItemFuel(ItemStack stack)
     {
-        return stack != null ? stack.getItem() == Items.water_bucket : false;
+        return stack != null && stack.getItem() == Items.water_bucket;
     }
 
     /**
@@ -398,7 +398,7 @@ public class TileCleaningStation extends TileEntityLockable implements ITickable
      */
     public boolean isUseableByPlayer(EntityPlayer player)
     {
-        return this.worldObj.getTileEntity(this.pos) != this ? false : player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
+        return this.worldObj.getTileEntity(this.pos) == this && player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
     }
 
     public void openInventory(EntityPlayer player)
@@ -414,7 +414,7 @@ public class TileCleaningStation extends TileEntityLockable implements ITickable
      */
     public boolean isItemValidForSlot(int index, ItemStack stack)
     {
-        return index == 2 ? false : (index != 1 ? true : isItemFuel(stack));
+        return index != 2 && (index != 1 || isItemFuel(stack));
     }
 
     public int[] getSlotsForFace(EnumFacing side)

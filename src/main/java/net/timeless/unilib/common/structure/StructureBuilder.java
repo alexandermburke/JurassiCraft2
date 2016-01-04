@@ -132,7 +132,7 @@ public class StructureBuilder extends StructureGenerator
                         if (prop instanceof PropertyDirection)
                         {
                             PropertyDirection dir = (PropertyDirection) prop;
-                            EnumFacing facing = (EnumFacing) state.getValue(dir);
+                            EnumFacing facing = state.getValue(dir);
                             for (int j = 0; j < angle.turnsCount(); j++)
                             {
                                 facing = getNextClockwise(facing);

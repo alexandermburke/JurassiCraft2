@@ -13,15 +13,12 @@ import java.util.HashMap;
 @SideOnly(Side.CLIENT)
 public class Animator
 {
-    private MowzieModelBase modelBase;
-
     public Animator(MowzieModelBase model)
     {
         tempTick = 0;
         correctAnim = false;
         transformMap = new HashMap<MowzieModelRenderer, Transform>();
         prevTransformMap = new HashMap<MowzieModelRenderer, Transform>();
-        modelBase = model;
     }
 
     public IAnimatedEntity getEntity()

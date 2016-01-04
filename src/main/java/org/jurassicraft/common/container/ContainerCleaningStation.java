@@ -68,10 +68,8 @@ public class ContainerCleaningStation extends Container
     {
         super.detectAndSendChanges();
 
-        for (int i = 0; i < this.crafters.size(); ++i)
+        for (ICrafting icrafting : this.crafters)
         {
-            ICrafting icrafting = (ICrafting) this.crafters.get(i);
-
             if (this.field_178152_f != this.tileCleaningStation.getField(2))
             {
                 icrafting.sendProgressBarUpdate(this, 2, this.tileCleaningStation.getField(2));
@@ -116,7 +114,7 @@ public class ContainerCleaningStation extends Container
     public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
     {
         ItemStack itemstack = null;
-        Slot slot = (Slot) this.inventorySlots.get(index);
+        Slot slot = this.inventorySlots.get(index);
 
         if (slot != null && slot.getHasStack())
         {
@@ -167,7 +165,7 @@ public class ContainerCleaningStation extends Container
 
             if (transferFrom.stackSize == 0)
             {
-                slot.putStack((ItemStack) null);
+                slot.putStack(null);
             }
             else
             {

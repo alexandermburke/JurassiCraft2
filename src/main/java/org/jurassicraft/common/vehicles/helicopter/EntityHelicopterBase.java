@@ -360,9 +360,8 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
         // Transforms the vector in local coordinates (cancels possible rotations to simplify 'seat detection')
         Vec3 localVec = vec.rotateYaw((float) Math.toRadians(this.rotationYaw));
         System.out.println(localVec);
-        for (int i = 0; i < moduleSpots.length; i++)
+        for (HelicopterModuleSpot spot : moduleSpots)
         {
-            HelicopterModuleSpot spot = moduleSpots[i];
             if (spot != null && spot.isClicked(localVec))
             {
                 System.out.println(spot);
