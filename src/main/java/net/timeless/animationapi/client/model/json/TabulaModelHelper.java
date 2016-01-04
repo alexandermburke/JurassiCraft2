@@ -2,6 +2,7 @@ package net.timeless.animationapi.client.model.json;
 
 import com.google.gson.Gson;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.zip.ZipEntry;
@@ -18,8 +19,9 @@ public class TabulaModelHelper
             path += ".tbl";
         }
 
-        try (ZipInputStream inputStream = new ZipInputStream(TabulaModelHelper.class.getResourceAsStream(path)))
+        try
         {
+            ZipInputStream inputStream = new ZipInputStream(TabulaModelHelper.class.getResourceAsStream(path));
             ZipEntry entry;
             JsonTabulaModel parseTabulaModel = null;
 
@@ -33,6 +35,11 @@ public class TabulaModelHelper
             }
 
             return parseTabulaModel;
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            return null;
         }
     }
 

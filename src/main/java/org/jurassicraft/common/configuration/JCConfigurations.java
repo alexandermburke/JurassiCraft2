@@ -53,7 +53,7 @@ public class JCConfigurations
 
     public static List<IConfigElement> getAllConfigurableOptions()
     {
-        List<IConfigElement> list = new ArrayList<>();
+        List<IConfigElement> list = new ArrayList<IConfigElement>();
         list.add(new ConfigElement(spawnJurassiCraftMobsNaturally));
         list.add(new ConfigElement(spawnVanillaMobsNaturally));
         list.add(new ConfigElement(spawnOtherMobsModsNaturally));

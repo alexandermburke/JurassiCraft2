@@ -20,7 +20,7 @@ import java.util.List;
 
 @IFMLLoadingPlugin.Name(value = "MyCoreMod")
 // The readable mod name
-@IFMLLoadingPlugin.MCVersion(value = "1.8")
+@IFMLLoadingPlugin.MCVersion(value = "1.8.9")
 // The MC version it is designed for (Remember? Upwards/Downwards compatibility
 // lost!)
 @IFMLLoadingPlugin.TransformerExclusions(value = "net.timeless.asm")
@@ -81,10 +81,15 @@ public class ASMTransformer implements IClassTransformer
                 reader.accept(visitor, 0);
                 File classFile = createFile(folder, className, "class");
 
-                try (FileOutputStream out = new FileOutputStream(classFile))
+                try
                 {
+                    FileOutputStream out = new FileOutputStream(classFile);
                     out.write(bytes);
                     out.flush();
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
                 }
             }
             catch (IOException e)
