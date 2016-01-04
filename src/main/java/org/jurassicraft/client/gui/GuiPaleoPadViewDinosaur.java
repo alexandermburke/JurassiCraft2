@@ -28,7 +28,7 @@ public class GuiPaleoPadViewDinosaur extends GuiScreen
 {
     private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.MODID, "textures/gui/paleo_pad/paleo_pad.png");
 
-    private EntityDinosaur dinosaur;
+    private final EntityDinosaur dinosaur;
 
     public GuiPaleoPadViewDinosaur(EntityDinosaur dinosaur)
     {
@@ -67,26 +67,26 @@ public class GuiPaleoPadViewDinosaur extends GuiScreen
             minutesStr = "0" + minutesStr;
         }
 
-        drawCenteredScaledText(new AdvLang("paleopad.time.name").withProperty("hours", hoursStr).withProperty("minutes", minutesStr).build(), 115, -10, 1.0F, 0xFFFFFF);
+        drawCenteredScaledText(new AdvLang("paleopad.time.name").withProperty("hours", hoursStr).withProperty("minutes", minutesStr).build(), -10, 1.0F, 0xFFFFFF);
         Dinosaur dinoDef = this.dinosaur.getDinosaur();
-        drawScaledText("Viewing: " + this.dinosaur.getName(), 5, 5, 1.0F, this.dinosaur.isMale() ? dinoDef.getEggPrimaryColorMale() : dinoDef.getEggPrimaryColorFemale());
-        drawScaledText("Age: " + this.dinosaur.getDaysExisted() + " days", 5, 20, 1.0F, 0x808080);
+        drawScaledText("Viewing: " + this.dinosaur.getName(), 5, 5, this.dinosaur.isMale() ? dinoDef.getEggPrimaryColorMale() : dinoDef.getEggPrimaryColorFemale());
+        drawScaledText("Age: " + this.dinosaur.getDaysExisted() + " days", 5, 20, 0x808080);
         drawScaledRect(0, 0, 458, 2, 0.5F, 0x404040);
 
-        drawScaledText(StatCollector.translateToLocal("paleopad.os.name"), 2, -10, 1.0F, 0xFFFFFF);
+        drawScaledText(StatCollector.translateToLocal("paleopad.os.name"), 2, -10, 0xFFFFFF);
 
         this.zLevel = -100;
-        drawEntityOnScreen(115, 140, (int) (70 / dinoDef.getAdultSizeY()), this.dinosaur);
+        drawEntityOnScreen(140, (int) (70 / dinoDef.getAdultSizeY()), this.dinosaur);
 
         EnumDiet diet = dinoDef.getDiet();
-        drawScaledEndText((this.dinosaur.isMale() ? "MALE" : "FEMALE"), 225, 5, 1.0F, 0xFFFF00);
-        drawScaledEndText(diet.toString(), 225, 35, 1.0F, diet.getColor());
-        drawScaledEndText(dinoDef.getSleepingSchedule().toString(), 225, 20, 1.0F, 0xAAAAAA);
-        drawScaledEndText(dinosaur.getGrowthStage().toString(), 225, 50, 1.0F, 0xB200FF);
+        drawScaledEndText((this.dinosaur.isMale() ? "MALE" : "FEMALE"), 5, 1.0F, 0xFFFF00);
+        drawScaledEndText(diet.toString(), 35, 1.0F, diet.getColor());
+        drawScaledEndText(dinoDef.getSleepingSchedule().toString(), 20, 1.0F, 0xAAAAAA);
+        drawScaledEndText(dinosaur.getGrowthStage().toString(), 50, 1.0F, 0xB200FF);
 
         if (dinoDef.isMarineAnimal())
         {
-            drawScaledEndText("MARINE", 225, 138, 1.0F, 0x0080FF);
+            drawScaledEndText("MARINE", 138, 1.0F, 0x0080FF);
         }
 
         super.drawScreen(mouseX, mouseY, partialTicks);
@@ -127,7 +127,7 @@ public class GuiPaleoPadViewDinosaur extends GuiScreen
     /**
      * Draws a textured rectangle at the stored z-value. Args: x, y, u, v, width, height
      */
-    public void drawScaledRect(int x, int y, int width, int height, float scale, int colour)
+    private void drawScaledRect(int x, int y, int width, int height, float scale, int colour)
     {
         GL11.glPushMatrix();
 
@@ -178,25 +178,25 @@ public class GuiPaleoPadViewDinosaur extends GuiScreen
         GL11.glPopMatrix();
     }
 
-    public void drawCenteredScaledText(String text, int x, int y, float scale, int colour)
+    private void drawCenteredScaledText(String text, int y, float scale, int colour)
     {
         GL11.glPushMatrix();
 
         ScaledResolution dimensions = new ScaledResolution(mc);
-        x += dimensions.getScaledWidth() / 2 - 115;
+        115 += dimensions.getScaledWidth() / 2 - 115;
         y += 65;
 
-        GL11.glScalef(scale, scale, scale);
+        GL11.glScalef(1.0F, 1.0F, 1.0F);
 
-        x /= scale;
-        y /= scale;
+        115 /= 1.0F;
+        y /= 1.0F;
 
-        drawCenteredString(fontRendererObj, text, x, y, colour);
+        drawCenteredString(fontRendererObj, text, 115, y, 0xFFFFFF);
 
         GL11.glPopMatrix();
     }
 
-    public void drawScaledText(String text, int x, int y, float scale, int colour)
+    private void drawScaledText(String text, int x, int y, int colour)
     {
         GL11.glPushMatrix();
 
@@ -204,30 +204,30 @@ public class GuiPaleoPadViewDinosaur extends GuiScreen
         x += dimensions.getScaledWidth() / 2 - 115;
         y += 65;
 
-        GL11.glScalef(scale, scale, scale);
+        GL11.glScalef(1.0F, 1.0F, 1.0F);
 
-        x /= scale;
-        y /= scale;
+        x /= 1.0F;
+        y /= 1.0F;
 
         drawString(fontRendererObj, text, x, y, colour);
 
         GL11.glPopMatrix();
     }
 
-    public void drawScaledEndText(String text, int x, int y, float scale, int colour)
+    private void drawScaledEndText(String text, int y, float scale, int colour)
     {
         GL11.glPushMatrix();
 
         ScaledResolution dimensions = new ScaledResolution(mc);
-        x += dimensions.getScaledWidth() / 2 - 115;
+        225 += dimensions.getScaledWidth() / 2 - 115;
         y += 65;
 
-        GL11.glScalef(scale, scale, scale);
+        GL11.glScalef(1.0F, 1.0F, 1.0F);
 
-        x /= scale;
-        y /= scale;
+        225 /= 1.0F;
+        y /= 1.0F;
 
-        drawString(fontRendererObj, text, x - (fontRendererObj.getStringWidth(text)), y, colour);
+        drawString(fontRendererObj, text, 225 - (fontRendererObj.getStringWidth(text)), y, colour);
 
         GL11.glPopMatrix();
     }
@@ -238,15 +238,15 @@ public class GuiPaleoPadViewDinosaur extends GuiScreen
 
     }
 
-    public void drawEntityOnScreen(int posX, int posY, int scale, EntityLivingBase ent)
+    private void drawEntityOnScreen(int posY, int scale, EntityLivingBase ent)
     {
         ScaledResolution dimensions = new ScaledResolution(mc);
-        posX += dimensions.getScaledWidth() / 2 - 115;
-        posY += 65;
+        115 += dimensions.getScaledWidth() / 2 - 115;
+        140 += 65;
 
         GlStateManager.enableColorMaterial();
         GlStateManager.pushMatrix();
-        GlStateManager.translate((float)posX, (float)posY, 50.0F);
+        GlStateManager.translate((float) 115, (float) 140, 50.0F);
         GlStateManager.scale((float)(-scale), (float)scale, (float)scale);
         GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
         float f = ent.renderYawOffset;

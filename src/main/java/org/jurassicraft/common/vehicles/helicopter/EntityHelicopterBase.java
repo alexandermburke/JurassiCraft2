@@ -16,7 +16,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.utils.MutableVec3;
 import org.jurassicraft.JurassiCraft;
-import org.jurassicraft.common.item.ItemHelicopter;
 import org.jurassicraft.common.message.MessageHelicopterDirection;
 import org.jurassicraft.common.message.MessageHelicopterEngine;
 import org.jurassicraft.common.vehicles.helicopter.modules.EntityHelicopterSeat;
@@ -34,32 +33,27 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     private final HelicopterModuleSpot[] moduleSpots;
     private boolean syncModules;
     private UUID heliID;
-    public static final int ENGINE_RUNNING = 20;
-    public static final int PILOT_SEAT = EnumModulePosition.MAIN_SEAT.ordinal();
-    public static final int LEFT_PART = EnumModulePosition.BACK_LEFT.ordinal();
-    public static final int RIGHT_PART = EnumModulePosition.BACK_RIGHT.ordinal();
+    private static final int ENGINE_RUNNING = 20;
+    private static final int PILOT_SEAT = EnumModulePosition.MAIN_SEAT.ordinal();
+    private static final int LEFT_PART = EnumModulePosition.BACK_LEFT.ordinal();
+    private static final int RIGHT_PART = EnumModulePosition.BACK_RIGHT.ordinal();
     public static final float MAX_POWER = 80f;
-    public static final float REQUIRED_POWER = MAX_POWER / 2f;
+    private static final float REQUIRED_POWER = MAX_POWER / 2f;
     private float roll;
     private boolean engineRunning;
     private float enginePower;
     private boolean hasMinigun;
     private MutableVec3 direction;
 
-    public EntityHelicopterBase(World worldIn, ItemHelicopter creator)
-    {
-        this(worldIn);
-        prepareDefaultModules();
-    }
-
     public EntityHelicopterBase(World worldIn)
     {
         super(worldIn);
+        prepareDefaultModules();
         heliID = UUID.randomUUID();
         double w = 3f; // width in blocks
         double h = 3.1f; // height in blocks
         double d = 8f; // depth in blocks
-        setBox(0, 0, 0, w, h, d);
+        setBox(0, 0, w, h, d);
         moduleSpots = new HelicopterModuleSpot[EnumModulePosition.values().length];
         moduleSpots[PILOT_SEAT] = new HelicopterModuleSpot(EnumModulePosition.MAIN_SEAT, this, 0);
         moduleSpots[LEFT_PART] = new HelicopterModuleSpot(EnumModulePosition.BACK_LEFT, this, (float) Math.PI);
@@ -69,7 +63,7 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
         syncModules = true;
     }
 
-    public void prepareDefaultModules()
+    private void prepareDefaultModules()
     {
         syncModules = false;
         getModuleSpot(EnumModulePosition.MAIN_SEAT).addModule(HelicopterModule.seat);
@@ -80,22 +74,20 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
 
     /**
      * Sets entity size
-     *
-     * @param offsetX The offset of the box in blocks on the X axis
+     *  @param offsetX The offset of the box in blocks on the X axis
      * @param offsetY The offset of the box in blocks on the Y axis
-     * @param offsetZ The offset of the box in blocks on the Z axis
      * @param w       The width of the entity
      * @param h       The height of the entity
      * @param d       The depth of the entity
      */
-    private void setBox(double offsetX, double offsetY, double offsetZ, double w, double h, double d)
+    private void setBox(double offsetX, double offsetY, double w, double h, double d)
     {
-        double minX = this.getEntityBoundingBox().minX + offsetX;
-        double minY = this.getEntityBoundingBox().minY + offsetY;
-        double minZ = this.getEntityBoundingBox().minZ + offsetZ;
-        double maxX = this.getEntityBoundingBox().minX + w + offsetX;
-        double maxY = this.getEntityBoundingBox().minY + h + offsetY;
-        double maxZ = this.getEntityBoundingBox().minZ + d + offsetZ;
+        double minX = this.getEntityBoundingBox().minX + (double) 0;
+        double minY = this.getEntityBoundingBox().minY + (double) 0;
+        double minZ = this.getEntityBoundingBox().minZ + (double) 0;
+        double maxX = this.getEntityBoundingBox().minX + w + (double) 0;
+        double maxY = this.getEntityBoundingBox().minY + h + (double) 0;
+        double maxZ = this.getEntityBoundingBox().minZ + d + (double) 0;
         this.setEntityBoundingBox(new AxisAlignedBB(minX, minY, minZ, maxX, maxY, maxZ));
         this.width = (float) (maxX - minX);
         this.height = (float) (maxY - minY);
@@ -181,7 +173,7 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
             {
                 continue;
             }
-            if (spot.has(HelicopterModule.seat))
+            if (spot.has())
             {
                 EntityHelicopterSeat seat = HelicopterModule.seat.getEntity(spot);
                 if (seat != null)
@@ -192,7 +184,7 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
             }
         }
 
-        if (getModuleSpot(EnumModulePosition.MAIN_SEAT).has(HelicopterModule.seat))
+        if (getModuleSpot(EnumModulePosition.MAIN_SEAT).has())
         {
             EntityHelicopterSeat seat = HelicopterModule.seat.getEntity(getModuleSpot(EnumModulePosition.MAIN_SEAT));
             if (seat != null)
@@ -317,7 +309,7 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
         return direction.normalize();
     }
 
-    public void updateEngine(boolean engineState)
+    private void updateEngine(boolean engineState)
     {
         if (worldObj.isRemote)
         {
@@ -360,11 +352,8 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
         // Transforms the vector in local coordinates (cancels possible rotations to simplify 'seat detection')
         Vec3 localVec = vec.rotateYaw((float) Math.toRadians(this.rotationYaw));
         System.out.println(localVec);
-        for (int i = 0; i < moduleSpots.length; i++)
-        {
-            HelicopterModuleSpot spot = moduleSpots[i];
-            if (spot != null && spot.isClicked(localVec))
-            {
+        for (HelicopterModuleSpot spot : moduleSpots) {
+            if (spot != null && spot.isClicked(localVec)) {
                 System.out.println(spot);
                 spot.onClicked(player, vec);
                 return true;

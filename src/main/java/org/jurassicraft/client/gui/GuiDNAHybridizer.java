@@ -18,7 +18,7 @@ public class GuiDNAHybridizer extends GuiContainer
      * The player inventory bound to this GUI.
      */
     private final InventoryPlayer playerInventory;
-    private IInventory dnaHybridizer;
+    private final IInventory dnaHybridizer;
 
     public GuiDNAHybridizer(InventoryPlayer playerInv, IInventory dnaHybridizer)
     {
@@ -48,14 +48,14 @@ public class GuiDNAHybridizer extends GuiContainer
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 
-        int progress = this.getProgress(23);
+        int progress = this.getProgress();
         this.drawTexturedModalRect(k + 57, l + 37, 176, 0, 64, progress);
     }
 
-    private int getProgress(int scale)
+    private int getProgress()
     {
         int j = this.dnaHybridizer.getField(0);
         int k = this.dnaHybridizer.getField(1);
-        return k != 0 && j != 0 ? j * scale / k : 0;
+        return k != 0 && j != 0 ? j * 23 / k : 0;
     }
 }

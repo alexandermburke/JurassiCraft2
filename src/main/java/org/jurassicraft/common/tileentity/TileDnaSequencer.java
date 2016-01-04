@@ -16,8 +16,8 @@ import java.util.Random;
 
 public class TileDnaSequencer extends TileMachineBase
 {
-    private int[] inputs = new int[] { 0, 1, 2, 3, 4, 5 };
-    private int[] outputs = new int[] { 6, 7, 8 };
+    private final int[] inputs = new int[] { 0, 1, 2, 3, 4, 5 };
+    private final int[] outputs = new int[] { 6, 7, 8 };
 
     private ItemStack[] slots = new ItemStack[9];
 
@@ -87,7 +87,7 @@ public class TileDnaSequencer extends TileMachineBase
                 nbt = new NBTTagCompound();
             }
 
-            DinoDNA dna = new DinoDNA(quality, GeneticsHelper.randomGenetics(rand, slots[tissue].getItemDamage(), quality).toString());
+            DinoDNA dna = new DinoDNA(quality, GeneticsHelper.randomGenetics(rand, slots[tissue].getItemDamage()).toString());
             dna.writeToNBT(nbt);
 
             ItemStack output = new ItemStack(JCItemRegistry.storage_disc, 1, slots[tissue].getItemDamage());
@@ -116,7 +116,7 @@ public class TileDnaSequencer extends TileMachineBase
     }
 
     @Override
-    protected int getStackProcessTime(ItemStack stack)
+    protected int getStackProcessTime()
     {
         return 2000;
     }

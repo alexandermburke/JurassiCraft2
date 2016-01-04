@@ -1,17 +1,13 @@
 package org.jurassicraft.common.message;
 
 import io.netty.buffer.ByteBuf;
+import net.ilexiconn.llibrary.common.message.AbstractMessage;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.entity.data.JCPlayerData;
 
-public class MessageSyncPaleoPad implements IMessage
+class MessageSyncPaleoPad extends AbstractMessage<MessageSyncPaleoPad>
 {
     private NBTTagCompound nbt;
 
@@ -26,6 +22,18 @@ public class MessageSyncPaleoPad implements IMessage
     }
 
     @Override
+    public void handleClientMessage(MessageSyncPaleoPad messageSyncPaleoPad, EntityPlayer entityPlayer)
+    {
+        JCPlayerData.setPlayerData(null, messageSyncPaleoPad.nbt);
+    }
+
+    @Override
+    public void handleServerMessage(MessageSyncPaleoPad messageSyncPaleoPad, EntityPlayer entityPlayer)
+    {
+        JCPlayerData.setPlayerData(entityPlayer, messageSyncPaleoPad.nbt);
+    }
+
+    @Override
     public void toBytes(ByteBuf buffer)
     {
         ByteBufUtils.writeTag(buffer, nbt);
@@ -35,35 +43,5 @@ public class MessageSyncPaleoPad implements IMessage
     public void fromBytes(ByteBuf buffer)
     {
         nbt = ByteBufUtils.readTag(buffer);
-    }
-
-    public static class Handler implements IMessageHandler<MessageSyncPaleoPad, IMessage>
-    {
-        @Override
-        public IMessage onMessage(final MessageSyncPaleoPad packet, final MessageContext ctx)
-        {
-            JurassiCraft.proxy.scheduleTask(ctx, new Runnable()
-            {
-                @Override
-                public void run()
-                {
-                    if (ctx.side.isClient())
-                    {
-                        JCPlayerData.setPlayerData(null, packet.nbt);
-                    }
-                    else
-                    {
-                        EntityPlayerMP player = ctx.getServerHandler().playerEntity;
-
-                        if (player != null)
-                        {
-                            JCPlayerData.setPlayerData(player, packet.nbt);
-                        }
-                    }
-                }
-            });
-
-            return null;
-        }
     }
 }

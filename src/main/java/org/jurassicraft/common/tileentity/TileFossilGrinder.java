@@ -14,8 +14,8 @@ import java.util.Random;
 
 public class TileFossilGrinder extends TileMachineBase
 {
-    private int[] inputs = new int[] { 0 };
-    private int[] outputs = new int[] { 1, 2, 3, 4, 5, 6 };
+    private final int[] inputs = new int[] { 0 };
+    private final int[] outputs = new int[] { 1, 2, 3, 4, 5, 6 };
 
     private ItemStack[] slots = new ItemStack[7];
 
@@ -89,7 +89,7 @@ public class TileFossilGrinder extends TileMachineBase
     }
 
     @Override
-    protected int getStackProcessTime(ItemStack stack)
+    protected int getStackProcessTime()
     {
         return 200;
     }

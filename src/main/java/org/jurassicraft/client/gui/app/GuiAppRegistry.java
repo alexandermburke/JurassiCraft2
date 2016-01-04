@@ -11,9 +11,9 @@ import java.util.Map;
 @SideOnly(Side.CLIENT)
 public class GuiAppRegistry
 {
-    private static Map<App, GuiApp> registeredApps = new HashMap<App, GuiApp>();
+    private static final Map<App, GuiApp> registeredApps = new HashMap<>();
 
-    public static void registerApp(GuiApp gui)
+    private static void registerApp(GuiApp gui)
     {
         registeredApps.put(gui.app, gui);
     }

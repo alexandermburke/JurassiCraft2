@@ -9,7 +9,6 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import org.apache.logging.log4j.Logger;
 import org.jurassicraft.common.achievements.JCAchievements;
 import org.jurassicraft.common.block.JCBlockRegistry;
@@ -36,26 +35,26 @@ public class JurassiCraft
 
     public static final String MODID = "jurassicraft";
     public static final String MODNAME = "JurassiCraft";
-    public static final String VERSION = "2.0.0-pre";
+    private static final String VERSION = "2.0.0-pre";
 
     @Instance(JurassiCraft.MODID)
     public static JurassiCraft instance;
     public static long timerTicks;
-    public static long timerNanoseconds;
+    private static long timerNanoseconds;
 
     private Logger logger;
 
-    public static JCEntityRegistry entityRegistry = new JCEntityRegistry();
-    public static JCPlantRegistry plantRegistry = new JCPlantRegistry();
-    public static JCCreativeTabs creativeTabRegistry = new JCCreativeTabs();
-    public static JCItemRegistry itemRegistry = new JCItemRegistry();
-    public static JCBlockRegistry blockRegistry = new JCBlockRegistry();
-    public static JCRecipeRegistry recipeRegistry = new JCRecipeRegistry();
-    public static JCNetworkManager networkManager = new JCNetworkManager();
-    public static AppRegistry appRegistry = new AppRegistry();
-    public static JCAchievements achievements = new JCAchievements();
-    public static StorageTypeRegistry storageTypeRegistry = new StorageTypeRegistry();
-    public static JCConfigurations configurations = new JCConfigurations();
+    public static final JCEntityRegistry entityRegistry = new JCEntityRegistry();
+    public static final JCPlantRegistry plantRegistry = new JCPlantRegistry();
+    public static final JCCreativeTabs creativeTabRegistry = new JCCreativeTabs();
+    public static final JCItemRegistry itemRegistry = new JCItemRegistry();
+    public static final JCBlockRegistry blockRegistry = new JCBlockRegistry();
+    public static final JCRecipeRegistry recipeRegistry = new JCRecipeRegistry();
+    public static final JCNetworkManager networkManager = new JCNetworkManager();
+    public static final AppRegistry appRegistry = new AppRegistry();
+    public static final JCAchievements achievements = new JCAchievements();
+    public static final StorageTypeRegistry storageTypeRegistry = new StorageTypeRegistry();
+    public static final JCConfigurations configurations = new JCConfigurations();
 
     public static WorldTypeIslaNublar worldTypeIslaNublar = new WorldTypeIslaNublar();
 
@@ -90,7 +89,7 @@ public class JurassiCraft
     }
 
     @Mod.EventHandler
-    public void serverStart(FMLServerStartedEvent event)
+    public void serverStart()
     {
         GameRules gameRules = MinecraftServer.getServer().worldServerForDimension(0).getGameRules();
 

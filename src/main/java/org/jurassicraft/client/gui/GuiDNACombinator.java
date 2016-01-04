@@ -17,7 +17,7 @@ public class GuiDNACombinator extends GuiContainer
      * The player inventory bound to this GUI.
      */
     private final InventoryPlayer playerInventory;
-    private IInventory dnaCombinator;
+    private final IInventory dnaCombinator;
 
     public GuiDNACombinator(InventoryPlayer playerInv, IInventory combinator)
     {
@@ -47,14 +47,14 @@ public class GuiDNACombinator extends GuiContainer
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 
-        int progress = this.getProgress(23);
+        int progress = this.getProgress();
         this.drawTexturedModalRect(k + 93, l + 30, 176, 0, 8, progress);
     }
 
-    private int getProgress(int scale)
+    private int getProgress()
     {
         int j = this.dnaCombinator.getField(0);
         int k = this.dnaCombinator.getField(1);
-        return k != 0 && j != 0 ? j * scale / k : 0;
+        return k != 0 && j != 0 ? j * 23 / k : 0;
     }
 }

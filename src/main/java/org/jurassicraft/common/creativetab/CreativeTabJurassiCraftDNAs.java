@@ -14,9 +14,9 @@ public class CreativeTabJurassiCraftDNAs extends CreativeTabs
 {
     private ItemStack[] stacks = null;
 
-    public CreativeTabJurassiCraftDNAs(String label)
+    public CreativeTabJurassiCraftDNAs()
     {
-        super(label);
+        super("jurassicraft.dna");
     }
 
     @SideOnly(Side.CLIENT)

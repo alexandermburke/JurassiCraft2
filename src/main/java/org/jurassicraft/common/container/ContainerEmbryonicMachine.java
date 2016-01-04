@@ -14,13 +14,13 @@ import org.jurassicraft.common.tileentity.TileEmbryonicMachine;
 
 public class ContainerEmbryonicMachine extends Container
 {
-    private TileEmbryonicMachine embryonicMachine;
+    private final TileEmbryonicMachine embryonicMachine;
 
     public ContainerEmbryonicMachine(InventoryPlayer playerInventory, TileEntity tileEntity)
     {
         this.embryonicMachine = (TileEmbryonicMachine) tileEntity;
-        this.addSlotToContainer(new SlotTestTube(embryonicMachine, 0, 24, 49));
-        this.addSlotToContainer(new SlotPetriDish(embryonicMachine, 1, 50, 49));
+        this.addSlotToContainer(new SlotTestTube(embryonicMachine, 24, 49));
+        this.addSlotToContainer(new SlotPetriDish(embryonicMachine, 50, 49));
         this.addSlotToContainer(new SlotCustom(embryonicMachine, 2, 50, 13, JCItemRegistry.empty_syringe));
 
         int i;

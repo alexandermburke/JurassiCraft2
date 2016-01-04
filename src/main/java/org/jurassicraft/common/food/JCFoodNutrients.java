@@ -13,7 +13,7 @@ public enum JCFoodNutrients
     /**
      * Sets a list of all food. Used to check if some food is valid [.FOODLIST.containsKey(item)].
      */
-    public static final Map<Item, Integer> FOODLIST = new HashMap<Item, Integer>();
+    public static final Map<Item, Integer> FOODLIST = new HashMap<>();
 
     static
     {
@@ -41,7 +41,7 @@ public enum JCFoodNutrients
     /**
      * Returns the food (Item).
      */
-    public Item getFoodItem()
+    private Item getFoodItem()
     {
         return food;
     }

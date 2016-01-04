@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 
 public class SlotCustom extends Slot
 {
-    private Item item;
+    private final Item item;
 
     public SlotCustom(IInventory inventory, int slotIndex, int xPosition, int yPosition, Item item)
     {

@@ -30,15 +30,15 @@ public class JCCreativeTabs
             }
         };
 
-        bones = new CreativeTabJurassiCraftFossils("jurassicraft.dino_bones");
+        bones = new CreativeTabJurassiCraftFossils();
 
-        dna = new CreativeTabJurassiCraftDNAs("jurassicraft.dna");
+        dna = new CreativeTabJurassiCraftDNAs();
 
-        eggs = new CreativeTabJurassiCraftEggs("jurassicraft.eggs");
+        eggs = new CreativeTabJurassiCraftEggs();
 
-        spawnEggs = new CreativeTabJurassiCraftSpawnEggs("jurassicraft.spawnEggs");
+        spawnEggs = new CreativeTabJurassiCraftSpawnEggs();
 
-        foods = new CreativeTabJurassiCraftFoods("jurassicraft.foods");
+        foods = new CreativeTabJurassiCraftFoods();
 
         blocks = new CreativeTabJurassiCraft("jurassicraft.blocks")
         {
@@ -64,6 +64,6 @@ public class JCCreativeTabs
             }
         };
 
-        merchandise = new CreativeTabJurassiCraftMerchandise("jurassicraft.merchandise");
+        merchandise = new CreativeTabJurassiCraftMerchandise();
     }
 }

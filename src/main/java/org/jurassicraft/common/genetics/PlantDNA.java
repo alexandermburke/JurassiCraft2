@@ -10,8 +10,8 @@ import java.util.List;
 
 public class PlantDNA
 {
-    private int plant;
-    private int quality;
+    private final int plant;
+    private final int quality;
 
     public PlantDNA(int plant, int quality)
     {
@@ -46,7 +46,7 @@ public class PlantDNA
         return plant;
     }
 
-    public void addInformation(ItemStack stack, List<String> tooltip)
+    public void addInformation(List<String> tooltip)
     {
         tooltip.add(EnumChatFormatting.DARK_AQUA + new AdvLang("lore.plant.name").withProperty("plant", "plants." + JCPlantRegistry.getPlantById(plant).getName().toLowerCase().replaceAll(" ", "_") + ".name").build());
 

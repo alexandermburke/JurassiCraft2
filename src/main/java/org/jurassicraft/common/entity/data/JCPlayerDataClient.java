@@ -8,9 +8,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class JCPlayerDataClient
 {
-    private static JCPlayerData playerData;
+    private static final JCPlayerData playerData;
 
-    private static Minecraft mc = Minecraft.getMinecraft();
+    private static final Minecraft mc = Minecraft.getMinecraft();
 
     static
     {

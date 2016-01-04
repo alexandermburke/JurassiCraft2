@@ -6,7 +6,7 @@ import org.jurassicraft.common.creativetab.JCCreativeTabs;
 
 public class BlockJCPlanks extends Block
 {
-    private EnumType treeType;
+    private final EnumType treeType;
 
     public BlockJCPlanks(EnumType type, String treeName)
     {

@@ -26,14 +26,14 @@ public class GuiSelectDino extends GuiScreen
     private int page;
     private int pageCount;
 
-    public int columnsPerPage = 5;
-    public int rowsPerPage = 3;
+    private final int columnsPerPage = 5;
+    private final int rowsPerPage = 3;
 
     private GuiButton forward;
     private GuiButton backward;
 
-    private BlockPos pos;
-    private EnumFacing facing;
+    private final BlockPos pos;
+    private final EnumFacing facing;
 
     public GuiSelectDino(BlockPos pos, EnumFacing facing)
     {
@@ -45,7 +45,7 @@ public class GuiSelectDino extends GuiScreen
     {
         super.initGui();
 
-        this.buttonList.add(new GuiButton(0, (this.width - 150) / 2, this.height / 5 + 150, 150, 20, I18n.format("gui.cancel", new Object[0])));
+        this.buttonList.add(new GuiButton(0, (this.width - 150) / 2, this.height / 5 + 150, 150, 20, I18n.format("gui.cancel")));
         this.buttonList.add(backward = new GuiButton(1, this.width / 2 - 105, this.height / 5 + 150, 20, 20, "<"));
         this.buttonList.add(forward = new GuiButton(2, this.width / 2 + 85, this.height / 5 + 150, 20, 20, ">"));
 
@@ -130,13 +130,13 @@ public class GuiSelectDino extends GuiScreen
         enableDisablePages();
     }
 
-    public void enableDisablePages()
+    private void enableDisablePages()
     {
         backward.enabled = !(page <= 0);
         forward.enabled = page < pageCount;
     }
 
-    public void selectDinosaur(Dinosaur dinosaur)
+    private void selectDinosaur(Dinosaur dinosaur)
     {
         mc.displayGuiScreen(null);
         if (!mc.thePlayer.capabilities.isCreativeMode)
@@ -186,7 +186,7 @@ public class GuiSelectDino extends GuiScreen
 
                 if (scaledMouseX > x && scaledMouseY > y && scaledMouseX < x + 16 && scaledMouseY < y + 16)
                 {
-                    drawBoxOutline(x - 1, y - 1, 18, 17, 1, 0x60606060);
+                    drawBoxOutline(x - 1, y - 1, 18, 17, 0x60606060);
                 }
 
                 drawTexturedModalRect(x, y, ((id) % 16) * 16, (int) Math.floor((id) / 16) * 16, 16, 16);
@@ -215,7 +215,7 @@ public class GuiSelectDino extends GuiScreen
     /**
      * Draws a textured rectangle at the stored z-value. Args: x, y, u, v, width, height
      */
-    public void drawScaledRect(int x, int y, int width, int height, int colour)
+    private void drawScaledRect(int x, int y, int width, int height, int colour)
     {
         GL11.glDisable(GL11.GL_TEXTURE_2D);
 
@@ -242,12 +242,12 @@ public class GuiSelectDino extends GuiScreen
         GL11.glEnable(GL11.GL_TEXTURE_2D);
     }
 
-    public void drawBoxOutline(int x, int y, int sizeX, int sizeY, int borderSize, int colour)
+    private void drawBoxOutline(int x, int y, int sizeX, int sizeY, int colour)
     {
-        drawScaledRect(x, y, sizeX, borderSize, colour);
-        drawScaledRect(x + sizeX, y, borderSize, sizeY + borderSize, colour);
-        drawScaledRect(x, y + borderSize, borderSize, sizeY, colour);
-        drawScaledRect(x + borderSize, y + sizeY, sizeX - borderSize, borderSize, colour);
+        drawScaledRect(x, y, 18, 1, 0x60606060);
+        drawScaledRect(x + 18, y, 1, 17 + 1, 0x60606060);
+        drawScaledRect(x, y + 1, 1, 17, 0x60606060);
+        drawScaledRect(x + 1, y + 17, 18 - 1, 1, 0x60606060);
     }
 
     @Override

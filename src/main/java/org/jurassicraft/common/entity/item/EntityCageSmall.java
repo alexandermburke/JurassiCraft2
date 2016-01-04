@@ -65,11 +65,11 @@ public class EntityCageSmall extends Entity implements IEntityAdditionalSpawnDat
     @Override
     protected void entityInit()
     {
-        this.dataWatcher.addObject(25, new Integer(-1));
-        this.dataWatcher.addObject(17, new Integer(0));
-        this.dataWatcher.addObject(18, new Integer(0));
-        this.dataWatcher.addObject(19, new String(""));
-        this.dataWatcher.addObject(20, new Integer(0));
+        this.dataWatcher.addObject(25, -1);
+        this.dataWatcher.addObject(17, 0);
+        this.dataWatcher.addObject(18, 0);
+        this.dataWatcher.addObject(19, "");
+        this.dataWatcher.addObject(20, 0);
     }
 
     @Override

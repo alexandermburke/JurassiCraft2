@@ -5,18 +5,18 @@ import java.util.List;
 
 public class JCPlantRegistry
 {
-    private static List<Plant> plants = new ArrayList<Plant>();
+    private static final List<Plant> plants = new ArrayList<>();
 
     public static final Plant small_royal_fern = new PlantSmallRoyalFern();
-    public static final Plant calamites = new PlantCalamites();
-    public static final Plant small_chain_fern = new PlantSmallChainFern();
-    public static final Plant small_cycad = new PlantSmallCycad();
-    public static final Plant ginkgo = new PlantGinkgo();
-    public static final Plant bennettitalean_cycadeoidea = new PlantBennettitaleanCycadeoidea();
-    public static final Plant cry_pansy = new PlantCryPansy();
-    public static final Plant scaly_tree_fern = new PlantScalyTreeFern();
-    public static final Plant cycad_zamites = new PlantZamites();
-    public static final Plant dicksonia = new PlantDicksonia();
+    private static final Plant calamites = new PlantCalamites();
+    private static final Plant small_chain_fern = new PlantSmallChainFern();
+    private static final Plant small_cycad = new PlantSmallCycad();
+    private static final Plant ginkgo = new PlantGinkgo();
+    private static final Plant bennettitalean_cycadeoidea = new PlantBennettitaleanCycadeoidea();
+    private static final Plant cry_pansy = new PlantCryPansy();
+    private static final Plant scaly_tree_fern = new PlantScalyTreeFern();
+    private static final Plant cycad_zamites = new PlantZamites();
+    private static final Plant dicksonia = new PlantDicksonia();
 
     public void register()
     {
@@ -52,7 +52,7 @@ public class JCPlantRegistry
         return plants;
     }
 
-    public void registerPlant(Plant plant)
+    private void registerPlant(Plant plant)
     {
         if (!plants.contains(plant))
         {

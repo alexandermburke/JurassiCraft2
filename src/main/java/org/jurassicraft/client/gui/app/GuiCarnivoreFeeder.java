@@ -3,7 +3,7 @@ package org.jurassicraft.client.gui.app;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 
-public class GuiCarnivoreFeeder extends GuiContainer
+class GuiCarnivoreFeeder extends GuiContainer
 {
 
     public GuiCarnivoreFeeder(Container p_i1072_1_)

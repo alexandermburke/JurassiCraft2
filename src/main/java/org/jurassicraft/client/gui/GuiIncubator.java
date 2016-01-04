@@ -22,7 +22,7 @@ public class GuiIncubator extends GuiContainer
      * The player inventory bound to this GUI.
      */
     private final InventoryPlayer playerInventory;
-    private IInventory incubator;
+    private final IInventory incubator;
 
     public GuiIncubator(InventoryPlayer playerInv, IInventory incubator)
     {
@@ -127,7 +127,7 @@ public class GuiIncubator extends GuiContainer
 
         for (int i = 0; i < 5; i++)
         {
-            int progress = this.getProgress(i, 14);
+            int progress = this.getProgress(i);
 
             int x = 0;
             int y = 0;
@@ -161,23 +161,23 @@ public class GuiIncubator extends GuiContainer
 
             this.drawTexturedModalRect(k + x, l + y, 176, 5, progress, 5);
 
-            int temp = getTemperature(i, 20);
+            int temp = getTemperature(i);
 
             this.drawTexturedModalRect(k + x + temp - 3, l + y - 6, 176, 0, 3, 5);
         }
     }
 
-    private int getProgress(int slot, int scale)
+    private int getProgress(int slot)
     {
         int j = this.incubator.getField(slot);
         int k = this.incubator.getField(slot + 5);
-        return k != 0 && j != 0 ? j * scale / k : 0;
+        return k != 0 && j != 0 ? j * 14 / k : 0;
     }
 
-    private int getTemperature(int slot, int scale)
+    private int getTemperature(int slot)
     {
         int j = this.incubator.getField(slot + 10);
         int k = 100;
-        return k != 0 && j != 0 ? j * scale / k : 0;
+        return j != 0 ? j * 20 / k : 0;
     }
 }

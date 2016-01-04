@@ -10,12 +10,12 @@ import org.jurassicraft.common.entity.base.EntityDinosaur;
  */
 public class JCNonAutoAnimSoundBase extends AIAnimation
 {
-    protected EntityDinosaur animatingEntity;
-    protected int duration;
-    protected AnimID id;
-    protected int chance;
-    protected String sound;
-    protected float volumeOffset;
+    private final EntityDinosaur animatingEntity;
+    private final int duration;
+    private final AnimID id;
+    private final int chance;
+    private final String sound;
+    private final float volumeOffset;
 
     public JCNonAutoAnimSoundBase(IAnimatedEntity entity, int duration, AnimID id, int chance, String sound, float volumeOffset)
     {

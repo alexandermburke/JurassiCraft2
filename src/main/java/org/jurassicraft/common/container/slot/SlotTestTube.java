@@ -8,9 +8,9 @@ import org.jurassicraft.common.item.ItemPlantDNA;
 
 public class SlotTestTube extends Slot
 {
-    public SlotTestTube(IInventory inventory, int slotIndex, int xPosition, int yPosition)
+    public SlotTestTube(IInventory inventory, int xPosition, int yPosition)
     {
-        super(inventory, slotIndex, xPosition, yPosition);
+        super(inventory, 0, 24, 49);
     }
 
     @Override

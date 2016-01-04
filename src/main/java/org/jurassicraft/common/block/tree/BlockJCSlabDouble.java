@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class BlockJCSlabDouble extends BlockJCSlab
 {
-    private Block singleSlab;
+    private final Block singleSlab;
 
     public BlockJCSlabDouble(String name, Block slab, IBlockState state)
     {

@@ -12,12 +12,12 @@ import org.jurassicraft.common.tileentity.TileCultivate;
 
 public class ContainerCultivate extends Container
 {
-    private TileCultivate cultivator;
+    private final TileCultivate cultivator;
 
     public ContainerCultivate(InventoryPlayer playerInventory, TileEntity tileEntity)
     {
         this.cultivator = (TileCultivate) tileEntity;
-        this.addSlotToContainer(new SlotSyringe(cultivator, 0, 122, 44));
+        this.addSlotToContainer(new SlotSyringe(cultivator, 122, 44));
         this.addSlotToContainer(new Slot(cultivator, 1, 208, 20));
         this.addSlotToContainer(new SlotWaterBucket(cultivator, 2, 12, 20));
         this.addSlotToContainer(new Slot(cultivator, 3, 12, 68));

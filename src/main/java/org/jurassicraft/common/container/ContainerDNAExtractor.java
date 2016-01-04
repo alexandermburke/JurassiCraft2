@@ -12,13 +12,13 @@ import org.jurassicraft.common.tileentity.TileDNAExtractor;
 
 public class ContainerDNAExtractor extends Container
 {
-    private TileDNAExtractor extractor;
+    private final TileDNAExtractor extractor;
 
     public ContainerDNAExtractor(InventoryPlayer playerInventory, TileEntity tileEntity)
     {
         this.extractor = (TileDNAExtractor) tileEntity;
         this.addSlotToContainer(new SlotStorage(extractor, 1, 55, 47, false));
-        this.addSlotToContainer(new SlotDNAExtraction(extractor, 0, 55, 26));
+        this.addSlotToContainer(new SlotDNAExtraction(extractor, 55, 26));
         this.addSlotToContainer(new SlotStorage(extractor, 2, 108, 28, true));
         this.addSlotToContainer(new SlotStorage(extractor, 3, 126, 28, true));
         this.addSlotToContainer(new SlotStorage(extractor, 4, 108, 46, true));

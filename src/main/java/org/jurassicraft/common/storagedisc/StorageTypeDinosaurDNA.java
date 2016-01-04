@@ -25,6 +25,6 @@ public class StorageTypeDinosaurDNA implements IStorageType
     @Override
     public void addInformation(ItemStack stack, List<String> tooltip)
     {
-        dna.addInformation(stack, tooltip);
+        dna.addInformation(tooltip);
     }
 }

@@ -1,7 +1,9 @@
 package org.jurassicraft.client.render.renderdef;
 
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.client.model.json.IModelAnimator;
@@ -11,10 +13,11 @@ import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.client.render.entity.RenderDinosaur;
 import org.jurassicraft.common.dinosaur.Dinosaur;
+import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
 
 @SideOnly(Side.CLIENT)
-public class RenderDinosaurDefinition
+public class RenderDinosaurDefinition implements IRenderFactory<EntityDinosaur>
 {
     private final Dinosaur dinosaur;
     private final IModelAnimator animator;
@@ -31,14 +34,14 @@ public class RenderDinosaurDefinition
     private float renderYOffset = 0.0F;
     private float renderZOffset = 0.0F;
 
-    public RenderDinosaurDefinition(Dinosaur dinosaur, IModelAnimator animator, float adultScaleAdjustment, float babyScaleAdjustment, float parShadowSize, float parRenderXOffset, float parRenderYOffset, float parRenderZOffset)
+    public RenderDinosaurDefinition(Dinosaur dinosaur, IModelAnimator animator, float adultScaleAdjustment, float babyScaleAdjustment, float parShadowSize, float parRenderYOffset, float parRenderZOffset)
     {
         this.dinosaur = dinosaur;
         this.animator = animator;
         this.adultScaleAdjustment = adultScaleAdjustment;
         this.babyScaleAdjustment = babyScaleAdjustment;
         this.shadowSize = parShadowSize;
-        this.renderXOffset = parRenderXOffset;
+        this.renderXOffset = 0.0F;
         this.renderYOffset = parRenderYOffset;
         this.renderZOffset = parRenderZOffset;
 
@@ -102,12 +105,12 @@ public class RenderDinosaurDefinition
         return shadowSize;
     }
 
-    public ModelDinosaur getTabulaModel(String tabulaModel) throws Exception
+    private ModelDinosaur getTabulaModel(String tabulaModel) throws Exception
     {
         return new ModelDinosaur(TabulaModelHelper.parseModel(tabulaModel), getModelAnimator());
     }
 
-    public ModelDinosaur getDefaultTabulaModel(String stage)
+    private ModelDinosaur getDefaultTabulaModel(String stage)
     {
         String model = "/assets/jurassicraft/models/entities/" + dinosaur.getName().toLowerCase() + "/" + stage + "/" + dinosaur.getName().toLowerCase() + "_" + stage + "_idle";
         try
@@ -126,7 +129,8 @@ public class RenderDinosaurDefinition
         return dinosaur;
     }
 
-    public RenderLiving getRenderer()
+    @Override
+    public Render<? super EntityDinosaur> createRenderFor(RenderManager manager)
     {
         return new RenderDinosaur(this);
     }

@@ -22,9 +22,9 @@ public abstract class App
         nbt.setBoolean("PreviouslyOpened", previouslyOpened);
     }
 
-    public abstract void writeToNBT(NBTTagCompound nbt);
+    protected abstract void writeToNBT(NBTTagCompound nbt);
 
-    public abstract void readFromNBT(NBTTagCompound nbt);
+    protected abstract void readFromNBT(NBTTagCompound nbt);
 
     public abstract void init();
 

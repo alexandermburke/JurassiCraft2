@@ -12,7 +12,7 @@ import org.jurassicraft.common.entity.ai.EntityAIMoveUnderwater;
 
 public abstract class EntityDinosaurSwimmingAggressive extends EntityDinosaurAggressive
 {
-    public EntityDinosaurSwimmingAggressive(World worldIn)
+    protected EntityDinosaurSwimmingAggressive(World worldIn)
     {
         super(worldIn);
         this.moveHelper = new EntityDinosaurSwimmingAggressive.SwimmingMoveHelper();
@@ -118,7 +118,7 @@ public abstract class EntityDinosaurSwimmingAggressive extends EntityDinosaurAgg
 
     class SwimmingMoveHelper extends EntityMoveHelper
     {
-        private EntityDinosaurSwimmingAggressive swimmingEntity = EntityDinosaurSwimmingAggressive.this;
+        private final EntityDinosaurSwimmingAggressive swimmingEntity = EntityDinosaurSwimmingAggressive.this;
 
         public SwimmingMoveHelper()
         {

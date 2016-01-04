@@ -1,5 +1,6 @@
 package org.jurassicraft.common.entity;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
@@ -25,7 +26,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
 
     private static final Class[] deftargets = { EntityPlayer.class, EntityTyrannosaurus.class, EntityGiganotosaurus.class, EntitySpinosaurus.class };
 
-    public ControlledAnimation dontLean = new ControlledAnimation(5);
+    public final ControlledAnimation dontLean = new ControlledAnimation(5);
 
     public EntityVelociraptor(World world)
     {
@@ -41,14 +42,12 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
         tasks.addTask(2, new JCNonAutoAnimBase(this, 25, AnimID.LOOKING_LEFT, 100)); // Head twitch left
         tasks.addTask(2, new JCNonAutoAnimBase(this, 45, AnimID.SNIFFING, 150)); // Sniff
 
-        for (int i = 0; i < targets.length; i++)
-        {
-            this.addAIForAttackTargets(targets[i], new Random().nextInt(3) + 1);
+        for (Class target : targets) {
+            this.addAIForAttackTargets(target);
         }
 
-        for (int j = 0; j < deftargets.length; j++)
-        {
-            this.defendFromAttacker(deftargets[j], new Random().nextInt(3) + 1);
+        for (Class deftarget : deftargets) {
+            this.defendFromAttacker(deftarget, new Random().nextInt(3) + 1);
         }
     }
 
@@ -61,11 +60,11 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
     // NOTE: This adds an attack target. Class should be the entity class for the target, lower prio get executed
     // earlier
     @Override
-    protected void addAIForAttackTargets(Class entity, int prio)
+    protected void addAIForAttackTargets(Class<? extends Entity> entity)
     {
         this.tasks.addTask(0, new EntityAIAttackOnCollide(this, entity, 1.0D, false));
         this.tasks.addTask(1, new EntityAILeapAtTarget(this, 0.5F));
-        this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, entity, false));
+        this.targetTasks.addTask(0, new EntityAINearestAttackableTarget<>(this, entity, false));
     }
 
     public String getCallSound()

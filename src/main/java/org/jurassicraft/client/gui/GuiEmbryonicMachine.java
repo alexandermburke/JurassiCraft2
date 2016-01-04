@@ -18,7 +18,7 @@ public class GuiEmbryonicMachine extends GuiContainer
      * The player inventory bound to this GUI.
      */
     private final InventoryPlayer playerInventory;
-    private IInventory embryonicMachine;
+    private final IInventory embryonicMachine;
 
     public GuiEmbryonicMachine(InventoryPlayer playerInv, IInventory embryonicMachine)
     {
@@ -48,15 +48,15 @@ public class GuiEmbryonicMachine extends GuiContainer
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 
-        int progress = this.getProgress(17);
+        int progress = this.getProgress();
         this.drawTexturedModalRect(k + 79, l + 34, 176, 14, progress + 1, 16);
 
     }
 
-    private int getProgress(int scale)
+    private int getProgress()
     {
         int j = this.embryonicMachine.getField(0);
         int k = this.embryonicMachine.getField(1);
-        return k != 0 && j != 0 ? j * scale / k : 0;
+        return k != 0 && j != 0 ? j * 17 / k : 0;
     }
 }

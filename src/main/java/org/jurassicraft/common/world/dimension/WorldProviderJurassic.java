@@ -2,7 +2,7 @@ package org.jurassicraft.common.world.dimension;
 
 import net.minecraft.world.WorldProvider;
 
-public class WorldProviderJurassic extends WorldProvider
+class WorldProviderJurassic extends WorldProvider
 {
     @Override
     public String getDimensionName()

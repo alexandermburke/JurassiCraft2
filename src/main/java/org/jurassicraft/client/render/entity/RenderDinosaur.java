@@ -7,7 +7,6 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.texture.DynamicTexture;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.item.EnumDyeColor;
@@ -25,14 +24,14 @@ import org.lwjgl.opengl.GL11;
 import java.util.Random;
 
 @SideOnly(Side.CLIENT)
-public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
+public class RenderDinosaur extends RenderLiving<EntityDinosaur> implements IDinosaurRenderer
 {
     private static final DynamicTexture dynamicTexture = new DynamicTexture(16, 16);
 
-    public Dinosaur dinosaur;
-    public RenderDinosaurDefinition renderDef;
+    final Dinosaur dinosaur;
+    private final RenderDinosaurDefinition renderDef;
 
-    public Random random;
+    private final Random random;
 
     public RenderDinosaur(RenderDinosaurDefinition renderDef)
     {
@@ -49,10 +48,9 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
     }
 
     @Override
-    public void preRenderCallback(EntityLivingBase entity, float partialTick)
+    public void preRenderCallback(EntityDinosaur entity, float partialTick)
     {
-        EntityDinosaur entityDinosaur = (EntityDinosaur) entity;
-        this.renderDef.getModelAnimator().preRenderCallback(entityDinosaur, partialTick);
+        this.renderDef.getModelAnimator().preRenderCallback(entity, partialTick);
 
         if (entity instanceof EntityDinosaurFlyingAggressive) //TODO default flying
         {
@@ -62,7 +60,7 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
             }
         }
 
-        float scale = (float) entityDinosaur.transitionFromAge(renderDef.getBabyScaleAdjustment(), renderDef.getAdultScaleAdjustment()); //TODO scale offset
+        float scale = (float) entity.transitionFromAge(renderDef.getBabyScaleAdjustment(), renderDef.getAdultScaleAdjustment()); //TODO scale offset
 
         shadowSize = scale * renderDef.getShadowSize();
 
@@ -108,23 +106,18 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
 
     // need to override so that red overlay doesn't persist after death
     @Override
-    protected boolean setBrightness(EntityLivingBase entitylivingbaseIn, float partialTicks, boolean combineTextures)
+    protected boolean setBrightness(EntityDinosaur entity, float partialTicks, boolean combineTextures)
     {
-        float f1 = entitylivingbaseIn.getBrightness(partialTicks);
-        int i = this.getColorMultiplier(entitylivingbaseIn, f1, partialTicks);
+        float f1 = entity.getBrightness(partialTicks);
+        int i = this.getColorMultiplier(entity, f1, partialTicks);
         boolean flag1 = (i >> 24 & 255) > 0;
         boolean flag2 = false; // entitylivingbaseIn.hurtTime > 0 || entitylivingbaseIn.deathTime > 0;
 
-        if (!flag1 && !flag2)
+        if (!flag1)
         {
             return false;
         }
-        else if (!flag1 && !combineTextures)
-        {
-            return false;
-        }
-        else
-        {
+        else {
             GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
             GlStateManager.enableTexture2D();
             GL11.glTexEnvi(GL11.GL_TEXTURE_ENV, GL11.GL_TEXTURE_ENV_MODE, OpenGlHelper.GL_COMBINE);
@@ -151,24 +144,14 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
             GL11.glTexEnvi(GL11.GL_TEXTURE_ENV, OpenGlHelper.GL_OPERAND0_ALPHA, GL11.GL_SRC_ALPHA);
             this.brightnessBuffer.position(0);
 
-            if (flag2)
-            {
-                this.brightnessBuffer.put(1.0F);
-                this.brightnessBuffer.put(0.0F);
-                this.brightnessBuffer.put(0.0F);
-                this.brightnessBuffer.put(0.3F);
-            }
-            else
-            {
-                float f2 = (i >> 24 & 255) / 255.0F;
-                float f3 = (i >> 16 & 255) / 255.0F;
-                float f4 = (i >> 8 & 255) / 255.0F;
-                float f5 = (i & 255) / 255.0F;
-                this.brightnessBuffer.put(f3);
-                this.brightnessBuffer.put(f4);
-                this.brightnessBuffer.put(f5);
-                this.brightnessBuffer.put(1.0F - f2);
-            }
+            float f2 = (i >> 24 & 255) / 255.0F;
+            float f3 = (i >> 16 & 255) / 255.0F;
+            float f4 = (i >> 8 & 255) / 255.0F;
+            float f5 = (i & 255) / 255.0F;
+            this.brightnessBuffer.put(f3);
+            this.brightnessBuffer.put(f4);
+            this.brightnessBuffer.put(f5);
+            this.brightnessBuffer.put(1.0F - f2);
 
             this.brightnessBuffer.flip();
             GL11.glTexEnv(GL11.GL_TEXTURE_ENV, GL11.GL_TEXTURE_ENV_COLOR, this.brightnessBuffer);
@@ -189,23 +172,18 @@ public class RenderDinosaur extends RenderLiving implements IDinosaurRenderer
         }
     }
 
+    @Override
     public ResourceLocation getEntityTexture(EntityDinosaur entity)
     {
         return entity.isMale() ? dinosaur.getMaleTexture(entity.getGrowthStage()) : dinosaur.getFemaleTexture(entity.getGrowthStage());
     }
 
     @Override
-    public ResourceLocation getEntityTexture(Entity entity)
+    protected void rotateCorpse(EntityDinosaur entity, float p_77043_2_, float p_77043_3_, float p_77043_4_)
     {
-        return getEntityTexture((EntityDinosaur) entity);
-    }
-
-    @Override
-    protected void rotateCorpse(EntityLivingBase parEntity, float p_77043_2_, float p_77043_3_, float p_77043_4_)
-    {
-        if (!(parEntity.deathTime > 0))
+        if (!(entity.deathTime > 0))
         {
-            super.rotateCorpse(parEntity, p_77043_2_, p_77043_3_, p_77043_4_);
+            super.rotateCorpse(entity, p_77043_2_, p_77043_3_, p_77043_4_);
         }
         else
         {

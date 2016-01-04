@@ -1,7 +1,6 @@
 package org.jurassicraft.common.block;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -72,8 +71,8 @@ public class JCBlockRegistry
     public static Block[] saplings;
 
     // wood products
-    public static Block[] doors;
-    public static Block[] fences;
+    private static Block[] doors;
+    private static Block[] fences;
     public static Block[] slabs;
     public static Block[] doubleSlabs;
     public static Block[] stairs;
@@ -124,8 +123,8 @@ public class JCBlockRegistry
 
     public void register()
     {
-        fossils = new ArrayList<BlockFossil>();
-        encased_fossils = new ArrayList<BlockEncasedFossil>();
+        fossils = new ArrayList<>();
+        encased_fossils = new ArrayList<>();
 
         carnivore_feeder = new BlockCarnivoreFeeder();
         cleaning_station = new BlockCleaningStation();
@@ -145,10 +144,10 @@ public class JCBlockRegistry
         ice_shard = addBlock(new BlockIceShard(), "ice_shard");
 
         gypsum_stone = addBlock(new BlockGypsumStone().setHardness(1.5F).setResistance(10.0F), "gypsum_stone");
-        gypsum_cobblestone = addBlock(new BlockBasic(Material.rock).setHardness(1.5F).setResistance(10.0F), "gypsum_cobblestone");
-        gypsum_bricks = addBlock(new BlockBasic(Material.rock).setHardness(1.5F).setResistance(10.0F), "gypsum_bricks");
-        reinforced_stone = addBlock(new BlockBasic(Material.rock).setHardness(2.0F).setResistance(15.0F), "reinforced_stone");
-        reinforced_bricks = addBlock(new BlockBasic(Material.rock).setHardness(2.0F).setResistance(15.0F), "reinforced_bricks");
+        gypsum_cobblestone = addBlock(new BlockBasic().setHardness(1.5F).setResistance(10.0F), "gypsum_cobblestone");
+        gypsum_bricks = addBlock(new BlockBasic().setHardness(1.5F).setResistance(10.0F), "gypsum_bricks");
+        reinforced_stone = addBlock(new BlockBasic().setHardness(2.0F).setResistance(15.0F), "reinforced_stone");
+        reinforced_bricks = addBlock(new BlockBasic().setHardness(2.0F).setResistance(15.0F), "reinforced_bricks");
 
         small_royal_fern = addBlock(new BlockSmallRoyalFern(), "small_royal_fern");
         small_chain_fern = addBlock(new BlockSmallChainFern(), "small_chain_fern");
@@ -221,8 +220,8 @@ public class JCBlockRegistry
             GameRegistry.registerBlock(leaves[i], typeName + "_leaves");
             GameRegistry.registerBlock(saplings[i], typeName + "_sapling");
             GameRegistry.registerBlock(stairs[i], typeName + "_stairs");
-            GameRegistry.registerBlock(slabs[i], ItemJCSlab.class, typeName + "_slab", new Object[] { slabs[i], doubleSlabs[i] });
-            GameRegistry.registerBlock(doubleSlabs[i], ItemJCSlab.class, typeName + "_double_slab", new Object[] { slabs[i], doubleSlabs[i] });
+            GameRegistry.registerBlock(slabs[i], ItemJCSlab.class, typeName + "_slab", slabs[i], doubleSlabs[i]);
+            GameRegistry.registerBlock(doubleSlabs[i], ItemJCSlab.class, typeName + "_double_slab", slabs[i], doubleSlabs[i]);
 
             OreDictionary.registerOre("logWood", woods[i]);
             OreDictionary.registerOre("plankWood", planks[i]);
@@ -297,7 +296,7 @@ public class JCBlockRegistry
         return encased_fossils.get(getBlockId(id));
     }
 
-    public BlockFossil getFossilBlock(int id)
+    private BlockFossil getFossilBlock(int id)
     {
         return fossils.get(getBlockId(id));
     }
@@ -322,14 +321,14 @@ public class JCBlockRegistry
         return getMetadata(JCEntityRegistry.getDinosaurId(dinosaur));
     }
 
-    public void registerBlockTileEntity(Class<? extends TileEntity> tileEntity, Block block, String name)
+    private void registerBlockTileEntity(Class<? extends TileEntity> tileEntity, Block block, String name)
     {
         registerBlock(block, name);
 
         GameRegistry.registerTileEntity(tileEntity, "jurassicraft:" + name.toLowerCase().replaceAll(" ", "_"));
     }
 
-    public void registerBlock(Block block, String name)
+    private void registerBlock(Block block, String name)
     {
         name = name.toLowerCase().replaceAll(" ", "_");
 

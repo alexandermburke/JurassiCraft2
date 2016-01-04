@@ -8,7 +8,7 @@ import org.jurassicraft.common.entity.base.EntityDinosaur;
 
 public class AnimationAIHeadCock extends EntityAIBase
 {
-    protected EntityDinosaur animatingEntity;
+    private final EntityDinosaur animatingEntity;
 
     public AnimationAIHeadCock(IAnimatedEntity entity)
     {

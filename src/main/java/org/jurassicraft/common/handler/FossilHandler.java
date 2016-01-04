@@ -4,7 +4,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import org.jurassicraft.common.period.EnumTimePeriod;
 
-public class FossilHandler
+class FossilHandler
 {
     /**
      * Returns the period of time (or metadata) as cretaceous.

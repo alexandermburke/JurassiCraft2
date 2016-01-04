@@ -18,7 +18,7 @@ public class GuiDNASequencer extends GuiContainer
      * The player inventory bound to this GUI.
      */
     private final InventoryPlayer playerInventory;
-    private IInventory dnaSequencer;
+    private final IInventory dnaSequencer;
 
     public GuiDNASequencer(InventoryPlayer playerInv, IInventory dnaSequencer)
     {
@@ -50,16 +50,16 @@ public class GuiDNASequencer extends GuiContainer
 
         for (int i = 0; i < 3; i++)
         {
-            int progress = this.getProgress(22, i);
+            int progress = this.getProgress(i);
             this.drawTexturedModalRect(k + 87, l + 21 + i * 20, 176, 0, progress, 6);
         }
     }
 
-    private int getProgress(int scale, int index)
+    private int getProgress(int index)
     {
         int j = this.dnaSequencer.getField(index);
         int k = this.dnaSequencer.getField(index + 3);
 
-        return k != 0 && j != 0 ? j * scale / k : 0;
+        return k != 0 && j != 0 ? j * 22 / k : 0;
     }
 }

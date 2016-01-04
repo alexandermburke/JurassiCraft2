@@ -8,7 +8,7 @@ import org.jurassicraft.common.creativetab.JCCreativeTabs;
 
 import java.util.Random;
 
-public class BlockGypsumStone extends Block
+class BlockGypsumStone extends Block
 {
     public BlockGypsumStone()
     {

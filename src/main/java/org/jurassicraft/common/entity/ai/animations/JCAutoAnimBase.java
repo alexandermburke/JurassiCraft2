@@ -7,9 +7,9 @@ import org.jurassicraft.common.entity.base.EntityDinosaur;
 
 public class JCAutoAnimBase extends AIAnimation
 {
-    protected EntityDinosaur animatingEntity;
-    protected int duration;
-    protected AnimID id;
+    private final EntityDinosaur animatingEntity;
+    private final int duration;
+    private final AnimID id;
 
     public JCAutoAnimBase(IAnimatedEntity entity, int duration, AnimID id)
     {

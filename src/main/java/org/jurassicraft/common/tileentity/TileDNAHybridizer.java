@@ -17,8 +17,8 @@ import org.jurassicraft.common.item.JCItemRegistry;
 
 public class TileDNAHybridizer extends TileMachineBase
 {
-    private int[] inputs = new int[] { 0, 1, 2, 3, 4, 5 };
-    private int[] outputs = new int[] { 6 };
+    private final int[] inputs = new int[] { 0, 1, 2, 3, 4, 5 };
+    private final int[] outputs = new int[] { 6 };
 
     private ItemStack[] slots = new ItemStack[7];
 
@@ -120,14 +120,9 @@ public class TileDNAHybridizer extends TileMachineBase
     }
 
     @Override
-    protected boolean canProcess(int process)
-    {
-        if (this.slots[0] != null && this.slots[0].getItem() instanceof ItemStorageDisc && this.slots[1] != null && this.slots[1].getItem() instanceof ItemStorageDisc)
-        {
-            return getHybrid() != null;
-        }
+    protected boolean canProcess(int process) {
+        return this.slots[0] != null && this.slots[0].getItem() instanceof ItemStorageDisc && this.slots[1] != null && this.slots[1].getItem() instanceof ItemStorageDisc && getHybrid() != null;
 
-        return false;
     }
 
     @Override
@@ -173,7 +168,7 @@ public class TileDNAHybridizer extends TileMachineBase
     }
 
     @Override
-    protected int getStackProcessTime(ItemStack stack)
+    protected int getStackProcessTime()
     {
         return 1000;
     }

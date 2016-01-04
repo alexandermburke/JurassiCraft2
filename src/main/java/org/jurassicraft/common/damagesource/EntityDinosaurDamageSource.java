@@ -10,15 +10,15 @@ import net.minecraft.util.StatCollector;
 
 public class EntityDinosaurDamageSource extends DamageSource
 {
-    protected Entity damageSourceEntity;
+    private final Entity damageSourceEntity;
     /**
      * Whether this EntityDamageSource is from an entity wearing Thorns-enchanted armor.
      */
     private boolean isThornsDamage = false;
 
-    public EntityDinosaurDamageSource(String name, Entity damageSourceEntityIn)
+    public EntityDinosaurDamageSource(Entity damageSourceEntityIn)
     {
-        super(name);
+        super("mob");
         this.damageSourceEntity = damageSourceEntityIn;
     }
 
@@ -49,7 +49,7 @@ public class EntityDinosaurDamageSource extends DamageSource
         ItemStack itemstack = this.damageSourceEntity instanceof EntityLivingBase ? ((EntityLivingBase) this.damageSourceEntity).getHeldItem() : null;
         String s = "death.attack." + this.damageType;
         String s1 = s + ".item";
-        return itemstack != null && itemstack.hasDisplayName() && StatCollector.canTranslate(s1) ? new ChatComponentTranslation(s1, new Object[] { p_151519_1_.getDisplayName(), this.damageSourceEntity.getDisplayName(), itemstack.getChatComponent() }) : new ChatComponentTranslation(s, new Object[] { p_151519_1_.getDisplayName(), this.damageSourceEntity.getDisplayName() });
+        return itemstack != null && itemstack.hasDisplayName() && StatCollector.canTranslate(s1) ? new ChatComponentTranslation(s1, p_151519_1_.getDisplayName(), this.damageSourceEntity.getDisplayName(), itemstack.getChatComponent()) : new ChatComponentTranslation(s, p_151519_1_.getDisplayName(), this.damageSourceEntity.getDisplayName());
     }
 
     /**

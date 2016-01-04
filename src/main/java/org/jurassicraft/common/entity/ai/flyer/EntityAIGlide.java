@@ -5,7 +5,7 @@ import org.jurassicraft.common.entity.base.EntityDinosaurFlyingAggressive;
 
 public class EntityAIGlide extends EntityAIBase
 {
-    protected EntityDinosaurFlyingAggressive flyer;
+    private final EntityDinosaurFlyingAggressive flyer;
 
     private float desiredYaw;
 

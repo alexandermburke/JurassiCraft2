@@ -2,7 +2,6 @@ package org.jurassicraft.common.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
@@ -26,7 +25,7 @@ public class BlockEncasedFossil extends Block implements ISubBlocksBlock
 {
     public static final PropertyInteger VARIANT = PropertyInteger.create("variant", 0, 15);
 
-    private int start;
+    private final int start;
 
     public BlockEncasedFossil(int start)
     {
@@ -55,12 +54,12 @@ public class BlockEncasedFossil extends Block implements ISubBlocksBlock
      */
     public int getMetaFromState(IBlockState state)
     {
-        return (Integer) state.getValue(VARIANT);
+        return state.getValue(VARIANT);
     }
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] { VARIANT });
+        return new BlockState(this, VARIANT);
     }
 
     protected ItemStack createStackedBlock(IBlockState state)
@@ -80,7 +79,7 @@ public class BlockEncasedFossil extends Block implements ISubBlocksBlock
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List list)
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
     {
         List<Dinosaur> dinosaurs = JCEntityRegistry.getDinosaurs();
 
