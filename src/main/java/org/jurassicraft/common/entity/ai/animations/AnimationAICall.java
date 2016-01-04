@@ -1,11 +1,11 @@
 package org.jurassicraft.common.entity.ai.animations;
 
+import net.ilexiconn.llibrary.common.animation.Animation;
+import net.ilexiconn.llibrary.common.animation.IAnimated;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.AxisAlignedBB;
-import net.timeless.animationapi.AnimationAPI;
-import net.timeless.animationapi.IAnimatedEntity;
-import net.timeless.animationapi.client.AnimID;
+import net.timeless.animationapi.client.Animations;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 
 import java.util.List;
@@ -14,7 +14,7 @@ public class AnimationAICall extends EntityAIBase
 {
     protected EntityDinosaur animatingEntity;
 
-    public AnimationAICall(IAnimatedEntity entity)
+    public AnimationAICall(IAnimated entity)
     {
         super();
         animatingEntity = (EntityDinosaur) entity;
@@ -49,7 +49,7 @@ public class AnimationAICall extends EntityAIBase
     public void startExecuting()
     {
         super.startExecuting();
-        AnimationAPI.sendAnimPacket(animatingEntity, AnimID.CALLING);
+        Animation.sendAnimationPacket(animatingEntity, Animations.CALLING.get());
         animatingEntity.getNavigator().clearPathEntity();
     }
 

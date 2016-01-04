@@ -69,7 +69,7 @@ public abstract class HelicopterRidableModule extends HelicopterModule
         {
             return null;
         }
-        // System.out.println(id);
+        // System.out.println(animation);
         UUID entityID = UUID.fromString(id);
         // System.out.println(entity);
         return getSeatFromID(spot.getHelicopter().worldObj, entityID);

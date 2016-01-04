@@ -1,13 +1,13 @@
 package org.jurassicraft.client.render.entity;
 
+import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
-import net.timeless.animationapi.client.model.json.ModelJson;
-import net.timeless.animationapi.client.model.json.TabulaModelHelper;
+import net.timeless.animationapi.TabulaModelHelper;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.entity.item.EntityCageSmall;
 import org.lwjgl.opengl.GL11;

@@ -2,7 +2,7 @@ package org.jurassicraft.common.entity;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import net.timeless.animationapi.client.AnimID;
+import net.timeless.animationapi.client.Animations;
 import org.jurassicraft.common.animation.ControlledParam;
 import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
 import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimSoundBase;
@@ -29,8 +29,8 @@ public class EntityTyrannosaurus extends EntityDinosaurAggressive // , IEntityAI
     {
         super(world);
 
-        tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, AnimID.IDLE, 750, "jurassicraft:" + roarSounds[0], 1.5F));
-        tasks.addTask(2, new JCNonAutoAnimBase(this, 75, AnimID.INJURED, 750));
+        tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, Animations.IDLE.get(), 750, "jurassicraft:" + roarSounds[0], 1.5F));
+        tasks.addTask(2, new JCNonAutoAnimBase(this, 75, Animations.INJURED.get(), 750));
 
         for (Class target : targets)
         {

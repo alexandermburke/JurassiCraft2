@@ -1,16 +1,16 @@
 package org.jurassicraft.common.entity.ai.animations;
 
+import net.ilexiconn.llibrary.common.animation.Animation;
+import net.ilexiconn.llibrary.common.animation.IAnimated;
 import net.minecraft.entity.ai.EntityAIBase;
-import net.timeless.animationapi.AnimationAPI;
-import net.timeless.animationapi.IAnimatedEntity;
-import net.timeless.animationapi.client.AnimID;
+import net.timeless.animationapi.client.Animations;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 
 public class AnimationAIHeadCock extends EntityAIBase
 {
     protected EntityDinosaur animatingEntity;
 
-    public AnimationAIHeadCock(IAnimatedEntity entity)
+    public AnimationAIHeadCock(IAnimated entity)
     {
         super();
         animatingEntity = (EntityDinosaur) entity;
@@ -31,7 +31,7 @@ public class AnimationAIHeadCock extends EntityAIBase
     public void startExecuting()
     {
         super.startExecuting();
-        AnimationAPI.sendAnimPacket(animatingEntity, AnimID.HEAD_COCKING);
+        Animation.sendAnimationPacket(animatingEntity, Animations.HEAD_COCKING.get());
         animatingEntity.getNavigator().clearPathEntity();
     }
 

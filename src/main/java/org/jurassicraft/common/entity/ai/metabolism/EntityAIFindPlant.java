@@ -1,12 +1,12 @@
 package org.jurassicraft.common.entity.ai.metabolism;
 
+import net.ilexiconn.llibrary.common.animation.Animation;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import net.timeless.animationapi.AnimationAPI;
-import net.timeless.animationapi.client.AnimID;
+import net.timeless.animationapi.client.Animations;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.MetabolismContainer;
 
@@ -111,7 +111,7 @@ public class EntityAIFindPlant extends EntityAIBase
     {
         if ((dinosaur.getDistanceSq(x, y, z) / 16) <= dinosaur.width)
         {
-            AnimationAPI.sendAnimPacket(dinosaur, AnimID.EATING);
+            Animation.sendAnimationPacket(dinosaur, Animations.EATING.get());
 
             if (dinosaur.worldObj.getGameRules().getBoolean("mobGriefing"))
             {

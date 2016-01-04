@@ -50,7 +50,7 @@ public class RenderDinosaur extends RenderLiving<EntityDinosaur> implements IDin
     @Override
     public void preRenderCallback(EntityDinosaur entity, float partialTick)
     {
-        this.renderDef.getModelAnimator().preRenderCallback(entity, partialTick);
+        //this.renderDef.getModelAnimator().preRenderCallback(entity, partialTick); TODO
 
         if (entity instanceof EntityDinosaurFlyingAggressive) //TODO default flying
         {

@@ -1,12 +1,12 @@
 package org.jurassicraft.common.entity.ai;
 
+import net.ilexiconn.llibrary.common.animation.Animation;
+import net.ilexiconn.llibrary.common.animation.IAnimated;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.util.Vec3;
-import net.timeless.animationapi.AnimationAPI;
-import net.timeless.animationapi.IAnimatedEntity;
-import net.timeless.animationapi.client.AnimID;
+import net.timeless.animationapi.client.Animations;
 
 public class EntityAIJCPanic extends EntityAIBase
 {
@@ -58,9 +58,9 @@ public class EntityAIJCPanic extends EntityAIBase
     public void startExecuting()
     {
         theEntityCreature.getNavigator().tryMoveToXYZ(randPosX, randPosY, randPosZ, speed);
-        if (theEntityCreature instanceof IAnimatedEntity)
+        if (theEntityCreature instanceof IAnimated)
         {
-            AnimationAPI.sendAnimPacket((IAnimatedEntity) theEntityCreature, AnimID.HISSING);
+            Animation.sendAnimationPacket((IAnimated) theEntityCreature, Animations.HISSING.get());
         }
 
         // DEBUG

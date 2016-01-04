@@ -1,7 +1,7 @@
 package org.jurassicraft.common.entity;
 
 import net.minecraft.world.World;
-import net.timeless.animationapi.client.AnimID;
+import net.timeless.animationapi.client.Animations;
 import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
 import org.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbivore;
 
@@ -13,7 +13,7 @@ public class EntityHypsilophodon extends EntityDinosaurDefensiveHerbivore // imp
     public EntityHypsilophodon(World world)
     {
         super(world);
-        tasks.addTask(2, new JCNonAutoAnimBase(this, 35, AnimID.SCRATCHING, 60)); // Scratch Animation
+        tasks.addTask(2, new JCNonAutoAnimBase(this, 35, Animations.SCRATCHING.get(), 60)); // Scratch Animation
     }
 
     @Override

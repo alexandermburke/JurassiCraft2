@@ -1,13 +1,14 @@
 package net.timeless.animationapi.client;
 
+import net.ilexiconn.llibrary.client.model.modelbase.MowzieModelRenderer;
+import net.ilexiconn.llibrary.common.animation.Animation;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.animationapi.client.model.json.TabulaModelHelper;
-import net.timeless.animationapi.client.model.tools.MowzieModelRenderer;
+import net.timeless.animationapi.TabulaModelHelper;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
@@ -25,7 +26,7 @@ public class JabelarAnimationHelper
 
     private final Minecraft mc;
 
-    private final Map<AnimID, int[][]> mapOfSequences;
+    private final Map<Animation, int[][]> mapOfSequences;
 
     private final MowzieModelRenderer[][] arrayOfPoses;
     private MowzieModelRenderer[] theModelRendererArray;
@@ -41,7 +42,7 @@ public class JabelarAnimationHelper
 
     private final int numParts;
 
-    private AnimID currentSequence;
+    private Animation currentSequence;
     private int numPosesInSequence;
     private int currentPose;
     private int numTicksInTween;
@@ -57,7 +58,7 @@ public class JabelarAnimationHelper
      * @param parModel          the model to animate
      * @param parNumParts
      * @param parArrayOfPoses   for each pose(-index) an array of posed Renderers
-     * @param parMapOfSequences maps from an {@link AnimID} to the sequence of (pose-index, tween-length)
+     * @param parMapOfSequences maps from an {@link Animations} to the sequence of (pose-index, tween-length)
      * @param parInertialTweens
      */
     public JabelarAnimationHelper(
@@ -65,7 +66,7 @@ public class JabelarAnimationHelper
             ModelDinosaur parModel,
             int parNumParts,
             MowzieModelRenderer[][] parArrayOfPoses,
-            Map<AnimID, int[][]> parMapOfSequences,
+            Map<Animation, int[][]> parMapOfSequences,
             boolean parInertialTweens
     )
     {
@@ -95,9 +96,9 @@ public class JabelarAnimationHelper
         performBloodSpurt();
 
         // Allow interruption of the animation if it is a new animation and not currently dying
-        if (theEntity.getAnimID() != currentSequence && currentSequence != AnimID.DYING)
+        if (theEntity.getAnimation() != currentSequence && currentSequence != Animations.DYING.get())
         {
-            setNextSequence(theEntity.getAnimID());
+            setNextSequence(theEntity.getAnimation());
         }
         performNextTweenTick();
 
@@ -106,7 +107,7 @@ public class JabelarAnimationHelper
 
     private void init(ModelDinosaur parModel)
     {
-        initSequence(theEntity.getAnimID());
+        initSequence(theEntity.getAnimation());
 //        JurassiCraft.instance.getLogger().info("Initializing to animation sequence = " + currentSequence);
         initPoseModel();
         initTweenTicks();
@@ -128,7 +129,7 @@ public class JabelarAnimationHelper
         updateIncrementArrays();
     }
 
-    private void initSequence(AnimID parSequenceIndex)
+    private void initSequence(Animation parSequenceIndex)
     {
         // TODO
         // Should control here which animations are interruptible, in which priority
@@ -138,18 +139,18 @@ public class JabelarAnimationHelper
         if (mapOfSequences.get(parSequenceIndex) == null)
         {
             JurassiCraft.instance.getLogger().error("Requested an anim id " + parSequenceIndex.toString() + " that doesn't have animation sequence in map for entity " + theEntity.getEntityId());
-            currentSequence = AnimID.IDLE;
-            theEntity.setAnimID(AnimID.IDLE);
+            currentSequence = Animations.IDLE.get();
+            theEntity.setAnimation(Animations.IDLE.get());
         }
-        else if (currentSequence != AnimID.IDLE && currentSequence == parSequenceIndex) // finished sequence but no new sequence set
+        else if (currentSequence != Animations.IDLE.get() && currentSequence == parSequenceIndex) // finished sequence but no new sequence set
         {
 //            JurassiCraft.instance.getLogger().debug("Intializing to idle sequence");
-            currentSequence = AnimID.IDLE;
-            theEntity.setAnimID(AnimID.IDLE);
+            currentSequence = Animations.IDLE.get();
+            theEntity.setAnimation(Animations.IDLE.get());
         }
         else if (theEntity.isCarcass())
         {
-            currentSequence = AnimID.DYING;
+            currentSequence = Animations.DYING.get();
         }
         else
         {
@@ -355,7 +356,7 @@ public class JabelarAnimationHelper
     {
         if (incrementCurrentPose()) // increments pose and returns true if finished sequence
         {
-            setNextSequence(theEntity.getAnimID());
+            setNextSequence(theEntity.getAnimation());
         }
 
         updateCurrentPoseArrays();
@@ -381,7 +382,7 @@ public class JabelarAnimationHelper
         // check if finished sequence
         if (currentPose >= numPosesInSequence)
         {
-            if (theEntity.getAnimID() == AnimID.DYING) // hold last dying pose indefinitely
+            if (theEntity.getAnimation() == Animations.DYING.get()) // hold last dying pose indefinitely
             {
                 currentPose--;
             }
@@ -396,7 +397,7 @@ public class JabelarAnimationHelper
         return finishedSequence;
     }
 
-    private void setNextSequence(AnimID parSequenceIndex)
+    private void setNextSequence(Animation parSequenceIndex)
     {
         // TODO
         // Should control here which animations are interruptible, in which priority
@@ -406,12 +407,12 @@ public class JabelarAnimationHelper
         if (mapOfSequences.get(parSequenceIndex) == null)
         {
             JurassiCraft.instance.getLogger().error("Requested an anim id " + parSequenceIndex.toString() + " that doesn't have animation sequence in map for entity " + theEntity.getEntityId());
-            currentSequence = AnimID.IDLE;
+            currentSequence = Animations.IDLE.get();
         }
-        else if (currentSequence != AnimID.IDLE && currentSequence == parSequenceIndex) // finished sequence but no new sequence set
+        else if (currentSequence != Animations.IDLE.get() && currentSequence == parSequenceIndex) // finished sequence but no new sequence set
         {
 //            JurassiCraft.instance.getLogger().debug("Reverting to idle sequence");
-            currentSequence = AnimID.IDLE;
+            currentSequence = Animations.IDLE.get();
         }
         else
         {
@@ -419,11 +420,11 @@ public class JabelarAnimationHelper
             currentSequence = parSequenceIndex;
         }
 
-        theEntity.setAnimID(currentSequence);
+        theEntity.setAnimation(currentSequence);
         setNextPoseModel(0);
         startNextTween();
 
-//        if (currentSequence != AnimID.IDLE)
+//        if (currentSequence != Animations.IDLE)
 //        {
 //            JurassiCraft.instance.getLogger().debug("current sequence for entity ID " + theEntity.getEntityId() + " is " + currentSequence + " out of " + mapOfSequences.size() + " and current pose " + currentPose + " out of " + mapOfSequences.get(currentSequence).length + " with " + numTicksInTween + " ticks in tween");
 //        }

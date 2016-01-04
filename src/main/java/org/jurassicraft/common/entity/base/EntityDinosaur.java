@@ -1,16 +1,15 @@
 package org.jurassicraft.common.entity.base;
 
 import io.netty.buffer.ByteBuf;
+import net.ilexiconn.llibrary.client.model.modelbase.ChainBuffer;
+import net.ilexiconn.llibrary.common.animation.Animation;
+import net.ilexiconn.llibrary.common.animation.IAnimated;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -25,11 +24,8 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.AIAnimation;
-import net.timeless.animationapi.AnimationAPI;
-import net.timeless.animationapi.IAnimatedEntity;
-import net.timeless.animationapi.client.AnimID;
+import net.timeless.animationapi.client.Animations;
 import org.jurassicraft.JurassiCraft;
-import org.jurassicraft.common.animation.ChainBuffer;
 import org.jurassicraft.common.damagesource.EntityDinosaurDamageSource;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.ai.EntityAIHerd;
@@ -48,7 +44,7 @@ import org.jurassicraft.common.item.JCItemRegistry;
 
 import java.util.UUID;
 
-public abstract class EntityDinosaur extends EntityCreature implements IEntityAdditionalSpawnData, IAnimatedEntity
+public abstract class EntityDinosaur extends EntityCreature implements IEntityAdditionalSpawnData, IAnimated
 {
     protected Dinosaur dinosaur;
 
@@ -64,7 +60,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
     // For animation AI system
     public AIAnimation currentAnim = null;
-    private AnimID animID;
+    private Animation animation;
     private int animTick;
 
     private boolean hasTracker;
@@ -124,7 +120,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         isMale = rand.nextBoolean();
 
         animTick = 0;
-        setAnimID(AnimID.IDLE);
+        setAnimation(Animations.IDLE.get());
 
         goBackToSleep = true;
 
@@ -145,11 +141,11 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         {
             if (sleeping)
             {
-                AnimationAPI.sendAnimPacket(this, AnimID.SLEEPING);
+                Animation.sendAnimationPacket(this, Animations.SLEEPING.get());
             }
             else
             {
-                AnimationAPI.sendAnimPacket(this, AnimID.IDLE);
+                Animation.sendAnimationPacket(this, Animations.IDLE.get());
             }
         }
 
@@ -195,7 +191,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
-        AnimationAPI.sendAnimPacket(this, AnimID.ATTACKING);
+        Animation.sendAnimationPacket(this, Animations.ATTACKING.get());
 
         float damage = (float) getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
         int knockback = 0;
@@ -214,7 +210,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
             // if attacked entity is killed, stop attacking animation
             if (theEntityLivingBase.getHealth() < 0.0F)
             {
-                AnimationAPI.sendAnimPacket(this, AnimID.IDLE);
+                Animation.sendAnimationPacket(this, Animations.IDLE.get());
             }
         }
 
@@ -236,9 +232,9 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     @Override
     public boolean attackEntityFrom(DamageSource damageSource, float amount)
     {
-        if (getAnimID() == AnimID.IDLE)
+        if (getAnimation() == Animations.IDLE.get())
         {
-            AnimationAPI.sendAnimPacket(this, AnimID.INJURED);
+            Animation.sendAnimationPacket(this, Animations.INJURED.get());
         }
 
         if (isSleeping)
@@ -273,13 +269,13 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     @SideOnly(Side.CLIENT)
     public void performHurtAnimation()
     {
-        AnimationAPI.sendAnimPacket(this, AnimID.INJURED);
+        Animation.sendAnimationPacket(this, Animations.INJURED.get());
     }
 
     @Override
     public void playLivingSound()
     {
-        AnimationAPI.sendAnimPacket(this, AnimID.LIVING_SOUND);
+        Animation.sendAnimationPacket(this, Animations.LIVING_SOUND.get());
         super.playLivingSound();
     }
 
@@ -481,17 +477,17 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
         if (isCarcass)
         {
-            if (getAnimID() != AnimID.DYING)
+            if (getAnimation() != Animations.DYING.get())
             {
-                AnimationAPI.sendAnimPacket(this, AnimID.DYING);
+                Animation.sendAnimationPacket(this, Animations.DYING.get());
             }
         }
 
         if (isSleeping)
         {
-            if (getAnimID() != AnimID.SLEEPING)
+            if (getAnimation() != Animations.SLEEPING.get())
             {
-                AnimationAPI.sendAnimPacket(this, AnimID.SLEEPING);
+                Animation.sendAnimationPacket(this, Animations.SLEEPING.get());
             }
 
             if (!shouldSleep() && !worldObj.isRemote)
@@ -505,7 +501,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
             goBackToSleep = true;
         }
 
-        if (getAnimID() != AnimID.IDLE)
+        if (getAnimation() != Animations.IDLE.get())
         {
             animTick++;
         }
@@ -655,7 +651,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
     // NOTE: This adds an attack target. Class should be the entity class for the target, lower prio get executed
     // earlier
-    protected void addAIForAttackTargets(Class<? extends EntityDinosaur> entity, int prio)
+    protected void addAIForAttackTargets(Class<? extends EntityLivingBase> entity, int prio)
     {
         tasks.addTask(0, new EntityAIAttackOnCollide(this, entity, 1.0D, false));
         targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, entity, false));
@@ -686,31 +682,35 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         this.geneticsQuality = quality;
     }
 
-    @Override
-    public void setAnimID(AnimID newAnimation)
+    public void setAnimation(Animation newAnimation)
     {
         JurassiCraft.instance.getLogger().debug("Setting anim id for entity " + getEntityId() + " to " + newAnimation);
 
-        if (newAnimation != animID) // only process changes
+        if (newAnimation != animation) // only process changes
         {
-            animID = newAnimation;
+            animation = newAnimation;
         }
     }
 
     @Override
-    public void setAnimTick(int tick)
+    public Animation[] animations() {
+        return Animations.getAnimations();
+    }
+
+    @Override
+    public void setAnimationTick(int tick)
     {
         animTick = tick;
     }
 
     @Override
-    public AnimID getAnimID()
+    public Animation getAnimation()
     {
-        return animID;
+        return animation;
     }
 
     @Override
-    public int getAnimTick()
+    public int getAnimationTick()
     {
         return animTick;
     }

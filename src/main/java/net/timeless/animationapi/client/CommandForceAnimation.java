@@ -11,20 +11,15 @@
 package net.timeless.animationapi.client;
 
 import com.google.common.collect.Lists;
-import net.minecraft.command.CommandException;
+import net.ilexiconn.llibrary.common.animation.Animation;
+import net.minecraft.command.*;
 import net.minecraft.command.CommandResultStats.Type;
-import net.minecraft.command.EntityNotFoundException;
-import net.minecraft.command.ICommand;
-import net.minecraft.command.ICommandSender;
-import net.minecraft.command.PlayerSelector;
-import net.minecraft.command.WrongUsageException;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import net.timeless.animationapi.AnimationAPI;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 
@@ -194,7 +189,7 @@ public class CommandForceAnimation implements ICommand
         {
             List<String> animations = Lists.newArrayList();
             String current = args[0].toLowerCase();
-            for (AnimID animation : AnimID.values())
+            for (Animations animation : Animations.values())
             {
                 if (animation.name().toLowerCase().startsWith(current))
                 {
@@ -210,8 +205,8 @@ public class CommandForceAnimation implements ICommand
     {
         try
         {
-            AnimID animation = AnimID.valueOf(parAnimType.toUpperCase());
-            AnimationAPI.sendAnimPacket(entity, animation);
+            Animation animation = Animations.valueOf(parAnimType.toUpperCase()).get();
+            Animation.sendAnimationPacket(entity, animation);
         }
         catch (IllegalArgumentException iae)
         {

@@ -1,16 +1,16 @@
 package org.jurassicraft.common.entity.ai.animations;
 
+import net.ilexiconn.llibrary.common.animation.Animation;
+import net.ilexiconn.llibrary.common.animation.IAnimated;
 import net.minecraft.entity.ai.EntityAIBase;
-import net.timeless.animationapi.AnimationAPI;
-import net.timeless.animationapi.IAnimatedEntity;
-import net.timeless.animationapi.client.AnimID;
+import net.timeless.animationapi.client.Animations;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 
 public class AnimationAILook extends EntityAIBase
 {
     protected EntityDinosaur animatingEntity;
 
-    public AnimationAILook(IAnimatedEntity entity)
+    public AnimationAILook(IAnimated entity)
     {
         super();
         animatingEntity = (EntityDinosaur) entity;
@@ -31,7 +31,7 @@ public class AnimationAILook extends EntityAIBase
     public void startExecuting()
     {
         super.startExecuting();
-        AnimationAPI.sendAnimPacket(animatingEntity, animatingEntity.getRNG().nextBoolean() ? AnimID.LOOKING_LEFT : AnimID.LOOKING_RIGHT);
+        Animation.sendAnimationPacket(animatingEntity, animatingEntity.getRNG().nextBoolean() ? Animations.LOOKING_LEFT.get() : Animations.LOOKING_RIGHT.get());
         animatingEntity.getNavigator().clearPathEntity();
     }
 

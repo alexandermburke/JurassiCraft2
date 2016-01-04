@@ -1,28 +1,28 @@
 package org.jurassicraft.common.entity.ai.animations;
 
+import net.ilexiconn.llibrary.common.animation.Animation;
+import net.ilexiconn.llibrary.common.animation.IAnimated;
 import net.timeless.animationapi.AIAnimation;
-import net.timeless.animationapi.IAnimatedEntity;
-import net.timeless.animationapi.client.AnimID;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 
 public class JCAutoAnimBase extends AIAnimation
 {
     protected EntityDinosaur animatingEntity;
     protected int duration;
-    protected AnimID id;
+    protected Animation animation;
 
-    public JCAutoAnimBase(IAnimatedEntity entity, int duration, AnimID id)
+    public JCAutoAnimBase(IAnimated entity, int duration, Animation animation)
     {
         super(entity);
         this.duration = duration;
         animatingEntity = (EntityDinosaur) entity;
-        this.id = id;
+        this.animation = animation;
     }
 
     @Override
-    public AnimID getAnimID()
+    public Animation getAnimation()
     {
-        return id;
+        return animation;
     }
 
     @Override

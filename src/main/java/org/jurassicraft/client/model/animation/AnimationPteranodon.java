@@ -1,10 +1,10 @@
 package org.jurassicraft.client.model.animation;
 
+import net.ilexiconn.llibrary.common.animation.Animator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.animationapi.client.Animator;
 import net.timeless.animationapi.client.DinosaurAnimator;
-import net.timeless.animationapi.client.model.tools.MowzieModelRenderer;
+import net.ilexiconn.llibrary.client.model.modelbase.MowzieModelRenderer;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.entity.EntityPteranodon;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
@@ -159,7 +159,7 @@ public class AnimationPteranodon extends DinosaurAnimator
         rightArm1.rotationPointZ -= 1 * Math.cos(frame * 0.08);
 
         // // Twitch right
-        // animator.setAnim(AnimID.LOOKING_RIGHT);
+        // animator.setAnim(Animations.LOOKING_RIGHT);
         // animator.startPhase(3);
         // animator.rotate(head, 0, 0, 0.3f);
         // animator.move(head, 1, 0, 0);
@@ -168,7 +168,7 @@ public class AnimationPteranodon extends DinosaurAnimator
         // animator.resetPhase(3);
         //
         // // Twitch left
-        // animator.setAnim(AnimID.LOOKING_LEFT);
+        // animator.setAnim(Animations.LOOKING_LEFT);
         // animator.startPhase(3);
         // animator.rotate(head, 0, 0, -0.3f);
         // animator.move(head, -1, 0, 0);
@@ -177,7 +177,7 @@ public class AnimationPteranodon extends DinosaurAnimator
         // animator.resetPhase(3);
         //
         // // Call
-        // animator.setAnim(AnimID.CALLING);
+        // animator.setAnim(Animations.CALLING);
         // animator.startPhase(8);
         // animator.rotate(jaw, 0.3f, 0, 0);
         // animator.rotate(neck1, -0.15f, 0, 0);

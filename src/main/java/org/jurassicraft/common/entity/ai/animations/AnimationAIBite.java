@@ -1,10 +1,11 @@
 package org.jurassicraft.common.entity.ai.animations;
 
+import net.ilexiconn.llibrary.common.animation.Animation;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.util.DamageSource;
 import net.timeless.animationapi.AIAnimation;
-import net.timeless.animationapi.client.AnimID;
+import net.timeless.animationapi.client.Animations;
 import org.jurassicraft.common.entity.EntityGallimimus;
 import org.jurassicraft.common.entity.EntityTyrannosaurus;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
@@ -15,7 +16,7 @@ public class AnimationAIBite extends AIAnimation
     private EntityLivingBase entityTarget;
     private final int duration;
     private boolean eat;
-    protected AnimID id;
+    protected Animation animation;
 
     public AnimationAIBite(EntityDinosaur dino, int duration)
     {
@@ -24,13 +25,13 @@ public class AnimationAIBite extends AIAnimation
         this.entityTarget = null;
         this.duration = duration;
         eat = false;
-        this.id = AnimID.ATTACKING;
+        this.animation = Animations.ATTACKING.get();
     }
 
     @Override
-    public AnimID getAnimID()
+    public Animation getAnimation()
     {
-        return id;
+        return animation;
     }
 
     @Override
@@ -57,12 +58,12 @@ public class AnimationAIBite extends AIAnimation
     {
         if (this.entityTarget != null)
         {
-            if (this.entityBiting.getAnimTick() < ((this.duration / 2) - 2))
+            if (this.entityBiting.getAnimationTick() < ((this.duration / 2) - 2))
             {
                 this.entityBiting.getLookHelper().setLookPositionWithEntity(this.entityTarget, 30F, 30F);
             }
 
-            if (this.entityBiting.getAnimTick() == ((this.duration / 2) - 2))
+            if (this.entityBiting.getAnimationTick() == ((this.duration / 2) - 2))
             {
                 float damage = (float) getCreatureSpeed();
 

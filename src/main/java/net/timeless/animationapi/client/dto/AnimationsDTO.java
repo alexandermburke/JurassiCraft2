@@ -1,7 +1,7 @@
 package net.timeless.animationapi.client.dto;
 
 import com.google.gson.Gson;
-import net.timeless.animationapi.client.AnimID;
+import net.timeless.animationapi.client.Animations;
 
 import java.util.Map;
 
@@ -13,7 +13,7 @@ import java.util.Map;
 public class AnimationsDTO
 {
     /**
-     * Maps an {@link AnimID} as a string to the list of sequential poses
+     * Maps an {@link Animations} as a string to the list of sequential poses
      */
     public Map<String, PoseDTO[]> poses;
     public int version;

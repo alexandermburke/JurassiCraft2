@@ -1,7 +1,7 @@
 package org.jurassicraft.common.entity;
 
 import net.minecraft.world.World;
-import net.timeless.animationapi.client.AnimID;
+import net.timeless.animationapi.client.Animations;
 import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
 import org.jurassicraft.common.entity.base.EntityDinosaurDefensiveHerbivore;
 
@@ -10,7 +10,7 @@ public class EntityParasaurolophus extends EntityDinosaurDefensiveHerbivore // i
     public EntityParasaurolophus(World world)
     {
         super(world);
-        tasks.addTask(2, new JCNonAutoAnimBase(this, 60, AnimID.CALLING, 100)); // Call
+        tasks.addTask(2, new JCNonAutoAnimBase(this, 60, Animations.CALLING.get(), 100)); // Call
     }
 
     @Override

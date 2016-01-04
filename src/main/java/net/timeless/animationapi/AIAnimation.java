@@ -1,18 +1,20 @@
 package net.timeless.animationapi;
 
+import net.ilexiconn.llibrary.common.animation.Animation;
+import net.ilexiconn.llibrary.common.animation.IAnimated;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
-import net.timeless.animationapi.client.AnimID;
+import net.timeless.animationapi.client.Animations;
 
 public abstract class AIAnimation extends EntityAIBase
 {
-    public AIAnimation(IAnimatedEntity entity)
+    public AIAnimation(IAnimated entity)
     {
         animatedEntity = entity;
         setMutexBits(7);
     }
 
-    public abstract AnimID getAnimID();
+    public abstract Animation getAnimation();
 
     public <T extends EntityLiving> T getEntity()
     {
@@ -33,7 +35,7 @@ public abstract class AIAnimation extends EntityAIBase
     {
         if (isAutomatic())
         {
-            return animatedEntity.getAnimID() == getAnimID();
+            return animatedEntity.getAnimation() == getAnimation();
         }
         return shouldAnimate();
     }
@@ -43,22 +45,22 @@ public abstract class AIAnimation extends EntityAIBase
     {
         if (!isAutomatic())
         {
-            AnimationAPI.sendAnimPacket(animatedEntity, getAnimID());
+            Animation.sendAnimationPacket(animatedEntity, getAnimation());
         }
-        animatedEntity.setAnimTick(0);
+        animatedEntity.setAnimationTick(0);
     }
 
     @Override
     public boolean continueExecuting()
     {
-        return animatedEntity.getAnimTick() < getDuration();
+        return animatedEntity.getAnimationTick() < getDuration();
     }
 
     @Override
     public void resetTask()
     {
-        AnimationAPI.sendAnimPacket(animatedEntity, AnimID.IDLE);
+        Animation.sendAnimationPacket(animatedEntity, Animations.IDLE.get());
     }
 
-    private final IAnimatedEntity animatedEntity;
+    private final IAnimated animatedEntity;
 }

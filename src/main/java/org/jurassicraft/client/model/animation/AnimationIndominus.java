@@ -1,10 +1,10 @@
 package org.jurassicraft.client.model.animation;
 
+import net.ilexiconn.llibrary.common.animation.Animator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.animationapi.client.Animator;
 import net.timeless.animationapi.client.DinosaurAnimator;
-import net.timeless.animationapi.client.model.tools.MowzieModelRenderer;
+import net.ilexiconn.llibrary.client.model.modelbase.MowzieModelRenderer;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.entity.EntityIndominus;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
@@ -121,7 +121,7 @@ public class AnimationIndominus extends DinosaurAnimator
 
         ((EntityIndominus) parEntity).tailBuffer.applyChainSwingBuffer(tail);
 
-        // animator.setAnim(AnimID.IDLE);
+        // animator.setAnim(Animations.IDLE);
         // animator.startPhase(15);
         // animator.move(bodyRear, 0, -3, -5);
         // animator.move(rightThigh, 0, -3, -5);

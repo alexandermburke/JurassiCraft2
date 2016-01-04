@@ -1,13 +1,13 @@
 package org.jurassicraft.common.entity.ai.metabolism;
 
+import net.ilexiconn.llibrary.common.animation.Animation;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
-import net.timeless.animationapi.AnimationAPI;
-import net.timeless.animationapi.client.AnimID;
+import net.timeless.animationapi.client.Animations;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.MetabolismContainer;
 import org.jurassicraft.common.food.FoodHelper;
@@ -110,7 +110,7 @@ public class EntityAIEatFoodItem extends EntityAIBase
     {
         if (dinosaur.getEntityBoundingBox().intersectsWith(item.getEntityBoundingBox().expand(0.5D, 0.5D, 0.5D)))
         {
-            AnimationAPI.sendAnimPacket(dinosaur, AnimID.EATING);
+            Animation.sendAnimationPacket(dinosaur, Animations.EATING.get());
 
             if (dinosaur.worldObj.getGameRules().getBoolean("mobGriefing"))
             {
