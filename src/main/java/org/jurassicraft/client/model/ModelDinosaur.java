@@ -25,13 +25,7 @@ public class ModelDinosaur extends ModelJson
 
     public ModelDinosaur(JsonTabulaModel model)
     {
-        super(model);
-        this.animator = new Animator(this);
-        try {
-            this.nameMapField = ModelJson.class.getDeclaredField("nameMap");
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
+        this(model, null);
     }
 
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float rotation, float rotationYaw, float rotationPitch, float partialTicks, Entity entity)
@@ -52,6 +46,16 @@ public class ModelDinosaur extends ModelJson
     {
         super(model, animator);
         this.animator = new Animator(this);
+
+        try
+        {
+            this.nameMapField = ModelJson.class.getDeclaredField("nameMap");
+            this.nameMapField.setAccessible(true);
+        }
+        catch (NoSuchFieldException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public List<MowzieModelRenderer> getParts()
@@ -62,7 +66,8 @@ public class ModelDinosaur extends ModelJson
     public String[] getCubeNamesArray()
     {
         Map<String, MowzieModelRenderer> nameMap; //TODO: temp fix
-        try {
+        try
+        {
             nameMap = (Map<String, MowzieModelRenderer>) nameMapField.get(this);
             String[] cubeNamesArray = new String[nameMap.size()];
             int index = 0;
@@ -76,7 +81,9 @@ public class ModelDinosaur extends ModelJson
             }
 
             return cubeNamesArray;
-        } catch (IllegalAccessException e) {
+        }
+        catch (IllegalAccessException e)
+        {
             e.printStackTrace();
             return null;
         }
