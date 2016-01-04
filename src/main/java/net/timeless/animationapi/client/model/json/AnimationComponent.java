@@ -1,11 +1,11 @@
-package net.timeless.unilib.client.model.json;
+package net.timeless.animationapi.client.model.json;
 
 import java.util.ArrayList;
 
 /**
  * Container for Tabula animation components.
  *
- * @author Gegy1000 TAKEN FROM LLIBRARY
+ * @author Gegy1000 ADAPTED FROM LLIBRARY
  */
 public class AnimationComponent
 {

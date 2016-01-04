@@ -1,9 +1,9 @@
-package net.timeless.unilib.client.model.json;
+package net.timeless.animationapi.client.model.json;
 
 import java.util.ArrayList;
 
 /**
- * @author Gegy1000 TAKEN FROM LLIBRARY
+ * @author Gegy1000 ADAPTED FROM LLIBRARY
  */
 public class JsonTabulaModel
 {

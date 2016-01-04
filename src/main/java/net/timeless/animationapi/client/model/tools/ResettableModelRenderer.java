@@ -1,4 +1,4 @@
-package net.timeless.unilib.client.model.tools;
+package net.timeless.animationapi.client.model.tools;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
@@ -7,7 +7,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * @author RafaMv0
- * @author BobMowzie TAKEN FROM LLIBRARY
+ * @author BobMowzie ADAPTED FROM LLIBRARY
  */
 @SideOnly(Side.CLIENT)
 public class ResettableModelRenderer extends ModelRenderer

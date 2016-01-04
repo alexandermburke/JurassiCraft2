@@ -7,7 +7,7 @@ import net.minecraft.entity.ai.EntityAIOpenDoor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.timeless.animationapi.client.AnimID;
-import net.timeless.unilib.common.animation.ControlledAnimation;
+import org.jurassicraft.common.animation.ControlledAnimation;
 import org.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
 import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
 import org.jurassicraft.common.entity.base.EntityDinosaurAggressive;

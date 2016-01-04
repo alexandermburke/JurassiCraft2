@@ -6,10 +6,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.Animator;
-import net.timeless.unilib.client.model.json.IModelAnimator;
-import net.timeless.unilib.client.model.json.JsonTabulaModel;
-import net.timeless.unilib.client.model.json.ModelJson;
-import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+import net.timeless.animationapi.client.model.json.IModelAnimator;
+import net.timeless.animationapi.client.model.json.JsonTabulaModel;
+import net.timeless.animationapi.client.model.json.ModelJson;
+import net.timeless.animationapi.client.model.tools.MowzieModelRenderer;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 
 import java.util.List;

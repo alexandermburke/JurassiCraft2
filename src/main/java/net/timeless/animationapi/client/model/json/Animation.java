@@ -1,4 +1,4 @@
-package net.timeless.unilib.client.model.json;
+package net.timeless.animationapi.client.model.json;
 
 import com.google.common.collect.Ordering;
 import net.minecraftforge.fml.relauncher.Side;
@@ -10,7 +10,7 @@ import java.util.TreeMap;
 /**
  * Container for Tabula animations.
  *
- * @author Gegy1000 TAKEN FROM LLIBRARY
+ * @author Gegy1000 ADAPTED FROM LLIBRARY
  */
 @SideOnly(Side.CLIENT)
 public class Animation

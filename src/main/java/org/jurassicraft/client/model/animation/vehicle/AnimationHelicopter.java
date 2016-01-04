@@ -4,9 +4,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.unilib.client.model.json.IModelAnimator;
-import net.timeless.unilib.client.model.json.ModelJson;
-import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+import net.timeless.animationapi.client.model.json.IModelAnimator;
+import net.timeless.animationapi.client.model.json.ModelJson;
+import net.timeless.animationapi.client.model.tools.MowzieModelRenderer;
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 
 @SideOnly(Side.CLIENT)

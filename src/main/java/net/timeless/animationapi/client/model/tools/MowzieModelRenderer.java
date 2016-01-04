@@ -1,4 +1,4 @@
-package net.timeless.unilib.client.model.tools;
+package net.timeless.animationapi.client.model.tools;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBox;
@@ -11,7 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 
 /**
- * @author BobMowzie, gegy1000, FiskFille TAKEN FROM LLIBRARY
+ * @author BobMowzie, gegy1000, FiskFille ADAPTED FROM LLIBRARY
  */
 @SideOnly(Side.CLIENT)
 public class MowzieModelRenderer extends ModelRenderer

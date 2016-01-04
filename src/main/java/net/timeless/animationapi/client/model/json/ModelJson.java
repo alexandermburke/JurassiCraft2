@@ -1,22 +1,21 @@
-package net.timeless.unilib.client.model.json;
+package net.timeless.animationapi.client.model.json;
 
 import com.google.common.collect.Maps;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.unilib.client.model.tools.MowzieModelBase;
-import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+import net.timeless.animationapi.client.model.tools.MowzieModelBase;
+import net.timeless.animationapi.client.model.tools.MowzieModelRenderer;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 /**
- * @author gegy1000 TAKEN FROM LLIBRARY
+ * @author gegy1000 ADAPTED FROM LLIBRARY
  */
 @SideOnly(Side.CLIENT)
 public class ModelJson extends MowzieModelBase

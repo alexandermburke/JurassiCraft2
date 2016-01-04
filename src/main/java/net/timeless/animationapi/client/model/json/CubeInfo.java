@@ -1,11 +1,11 @@
-package net.timeless.unilib.client.model.json;
+package net.timeless.animationapi.client.model.json;
 
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 
 /**
- * @author iChun TAKEN FROM LLIBRARY
+ * @author iChun ADAPTED FROM LLIBRARY
  */
 public class CubeInfo
 {

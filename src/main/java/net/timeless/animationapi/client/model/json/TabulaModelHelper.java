@@ -1,7 +1,6 @@
-package net.timeless.unilib.client.model.json;
+package net.timeless.animationapi.client.model.json;
 
 import com.google.gson.Gson;
-import net.timeless.unilib.Unilib;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -19,7 +18,7 @@ public class TabulaModelHelper
             path += ".tbl";
         }
 
-        try (ZipInputStream inputStream = new ZipInputStream(Unilib.class.getResourceAsStream(path)))
+        try (ZipInputStream inputStream = new ZipInputStream(TabulaModelHelper.class.getResourceAsStream(path)))
         {
             ZipEntry entry;
             JsonTabulaModel parseTabulaModel = null;

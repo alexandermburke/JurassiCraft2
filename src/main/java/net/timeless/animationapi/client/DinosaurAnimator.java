@@ -6,13 +6,13 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.timeless.animationapi.AnimationAPI;
 import net.timeless.animationapi.client.dto.AnimationsDTO;
 import net.timeless.animationapi.client.dto.DinosaurRenderDefDTO;
 import net.timeless.animationapi.client.dto.PoseDTO;
-import net.timeless.unilib.Unilib;
-import net.timeless.unilib.client.model.json.IModelAnimator;
-import net.timeless.unilib.client.model.json.ModelJson;
-import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+import net.timeless.animationapi.client.model.json.IModelAnimator;
+import net.timeless.animationapi.client.model.json.ModelJson;
+import net.timeless.animationapi.client.model.tools.MowzieModelRenderer;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.dinosaur.Dinosaur;
@@ -140,7 +140,7 @@ public abstract class DinosaurAnimator implements IModelAnimator
         String growthName = growth.name().toLowerCase(Locale.ROOT);
         URI growthSensitiveDir = dinoDir.resolve(growthName + "/");
         URI definitionFile = growthSensitiveDir.resolve(name + "_" + growthName + ".json");
-        InputStream dinoDef = Unilib.class.getResourceAsStream(definitionFile.toString());
+        InputStream dinoDef = AnimationAPI.class.getResourceAsStream(definitionFile.toString());
 
         if (dinoDef == null)
         {

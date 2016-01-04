@@ -1,4 +1,4 @@
-package net.timeless.unilib.common.animation;
+package org.jurassicraft.common.animation;
 
 public class ControlledParam
 {

@@ -1,4 +1,4 @@
-package net.timeless.unilib.client.model.tools;
+package net.timeless.animationapi.client.model.tools;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * @author BobMowzie, gegy1000 TAKEN FROM LLIBRARY
+ * @author BobMowzie, gegy1000 ADAPTED FROM LLIBRARY
  */
 @SideOnly(Side.CLIENT)
 public class MowzieModelBase extends ModelBase

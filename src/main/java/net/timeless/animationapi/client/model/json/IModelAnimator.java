@@ -1,4 +1,4 @@
-package net.timeless.unilib.client.model.json;
+package net.timeless.animationapi.client.model.json;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -8,7 +8,7 @@ import net.minecraft.entity.EntityLivingBase;
  * <p/>
  * This can be used for Living animations.
  *
- * @author Gegy1000 TAKEN FROM LLIBRARY
+ * @author Gegy1000 ADAPTED FROM LLIBRARY
  */
 public interface IModelAnimator
 {

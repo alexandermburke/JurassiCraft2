@@ -1,11 +1,11 @@
-package net.timeless.unilib.common.animation;
+package org.jurassicraft.common.animation;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
-import net.timeless.unilib.client.model.tools.MowzieModelRenderer;
+import net.timeless.animationapi.client.model.tools.MowzieModelRenderer;
 
 /**
- * @author RafaMv0 TAKEN FROM LLIBRARY
+ * @author RafaMv0 ADAPTED FROM LLIBRARY
  */
 public class ChainBuffer
 {
