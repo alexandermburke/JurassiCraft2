@@ -1,14 +1,12 @@
 package org.jurassicraft.client.render.renderdef;
 
+import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
+import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.animationapi.client.model.json.IModelAnimator;
-import net.timeless.animationapi.client.model.json.ModelJson;
-import net.timeless.animationapi.client.model.json.TabulaModelHelper;
+import net.timeless.animationapi.TabulaModelHelper;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.client.render.entity.RenderDinosaur;
@@ -17,7 +15,7 @@ import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
 
 @SideOnly(Side.CLIENT)
-public class RenderDinosaurDefinition implements IRenderFactory<EntityDinosaur>
+public class RenderDinosaurDefinition
 {
     private final Dinosaur dinosaur;
     private final IModelAnimator animator;
@@ -129,8 +127,7 @@ public class RenderDinosaurDefinition implements IRenderFactory<EntityDinosaur>
         return dinosaur;
     }
 
-    @Override
-    public Render<? super EntityDinosaur> createRenderFor(RenderManager manager)
+    public Render<? super EntityDinosaur> createRenderFor()
     {
         return new RenderDinosaur(this);
     }

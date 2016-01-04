@@ -1,11 +1,11 @@
 package org.jurassicraft.client.model.animation;
 
+import net.ilexiconn.llibrary.common.animation.Animator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.animationapi.client.AnimID;
-import net.timeless.animationapi.client.Animator;
+import net.timeless.animationapi.client.Animations;
 import net.timeless.animationapi.client.DinosaurAnimator;
-import net.timeless.animationapi.client.model.tools.MowzieModelRenderer;
+import net.ilexiconn.llibrary.client.model.modelbase.MowzieModelRenderer;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.JCEntityRegistry;
@@ -91,7 +91,7 @@ public class AnimationDodo extends DinosaurAnimator
         model.chainWave(neckParts, globalSpeed * 0.125F, globalHeight * 0.05F, 3, ticksExisted, 1.0F);
         model.chainWave(bodyParts, globalSpeed * 0.125F, globalHeight * 0.05F, 3, ticksExisted, 1.0F);
 
-        animator.setAnim(AnimID.EATING);
+        animator.setAnimationId(Animations.EATING.get().animationId);
         animator.startPhase(7);
         animator.rotate(head, -0.3f, 0, 0);
         animator.rotate(body, 0.35f, 0, 0);

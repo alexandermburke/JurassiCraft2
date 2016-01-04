@@ -274,7 +274,7 @@ public class JCRenderingRegistry
     {
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
         {
-            RenderingRegistry.registerEntityRenderingHandler(dino.getDinosaurClass(), renderDefs.get(dino));
+            RenderingRegistry.registerEntityRenderingHandler(dino.getDinosaurClass(), renderDefs.get(dino).createRenderFor());
         }
 
         RenderingRegistry.registerEntityRenderingHandler(EntityCageSmall.class, new RenderCageSmall());

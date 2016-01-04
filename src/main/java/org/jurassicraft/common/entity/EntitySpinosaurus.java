@@ -2,7 +2,7 @@ package org.jurassicraft.common.entity;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import net.timeless.animationapi.client.AnimID;
+import net.timeless.animationapi.client.Animations;
 import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimSoundBase;
 import org.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 
@@ -27,7 +27,7 @@ public class EntitySpinosaurus extends EntityDinosaurAggressive // implements IE
             this.addAIForAttackTargets(targets[i], new Random().nextInt(3) + 1);
         }
 
-        tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, AnimID.INJURED, 750, "jurassicraft:spinosaurus_hurt_1", 1.5F));
+        tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, Animations.INJURED.get(), 750, "jurassicraft:spinosaurus_hurt_1", 1.5F));
     }
 
     @Override

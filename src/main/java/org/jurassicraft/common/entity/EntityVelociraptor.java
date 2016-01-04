@@ -1,16 +1,16 @@
 package org.jurassicraft.common.entity;
 
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIOpenDoor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import net.timeless.animationapi.client.AnimID;
+import net.timeless.animationapi.client.Animations;
 import org.jurassicraft.common.animation.ControlledAnimation;
 import org.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
 import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
-import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 
 import java.util.Random;
@@ -32,15 +32,15 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
     {
         super(world);
 
-        tasks.addTask(2, new JCAutoAnimBase(this, 25, AnimID.IDLE)); // Call
+        tasks.addTask(2, new JCAutoAnimBase(this, 25, Animations.IDLE.get())); // Call
         this.tasks.addTask(4, new EntityAIOpenDoor(this, true));
 
         // tasks.addTask(2, new JCAutoAnimBase(this, 25, 2)); //Attack
         // tasks.addTask(2, new JCAutoAnimBase(this, 25, 3)); //Die
         // tasks.addTask(2, new JCAutoAnimBase(this, 6, 4)); //Hurt
-        tasks.addTask(2, new JCNonAutoAnimBase(this, 25, AnimID.LOOKING_RIGHT, 100)); // Head twitch right
-        tasks.addTask(2, new JCNonAutoAnimBase(this, 25, AnimID.LOOKING_LEFT, 100)); // Head twitch left
-        tasks.addTask(2, new JCNonAutoAnimBase(this, 45, AnimID.SNIFFING, 150)); // Sniff
+        tasks.addTask(2, new JCNonAutoAnimBase(this, 25, Animations.LOOKING_RIGHT.get(), 100)); // Head twitch right
+        tasks.addTask(2, new JCNonAutoAnimBase(this, 25, Animations.LOOKING_LEFT.get(), 100)); // Head twitch left
+        tasks.addTask(2, new JCNonAutoAnimBase(this, 45, Animations.SNIFFING.get(), 150)); // Sniff
 
         for (Class target : targets)
         {
@@ -62,7 +62,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
     // NOTE: This adds an attack target. Class should be the entity class for the target, lower prio get executed
     // earlier
     @Override
-    protected void addAIForAttackTargets(Class<? extends EntityDinosaur> entity, int prio)
+    protected void addAIForAttackTargets(Class<? extends EntityLivingBase> entity, int prio)
     {
         this.tasks.addTask(0, new EntityAIAttackOnCollide(this, entity, 1.0D, false));
         this.tasks.addTask(1, new EntityAILeapAtTarget(this, 0.5F));
@@ -77,7 +77,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
     @Override
     public String getLivingSound()
     {
-        if (getAnimID() == AnimID.IDLE)
+        if (getAnimation() == Animations.IDLE.get())
         {
             return randomSound(livingSounds);
         }
@@ -105,7 +105,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
         // if (getAttackTarget() != null)
         // circleEntity(getAttackTarget(), 7, 1.0f, true, 0);
 
-        if (getAnimID() == AnimID.RESTING || getAnimID() == AnimID.ATTACKING)
+        if (getAnimation() == Animations.RESTING.get() || getAnimation() == Animations.ATTACKING.get())
         {
             dontLean.decreaseTimer();
         }

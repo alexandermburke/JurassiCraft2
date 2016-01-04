@@ -7,7 +7,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.animationapi.client.AnimID;
+import net.timeless.animationapi.client.Animations;
 import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimSoundBase;
 import org.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 
@@ -28,7 +28,7 @@ public class EntityIndominus extends EntityDinosaurAggressive // implements ICar
     public EntityIndominus(World world)
     {
         super(world);
-        tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, AnimID.IDLE, 750, breathSounds[0], 1.5F));
+        tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, Animations.IDLE.get(), 750, breathSounds[0], 1.5F));
         this.addAIForAttackTargets(EntityLivingBase.class, 0);
         this.defendFromAttacker(EntityLivingBase.class, 0);
     }
@@ -84,7 +84,7 @@ public class EntityIndominus extends EntityDinosaurAggressive // implements ICar
         {
             this.dataWatcher.updateObject(31, (byte) (isCamouflaging ? 1 : 0));
         }
-        // if (getAnimID() == 0)
+        // if (getAnimation() == 0)
         // AnimationAPI.sendAnimPacket(this, 1);
     }
 

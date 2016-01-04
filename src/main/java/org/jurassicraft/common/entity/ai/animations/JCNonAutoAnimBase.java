@@ -1,8 +1,9 @@
 package org.jurassicraft.common.entity.ai.animations;
 
+import net.ilexiconn.llibrary.common.animation.Animation;
+import net.ilexiconn.llibrary.common.animation.IAnimated;
 import net.timeless.animationapi.AIAnimation;
-import net.timeless.animationapi.IAnimatedEntity;
-import net.timeless.animationapi.client.AnimID;
+import net.timeless.animationapi.client.Animations;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 
 /**
@@ -12,22 +13,22 @@ public class JCNonAutoAnimBase extends AIAnimation
 {
     protected EntityDinosaur animatingEntity;
     protected int duration;
-    protected AnimID id;
+    protected Animation animation;
     protected int chance;
 
-    public JCNonAutoAnimBase(IAnimatedEntity entity, int duration, AnimID id, int chance)
+    public JCNonAutoAnimBase(IAnimated entity, int duration, Animation animation, int chance)
     {
         super(entity);
         this.duration = duration;
         animatingEntity = (EntityDinosaur) entity;
-        this.id = id;
+        this.animation = animation;
         this.chance = chance;
     }
 
     @Override
-    public AnimID getAnimID()
+    public Animation getAnimation()
     {
-        return id;
+        return animation;
     }
 
     @Override
@@ -45,7 +46,7 @@ public class JCNonAutoAnimBase extends AIAnimation
     @Override
     public boolean shouldExecute()
     {
-        return animatingEntity.getAnimID() == AnimID.IDLE && animatingEntity.getRNG().nextInt(chance) == 0;
+        return animatingEntity.getAnimation() == Animations.IDLE.get() && animatingEntity.getRNG().nextInt(chance) == 0;
     }
 
     @Override

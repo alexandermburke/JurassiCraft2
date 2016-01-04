@@ -1,20 +1,20 @@
 package org.jurassicraft.common.entity.ai.animations;
 
-import net.timeless.animationapi.IAnimatedEntity;
-import net.timeless.animationapi.client.AnimID;
+import net.ilexiconn.llibrary.common.animation.Animation;
+import net.ilexiconn.llibrary.common.animation.IAnimated;
+import net.timeless.animationapi.client.Animations;
 
 public class JCBegAnimation extends JCNonAutoAnimBase
 {
-
-    public JCBegAnimation(IAnimatedEntity entity, int duration, AnimID id, int chance)
+    public JCBegAnimation(IAnimated entity, int duration, Animation animation, int chance)
     {
-        super(entity, duration, id, chance);
+        super(entity, duration, animation, chance);
     }
 
     @Override
     public boolean shouldExecute()
     {
-        return animatingEntity.getAnimID() == AnimID.IDLE && animatingEntity.getRNG().nextInt(chance) == 0;
+        return animatingEntity.getAnimation() == Animations.IDLE.get() && animatingEntity.getRNG().nextInt(chance) == 0;
     }
 
     @Override

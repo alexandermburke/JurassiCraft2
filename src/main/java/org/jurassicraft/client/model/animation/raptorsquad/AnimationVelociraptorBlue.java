@@ -1,8 +1,8 @@
 package org.jurassicraft.client.model.animation.raptorsquad;
 
-import net.timeless.animationapi.client.Animator;
+import net.ilexiconn.llibrary.common.animation.Animator;
 import net.timeless.animationapi.client.DinosaurAnimator;
-import net.timeless.animationapi.client.model.tools.MowzieModelRenderer;
+import net.ilexiconn.llibrary.client.model.modelbase.MowzieModelRenderer;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.common.entity.EntityVelociraptor;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
@@ -217,7 +217,7 @@ public class AnimationVelociraptorBlue extends DinosaurAnimator
         // velociraptor.tailBuffer.applyChainSwingBuffer(tailParts);
         //
         // // Call
-        // animator.setAnim(AnimID.ATTACKING);
+        // animator.setAnim(Animations.ATTACKING);
         // animator.startPhase(2);
         // animator.rotate(shoulders, -0.3f, 0, 0);
         // animator.move(shoulders, 0, 0.5f, 0.2f);
@@ -251,7 +251,7 @@ public class AnimationVelociraptorBlue extends DinosaurAnimator
         // animator.resetPhase(8);
         //
         // // Twitch right
-        // animator.setAnim(AnimID.MATING);
+        // animator.setAnim(Animations.MATING);
         // animator.startPhase(3);
         // animator.rotate(head, 0, 0, 0.3f);
         // animator.move(head, 1, 0, 0);
@@ -260,7 +260,7 @@ public class AnimationVelociraptorBlue extends DinosaurAnimator
         // animator.resetPhase(3);
         //
         // // Twitch left
-        // animator.setAnim(AnimID.SLEEPING);
+        // animator.setAnim(Animations.SLEEPING);
         // animator.startPhase(3);
         // animator.rotate(head, 0, 0, -0.3f);
         // animator.move(head, -1, 0, 0);
@@ -269,7 +269,7 @@ public class AnimationVelociraptorBlue extends DinosaurAnimator
         // animator.resetPhase(3);
         //
         // // Look and sniff
-        // animator.setAnim(AnimID.RESTING);
+        // animator.setAnim(Animations.RESTING);
         // animator.startPhase(8);
         // animator.rotate(shoulders, 0.5f, 0.1f, 0);
         // animator.move(shoulders, 0, -1, -0.5f);

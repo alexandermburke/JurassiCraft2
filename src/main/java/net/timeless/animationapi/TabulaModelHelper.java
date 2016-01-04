@@ -1,6 +1,7 @@
-package net.timeless.animationapi.client.model.json;
+package net.timeless.animationapi;
 
 import com.google.gson.Gson;
+import net.ilexiconn.llibrary.common.json.container.JsonTabulaModel;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,8 +36,7 @@ public class TabulaModelHelper
             }
 
             return parseTabulaModel;
-        }
-        catch (IOException e)
+        } catch (IOException e)
         {
             e.printStackTrace();
             return null;

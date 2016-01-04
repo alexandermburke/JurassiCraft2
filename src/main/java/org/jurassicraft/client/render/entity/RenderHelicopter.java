@@ -1,6 +1,7 @@
 package org.jurassicraft.client.render.entity;
 
 import com.google.common.collect.Maps;
+import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
@@ -9,8 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.timeless.animationapi.client.model.json.ModelJson;
-import net.timeless.animationapi.client.model.json.TabulaModelHelper;
+import net.timeless.animationapi.TabulaModelHelper;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.animation.vehicle.AnimationHelicopter;
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
@@ -44,13 +44,13 @@ public class RenderHelicopter implements IRenderFactory<EntityHelicopterBase>
             try
             {
                 baseModel = new ModelJson(TabulaModelHelper.parseModel("/assets/jurassicraft/models/entities/helicopter/ranger_helicopter"), new AnimationHelicopter());
-                baseModel.setResetEachFrame(false);
+                //baseModel.setResetEachFrame(false); //TODO
 
                 // Modules init.
                 for (HelicopterModule module : HelicopterModule.registry.values())
                 {
                     ModelJson model = new ModelJson(TabulaModelHelper.parseModel("/assets/jurassicraft/models/entities/helicopter/modules/" + module.getModuleID()));
-                    model.setResetEachFrame(true);
+                    //model.setResetEachFrame(true); //TODO
                     moduleMap.put(module, model);
 
                     moduleTextures.put(module, new ResourceLocation(JurassiCraft.MODID, "textures/entities/helicopter/modules/" + module.getModuleID() + "_texture.png"));

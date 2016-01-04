@@ -1,7 +1,7 @@
 package org.jurassicraft.common.entity;
 
 import net.minecraft.world.World;
-import net.timeless.animationapi.client.AnimID;
+import net.timeless.animationapi.client.Animations;
 import org.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
 import org.jurassicraft.common.entity.ai.metabolism.EntityAIFindPlant;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
@@ -15,7 +15,7 @@ public class EntityDodo extends EntityDinosaur // implements IEntityAICreature, 
     public EntityDodo(World world)
     {
         super(world);
-        tasks.addTask(2, new JCAutoAnimBase(this, 18, AnimID.EATING));
+        tasks.addTask(2, new JCAutoAnimBase(this, 18, Animations.EATING.get()));
         tasks.addTask(1, new EntityAIFindPlant(this));
     }
 
