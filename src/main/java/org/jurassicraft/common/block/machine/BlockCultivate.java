@@ -66,7 +66,7 @@ public class BlockCultivate extends BlockContainer implements ISubBlocksBlock
      * returns a subtypes of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List subtypes)
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> subtypes)
     {
         EnumDyeColor[] colors = EnumDyeColor.values();
 

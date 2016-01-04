@@ -169,7 +169,7 @@ public class ItemDinosaurSpawnEgg extends Item
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List subtypes)
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> subtypes)
     {
         List<Dinosaur> dinosaurs = new ArrayList<Dinosaur>(JCEntityRegistry.getDinosaurs());
 
@@ -298,7 +298,7 @@ public class ItemDinosaurSpawnEgg extends Item
         return nbt;
     }
 
-    public void addInformation(ItemStack stack, EntityPlayer player, List lore, boolean advanced)
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> lore, boolean advanced)
     {
         lore.add(StatCollector.translateToLocal("lore.baby_dino.name"));
         lore.add(StatCollector.translateToLocal("lore.change_gender.name"));

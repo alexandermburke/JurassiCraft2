@@ -21,7 +21,7 @@ public class ItemHelicopter extends Item
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced)
+    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
     {
         super.addInformation(stack, playerIn, tooltip, advanced);
         tooltip.add("Right click on a block to spawn the helicopter");

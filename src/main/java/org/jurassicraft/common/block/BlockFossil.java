@@ -83,7 +83,7 @@ public class BlockFossil extends Block implements ISubBlocksBlock
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List list)
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
     {
         List<Dinosaur> dinosaurs = JCEntityRegistry.getDinosaurs();
 

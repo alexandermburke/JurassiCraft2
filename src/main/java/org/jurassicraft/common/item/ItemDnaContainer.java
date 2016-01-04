@@ -70,7 +70,7 @@ public class ItemDnaContainer extends Item
         return genetics;
     }
 
-    public void addInformation(ItemStack stack, EntityPlayer player, List lore, boolean advanced)
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> lore, boolean advanced)
     {
         int quality = getDNAQuality(player, stack);
 

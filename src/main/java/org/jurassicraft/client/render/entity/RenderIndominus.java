@@ -2,7 +2,6 @@ package org.jurassicraft.client.render.entity;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -22,7 +21,7 @@ public class RenderIndominus extends RenderDinosaur
     }
 
     @Override
-    public void doRender(EntityLiving entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(EntityDinosaur entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
 
@@ -30,7 +29,7 @@ public class RenderIndominus extends RenderDinosaur
     }
 
     @Override
-    public void preRenderCallback(EntityLivingBase entity, float side)
+    public void preRenderCallback(EntityDinosaur entity, float side)
     {
         super.preRenderCallback(entity, side);
 

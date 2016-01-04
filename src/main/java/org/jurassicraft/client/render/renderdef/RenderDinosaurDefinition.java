@@ -1,7 +1,9 @@
 package org.jurassicraft.client.render.renderdef;
 
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.client.model.json.IModelAnimator;
@@ -11,10 +13,11 @@ import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.client.model.ModelDinosaur;
 import org.jurassicraft.client.render.entity.RenderDinosaur;
 import org.jurassicraft.common.dinosaur.Dinosaur;
+import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
 
 @SideOnly(Side.CLIENT)
-public class RenderDinosaurDefinition
+public class RenderDinosaurDefinition implements IRenderFactory<EntityDinosaur>
 {
     private final Dinosaur dinosaur;
     private final IModelAnimator animator;
@@ -126,7 +129,8 @@ public class RenderDinosaurDefinition
         return dinosaur;
     }
 
-    public RenderLiving getRenderer()
+    @Override
+    public Render<? super EntityDinosaur> createRenderFor(RenderManager manager)
     {
         return new RenderDinosaur(this);
     }

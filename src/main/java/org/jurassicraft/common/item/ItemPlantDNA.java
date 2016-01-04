@@ -52,7 +52,7 @@ public class ItemPlantDNA extends Item
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List subtypes)
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> subtypes)
     {
         List<Plant> plants = new ArrayList<Plant>(JCPlantRegistry.getPlants());
 
@@ -103,7 +103,7 @@ public class ItemPlantDNA extends Item
         return quality;
     }
 
-    public void addInformation(ItemStack stack, EntityPlayer player, List lore, boolean advanced)
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> lore, boolean advanced)
     {
         int quality = getDNAQuality(player, stack);
 
