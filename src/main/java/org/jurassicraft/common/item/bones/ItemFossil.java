@@ -50,7 +50,7 @@ public class ItemFossil extends Item
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List subtypes)
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> subtypes)
     {
         List<Dinosaur> dinosaurs = new ArrayList<Dinosaur>(JCEntityRegistry.getDinosaurs());
 

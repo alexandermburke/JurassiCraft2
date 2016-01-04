@@ -47,7 +47,7 @@ public class BlockMeta extends Block
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, List list)
+    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
     {
         for (int i = 0; i < getSubBlocks(); i++)
         {

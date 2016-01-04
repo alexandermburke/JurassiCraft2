@@ -147,8 +147,9 @@ public abstract class DinosaurAnimator implements IModelAnimator
             throw new IllegalArgumentException("No model definition for the dino " + name + " with grow-state " + growth + " exists. Expected at " + definitionFile);
         }
 
-        try (Reader reader = new InputStreamReader(dinoDef))
+        try
         {
+            Reader reader = new InputStreamReader(dinoDef);
             AnimationsDTO rawAnimations = GSON.fromJson(reader, AnimationsDTO.class);
             PreloadedModelData data = getPosedModels(growthSensitiveDir, rawAnimations);
             JurassiCraft.instance.getLogger().debug("Successfully loaded " + name + "(" + growth + ") from " + definitionFile);
@@ -156,6 +157,11 @@ public abstract class DinosaurAnimator implements IModelAnimator
             reader.close();
 
             return data;
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            return null;
         }
     }
 

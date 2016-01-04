@@ -10,6 +10,7 @@ import net.timeless.animationapi.client.AnimID;
 import org.jurassicraft.common.animation.ControlledAnimation;
 import org.jurassicraft.common.entity.ai.animations.JCAutoAnimBase;
 import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
+import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 
 import java.util.Random;
@@ -61,7 +62,7 @@ public class EntityVelociraptor extends EntityDinosaurAggressive // implements I
     // NOTE: This adds an attack target. Class should be the entity class for the target, lower prio get executed
     // earlier
     @Override
-    protected void addAIForAttackTargets(Class entity, int prio)
+    protected void addAIForAttackTargets(Class<? extends EntityDinosaur> entity, int prio)
     {
         this.tasks.addTask(0, new EntityAIAttackOnCollide(this, entity, 1.0D, false));
         this.tasks.addTask(1, new EntityAILeapAtTarget(this, 0.5F));

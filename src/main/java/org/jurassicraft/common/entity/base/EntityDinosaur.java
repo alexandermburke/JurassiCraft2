@@ -655,7 +655,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
     // NOTE: This adds an attack target. Class should be the entity class for the target, lower prio get executed
     // earlier
-    protected void addAIForAttackTargets(Class entity, int prio)
+    protected void addAIForAttackTargets(Class<? extends EntityDinosaur> entity, int prio)
     {
         tasks.addTask(0, new EntityAIAttackOnCollide(this, entity, 1.0D, false));
         targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, entity, false));

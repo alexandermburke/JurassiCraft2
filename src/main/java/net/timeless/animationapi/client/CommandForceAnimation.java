@@ -122,7 +122,7 @@ public class CommandForceAnimation implements ICommand
 
     public CommandForceAnimation()
     {
-        aliases = new ArrayList<>();
+        aliases = new ArrayList<String>();
         aliases.add("animate");
         aliases.add("anim");
     }
@@ -188,7 +188,7 @@ public class CommandForceAnimation implements ICommand
     }
 
     @Override
-    public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
     {
         if (args.length == 1)
         {
