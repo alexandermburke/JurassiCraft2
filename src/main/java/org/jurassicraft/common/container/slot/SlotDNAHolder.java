@@ -7,9 +7,9 @@ import org.jurassicraft.common.item.ItemSoftTissue;
 
 public class SlotDNAHolder extends Slot
 {
-    public SlotDNAHolder(IInventory inventory, int slotIndex, int yPosition)
+    public SlotDNAHolder(IInventory inventory, int slotIndex, int xPosition, int yPosition)
     {
-        super(inventory, slotIndex, 44, yPosition);
+        super(inventory, slotIndex, xPosition, yPosition);
     }
 
     @Override

@@ -7,8 +7,8 @@ import org.jurassicraft.common.entity.base.EntityDinosaur;
 
 public class EntityAIMate extends EntityAIBase
 {
-    private final EntityDinosaur dinosaur;
-    private EntityDinosaur mate;
+    protected EntityDinosaur dinosaur;
+    protected EntityDinosaur mate;
 
     public EntityAIMate(EntityDinosaur dinosaur)
     {

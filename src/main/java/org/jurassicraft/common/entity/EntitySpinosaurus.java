@@ -6,6 +6,8 @@ import net.timeless.animationapi.client.AnimID;
 import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimSoundBase;
 import org.jurassicraft.common.entity.base.EntityDinosaurAggressive;
 
+import java.util.Random;
+
 public class EntitySpinosaurus extends EntityDinosaurAggressive // implements IEntityAICreature, IOmnivore
 {
     private static final String[] hurtSounds = new String[] { "spinosaurus_hurt_1" };
@@ -20,8 +22,9 @@ public class EntitySpinosaurus extends EntityDinosaurAggressive // implements IE
     {
         super(world);
 
-        for (Class target : targets) {
-            this.addAIForAttackTargets(target);
+        for (int i = 0; i < targets.length; i++)
+        {
+            this.addAIForAttackTargets(targets[i], new Random().nextInt(3) + 1);
         }
 
         tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, AnimID.INJURED, 750, "jurassicraft:spinosaurus_hurt_1", 1.5F));

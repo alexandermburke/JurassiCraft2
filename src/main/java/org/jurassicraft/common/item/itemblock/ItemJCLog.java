@@ -5,7 +5,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import org.jurassicraft.common.lang.AdvLang;
 
-class ItemJCLog extends ItemBlock
+public class ItemJCLog extends ItemBlock
 {
     public ItemJCLog(Block block)
     {

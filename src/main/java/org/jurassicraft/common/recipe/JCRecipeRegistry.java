@@ -191,9 +191,9 @@ public class JCRecipeRegistry
         {
             char character = s.charAt(i1);
 
-            if (hashmap.containsKey(character))
+            if (hashmap.containsKey(Character.valueOf(character)))
             {
-                inputs[i1] = hashmap.get(character).copy();
+                inputs[i1] = hashmap.get(Character.valueOf(character)).copy();
             }
             else
             {

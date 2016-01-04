@@ -8,14 +8,14 @@ import net.minecraft.world.biome.WorldChunkManager;
 
 import java.util.List;
 
-class WorldChunkManagerJurassic extends WorldChunkManager
+public class WorldChunkManagerJurassic extends WorldChunkManager
 {
 
     private final List<BiomeGenBase> biomesToSpawnIn;
     private final BiomeCache biomeCache;
     // private final GenLayer biomeGenLayer;
 
-    private WorldChunkManagerJurassic()
+    public WorldChunkManagerJurassic(long seed)
     {
         super();
         // biomeGenLayer = GenLayerJurassic.initializeAllBiomeGenerators(seed);
@@ -27,7 +27,7 @@ class WorldChunkManagerJurassic extends WorldChunkManager
 
     public WorldChunkManagerJurassic(World worldIn)
     {
-        this();
+        this(worldIn.getSeed());
     }
 
     @Override

@@ -12,7 +12,7 @@ import org.jurassicraft.common.tileentity.TileIncubator;
 
 public class ContainerIncubator extends Container
 {
-    private final TileIncubator incubator;
+    private TileIncubator incubator;
 
     public ContainerIncubator(InventoryPlayer playerInventory, TileEntity tileEntity)
     {

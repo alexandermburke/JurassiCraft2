@@ -24,7 +24,7 @@ public class WorldGenerator implements IWorldGenerator
         }
     }
 
-    private void generateOverworld(World world, Random random, int chunkX, int chunkZ)
+    public void generateOverworld(World world, Random random, int chunkX, int chunkZ)
     {
         for (int i = 0; i < 32; i++)
         {

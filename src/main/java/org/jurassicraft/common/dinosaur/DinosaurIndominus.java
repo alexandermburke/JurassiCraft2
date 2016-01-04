@@ -7,16 +7,17 @@ import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.EnumDiet;
 import org.jurassicraft.common.entity.base.EnumGrowthStage;
 import org.jurassicraft.common.entity.base.EnumSleepingSchedule;
+import org.jurassicraft.common.food.EnumFoodType;
 import org.jurassicraft.common.period.EnumTimePeriod;
 
 public class DinosaurIndominus extends Dinosaur implements IHybrid
 {
-    private final ResourceLocation texture;
+    private ResourceLocation texture;
 
-    private final ResourceLocation overlayTexture;
+    private ResourceLocation overlayTexture;
 
-    private final Class<? extends Dinosaur>[] baseGenes;
-    private final Class<? extends Dinosaur>[] extraGenes;
+    private Class[] baseGenes;
+    private Class[] extraGenes;
 
     public DinosaurIndominus()
     {
@@ -140,7 +141,7 @@ public class DinosaurIndominus extends Dinosaur implements IHybrid
         return texture;
     }
 
-    public ResourceLocation getCamoTexture()
+    public ResourceLocation getCamoTexture(EnumGrowthStage stage)
     {
         return overlayTexture;
     }
@@ -182,13 +183,13 @@ public class DinosaurIndominus extends Dinosaur implements IHybrid
     }
 
     @Override
-    public Class<? extends Dinosaur>[] getBaseGenes()
+    public Class[] getBaseGenes()
     {
         return baseGenes;
     }
 
     @Override
-    public Class<? extends Dinosaur>[] getExtraGenes()
+    public Class[] getExtraGenes()
     {
         return extraGenes;
     }

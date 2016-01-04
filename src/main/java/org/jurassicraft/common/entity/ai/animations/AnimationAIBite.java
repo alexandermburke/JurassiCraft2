@@ -9,13 +9,13 @@ import org.jurassicraft.common.entity.EntityGallimimus;
 import org.jurassicraft.common.entity.EntityTyrannosaurus;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 
-class AnimationAIBite extends AIAnimation
+public class AnimationAIBite extends AIAnimation
 {
     private final EntityDinosaur entityBiting;
     private EntityLivingBase entityTarget;
     private final int duration;
     private boolean eat;
-    private final AnimID id;
+    protected AnimID id;
 
     public AnimationAIBite(EntityDinosaur dino, int duration)
     {
@@ -79,7 +79,7 @@ class AnimationAIBite extends AIAnimation
         }
     }
 
-    private double getCreatureSpeed()
+    public double getCreatureSpeed()
     {
         return (double) ((int) (100 * this.entityBiting.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue())) / 100;
     }

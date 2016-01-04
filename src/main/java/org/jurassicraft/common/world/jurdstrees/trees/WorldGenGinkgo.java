@@ -13,13 +13,13 @@ import java.util.Random;
 public class WorldGenGinkgo extends WorldGenAbstractTree
 {
 
-    private final int code;
+    private int code;
 
-    public WorldGenGinkgo()
+    public WorldGenGinkgo(int code)
     {
 
         super(true);
-        this.code = 0;
+        this.code = code;
 
     }
 

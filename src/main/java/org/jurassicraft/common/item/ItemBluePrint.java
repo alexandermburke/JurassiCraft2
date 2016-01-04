@@ -51,7 +51,7 @@ public class ItemBluePrint extends Item
         stack.setTagCompound(nbt);
     }
 
-    private int getDinosaur(ItemStack stack)
+    public int getDinosaur(ItemStack stack)
     {
         NBTTagCompound nbt = stack.getTagCompound();
 

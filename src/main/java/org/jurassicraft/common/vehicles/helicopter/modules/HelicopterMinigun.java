@@ -8,7 +8,7 @@ import java.util.Collection;
 
 public class HelicopterMinigun extends HelicopterRidableModule
 {
-    HelicopterMinigun()
+    protected HelicopterMinigun()
     {
         super("ranger_helicopter_minigun");
     }

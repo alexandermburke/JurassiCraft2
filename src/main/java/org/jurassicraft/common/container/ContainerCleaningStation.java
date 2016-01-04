@@ -68,20 +68,27 @@ public class ContainerCleaningStation extends Container
     {
         super.detectAndSendChanges();
 
-        for (ICrafting icrafting : this.crafters) {
-            if (this.field_178152_f != this.tileCleaningStation.getField(2)) {
+        for (int i = 0; i < this.crafters.size(); ++i)
+        {
+            ICrafting icrafting = (ICrafting) this.crafters.get(i);
+
+            if (this.field_178152_f != this.tileCleaningStation.getField(2))
+            {
                 icrafting.sendProgressBarUpdate(this, 2, this.tileCleaningStation.getField(2));
             }
 
-            if (this.field_178154_h != this.tileCleaningStation.getField(0)) {
+            if (this.field_178154_h != this.tileCleaningStation.getField(0))
+            {
                 icrafting.sendProgressBarUpdate(this, 0, this.tileCleaningStation.getField(0));
             }
 
-            if (this.field_178155_i != this.tileCleaningStation.getField(1)) {
+            if (this.field_178155_i != this.tileCleaningStation.getField(1))
+            {
                 icrafting.sendProgressBarUpdate(this, 1, this.tileCleaningStation.getField(1));
             }
 
-            if (this.field_178153_g != this.tileCleaningStation.getField(3)) {
+            if (this.field_178153_g != this.tileCleaningStation.getField(3))
+            {
                 icrafting.sendProgressBarUpdate(this, 3, this.tileCleaningStation.getField(3));
             }
         }
@@ -109,7 +116,7 @@ public class ContainerCleaningStation extends Container
     public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
     {
         ItemStack itemstack = null;
-        Slot slot = this.inventorySlots.get(index);
+        Slot slot = (Slot) this.inventorySlots.get(index);
 
         if (slot != null && slot.getHasStack())
         {
@@ -160,7 +167,7 @@ public class ContainerCleaningStation extends Container
 
             if (transferFrom.stackSize == 0)
             {
-                slot.putStack(null);
+                slot.putStack((ItemStack) null);
             }
             else
             {

@@ -13,7 +13,7 @@ import org.jurassicraft.common.tileentity.TileDnaSynthesizer;
 
 public class ContainerDnaSynthesizer extends Container
 {
-    private final TileDnaSynthesizer dnaSynthesizer;
+    private TileDnaSynthesizer dnaSynthesizer;
 
     public ContainerDnaSynthesizer(InventoryPlayer playerInventory, TileEntity tileEntity)
     {

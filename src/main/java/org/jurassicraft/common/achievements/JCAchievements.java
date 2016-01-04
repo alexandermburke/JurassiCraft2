@@ -14,7 +14,7 @@ public class JCAchievements
     public static JCAchievement fossilGrinder;
     public static JCAchievement reinforcedStone;
 
-    private static AchievementPage jurassicraftPage;
+    public static AchievementPage jurassicraftPage;
 
     public void register()
     {

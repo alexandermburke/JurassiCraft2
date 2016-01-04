@@ -5,7 +5,7 @@ import java.util.Collections;
 
 public class HelicopterSeat extends HelicopterRidableModule
 {
-    HelicopterSeat()
+    protected HelicopterSeat()
     {
         super("helicopter_seat");
     }

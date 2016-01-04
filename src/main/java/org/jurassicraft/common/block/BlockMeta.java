@@ -2,6 +2,7 @@ package org.jurassicraft.common.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
@@ -16,9 +17,9 @@ import java.util.List;
 public class BlockMeta extends Block
 {
 
-    private static final PropertyInteger TYPE = PropertyInteger.create("type", 0, 15);
-    private final String path;
-    private final int subBlocks;
+    public static final PropertyInteger TYPE = PropertyInteger.create("type", 0, 15);
+    private String path;
+    private int subBlocks;
 
     public BlockMeta(Material material, String path, int subBlocks)
     {
@@ -41,12 +42,12 @@ public class BlockMeta extends Block
     @Override
     public int damageDropped(IBlockState state)
     {
-        return state.getValue(TYPE);
+        return ((Integer) state.getValue(TYPE)).intValue();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
+    public void getSubBlocks(Item itemIn, CreativeTabs tab, List list)
     {
         for (int i = 0; i < getSubBlocks(); i++)
         {
@@ -63,13 +64,13 @@ public class BlockMeta extends Block
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(TYPE);
+        return ((Integer) state.getValue(TYPE)).intValue();
     }
 
     @Override
     protected BlockState createBlockState()
     {
-        return new BlockState(this, TYPE);
+        return new BlockState(this, new IProperty[] { TYPE });
     }
 
 }

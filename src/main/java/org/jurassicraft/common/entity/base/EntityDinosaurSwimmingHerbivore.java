@@ -9,6 +9,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import org.jurassicraft.common.entity.ai.EntityAIMoveUnderwater;
+import org.jurassicraft.common.entity.ai.metabolism.EntityAIFindPlant;
 
 public abstract class EntityDinosaurSwimmingHerbivore extends EntityDinosaur
 {
@@ -102,7 +103,7 @@ public abstract class EntityDinosaurSwimmingHerbivore extends EntityDinosaur
 
     class SwimmingMoveHelper extends EntityMoveHelper
     {
-        private final EntityDinosaurSwimmingHerbivore swimmingEntity = EntityDinosaurSwimmingHerbivore.this;
+        private EntityDinosaurSwimmingHerbivore swimmingEntity = EntityDinosaurSwimmingHerbivore.this;
 
         public SwimmingMoveHelper()
         {

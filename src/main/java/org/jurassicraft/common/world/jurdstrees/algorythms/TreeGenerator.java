@@ -14,13 +14,11 @@ public class TreeGenerator
 {
 
     private Tree tree;
-    private final int code;
-    private final BlockPos pos;
-    private final World world;
-    private final int x;
-    private final int y;
-    private final int z;
-    private final Random random = new Random();
+    private int code;
+    private BlockPos pos;
+    private World world;
+    int x, y, z;
+    private Random random = new Random();
 
     public TreeGenerator(int code, World world, BlockPos pos)
     {

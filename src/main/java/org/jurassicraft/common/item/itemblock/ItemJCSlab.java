@@ -66,7 +66,7 @@ public class ItemJCSlab extends ItemBlock
 
             if (iblockstate.getBlock() == this.singleSlab)
             {
-                BlockSlab.EnumBlockHalf enumblockhalf = iblockstate.getValue(BlockSlab.HALF);
+                BlockSlab.EnumBlockHalf enumblockhalf = (BlockSlab.EnumBlockHalf) iblockstate.getValue(BlockSlab.HALF);
 
                 if ((side == EnumFacing.UP && enumblockhalf == BlockSlab.EnumBlockHalf.BOTTOM || side == EnumFacing.DOWN && enumblockhalf == BlockSlab.EnumBlockHalf.TOP))
                 {
@@ -82,7 +82,7 @@ public class ItemJCSlab extends ItemBlock
                 }
             }
 
-            return this.tryPlace(stack, worldIn, pos.offset(side)) || super.onItemUse(stack, playerIn, worldIn, pos, side, hitX, hitY, hitZ);
+            return this.tryPlace(stack, worldIn, pos.offset(side)) ? true : super.onItemUse(stack, playerIn, worldIn, pos, side, hitX, hitY, hitZ);
         }
     }
 
@@ -104,7 +104,7 @@ public class ItemJCSlab extends ItemBlock
 
         pos = pos.offset(side);
         IBlockState iblockstate1 = worldIn.getBlockState(pos);
-        return iblockstate1.getBlock() == this.singleSlab || super.canPlaceBlockOnSide(worldIn, blockpos1, side, player, stack);
+        return iblockstate1.getBlock() == this.singleSlab ? true : super.canPlaceBlockOnSide(worldIn, blockpos1, side, player, stack);
     }
 
     private boolean tryPlace(ItemStack stack, World worldIn, BlockPos pos)

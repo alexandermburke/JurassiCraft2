@@ -9,8 +9,8 @@ import java.util.regex.Pattern;
 
 public class AdvLang
 {
-    private final String langPath;
-    private final Map<String, String> properties = new HashMap<>();
+    private String langPath;
+    private Map<String, String> properties = new HashMap<String, String>();
 
     public AdvLang(String langPath)
     {

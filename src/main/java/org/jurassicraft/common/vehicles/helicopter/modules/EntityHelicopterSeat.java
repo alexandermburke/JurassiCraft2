@@ -105,7 +105,7 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
         parentID = UUID.fromString(tagCompound.getString("heliID"));
     }
 
-    private static EntityHelicopterBase getParentFromID(World worldObj, final UUID id)
+    public static EntityHelicopterBase getParentFromID(World worldObj, final UUID id)
     {
         List<EntityHelicopterBase> list = worldObj.getEntities(EntityHelicopterBase.class, new Predicate<Entity>()
         {

@@ -12,11 +12,9 @@ import org.jurassicraft.common.entity.base.MetabolismContainer;
 
 public class EntityAIDrink extends EntityAIBase
 {
-    private final EntityDinosaur dinosaur;
+    protected EntityDinosaur dinosaur;
 
-    private int x;
-    private int y;
-    private int z;
+    protected int x, y, z;
 
     public EntityAIDrink(EntityDinosaur dinosaur)
     {

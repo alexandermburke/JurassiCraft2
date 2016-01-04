@@ -4,12 +4,12 @@ import java.util.Random;
 
 public enum EnumSleepingSchedule
 {
-    DIURNAL(fromTimeToTicks(6, 0), fromTimeToTicks(22, 0)),
-    NOCTURNAL(fromTimeToTicks(18, 0), fromTimeToTicks(6, 0)),
+    DIURNAL(fromTimeToTicks(6, 00), fromTimeToTicks(22, 00)),
+    NOCTURNAL(fromTimeToTicks(18, 00), fromTimeToTicks(6, 00)),
     CREPUSCULAR(fromTimeToTicks(12, 30), fromTimeToTicks(4, 30));
 
-    private final int wakeUpTime;
-    private final int sleepTime;
+    private int wakeUpTime;
+    private int sleepTime;
 
     EnumSleepingSchedule(int wakeUpTime, int sleepTime)
     {
@@ -17,7 +17,7 @@ public enum EnumSleepingSchedule
         this.sleepTime = sleepTime;
     }
 
-    private static int fromTimeToTicks(int hour, int minute)
+    public static int fromTimeToTicks(int hour, int minute)
     {
         int ticksPerMinute = 1000 / 60;
         return ((hour - 6) * 1000) + (minute * ticksPerMinute);
@@ -33,22 +33,22 @@ public enum EnumSleepingSchedule
         return sleepTime;
     }
 
-    private boolean sleepNextDay()
+    public boolean sleepNextDay()
     {
         return wakeUpTime > sleepTime;
     }
 
-    private int getBreakfastTime()
+    public int getBreakfastTime()
     {
         return 1000;
     }
 
-    private int getLunchTime()
+    public int getLunchTime()
     {
         return (getDinnerTime() - getBreakfastTime()) / 2;
     }
 
-    private int getDinnerTime()
+    public int getDinnerTime()
     {
         return getAwakeTime() - 1000;
     }
@@ -72,7 +72,7 @@ public enum EnumSleepingSchedule
         return newSleepTime - wakeUpTime;
     }
 
-    private boolean isWithinEatTime(int time, int eatTime)
+    public boolean isWithinEatTime(int time, int eatTime)
     {
         return time > eatTime - 500 && time < eatTime + 500;
     }

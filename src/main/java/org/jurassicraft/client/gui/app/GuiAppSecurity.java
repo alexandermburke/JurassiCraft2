@@ -1,5 +1,6 @@
 package org.jurassicraft.client.gui.app;
 
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockPos;
@@ -25,7 +26,7 @@ public class GuiAppSecurity extends GuiApp
     @Override
     public void render(int mouseX, int mouseY, GuiPaleoPad gui)
     {
-        super.renderButtons(mouseX, mouseY);
+        super.renderButtons(mouseX, mouseY, gui);
 
         AppSecurity app = (AppSecurity) getApp();
 
@@ -38,16 +39,17 @@ public class GuiAppSecurity extends GuiApp
     }
 
     @Override
-    public void actionPerformed()
+    public void actionPerformed(GuiButton button)
     {
 
     }
 
     @Override
-    public void mouseClicked(int mouseX, int mouseY)
+    public void mouseClicked(int mouseX, int mouseY, GuiPaleoPad gui)
     {
         ScaledResolution dimensions = new ScaledResolution(mc);
         mouseX -= dimensions.getScaledWidth() / 2 - 115;
+        mouseY -= 65;
     }
 
     @Override
@@ -56,7 +58,7 @@ public class GuiAppSecurity extends GuiApp
     }
 
     @Override
-    public ResourceLocation getTexture()
+    public ResourceLocation getTexture(GuiPaleoPad gui)
     {
         return texture;
     }

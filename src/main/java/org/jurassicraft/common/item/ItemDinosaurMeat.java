@@ -41,7 +41,7 @@ public class ItemDinosaurMeat extends ItemFood
         return new AdvLang("item.dinosaur_meat.name").withProperty("dino", "entity.jurassicraft." + dinosaur.getName().replace(" ", "_").toLowerCase() + ".name").build();
     }
 
-    private Dinosaur getDinosaur(ItemStack stack)
+    public Dinosaur getDinosaur(ItemStack stack)
     {
         Dinosaur dinosaur = JCEntityRegistry.getDinosaurById(stack.getItemDamage());
 
@@ -53,18 +53,18 @@ public class ItemDinosaurMeat extends ItemFood
         return dinosaur;
     }
 
-    private int getContainerDinosaur(ItemStack stack)
+    public int getContainerDinosaur(ItemStack stack)
     {
         return JCEntityRegistry.getDinosaurId(getDinosaur(stack));
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> subtypes)
+    public void getSubItems(Item item, CreativeTabs tab, List subtypes)
     {
-        List<Dinosaur> dinosaurs = new ArrayList<>(JCEntityRegistry.getDinosaurs());
+        List<Dinosaur> dinosaurs = new ArrayList<Dinosaur>(JCEntityRegistry.getDinosaurs());
 
-        Map<Dinosaur, Integer> ids = new HashMap<>();
+        Map<Dinosaur, Integer> ids = new HashMap<Dinosaur, Integer>();
 
         int id = 0;
 
@@ -86,7 +86,7 @@ public class ItemDinosaurMeat extends ItemFood
         }
     }
 
-    private int getDNAQuality(EntityPlayer player, ItemStack stack)
+    public int getDNAQuality(EntityPlayer player, ItemStack stack)
     {
         int quality = player.capabilities.isCreativeMode ? 100 : 0;
 
@@ -111,13 +111,13 @@ public class ItemDinosaurMeat extends ItemFood
         return quality;
     }
 
-    private GeneticsContainer getGeneticCode(EntityPlayer player, ItemStack stack)
+    public GeneticsContainer getGeneticCode(EntityPlayer player, ItemStack stack)
     {
         int quality = getDNAQuality(player, stack);
 
         NBTTagCompound nbt = stack.getTagCompound();
 
-        GeneticsContainer genetics = GeneticsHelper.randomGenetics(player.worldObj.rand, getContainerDinosaur(stack));
+        GeneticsContainer genetics = GeneticsHelper.randomGenetics(player.worldObj.rand, getContainerDinosaur(stack), quality);
 
         if (nbt == null)
         {
@@ -138,7 +138,7 @@ public class ItemDinosaurMeat extends ItemFood
         return genetics;
     }
 
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> lore, boolean advanced)
+    public void addInformation(ItemStack stack, EntityPlayer player, List lore, boolean advanced)
     {
         int quality = getDNAQuality(player, stack);
 

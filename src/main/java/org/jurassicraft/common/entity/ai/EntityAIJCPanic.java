@@ -11,15 +11,15 @@ import net.timeless.animationapi.client.AnimID;
 public class EntityAIJCPanic extends EntityAIBase
 {
     private final EntityCreature theEntityCreature;
-    private final double speed;
+    protected double speed;
     private double randPosX;
     private double randPosY;
     private double randPosZ;
 
-    public EntityAIJCPanic(EntityCreature creature)
+    public EntityAIJCPanic(EntityCreature creature, double speedIn)
     {
         theEntityCreature = creature;
-        speed = 1.25D;
+        speed = speedIn;
         setMutexBits(1);
     }
 

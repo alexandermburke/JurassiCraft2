@@ -14,7 +14,7 @@ public class Tree
 {
 
     // unique identifier.
-    private final int treeCode;
+    private int treeCode;
 
     // Features that can be built in the tree in the form of arrays of codes. This is used to generate a random tree.
     private int[] TrunkList;
@@ -24,15 +24,14 @@ public class Tree
     private int[] TrunkLeafList;
     private int[] FruitList;
 
-    private final int penaltyPerHeight;
-    private final int lowerBranchLevel;
+    private int penaltyPerHeight;
+    private int lowerBranchLevel;
 
-    private int age;
-    private final int maxAge;
-    private final int maxBranchLevel;
-    private final int maxTrunkHeight;
+    private int age, maxAge;
+    private int maxBranchLevel;
+    private int maxTrunkHeight;
 
-    private final ArrayList<InsPCoord> insPList = new ArrayList<>();
+    private ArrayList<InsPCoord> insPList = new ArrayList<InsPCoord>();
 
     public Tree(int code, int maxAge, int maxBranchLength)
     {
@@ -93,7 +92,12 @@ public class Tree
     public boolean hasBeenGenerated()
     {
 
-        return insPList.size() != 0;
+        if (insPList.size() != 0)
+        {
+            return true;
+        }
+
+        return false;
 
     }
 
@@ -127,18 +131,18 @@ public class Tree
 
     }
 
-    public void generateTree()
+    public boolean generateTree()
     {
 
         if (TrunkList == null || BranchList == null || WoodList == null || LeafList == null || FruitList == null || TrunkLeafList == null)
         {
-            return;
+            return false;
         }
 
         Random random = new Random();
 
         // adding the first insert point to the tree. It is placed above the main block (supposedly the TileEntity).
-        insPList.add(new InsPCoord(TrunkList[random.nextInt(TrunkList.length)], InsPType.getTypeIndex(InsPType.trunk), 0, 0, 0, 0, 1, 0, 0));
+        insPList.add(new InsPCoord(TrunkList[random.nextInt(TrunkList.length)], InsPType.getTypeIndex(InsPType.trunk), 0, 0, 0, 0, 1, 0, 0, 0));
 
         /*
          * ROTATION AND SHAPE ARE DETERMINED IN THE INSERTPOINT BEFORE THE FEATURE. ALSO REMEMBER THAT SHAPES ARE ALWAYS FACING EAST AT THE BEGGINING.
@@ -259,6 +263,8 @@ public class Tree
 
         }
 
+        return true;
+
     }
 
     private void addNewInsertPoints(Random random, int i, int j, Shape shape, InsPType type, boolean addLeavesInsPOnly)
@@ -277,7 +283,7 @@ public class Tree
                 int zC = insPList.get(j).getZ() + insertp.getZ();
 
                 // if the next insert point allows for trunk, then trunk rotation does not matter, it can be random.
-                if (insertp.allowTrunk && !addLeavesInsPOnly)
+                if (insertp.allowTrunk && addLeavesInsPOnly == false)
                 {
 
                     // Rotation of the insert point is corrected in the Tree Compendium method that gives the rotated shape.
@@ -299,7 +305,7 @@ public class Tree
                     insPList.get(j).turnBuilt();
 
                     // add the new insert point generating the rotation and shape for the next feature at random.
-                    insPList.add(new InsPCoord(TrunkList[new Random().nextInt(TrunkList.length)], InsPType.getTypeIndex(type), xC, yC, zC, i, 1, newRotation, insertp.getLeaves() ? 1 : 0));
+                    insPList.add(new InsPCoord(TrunkList[new Random().nextInt(TrunkList.length)], InsPType.getTypeIndex(type), xC, yC, zC, i, 1, 0, newRotation, insertp.getLeaves() ? 1 : 0));
 
                 }
                 else
@@ -311,18 +317,18 @@ public class Tree
                     if (insertp.growLeaves)
                     {
 
-                        insPList.add(new InsPCoord(LeafList[new Random().nextInt(LeafList.length)], InsPType.getTypeIndex(type), xC, yC, zC, i, 0, Rotation.getRotationIndex(insertp.rotation), insertp.getLeaves() ? 1 : 0));
+                        insPList.add(new InsPCoord(LeafList[new Random().nextInt(LeafList.length)], InsPType.getTypeIndex(type), xC, yC, zC, i, 0, 0, Rotation.getRotationIndex(insertp.rotation), insertp.getLeaves() ? 1 : 0));
                     }
                     else
                     {
 
-                        if (!addLeavesInsPOnly)
+                        if (addLeavesInsPOnly == false)
                         {
 
                             if (insertp.rotation == Rotation.none)
                             {
 
-                                insPList.add(new InsPCoord(BranchList[new Random().nextInt(BranchList.length)], InsPType.getTypeIndex(type), xC, yC, zC, i, 0, Rotation.getRotationIndex(insertp.rotation), insertp.getLeaves() ? 1 : 0));
+                                insPList.add(new InsPCoord(BranchList[new Random().nextInt(BranchList.length)], InsPType.getTypeIndex(type), xC, yC, zC, i, 0, 0, Rotation.getRotationIndex(insertp.rotation), insertp.getLeaves() ? 1 : 0));
 
                             }
                             else
@@ -331,7 +337,7 @@ public class Tree
                                 if (insPList.get(j).getY() > i * lowerBranchLevel)
 
                                 {
-                                    insPList.add(new InsPCoord(shape.getCode(), InsPType.getTypeIndex(type), xC, yC, zC, i, 0, Rotation.getRotationIndex(insertp.rotation), insertp.getLeaves() ? 1 : 0));
+                                    insPList.add(new InsPCoord(shape.getCode(), InsPType.getTypeIndex(type), xC, yC, zC, i, 0, 0, Rotation.getRotationIndex(insertp.rotation), insertp.getLeaves() ? 1 : 0));
                                 }
 
                             }

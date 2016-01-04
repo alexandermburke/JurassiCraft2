@@ -8,7 +8,7 @@ import org.jurassicraft.common.entity.base.EntityDinosaur;
 
 public class AnimationAILook extends EntityAIBase
 {
-    private final EntityDinosaur animatingEntity;
+    protected EntityDinosaur animatingEntity;
 
     public AnimationAILook(IAnimatedEntity entity)
     {
@@ -19,8 +19,12 @@ public class AnimationAILook extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        return animatingEntity.getRNG().nextDouble() < 0.01;
+        if (animatingEntity.getRNG().nextDouble() < 0.01)
+        {
+            return true;
+        }
 
+        return false;
     }
 
     @Override

@@ -2,6 +2,7 @@ package org.jurassicraft.common.block.plant;
 
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
@@ -20,11 +21,11 @@ import java.util.Random;
 
 public class BlockDoublePlant extends BlockBush
 {
-    private static final PropertyEnum HALF = PropertyEnum.create("half", BlockDoublePlant.EnumBlockHalf.class);
+    public static final PropertyEnum HALF = PropertyEnum.create("half", BlockDoublePlant.EnumBlockHalf.class);
 
-    BlockDoublePlant()
+    public BlockDoublePlant(Material material)
     {
-        super(Material.vine);
+        super(material);
         this.setHardness(0.0F);
         this.setStepSound(soundTypeGrass);
         this.setCreativeTab(JCCreativeTabs.plants);
@@ -185,7 +186,7 @@ public class BlockDoublePlant extends BlockBush
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, HALF);
+        return new BlockState(this, new IProperty[] { HALF });
     }
 
     @Override
@@ -200,7 +201,7 @@ public class BlockDoublePlant extends BlockBush
         return world.setBlockToAir(pos);
     }
 
-    enum EnumBlockHalf implements IStringSerializable
+    static enum EnumBlockHalf implements IStringSerializable
     {
         UPPER, LOWER;
 

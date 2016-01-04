@@ -47,7 +47,7 @@ public enum EnumTimePeriod implements IStringSerializable
     /**
      * Returns if this time period should be implemented.
      */
-    private float getStartTime()
+    public float getStartTime()
     {
         return this.startTime;
     }
@@ -55,7 +55,7 @@ public enum EnumTimePeriod implements IStringSerializable
     /**
      * Returns if this time period should be implemented.
      */
-    private float getEndTime()
+    public float getEndTime()
     {
         return this.endTime;
     }

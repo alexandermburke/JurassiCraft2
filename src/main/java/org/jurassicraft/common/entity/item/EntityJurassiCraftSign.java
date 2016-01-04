@@ -66,8 +66,12 @@ public class EntityJurassiCraftSign extends EntityHanging implements IEntityAddi
         EntityJurassiCraftSign.EnumSignType[] art = EntityJurassiCraftSign.EnumSignType.values();
         int i = art.length;
 
-        for (EnumSignType enumart : art) {
-            if (enumart.title.equals(titleName)) {
+        for (int j = 0; j < i; ++j)
+        {
+            EntityJurassiCraftSign.EnumSignType enumart = art[j];
+
+            if (enumart.title.equals(titleName))
+            {
                 this.signType = enumart;
                 break;
             }

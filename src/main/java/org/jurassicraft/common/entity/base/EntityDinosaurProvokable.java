@@ -9,11 +9,11 @@ import net.minecraft.world.World;
 
 public abstract class EntityDinosaurProvokable extends EntityDinosaur
 {
-    EntityDinosaurProvokable(World world)
+    public EntityDinosaurProvokable(World world)
     {
         super(world);
         this.tasks.addTask(3, new EntityAILeapAtTarget(this, 0.4F));
-        this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
+        this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true, new Class[0]));
         this.tasks.addTask(4, new EntityAIAttackOnCollide(this, 1.0D, true));
     }
 
@@ -73,13 +73,13 @@ public abstract class EntityDinosaurProvokable extends EntityDinosaur
     public void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(16, (byte) 0);
+        this.dataWatcher.addObject(16, new Byte((byte) 0));
     }
 
     /**
      * Determines whether this wolf is angry or not.
      */
-    private boolean isAngry()
+    public boolean isAngry()
     {
         return (this.dataWatcher.getWatchableObjectByte(16) & 2) != 0;
     }
@@ -87,17 +87,17 @@ public abstract class EntityDinosaurProvokable extends EntityDinosaur
     /**
      * Sets whether this wolf is angry or not.
      */
-    private void setAngry(boolean angry)
+    public void setAngry(boolean angry)
     {
         byte b0 = this.dataWatcher.getWatchableObjectByte(16);
 
         if (angry)
         {
-            this.dataWatcher.updateObject(16, (byte) (b0 | 2));
+            this.dataWatcher.updateObject(16, Byte.valueOf((byte) (b0 | 2)));
         }
         else
         {
-            this.dataWatcher.updateObject(16, (byte) (b0 & -3));
+            this.dataWatcher.updateObject(16, Byte.valueOf((byte) (b0 & -3)));
         }
     }
 }

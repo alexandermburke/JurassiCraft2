@@ -11,8 +11,8 @@ import java.util.ArrayList;
  */
 public class Shape
 {
-    private final int shapeCode;
-    public final ArrayList<TreeBlock> blocksList = new ArrayList<>();
+    private int shapeCode;
+    public ArrayList<TreeBlock> blocksList = new ArrayList<TreeBlock>();
 
     public Shape(int code)
     {
@@ -20,7 +20,7 @@ public class Shape
         addLog(0, 0, 0);
     }
 
-    public void addLog(int x, int y, int z, int level)
+    public boolean addLog(int x, int y, int z, int level)
     {
         TreeBlock currentBlock = new TreeBlock(x, y, z, level);
 
@@ -28,15 +28,16 @@ public class Shape
         {
             if (TB.equals(currentBlock))
             {
-                return;
+                return false;
             }
         }
 
         blocksList.add(new TreeBlock(x, y, z, level));
+        return true;
 
     }
 
-    public void addLog(int x, int y, int z)
+    public boolean addLog(int x, int y, int z)
     {
 
         TreeBlock currentBlock = new TreeBlock(x, y, z, 0);
@@ -45,66 +46,70 @@ public class Shape
         {
             if (TB.equals(currentBlock))
             {
-                return;
+                return false;
             }
         }
 
         blocksList.add(new TreeBlock(x, y, z, 0));
+        return true;
 
     }
 
-    public void addInsPoint(int y, int z, int level)
+    public boolean addInsPoint(int x, int y, int z, int level)
     {
 
-        TreeBlock currentBlock = new TreeBlock(0, 3, 0, 0);
+        TreeBlock currentBlock = new TreeBlock(x, y, z, level);
 
         for (TreeBlock TB : blocksList)
         {
             if (TB.equals(currentBlock))
             {
-                return;
+                return false;
             }
         }
 
-        blocksList.add(currentBlock.new InsPoint(0, 3, 0, 0, Rotation.none));
+        blocksList.add(currentBlock.new InsPoint(x, y, z, level, Rotation.none));
+        return true;
 
     }
 
-    public void addInsPointWithRotation(int x, int y, int z, Rotation rotation)
+    public boolean addInsPointWithRotation(int x, int y, int z, int level, Rotation rotation)
     {
 
-        TreeBlock currentBlock = new TreeBlock(x, y, z, 0);
+        TreeBlock currentBlock = new TreeBlock(x, y, z, level);
 
         for (TreeBlock TB : blocksList)
         {
             if (TB.equals(currentBlock))
             {
-                return;
+                return false;
             }
         }
 
-        blocksList.add(currentBlock.new InsPoint(x, y, z, 0, Rotation.east));
+        blocksList.add(currentBlock.new InsPoint(x, y, z, level, rotation));
+        return true;
 
     }
 
-    public void addInsPointWithTrunk(int y, int z, int level, Rotation rotation)
+    public boolean addInsPointWithTrunk(int x, int y, int z, int level, Rotation rotation)
     {
 
-        TreeBlock currentBlock = new TreeBlock(0, 8, 0, 0);
+        TreeBlock currentBlock = new TreeBlock(x, y, z, level);
 
         for (TreeBlock TB : blocksList)
         {
             if (TB.equals(currentBlock))
             {
-                return;
+                return false;
             }
         }
 
-        blocksList.add(currentBlock.new InsPoint(0, 8, 0, 0, Rotation.none, true, false));
+        blocksList.add(currentBlock.new InsPoint(x, y, z, level, rotation, true, false));
+        return true;
 
     }
 
-    public void addInsPointWithLeaves(int x, int y, int z, Rotation rotation)
+    public boolean addInsPointWithLeaves(int x, int y, int z, Rotation rotation)
     {
 
         return addInsPointAskTrunkAndLeaves(x, y, z, 0, rotation, false, true);

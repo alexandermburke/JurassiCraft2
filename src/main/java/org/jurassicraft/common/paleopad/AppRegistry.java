@@ -5,14 +5,14 @@ import java.util.List;
 
 public class AppRegistry
 {
-    private static final List<App> registeredApps = new ArrayList<>();
+    private static List<App> registeredApps = new ArrayList<App>();
     public static App dinopedia;
     public static App file_explorer;
     public static App flappy_dino;
     public static App minimap;
     public static App security;
 
-    private void registerApp(App app)
+    public void registerApp(App app)
     {
         registeredApps.add(app);
     }

@@ -2,6 +2,7 @@ package org.jurassicraft.common.block.tree;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
@@ -10,7 +11,7 @@ import org.jurassicraft.common.creativetab.JCCreativeTabs;
 
 public class BlockJCLog extends BlockLog
 {
-    private final EnumType treeType;
+    private EnumType treeType;
 
     public BlockJCLog(EnumType type, String treeName)
     {
@@ -75,7 +76,7 @@ public class BlockJCLog extends BlockLog
     {
         int i = 0;
 
-        switch (BlockJCLog.SwitchEnumAxis.AXIS_LOOKUP[state.getValue(LOG_AXIS).ordinal()])
+        switch (BlockJCLog.SwitchEnumAxis.AXIS_LOOKUP[((BlockLog.EnumAxis) state.getValue(LOG_AXIS)).ordinal()])
         {
             case 1:
                 i = 4;
@@ -92,7 +93,7 @@ public class BlockJCLog extends BlockLog
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, LOG_AXIS);
+        return new BlockState(this, new IProperty[] { LOG_AXIS });
     }
 
     protected ItemStack createStackedBlock(IBlockState state)
@@ -119,21 +120,27 @@ public class BlockJCLog extends BlockLog
                 AXIS_LOOKUP[BlockLog.EnumAxis.X.ordinal()] = 1;
             }
             catch (NoSuchFieldError var3)
-            {}
+            {
+                ;
+            }
 
             try
             {
                 AXIS_LOOKUP[BlockLog.EnumAxis.Z.ordinal()] = 2;
             }
             catch (NoSuchFieldError var2)
-            {}
+            {
+                ;
+            }
 
             try
             {
                 AXIS_LOOKUP[BlockLog.EnumAxis.NONE.ordinal()] = 3;
             }
             catch (NoSuchFieldError var1)
-            {}
+            {
+                ;
+            }
         }
     }
 }

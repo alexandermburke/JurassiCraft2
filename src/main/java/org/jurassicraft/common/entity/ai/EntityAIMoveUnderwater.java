@@ -7,7 +7,7 @@ import org.jurassicraft.common.entity.base.EntityDinosaur;
 
 public class EntityAIMoveUnderwater extends EntityAIBase
 {
-    private final EntityDinosaur swimmingEntity;
+    private EntityDinosaur swimmingEntity;
     private double xPosition;
     private double yPosition;
     private double zPosition;

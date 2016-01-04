@@ -13,13 +13,13 @@ import org.jurassicraft.common.tileentity.TileEmbryoCalcificationMachine;
 
 public class ContainerEmbryoCalcificationMachine extends Container
 {
-    private final TileEmbryoCalcificationMachine calcificationMachine;
+    private TileEmbryoCalcificationMachine calcificationMachine;
 
     public ContainerEmbryoCalcificationMachine(InventoryPlayer playerInventory, TileEntity tileEntity)
     {
         this.calcificationMachine = (TileEmbryoCalcificationMachine) tileEntity;
 
-        this.addSlotToContainer(new SlotSyringe(calcificationMachine, 34, 14));
+        this.addSlotToContainer(new SlotSyringe(calcificationMachine, 0, 34, 14));
         this.addSlotToContainer(new SlotCustom(calcificationMachine, 1, 34, 50, Items.egg));
 
         this.addSlotToContainer(new Slot(calcificationMachine, 2, 97, 32));

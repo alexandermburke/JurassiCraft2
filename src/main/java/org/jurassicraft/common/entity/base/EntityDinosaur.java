@@ -50,10 +50,10 @@ import java.util.UUID;
 
 public abstract class EntityDinosaur extends EntityCreature implements IEntityAdditionalSpawnData, IAnimatedEntity
 {
-    private Dinosaur dinosaur;
+    protected Dinosaur dinosaur;
 
-    private int dinosaurAge;
-    private int prevAge;
+    protected int dinosaurAge;
+    protected int prevAge;
     private int growthSpeedOffset;
 
     private boolean isCarcass;
@@ -69,11 +69,11 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
     private boolean hasTracker;
 
-    public final ChainBuffer tailBuffer;
+    public ChainBuffer tailBuffer;
 
     private UUID owner;
 
-    private final InventoryDinosaur inventory;
+    private InventoryDinosaur inventory;
 
     private static final int WATCHER_IS_CARCASS = 25;
     private static final int WATCHER_AGE = 26;
@@ -81,12 +81,12 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     private static final int WATCHER_HAS_TRACKER = 28;
     private static final int WATCHER_IS_SLEEPING = 29;
 
-    private final MetabolismContainer metabolism;
+    private MetabolismContainer metabolism;
 
     private boolean isSleeping;
     private boolean goBackToSleep;
 
-    protected EntityDinosaur(World world)
+    public EntityDinosaur(World world)
     {
         super(world);
 
@@ -139,11 +139,11 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         return getDinosaurTime() > getDinosaur().getSleepingSchedule().getAwakeTime();
     }
 
-    public void setSleeping()
+    public void setSleeping(boolean sleeping)
     {
-        if (this.isSleeping != true)
+        if (this.isSleeping != sleeping)
         {
-            if (true)
+            if (sleeping)
             {
                 AnimationAPI.sendAnimPacket(this, AnimID.SLEEPING);
             }
@@ -153,7 +153,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
             }
         }
 
-        this.isSleeping = true;
+        this.isSleeping = sleeping;
     }
 
     public int getDinosaurTime()
@@ -170,7 +170,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         return (int) time;
     }
 
-    protected abstract int getTailBoxCount();
+    public abstract int getTailBoxCount();
 
     public boolean hasTracker()
     {
@@ -206,7 +206,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
             knockback += EnchantmentHelper.getKnockbackModifier(this);
         }
 
-        boolean attackSuccesful = entity.attackEntityFrom(new EntityDinosaurDamageSource(this), damage);
+        boolean attackSuccesful = entity.attackEntityFrom(new EntityDinosaurDamageSource("mob", this), damage);
 
         if (entity instanceof EntityLivingBase)
         {
@@ -307,7 +307,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         adjustHitbox();
     }
 
-    private void updateCreatureData()
+    public void updateCreatureData()
     {
         double prevHealth = getMaxHealth();
         double newHealth = transitionFromAge(dinosaur.getBabyHealth(), dinosaur.getAdultHealth());
@@ -522,7 +522,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         return (int) Math.floor((dinosaurAge * 8.0F) / 24000.0F);
     }
 
-    private void setFullyGrown()
+    public void setFullyGrown()
     {
         dinosaurAge = dinosaur.getMaximumAge();
     }
@@ -587,9 +587,9 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         entityDropItem(stack, 0.0F);
     }
 
-    public void setCarcass()
+    public void setCarcass(boolean carcass)
     {
-        if (true)
+        if (carcass)
         {
             String s = getDeathSound();
 
@@ -599,7 +599,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
             }
         }
 
-        isCarcass = true;
+        isCarcass = carcass;
     }
 
     public boolean isCarcass()
@@ -655,7 +655,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
     // NOTE: This adds an attack target. Class should be the entity class for the target, lower prio get executed
     // earlier
-    protected void addAIForAttackTargets(Class<? extends Entity> entity)
+    protected void addAIForAttackTargets(Class entity, int prio)
     {
         tasks.addTask(0, new EntityAIAttackOnCollide(this, entity, 1.0D, false));
         targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, entity, false));
@@ -720,7 +720,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         return JurassiCraft.MODID + ":" + sounds[rand.nextInt(sounds.length)];
     }
 
-    private double getAttackDamage()
+    public double getAttackDamage()
     {
         return transitionFromAge(dinosaur.getBabyStrength(), dinosaur.getAdultStrength());
     }
@@ -740,7 +740,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         isMale = male;
     }
 
-    private int getAgePercentage()
+    public int getAgePercentage()
     {
         int age = getDinosaurAge();
         return age != 0 ? age * 100 / getDinosaur().getMaximumAge() : 0;
@@ -924,7 +924,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         return goBackToSleep;
     }
 
-    private void dontGoBackToSleep()
+    public void dontGoBackToSleep()
     {
         this.goBackToSleep = false;
     }

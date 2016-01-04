@@ -29,7 +29,7 @@ public class EntityIndominus extends EntityDinosaurAggressive // implements ICar
     {
         super(world);
         tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, AnimID.IDLE, 750, breathSounds[0], 1.5F));
-        this.addAIForAttackTargets(EntityLivingBase.class);
+        this.addAIForAttackTargets(EntityLivingBase.class, 0);
         this.defendFromAttacker(EntityLivingBase.class, 0);
     }
 
@@ -112,12 +112,12 @@ public class EntityIndominus extends EntityDinosaurAggressive // implements ICar
         return randomSound(deathSounds);
     }
 
-    private boolean isCamouflaging()
+    public boolean isCamouflaging()
     {
         return isCamouflaging;
     }
 
-    private void changeSkinColor()
+    public void changeSkinColor()
     {
         BlockPos pos = new BlockPos(this).offset(EnumFacing.DOWN);
         IBlockState state = this.worldObj.getBlockState(pos);

@@ -11,9 +11,9 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
-abstract class BlockJCSlab extends BlockSlab
+public abstract class BlockJCSlab extends BlockSlab
 {
-    BlockJCSlab(IBlockState state)
+    public BlockJCSlab(IBlockState state)
     {
         super(state.getBlock().getMaterial());
         IBlockState iblockstate = this.blockState.getBaseState();
@@ -93,7 +93,7 @@ abstract class BlockJCSlab extends BlockSlab
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, HALF);
+        return new BlockState(this, new IProperty[] { HALF });
     }
 
     /**

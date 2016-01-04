@@ -21,10 +21,10 @@ import java.util.List;
 
 public class TileIncubator extends TileMachineBase
 {
-    private final int[] inputs = new int[] { 0, 1, 2, 3, 4 };
-    private final int[] other = new int[5];
-    private final int[] outputs = new int[0];
-    private final int[] temperature = new int[5];
+    private int[] inputs = new int[] { 0, 1, 2, 3, 4 };
+    private int[] other = new int[5];
+    private int[] outputs = new int[0];
+    private int[] temperature = new int[5];
 
     private ItemStack[] slots = new ItemStack[6];
 
@@ -142,7 +142,7 @@ public class TileIncubator extends TileMachineBase
     }
 
     @Override
-    protected int getStackProcessTime()
+    protected int getStackProcessTime(ItemStack stack)
     {
         return 8000;
     }

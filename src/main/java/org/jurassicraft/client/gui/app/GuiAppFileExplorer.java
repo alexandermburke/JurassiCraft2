@@ -1,5 +1,6 @@
 package org.jurassicraft.client.gui.app;
 
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.ResourceLocation;
 import org.jurassicraft.JurassiCraft;
@@ -28,7 +29,7 @@ public class GuiAppFileExplorer extends GuiApp
     @Override
     public void render(int mouseX, int mouseY, GuiPaleoPad gui)
     {
-        super.renderButtons(mouseX, mouseY);
+        super.renderButtons(mouseX, mouseY, gui);
 
         AppFileExplorer app = (AppFileExplorer) getApp();
 
@@ -44,7 +45,7 @@ public class GuiAppFileExplorer extends GuiApp
             }
             else
             {
-                gui.drawScaledText("Downloading files...", 4, 10, 0xFFFFFF);
+                gui.drawScaledText("Downloading files...", 4, 10, 1.0F, 0xFFFFFF);
             }
         }
         else
@@ -55,7 +56,7 @@ public class GuiAppFileExplorer extends GuiApp
             {
                 if (file != null && file.getName().length() > 0 && y < 125)
                 {
-                    gui.drawBoxOutline(5, y, 207, 12, 1.0F, 0x606060);
+                    gui.drawBoxOutline(5, y, 207, 12, 1, 1.0F, 0x606060);
                     String name = file.getName();
 
                     if (name.length() > 23)
@@ -63,29 +64,29 @@ public class GuiAppFileExplorer extends GuiApp
                         name = name.substring(0, 23) + "...";
                     }
 
-                    gui.drawScaledText(name, 7, y + 3, 0xFFFFFF);
-                    gui.drawScaledText(file.isFile() ? "       File" : "Directory", 160, y + 3, 0x7F7F7F);
+                    gui.drawScaledText(name, 7, y + 3, 1.0F, 0xFFFFFF);
+                    gui.drawScaledText(file.isFile() ? "       File" : "Directory", 160, y + 3, 1.0F, 0x7F7F7F);
 
                     y += 15;
                 }
             }
 
             gui.drawScaledRect(217, 5, 7, 140, 1.0F, 0x7F7F7F);
-            gui.drawBoxOutline(217, 5, 7, 140, 1.0F, 0x606060);
+            gui.drawBoxOutline(217, 5, 7, 140, 1, 1.0F, 0x606060);
 
-            gui.drawBoxOutline(5, 132, 65, 12, 1.0F, 0x606060);
-            gui.drawScaledText("<-- Move up", 8, 135, 0xFFFFFF);
+            gui.drawBoxOutline(5, 132, 65, 12, 1, 1.0F, 0x606060);
+            gui.drawScaledText("<-- Move up", 8, 135, 1.0F, 0xFFFFFF);
         }
     }
 
     @Override
-    public void actionPerformed()
+    public void actionPerformed(GuiButton button)
     {
 
     }
 
     @Override
-    public void mouseClicked(int mouseX, int mouseY)
+    public void mouseClicked(int mouseX, int mouseY, GuiPaleoPad gui)
     {
         ScaledResolution dimensions = new ScaledResolution(mc);
         mouseX -= dimensions.getScaledWidth() / 2 - 115;
@@ -171,7 +172,7 @@ public class GuiAppFileExplorer extends GuiApp
     }
 
     @Override
-    public ResourceLocation getTexture()
+    public ResourceLocation getTexture(GuiPaleoPad gui)
     {
         return texture;
     }

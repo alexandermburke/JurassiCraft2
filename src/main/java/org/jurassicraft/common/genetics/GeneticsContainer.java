@@ -5,12 +5,12 @@ public class GeneticsContainer
     private String genetics;
 
     public static final int DINOSAUR = 0; // Which dinosaur is this?
-    private static final int OVERLAY_R = 1;
-    private static final int OVERLAY_G = 2;
-    private static final int OVERLAY_B = 3;
-    private static final int OVERLAY_1 = 4;
-    private static final int OVERLAY_2 = 5;
-    private static final int OVERLAY_3 = 6;
+    public static final int OVERLAY_R = 1;
+    public static final int OVERLAY_G = 2;
+    public static final int OVERLAY_B = 3;
+    public static final int OVERLAY_1 = 4;
+    public static final int OVERLAY_2 = 5;
+    public static final int OVERLAY_3 = 6;
 
     private static final int VAR_COUNT = 6;
 
@@ -78,7 +78,7 @@ public class GeneticsContainer
         return get(OVERLAY_3);
     }
 
-    private int get(int id)
+    public int get(int id)
     {
         int charStart = id * 4;
 
@@ -109,7 +109,7 @@ public class GeneticsContainer
         }
     }
 
-    private int convert(char... chars)
+    public int convert(char... chars)
     {
         int value = 0;
 
@@ -136,7 +136,7 @@ public class GeneticsContainer
         return value;
     }
 
-    private char[] convert(int value)
+    public char[] convert(int value)
     {
         char[] chars = new char[4];
 

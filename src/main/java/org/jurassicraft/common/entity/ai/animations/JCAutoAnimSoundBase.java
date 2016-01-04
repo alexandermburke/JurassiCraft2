@@ -5,27 +5,27 @@ import net.timeless.animationapi.IAnimatedEntity;
 import net.timeless.animationapi.client.AnimID;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 
-class JCAutoAnimSoundBase extends AIAnimation
+public class JCAutoAnimSoundBase extends AIAnimation
 {
-    private final EntityDinosaur animatingEntity;
-    private final int duration;
-    private final AnimID id;
-    private final String sound;
-    private final float volumeOffset;
+    protected EntityDinosaur animatingEntity;
+    protected int duration;
+    protected AnimID id;
+    protected String sound;
+    protected float volumeOffset;
 
-    private JCAutoAnimSoundBase(IAnimatedEntity entity, int duration, AnimID id, String sound)
+    public JCAutoAnimSoundBase(IAnimatedEntity entity, int duration, AnimID id, String sound, float volumeOffset)
     {
         super(entity);
         this.duration = duration;
         animatingEntity = (EntityDinosaur) entity;
         this.id = id;
         this.sound = sound;
-        this.volumeOffset = 0.0F;
+        this.volumeOffset = volumeOffset;
     }
 
     public JCAutoAnimSoundBase(IAnimatedEntity entity, int duration, AnimID id, String sound)
     {
-        this(entity, duration, id, sound);
+        this(entity, duration, id, sound, 0.0F);
     }
 
     @Override

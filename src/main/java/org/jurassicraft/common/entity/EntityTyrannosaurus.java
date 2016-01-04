@@ -4,9 +4,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.timeless.animationapi.client.AnimID;
 import net.timeless.unilib.common.animation.ControlledParam;
+import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimBase;
 import org.jurassicraft.common.entity.ai.animations.JCNonAutoAnimSoundBase;
 import org.jurassicraft.common.entity.base.EntityDinosaurAggressive;
+
+import java.util.Random;
 
 public class EntityTyrannosaurus extends EntityDinosaurAggressive // , IEntityAICreature,
 // ICarnivore
@@ -20,8 +23,8 @@ public class EntityTyrannosaurus extends EntityDinosaurAggressive // , IEntityAI
 
     private int stepCount = 0;
 
-    private final ControlledParam roarCount = new ControlledParam(0F, 0F, 0.5F, 0F);
-    private final ControlledParam roarTiltDegree = new ControlledParam(0F, 0F, 1F, 0F);
+    public ControlledParam roarCount = new ControlledParam(0F, 0F, 0.5F, 0F);
+    public ControlledParam roarTiltDegree = new ControlledParam(0F, 0F, 1F, 0F);
 
     public EntityTyrannosaurus(World world)
     {
@@ -30,8 +33,9 @@ public class EntityTyrannosaurus extends EntityDinosaurAggressive // , IEntityAI
         tasks.addTask(2, new JCNonAutoAnimSoundBase(this, 75, AnimID.IDLE, 750, "jurassicraft:" + roarSounds[0], 1.5F));
         tasks.addTask(2, new JCNonAutoAnimBase(this, 75, AnimID.INJURED, 750));
 
-        for (Class target : targets) {
-            this.addAIForAttackTargets(target);
+        for (int i = 0; i < targets.length; i++)
+        {
+            this.addAIForAttackTargets(targets[i], new Random().nextInt(3) + 1);
         }
     }
 

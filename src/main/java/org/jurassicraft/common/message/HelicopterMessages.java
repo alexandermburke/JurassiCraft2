@@ -3,7 +3,7 @@ package org.jurassicraft.common.message;
 import net.minecraft.world.World;
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 
-class HelicopterMessages
+public class HelicopterMessages
 {
     public static EntityHelicopterBase getHeli(World world, int heliID)
     {

@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -32,7 +33,7 @@ import java.util.Random;
 
 public class BlockJCLeaves extends BlockLeaves
 {
-    private final EnumType treeType;
+    private EnumType treeType;
 
     public BlockJCLeaves(EnumType type, String name)
     {
@@ -41,7 +42,7 @@ public class BlockJCLeaves extends BlockLeaves
         this.setHardness(0.2F);
         this.setLightOpacity(1);
         this.setStepSound(soundTypeGrass);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, true).withProperty(DECAYABLE, false));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, Boolean.valueOf(true)).withProperty(DECAYABLE, Boolean.valueOf(false)));
         this.setCreativeTab(JCCreativeTabs.plants);
     }
 
@@ -113,7 +114,7 @@ public class BlockJCLeaves extends BlockLeaves
     @Override
     public java.util.List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        java.util.List<ItemStack> ret = new ArrayList<>();
+        java.util.List<ItemStack> ret = new ArrayList<ItemStack>();
         Random rand = world instanceof World ? ((World) world).rand : new Random();
         int chance = this.getSaplingDropChance(state);
 
@@ -137,6 +138,7 @@ public class BlockJCLeaves extends BlockLeaves
             chance -= 10 << fortune;
             if (chance < 40)
             {
+                chance = 40;
             }
         }
 
@@ -156,7 +158,7 @@ public class BlockJCLeaves extends BlockLeaves
      */
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
+    public void getSubBlocks(Item itemIn, CreativeTabs tab, List list)
     {
         list.add(new ItemStack(itemIn, 1, 0));
     }
@@ -180,12 +182,12 @@ public class BlockJCLeaves extends BlockLeaves
     {
         int i = 0;
 
-        if (!state.getValue(DECAYABLE))
+        if (!((Boolean) state.getValue(DECAYABLE)).booleanValue())
         {
             i = 4;
         }
 
-        if (!state.getValue(CHECK_DECAY))
+        if (!((Boolean) state.getValue(CHECK_DECAY)).booleanValue())
         {
             i = 8;
         }
@@ -196,7 +198,7 @@ public class BlockJCLeaves extends BlockLeaves
     @Override
     protected BlockState createBlockState()
     {
-        return new BlockState(this, CHECK_DECAY, DECAYABLE);
+        return new BlockState(this, new IProperty[] { CHECK_DECAY, DECAYABLE });
     }
 
     /**
@@ -225,6 +227,7 @@ public class BlockJCLeaves extends BlockLeaves
     @Override
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
+        IBlockState state = world.getBlockState(pos);
         return Lists.newArrayList(new ItemStack(this, 1, 0));
     }
 

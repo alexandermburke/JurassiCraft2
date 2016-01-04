@@ -18,7 +18,7 @@ public class GuiDNASynthesizer extends GuiContainer
      * The player inventory bound to this GUI.
      */
     private final InventoryPlayer playerInventory;
-    private final IInventory dnaSynthesizer;
+    private IInventory dnaSynthesizer;
 
     public GuiDNASynthesizer(InventoryPlayer playerInv, IInventory dnaSequencer)
     {
@@ -48,14 +48,14 @@ public class GuiDNASynthesizer extends GuiContainer
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 
-        int progress = this.getProgress();
+        int progress = this.getProgress(24);
         this.drawTexturedModalRect(k + 79, l + 34, 176, 14, progress + 1, 16);
     }
 
-    private int getProgress()
+    private int getProgress(int scale)
     {
         int j = this.dnaSynthesizer.getField(0);
         int k = this.dnaSynthesizer.getField(1);
-        return k != 0 && j != 0 ? j * 24 / k : 0;
+        return k != 0 && j != 0 ? j * scale / k : 0;
     }
 }

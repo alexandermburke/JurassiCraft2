@@ -1,13 +1,15 @@
 package org.jurassicraft.common.message;
 
 import io.netty.buffer.ByteBuf;
-import net.ilexiconn.llibrary.common.message.AbstractMessage;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.BlockPos;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import org.jurassicraft.JurassiCraft;
 
-public class MessageChangeTemperature extends AbstractMessage<MessageChangeTemperature>
+public class MessageChangeTemperature implements IMessage
 {
     private byte slot;
     private byte temp;
@@ -25,21 +27,6 @@ public class MessageChangeTemperature extends AbstractMessage<MessageChangeTempe
     }
 
     @Override
-    public void handleClientMessage(MessageChangeTemperature messageChangeTemperature, EntityPlayer entityPlayer)
-    {
-        IInventory incubator = (IInventory) entityPlayer.worldObj.getTileEntity(messageChangeTemperature.pos);
-        incubator.setField(messageChangeTemperature.slot + 10, messageChangeTemperature.temp);
-    }
-
-    @Override
-    public void handleServerMessage(MessageChangeTemperature messageChangeTemperature, EntityPlayer entityPlayer)
-    {
-        IInventory incubator = (IInventory) entityPlayer.worldObj.getTileEntity(messageChangeTemperature.pos);
-        incubator.setField(messageChangeTemperature.slot + 10, messageChangeTemperature.temp);
-        JurassiCraft.networkManager.networkWrapper.sendToAll(messageChangeTemperature);
-    }
-
-    @Override
     public void toBytes(ByteBuf buffer)
     {
         buffer.writeByte(slot);
@@ -53,5 +40,31 @@ public class MessageChangeTemperature extends AbstractMessage<MessageChangeTempe
         slot = buffer.readByte();
         temp = buffer.readByte();
         pos = BlockPos.fromLong(buffer.readLong());
+    }
+
+    public static class Handler implements IMessageHandler<MessageChangeTemperature, IMessage>
+    {
+        @Override
+        public IMessage onMessage(final MessageChangeTemperature packet, final MessageContext ctx)
+        {
+            JurassiCraft.proxy.scheduleTask(ctx, new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    EntityPlayer player = JurassiCraft.proxy.getPlayerEntityFromContext(ctx);
+
+                    IInventory incubator = (IInventory) player.worldObj.getTileEntity(packet.pos);
+                    incubator.setField(packet.slot + 10, packet.temp);
+
+                    if (ctx.side.isServer())
+                    {
+                        JurassiCraft.networkManager.networkWrapper.sendToAll(packet);
+                    }
+                }
+            });
+
+            return null;
+        }
     }
 }

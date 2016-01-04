@@ -19,7 +19,7 @@ public abstract class BlockOriented extends BlockContainer
 {
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
-    protected BlockOriented(Material material)
+    public BlockOriented(Material material)
     {
         super(material);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
@@ -39,7 +39,7 @@ public abstract class BlockOriented extends BlockContainer
             Block blockSouth = worldIn.getBlockState(pos.south()).getBlock();
             Block blockWest = worldIn.getBlockState(pos.west()).getBlock();
             Block blockEast = worldIn.getBlockState(pos.east()).getBlock();
-            EnumFacing enumfacing = state.getValue(FACING);
+            EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
 
             if (enumfacing == EnumFacing.NORTH && blockNorth.isFullBlock() && !blockSouth.isFullBlock())
             {
@@ -98,7 +98,7 @@ public abstract class BlockOriented extends BlockContainer
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(FACING).getIndex();
+        return ((EnumFacing) state.getValue(FACING)).getIndex();
     }
 
     @Override

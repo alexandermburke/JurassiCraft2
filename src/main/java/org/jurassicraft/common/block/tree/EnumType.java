@@ -9,7 +9,7 @@ public enum EnumType implements IStringSerializable
     private final int meta;
     private final String name;
 
-    EnumType(int meta, String name)
+    private EnumType(int meta, String name)
     {
         this.meta = meta;
         this.name = name;

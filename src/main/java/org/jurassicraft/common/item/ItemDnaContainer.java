@@ -11,14 +11,14 @@ import org.jurassicraft.common.lang.AdvLang;
 
 import java.util.List;
 
-class ItemDnaContainer extends Item
+public class ItemDnaContainer extends Item
 {
-    int getContainerId(ItemStack stack)
+    public int getContainerId(ItemStack stack)
     {
         return 0;
     }
 
-    private int getDNAQuality(EntityPlayer player, ItemStack stack)
+    public int getDNAQuality(EntityPlayer player, ItemStack stack)
     {
         int quality = player.capabilities.isCreativeMode ? 100 : 0;
 
@@ -43,13 +43,13 @@ class ItemDnaContainer extends Item
         return quality;
     }
 
-    private GeneticsContainer getGeneticCode(EntityPlayer player, ItemStack stack)
+    public GeneticsContainer getGeneticCode(EntityPlayer player, ItemStack stack)
     {
         int quality = getDNAQuality(player, stack);
 
         NBTTagCompound nbt = stack.getTagCompound();
 
-        GeneticsContainer genetics = GeneticsHelper.randomGenetics(player.worldObj.rand, getContainerId(stack));
+        GeneticsContainer genetics = GeneticsHelper.randomGenetics(player.worldObj.rand, getContainerId(stack), quality);
 
         if (nbt == null)
         {
@@ -70,7 +70,7 @@ class ItemDnaContainer extends Item
         return genetics;
     }
 
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> lore, boolean advanced)
+    public void addInformation(ItemStack stack, EntityPlayer player, List lore, boolean advanced)
     {
         int quality = getDNAQuality(player, stack);
 

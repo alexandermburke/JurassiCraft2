@@ -1,5 +1,6 @@
 package org.jurassicraft.client.gui.app;
 
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.ResourceLocation;
 import org.jurassicraft.JurassiCraft;
@@ -27,7 +28,7 @@ public class GuiAppFlappyDino extends GuiApp
     private int y;
     private int motionY;
 
-    private final Map<Integer, Integer> pillars = new HashMap<>();
+    private Map<Integer, Integer> pillars = new HashMap<Integer, Integer>();
 
     public GuiAppFlappyDino(App app)
     {
@@ -37,31 +38,31 @@ public class GuiAppFlappyDino extends GuiApp
     @Override
     public void render(int mouseX, int mouseY, GuiPaleoPad gui)
     {
-        super.renderButtons(mouseX, mouseY);
+        super.renderButtons(mouseX, mouseY, gui);
 
         AppFlappyDino app = (AppFlappyDino) getApp();
 
         mc.getTextureManager().bindTexture(background);
-        gui.drawScaledTexturedModalRect(0, 0, 0, 229, 150, 229, 150, 1.0F);
+        gui.drawScaledTexturedModalRect(0, 0, 0, 0, 229, 150, 229, 150, 1.0F);
 
         if (mainScreen)
         {
             mc.getTextureManager().bindTexture(logo);
-            gui.drawScaledTexturedModalRect(5, 5, 0, 128, 64, 128, 64, 1.0F);
+            gui.drawScaledTexturedModalRect(5, 5, 0, 0, 128, 64, 128, 64, 1.0F);
 
             mc.getTextureManager().bindTexture(pteranodon);
-            gui.drawScaledTexturedModalRect(145, 15, 0, 128, 64, 128, 64, 1.0F);
+            gui.drawScaledTexturedModalRect(145, 15, 0, 0, 128, 64, 128, 64, 1.0F);
 
-            gui.drawBoxOutline(90, 100, 50, 20, 1.0F, 0x545454);
+            gui.drawBoxOutline(90, 100, 50, 20, 1, 1.0F, 0x545454);
 
             gui.drawScaledRect(91, 101, 49, 19, 1.0F, 0x747474);
 
-            gui.drawScaledText("Play", 105, 107, 0xFFFFFF);
+            gui.drawScaledText("Play", 105, 107, 1.0F, 0xFFFFFF);
         }
         else
         {
             mc.getTextureManager().bindTexture(character);
-            gui.drawScaledTexturedModalRect(5, 150 - y, 0, 32, 32, 32, 32, 1.0F);
+            gui.drawScaledTexturedModalRect(5, 150 - y, 0, 0, 32, 32, 32, 32, 1.0F);
 
             mc.getTextureManager().bindTexture(pillar_bottom);
 
@@ -73,10 +74,10 @@ public class GuiAppFlappyDino extends GuiApp
                 {
                     for (int height = 0; height < entry.getValue(); height++)
                     {
-                        gui.drawScaledTexturedModalRect(drawX, 130 - (height * 20), 12, 32, 20, 32, 32, 1.0F);
+                        gui.drawScaledTexturedModalRect(drawX, 130 - (height * 20), 0, 12, 32, 20, 32, 32, 1.0F);
                     }
 
-                    gui.drawScaledTexturedModalRect(drawX, 139 - (entry.getValue() * 20), 0, 32, 12, 32, 32, 1.0F);
+                    gui.drawScaledTexturedModalRect(drawX, 139 - (entry.getValue() * 20), 0, 0, 32, 12, 32, 32, 1.0F);
                 }
             }
 
@@ -92,10 +93,10 @@ public class GuiAppFlappyDino extends GuiApp
 
                     for (int height = 0; height < totalHeight; height++)
                     {
-                        gui.drawScaledTexturedModalRect(drawX, (height * 20), 0, 32, 20, 32, 32, 1.0F);
+                        gui.drawScaledTexturedModalRect(drawX, (height * 20), 0, 0, 32, 20, 32, 32, 1.0F);
                     }
 
-                    gui.drawScaledTexturedModalRect(drawX, (totalHeight * 20), 20, 32, 12, 32, 32, 1.0F);
+                    gui.drawScaledTexturedModalRect(drawX, (totalHeight * 20), 0, 20, 32, 12, 32, 32, 1.0F);
 
 //                    int topHeight = ((4 - entry.getValue()) * 20) + 11;
 //                    int bottomHeight = (150 - (entry.getValue() * 20)) - 11;
@@ -113,13 +114,13 @@ public class GuiAppFlappyDino extends GuiApp
     }
 
     @Override
-    public void actionPerformed()
+    public void actionPerformed(GuiButton button)
     {
 
     }
 
     @Override
-    public void mouseClicked(int mouseX, int mouseY)
+    public void mouseClicked(int mouseX, int mouseY, GuiPaleoPad gui)
     {
         ScaledResolution dimensions = new ScaledResolution(mc);
         mouseX -= dimensions.getScaledWidth() / 2 - 115;
@@ -215,7 +216,7 @@ public class GuiAppFlappyDino extends GuiApp
     }
 
     @Override
-    public ResourceLocation getTexture()
+    public ResourceLocation getTexture(GuiPaleoPad gui)
     {
         return texture;
     }

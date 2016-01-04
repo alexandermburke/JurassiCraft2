@@ -10,8 +10,8 @@ import java.util.List;
 
 public class DinoDNA
 {
-    private final int quality;
-    private final GeneticsContainer genetics;
+    private int quality;
+    private GeneticsContainer genetics;
 
     public DinoDNA(int quality, String genetics)
     {
@@ -52,7 +52,7 @@ public class DinoDNA
         return genetics;
     }
 
-    public void addInformation(List<String> tooltip)
+    public void addInformation(ItemStack stack, List<String> tooltip)
     {
         tooltip.add(EnumChatFormatting.DARK_AQUA + new AdvLang("lore.dinosaur.name").withProperty("dino", "entity." + JCEntityRegistry.getDinosaurById(genetics.getDinosaur()).getName().toLowerCase() + ".name").build());
 

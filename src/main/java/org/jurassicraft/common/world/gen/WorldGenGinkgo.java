@@ -9,7 +9,7 @@ import org.jurassicraft.common.block.JCBlockRegistry;
 
 import java.util.Random;
 
-class WorldGenGinkgo extends WorldGenAbstractTree
+public class WorldGenGinkgo extends WorldGenAbstractTree
 {
     public WorldGenGinkgo()
     {

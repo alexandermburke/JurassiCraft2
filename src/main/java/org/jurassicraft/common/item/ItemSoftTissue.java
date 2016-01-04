@@ -33,7 +33,7 @@ public class ItemSoftTissue extends Item
         return new AdvLang("item.soft_tissue.name").withProperty("dino", "entity.jurassicraft." + dinoName + ".name").build();
     }
 
-    private Dinosaur getDinosaur(ItemStack stack)
+    public Dinosaur getDinosaur(ItemStack stack)
     {
         Dinosaur dinosaur = JCEntityRegistry.getDinosaurById(stack.getItemDamage());
 
@@ -47,11 +47,11 @@ public class ItemSoftTissue extends Item
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> subtypes)
+    public void getSubItems(Item item, CreativeTabs tab, List subtypes)
     {
-        List<Dinosaur> dinosaurs = new ArrayList<>(JCEntityRegistry.getDinosaurs());
+        List<Dinosaur> dinosaurs = new ArrayList<Dinosaur>(JCEntityRegistry.getDinosaurs());
 
-        Map<Dinosaur, Integer> ids = new HashMap<>();
+        Map<Dinosaur, Integer> ids = new HashMap<Dinosaur, Integer>();
 
         int id = 0;
 

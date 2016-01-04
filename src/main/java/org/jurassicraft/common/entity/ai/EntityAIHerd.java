@@ -10,8 +10,8 @@ import java.util.List;
 
 public class EntityAIHerd extends EntityAIBase
 {
-    private final EntityDinosaur host;
-    private final double speed = 1.0D;
+    EntityDinosaur host;
+    double speed = 1.0D;
     private Entity movingTo;
     private int updateRate;
 
@@ -20,7 +20,7 @@ public class EntityAIHerd extends EntityAIBase
         this.host = setHost;
     }
 
-    private Entity getTarget()
+    public Entity getTarget()
     {
         return getEntityWithMostNeighbours();
     }
@@ -121,15 +121,15 @@ public class EntityAIHerd extends EntityAIBase
         return movingTo;
     }
 
-    private List<Entity> getEntitiesWithinDistance(Entity e, double xz, double y) //TODO make a base jc ai class and put this in it
+    public List<Entity> getEntitiesWithinDistance(Entity e, double xz, double y) //TODO make a base jc ai class and put this in it
     {
         return e.worldObj.getEntitiesWithinAABBExcludingEntity(e, AxisAlignedBB.fromBounds(e.posX - xz, e.posY - y, e.posZ - xz, e.posX + xz, e.posY + y, e.posZ + xz));
     }
 
-    private List<Entity> getEntitiesOfSameTypeWithinDistance(Entity e, double xz, double y)
+    public List<Entity> getEntitiesOfSameTypeWithinDistance(Entity e, double xz, double y)
     {
         List<Entity> nearbyEntities = getEntitiesWithinDistance(e, xz, y);
-        List<Entity> nearbyEntitiesOfType = new ArrayList<>();
+        List<Entity> nearbyEntitiesOfType = new ArrayList<Entity>();
 
         for (Entity entity : nearbyEntities)
         {

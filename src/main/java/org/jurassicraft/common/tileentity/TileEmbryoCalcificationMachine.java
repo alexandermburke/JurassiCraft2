@@ -14,8 +14,8 @@ import org.jurassicraft.common.item.JCItemRegistry;
 
 public class TileEmbryoCalcificationMachine extends TileMachineBase
 {
-    private final int[] inputs = new int[] { 0, 1 };
-    private final int[] outputs = new int[] { 2 };
+    private int[] inputs = new int[] { 0, 1 };
+    private int[] outputs = new int[] { 2 };
 
     private ItemStack[] slots = new ItemStack[3];
 
@@ -74,7 +74,7 @@ public class TileEmbryoCalcificationMachine extends TileMachineBase
     }
 
     @Override
-    protected int getStackProcessTime()
+    protected int getStackProcessTime(ItemStack stack)
     {
         return 200;
     }

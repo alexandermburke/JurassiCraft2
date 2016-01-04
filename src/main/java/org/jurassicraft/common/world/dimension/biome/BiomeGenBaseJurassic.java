@@ -1,5 +1,5 @@
 package org.jurassicraft.common.world.dimension.biome;
 
-class BiomeGenBaseJurassic
+public class BiomeGenBaseJurassic
 {
 }

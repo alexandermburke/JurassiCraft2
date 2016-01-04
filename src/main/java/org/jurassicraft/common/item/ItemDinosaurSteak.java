@@ -37,7 +37,7 @@ public class ItemDinosaurSteak extends ItemFood
         return new AdvLang("item.dinosaur_steak.name").withProperty("dino", "entity.jurassicraft." + dinosaur.getName().replace(" ", "_").toLowerCase() + ".name").build();
     }
 
-    private Dinosaur getDinosaur(ItemStack stack)
+    public Dinosaur getDinosaur(ItemStack stack)
     {
         Dinosaur dinosaur = JCEntityRegistry.getDinosaurById(stack.getItemDamage());
 
@@ -51,11 +51,11 @@ public class ItemDinosaurSteak extends ItemFood
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> subtypes)
+    public void getSubItems(Item item, CreativeTabs tab, List subtypes)
     {
-        List<Dinosaur> dinosaurs = new ArrayList<>(JCEntityRegistry.getDinosaurs());
+        List<Dinosaur> dinosaurs = new ArrayList<Dinosaur>(JCEntityRegistry.getDinosaurs());
 
-        Map<Dinosaur, Integer> ids = new HashMap<>();
+        Map<Dinosaur, Integer> ids = new HashMap<Dinosaur, Integer>();
 
         int id = 0;
 

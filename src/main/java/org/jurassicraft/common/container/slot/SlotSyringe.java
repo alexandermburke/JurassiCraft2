@@ -7,9 +7,9 @@ import org.jurassicraft.common.item.ItemSyringe;
 
 public class SlotSyringe extends Slot
 {
-    public SlotSyringe(IInventory inventory, int xPosition, int yPosition)
+    public SlotSyringe(IInventory inventory, int slotIndex, int xPosition, int yPosition)
     {
-        super(inventory, 0, xPosition, yPosition);
+        super(inventory, slotIndex, xPosition, yPosition);
     }
 
     @Override

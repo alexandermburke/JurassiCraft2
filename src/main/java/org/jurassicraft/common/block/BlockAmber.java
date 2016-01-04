@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-class BlockAmber extends Block
+public class BlockAmber extends Block
 {
     public BlockAmber()
     {
@@ -39,7 +39,7 @@ class BlockAmber extends Block
      */
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        List<ItemStack> ret = new ArrayList<>();
+        List<ItemStack> ret = new ArrayList<ItemStack>();
 
         Random rand = world instanceof World ? ((World) world).rand : RANDOM;
 

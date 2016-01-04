@@ -104,7 +104,7 @@ import java.util.Map;
 @SideOnly(Side.CLIENT)
 public class JCRenderingRegistry
 {
-    private static final Map<Dinosaur, RenderDinosaurDefinition> renderDefs = Maps.newHashMap();
+    private static Map<Dinosaur, RenderDinosaurDefinition> renderDefs = Maps.newHashMap();
 
     public void preInit()
     {
@@ -142,60 +142,60 @@ public class JCRenderingRegistry
 
     public void init()
     {
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.achillobator, new AnimationAchillobator(), 1.1F, 0.325F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.anklyosaurus, new AnimationAnkylosaurus(), 2.3F, 0.45F, 0.85F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.brachiosaurus, new AnimationBrachiosaurus(), 2.5F, 0.3F, 1.5F, 0.0F, 1.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.carnotaurus, new AnimationCarnotaurus(), 1.3F, 0.25F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.coelacanth, new AnimationCoelacanth(), 2.1F, 0.55F, 0.35F, 1.0F, -0.25F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.compsognathus, new AnimationCompsognathus(), 0.1F, 0.04F, 1.8F, -12.0F, -0.8F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.dilophosaurus, new AnimationDilophosaurus(), 0.95F, 0.22F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.dunkleosteus, new AnimationDunkleosteus(), 2.1F, 0.55F, 0.35F, 1.0F, -0.25F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.gallimimus, new AnimationGallimimus(), 1.2F, 0.25F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.giganotosaurus, new AnimationGiganotosaurus(), 2.37F, 0.3F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.hypsilophodon, new AnimationHypsilophodon(), 0.65F, 0.2F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDefIndominus(0.4F, 0.65F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.majungasaurus, new AnimationMajungasaurus(), 1.6F, 0.4F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.parasaurolophus, new AnimationParasaurolophus(), 1.9F, 0.4F, 0.65F, 0.75F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.pteranodon, new AnimationPteranodon(), 1.2F, 0.3F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.rugops, new AnimationRugops(), 1.0F, 0.3F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.segisaurus, new AnimationSegisaurus(), 0.55F, 0.2F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.spinosaurus, new AnimationSpinosaurus(), 2.37F, 0.3F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.stegosaurus, new AnimationStegosaurus(), 2.55F, 0.35F, 0.65F, 0.775F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.triceratops, new AnimationTriceratops(), 1.8F, 0.325F, 0.65F, 0.75F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.tyrannosaurus, new AnimationTyrannosaurus(), 2.4F, 0.35F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.velociraptor, new AnimationVelociraptor(), 1.0F, 0.3F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.dodo, new AnimationDodo(), 0.8F, 0.3F, 0.5F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.leptictidium, new AnimationLeptictidium(), 0.6F, 0.25F, 0.45F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.microceratus, new AnimationMicroceratus(), 0.5F, 0.18F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.oviraptor, new AnimationOviraptor(), 0.65F, 0.18F, 0.55F, 0.0F, -0.4F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.apatosaurus, new AnimationApatosaurus(), 2.0F, 0.25F, 1.5F, 0.0F, 0.1F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.othnielia, new AnimationOthnielia(), 0.35F, 0.15F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.dimorphodon, new AnimationDimorphodon(), 0.5F, 0.15F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.tylosaurus, new AnimationTylosaurus(), 2.2F, 0.45F, 0.85F, 0.0F, 1.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.ludodactylus, new AnimationLudodactylus(), 0.8F, 0.35F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.protoceratops, new AnimationProtoceratops(), 1.2F, 0.35F, 0.55F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.tropeognathus, new AnimationTropeognathus(), 1.15F, 0.3F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.leaellynasaura, new AnimationLeaellynasaura(), 0.7F, 0.25F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.herrerasaurus, new AnimationHerrerasaurus(), 1.3F, 0.25F, 0.75F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.velociraptor_blue, new AnimationVelociraptorBlue(), 1.0F, 0.3F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.velociraptor_charlie, new AnimationVelociraptorCharlie(), 1.0F, 0.3F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.velociraptor_delta, new AnimationVelociraptorDelta(), 1.0F, 0.3F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.velociraptor_echo, new AnimationVelociraptorEcho(), 1.0F, 0.3F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.therizinosaurus, new AnimationTherizinosaurus(), 3.5F, 0.55F, 0.55F, 1.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.megapiranha, new AnimationMegapiranha(), 1.0F, 0.15F, 0.65F, 0.65F, -0.25F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.baryonyx, new AnimationBaryonyx(), 1.3F, 0.25F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.cearadactylus, new AnimationCearadactylus(), 1.0F, 0.45F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.mamenchisaurus, new AnimationMamenchisaurus(), 1.8F, 0.2F, 1.5F, 0.0F, -0.5F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.chasmosaurus, new AnimationChasmosaurus(), 1.55F, 0.3F, 0.85F, 0.775F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.corythosaurus, new AnimationCorythosaurus(), 1.75F, 0.35F, 0.65F, 0.775F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.edmontosaurus, new AnimationEdmontosaurus(), 2.65F, 0.45F, 0.65F, 0.775F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.lambeosaurus, new AnimationLambeosaurus(), 2.5F, 0.45F, 0.65F, 0.775F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.metriacanthosaurus, new AnimationMetriacanthosaurus(), 1.0F, 0.25F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.moganopterus, new AnimationMoganopterus(), 0.725F, 0.2F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.ornithomimus, new AnimationOrnithomimus(), 0.9F, 0.25F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.zhenyuanopterus, new AnimationZhenyuanopterus(), 0.7F, 0.25F, 0.65F, 0.0F, 0.0F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.troodon, new AnimationTroodon(), 0.75F, 0.25F, 0.65F, 0.0F, 0.5F));
-        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.pachycephalosaurus, new AnimationPachycephalosaurus(), 0.9F, 0.2F, 0.65F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.achillobator, new AnimationAchillobator(), 1.1F, 0.325F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.anklyosaurus, new AnimationAnkylosaurus(), 2.3F, 0.45F, 0.85F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.brachiosaurus, new AnimationBrachiosaurus(), 2.5F, 0.3F, 1.5F, 0.0F, 0.0F, 1.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.carnotaurus, new AnimationCarnotaurus(), 1.3F, 0.25F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.coelacanth, new AnimationCoelacanth(), 2.1F, 0.55F, 0.35F, 0.0F, 1.0F, -0.25F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.compsognathus, new AnimationCompsognathus(), 0.1F, 0.04F, 1.8F, 0.0F, -12.0F, -0.8F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.dilophosaurus, new AnimationDilophosaurus(), 0.95F, 0.22F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.dunkleosteus, new AnimationDunkleosteus(), 2.1F, 0.55F, 0.35F, 0.0F, 1.0F, -0.25F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.gallimimus, new AnimationGallimimus(), 1.2F, 0.25F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.giganotosaurus, new AnimationGiganotosaurus(), 2.37F, 0.3F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.hypsilophodon, new AnimationHypsilophodon(), 0.65F, 0.2F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDefIndominus(3.4F, 0.4F, 0.65F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.majungasaurus, new AnimationMajungasaurus(), 1.6F, 0.4F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.parasaurolophus, new AnimationParasaurolophus(), 1.9F, 0.4F, 0.65F, 0.0F, 0.75F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.pteranodon, new AnimationPteranodon(), 1.2F, 0.3F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.rugops, new AnimationRugops(), 1.0F, 0.3F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.segisaurus, new AnimationSegisaurus(), 0.55F, 0.2F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.spinosaurus, new AnimationSpinosaurus(), 2.37F, 0.3F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.stegosaurus, new AnimationStegosaurus(), 2.55F, 0.35F, 0.65F, 0.0F, 0.775F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.triceratops, new AnimationTriceratops(), 1.8F, 0.325F, 0.65F, 0.0F, 0.75F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.tyrannosaurus, new AnimationTyrannosaurus(), 2.4F, 0.35F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.velociraptor, new AnimationVelociraptor(), 1.0F, 0.3F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.dodo, new AnimationDodo(), 0.8F, 0.3F, 0.5F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.leptictidium, new AnimationLeptictidium(), 0.6F, 0.25F, 0.45F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.microceratus, new AnimationMicroceratus(), 0.5F, 0.18F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.oviraptor, new AnimationOviraptor(), 0.65F, 0.18F, 0.55F, 0.0F, 0.0F, -0.4F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.apatosaurus, new AnimationApatosaurus(), 2.0F, 0.25F, 1.5F, 0.0F, 0.0F, 0.1F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.othnielia, new AnimationOthnielia(), 0.35F, 0.15F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.dimorphodon, new AnimationDimorphodon(), 0.5F, 0.15F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.tylosaurus, new AnimationTylosaurus(), 2.2F, 0.45F, 0.85F, 0.0F, 0.0F, 1.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.ludodactylus, new AnimationLudodactylus(), 0.8F, 0.35F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.protoceratops, new AnimationProtoceratops(), 1.2F, 0.35F, 0.55F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.tropeognathus, new AnimationTropeognathus(), 1.15F, 0.3F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.leaellynasaura, new AnimationLeaellynasaura(), 0.7F, 0.25F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.herrerasaurus, new AnimationHerrerasaurus(), 1.3F, 0.25F, 0.75F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.velociraptor_blue, new AnimationVelociraptorBlue(), 1.0F, 0.3F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.velociraptor_charlie, new AnimationVelociraptorCharlie(), 1.0F, 0.3F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.velociraptor_delta, new AnimationVelociraptorDelta(), 1.0F, 0.3F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.velociraptor_echo, new AnimationVelociraptorEcho(), 1.0F, 0.3F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.therizinosaurus, new AnimationTherizinosaurus(), 3.5F, 0.55F, 0.55F, 0.0F, 1.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.megapiranha, new AnimationMegapiranha(), 1.0F, 0.15F, 0.65F, 0.0F, 0.65F, -0.25F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.baryonyx, new AnimationBaryonyx(), 1.3F, 0.25F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.cearadactylus, new AnimationCearadactylus(), 1.0F, 0.45F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.mamenchisaurus, new AnimationMamenchisaurus(), 1.8F, 0.2F, 1.5F, 0.0F, 0.0F, -0.5F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.chasmosaurus, new AnimationChasmosaurus(), 1.55F, 0.3F, 0.85F, 0.0F, 0.775F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.corythosaurus, new AnimationCorythosaurus(), 1.75F, 0.35F, 0.65F, 0.0F, 0.775F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.edmontosaurus, new AnimationEdmontosaurus(), 2.65F, 0.45F, 0.65F, 0.0F, 0.775F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.lambeosaurus, new AnimationLambeosaurus(), 2.5F, 0.45F, 0.65F, 0.0F, 0.775F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.metriacanthosaurus, new AnimationMetriacanthosaurus(), 1.0F, 0.25F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.moganopterus, new AnimationMoganopterus(), 0.725F, 0.2F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.ornithomimus, new AnimationOrnithomimus(), 0.9F, 0.25F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.zhenyuanopterus, new AnimationZhenyuanopterus(), 0.7F, 0.25F, 0.65F, 0.0F, 0.0F, 0.0F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.troodon, new AnimationTroodon(), 0.75F, 0.25F, 0.65F, 0.0F, 0.0F, 0.5F));
+        registerRenderDef(new RenderDinosaurDefinition(JCEntityRegistry.pachycephalosaurus, new AnimationPachycephalosaurus(), 0.9F, 0.2F, 0.65F, 0.0F, 0.0F, 0.0F));
 
         GuiAppRegistry.register();
 
@@ -206,7 +206,7 @@ public class JCRenderingRegistry
 
         for (BlockEncasedFossil fossil : JCBlockRegistry.encased_fossils)
         {
-            this.registerBlockRenderer(modelMesher, fossil, "encased_fossil_" + i);
+            this.registerBlockRenderer(modelMesher, fossil, "encased_fossil_" + i, "inventory");
 
             i++;
         }
@@ -215,7 +215,7 @@ public class JCRenderingRegistry
 
         for (BlockFossil fossil : JCBlockRegistry.fossils)
         {
-            this.registerBlockRenderer(modelMesher, fossil, "fossil_block_" + i);
+            this.registerBlockRenderer(modelMesher, fossil, "fossil_block_" + i, "inventory");
 
             i++;
         }
@@ -223,49 +223,49 @@ public class JCRenderingRegistry
         for (i = 0; i < JCBlockRegistry.numOfTrees; i++)
         {
             String name = EnumType.getMetaLookup()[i].getName();
-            this.registerBlockRenderer(modelMesher, JCBlockRegistry.leaves[i], name + "_leaves");
-            this.registerBlockRenderer(modelMesher, JCBlockRegistry.saplings[i], name + "_sapling");
-            this.registerBlockRenderer(modelMesher, JCBlockRegistry.planks[i], name + "_planks");
-            this.registerBlockRenderer(modelMesher, JCBlockRegistry.woods[i], name + "_log");
-            this.registerBlockRenderer(modelMesher, JCBlockRegistry.stairs[i], name + "_stairs");
-            this.registerBlockRenderer(modelMesher, JCBlockRegistry.slabs[i], name + "_slab");
-            this.registerBlockRenderer(modelMesher, JCBlockRegistry.doubleSlabs[i], name + "_double_sab");
+            this.registerBlockRenderer(modelMesher, JCBlockRegistry.leaves[i], name + "_leaves", "inventory");
+            this.registerBlockRenderer(modelMesher, JCBlockRegistry.saplings[i], name + "_sapling", "inventory");
+            this.registerBlockRenderer(modelMesher, JCBlockRegistry.planks[i], name + "_planks", "inventory");
+            this.registerBlockRenderer(modelMesher, JCBlockRegistry.woods[i], name + "_log", "inventory");
+            this.registerBlockRenderer(modelMesher, JCBlockRegistry.stairs[i], name + "_stairs", "inventory");
+            this.registerBlockRenderer(modelMesher, JCBlockRegistry.slabs[i], name + "_slab", "inventory");
+            this.registerBlockRenderer(modelMesher, JCBlockRegistry.doubleSlabs[i], name + "_double_sab", "inventory");
         }
 
         for (EnumDyeColor color : EnumDyeColor.values())
         {
-            this.registerBlockRenderer(modelMesher, JCBlockRegistry.cultivate_bottom, color.ordinal(), "cultivate/cultivate_bottom_" + color.getName().toLowerCase());
+            this.registerBlockRenderer(modelMesher, JCBlockRegistry.cultivate_bottom, color.ordinal(), "cultivate/cultivate_bottom_" + color.getName().toLowerCase(), "inventory");
         }
 
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.scaly_tree_fern, "scaly_tree_fern");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.small_royal_fern, "small_royal_fern");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.small_chain_fern, "small_chain_fern");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.small_cycad, "small_cycad");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.bennettitalean_cycadeoidea, "bennettitalean_cycadeoidea");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.cry_pansy, "cry_pansy");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.cycad_zamites, "cycad_zamites");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.dicksonia, "dicksonia");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.scaly_tree_fern, "scaly_tree_fern", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.small_royal_fern, "small_royal_fern", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.small_chain_fern, "small_chain_fern", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.small_cycad, "small_cycad", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.bennettitalean_cycadeoidea, "bennettitalean_cycadeoidea", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.cry_pansy, "cry_pansy", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.cycad_zamites, "cycad_zamites", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.dicksonia, "dicksonia", "inventory");
 
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.reinforced_stone, "reinforced_stone");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.reinforced_bricks, "reinforced_bricks");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.reinforced_stone, "reinforced_stone", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.reinforced_bricks, "reinforced_bricks", "inventory");
 
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.cultivate_bottom, "cultivate_bottom");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.cultivate_top, "cultivate_top");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.cultivate_bottom, "cultivate_bottom", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.cultivate_top, "cultivate_top", "inventory");
 
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.amber_ore, "amber_ore");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.ice_shard, "ice_shard");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.cleaning_station, "cleaning_station");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.fossil_grinder, "fossil_grinder");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.dna_sequencer, "dna_sequencer");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.dna_synthesizer, "dna_synthesizer");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.embryonic_machine, "embryonic_machine");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.embryo_calcification_machine, "embryo_calcification_machine");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.incubator, "incubator");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.dna_extractor, "dna_extractor");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.gypsum_stone, "gypsum_stone");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.gypsum_cobblestone, "gypsum_cobblestone");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.gypsum_bricks, "gypsum_bricks");
-        this.registerBlockRenderer(modelMesher, JCBlockRegistry.action_figure, "action_figure_block");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.amber_ore, "amber_ore", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.ice_shard, "ice_shard", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.cleaning_station, "cleaning_station", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.fossil_grinder, "fossil_grinder", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.dna_sequencer, "dna_sequencer", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.dna_synthesizer, "dna_synthesizer", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.embryonic_machine, "embryonic_machine", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.embryo_calcification_machine, "embryo_calcification_machine", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.incubator, "incubator", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.dna_extractor, "dna_extractor", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.gypsum_stone, "gypsum_stone", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.gypsum_cobblestone, "gypsum_cobblestone", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.gypsum_bricks, "gypsum_bricks", "inventory");
+        this.registerBlockRenderer(modelMesher, JCBlockRegistry.action_figure, "action_figure_block", "inventory");
 
 //        this.registerRenderSubBlock(JCBlockRegistry.bPlanks);
     }
@@ -274,7 +274,7 @@ public class JCRenderingRegistry
     {
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
         {
-            RenderingRegistry.registerEntityRenderingHandler(dino.getDinosaurClass(), renderDefs.get(dino));
+            RenderingRegistry.registerEntityRenderingHandler(dino.getDinosaurClass(), renderDefs.get(dino).getRenderer());
         }
 
         RenderingRegistry.registerEntityRenderingHandler(EntityCageSmall.class, new RenderCageSmall());
@@ -290,45 +290,45 @@ public class JCRenderingRegistry
         ItemModelMesher modelMesher = renderItem.getItemModelMesher();
 
         // Items
-        this.registerItemRenderer(modelMesher, JCItemRegistry.tracker, "tracker");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.plant_cells_petri_dish, "plant_cells_petri_dish");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.plant_cells, "plant_cells");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.plant_callus, "plant_callus");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.needle, "needle");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.growth_serum, "growth_serum");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.iron_rod, "iron_rod");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.iron_blades, "iron_blades");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.cage_small, 0, "cage_small");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.cage_small, 1, "cage_small_marine");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.petri_dish, "petri_dish");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.amber, "amber");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.plaster_and_bandage, "plaster_and_bandage");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.spawn_egg, "dino_spawn_egg");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.paleo_pad, "paleo_pad");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.blue_print, "blue_print");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.paddock_sign, "paddock_sign");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.jc_sign, "jurassicraft_sign");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.empty_test_tube, "empty_test_tube");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.empty_syringe, "empty_syringe");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.entityRemover, "entity_remover");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.storage_disc, "storage_disc");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.disc_reader, "disc_reader");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.laser, "laser");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.dna_base, "dna_base_material");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.sea_lamprey, "sea_lamprey");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.tracker, "tracker", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.plant_cells_petri_dish, "plant_cells_petri_dish", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.plant_cells, "plant_cells", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.plant_callus, "plant_callus", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.needle, "needle", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.growth_serum, "growth_serum", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.iron_rod, "iron_rod", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.iron_blades, "iron_blades", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.cage_small, 0, "cage_small", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.cage_small, 1, "cage_small_marine", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.petri_dish, "petri_dish", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.amber, "amber", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.plaster_and_bandage, "plaster_and_bandage", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.spawn_egg, "dino_spawn_egg", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.paleo_pad, "paleo_pad", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.blue_print, "blue_print", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.paddock_sign, "paddock_sign", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.jc_sign, "jurassicraft_sign", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.empty_test_tube, "empty_test_tube", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.empty_syringe, "empty_syringe", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.entityRemover, "entity_remover", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.storage_disc, "storage_disc", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.disc_reader, "disc_reader", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.laser, "laser", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.dna_base, "dna_base_material", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.sea_lamprey, "sea_lamprey", "inventory");
 
-        this.registerItemRenderer(modelMesher, JCItemRegistry.amber, 0, "amber_mosquito");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.amber, 1, "amber_aphid");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.amber, 0, "amber_mosquito", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.amber, 1, "amber_aphid", "inventory");
 
-        this.registerItemRenderer(modelMesher, JCItemRegistry.helicopter_spawner, "helicopter_spawner");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.helicopter_spawner, "helicopter_spawner", "inventory");
 
-        this.registerItemRenderer(modelMesher, JCItemRegistry.disc_jurassicraft_theme, "disc_jurassicraft_theme");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.disc_dont_move_a_muscle, "disc_dont_move_a_muscle");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.disc_troodons_and_raptors, "disc_troodons_and_raptors");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.disc_jurassicraft_theme, "disc_jurassicraft_theme", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.disc_dont_move_a_muscle, "disc_dont_move_a_muscle", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.disc_troodons_and_raptors, "disc_troodons_and_raptors", "inventory");
 
-        this.registerItemRenderer(modelMesher, JCItemRegistry.amber_keychain, "amber_keychain");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.amber_cane, "amber_cane");
-        this.registerItemRenderer(modelMesher, JCItemRegistry.mr_dna_keychain, "mr_dna_keychain");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.amber_keychain, "amber_keychain", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.amber_cane, "amber_cane", "inventory");
+        this.registerItemRenderer(modelMesher, JCItemRegistry.mr_dna_keychain, "mr_dna_keychain", "inventory");
 
         int meta = 0;
 
@@ -336,15 +336,15 @@ public class JCRenderingRegistry
         {
             String dinoName = dino.getName().toLowerCase().replaceAll(" ", "_");
 
-            this.registerItemRenderer(modelMesher, JCItemRegistry.dna, meta, "dna/dna_" + dinoName);
-            this.registerItemRenderer(modelMesher, JCItemRegistry.skull, meta, "fossil/skull_" + dinoName);
-            this.registerItemRenderer(modelMesher, JCItemRegistry.tooth, meta, "fossil/tooth_" + dinoName);
-            this.registerItemRenderer(modelMesher, JCItemRegistry.egg, meta, "egg/egg_" + dinoName);
-            this.registerItemRenderer(modelMesher, JCItemRegistry.dino_meat, meta, "meat/meat_" + dinoName);
-            this.registerItemRenderer(modelMesher, JCItemRegistry.dino_steak, meta, "meat/steak_" + dinoName);
-            this.registerItemRenderer(modelMesher, JCItemRegistry.soft_tissue, meta, "soft_tissue/soft_tissue_" + dinoName);
-            this.registerItemRenderer(modelMesher, JCItemRegistry.syringe, meta, "syringe/syringe_" + dinoName);
-            this.registerItemRenderer(modelMesher, JCItemRegistry.action_figure, meta, "action_figure/action_figure_" + dinoName);
+            this.registerItemRenderer(modelMesher, JCItemRegistry.dna, meta, "dna/dna_" + dinoName, "inventory");
+            this.registerItemRenderer(modelMesher, JCItemRegistry.skull, meta, "fossil/skull_" + dinoName, "inventory");
+            this.registerItemRenderer(modelMesher, JCItemRegistry.tooth, meta, "fossil/tooth_" + dinoName, "inventory");
+            this.registerItemRenderer(modelMesher, JCItemRegistry.egg, meta, "egg/egg_" + dinoName, "inventory");
+            this.registerItemRenderer(modelMesher, JCItemRegistry.dino_meat, meta, "meat/meat_" + dinoName, "inventory");
+            this.registerItemRenderer(modelMesher, JCItemRegistry.dino_steak, meta, "meat/steak_" + dinoName, "inventory");
+            this.registerItemRenderer(modelMesher, JCItemRegistry.soft_tissue, meta, "soft_tissue/soft_tissue_" + dinoName, "inventory");
+            this.registerItemRenderer(modelMesher, JCItemRegistry.syringe, meta, "syringe/syringe_" + dinoName, "inventory");
+            this.registerItemRenderer(modelMesher, JCItemRegistry.action_figure, meta, "action_figure/action_figure_" + dinoName, "inventory");
 
             meta++;
         }
@@ -355,7 +355,7 @@ public class JCRenderingRegistry
         {
             String name = plant.getName().toLowerCase().replaceAll(" ", "_");
 
-            this.registerItemRenderer(modelMesher, JCItemRegistry.plant_dna, meta, "dna/plants/dna_" + name);
+            this.registerItemRenderer(modelMesher, JCItemRegistry.plant_dna, meta, "dna/plants/dna_" + name, "inventory");
 
             meta++;
         }
@@ -364,14 +364,14 @@ public class JCRenderingRegistry
     /**
      * Registers an item renderer
      */
-    private void registerItemRenderer(ItemModelMesher itemModelMesher, Item item, final String path)
+    public void registerItemRenderer(ItemModelMesher itemModelMesher, Item item, final String path, final String type)
     {
         itemModelMesher.register(item, new ItemMeshDefinition()
         {
             @Override
             public ModelResourceLocation getModelLocation(ItemStack stack)
             {
-                return new ModelResourceLocation(JurassiCraft.MODID + ":" + path, "inventory");
+                return new ModelResourceLocation(JurassiCraft.MODID + ":" + path, type);
             }
         });
     }
@@ -379,30 +379,30 @@ public class JCRenderingRegistry
     /**
      * Registers an item renderer with metadata
      */
-    private void registerItemRenderer(ItemModelMesher itemModelMesher, Item item, int meta, String path)
+    public void registerItemRenderer(ItemModelMesher itemModelMesher, Item item, int meta, String path, String type)
     {
-        itemModelMesher.register(item, meta, new ModelResourceLocation(JurassiCraft.MODID + ":" + path, "inventory"));
+        itemModelMesher.register(item, meta, new ModelResourceLocation(JurassiCraft.MODID + ":" + path, type));
     }
 
     /**
      * Registers an block renderer with metadata
      */
-    private void registerBlockRenderer(ItemModelMesher itemModelMesher, Block block, int meta, String path)
+    public void registerBlockRenderer(ItemModelMesher itemModelMesher, Block block, int meta, String path, String type)
     {
-        itemModelMesher.register(Item.getItemFromBlock(block), meta, new ModelResourceLocation(JurassiCraft.MODID + ":" + path, "inventory"));
+        itemModelMesher.register(Item.getItemFromBlock(block), meta, new ModelResourceLocation(JurassiCraft.MODID + ":" + path, type));
     }
 
     /**
      * Registers a block renderer
      */
-    private void registerBlockRenderer(ItemModelMesher itemModelMesher, Block block, final String path)
+    public void registerBlockRenderer(ItemModelMesher itemModelMesher, Block block, final String path, final String type)
     {
         itemModelMesher.register(Item.getItemFromBlock(block), new ItemMeshDefinition()
         {
             @Override
             public ModelResourceLocation getModelLocation(ItemStack stack)
             {
-                return new ModelResourceLocation(JurassiCraft.MODID + ":" + path, "inventory");
+                return new ModelResourceLocation(JurassiCraft.MODID + ":" + path, type);
             }
         });
     }

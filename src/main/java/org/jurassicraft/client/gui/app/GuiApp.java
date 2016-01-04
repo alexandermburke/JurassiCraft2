@@ -15,16 +15,16 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public abstract class GuiApp
 {
-    final App app;
+    protected App app;
 
-    static final Minecraft mc = Minecraft.getMinecraft();
+    protected static final Minecraft mc = Minecraft.getMinecraft();
 
-    GuiApp(App app)
+    public GuiApp(App app)
     {
         this.app = app;
     }
 
-    public final List<GuiButton> buttons = Lists.newArrayList();
+    public List<GuiButton> buttons = Lists.newArrayList();
 
     private boolean requestShutdown;
 
@@ -43,7 +43,7 @@ public abstract class GuiApp
 
     public abstract void render(int mouseX, int mouseY, GuiPaleoPad gui);
 
-    void renderButtons(int mouseX, int mouseY)
+    protected void renderButtons(int mouseX, int mouseY, GuiPaleoPad gui)
     {
         for (GuiButton button : buttons)
         {
@@ -51,19 +51,19 @@ public abstract class GuiApp
         }
     }
 
-    public void keyPressed()
+    public void keyPressed(int key)
     {
     }
 
-    public void mouseClicked(int mouseX, int mouseY)
+    public void mouseClicked(int mouseX, int mouseY, GuiPaleoPad gui)
     {
     }
 
-    public abstract void actionPerformed();
+    public abstract void actionPerformed(GuiButton button);
 
     public abstract void init();
 
-    public abstract ResourceLocation getTexture();
+    public abstract ResourceLocation getTexture(GuiPaleoPad gui);
 
     public App getApp()
     {

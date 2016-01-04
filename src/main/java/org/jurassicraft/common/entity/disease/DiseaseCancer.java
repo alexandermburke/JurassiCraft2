@@ -5,7 +5,7 @@ public class DiseaseCancer extends Disease
 
     public DiseaseCancer()
     {
-        super();
+        super("Cancer");
         this.setTerminal();
     }
 

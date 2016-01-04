@@ -5,6 +5,7 @@ import org.jurassicraft.common.entity.EntityVelociraptorBlue;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.EnumDiet;
 import org.jurassicraft.common.entity.base.EnumSleepingSchedule;
+import org.jurassicraft.common.food.EnumFoodType;
 import org.jurassicraft.common.period.EnumTimePeriod;
 
 public class DinosaurVelociraptorBlue extends Dinosaur implements IHybrid
@@ -147,13 +148,13 @@ public class DinosaurVelociraptorBlue extends Dinosaur implements IHybrid
     }
 
     @Override
-    public Class<? extends Dinosaur>[] getBaseGenes()
+    public Class[] getBaseGenes()
     {
         return new Class[] { DinosaurVelociraptor.class }; // TODO
     }
 
     @Override
-    public Class<? extends Dinosaur>[] getExtraGenes()
+    public Class[] getExtraGenes()
     {
         return new Class[] { DinosaurVelociraptor.class };
     }

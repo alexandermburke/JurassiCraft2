@@ -7,7 +7,7 @@ import net.minecraft.world.WorldType;
 
 public class WorldTypeIslaNublar extends WorldType
 {
-    private final IslaNublarGeneration generator;
+    public IslaNublarGeneration generator;
 
     public WorldTypeIslaNublar()
     {

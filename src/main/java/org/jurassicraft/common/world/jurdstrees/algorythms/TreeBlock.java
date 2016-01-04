@@ -3,10 +3,8 @@ package org.jurassicraft.common.world.jurdstrees.algorythms;
 public class TreeBlock
 {
 
-    int level;
-    private final int x;
-    private final int y;
-    private final int z;
+    protected int level;
+    protected int x, y, z;
 
     public TreeBlock(int x, int y, int z, int level)
     {
@@ -36,7 +34,12 @@ public class TreeBlock
     public boolean equals(TreeBlock TB)
     {
 
-        return TB.getX() == x && TB.getY() == y && TB.getZ() == z;
+        if (TB.getX() == x && TB.getY() == y && TB.getZ() == z)
+        {
+            return true;
+        }
+
+        return false;
 
     }
 
@@ -51,8 +54,8 @@ public class TreeBlock
     {
 
         public boolean allowTrunk = false;
-        public final boolean growLeaves;
-        public final Rotation rotation;
+        public boolean growLeaves;
+        public Rotation rotation;
 
         public InsPoint(int x, int y, int z, int level, Rotation rot)
         {

@@ -78,18 +78,18 @@ public class ItemActionFigure extends Item
         return new AdvLang("item.action_figure.name").withProperty("dino", "entity.jurassicraft." + dinoName + ".name").build();
     }
 
-    private Dinosaur getDinosaur(ItemStack stack)
+    public Dinosaur getDinosaur(ItemStack stack)
     {
         return JCEntityRegistry.getDinosaurById(stack.getMetadata());
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> subtypes)
+    public void getSubItems(Item item, CreativeTabs tab, List subtypes)
     {
-        List<Dinosaur> dinosaurs = new ArrayList<>(JCEntityRegistry.getDinosaurs());
+        List<Dinosaur> dinosaurs = new ArrayList<Dinosaur>(JCEntityRegistry.getDinosaurs());
 
-        Map<Dinosaur, Integer> ids = new HashMap<>();
+        Map<Dinosaur, Integer> ids = new HashMap<Dinosaur, Integer>();
 
         int id = 0;
 

@@ -8,7 +8,7 @@ import org.jurassicraft.common.configuration.JCConfigurations;
 
 import java.util.List;
 
-class ConfigGUI extends GuiConfig
+public class ConfigGUI extends GuiConfig
 {
     public ConfigGUI(GuiScreen parent)
     {

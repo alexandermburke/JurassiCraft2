@@ -6,13 +6,13 @@ import net.minecraft.util.DamageSource;
 
 public class MetabolismContainer
 {
-    private final int MAX_FOOD;
-    private final int MAX_WATER;
+    public final int MAX_FOOD;
+    public final int MAX_WATER;
 
     private int food;
     private int water;
 
-    private final EntityDinosaur dinosaur;
+    private EntityDinosaur dinosaur;
 
     public MetabolismContainer(EntityDinosaur dinosaur)
     {
@@ -30,7 +30,7 @@ public class MetabolismContainer
         if (!dinosaur.isDead && !dinosaur.isCarcass() && dinosaur.worldObj.getGameRules().getBoolean("dinoMetabolism"))
         {
             decreaseFood(1);
-            decreaseWater();
+            decreaseWater(1);
 
             if (dinosaur.isWet())
             {
@@ -59,9 +59,9 @@ public class MetabolismContainer
         }
     }
 
-    private void decreaseWater()
+    public void decreaseWater(int amount)
     {
-        water -= 1;
+        water -= amount;
 
         if (water <= 0)
         {
@@ -74,7 +74,7 @@ public class MetabolismContainer
         this.water = Math.min(water, MAX_WATER);
     }
 
-    private void setFood(int food)
+    public void setFood(int food)
     {
         this.food = Math.min(food, MAX_FOOD);
     }
@@ -113,9 +113,9 @@ public class MetabolismContainer
         return MAX_WATER;
     }
 
-    public void increaseFood()
+    public void increaseFood(int amount)
     {
-        setFood(food + 2000);
+        setFood(food + amount);
     }
 
     public void increaseWater(int amount)

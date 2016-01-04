@@ -13,7 +13,7 @@ import org.jurassicraft.common.tileentity.TileCultivate;
 @SideOnly(Side.CLIENT)
 public class GuiCultivate extends GuiContainer
 {
-    private final TileCultivate cultivator;
+    private TileCultivate cultivator;
 
     private final InventoryPlayer playerInventory;
 

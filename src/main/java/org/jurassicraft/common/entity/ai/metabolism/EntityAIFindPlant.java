@@ -12,11 +12,9 @@ import org.jurassicraft.common.entity.base.MetabolismContainer;
 
 public class EntityAIFindPlant extends EntityAIBase
 {
-    private final EntityDinosaur dinosaur;
+    protected EntityDinosaur dinosaur;
 
-    private int x;
-    private int y;
-    private int z;
+    protected int x, y, z;
 
     public EntityAIFindPlant(EntityDinosaur dinosaur)
     {
@@ -120,7 +118,7 @@ public class EntityAIFindPlant extends EntityAIBase
                 dinosaur.worldObj.destroyBlock(new BlockPos(x, y, z), false);
             }
 
-            dinosaur.getMetabolism().increaseFood();
+            dinosaur.getMetabolism().increaseFood(2000);
             dinosaur.heal(4.0F);
         }
     }

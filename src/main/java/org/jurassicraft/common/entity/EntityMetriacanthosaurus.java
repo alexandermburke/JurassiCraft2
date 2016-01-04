@@ -16,12 +16,14 @@ public class EntityMetriacanthosaurus extends EntityDinosaurAggressive
     {
         super(world);
 
-        for (Class target : targets) {
-            this.addAIForAttackTargets(target);
+        for (int i = 0; i < targets.length; i++)
+        {
+            this.addAIForAttackTargets(targets[i], new Random().nextInt(3) + 1);
         }
 
-        for (Class deftarget : deftargets) {
-            this.defendFromAttacker(deftarget, new Random().nextInt(3) + 1);
+        for (int j = 0; j < deftargets.length; j++)
+        {
+            this.defendFromAttacker(deftargets[j], new Random().nextInt(3) + 1);
         }
     }
 

@@ -14,8 +14,8 @@ import java.util.Map;
 
 public class FoodHelper
 {
-    private static final Map<EnumFoodType, List<Item>> foods = new HashMap<>();
-    private static final List<Item> allFoods = new ArrayList<>();
+    private static final Map<EnumFoodType, List<Item>> foods = new HashMap<EnumFoodType, List<Item>>();
+    private static final List<Item> allFoods = new ArrayList<Item>();
 
     public static void init()
     {
@@ -67,7 +67,7 @@ public class FoodHelper
         }
     }
 
-    private static void registerFood(Item food, EnumFoodType foodType)
+    public static void registerFood(Item food, EnumFoodType foodType)
     {
         if (!allFoods.contains(food))
         {
@@ -75,7 +75,7 @@ public class FoodHelper
 
             if (foodsForType == null)
             {
-                foodsForType = new ArrayList<>();
+                foodsForType = new ArrayList<Item>();
             }
 
             foodsForType.add(food);
@@ -86,7 +86,7 @@ public class FoodHelper
         }
     }
 
-    private static List<Item> getFoodsForFoodType(EnumFoodType type)
+    public static List<Item> getFoodsForFoodType(EnumFoodType type)
     {
         return foods.get(type);
     }
@@ -111,7 +111,7 @@ public class FoodHelper
 
     private static List<Item> getFoodsForDiet(EnumDiet diet)
     {
-        List<Item> possibleItems = new ArrayList<>();
+        List<Item> possibleItems = new ArrayList<Item>();
 
         if (diet.doesEatPlants())
         {

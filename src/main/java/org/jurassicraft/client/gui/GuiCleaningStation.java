@@ -18,7 +18,7 @@ public class GuiCleaningStation extends GuiContainer
      * The player inventory bound to this GUI.
      */
     private final InventoryPlayer playerInventory;
-    private final IInventory cleaningStation;
+    private IInventory cleaningStation;
 
     public GuiCleaningStation(InventoryPlayer playerInv, IInventory cleaningStation)
     {
@@ -51,22 +51,22 @@ public class GuiCleaningStation extends GuiContainer
 
         if (TileCleaningStation.isCleaning(this.cleaningStation))
         {
-            progress = this.func_175382_i();
+            progress = this.func_175382_i(51);
             this.drawTexturedModalRect(k + 46, l + 18 + 51 - progress, 176, 81 - progress, 14, progress + 1);
         }
 
-        progress = this.getProgress();
+        progress = this.getProgress(24);
         this.drawTexturedModalRect(k + 79, l + 34, 176, 14, progress + 1, 16);
     }
 
-    private int getProgress()
+    private int getProgress(int scale)
     {
         int j = this.cleaningStation.getField(2);
         int k = this.cleaningStation.getField(3);
-        return k != 0 && j != 0 ? j * 24 / k : 0;
+        return k != 0 && j != 0 ? j * scale / k : 0;
     }
 
-    private int func_175382_i()
+    private int func_175382_i(int p_175382_1_)
     {
         int j = this.cleaningStation.getField(1);
 
@@ -75,6 +75,6 @@ public class GuiCleaningStation extends GuiContainer
             j = 200;
         }
 
-        return this.cleaningStation.getField(0) * 51 / j;
+        return this.cleaningStation.getField(0) * p_175382_1_ / j;
     }
 }

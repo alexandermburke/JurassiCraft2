@@ -15,7 +15,7 @@ public abstract class EntityDinosaurFlyingAggressive extends EntityDinosaurAggre
     private final static int DW_WING_FLAP = 31;
     private int wingFlap, prevWingFlap;
 
-    protected EntityDinosaurFlyingAggressive(World world)
+    public EntityDinosaurFlyingAggressive(World world)
     {
         super(world);
         this.tasks.addTask(1, new EntityAIGlide(this));
@@ -47,13 +47,17 @@ public abstract class EntityDinosaurFlyingAggressive extends EntityDinosaurAggre
 
 //                setWingFlap(wingFlap + 1);
 
-                //            flapMotion = 1.5F;
+                float flapDiff = (wingFlap - prevWingFlap);
+
+                float flapMotion = flapDiff;
+
+//            flapMotion = 1.5F;
                 moveForward = 0.15F;
 
                 float speedMultiplier = 0.25F;
 
-                double horizontalMotion = (float) (wingFlap - prevWingFlap) * Math.cos(rotationPitch * (float) Math.PI / 180.0F);
-                double verticalMotion = (float) (wingFlap - prevWingFlap) * Math.sin(rotationPitch * (float) Math.PI / 180.0F);
+                double horizontalMotion = flapMotion * Math.cos(rotationPitch * (float) Math.PI / 180.0F);
+                double verticalMotion = flapMotion * Math.sin(rotationPitch * (float) Math.PI / 180.0F);
 
                 double x = MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F) * horizontalMotion;
                 double z = MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F) * horizontalMotion;

@@ -16,7 +16,7 @@ import org.jurassicraft.common.proxy.CommonProxy;
 @SideOnly(Side.CLIENT)
 public class ClientProxy extends CommonProxy
 {
-    private static final JCRenderingRegistry renderingRegistry = new JCRenderingRegistry();
+    public static JCRenderingRegistry renderingRegistry = new JCRenderingRegistry();
 
     @Override
     public void preInit(FMLPreInitializationEvent event)

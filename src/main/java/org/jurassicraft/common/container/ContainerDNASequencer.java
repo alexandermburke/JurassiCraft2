@@ -12,17 +12,17 @@ import org.jurassicraft.common.tileentity.TileDnaSequencer;
 
 public class ContainerDNASequencer extends Container
 {
-    private final TileDnaSequencer dnaSequencer;
+    private TileDnaSequencer dnaSequencer;
 
     public ContainerDNASequencer(InventoryPlayer playerInventory, TileEntity tileEntity)
     {
         this.dnaSequencer = (TileDnaSequencer) tileEntity;
 
-        this.addSlotToContainer(new SlotDNAHolder(dnaSequencer, 0, 16));
+        this.addSlotToContainer(new SlotDNAHolder(dnaSequencer, 0, 44, 16));
         this.addSlotToContainer(new SlotStorage(dnaSequencer, 1, 66, 16, false));
-        this.addSlotToContainer(new SlotDNAHolder(dnaSequencer, 2, 36));
+        this.addSlotToContainer(new SlotDNAHolder(dnaSequencer, 2, 44, 36));
         this.addSlotToContainer(new SlotStorage(dnaSequencer, 3, 66, 36, false));
-        this.addSlotToContainer(new SlotDNAHolder(dnaSequencer, 4, 56));
+        this.addSlotToContainer(new SlotDNAHolder(dnaSequencer, 4, 44, 56));
         this.addSlotToContainer(new SlotStorage(dnaSequencer, 5, 66, 56, false));
 
         this.addSlotToContainer(new SlotStorage(dnaSequencer, 6, 113, 16, true));

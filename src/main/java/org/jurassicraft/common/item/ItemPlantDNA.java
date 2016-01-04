@@ -38,7 +38,7 @@ public class ItemPlantDNA extends Item
         return new AdvLang("item.plant_dna.name").withProperty("plant", "plants." + plantName + ".name").build();
     }
 
-    private Plant getPlant(ItemStack stack)
+    public Plant getPlant(ItemStack stack)
     {
         Plant plant = JCPlantRegistry.getPlantById(stack.getItemDamage());
 
@@ -52,11 +52,11 @@ public class ItemPlantDNA extends Item
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> subtypes)
+    public void getSubItems(Item item, CreativeTabs tab, List subtypes)
     {
-        List<Plant> plants = new ArrayList<>(JCPlantRegistry.getPlants());
+        List<Plant> plants = new ArrayList<Plant>(JCPlantRegistry.getPlants());
 
-        Map<Plant, Integer> ids = new HashMap<>();
+        Map<Plant, Integer> ids = new HashMap<Plant, Integer>();
 
         int id = 0;
 
@@ -78,7 +78,7 @@ public class ItemPlantDNA extends Item
         }
     }
 
-    private int getDNAQuality(EntityPlayer player, ItemStack stack)
+    public int getDNAQuality(EntityPlayer player, ItemStack stack)
     {
         int quality = player.capabilities.isCreativeMode ? 100 : 0;
 
@@ -103,7 +103,7 @@ public class ItemPlantDNA extends Item
         return quality;
     }
 
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> lore, boolean advanced)
+    public void addInformation(ItemStack stack, EntityPlayer player, List lore, boolean advanced)
     {
         int quality = getDNAQuality(player, stack);
 

@@ -47,7 +47,7 @@ public class TileCultivate extends TileEntityLockable implements ITickable, ISid
     private int minerals;
     private int vitamins;
 
-    private final int maxNutrients = 3000;
+    private int maxNutrients = 3000;
 
     /**
      * The ItemStacks that hold the items currently being used in the cultivator
@@ -145,7 +145,7 @@ public class TileCultivate extends TileEntityLockable implements ITickable, ISid
 
         if (index == 0 && !flag)
         {
-            this.totalCultivateTime = this.getCultivateTime();
+            this.totalCultivateTime = this.getCultivateTime(stack);
             this.cultivateTime = 0;
             worldObj.markBlockForUpdate(pos);
         }
@@ -288,7 +288,7 @@ public class TileCultivate extends TileEntityLockable implements ITickable, ISid
                     if (this.cultivateTime == this.totalCultivateTime)
                     {
                         this.cultivateTime = 0;
-                        this.totalCultivateTime = this.getCultivateTime();
+                        this.totalCultivateTime = this.getCultivateTime(this.slots[0]);
                         this.cultivate();
                         sync = true;
                     }
@@ -416,7 +416,7 @@ public class TileCultivate extends TileEntityLockable implements ITickable, ISid
         }
     }
 
-    private int getCultivateTime()
+    public int getCultivateTime(ItemStack stack)
     {
         return 2000;
     }
@@ -442,7 +442,7 @@ public class TileCultivate extends TileEntityLockable implements ITickable, ISid
     /**
      * Turn one item from the cultivator source stack into the appropriate grinded item in the cultivator result stack
      */
-    private void cultivate()
+    public void cultivate()
     {
         if (this.canCultivate())
         {
@@ -516,7 +516,7 @@ public class TileCultivate extends TileEntityLockable implements ITickable, ISid
     @Override
     public boolean isUseableByPlayer(EntityPlayer player)
     {
-        return this.worldObj.getTileEntity(this.pos) == this && player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
+        return this.worldObj.getTileEntity(this.pos) != this ? false : player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
     }
 
     @Override
@@ -535,7 +535,7 @@ public class TileCultivate extends TileEntityLockable implements ITickable, ISid
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack)
     {
-        return index != 2;
+        return index == 2 ? false : true;
     }
 
     @Override

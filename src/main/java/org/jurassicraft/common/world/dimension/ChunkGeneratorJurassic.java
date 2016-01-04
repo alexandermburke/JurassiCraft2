@@ -1,5 +1,5 @@
 package org.jurassicraft.common.world.dimension;
 
-class ChunkGeneratorJurassic
+public class ChunkGeneratorJurassic
 {
 }

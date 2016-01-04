@@ -10,10 +10,10 @@ import org.jurassicraft.common.entity.base.EntityDinosaur;
  */
 public class JCNonAutoAnimBase extends AIAnimation
 {
-    final EntityDinosaur animatingEntity;
-    private final int duration;
-    private final AnimID id;
-    final int chance;
+    protected EntityDinosaur animatingEntity;
+    protected int duration;
+    protected AnimID id;
+    protected int chance;
 
     public JCNonAutoAnimBase(IAnimatedEntity entity, int duration, AnimID id, int chance)
     {

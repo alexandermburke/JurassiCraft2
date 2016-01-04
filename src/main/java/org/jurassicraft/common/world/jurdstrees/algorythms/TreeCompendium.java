@@ -8,9 +8,9 @@ import java.util.ArrayList;
 
 public class TreeCompendium
 {
-    private static final ArrayList<Tree> TreeList = new ArrayList<>();
+    public static ArrayList<Tree> TreeList = new ArrayList<Tree>();
 
-    private static final ArrayList<Shape> ShapeList = new ArrayList<>();
+    public static ArrayList<Shape> ShapeList = new ArrayList<Shape>();
 
     public static void addShapesToCompendium()
     {
@@ -20,12 +20,12 @@ public class TreeCompendium
 
         shape.addInsPointWithLeaves(0, 1, 0, Rotation.none); // enables leaves, no rotation makes trunk leaves rotation
         shape.addLog(0, 2, 0);
-        shape.addInsPoint(3, 0, 0); // enables branches
+        shape.addInsPoint(0, 3, 0, 0); // enables branches
         shape.addInsPointWithLeaves(0, 4, 0, Rotation.none);// enables leaves, no rotation makes trunk leaves rotation
         shape.addLog(0, 5, 0);
         shape.addLog(0, 6, 0);
         shape.addInsPointWithLeaves(0, 7, 0, Rotation.none);
-        shape.addInsPointWithTrunk(8, 0, 0, Rotation.none); // enables next trunk
+        shape.addInsPointWithTrunk(0, 8, 0, 0, Rotation.none); // enables next trunk
 
         ShapeList.add(shape);
 
@@ -50,7 +50,7 @@ public class TreeCompendium
         shape.addLog(6, -1, 0);
         shape.addInsPointWithLeaves(6, 3, 2, Rotation.east); // enables leaves, remember to put rotation. East is the basic one.
         shape.addInsPointWithLeaves(7, -1, 0, Rotation.east); // enables leaves, remember to put rotation. East is the basic one.
-        shape.addInsPointWithRotation(7, 3, 2, Rotation.east); // enables trunk, remember rotation.
+        shape.addInsPointWithRotation(7, 3, 2, 0, Rotation.east); // enables trunk, remember rotation.
 
         ShapeList.add(shape);
 
@@ -155,7 +155,7 @@ public class TreeCompendium
         shape.addLog(11, 4, 3);
         shape.addLog(12, 5, 4);
         shape.addInsPointWithLeaves(13, 5, 4, Rotation.east); // enables leaves, remember to put rotation. East is the basic one.
-        shape.addInsPointWithRotation(14, 5, 4, Rotation.east); // enables more branches, remember rotation.
+        shape.addInsPointWithRotation(14, 5, 4, 0, Rotation.east); // enables more branches, remember rotation.
 
         ShapeList.add(shape);
 
@@ -176,7 +176,7 @@ public class TreeCompendium
         shape.addLog(6, 3, 1);
         shape.addLog(7, 3, 0);
         shape.addInsPointWithLeaves(7, 3, 0, Rotation.east); // enables leaves, remember to put rotation. East is the basic one.
-        shape.addInsPointWithRotation(8, 3, 0, Rotation.east); // enables trunk, remember rotation.
+        shape.addInsPointWithRotation(8, 3, 0, 0, Rotation.east); // enables trunk, remember rotation.
 
         ShapeList.add(shape);
 
@@ -194,7 +194,7 @@ public class TreeCompendium
         shape.addLog(5, 5, 4);
         shape.addLog(4, 5, 6);
         shape.addInsPointWithLeaves(5, 5, 7, Rotation.east); // enables leaves, remember to put rotation. East is the basic one.
-        shape.addInsPointWithRotation(6, 6, 8, Rotation.east); // enables trunk, remember rotation.
+        shape.addInsPointWithRotation(6, 6, 8, 0, Rotation.east); // enables trunk, remember rotation.
 
         ShapeList.add(shape);
 
@@ -209,7 +209,7 @@ public class TreeCompendium
         shape.addLog(3, 1, 5);
         shape.addLog(4, 2, 6);
         shape.addInsPointWithLeaves(5, 3, 6, Rotation.east); // enables leaves, remember to put rotation. East is the basic one.
-        shape.addInsPointWithRotation(6, 3, 7, Rotation.east); // enables trunk, remember rotation.
+        shape.addInsPointWithRotation(6, 3, 7, 0, Rotation.east); // enables trunk, remember rotation.
 
         ShapeList.add(shape);
 
@@ -218,7 +218,7 @@ public class TreeCompendium
         shape.addInsPointWithLeaves(2, 1, 0, Rotation.east); // enables leaves, remember to put rotation. East is the basic one.
         shape.addLog(3, 2, 0);
         shape.addInsPointWithLeaves(4, 2, 0, Rotation.east); // enables leaves, remember to put rotation. East is the basic one.
-        shape.addInsPointWithRotation(5, 3, 0, Rotation.east); // enables trunk, remember rotation.
+        shape.addInsPointWithRotation(5, 3, 0, 0, Rotation.east); // enables trunk, remember rotation.
 
         ShapeList.add(shape);
 
@@ -228,7 +228,7 @@ public class TreeCompendium
         shape.addInsPointWithLeaves(2, 1, 0, Rotation.east); // enables leaves, remember to put rotation. East is the basic one.
         shape.addLog(3, 2, 0);
         shape.addInsPointWithLeaves(4, 2, 1, Rotation.east); // enables leaves, remember to put rotation. East is the basic one.
-        shape.addInsPointWithRotation(5, 3, 1, Rotation.east); // enables trunk, remember rotation.
+        shape.addInsPointWithRotation(5, 3, 1, 0, Rotation.east); // enables trunk, remember rotation.
 
         ShapeList.add(shape);
 
@@ -238,7 +238,7 @@ public class TreeCompendium
         shape.addInsPointWithLeaves(2, 1, 1, Rotation.east); // enables leaves, remember to put rotation. East is the basic one.
         shape.addLog(3, 2, 2);
         shape.addInsPointWithLeaves(4, 2, 2, Rotation.east); // enables leaves, remember to put rotation. East is the basic one.
-        shape.addInsPointWithRotation(5, 3, 3, Rotation.east); // enables trunk, remember rotation.
+        shape.addInsPointWithRotation(5, 3, 3, 0, Rotation.east); // enables trunk, remember rotation.
 
         ShapeList.add(shape);
 
@@ -248,7 +248,7 @@ public class TreeCompendium
         shape.addInsPointWithLeaves(2, 1, 2, Rotation.east); // enables leaves, remember to put rotation. East is the basic one.
         shape.addLog(3, 2, 3);
         shape.addInsPointWithLeaves(4, 2, 4, Rotation.east); // enables leaves, remember to put rotation. East is the basic one.
-        shape.addInsPointWithRotation(5, 3, 5, Rotation.east); // enables trunk, remember rotation.
+        shape.addInsPointWithRotation(5, 3, 5, 0, Rotation.east); // enables trunk, remember rotation.
 
         ShapeList.add(shape);
 
@@ -258,7 +258,7 @@ public class TreeCompendium
         shape.addInsPointWithLeaves(2, 1, 2, Rotation.east); // enables leaves, remember to put rotation. East is the basic one.
         shape.addLog(3, 2, 3);
         shape.addInsPointWithLeaves(3, 2, 4, Rotation.east); // enables leaves, remember to put rotation. East is the basic one.
-        shape.addInsPointWithRotation(4, 3, 5, Rotation.east); // enables trunk, remember rotation.
+        shape.addInsPointWithRotation(4, 3, 5, 0, Rotation.east); // enables trunk, remember rotation.
 
         ShapeList.add(shape);
 
@@ -268,7 +268,7 @@ public class TreeCompendium
         shape.addInsPointWithLeaves(1, 1, 2, Rotation.east); // enables leaves, remember to put rotation. East is the basic one.
         shape.addLog(2, 2, 3);
         shape.addInsPointWithLeaves(2, 2, 4, Rotation.east); // enables leaves, remember to put rotation. East is the basic one.
-        shape.addInsPointWithRotation(3, 3, 5, Rotation.east); // enables trunk, remember rotation.
+        shape.addInsPointWithRotation(3, 3, 5, 0, Rotation.east); // enables trunk, remember rotation.
 
         ShapeList.add(shape);
 
@@ -278,7 +278,7 @@ public class TreeCompendium
         shape.addInsPointWithLeaves(1, 1, 2, Rotation.east); // enables leaves, remember to put rotation. East is the basic one.
         shape.addLog(2, 2, 3);
         shape.addInsPointWithLeaves(2, 2, 4, Rotation.east); // enables leaves, remember to put rotation. East is the basic one.
-        shape.addInsPointWithRotation(2, 3, 5, Rotation.east); // enables trunk, remember rotation.
+        shape.addInsPointWithRotation(2, 3, 5, 0, Rotation.east); // enables trunk, remember rotation.
 
         ShapeList.add(shape);
 
@@ -288,7 +288,7 @@ public class TreeCompendium
         shape.addInsPointWithLeaves(1, 1, 2, Rotation.east); // enables leaves, remember to put rotation. East is the basic one.
         shape.addLog(1, 2, 3);
         shape.addInsPointWithLeaves(1, 2, 4, Rotation.east); // enables leaves, remember to put rotation. East is the basic one.
-        shape.addInsPointWithRotation(1, 3, 5, Rotation.east); // enables trunk, remember rotation.
+        shape.addInsPointWithRotation(1, 3, 5, 0, Rotation.east); // enables trunk, remember rotation.
 
         ShapeList.add(shape);
 

@@ -16,9 +16,9 @@ import java.util.List;
 
 public class EntityAIEatFoodItem extends EntityAIBase
 {
-    private final EntityDinosaur dinosaur;
+    protected EntityDinosaur dinosaur;
 
-    private EntityItem item;
+    protected EntityItem item;
 
     public EntityAIEatFoodItem(EntityDinosaur dinosaur)
     {
@@ -124,7 +124,7 @@ public class EntityAIEatFoodItem extends EntityAIBase
                 }
             }
 
-            dinosaur.getMetabolism().increaseFood();
+            dinosaur.getMetabolism().increaseFood(2000);
             dinosaur.heal(4.0F);
         }
     }

@@ -1,6 +1,7 @@
 package org.jurassicraft.common.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -35,7 +36,7 @@ public class BlockActionFigure extends BlockOriented
 
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
     {
-        return super.canPlaceBlockAt(worldIn, pos) && canBlockStay(worldIn, pos);
+        return super.canPlaceBlockAt(worldIn, pos) && canBlockStay(worldIn, pos, worldIn.getBlockState(pos));
     }
 
     /**
@@ -52,16 +53,16 @@ public class BlockActionFigure extends BlockOriented
         this.checkAndDropBlock(worldIn, pos, state);
     }
 
-    private void checkAndDropBlock(World worldIn, BlockPos pos, IBlockState state)
+    protected void checkAndDropBlock(World worldIn, BlockPos pos, IBlockState state)
     {
-        if (!this.canBlockStay(worldIn, pos))
+        if (!this.canBlockStay(worldIn, pos, state))
         {
             this.dropBlockAsItem(worldIn, pos, state, 0);
             worldIn.setBlockState(pos, Blocks.air.getDefaultState(), 3);
         }
     }
 
-    private boolean canBlockStay(World worldIn, BlockPos pos)
+    public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
     {
         return worldIn.getBlockState(pos.down()).getBlock().isOpaqueCube();
     }
@@ -115,7 +116,7 @@ public class BlockActionFigure extends BlockOriented
         return getTile(worldIn, pos).dinosaur;
     }
 
-    private TileActionFigure getTile(World world, BlockPos pos)
+    protected TileActionFigure getTile(World world, BlockPos pos)
     {
         return (TileActionFigure) world.getTileEntity(pos);
     }
@@ -131,7 +132,7 @@ public class BlockActionFigure extends BlockOriented
      */
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        List<ItemStack> ret = new java.util.ArrayList<>();
+        List<ItemStack> ret = new java.util.ArrayList<ItemStack>();
 
         Random rand = world instanceof World ? ((World) world).rand : RANDOM;
 

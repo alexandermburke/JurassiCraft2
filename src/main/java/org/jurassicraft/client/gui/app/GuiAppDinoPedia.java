@@ -1,6 +1,7 @@
 package org.jurassicraft.client.gui.app;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -32,11 +33,11 @@ public class GuiAppDinoPedia extends GuiApp
     @Override
     public void render(int mouseX, int mouseY, GuiPaleoPad gui)
     {
-        super.renderButtons(mouseX, mouseY);
+        super.renderButtons(mouseX, mouseY, gui);
 
         AppDinoPedia app = (AppDinoPedia) this.app;
 
-        gui.drawScaledText("Items:", 4, 5, 0xFFFFFF);
+        gui.drawScaledText("Items:", 4, 5, 1.0F, 0xFFFFFF);
 
         drawItemsAndRecipes(gui, app);
     }
@@ -65,7 +66,7 @@ public class GuiAppDinoPedia extends GuiApp
 
                 if (app.getSelectedItem() == i)
                 {
-                    gui.drawBoxOutline(renderX + 4, renderY + 14, 18, 18, 1.0F, 0x606060);
+                    gui.drawBoxOutline(renderX + 4, renderY + 14, 18, 18, 1, 1.0F, 0x606060);
                 }
 
                 ScaledResolution dimensions = new ScaledResolution(mc);
@@ -81,8 +82,8 @@ public class GuiAppDinoPedia extends GuiApp
 
                     List<IRecipe> recipes = DinoPediaRegistry.getRecipesForItem(stack);
 
-                    gui.drawCenteredScaledText("Recipe:", -120, -12, 1.0F);
-                    gui.drawCenteredScaledText(stack.getDisplayName(), -120, -80, 1.0F);
+                    gui.drawCenteredScaledText("Recipe:", -120, -12, 1.0F, 0xFFFFFF);
+                    gui.drawCenteredScaledText(stack.getDisplayName(), -120, -80, 1.0F, 0xFFFFFF);
 
                     render.zLevel = 200.0F;
                     render.renderItemAndEffectIntoGUI(stack, 75, -8);
@@ -103,7 +104,7 @@ public class GuiAppDinoPedia extends GuiApp
                             {
                                 ItemStack item = recipeItems[r];
 
-                                gui.drawBoxOutline(rx * 19 - 150, ry * 19, 18, 18, 1.0F, r % 2 == 0 ? 0x606060 : 0x404040);
+                                gui.drawBoxOutline(rx * 19 - 150, ry * 19, 18, 18, 1, 1.0F, r % 2 == 0 ? 0x606060 : 0x404040);
 
                                 if (item != null)
                                 {
@@ -143,7 +144,7 @@ public class GuiAppDinoPedia extends GuiApp
     }
 
     @Override
-    public void mouseClicked(int mouseX, int mouseY)
+    public void mouseClicked(int mouseX, int mouseY, GuiPaleoPad gui)
     {
         ScaledResolution dimensions = new ScaledResolution(mc);
         mouseX -= dimensions.getScaledWidth() / 2 - 115;
@@ -179,7 +180,7 @@ public class GuiAppDinoPedia extends GuiApp
     }
 
     @Override
-    public void actionPerformed()
+    public void actionPerformed(GuiButton button)
     {
 
     }
@@ -190,7 +191,7 @@ public class GuiAppDinoPedia extends GuiApp
     }
 
     @Override
-    public ResourceLocation getTexture()
+    public ResourceLocation getTexture(GuiPaleoPad gui)
     {
         return texture;
     }

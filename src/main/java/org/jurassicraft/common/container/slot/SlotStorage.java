@@ -7,7 +7,7 @@ import org.jurassicraft.common.item.JCItemRegistry;
 
 public class SlotStorage extends Slot
 {
-    private final boolean stored;
+    private boolean stored;
 
     public SlotStorage(IInventory inventory, int slotIndex, int xPosition, int yPosition, boolean stored)
     {

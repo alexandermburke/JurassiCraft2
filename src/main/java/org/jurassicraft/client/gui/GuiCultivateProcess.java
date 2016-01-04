@@ -13,13 +13,13 @@ import org.jurassicraft.common.tileentity.TileCultivate;
 @SideOnly(Side.CLIENT)
 public class GuiCultivateProcess extends GuiScreen
 {
-    private final TileCultivate cultivator;
-    private final int xSize;
-    private final int ySize;
+    private TileCultivate cultivator;
+    private int xSize;
+    private int ySize;
     private int guiLeft;
     private int guiTop;
 
-    private final ResourceLocation gui = new ResourceLocation(JurassiCraft.MODID, "textures/gui/cultivator_progress.png");
+    private ResourceLocation gui = new ResourceLocation(JurassiCraft.MODID, "textures/gui/cultivator_progress.png");
 
     public GuiCultivateProcess(TileCultivate entity)
     {
