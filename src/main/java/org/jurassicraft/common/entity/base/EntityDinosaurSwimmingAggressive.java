@@ -82,22 +82,6 @@ public abstract class EntityDinosaurSwimmingAggressive extends EntityDinosaurAgg
     }
 
     /**
-     * Whether or not the current entity is in lava
-     */
-    public boolean handleLavaMovement()
-    {
-        return this.worldObj.checkNoEntityCollision(this.getEntityBoundingBox(), this) && this.worldObj.getCollidingBoundingBoxes(this, this.getEntityBoundingBox()).isEmpty();
-    }
-
-    /**
-     * Checks if the entity's current position is a valid location to spawn this entity.
-     */
-    public boolean getCanSpawnHere()
-    {
-        return (this.rand.nextInt(20) == 0 || !this.worldObj.canBlockSeeSky(new BlockPos(this))) && super.getCanSpawnHere();
-    }
-
-    /**
      * Moves the entity based on the specified heading. Args: strafe, forward
      */
     public void moveEntityWithHeading(float strafe, float forward)

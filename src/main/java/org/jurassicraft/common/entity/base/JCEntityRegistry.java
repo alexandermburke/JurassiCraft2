@@ -3,6 +3,8 @@ package org.jurassicraft.common.entity.base;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Iterators;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
@@ -238,10 +240,12 @@ public class JCEntityRegistry
                 if (dinosaur.isMarineAnimal())
                 {
                     EntityRegistry.addSpawn(clazz, 5, 1, 2,  EnumCreatureType.WATER_CREATURE, BiomeGenBase.ocean, BiomeGenBase.deepOcean, BiomeGenBase.river);
+                    EntitySpawnPlacementRegistry.setPlacementType(clazz, EntityLiving.SpawnPlacementType.IN_WATER);
                 }
                 else
                 {
                     EntityRegistry.addSpawn(clazz, 5, 1, 2, EnumCreatureType.CREATURE, Iterators.toArray(Iterators.filter(Iterators.forArray(BiomeGenBase.getBiomeGenArray()), Predicates.notNull()), BiomeGenBase.class));
+                    EntitySpawnPlacementRegistry.setPlacementType(clazz, EntityLiving.SpawnPlacementType.ON_GROUND);
                 }
             }
         }
