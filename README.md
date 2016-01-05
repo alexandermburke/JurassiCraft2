@@ -8,13 +8,12 @@ TheLieutenantGhost
 
 ## Programmers
 gegy1000  
-BobMowzie  
-JTGhawk137  
 Reuxertz  
 jglrxavpok  
 TheLarsinator  
 Kaneras  
 WorldSEnder  
+iLexiconn
 
 ## Artists
 TheLieutenantGhost  
