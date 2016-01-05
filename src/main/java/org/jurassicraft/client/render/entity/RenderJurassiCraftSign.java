@@ -95,7 +95,7 @@ public class RenderJurassiCraftSign implements IRenderFactory<EntityJurassiCraft
                     float f22 = (float)(textureV + height - (y + 1) * 16) / 256.0F;
                     Tessellator tessellator = Tessellator.getInstance();
                     WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-                    worldrenderer.begin(7, DefaultVertexFormats.POSITION);
+                    worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_NORMAL);
                     worldrenderer.pos((double)bottomX, (double)f18, (double)(-f2)).tex((double)f20, (double)f21).normal(0.0F, 0.0F, -1.0F).endVertex();
                     worldrenderer.pos((double)f16, (double)f18, (double)(-f2)).tex((double)f19, (double)f21).normal(0.0F, 0.0F, -1.0F).endVertex();
                     worldrenderer.pos((double)f16, (double)f17, (double)(-f2)).tex((double)f19, (double)f22).normal(0.0F, 0.0F, -1.0F).endVertex();
