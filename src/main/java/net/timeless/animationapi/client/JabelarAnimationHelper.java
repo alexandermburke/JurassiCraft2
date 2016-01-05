@@ -382,7 +382,9 @@ public class JabelarAnimationHelper
         // check if finished sequence
         if (currentPose >= numPosesInSequence)
         {
-            if (theEntity.getAnimation() == Animations.DYING.get()) // hold last dying pose indefinitely
+            Animations animation = Animations.getAnimation(theEntity.getAnimation());
+            
+            if (animation != null && animation.shouldHold()) // hold last dying pose indefinitely
             {
                 currentPose--;
             }
