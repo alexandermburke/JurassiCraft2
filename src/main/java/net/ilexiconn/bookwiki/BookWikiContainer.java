@@ -55,10 +55,10 @@ public class BookWikiContainer {
             return iconInstance;
         }
 
-        public Page getDefaultPage() {
+        public Page getDefaultPage(BookWikiContainer container) {
             if (pageInstance == null) {
-                for (Page page : getPages()) {
-                    if (page.getID().equals(defaultPage) && page.getCategory() == this) {
+                for (Page page : container.getPages()) {
+                    if (page.getID().equals(defaultPage) && page.getCategory(container) == this) {
                         pageInstance = page;
                         break;
                     }
@@ -87,10 +87,9 @@ public class BookWikiContainer {
             return content;
         }
 
-        public Category getCategory() {
+        public Category getCategory(BookWikiContainer container) {
             if (categoryInstance == null) {
-                System.out.println(Arrays.toString(getCategories()));
-                for (Category category : getCategories()) {
+                for (Category category : container.getCategories()) {
                     if (category.getID().equals(this.category)) {
                         categoryInstance = category;
                         break;

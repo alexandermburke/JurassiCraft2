@@ -83,19 +83,21 @@ public class JurassiCraft
         try {
             BookWiki bookWiki = BookWiki.create(new InputStreamReader(Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation(MODID, "bookwiki/bookwiki_test.json")).getInputStream()));
             logger.info("==================== BookWiki TEST ====================");
-            for (BookWikiContainer.Category category : bookWiki.getContainer().getCategories()) {
+            BookWikiContainer container = bookWiki.getContainer();
+
+            for (BookWikiContainer.Category category : container.getCategories()) {
                 logger.info("========= Category =========");
                 logger.info(category.getName());
                 logger.info(category.getIcon().getDisplayName());
-                logger.info(category.getDefaultPage());
+                logger.info(category.getDefaultPage(container));
             }
-            for (BookWikiContainer.Page page : bookWiki.getContainer().getPages()) {
+            for (BookWikiContainer.Page page : container.getPages()) {
                 logger.info("=========== Page ===========");
                 logger.info(page.getTitle());
-                logger.info(page.getCategory());
-                logger.info(page.getCategory().getName());
+                logger.info(page.getCategory(container));
+                logger.info(page.getCategory(container).getName());
             }
-            for (BookWikiContainer.Recipe recipe : bookWiki.getContainer().getRecipes()) {
+            for (BookWikiContainer.Recipe recipe : container.getRecipes()) {
                 logger.info("========== Recipe ==========");
                 logger.info(recipe.getID());
                 logger.info(recipe.isShapeless());
