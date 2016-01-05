@@ -4,8 +4,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import java.util.Arrays;
-
 /**
  * @author iLexiconn
  */
@@ -26,7 +24,7 @@ public class BookWikiContainer {
         return recipes;
     }
 
-    public class Category {
+    public class Category extends ContainerHandler {
         private String id;
         private String name;
         private String icon;
@@ -55,10 +53,10 @@ public class BookWikiContainer {
             return iconInstance;
         }
 
-        public Page getDefaultPage(BookWikiContainer container) {
+        public Page getDefaultPage() {
             if (pageInstance == null) {
                 for (Page page : container.getPages()) {
-                    if (page.getID().equals(defaultPage) && page.getCategory(container) == this) {
+                    if (page.getID().equals(defaultPage) && page.getCategory() == this) {
                         pageInstance = page;
                         break;
                     }
@@ -68,7 +66,7 @@ public class BookWikiContainer {
         }
     }
 
-    public class Page {
+    public class Page extends ContainerHandler {
         private String id;
         private String title;
         private String content;
@@ -87,7 +85,7 @@ public class BookWikiContainer {
             return content;
         }
 
-        public Category getCategory(BookWikiContainer container) {
+        public Category getCategory() {
             if (categoryInstance == null) {
                 for (Category category : container.getCategories()) {
                     if (category.getID().equals(this.category)) {
@@ -100,7 +98,7 @@ public class BookWikiContainer {
         }
     }
 
-    public class Recipe {
+    public class Recipe extends ContainerHandler {
         private String id;
         private boolean shapeless;
         private String[] recipe;
@@ -150,6 +148,14 @@ public class BookWikiContainer {
                 }
             }
             return resultInstance;
+        }
+    }
+
+    public class ContainerHandler {
+        BookWikiContainer container;
+
+        public void setContainer(BookWikiContainer container) {
+            this.container = container;
         }
     }
 }

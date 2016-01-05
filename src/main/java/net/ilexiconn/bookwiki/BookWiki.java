@@ -16,6 +16,15 @@ public class BookWiki {
     public static BookWiki create(Reader reader) {
         BookWiki bookWiki = new BookWiki();
         bookWiki.container = JsonFactory.getGson().fromJson(reader, BookWikiContainer.class);
+        for (BookWikiContainer.Category category : bookWiki.container.getCategories()) {
+            category.setContainer(bookWiki.container);
+        }
+        for (BookWikiContainer.Page page : bookWiki.container.getPages()) {
+            page.setContainer(bookWiki.container);
+        }
+        for (BookWikiContainer.Recipe recipe : bookWiki.container.getRecipes()) {
+            recipe.setContainer(bookWiki.container);
+        }
         return bookWiki;
     }
 
