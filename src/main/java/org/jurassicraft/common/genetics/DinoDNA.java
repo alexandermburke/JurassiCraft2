@@ -54,7 +54,7 @@ public class DinoDNA
 
     public void addInformation(ItemStack stack, List<String> tooltip)
     {
-        tooltip.add(EnumChatFormatting.DARK_AQUA + new AdvLang("lore.dinosaur.name").withProperty("dino", "entity." + JCEntityRegistry.getDinosaurById(genetics.getDinosaur()).getName().toLowerCase() + ".name").build());
+        tooltip.add(EnumChatFormatting.DARK_AQUA + new AdvLang("lore.dinosaur.name").withProperty("dino", "entity.jurassicraft." + JCEntityRegistry.getDinosaurById(genetics.getDinosaur()).getName().toLowerCase() + ".name").build());
 
         EnumChatFormatting colour;
 
