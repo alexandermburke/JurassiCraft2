@@ -84,19 +84,19 @@ public class RenderPaddockSign implements IRenderFactory<EntityPaddockSign>
             float f13 = 0.0F;
             float f14 = 0.0625F;
 
-            for (int i = 0; i < width / 16; ++i)
+            for (int x = 0; x < width / 16; ++x)
             {
-                for (int j = 0; j < height / 16; ++j)
+                for (int y = 0; y < height / 16; ++y)
                 {
-                    float f15 = f + (float)((i + 1) * 16);
-                    float f16 = f + (float)(i * 16);
-                    float f17 = f1 + (float)((j + 1) * 16);
-                    float f18 = f1 + (float)(j * 16);
+                    float f15 = f + (float)((x + 1) * 16);
+                    float f16 = f + (float)(x * 16);
+                    float f17 = f1 + (float)((y + 1) * 16);
+                    float f18 = f1 + (float)(y * 16);
                     this.setLightmap(entity, (f15 + f16) / 2.0F, (f17 + f18) / 2.0F);
-                    float f19 = (float)(textureU + width - i * 16) / 256.0F;
-                    float f20 = (float)(textureU + width - (i + 1) * 16) / 256.0F;
-                    float f21 = (float)(textureV + height - j * 16) / 256.0F;
-                    float f22 = (float)(textureV + height - (j + 1) * 16) / 256.0F;
+                    float f19 = (float)(textureU + width - x * 16) / 256.0F;
+                    float f20 = (float)(textureU + width - (x + 1) * 16) / 256.0F;
+                    float f21 = (float)(textureV + height - y * 16) / 256.0F;
+                    float f22 = (float)(textureV + height - (y + 1) * 16) / 256.0F;
                     Tessellator tessellator = Tessellator.getInstance();
                     WorldRenderer worldrenderer = tessellator.getWorldRenderer();
                     worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_NORMAL);

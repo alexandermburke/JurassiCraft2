@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.EnumDyeColor;
@@ -277,11 +278,13 @@ public class JCRenderingRegistry
             RenderingRegistry.registerEntityRenderingHandler(dino.getDinosaurClass(), renderDefs.get(dino).createRenderFor());
         }
 
-        RenderingRegistry.registerEntityRenderingHandler(EntityCageSmall.class, new RenderCageSmall());
-        RenderingRegistry.registerEntityRenderingHandler(EntityBluePrint.class, new RenderBluePrint());
-        RenderingRegistry.registerEntityRenderingHandler(EntityPaddockSign.class, new RenderPaddockSign());
-        RenderingRegistry.registerEntityRenderingHandler(EntityJurassiCraftSign.class, new RenderJurassiCraftSign());
-        RenderingRegistry.registerEntityRenderingHandler(EntityHelicopterBase.class, new RenderHelicopter());
+        RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityCageSmall.class, new RenderCageSmall().createRenderFor(renderManager));
+        RenderingRegistry.registerEntityRenderingHandler(EntityBluePrint.class, new RenderBluePrint().createRenderFor(renderManager));
+        RenderingRegistry.registerEntityRenderingHandler(EntityPaddockSign.class, new RenderPaddockSign().createRenderFor(renderManager));
+        RenderingRegistry.registerEntityRenderingHandler(EntityJurassiCraftSign.class, new RenderJurassiCraftSign().createRenderFor(renderManager));
+        RenderingRegistry.registerEntityRenderingHandler(EntityHelicopterBase.class, new RenderHelicopter().createRenderFor(renderManager));
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileDNAExtractor.class, new SpecialRendererDNAExtractor());
         ClientRegistry.bindTileEntitySpecialRenderer(TileActionFigure.class, new SpecialRendererActionFigure());
