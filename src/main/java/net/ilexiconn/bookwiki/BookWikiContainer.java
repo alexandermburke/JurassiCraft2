@@ -4,6 +4,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import java.util.Arrays;
+
 /**
  * @author iLexiconn
  */
@@ -25,11 +27,16 @@ public class BookWikiContainer {
     }
 
     public class Category {
+        private String id;
         private String name;
         private String icon;
         private transient ItemStack iconInstance;
         private String defaultPage;
         private transient Page pageInstance;
+
+        public String getID() {
+            return id;
+        }
 
         public String getName() {
             return name;
@@ -51,7 +58,7 @@ public class BookWikiContainer {
         public Page getDefaultPage() {
             if (pageInstance == null) {
                 for (Page page : getPages()) {
-                    if (page.getTitle().equals(defaultPage) && page.getCategory() == this) {
+                    if (page.getID().equals(defaultPage) && page.getCategory() == this) {
                         pageInstance = page;
                         break;
                     }
@@ -62,10 +69,15 @@ public class BookWikiContainer {
     }
 
     public class Page {
+        private String id;
         private String title;
         private String content;
         private String category;
         private transient Category categoryInstance;
+
+        public String getID() {
+            return id;
+        }
 
         public String getTitle() {
             return title;
@@ -77,8 +89,9 @@ public class BookWikiContainer {
 
         public Category getCategory() {
             if (categoryInstance == null) {
+                System.out.println(Arrays.toString(getCategories()));
                 for (Category category : getCategories()) {
-                    if (category.getName().equals(this.category)) {
+                    if (category.getID().equals(this.category)) {
                         categoryInstance = category;
                         break;
                     }

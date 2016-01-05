@@ -1,0 +1,29 @@
+{
+  "categories": [
+    {
+      "id": "general",
+      "name": "wiki.general.name",
+      "icon": "minecraft:diamond_sword",
+      "defaultPage": "main"
+    }
+  ],
+  "pages": [
+    {
+      "id": "main",
+      "title": "wiki.main.title",
+      "content": "Hello world! {recipe sword}",
+      "category": "general"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "sword",
+      "recipe": [
+        "", "minecraft:diamond", "",
+        "", "minecraft:diamond", "",
+        "", "minecraft:stick", ""
+      ],
+      "result": "minecraft:diamond_sword"
+    }
+  ]
+}

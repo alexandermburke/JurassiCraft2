@@ -1,6 +1,10 @@
 package org.jurassicraft;
 
+import net.ilexiconn.bookwiki.BookWiki;
+import net.ilexiconn.bookwiki.BookWikiContainer;
+import net.minecraft.client.Minecraft;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.GameRules;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
@@ -27,6 +31,8 @@ import org.jurassicraft.common.storagedisc.StorageTypeRegistry;
 import org.jurassicraft.common.world.islanublar.WorldTypeIslaNublar;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 @Mod(modid = JurassiCraft.MODID, name = JurassiCraft.MODNAME, version = JurassiCraft.VERSION, guiFactory = "org.jurassicraft.client.gui.config.GUIFactory", dependencies = "required-after:llibrary@[0.6.2,)")
 public class JurassiCraft
@@ -73,6 +79,32 @@ public class JurassiCraft
         logger.debug("Finished pre-init for JurassiCraft!");
 
         FoodHelper.init();
+
+        try {
+            BookWiki bookWiki = BookWiki.create(new InputStreamReader(Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation(MODID, "bookwiki/bookwiki_test.json")).getInputStream()));
+            logger.info("==================== BookWiki TEST ====================");
+            for (BookWikiContainer.Category category : bookWiki.getContainer().getCategories()) {
+                logger.info("========= Category =========");
+                logger.info(category.getName());
+                logger.info(category.getIcon().getDisplayName());
+                logger.info(category.getDefaultPage());
+            }
+            for (BookWikiContainer.Page page : bookWiki.getContainer().getPages()) {
+                logger.info("=========== Page ===========");
+                logger.info(page.getTitle());
+                logger.info(page.getCategory());
+                logger.info(page.getCategory().getName());
+            }
+            for (BookWikiContainer.Recipe recipe : bookWiki.getContainer().getRecipes()) {
+                logger.info("========== Recipe ==========");
+                logger.info(recipe.getID());
+                logger.info(recipe.isShapeless());
+                logger.info(recipe.getRecipe());
+                logger.info(recipe.getResult().getDisplayName());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Mod.EventHandler
