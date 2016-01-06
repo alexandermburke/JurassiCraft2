@@ -69,6 +69,8 @@ public class JurassiCraft
     public static File configFile;
     public static Configuration config;
 
+    public static BookWiki bookWiki;
+
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
@@ -81,22 +83,21 @@ public class JurassiCraft
         FoodHelper.init();
 
         try {
-            BookWiki bookWiki = BookWiki.create(new InputStreamReader(Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation(MODID, "bookwiki/bookwiki_test.json")).getInputStream()));
+            bookWiki = BookWiki.create(instance, new InputStreamReader(Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation(MODID, "bookwiki/bookwiki_test.json")).getInputStream()));
             logger.info("==================== BookWiki TEST ====================");
-            BookWikiContainer container = bookWiki.getContainer();
-            for (BookWikiContainer.Category category : container.getCategories()) {
+            for (BookWikiContainer.Category category : bookWiki.getContainer().getCategories()) {
                 logger.info("========= Category =========");
                 logger.info(category.getName());
                 logger.info(category.getIcon().getDisplayName());
                 logger.info(category.getDefaultPage().getTitle());
             }
-            for (BookWikiContainer.Page page : container.getPages()) {
+            for (BookWikiContainer.Page page : bookWiki.getContainer().getPages()) {
                 logger.info("=========== Page ===========");
                 logger.info(page.getTitle());
                 logger.info(page.getContent());
                 logger.info(page.getCategory().getName());
             }
-            for (BookWikiContainer.Recipe recipe : container.getRecipes()) {
+            for (BookWikiContainer.Recipe recipe : bookWiki.getContainer().getRecipes()) {
                 logger.info("========== Recipe ==========");
                 logger.info(recipe.getID());
                 logger.info(recipe.isShapeless());
@@ -104,6 +105,7 @@ public class JurassiCraft
                 logger.info(recipe.getResult().getDisplayName());
             }
             logger.info("================== BookWiki TEST END ==================");
+            bookWiki.registerItem();
         } catch (IOException e) {
             e.printStackTrace();
         }
