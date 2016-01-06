@@ -29,21 +29,20 @@ Ma_rio11
 
 
 # Contributing
-Feel free to speed up development and create pull requests. Here's a guide on how to setup your workspace.  
-You must have [Gradle](http://gradle.org/) installed before you can begin.
+Feel free to speed up development and create pull requests. Here's a guide on how to setup your workspace.
 
 First, make a fork of this repository. When you've done that, you can clone that reposity. Depending on your installation settings, you either have to run the command in the git Bash, or the CMD/Terminal.
 ```
-git clone https://github.com/<USERNAME>/JurassiCraft2
+git clone https://github.com/<Your Username>/JurassiCraft2
 ```
 
-When that's done, go into the directory and run in the console if you're on Windows:
+When that's done, go into the newly created directory `JurassiCraft2` and run in the console if you're on Windows:
 ```
-gradlew.bat setDecompWorkspace
+gradlew.bat setupDecompWorkspace
 ```
 Or this when you're on any other operating system (Like Mac OS X and Ubuntu):
 ```
-./gradlew setDecompWorkspace
+./gradlew setupDecompWorkspace
 ```
 
 Then for Eclipse:
