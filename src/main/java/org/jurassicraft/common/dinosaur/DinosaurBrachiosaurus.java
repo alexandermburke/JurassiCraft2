@@ -165,4 +165,10 @@ public class DinosaurBrachiosaurus extends Dinosaur
     {
         return EnumSleepingSchedule.DIURNAL;
     }
+
+    @Override
+    public String[] getBones()
+    {
+        return new String[] { "skull", "tooth", "tail_vertebrae", "shoulder", "ribcage", "pelvis", "neck_vertebrae", "hind_leg_bones", "front_leg_bones" };
+    }
 }

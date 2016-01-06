@@ -163,4 +163,10 @@ public class DinosaurOrnithomimus extends Dinosaur
     {
         return EnumSleepingSchedule.DIURNAL;
     }
+
+    @Override
+    public String[] getBones()
+    {
+        return new String[] { "arm_bones", "foot_bones", "leg_bones", "neck_vertebrae", "pelvis", "ribcage", "shoulder", "skull", "tail_vertebrae" };
+    }
 }

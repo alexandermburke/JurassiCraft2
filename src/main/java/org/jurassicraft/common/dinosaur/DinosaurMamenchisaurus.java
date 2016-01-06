@@ -163,4 +163,10 @@ public class DinosaurMamenchisaurus extends Dinosaur
     {
         return 5.95F;
     }
+
+    @Override
+    public String[] getBones()
+    {
+        return new String[] { "skull" };
+    }
 }

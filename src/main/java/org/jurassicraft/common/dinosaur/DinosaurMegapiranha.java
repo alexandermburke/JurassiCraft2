@@ -169,4 +169,10 @@ public class DinosaurMegapiranha extends Dinosaur
     {
         return EnumSleepingSchedule.DIURNAL;
     }
+
+    @Override
+    public String[] getBones()
+    {
+        return new String[] { "anal_fin", "body_fins", "caudal_fin", "dorsal_fin", "skull", "spine", "teeth" };
+    }
 }

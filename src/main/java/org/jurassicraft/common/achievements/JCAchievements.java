@@ -18,7 +18,7 @@ public class JCAchievements
 
     public void register()
     {
-        jurassicraft = (JCAchievement) (new JCAchievement("mod", 0, 0, JCItemRegistry.skull, null)).initIndependentStat();
+        jurassicraft = (JCAchievement) (new JCAchievement("mod", 0, 0, JCItemRegistry.fossils.get("skull"), null)).initIndependentStat();
         paleontology = new JCAchievement("paleontology", 2, 1, JCItemRegistry.plaster_and_bandage, jurassicraft);
         fossils = new JCAchievement("fossils", 3, 3, JCBlockRegistry.encased_fossils.get(0), paleontology);
         amber = new JCAchievement("amber", 2, -2, JCItemRegistry.amber, jurassicraft);

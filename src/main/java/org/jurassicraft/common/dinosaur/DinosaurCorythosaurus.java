@@ -163,4 +163,10 @@ public class DinosaurCorythosaurus extends Dinosaur
     {
         return EnumSleepingSchedule.DIURNAL;
     }
+
+    @Override
+    public String[] getBones()
+    {
+        return new String[] { "skull", "cheek_teeth", "front_leg_bones", "hind_leg_bones", "neck_vertebrae", "pelvis", "ribcage", "shoulder", "tail_vertebrae"};
+    }
 }

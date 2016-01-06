@@ -211,4 +211,17 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
     public abstract EnumDiet getDiet();
 
     public abstract EnumSleepingSchedule getSleepingSchedule();
+
+    public abstract String[] getBones();
+
+    @Override
+    public boolean equals(Object object)
+    {
+        if (object instanceof Dinosaur)
+        {
+            return ((Dinosaur) object).getName().equalsIgnoreCase(getName());
+        }
+
+        return false;
+    }
 }

@@ -32,7 +32,7 @@ public class ItemSyringe extends ItemDnaContainer
     {
         String dinoName = getDinosaur(stack).getName().toLowerCase().replaceAll(" ", "_");
 
-        return new AdvLang("item.syringe.name").withProperty("dino", "entity." + dinoName + ".name").build();
+        return new AdvLang("item.syringe.name").withProperty("dino", "entity.jurassicraft." + dinoName + ".name").build();
     }
 
     public Dinosaur getDinosaur(ItemStack stack)
@@ -60,13 +60,9 @@ public class ItemSyringe extends ItemDnaContainer
 
         Map<Dinosaur, Integer> ids = new HashMap<Dinosaur, Integer>();
 
-        int id = 0;
-
         for (Dinosaur dino : dinosaurs)
         {
-            ids.put(dino, id);
-
-            id++;
+            ids.put(dino, JCEntityRegistry.getDinosaurId(dino));
         }
 
         Collections.sort(dinosaurs);

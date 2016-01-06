@@ -163,4 +163,10 @@ public class DinosaurBaryonyx extends Dinosaur
     {
         return EnumSleepingSchedule.DIURNAL;
     }
+
+    @Override
+    public String[] getBones()
+    {
+        return new String[] { "skull", "tooth", "tail_vertebrae", "shoulder", "ribcage", "pelvis", "leg_vertebrae", "leg_bones", "claw", "arm_bones" };
+    }
 }

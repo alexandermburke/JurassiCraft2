@@ -175,4 +175,10 @@ public class DinosaurVelociraptorEcho extends Dinosaur implements IHybrid
     {
         return EnumSleepingSchedule.DIURNAL;
     }
+
+    @Override
+    public String[] getBones()
+    {
+        return new String[] { "claw", "tooth", "skull" };
+    }
 }

@@ -8,6 +8,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.base.JCEntityRegistry;
+import org.jurassicraft.common.item.JCItemRegistry;
 import org.jurassicraft.common.lang.AdvLang;
 
 import java.util.ArrayList;
@@ -52,24 +53,22 @@ public class ItemFossil extends Item
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> subtypes)
     {
-        List<Dinosaur> dinosaurs = new ArrayList<Dinosaur>(JCEntityRegistry.getDinosaurs());
+        List<Dinosaur> dinosaurs = new ArrayList<Dinosaur>(JCEntityRegistry.getRegisteredDinosaurs());
 
         Map<Dinosaur, Integer> ids = new HashMap<Dinosaur, Integer>();
 
-        int id = 0;
-
         for (Dinosaur dino : dinosaurs)
         {
-            ids.put(dino, id);
-
-            id++;
+            ids.put(dino, JCEntityRegistry.getDinosaurId(dino));
         }
 
         Collections.sort(dinosaurs);
 
+        List<Dinosaur> dinosaursForType = JCItemRegistry.fossilDinosaurs.get(type);
+
         for (Dinosaur dino : dinosaurs)
         {
-            if (dino.shouldRegister())
+            if (dino.shouldRegister() && dinosaursForType.contains(dino))
             {
                 subtypes.add(new ItemStack(item, 1, ids.get(dino)));
             }

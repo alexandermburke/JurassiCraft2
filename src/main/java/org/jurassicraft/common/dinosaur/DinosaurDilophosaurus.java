@@ -165,4 +165,10 @@ public class DinosaurDilophosaurus extends Dinosaur
     {
         return EnumSleepingSchedule.CREPUSCULAR;
     }
+
+    @Override
+    public String[] getBones()
+    {
+        return new String[] { "skull", "tooth", "arm_bones", "leg_bones", "neck", "pelvis", "ribcage", "shoulder", "tail_vertebrae" };
+    }
 }

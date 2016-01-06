@@ -94,12 +94,14 @@ import org.jurassicraft.common.entity.item.EntityCageSmall;
 import org.jurassicraft.common.entity.item.EntityJurassiCraftSign;
 import org.jurassicraft.common.entity.item.EntityPaddockSign;
 import org.jurassicraft.common.item.JCItemRegistry;
+import org.jurassicraft.common.item.bones.ItemFossil;
 import org.jurassicraft.common.plant.JCPlantRegistry;
 import org.jurassicraft.common.plant.Plant;
 import org.jurassicraft.common.tileentity.TileActionFigure;
 import org.jurassicraft.common.tileentity.TileDNAExtractor;
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 
+import java.util.List;
 import java.util.Map;
 
 @SideOnly(Side.CLIENT)
@@ -113,8 +115,16 @@ public class JCRenderingRegistry
         {
             String dinoName = dino.getName().toLowerCase().replaceAll(" ", "_");
 
-            ModelBakery.registerItemVariants(JCItemRegistry.skull, new ResourceLocation("jurassicraft:fossil/skull_" + dinoName));
-            ModelBakery.registerItemVariants(JCItemRegistry.tooth, new ResourceLocation("jurassicraft:fossil/tooth_" + dinoName));
+            for (Map.Entry<String, ItemFossil> entry : JCItemRegistry.fossils.entrySet())
+            {
+                List<Dinosaur> dinosaursForType = JCItemRegistry.fossilDinosaurs.get(entry.getKey());
+
+                if (dinosaursForType.contains(dino))
+                {
+                    ModelBakery.registerItemVariants(entry.getValue(), new ResourceLocation("jurassicraft:bones/" + dinoName + "_" + entry.getKey()));
+                }
+            }
+
             ModelBakery.registerItemVariants(JCItemRegistry.dna, new ResourceLocation("jurassicraft:dna/dna_" + dinoName));
             ModelBakery.registerItemVariants(JCItemRegistry.egg, new ResourceLocation("jurassicraft:egg/egg_" + dinoName));
             ModelBakery.registerItemVariants(JCItemRegistry.dino_meat, new ResourceLocation("jurassicraft:meat/meat_" + dinoName));
@@ -339,9 +349,17 @@ public class JCRenderingRegistry
         {
             String dinoName = dino.getName().toLowerCase().replaceAll(" ", "_");
 
+            for (Map.Entry<String, ItemFossil> entry : JCItemRegistry.fossils.entrySet())
+            {
+                List<Dinosaur> dinosaursForType = JCItemRegistry.fossilDinosaurs.get(entry.getKey());
+
+                if (dinosaursForType.contains(dino))
+                {
+                    this.registerItemRenderer(modelMesher, entry.getValue(), meta, "bones/" + dinoName + "_" + entry.getKey(), "inventory");
+                }
+            }
+
             this.registerItemRenderer(modelMesher, JCItemRegistry.dna, meta, "dna/dna_" + dinoName, "inventory");
-            this.registerItemRenderer(modelMesher, JCItemRegistry.skull, meta, "fossil/skull_" + dinoName, "inventory");
-            this.registerItemRenderer(modelMesher, JCItemRegistry.tooth, meta, "fossil/tooth_" + dinoName, "inventory");
             this.registerItemRenderer(modelMesher, JCItemRegistry.egg, meta, "egg/egg_" + dinoName, "inventory");
             this.registerItemRenderer(modelMesher, JCItemRegistry.dino_meat, meta, "meat/meat_" + dinoName, "inventory");
             this.registerItemRenderer(modelMesher, JCItemRegistry.dino_steak, meta, "meat/steak_" + dinoName, "inventory");

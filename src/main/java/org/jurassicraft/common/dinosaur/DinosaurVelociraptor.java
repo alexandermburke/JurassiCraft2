@@ -174,4 +174,10 @@ public class DinosaurVelociraptor extends Dinosaur
     {
         return EnumSleepingSchedule.DIURNAL;
     }
+
+    @Override
+    public String[] getBones()
+    {
+        return new String[] { "claw", "tooth", "skull" };
+    }
 }

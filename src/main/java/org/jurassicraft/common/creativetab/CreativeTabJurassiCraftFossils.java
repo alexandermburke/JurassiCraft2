@@ -44,6 +44,6 @@ public class CreativeTabJurassiCraftFossils extends CreativeTabs
     @Override
     public Item getTabIconItem()
     {
-        return JCItemRegistry.skull;
+        return JCItemRegistry.fossils.get("skull");
     }
 }

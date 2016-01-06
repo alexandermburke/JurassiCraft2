@@ -163,4 +163,10 @@ public class DinosaurTherizinosaurus extends Dinosaur
     {
         return EnumSleepingSchedule.NOCTURNAL;
     }
+
+    @Override
+    public String[] getBones()
+    {
+        return new String[] { "skull", "teeth" };
+    }
 }

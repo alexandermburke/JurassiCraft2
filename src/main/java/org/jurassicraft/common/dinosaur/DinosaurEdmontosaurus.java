@@ -163,4 +163,10 @@ public class DinosaurEdmontosaurus extends Dinosaur
     {
         return EnumSleepingSchedule.DIURNAL;
     }
+
+    @Override
+    public String[] getBones()
+    {
+        return new String[] { "cheek_teeth" };
+    }
 }

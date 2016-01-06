@@ -163,4 +163,10 @@ public class DinosaurCearadactylus extends Dinosaur
     {
         return EnumSleepingSchedule.DIURNAL;
     }
+
+    @Override
+    public String[] getBones()
+    {
+        return new String[] { "skull", "teeth", "wing_bones", "tail_vertebrae", "leg_bones", "pelvis" };
+    }
 }

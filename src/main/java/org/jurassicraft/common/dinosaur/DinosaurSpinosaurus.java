@@ -165,4 +165,10 @@ public class DinosaurSpinosaurus extends Dinosaur
     {
         return EnumSleepingSchedule.DIURNAL;
     }
+
+    @Override
+    public String[] getBones()
+    {
+        return new String[] { "skull", "tooth" };
+    }
 }

@@ -175,4 +175,10 @@ public class DinosaurLeptictidium extends Dinosaur
     {
         return EnumSleepingSchedule.DIURNAL;
     }
+
+    @Override
+    public String[] getBones()
+    {
+        return new String[] { };
+    }
 }

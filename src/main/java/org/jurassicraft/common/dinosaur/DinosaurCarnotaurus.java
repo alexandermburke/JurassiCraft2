@@ -165,4 +165,10 @@ public class DinosaurCarnotaurus extends Dinosaur
     {
         return EnumSleepingSchedule.CREPUSCULAR;
     }
+
+    @Override
+    public String[] getBones()
+    {
+        return new String[] { "skull", "tooth" };
+    }
 }

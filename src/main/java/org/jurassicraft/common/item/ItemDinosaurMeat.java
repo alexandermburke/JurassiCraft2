@@ -66,13 +66,9 @@ public class ItemDinosaurMeat extends ItemFood
 
         Map<Dinosaur, Integer> ids = new HashMap<Dinosaur, Integer>();
 
-        int id = 0;
-
         for (Dinosaur dino : dinosaurs)
         {
-            ids.put(dino, id);
-
-            id++;
+            ids.put(dino, JCEntityRegistry.getDinosaurId(dino));
         }
 
         Collections.sort(dinosaurs);

@@ -64,34 +64,34 @@ public class CommonProxy
         MinecraftForge.EVENT_BUS.register(eventHandler);
     }
 
-    private void addChestGenItems()
-    {
-        ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR).addItem(new WeightedRandomChestContent(new ItemStack(JCItemRegistry.amber, 1, 0), 1, 2, 30));
-        ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR).addItem(new WeightedRandomChestContent(new ItemStack(JCItemRegistry.amber, 1, 1), 1, 2, 30));
-
-        List<Dinosaur> dinosaurs = new ArrayList<Dinosaur>(JCEntityRegistry.getDinosaurs());
-
-        Map<Dinosaur, Integer> ids = new HashMap<Dinosaur, Integer>();
-
-        int id = 0;
-
-        for (Dinosaur dino : dinosaurs)
-        {
-            ids.put(dino, id);
-
-            id++;
-        }
-
-        Collections.sort(dinosaurs);
-
-        for (Dinosaur dino : dinosaurs)
-        {
-            if (dino.shouldRegister() && !(dino instanceof IHybrid))
-            {
-                ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(JCItemRegistry.skull, 1, ids.get(dino)), 1, 6, 80));
-            }
-        }
-    }
+//    private void addChestGenItems()
+//    {
+//        ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR).addItem(new WeightedRandomChestContent(new ItemStack(JCItemRegistry.amber, 1, 0), 1, 2, 30));
+//        ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR).addItem(new WeightedRandomChestContent(new ItemStack(JCItemRegistry.amber, 1, 1), 1, 2, 30));
+//
+//        List<Dinosaur> dinosaurs = new ArrayList<Dinosaur>(JCEntityRegistry.getDinosaurs());
+//
+//        Map<Dinosaur, Integer> ids = new HashMap<Dinosaur, Integer>();
+//
+//        int id = 0;
+//
+//        for (Dinosaur dino : dinosaurs)
+//        {
+//            ids.put(dino, id);
+//
+//            id++;
+//        }
+//
+//        Collections.sort(dinosaurs);
+//
+//        for (Dinosaur dino : dinosaurs)
+//        {
+//            if (dino.shouldRegister() && !(dino instanceof IHybrid))
+//            {
+//                ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(JCItemRegistry.skull, 1, ids.get(dino)), 1, 6, 80));
+//            }
+//        }
+//    }
 
     public void postInit(FMLPostInitializationEvent event)
     {

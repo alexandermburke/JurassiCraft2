@@ -4,16 +4,20 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
-import org.jurassicraft.common.item.bones.ItemSkull;
-import org.jurassicraft.common.item.bones.ItemTooth;
+import org.jurassicraft.common.dinosaur.Dinosaur;
+import org.jurassicraft.common.entity.base.JCEntityRegistry;
+import org.jurassicraft.common.item.bones.ItemFossil;
 import org.jurassicraft.common.paleopad.dinopedia.DinoPediaRegistry;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class JCItemRegistry
 {
     public static ItemPlasterAndBandage plaster_and_bandage;
     public static ItemDinosaurSpawnEgg spawn_egg;
-    public static ItemSkull skull;
-    public static ItemTooth tooth;
 
     public static ItemDNA dna;
     public static ItemDinosaurEgg egg;
@@ -70,14 +74,15 @@ public class JCItemRegistry
     public static ItemBasic amber_cane;
     public static ItemBasic mr_dna_keychain;
 
+    public static Map<String, ItemFossil> fossils = new HashMap<String, ItemFossil>();
+    public static Map<String, List<Dinosaur>> fossilDinosaurs = new HashMap<String, List<Dinosaur>>();
+
     // TODO more complex crafting components, eg circuit boards
 
     public void register()
     {
         plaster_and_bandage = new ItemPlasterAndBandage();
         spawn_egg = new ItemDinosaurSpawnEgg();
-        skull = new ItemSkull();
-        tooth = new ItemTooth();
         dna = new ItemDNA();
         egg = new ItemDinosaurEgg();
         paleo_pad = new ItemPaleoPad();
@@ -122,6 +127,32 @@ public class JCItemRegistry
         disc_troodons_and_raptors = new ItemJCMusicDisc("troodons_and_raptors");
         disc_dont_move_a_muscle = new ItemJCMusicDisc("dont_move_a_muscle");
 
+        for (Dinosaur dinosaur : JCEntityRegistry.getRegisteredDinosaurs())
+        {
+            String[] boneTypes = dinosaur.getBones();
+
+            for (String boneType : boneTypes)
+            {
+                if (!fossils.containsKey(boneType))
+                {
+                    ItemFossil fossil = new ItemFossil(boneType);
+                    fossils.put(boneType, fossil);
+                    registerItem(fossil, boneType);
+                }
+
+                List<Dinosaur> dinosaursWithType = fossilDinosaurs.get(boneType);
+
+                if (dinosaursWithType == null)
+                {
+                    dinosaursWithType = new ArrayList<Dinosaur>();
+                }
+
+                dinosaursWithType.add(dinosaur);
+
+                fossilDinosaurs.put(boneType, dinosaursWithType);
+            }
+        }
+
         registerItem(amber, "Amber");
         registerItem(sea_lamprey, "Sea Lamprey");
         registerItem(plaster_and_bandage, "Plaster And Bandage");
@@ -139,8 +170,6 @@ public class JCItemRegistry
         registerItem(cage_small, "Cage Small");
         // registerItem(jc_sign, "JurassiCraft Sign");
         registerItem(spawn_egg, "Dino Spawn Egg");
-        registerItem(skull, "Skull");
-        registerItem(tooth, "Tooth");
         registerItem(dna, "DNA");
         registerItem(egg, "Dino Egg");
         registerItem(paleo_pad, "Paleo Pad");
