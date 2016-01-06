@@ -3,6 +3,7 @@ package org.jurassicraft;
 import net.ilexiconn.bookwiki.BookWiki;
 import net.ilexiconn.bookwiki.BookWikiContainer;
 import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.GameRules;
@@ -101,7 +102,13 @@ public class JurassiCraft
                 logger.info("========== Recipe ==========");
                 logger.info(recipe.getID());
                 logger.info(recipe.isShapeless());
-                logger.info(recipe.getRecipe());
+                for (ItemStack stack : recipe.getRecipe()) {
+                    if (stack != null) {
+                        logger.info(stack.getDisplayName());
+                    } else {
+                        logger.info("null");
+                    }
+                }
                 logger.info(recipe.getResult().getDisplayName());
             }
             logger.info("================== BookWiki TEST END ==================");

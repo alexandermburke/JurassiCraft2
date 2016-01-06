@@ -121,7 +121,7 @@ public class BookWikiContainer {
                     for (int i = 0; i < 9; i++) {
                         String s = recipe[i];
                         if (!s.isEmpty()) {
-                            Item item = Item.getByNameOrId(result);
+                            Item item = Item.getByNameOrId(s);
                             if (item != null) {
                                 recipeInstance[i] = new ItemStack(item);
                             } else {
