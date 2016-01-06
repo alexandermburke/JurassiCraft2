@@ -4,6 +4,7 @@ import net.ilexiconn.llibrary.client.model.entity.animation.IModelAnimator;
 import net.ilexiconn.llibrary.client.model.tabula.ModelJson;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.TabulaModelHelper;
@@ -127,7 +128,7 @@ public class RenderDinosaurDefinition
         return dinosaur;
     }
 
-    public Render<? super EntityDinosaur> createRenderFor()
+    public Render<? super EntityDinosaur> createRenderFor(RenderManager manager)
     {
         return new RenderDinosaur(this);
     }

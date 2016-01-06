@@ -283,12 +283,12 @@ public class JCRenderingRegistry
 
     public void postInit()
     {
+        RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
+
         for (Dinosaur dino : JCEntityRegistry.getDinosaurs())
         {
-            RenderingRegistry.registerEntityRenderingHandler(dino.getDinosaurClass(), renderDefs.get(dino).createRenderFor());
+            RenderingRegistry.registerEntityRenderingHandler(dino.getDinosaurClass(), renderDefs.get(dino).createRenderFor(renderManager));
         }
-
-        RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
 
         RenderingRegistry.registerEntityRenderingHandler(EntityCageSmall.class, new RenderCageSmall().createRenderFor(renderManager));
         RenderingRegistry.registerEntityRenderingHandler(EntityBluePrint.class, new RenderBluePrint().createRenderFor(renderManager));
