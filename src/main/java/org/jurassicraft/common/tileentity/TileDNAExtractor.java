@@ -3,6 +3,7 @@ package org.jurassicraft.common.tileentity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import org.jurassicraft.JurassiCraft;
@@ -16,6 +17,7 @@ import org.jurassicraft.common.item.JCItemRegistry;
 import org.jurassicraft.common.plant.JCPlantRegistry;
 import org.jurassicraft.common.plant.Plant;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -38,7 +40,7 @@ public class TileDNAExtractor extends TileMachineBase
         ItemStack extraction = slots[0];
         ItemStack storage = slots[1];
 
-        if (storage != null && storage.getItem() == JCItemRegistry.storage_disc && extraction != null && (extraction.getItem() == JCItemRegistry.amber || extraction.getItem() == JCItemRegistry.sea_lamprey) && (storage.getTagCompound() == null || !storage.getTagCompound().hasKey("Genetics")))
+        if (storage != null && storage.getItem() == JCItemRegistry.storage_disc && extraction != null && (extraction.getItem() == JCItemRegistry.amber || extraction.getItem() == JCItemRegistry.sea_lamprey || extraction.getItem() == JCItemRegistry.dino_meat) && (storage.getTagCompound() == null || !storage.getTagCompound().hasKey("Genetics")))
         {
             for (int i = 2; i < 6; i++)
             {
@@ -62,21 +64,14 @@ public class TileDNAExtractor extends TileMachineBase
 
             ItemStack disc = null;
 
-            if (input.getItemDamage() == 0)
+            Item item = input.getItem();
+
+            if (item == JCItemRegistry.amber || item == JCItemRegistry.sea_lamprey)
             {
-                List<Dinosaur> possibleDinos = null;
+                if (input.getItemDamage() == 0)
+                {
+                    List<Dinosaur> possibleDinos = item == JCItemRegistry.amber ? JCEntityRegistry.getDinosaursFromAmber() : JCEntityRegistry.getDinosaursFromSeaLampreys();
 
-                if (input.getItem() == JCItemRegistry.amber)
-                {
-                    possibleDinos = JCEntityRegistry.getDinosaursFromAmber();
-                }
-                else if (input.getItem() == JCItemRegistry.sea_lamprey)
-                {
-                    possibleDinos = JCEntityRegistry.getDinosaursFromSeaLampreys();
-                }
-
-                if (possibleDinos != null)
-                {
                     Dinosaur dino = possibleDinos.get(rand.nextInt(possibleDinos.size()));
 
                     int dinosaurId = JCEntityRegistry.getDinosaurId(dino);
@@ -97,34 +92,40 @@ public class TileDNAExtractor extends TileMachineBase
 
                     disc.setTagCompound(nbt);
                 }
-            }
-            else if (input.getItem() == JCItemRegistry.amber && input.getItemDamage() == 1)
-            {
-                List<Plant> possiblePlants = JCPlantRegistry.getPlants();
-                Plant plant = possiblePlants.get(rand.nextInt(possiblePlants.size()));
-
-                int plantId = JCPlantRegistry.getPlantId(plant);
-
-                disc = new ItemStack(JCItemRegistry.storage_disc, 1, plantId);
-
-                int quality = rand.nextInt(50);
-
-                if (rand.nextDouble() < 0.1)
+                else if (input.getItemDamage() == 1)
                 {
-                    quality += 50;
+                    List<Plant> possiblePlants = JCPlantRegistry.getPlants();
+                    Plant plant = possiblePlants.get(rand.nextInt(possiblePlants.size()));
+
+                    int plantId = JCPlantRegistry.getPlantId(plant);
+
+                    disc = new ItemStack(JCItemRegistry.storage_disc, 1, plantId);
+
+                    int quality = rand.nextInt(50);
+
+                    if (rand.nextDouble() < 0.1)
+                    {
+                        quality += 50;
+                    }
+
+                    PlantDNA dna = new PlantDNA(plantId, quality);
+
+                    NBTTagCompound nbt = new NBTTagCompound();
+                    dna.writeToNBT(nbt);
+
+                    disc.setTagCompound(nbt);
                 }
+            }
+            else if (item == JCItemRegistry.dino_meat)
+            {
+                disc = new ItemStack(JCItemRegistry.storage_disc, 1, input.getItemDamage());
 
-                PlantDNA dna = new PlantDNA(plantId, quality);
-
-                NBTTagCompound nbt = new NBTTagCompound();
-                dna.writeToNBT(nbt);
-
-                disc.setTagCompound(nbt);
+                disc.setTagCompound(input.getTagCompound());
             }
 
             int empty = getOutputSlot(disc);
 
-            slots[empty] = disc;
+            mergeStack(empty, disc);
 
             decreaseStackSize(0);
             decreaseStackSize(1);

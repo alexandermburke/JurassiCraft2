@@ -15,6 +15,6 @@ public class SlotDNAExtraction extends Slot
     @Override
     public boolean isItemValid(ItemStack stack)
     {
-        return stack.getItem() == JCItemRegistry.amber || stack.getItem() == JCItemRegistry.sea_lamprey;
+        return stack.getItem() == JCItemRegistry.amber || stack.getItem() == JCItemRegistry.sea_lamprey || stack.getItem() == JCItemRegistry.dino_meat;
     }
 }

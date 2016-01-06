@@ -374,7 +374,9 @@ public abstract class TileMachineBase extends TileEntityLockable implements ITic
 
         for (int slot : outputs)
         {
-            if (slots[slot] == null || (ItemStack.areItemStackTagsEqual(slots[slot], output) && slots[slot].getItem() == output.getItem()))
+            ItemStack stack = slots[slot];
+
+            if (stack == null || ((ItemStack.areItemStackTagsEqual(stack, output) && stack.stackSize + output.stackSize <= stack.getMaxStackSize()) && stack.getItem() == output.getItem()))
             {
                 return slot;
             }
