@@ -2,12 +2,14 @@ package org.jurassicraft.client.gui.app;
 
 import com.google.common.base.Predicate;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ClassInheritanceMultiMap;
 import net.minecraft.util.EntitySelectors;
@@ -60,6 +62,8 @@ public class GuiAppMinimap extends GuiApp
         int renderChunkX = 0;
         int renderChunkY = 0;
 
+        gui.drawBoxOutline(89, 14, 16 * 8 + 1, 16 * 8 + 1, 1, 1.0F, (renderChunkX + renderChunkY) % 2 == 0 ? 0x606060 : 0x505050);
+
         for (int chunkX = playerChunkX - 4; chunkX < playerChunkX + 4; chunkX++)
         {
             for (int chunkZ = playerChunkZ - 4; chunkZ < playerChunkZ + 4; chunkZ++)
@@ -68,53 +72,50 @@ public class GuiAppMinimap extends GuiApp
 
                 if (!chunk.isEmpty())
                 {
-                    // int shadowY = 0;
-                    // int shadowX = 0;
-                    // int shadowZ = 0;
-
                     for (int x = 0; x < 16; x++)
                     {
                         for (int z = 0; z < 16; z++)
                         {
                             int blockX = x + (chunkX * 16);
-                            int blockY = chunk.getHeight(new BlockPos(x, 0, z));
                             int blockZ = z + (chunkZ * 16);
 
-                            if (world.isAirBlock(new BlockPos(blockX, blockY, blockZ)))
+                            int blockY = world.getHeight(new BlockPos(blockX, 0, blockZ)).getY();
+
+                            BlockPos pos = new BlockPos(blockX, blockY, blockZ);
+
+                            while (world.isAirBlock(pos) || world.getBlockState(pos).getBlock() instanceof BlockLiquid)
                             {
                                 blockY--;
+                                pos = new BlockPos(blockX, blockY, blockZ);
                             }
 
-                            IBlockState blockState = world.getBlockState(new BlockPos(blockX, blockY, blockZ));
+                            BlockPos up = pos.add(0, 1, 0);
+
+                            if (!world.isAirBlock(up))
+                            {
+                                pos = up;
+                            }
+
+                            IBlockState blockState = world.getBlockState(pos);
                             Block block = blockState.getBlock();
 
                             MapColor color = block.getMapColor(blockState);
 
                             int rgb = color.colorValue;
 
-                            // if(shadowX == blockX && shadowZ == blockZ - 1 && blockY < shadowY)
-                            // {
-                            // int red = (rgb >> 16) & 255;
-                            // int green = (rgb >> 8) & 255;
-                            // int blue = rgb & 255;
-                            //
-                            // float dark = -((float) (blockY - 64)) / 255.0F;
-                            //
-                            // red *= dark;
-                            // green *= dark;
-                            // blue *= dark;
-                            //
-                            // rgb = red;
-                            // rgb = (rgb << 8) + green;
-                            // rgb = (rgb << 8) + blue;
-                            // }
-                            //
-                            // shadowX = blockX;
-                            // shadowY = blockY;
-                            // shadowZ = blockZ;
+                            int r = (rgb >> 16) & 0xff;
+                            int g = (rgb >> 8) & 0xff;
+                            int b = rgb & 0xff;
 
-                            gui.drawScaledRect(mapX + (renderChunkX * 16) + 90, renderY + (renderChunkY * 16) + 15, 1, 1, 1.0F, rgb/** (color.colorValue & rgb) >> 1) **/
-                            );
+                            int lightnessOffset = (blockY - 64) * 4;
+
+                            r = Math.min(Math.max(r + lightnessOffset, 0), 255);
+                            g = Math.min(Math.max(g + lightnessOffset, 0), 255);
+                            b = Math.min(Math.max(b + lightnessOffset, 0), 255);
+
+                            rgb = r << 16 | g << 8 | b;
+
+                            gui.drawScaledRect(mapX + (renderChunkX * 16) + 90, renderY + (renderChunkY * 16) + 15, 1, 1, 1.0F, rgb/** (color.colorValue & rgb) >> 1) **/);
 
                             renderY++;
                         }
@@ -128,8 +129,6 @@ public class GuiAppMinimap extends GuiApp
                 renderY = 0;
 
                 renderChunkY++;
-
-                gui.drawBoxOutline(renderChunkX * 16 + 90, renderChunkY * 16 - 1, 15, 15, 1, 1.0F, (renderChunkX + renderChunkY) % 2 == 0 ? 0x606060 : 0x505050);
             }
 
             renderChunkY = 0;
