@@ -56,26 +56,32 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
         height = 0f;
     }
 
-    @Override
-    public void onEntityUpdate()
+    public void update()
     {
         motionX = 0f;
         motionY = 0f;
         motionZ = 0f;
-        super.onEntityUpdate();
         if (parent == null) // we are in this state right after reloading a map
         {
             parent = getParentFromID(worldObj, parentID);
         }
         if (parent != null)
         {
+            if(parent.getSeat(index) != this)
+            {
+                setDead();
+                System.out.println("deads");
+            }
             float angle = parent.rotationYaw;
 
-            resetPos();
             if (parent.isDead)
             {
                 System.out.println("KILLED");
-                kill();
+                setDead();
+            }
+            else
+            {
+                resetPos();
             }
         }
         else
@@ -84,7 +90,7 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
         }
     }
 
-    private void resetPos()
+    public void resetPos()
     {
         float nx = -MathHelper.sin(parent.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(parent.rotationPitch / 180.0F * (float) Math.PI) * dist;
         float nz = MathHelper.cos(parent.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(parent.rotationPitch / 180.0F * (float) Math.PI) * dist;
@@ -93,7 +99,7 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
         this.posX = parent.posX + nx;
         this.posY = parent.posY + ny + 0.4f;
         this.posZ = parent.posZ + nz;
-        System.out.println(">> new pos: " + posX + ", " + posY + ", " + posZ);
+   //     System.out.println(">> new pos: " + posX + ", " + posY + ", " + posZ);
     }
 
     @Override

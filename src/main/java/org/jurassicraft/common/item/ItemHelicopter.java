@@ -10,6 +10,7 @@ import org.jurassicraft.common.creativetab.JCCreativeTabs;
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 
 import java.util.List;
+import java.util.UUID;
 
 public class ItemHelicopter extends Item
 {
@@ -34,7 +35,7 @@ public class ItemHelicopter extends Item
         {
             return true;
         }
-        EntityHelicopterBase helicopter = new EntityHelicopterBase(worldIn, this);
+        EntityHelicopterBase helicopter = new EntityHelicopterBase(worldIn, UUID.randomUUID());
         helicopter.setPosition(pos.getX() + hitX, pos.getY() + hitY, pos.getZ() + hitZ);
         worldIn.spawnEntityInWorld(helicopter);
         return true;

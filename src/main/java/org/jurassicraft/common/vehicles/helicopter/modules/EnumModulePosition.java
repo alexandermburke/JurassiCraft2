@@ -7,21 +7,21 @@ import java.util.Objects;
 
 public enum EnumModulePosition
 {
-    MAIN_SEAT(new Function<Vec3, Boolean>()
+    FRONT(new Function<Vec3, Boolean>()
     {
         public Boolean apply(Vec3 vec)
         {
             return vec.zCoord > 0.6;
         }
     }),
-    BACK_LEFT(new Function<Vec3, Boolean>()
+    LEFT_SIZE(new Function<Vec3, Boolean>()
     {
         public Boolean apply(Vec3 vec)
         {
             return vec.zCoord < 0.6 && vec.xCoord > 0;
         }
     }),
-    BACK_RIGHT(new Function<Vec3, Boolean>()
+    RIGHT_SIDE(new Function<Vec3, Boolean>()
     {
         public Boolean apply(Vec3 vec)
         {
