@@ -1,13 +1,16 @@
-package net.ilexiconn.bookwiki;
+package net.ilexiconn.bookwiki.client;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import net.ilexiconn.bookwiki.BookWiki;
+import net.ilexiconn.bookwiki.api.BookWikiAPI;
+import net.ilexiconn.bookwiki.api.IComponent;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.fml.relauncher.Side;
@@ -16,6 +19,7 @@ import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,14 +29,9 @@ public class BookWikiGui extends GuiScreen {
 
     public static final ResourceLocation TEXTURE = new ResourceLocation("jurassicraft", "bookwiki/gui.png");
     private String currentCategory = "general";
-    private RecipeRenderer recipeRenderer;
-
-    public Pattern recipePattern = Pattern.compile("<r:[A-Za-z0-9]+>");
-    public Pattern colorPattern = Pattern.compile("<c:[A-Za-z]+>");
 
     public BookWikiGui(BookWiki bookWiki) {
         this.bookWiki = bookWiki;
-        this.recipeRenderer = new RecipeRenderer();
     }
 
     @Override
@@ -80,27 +79,38 @@ public class BookWikiGui extends GuiScreen {
         List<String> lines = Lists.newArrayList(fontRendererObj.listFormattedStringToWidth(getContent(bookWiki.getCategoryByID(currentCategory).getDefaultPage()), 116));
         for (int i = 0; i < lines.size(); i++) {
             String line = lines.get(i);
-            Matcher matcher = recipePattern.matcher(line);
             if (i < 17) {
-                if (matcher.find()) {
-                    String group = matcher.group();
-                    line = line.replace(group, "");
-                    String id = group.substring(3, group.length() - 1);
-                    BookWikiContainer.Recipe recipe = bookWiki.getRecipeByID(id);
-                    recipeRenderer.render(recipe, width / 2 - 292 / 2 + 16 + 16, height / 2 - 180 / 2 + 14 + fontRendererObj.FONT_HEIGHT * (i + 1), mouseX, mouseY);
+                Map<IComponent, String> componentMap = Maps.newHashMap();
+                for (IComponent component : BookWikiAPI.getComponents()) {
+                    Matcher matcher = Pattern.compile("<" + component.getID() + ":[A-Za-z]+>").matcher(line);
+                    while (matcher.find()) {
+                        String group = matcher.group();
+                        String arg = group.substring(3, group.length() - 1);
+                        componentMap.put(component, arg);
+                        line = line.replace(group, "");
+                    }
                 }
                 GlStateManager.disableLighting();
                 fontRendererObj.drawString(line, width / 2 - 292 / 2 + 16, height / 2 - 180 / 2 + 14 + fontRendererObj.FONT_HEIGHT * i, 0x000);
+                for (Map.Entry<IComponent, String> entry : componentMap.entrySet()) {
+                    entry.getKey().render(mc, bookWiki, entry.getValue(), width / 2 - 292 / 2 + 16 + 16, height / 2 - 180 / 2 + 14 + fontRendererObj.FONT_HEIGHT * (i + 1), mouseX, mouseY);
+                }
             } else {
-                if (matcher.find()) {
-                    String group = matcher.group();
-                    line = line.replace(group, "");
-                    String id = group.substring(3, group.length() - 1);
-                    BookWikiContainer.Recipe recipe = bookWiki.getRecipeByID(id);
-                    recipeRenderer.render(recipe, width / 2 - 292 / 2 + 16 + 16 + 140, height / 2 - 180 / 2 + 14 + fontRendererObj.FONT_HEIGHT * (i - 16), mouseX, mouseY);
+                Map<IComponent, String> componentMap = Maps.newHashMap();
+                for (IComponent component : BookWikiAPI.getComponents()) {
+                    Matcher matcher = Pattern.compile("<" + component.getID() + ":[A-Za-z]+>").matcher(line);
+                    while (matcher.find()) {
+                        String group = matcher.group();
+                        String arg = group.substring(3, group.length() - 1);
+                        componentMap.put(component, arg);
+                        line = line.replace(group, "");
+                    }
                 }
                 GlStateManager.disableLighting();
                 fontRendererObj.drawString(line, width / 2 - 292 / 2 + 16 + 140, height / 2 - 180 / 2 + 14 + fontRendererObj.FONT_HEIGHT * (i - 17), 0x000);
+                for (Map.Entry<IComponent, String> entry : componentMap.entrySet()) {
+                    entry.getKey().render(mc, bookWiki, entry.getValue(), width / 2 - 292 / 2 + 16 + 16 + 140, height / 2 - 180 / 2 + 14 + fontRendererObj.FONT_HEIGHT * (i - 16), mouseX, mouseY);
+                }
             }
         }
         if (hover != null) {
@@ -110,18 +120,12 @@ public class BookWikiGui extends GuiScreen {
 
     public String getContent(BookWikiContainer.Page page) {
         String result = page.getContent();
-        Matcher matcher = recipePattern.matcher(result);
-        while (matcher.find()) {
-            String group = matcher.group();
-            result = result.replace(group, group + "\n\n\n\n\n\n\n");
-        }
-        matcher = colorPattern.matcher(result);
-        while (matcher.find()) {
-            String group = matcher.group();
-            String id = group.substring(3, group.length() - 1).toUpperCase();
-            EnumChatFormatting formatting = EnumChatFormatting.getValueByName(id);
-            if (formatting != null) {
-                result = result.replace(group, formatting + "");
+        for (IComponent component : BookWikiAPI.getComponents()) {
+            Matcher matcher = Pattern.compile("<" + component.getID() + ":[A-Za-z]+>").matcher(result);
+            while (matcher.find()) {
+                String group = matcher.group();
+                String arg = group.substring(3, group.length() - 1);
+                result = component.init(result, arg, group);
             }
         }
         return result;

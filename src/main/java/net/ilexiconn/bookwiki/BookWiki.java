@@ -1,6 +1,9 @@
 package net.ilexiconn.bookwiki;
 
 import com.google.common.collect.Lists;
+import net.ilexiconn.bookwiki.client.BookWikiContainer;
+import net.ilexiconn.bookwiki.client.BookWikiGui;
+import net.ilexiconn.bookwiki.server.BookWikiItem;
 import net.ilexiconn.llibrary.common.json.JsonFactory;
 import net.ilexiconn.llibrary.common.log.LoggerHelper;
 import net.minecraft.client.gui.GuiScreen;

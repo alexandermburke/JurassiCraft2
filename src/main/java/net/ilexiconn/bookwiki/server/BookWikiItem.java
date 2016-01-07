@@ -1,5 +1,6 @@
-package net.ilexiconn.bookwiki;
+package net.ilexiconn.bookwiki.server;
 
+import net.ilexiconn.bookwiki.BookWiki;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;

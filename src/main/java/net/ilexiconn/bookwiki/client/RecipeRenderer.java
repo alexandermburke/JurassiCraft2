@@ -1,5 +1,7 @@
-package net.ilexiconn.bookwiki;
+package net.ilexiconn.bookwiki.client;
 
+import net.ilexiconn.bookwiki.client.BookWikiContainer;
+import net.ilexiconn.bookwiki.client.BookWikiGui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
