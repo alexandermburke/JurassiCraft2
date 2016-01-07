@@ -12,6 +12,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.TabulaModelHelper;
 import org.jurassicraft.JurassiCraft;
+import org.jurassicraft.client.model.ResetControlModelJson;
 import org.jurassicraft.client.model.animation.vehicle.AnimationHelicopter;
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 import org.jurassicraft.common.vehicles.helicopter.modules.HelicopterModule;
@@ -32,9 +33,9 @@ public class RenderHelicopter implements IRenderFactory<EntityHelicopterBase>
     public static class Renderer extends Render<EntityHelicopterBase>
     {
         private static final ResourceLocation texture = new ResourceLocation(JurassiCraft.MODID, "textures/entities/helicopter/ranger_helicopter_texture.png");
-        private final Map<HelicopterModule, ModelJson> moduleMap;
-        private final Map<HelicopterModule, ResourceLocation> moduleTextures;
-        private ModelJson baseModel;
+        private final Map<String, ModelJson> moduleMap;
+        private final Map<String, ResourceLocation> moduleTextures;
+        private ResetControlModelJson baseModel;
 
         public Renderer()
         {
@@ -43,17 +44,17 @@ public class RenderHelicopter implements IRenderFactory<EntityHelicopterBase>
             moduleTextures = Maps.newHashMap();
             try
             {
-                baseModel = new ModelJson(TabulaModelHelper.parseModel("/assets/jurassicraft/models/entities/helicopter/ranger_helicopter"), new AnimationHelicopter());
-                //baseModel.setResetEachFrame(false); //TODO
+                baseModel = new ResetControlModelJson(TabulaModelHelper.parseModel("/assets/jurassicraft/models/entities/helicopter/ranger_helicopter"), new AnimationHelicopter());
+                baseModel.setResetEachFrame(false); //TODO
 
                 // Modules init.
-                for (HelicopterModule module : HelicopterModule.registry.values())
+                for (String id : HelicopterModule.registry.keySet())
                 {
-                    ModelJson model = new ModelJson(TabulaModelHelper.parseModel("/assets/jurassicraft/models/entities/helicopter/modules/" + module.getModuleID()));
+                    ModelJson model = new ModelJson(TabulaModelHelper.parseModel("/assets/jurassicraft/models/entities/helicopter/modules/ranger_helicopter_" + id));
                     //model.setResetEachFrame(true); //TODO
-                    moduleMap.put(module, model);
+                    moduleMap.put(id, model);
 
-                    moduleTextures.put(module, new ResourceLocation(JurassiCraft.MODID, "textures/entities/helicopter/modules/" + module.getModuleID() + "_texture.png"));
+                    moduleTextures.put(id, new ResourceLocation(JurassiCraft.MODID, "textures/entities/helicopter/modules/ranger_helicopter_" + id + "_texture.png"));
                 }
             }
             catch (Exception e)
@@ -101,8 +102,8 @@ public class RenderHelicopter implements IRenderFactory<EntityHelicopterBase>
                         continue;
                     }
                     GlStateManager.rotate((float) Math.toDegrees(m.getBaseRotationAngle()), 0, 1, 0);
-                    bindTexture(moduleTextures.get(m));
-                    ModelJson model = moduleMap.get(m);
+                    bindTexture(moduleTextures.get(m.getModuleID()));
+                    ModelJson model = moduleMap.get(m.getModuleID());
                     model.render(helicopter, 0f, 0f, 0f, 0f, 0f, 0.0625f);
                     GlStateManager.rotate(-(float) Math.toDegrees(m.getBaseRotationAngle()), 0, 1, 0);
                 }

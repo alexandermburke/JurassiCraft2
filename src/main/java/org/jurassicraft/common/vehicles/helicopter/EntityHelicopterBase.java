@@ -7,22 +7,20 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.utils.MutableVec3;
 import org.jurassicraft.JurassiCraft;
-import org.jurassicraft.common.item.ItemHelicopter;
 import org.jurassicraft.common.message.MessageHelicopterDirection;
 import org.jurassicraft.common.message.MessageHelicopterEngine;
-import org.jurassicraft.common.vehicles.helicopter.modules.EntityHelicopterSeat;
-import org.jurassicraft.common.vehicles.helicopter.modules.EnumModulePosition;
-import org.jurassicraft.common.vehicles.helicopter.modules.HelicopterModule;
-import org.jurassicraft.common.vehicles.helicopter.modules.HelicopterModuleSpot;
+import org.jurassicraft.common.vehicles.helicopter.modules.*;
 
 import java.util.UUID;
 
@@ -32,38 +30,56 @@ import java.util.UUID;
 public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdditionalSpawnData
 {
     private final HelicopterModuleSpot[] moduleSpots;
+    private final EntityHelicopterSeat[] seats;
     private boolean syncModules;
     private UUID heliID;
     public static final int ENGINE_RUNNING = 20;
-    public static final int PILOT_SEAT = EnumModulePosition.MAIN_SEAT.ordinal();
-    public static final int LEFT_PART = EnumModulePosition.BACK_LEFT.ordinal();
-    public static final int RIGHT_PART = EnumModulePosition.BACK_RIGHT.ordinal();
+    public static final int FRONT = EnumModulePosition.FRONT.ordinal();
+    public static final int LEFT_SIDE = EnumModulePosition.LEFT_SIZE.ordinal();
+    public static final int RIGHT_SIDE = EnumModulePosition.RIGHT_SIDE.ordinal();
     public static final float MAX_POWER = 80f;
     public static final float REQUIRED_POWER = MAX_POWER / 2f;
     private float roll;
     private boolean engineRunning;
     private float enginePower;
-    private boolean hasMinigun;
     private MutableVec3 direction;
 
-    public EntityHelicopterBase(World worldIn, ItemHelicopter creator)
+    public EntityHelicopterBase(World worldIn, UUID id)
     {
         this(worldIn);
         prepareDefaultModules();
+        setID(id);
+    }
+
+    private void setID(UUID id) {
+        this.heliID = id;
+        if(seats != null)
+            for(EntityHelicopterSeat seat : seats) {
+                if(seat != null) {
+                    seat.setParentID(id);
+                }
+            }
     }
 
     public EntityHelicopterBase(World worldIn)
     {
         super(worldIn);
-        heliID = UUID.randomUUID();
         double w = 3f; // width in blocks
         double h = 3.1f; // height in blocks
         double d = 8f; // depth in blocks
         setBox(0, 0, 0, w, h, d);
+
+        seats = new EntityHelicopterSeat[3];
+        for(int i = 0;i<seats.length;i++) {
+            float distance = i == 0 ? 1.5f : 0; // TODO: Better way to define position
+            seats[i] = new EntityHelicopterSeat(distance, i, this, i == 0);
+            worldObj.spawnEntityInWorld(seats[i]);
+        }
+        setID(UUID.randomUUID());
         moduleSpots = new HelicopterModuleSpot[EnumModulePosition.values().length];
-        moduleSpots[PILOT_SEAT] = new HelicopterModuleSpot(EnumModulePosition.MAIN_SEAT, this, 0);
-        moduleSpots[LEFT_PART] = new HelicopterModuleSpot(EnumModulePosition.BACK_LEFT, this, (float) Math.PI);
-        moduleSpots[RIGHT_PART] = new HelicopterModuleSpot(EnumModulePosition.BACK_RIGHT, this, 0);
+        moduleSpots[FRONT] = new HelicopterModuleSpot(EnumModulePosition.FRONT, this, 0);
+        moduleSpots[LEFT_SIDE] = new HelicopterModuleSpot(EnumModulePosition.LEFT_SIZE, this, (float) Math.PI);
+        moduleSpots[RIGHT_SIDE] = new HelicopterModuleSpot(EnumModulePosition.RIGHT_SIDE, this, 0);
 
         direction = new MutableVec3(0, 1, 0);
         syncModules = true;
@@ -72,9 +88,8 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     public void prepareDefaultModules()
     {
         syncModules = false;
-        getModuleSpot(EnumModulePosition.MAIN_SEAT).addModule(HelicopterModule.seat);
-        getModuleSpot(EnumModulePosition.BACK_LEFT).addModule(HelicopterModule.door);
-        getModuleSpot(EnumModulePosition.BACK_RIGHT).addModule(HelicopterModule.minigun);
+        getModuleSpot(EnumModulePosition.LEFT_SIZE).addModule(new HelicopterDoor());
+        getModuleSpot(EnumModulePosition.RIGHT_SIDE).addModule(new HelicopterMinigun());
         syncModules = true;
     }
 
@@ -112,11 +127,15 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     public void readEntityFromNBT(NBTTagCompound tagCompound)
     {
         super.readEntityFromNBT(tagCompound);
-        heliID = UUID.fromString(tagCompound.getString("heliID"));
+        setID(UUID.fromString(tagCompound.getString("heliID")));
 
-        moduleSpots[PILOT_SEAT].readFromNBT(tagCompound.getCompoundTag("pilotModules"));
-        moduleSpots[LEFT_PART].readFromNBT(tagCompound.getCompoundTag("leftModules"));
-        moduleSpots[RIGHT_PART].readFromNBT(tagCompound.getCompoundTag("rightModules"));
+        NBTTagList spots = tagCompound.getTagList("spots", Constants.NBT.TAG_COMPOUND);
+        for(int i = 0;i<spots.tagCount();i++) {
+            NBTTagCompound spotData = spots.getCompoundTagAt(i);
+            EnumModulePosition position = EnumModulePosition.valueOf(spotData.getString("position").toUpperCase());
+            getModuleSpot(position).readFromNBT(spotData);
+        }
+        System.out.println("read heliID="+heliID);
     }
 
     @Override
@@ -155,17 +174,17 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
         super.writeEntityToNBT(tagCompound);
         tagCompound.setString("heliID", heliID.toString());
 
-        NBTTagCompound pilotModulesList = new NBTTagCompound();
-        moduleSpots[PILOT_SEAT].writeToNBT(pilotModulesList);
-        tagCompound.setTag("pilotModules", pilotModulesList);
+        NBTTagList spots = new NBTTagList();
+        for (HelicopterModuleSpot spot : moduleSpots) {
+            NBTTagCompound spotData = new NBTTagCompound();
+            spot.writeToNBT(spotData);
+            String position = spot.getPosition().name().toLowerCase();
+            spotData.setString("position", position);
+            spots.appendTag(spotData);
+        }
+        tagCompound.setTag("spots", spots);
 
-        NBTTagCompound leftModulesList = new NBTTagCompound();
-        moduleSpots[LEFT_PART].writeToNBT(leftModulesList);
-        tagCompound.setTag("leftModules", leftModulesList);
-
-        NBTTagCompound rightModulesList = new NBTTagCompound();
-        moduleSpots[RIGHT_PART].writeToNBT(rightModulesList);
-        tagCompound.setTag("rightModules", rightModulesList);
+        System.out.println("wrote heliID="+heliID);
     }
 
     @Override
@@ -175,101 +194,91 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
         fallDistance = 0f;
         ignoreFrustumCheck = true; // always draws the entity
         // Update seats positions
-        for (HelicopterModuleSpot spot : moduleSpots)
+        for (EntityHelicopterSeat seat : seats)
         {
-            if (spot == null)
+            if (seat != null)
             {
-                continue;
-            }
-            if (spot.has(HelicopterModule.seat))
-            {
-                EntityHelicopterSeat seat = HelicopterModule.seat.getEntity(spot);
-                if (seat != null)
-                {
-                    seat.setParentID(heliID);
-                    seat.parent = this;
-                }
+                seat.setParentID(heliID);
+                seat.parent = this;
+                seat.update();
             }
         }
 
-        if (getModuleSpot(EnumModulePosition.MAIN_SEAT).has(HelicopterModule.seat))
+        EntityHelicopterSeat seat = seats[0];
+        if (seat != null)
         {
-            EntityHelicopterSeat seat = HelicopterModule.seat.getEntity(getModuleSpot(EnumModulePosition.MAIN_SEAT));
-            if (seat != null)
+            Entity riderEntity = seat.riddenByEntity;
+            boolean runEngine = false;
+            if (riderEntity != null) // There is a pilot!
             {
-                Entity riderEntity = seat.riddenByEntity;
-                boolean runEngine = false;
-                if (riderEntity != null) // There is a pilot!
+                EntityPlayer rider = (EntityPlayer) riderEntity;
+                if (worldObj.isRemote) // We are on client
                 {
-                    EntityPlayer rider = (EntityPlayer) riderEntity;
-                    if (worldObj.isRemote) // We are on client
+                    runEngine = handleClientRunning(rider);
+                    if (isPilotThisClient(rider))
                     {
-                        runEngine = handleClientRunning(rider);
-                        if (isPilotThisClient(rider))
+                        updateEngine(runEngine);
+                        engineRunning = runEngine;
+                        if (enginePower >= REQUIRED_POWER)
                         {
-                            updateEngine(runEngine);
-                            engineRunning = runEngine;
-                            if (engineRunning && enginePower >= REQUIRED_POWER)
-                            {
-                                direction = drive(direction);
-                            }
-                            else
-                            {
-                                direction.set(0, 1, 0);
-                            }
+                            direction = drive(direction);
+                        }
+                        else
+                        {
+                            direction.set(0, 1, 0);
                         }
                     }
                 }
-                else
+            }
+            else
+            {
+                runEngine = false;
+                updateEngine(runEngine);
+                direction.set(0, 1f, 0);
+            }
+            rotationYaw -= direction.xCoord * 1.25f;
+            roll = (float) (direction.xCoord * 20f);
+            rotationPitch = (float) -(direction.zCoord * 40f);
+            updateDirection(direction);
+            if (engineRunning)
+            {
+                enginePower++;
+            }
+            else
+            {
+                if (enginePower >= REQUIRED_POWER)
                 {
-                    runEngine = false;
-                    updateEngine(runEngine);
-                    direction.set(0, 1f, 0);
-                }
-                rotationYaw -= direction.xCoord * 1.25f;
-                roll = (float) (direction.xCoord * 20f);
-                rotationPitch = (float) -(direction.zCoord * 40f);
-                updateDirection(direction);
-                if (engineRunning)
-                {
-                    enginePower++;
-                    if (enginePower >= REQUIRED_POWER)
-                    {
-                        // We can fly \o/
-                        // ♪ Fly on the wings of code! ♪
-                        MutableVec3 localDir = new MutableVec3(direction.xCoord, direction.yCoord, direction.zCoord * 8f);
-                        localDir = localDir.rotateYaw((float) Math.toRadians(-rotationYaw));
-                        final float gravityCancellation = 0.08f;
-                        final float speedY = gravityCancellation + 0.005f;
-                        double my = speedY * localDir.yCoord;
-                        if (my < gravityCancellation)
-                        {
-                            my = gravityCancellation;
-                        }
-                        motionY += my;
-                        motionX = localDir.xCoord / 10f;
-                        motionZ = localDir.zCoord / 10f;
-                    }
-                    if (enginePower >= MAX_POWER)
-                    {
-                        enginePower = MAX_POWER;
-                    }
+                    enginePower -= 0.5f;
                 }
                 else
                 {
-                    if (enginePower >= REQUIRED_POWER)
-                    {
-                        enginePower -= 0.5f;
-                    }
-                    else
-                    {
-                        enginePower--;
-                    }
-                    if (enginePower < 0f)
-                    {
-                        enginePower = 0f;
-                    }
+                    enginePower--;
                 }
+                if (enginePower < 0f)
+                {
+                    enginePower = 0f;
+                }
+            }
+            if (enginePower >= REQUIRED_POWER)
+            {
+                // We can fly \o/
+                // ♪ Fly on the wings of code! ♪
+                MutableVec3 localDir = new MutableVec3(direction.xCoord, direction.yCoord, direction.zCoord * 8f);
+                localDir = localDir.rotateYaw((float) Math.toRadians(-rotationYaw));
+                final float gravityCancellation = 0.08f;
+                final float speedY = gravityCancellation + 0.005f;
+                double my = speedY * localDir.yCoord;
+                if (my < gravityCancellation)
+                {
+                    my = gravityCancellation;
+                }
+                motionY += my * 1 * (enginePower/MAX_POWER);
+                motionX = localDir.xCoord / 10f;
+                motionZ = localDir.zCoord / 10f;
+            }
+            if (enginePower >= MAX_POWER)
+            {
+                enginePower = MAX_POWER;
             }
         }
     }
@@ -360,6 +369,17 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
         // Transforms the vector in local coordinates (cancels possible rotations to simplify 'seat detection')
         Vec3 localVec = vec.rotateYaw((float) Math.toRadians(this.rotationYaw));
         System.out.println(localVec);
+
+        if(localVec.zCoord > 0.6) {
+            player.mountEntity(seats[0]);
+            return true;
+        } else if(localVec.zCoord < 0.6 && localVec.xCoord > 0) {
+            player.mountEntity(seats[1]);
+            return true;
+        } else if(localVec.zCoord < 0.6 && localVec.xCoord < 0) {
+            player.mountEntity(seats[2]);
+            return true;
+        }
         for (HelicopterModuleSpot spot : moduleSpots)
         {
             if (spot != null && spot.isClicked(localVec))
@@ -377,7 +397,7 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
      */
     public AxisAlignedBB getCollisionBox(Entity entityIn)
     {
-        return null;
+        return getBoundingBox();
     }
 
     /**
@@ -430,7 +450,7 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     @Override
     public void readSpawnData(ByteBuf additionalData)
     {
-        heliID = UUID.fromString(ByteBufUtils.readUTF8String(additionalData));
+        setID(UUID.fromString(ByteBufUtils.readUTF8String(additionalData)));
 
         for (HelicopterModuleSpot spot : moduleSpots)
         {
@@ -472,4 +492,12 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     {
         return syncModules;
     }
+
+    public EntityHelicopterSeat getSeat(int index) {
+        if(index < 0 || index >= seats.length)
+            throw new ArrayIndexOutOfBoundsException(index+", size is "+seats.length);
+        return seats[index];
+    }
+
+
 }

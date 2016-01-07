@@ -5,7 +5,9 @@ import com.google.common.collect.Maps;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.Vec3;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.message.MessageHelicopterModules;
@@ -18,7 +20,6 @@ public class HelicopterModuleSpot
 {
 
     private final List<HelicopterModule> modules;
-    private final Map<HelicopterModule, NBTTagCompound> moduleData;
     private final float angleFromCenter;
     private final EnumModulePosition position;
     private final EntityHelicopterBase helicopter;
@@ -29,7 +30,6 @@ public class HelicopterModuleSpot
         this.position = pos;
         this.angleFromCenter = angleFromCenter;
         modules = Lists.newArrayList();
-        moduleData = Maps.newHashMap();
     }
 
     /**
@@ -50,10 +50,6 @@ public class HelicopterModuleSpot
         if (!modules.contains(m))
         {
             modules.add(m);
-            if (!moduleData.containsKey(m))
-            {
-                moduleData.put(m, new NBTTagCompound());
-            }
             m.onAdded(this, player, v);
             if (getHelicopter().shouldSyncModules() && !getHelicopter().worldObj.isRemote)
             {
@@ -72,26 +68,30 @@ public class HelicopterModuleSpot
         return angleFromCenter;
     }
 
-    public void readFromNBT(NBTTagCompound tagList)
+    public void readFromNBT(NBTTagCompound compound)
     {
         modules.clear();
-        for (HelicopterModule m : HelicopterModule.registry.values())
-        {
-            if (tagList.hasKey(m.getModuleID()))
-            {
-                NBTTagCompound data = tagList.getCompoundTag(m.getModuleID());
-                moduleData.put(m, data);
-                addModule(m);
-            }
+        NBTTagList list = compound.getTagList("modules", Constants.NBT.TAG_COMPOUND);
+        for(int i = 0;i<list.tagCount();i++) {
+            NBTTagCompound moduleData = list.getCompoundTagAt(i);
+            String id = moduleData.getString("id");
+            HelicopterModule module = HelicopterModule.createFromID(id);
+            if(module == null)
+                throw new IllegalArgumentException("Invalid module ID");
         }
     }
 
-    public void writeToNBT(NBTTagCompound tagList)
+    public void writeToNBT(NBTTagCompound compound)
     {
+        NBTTagList list = new NBTTagList();
         for (HelicopterModule m : modules)
         {
-            tagList.setTag(m.getModuleID(), moduleData.get(m));
+            NBTTagCompound data = new NBTTagCompound();
+            data.setString("id", m.getModuleID());
+            m.writeToNBT(data);
+            list.appendTag(data);
         }
+        compound.setTag("modules", list);
     }
 
     public void readSpawnData(ByteBuf data)
@@ -101,7 +101,7 @@ public class HelicopterModuleSpot
         for (int i = 0; i < size; i++)
         {
             String id = ByteBufUtils.readUTF8String(data);
-            HelicopterModule module = HelicopterModule.registry.get(id);
+            HelicopterModule module = HelicopterModule.createFromID(id);
             NBTTagCompound nbt = ByteBufUtils.readTag(data);
             if (module == null)
             {
@@ -110,7 +110,7 @@ public class HelicopterModuleSpot
             else
             {
                 System.out.println(">> Read for " + id + " " + nbt);
-                moduleData.put(module, nbt);
+                module.readFromNBT(nbt);
                 addModule(module);
             }
         }
@@ -122,8 +122,9 @@ public class HelicopterModuleSpot
         for (HelicopterModule m : modules)
         {
             ByteBufUtils.writeUTF8String(data, m.getModuleID());
-            ByteBufUtils.writeTag(data, getModuleData(m));
-            System.out.println("Wrote for " + m.getModuleID() + ": " + moduleData.get(m));
+            NBTTagCompound moduleData = new NBTTagCompound();
+            m.writeToNBT(moduleData);
+            ByteBufUtils.writeTag(data, moduleData);
         }
     }
 
@@ -152,11 +153,6 @@ public class HelicopterModuleSpot
     public EntityHelicopterBase getHelicopter()
     {
         return helicopter;
-    }
-
-    NBTTagCompound getModuleData(HelicopterModule m)
-    {
-        return moduleData.get(m);
     }
 
     public boolean has(HelicopterModule module)

@@ -2,6 +2,7 @@ package org.jurassicraft.common.vehicles.helicopter.modules;
 
 import com.google.common.collect.Maps;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.Vec3;
 
 import java.util.Collection;
@@ -10,10 +11,13 @@ import java.util.Map;
 public abstract class HelicopterModule
 {
 
-    public static final Map<String, HelicopterModule> registry = Maps.newHashMap();
-    public static final HelicopterModule door = new HelicopterDoor();
-    public static final HelicopterModule minigun = new HelicopterMinigun();
-    public static final HelicopterSeat seat = new HelicopterSeat();
+    public static final Map<String, Class<? extends HelicopterModule>> registry;
+    static {
+        // register default modules
+        registry = Maps.newHashMap();
+        registry.put("door", HelicopterDoor.class);
+        registry.put("minigun", HelicopterMinigun.class);
+    }
 
     private final String moduleID;
     private final Collection<Class<? extends HelicopterModule>> supported;
@@ -21,7 +25,6 @@ public abstract class HelicopterModule
     protected HelicopterModule(String id)
     {
         this.moduleID = id;
-        registry.put(id, this);
         supported = createSupportedModuleList();
     }
 
@@ -59,5 +62,21 @@ public abstract class HelicopterModule
     public void onRemoved(HelicopterModuleSpot m, EntityPlayer player, Vec3 vec)
     {
 
+    }
+
+    public abstract void writeToNBT(NBTTagCompound compound);
+
+    public abstract void readFromNBT(NBTTagCompound compound);
+
+    public static HelicopterModule createFromID(String id) {
+        Class<? extends HelicopterModule> clazz = registry.get(id);
+        if(clazz != null) {
+            try {
+                return clazz.newInstance();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
 }
