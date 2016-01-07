@@ -1,17 +1,13 @@
 package org.jurassicraft.common.message;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.client.FMLClientHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.ilexiconn.llibrary.common.message.AbstractMessage;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 
-public class MessageHelicopterEngine implements IMessage
+public class MessageHelicopterEngine extends AbstractMessage<MessageHelicopterEngine>
 {
     private int heliID;
     private boolean engineState;
@@ -27,6 +23,27 @@ public class MessageHelicopterEngine implements IMessage
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
+    public void handleClientMessage(MessageHelicopterEngine messageHelicopterEngine, EntityPlayer entityPlayer)
+    {
+        EntityHelicopterBase helicopter = HelicopterMessages.getHeli(entityPlayer.worldObj, messageHelicopterEngine.heliID);
+        if (helicopter != null)
+        {
+            helicopter.setEngineRunning(messageHelicopterEngine.engineState);
+        }
+    }
+
+    @Override
+    public void handleServerMessage(MessageHelicopterEngine messageHelicopterEngine, EntityPlayer entityPlayer)
+    {
+        EntityHelicopterBase helicopter = HelicopterMessages.getHeli(entityPlayer.worldObj, messageHelicopterEngine.heliID);
+        if (helicopter != null)
+        {
+            helicopter.setEngineRunning(messageHelicopterEngine.engineState);
+        }
+    }
+
+    @Override
     public void fromBytes(ByteBuf buf)
     {
         heliID = buf.readInt();
@@ -38,42 +55,5 @@ public class MessageHelicopterEngine implements IMessage
     {
         buf.writeInt(heliID);
         buf.writeBoolean(engineState);
-    }
-
-    public static class Handler implements IMessageHandler<MessageHelicopterEngine, IMessage>
-    {
-        @Override
-        public IMessage onMessage(final MessageHelicopterEngine packet, final MessageContext ctx)
-        {
-            JurassiCraft.proxy.scheduleTask(ctx, new Runnable()
-            {
-                @Override
-                public void run()
-                {
-                    World world = null;
-                    if (ctx.side == Side.CLIENT)
-                    {
-                        world = getClientWorld();
-                    }
-                    else
-                    {
-                        world = ctx.getServerHandler().playerEntity.worldObj;
-                    }
-                    EntityHelicopterBase helicopter = HelicopterMessages.getHeli(world, packet.heliID);
-                    if (helicopter != null)
-                    {
-                        helicopter.setEngineRunning(packet.engineState);
-                    }
-                }
-            });
-
-            return null;
-        }
-
-        @SideOnly(Side.CLIENT)
-        private World getClientWorld()
-        {
-            return FMLClientHandler.instance().getWorldClient();
-        }
     }
 }

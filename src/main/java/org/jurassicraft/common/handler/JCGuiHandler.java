@@ -184,7 +184,7 @@ public class JCGuiHandler implements IGuiHandler
             displayPaleoPadGUIClient();
         }
         // else
-        // JurassiCraft.networkManager.networkWrapper.sendTo(new MessageSyncPaleoPad(player), (EntityPlayerMP) player);
+        // JurassiCraft.networkWrapper.sendTo(new MessageSyncPaleoPad(player), (EntityPlayerMP) player);
     }
 
     public static void openSelectDino(EntityPlayer player, BlockPos pos, EnumFacing facing)

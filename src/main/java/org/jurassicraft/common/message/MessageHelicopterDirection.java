@@ -1,18 +1,14 @@
 package org.jurassicraft.common.message;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.client.FMLClientHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.ilexiconn.llibrary.common.message.AbstractMessage;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.unilib.utils.MutableVec3;
-import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 
-public class MessageHelicopterDirection implements IMessage
+public class MessageHelicopterDirection extends AbstractMessage<MessageHelicopterDirection>
 {
     private int heliID;
     private MutableVec3 direction;
@@ -26,6 +22,27 @@ public class MessageHelicopterDirection implements IMessage
     {
         this.heliID = heliID;
         this.direction = direction;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void handleClientMessage(MessageHelicopterDirection messageHelicopterDirection, EntityPlayer entityPlayer)
+    {
+        EntityHelicopterBase helicopter = HelicopterMessages.getHeli(entityPlayer.worldObj, messageHelicopterDirection.heliID);
+        if (helicopter != null)
+        {
+            helicopter.setDirection(messageHelicopterDirection.direction);
+        }
+    }
+
+    @Override
+    public void handleServerMessage(MessageHelicopterDirection messageHelicopterDirection, EntityPlayer entityPlayer)
+    {
+        EntityHelicopterBase helicopter = HelicopterMessages.getHeli(entityPlayer.worldObj, messageHelicopterDirection.heliID);
+        if (helicopter != null)
+        {
+            helicopter.setDirection(messageHelicopterDirection.direction);
+        }
     }
 
     @Override
@@ -45,43 +62,5 @@ public class MessageHelicopterDirection implements IMessage
         buf.writeDouble(direction.xCoord);
         buf.writeDouble(direction.yCoord);
         buf.writeDouble(direction.zCoord);
-    }
-
-    public static class Handler implements IMessageHandler<MessageHelicopterDirection, IMessage>
-    {
-        @Override
-        public IMessage onMessage(final MessageHelicopterDirection packet, final MessageContext ctx)
-        {
-            JurassiCraft.proxy.scheduleTask(ctx, new Runnable()
-            {
-                @Override
-                public void run()
-                {
-                    World world = null;
-                    if (ctx.side == Side.CLIENT)
-                    {
-                        world = getClientWorld();
-                    }
-                    else
-                    {
-                        world = ctx.getServerHandler().playerEntity.worldObj;
-                    }
-                    EntityHelicopterBase helicopter = HelicopterMessages.getHeli(world, packet.heliID);
-                    if (helicopter != null)
-                    {
-                        helicopter.setDirection(packet.direction);
-                    }
-                }
-            });
-
-            return null;
-        }
-
-        @SideOnly(Side.CLIENT)
-        private World getClientWorld()
-        {
-            return FMLClientHandler.instance().getWorldClient();
-        }
-
     }
 }

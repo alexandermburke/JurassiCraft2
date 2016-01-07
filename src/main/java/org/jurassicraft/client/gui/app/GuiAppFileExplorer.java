@@ -153,7 +153,7 @@ public class GuiAppFileExplorer extends GuiApp
             path = "";
         }
 
-        JurassiCraft.networkManager.networkWrapper.sendToServer(new MessageRequestFile(path));
+        JurassiCraft.networkWrapper.sendToServer(new MessageRequestFile(path));
         JCPlayerData playerData = JCPlayerDataClient.getPlayerData();
 
         if (path.length() == 0)

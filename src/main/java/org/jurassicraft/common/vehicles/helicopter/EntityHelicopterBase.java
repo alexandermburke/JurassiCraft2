@@ -287,11 +287,11 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     {
         if (worldObj.isRemote)
         {
-            JurassiCraft.networkManager.networkWrapper.sendToServer(new MessageHelicopterDirection(getEntityId(), direction));
+            JurassiCraft.networkWrapper.sendToServer(new MessageHelicopterDirection(getEntityId(), direction));
         }
         else
         {
-            JurassiCraft.networkManager.networkWrapper.sendToAll(new MessageHelicopterDirection(getEntityId(), direction));
+            JurassiCraft.networkWrapper.sendToAll(new MessageHelicopterDirection(getEntityId(), direction));
         }
     }
 
@@ -330,11 +330,11 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     {
         if (worldObj.isRemote)
         {
-            JurassiCraft.networkManager.networkWrapper.sendToServer(new MessageHelicopterEngine(getEntityId(), engineState));
+            JurassiCraft.networkWrapper.sendToServer(new MessageHelicopterEngine(getEntityId(), engineState));
         }
         else
         {
-            JurassiCraft.networkManager.networkWrapper.sendToAll(new MessageHelicopterEngine(getEntityId(), engineState));
+            JurassiCraft.networkWrapper.sendToAll(new MessageHelicopterEngine(getEntityId(), engineState));
         }
     }
 

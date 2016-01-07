@@ -1,12 +1,12 @@
 package org.jurassicraft.common.message;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.ilexiconn.llibrary.common.message.AbstractMessage;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.entity.data.JCPlayerData;
 import org.jurassicraft.common.paleopad.JCFile;
@@ -14,7 +14,7 @@ import org.jurassicraft.common.paleopad.JCFile;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MessageSendFile implements IMessage
+public class MessageSendFile extends AbstractMessage<MessageSendFile>
 {
     // Send
     private JCFile file;
@@ -34,6 +34,40 @@ public class MessageSendFile implements IMessage
     {
         this.file = file;
         this.playerData = data;
+    }
+
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void handleClientMessage(MessageSendFile messageSendFile, EntityPlayer entityPlayer)
+    {
+        JCFile file = JCPlayerData.getPlayerData(null).getFileFromPath(messageSendFile.path);
+
+        if (!messageSendFile.isDir)
+        {
+            file.setData(messageSendFile.data);
+        }
+
+        for (String child : messageSendFile.children)
+        {
+            new JCFile(child, file, JurassiCraft.proxy.getPlayer(), messageSendFile.isDir);
+        }
+    }
+
+    @Override
+    public void handleServerMessage(MessageSendFile messageSendFile, EntityPlayer entityPlayer)
+    {
+        JCFile file = JCPlayerData.getPlayerData(entityPlayer).getFileFromPath(messageSendFile.path);
+
+        if (!messageSendFile.isDir)
+        {
+            file.setData(messageSendFile.data);
+        }
+
+        for (String child : messageSendFile.children)
+        {
+            new JCFile(child, file, entityPlayer, messageSendFile.isDir);
+        }
     }
 
     @Override
@@ -132,56 +166,6 @@ public class MessageSendFile implements IMessage
 
                 children.add(childName);
             }
-        }
-    }
-
-    public static class Handler implements IMessageHandler<MessageSendFile, IMessage>
-    {
-        @Override
-        public IMessage onMessage(final MessageSendFile packet, final MessageContext ctx)
-        {
-            JurassiCraft.proxy.scheduleTask(ctx, new Runnable()
-            {
-                @Override
-                public void run()
-                {
-                    if (ctx.side.isClient())
-                    {
-                        JCFile file = JCPlayerData.getPlayerData(null).getFileFromPath(packet.path);
-
-                        if (!packet.isDir)
-                        {
-                            file.setData(packet.data);
-                        }
-
-                        for (String child : packet.children)
-                        {
-                            new JCFile(child, file, JurassiCraft.proxy.getPlayer(), packet.isDir);
-                        }
-                    }
-                    else
-                    {
-                        EntityPlayerMP player = ctx.getServerHandler().playerEntity;
-
-                        if (player != null)
-                        {
-                            JCFile file = JCPlayerData.getPlayerData(player).getFileFromPath(packet.path);
-
-                            if (!packet.isDir)
-                            {
-                                file.setData(packet.data);
-                            }
-
-                            for (String child : packet.children)
-                            {
-                                new JCFile(child, file, player, packet.isDir);
-                            }
-                        }
-                    }
-                }
-            });
-
-            return null;
         }
     }
 }

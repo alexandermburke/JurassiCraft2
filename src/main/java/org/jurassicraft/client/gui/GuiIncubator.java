@@ -94,7 +94,7 @@ public class GuiIncubator extends GuiContainer
                 if (temp != incubator.getField(i + 10))
                 {
                     incubator.setField(i + 10, temp);
-                    JurassiCraft.networkManager.networkWrapper.sendToServer(new MessageChangeTemperature(((TileEntity) incubator).getPos(), i, temp));
+                    JurassiCraft.networkWrapper.sendToServer(new MessageChangeTemperature(((TileEntity) incubator).getPos(), i, temp));
                 }
 
                 break;

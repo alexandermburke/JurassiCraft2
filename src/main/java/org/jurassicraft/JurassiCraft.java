@@ -1,6 +1,7 @@
 package org.jurassicraft;
 
 import net.ilexiconn.bookwiki.BookWiki;
+import net.ilexiconn.llibrary.common.message.AbstractMessage;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.GameRules;
 import net.minecraftforge.common.config.Configuration;
@@ -11,6 +12,9 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.Logger;
 import org.jurassicraft.common.achievements.JCAchievements;
 import org.jurassicraft.common.block.JCBlockRegistry;
@@ -19,7 +23,7 @@ import org.jurassicraft.common.creativetab.JCCreativeTabs;
 import org.jurassicraft.common.entity.base.JCEntityRegistry;
 import org.jurassicraft.common.food.FoodHelper;
 import org.jurassicraft.common.item.JCItemRegistry;
-import org.jurassicraft.common.message.JCNetworkManager;
+import org.jurassicraft.common.message.*;
 import org.jurassicraft.common.paleopad.AppRegistry;
 import org.jurassicraft.common.plant.JCPlantRegistry;
 import org.jurassicraft.common.proxy.CommonProxy;
@@ -43,7 +47,7 @@ public class JurassiCraft
     @Instance(JurassiCraft.MODID)
     public static JurassiCraft instance;
     public static long timerTicks;
-    public static long timerNanoseconds;
+    public static SimpleNetworkWrapper networkWrapper;
 
     private Logger logger;
 
@@ -53,7 +57,6 @@ public class JurassiCraft
     public static JCItemRegistry itemRegistry = new JCItemRegistry();
     public static JCBlockRegistry blockRegistry = new JCBlockRegistry();
     public static JCRecipeRegistry recipeRegistry = new JCRecipeRegistry();
-    public static JCNetworkManager networkManager = new JCNetworkManager();
     public static AppRegistry appRegistry = new AppRegistry();
     public static JCAchievements achievements = new JCAchievements();
     public static StorageTypeRegistry storageTypeRegistry = new StorageTypeRegistry();
@@ -72,7 +75,24 @@ public class JurassiCraft
     {
         logger = event.getModLog();
         logger.info("Loading JurassiCraft...");
-        timerNanoseconds = System.nanoTime();
+
+        networkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel("jurassicraft");
+        AbstractMessage.registerMessage(networkWrapper, MessageSyncPaleoPad.class, 0, Side.CLIENT);
+        AbstractMessage.registerMessage(networkWrapper, MessageSyncPaleoPad.class, 1, Side.SERVER);
+        AbstractMessage.registerMessage(networkWrapper, MessageRequestFile.class, 2, Side.CLIENT);
+        AbstractMessage.registerMessage(networkWrapper, MessageRequestFile.class, 3, Side.SERVER);
+        AbstractMessage.registerMessage(networkWrapper, MessageSendFile.class, 4, Side.CLIENT);
+        AbstractMessage.registerMessage(networkWrapper, MessageSendFile.class, 5, Side.SERVER);
+        AbstractMessage.registerMessage(networkWrapper, MessagePlacePaddockSign.class, 6, Side.SERVER);
+        AbstractMessage.registerMessage(networkWrapper, MessageChangeTemperature.class, 7, Side.CLIENT);
+        AbstractMessage.registerMessage(networkWrapper, MessageChangeTemperature.class, 8, Side.SERVER);
+        AbstractMessage.registerMessage(networkWrapper, MessageHelicopterEngine.class, 9, Side.CLIENT);
+        AbstractMessage.registerMessage(networkWrapper, MessageHelicopterEngine.class, 10, Side.SERVER);
+        AbstractMessage.registerMessage(networkWrapper, MessageHelicopterDirection.class, 11, Side.CLIENT);
+        AbstractMessage.registerMessage(networkWrapper, MessageHelicopterDirection.class, 12, Side.SERVER);
+        AbstractMessage.registerMessage(networkWrapper, MessageHelicopterModules.class, 13, Side.CLIENT);
+        AbstractMessage.registerMessage(networkWrapper, MessageHelicopterModules.class, 14, Side.SERVER);
+
         proxy.preInit(event);
         logger.debug("Finished pre-init for JurassiCraft!");
 
@@ -115,17 +135,5 @@ public class JurassiCraft
     public Logger getLogger()
     {
         return logger;
-    }
-
-    public boolean isDebugging()
-    {
-        return "${version}".equals("${" + "version" + "}");
-    }
-
-    public long getNanoTimeInterval()
-    {
-        long interval = System.nanoTime() - timerNanoseconds;
-        timerNanoseconds = 0;
-        return interval;
     }
 }

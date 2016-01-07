@@ -116,6 +116,10 @@ public class JCPlayerData implements IExtendedEntityProperties
         rootFiles.clear();
         appdata.clear();
 
+        if (playerData == null) {
+            return;
+        }
+
         NBTTagCompound nbt = playerData.getCompoundTag("PaleoPadData");
 
         NBTTagList filesList = nbt.getTagList("Files", 10);

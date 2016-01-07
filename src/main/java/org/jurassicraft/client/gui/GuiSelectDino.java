@@ -20,7 +20,6 @@ import org.lwjgl.opengl.GL11;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 public class GuiSelectDino extends GuiScreen
 {
@@ -151,7 +150,7 @@ public class GuiSelectDino extends GuiScreen
             InventoryPlayer inventory = mc.thePlayer.inventory;
             inventory.decrStackSize(inventory.currentItem, 1);
         }
-        JurassiCraft.networkManager.networkWrapper.sendToServer(new MessagePlacePaddockSign(facing, pos, dinosaur));
+        JurassiCraft.networkWrapper.sendToServer(new MessagePlacePaddockSign(facing, pos, dinosaur));
     }
 
     @Override
