@@ -15,6 +15,16 @@ public class JCNetworkManager
     {
         networkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel("jurassicraft");
 
+        networkWrapper.registerMessage(MessageSyncPaleoPad.Handler.class, MessageSyncPaleoPad.class, packetId, Side.CLIENT);
+        networkWrapper.registerMessage(MessageRequestFile.Handler.class, MessageRequestFile.class, packetId++, Side.CLIENT);
+        networkWrapper.registerMessage(MessageSendFile.Handler.class, MessageSendFile.class, packetId++, Side.CLIENT);
+        networkWrapper.registerMessage(MessagePlacePaddockSign.Handler.class, MessagePlacePaddockSign.class, packetId++, Side.CLIENT);
+        networkWrapper.registerMessage(MessageChangeTemperature.Handler.class, MessageChangeTemperature.class, packetId++, Side.CLIENT);
+        networkWrapper.registerMessage(MessageHelicopterEngine.Handler.class, MessageHelicopterEngine.class, packetId++, Side.CLIENT);
+        networkWrapper.registerMessage(MessageHelicopterDirection.Handler.class, MessageHelicopterDirection.class, packetId++, Side.CLIENT);
+        networkWrapper.registerMessage(MessageHelicopterModules.Handler.class, MessageHelicopterModules.class, packetId++, Side.CLIENT);
+
+        /**
         registerPacket(MessageSyncPaleoPad.Handler.class, MessageSyncPaleoPad.class);
         registerPacket(MessageRequestFile.Handler.class, MessageRequestFile.class);
         registerPacket(MessageSendFile.Handler.class, MessageSendFile.class);
@@ -23,8 +33,11 @@ public class JCNetworkManager
         registerPacket(MessageHelicopterEngine.Handler.class, MessageHelicopterEngine.class);
         registerPacket(MessageHelicopterDirection.Handler.class, MessageHelicopterDirection.class);
         registerPacket(MessageHelicopterModules.Handler.class, MessageHelicopterModules.class);
+         **/
     }
 
+    // crashes MultiPlayer Crash
+    // TODO make a new one :D
     private <REQ extends IMessage, REPLY extends IMessage> void registerPacket(Class<? extends IMessageHandler<REQ, REPLY>> messageHandler, Class<REQ> requestMessageType)
     {
         networkWrapper.registerMessage(messageHandler, requestMessageType, packetId, Side.CLIENT);
