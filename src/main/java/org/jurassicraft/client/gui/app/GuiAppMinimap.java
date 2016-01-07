@@ -64,6 +64,8 @@ public class GuiAppMinimap extends GuiApp
 
         gui.drawBoxOutline(89, 14, 16 * 8 + 1, 16 * 8 + 1, 1, 1.0F, (renderChunkX + renderChunkY) % 2 == 0 ? 0x606060 : 0x505050);
 
+        int heightAtPlayer = world.getHeight(new BlockPos(playerX, 0, playerZ)).getY();
+
         for (int chunkX = playerChunkX - 4; chunkX < playerChunkX + 4; chunkX++)
         {
             for (int chunkZ = playerChunkZ - 4; chunkZ < playerChunkZ + 4; chunkZ++)
@@ -79,22 +81,8 @@ public class GuiAppMinimap extends GuiApp
                             int blockX = x + (chunkX * 16);
                             int blockZ = z + (chunkZ * 16);
 
-                            int blockY = world.getHeight(new BlockPos(blockX, 0, blockZ)).getY();
-
-                            BlockPos pos = new BlockPos(blockX, blockY, blockZ);
-
-                            while (world.isAirBlock(pos) || world.getBlockState(pos).getBlock() instanceof BlockLiquid)
-                            {
-                                blockY--;
-                                pos = new BlockPos(blockX, blockY, blockZ);
-                            }
-
-                            BlockPos up = pos.add(0, 1, 0);
-
-                            if (!world.isAirBlock(up))
-                            {
-                                pos = up;
-                            }
+                            BlockPos pos = getHeight(world, blockX, blockZ);
+                            int blockY = pos.getY();
 
                             IBlockState blockState = world.getBlockState(pos);
                             Block block = blockState.getBlock();
@@ -107,7 +95,7 @@ public class GuiAppMinimap extends GuiApp
                             int g = (rgb >> 8) & 0xff;
                             int b = rgb & 0xff;
 
-                            int lightnessOffset = (blockY - 64) * 4;
+                            int lightnessOffset = (blockY - heightAtPlayer) * 4;
 
                             r = Math.min(Math.max(r + lightnessOffset, 0), 255);
                             g = Math.min(Math.max(g + lightnessOffset, 0), 255);
@@ -137,6 +125,8 @@ public class GuiAppMinimap extends GuiApp
 
         renderChunkX = 0;
         renderChunkY = 0;
+
+        int trackedEntities = 0;
 
         for (int chunkX = playerChunkX - 4; chunkX < playerChunkX + 4; chunkX++)
         {
@@ -172,6 +162,8 @@ public class GuiAppMinimap extends GuiApp
                                 int entityRenderX = (dinoX & 15) + (renderChunkX * 16) + 90 - 4;
                                 int entityRenderY = (dinoZ & 15) + (renderChunkY * 16) + 15 - 4;
 
+                                trackedEntities++;
+
                                 gui.drawScaledTexturedModalRect(entityRenderX, entityRenderY, 0, 0, 16, 16, 16, 16, 0.6F);
 
                                 gui.drawCenteredScaledText(dinoX + " " + (int) dino.posY + " " + dinoZ, entityRenderX + 5, entityRenderY + 8, 0.3F, 0xFFFFFF);
@@ -192,6 +184,30 @@ public class GuiAppMinimap extends GuiApp
             renderChunkY = 0;
             renderChunkX++;
         }
+
+        gui.drawScaledText("Tracked Entities: " + trackedEntities, 2, 13, 0.67F, 0xFFFFFF);
+    }
+
+    private BlockPos getHeight(World world, int x, int z)
+    {
+        int y = world.getHeight(new BlockPos(x, 0, z)).getY();
+
+        BlockPos pos = new BlockPos(x, y, z);
+
+        while (world.isAirBlock(pos) || world.getBlockState(pos).getBlock() instanceof BlockLiquid)
+        {
+            y--;
+            pos = new BlockPos(x, y, z);
+        }
+
+        BlockPos up = pos.add(0, 1, 0);
+
+        if (!world.isAirBlock(up))
+        {
+            pos = up;
+        }
+
+        return pos;
     }
 
     /**
