@@ -28,8 +28,8 @@ public class JCNetworkManager
     private <REQ extends IMessage, REPLY extends IMessage> void registerPacket(Class<? extends IMessageHandler<REQ, REPLY>> messageHandler, Class<REQ> requestMessageType)
     {
         networkWrapper.registerMessage(messageHandler, requestMessageType, packetId, Side.CLIENT);
-        packetId += 1;
+        packetId++;
         networkWrapper.registerMessage(messageHandler, requestMessageType, packetId, Side.SERVER);
-        packetId += 1;
+        packetId++;
     }
 }
