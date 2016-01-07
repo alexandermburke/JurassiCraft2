@@ -20,13 +20,13 @@ public class RecipeRenderer extends Gui {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableLighting();
         drawModalRectWithCustomSizedTexture(x + 64, y + 14, 292, 101, 26, 26, 512.0F, 512.0F);
-        boolean hover = mouseX >= x + 64 && mouseY >= y + 14 && mouseX < x + 64 + 26 && mouseY < y + 14 + 26;
+        ItemStack currentItem = null;
         mc.getRenderItem().zLevel = 100.0F;
         mc.getRenderItem().renderItemAndEffectIntoGUI(recipe.getResult(), x + 69, y + 19);
         mc.getRenderItem().renderItemOverlayIntoGUI(mc.fontRendererObj, recipe.getResult(), x + 69, y + 19, null);
         mc.getRenderItem().zLevel = 0.0F;
-        if (hover) {
-            renderToolTip(recipe.getResult(), mouseX, mouseY);
+        if (mouseX >= x + 64 && mouseY >= y + 14 && mouseX < x + 64 + 26 && mouseY < y + 14 + 26) {
+            currentItem = recipe.getResult();
         }
         mc.getTextureManager().bindTexture(BookWikiGui.TEXTURE);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -37,15 +37,17 @@ public class RecipeRenderer extends Gui {
             if (stack != null) {
                 int newX = (x + (i % 3) * 18) + 1;
                 int newY = (y + (i / 3) * 18) + 1;
-                hover = mouseX + 1 >= newX && mouseY + 1 >= newY && mouseX + 1 < newX + 18 && mouseY + 1 < newY + 18;
                 mc.getRenderItem().zLevel = 100.0F;
                 mc.getRenderItem().renderItemAndEffectIntoGUI(stack, newX, newY);
                 mc.getRenderItem().renderItemOverlayIntoGUI(mc.fontRendererObj, stack, newX, newY, null);
                 mc.getRenderItem().zLevel = 0.0F;
-                if (hover) {
-                    renderToolTip(stack, mouseX, mouseY);
+                if (mouseX + 1 >= newX && mouseY + 1 >= newY && mouseX + 1 < newX + 18 && mouseY + 1 < newY + 18) {
+                    currentItem = stack;
                 }
             }
+        }
+        if (currentItem != null) {
+            renderToolTip(currentItem, mouseX, mouseY);
         }
     }
 

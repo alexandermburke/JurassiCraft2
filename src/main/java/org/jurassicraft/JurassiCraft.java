@@ -1,11 +1,7 @@
 package org.jurassicraft;
 
 import net.ilexiconn.bookwiki.BookWiki;
-import net.ilexiconn.bookwiki.BookWikiContainer;
-import net.minecraft.client.Minecraft;
-import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.GameRules;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
@@ -32,7 +28,6 @@ import org.jurassicraft.common.storagedisc.StorageTypeRegistry;
 import org.jurassicraft.common.world.islanublar.WorldTypeIslaNublar;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 @Mod(modid = JurassiCraft.MODID, name = JurassiCraft.MODNAME, version = JurassiCraft.VERSION, guiFactory = "org.jurassicraft.client.gui.config.GUIFactory", dependencies = "required-after:llibrary@[0.7.1,)")
@@ -83,39 +78,8 @@ public class JurassiCraft
 
         FoodHelper.init();
 
-        try {
-            bookWiki = BookWiki.create(instance, new InputStreamReader(Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation(MODID, "bookwiki/bookwiki_test.json")).getInputStream()));
-            logger.info("==================== BookWiki TEST ====================");
-            for (BookWikiContainer.Category category : bookWiki.getContainer().getCategories()) {
-                logger.info("========= Category =========");
-                logger.info(category.getName());
-                logger.info(category.getIcon().getDisplayName());
-                logger.info(category.getDefaultPage().getTitle());
-            }
-            for (BookWikiContainer.Page page : bookWiki.getContainer().getPages()) {
-                logger.info("=========== Page ===========");
-                logger.info(page.getTitle());
-                logger.info(page.getContent());
-                logger.info(page.getCategory().getName());
-            }
-            for (BookWikiContainer.Recipe recipe : bookWiki.getContainer().getRecipes()) {
-                logger.info("========== Recipe ==========");
-                logger.info(recipe.getID());
-                logger.info(recipe.isShapeless());
-                for (ItemStack stack : recipe.getRecipe()) {
-                    if (stack != null) {
-                        logger.info(stack.getDisplayName());
-                    } else {
-                        logger.info("null");
-                    }
-                }
-                logger.info(recipe.getResult().getDisplayName());
-            }
-            logger.info("================== BookWiki TEST END ==================");
-            bookWiki.registerItem();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        bookWiki = BookWiki.create(instance, new InputStreamReader(JurassiCraft.class.getResourceAsStream("/assets/jurassicraft/bookwiki/bookwiki.json")));
+        bookWiki.registerItem();
     }
 
     @Mod.EventHandler

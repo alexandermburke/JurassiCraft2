@@ -1,0 +1,41 @@
+{
+  "categories": [
+    {
+      "id": "general",
+      "name": "category.general.name",
+      "icon": "minecraft:crafting_table",
+      "defaultPage": "main"
+    },
+    {
+      "id": "recipes",
+      "name": "category.recipes.name",
+      "icon": "minecraft:diamond_sword",
+      "defaultPage": "swordRecipe"
+    }
+  ],
+  "pages": [
+    {
+      "id": "main",
+      "title": "page.main.title",
+      "content": "<c:red>Lorem<c:reset> ipsum dolor sit amet, consectetuer adipiscing elit. <c:red>Aenean<c:reset> commodo ligula eget dolor. <c:red>Aenean<c:reset> massa. <c:red>Cum<c:reset> sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. <c:red>Donec<c:reset> quam felis, ultricies nec, pellentesque eu, pretium quis, sem. <c:red>Nulla<c:reset> consequat massa quis enim. <c:red>Donec<c:reset> pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. <c:red>In<c:reset> enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. <c:red>Nullam<c:reset> dictum felis eu pede mollis pretium. <c:red>Integer<c:reset> tincidunt. <c:red>Cras<c:reset> dapibus. <c:red>Vivamus<c:reset> elementum semper nisi. <c:red>Aenean<c:reset> vulputate eleifend tellus. <c:red>Aenean<c:reset> leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. <c:red>Aliquam<c:reset> lorem ante, dapibus in, viverra quis, feugiat a, tellus.",
+      "category": "general"
+    },
+    {
+      "id": "swordRecipe",
+      "title": "page.recipes.title",
+      "content": "Lern me to mke a sword pls<r:sword>thx",
+      "category": "recipes"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "sword",
+      "recipe": [
+        "", "minecraft:diamond", "",
+        "", "minecraft:diamond", "",
+        "", "minecraft:stick", ""
+      ],
+      "result": "minecraft:diamond_sword"
+    }
+  ]
+}

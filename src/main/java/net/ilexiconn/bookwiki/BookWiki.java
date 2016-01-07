@@ -1,5 +1,6 @@
 package net.ilexiconn.bookwiki;
 
+import com.google.common.collect.Lists;
 import net.ilexiconn.llibrary.common.json.JsonFactory;
 import net.ilexiconn.llibrary.common.log.LoggerHelper;
 import net.minecraft.client.gui.GuiScreen;
@@ -9,6 +10,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.io.Reader;
+import java.util.List;
 
 /**
  * @author iLexiconn
@@ -60,5 +62,42 @@ public class BookWiki {
 
     public BookWikiContainer getContainer() {
         return container;
+    }
+
+    public BookWikiContainer.Category getCategoryByID(String id) {
+        for (BookWikiContainer.Category category : getContainer().getCategories()) {
+            if (category.getID().equals(id)) {
+                return category;
+            }
+        }
+        return null;
+    }
+
+    public BookWikiContainer.Page getPageByID(String id) {
+        for (BookWikiContainer.Page page : getContainer().getPages()) {
+            if (page.getID().equals(id)) {
+                return page;
+            }
+        }
+        return null;
+    }
+
+    public BookWikiContainer.Page[] getPagesFromCategory(BookWikiContainer.Category category) {
+        List<BookWikiContainer.Page> pageList = Lists.newArrayList();
+        for (BookWikiContainer.Page page : getContainer().getPages()) {
+            if (page.getCategory() == category) {
+                pageList.add(page);
+            }
+        }
+        return pageList.toArray(new BookWikiContainer.Page[pageList.size()]);
+    }
+
+    public BookWikiContainer.Recipe getRecipeByID(String id) {
+        for (BookWikiContainer.Recipe recipe : getContainer().getRecipes()) {
+            if (recipe.getID().equals(id)) {
+                return recipe;
+            }
+        }
+        return null;
     }
 }

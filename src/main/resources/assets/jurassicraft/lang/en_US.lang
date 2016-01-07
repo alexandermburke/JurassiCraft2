@@ -321,3 +321,9 @@ achievement.jurassicraft.reinforcedStone.desc=Craft some reinforced stone blocks
 
 //Generators =============
 generator.isla_nublar=Isla Nublar
+
+//BookWiki ==================================================
+category.general.name=General
+category.recipes.name=Recipes
+page.main.title=Main
+page.recipes.title=Sword
