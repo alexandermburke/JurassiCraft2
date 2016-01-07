@@ -56,18 +56,6 @@ public class IslaNublarGeneration extends WorldHeightmapGenerator
     }
 
     @Override
-    public int getWorldOffsetX()
-    {
-        return 0;
-    }
-
-    @Override
-    public int getWorldOffsetZ()
-    {
-        return 0;
-    }
-
-    @Override
     public boolean hasOcean()
     {
         return true;

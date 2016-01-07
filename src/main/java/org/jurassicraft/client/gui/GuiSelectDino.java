@@ -17,7 +17,10 @@ import org.jurassicraft.common.entity.base.JCEntityRegistry;
 import org.jurassicraft.common.message.MessagePlacePaddockSign;
 import org.lwjgl.opengl.GL11;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class GuiSelectDino extends GuiScreen
 {
@@ -35,6 +38,8 @@ public class GuiSelectDino extends GuiScreen
     private BlockPos pos;
     private EnumFacing facing;
 
+    private List<Dinosaur> dinosaurs;
+
     public GuiSelectDino(BlockPos pos, EnumFacing facing)
     {
         this.pos = pos;
@@ -51,7 +56,11 @@ public class GuiSelectDino extends GuiScreen
 
         page = 0;
 
-        pageCount = JCEntityRegistry.getRegisteredDinosaurs().size() / (columnsPerPage * rowsPerPage);
+        dinosaurs = new ArrayList<Dinosaur>(JCEntityRegistry.getRegisteredDinosaurs());
+
+        Collections.sort(dinosaurs);
+
+        pageCount = dinosaurs.size() / (columnsPerPage * rowsPerPage);
 
         enableDisablePages();
     }
@@ -65,15 +74,13 @@ public class GuiSelectDino extends GuiScreen
 
         if (state == 0)
         {
-            List<Dinosaur> registeredDinosaurs = JCEntityRegistry.getRegisteredDinosaurs();
-
             int signsPerPage = columnsPerPage * rowsPerPage;
             int xOffset = 0;
             int yOffset = 0;
 
-            pageCount = registeredDinosaurs.size() / signsPerPage;
+            pageCount = dinosaurs.size() / signsPerPage;
 
-            for (int i = 0; i < registeredDinosaurs.size(); i++)
+            for (int i = 0; i < dinosaurs.size(); i++)
             {
                 if (i >= signsPerPage * page && i < signsPerPage * (page + 1))
                 {
@@ -87,7 +94,7 @@ public class GuiSelectDino extends GuiScreen
 
                     if (scaledMouseX > x && scaledMouseY > y && scaledMouseX < x + 16 && scaledMouseY < y + 16)
                     {
-                        selectDinosaur(registeredDinosaurs.get(i));
+                        selectDinosaur(dinosaurs.get(i));
                         break;
                     }
 
@@ -152,19 +159,17 @@ public class GuiSelectDino extends GuiScreen
     {
         super.drawScreen(mouseX, mouseY, partialTicks);
 
-        List<Dinosaur> registeredDinosaurs = JCEntityRegistry.getRegisteredDinosaurs();
-
         int signsPerPage = columnsPerPage * rowsPerPage;
         int xOffset = 0;
         int yOffset = 0;
 
-        pageCount = registeredDinosaurs.size() / signsPerPage;
+        pageCount = dinosaurs.size() / signsPerPage;
 
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
         int i = 0;
 
-        for (Dinosaur dinosaur : registeredDinosaurs)
+        for (Dinosaur dinosaur : dinosaurs)
         {
             if (i >= signsPerPage * page && i < signsPerPage * (page + 1))
             {
