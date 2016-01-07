@@ -37,7 +37,7 @@ public class ModelDinosaur extends ModelJson
 
         EntityDinosaur dinosaur = (EntityDinosaur) entity;
 
-        //this.setMovementScale(dinosaur.isSleeping() ? 0.5F : 1.0F); //TODO
+        this.setMovementScale(dinosaur.isSleeping() ? 0.5F : 1.0F);
 
         super.setRotationAngles(limbSwing, limbSwingAmount, rotation, rotationYaw, rotationPitch, partialTicks, entity);
     }
