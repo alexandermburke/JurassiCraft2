@@ -23,7 +23,7 @@
     {
       "id": "swordRecipe",
       "title": "page.recipes.title",
-      "content": "Lern me to mke a sword pls<r:sword>thx",
+      "content": "Lern me to mke a sword pls<r:sword>thx<c:red>!!!",
       "category": "recipes"
     }
   ],
