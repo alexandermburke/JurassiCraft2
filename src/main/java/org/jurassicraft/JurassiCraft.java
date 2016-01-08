@@ -1,9 +1,6 @@
 package org.jurassicraft;
 
 import net.ilexiconn.bookwiki.BookWiki;
-import net.ilexiconn.bookwiki.api.BookWikiAPI;
-import net.ilexiconn.bookwiki.server.component.ColorComponent;
-import net.ilexiconn.bookwiki.server.component.RecipeComponent;
 import net.ilexiconn.llibrary.common.message.AbstractMessage;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.GameRules;
@@ -97,12 +94,10 @@ public class JurassiCraft
         AbstractMessage.registerMessage(networkWrapper, MessageHelicopterModules.class, 14, Side.SERVER);
 
         proxy.preInit(event);
-        logger.debug("Finished pre-init for JurassiCraft!");
+        logger.debug("Finished pre-initialization for JurassiCraft!");
 
         FoodHelper.init();
 
-        BookWikiAPI.registerComponent(new ColorComponent());
-        BookWikiAPI.registerComponent(new RecipeComponent());
         bookWiki = BookWiki.create(instance, new InputStreamReader(JurassiCraft.class.getResourceAsStream("/assets/jurassicraft/bookwiki/bookwiki.json")));
         bookWiki.registerItem();
     }
@@ -111,14 +106,14 @@ public class JurassiCraft
     public void init(FMLInitializationEvent event)
     {
         proxy.init(event);
-        logger.debug("Finished init for JurassiCraft!");
+        logger.debug("Finished initialization for JurassiCraft");
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
         proxy.postInit(event);
-        logger.info("Finished loaded JurassiCraft!");
+        logger.info("Finished loading JurassiCraft");
     }
 
     @Mod.EventHandler

@@ -1,8 +1,9 @@
-package net.ilexiconn.bookwiki.server.component;
+package net.ilexiconn.bookwiki.client.component;
 
 import net.ilexiconn.bookwiki.BookWiki;
 import net.ilexiconn.bookwiki.api.IComponent;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -10,7 +11,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * @author iLexiconn
  */
-public class ColorComponent implements IComponent {
+@SideOnly(Side.CLIENT)
+public class ColorComponent extends Gui implements IComponent {
     @Override
     public char getID() {
         return 'c';
@@ -26,7 +28,6 @@ public class ColorComponent implements IComponent {
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void render(Minecraft mc, BookWiki bookWiki, String arg, int x, int y, int mouseX, int mouseY) {
 
     }

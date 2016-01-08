@@ -1,6 +1,8 @@
-package net.ilexiconn.bookwiki.client.render;
+package net.ilexiconn.bookwiki.client.component;
 
+import net.ilexiconn.bookwiki.BookWiki;
 import net.ilexiconn.bookwiki.BookWikiContainer;
+import net.ilexiconn.bookwiki.api.IComponent;
 import net.ilexiconn.bookwiki.client.gui.BookWikiGui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -17,14 +19,26 @@ import java.util.List;
  * @author iLexiconn
  */
 @SideOnly(Side.CLIENT)
-public class RecipeRenderer extends Gui {
-    private final Minecraft mc = Minecraft.getMinecraft();
+public class RecipeComponent extends Gui implements IComponent {
+    @Override
+    public char getID() {
+        return 'r';
+    }
 
-    public void render(BookWikiContainer.Recipe recipe, int x, int y, int mouseX, int mouseY) {
+    @Override
+    public String init(String string, String arg, String group) {
+        return string.replace(group, group + "\n\n\n\n\n\n\n");
+    }
+
+    @Override
+    public void render(Minecraft mc, BookWiki bookWiki, String arg, int x, int y, int mouseX, int mouseY) {
+        BookWikiContainer.Recipe recipe = bookWiki.getRecipeByID(arg);
         mc.getTextureManager().bindTexture(BookWikiGui.TEXTURE);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableLighting();
-        drawModalRectWithCustomSizedTexture(x + 64, y + 14, 292, 101, 26, 26, 512.0F, 512.0F);
+        x += 14;
+        y += mc.fontRendererObj.FONT_HEIGHT;
+        Gui.drawModalRectWithCustomSizedTexture(x + 64, y + 14, 292, 101, 26, 26, 512.0F, 512.0F);
         ItemStack currentItem = null;
         mc.getRenderItem().zLevel = 100.0F;
         mc.getRenderItem().renderItemAndEffectIntoGUI(recipe.getResult(), x + 69, y + 19);
@@ -36,7 +50,7 @@ public class RecipeRenderer extends Gui {
         mc.getTextureManager().bindTexture(BookWikiGui.TEXTURE);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableLighting();
-        drawModalRectWithCustomSizedTexture(x, y, 292, 23, 54, 54, 512.0F, 512.0F);
+        Gui.drawModalRectWithCustomSizedTexture(x, y, 292, 23, 54, 54, 512.0F, 512.0F);
         for (int i = 0; i < 9; i++) {
             ItemStack stack = recipe.getRecipe()[i];
             if (stack != null) {
@@ -52,11 +66,12 @@ public class RecipeRenderer extends Gui {
             }
         }
         if (currentItem != null) {
-            renderToolTip(currentItem, mouseX, mouseY);
+            renderToolTip(mc, currentItem, mouseX, mouseY);
         }
     }
 
-    protected void renderToolTip(ItemStack stack, int x, int y) {
+    @SideOnly(Side.CLIENT)
+    public void renderToolTip(Minecraft mc, ItemStack stack, int x, int y) {
         List<String> list = stack.getTooltip(mc.thePlayer, mc.gameSettings.advancedItemTooltips);
 
         for (int i = 0; i < list.size(); ++i) {
@@ -102,6 +117,7 @@ public class RecipeRenderer extends Gui {
         drawGradientRect(l1 + i + 2, i2 - 3 + 1, l1 + i + 3, i2 + k + 3 - 1, i1, j1);
         drawGradientRect(l1 - 3, i2 - 3, l1 + i + 3, i2 - 3 + 1, i1, i1);
         drawGradientRect(l1 - 3, i2 + k + 2, l1 + i + 3, i2 + k + 3, j1, j1);
+        zLevel = 0.0F;
 
         for (int k1 = 0; k1 < list.size(); ++k1) {
             String s1 = list.get(k1);
@@ -112,7 +128,6 @@ public class RecipeRenderer extends Gui {
             i2 += 10;
         }
 
-        zLevel = 0.0F;
         GlStateManager.enableLighting();
         GlStateManager.enableDepth();
         RenderHelper.enableStandardItemLighting();

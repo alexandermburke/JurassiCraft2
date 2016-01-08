@@ -37,10 +37,6 @@ public class BookWikiGui extends GuiScreen {
         this.bookWiki = bookWiki;
     }
 
-    public static void endGlScissor() {
-        GL11.glDisable(GL11.GL_SCISSOR_TEST);
-    }
-
     @Override
     public boolean doesGuiPauseGame() {
         return false;
@@ -94,7 +90,7 @@ public class BookWikiGui extends GuiScreen {
             }
             Map<IComponent, String> componentMap = Maps.newHashMap();
             for (IComponent component : BookWikiAPI.getComponents()) {
-                Matcher matcher = Pattern.compile("<" + component.getID() + ":[A-Za-z]+>").matcher(line);
+                Matcher matcher = Pattern.compile("<" + component.getID() + ":[A-Za-z]*>").matcher(line);
                 while (matcher.find()) {
                     String group = matcher.group();
                     String arg = group.substring(3, group.length() - 1);
@@ -116,7 +112,7 @@ public class BookWikiGui extends GuiScreen {
     public String getContent(BookWikiContainer.Page page) {
         String result = page.getContent();
         for (IComponent component : BookWikiAPI.getComponents()) {
-            Matcher matcher = Pattern.compile("<" + component.getID() + ":[A-Za-z]+>").matcher(result);
+            Matcher matcher = Pattern.compile("<" + component.getID() + ":[A-Za-z]*>").matcher(result);
             while (matcher.find()) {
                 String group = matcher.group();
                 String arg = group.substring(3, group.length() - 1);
@@ -149,6 +145,10 @@ public class BookWikiGui extends GuiScreen {
         double scaleW = (double) mc.displayWidth / scaledResolution.getScaledWidth_double();
         double scaleH = (double) mc.displayHeight / scaledResolution.getScaledHeight_double();
         GL11.glEnable(GL11.GL_SCISSOR_TEST);
-        GL11.glScissor((int) Math.floor((double) x * scaleW), (int) Math.floor((double) mc.displayHeight - ((double) (y + height) * scaleH)), (int) Math.floor((double) (x + width) * scaleW) - (int) Math.floor((double) x * scaleW), (int) Math.floor((double) mc.displayHeight - ((double) y * scaleH)) - (int) Math.floor((double) mc.displayHeight - ((double) (y + height) * scaleH))); //starts from lower left corner (minecraft starts from upper left)
+        GL11.glScissor((int) Math.floor((double) x * scaleW), (int) Math.floor((double) mc.displayHeight - ((double) (y + height) * scaleH)), (int) Math.floor((double) (x + width) * scaleW) - (int) Math.floor((double) x * scaleW), (int) Math.floor((double) mc.displayHeight - ((double) y * scaleH)) - (int) Math.floor((double) mc.displayHeight - ((double) (y + height) * scaleH)));
+    }
+
+    public void endGlScissor() {
+        GL11.glDisable(GL11.GL_SCISSOR_TEST);
     }
 }
