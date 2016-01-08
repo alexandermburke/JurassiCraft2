@@ -74,6 +74,9 @@ public class JCItemRegistry
     public static ItemBasic amber_cane;
     public static ItemBasic mr_dna_keychain;
 
+    // Debug items
+    public static Item dino_scanner;
+
     public static Map<String, ItemFossil> fossils = new HashMap<String, ItemFossil>();
     public static Map<String, List<Dinosaur>> fossilDinosaurs = new HashMap<String, List<Dinosaur>>();
 
@@ -114,6 +117,7 @@ public class JCItemRegistry
         plant_cells_petri_dish = new ItemBasic("Plant Cells Petri Dish", JCCreativeTabs.items);
         tracker = new ItemBasic("Tracker", JCCreativeTabs.items);
         action_figure = new ItemActionFigure();
+        dino_scanner = new ItemDinoScanner();
 
         amber_cane = new ItemBasic("Amber Cane", JCCreativeTabs.merchandise);
         amber_cane.setFull3D();
@@ -197,6 +201,9 @@ public class JCItemRegistry
         registerItem(mr_dna_keychain, "Mr DNA Keychain");
 
         registerItem(action_figure, "Action Figure");
+
+        registerItem(dino_scanner, "Dino Scanner");
+
         // registerItem(entityRemover, "Entity Remover");
 
         // for (int i = 0; i < JCEntityRegistry.getDinosaurs().size(); i++)

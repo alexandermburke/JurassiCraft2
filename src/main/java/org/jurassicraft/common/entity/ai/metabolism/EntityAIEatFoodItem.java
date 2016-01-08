@@ -8,6 +8,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.timeless.animationapi.client.Animations;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jurassicraft.common.entity.base.EntityDinosaur;
 import org.jurassicraft.common.entity.base.MetabolismContainer;
 import org.jurassicraft.common.food.FoodHelper;
@@ -32,6 +34,7 @@ public class EntityAIEatFoodItem extends EntityAIBase
 
         if (!dinosaur.isDead && !dinosaur.isCarcass() && dinosaur.ticksExisted % 4 == 0 && dinosaur.worldObj.getGameRules().getBoolean("dinoMetabolism"))
         {
+            //LOGGER.info("EntityAIEatFoodItem executing: " + dinosaur.getName());
             double food = metabolism.getFood();
 
             boolean execute = false;
@@ -137,4 +140,7 @@ public class EntityAIEatFoodItem extends EntityAIBase
     {
         return dinosaur != null && !this.dinosaur.getNavigator().noPath() && item != null && !item.isDead;
     }
+
+
+    private static final Logger LOGGER = LogManager.getLogger();
 }

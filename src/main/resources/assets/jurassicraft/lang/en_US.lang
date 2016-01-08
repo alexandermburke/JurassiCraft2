@@ -150,6 +150,7 @@ item.action_figure.name={dino} Action Figure
 item.amber_cane.name=Amber Cane
 item.amber_keychain.name=Amber Keychain
 item.mr_dna_keychain.name=Mr DNA Keychain
+item.dino_scanner.name=Debug Dinosaur Scanner
 
 //Blocks ==================================================
 tile.fossil_block.name={period} Fossil

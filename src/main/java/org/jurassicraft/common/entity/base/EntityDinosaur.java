@@ -25,6 +25,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.timeless.animationapi.AIAnimation;
 import net.timeless.animationapi.client.Animations;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.damagesource.EntityDinosaurDamageSource;
 import org.jurassicraft.common.dinosaur.Dinosaur;
@@ -81,6 +83,8 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
     private boolean isSleeping;
     private boolean goBackToSleep;
+
+    private static final Logger LOGGER = LogManager.getLogger();
 
     public EntityDinosaur(World world)
     {
@@ -928,4 +932,73 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     {
         this.goBackToSleep = false;
     }
+
+    /**
+     * Write all the stats about this dino to the log.  There are too many to write to chat.
+     */
+    public void writeStatsToLog()
+    {
+        LOGGER.info(this);
+    }
+
+    @Override
+    public String toString()
+    {
+        return "EntityDinosaur{ " +
+//                "dinosaur=" + dinosaur +
+                dinosaur.getName() +
+                ", remote=" + getEntityWorld().isRemote +
+                ", isDead=" + isDead +
+                ", isCarcass=" + isCarcass +
+                ", isSleeping=" + isSleeping +
+                ", goBackToSleep=" + goBackToSleep +
+                "\n    " +
+                ", dinosaurAge=" + dinosaurAge +
+                ", prevAge=" + prevAge +
+                ", maxAge" + dinosaur.getMaximumAge() +
+                ", ticksExisted=" + ticksExisted +
+                ", entityAge=" + entityAge +
+                ", isMale=" + isMale +
+                ", growthSpeedOffset=" + growthSpeedOffset +
+                "\n    " +
+                ", food=" + metabolism.getFood() + " / " + metabolism.getMaxFood() + " (" + metabolism.getMaxFood() * 0.875 + ")" +
+                ", water=" + metabolism.getWater() + " / " + metabolism.getMaxWater() + " (" + metabolism.getMaxWater() * 0.875 + ")" +
+                ", eyeHeight=" + getEyeHeight() +
+                "\n    " +
+                ", pos=" + getPosition() +
+                ", lookX=" + getLookHelper().getLookPosX() + ", lookY=" + getLookHelper().getLookPosY() + ", lookZ=" + getLookHelper().getLookPosZ() +
+//                ", genetics=" + genetics +
+//                ", geneticsQuality=" + geneticsQuality +
+//                ", currentAnim=" + currentAnim +
+//                ", animation=" + animation +
+//                ", animTick=" + animTick +
+//                ", hasTracker=" + hasTracker +
+//                ", tailBuffer=" + tailBuffer +
+//                ", owner=" + owner +
+//                ", inventory=" + inventory +
+//                ", metabolism=" + metabolism +
+                " }";
+    }
+
+//    protected Dinosaur dinosaur;
+//
+//    private GeneticsContainer genetics;
+//    private int geneticsQuality;
+//
+//    // For animation AI system
+//    public AIAnimation currentAnim = null;
+//    private Animation animation;
+//    private int animTick;
+//
+//    private boolean hasTracker;
+//
+//    public ChainBuffer tailBuffer;
+//
+//    private UUID owner;
+//
+//    private InventoryDinosaur inventory;
+//
+//    private MetabolismContainer metabolism;
+//
+
 }
