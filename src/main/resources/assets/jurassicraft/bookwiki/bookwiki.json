@@ -26,7 +26,7 @@
     },
     {
       "id": "other",
-      "content": "Hey",
+      "content": "Hey!<r:test>",
       "category": "recipes"
     }
   ],
@@ -39,6 +39,16 @@
         "", "minecraft:stick", ""
       ],
       "result": "minecraft:diamond_sword"
+    },
+    {
+      "id": "test",
+      "recipe": [
+        "", "", "",
+        "", "minecraft:dirt", "",
+        "", "", ""
+      ],
+      "result": "minecraft:diamond",
+      "shapeless": true
     }
   ]
 }

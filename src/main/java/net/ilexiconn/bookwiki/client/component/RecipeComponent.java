@@ -5,11 +5,13 @@ import net.ilexiconn.bookwiki.BookWikiContainer;
 import net.ilexiconn.bookwiki.api.IComponent;
 import net.ilexiconn.bookwiki.client.gui.BookWikiGui;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -50,6 +52,7 @@ public class RecipeComponent extends Gui implements IComponent {
         mc.getTextureManager().bindTexture(BookWikiGui.TEXTURE);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableLighting();
+        RenderHelper.enableGUIStandardItemLighting();
         Gui.drawModalRectWithCustomSizedTexture(x, y, 292, 23, 54, 54, 512.0F, 512.0F);
         for (int i = 0; i < 9; i++) {
             ItemStack stack = recipe.getRecipe()[i];
@@ -63,6 +66,14 @@ public class RecipeComponent extends Gui implements IComponent {
                 if (mouseX + 1 >= newX && mouseY + 1 >= newY && mouseX + 1 < newX + 18 && mouseY + 1 < newY + 18) {
                     currentItem = stack;
                 }
+            }
+        }
+        RenderHelper.disableStandardItemLighting();
+        if (recipe.isShapeless()) {
+            mc.getTextureManager().bindTexture(BookWikiGui.TEXTURE);
+            Gui.drawModalRectWithCustomSizedTexture(x + 54, y, 318, 101, 7, 7, 512.0F, 512.0F);
+            if (mouseX >= x + 54 && mouseY >= y && mouseX < x + 54 + 7 && mouseY < y + 7) {
+                drawHoveringText(StatCollector.translateToLocal("component.recipe.shapeless"), mouseX, mouseY, mc.fontRendererObj);
             }
         }
         if (currentItem != null) {
@@ -90,7 +101,6 @@ public class RecipeComponent extends Gui implements IComponent {
 
         for (String s : list) {
             int j = mc.fontRendererObj.getStringWidth(s);
-
             if (j > i) {
                 i = j;
             }
@@ -127,6 +137,41 @@ public class RecipeComponent extends Gui implements IComponent {
             }
             i2 += 10;
         }
+
+        GlStateManager.enableLighting();
+        GlStateManager.enableDepth();
+        RenderHelper.enableStandardItemLighting();
+        GlStateManager.enableRescaleNormal();
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void drawHoveringText(String text, int x, int y, FontRenderer font) {
+        GlStateManager.disableRescaleNormal();
+        RenderHelper.disableStandardItemLighting();
+        GlStateManager.disableLighting();
+        GlStateManager.disableDepth();
+        int i = font.getStringWidth(text);
+
+        int l1 = x + 12;
+        int i2 = y - 12;
+        int k = 8;
+
+        zLevel = 300.0F;
+        int l = -267386864;
+        this.drawGradientRect(l1 - 3, i2 - 4, l1 + i + 3, i2 - 3, l, l);
+        this.drawGradientRect(l1 - 3, i2 + k + 3, l1 + i + 3, i2 + k + 4, l, l);
+        this.drawGradientRect(l1 - 3, i2 - 3, l1 + i + 3, i2 + k + 3, l, l);
+        this.drawGradientRect(l1 - 4, i2 - 3, l1 - 3, i2 + k + 3, l, l);
+        this.drawGradientRect(l1 + i + 3, i2 - 3, l1 + i + 4, i2 + k + 3, l, l);
+        int i1 = 1347420415;
+        int j1 = (i1 & 16711422) >> 1 | i1 & -16777216;
+        this.drawGradientRect(l1 - 3, i2 - 3 + 1, l1 - 3 + 1, i2 + k + 3 - 1, i1, j1);
+        this.drawGradientRect(l1 + i + 2, i2 - 3 + 1, l1 + i + 3, i2 + k + 3 - 1, i1, j1);
+        this.drawGradientRect(l1 - 3, i2 - 3, l1 + i + 3, i2 - 3 + 1, i1, i1);
+        this.drawGradientRect(l1 - 3, i2 + k + 2, l1 + i + 3, i2 + k + 3, j1, j1);
+        zLevel = 0.0F;
+
+        font.drawStringWithShadow(text, (float) l1, (float) i2, -1);
 
         GlStateManager.enableLighting();
         GlStateManager.enableDepth();

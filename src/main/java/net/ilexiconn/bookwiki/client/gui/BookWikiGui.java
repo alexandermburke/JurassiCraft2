@@ -18,6 +18,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.util.Tuple;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
@@ -193,5 +194,18 @@ public class BookWikiGui extends GuiScreen {
 
     public void endGlScissor() {
         GL11.glDisable(GL11.GL_SCISSOR_TEST);
+    }
+
+    @Override
+    protected void keyTyped(char typedChar, int keyCode) throws IOException {
+        int pageNumber = bookWiki.getPageNumber(currentCategory, currentPage);
+        if (keyCode == Keyboard.KEY_LEFT && pageNumber != 0) {
+            mc.getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation(bookWiki.getMod().modid() + ":page-flip"), 1.0F));
+            currentPage = bookWiki.getPagesFromCategory(currentCategory)[pageNumber - 1];
+        } else if (keyCode == Keyboard.KEY_RIGHT && pageNumber < bookWiki.getPagesFromCategory(currentCategory).length - 1) {
+            mc.getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation(bookWiki.getMod().modid() + ":page-flip"), 1.0F));
+            currentPage = bookWiki.getPagesFromCategory(currentCategory)[pageNumber + 1];
+        }
+        super.keyTyped(typedChar, keyCode);
     }
 }
