@@ -76,22 +76,23 @@ public class JurassiCraft
         logger = event.getModLog();
         logger.info("Loading JurassiCraft...");
 
+        int id = 0;
         networkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel("jurassicraft");
-        AbstractMessage.registerMessage(networkWrapper, MessageSyncPaleoPad.class, 0, Side.CLIENT);
-        AbstractMessage.registerMessage(networkWrapper, MessageSyncPaleoPad.class, 1, Side.SERVER);
-        AbstractMessage.registerMessage(networkWrapper, MessageRequestFile.class, 2, Side.CLIENT);
-        AbstractMessage.registerMessage(networkWrapper, MessageRequestFile.class, 3, Side.SERVER);
-        AbstractMessage.registerMessage(networkWrapper, MessageSendFile.class, 4, Side.CLIENT);
-        AbstractMessage.registerMessage(networkWrapper, MessageSendFile.class, 5, Side.SERVER);
-        AbstractMessage.registerMessage(networkWrapper, MessagePlacePaddockSign.class, 6, Side.SERVER);
-        AbstractMessage.registerMessage(networkWrapper, MessageChangeTemperature.class, 7, Side.CLIENT);
-        AbstractMessage.registerMessage(networkWrapper, MessageChangeTemperature.class, 8, Side.SERVER);
-        AbstractMessage.registerMessage(networkWrapper, MessageHelicopterEngine.class, 9, Side.CLIENT);
-        AbstractMessage.registerMessage(networkWrapper, MessageHelicopterEngine.class, 10, Side.SERVER);
-        AbstractMessage.registerMessage(networkWrapper, MessageHelicopterDirection.class, 11, Side.CLIENT);
-        AbstractMessage.registerMessage(networkWrapper, MessageHelicopterDirection.class, 12, Side.SERVER);
-        AbstractMessage.registerMessage(networkWrapper, MessageHelicopterModules.class, 13, Side.CLIENT);
-        AbstractMessage.registerMessage(networkWrapper, MessageHelicopterModules.class, 14, Side.SERVER);
+        AbstractMessage.registerMessage(networkWrapper, MessageSyncPaleoPad.class, id++, Side.CLIENT);
+        AbstractMessage.registerMessage(networkWrapper, MessageSyncPaleoPad.class, id++, Side.SERVER);
+        AbstractMessage.registerMessage(networkWrapper, MessageRequestFile.class, id++, Side.CLIENT);
+        AbstractMessage.registerMessage(networkWrapper, MessageRequestFile.class, id++, Side.SERVER);
+        AbstractMessage.registerMessage(networkWrapper, MessageSendFile.class, id++, Side.CLIENT);
+        AbstractMessage.registerMessage(networkWrapper, MessageSendFile.class, id++, Side.SERVER);
+        AbstractMessage.registerMessage(networkWrapper, MessagePlacePaddockSign.class, id++, Side.SERVER);
+        AbstractMessage.registerMessage(networkWrapper, MessageChangeTemperature.class, id++, Side.CLIENT);
+        AbstractMessage.registerMessage(networkWrapper, MessageChangeTemperature.class, id++, Side.SERVER);
+        AbstractMessage.registerMessage(networkWrapper, MessageHelicopterEngine.class, id++, Side.CLIENT);
+        AbstractMessage.registerMessage(networkWrapper, MessageHelicopterEngine.class, id++, Side.SERVER);
+        AbstractMessage.registerMessage(networkWrapper, MessageHelicopterDirection.class, id++, Side.CLIENT);
+        AbstractMessage.registerMessage(networkWrapper, MessageHelicopterDirection.class, id++, Side.SERVER);
+        AbstractMessage.registerMessage(networkWrapper, MessageHelicopterModules.class, id++, Side.CLIENT);
+        AbstractMessage.registerMessage(networkWrapper, MessageHelicopterModules.class, id++, Side.SERVER);
 
         proxy.preInit(event);
         logger.debug("Finished pre-init for JurassiCraft!");
