@@ -1,13 +1,17 @@
-package net.ilexiconn.bookwiki;
+package net.ilexiconn.bookwiki.client.gui;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import net.ilexiconn.bookwiki.BookWiki;
+import net.ilexiconn.bookwiki.api.BookWikiAPI;
+import net.ilexiconn.bookwiki.api.IComponent;
+import net.ilexiconn.bookwiki.BookWikiContainer;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.fml.relauncher.Side;
@@ -16,23 +20,25 @@ import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @author iLexiconn
+ */
 @SideOnly(Side.CLIENT)
 public class BookWikiGui extends GuiScreen {
-    private BookWiki bookWiki;
-
     public static final ResourceLocation TEXTURE = new ResourceLocation("jurassicraft", "bookwiki/gui.png");
+    private BookWiki bookWiki;
     private String currentCategory = "general";
-    private RecipeRenderer recipeRenderer;
-
-    public Pattern recipePattern = Pattern.compile("<r:[A-Za-z0-9]+>");
-    public Pattern colorPattern = Pattern.compile("<c:[A-Za-z]+>");
 
     public BookWikiGui(BookWiki bookWiki) {
         this.bookWiki = bookWiki;
-        this.recipeRenderer = new RecipeRenderer();
+    }
+
+    public static void endGlScissor() {
+        GL11.glDisable(GL11.GL_SCISSOR_TEST);
     }
 
     @Override
@@ -80,27 +86,26 @@ public class BookWikiGui extends GuiScreen {
         List<String> lines = Lists.newArrayList(fontRendererObj.listFormattedStringToWidth(getContent(bookWiki.getCategoryByID(currentCategory).getDefaultPage()), 116));
         for (int i = 0; i < lines.size(); i++) {
             String line = lines.get(i);
-            Matcher matcher = recipePattern.matcher(line);
-            if (i < 17) {
-                if (matcher.find()) {
+            int x = width / 2 - 292 / 2 + 16;
+            int y = height / 2 - 180 / 2 + 14 + fontRendererObj.FONT_HEIGHT * i;
+            if (i >= 17) {
+                x = width / 2 - 292 / 2 + 16 + 140;
+                y = height / 2 - 180 / 2 + 14 + fontRendererObj.FONT_HEIGHT * (i - 17);
+            }
+            Map<IComponent, String> componentMap = Maps.newHashMap();
+            for (IComponent component : BookWikiAPI.getComponents()) {
+                Matcher matcher = Pattern.compile("<" + component.getID() + ":[A-Za-z]+>").matcher(line);
+                while (matcher.find()) {
                     String group = matcher.group();
+                    String arg = group.substring(3, group.length() - 1);
+                    componentMap.put(component, arg);
                     line = line.replace(group, "");
-                    String id = group.substring(3, group.length() - 1);
-                    BookWikiContainer.Recipe recipe = bookWiki.getRecipeByID(id);
-                    recipeRenderer.render(recipe, width / 2 - 292 / 2 + 16 + 16, height / 2 - 180 / 2 + 14 + fontRendererObj.FONT_HEIGHT * (i + 1), mouseX, mouseY);
                 }
-                GlStateManager.disableLighting();
-                fontRendererObj.drawString(line, width / 2 - 292 / 2 + 16, height / 2 - 180 / 2 + 14 + fontRendererObj.FONT_HEIGHT * i, 0x000);
-            } else {
-                if (matcher.find()) {
-                    String group = matcher.group();
-                    line = line.replace(group, "");
-                    String id = group.substring(3, group.length() - 1);
-                    BookWikiContainer.Recipe recipe = bookWiki.getRecipeByID(id);
-                    recipeRenderer.render(recipe, width / 2 - 292 / 2 + 16 + 16 + 140, height / 2 - 180 / 2 + 14 + fontRendererObj.FONT_HEIGHT * (i - 16), mouseX, mouseY);
-                }
-                GlStateManager.disableLighting();
-                fontRendererObj.drawString(line, width / 2 - 292 / 2 + 16 + 140, height / 2 - 180 / 2 + 14 + fontRendererObj.FONT_HEIGHT * (i - 17), 0x000);
+            }
+            GlStateManager.disableLighting();
+            fontRendererObj.drawString(line, x, y, 0x000);
+            for (Map.Entry<IComponent, String> entry : componentMap.entrySet()) {
+                entry.getKey().render(mc, bookWiki, entry.getValue(), x, y, mouseX, mouseY);
             }
         }
         if (hover != null) {
@@ -110,18 +115,12 @@ public class BookWikiGui extends GuiScreen {
 
     public String getContent(BookWikiContainer.Page page) {
         String result = page.getContent();
-        Matcher matcher = recipePattern.matcher(result);
-        while (matcher.find()) {
-            String group = matcher.group();
-            result = result.replace(group, group + "\n\n\n\n\n\n\n");
-        }
-        matcher = colorPattern.matcher(result);
-        while (matcher.find()) {
-            String group = matcher.group();
-            String id = group.substring(3, group.length() - 1).toUpperCase();
-            EnumChatFormatting formatting = EnumChatFormatting.getValueByName(id);
-            if (formatting != null) {
-                result = result.replace(group, formatting + "");
+        for (IComponent component : BookWikiAPI.getComponents()) {
+            Matcher matcher = Pattern.compile("<" + component.getID() + ":[A-Za-z]+>").matcher(result);
+            while (matcher.find()) {
+                String group = matcher.group();
+                String arg = group.substring(3, group.length() - 1);
+                result = component.init(result, arg, group);
             }
         }
         return result;
@@ -151,9 +150,5 @@ public class BookWikiGui extends GuiScreen {
         double scaleH = (double) mc.displayHeight / scaledResolution.getScaledHeight_double();
         GL11.glEnable(GL11.GL_SCISSOR_TEST);
         GL11.glScissor((int) Math.floor((double) x * scaleW), (int) Math.floor((double) mc.displayHeight - ((double) (y + height) * scaleH)), (int) Math.floor((double) (x + width) * scaleW) - (int) Math.floor((double) x * scaleW), (int) Math.floor((double) mc.displayHeight - ((double) y * scaleH)) - (int) Math.floor((double) mc.displayHeight - ((double) (y + height) * scaleH))); //starts from lower left corner (minecraft starts from upper left)
-    }
-
-    public static void endGlScissor() {
-        GL11.glDisable(GL11.GL_SCISSOR_TEST);
     }
 }
