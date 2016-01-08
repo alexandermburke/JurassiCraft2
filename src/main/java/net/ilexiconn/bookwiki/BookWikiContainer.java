@@ -68,17 +68,12 @@ public class BookWikiContainer {
 
     public class Page extends ContainerHandler {
         private String id;
-        private String title;
         private String content;
         private String category;
         private transient Category categoryInstance;
 
         public String getID() {
             return id;
-        }
-
-        public String getTitle() {
-            return title;
         }
 
         public String getContent() {

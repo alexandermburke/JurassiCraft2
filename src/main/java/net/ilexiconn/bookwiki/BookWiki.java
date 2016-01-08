@@ -94,6 +94,18 @@ public class BookWiki {
         return pageList.toArray(new BookWikiContainer.Page[pageList.size()]);
     }
 
+    public int getPageNumber(BookWikiContainer.Category category, BookWikiContainer.Page page) {
+        int i = 0;
+        for (BookWikiContainer.Page p : getPagesFromCategory(category)) {
+            if (p != page) {
+                i++;
+            } else {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public BookWikiContainer.Recipe getRecipeByID(String id) {
         for (BookWikiContainer.Recipe recipe : getContainer().getRecipes()) {
             if (recipe.getID().equals(id)) {

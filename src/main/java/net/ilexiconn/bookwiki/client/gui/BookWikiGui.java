@@ -12,8 +12,10 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+import net.minecraft.util.Tuple;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
@@ -31,10 +33,13 @@ import java.util.regex.Pattern;
 public class BookWikiGui extends GuiScreen {
     public static final ResourceLocation TEXTURE = new ResourceLocation("jurassicraft", "bookwiki/gui.png");
     private BookWiki bookWiki;
-    private String currentCategory = "general";
+    private BookWikiContainer.Category currentCategory;
+    private BookWikiContainer.Page currentPage;
 
     public BookWikiGui(BookWiki bookWiki) {
         this.bookWiki = bookWiki;
+        this.currentCategory = bookWiki.getCategoryByID("general");
+        this.currentPage = currentCategory.getDefaultPage();
     }
 
     @Override
@@ -57,7 +62,7 @@ public class BookWikiGui extends GuiScreen {
             ItemStack stack = category.getIcon();
             RenderHelper.enableGUIStandardItemLighting();
             mc.getRenderItem().zLevel = 100.0F;
-            if (currentCategory.equals(category.getID())) {
+            if (currentCategory == category) {
                 drawModalRectWithCustomSizedTexture(x - 3, y, 374, 77, 27, 24, 512.0F, 512.0F);
                 startGlScissor(x + 3, y + 9, 16, 12);
                 mc.getRenderItem().renderItemAndEffectIntoGUI(stack, x + 3, y + 5);
@@ -79,31 +84,56 @@ public class BookWikiGui extends GuiScreen {
                 hover = category.getName();
             }
         }
-        List<String> lines = Lists.newArrayList(fontRendererObj.listFormattedStringToWidth(getContent(bookWiki.getCategoryByID(currentCategory).getDefaultPage()), 116));
+
+        if (bookWiki.getPagesFromCategory(currentCategory).length > 1) {
+            mc.getTextureManager().bindTexture(BookWikiGui.TEXTURE);
+            GlStateManager.color(1.0F, 1.0F, 1.0f, 1.0F);
+            int x = width / 2 - 292 / 2;
+            int y = height / 2 - 180 / 2;
+            int pageNumber = bookWiki.getPageNumber(currentCategory, currentPage);
+            if (pageNumber != 0) {
+                if (mouseX >= x + 18 && mouseY >= y + 158 && mouseX < x + 18 + 18 && mouseY < y + 158 + 10) {
+                    drawModalRectWithCustomSizedTexture(x + 18, y + 158, 292 + 23, 13, 18, 10, 512.0F, 512.0F);
+                } else {
+                    drawModalRectWithCustomSizedTexture(x + 18, y + 158, 292, 13, 18, 10, 512.0F, 512.0F);
+                }
+            }
+            if (pageNumber < bookWiki.getPagesFromCategory(currentCategory).length - 1) {
+                if (mouseX >= x + 248 && mouseY >= y + 158 && mouseX < x + 248 + 18 && mouseY < y + 158 + 10) {
+                    drawModalRectWithCustomSizedTexture(x + 248, y + 158, 292 + 23, 0, 18, 10, 512.0F, 512.0F);
+                } else {
+                    drawModalRectWithCustomSizedTexture(x + 248, y + 158, 292, 0, 18, 10, 512.0F, 512.0F);
+                }
+            }
+        }
+
+        List<String> lines = Lists.newArrayList(fontRendererObj.listFormattedStringToWidth(getContent(currentPage), 120));
+        Map<IComponent, Tuple<String, BlockPos>> componentMap = Maps.newHashMap();
         for (int i = 0; i < lines.size(); i++) {
             String line = lines.get(i);
             int x = width / 2 - 292 / 2 + 16;
             int y = height / 2 - 180 / 2 + 14 + fontRendererObj.FONT_HEIGHT * i;
-            if (i >= 17) {
+            if (i >= 16) {
                 x = width / 2 - 292 / 2 + 16 + 140;
-                y = height / 2 - 180 / 2 + 14 + fontRendererObj.FONT_HEIGHT * (i - 17);
+                y = height / 2 - 180 / 2 + 14 + fontRendererObj.FONT_HEIGHT * (i - 16);
             }
-            Map<IComponent, String> componentMap = Maps.newHashMap();
             for (IComponent component : BookWikiAPI.getComponents()) {
                 Matcher matcher = Pattern.compile("<" + component.getID() + ":[A-Za-z]*>").matcher(line);
                 while (matcher.find()) {
                     String group = matcher.group();
                     String arg = group.substring(3, group.length() - 1);
-                    componentMap.put(component, arg);
+                    componentMap.put(component, new Tuple<String, BlockPos>(arg, new BlockPos(x, y, 0)));
                     line = line.replace(group, "");
                 }
             }
             GlStateManager.disableLighting();
             fontRendererObj.drawString(line, x, y, 0x000);
-            for (Map.Entry<IComponent, String> entry : componentMap.entrySet()) {
-                entry.getKey().render(mc, bookWiki, entry.getValue(), x, y, mouseX, mouseY);
-            }
         }
+
+        for (Map.Entry<IComponent, Tuple<String, BlockPos>> entry : componentMap.entrySet()) {
+            entry.getKey().render(mc, bookWiki, entry.getValue().getFirst(), entry.getValue().getSecond().getX(), entry.getValue().getSecond().getY(), mouseX, mouseY);
+        }
+
         if (hover != null) {
             drawCreativeTabHoveringText(StatCollector.translateToLocal(hover), mouseX, mouseY);
         }
@@ -127,14 +157,27 @@ public class BookWikiGui extends GuiScreen {
         if (mouseButton == 0) {
             for (int i = 0; i < bookWiki.getContainer().getCategories().length; i++) {
                 BookWikiContainer.Category category = bookWiki.getContainer().getCategories()[i];
-                if (currentCategory.equals(category.getID())) {
+                if (currentCategory == category) {
                     continue;
                 }
                 int x = width / 2 - 292 / 2 + 14 + 27 * i;
                 int y = height / 2 - 180 / 2 - 24 + 7;
                 if (mouseX >= x && mouseY >= y && mouseX < x + 27 && mouseY < y + 24) {
-                    currentCategory = category.getID();
+                    currentCategory = category;
+                    currentPage = category.getDefaultPage();
                     mc.getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation(bookWiki.getMod().modid() + ":page-flip"), 1.0F));
+                }
+            }
+            if (bookWiki.getPagesFromCategory(currentCategory).length > 1) {
+                int x = width / 2 - 292 / 2;
+                int y = height / 2 - 180 / 2;
+                int pageNumber = bookWiki.getPageNumber(currentCategory, currentPage);
+                if (pageNumber != 0 && mouseX >= x + 18 && mouseY >= y + 158 && mouseX < x + 18 + 18 && mouseY < y + 158 + 10) {
+                    mc.getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation(bookWiki.getMod().modid() + ":page-flip"), 1.0F));
+                    currentPage = bookWiki.getPagesFromCategory(currentCategory)[pageNumber - 1];
+                } else if (pageNumber < bookWiki.getPagesFromCategory(currentCategory).length - 1 && mouseX >= x + 248 && mouseY >= y + 158 && mouseX < x + 248 + 18 && mouseY < y + 158 + 10) {
+                    mc.getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation(bookWiki.getMod().modid() + ":page-flip"), 1.0F));
+                    currentPage = bookWiki.getPagesFromCategory(currentCategory)[pageNumber + 1];
                 }
             }
         }
