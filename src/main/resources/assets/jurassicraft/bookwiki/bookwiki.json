@@ -23,7 +23,7 @@
     {
       "id": "swordRecipe",
       "title": "page.recipes.title",
-      "content": "Lern me to mke a sword pls<r:sword>thx<c:red>!!!",
+      "content": "Lern me to mke a sword pls<r:sword>thx<c:red>!!!<c:reset>\n\n\n\n\n\n\n\n\nHow do a <c:green>znie<c:reset> lok?<e:Zombie>thhx!",
       "category": "recipes"
     }
   ],

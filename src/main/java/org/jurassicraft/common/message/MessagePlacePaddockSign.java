@@ -17,6 +17,9 @@ public class MessagePlacePaddockSign extends AbstractMessage<MessagePlacePaddock
 {
     private int dino;
     private BlockPos pos;
+    private int x;
+    private int y;
+    private int z;
     private EnumFacing facing;
 
     public MessagePlacePaddockSign()
@@ -26,7 +29,10 @@ public class MessagePlacePaddockSign extends AbstractMessage<MessagePlacePaddock
     public MessagePlacePaddockSign(EnumFacing facing, BlockPos pos, Dinosaur dino)
     {
         this.dino = JCEntityRegistry.getDinosaurId(dino);
-        this.pos = pos;
+        this.pos = new BlockPos(x, y, z);
+        this.x = pos.getX();
+        this.y = pos.getY();
+        this.z = pos.getZ();
         this.facing = facing;
     }
 
@@ -62,7 +68,9 @@ public class MessagePlacePaddockSign extends AbstractMessage<MessagePlacePaddock
     @Override
     public void toBytes(ByteBuf buffer)
     {
-        buffer.writeLong(pos.toLong());
+        buffer.writeInt(x);
+        buffer.writeInt(y);
+        buffer.writeInt(z);
         buffer.writeInt(dino);
         buffer.writeByte((byte) facing.getIndex());
     }
@@ -70,7 +78,9 @@ public class MessagePlacePaddockSign extends AbstractMessage<MessagePlacePaddock
     @Override
     public void fromBytes(ByteBuf buffer)
     {
-        pos = BlockPos.fromLong(buffer.readLong());
+        x = buffer.readInt();
+        y = buffer.readInt();
+        z = buffer.readInt();
         dino = buffer.readInt();
         facing = EnumFacing.getFront(buffer.readByte());
     }

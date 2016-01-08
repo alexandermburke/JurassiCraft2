@@ -5,8 +5,12 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.BlockRendererDispatcher;
+import net.minecraft.client.renderer.entity.RenderFallingBlock;
+import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -26,7 +30,9 @@ import org.jurassicraft.common.paleopad.AppMinimap;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GuiAppMinimap extends GuiApp
 {
@@ -38,6 +44,8 @@ public class GuiAppMinimap extends GuiApp
     {
         super(app);
     }
+
+    private Map<BlockPos, Integer> heights = new HashMap<BlockPos, Integer>();
 
     @Override
     public void render(int mouseX, int mouseY, GuiPaleoPad gui)
@@ -63,8 +71,6 @@ public class GuiAppMinimap extends GuiApp
         int renderChunkY = 0;
 
         gui.drawBoxOutline(89, 14, 16 * 8 + 1, 16 * 8 + 1, 1, 1.0F, (renderChunkX + renderChunkY) % 2 == 0 ? 0x606060 : 0x505050);
-
-        int heightAtPlayer = world.getHeight(new BlockPos(playerX, 0, playerZ)).getY();
 
         for (int chunkX = playerChunkX - 4; chunkX < playerChunkX + 4; chunkX++)
         {
@@ -95,7 +101,12 @@ public class GuiAppMinimap extends GuiApp
                             int g = (rgb >> 8) & 0xff;
                             int b = rgb & 0xff;
 
-                            int lightnessOffset = (blockY - heightAtPlayer) * 4;
+                            int lightnessOffset = 0;
+
+                            lightnessOffset -= getHeight(world, blockX - 1, blockZ).getY() > blockY ? 10 : 0;
+                            lightnessOffset -= getHeight(world, blockX, blockZ - 1).getY() > blockY ? 10 : 0;
+                            lightnessOffset -= getHeight(world, blockX + 1, blockZ).getY() > blockY ? 10 : 0;
+                            lightnessOffset -= getHeight(world, blockX, blockZ + 1).getY() > blockY ? 10 : 0;
 
                             r = Math.min(Math.max(r + lightnessOffset, 0), 255);
                             g = Math.min(Math.max(g + lightnessOffset, 0), 255);
@@ -190,24 +201,35 @@ public class GuiAppMinimap extends GuiApp
 
     private BlockPos getHeight(World world, int x, int z)
     {
-        int y = world.getHeight(new BlockPos(x, 0, z)).getY();
+        BlockPos posKey = new BlockPos(x, 0, z);
 
-        BlockPos pos = new BlockPos(x, y, z);
-
-        while (world.isAirBlock(pos) || world.getBlockState(pos).getBlock() instanceof BlockLiquid)
+        if (heights.containsKey(posKey))
         {
-            y--;
-            pos = new BlockPos(x, y, z);
+            return new BlockPos(x, heights.get(posKey), z);
         }
-
-        BlockPos up = pos.add(0, 1, 0);
-
-        if (!world.isAirBlock(up))
+        else
         {
-            pos = up;
-        }
+            int y = world.getHeight(posKey).getY();
 
-        return pos;
+            BlockPos pos = new BlockPos(x, y, z);
+
+            while (world.isAirBlock(pos) || world.getBlockState(pos).getBlock() instanceof BlockLiquid)
+            {
+                y--;
+                pos = new BlockPos(x, y, z);
+            }
+
+            BlockPos up = pos.add(0, 1, 0);
+
+            if (!world.isAirBlock(up))
+            {
+                pos = up;
+            }
+
+            heights.put(posKey, pos.getY());
+
+            return pos;
+        }
     }
 
     /**

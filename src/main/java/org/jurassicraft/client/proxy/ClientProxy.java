@@ -1,5 +1,9 @@
 package org.jurassicraft.client.proxy;
 
+import net.ilexiconn.bookwiki.api.BookWikiAPI;
+import net.ilexiconn.bookwiki.client.component.ColorComponent;
+import net.ilexiconn.bookwiki.client.component.EntityComponent;
+import net.ilexiconn.bookwiki.client.component.RecipeComponent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
@@ -27,6 +31,10 @@ public class ClientProxy extends CommonProxy
         MinecraftForge.EVENT_BUS.register(eventHandler);
 
         renderingRegistry.preInit();
+
+        BookWikiAPI.registerComponent(new ColorComponent());
+        BookWikiAPI.registerComponent(new RecipeComponent());
+        BookWikiAPI.registerComponent(new EntityComponent());
     }
 
     @Override
