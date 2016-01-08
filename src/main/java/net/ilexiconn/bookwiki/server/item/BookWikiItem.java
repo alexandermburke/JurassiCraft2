@@ -1,4 +1,4 @@
-package net.ilexiconn.bookwiki.server;
+package net.ilexiconn.bookwiki.server.item;
 
 import net.ilexiconn.bookwiki.BookWiki;
 import net.minecraft.client.Minecraft;
@@ -9,12 +9,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
+/**
+ * @author iLexiconn
+ */
 public class BookWikiItem extends Item {
     private BookWiki bookWiki;
 
     public BookWikiItem(BookWiki bookWiki) {
         this.bookWiki = bookWiki;
-        setUnlocalizedName("bookWiki." +  bookWiki.getMod().modid());
+        setUnlocalizedName("bookWiki." + bookWiki.getMod().modid());
         setCreativeTab(CreativeTabs.tabMisc);
     }
 

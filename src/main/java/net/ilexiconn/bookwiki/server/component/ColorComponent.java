@@ -1,4 +1,4 @@
-package net.ilexiconn.bookwiki.server;
+package net.ilexiconn.bookwiki.server.component;
 
 import net.ilexiconn.bookwiki.BookWiki;
 import net.ilexiconn.bookwiki.api.IComponent;
@@ -7,6 +7,9 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+/**
+ * @author iLexiconn
+ */
 public class ColorComponent implements IComponent {
     @Override
     public char getID() {

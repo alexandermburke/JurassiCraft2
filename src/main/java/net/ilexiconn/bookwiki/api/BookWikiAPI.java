@@ -4,6 +4,9 @@ import com.google.common.collect.Lists;
 
 import java.util.List;
 
+/**
+ * @author iLexiconn
+ */
 public class BookWikiAPI {
     private static List<IComponent> componentList = Lists.newArrayList();
 

@@ -1,10 +1,11 @@
-package net.ilexiconn.bookwiki.client;
+package net.ilexiconn.bookwiki.client.gui;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import net.ilexiconn.bookwiki.BookWiki;
 import net.ilexiconn.bookwiki.api.BookWikiAPI;
 import net.ilexiconn.bookwiki.api.IComponent;
+import net.ilexiconn.bookwiki.BookWikiContainer;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
@@ -23,15 +24,21 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @author iLexiconn
+ */
 @SideOnly(Side.CLIENT)
 public class BookWikiGui extends GuiScreen {
-    private BookWiki bookWiki;
-
     public static final ResourceLocation TEXTURE = new ResourceLocation("jurassicraft", "bookwiki/gui.png");
+    private BookWiki bookWiki;
     private String currentCategory = "general";
 
     public BookWikiGui(BookWiki bookWiki) {
         this.bookWiki = bookWiki;
+    }
+
+    public static void endGlScissor() {
+        GL11.glDisable(GL11.GL_SCISSOR_TEST);
     }
 
     @Override
@@ -79,38 +86,26 @@ public class BookWikiGui extends GuiScreen {
         List<String> lines = Lists.newArrayList(fontRendererObj.listFormattedStringToWidth(getContent(bookWiki.getCategoryByID(currentCategory).getDefaultPage()), 116));
         for (int i = 0; i < lines.size(); i++) {
             String line = lines.get(i);
-            if (i < 17) {
-                Map<IComponent, String> componentMap = Maps.newHashMap();
-                for (IComponent component : BookWikiAPI.getComponents()) {
-                    Matcher matcher = Pattern.compile("<" + component.getID() + ":[A-Za-z]+>").matcher(line);
-                    while (matcher.find()) {
-                        String group = matcher.group();
-                        String arg = group.substring(3, group.length() - 1);
-                        componentMap.put(component, arg);
-                        line = line.replace(group, "");
-                    }
+            int x = width / 2 - 292 / 2 + 16;
+            int y = height / 2 - 180 / 2 + 14 + fontRendererObj.FONT_HEIGHT * i;
+            if (i >= 17) {
+                x = width / 2 - 292 / 2 + 16 + 140;
+                y = height / 2 - 180 / 2 + 14 + fontRendererObj.FONT_HEIGHT * (i - 17);
+            }
+            Map<IComponent, String> componentMap = Maps.newHashMap();
+            for (IComponent component : BookWikiAPI.getComponents()) {
+                Matcher matcher = Pattern.compile("<" + component.getID() + ":[A-Za-z]+>").matcher(line);
+                while (matcher.find()) {
+                    String group = matcher.group();
+                    String arg = group.substring(3, group.length() - 1);
+                    componentMap.put(component, arg);
+                    line = line.replace(group, "");
                 }
-                GlStateManager.disableLighting();
-                fontRendererObj.drawString(line, width / 2 - 292 / 2 + 16, height / 2 - 180 / 2 + 14 + fontRendererObj.FONT_HEIGHT * i, 0x000);
-                for (Map.Entry<IComponent, String> entry : componentMap.entrySet()) {
-                    entry.getKey().render(mc, bookWiki, entry.getValue(), width / 2 - 292 / 2 + 16 + 16, height / 2 - 180 / 2 + 14 + fontRendererObj.FONT_HEIGHT * (i + 1), mouseX, mouseY);
-                }
-            } else {
-                Map<IComponent, String> componentMap = Maps.newHashMap();
-                for (IComponent component : BookWikiAPI.getComponents()) {
-                    Matcher matcher = Pattern.compile("<" + component.getID() + ":[A-Za-z]+>").matcher(line);
-                    while (matcher.find()) {
-                        String group = matcher.group();
-                        String arg = group.substring(3, group.length() - 1);
-                        componentMap.put(component, arg);
-                        line = line.replace(group, "");
-                    }
-                }
-                GlStateManager.disableLighting();
-                fontRendererObj.drawString(line, width / 2 - 292 / 2 + 16 + 140, height / 2 - 180 / 2 + 14 + fontRendererObj.FONT_HEIGHT * (i - 17), 0x000);
-                for (Map.Entry<IComponent, String> entry : componentMap.entrySet()) {
-                    entry.getKey().render(mc, bookWiki, entry.getValue(), width / 2 - 292 / 2 + 16 + 16 + 140, height / 2 - 180 / 2 + 14 + fontRendererObj.FONT_HEIGHT * (i - 16), mouseX, mouseY);
-                }
+            }
+            GlStateManager.disableLighting();
+            fontRendererObj.drawString(line, x, y, 0x000);
+            for (Map.Entry<IComponent, String> entry : componentMap.entrySet()) {
+                entry.getKey().render(mc, bookWiki, entry.getValue(), x, y, mouseX, mouseY);
             }
         }
         if (hover != null) {
@@ -155,9 +150,5 @@ public class BookWikiGui extends GuiScreen {
         double scaleH = (double) mc.displayHeight / scaledResolution.getScaledHeight_double();
         GL11.glEnable(GL11.GL_SCISSOR_TEST);
         GL11.glScissor((int) Math.floor((double) x * scaleW), (int) Math.floor((double) mc.displayHeight - ((double) (y + height) * scaleH)), (int) Math.floor((double) (x + width) * scaleW) - (int) Math.floor((double) x * scaleW), (int) Math.floor((double) mc.displayHeight - ((double) y * scaleH)) - (int) Math.floor((double) mc.displayHeight - ((double) (y + height) * scaleH))); //starts from lower left corner (minecraft starts from upper left)
-    }
-
-    public static void endGlScissor() {
-        GL11.glDisable(GL11.GL_SCISSOR_TEST);
     }
 }

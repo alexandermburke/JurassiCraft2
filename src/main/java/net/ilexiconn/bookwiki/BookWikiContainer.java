@@ -1,6 +1,5 @@
-package net.ilexiconn.bookwiki.client;
+package net.ilexiconn.bookwiki;
 
-import net.ilexiconn.bookwiki.BookWiki;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

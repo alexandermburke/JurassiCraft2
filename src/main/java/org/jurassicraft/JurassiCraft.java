@@ -2,8 +2,8 @@ package org.jurassicraft;
 
 import net.ilexiconn.bookwiki.BookWiki;
 import net.ilexiconn.bookwiki.api.BookWikiAPI;
-import net.ilexiconn.bookwiki.server.ColorComponent;
-import net.ilexiconn.bookwiki.server.RecipeComponent;
+import net.ilexiconn.bookwiki.server.component.ColorComponent;
+import net.ilexiconn.bookwiki.server.component.RecipeComponent;
 import net.ilexiconn.llibrary.common.message.AbstractMessage;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.GameRules;

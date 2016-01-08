@@ -1,13 +1,16 @@
-package net.ilexiconn.bookwiki.server;
+package net.ilexiconn.bookwiki.server.component;
 
 import net.ilexiconn.bookwiki.BookWiki;
-import net.ilexiconn.bookwiki.client.RecipeRenderer;
 import net.ilexiconn.bookwiki.api.IComponent;
-import net.ilexiconn.bookwiki.client.BookWikiContainer;
+import net.ilexiconn.bookwiki.BookWikiContainer;
+import net.ilexiconn.bookwiki.client.render.RecipeRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+/**
+ * @author iLexiconn
+ */
 public class RecipeComponent implements IComponent {
     @SideOnly(Side.CLIENT)
     private RecipeRenderer recipeRenderer;
@@ -29,6 +32,6 @@ public class RecipeComponent implements IComponent {
             recipeRenderer = new RecipeRenderer();
         }
         BookWikiContainer.Recipe recipe = bookWiki.getRecipeByID(arg);
-        recipeRenderer.render(recipe, x, y, mouseX, mouseY);
+        recipeRenderer.render(recipe, x + 14, y + mc.fontRendererObj.FONT_HEIGHT, mouseX, mouseY);
     }
 }

@@ -5,6 +5,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+/**
+ * @author iLexiconn
+ */
 public interface IComponent {
     char getID();
 

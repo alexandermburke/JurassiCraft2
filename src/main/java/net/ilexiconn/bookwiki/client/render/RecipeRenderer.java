@@ -1,7 +1,7 @@
-package net.ilexiconn.bookwiki.client;
+package net.ilexiconn.bookwiki.client.render;
 
-import net.ilexiconn.bookwiki.client.BookWikiContainer;
-import net.ilexiconn.bookwiki.client.BookWikiGui;
+import net.ilexiconn.bookwiki.BookWikiContainer;
+import net.ilexiconn.bookwiki.client.gui.BookWikiGui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
@@ -13,6 +13,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
+/**
+ * @author iLexiconn
+ */
 @SideOnly(Side.CLIENT)
 public class RecipeRenderer extends Gui {
     private final Minecraft mc = Minecraft.getMinecraft();
