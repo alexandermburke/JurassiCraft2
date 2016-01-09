@@ -22,6 +22,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -108,7 +109,7 @@ public class BookWikiGui extends GuiScreen {
             }
         }
 
-        List<String> lines = Lists.newArrayList(fontRendererObj.listFormattedStringToWidth(getFormattedContent(currentPage), 120));
+        List<String> lines = Lists.newArrayList(splitIntoLines(getFormattedContent(currentPage), 120));
         Map<IComponent, Tuple<String, BlockPos>> componentMap = Maps.newHashMap();
         for (int i = 0; i < lines.size(); i++) {
             String line = lines.get(i);
@@ -142,6 +143,62 @@ public class BookWikiGui extends GuiScreen {
         if (hover != null) {
             drawCreativeTabHoveringText(StatCollector.translateToLocal(hover), mouseX, mouseY);
         }
+    }
+
+    public List<String> splitIntoLines(String text, int maxLength)
+    {
+        maxLength += fontRendererObj.getCharWidth(' ');
+
+        List<String> lines = new ArrayList<String>();
+
+        String[] originalLines = text.split("\n");
+
+        for (String originalLine : originalLines)
+        {
+            String[] words = originalLine.split(" ");
+
+            int wordIndex = 0;
+
+            while (wordIndex < words.length)
+            {
+                int currentLineLength = 0;
+
+                String currentLine = "";
+
+                while (currentLineLength < maxLength && wordIndex < words.length)
+                {
+                    String wordString = words[wordIndex] + " ";
+
+                    int length = fontRendererObj.getStringWidth(wordString);
+
+                    if (length >= maxLength)
+                    {
+                        if (currentLineLength == 0)
+                        {
+                            currentLine = wordString;
+                        }
+
+                        wordIndex++;
+
+                        break;
+                    }
+                    else
+                    {
+                        currentLineLength += length;
+
+                        if (currentLineLength < maxLength && wordIndex < words.length)
+                        {
+                            currentLine += wordString;
+                            wordIndex++;
+                        }
+                    }
+                }
+
+                lines.add(currentLine);
+            }
+        }
+
+        return lines;
     }
 
     public String getFormattedContent(BookWikiContainer.Page page) {
