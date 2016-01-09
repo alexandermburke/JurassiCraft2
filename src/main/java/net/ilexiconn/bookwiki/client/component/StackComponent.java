@@ -2,6 +2,7 @@ package net.ilexiconn.bookwiki.client.component;
 
 import net.ilexiconn.bookwiki.BookWiki;
 import net.ilexiconn.bookwiki.api.IComponent;
+import net.ilexiconn.bookwiki.client.gui.BookWikiGui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
@@ -30,7 +31,7 @@ public class StackComponent extends Gui implements IComponent {
     }
 
     @Override
-    public void render(Minecraft mc, BookWiki bookWiki, String arg, int x, int y, int mouseX, int mouseY) {
+    public void render(Minecraft mc, BookWiki bookWiki, String arg, BookWikiGui gui, int x, int y, int mouseX, int mouseY) {
         int stackSize = 1;
         if (arg.contains("*")) {
             String[] s = arg.split("\\*");
@@ -38,17 +39,29 @@ public class StackComponent extends Gui implements IComponent {
             stackSize = Integer.parseInt(s[1]);
         }
         ItemStack stack = new ItemStack(Item.getByNameOrId(arg), stackSize);
+        mc.getTextureManager().bindTexture(gui.getTexture());
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        Gui.drawModalRectWithCustomSizedTexture(x + 50, y, 292, 127, 18, 18, 512.0F, 512.0F);
         RenderHelper.enableGUIStandardItemLighting();
         mc.getRenderItem().zLevel = 100.0F;
-        mc.getRenderItem().renderItemAndEffectIntoGUI(stack, x, y);
-        mc.getRenderItem().renderItemOverlayIntoGUI(mc.fontRendererObj, stack, x, y, null);
+        mc.getRenderItem().renderItemAndEffectIntoGUI(stack, x + 51, y + 1);
+        mc.getRenderItem().renderItemOverlayIntoGUI(mc.fontRendererObj, stack, x + 51, y + 1, null);
         mc.getRenderItem().zLevel = 0.0F;
         RenderHelper.disableStandardItemLighting();
     }
 
     @Override
     public void drawTooltip(Minecraft mc, BookWiki bookWiki, String arg, int x, int y, int mouseX, int mouseY) {
-
+        int stackSize = 1;
+        if (arg.contains("*")) {
+            String[] s = arg.split("\\*");
+            arg = s[0];
+            stackSize = Integer.parseInt(s[1]);
+        }
+        ItemStack stack = new ItemStack(Item.getByNameOrId(arg), stackSize);
+        if (mouseX + 1 >= x + 51 && mouseY + 1 >= y + 1 && mouseX + 1 < x + 51 + 18 && mouseY + 1 < y + 1 + 18) {
+            renderToolTip(mc, stack, mouseX, mouseY);
+        }
     }
 
     public void renderToolTip(Minecraft mc, ItemStack stack, int x, int y) {

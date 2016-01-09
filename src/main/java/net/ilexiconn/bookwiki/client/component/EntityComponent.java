@@ -34,11 +34,11 @@ public class EntityComponent extends Gui implements IComponent {
     }
 
     @Override
-    public void render(Minecraft mc, BookWiki bookWiki, String arg, int x, int y, int mouseX, int mouseY) {
+    public void render(Minecraft mc, BookWiki bookWiki, String arg, BookWikiGui gui, int x, int y, int mouseX, int mouseY) {
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setString("id", arg);
         Entity entity = EntityList.createEntityFromNBT(nbt, mc.theWorld);
-        mc.getTextureManager().bindTexture(BookWikiGui.TEXTURE);
+        mc.getTextureManager().bindTexture(gui.getTexture());
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableLighting();
         x += 14;

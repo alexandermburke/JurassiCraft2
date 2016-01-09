@@ -33,9 +33,9 @@ public class RecipeComponent extends Gui implements IComponent {
     }
 
     @Override
-    public void render(Minecraft mc, BookWiki bookWiki, String arg, int x, int y, int mouseX, int mouseY) {
+    public void render(Minecraft mc, BookWiki bookWiki, String arg, BookWikiGui gui, int x, int y, int mouseX, int mouseY) {
         BookWikiContainer.Recipe recipe = bookWiki.getRecipeByID(arg);
-        mc.getTextureManager().bindTexture(BookWikiGui.TEXTURE);
+        mc.getTextureManager().bindTexture(gui.getTexture());
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableLighting();
         x += 14;
@@ -45,7 +45,7 @@ public class RecipeComponent extends Gui implements IComponent {
         mc.getRenderItem().renderItemAndEffectIntoGUI(recipe.getResult(), x + 69, y + 19);
         mc.getRenderItem().renderItemOverlayIntoGUI(mc.fontRendererObj, recipe.getResult(), x + 69, y + 19, null);
         mc.getRenderItem().zLevel = 0.0F;
-        mc.getTextureManager().bindTexture(BookWikiGui.TEXTURE);
+        mc.getTextureManager().bindTexture(gui.getTexture());
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableLighting();
         Gui.drawModalRectWithCustomSizedTexture(x, y, 292, 23, 54, 54, 512.0F, 512.0F);
@@ -63,7 +63,7 @@ public class RecipeComponent extends Gui implements IComponent {
         }
         RenderHelper.disableStandardItemLighting();
         if (recipe.isShapeless()) {
-            mc.getTextureManager().bindTexture(BookWikiGui.TEXTURE);
+            mc.getTextureManager().bindTexture(gui.getTexture());
             Gui.drawModalRectWithCustomSizedTexture(x + 54, y, 318, 101, 7, 7, 512.0F, 512.0F);
         }
     }

@@ -42,7 +42,7 @@
     },
     {
       "id": "other",
-      "content": "Hey!<r:test>Bye!\n<s:minecraft:crafting_table>Jk.",
+      "content": "Hey!<r:test>Bye!\n<s:minecraft:crafting_table>Nah don't.\nf f f f f f f f f f f f f f f f f f f f f f f f f f f fffffffffffffffffffffffffff fffffffffffffffffffffffffffffffff ffff fffffffffffffffff",
       "category": "fossils"
     }
   ],
@@ -54,7 +54,7 @@
         "", "minecraft:diamond", "",
         "", "minecraft:stick", ""
       ],
-      "result": "minecraft:diamond_sword*5"
+      "result": "minecraft:diamond_sword"
     },
     {
       "id": "test",

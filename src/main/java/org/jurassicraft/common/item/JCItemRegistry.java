@@ -5,7 +5,6 @@ import net.ilexiconn.llibrary.common.content.IContentHandler;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.base.JCEntityRegistry;
@@ -132,8 +131,6 @@ public class JCItemRegistry implements IContentHandler
         disc_jurassicraft_theme = new ItemJCMusicDisc("jurassicraft_theme");
         disc_troodons_and_raptors = new ItemJCMusicDisc("troodons_and_raptors");
         disc_dont_move_a_muscle = new ItemJCMusicDisc("dont_move_a_muscle");
-
-        book_wiki = JurassiCraft.bookWiki.getItem();
 
         for (Dinosaur dinosaur : JCEntityRegistry.getRegisteredDinosaurs())
         {

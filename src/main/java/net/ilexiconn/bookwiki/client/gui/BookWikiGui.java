@@ -33,7 +33,7 @@ import java.util.regex.Pattern;
  */
 @SideOnly(Side.CLIENT)
 public class BookWikiGui extends GuiScreen {
-    public static final ResourceLocation TEXTURE = new ResourceLocation("jurassicraft", "bookwiki/gui.png");
+    private ResourceLocation texture;
     private BookWiki bookWiki;
     private BookWikiContainer.Category currentCategory;
     private BookWikiContainer.Page currentPage;
@@ -42,6 +42,7 @@ public class BookWikiGui extends GuiScreen {
         this.bookWiki = bookWiki;
         this.currentCategory = bookWiki.getCategoryByID(bookWiki.getGeneralCategory());
         this.currentPage = currentCategory.getDefaultPage();
+        this.texture = new ResourceLocation(bookWiki.getMod().modid(), "bookwiki/gui.png");
     }
 
     @Override
@@ -51,7 +52,7 @@ public class BookWikiGui extends GuiScreen {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        mc.getTextureManager().bindTexture(BookWikiGui.TEXTURE);
+        mc.getTextureManager().bindTexture(texture);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         drawModalRectWithCustomSizedTexture(width / 2 - 292 / 2, height / 2 - 180 / 2, 0, 0, 292, 180, 512.0F, 512.0F);
         String hover = null;
@@ -59,7 +60,7 @@ public class BookWikiGui extends GuiScreen {
             BookWikiContainer.Category category = bookWiki.getContainer().getCategories()[i];
             int x = width / 2 - 292 / 2 + 14 + 27 * i;
             int y = height / 2 - 180 / 2 - 24 + 7;
-            mc.getTextureManager().bindTexture(BookWikiGui.TEXTURE);
+            mc.getTextureManager().bindTexture(texture);
             GlStateManager.disableLighting();
             ItemStack stack = category.getIcon();
             RenderHelper.enableGUIStandardItemLighting();
@@ -88,7 +89,7 @@ public class BookWikiGui extends GuiScreen {
         }
 
         if (bookWiki.getPagesFromCategory(currentCategory).length > 1) {
-            mc.getTextureManager().bindTexture(BookWikiGui.TEXTURE);
+            mc.getTextureManager().bindTexture(texture);
             GlStateManager.color(1.0F, 1.0F, 1.0f, 1.0F);
             int x = width / 2 - 292 / 2;
             int y = height / 2 - 180 / 2;
@@ -133,7 +134,7 @@ public class BookWikiGui extends GuiScreen {
         }
 
         for (Map.Entry<IComponent, Tuple<String, BlockPos>> entry : componentMap.entrySet()) {
-            entry.getKey().render(mc, bookWiki, entry.getValue().getFirst(), entry.getValue().getSecond().getX(), entry.getValue().getSecond().getY(), mouseX, mouseY);
+            entry.getKey().render(mc, bookWiki, entry.getValue().getFirst(), this, entry.getValue().getSecond().getX(), entry.getValue().getSecond().getY(), mouseX, mouseY);
         }
 
         for (Map.Entry<IComponent, Tuple<String, BlockPos>> entry : componentMap.entrySet()) {
@@ -145,59 +146,36 @@ public class BookWikiGui extends GuiScreen {
         }
     }
 
-    public List<String> splitIntoLines(String text, int maxLength)
-    {
+    public List<String> splitIntoLines(String text, int maxLength) {
         maxLength += fontRendererObj.getCharWidth(' ');
-
         List<String> lines = new ArrayList<String>();
-
         String[] originalLines = text.split("\n");
-
-        for (String originalLine : originalLines)
-        {
+        for (String originalLine : originalLines) {
             String[] words = originalLine.split(" ");
-
             int wordIndex = 0;
-
-            while (wordIndex < words.length)
-            {
+            while (wordIndex < words.length) {
                 int currentLineLength = 0;
-
                 String currentLine = "";
-
-                while (currentLineLength < maxLength && wordIndex < words.length)
-                {
+                while (currentLineLength < maxLength && wordIndex < words.length) {
                     String wordString = words[wordIndex] + " ";
-
                     int length = fontRendererObj.getStringWidth(wordString);
-
-                    if (length >= maxLength)
-                    {
-                        if (currentLineLength == 0)
-                        {
+                    if (length >= maxLength) {
+                        if (currentLineLength == 0) {
                             currentLine = wordString;
                         }
-
                         wordIndex++;
-
                         break;
-                    }
-                    else
-                    {
+                    } else {
                         currentLineLength += length;
-
-                        if (currentLineLength < maxLength && wordIndex < words.length)
-                        {
+                        if (currentLineLength < maxLength && wordIndex < words.length) {
                             currentLine += wordString;
                             wordIndex++;
                         }
                     }
                 }
-
                 lines.add(currentLine);
             }
         }
-
         return lines;
     }
 
@@ -268,5 +246,9 @@ public class BookWikiGui extends GuiScreen {
             currentPage = bookWiki.getPagesFromCategory(currentCategory)[pageNumber + 1];
         }
         super.keyTyped(typedChar, keyCode);
+    }
+
+    public ResourceLocation getTexture() {
+        return texture;
     }
 }

@@ -2,6 +2,7 @@ package net.ilexiconn.bookwiki.client.component;
 
 import net.ilexiconn.bookwiki.BookWiki;
 import net.ilexiconn.bookwiki.api.IComponent;
+import net.ilexiconn.bookwiki.client.gui.BookWikiGui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.util.EnumChatFormatting;
@@ -28,7 +29,7 @@ public class ColorComponent extends Gui implements IComponent {
     }
 
     @Override
-    public void render(Minecraft mc, BookWiki bookWiki, String arg, int x, int y, int mouseX, int mouseY) {
+    public void render(Minecraft mc, BookWiki bookWiki, String arg, BookWikiGui gui, int x, int y, int mouseX, int mouseY) {
 
     }
 
