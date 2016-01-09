@@ -50,7 +50,7 @@ public class EntityComponent extends Gui implements IComponent {
     }
 
     @Override
-    public void drawTooltip(Minecraft mc, BookWiki bookWiki, String arg, int x, int y, int mouseX, int mouseY) {
+    public void renderTooltip(Minecraft mc, BookWiki bookWiki, String arg, int x, int y, int mouseX, int mouseY) {
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setString("id", arg);
         Entity entity = EntityList.createEntityFromNBT(nbt, mc.theWorld);

@@ -5,6 +5,7 @@ import net.ilexiconn.bookwiki.client.component.ColorComponent;
 import net.ilexiconn.bookwiki.client.component.EntityComponent;
 import net.ilexiconn.bookwiki.client.component.RecipeComponent;
 import net.ilexiconn.bookwiki.client.component.StackComponent;
+import net.ilexiconn.bookwiki.client.component.recipe.CraftingRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
@@ -37,6 +38,7 @@ public class ClientProxy extends CommonProxy
         BookWikiAPI.registerComponent(new RecipeComponent());
         BookWikiAPI.registerComponent(new EntityComponent());
         BookWikiAPI.registerComponent(new StackComponent());
+        BookWikiAPI.registerRecipe(new CraftingRecipe());
     }
 
     @Override

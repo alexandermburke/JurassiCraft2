@@ -101,6 +101,7 @@ public class BookWikiContainer {
 
     public class Recipe extends ContainerHandler {
         private String id;
+        private String type;
         private boolean shapeless;
         private String[] recipe;
         private transient ItemStack[] recipeInstance;
@@ -111,28 +112,28 @@ public class BookWikiContainer {
             return id;
         }
 
+        public String getType() {
+            return type == null ? "crafting" : type;
+        }
+
         public boolean isShapeless() {
             return shapeless;
         }
 
         public ItemStack[] getRecipe() {
             if (recipeInstance == null) {
-                if (recipe.length == 9) {
-                    recipeInstance = new ItemStack[9];
-                    for (int i = 0; i < 9; i++) {
-                        String s = recipe[i];
-                        if (!s.isEmpty()) {
-                            Item item = Item.getByNameOrId(s);
-                            if (item != null) {
-                                recipeInstance[i] = new ItemStack(item);
-                            } else {
-                                BookWiki.logger.error("Can't find item or block with name " + s);
-                                recipeInstance[i] = null; //TODO: Use a fallback item.
-                            }
+                recipeInstance = new ItemStack[recipe.length];
+                for (int i = 0; i < recipeInstance.length; i++) {
+                    String s = recipe[i];
+                    if (!s.isEmpty()) {
+                        Item item = Item.getByNameOrId(s);
+                        if (item != null) {
+                            recipeInstance[i] = new ItemStack(item);
+                        } else {
+                            BookWiki.logger.error("Can't find item or block with name " + s);
+                            recipeInstance[i] = null; //TODO: Use a fallback item.
                         }
                     }
-                } else {
-                    throw new RuntimeException("Can't create recipe with less than 9 slots");
                 }
             }
             return recipeInstance;
