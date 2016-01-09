@@ -108,7 +108,7 @@ public class BookWikiGui extends GuiScreen {
             }
         }
 
-        List<String> lines = Lists.newArrayList(fontRendererObj.listFormattedStringToWidth(getContent(currentPage), 120));
+        List<String> lines = Lists.newArrayList(fontRendererObj.listFormattedStringToWidth(getFormattedContent(currentPage), 120));
         Map<IComponent, Tuple<String, BlockPos>> componentMap = Maps.newHashMap();
         for (int i = 0; i < lines.size(); i++) {
             String line = lines.get(i);
@@ -119,7 +119,7 @@ public class BookWikiGui extends GuiScreen {
                 y = height / 2 - 180 / 2 + 14 + fontRendererObj.FONT_HEIGHT * (i - 16);
             }
             for (IComponent component : BookWikiAPI.getComponents()) {
-                Matcher matcher = Pattern.compile("<" + component.getID() + ":.*>").matcher(line);
+                Matcher matcher = Pattern.compile("<" + component.getID() + ":[a-zA-Z.:*_-]*>").matcher(line);
                 while (matcher.find()) {
                     String group = matcher.group();
                     String arg = group.substring(3, group.length() - 1);
@@ -144,10 +144,10 @@ public class BookWikiGui extends GuiScreen {
         }
     }
 
-    public String getContent(BookWikiContainer.Page page) {
+    public String getFormattedContent(BookWikiContainer.Page page) {
         String result = page.getContent();
         for (IComponent component : BookWikiAPI.getComponents()) {
-            Matcher matcher = Pattern.compile("<" + component.getID() + ":.*>").matcher(result);
+            Matcher matcher = Pattern.compile("<" + component.getID() + ":[a-zA-Z.:*_-]*>").matcher(result);
             while (matcher.find()) {
                 String group = matcher.group();
                 String arg = group.substring(3, group.length() - 1);
