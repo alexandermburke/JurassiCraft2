@@ -82,7 +82,7 @@ public class RecipeComponent extends Gui implements IComponent {
     }
 
     @Override
-    public void drawTooltips(Minecraft mc, BookWiki bookWiki, String arg, int x, int y, int mouseX, int mouseY)
+    public void drawTooltip(Minecraft mc, BookWiki bookWiki, String arg, int x, int y, int mouseX, int mouseY)
     {
         BookWikiContainer.Recipe recipe = bookWiki.getRecipeByID(arg);
         x += 14;
@@ -112,7 +112,6 @@ public class RecipeComponent extends Gui implements IComponent {
         }
     }
 
-    @SideOnly(Side.CLIENT)
     public void renderToolTip(Minecraft mc, ItemStack stack, int x, int y) {
         List<String> list = stack.getTooltip(mc.thePlayer, mc.gameSettings.advancedItemTooltips);
 
@@ -175,7 +174,6 @@ public class RecipeComponent extends Gui implements IComponent {
         GlStateManager.enableRescaleNormal();
     }
 
-    @SideOnly(Side.CLIENT)
     public void drawHoveringText(String text, int x, int y, FontRenderer font) {
         GlStateManager.disableRescaleNormal();
         RenderHelper.disableStandardItemLighting();

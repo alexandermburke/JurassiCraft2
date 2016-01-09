@@ -136,7 +136,7 @@ public class BookWikiGui extends GuiScreen {
         }
 
         for (Map.Entry<IComponent, Tuple<String, BlockPos>> entry : componentMap.entrySet()) {
-            entry.getKey().drawTooltips(mc, bookWiki, entry.getValue().getFirst(), entry.getValue().getSecond().getX(), entry.getValue().getSecond().getY(), mouseX, mouseY);
+            entry.getKey().drawTooltip(mc, bookWiki, entry.getValue().getFirst(), entry.getValue().getSecond().getX(), entry.getValue().getSecond().getY(), mouseX, mouseY);
         }
 
         if (hover != null) {

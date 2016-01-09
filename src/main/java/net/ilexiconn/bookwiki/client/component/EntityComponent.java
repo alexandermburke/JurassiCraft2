@@ -50,7 +50,7 @@ public class EntityComponent extends Gui implements IComponent {
     }
 
     @Override
-    public void drawTooltips(Minecraft mc, BookWiki bookWiki, String arg, int x, int y, int mouseX, int mouseY)
+    public void drawTooltip(Minecraft mc, BookWiki bookWiki, String arg, int x, int y, int mouseX, int mouseY)
     {
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setString("id", arg);
@@ -61,7 +61,6 @@ public class EntityComponent extends Gui implements IComponent {
         }
     }
 
-    @SideOnly(Side.CLIENT)
     public void startGlScissor(Minecraft mc, int x, int y, int width, int height) {
         ScaledResolution scaledResolution = new ScaledResolution(mc);
         double scaleW = (double) mc.displayWidth / scaledResolution.getScaledWidth_double();
@@ -70,12 +69,10 @@ public class EntityComponent extends Gui implements IComponent {
         GL11.glScissor((int) Math.floor((double) x * scaleW), (int) Math.floor((double) mc.displayHeight - ((double) (y + height) * scaleH)), (int) Math.floor((double) (x + width) * scaleW) - (int) Math.floor((double) x * scaleW), (int) Math.floor((double) mc.displayHeight - ((double) y * scaleH)) - (int) Math.floor((double) mc.displayHeight - ((double) (y + height) * scaleH)));
     }
 
-    @SideOnly(Side.CLIENT)
     public void endGlScissor() {
         GL11.glDisable(GL11.GL_SCISSOR_TEST);
     }
 
-    @SideOnly(Side.CLIENT)
     public void drawHoveringText(String text, int x, int y, FontRenderer font) {
         GlStateManager.disableRescaleNormal();
         RenderHelper.disableStandardItemLighting();
