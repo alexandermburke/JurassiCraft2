@@ -15,4 +15,6 @@ public interface IComponent {
     String init(String string, String arg, String group);
 
     void render(Minecraft mc, BookWiki bookWiki, String arg, int x, int y, int mouseX, int mouseY);
+
+    void drawTooltips(Minecraft mc, BookWiki bookWiki, String arg, int x, int y, int mouseX, int mouseY);
 }

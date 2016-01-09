@@ -31,4 +31,9 @@ public class ColorComponent extends Gui implements IComponent {
     public void render(Minecraft mc, BookWiki bookWiki, String arg, int x, int y, int mouseX, int mouseY) {
 
     }
+
+    @Override
+    public void drawTooltips(Minecraft mc, BookWiki bookWiki, String arg, int x, int y, int mouseX, int mouseY)
+    {
+    }
 }

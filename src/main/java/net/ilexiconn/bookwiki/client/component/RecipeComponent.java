@@ -81,6 +81,37 @@ public class RecipeComponent extends Gui implements IComponent {
         }
     }
 
+    @Override
+    public void drawTooltips(Minecraft mc, BookWiki bookWiki, String arg, int x, int y, int mouseX, int mouseY)
+    {
+        BookWikiContainer.Recipe recipe = bookWiki.getRecipeByID(arg);
+        x += 14;
+        y += mc.fontRendererObj.FONT_HEIGHT;
+        ItemStack currentItem = null;
+        if (mouseX >= x + 64 && mouseY >= y + 14 && mouseX < x + 64 + 26 && mouseY < y + 14 + 26) {
+            currentItem = recipe.getResult();
+        }
+        for (int i = 0; i < 9; i++) {
+            ItemStack stack = recipe.getRecipe()[i];
+            if (stack != null) {
+                int newX = (x + (i % 3) * 18) + 1;
+                int newY = (y + (i / 3) * 18) + 1;
+                if (mouseX + 1 >= newX && mouseY + 1 >= newY && mouseX + 1 < newX + 18 && mouseY + 1 < newY + 18) {
+                    currentItem = stack;
+                }
+            }
+        }
+        RenderHelper.disableStandardItemLighting();
+        if (recipe.isShapeless()) {
+            if (mouseX >= x + 54 && mouseY >= y && mouseX < x + 54 + 7 && mouseY < y + 7) {
+                drawHoveringText(StatCollector.translateToLocal("component.recipe.shapeless"), mouseX, mouseY, mc.fontRendererObj);
+            }
+        }
+        if (currentItem != null) {
+            renderToolTip(mc, currentItem, mouseX, mouseY);
+        }
+    }
+
     @SideOnly(Side.CLIENT)
     public void renderToolTip(Minecraft mc, ItemStack stack, int x, int y) {
         List<String> list = stack.getTooltip(mc.thePlayer, mc.gameSettings.advancedItemTooltips);

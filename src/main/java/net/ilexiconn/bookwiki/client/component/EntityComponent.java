@@ -47,6 +47,15 @@ public class EntityComponent extends Gui implements IComponent {
         startGlScissor(mc, x, y, 54, 54);
         GuiInventory.drawEntityOnScreen(x + 27, y + 47, 20, (float) (x + 27) - mouseX, (float) (y + 31) - mouseY, (EntityLivingBase) entity);
         endGlScissor();
+    }
+
+    @Override
+    public void drawTooltips(Minecraft mc, BookWiki bookWiki, String arg, int x, int y, int mouseX, int mouseY)
+    {
+        NBTTagCompound nbt = new NBTTagCompound();
+        nbt.setString("id", arg);
+        Entity entity = EntityList.createEntityFromNBT(nbt, mc.theWorld);
+
         if (mouseX + 1 >= x + 1 && mouseY + 1 >= y + 1 && mouseX + 1 < x + 1 + 54 && mouseY + 1 < y + 1 + 54) {
             drawHoveringText(entity.getName(), mouseX, mouseY, mc.fontRendererObj);
         }

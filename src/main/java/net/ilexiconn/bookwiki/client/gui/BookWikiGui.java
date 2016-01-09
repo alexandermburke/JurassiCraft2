@@ -135,6 +135,10 @@ public class BookWikiGui extends GuiScreen {
             entry.getKey().render(mc, bookWiki, entry.getValue().getFirst(), entry.getValue().getSecond().getX(), entry.getValue().getSecond().getY(), mouseX, mouseY);
         }
 
+        for (Map.Entry<IComponent, Tuple<String, BlockPos>> entry : componentMap.entrySet()) {
+            entry.getKey().drawTooltips(mc, bookWiki, entry.getValue().getFirst(), entry.getValue().getSecond().getX(), entry.getValue().getSecond().getY(), mouseX, mouseY);
+        }
+
         if (hover != null) {
             drawCreativeTabHoveringText(StatCollector.translateToLocal(hover), mouseX, mouseY);
         }
