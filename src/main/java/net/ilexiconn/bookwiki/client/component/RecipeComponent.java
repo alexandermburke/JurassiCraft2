@@ -41,19 +41,15 @@ public class RecipeComponent extends Gui implements IComponent {
         x += 14;
         y += mc.fontRendererObj.FONT_HEIGHT;
         Gui.drawModalRectWithCustomSizedTexture(x + 64, y + 14, 292, 101, 26, 26, 512.0F, 512.0F);
-        ItemStack currentItem = null;
         mc.getRenderItem().zLevel = 100.0F;
         mc.getRenderItem().renderItemAndEffectIntoGUI(recipe.getResult(), x + 69, y + 19);
         mc.getRenderItem().renderItemOverlayIntoGUI(mc.fontRendererObj, recipe.getResult(), x + 69, y + 19, null);
         mc.getRenderItem().zLevel = 0.0F;
-        if (mouseX >= x + 64 && mouseY >= y + 14 && mouseX < x + 64 + 26 && mouseY < y + 14 + 26) {
-            currentItem = recipe.getResult();
-        }
         mc.getTextureManager().bindTexture(BookWikiGui.TEXTURE);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableLighting();
-        RenderHelper.enableGUIStandardItemLighting();
         Gui.drawModalRectWithCustomSizedTexture(x, y, 292, 23, 54, 54, 512.0F, 512.0F);
+        RenderHelper.enableGUIStandardItemLighting();
         for (int i = 0; i < 9; i++) {
             ItemStack stack = recipe.getRecipe()[i];
             if (stack != null) {
@@ -63,27 +59,17 @@ public class RecipeComponent extends Gui implements IComponent {
                 mc.getRenderItem().renderItemAndEffectIntoGUI(stack, newX, newY);
                 mc.getRenderItem().renderItemOverlayIntoGUI(mc.fontRendererObj, stack, newX, newY, null);
                 mc.getRenderItem().zLevel = 0.0F;
-                if (mouseX + 1 >= newX && mouseY + 1 >= newY && mouseX + 1 < newX + 18 && mouseY + 1 < newY + 18) {
-                    currentItem = stack;
-                }
             }
         }
         RenderHelper.disableStandardItemLighting();
         if (recipe.isShapeless()) {
             mc.getTextureManager().bindTexture(BookWikiGui.TEXTURE);
             Gui.drawModalRectWithCustomSizedTexture(x + 54, y, 318, 101, 7, 7, 512.0F, 512.0F);
-            if (mouseX >= x + 54 && mouseY >= y && mouseX < x + 54 + 7 && mouseY < y + 7) {
-                drawHoveringText(StatCollector.translateToLocal("component.recipe.shapeless"), mouseX, mouseY, mc.fontRendererObj);
-            }
-        }
-        if (currentItem != null) {
-            renderToolTip(mc, currentItem, mouseX, mouseY);
         }
     }
 
     @Override
-    public void drawTooltip(Minecraft mc, BookWiki bookWiki, String arg, int x, int y, int mouseX, int mouseY)
-    {
+    public void drawTooltip(Minecraft mc, BookWiki bookWiki, String arg, int x, int y, int mouseX, int mouseY) {
         BookWikiContainer.Recipe recipe = bookWiki.getRecipeByID(arg);
         x += 14;
         y += mc.fontRendererObj.FONT_HEIGHT;
@@ -101,7 +87,6 @@ public class RecipeComponent extends Gui implements IComponent {
                 }
             }
         }
-        RenderHelper.disableStandardItemLighting();
         if (recipe.isShapeless()) {
             if (mouseX >= x + 54 && mouseY >= y && mouseX < x + 54 + 7 && mouseY < y + 7) {
                 drawHoveringText(StatCollector.translateToLocal("component.recipe.shapeless"), mouseX, mouseY, mc.fontRendererObj);

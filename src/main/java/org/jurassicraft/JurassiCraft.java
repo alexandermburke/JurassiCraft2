@@ -100,7 +100,6 @@ public class JurassiCraft
         FoodHelper.init();
 
         bookWiki = BookWiki.create(instance, new InputStreamReader(JurassiCraft.class.getResourceAsStream("/assets/jurassicraft/bookwiki/bookwiki.json")));
-        bookWiki.registerItem();
     }
 
     @Mod.EventHandler

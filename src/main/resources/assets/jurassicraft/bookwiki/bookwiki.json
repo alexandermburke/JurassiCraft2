@@ -42,7 +42,7 @@
     },
     {
       "id": "other",
-      "content": "Hey!<r:test>",
+      "content": "Hey!<r:test>Bye!",
       "category": "fossils"
     }
   ],
@@ -54,7 +54,7 @@
         "", "minecraft:diamond", "",
         "", "minecraft:stick", ""
       ],
-      "result": "minecraft:diamond_sword"
+      "result": "minecraft:diamond_sword*5"
     },
     {
       "id": "test",

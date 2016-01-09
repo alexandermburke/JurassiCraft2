@@ -26,8 +26,7 @@ public class BookWikiContainer {
         return recipes;
     }
 
-    public String getGeneralCategory()
-    {
+    public String getGeneralCategory() {
         return generalCategory;
     }
 
@@ -141,9 +140,15 @@ public class BookWikiContainer {
 
         public ItemStack getResult() {
             if (resultInstance == null) {
+                int stackSize = 1;
+                if (result.contains("*")) {
+                    String[] s = result.split("\\*");
+                    result = s[0];
+                    stackSize = Integer.parseInt(s[1]);
+                }
                 Item item = Item.getByNameOrId(result);
                 if (item != null) {
-                    resultInstance = new ItemStack(item);
+                    resultInstance = new ItemStack(item, stackSize);
                 } else {
                     BookWiki.logger.error("Can't find item or block with name " + result);
                     resultInstance = new ItemStack(Blocks.crafting_table); //TODO: Switch to a better fallback item.

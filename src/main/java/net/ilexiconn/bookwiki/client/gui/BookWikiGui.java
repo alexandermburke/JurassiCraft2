@@ -3,9 +3,9 @@ package net.ilexiconn.bookwiki.client.gui;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import net.ilexiconn.bookwiki.BookWiki;
+import net.ilexiconn.bookwiki.BookWikiContainer;
 import net.ilexiconn.bookwiki.api.BookWikiAPI;
 import net.ilexiconn.bookwiki.api.IComponent;
-import net.ilexiconn.bookwiki.BookWikiContainer;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
@@ -119,7 +119,7 @@ public class BookWikiGui extends GuiScreen {
                 y = height / 2 - 180 / 2 + 14 + fontRendererObj.FONT_HEIGHT * (i - 16);
             }
             for (IComponent component : BookWikiAPI.getComponents()) {
-                Matcher matcher = Pattern.compile("<" + component.getID() + ":[A-Za-z]*>").matcher(line);
+                Matcher matcher = Pattern.compile("<" + component.getID() + ":.*>").matcher(line);
                 while (matcher.find()) {
                     String group = matcher.group();
                     String arg = group.substring(3, group.length() - 1);
@@ -147,7 +147,7 @@ public class BookWikiGui extends GuiScreen {
     public String getContent(BookWikiContainer.Page page) {
         String result = page.getContent();
         for (IComponent component : BookWikiAPI.getComponents()) {
-            Matcher matcher = Pattern.compile("<" + component.getID() + ":[A-Za-z]*>").matcher(result);
+            Matcher matcher = Pattern.compile("<" + component.getID() + ":.*>").matcher(result);
             while (matcher.find()) {
                 String group = matcher.group();
                 String arg = group.substring(3, group.length() - 1);

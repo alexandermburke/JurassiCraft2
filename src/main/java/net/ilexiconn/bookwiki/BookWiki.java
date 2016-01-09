@@ -1,15 +1,11 @@
 package net.ilexiconn.bookwiki;
 
 import com.google.common.collect.Lists;
-import net.ilexiconn.bookwiki.client.gui.BookWikiGui;
 import net.ilexiconn.bookwiki.server.item.BookWikiItem;
 import net.ilexiconn.llibrary.common.json.JsonFactory;
 import net.ilexiconn.llibrary.common.log.LoggerHelper;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.io.Reader;
 import java.util.List;
@@ -42,28 +38,8 @@ public class BookWiki {
         for (BookWikiContainer.Recipe recipe : bookWiki.container.getRecipes()) {
             recipe.setContainer(bookWiki.container);
         }
+        GameRegistry.registerItem(new BookWikiItem(bookWiki), "bookWiki." + bookWiki.getMod().modid());
         return bookWiki;
-    }
-
-    public String getGeneralCategory()
-    {
-        String generalCategory = container.getGeneralCategory();
-
-        if (generalCategory == null)
-        {
-            return "general";
-        }
-
-        return generalCategory;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public GuiScreen getGuiScreen() {
-        return new BookWikiGui(this);
-    }
-
-    public void registerItem() {
-        GameRegistry.registerItem(new BookWikiItem(this), "bookWiki." + getMod().modid());
     }
 
     public Object getModInstance() {
@@ -125,5 +101,13 @@ public class BookWiki {
             }
         }
         return null;
+    }
+
+    public String getGeneralCategory() {
+        String generalCategory = container.getGeneralCategory();
+        if (generalCategory == null) {
+            return "general";
+        }
+        return generalCategory;
     }
 }
