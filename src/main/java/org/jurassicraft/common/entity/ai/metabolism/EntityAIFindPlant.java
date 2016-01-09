@@ -3,6 +3,7 @@ package org.jurassicraft.common.entity.ai.metabolism;
 import net.ilexiconn.llibrary.common.animation.Animation;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
@@ -92,8 +93,9 @@ public class EntityAIFindPlant extends EntityAIBase
         {
             Block block = world.getBlockState(pos).getBlock();
 
-            // We are doing closest because we are traversing faster
-            if (block instanceof BlockBush)
+            // TODO: Use FoodHelper and diet
+            // TODO: Maybe user block drops
+            if (block instanceof BlockBush || block instanceof BlockLeaves)
             {
                 _target = pos;
                 break;
@@ -102,7 +104,7 @@ public class EntityAIFindPlant extends EntityAIBase
 
         if (_target != null)
         {
-            LOGGER.info("Found plant food pos=" + _target);
+//            LOGGER.info("Found plant food pos=" + _target);
             _dinosaur.getNavigator().tryMoveToXYZ(_target.getX(), _target.getY(), _target.getZ(), 1.0);
         }
     }
@@ -112,7 +114,6 @@ public class EntityAIFindPlant extends EntityAIBase
     {
         if (_breaker != null)
         {
-//            Animation.sendAnimationPacket(_dinosaur, Animations.EATING.get());
             if (_breaker.tickUpdate())
             {
                 if (_dinosaur.worldObj.getGameRules().getBoolean("mobGriefing"))
@@ -123,6 +124,9 @@ public class EntityAIFindPlant extends EntityAIBase
                 _dinosaur.heal(4.0F);
                 _breaker = null;
                 _target = null;
+
+                // Now that we have finished stop the animation
+                Animation.sendAnimationPacket(_dinosaur, Animations.IDLE.get());
             }
             return;
         }
@@ -130,14 +134,18 @@ public class EntityAIFindPlant extends EntityAIBase
         if (_dinosaur.getNavigator().noPath())
         {
             // No path.  If close enough, start the breaker
-            // TODO: Head is above ground, so we need to compute this differently
+            // TODO: Head is above ground, so we need to compute this differently.  Ideally it can bend down
 //            if (getHeadPos().distanceSq(_target) < EAT_RADIUS)
             {
-//                Animation.sendAnimationPacket(_dinosaur, Animations.EATING.get());
+                // Start the animation
+                Animation.sendAnimationPacket(_dinosaur, Animations.EATING.get());
 
                 // Eating grass is really slow
                 _breaker = new BlockBreaker(_dinosaur, EAT_BREAK_SPEED, _target, MIN_BREAK_TIME_SEC);
-                LOGGER.info("Started breaker: " + _breaker);
+                _dinosaur.getLookHelper().setLookPosition(_target.getX(), _target.getY(), _target.getZ(),
+                        0, _dinosaur.getVerticalFaceSpeed());
+
+//                LOGGER.info("Started breaker: " + _breaker);
             }
 //            else
 //            {

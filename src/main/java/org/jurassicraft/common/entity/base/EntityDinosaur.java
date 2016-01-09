@@ -945,7 +945,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
     public String toString()
     {
         return "EntityDinosaur{ " +
-//                "dinosaur=" + dinosaur +
                 dinosaur.getName() +
                 ", remote=" + getEntityWorld().isRemote +
                 ", isDead=" + isDead +
@@ -963,6 +962,7 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
                 "\n    " +
                 ", food=" + metabolism.getFood() + " / " + metabolism.getMaxFood() + " (" + metabolism.getMaxFood() * 0.875 + ")" +
                 ", water=" + metabolism.getWater() + " / " + metabolism.getMaxWater() + " (" + metabolism.getMaxWater() * 0.875 + ")" +
+                ", health=" + getHealth() + " / " + getMaxHealth() +
                 "\n    " +
                 ", pos=" + getPosition() +
                 ", eyePos=" + getPositionEyes(0.0F) +
@@ -971,7 +971,10 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
                 "\n    " +
                 ", width=" + width +
                 ", bb=" + getEntityBoundingBox() +
+//                "\n    " +
+//                ", anim=" + animation + (animation != null ? ", duration" + animation.duration : "" ) +
 
+//                "dinosaur=" + dinosaur +
 //                ", genetics=" + genetics +
 //                ", geneticsQuality=" + geneticsQuality +
 //                ", currentAnim=" + currentAnim +
@@ -984,26 +987,4 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 //                ", metabolism=" + metabolism +
                 " }";
     }
-
-//    protected Dinosaur dinosaur;
-//
-//    private GeneticsContainer genetics;
-//    private int geneticsQuality;
-//
-//    // For animation AI system
-//    public AIAnimation currentAnim = null;
-//    private Animation animation;
-//    private int animTick;
-//
-//    private boolean hasTracker;
-//
-//    public ChainBuffer tailBuffer;
-//
-//    private UUID owner;
-//
-//    private InventoryDinosaur inventory;
-//
-//    private MetabolismContainer metabolism;
-//
-
 }

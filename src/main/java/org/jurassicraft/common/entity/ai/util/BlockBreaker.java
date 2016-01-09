@@ -64,7 +64,6 @@ public class BlockBreaker
         IBlockState state = world.getBlockState(pos);
         float hardness = state.getBlock().getBlockHardness(world, pos);
 
-        LOGGER.info("hardness=" + hardness + ", for=" + state.getBlock().getUnlocalizedName());
         return (BASE_BREAK_FACTOR * hardness) / (digSpeed) ;
     }
 
@@ -117,5 +116,5 @@ public class BlockBreaker
     private int _ticksDone;
     private int _previousTicksDone;
 
-    private static final Logger LOGGER = LogManager.getLogger();
+    //private static final Logger LOGGER = LogManager.getLogger();
 }
