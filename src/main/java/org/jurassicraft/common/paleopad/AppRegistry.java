@@ -1,9 +1,11 @@
 package org.jurassicraft.common.paleopad;
 
+import net.ilexiconn.llibrary.common.content.IContentHandler;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppRegistry
+public class AppRegistry implements IContentHandler
 {
     private static List<App> registeredApps = new ArrayList<App>();
     public static App dinopedia;
@@ -17,14 +19,19 @@ public class AppRegistry
         registeredApps.add(app);
     }
 
-    public void register()
+    @Override
+    public void init()
     {
         dinopedia = new AppDinoPedia();
         file_explorer = new AppFileExplorer();
         flappy_dino = new AppFlappyDino();
         minimap = new AppMinimap();
         security = new AppSecurity();
+    }
 
+    @Override
+    public void gameRegistry() throws Exception
+    {
         registerApp(dinopedia);
         registerApp(file_explorer);
         registerApp(flappy_dino);

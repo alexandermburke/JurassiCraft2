@@ -1,6 +1,7 @@
 package org.jurassicraft.common.recipe;
 
 import com.google.common.collect.Maps;
+import net.ilexiconn.llibrary.common.content.IContentHandler;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -16,9 +17,16 @@ import org.jurassicraft.common.paleopad.dinopedia.DinoPediaRegistry;
 
 import java.util.HashMap;
 
-public class JCRecipeRegistry
+public class JCRecipeRegistry implements IContentHandler
 {
-    public void register()
+    @Override
+    public void init()
+    {
+
+    }
+
+    @Override
+    public void gameRegistry() throws Exception
     {
         for (Dinosaur dinosaur : JCEntityRegistry.getDinosaurs())
         {
