@@ -12,6 +12,8 @@ public class BookWikiContainer {
     private Page[] pages;
     private Recipe[] recipes;
 
+    private String generalCategory;
+
     public Category[] getCategories() {
         return categories;
     }
@@ -22,6 +24,11 @@ public class BookWikiContainer {
 
     public Recipe[] getRecipes() {
         return recipes;
+    }
+
+    public String getGeneralCategory()
+    {
+        return generalCategory;
     }
 
     public class Category extends ContainerHandler {

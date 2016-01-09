@@ -323,6 +323,6 @@ achievement.jurassicraft.reinforcedStone.desc=Craft some reinforced stone blocks
 generator.isla_nublar=Isla Nublar
 
 //BookWiki ==================================================
-category.general.name=General
-category.recipes.name=Recipes
+category.getting_started.name=Getting Started
+category.fossils.name=Finding and Mining Fossils
 component.recipe.shapeless=Shapeless recipe

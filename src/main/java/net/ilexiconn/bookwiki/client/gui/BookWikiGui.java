@@ -39,7 +39,7 @@ public class BookWikiGui extends GuiScreen {
 
     public BookWikiGui(BookWiki bookWiki) {
         this.bookWiki = bookWiki;
-        this.currentCategory = bookWiki.getCategoryByID("general");
+        this.currentCategory = bookWiki.getCategoryByID(bookWiki.getGeneralCategory());
         this.currentPage = currentCategory.getDefaultPage();
     }
 

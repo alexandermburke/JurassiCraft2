@@ -45,6 +45,18 @@ public class BookWiki {
         return bookWiki;
     }
 
+    public String getGeneralCategory()
+    {
+        String generalCategory = container.getGeneralCategory();
+
+        if (generalCategory == null)
+        {
+            return "general";
+        }
+
+        return generalCategory;
+    }
+
     @SideOnly(Side.CLIENT)
     public GuiScreen getGuiScreen() {
         return new BookWikiGui(this);
