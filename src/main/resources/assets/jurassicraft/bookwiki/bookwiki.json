@@ -42,7 +42,7 @@
     },
     {
       "id": "other",
-      "content": "Hey!<r:test>Bye!<s:minecraft:crafting_table>Jk.",
+      "content": "Hey!<r:test>Bye!\n<s:minecraft:crafting_table>Jk.",
       "category": "fossils"
     }
   ],

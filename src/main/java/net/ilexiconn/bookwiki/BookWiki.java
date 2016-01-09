@@ -19,6 +19,7 @@ public class BookWiki {
     private Object modInstance;
     private Mod mod;
     private BookWikiContainer container;
+    private BookWikiItem item;
 
     public static BookWiki create(Object mod, Reader reader) {
         if (!mod.getClass().isAnnotationPresent(Mod.class)) {
@@ -38,7 +39,7 @@ public class BookWiki {
         for (BookWikiContainer.Recipe recipe : bookWiki.container.getRecipes()) {
             recipe.setContainer(bookWiki.container);
         }
-        GameRegistry.registerItem(new BookWikiItem(bookWiki), "bookWiki." + bookWiki.getMod().modid());
+        GameRegistry.registerItem(bookWiki.item = new BookWikiItem(bookWiki), "bookWiki." + bookWiki.getMod().modid());
         return bookWiki;
     }
 
@@ -52,6 +53,10 @@ public class BookWiki {
 
     public BookWikiContainer getContainer() {
         return container;
+    }
+
+    public BookWikiItem getItem() {
+        return item;
     }
 
     public BookWikiContainer.Category getCategoryByID(String id) {

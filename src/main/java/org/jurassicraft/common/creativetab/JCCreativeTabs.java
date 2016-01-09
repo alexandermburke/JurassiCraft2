@@ -1,10 +1,11 @@
 package org.jurassicraft.common.creativetab;
 
+import net.ilexiconn.llibrary.common.content.IContentHandler;
 import net.minecraft.item.Item;
 import org.jurassicraft.common.block.JCBlockRegistry;
 import org.jurassicraft.common.item.JCItemRegistry;
 
-public class JCCreativeTabs
+public class JCCreativeTabs implements IContentHandler
 {
     public static CreativeTabJurassiCraft items;
     public static CreativeTabJurassiCraft blocks;
@@ -20,7 +21,8 @@ public class JCCreativeTabs
 
     public static CreativeTabJurassiCraftMerchandise merchandise;
 
-    public void register()
+    @Override
+    public void init()
     {
         items = new CreativeTabJurassiCraft("jurassicraft.items")
         {
@@ -65,5 +67,11 @@ public class JCCreativeTabs
         };
 
         merchandise = new CreativeTabJurassiCraftMerchandise("jurassicraft.merchandise");
+    }
+
+    @Override
+    public void gameRegistry() throws Exception
+    {
+
     }
 }
