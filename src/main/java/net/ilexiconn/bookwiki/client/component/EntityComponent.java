@@ -34,11 +34,11 @@ public class EntityComponent extends Gui implements IComponent {
     }
 
     @Override
-    public void render(Minecraft mc, BookWiki bookWiki, String arg, int x, int y, int mouseX, int mouseY) {
+    public void render(Minecraft mc, BookWiki bookWiki, String arg, BookWikiGui gui, int x, int y, int mouseX, int mouseY) {
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setString("id", arg);
         Entity entity = EntityList.createEntityFromNBT(nbt, mc.theWorld);
-        mc.getTextureManager().bindTexture(BookWikiGui.TEXTURE);
+        mc.getTextureManager().bindTexture(gui.getTexture());
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableLighting();
         x += 14;
@@ -47,12 +47,20 @@ public class EntityComponent extends Gui implements IComponent {
         startGlScissor(mc, x, y, 54, 54);
         GuiInventory.drawEntityOnScreen(x + 27, y + 47, 20, (float) (x + 27) - mouseX, (float) (y + 31) - mouseY, (EntityLivingBase) entity);
         endGlScissor();
+    }
+
+    @Override
+    public void renderTooltip(Minecraft mc, BookWiki bookWiki, String arg, int x, int y, int mouseX, int mouseY) {
+        NBTTagCompound nbt = new NBTTagCompound();
+        nbt.setString("id", arg);
+        Entity entity = EntityList.createEntityFromNBT(nbt, mc.theWorld);
+        x += 14;
+        y += mc.fontRendererObj.FONT_HEIGHT;
         if (mouseX + 1 >= x + 1 && mouseY + 1 >= y + 1 && mouseX + 1 < x + 1 + 54 && mouseY + 1 < y + 1 + 54) {
             drawHoveringText(entity.getName(), mouseX, mouseY, mc.fontRendererObj);
         }
     }
 
-    @SideOnly(Side.CLIENT)
     public void startGlScissor(Minecraft mc, int x, int y, int width, int height) {
         ScaledResolution scaledResolution = new ScaledResolution(mc);
         double scaleW = (double) mc.displayWidth / scaledResolution.getScaledWidth_double();
@@ -61,12 +69,10 @@ public class EntityComponent extends Gui implements IComponent {
         GL11.glScissor((int) Math.floor((double) x * scaleW), (int) Math.floor((double) mc.displayHeight - ((double) (y + height) * scaleH)), (int) Math.floor((double) (x + width) * scaleW) - (int) Math.floor((double) x * scaleW), (int) Math.floor((double) mc.displayHeight - ((double) y * scaleH)) - (int) Math.floor((double) mc.displayHeight - ((double) (y + height) * scaleH)));
     }
 
-    @SideOnly(Side.CLIENT)
     public void endGlScissor() {
         GL11.glDisable(GL11.GL_SCISSOR_TEST);
     }
 
-    @SideOnly(Side.CLIENT)
     public void drawHoveringText(String text, int x, int y, FontRenderer font) {
         GlStateManager.disableRescaleNormal();
         RenderHelper.disableStandardItemLighting();

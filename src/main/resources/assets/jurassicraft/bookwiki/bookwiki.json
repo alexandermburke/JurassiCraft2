@@ -1,30 +1,49 @@
 {
+  "generalCategory": "getting_started",
   "categories": [
     {
-      "id": "general",
-      "name": "category.general.name",
+      "id": "getting_started",
+      "name": "category.getting_started.name",
       "icon": "minecraft:crafting_table",
       "defaultPage": "main"
     },
     {
-      "id": "recipes",
-      "name": "category.recipes.name",
-      "icon": "minecraft:diamond_sword",
-      "defaultPage": "swordRecipe"
+      "id": "fossils",
+      "name": "category.fossils.name",
+      "icon": "jurassicraft:fossil_block_0",
+      "defaultPage": "recipes"
     }
   ],
   "pages": [
     {
       "id": "main",
-      "title": "page.main.title",
-      "content": "<c:red>Lorem<c:reset> ipsum dolor sit amet, consectetuer adipiscing elit. <c:red>Aenean<c:reset> commodo ligula eget dolor. <c:red>Aenean<c:reset> massa. <c:red>Cum<c:reset> sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. <c:red>Donec<c:reset> quam felis, ultricies nec, pellentesque eu, pretium quis, sem. <c:red>Nulla<c:reset> consequat massa quis enim. <c:red>Donec<c:reset> pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. <c:red>In<c:reset> enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. <c:red>Nullam<c:reset> dictum felis eu pede mollis pretium. <c:red>Integer<c:reset> tincidunt. <c:red>Cras<c:reset> dapibus. <c:red>Vivamus<c:reset> elementum semper nisi. <c:red>Aenean<c:reset> vulputate eleifend tellus. <c:red>Aenean<c:reset> leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. <c:red>Aliquam<c:reset> lorem ante, dapibus in, viverra quis, feugiat a, tellus.",
-      "category": "general"
+      "content": "After first establishing yourself in the Minecraft world, you can start the first few steps towards creating dinosaurs and other prehistoric organisms.",
+      "category": "getting_started"
+    },
+	{
+      "id": "peat_and_moss_1",
+      "content": "If you spawn in or discover a Forest, Birch Forest, Flower Forest, Taiga, Mega Taiga, Jungle or Swampland biome, you will notice flat patches of Moss (roughly the same shape as Pressure Plates) growing on grass or other dirt variants. Moss is a small but hardy plant, and it can easily be mined and picked up by hand or basically any tool/item, although it is fastest with Shears. In Swampland biomes specifically, you will also find pockets or layers of Peat blocks among the Dirt, typically located just beneath the grass layer. You can mine these with any tool, although it is fastest with a Shovel. ",
+      "category": "getting_started"
+    },
+	{
+		"id": "peat_and_moss_2",
+		"content": "Once you have a decent amount of Peat, be careful where and how you place it! If you're in a Swampland biome, you can place it anywhere you want without consequences. However, in any other biome it'll soon dry out and turn into Dirt unless you keep it moist. Luckily, Peat obeys the same rules as Farmland, meaning that any Peat blocks within 4 blocks of water stay irrigated regardless of the biome they are in. Unlike Farmland however, Peat blocks won't be damaged if you jump on them.",
+		"category": "getting_started"
+	},
+	{
+		"id": "peat_and_moss_3",
+		"content": "Once you have a decent amount of Peat and some Moss, you can start farming the Moss. Moss can be placed on Peat, Gravel, Cobblestone or any dirt variant, and over time it will spread. However, it will spread MUCH faster if placed on Peat!\n\n5x Moss + 4x Cobblestone in a crafting table (TNT shape) = 4x Mossy Cobblestone\n\n5x Moss + 4x Stone bricks in a crafting table (TNT shape) = 4x Mossy Stone Bricks\n\n9x Moss in a crafting table = 1x Peat Moss block \nPeat Moss blocks will become useful once you start hatching dinosaurs...",
+		"category": "getting_started"
+	},
+    {
+      "id": "recipes",
+      "content": "Lern me to mke a sword pls<r:sword>thx!!!\n\n\n\n\n\n\n\n\n<e:Zombie>",
+      "category": "fossils"
     },
     {
-      "id": "swordRecipe",
-      "title": "page.recipes.title",
-      "content": "Lern me to mke a sword pls<r:sword>thx<c:red>!!!<c:reset>\n\n\n\n\n\n\n\n\nHow do a <c:green>znie<c:reset> lok?<e:Zombie>thhx!",
-      "category": "recipes"
+      "id": "other",
+      "content": "Hey!<r:test>Bye!\n<s:minecraft:crafting_table>Nah don't.\nf f f f f f f f f f f f f f f f f f f f f f f f f f f fffffffffffffffffffffffffff fffffffffffffffffffffffffffffffff ffff fffffffffffffffff",
+      "category": "fossils"
     }
   ],
   "recipes": [
@@ -36,6 +55,16 @@
         "", "minecraft:stick", ""
       ],
       "result": "minecraft:diamond_sword"
+    },
+    {
+      "id": "test",
+      "recipe": [
+        "", "", "",
+        "", "minecraft:dirt", "",
+        "", "", ""
+      ],
+      "result": "minecraft:diamond",
+      "shapeless": true
     }
   ]
 }

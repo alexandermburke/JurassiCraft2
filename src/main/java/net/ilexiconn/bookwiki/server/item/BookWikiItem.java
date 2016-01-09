@@ -1,6 +1,7 @@
 package net.ilexiconn.bookwiki.server.item;
 
 import net.ilexiconn.bookwiki.BookWiki;
+import net.ilexiconn.bookwiki.client.gui.BookWikiGui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,7 +24,7 @@ public class BookWikiItem extends Item {
 
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
         if (!player.isSneaking() && FMLCommonHandler.instance().getEffectiveSide().isClient()) {
-            Minecraft.getMinecraft().displayGuiScreen(bookWiki.getGuiScreen());
+            Minecraft.getMinecraft().displayGuiScreen(new BookWikiGui(bookWiki));
         }
         return itemStack;
     }

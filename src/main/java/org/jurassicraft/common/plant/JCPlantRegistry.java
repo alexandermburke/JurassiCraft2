@@ -1,24 +1,42 @@
 package org.jurassicraft.common.plant;
 
+import net.ilexiconn.llibrary.common.content.IContentHandler;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class JCPlantRegistry
+public class JCPlantRegistry implements IContentHandler
 {
     private static List<Plant> plants = new ArrayList<Plant>();
 
-    public static final Plant small_royal_fern = new PlantSmallRoyalFern();
-    public static final Plant calamites = new PlantCalamites();
-    public static final Plant small_chain_fern = new PlantSmallChainFern();
-    public static final Plant small_cycad = new PlantSmallCycad();
-    public static final Plant ginkgo = new PlantGinkgo();
-    public static final Plant bennettitalean_cycadeoidea = new PlantBennettitaleanCycadeoidea();
-    public static final Plant cry_pansy = new PlantCryPansy();
-    public static final Plant scaly_tree_fern = new PlantScalyTreeFern();
-    public static final Plant cycad_zamites = new PlantZamites();
-    public static final Plant dicksonia = new PlantDicksonia();
+    public static Plant small_royal_fern;
+    public static Plant calamites;
+    public static Plant small_chain_fern;
+    public static Plant small_cycad;
+    public static Plant ginkgo;
+    public static Plant bennettitalean_cycadeoidea;
+    public static Plant cry_pansy;
+    public static Plant scaly_tree_fern;
+    public static Plant cycad_zamites;
+    public static Plant dicksonia;
 
-    public void register()
+    @Override
+    public void init()
+    {
+        small_royal_fern = new PlantSmallRoyalFern();
+        calamites = new PlantCalamites();
+        small_chain_fern = new PlantSmallChainFern();
+        small_cycad = new PlantSmallCycad();
+        ginkgo = new PlantGinkgo();
+        bennettitalean_cycadeoidea = new PlantBennettitaleanCycadeoidea();
+        cry_pansy = new PlantCryPansy();
+        scaly_tree_fern = new PlantScalyTreeFern();
+        cycad_zamites = new PlantZamites();
+        dicksonia = new PlantDicksonia();
+    }
+
+    @Override
+    public void gameRegistry() throws Exception
     {
         registerPlant(small_royal_fern);
         registerPlant(calamites);

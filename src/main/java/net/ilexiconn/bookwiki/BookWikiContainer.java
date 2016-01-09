@@ -12,6 +12,8 @@ public class BookWikiContainer {
     private Page[] pages;
     private Recipe[] recipes;
 
+    private String generalCategory;
+
     public Category[] getCategories() {
         return categories;
     }
@@ -22,6 +24,10 @@ public class BookWikiContainer {
 
     public Recipe[] getRecipes() {
         return recipes;
+    }
+
+    public String getGeneralCategory() {
+        return generalCategory;
     }
 
     public class Category extends ContainerHandler {
@@ -68,17 +74,12 @@ public class BookWikiContainer {
 
     public class Page extends ContainerHandler {
         private String id;
-        private String title;
         private String content;
         private String category;
         private transient Category categoryInstance;
 
         public String getID() {
             return id;
-        }
-
-        public String getTitle() {
-            return title;
         }
 
         public String getContent() {
@@ -100,6 +101,7 @@ public class BookWikiContainer {
 
     public class Recipe extends ContainerHandler {
         private String id;
+        private String type;
         private boolean shapeless;
         private String[] recipe;
         private transient ItemStack[] recipeInstance;
@@ -110,28 +112,28 @@ public class BookWikiContainer {
             return id;
         }
 
+        public String getType() {
+            return type == null ? "crafting" : type;
+        }
+
         public boolean isShapeless() {
             return shapeless;
         }
 
         public ItemStack[] getRecipe() {
             if (recipeInstance == null) {
-                if (recipe.length == 9) {
-                    recipeInstance = new ItemStack[9];
-                    for (int i = 0; i < 9; i++) {
-                        String s = recipe[i];
-                        if (!s.isEmpty()) {
-                            Item item = Item.getByNameOrId(s);
-                            if (item != null) {
-                                recipeInstance[i] = new ItemStack(item);
-                            } else {
-                                BookWiki.logger.error("Can't find item or block with name " + s);
-                                recipeInstance[i] = null; //TODO: Use a fallback item.
-                            }
+                recipeInstance = new ItemStack[recipe.length];
+                for (int i = 0; i < recipeInstance.length; i++) {
+                    String s = recipe[i];
+                    if (!s.isEmpty()) {
+                        Item item = Item.getByNameOrId(s);
+                        if (item != null) {
+                            recipeInstance[i] = new ItemStack(item);
+                        } else {
+                            BookWiki.logger.error("Can't find item or block with name " + s);
+                            recipeInstance[i] = null; //TODO: Use a fallback item.
                         }
                     }
-                } else {
-                    throw new RuntimeException("Can't create recipe with less than 9 slots");
                 }
             }
             return recipeInstance;
@@ -139,9 +141,15 @@ public class BookWikiContainer {
 
         public ItemStack getResult() {
             if (resultInstance == null) {
+                int stackSize = 1;
+                if (result.contains("*")) {
+                    String[] s = result.split("\\*");
+                    result = s[0];
+                    stackSize = Integer.parseInt(s[1]);
+                }
                 Item item = Item.getByNameOrId(result);
                 if (item != null) {
-                    resultInstance = new ItemStack(item);
+                    resultInstance = new ItemStack(item, stackSize);
                 } else {
                     BookWiki.logger.error("Can't find item or block with name " + result);
                     resultInstance = new ItemStack(Blocks.crafting_table); //TODO: Switch to a better fallback item.

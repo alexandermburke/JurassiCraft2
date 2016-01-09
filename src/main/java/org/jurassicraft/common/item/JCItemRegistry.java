@@ -1,5 +1,7 @@
 package org.jurassicraft.common.item;
 
+import net.ilexiconn.bookwiki.server.item.BookWikiItem;
+import net.ilexiconn.llibrary.common.content.IContentHandler;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -14,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class JCItemRegistry
+public class JCItemRegistry implements IContentHandler
 {
     public static ItemPlasterAndBandage plaster_and_bandage;
     public static ItemDinosaurSpawnEgg spawn_egg;
@@ -77,12 +79,15 @@ public class JCItemRegistry
     // Debug items
     public static Item dino_scanner;
 
+    public static BookWikiItem book_wiki;
+
     public static Map<String, ItemFossil> fossils = new HashMap<String, ItemFossil>();
     public static Map<String, List<Dinosaur>> fossilDinosaurs = new HashMap<String, List<Dinosaur>>();
 
     // TODO more complex crafting components, eg circuit boards
 
-    public void register()
+    @Override
+    public void init()
     {
         plaster_and_bandage = new ItemPlasterAndBandage();
         spawn_egg = new ItemDinosaurSpawnEgg();
@@ -156,7 +161,11 @@ public class JCItemRegistry
                 fossilDinosaurs.put(boneType, dinosaursWithType);
             }
         }
+    }
 
+    @Override
+    public void gameRegistry() throws Exception
+    {
         registerItem(amber, "Amber");
         registerItem(sea_lamprey, "Sea Lamprey");
         registerItem(plaster_and_bandage, "Plaster And Bandage");

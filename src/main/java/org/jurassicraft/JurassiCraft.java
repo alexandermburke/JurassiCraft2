@@ -16,19 +16,11 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.Logger;
-import org.jurassicraft.common.achievements.JCAchievements;
 import org.jurassicraft.common.block.JCBlockRegistry;
 import org.jurassicraft.common.configuration.JCConfigurations;
-import org.jurassicraft.common.creativetab.JCCreativeTabs;
-import org.jurassicraft.common.entity.base.JCEntityRegistry;
 import org.jurassicraft.common.food.FoodHelper;
-import org.jurassicraft.common.item.JCItemRegistry;
 import org.jurassicraft.common.message.*;
-import org.jurassicraft.common.paleopad.AppRegistry;
-import org.jurassicraft.common.plant.JCPlantRegistry;
 import org.jurassicraft.common.proxy.CommonProxy;
-import org.jurassicraft.common.recipe.JCRecipeRegistry;
-import org.jurassicraft.common.storagedisc.StorageTypeRegistry;
 import org.jurassicraft.common.world.islanublar.WorldTypeIslaNublar;
 
 import java.io.File;
@@ -51,15 +43,7 @@ public class JurassiCraft
 
     private Logger logger;
 
-    public static JCEntityRegistry entityRegistry = new JCEntityRegistry();
-    public static JCPlantRegistry plantRegistry = new JCPlantRegistry();
-    public static JCCreativeTabs creativeTabRegistry = new JCCreativeTabs();
-    public static JCItemRegistry itemRegistry = new JCItemRegistry();
-    public static JCBlockRegistry blockRegistry = new JCBlockRegistry();
-    public static JCRecipeRegistry recipeRegistry = new JCRecipeRegistry();
-    public static AppRegistry appRegistry = new AppRegistry();
-    public static JCAchievements achievements = new JCAchievements();
-    public static StorageTypeRegistry storageTypeRegistry = new StorageTypeRegistry();
+    public static JCBlockRegistry blockRegistry;
     public static JCConfigurations configurations = new JCConfigurations();
 
     public static WorldTypeIslaNublar worldTypeIslaNublar = new WorldTypeIslaNublar();
@@ -100,7 +84,6 @@ public class JurassiCraft
         FoodHelper.init();
 
         bookWiki = BookWiki.create(instance, new InputStreamReader(JurassiCraft.class.getResourceAsStream("/assets/jurassicraft/bookwiki/bookwiki.json")));
-        bookWiki.registerItem();
     }
 
     @Mod.EventHandler

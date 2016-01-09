@@ -2,6 +2,7 @@ package org.jurassicraft.common.proxy;
 
 import com.google.common.base.Predicates;
 import com.google.common.collect.Iterators;
+import net.ilexiconn.llibrary.common.content.ContentHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EnumCreatureType;
@@ -17,9 +18,18 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.jurassicraft.JurassiCraft;
+import org.jurassicraft.common.achievements.JCAchievements;
+import org.jurassicraft.common.block.JCBlockRegistry;
 import org.jurassicraft.common.configuration.JCConfigurations;
+import org.jurassicraft.common.creativetab.JCCreativeTabs;
+import org.jurassicraft.common.entity.base.JCEntityRegistry;
 import org.jurassicraft.common.event.CommonEventHandler;
 import org.jurassicraft.common.handler.JCGuiHandler;
+import org.jurassicraft.common.item.JCItemRegistry;
+import org.jurassicraft.common.paleopad.AppRegistry;
+import org.jurassicraft.common.plant.JCPlantRegistry;
+import org.jurassicraft.common.recipe.JCRecipeRegistry;
+import org.jurassicraft.common.storagedisc.StorageTypeRegistry;
 import org.jurassicraft.common.world.WorldGenerator;
 
 import java.util.Map;
@@ -30,15 +40,17 @@ public class CommonProxy
     {
         JurassiCraft.configurations.initConfig(event);
 
-        JurassiCraft.entityRegistry.register();
-        JurassiCraft.plantRegistry.register();
-        JurassiCraft.creativeTabRegistry.register();
-        JurassiCraft.itemRegistry.register();
-        JurassiCraft.blockRegistry.register();
-        JurassiCraft.recipeRegistry.register();
-        JurassiCraft.appRegistry.register();
-        JurassiCraft.achievements.register();
-        JurassiCraft.storageTypeRegistry.register();
+        ContentHelper.init(
+                new JCEntityRegistry(),
+                new JCPlantRegistry(),
+                new JCCreativeTabs(),
+                new JCItemRegistry(),
+                JurassiCraft.blockRegistry = new JCBlockRegistry(),
+                new JCRecipeRegistry(),
+                new AppRegistry(),
+                new JCAchievements(),
+                new StorageTypeRegistry()
+        );
 
         // addChestGenItems();
 

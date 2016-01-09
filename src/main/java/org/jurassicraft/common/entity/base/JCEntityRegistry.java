@@ -2,6 +2,7 @@ package org.jurassicraft.common.entity.base;
 
 import com.google.common.base.Predicates;
 import com.google.common.collect.Iterators;
+import net.ilexiconn.llibrary.common.content.IContentHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
@@ -78,7 +79,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class JCEntityRegistry
+public class JCEntityRegistry implements IContentHandler
 {
     private static List<Dinosaur> dinosaurs = new ArrayList<Dinosaur>();
     private static HashMap<EnumTimePeriod, List<Dinosaur>> dinosaursFromPeriod = new HashMap<EnumTimePeriod, List<Dinosaur>>();
@@ -155,7 +156,14 @@ public class JCEntityRegistry
         return marineDinos;
     }
 
-    public void register()
+    @Override
+    public void init()
+    {
+
+    }
+
+    @Override
+    public void gameRegistry() throws Exception
     {
         registerDinosaurType(velociraptor);
         registerDinosaurType(achillobator);
