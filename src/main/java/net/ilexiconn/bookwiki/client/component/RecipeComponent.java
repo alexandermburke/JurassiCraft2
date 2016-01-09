@@ -22,8 +22,18 @@ public class RecipeComponent extends Gui implements IComponent {
     }
 
     @Override
-    public String init(String string, String arg, String group) {
-        return string.replace(group, group + "\n\n\n\n\n\n\n");
+    public String init(String string, String arg, String group, BookWiki bookWiki) {
+        BookWikiContainer.Recipe recipe = bookWiki.getRecipeByID(arg);
+        IRecipe apiRecipe = BookWikiAPI.getRecipeByType(recipe.getType());
+        if (apiRecipe != null) {
+            String result = group;
+            for (int i = 0; i < apiRecipe.getHeight(); i++) {
+                result += "\n";
+            }
+            return string.replace(group, result);
+        } else {
+            return string;
+        }
     }
 
     @Override
@@ -36,11 +46,11 @@ public class RecipeComponent extends Gui implements IComponent {
     }
 
     @Override
-    public void renderTooltip(Minecraft mc, BookWiki bookWiki, String arg, int x, int y, int mouseX, int mouseY) {
+    public void renderTooltip(Minecraft mc, BookWiki bookWiki, String arg, BookWikiGui gui, int x, int y, int mouseX, int mouseY) {
         BookWikiContainer.Recipe recipe = bookWiki.getRecipeByID(arg);
         IRecipe apiRecipe = BookWikiAPI.getRecipeByType(recipe.getType());
         if (apiRecipe != null) {
-            apiRecipe.renderTooltip(mc, bookWiki, recipe, x, y, mouseX, mouseY);
+            apiRecipe.renderTooltip(mc, bookWiki, recipe, gui, x, y, mouseX, mouseY);
         }
     }
 }

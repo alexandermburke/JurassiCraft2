@@ -16,5 +16,7 @@ public interface IRecipe {
 
     void render(Minecraft mc, BookWiki bookWiki, BookWikiContainer.Recipe recipe, BookWikiGui gui, int x, int y, int mouseX, int mouseY);
 
-    void renderTooltip(Minecraft mc, BookWiki bookWiki, BookWikiContainer.Recipe recipe, int x, int y, int mouseX, int mouseY);
+    void renderTooltip(Minecraft mc, BookWiki bookWiki, BookWikiContainer.Recipe recipe, BookWikiGui gui, int x, int y, int mouseX, int mouseY);
+
+    int getHeight();
 }

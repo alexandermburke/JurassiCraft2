@@ -6,16 +6,15 @@ import net.ilexiconn.bookwiki.BookWiki;
 import net.ilexiconn.bookwiki.BookWikiContainer;
 import net.ilexiconn.bookwiki.api.BookWikiAPI;
 import net.ilexiconn.bookwiki.api.IComponent;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
-import net.minecraft.util.Tuple;
+import net.minecraft.util.*;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
@@ -121,7 +120,7 @@ public class BookWikiGui extends GuiScreen {
                 y = height / 2 - 180 / 2 + 14 + fontRendererObj.FONT_HEIGHT * (i - 16);
             }
             for (IComponent component : BookWikiAPI.getComponents()) {
-                Matcher matcher = Pattern.compile("<" + component.getID() + ":[a-zA-Z.:*_-]*>").matcher(line);
+                Matcher matcher = Pattern.compile("<" + component.getID() + ":[a-zA-Z0-9.:*_-]*>").matcher(line);
                 while (matcher.find()) {
                     String group = matcher.group();
                     String arg = group.substring(3, group.length() - 1);
@@ -138,7 +137,7 @@ public class BookWikiGui extends GuiScreen {
         }
 
         for (Map.Entry<IComponent, Tuple<String, BlockPos>> entry : componentMap.entrySet()) {
-            entry.getKey().renderTooltip(mc, bookWiki, entry.getValue().getFirst(), entry.getValue().getSecond().getX(), entry.getValue().getSecond().getY(), mouseX, mouseY);
+            entry.getKey().renderTooltip(mc, bookWiki, entry.getValue().getFirst(), this, entry.getValue().getSecond().getX(), entry.getValue().getSecond().getY(), mouseX, mouseY);
         }
 
         if (hover != null) {
@@ -182,11 +181,11 @@ public class BookWikiGui extends GuiScreen {
     public String getFormattedContent(BookWikiContainer.Page page) {
         String result = page.getContent();
         for (IComponent component : BookWikiAPI.getComponents()) {
-            Matcher matcher = Pattern.compile("<" + component.getID() + ":[a-zA-Z.:*_-]*>").matcher(result);
+            Matcher matcher = Pattern.compile("<" + component.getID() + ":[a-zA-Z0-9.:*_-]*>").matcher(result);
             while (matcher.find()) {
                 String group = matcher.group();
                 String arg = group.substring(3, group.length() - 1);
-                result = component.init(result, arg, group);
+                result = component.init(result, arg, group, bookWiki);
             }
         }
         return result;
@@ -250,5 +249,101 @@ public class BookWikiGui extends GuiScreen {
 
     public ResourceLocation getTexture() {
         return texture;
+    }
+
+    public void renderToolTip(Minecraft mc, ItemStack stack, int x, int y) {
+        List<String> list = stack.getTooltip(mc.thePlayer, mc.gameSettings.advancedItemTooltips);
+
+        for (int i = 0; i < list.size(); ++i) {
+            if (i == 0) {
+                list.set(i, stack.getRarity().rarityColor + list.get(i));
+            } else {
+                list.set(i, EnumChatFormatting.GRAY + list.get(i));
+            }
+        }
+
+        GlStateManager.disableRescaleNormal();
+        RenderHelper.disableStandardItemLighting();
+        GlStateManager.disableLighting();
+        GlStateManager.disableDepth();
+        int i = 0;
+
+        for (String s : list) {
+            int j = mc.fontRendererObj.getStringWidth(s);
+            if (j > i) {
+                i = j;
+            }
+        }
+
+        int l1 = x + 12;
+        int i2 = y - 12;
+        int k = 8;
+
+        if (list.size() > 1) {
+            k += 2 + (list.size() - 1) * 10;
+        }
+
+        zLevel = 300.0F;
+        int l = -267386864;
+        drawGradientRect(l1 - 3, i2 - 4, l1 + i + 3, i2 - 3, l, l);
+        drawGradientRect(l1 - 3, i2 + k + 3, l1 + i + 3, i2 + k + 4, l, l);
+        drawGradientRect(l1 - 3, i2 - 3, l1 + i + 3, i2 + k + 3, l, l);
+        drawGradientRect(l1 - 4, i2 - 3, l1 - 3, i2 + k + 3, l, l);
+        drawGradientRect(l1 + i + 3, i2 - 3, l1 + i + 4, i2 + k + 3, l, l);
+        int i1 = 1347420415;
+        int j1 = (i1 & 16711422) >> 1 | i1 & -16777216;
+        drawGradientRect(l1 - 3, i2 - 3 + 1, l1 - 3 + 1, i2 + k + 3 - 1, i1, j1);
+        drawGradientRect(l1 + i + 2, i2 - 3 + 1, l1 + i + 3, i2 + k + 3 - 1, i1, j1);
+        drawGradientRect(l1 - 3, i2 - 3, l1 + i + 3, i2 - 3 + 1, i1, i1);
+        drawGradientRect(l1 - 3, i2 + k + 2, l1 + i + 3, i2 + k + 3, j1, j1);
+        zLevel = 0.0F;
+
+        for (int k1 = 0; k1 < list.size(); ++k1) {
+            String s1 = list.get(k1);
+            mc.fontRendererObj.drawStringWithShadow(s1, (float) l1, (float) i2, -1);
+            if (k1 == 0) {
+                i2 += 2;
+            }
+            i2 += 10;
+        }
+
+        GlStateManager.enableLighting();
+        GlStateManager.enableDepth();
+        RenderHelper.enableStandardItemLighting();
+        GlStateManager.enableRescaleNormal();
+    }
+
+    public void drawHoveringText(String text, int x, int y, FontRenderer font) {
+        GlStateManager.disableRescaleNormal();
+        RenderHelper.disableStandardItemLighting();
+        GlStateManager.disableLighting();
+        GlStateManager.disableDepth();
+        int i = font.getStringWidth(text);
+
+        int l1 = x + 12;
+        int i2 = y - 12;
+        int k = 8;
+
+        zLevel = 300.0F;
+        int l = -267386864;
+        this.drawGradientRect(l1 - 3, i2 - 4, l1 + i + 3, i2 - 3, l, l);
+        this.drawGradientRect(l1 - 3, i2 + k + 3, l1 + i + 3, i2 + k + 4, l, l);
+        this.drawGradientRect(l1 - 3, i2 - 3, l1 + i + 3, i2 + k + 3, l, l);
+        this.drawGradientRect(l1 - 4, i2 - 3, l1 - 3, i2 + k + 3, l, l);
+        this.drawGradientRect(l1 + i + 3, i2 - 3, l1 + i + 4, i2 + k + 3, l, l);
+        int i1 = 1347420415;
+        int j1 = (i1 & 16711422) >> 1 | i1 & -16777216;
+        this.drawGradientRect(l1 - 3, i2 - 3 + 1, l1 - 3 + 1, i2 + k + 3 - 1, i1, j1);
+        this.drawGradientRect(l1 + i + 2, i2 - 3 + 1, l1 + i + 3, i2 + k + 3 - 1, i1, j1);
+        this.drawGradientRect(l1 - 3, i2 - 3, l1 + i + 3, i2 - 3 + 1, i1, i1);
+        this.drawGradientRect(l1 - 3, i2 + k + 2, l1 + i + 3, i2 + k + 3, j1, j1);
+        zLevel = 0.0F;
+
+        font.drawStringWithShadow(text, (float) l1, (float) i2, -1);
+
+        GlStateManager.enableLighting();
+        GlStateManager.enableDepth();
+        RenderHelper.enableStandardItemLighting();
+        GlStateManager.enableRescaleNormal();
     }
 }

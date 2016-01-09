@@ -20,7 +20,7 @@ public class ColorComponent extends Gui implements IComponent {
     }
 
     @Override
-    public String init(String string, String arg, String group) {
+    public String init(String string, String arg, String group, BookWiki bookWiki) {
         EnumChatFormatting formatting = EnumChatFormatting.getValueByName(arg.toUpperCase());
         if (formatting != null) {
             string = string.replace(group, formatting + "");
@@ -34,7 +34,7 @@ public class ColorComponent extends Gui implements IComponent {
     }
 
     @Override
-    public void renderTooltip(Minecraft mc, BookWiki bookWiki, String arg, int x, int y, int mouseX, int mouseY) {
+    public void renderTooltip(Minecraft mc, BookWiki bookWiki, String arg, BookWikiGui gui, int x, int y, int mouseX, int mouseY) {
 
     }
 }
