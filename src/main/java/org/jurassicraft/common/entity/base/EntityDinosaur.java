@@ -963,10 +963,15 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
                 "\n    " +
                 ", food=" + metabolism.getFood() + " / " + metabolism.getMaxFood() + " (" + metabolism.getMaxFood() * 0.875 + ")" +
                 ", water=" + metabolism.getWater() + " / " + metabolism.getMaxWater() + " (" + metabolism.getMaxWater() * 0.875 + ")" +
-                ", eyeHeight=" + getEyeHeight() +
                 "\n    " +
                 ", pos=" + getPosition() +
+                ", eyePos=" + getPositionEyes(0.0F) +
+                ", eyeHeight=" + getEyeHeight() +
                 ", lookX=" + getLookHelper().getLookPosX() + ", lookY=" + getLookHelper().getLookPosY() + ", lookZ=" + getLookHelper().getLookPosZ() +
+                "\n    " +
+                ", width=" + width +
+                ", bb=" + getEntityBoundingBox() +
+
 //                ", genetics=" + genetics +
 //                ", geneticsQuality=" + geneticsQuality +
 //                ", currentAnim=" + currentAnim +

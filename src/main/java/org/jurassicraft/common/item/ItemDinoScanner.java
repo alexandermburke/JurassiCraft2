@@ -36,18 +36,22 @@ public class ItemDinoScanner extends Item
     @Override
     public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase target)
     {
-        if (target instanceof EntityDinosaur)
+        if (target instanceof EntityDinosaur && !player.getEntityWorld().isRemote)
         {
             EntityDinosaur dinosaur = (EntityDinosaur) target;
 
-            if (GuiScreen.isShiftKeyDown())
+            // NOTE: Shift key is already used for some sort of inventory thing.
+            // Command key on mac
+            if (GuiScreen.isCtrlKeyDown())
             {
                 int food = dinosaur.getMetabolism().getFood();
-                dinosaur.getMetabolism().setFood(food - 1000);
+                dinosaur.getMetabolism().setFood(food - 5000);
+                LOGGER.info("food: " + dinosaur.getMetabolism().getFood() + "/" + dinosaur.getMetabolism().getMaxFood() +
+                        "(" + (dinosaur.getMetabolism().getMaxFood() * 0.875) + "/" +
+                              (dinosaur.getMetabolism().getMaxFood() * 0.25) + ")" );
             }
             else
             {
-                LOGGER.info("Player Pos: " + player.getPosition());
                 dinosaur.writeStatsToLog();
             }
 

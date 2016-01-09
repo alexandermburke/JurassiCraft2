@@ -4,6 +4,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Copyright 2016 Timeless Mod Team.
@@ -15,12 +17,27 @@ public class BlockBreaker
     // This is a base factor use to adjust break time.
     public static final float BASE_BREAK_FACTOR = 2.5F;
 
-    public BlockBreaker(World world, Entity entity, BlockPos pos)
+    /**
+     * Constructs a block breaker that used to breaks blocks over time.
+     * @param entity Entity doing the breaking.
+     * @param digSpeed The speed of breaking.  See {@link #breakSeconds(World, double, BlockPos) } for details.
+     * @param pos The block to break.
+     * @param minSeconds The minimum amount of seconds to break.
+     */
+    public BlockBreaker(Entity entity, double digSpeed, BlockPos pos, double minSeconds)
     {
-        _world = world;
+        _world = entity.getEntityWorld();
         _entityID = entity.getEntityId();
         _pos = pos;
-        _ticksNeeded = (int)(breakSeconds(world, _entityID, pos) * 20);
+        _ticksNeeded = (int) Math.max(breakSeconds(_world, digSpeed, pos), minSeconds) * 20;
+    }
+
+    /**
+     * @return The number of ticks left to break;
+     */
+    public int ticksLeft()
+    {
+        return _ticksNeeded - _ticksDone;
     }
 
     /**
@@ -42,13 +59,13 @@ public class BlockBreaker
      * @param pos The pos of the block to dig.
      * @return The number of seconds to break.
      */
-    public static float breakSeconds(World world, float digSpeed, BlockPos pos)
+    public static double breakSeconds(World world, double digSpeed, BlockPos pos)
     {
-
         IBlockState state = world.getBlockState(pos);
-        float getHardness = state.getBlock().getBlockHardness(world, pos);
+        float hardness = state.getBlock().getBlockHardness(world, pos);
 
-        return (BASE_BREAK_FACTOR * getHardness) / (digSpeed) ;
+        LOGGER.info("hardness=" + hardness + ", for=" + state.getBlock().getUnlocalizedName());
+        return (BASE_BREAK_FACTOR * hardness) / (digSpeed) ;
     }
 
     /**
@@ -67,7 +84,7 @@ public class BlockBreaker
             this._previousTicksDone = i;
         }
 
-        return (_ticksDone < _ticksNeeded);
+        return (_ticksDone > _ticksNeeded);
     }
 
     /**
@@ -80,6 +97,17 @@ public class BlockBreaker
         _world.sendBlockBreakProgress(_entityID, _pos, 0);
     }
 
+    @Override
+    public String toString()
+    {
+        return "BlockBreaker{" +
+                "_pos=" + _pos +
+                ", _ticksNeeded=" + _ticksNeeded +
+                ", _entityID=" + _entityID +
+                ", _ticksDone=" + _ticksDone +
+                '}';
+    }
+
     private final World _world;
 
     private final BlockPos _pos;
@@ -88,4 +116,6 @@ public class BlockBreaker
 
     private int _ticksDone;
     private int _previousTicksDone;
+
+    private static final Logger LOGGER = LogManager.getLogger();
 }
