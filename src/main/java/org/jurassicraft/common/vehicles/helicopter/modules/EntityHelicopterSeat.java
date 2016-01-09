@@ -30,22 +30,25 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
     public EntityHelicopterSeat(World worldIn)
     {
         super(worldIn);
-        setEntityBoundingBox(AxisAlignedBB.fromBounds(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY));
+        setEntityBoundingBox(createBoundingBox());
         noClip = true;
         parentID = UUID.randomUUID();
         sitedRider = true;
     }
 
+    private AxisAlignedBB createBoundingBox() {
+        return AxisAlignedBB.fromBounds(posX,posY,posZ,posX,posY,posZ);
+    }
+
     public EntityHelicopterSeat(float dist, int index, EntityHelicopterBase parent, boolean sitedRider)
     {
         super(parent.getEntityWorld());
-        setEntityBoundingBox(AxisAlignedBB.fromBounds(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY));
+        setEntityBoundingBox(createBoundingBox());
         this.dist = dist;
         this.index = index;
         this.parent = checkNotNull(parent, "parent");
         parentID = parent.getHeliID();
         noClip = true;
-        resetPos();
         this.sitedRider = sitedRider;
     }
 
@@ -67,27 +70,25 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
         }
         if (parent != null)
         {
-            if(parent.getSeat(index) != this)
-            {
-                setDead();
-                System.out.println("deads");
-            }
             float angle = parent.rotationYaw;
 
-            if (parent.isDead)
+            resetPos();
+            if(parent.getSeat(index) != this && !worldObj.isRemote)
+            {
+                worldObj.removeEntity(this);
+                System.out.println("deads");
+            }
+            if (parent.isDead && !worldObj.isRemote)
             {
                 System.out.println("KILLED");
-                setDead();
-            }
-            else
-            {
-                resetPos();
+                worldObj.removeEntity(this);
             }
         }
         else
         {
             System.out.println("no parent :c " + parentID);
         }
+        setEntityBoundingBox(createBoundingBox());
     }
 
     public void resetPos()
@@ -99,7 +100,12 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
         this.posX = parent.posX + nx;
         this.posY = parent.posY + ny + 0.4f;
         this.posZ = parent.posZ + nz;
-   //     System.out.println(">> new pos: " + posX + ", " + posY + ", " + posZ);
+        if(Double.isNaN(posX) || Double.isNaN(posY) || Double.isNaN(posZ)) {
+            posX = lastTickPosX;
+            posY = lastTickPosY;
+            posZ = lastTickPosZ;
+        }
+        System.out.println(">> new pos: " + posX + ", " + posY + ", " + posZ);
     }
 
     @Override
@@ -176,6 +182,7 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
         ByteBufUtils.writeUTF8String(buffer, parentID.toString());
         buffer.writeFloat(dist);
         buffer.writeBoolean(sitedRider);
+        buffer.writeInt(index);
     }
 
     @Override
@@ -184,6 +191,7 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
         parentID = UUID.fromString(ByteBufUtils.readUTF8String(additionalData));
         dist = additionalData.readFloat();
         sitedRider = additionalData.readBoolean();
+        index = additionalData.readInt();
     }
 
     @Override
