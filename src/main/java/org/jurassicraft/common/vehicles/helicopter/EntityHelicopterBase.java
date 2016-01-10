@@ -1,5 +1,7 @@
 package org.jurassicraft.common.vehicles.helicopter;
 
+import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -9,6 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.EntitySelectors;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
@@ -27,6 +31,7 @@ import org.jurassicraft.common.vehicles.helicopter.modules.HelicopterDoor;
 import org.jurassicraft.common.vehicles.helicopter.modules.HelicopterMinigun;
 import org.jurassicraft.common.vehicles.helicopter.modules.HelicopterModuleSpot;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -84,8 +89,7 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
         for (int i = 0; i < seats.length; i++)
         {
             float distance = i == 0 ? 1.5f : 0; // TODO: Better way to define position
-            //seats[i] = new EntityHelicopterSeat(distance, i, this, i == 0);
-            seats[i] = new EntityHelicopterSeat(distance, i, this, true);
+            seats[i] = new EntityHelicopterSeat(distance, i, this);
             worldObj.spawnEntityInWorld(seats[i]);
         }
         setID(UUID.randomUUID());
@@ -203,6 +207,8 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
 
         System.out.println("wrote heliID=" + heliID);
     }
+
+    // apparently up to the entity to update its position given the motion
 
     @Override
     public void onLivingUpdate()
@@ -444,11 +450,6 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     public boolean canBePushed()
     {
         return false;
-    }
-
-    public void collideWithNearbyEntities()
-    {
-
     }
 
     public float getRoll()

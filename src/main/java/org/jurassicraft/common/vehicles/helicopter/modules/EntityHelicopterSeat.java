@@ -21,7 +21,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpawnData
 {
-    private boolean sitedRider;
     private UUID parentID;
     private float dist;
     private int index;
@@ -33,7 +32,6 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
         setEntityBoundingBox(createBoundingBox());
         noClip = true;
         parentID = UUID.randomUUID();
-        sitedRider = true;
     }
 
     private AxisAlignedBB createBoundingBox()
@@ -41,7 +39,7 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
         return AxisAlignedBB.fromBounds(posX, posY, posZ, posX, posY, posZ);
     }
 
-    public EntityHelicopterSeat(float dist, int index, EntityHelicopterBase parent, boolean sitedRider)
+    public EntityHelicopterSeat(float dist, int index, EntityHelicopterBase parent)
     {
         super(parent.getEntityWorld());
         setEntityBoundingBox(createBoundingBox());
@@ -50,7 +48,6 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
         this.parent = checkNotNull(parent, "parent");
         parentID = parent.getHeliID();
         noClip = true;
-        this.sitedRider = sitedRider;
     }
 
     @Override
@@ -96,18 +93,17 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
     {
         float nx = -MathHelper.sin(parent.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(parent.rotationPitch / 180.0F * (float) Math.PI) * dist;
         float nz = MathHelper.cos(parent.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(parent.rotationPitch / 180.0F * (float) Math.PI) * dist;
-        float ny = -MathHelper.sin((parent.rotationPitch)) / 180.0F * (float) Math.PI * dist;
+        float ny = MathHelper.sin((parent.rotationPitch)/ 180.0F * (float) Math.PI) * dist;
 
-        this.posX = parent.posX + nx;
-        this.posY = parent.posY + ny + 0.4f;
-        this.posZ = parent.posZ + nz;
+        this.posX = parent.posX + nx - (parent.lastTickPosX-parent.posX);
+        this.posY = parent.posY + ny + 0.4f - (parent.lastTickPosY-parent.posY);
+        this.posZ = parent.posZ + nz - (parent.lastTickPosZ-parent.posZ);
         if (Double.isNaN(posX) || Double.isNaN(posY) || Double.isNaN(posZ))
         {
             posX = lastTickPosX;
             posY = lastTickPosY;
             posZ = lastTickPosZ;
         }
-        System.out.println(">> new pos: " + posX + ", " + posY + ", " + posZ);
     }
 
     @Override
@@ -115,7 +111,6 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
     {
         dist = tagCompound.getFloat("dist");
         index = tagCompound.getInteger("index");
-        sitedRider = tagCompound.getBoolean("sitedRider");
         parentID = UUID.fromString(tagCompound.getString("heliID"));
     }
 
@@ -146,7 +141,6 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
     {
         tagCompound.setFloat("dist", dist);
         tagCompound.setInteger("index", index);
-        tagCompound.setBoolean("sitedRider", sitedRider);
         tagCompound.setString("heliID", parentID.toString());
     }
 
@@ -183,7 +177,6 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
     {
         ByteBufUtils.writeUTF8String(buffer, parentID.toString());
         buffer.writeFloat(dist);
-        buffer.writeBoolean(sitedRider);
         buffer.writeInt(index);
     }
 
@@ -192,13 +185,6 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
     {
         parentID = UUID.fromString(ByteBufUtils.readUTF8String(additionalData));
         dist = additionalData.readFloat();
-        sitedRider = additionalData.readBoolean();
         index = additionalData.readInt();
-    }
-
-    @Override
-    public boolean shouldRiderSit()
-    {
-        return sitedRider;
     }
 }
