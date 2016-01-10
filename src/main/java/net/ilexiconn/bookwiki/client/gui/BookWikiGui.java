@@ -6,6 +6,7 @@ import net.ilexiconn.bookwiki.BookWiki;
 import net.ilexiconn.bookwiki.BookWikiContainer;
 import net.ilexiconn.bookwiki.api.BookWikiAPI;
 import net.ilexiconn.bookwiki.api.IComponent;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.FontRenderer;
@@ -110,7 +111,7 @@ public class BookWikiGui extends GuiScreen {
         }
 
         List<String> lines = Lists.newArrayList(splitIntoLines(getFormattedContent(currentPage), 120));
-        Map<IComponent, Tuple<String, BlockPos>> componentMap = Maps.newHashMap();
+        Map<IComponent, List<Tuple<String, BlockPos>>> componentMap = Maps.newHashMap();
         for (int i = 0; i < lines.size(); i++) {
             String line = lines.get(i);
             int x = width / 2 - 292 / 2 + 16;
@@ -124,7 +125,17 @@ public class BookWikiGui extends GuiScreen {
                 while (matcher.find()) {
                     String group = matcher.group();
                     String arg = group.substring(3, group.length() - 1);
-                    componentMap.put(component, new Tuple<String, BlockPos>(arg, new BlockPos(x, y, 0)));
+
+                    List<Tuple<String, BlockPos>> componentsForType = componentMap.get(component);
+
+                    if (componentsForType == null)
+                    {
+                        componentsForType = new ArrayList<Tuple<String, BlockPos>>();
+                    }
+
+                    componentsForType.add(new Tuple<String, BlockPos>(arg, new BlockPos(x, y, 0)));
+
+                    componentMap.put(component, componentsForType);
                     line = line.replace(group, "");
                 }
             }
@@ -132,12 +143,22 @@ public class BookWikiGui extends GuiScreen {
             fontRendererObj.drawString(line, x, y, 0x000);
         }
 
-        for (Map.Entry<IComponent, Tuple<String, BlockPos>> entry : componentMap.entrySet()) {
-            entry.getKey().render(mc, bookWiki, entry.getValue().getFirst(), this, entry.getValue().getSecond().getX(), entry.getValue().getSecond().getY(), mouseX, mouseY);
+        for (Map.Entry<IComponent, List<Tuple<String, BlockPos>>> entry : componentMap.entrySet()) {
+            List<Tuple<String, BlockPos>> tuples = entry.getValue();
+            IComponent component = entry.getKey();
+            for (Tuple<String, BlockPos> tuple : tuples) {
+                BlockPos blockPos = tuple.getSecond();
+                component.render(mc, bookWiki, tuple.getFirst(), this, blockPos.getX(), blockPos.getY(), mouseX, mouseY);
+            }
         }
 
-        for (Map.Entry<IComponent, Tuple<String, BlockPos>> entry : componentMap.entrySet()) {
-            entry.getKey().renderTooltip(mc, bookWiki, entry.getValue().getFirst(), this, entry.getValue().getSecond().getX(), entry.getValue().getSecond().getY(), mouseX, mouseY);
+        for (Map.Entry<IComponent, List<Tuple<String, BlockPos>>> entry : componentMap.entrySet()) {
+            List<Tuple<String, BlockPos>> tuples = entry.getValue();
+            IComponent component = entry.getKey();
+            for (Tuple<String, BlockPos> tuple : tuples) {
+                BlockPos blockPos = tuple.getSecond();
+                component.renderTooltip(mc, bookWiki, tuple.getFirst(), this, blockPos.getX(), blockPos.getY(), mouseX, mouseY);
+            }
         }
 
         if (hover != null) {
