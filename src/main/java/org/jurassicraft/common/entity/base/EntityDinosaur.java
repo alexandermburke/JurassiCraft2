@@ -73,9 +73,8 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
     private static final int WATCHER_IS_CARCASS = 25;
     private static final int WATCHER_AGE = 26;
-    private static final int WATCHER_GROWTH_OFFSET = 27;
-    private static final int WATCHER_HAS_TRACKER = 28;
-    private static final int WATCHER_IS_SLEEPING = 29;
+    private static final int WATCHER_HAS_TRACKER = 27;
+    private static final int WATCHER_IS_SLEEPING = 28;
 
     private MetabolismContainer metabolism;
 
@@ -125,9 +124,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         goBackToSleep = true;
 
         ignoreFrustumCheck = true; // stops dino disappearing when hitbox goes off screen
-
-        updateCreatureData();
-        adjustHitbox();
     }
 
     public boolean shouldSleep()
@@ -286,7 +282,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
         dataWatcher.addObject(WATCHER_IS_CARCASS, 0);
         dataWatcher.addObject(WATCHER_AGE, 0);
-        dataWatcher.addObject(WATCHER_GROWTH_OFFSET, 0);
         dataWatcher.addObject(WATCHER_HAS_TRACKER, 0);
         dataWatcher.addObject(WATCHER_IS_SLEEPING, 0);
     }
@@ -310,8 +305,8 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
         getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(newHealth);
         getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(transitionFromAge(dinosaur.getBabySpeed(), dinosaur.getAdultSpeed()));
-        getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(transitionFromAge(dinosaur.getBabyKnockback(), dinosaur.getAdultKnockback()));
-
+//        getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(transitionFromAge(dinosaur.getBabyKnockback(), dinosaur.getAdultKnockback()));
+//TODO
         // adjustHitbox();
 
         getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(transitionFromAge(dinosaur.getBabyStrength(), dinosaur.getAdultStrength()));
@@ -396,8 +391,6 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
                 updateCreatureData();
             }
 
-            adjustHitbox();
-
             updateGrowth();
 
             metabolism.update();
@@ -406,17 +399,12 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
     private void updateGrowth()
     {
-        if (!this.isDead && ticksExisted % 8 == 0)
+        if (!this.isDead && ticksExisted % 8 == 0 && !worldObj.isRemote)
         {
             if (worldObj.getGameRules().getBoolean("dinoGrowth"))
             {
                 dinosaurAge += Math.min(growthSpeedOffset, 960) + 1;
                 metabolism.decreaseFood((int) ((Math.min(growthSpeedOffset, 960) + 1) * 0.1));
-            }
-
-            if (dinosaurAge % 20 == 0)
-            {
-                updateCreatureData();
             }
 
             if (growthSpeedOffset > 0)
@@ -440,39 +428,27 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
 
         if (!worldObj.isRemote)
         {
-            if (prevAge != dinosaurAge)
-            {
-                dataWatcher.updateObject(WATCHER_AGE, dinosaurAge);
-                prevAge = dinosaurAge;
-            }
+            dataWatcher.updateObject(WATCHER_AGE, dinosaurAge);
 
-            dataWatcher.updateObject(WATCHER_GROWTH_OFFSET, growthSpeedOffset);
             dataWatcher.updateObject(WATCHER_HAS_TRACKER, hasTracker ? 1 : 0);
             dataWatcher.updateObject(WATCHER_IS_SLEEPING, isSleeping ? 1 : 0);
-        }
-        else
-        {
-            int age = dataWatcher.getWatchableObjectInt(WATCHER_AGE);
 
-            if (age != dinosaurAge)
-            {
-                updateCreatureData();
-                adjustHitbox();
-                dinosaurAge = age;
-            }
-
-            growthSpeedOffset = dataWatcher.getWatchableObjectInt(WATCHER_GROWTH_OFFSET);
-            hasTracker = dataWatcher.getWatchableObjectInt(WATCHER_HAS_TRACKER) == 1;
-            isSleeping = dataWatcher.getWatchableObjectInt(WATCHER_IS_SLEEPING) == 1;
-        }
-
-        if (!worldObj.isRemote)
-        {
             dataWatcher.updateObject(WATCHER_IS_CARCASS, isCarcass ? 1 : 0);
         }
         else
         {
+            dinosaurAge = dataWatcher.getWatchableObjectInt(WATCHER_AGE);
+
+            hasTracker = dataWatcher.getWatchableObjectInt(WATCHER_HAS_TRACKER) == 1;
+            isSleeping = dataWatcher.getWatchableObjectInt(WATCHER_IS_SLEEPING) == 1;
+
             isCarcass = dataWatcher.getWatchableObjectInt(WATCHER_IS_CARCASS) == 1;
+        }
+
+        if (ticksExisted % 16 == 0)
+        {
+            updateCreatureData();
+            adjustHitbox();
         }
 
         if (isCarcass)
@@ -505,6 +481,8 @@ public abstract class EntityDinosaur extends EntityCreature implements IEntityAd
         {
             animTick++;
         }
+
+        prevAge = dinosaurAge;
     }
 
     @Override
