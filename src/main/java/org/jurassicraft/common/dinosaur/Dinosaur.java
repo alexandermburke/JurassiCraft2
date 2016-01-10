@@ -20,6 +20,28 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
     private Map<EnumGrowthStage, ResourceLocation> maleTextures = new HashMap<EnumGrowthStage, ResourceLocation>();
     private Map<EnumGrowthStage, ResourceLocation> femaleTextures = new HashMap<EnumGrowthStage, ResourceLocation>();
 
+    private String name;
+    private Class<? extends EntityDinosaur> dinoClazz;
+    private int primaryEggColorMale, primaryEggColorFemale;
+    private int secondaryEggColorMale, secondaryEggColorFemale;
+    private EnumTimePeriod timePeriod;
+    private double babyHealth, adultHealth;
+    private double babyStrength, adultStrength;
+    private double babySpeed, adultSpeed;
+    private float babySizeX, adultSizeX;
+    private float babySizeY, adultSizeY;
+    private float babyEyeHeight, adultEyeHeight;
+    private double attackSpeed = 1.0;
+    private boolean shouldRegister = true;
+    private boolean isMarineAnimal;
+    private boolean isMammal;
+    private int storage;
+    private int overlayCount;
+    private EnumDiet diet;
+    private EnumSleepingSchedule sleepingSchedule = EnumSleepingSchedule.DIURNAL;
+    private String[] bones;
+    private int maximumAge;
+
     public void init()
     {
         String dinosaurName = getName().toLowerCase().replaceAll(" ", "_");
@@ -66,45 +88,213 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
         }
     }
 
-    public abstract String getName();
+    public void setName(String name)
+    {
+        this.name = name;
+    }
 
-    public abstract Class<? extends EntityDinosaur> getDinosaurClass();
+    public void setDinosaurClass(Class<? extends EntityDinosaur> clazz)
+    {
+        this.dinoClazz = clazz;
+    }
 
-    public abstract int getEggPrimaryColorMale();
+    public void setEggColorMale(int primary, int secondary)
+    {
+        this.primaryEggColorMale = primary;
+        this.secondaryEggColorMale = secondary;
+    }
 
-    public abstract int getEggSecondaryColorMale();
+    public void setEggColorFemale(int primary, int secondary)
+    {
+        this.primaryEggColorFemale = primary;
+        this.secondaryEggColorFemale = secondary;
+    }
 
-    public abstract int getEggPrimaryColorFemale();
+    public void setTimePeriod(EnumTimePeriod timePeriod)
+    {
+        this.timePeriod = timePeriod;
+    }
 
-    public abstract int getEggSecondaryColorFemale();
+    public void setHealth(double baby, double adult)
+    {
+        this.babyHealth = baby;
+        this.adultHealth = adult;
+    }
 
-    public abstract EnumTimePeriod getPeriod();
+    public void setStrength(double baby, double adult)
+    {
+        this.babyStrength = baby;
+        this.adultStrength = adult;
+    }
 
-    public abstract double getBabyHealth();
+    public void setSpeed(double baby, double adult)
+    {
+        this.babySpeed = baby;
+        this.adultSpeed = adult;
+    }
 
-    public abstract double getAdultHealth();
+    public void setSizeX(float baby, float adult)
+    {
+        this.babySizeX = baby;
+        this.adultSizeX = adult;
+    }
 
-    public abstract double getBabySpeed();
+    public void setSizeY(float baby, float adult)
+    {
+        this.babySizeY = baby;
+        this.adultSizeY = adult;
+    }
 
-    public abstract double getAdultSpeed();
+    public void setEyeHeight(float baby, float adult)
+    {
+        this.babyEyeHeight = baby;
+        this.adultEyeHeight = adult;
+    }
 
-    public abstract double getBabyStrength();
+    public void disableRegistry()
+    {
+        this.shouldRegister = false;
+    }
 
-    public abstract double getAdultStrength();
+    public void setMarineAnimal(boolean marineAnimal)
+    {
+        this.isMarineAnimal = marineAnimal;
+    }
 
-    public abstract float getBabySizeX();
+    public void setMammal(boolean isMammal)
+    {
+        this.isMammal = isMammal;
+    }
 
-    public abstract float getBabySizeY();
+    public void setAttackSpeed(double attackSpeed)
+    {
+        this.attackSpeed = attackSpeed;
+    }
 
-    public abstract float getAdultSizeX();
+    public void setStorage(int storage)
+    {
+        this.storage = storage;
+    }
 
-    public abstract float getAdultSizeY();
+    public void setOverlayCount(int count)
+    {
+        this.overlayCount = count;
+    }
 
-    public abstract float getBabyEyeHeight();
+    public void setDiet(EnumDiet diet)
+    {
+        this.diet = diet;
+    }
 
-    public abstract float getAdultEyeHeight();
+    public void setSleepingSchedule(EnumSleepingSchedule sleepingSchedule)
+    {
+        this.sleepingSchedule = sleepingSchedule;
+    }
 
-    public abstract int getMaximumAge();
+    public void setBones(String... bones)
+    {
+        this.bones = bones;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public Class<? extends EntityDinosaur> getDinosaurClass()
+    {
+        return dinoClazz;
+    }
+
+    public int getEggPrimaryColorMale()
+    {
+        return primaryEggColorMale;
+    }
+
+    public int getEggSecondaryColorMale()
+    {
+        return secondaryEggColorMale;
+    }
+
+    public int getEggPrimaryColorFemale()
+    {
+        return primaryEggColorFemale;
+    }
+
+    public int getEggSecondaryColorFemale()
+    {
+        return secondaryEggColorFemale;
+    }
+
+    public EnumTimePeriod getPeriod()
+    {
+        return timePeriod;
+    }
+
+    public double getBabyHealth()
+    {
+        return babyHealth;
+    }
+
+    public double getAdultHealth()
+    {
+        return adultHealth;
+    }
+
+    public double getBabySpeed()
+    {
+        return babySpeed;
+    }
+
+    public double getAdultSpeed()
+    {
+        return adultSpeed;
+    }
+
+    public double getBabyStrength()
+    {
+        return babyStrength;
+    }
+
+    public double getAdultStrength()
+    {
+        return adultStrength;
+    }
+
+    public float getBabySizeX()
+    {
+        return babySizeX;
+    }
+
+    public float getBabySizeY()
+    {
+        return babySizeY;
+    }
+
+    public float getAdultSizeX()
+    {
+        return adultSizeX;
+    }
+
+    public float getAdultSizeY()
+    {
+        return adultSizeY;
+    }
+
+    public float getBabyEyeHeight()
+    {
+        return babyEyeHeight;
+    }
+
+    public float getAdultEyeHeight()
+    {
+        return adultEyeHeight;
+    }
+
+    public int getMaximumAge()
+    {
+        return maximumAge;
+    }
 
     public ResourceLocation getMaleTexture(EnumGrowthStage stage)
     {
@@ -118,12 +308,12 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
 
     public double getAttackSpeed()
     {
-        return 0.5D;
+        return attackSpeed;
     }
 
     public boolean shouldRegister()
     {
-        return true;
+        return shouldRegister;
     }
 
     protected String getDinosaurTexture(String subtype)
@@ -159,12 +349,12 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
 
     public boolean isMarineAnimal()
     {
-        return false;
+        return isMarineAnimal;
     }
 
     public boolean isMammal()
     {
-        return false;
+        return isMammal;
     }
 
     public int getLipids()
@@ -187,7 +377,10 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
         return 1500;
     }
 
-    public abstract int getStorage();
+    public int getStorage()
+    {
+        return storage;
+    }
 
     public ResourceLocation getOverlayTexture(EnumGrowthStage stage, int overlay)
     {
@@ -196,7 +389,7 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
 
     public int getOverlayCount()
     {
-        return 0;
+        return overlayCount;
     }
 
     public boolean useAllGrowthStages()
@@ -204,11 +397,20 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
         return false;
     }
 
-    public abstract EnumDiet getDiet();
+    public EnumDiet getDiet()
+    {
+        return diet;
+    }
 
-    public abstract EnumSleepingSchedule getSleepingSchedule();
+    public EnumSleepingSchedule getSleepingSchedule()
+    {
+        return sleepingSchedule;
+    }
 
-    public abstract String[] getBones();
+    public String[] getBones()
+    {
+        return bones;
+    }
 
     @Override
     public boolean equals(Object object)
@@ -219,5 +421,10 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
         }
 
         return false;
+    }
+
+    public void setMaximumAge(int age)
+    {
+        this.maximumAge = age;
     }
 }

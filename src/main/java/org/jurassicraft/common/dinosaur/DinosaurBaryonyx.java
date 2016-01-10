@@ -8,153 +8,24 @@ import org.jurassicraft.common.period.EnumTimePeriod;
 
 public class DinosaurBaryonyx extends Dinosaur
 {
-    @Override
-    public String getName()
+    public DinosaurBaryonyx()
     {
-        return "Baryonyx";
-    }
+        super();
 
-    @Override
-    public Class<? extends EntityDinosaur> getDinosaurClass()
-    {
-        return EntityBaryonyx.class;
-    }
-
-    @Override
-    public EnumTimePeriod getPeriod()
-    {
-        return EnumTimePeriod.CRETACEOUS;
-    }
-
-    @Override
-    public int getEggPrimaryColorMale()
-    {
-        return 0x567F4F;
-    }
-
-    @Override
-    public int getEggSecondaryColorMale()
-    {
-        return 0x13270F;
-    }
-
-    @Override
-    public int getEggPrimaryColorFemale()
-    {
-        return 0x9D9442;
-    }
-
-    @Override
-    public int getEggSecondaryColorFemale()
-    {
-        return 0x2A2405;
-    }
-
-    @Override
-    public double getBabyHealth()
-    {
-        return 5;
-    }
-
-    @Override
-    public double getAdultHealth()
-    {
-        return 30;
-    }
-
-    @Override
-    public double getBabySpeed()
-    {
-        return 0.45;
-    }
-
-    @Override
-    public double getAttackSpeed()
-    {
-        return 0.17;
-    }
-
-    @Override
-    public double getAdultSpeed()
-    {
-        return 0.40;
-    }
-
-    @Override
-    public double getBabyStrength()
-    {
-        return 1;
-    }
-
-    @Override
-    public double getAdultStrength()
-    {
-        return 10;
-    }
-
-    @Override
-    public int getMaximumAge()
-    {
-        return fromDays(55);
-    }
-
-    @Override
-    public float getBabyEyeHeight()
-    {
-        return 0.55F;
-    }
-
-    @Override
-    public float getAdultEyeHeight()
-    {
-        return 2.95F;
-    }
-
-    @Override
-    public float getBabySizeX()
-    {
-        return 0.35F;
-    }
-
-    @Override
-    public float getBabySizeY()
-    {
-        return 0.55F;
-    }
-
-    @Override
-    public float getAdultSizeX()
-    {
-        return 1.5F;
-    }
-
-    @Override
-    public float getAdultSizeY()
-    {
-        return 2.95F;
-    }
-
-    @Override
-    public int getStorage()
-    {
-        return 36;
-    }
-
-    @Override
-    public EnumDiet getDiet()
-    {
-        return EnumDiet.CARNIVORE;
-    }
-
-    @Override
-    public EnumSleepingSchedule getSleepingSchedule()
-    {
-        return EnumSleepingSchedule.DIURNAL;
-    }
-
-    @Override
-    public String[] getBones()
-    {
-        return new String[] { "skull", "tooth", "tail_vertebrae", "shoulder", "ribcage", "pelvis", "leg_vertebrae", "leg_bones", "claw", "arm_bones" };
+        this.setName("Baryonyx");
+        this.setDinosaurClass(EntityBaryonyx.class);
+        this.setTimePeriod(EnumTimePeriod.CRETACEOUS);
+        this.setEggColorMale(0x567F4F, 0x13270F);
+        this.setEggColorFemale(0x9D9442, 0x2A2405);
+        this.setHealth(5, 30);
+        this.setSpeed(0.45, 0.40);
+        this.setStrength(1, 10);
+        this.setMaximumAge(fromDays(55));
+        this.setEyeHeight(0.55F, 2.95F);
+        this.setSizeX(0.35F, 1.5F);
+        this.setSizeY(0.55F, 2.95F);
+        this.setStorage(36);
+        this.setDiet(EnumDiet.CARNIVORE);
+        this.setBones("skull", "tooth", "tail_vertebrae", "shoulder", "ribcage", "pelvis", "leg_vertebrae", "leg_bones", "claw", "arm_bones");
     }
 }

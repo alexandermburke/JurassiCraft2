@@ -8,153 +8,24 @@ import org.jurassicraft.common.period.EnumTimePeriod;
 
 public class DinosaurCearadactylus extends Dinosaur
 {
-    @Override
-    public String getName()
+    public DinosaurCearadactylus()
     {
-        return "Cearadactylus";
-    }
+        super();
 
-    @Override
-    public Class<? extends EntityDinosaur> getDinosaurClass()
-    {
-        return EntityCearadactylus.class;
-    }
-
-    @Override
-    public EnumTimePeriod getPeriod()
-    {
-        return EnumTimePeriod.CRETACEOUS;
-    }
-
-    @Override
-    public int getEggPrimaryColorMale()
-    {
-        return 0x64A0B3;
-    }
-
-    @Override
-    public int getEggSecondaryColorMale()
-    {
-        return 0x3B3937;
-    }
-
-    @Override
-    public int getEggPrimaryColorFemale()
-    {
-        return 0xB55252;
-    }
-
-    @Override
-    public int getEggSecondaryColorFemale()
-    {
-        return 0x4C423A;
-    }
-
-    @Override
-    public double getBabyHealth()
-    {
-        return 10;
-    }
-
-    @Override
-    public double getAdultHealth()
-    {
-        return 20;
-    }
-
-    @Override
-    public double getBabySpeed()
-    {
-        return 0.46;
-    }
-
-    @Override
-    public double getAttackSpeed()
-    {
-        return 0.17;
-    }
-
-    @Override
-    public double getAdultSpeed()
-    {
-        return 0.30;
-    }
-
-    @Override
-    public double getBabyStrength()
-    {
-        return 1;
-    }
-
-    @Override
-    public double getAdultStrength()
-    {
-        return 10;
-    }
-
-    @Override
-    public int getMaximumAge()
-    {
-        return fromDays(50);
-    }
-
-    @Override
-    public float getBabyEyeHeight()
-    {
-        return 0.45F;
-    }
-
-    @Override
-    public float getAdultEyeHeight()
-    {
-        return 1.45F;
-    }
-
-    @Override
-    public float getBabySizeX()
-    {
-        return 0.35F;
-    }
-
-    @Override
-    public float getBabySizeY()
-    {
-        return 0.45F;
-    }
-
-    @Override
-    public float getAdultSizeX()
-    {
-        return 1.5F;
-    }
-
-    @Override
-    public float getAdultSizeY()
-    {
-        return 1.55F;
-    }
-
-    @Override
-    public int getStorage()
-    {
-        return 27;
-    }
-
-    @Override
-    public EnumDiet getDiet()
-    {
-        return EnumDiet.CARNIVORE;
-    }
-
-    @Override
-    public EnumSleepingSchedule getSleepingSchedule()
-    {
-        return EnumSleepingSchedule.DIURNAL;
-    }
-
-    @Override
-    public String[] getBones()
-    {
-        return new String[] { "skull", "teeth", "wing_bones", "tail_vertebrae", "leg_bones", "pelvis" };
+        this.setName("Cearadactylus");
+        this.setDinosaurClass(EntityCearadactylus.class);
+        this.setTimePeriod(EnumTimePeriod.CRETACEOUS);
+        this.setEggColorMale(0x64A0B3, 0x3B3937);
+        this.setEggColorFemale(0xB55252, 0x4C423A);
+        this.setHealth(10, 20);
+        this.setSpeed(0.46, 0.30);
+        this.setStrength(1, 10);
+        this.setMaximumAge(fromDays(50));
+        this.setEyeHeight(0.45F, 1.45F);
+        this.setSizeX(0.35F, 1.5F);
+        this.setSizeY(0.45F, 1.55F);
+        this.setStorage(27);
+        this.setDiet(EnumDiet.CARNIVORE);
+        this.setBones("skull", "teeth", "wing_bones", "tail_vertebrae", "leg_bones", "pelvis");
     }
 }
