@@ -22,12 +22,12 @@
     },
 	{
       "id": "peat_and_moss_1",
-      "content": "If you spawn in or discover a Forest, Birch Forest, Flower Forest, Taiga, Mega Taiga, Jungle or Swampland biome, you will notice flat patches of Moss (roughly the same shape as Pressure Plates) growing on grass or other dirt variants. Moss is a small but hardy plant, and it can easily be mined and picked up by hand or basically any tool/item, although it is fastest with Shears. In Swampland biomes specifically, you will also find pockets or layers of Peat blocks among the Dirt, typically located just beneath the grass layer. You can mine these with any tool, although it is fastest with a Shovel. ",
+      "content": "<c:bold>Peat, and farming <c:bold>Moss\n\nIf you spawn in or discover a <c:italic>Forest<c:reset>, <c:italic>Birch Forest<c:reset>, <c:italic>Flower <c:italic>Forest<c:reset>, <c:italic>Taiga<c:reset>, <c:italic>Mega <c:italic>Taiga<c:reset>, <c:italic>Jungle<c:reset> or <c:italic>Swampland<c:reset> biome, you will notice flat patches of <c:italic>Moss<c:reset> (roughly the same shape as pressure plates) growing on grass or other dirt variants. Moss is a small but hardy plant, and it can easily be mined and picked up by hand or basically any tool/item, although it is fastest with <c:italic>Shears<c:reset>. In  <c:italic>Swampland<c:reset> biomes specifically, you will also find pockets or layers of <c:italic>Peat<c:reset> blocks among the dirt, typically located just beneath the grass layer. You can mine these with any tool, although it is fastest with a <c:italic>Shovel<c:reset>.",
       "category": "getting_started"
     },
 	{
 		"id": "peat_and_moss_2",
-		"content": "Once you have a decent amount of Peat, be careful where and how you place it! If you're in a Swampland biome, you can place it anywhere you want without consequences. However, in any other biome it'll soon dry out and turn into Dirt unless you keep it moist. Luckily, Peat obeys the same rules as Farmland, meaning that any Peat blocks within 4 blocks of water stay irrigated regardless of the biome they are in. Unlike Farmland however, Peat blocks won't be damaged if you jump on them.",
+		"content": "Once you have a decent amount of <c:italic>Peat<c:reset>, <c:underline>be careful where and <c:underline>how you place it!<c:reset> If you're in a <c:italic>Swampland<c:reset> biome, you can place it anywhere you want without consequences. However, in any other biome it'll soon dry out and turn into dirt unless you keep it moist. Luckily, <c:italic>Peat<c:reset> obeys the same rules as farmland, meaning that any <c:italic>Peat<c:reset> blocks within 4 blocks of water stay irrigated regardless of the biome they are in. Unlike farmland however, <c:italic>Peat<c:reset> blocks won't be damaged if you jump on them.",
 		"category": "getting_started"
 	},
 	{
