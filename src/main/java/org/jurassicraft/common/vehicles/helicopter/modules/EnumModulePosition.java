@@ -14,7 +14,7 @@ public enum EnumModulePosition
             return vec.zCoord > 0.6;
         }
     }),
-    LEFT_SIZE(new Function<Vec3, Boolean>()
+    LEFT_SIDE(new Function<Vec3, Boolean>()
     {
         public Boolean apply(Vec3 vec)
         {

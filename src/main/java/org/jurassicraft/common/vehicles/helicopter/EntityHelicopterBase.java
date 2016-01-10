@@ -20,6 +20,7 @@ import net.timeless.unilib.utils.MutableVec3;
 import org.jurassicraft.JurassiCraft;
 import org.jurassicraft.common.message.MessageHelicopterDirection;
 import org.jurassicraft.common.message.MessageHelicopterEngine;
+import org.jurassicraft.common.message.MessageHelicopterModules;
 import org.jurassicraft.common.vehicles.helicopter.modules.EntityHelicopterSeat;
 import org.jurassicraft.common.vehicles.helicopter.modules.EnumModulePosition;
 import org.jurassicraft.common.vehicles.helicopter.modules.HelicopterDoor;
@@ -39,7 +40,7 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     private UUID heliID;
     public static final int ENGINE_RUNNING = 20;
     public static final int FRONT = EnumModulePosition.FRONT.ordinal();
-    public static final int LEFT_SIDE = EnumModulePosition.LEFT_SIZE.ordinal();
+    public static final int LEFT_SIDE = EnumModulePosition.LEFT_SIDE.ordinal();
     public static final int RIGHT_SIDE = EnumModulePosition.RIGHT_SIDE.ordinal();
     public static final float MAX_POWER = 80f;
     public static final float REQUIRED_POWER = MAX_POWER / 2f;
@@ -47,6 +48,7 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     private boolean engineRunning;
     private float enginePower;
     private MutableVec3 direction;
+    private boolean modulesSynced;
 
     public EntityHelicopterBase(World worldIn, UUID id)
     {
@@ -82,13 +84,14 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
         for (int i = 0; i < seats.length; i++)
         {
             float distance = i == 0 ? 1.5f : 0; // TODO: Better way to define position
-            seats[i] = new EntityHelicopterSeat(distance, i, this, i == 0);
+            //seats[i] = new EntityHelicopterSeat(distance, i, this, i == 0);
+            seats[i] = new EntityHelicopterSeat(distance, i, this, true);
             worldObj.spawnEntityInWorld(seats[i]);
         }
         setID(UUID.randomUUID());
         moduleSpots = new HelicopterModuleSpot[EnumModulePosition.values().length];
         moduleSpots[FRONT] = new HelicopterModuleSpot(EnumModulePosition.FRONT, this, 0);
-        moduleSpots[LEFT_SIDE] = new HelicopterModuleSpot(EnumModulePosition.LEFT_SIZE, this, (float) Math.PI);
+        moduleSpots[LEFT_SIDE] = new HelicopterModuleSpot(EnumModulePosition.LEFT_SIDE, this, (float) Math.PI);
         moduleSpots[RIGHT_SIDE] = new HelicopterModuleSpot(EnumModulePosition.RIGHT_SIDE, this, 0);
 
         direction = new MutableVec3(0, 1, 0);
@@ -98,7 +101,7 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     public void prepareDefaultModules()
     {
         syncModules = false;
-        getModuleSpot(EnumModulePosition.LEFT_SIZE).addModule(new HelicopterDoor());
+        getModuleSpot(EnumModulePosition.LEFT_SIDE).addModule(new HelicopterDoor());
         getModuleSpot(EnumModulePosition.RIGHT_SIDE).addModule(new HelicopterMinigun());
         syncModules = true;
     }
@@ -146,6 +149,8 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
             EnumModulePosition position = EnumModulePosition.valueOf(spotData.getString("position").toUpperCase());
             getModuleSpot(position).readFromNBT(spotData);
         }
+
+        modulesSynced = false;
         System.out.println("read heliID=" + heliID);
     }
 
@@ -202,6 +207,14 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     @Override
     public void onLivingUpdate()
     {
+        if(!modulesSynced && isServerWorld())
+        {
+            for(HelicopterModuleSpot spot : moduleSpots)
+            {
+                JurassiCraft.networkWrapper.sendToAll(new MessageHelicopterModules(getEntityId(), spot.getPosition(), spot));
+            }
+            modulesSynced = true;
+        }
         super.onLivingUpdate();
         fallDistance = 0f;
         ignoreFrustumCheck = true; // always draws the entity

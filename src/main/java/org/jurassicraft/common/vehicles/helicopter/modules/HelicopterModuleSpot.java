@@ -68,6 +68,7 @@ public class HelicopterModuleSpot
 
     public void readFromNBT(NBTTagCompound compound)
     {
+        System.out.println(">> "+compound);
         modules.clear();
         NBTTagList list = compound.getTagList("modules", Constants.NBT.TAG_COMPOUND);
         for (int i = 0; i < list.tagCount(); i++)
@@ -75,6 +76,7 @@ public class HelicopterModuleSpot
             NBTTagCompound moduleData = list.getCompoundTagAt(i);
             String id = moduleData.getString("id");
             HelicopterModule module = HelicopterModule.createFromID(id);
+            addModule(module);
             if (module == null)
             {
                 throw new IllegalArgumentException("Invalid module ID");
