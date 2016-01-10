@@ -6,7 +6,6 @@ import net.ilexiconn.bookwiki.BookWiki;
 import net.ilexiconn.bookwiki.BookWikiContainer;
 import net.ilexiconn.bookwiki.api.BookWikiAPI;
 import net.ilexiconn.bookwiki.api.IComponent;
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.FontRenderer;
@@ -125,16 +124,11 @@ public class BookWikiGui extends GuiScreen {
                 while (matcher.find()) {
                     String group = matcher.group();
                     String arg = group.substring(3, group.length() - 1);
-
                     List<Tuple<String, BlockPos>> componentsForType = componentMap.get(component);
-
-                    if (componentsForType == null)
-                    {
+                    if (componentsForType == null) {
                         componentsForType = new ArrayList<Tuple<String, BlockPos>>();
                     }
-
                     componentsForType.add(new Tuple<String, BlockPos>(arg, new BlockPos(x, y, 0)));
-
                     componentMap.put(component, componentsForType);
                     line = line.replace(group, "");
                 }

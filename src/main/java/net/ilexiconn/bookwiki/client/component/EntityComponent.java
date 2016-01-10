@@ -41,7 +41,9 @@ public class EntityComponent extends Gui implements IComponent {
         y += mc.fontRendererObj.FONT_HEIGHT;
         Gui.drawModalRectWithCustomSizedTexture(x, y, 346, 23, 54, 54, 512.0F, 512.0F);
         gui.startGlScissor(x, y, 54, 54);
-        GuiInventory.drawEntityOnScreen(x + 27, y + 47, 20, (float) (x + 27) - mouseX, (float) (y + 31) - mouseY, (EntityLivingBase) entity);
+        if (entity instanceof EntityLivingBase) {
+            GuiInventory.drawEntityOnScreen(x + 27, y + 47, 20, (float) (x + 27) - mouseX, (float) (y + 31) - mouseY, (EntityLivingBase) entity);
+        }
         gui.endGlScissor();
     }
 

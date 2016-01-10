@@ -42,7 +42,7 @@
     },
     {
       "id": "other",
-      "content": "Hey!<r:test>Bye!\n<s:minecraft:crafting_table>Nah don't.\n\n\n\n\n\ntest\n<r:test2>kek<e:Sheep>",
+      "content": "Hey!<r:test>Bye!\n<s:minecraft:crafting_table*64>Nah don't.\n\n\n\n\n\ntest\n<r:test2>kek<e:Sheep>",
       "category": "fossils"
     }
   ],
@@ -63,14 +63,14 @@
         "", "minecraft:dirt", "",
         "", "", ""
       ],
-      "result": "minecraft:diamond",
+      "result": "minecraft:diamond*64",
       "shapeless": true
     },
     {
       "id": "test2",
       "type": "furnace",
       "recipe": ["minecraft:diamond"],
-      "result": "minecraft:stick"
+      "result": "minecraft:stick*2"
     }
   ]
 }

@@ -126,9 +126,15 @@ public class BookWikiContainer {
                 for (int i = 0; i < recipeInstance.length; i++) {
                     String s = recipe[i];
                     if (!s.isEmpty()) {
+                        int stackSize = 1;
+                        if (s.contains("*")) {
+                            String[] s1 = s.split("\\*");
+                            s = s1[0];
+                            stackSize = Integer.parseInt(s1[1]);
+                        }
                         Item item = Item.getByNameOrId(s);
                         if (item != null) {
-                            recipeInstance[i] = new ItemStack(item);
+                            recipeInstance[i] = new ItemStack(item, stackSize);
                         } else {
                             BookWiki.logger.error("Can't find item or block with name " + s);
                             recipeInstance[i] = null; //TODO: Use a fallback item.
