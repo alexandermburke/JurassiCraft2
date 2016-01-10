@@ -278,6 +278,7 @@ public class JCRenderingRegistry
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.gypsum_bricks, "gypsum_bricks", "inventory");
         this.registerBlockRenderer(modelMesher, JCBlockRegistry.action_figure, "action_figure_block", "inventory");
 
+
 //        this.registerRenderSubBlock(JCBlockRegistry.bPlanks);
     }
 
@@ -342,6 +343,8 @@ public class JCRenderingRegistry
         this.registerItemRenderer(modelMesher, JCItemRegistry.amber_keychain, "amber_keychain", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.amber_cane, "amber_cane", "inventory");
         this.registerItemRenderer(modelMesher, JCItemRegistry.mr_dna_keychain, "mr_dna_keychain", "inventory");
+
+        this.registerItemRenderer(modelMesher, JCItemRegistry.dino_scanner, "dino_scanner", "inventory");
 
         int meta = 0;
 
