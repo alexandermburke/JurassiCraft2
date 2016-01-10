@@ -31,7 +31,17 @@
 	},
     {
       "id": "making_compost_1",
-      "content": "<c:bold>Making Compost\n\n<c:italic>Compost<c:reset> is one of the key ingredients of <c:italic>Plant Fertilizer<c:reset>. In order to make it, you will need a <c:italic>Compost Bin<c:reset>, which has the following recipe:",
+      "content": "<c:bold>Making Compost\n\n<c:italic>Compost<c:reset> is one of the key ingredients of <c:italic>Plant Fertilizer<c:reset>. In order to make it, you will need a <c:italic>Compost Bin<c:reset>, which has the following recipe: \n<r:compost_bin>The Compost Bin GUI has an input slot for <c:italic>Dirt<c:reset> blocks, an input slot for <c:italic>mushrooms<c:reset> or <c:italic>Mycelium<c:reset> blocks, a window with about 9 input slots for <c:italic>soft organic plant matter<c:reset> (sugar cane, vegetables, saplings, leaves, moss, seaweed, seeds, etc), and an output slot for Compost. In order to make Compost, the appropriate slots must",
+      "category": "getting_started"
+    },
+	{
+      "id": "making_compost_2",
+      "content": "have <c:underline>at least one dirt block, at least one mushroom, and at least three organic plant matter items<c:reset> (they can be the same type, or different). After a <c:italic>very<c:reset> long time time (about 1 Minecraft day), each portion of these things will be used up into 5x Compost items. Compost will become useful once you start propagating ancient plants...\n<c:bold>Making Agar:<c:reset>\n\nAgar is an essential thing to have when genetically engineering ancient plants. In order to make <c:italic>Agar Jelly<c:reset>, you will first need to find some <c:italic>Gracilaria seaweed<c:reset>. Luckily, this is pretty easy to find. It can either be found growing deep underwater, or much more rarely, be",
+      "category": "getting_started"
+    },
+	{
+      "id": "making_agar_2",
+      "content": "obtained as a random catch with a fishing rod. <c:italic>Gracilaria seaweed<c:reset> can be planted on <c:italic>Sand, Gravel, Clay (soft)<c:reset>, or any dirt variant. If planted at level 62 or lower, it will spread over time like a mushroom (though somewhat faster, and regardless of light level), meaning that if you have a big/deep enough pool or bay handy, you can easily farm it! Once you’ve collected or farmed enough Gracilaria, next you’ll want to make <c:italic>Liquid Agar><c:reset>: 1x Gracilaria seaweed in a furnace = 1x Liquid Agar Once you have some <c:italic>Liquid Agar<c:reset>, combine it with some <c:italic>Petri Dishes<c:reset>: 4x Petri Dishes + 1x Liquid Agar = 4x Petri Dish with Agar. These will become useful when making plant seeds...",
       "category": "getting_started"
     }
   ],
@@ -53,6 +63,15 @@
         "", "minecraft:stone", ""
       ],
       "result": "minecraft:stonebrick*4*1"
-    }
+    },
+	{
+		"id": "compost_bin",
+		"recipe": [
+		  "minecraft:wooden_button", "minecraft:wooden_pressure_plate", "minecraft:stick",
+		  "minecraft:wooden_slab", " ", "minecraft:wooden_slab",
+		  "minecraft:wooden_slab", "minecraft:wooden_slab", "minecraft:wooden_slab"
+		],
+		"result": "minecraft:dirt"
+	}
   ]
 }
