@@ -285,6 +285,7 @@ public class GuiAppMinimap extends GuiApp
     @Override
     public void init()
     {
+        heights.clear();
     }
 
     @Override
