@@ -53,13 +53,13 @@ public class DinosaurCorythosaurus extends Dinosaur
     @Override
     public double getBabyHealth()
     {
-        return 16;
+        return 10;
     }
 
     @Override
     public double getAdultHealth()
     {
-        return 65;
+        return 30;
     }
 
     @Override
@@ -83,25 +83,13 @@ public class DinosaurCorythosaurus extends Dinosaur
     @Override
     public double getBabyStrength()
     {
-        return 6;
+        return 5;
     }
 
     @Override
     public double getAdultStrength()
     {
-        return 36;
-    }
-
-    @Override
-    public double getBabyKnockback()
-    {
-        return 0.3;
-    }
-
-    @Override
-    public double getAdultKnockback()
-    {
-        return 0.6;
+        return 15;
     }
 
     @Override
@@ -167,6 +155,6 @@ public class DinosaurCorythosaurus extends Dinosaur
     @Override
     public String[] getBones()
     {
-        return new String[] { "skull", "cheek_teeth", "front_leg_bones", "hind_leg_bones", "neck_vertebrae", "pelvis", "ribcage", "shoulder", "tail_vertebrae"};
+        return new String[] { "skull", "cheek_teeth", "front_leg_bones", "hind_leg_bones", "neck_vertebrae", "pelvis", "ribcage", "shoulder", "tail_vertebrae" };
     }
 }

@@ -4,20 +4,57 @@ import net.ilexiconn.llibrary.common.content.IContentHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import org.jurassicraft.common.api.ISubBlocksBlock;
-import org.jurassicraft.common.block.machine.*;
-import org.jurassicraft.common.block.plant.*;
-import org.jurassicraft.common.block.tree.*;
+import org.jurassicraft.common.block.machine.BlockCarnivoreFeeder;
+import org.jurassicraft.common.block.machine.BlockCleaningStation;
+import org.jurassicraft.common.block.machine.BlockCultivateBottom;
+import org.jurassicraft.common.block.machine.BlockCultivateTop;
+import org.jurassicraft.common.block.machine.BlockDNACombinator;
+import org.jurassicraft.common.block.machine.BlockDNAExtractor;
+import org.jurassicraft.common.block.machine.BlockDNAHybridizer;
+import org.jurassicraft.common.block.machine.BlockDnaSequencer;
+import org.jurassicraft.common.block.machine.BlockDnaSynthesizer;
+import org.jurassicraft.common.block.machine.BlockEmbryoCalcificationMachine;
+import org.jurassicraft.common.block.machine.BlockEmbryonicMachine;
+import org.jurassicraft.common.block.machine.BlockFossilGrinder;
+import org.jurassicraft.common.block.machine.BlockIncubator;
+import org.jurassicraft.common.block.machine.BlockSecurityCamera;
+import org.jurassicraft.common.block.plant.BlockBennettitaleanCycadeoidea;
+import org.jurassicraft.common.block.plant.BlockCryPansy;
+import org.jurassicraft.common.block.plant.BlockCycadZamites;
+import org.jurassicraft.common.block.plant.BlockDicksonia;
+import org.jurassicraft.common.block.plant.BlockScalyTreeFern;
+import org.jurassicraft.common.block.plant.BlockSmallChainFern;
+import org.jurassicraft.common.block.plant.BlockSmallCycad;
+import org.jurassicraft.common.block.plant.BlockSmallRoyalFern;
+import org.jurassicraft.common.block.tree.BlockJCLeaves;
+import org.jurassicraft.common.block.tree.BlockJCLog;
+import org.jurassicraft.common.block.tree.BlockJCPlanks;
+import org.jurassicraft.common.block.tree.BlockJCSapling;
+import org.jurassicraft.common.block.tree.BlockJCSlabDouble;
+import org.jurassicraft.common.block.tree.BlockJCSlabHalf;
+import org.jurassicraft.common.block.tree.BlockJCStairs;
+import org.jurassicraft.common.block.tree.EnumType;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.base.JCEntityRegistry;
 import org.jurassicraft.common.item.itemblock.ItemBlockMeta;
 import org.jurassicraft.common.item.itemblock.ItemJCSlab;
-import org.jurassicraft.common.paleopad.dinopedia.DinoPediaRegistry;
-import org.jurassicraft.common.tileentity.*;
+import org.jurassicraft.common.tileentity.TileActionFigure;
+import org.jurassicraft.common.tileentity.TileCarnivoreFeeder;
+import org.jurassicraft.common.tileentity.TileCleaningStation;
+import org.jurassicraft.common.tileentity.TileCultivate;
+import org.jurassicraft.common.tileentity.TileDNACombinator;
+import org.jurassicraft.common.tileentity.TileDNAExtractor;
+import org.jurassicraft.common.tileentity.TileDNAHybridizer;
+import org.jurassicraft.common.tileentity.TileDnaSequencer;
+import org.jurassicraft.common.tileentity.TileDnaSynthesizer;
+import org.jurassicraft.common.tileentity.TileEmbryoCalcificationMachine;
+import org.jurassicraft.common.tileentity.TileEmbryonicMachine;
+import org.jurassicraft.common.tileentity.TileFossilGrinder;
+import org.jurassicraft.common.tileentity.TileIncubator;
 import org.jurassicraft.common.world.jurdstrees.algorythms.TreeCompendium;
 
 import java.util.ArrayList;
@@ -226,8 +263,6 @@ public class JCBlockRegistry implements IContentHandler
     {
         block.setUnlocalizedName(name);
 
-        DinoPediaRegistry.registerItem(new ItemStack(block));
-
         if (block instanceof BlockMeta)
         {
             GameRegistry.registerBlock(block, ItemBlockMeta.class, name);
@@ -299,8 +334,6 @@ public class JCBlockRegistry implements IContentHandler
     public void registerBlock(Block block, String name)
     {
         name = name.toLowerCase().replaceAll(" ", "_");
-
-        DinoPediaRegistry.registerItem(new ItemStack(block));
 
         if (block instanceof ISubBlocksBlock)
         {

@@ -125,7 +125,8 @@ public class GuiAppFileExplorer extends GuiApp
 
         if (mouseX > 5 && mouseX < 70 && mouseY > 132 && mouseY < 144)
         {
-            if (path == null) {
+            if (path == null)
+            {
                 return; //hue lazy npe fix
             }
             String[] split = path.split(Pattern.quote("/"));

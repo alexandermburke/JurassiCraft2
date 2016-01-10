@@ -117,7 +117,9 @@ public class EntityAIFindPlant extends EntityAIBase
             if (_breaker.tickUpdate())
             {
                 if (_dinosaur.worldObj.getGameRules().getBoolean("mobGriefing"))
+                {
                     _dinosaur.worldObj.destroyBlock(_target, false);
+                }
 
                 // TODO:  Add food value & food heal value to food helper
                 _dinosaur.getMetabolism().increaseFood(2000);

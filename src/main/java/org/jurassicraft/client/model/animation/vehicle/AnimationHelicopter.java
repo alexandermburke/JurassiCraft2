@@ -18,7 +18,7 @@ public class AnimationHelicopter implements IModelAnimator
 
         MowzieModelRenderer rotor = model.getCube("rotorbase_rotatehere");
         MowzieModelRenderer tailrotor = model.getCube("tailrotor_rotatehere");
-        rotor.rotateAngleY += helicopter.getEnginePower()*partialTicks;
+        rotor.rotateAngleY += helicopter.getEnginePower() * partialTicks;
         float time = helicopter.getEnginePower() / EntityHelicopterBase.MAX_POWER;
         rotor.rotateAngleY = easeInCubic(time, rotor.rotateAngleY, helicopter.getEnginePower() * partialTicks, 1f);
         rotor.rotateAngleY %= 360f;

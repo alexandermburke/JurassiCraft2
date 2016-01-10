@@ -33,12 +33,14 @@ public class HelicopterDoor extends HelicopterModule
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound compound) {
+    public void writeToNBT(NBTTagCompound compound)
+    {
         // TODO
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound compound) {
+    public void readFromNBT(NBTTagCompound compound)
+    {
         // TODO
     }
 }

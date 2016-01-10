@@ -72,13 +72,13 @@ public class DinosaurIndominus extends Dinosaur implements IHybrid
     @Override
     public double getBabyHealth()
     {
-        return 35;
+        return 20;
     }
 
     @Override
     public double getAdultHealth()
     {
-        return 160;
+        return 100;
     }
 
     @Override
@@ -95,31 +95,19 @@ public class DinosaurIndominus extends Dinosaur implements IHybrid
 
     public double getAttackSpeed()
     {
-        return 1.20;
+        return 0.5;
     }
 
     @Override
     public double getBabyStrength()
     {
-        return 8;
+        return 5;
     }
 
     @Override
     public double getAdultStrength()
     {
-        return 20;
-    }
-
-    @Override
-    public double getBabyKnockback()
-    {
-        return 0.3;
-    }
-
-    @Override
-    public double getAdultKnockback()
-    {
-        return 0.6;
+        return 40;
     }
 
     @Override

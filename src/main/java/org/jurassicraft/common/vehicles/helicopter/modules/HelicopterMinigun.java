@@ -27,17 +27,20 @@ public class HelicopterMinigun extends HelicopterModule
     }
 
     @Override
-    public boolean onClicked(HelicopterModuleSpot m, EntityPlayer player, Vec3 vec) {
+    public boolean onClicked(HelicopterModuleSpot m, EntityPlayer player, Vec3 vec)
+    {
         return false;
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound compound) {
+    public void writeToNBT(NBTTagCompound compound)
+    {
 
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound compound) {
+    public void readFromNBT(NBTTagCompound compound)
+    {
 
     }
 

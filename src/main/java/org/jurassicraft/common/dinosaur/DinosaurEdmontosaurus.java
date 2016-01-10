@@ -53,13 +53,25 @@ public class DinosaurEdmontosaurus extends Dinosaur
     @Override
     public double getBabyHealth()
     {
-        return 18;
+        return 10;
     }
 
     @Override
     public double getAdultHealth()
     {
-        return 75;
+        return 40;
+    }
+
+    @Override
+    public double getBabyStrength()
+    {
+        return 5;
+    }
+
+    @Override
+    public double getAdultStrength()
+    {
+        return 20;
     }
 
     @Override
@@ -78,30 +90,6 @@ public class DinosaurEdmontosaurus extends Dinosaur
     public double getAdultSpeed()
     {
         return 0.41;
-    }
-
-    @Override
-    public double getBabyStrength()
-    {
-        return 6;
-    }
-
-    @Override
-    public double getAdultStrength()
-    {
-        return 36;
-    }
-
-    @Override
-    public double getBabyKnockback()
-    {
-        return 0.3;
-    }
-
-    @Override
-    public double getAdultKnockback()
-    {
-        return 0.6;
     }
 
     @Override

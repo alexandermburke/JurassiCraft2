@@ -93,18 +93,6 @@ public class DinosaurLeptictidium extends Dinosaur
     }
 
     @Override
-    public double getBabyKnockback()
-    {
-        return 0.3;
-    }
-
-    @Override
-    public double getAdultKnockback()
-    {
-        return 0.6;
-    }
-
-    @Override
     public int getMaximumAge()
     {
         return fromDays(25);
@@ -179,6 +167,6 @@ public class DinosaurLeptictidium extends Dinosaur
     @Override
     public String[] getBones()
     {
-        return new String[] { };
+        return new String[] {};
     }
 }

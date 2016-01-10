@@ -92,10 +92,6 @@ public abstract class Dinosaur implements Comparable<Dinosaur>
 
     public abstract double getAdultStrength();
 
-    public abstract double getBabyKnockback();
-
-    public abstract double getAdultKnockback();
-
     public abstract float getBabySizeX();
 
     public abstract float getBabySizeY();

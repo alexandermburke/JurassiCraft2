@@ -3,13 +3,12 @@ package org.jurassicraft.common.item;
 import net.ilexiconn.bookwiki.server.item.BookWikiItem;
 import net.ilexiconn.llibrary.common.content.IContentHandler;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 import org.jurassicraft.common.creativetab.JCCreativeTabs;
 import org.jurassicraft.common.dinosaur.Dinosaur;
 import org.jurassicraft.common.entity.base.JCEntityRegistry;
 import org.jurassicraft.common.item.bones.ItemFossil;
-import org.jurassicraft.common.paleopad.dinopedia.DinoPediaRegistry;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -76,6 +75,11 @@ public class JCItemRegistry implements IContentHandler
     public static ItemBasic amber_cane;
     public static ItemBasic mr_dna_keychain;
 
+    public static ItemBasic basic_circuit;
+    public static ItemBasic advanced_circuit;
+
+    public static ItemBasic iron_nugget;
+
     // Debug items
     public static Item dino_scanner;
 
@@ -136,6 +140,11 @@ public class JCItemRegistry implements IContentHandler
         disc_troodons_and_raptors = new ItemJCMusicDisc("troodons_and_raptors");
         disc_dont_move_a_muscle = new ItemJCMusicDisc("dont_move_a_muscle");
 
+        basic_circuit = new ItemBasic("Basic Circuit", JCCreativeTabs.items);
+        advanced_circuit = new ItemBasic("Advanced Circuit", JCCreativeTabs.items);
+
+        iron_nugget = new ItemBasic("Iron Nugget", JCCreativeTabs.items);
+
         for (Dinosaur dinosaur : JCEntityRegistry.getRegisteredDinosaurs())
         {
             String[] boneTypes = dinosaur.getBones();
@@ -195,6 +204,9 @@ public class JCItemRegistry implements IContentHandler
         registerItem(plant_cells, "Plant Cells");
         registerItem(plant_callus, "Plant Callus");
         registerItem(tracker, "Tracker");
+        registerItem(basic_circuit, "Basic Circuit");
+        registerItem(advanced_circuit, "Advanced Circuit");
+        registerItemOreDict(iron_nugget, "Iron Nugget", "nuggetIron");
 
         registerItem(dino_meat, "Dinosaur Meat");
         registerItem(dino_steak, "Dinosaur Steak");
@@ -223,10 +235,14 @@ public class JCItemRegistry implements IContentHandler
         // }
     }
 
+    public void registerItemOreDict(Item item, String name, String oreDict)
+    {
+        registerItem(item, name);
+        OreDictionary.registerOre(oreDict, item);
+    }
+
     public void registerItem(Item item, String name)
     {
-        DinoPediaRegistry.registerItem(new ItemStack(item));
-
         GameRegistry.registerItem(item, name.toLowerCase().replaceAll(" ", "_").replaceAll("'", ""));
     }
 }

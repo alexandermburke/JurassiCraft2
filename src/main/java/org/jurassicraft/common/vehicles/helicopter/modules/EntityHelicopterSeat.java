@@ -36,8 +36,9 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
         sitedRider = true;
     }
 
-    private AxisAlignedBB createBoundingBox() {
-        return AxisAlignedBB.fromBounds(posX,posY,posZ,posX,posY,posZ);
+    private AxisAlignedBB createBoundingBox()
+    {
+        return AxisAlignedBB.fromBounds(posX, posY, posZ, posX, posY, posZ);
     }
 
     public EntityHelicopterSeat(float dist, int index, EntityHelicopterBase parent, boolean sitedRider)
@@ -73,7 +74,7 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
             float angle = parent.rotationYaw;
 
             resetPos();
-            if(parent.getSeat(index) != this && !worldObj.isRemote)
+            if (parent.getSeat(index) != this && !worldObj.isRemote)
             {
                 worldObj.removeEntity(this);
                 System.out.println("deads");
@@ -100,7 +101,8 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
         this.posX = parent.posX + nx;
         this.posY = parent.posY + ny + 0.4f;
         this.posZ = parent.posZ + nz;
-        if(Double.isNaN(posX) || Double.isNaN(posY) || Double.isNaN(posZ)) {
+        if (Double.isNaN(posX) || Double.isNaN(posY) || Double.isNaN(posZ))
+        {
             posX = lastTickPosX;
             posY = lastTickPosY;
             posZ = lastTickPosZ;

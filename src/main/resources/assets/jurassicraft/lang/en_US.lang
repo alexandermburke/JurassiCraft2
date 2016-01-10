@@ -151,6 +151,9 @@ item.amber_cane.name=Amber Cane
 item.amber_keychain.name=Amber Keychain
 item.mr_dna_keychain.name=Mr DNA Keychain
 item.dino_scanner.name=Debug Dinosaur Scanner
+item.basic_circuit.name=Basic Circuit
+item.advanced_circuit.name=Advanced Circuit
+item.iron_nugget.name=Iron Nugget
 
 //Blocks ==================================================
 tile.fossil_block.name={period} Fossil

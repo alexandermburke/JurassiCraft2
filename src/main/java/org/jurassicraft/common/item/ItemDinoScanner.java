@@ -28,7 +28,7 @@ public class ItemDinoScanner extends Item
 
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side,
-            float hitX, float hitY, float hitZ)
+                             float hitX, float hitY, float hitZ)
     {
         return false;
     }
@@ -48,7 +48,7 @@ public class ItemDinoScanner extends Item
                 dinosaur.getMetabolism().setFood(food - 5000);
                 LOGGER.info("food: " + dinosaur.getMetabolism().getFood() + "/" + dinosaur.getMetabolism().getMaxFood() +
                         "(" + (dinosaur.getMetabolism().getMaxFood() * 0.875) + "/" +
-                              (dinosaur.getMetabolism().getMaxFood() * 0.25) + ")" );
+                        (dinosaur.getMetabolism().getMaxFood() * 0.25) + ")");
             }
             else
             {

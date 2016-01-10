@@ -1,7 +1,6 @@
 package org.jurassicraft.common.vehicles.helicopter.modules;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -14,7 +13,6 @@ import org.jurassicraft.common.message.MessageHelicopterModules;
 import org.jurassicraft.common.vehicles.helicopter.EntityHelicopterBase;
 
 import java.util.List;
-import java.util.Map;
 
 public class HelicopterModuleSpot
 {
@@ -72,12 +70,15 @@ public class HelicopterModuleSpot
     {
         modules.clear();
         NBTTagList list = compound.getTagList("modules", Constants.NBT.TAG_COMPOUND);
-        for(int i = 0;i<list.tagCount();i++) {
+        for (int i = 0; i < list.tagCount(); i++)
+        {
             NBTTagCompound moduleData = list.getCompoundTagAt(i);
             String id = moduleData.getString("id");
             HelicopterModule module = HelicopterModule.createFromID(id);
-            if(module == null)
+            if (module == null)
+            {
                 throw new IllegalArgumentException("Invalid module ID");
+            }
         }
     }
 

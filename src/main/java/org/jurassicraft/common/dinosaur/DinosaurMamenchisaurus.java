@@ -111,18 +111,6 @@ public class DinosaurMamenchisaurus extends Dinosaur
     }
 
     @Override
-    public double getBabyKnockback()
-    {
-        return 0.3;
-    }
-
-    @Override
-    public double getAdultKnockback()
-    {
-        return 0.6;
-    }
-
-    @Override
     public int getMaximumAge()
     {
         return fromDays(95);

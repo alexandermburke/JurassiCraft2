@@ -53,13 +53,13 @@ public class DinosaurDimorphodon extends Dinosaur
     @Override
     public double getBabyHealth()
     {
-        return 16;
+        return 5;
     }
 
     @Override
     public double getAdultHealth()
     {
-        return 45;
+        return 10;
     }
 
     @Override
@@ -83,25 +83,13 @@ public class DinosaurDimorphodon extends Dinosaur
     @Override
     public double getBabyStrength()
     {
-        return 6;
+        return 1;
     }
 
     @Override
     public double getAdultStrength()
     {
-        return 36;
-    }
-
-    @Override
-    public double getBabyKnockback()
-    {
-        return 0.3;
-    }
-
-    @Override
-    public double getAdultKnockback()
-    {
-        return 0.6;
+        return 5;
     }
 
     @Override

@@ -9,7 +9,7 @@ import java.util.Iterator;
 
 /**
  * Copyright 2016 Timeless Mod Team.
- * <p>
+ * <p/>
  * This traverser iterates "layers" (like an onion) around the center point.  Being Minecraft,
  * the layers are boxes around the center point.
  */
@@ -56,9 +56,13 @@ public class OnionTraverser implements Iterable<BlockPos>
             BlockPos retVal = new BlockPos(_x, _y, _z);
 
             if (_y == _center.getY() + _maxRadius || _y == _center.getY() - _maxRadius)
+            {
                 walkSlab();
+            }
             else
+            {
                 walkPerimeter();
+            }
 
             //BlockPos nextVal = new BlockPos(_x, _y, _z);
             //LOGGER.info(_idx++ + ", facing=" + _facing + ", yCounter=" + _yCounter + "/" + _maxCounter + ", radius=" + _currentRadius + ", pos=" + retVal + ", nextVal=" + nextVal);
@@ -75,7 +79,7 @@ public class OnionTraverser implements Iterable<BlockPos>
         // Walk around the outside perimeter
         private void walkPerimeter()
         {
-            switch(_facing)
+            switch (_facing)
             {
                 case EAST:
                     if (_x == _maxX)
@@ -127,7 +131,7 @@ public class OnionTraverser implements Iterable<BlockPos>
         // then go to the next layer.
         private void walkSlab()
         {
-            switch(_facing)
+            switch (_facing)
             {
                 case EAST:
                     if (_x == _maxX)
@@ -154,7 +158,7 @@ public class OnionTraverser implements Iterable<BlockPos>
                     break;
             }
 
-            if (_z > _maxZ )
+            if (_z > _maxZ)
             {
                 nextLayer();
             }
@@ -178,10 +182,14 @@ public class OnionTraverser implements Iterable<BlockPos>
 
             _x = _minX;
             _z = _minZ;
-            if ( (_yCounter & 0x1) == 1 )
-                _y = _center.getY() + _yCounter/2;
+            if ((_yCounter & 0x1) == 1)
+            {
+                _y = _center.getY() + _yCounter / 2;
+            }
             else
-                _y = _center.getY() - _yCounter/2;
+            {
+                _y = _center.getY() - _yCounter / 2;
+            }
             _facing = EnumFacing.EAST;
 
             //LOGGER.info("Layer. radius=" + _currentRadius + ", x=" + _x + ", y=" + _y + ", z=" + _z + ", facing=" + _facing);

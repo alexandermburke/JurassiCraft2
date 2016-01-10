@@ -8,8 +8,6 @@ import org.jurassicraft.common.period.EnumTimePeriod;
 
 public class DinosaurAchillobator extends Dinosaur
 {
-    // TODO: Figure out all the entities properties
-
     @Override
     public String getName()
     {
@@ -55,13 +53,13 @@ public class DinosaurAchillobator extends Dinosaur
     @Override
     public double getBabyHealth()
     {
-        return 16;
+        return 10;
     }
 
     @Override
     public double getAdultHealth()
     {
-        return 60;
+        return 40;
     }
 
     @Override
@@ -91,25 +89,13 @@ public class DinosaurAchillobator extends Dinosaur
     @Override
     public double getBabyStrength()
     {
-        return 6;
+        return 1;
     }
 
     @Override
     public double getAdultStrength()
     {
-        return 15;
-    }
-
-    @Override
-    public double getBabyKnockback()
-    {
-        return 0.3;
-    }
-
-    @Override
-    public double getAdultKnockback()
-    {
-        return 0.6;
+        return 20;
     }
 
     @Override

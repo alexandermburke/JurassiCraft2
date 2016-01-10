@@ -1,7 +1,6 @@
 package org.jurassicraft.client.render.renderdef;
 
 import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.jurassicraft.client.model.animation.AnimationIndominus;
 import org.jurassicraft.client.render.entity.RenderIndominus;

@@ -116,7 +116,8 @@ public class JCPlayerData implements IExtendedEntityProperties
         rootFiles.clear();
         appdata.clear();
 
-        if (playerData == null) {
+        if (playerData == null)
+        {
             return;
         }
 

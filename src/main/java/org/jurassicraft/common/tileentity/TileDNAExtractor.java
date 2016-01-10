@@ -17,7 +17,6 @@ import org.jurassicraft.common.item.JCItemRegistry;
 import org.jurassicraft.common.plant.JCPlantRegistry;
 import org.jurassicraft.common.plant.Plant;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 

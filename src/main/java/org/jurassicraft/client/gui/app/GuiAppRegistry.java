@@ -20,7 +20,6 @@ public class GuiAppRegistry
 
     public static void register()
     {
-        registerApp(new GuiAppDinoPedia(AppRegistry.dinopedia));
         registerApp(new GuiAppFileExplorer(AppRegistry.file_explorer));
         registerApp(new GuiAppFlappyDino(AppRegistry.flappy_dino));
         registerApp(new GuiAppMinimap(AppRegistry.minimap));

@@ -64,8 +64,8 @@ public class RenderJurassiCraftSign implements IRenderFactory<EntityJurassiCraft
 
         private void func_77010_a(EntityJurassiCraftSign entity, int width, int height, int textureU, int textureV)
         {
-            float f = (float)(-width) / 2.0F;
-            float f1 = (float)(-height) / 2.0F;
+            float f = (float) (-width) / 2.0F;
+            float f1 = (float) (-height) / 2.0F;
             float f2 = 0.001F;
             float f3 = 0.75F;
             float f4 = 0.8125F;
@@ -84,42 +84,42 @@ public class RenderJurassiCraftSign implements IRenderFactory<EntityJurassiCraft
             {
                 for (int y = 0; y < height / 16; ++y)
                 {
-                    float bottomX = f + (float)((x + 1) * 16);
-                    float f16 = f + (float)(x * 16);
-                    float f17 = f1 + (float)((y + 1) * 16);
-                    float f18 = f1 + (float)(y * 16);
+                    float bottomX = f + (float) ((x + 1) * 16);
+                    float f16 = f + (float) (x * 16);
+                    float f17 = f1 + (float) ((y + 1) * 16);
+                    float f18 = f1 + (float) (y * 16);
                     this.setLightmap(entity, (bottomX + f16) / 2.0F, (f17 + f18) / 2.0F);
-                    float f19 = (float)(textureU + width - x * 16) / 256.0F;
-                    float f20 = (float)(textureU + width - (x + 1) * 16) / 256.0F;
-                    float f21 = (float)(textureV + height - y * 16) / 256.0F;
-                    float f22 = (float)(textureV + height - (y + 1) * 16) / 256.0F;
+                    float f19 = (float) (textureU + width - x * 16) / 256.0F;
+                    float f20 = (float) (textureU + width - (x + 1) * 16) / 256.0F;
+                    float f21 = (float) (textureV + height - y * 16) / 256.0F;
+                    float f22 = (float) (textureV + height - (y + 1) * 16) / 256.0F;
                     Tessellator tessellator = Tessellator.getInstance();
                     WorldRenderer worldrenderer = tessellator.getWorldRenderer();
                     worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_NORMAL);
-                    worldrenderer.pos((double)bottomX, (double)f18, (double)(-f2)).tex((double)f20, (double)f21).normal(0.0F, 0.0F, -1.0F).endVertex();
-                    worldrenderer.pos((double)f16, (double)f18, (double)(-f2)).tex((double)f19, (double)f21).normal(0.0F, 0.0F, -1.0F).endVertex();
-                    worldrenderer.pos((double)f16, (double)f17, (double)(-f2)).tex((double)f19, (double)f22).normal(0.0F, 0.0F, -1.0F).endVertex();
-                    worldrenderer.pos((double)bottomX, (double)f17, (double)(-f2)).tex((double)f20, (double)f22).normal(0.0F, 0.0F, -1.0F).endVertex();
-                    worldrenderer.pos((double)bottomX, (double)f17, (double)f2).tex((double)f3, (double)f5).normal(0.0F, 0.0F, 1.0F).endVertex();
-                    worldrenderer.pos((double)f16, (double)f17, (double)f2).tex((double)f4, (double)f5).normal(0.0F, 0.0F, 1.0F).endVertex();
-                    worldrenderer.pos((double)f16, (double)f18, (double)f2).tex((double)f4, (double)f6).normal(0.0F, 0.0F, 1.0F).endVertex();
-                    worldrenderer.pos((double)bottomX, (double)f18, (double)f2).tex((double)f3, (double)f6).normal(0.0F, 0.0F, 1.0F).endVertex();
-                    worldrenderer.pos((double)bottomX, (double)f17, (double)(-f2)).tex((double)f7, (double)f9).normal(0.0F, 1.0F, 0.0F).endVertex();
-                    worldrenderer.pos((double)f16, (double)f17, (double)(-f2)).tex((double)f8, (double)f9).normal(0.0F, 1.0F, 0.0F).endVertex();
-                    worldrenderer.pos((double)f16, (double)f17, (double)f2).tex((double)f8, (double)f10).normal(0.0F, 1.0F, 0.0F).endVertex();
-                    worldrenderer.pos((double)bottomX, (double)f17, (double)f2).tex((double)f7, (double)f10).normal(0.0F, 1.0F, 0.0F).endVertex();
-                    worldrenderer.pos((double)bottomX, (double)f18, (double)f2).tex((double)f7, (double)f9).normal(0.0F, -1.0F, 0.0F).endVertex();
-                    worldrenderer.pos((double)f16, (double)f18, (double)f2).tex((double)f8, (double)f9).normal(0.0F, -1.0F, 0.0F).endVertex();
-                    worldrenderer.pos((double)f16, (double)f18, (double)(-f2)).tex((double)f8, (double)f10).normal(0.0F, -1.0F, 0.0F).endVertex();
-                    worldrenderer.pos((double)bottomX, (double)f18, (double)(-f2)).tex((double)f7, (double)f10).normal(0.0F, -1.0F, 0.0F).endVertex();
-                    worldrenderer.pos((double)bottomX, (double)f17, (double)f2).tex((double)f12, (double)f13).normal(-1.0F, 0.0F, 0.0F).endVertex();
-                    worldrenderer.pos((double)bottomX, (double)f18, (double)f2).tex((double)f12, (double)f14).normal(-1.0F, 0.0F, 0.0F).endVertex();
-                    worldrenderer.pos((double)bottomX, (double)f18, (double)(-f2)).tex((double)f11, (double)f14).normal(-1.0F, 0.0F, 0.0F).endVertex();
-                    worldrenderer.pos((double)bottomX, (double)f17, (double)(-f2)).tex((double)f11, (double)f13).normal(-1.0F, 0.0F, 0.0F).endVertex();
-                    worldrenderer.pos((double)f16, (double)f17, (double)(-f2)).tex((double)f12, (double)f13).normal(1.0F, 0.0F, 0.0F).endVertex();
-                    worldrenderer.pos((double)f16, (double)f18, (double)(-f2)).tex((double)f12, (double)f14).normal(1.0F, 0.0F, 0.0F).endVertex();
-                    worldrenderer.pos((double)f16, (double)f18, (double)f2).tex((double)f11, (double)f14).normal(1.0F, 0.0F, 0.0F).endVertex();
-                    worldrenderer.pos((double)f16, (double)f17, (double)f2).tex((double)f11, (double)f13).normal(1.0F, 0.0F, 0.0F).endVertex();
+                    worldrenderer.pos((double) bottomX, (double) f18, (double) (-f2)).tex((double) f20, (double) f21).normal(0.0F, 0.0F, -1.0F).endVertex();
+                    worldrenderer.pos((double) f16, (double) f18, (double) (-f2)).tex((double) f19, (double) f21).normal(0.0F, 0.0F, -1.0F).endVertex();
+                    worldrenderer.pos((double) f16, (double) f17, (double) (-f2)).tex((double) f19, (double) f22).normal(0.0F, 0.0F, -1.0F).endVertex();
+                    worldrenderer.pos((double) bottomX, (double) f17, (double) (-f2)).tex((double) f20, (double) f22).normal(0.0F, 0.0F, -1.0F).endVertex();
+                    worldrenderer.pos((double) bottomX, (double) f17, (double) f2).tex((double) f3, (double) f5).normal(0.0F, 0.0F, 1.0F).endVertex();
+                    worldrenderer.pos((double) f16, (double) f17, (double) f2).tex((double) f4, (double) f5).normal(0.0F, 0.0F, 1.0F).endVertex();
+                    worldrenderer.pos((double) f16, (double) f18, (double) f2).tex((double) f4, (double) f6).normal(0.0F, 0.0F, 1.0F).endVertex();
+                    worldrenderer.pos((double) bottomX, (double) f18, (double) f2).tex((double) f3, (double) f6).normal(0.0F, 0.0F, 1.0F).endVertex();
+                    worldrenderer.pos((double) bottomX, (double) f17, (double) (-f2)).tex((double) f7, (double) f9).normal(0.0F, 1.0F, 0.0F).endVertex();
+                    worldrenderer.pos((double) f16, (double) f17, (double) (-f2)).tex((double) f8, (double) f9).normal(0.0F, 1.0F, 0.0F).endVertex();
+                    worldrenderer.pos((double) f16, (double) f17, (double) f2).tex((double) f8, (double) f10).normal(0.0F, 1.0F, 0.0F).endVertex();
+                    worldrenderer.pos((double) bottomX, (double) f17, (double) f2).tex((double) f7, (double) f10).normal(0.0F, 1.0F, 0.0F).endVertex();
+                    worldrenderer.pos((double) bottomX, (double) f18, (double) f2).tex((double) f7, (double) f9).normal(0.0F, -1.0F, 0.0F).endVertex();
+                    worldrenderer.pos((double) f16, (double) f18, (double) f2).tex((double) f8, (double) f9).normal(0.0F, -1.0F, 0.0F).endVertex();
+                    worldrenderer.pos((double) f16, (double) f18, (double) (-f2)).tex((double) f8, (double) f10).normal(0.0F, -1.0F, 0.0F).endVertex();
+                    worldrenderer.pos((double) bottomX, (double) f18, (double) (-f2)).tex((double) f7, (double) f10).normal(0.0F, -1.0F, 0.0F).endVertex();
+                    worldrenderer.pos((double) bottomX, (double) f17, (double) f2).tex((double) f12, (double) f13).normal(-1.0F, 0.0F, 0.0F).endVertex();
+                    worldrenderer.pos((double) bottomX, (double) f18, (double) f2).tex((double) f12, (double) f14).normal(-1.0F, 0.0F, 0.0F).endVertex();
+                    worldrenderer.pos((double) bottomX, (double) f18, (double) (-f2)).tex((double) f11, (double) f14).normal(-1.0F, 0.0F, 0.0F).endVertex();
+                    worldrenderer.pos((double) bottomX, (double) f17, (double) (-f2)).tex((double) f11, (double) f13).normal(-1.0F, 0.0F, 0.0F).endVertex();
+                    worldrenderer.pos((double) f16, (double) f17, (double) (-f2)).tex((double) f12, (double) f13).normal(1.0F, 0.0F, 0.0F).endVertex();
+                    worldrenderer.pos((double) f16, (double) f18, (double) (-f2)).tex((double) f12, (double) f14).normal(1.0F, 0.0F, 0.0F).endVertex();
+                    worldrenderer.pos((double) f16, (double) f18, (double) f2).tex((double) f11, (double) f14).normal(1.0F, 0.0F, 0.0F).endVertex();
+                    worldrenderer.pos((double) f16, (double) f17, (double) f2).tex((double) f11, (double) f13).normal(1.0F, 0.0F, 0.0F).endVertex();
                     tessellator.draw();
                 }
             }

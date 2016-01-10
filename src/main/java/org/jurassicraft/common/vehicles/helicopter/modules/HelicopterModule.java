@@ -12,7 +12,9 @@ public abstract class HelicopterModule
 {
 
     public static final Map<String, Class<? extends HelicopterModule>> registry;
-    static {
+
+    static
+    {
         // register default modules
         registry = Maps.newHashMap();
         registry.put("door", HelicopterDoor.class);
@@ -68,12 +70,17 @@ public abstract class HelicopterModule
 
     public abstract void readFromNBT(NBTTagCompound compound);
 
-    public static HelicopterModule createFromID(String id) {
+    public static HelicopterModule createFromID(String id)
+    {
         Class<? extends HelicopterModule> clazz = registry.get(id);
-        if(clazz != null) {
-            try {
+        if (clazz != null)
+        {
+            try
+            {
                 return clazz.newInstance();
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 e.printStackTrace();
             }
         }
