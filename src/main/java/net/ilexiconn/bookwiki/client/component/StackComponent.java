@@ -29,13 +29,17 @@ public class StackComponent extends Gui implements IComponent {
 
     @Override
     public void render(Minecraft mc, BookWiki bookWiki, String arg, BookWikiGui gui, int x, int y, int mouseX, int mouseY) {
-        int stackSize = 1;
+        int amount = 1;
+        int meta = 0;
         if (arg.contains("*")) {
             String[] s = arg.split("\\*");
             arg = s[0];
-            stackSize = Integer.parseInt(s[1]);
+            amount = Integer.parseInt(s[1]);
+            if (s.length == 3) {
+                meta = Integer.parseInt(s[2]);
+            }
         }
-        ItemStack stack = new ItemStack(Item.getByNameOrId(arg), stackSize);
+        ItemStack stack = new ItemStack(Item.getByNameOrId(arg), amount, meta);
         mc.getTextureManager().bindTexture(gui.getTexture());
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         drawModalRectWithCustomSizedTexture(x + 50, y, 292, 127, 18, 18, 512.0F, 512.0F);

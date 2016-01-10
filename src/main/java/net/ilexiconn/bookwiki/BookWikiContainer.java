@@ -126,15 +126,19 @@ public class BookWikiContainer {
                 for (int i = 0; i < recipeInstance.length; i++) {
                     String s = recipe[i];
                     if (!s.isEmpty()) {
-                        int stackSize = 1;
+                        int amount = 1;
+                        int meta = 0;
                         if (s.contains("*")) {
                             String[] s1 = s.split("\\*");
                             s = s1[0];
-                            stackSize = Integer.parseInt(s1[1]);
+                            amount = Integer.parseInt(s1[1]);
+                            if (s1.length == 3) {
+                                meta = Integer.parseInt(s1[2]);
+                            }
                         }
                         Item item = Item.getByNameOrId(s);
                         if (item != null) {
-                            recipeInstance[i] = new ItemStack(item, stackSize);
+                            recipeInstance[i] = new ItemStack(item, amount, meta);
                         } else {
                             BookWiki.logger.error("Can't find item or block with name " + s);
                             recipeInstance[i] = null; //TODO: Use a fallback item.
@@ -147,15 +151,19 @@ public class BookWikiContainer {
 
         public ItemStack getResult() {
             if (resultInstance == null) {
-                int stackSize = 1;
+                int amount = 1;
+                int meta = 0;
                 if (result.contains("*")) {
                     String[] s = result.split("\\*");
                     result = s[0];
-                    stackSize = Integer.parseInt(s[1]);
+                    amount = Integer.parseInt(s[1]);
+                    if (s.length == 3) {
+                        meta = Integer.parseInt(s[2]);
+                    }
                 }
                 Item item = Item.getByNameOrId(result);
                 if (item != null) {
-                    resultInstance = new ItemStack(item, stackSize);
+                    resultInstance = new ItemStack(item, amount, meta);
                 } else {
                     BookWiki.logger.error("Can't find item or block with name " + result);
                     resultInstance = new ItemStack(Blocks.crafting_table); //TODO: Switch to a better fallback item.

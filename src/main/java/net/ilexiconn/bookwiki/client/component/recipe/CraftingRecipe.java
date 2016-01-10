@@ -28,10 +28,12 @@ public class CraftingRecipe extends Gui implements IRecipe {
         x += 14;
         y += mc.fontRendererObj.FONT_HEIGHT;
         drawModalRectWithCustomSizedTexture(x + 64, y + 14, 292, 101, 26, 26, 512.0F, 512.0F);
+        RenderHelper.enableGUIStandardItemLighting();
         mc.getRenderItem().zLevel = 100.0F;
         mc.getRenderItem().renderItemAndEffectIntoGUI(recipe.getResult(), x + 69, y + 19);
         mc.getRenderItem().renderItemOverlayIntoGUI(mc.fontRendererObj, recipe.getResult(), x + 69, y + 19, null);
         mc.getRenderItem().zLevel = 0.0F;
+        RenderHelper.disableStandardItemLighting();
         mc.getTextureManager().bindTexture(gui.getTexture());
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableLighting();

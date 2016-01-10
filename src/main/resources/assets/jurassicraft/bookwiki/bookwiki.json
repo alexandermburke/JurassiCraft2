@@ -6,12 +6,6 @@
       "name": "category.getting_started.name",
       "icon": "minecraft:crafting_table",
       "defaultPage": "main"
-    },
-    {
-      "id": "fossils",
-      "name": "category.fossils.name",
-      "icon": "jurassicraft:fossil_block_0",
-      "defaultPage": "recipes"
     }
   ],
   "pages": [
@@ -32,45 +26,33 @@
 	},
 	{
 		"id": "peat_and_moss_3",
-		"content": "Once you have a decent amount of Peat and some Moss, you can start farming the Moss. Moss can be placed on Peat, Gravel, Cobblestone or any dirt variant, and over time it will spread. However, it will spread MUCH faster if placed on Peat!\n\n5x Moss + 4x Cobblestone in a crafting table (TNT shape) = 4x Mossy Cobblestone\n\n5x Moss + 4x Stone bricks in a crafting table (TNT shape) = 4x Mossy Stone Bricks\n\n9x Moss in a crafting table = 1x Peat Moss block \nPeat Moss blocks will become useful once you start hatching dinosaurs...",
+		"content": "Once you have a decent amount of <c:italic>Peat<c:reset> and some <c:italic>Moss<c:reset>, you can start farming the <c:italic>Moss<c:reset>. Moss can be placed on <c:italic>Peat<c:reset>, <c:italic>Gravel<c:reset>, <c:italic>Cobblestone<c:reset> or any dirt variant, and over time it will spread. However, it will spread MUCH faster if placed on <c:italic>Peat<c:reset>! <c:italic>Peat Moss<c:reset> blocks will become useful once you start hatching dinosaurs.\n\n<r:moss_cobblestone><r:moss_stone>",
 		"category": "getting_started"
 	},
     {
-      "id": "recipes",
-      "content": "Lern me to mke a sword pls<r:sword>thx!!!\n\n\n\n\n\n\n\n\n<e:Zombie>",
-      "category": "fossils"
-    },
-    {
-      "id": "other",
-      "content": "Hey!<r:test>Bye!\n<s:minecraft:crafting_table*64>Nah don't.\n\n\n\n\n\ntest\n<r:test2>kek<e:Sheep>",
-      "category": "fossils"
+      "id": "making_compost_1",
+      "content": "<c:bold>Making Compost\n\n<c:italic>Compost<c:reset> is one of the key ingredients of <c:italic>Plant Fertilizer<c:reset>. In order to make it, you will need a <c:italic>Compost Bin<c:reset>, which has the following recipe:",
+      "category": "getting_started"
     }
   ],
   "recipes": [
     {
-      "id": "sword",
+      "id": "moss_cobblestone",
       "recipe": [
-        "", "minecraft:diamond", "",
-        "", "minecraft:diamond", "",
-        "", "minecraft:stick", ""
+        "", "minecraft:cobblestone", "",
+        "minecraft:cobblestone", "", "minecraft:cobblestone",
+        "", "minecraft:cobblestone", ""
       ],
-      "result": "minecraft:diamond_sword"
+      "result": "minecraft:mossy_cobblestone*4"
     },
     {
-      "id": "test",
+      "id": "moss_stone",
       "recipe": [
-        "", "", "",
-        "", "minecraft:dirt", "",
-        "", "", ""
+        "", "minecraft:stone", "",
+        "minecraft:stone", "", "minecraft:stone",
+        "", "minecraft:stone", ""
       ],
-      "result": "minecraft:diamond*64",
-      "shapeless": true
-    },
-    {
-      "id": "test2",
-      "type": "furnace",
-      "recipe": ["minecraft:diamond"],
-      "result": "minecraft:stick*2"
+      "result": "minecraft:stonebrick*4*1"
     }
   ]
 }
