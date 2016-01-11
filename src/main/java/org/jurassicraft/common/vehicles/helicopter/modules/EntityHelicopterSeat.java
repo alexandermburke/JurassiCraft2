@@ -57,6 +57,11 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
         height = 0f;
     }
 
+    public void onUpdate()
+    {
+        ;
+    }
+
     public void update()
     {
         motionX = 0f;
@@ -71,10 +76,9 @@ public class EntityHelicopterSeat extends Entity implements IEntityAdditionalSpa
             float angle = parent.rotationYaw;
 
             resetPos();
-            if (parent.getSeat(index) != this && !worldObj.isRemote)
+            if (parent.getSeat(index) == null)
             {
-                worldObj.removeEntity(this);
-                System.out.println("deads");
+                parent.setSeat(index, this);
             }
             if (parent.isDead && !worldObj.isRemote)
             {

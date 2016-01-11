@@ -357,6 +357,12 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
         return direction.normalize();
     }
 
+    @Override
+    protected void collideWithNearbyEntities()
+    {
+        ;
+    }
+
     public void updateEngine(boolean engineState)
     {
         if (worldObj.isRemote)
@@ -534,4 +540,8 @@ public class EntityHelicopterBase extends EntityLivingBase implements IEntityAdd
     }
 
 
+    public void setSeat(int index, EntityHelicopterSeat seat)
+    {
+        seats[index] = seat;
+    }
 }
