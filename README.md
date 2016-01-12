@@ -14,6 +14,7 @@ TheLarsinator
 Kaneras  
 WorldSEnder  
 iLexiconn
+MagikModder
 
 ## Artists
 TheLieutenantGhost  
